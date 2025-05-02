@@ -1,0 +1,473 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+package unifieddatalibrary
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	"net/http"
+	"net/url"
+	"time"
+
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
+	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+)
+
+// EngineDetailService contains methods and other services that help with
+// interacting with the unifieddatalibrary API.
+//
+// Note, unlike clients, this service does not read variables from the environment
+// automatically. You should not instantiate this service directly, and instead use
+// the [NewEngineDetailService] method instead.
+type EngineDetailService struct {
+	Options []option.RequestOption
+}
+
+// NewEngineDetailService generates a new service that applies the given options to
+// each request. These options are applied after the parent client's options (if
+// there is one), and before any request-specific options.
+func NewEngineDetailService(opts ...option.RequestOption) (r EngineDetailService) {
+	r = EngineDetailService{}
+	r.Options = opts
+	return
+}
+
+// Service operation to take a single EngineDetails as a POST body and ingest into
+// the database. EngineDetails are launch vehicle engine details and performance
+// characteristics/limits compiled by a particular source. A launch vehicle engine
+// may have several details records from multiple sources. A specific role is
+// required to perform this service operation. Please contact the UDL team for
+// assistance.
+func (r *EngineDetailService) New(ctx context.Context, body EngineDetailNewParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "udl/enginedetails"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
+	return
+}
+
+// Service operation to get a single EngineDetails record by its unique ID passed
+// as a path parameter. EngineDetails are launch vehicle engine details and
+// performance characteristics/limits compiled by a particular source. A launch
+// vehicle engine may have several details records from multiple sources.
+func (r *EngineDetailService) Get(ctx context.Context, id string, query EngineDetailGetParams, opts ...option.RequestOption) (res *EngineDetailsFull, err error) {
+	opts = append(r.Options[:], opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("udl/enginedetails/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Service operation to update a single EngineDetails. EngineDetails are launch
+// vehicle engine details and performance characteristics/limits compiled by a
+// particular source. A launch vehicle engine may have several details records from
+// multiple sources. A specific role is required to perform this service operation.
+// Please contact the UDL team for assistance.
+func (r *EngineDetailService) Update(ctx context.Context, id string, body EngineDetailUpdateParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("udl/enginedetails/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
+	return
+}
+
+// Service operation to delete a EngineDetails object specified by the passed ID
+// path parameter. EngineDetails are launch vehicle engine details and performance
+// characteristics/limits compiled by a particular source. A launch vehicle engine
+// may have several details records from multiple sources. A specific role is
+// required to perform this service operation. Please contact the UDL team for
+// assistance.
+func (r *EngineDetailService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("udl/enginedetails/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
+	return
+}
+
+// Known launch vehicle engine details and performance characteristics and limits
+// compiled by a particular source. A launch vehicle engine may have several
+// details records from multiple sources.
+type EngineDetailsFull struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode EngineDetailsFullDataMode `json:"dataMode,required"`
+	// Identifier of the parent engine record.
+	IDEngine string `json:"idEngine,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Launch engine maximum burn time in seconds.
+	BurnTime float64 `json:"burnTime"`
+	// Engine chamber pressure in bars.
+	ChamberPressure float64 `json:"chamberPressure"`
+	// Engine characteristic type (e.g. Electric, Mono-propellant, Bi-propellant,
+	// etc.).
+	CharacteristicType string `json:"characteristicType"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Engine cycle type (e.g. Electrostatic Ion, Pressure Fed, Hall, Catalytic
+	// Decomposition, etc.).
+	CycleType string `json:"cycleType"`
+	// Engine type or family.
+	Family string `json:"family"`
+	// Organization ID of the engine manufacturer.
+	ManufacturerOrgID string `json:"manufacturerOrgId"`
+	// Engine maximum number of firings.
+	MaxFirings int64 `json:"maxFirings"`
+	// Notes/Description of the engine.
+	Notes string `json:"notes"`
+	// Engine nozzle expansion ratio.
+	NozzleExpansionRatio float64 `json:"nozzleExpansionRatio"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Oxidizer type (e.g. Nitrogen Tetroxide, Liquid Oxygen, etc).
+	Oxidizer string `json:"oxidizer"`
+	// Propellant/fuel type of the engine (e.g. Liquid Hydrogen, Kerosene, Aerozine,
+	// etc).
+	Propellant string `json:"propellant"`
+	// Engine maximum thrust at sea level in Kilo-Newtons.
+	SeaLevelThrust float64 `json:"seaLevelThrust"`
+	// Launch engine specific impulse in seconds.
+	SpecificImpulse float64 `json:"specificImpulse"`
+	// Optional array of provider/source specific tags for this data, where each
+	// element is no longer than 32 characters, used for implementing data owner
+	// conditional access controls to restrict access to the data. Should be left null
+	// by data providers unless conditional access controls are coordinated with the
+	// UDL team.
+	Tags []string `json:"tags"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Engine maximum thrust in a vacuum in Kilo-Newtons.
+	VacuumThrust float64 `json:"vacuumThrust"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDEngine              resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		BurnTime              resp.Field
+		ChamberPressure       resp.Field
+		CharacteristicType    resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		CycleType             resp.Field
+		Family                resp.Field
+		ManufacturerOrgID     resp.Field
+		MaxFirings            resp.Field
+		Notes                 resp.Field
+		NozzleExpansionRatio  resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		Oxidizer              resp.Field
+		Propellant            resp.Field
+		SeaLevelThrust        resp.Field
+		SpecificImpulse       resp.Field
+		Tags                  resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		VacuumThrust          resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r EngineDetailsFull) RawJSON() string { return r.JSON.raw }
+func (r *EngineDetailsFull) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type EngineDetailsFullDataMode string
+
+const (
+	EngineDetailsFullDataModeReal      EngineDetailsFullDataMode = "REAL"
+	EngineDetailsFullDataModeTest      EngineDetailsFullDataMode = "TEST"
+	EngineDetailsFullDataModeSimulated EngineDetailsFullDataMode = "SIMULATED"
+	EngineDetailsFullDataModeExercise  EngineDetailsFullDataMode = "EXERCISE"
+)
+
+type EngineDetailNewParams struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode EngineDetailNewParamsDataMode `json:"dataMode,omitzero,required"`
+	// Identifier of the parent engine record.
+	IDEngine string `json:"idEngine,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Launch engine maximum burn time in seconds.
+	BurnTime param.Opt[float64] `json:"burnTime,omitzero"`
+	// Engine chamber pressure in bars.
+	ChamberPressure param.Opt[float64] `json:"chamberPressure,omitzero"`
+	// Engine characteristic type (e.g. Electric, Mono-propellant, Bi-propellant,
+	// etc.).
+	CharacteristicType param.Opt[string] `json:"characteristicType,omitzero"`
+	// Engine cycle type (e.g. Electrostatic Ion, Pressure Fed, Hall, Catalytic
+	// Decomposition, etc.).
+	CycleType param.Opt[string] `json:"cycleType,omitzero"`
+	// Engine type or family.
+	Family param.Opt[string] `json:"family,omitzero"`
+	// Organization ID of the engine manufacturer.
+	ManufacturerOrgID param.Opt[string] `json:"manufacturerOrgId,omitzero"`
+	// Engine maximum number of firings.
+	MaxFirings param.Opt[int64] `json:"maxFirings,omitzero"`
+	// Notes/Description of the engine.
+	Notes param.Opt[string] `json:"notes,omitzero"`
+	// Engine nozzle expansion ratio.
+	NozzleExpansionRatio param.Opt[float64] `json:"nozzleExpansionRatio,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// Oxidizer type (e.g. Nitrogen Tetroxide, Liquid Oxygen, etc).
+	Oxidizer param.Opt[string] `json:"oxidizer,omitzero"`
+	// Propellant/fuel type of the engine (e.g. Liquid Hydrogen, Kerosene, Aerozine,
+	// etc).
+	Propellant param.Opt[string] `json:"propellant,omitzero"`
+	// Engine maximum thrust at sea level in Kilo-Newtons.
+	SeaLevelThrust param.Opt[float64] `json:"seaLevelThrust,omitzero"`
+	// Launch engine specific impulse in seconds.
+	SpecificImpulse param.Opt[float64] `json:"specificImpulse,omitzero"`
+	// Engine maximum thrust in a vacuum in Kilo-Newtons.
+	VacuumThrust param.Opt[float64] `json:"vacuumThrust,omitzero"`
+	// Optional array of provider/source specific tags for this data, where each
+	// element is no longer than 32 characters, used for implementing data owner
+	// conditional access controls to restrict access to the data. Should be left null
+	// by data providers unless conditional access controls are coordinated with the
+	// UDL team.
+	Tags []string `json:"tags,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f EngineDetailNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+func (r EngineDetailNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow EngineDetailNewParams
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type EngineDetailNewParamsDataMode string
+
+const (
+	EngineDetailNewParamsDataModeReal      EngineDetailNewParamsDataMode = "REAL"
+	EngineDetailNewParamsDataModeTest      EngineDetailNewParamsDataMode = "TEST"
+	EngineDetailNewParamsDataModeSimulated EngineDetailNewParamsDataMode = "SIMULATED"
+	EngineDetailNewParamsDataModeExercise  EngineDetailNewParamsDataMode = "EXERCISE"
+)
+
+type EngineDetailGetParams struct {
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f EngineDetailGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [EngineDetailGetParams]'s query parameters as `url.Values`.
+func (r EngineDetailGetParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type EngineDetailUpdateParams struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode EngineDetailUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	// Identifier of the parent engine record.
+	IDEngine string `json:"idEngine,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Launch engine maximum burn time in seconds.
+	BurnTime param.Opt[float64] `json:"burnTime,omitzero"`
+	// Engine chamber pressure in bars.
+	ChamberPressure param.Opt[float64] `json:"chamberPressure,omitzero"`
+	// Engine characteristic type (e.g. Electric, Mono-propellant, Bi-propellant,
+	// etc.).
+	CharacteristicType param.Opt[string] `json:"characteristicType,omitzero"`
+	// Engine cycle type (e.g. Electrostatic Ion, Pressure Fed, Hall, Catalytic
+	// Decomposition, etc.).
+	CycleType param.Opt[string] `json:"cycleType,omitzero"`
+	// Engine type or family.
+	Family param.Opt[string] `json:"family,omitzero"`
+	// Organization ID of the engine manufacturer.
+	ManufacturerOrgID param.Opt[string] `json:"manufacturerOrgId,omitzero"`
+	// Engine maximum number of firings.
+	MaxFirings param.Opt[int64] `json:"maxFirings,omitzero"`
+	// Notes/Description of the engine.
+	Notes param.Opt[string] `json:"notes,omitzero"`
+	// Engine nozzle expansion ratio.
+	NozzleExpansionRatio param.Opt[float64] `json:"nozzleExpansionRatio,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// Oxidizer type (e.g. Nitrogen Tetroxide, Liquid Oxygen, etc).
+	Oxidizer param.Opt[string] `json:"oxidizer,omitzero"`
+	// Propellant/fuel type of the engine (e.g. Liquid Hydrogen, Kerosene, Aerozine,
+	// etc).
+	Propellant param.Opt[string] `json:"propellant,omitzero"`
+	// Engine maximum thrust at sea level in Kilo-Newtons.
+	SeaLevelThrust param.Opt[float64] `json:"seaLevelThrust,omitzero"`
+	// Launch engine specific impulse in seconds.
+	SpecificImpulse param.Opt[float64] `json:"specificImpulse,omitzero"`
+	// Engine maximum thrust in a vacuum in Kilo-Newtons.
+	VacuumThrust param.Opt[float64] `json:"vacuumThrust,omitzero"`
+	// Optional array of provider/source specific tags for this data, where each
+	// element is no longer than 32 characters, used for implementing data owner
+	// conditional access controls to restrict access to the data. Should be left null
+	// by data providers unless conditional access controls are coordinated with the
+	// UDL team.
+	Tags []string `json:"tags,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f EngineDetailUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+func (r EngineDetailUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow EngineDetailUpdateParams
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type EngineDetailUpdateParamsDataMode string
+
+const (
+	EngineDetailUpdateParamsDataModeReal      EngineDetailUpdateParamsDataMode = "REAL"
+	EngineDetailUpdateParamsDataModeTest      EngineDetailUpdateParamsDataMode = "TEST"
+	EngineDetailUpdateParamsDataModeSimulated EngineDetailUpdateParamsDataMode = "SIMULATED"
+	EngineDetailUpdateParamsDataModeExercise  EngineDetailUpdateParamsDataMode = "EXERCISE"
+)

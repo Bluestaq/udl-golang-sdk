@@ -1,0 +1,781 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+package unifieddatalibrary
+
+import (
+	"context"
+	"net/http"
+	"net/url"
+	"time"
+
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
+	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+)
+
+// LogisticssupportHistoryService contains methods and other services that help
+// with interacting with the unifieddatalibrary API.
+//
+// Note, unlike clients, this service does not read variables from the environment
+// automatically. You should not instantiate this service directly, and instead use
+// the [NewLogisticssupportHistoryService] method instead.
+type LogisticssupportHistoryService struct {
+	Options []option.RequestOption
+}
+
+// NewLogisticssupportHistoryService generates a new service that applies the given
+// options to each request. These options are applied after the parent client's
+// options (if there is one), and before any request-specific options.
+func NewLogisticssupportHistoryService(opts ...option.RequestOption) (r LogisticssupportHistoryService) {
+	r = LogisticssupportHistoryService{}
+	r.Options = opts
+	return
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *LogisticssupportHistoryService) List(ctx context.Context, query LogisticssupportHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LogisticssupportHistoryListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/logisticssupport/history"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *LogisticssupportHistoryService) ListAutoPaging(ctx context.Context, query LogisticssupportHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[LogisticssupportHistoryListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation, then write that data to the
+// Secure Content Store. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *LogisticssupportHistoryService) Aodr(ctx context.Context, query LogisticssupportHistoryAodrParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "udl/logisticssupport/history/aodr"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
+	return
+}
+
+// Service operation to return the count of records satisfying the specified query
+// parameters. This operation is useful to determine how many records pass a
+// particular query criteria without retrieving large amounts of data. See the
+// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// valid/required query parameter information.
+func (r *LogisticssupportHistoryService) Count(ctx context.Context, query LogisticssupportHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
+	path := "udl/logisticssupport/history/count"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Comprehensive logistical details concerning the planned support of maintenance
+// operations required by an aircraft, including transportation information,
+// supplies coordination, and service personnel.
+type LogisticssupportHistoryListResponse struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode LogisticssupportHistoryListResponseDataMode `json:"dataMode,required"`
+	// The time this report was created, in ISO 8601 UTC format with millisecond
+	// precision.
+	RptCreatedTime time.Time `json:"rptCreatedTime,required" format:"date-time"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system if not provided on
+	// create operations.
+	ID string `json:"id"`
+	// The aircraft Model Design Series (MDS) designation (e.g. E-2C HAWKEYE, F-15
+	// EAGLE, KC-130 HERCULES, etc.) of this aircraft. Intended as, but not constrained
+	// to, MIL-STD-6016 environment dependent specific type designations.
+	AircraftMds string `json:"aircraftMDS"`
+	// Time the row was created in the database.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database.
+	CreatedBy string `json:"createdBy"`
+	// The current ICAO of the aircraft that is the subject of this
+	// LogisticsSupportDetails record.
+	CurrIcao string `json:"currICAO"`
+	// The estimated time mission capable for the aircraft, in ISO 8601 UCT format with
+	// millisecond precision. This is the estimated time when the aircraft is mission
+	// ready.
+	Etic time.Time `json:"etic" format:"date-time"`
+	// Logistics estimated time mission capable.
+	Etmc time.Time `json:"etmc" format:"date-time"`
+	// Optional system identifier from external systs. This field has no meaning within
+	// UDL and is provided as a convenience for systems that require tracking of an
+	// internal system generated ID.
+	ExtSystemID string `json:"extSystemId"`
+	// This field identifies the pacing event for bringing the aircraft to Mission
+	// Capable status. It is used in calculating the Estimated Time Mission Capable
+	// (ETMC) value. Acceptable values are WA (Will Advise), INW (In Work), P+hhh.h
+	// (where P=parts and hhh.h is the number of hours up to 999 plus tenths of hours),
+	// EQ+hhh.h (EQ=equipment), MRT+hhh.h (MRT=maintenance recovery team).
+	LogisticAction string `json:"logisticAction"`
+	// Discrepancy information associated with this LogisticsSupport record.
+	LogisticsDiscrepancyInfos []LogisticssupportHistoryListResponseLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos"`
+	// The identifier that represents a Logistics Master Record.
+	LogisticsRecordID string `json:"logisticsRecordId"`
+	// Remarks associated with this LogisticsSupport record.
+	LogisticsRemarks []LogisticsRemarksFull `json:"logisticsRemarks"`
+	// Support items associated with this LogisticsSupport record.
+	LogisticsSupportItems []LogisticssupportHistoryListResponseLogisticsSupportItem `json:"logisticsSupportItems"`
+	// Transportation plans associated with this LogisticsSupport record, used to
+	// coordinate maintenance efforts.
+	LogisticsTransportationPlans []LogisticssupportHistoryListResponseLogisticsTransportationPlan `json:"logisticsTransportationPlans"`
+	// The maintenance status code of the aircraft which may be based on pilot
+	// descriptions or evaluation codes. Contact the source provider for details.
+	MaintStatusCode string `json:"maintStatusCode"`
+	// The time indicating when all mission essential problems with a given aircraft
+	// have been fixed and is mission capable. This datetime should be in ISO 8601 UTC
+	// format with millisecond precision.
+	McTime time.Time `json:"mcTime" format:"date-time"`
+	// The time indicating when a given aircraft breaks for a mission essential reason.
+	// This datetime should be in ISO 8601 UTC format with millisecond precision.
+	MeTime time.Time `json:"meTime" format:"date-time"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// The organization that owns this logistics record.
+	Owner string `json:"owner"`
+	// This is used to indicate whether a closed master record has been reopened.
+	ReopenFlag bool `json:"reopenFlag"`
+	// The time this report was closed, in ISO 8601 UTC format with millisecond
+	// precision.
+	RptClosedTime time.Time `json:"rptClosedTime" format:"date-time"`
+	// The supplying ICAO of the aircraft that is the subject of this
+	// LogisticsSupportDetails record.
+	SuppIcao string `json:"suppICAO"`
+	// The tail number of the aircraft that is the subject of this
+	// LogisticsSupportDetails record.
+	TailNumber string `json:"tailNumber"`
+	// Time the row was updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking        resp.Field
+		DataMode                     resp.Field
+		RptCreatedTime               resp.Field
+		Source                       resp.Field
+		ID                           resp.Field
+		AircraftMds                  resp.Field
+		CreatedAt                    resp.Field
+		CreatedBy                    resp.Field
+		CurrIcao                     resp.Field
+		Etic                         resp.Field
+		Etmc                         resp.Field
+		ExtSystemID                  resp.Field
+		LogisticAction               resp.Field
+		LogisticsDiscrepancyInfos    resp.Field
+		LogisticsRecordID            resp.Field
+		LogisticsRemarks             resp.Field
+		LogisticsSupportItems        resp.Field
+		LogisticsTransportationPlans resp.Field
+		MaintStatusCode              resp.Field
+		McTime                       resp.Field
+		MeTime                       resp.Field
+		Origin                       resp.Field
+		OrigNetwork                  resp.Field
+		Owner                        resp.Field
+		ReopenFlag                   resp.Field
+		RptClosedTime                resp.Field
+		SuppIcao                     resp.Field
+		TailNumber                   resp.Field
+		UpdatedAt                    resp.Field
+		UpdatedBy                    resp.Field
+		ExtraFields                  map[string]resp.Field
+		raw                          string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r LogisticssupportHistoryListResponse) RawJSON() string { return r.JSON.raw }
+func (r *LogisticssupportHistoryListResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type LogisticssupportHistoryListResponseDataMode string
+
+const (
+	LogisticssupportHistoryListResponseDataModeReal      LogisticssupportHistoryListResponseDataMode = "REAL"
+	LogisticssupportHistoryListResponseDataModeTest      LogisticssupportHistoryListResponseDataMode = "TEST"
+	LogisticssupportHistoryListResponseDataModeSimulated LogisticssupportHistoryListResponseDataMode = "SIMULATED"
+	LogisticssupportHistoryListResponseDataModeExercise  LogisticssupportHistoryListResponseDataMode = "EXERCISE"
+)
+
+// Discrepancy information associated with this LogisticsSupport record.
+type LogisticssupportHistoryListResponseLogisticsDiscrepancyInfo struct {
+	// The discrepancy closure time, in ISO 8601 UTC format with millisecond precision.
+	ClosureTime time.Time `json:"closureTime" format:"date-time"`
+	// The aircraft discrepancy description.
+	DiscrepancyInfo string `json:"discrepancyInfo"`
+	// Job Control Number of the discrepancy.
+	Jcn string `json:"jcn"`
+	// The job start time, in ISO 8601 UTC format with millisecond precision.
+	JobStTime time.Time `json:"jobStTime" format:"date-time"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClosureTime     resp.Field
+		DiscrepancyInfo resp.Field
+		Jcn             resp.Field
+		JobStTime       resp.Field
+		ExtraFields     map[string]resp.Field
+		raw             string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r LogisticssupportHistoryListResponseLogisticsDiscrepancyInfo) RawJSON() string {
+	return r.JSON.raw
+}
+func (r *LogisticssupportHistoryListResponseLogisticsDiscrepancyInfo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Support items associated with this LogisticsSupport record.
+type LogisticssupportHistoryListResponseLogisticsSupportItem struct {
+	// This element indicates whether or not the supplied item is contained within
+	// another item.
+	Cannibalized bool `json:"cannibalized"`
+	// System generated reference id for the transportation plan. Format: TXXXXXNNNN
+	// T - Transportation, Sequence Number, Node Id.
+	DeployPlanNumber string `json:"deployPlanNumber"`
+	// The technical order name of the part ordered.
+	Description string `json:"description"`
+	// The last time this supported item was updated, in ISO 8601 UTC format with
+	// millisecond precision.
+	ItemLastChangedDate time.Time `json:"itemLastChangedDate" format:"date-time"`
+	// A number assigned by Job Control to monitor and record maintenance actions
+	// required to correct the associated aircraft maintenance discrepancy. It is
+	// seven, nine or twelve characters, depending on the base-specific numbering
+	// scheme. If seven characters: characters 1-3 are Julian date, 4-7 are sequence
+	// numbers. If nine characters: characters 1-2 are last two digits of the year,
+	// characters 3-5 are Julian date, 6-9 are sequence numbers. If twelve characters:
+	// characters 1-2 are last two digits of the year, 3-5 are Julian date, 6-9 are
+	// sequence numbers, and 10-12 are a three-digit supplemental number.
+	JobControlNumber string `json:"jobControlNumber"`
+	// The parts associated with this support item.
+	LogisticsParts []LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsPart `json:"logisticsParts"`
+	// Remarks associated with this support item.
+	LogisticsRemarks []LogisticsRemarksFull `json:"logisticsRemarks"`
+	// The specialties required to implement this support item.
+	LogisticsSpecialties []LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties"`
+	// Military aircraft discrepancy logistics requisition ordered quantity. The
+	// quantity of equipment ordered that is required to fix the aircraft.
+	Quantity int64 `json:"quantity"`
+	// The time the item is ready, in ISO 8601 UTC format with millisecond precision.
+	ReadyTime time.Time `json:"readyTime" format:"date-time"`
+	// The time the item is received, in ISO 8601 UTC format with millisecond
+	// precision.
+	ReceivedTime time.Time `json:"receivedTime" format:"date-time"`
+	// The type of recovery request needed. Contact the source provider for details.
+	RecoveryRequestTypeCode string `json:"recoveryRequestTypeCode"`
+	// System generated reference id for the transportation plan. Format: TXXXXXNNNN
+	// T - Transportation, Sequence Number, Node Id.
+	RedeployPlanNumber string `json:"redeployPlanNumber"`
+	// This is the Redeploy (return) Transportation Control Number/Tracking Reference
+	// Number for the selected item.
+	RedeployShipmentUnitID string `json:"redeployShipmentUnitId"`
+	// The request or record number for this item type (Equipent, Part, or MRT).
+	RequestNumber string `json:"requestNumber"`
+	// This element indicates if the supplied item is characterized as additional
+	// support.
+	ResupportFlag bool `json:"resupportFlag"`
+	// Shipment Unit Identifier is the Transportation Control Number (TCN) for shipping
+	// that piece of equipment being requested.
+	ShipmentUnitID string `json:"shipmentUnitId"`
+	// The point of contact is a free text field to add information about the
+	// individual(s) with knowledge of the referenced requested or supplied item(s).
+	// The default value for this field is the last name, first name, and middle
+	// initial of the operator who created the records and/or generated the
+	// transaction.
+	SiPoc string `json:"siPOC"`
+	// The code that represents the International Civil Aviation Organization (ICAO)
+	// designations of an airport.
+	SourceIcao string `json:"sourceICAO"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		Cannibalized            resp.Field
+		DeployPlanNumber        resp.Field
+		Description             resp.Field
+		ItemLastChangedDate     resp.Field
+		JobControlNumber        resp.Field
+		LogisticsParts          resp.Field
+		LogisticsRemarks        resp.Field
+		LogisticsSpecialties    resp.Field
+		Quantity                resp.Field
+		ReadyTime               resp.Field
+		ReceivedTime            resp.Field
+		RecoveryRequestTypeCode resp.Field
+		RedeployPlanNumber      resp.Field
+		RedeployShipmentUnitID  resp.Field
+		RequestNumber           resp.Field
+		ResupportFlag           resp.Field
+		ShipmentUnitID          resp.Field
+		SiPoc                   resp.Field
+		SourceIcao              resp.Field
+		ExtraFields             map[string]resp.Field
+		raw                     string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r LogisticssupportHistoryListResponseLogisticsSupportItem) RawJSON() string { return r.JSON.raw }
+func (r *LogisticssupportHistoryListResponseLogisticsSupportItem) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// The parts associated with this support item.
+type LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsPart struct {
+	// Technical order manual figure number for the requested / supplied part.
+	FigureNumber string `json:"figureNumber"`
+	// Technical order manual index number for the requested part.
+	IndexNumber string `json:"indexNumber"`
+	// The person who validated that the sourced location has, and can supply, the
+	// requested parts.
+	LocationVerifier string `json:"locationVerifier"`
+	// The supply stocks for this support item.
+	LogisticsStocks []LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsPartLogisticsStock `json:"logisticsStocks"`
+	// Code for a unit of measurement.
+	MeasurementUnitCode string `json:"measurementUnitCode"`
+	// The National Stock Number of the part being requested or supplied.
+	NationalStockNumber string `json:"nationalStockNumber"`
+	// Requested or supplied part number.
+	PartNumber string `json:"partNumber"`
+	// The person who validated the request for parts.
+	RequestVerifier string `json:"requestVerifier"`
+	// The supply document number.
+	SupplyDocumentNumber string `json:"supplyDocumentNumber"`
+	// Indicates the specified Technical Order manual holding the aircraft information
+	// for use in diagnosing a problem or condition.
+	TechnicalOrderText string `json:"technicalOrderText"`
+	// Work Unit Code (WUC), or for some aircraft types, the Reference Designator.
+	WorkUnitCode string `json:"workUnitCode"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		FigureNumber         resp.Field
+		IndexNumber          resp.Field
+		LocationVerifier     resp.Field
+		LogisticsStocks      resp.Field
+		MeasurementUnitCode  resp.Field
+		NationalStockNumber  resp.Field
+		PartNumber           resp.Field
+		RequestVerifier      resp.Field
+		SupplyDocumentNumber resp.Field
+		TechnicalOrderText   resp.Field
+		WorkUnitCode         resp.Field
+		ExtraFields          map[string]resp.Field
+		raw                  string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsPart) RawJSON() string {
+	return r.JSON.raw
+}
+func (r *LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsPart) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// The supply stocks for this support item.
+type LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsPartLogisticsStock struct {
+	// The quantity of available parts needed from sourceICAO.
+	Quantity int64 `json:"quantity"`
+	// The ICAO code for the primary location with available parts.
+	SourceIcao string `json:"sourceICAO"`
+	// The datetime when the parts were sourced, in ISO 8601 UTC format with
+	// millisecond precision.
+	StockCheckTime time.Time `json:"stockCheckTime" format:"date-time"`
+	// The point of contact at the sourced location.
+	StockPoc string `json:"stockPOC"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		Quantity       resp.Field
+		SourceIcao     resp.Field
+		StockCheckTime resp.Field
+		StockPoc       resp.Field
+		ExtraFields    map[string]resp.Field
+		raw            string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsPartLogisticsStock) RawJSON() string {
+	return r.JSON.raw
+}
+func (r *LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsPartLogisticsStock) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// The specialties required to implement this support item.
+type LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsSpecialty struct {
+	// The first name of the specialist.
+	FirstName string `json:"firstName"`
+	// The last four digits of the specialist's social security number.
+	Last4Ssn string `json:"last4Ssn"`
+	// The last name of the specialist.
+	LastName string `json:"lastName"`
+	// Military service rank designation.
+	RankCode string `json:"rankCode"`
+	// Type code that determines role of the mission response team member. TC - Team
+	// Chief, TM - Team Member.
+	RoleTypeCode string `json:"roleTypeCode"`
+	// Skill level of the mission response team member.
+	SkillLevel int64 `json:"skillLevel"`
+	// Indicates where the repairs will be performed, or which shop specialty has been
+	// assigned responsibility for correcting the discrepancy. Shop specialties are
+	// normally listed in abbreviated format.
+	Specialty string `json:"specialty"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		FirstName    resp.Field
+		Last4Ssn     resp.Field
+		LastName     resp.Field
+		RankCode     resp.Field
+		RoleTypeCode resp.Field
+		SkillLevel   resp.Field
+		Specialty    resp.Field
+		ExtraFields  map[string]resp.Field
+		raw          string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsSpecialty) RawJSON() string {
+	return r.JSON.raw
+}
+func (r *LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsSpecialty) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Transportation plans associated with this LogisticsSupport record, used to
+// coordinate maintenance efforts.
+type LogisticssupportHistoryListResponseLogisticsTransportationPlan struct {
+	// Actual time of departure of first segment, in ISO 8601 UTC format with
+	// millisecond precision.
+	ActDepTime time.Time `json:"actDepTime" format:"date-time"`
+	// These are the initial maintenance values entered based on the pilot descriptions
+	// or the official maintenance evaluation code.
+	AircraftStatus string `json:"aircraftStatus"`
+	// Approximate time of arrival of final segement, in ISO 8601 UTC format with
+	// millisecond precision.
+	ApproxArrTime time.Time `json:"approxArrTime" format:"date-time"`
+	// GC. LGTP_CANX_DT. GD2: Date when the transportation plan was cancelled, in ISO
+	// 8601 UTC format with millisecond precision.
+	CancelledDate time.Time `json:"cancelledDate" format:"date-time"`
+	// GC. LGTP_CLSD_DT. GD2: Date when the transportation plan was closed, in ISO 8601
+	// UTC format with millisecond precision.
+	ClosedDate time.Time `json:"closedDate" format:"date-time"`
+	// The AMS username of the operator who alters the coordination status.
+	// Automatically captured by the system.
+	Coordinator string `json:"coordinator"`
+	// The AMS user unit_id of the operator who alters the coordination status.
+	// Automatically captured by the system from table AMS_USER.
+	CoordinatorUnit string `json:"coordinatorUnit"`
+	// Destination location ICAO.
+	DestinationIcao string `json:"destinationICAO"`
+	// Transportation plan duration, expressed in the format MMM:SS.
+	Duration string `json:"duration"`
+	// ETA of the final segment, in ISO 8601 UTC format with millisecond precision.
+	EstArrTime time.Time `json:"estArrTime" format:"date-time"`
+	// ETD of the first segment, in ISO 8601 UTC format with millisecond precision.
+	EstDepTime time.Time `json:"estDepTime" format:"date-time"`
+	// Last time transportation plan was updated, in ISO 8601 UTC format with
+	// millisecond precision.
+	LastChangedDate time.Time `json:"lastChangedDate" format:"date-time"`
+	// The identifier that represents a Logistics Master Record.
+	LogisticMasterRecordID string `json:"logisticMasterRecordId"`
+	// The transportation segments associated with this transportation plan.
+	LogisticsSegments []LogisticssupportHistoryListResponseLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments"`
+	// Remarks associated with this transportation plan.
+	LogisticsTransportationPlansRemarks []LogisticsRemarksFull `json:"logisticsTransportationPlansRemarks"`
+	// The major command for the current unit.
+	Majcom string `json:"majcom"`
+	// Indicates whether there have been changes to changes to ICAOs, estArrTime, or
+	// estDepTime since this Transportation Plan was last edited.
+	MissionChange bool `json:"missionChange"`
+	// Transportation plan enroute stops.
+	NumEnrouteStops int64 `json:"numEnrouteStops"`
+	// The number of transloads for this Transportation Plan.
+	NumTransLoads int64 `json:"numTransLoads"`
+	// The origin location.
+	OriginIcao string `json:"originICAO"`
+	// Defines the transporation plan as either a deployment or redeployment.
+	PlanDefinition string `json:"planDefinition"`
+	// System generated reference id for the transportation plan. Format: TXXXXXNNNN
+	// T - Transportation, Sequence Number, Node Id.
+	PlansNumber string `json:"plansNumber"`
+	// GDSS2 uses an 8 character serial number to uniquely identify the aircraft and
+	// MDS combination. This is a portion of the full manufacturer serial number.
+	SerialNumber string `json:"serialNumber"`
+	// Transporation Coordination status code. Cancel, Send to APCC, working, agree,
+	// disapprove or blank.
+	StatusCode string `json:"statusCode"`
+	// The aircraft Model Design Series (MDS) designation (e.g. E-2C HAWKEYE, F-15
+	// EAGLE, KC-130 HERCULES, etc.) of this aircraft. Intended as, but not constrained
+	// to, MIL-STD-6016 environment dependent specific type designations.
+	TpAircraftMds string `json:"tpAircraftMDS"`
+	// Contains the tail number displayed by GDSS2.
+	TpTailNumber string `json:"tpTailNumber"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ActDepTime                          resp.Field
+		AircraftStatus                      resp.Field
+		ApproxArrTime                       resp.Field
+		CancelledDate                       resp.Field
+		ClosedDate                          resp.Field
+		Coordinator                         resp.Field
+		CoordinatorUnit                     resp.Field
+		DestinationIcao                     resp.Field
+		Duration                            resp.Field
+		EstArrTime                          resp.Field
+		EstDepTime                          resp.Field
+		LastChangedDate                     resp.Field
+		LogisticMasterRecordID              resp.Field
+		LogisticsSegments                   resp.Field
+		LogisticsTransportationPlansRemarks resp.Field
+		Majcom                              resp.Field
+		MissionChange                       resp.Field
+		NumEnrouteStops                     resp.Field
+		NumTransLoads                       resp.Field
+		OriginIcao                          resp.Field
+		PlanDefinition                      resp.Field
+		PlansNumber                         resp.Field
+		SerialNumber                        resp.Field
+		StatusCode                          resp.Field
+		TpAircraftMds                       resp.Field
+		TpTailNumber                        resp.Field
+		ExtraFields                         map[string]resp.Field
+		raw                                 string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r LogisticssupportHistoryListResponseLogisticsTransportationPlan) RawJSON() string {
+	return r.JSON.raw
+}
+func (r *LogisticssupportHistoryListResponseLogisticsTransportationPlan) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Remarks associated with this LogisticsSupport record.
+type LogisticssupportHistoryListResponseLogisticsTransportationPlanLogisticsSegment struct {
+	// Airport ICAO arrival code.
+	ArrivalIcao string `json:"arrivalICAO"`
+	// Airport ICAO departure code.
+	DepartureIcao string `json:"departureICAO"`
+	// The GDSS mission ID for this segment.
+	ExtMissionID string `json:"extMissionId"`
+	// The unique identifier of the mission to which this logistics record is assigned.
+	IDMission string `json:"idMission"`
+	// Start air mission itinerary point identifier.
+	Itin int64 `json:"itin"`
+	// The user generated identifier for an air mission subgroup.
+	MissionNumber string `json:"missionNumber"`
+	// The type of mission (e.g. SAAM, CHNL, etc.).
+	MissionType string `json:"missionType"`
+	// Transportation mode. AMC airlift, Commercial airlift, Other, or surface
+	// transportation.
+	ModeCode string `json:"modeCode"`
+	// Actual arrival time to segment destination, in ISO 8601 UTC format with
+	// millisecond precision.
+	SegActArrTime time.Time `json:"segActArrTime" format:"date-time"`
+	// Actual departure time to the segment destination, in ISO 8601 UTC format with
+	// millisecond precision.
+	SegActDepTime time.Time `json:"segActDepTime" format:"date-time"`
+	// The aircraft Model Design Series (MDS) designation (e.g. E-2C HAWKEYE, F-15
+	// EAGLE, KC-130 HERCULES, etc.) of this aircraft. Intended as, but not constrained
+	// to, MIL-STD-6016 environment dependent specific type designations.
+	SegAircraftMds string `json:"segAircraftMDS"`
+	// GC. LGTPS_C_DT_EST_ARR. GD2: Estimated arrival time to the segment destination.
+	// Only supplied when the segment is not attached to a Mission, otherwise the ETA
+	// is derived from the Mission segment destination point. This datetime should be
+	// in ISO 8601 UTC format with millisecond precision.
+	SegEstArrTime time.Time `json:"segEstArrTime" format:"date-time"`
+	// GC. LGTPS_C_DT_EST_DEP. GD2: Estimated departure time from the segment origin.
+	// Only supplied when the segment is not attached to a Mission, otherwise the ETD
+	// is derived from the Mission segment origin point. This datetime should be in ISO
+	// 8601 UTC format with millisecond precision.
+	SegEstDepTime time.Time `json:"segEstDepTime" format:"date-time"`
+	// Used to sequence the segments in the transportation plan.
+	SegmentNumber int64 `json:"segmentNumber"`
+	// The identifier that represents a specific aircraft within an aircraft type.
+	SegTailNumber string `json:"segTailNumber"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ArrivalIcao    resp.Field
+		DepartureIcao  resp.Field
+		ExtMissionID   resp.Field
+		IDMission      resp.Field
+		Itin           resp.Field
+		MissionNumber  resp.Field
+		MissionType    resp.Field
+		ModeCode       resp.Field
+		SegActArrTime  resp.Field
+		SegActDepTime  resp.Field
+		SegAircraftMds resp.Field
+		SegEstArrTime  resp.Field
+		SegEstDepTime  resp.Field
+		SegmentNumber  resp.Field
+		SegTailNumber  resp.Field
+		ExtraFields    map[string]resp.Field
+		raw            string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r LogisticssupportHistoryListResponseLogisticsTransportationPlanLogisticsSegment) RawJSON() string {
+	return r.JSON.raw
+}
+func (r *LogisticssupportHistoryListResponseLogisticsTransportationPlanLogisticsSegment) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type LogisticssupportHistoryListParams struct {
+	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
+	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// query fields that can be selected.
+	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
+	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f LogisticssupportHistoryListParams) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+
+// URLQuery serializes [LogisticssupportHistoryListParams]'s query parameters as
+// `url.Values`.
+func (r LogisticssupportHistoryListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type LogisticssupportHistoryAodrParams struct {
+	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
+	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// query fields that can be selected.
+	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
+	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
+	// optional, notification method for the created file link. When omitted, EMAIL is
+	// assumed. Current valid values are: EMAIL, SMS.
+	Notification param.Opt[string] `query:"notification,omitzero" json:"-"`
+	// optional, field delimiter when the created file is not JSON. Must be a single
+	// character chosen from this set: (',', ';', ':', '|'). When omitted, "," is used.
+	// It is strongly encouraged that your field delimiter be a character unlikely to
+	// occur within the data.
+	OutputDelimiter param.Opt[string] `query:"outputDelimiter,omitzero" json:"-"`
+	// optional, output format for the file. When omitted, JSON is assumed. Current
+	// valid values are: JSON and CSV.
+	OutputFormat param.Opt[string] `query:"outputFormat,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f LogisticssupportHistoryAodrParams) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+
+// URLQuery serializes [LogisticssupportHistoryAodrParams]'s query parameters as
+// `url.Values`.
+func (r LogisticssupportHistoryAodrParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type LogisticssupportHistoryCountParams struct {
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f LogisticssupportHistoryCountParams) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+
+// URLQuery serializes [LogisticssupportHistoryCountParams]'s query parameters as
+// `url.Values`.
+func (r LogisticssupportHistoryCountParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}

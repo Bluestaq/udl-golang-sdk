@@ -1,0 +1,154 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+package unifieddatalibrary
+
+import (
+	"context"
+	"net/http"
+	"net/url"
+
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
+	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+)
+
+// SupportingDataDataownerService contains methods and other services that help
+// with interacting with the unifieddatalibrary API.
+//
+// Note, unlike clients, this service does not read variables from the environment
+// automatically. You should not instantiate this service directly, and instead use
+// the [NewSupportingDataDataownerService] method instead.
+type SupportingDataDataownerService struct {
+	Options []option.RequestOption
+}
+
+// NewSupportingDataDataownerService generates a new service that applies the given
+// options to each request. These options are applied after the parent client's
+// options (if there is one), and before any request-specific options.
+func NewSupportingDataDataownerService(opts ...option.RequestOption) (r SupportingDataDataownerService) {
+	r = SupportingDataDataownerService{}
+	r.Options = opts
+	return
+}
+
+func (r *SupportingDataDataownerService) Get(ctx context.Context, query SupportingDataDataownerGetParams, opts ...option.RequestOption) (res *[]DataownerAbridged, err error) {
+	opts = append(r.Options[:], opts...)
+	path := "udl/dataowner"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Service operation to return the count of records satisfying the specified query
+// parameters. This operation is useful to determine how many records pass a
+// particular query criteria without retrieving large amounts of data. See the
+// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// valid/required query parameter information.
+func (r *SupportingDataDataownerService) Count(ctx context.Context, query SupportingDataDataownerCountParams, opts ...option.RequestOption) (res *string, err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
+	path := "udl/dataowner/count"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Information pertaining to UDL data owners.
+type DataownerAbridged struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Description of this data owner.
+	Description string `json:"description,required"`
+	// The name of the data owner.
+	DoName string `json:"doName,required"`
+	// Unique identifier of the contact for this data owner.
+	IDContact string `json:"idContact,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Boolean indicating if the data owner is coming soon or not yet available.
+	ComingSoon bool `json:"comingSoon"`
+	// Optional control required to access this data type from this owner.
+	Control string `json:"control"`
+	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
+	// country code, however it can also represent various consortiums that do not
+	// appear in the ISO document. The code must correspond to an existing country in
+	// the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
+	// ISO Alpha-3 code, or alternate code values that exist for the specified country
+	// code.
+	CountryCode string `json:"countryCode"`
+	// Type of data this data owner owns (e.g. EPHEMERIS, IMAGERY, MANEUVER, etc.).
+	DataType string `json:"dataType"`
+	// Boolean indicating if the data owner is enabled (if not enabled, they should not
+	// appear on the data products screen on the storefront).
+	Enabled bool `json:"enabled"`
+	// Type of organization which this data owner belongs to (e.g. Commercial,
+	// Government, Academic, Consortium, etc.).
+	OwnerType string `json:"ownerType"`
+	// Organization name for the data provider.
+	Provider string `json:"provider"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		Description           resp.Field
+		DoName                resp.Field
+		IDContact             resp.Field
+		Source                resp.Field
+		ComingSoon            resp.Field
+		Control               resp.Field
+		CountryCode           resp.Field
+		DataType              resp.Field
+		Enabled               resp.Field
+		OwnerType             resp.Field
+		Provider              resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r DataownerAbridged) RawJSON() string { return r.JSON.raw }
+func (r *DataownerAbridged) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SupportingDataDataownerGetParams struct {
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SupportingDataDataownerGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [SupportingDataDataownerGetParams]'s query parameters as
+// `url.Values`.
+func (r SupportingDataDataownerGetParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type SupportingDataDataownerCountParams struct {
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SupportingDataDataownerCountParams) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+
+// URLQuery serializes [SupportingDataDataownerCountParams]'s query parameters as
+// `url.Values`.
+func (r SupportingDataDataownerCountParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}

@@ -1,0 +1,1364 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+package unifieddatalibrary
+
+import (
+	"context"
+	"encoding/json"
+	"net/http"
+	"net/url"
+	"time"
+
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
+	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+)
+
+// TrackService contains methods and other services that help with interacting with
+// the unifieddatalibrary API.
+//
+// Note, unlike clients, this service does not read variables from the environment
+// automatically. You should not instantiate this service directly, and instead use
+// the [NewTrackService] method instead.
+type TrackService struct {
+	Options []option.RequestOption
+	History TrackHistoryService
+}
+
+// NewTrackService generates a new service that applies the given options to each
+// request. These options are applied after the parent client's options (if there
+// is one), and before any request-specific options.
+func NewTrackService(opts ...option.RequestOption) (r TrackService) {
+	r = TrackService{}
+	r.Options = opts
+	r.History = NewTrackHistoryService(opts...)
+	return
+}
+
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *TrackService) List(ctx context.Context, query TrackListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[TrackListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/track"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *TrackService) ListAutoPaging(ctx context.Context, query TrackListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[TrackListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
+}
+
+// Service operation to return the count of records satisfying the specified query
+// parameters. This operation is useful to determine how many records pass a
+// particular query criteria without retrieving large amounts of data. See the
+// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// valid/required query parameter information.
+func (r *TrackService) Count(ctx context.Context, query TrackCountParams, opts ...option.RequestOption) (res *string, err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
+	path := "udl/track/count"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Service operation intended for initial integration only, to take a list of Track
+// records as a POST body and ingest into the database. This operation is not
+// intended to be used for automated feeds into UDL. Data providers should contact
+// the UDL team for specific role assignments and for instructions on setting up a
+// permanent feed through an alternate mechanism.
+func (r *TrackService) NewBulk(ctx context.Context, body TrackNewBulkParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "udl/track/createBulk"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
+	return
+}
+
+// Service operation to provide detailed information on available dynamic query
+// parameters for a particular data type.
+func (r *TrackService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "udl/track/queryhelp"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, nil, opts...)
+	return
+}
+
+// Service operation to dynamically query data and only return specified
+// columns/fields. Requested columns are specified by the 'columns' query parameter
+// and should be a comma separated list of valid fields for the specified data
+// type. classificationMarking is always returned. See the queryhelp operation
+// (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+// information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
+// hours would return the satNo and period of elsets with an epoch greater than 5
+// hours ago.
+func (r *TrackService) Tuple(ctx context.Context, query TrackTupleParams, opts ...option.RequestOption) (res *[]TrackFull, err error) {
+	opts = append(r.Options[:], opts...)
+	path := "udl/track/tuple"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Service operation to take multiple tracks as a POST body and ingest into the
+// database. This operation is intended to be used for automated feeds into UDL. A
+// specific role is required to perform this service operation. Please contact the
+// UDL team for assistance.
+func (r *TrackService) UnvalidatedPublish(ctx context.Context, body TrackUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "filedrop/udl-tracks"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
+	return
+}
+
+// A track is a position and optionally a heading/velocity of an object such as an
+// aircraft at a particular timestamp. It also includes optional information
+// regarding the identity/type of the target object, if known.
+type TrackListResponse struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode TrackListResponseDataMode `json:"dataMode,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Track timestamp in ISO8601 UTC format.
+	Ts time.Time `json:"ts,required" format:"date-time"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Track point altitude relative to WGS-84 ellipsoid, in meters. Positive values
+	// indicate a track object height above ellipsoid, and negative values indicate a
+	// track object below ellipsoid, applicable to the depth estimate for a subsurface
+	// track.
+	Alt float64 `json:"alt"`
+	// Id/name of the platform providing the track data (i.e., tail number for air
+	// platform, tower ID for tower based sensor, site id for fixed radar).
+	Asset string `json:"asset"`
+	// Nationality or organization of the tracking/reporting system or platform (e.g.
+	// FR, NATO, US, etc.).
+	AssetNat string `json:"assetNat"`
+	// The call sign currently assigned to this track object.
+	CallSign string `json:"callSign"`
+	// Contact information for assets reporting PPLI (Precise Participant Location and
+	// Identification). PPLI is a Link 16 message that is used by units to transmit
+	// complete location, identification, and limited status information.
+	Cntct string `json:"cntct"`
+	// The track object course-over-ground, in degrees clockwise from true North at the
+	// object location (0-360 degrees).
+	Course float64 `json:"course"`
+	// Covariance matrix, in meter and second based units, for the defined cartesian
+	// system.
+	//
+	// The array values represent the lower triangular half of the position-velocity
+	// covariance matrix. The size of the covariance matrix is dynamic. The values are
+	// output as an array of values corresponding to the position-velocity covariance
+	// element positions, ordered as follows:
+	//
+	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;y&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;y'&nbsp;z'&nbsp;&nbsp;
+	//
+	// x&nbsp;&nbsp;&nbsp;&nbsp;1
+	//
+	// y&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3
+	//
+	// z&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6
+	//
+	// x'&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;10
+	//
+	// y'&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+	//
+	// z'&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;
+	// 21
+	//
+	// The covariance matrix will be as large as the last element needed, and with
+	// unused values zero-filled to maintain proper element positioning in the array.
+	// For example, for a 2D (x, y) position-only covariance, the covariance matrix
+	// will be 2x2 and the array would contain the 3 elements corresponding to the x,
+	// and y position. Another example, now for a 2D (x, y) position-velocity
+	// covariance, the covariance matrix will be 5x5 and the array would contain the 15
+	// elements corresponding to the relevant x, y, x', and y' values (with the z-row
+	// and z-column being all zeros). The cov array should contain only the lower left
+	// triangle values from top left down to bottom right, in order.
+	Cov []float64 `json:"cov"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Track object acceleration in ECEF [x”, y”, z”], meters/sec^2. When provided,
+	// array must always contain 3 values.
+	EcefAcc []float64 `json:"ecefAcc"`
+	// Track object location in ECEF [x, y, z], meters. When provided, array must
+	// always contain 3 values.
+	EcefPos []float64 `json:"ecefPos"`
+	// Track object velocity in ECEF [x', y', z'], meters/sec. When provided, array
+	// must always contain 3 values.
+	EcefVel []float64 `json:"ecefVel"`
+	// East, North, Up position components, in meters. When provided, array must always
+	// contain 3 values.
+	ENuPos []float64 `json:"eNUPos"`
+	// East, North, Up velocity components, in meters/sec. When provided, array must
+	// always contain 3 values.
+	ENuVel []float64 `json:"eNUVel"`
+	// The track environment type (AIR, LAND, SPACE, SUBSURFACE, SURFACE, UNKNOWN):
+	//
+	// AIR: Between sea level and the Kármán line, which has an altitude of 100
+	// kilometers (62 miles).
+	//
+	// LAND: On the surface of dry land.
+	//
+	// SPACE: Above the Kármán line, which has an altitude of 100 kilometers (62
+	// miles).
+	//
+	// SURFACE: On the surface of a body of water.
+	//
+	// SUBSURFACE: Below the surface of a body of water.
+	//
+	// UNKNOWN: Environment is not known.
+	Env string `json:"env"`
+	// Track environment confidence estimate (not standardized).
+	EnvConf float64 `json:"envConf"`
+	// Uncertainty ellipsoid [semi-major axis (m), semi-minor axis (m), orientation
+	// (deg)].
+	ErrEllp []float64 `json:"errEllp"`
+	// The track object heading, in degrees clockwise from true North at the object
+	// location.
+	Hdng float64 `json:"hdng"`
+	// Additional track object identity/status information, typically used for EXERCISE
+	// identity amplification (FAKER, JOKER, KILO, TRAVELLER, ZOMBIE):
+	//
+	// FAKER: Friendly track, object, or entity acting as an exercise hostile.
+	//
+	// JOKER: Friendly track, object, or entity acting as an exercise suspect.
+	//
+	// KILO: Friendly high-value object.
+	//
+	// TRAVELLER: Suspect land or surface track following a recognized traffic route.
+	//
+	// ZOMBIE: Suspect track, object, or entity of special interest.
+	IdentAmp string `json:"identAmp"`
+	// Track object identity credibility.
+	IdentCred int64 `json:"identCred"`
+	// Track object identity reliability.
+	IdentRel int64 `json:"identRel"`
+	// The J-series message type, if this track is derived from a J-series message.
+	JSeries string `json:"jSeries"`
+	// WGS-84 latitude of the track object, in degrees. -90 to 90 degrees (negative
+	// values south of equator).
+	Lat float64 `json:"lat"`
+	// Estimate of the acceleration, [x”, y”, z”], of the track object in the
+	// defined cartesian system, in meters/sec^2. When provided, array must always
+	// contain 3 values.
+	LcAcc []float64 `json:"lcAcc"`
+	// Origin of a local coordinate system [lat, lon, altitude]. When provided, array
+	// must always contain 3 values.
+	Lco []float64 `json:"lco"`
+	// Estimate of the position, [x, y, z], of the track object in the defined
+	// cartesian system, in meters. When provided, array must always contain 3 values.
+	LcPos []float64 `json:"lcPos"`
+	// x, y, and z-axis rotations about ECEF that define a local cartesian system. When
+	// provided, array must always contain 3 values.
+	Lcs []float64 `json:"lcs"`
+	// Estimate of the velocity, [x', y', z'], of the track object in the defined
+	// cartesian system, in meters/sec. When provided, array must always contain 3
+	// values.
+	LcVel []float64 `json:"lcVel"`
+	// WGS-84 longitude of the track object, in degrees. -180 to 180 degrees (negative
+	// values west of Prime Meridian).
+	Lon float64 `json:"lon"`
+	// Mode-1 interrogation response (mission code), indicating mission or aircraft
+	// type.
+	M1 int64 `json:"m1"`
+	// Mode-1 validity status.
+	M1v int64 `json:"m1v"`
+	// Mode-2 interrogation response (military identification code).
+	M2 int64 `json:"m2"`
+	// Mode-2 validity status.
+	M2v int64 `json:"m2v"`
+	// Mode-3/A interrogation response (aircraft identification), provides a 4-digit
+	// octal identification code for the aircraft, assigned by the air traffic
+	// controller. Mode-3/A is shared military/civilian use.
+	M3a int64 `json:"m3a"`
+	// Mode-3/A validity status.
+	M3av int64 `json:"m3av"`
+	// The type of source information from which the track was derived. Intended as,
+	// but not constrained to, NATO STANAG 4676 modality types (AIS, BFT, BIOMETRIC,
+	// COMINT, DOPPLER, ELINT, HRR, HUMINT, IMAGE, MASINT, MIXED, OSINT, OTHER):
+	//
+	// AIS: Derived from an automated identification system source.
+	//
+	// BFT: Derived from a blue force tracking source.
+	//
+	// BIOMETRICS: Derived from a biometrics source.
+	//
+	// COMINT: Derived from a communications intelligence source.
+	//
+	// DOPPLER: Derived from a radar doppler source.
+	//
+	// ELINT: Derived from an electronics intelligence source.
+	//
+	// HRR: Derived from a radar high range resolution source.
+	//
+	// HUMINT: Derived from a human intelligence source.
+	//
+	// IMAGE: Derived from a still or motion imagery source.
+	//
+	// MASINT: Derived from a measurement and signals intelligence source.
+	//
+	// MIXED: Derived from a combination of two or more sources.
+	//
+	// OSINT: Derived from an open source intelligence source.
+	//
+	// OTHER: Derived from other types of unspecified sources.
+	ModType string `json:"modType"`
+	// Message Timestamp.
+	MsgTs time.Time `json:"msgTs" format:"date-time"`
+	// Mission ID related to the track.
+	MsnID string `json:"msnId"`
+	// Flag indicating that this track is fused from multiple sensor sources.
+	MultiSource bool `json:"multiSource"`
+	// The activity in which the track object is engaged. Intended as, but not
+	// constrained to, MIL-STD-6016 environment dependent activity designations. The
+	// activity can be reported as either a combination of the code and environment
+	// (e.g. 65/AIR) or as the descriptive enumeration (e.g. DIVERTING), which are
+	// equivalent.
+	ObjAct string `json:"objAct"`
+	// The UID or designation of the tracked object.
+	ObjID string `json:"objId"`
+	// The estimated identity of the track object (ASSUMED FRIEND, FRIEND, HOSTILE,
+	// NEUTRAL, PENDING, SUSPECT, UNKNOWN):
+	//
+	// ASSUMED FRIEND: Track assumed to be a friend due to the object characteristics,
+	// behavior, and/or origin.
+	//
+	// FRIEND: Track object supporting friendly forces and belonging to a declared
+	// friendly nation or entity.
+	//
+	// HOSTILE: Track object belonging to an opposing nation, party, group, or entity
+	// deemed to contribute to a threat to friendly forces or their mission due to its
+	// behavior, characteristics, nationality, or origin.
+	//
+	// NEUTRAL: Track object whose characteristics, behavior, nationality, and/or
+	// origin indicate that it is neither supporting nor opposing friendly forces or
+	// their mission.
+	//
+	// PENDING: Track object which has not been evaluated.
+	//
+	// SUSPECT: Track object deemed potentially hostile due to the object
+	// characteristics, behavior, nationality, and/or origin.
+	//
+	// UNKNOWN: Track object which has been evaluated and does not meet criteria for
+	// any standard identity.
+	ObjIdent string `json:"objIdent"`
+	// Nationality or organization of the track object (e.g. FR, NATO, US, etc.).
+	ObjNat string `json:"objNat"`
+	// The object platform type. Intended as, but not constrained to, MIL-STD-6016
+	// environment dependent platform type designations. The platform type can be
+	// reported as either a combination of the code and environment (e.g. 14/LAND) or
+	// as the descriptive representations (e.g. COMBAT VEHICLE), which are equivalent.
+	ObjPlat string `json:"objPlat"`
+	// The object specific type. Intended as, but not constrained to, MIL-STD-6016
+	// environment dependent specific type designations. The specific type can be
+	// reported as either a combination of the code and environment (e.g. 155/SURFACE)
+	// or as the descriptive representation (e.g. AUDACE DDG), which are equivalent.
+	ObjSpec string `json:"objSpec"`
+	// The generic classification of the track object/group (e.g., HELICOPTER, TRACKED,
+	// WATERCRAFT, WHEELED, etc.). Referenced, but not constrained to, NATO STANAG 4676
+	// object type classifications.
+	ObjType string `json:"objType"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Id/name of sensor providing the track data.
+	Sen string `json:"sen"`
+	// Sensor quality.
+	SenQual string `json:"senQual"`
+	// The source data library from which this record was received. This could be a
+	// remote or tactical UDL or another data library. If null, the record should be
+	// assumed to have originated from the primary Enterprise UDL.
+	SourceDl string `json:"sourceDL"`
+	// Track object spd, in meters/sec.
+	Spd float64 `json:"spd"`
+	// Array of UUIDs of the UDL data records that contributed to the generation of
+	// this fused track. See the associated 'srcTyps' array for the specific types of
+	// data, positionally corresponding to the UUIDs in this array, used in the track
+	// fusion. The 'srcTyps' and 'srcIds' arrays must match in size. See the
+	// corresponding srcTyps array element for the data type of the UUID and use the
+	// appropriate API operation to retrieve that object (e.g. /udl/poi/{uuid}).
+	SrcIDs []string `json:"srcIds"`
+	// Array of UDL record types (POI, MTI, TRACK, GROUNDIMAGE) that contributed to the
+	// generation of this fused track. See the associated 'srcIds' array for the record
+	// UUIDs, positionally corresponding to the record types in this array, used in the
+	// track fusion. The 'srcTyps' and 'srcIds' arrays must match in size.
+	SrcTyps []string `json:"srcTyps"`
+	// The number of objects or units moving as a group and represented as a single
+	// entity in this track message. If null, the track is assumed to represent a
+	// single object. Note that if this track derives from a J-series message then
+	// special definitions apply for the following values: 13 indicates an estimated
+	// 2-7 units, 14 indicates an estimated more than 7 units, and 15 indicates an
+	// estimated more than 12 units.
+	Strength int64 `json:"strength"`
+	// Optional array of provider/source specific tags for this data, where each
+	// element is no longer than 32 characters, used for implementing data owner
+	// conditional access controls to restrict access to the data. Should be left null
+	// by data providers unless conditional access controls are coordinated with the
+	// UDL team.
+	Tags []string `json:"tags"`
+	// Overall track confidence estimate (not standardized, but typically a value
+	// between 0 and 1, with 0 indicating lowest confidence).
+	TrkConf float64 `json:"trkConf"`
+	// UUID identifying the track, which should remain the same on subsequent tracks of
+	// the same object.
+	TrkID string `json:"trkId"`
+	// UUID of the track item object, applies to STANAG-4676 messages.
+	TrkItmID string `json:"trkItmId"`
+	// The track number (TN) of a surveillance entity. Intended as, but not constrained
+	// to, the J-series track number encoded as five character alpha-numeric
+	// characters. Users should refer to J-series documentation for specific TN
+	// definitions.
+	TrkNum string `json:"trkNum"`
+	// Means by which the track data was created (e.g., MEASURED, AUTOMATIC PREDICTED,
+	// etc.).
+	TrkPtType string `json:"trkPtType"`
+	// Value indicating track quality (not standardized).
+	TrkQual int64 `json:"trkQual"`
+	// Status of the track (e.g., INITIATING, MAINTAINING, DROPPING, TERMINATED, etc.).
+	TrkStat string `json:"trkStat"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		Source                resp.Field
+		Ts                    resp.Field
+		ID                    resp.Field
+		Alt                   resp.Field
+		Asset                 resp.Field
+		AssetNat              resp.Field
+		CallSign              resp.Field
+		Cntct                 resp.Field
+		Course                resp.Field
+		Cov                   resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		EcefAcc               resp.Field
+		EcefPos               resp.Field
+		EcefVel               resp.Field
+		ENuPos                resp.Field
+		ENuVel                resp.Field
+		Env                   resp.Field
+		EnvConf               resp.Field
+		ErrEllp               resp.Field
+		Hdng                  resp.Field
+		IdentAmp              resp.Field
+		IdentCred             resp.Field
+		IdentRel              resp.Field
+		JSeries               resp.Field
+		Lat                   resp.Field
+		LcAcc                 resp.Field
+		Lco                   resp.Field
+		LcPos                 resp.Field
+		Lcs                   resp.Field
+		LcVel                 resp.Field
+		Lon                   resp.Field
+		M1                    resp.Field
+		M1v                   resp.Field
+		M2                    resp.Field
+		M2v                   resp.Field
+		M3a                   resp.Field
+		M3av                  resp.Field
+		ModType               resp.Field
+		MsgTs                 resp.Field
+		MsnID                 resp.Field
+		MultiSource           resp.Field
+		ObjAct                resp.Field
+		ObjID                 resp.Field
+		ObjIdent              resp.Field
+		ObjNat                resp.Field
+		ObjPlat               resp.Field
+		ObjSpec               resp.Field
+		ObjType               resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		Sen                   resp.Field
+		SenQual               resp.Field
+		SourceDl              resp.Field
+		Spd                   resp.Field
+		SrcIDs                resp.Field
+		SrcTyps               resp.Field
+		Strength              resp.Field
+		Tags                  resp.Field
+		TrkConf               resp.Field
+		TrkID                 resp.Field
+		TrkItmID              resp.Field
+		TrkNum                resp.Field
+		TrkPtType             resp.Field
+		TrkQual               resp.Field
+		TrkStat               resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r TrackListResponse) RawJSON() string { return r.JSON.raw }
+func (r *TrackListResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type TrackListResponseDataMode string
+
+const (
+	TrackListResponseDataModeReal      TrackListResponseDataMode = "REAL"
+	TrackListResponseDataModeTest      TrackListResponseDataMode = "TEST"
+	TrackListResponseDataModeSimulated TrackListResponseDataMode = "SIMULATED"
+	TrackListResponseDataModeExercise  TrackListResponseDataMode = "EXERCISE"
+)
+
+type TrackListParams struct {
+	// Track timestamp in ISO8601 UTC format with microsecond precision.
+	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+	Ts          time.Time        `query:"ts,required" format:"date-time" json:"-"`
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f TrackListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [TrackListParams]'s query parameters as `url.Values`.
+func (r TrackListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type TrackCountParams struct {
+	// Track timestamp in ISO8601 UTC format with microsecond precision.
+	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+	Ts          time.Time        `query:"ts,required" format:"date-time" json:"-"`
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f TrackCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [TrackCountParams]'s query parameters as `url.Values`.
+func (r TrackCountParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type TrackNewBulkParams struct {
+	Body []TrackNewBulkParamsBody
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f TrackNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+func (r TrackNewBulkParams) MarshalJSON() (data []byte, err error) {
+	return json.Marshal(r.Body)
+}
+
+// A track is a position and optionally a heading/velocity of an object such as an
+// aircraft at a particular timestamp. It also includes optional information
+// regarding the identity/type of the target object, if known.
+//
+// The properties ClassificationMarking, DataMode, Source, Ts are required.
+type TrackNewBulkParamsBody struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,omitzero,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Track timestamp in ISO8601 UTC format.
+	Ts time.Time `json:"ts,required" format:"date-time"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Track point altitude relative to WGS-84 ellipsoid, in meters. Positive values
+	// indicate a track object height above ellipsoid, and negative values indicate a
+	// track object below ellipsoid, applicable to the depth estimate for a subsurface
+	// track.
+	Alt param.Opt[float64] `json:"alt,omitzero"`
+	// Id/name of the platform providing the track data (i.e., tail number for air
+	// platform, tower ID for tower based sensor, site id for fixed radar).
+	Asset param.Opt[string] `json:"asset,omitzero"`
+	// Nationality or organization of the tracking/reporting system or platform (e.g.
+	// FR, NATO, US, etc.).
+	AssetNat param.Opt[string] `json:"assetNat,omitzero"`
+	// The call sign currently assigned to this track object.
+	CallSign param.Opt[string] `json:"callSign,omitzero"`
+	// Contact information for assets reporting PPLI (Precise Participant Location and
+	// Identification). PPLI is a Link 16 message that is used by units to transmit
+	// complete location, identification, and limited status information.
+	Cntct param.Opt[string] `json:"cntct,omitzero"`
+	// The track object course-over-ground, in degrees clockwise from true North at the
+	// object location (0-360 degrees).
+	Course param.Opt[float64] `json:"course,omitzero"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// The track environment type (AIR, LAND, SPACE, SUBSURFACE, SURFACE, UNKNOWN):
+	//
+	// AIR: Between sea level and the Kármán line, which has an altitude of 100
+	// kilometers (62 miles).
+	//
+	// LAND: On the surface of dry land.
+	//
+	// SPACE: Above the Kármán line, which has an altitude of 100 kilometers (62
+	// miles).
+	//
+	// SURFACE: On the surface of a body of water.
+	//
+	// SUBSURFACE: Below the surface of a body of water.
+	//
+	// UNKNOWN: Environment is not known.
+	Env param.Opt[string] `json:"env,omitzero"`
+	// Track environment confidence estimate (not standardized).
+	EnvConf param.Opt[float64] `json:"envConf,omitzero"`
+	// The track object heading, in degrees clockwise from true North at the object
+	// location.
+	Hdng param.Opt[float64] `json:"hdng,omitzero"`
+	// Additional track object identity/status information, typically used for EXERCISE
+	// identity amplification (FAKER, JOKER, KILO, TRAVELLER, ZOMBIE):
+	//
+	// FAKER: Friendly track, object, or entity acting as an exercise hostile.
+	//
+	// JOKER: Friendly track, object, or entity acting as an exercise suspect.
+	//
+	// KILO: Friendly high-value object.
+	//
+	// TRAVELLER: Suspect land or surface track following a recognized traffic route.
+	//
+	// ZOMBIE: Suspect track, object, or entity of special interest.
+	IdentAmp param.Opt[string] `json:"identAmp,omitzero"`
+	// Track object identity credibility.
+	IdentCred param.Opt[int64] `json:"identCred,omitzero"`
+	// Track object identity reliability.
+	IdentRel param.Opt[int64] `json:"identRel,omitzero"`
+	// The J-series message type, if this track is derived from a J-series message.
+	JSeries param.Opt[string] `json:"jSeries,omitzero"`
+	// WGS-84 latitude of the track object, in degrees. -90 to 90 degrees (negative
+	// values south of equator).
+	Lat param.Opt[float64] `json:"lat,omitzero"`
+	// WGS-84 longitude of the track object, in degrees. -180 to 180 degrees (negative
+	// values west of Prime Meridian).
+	Lon param.Opt[float64] `json:"lon,omitzero"`
+	// Mode-1 interrogation response (mission code), indicating mission or aircraft
+	// type.
+	M1 param.Opt[int64] `json:"m1,omitzero"`
+	// Mode-1 validity status.
+	M1v param.Opt[int64] `json:"m1v,omitzero"`
+	// Mode-2 interrogation response (military identification code).
+	M2 param.Opt[int64] `json:"m2,omitzero"`
+	// Mode-2 validity status.
+	M2v param.Opt[int64] `json:"m2v,omitzero"`
+	// Mode-3/A interrogation response (aircraft identification), provides a 4-digit
+	// octal identification code for the aircraft, assigned by the air traffic
+	// controller. Mode-3/A is shared military/civilian use.
+	M3a param.Opt[int64] `json:"m3a,omitzero"`
+	// Mode-3/A validity status.
+	M3av param.Opt[int64] `json:"m3av,omitzero"`
+	// The type of source information from which the track was derived. Intended as,
+	// but not constrained to, NATO STANAG 4676 modality types (AIS, BFT, BIOMETRIC,
+	// COMINT, DOPPLER, ELINT, HRR, HUMINT, IMAGE, MASINT, MIXED, OSINT, OTHER):
+	//
+	// AIS: Derived from an automated identification system source.
+	//
+	// BFT: Derived from a blue force tracking source.
+	//
+	// BIOMETRICS: Derived from a biometrics source.
+	//
+	// COMINT: Derived from a communications intelligence source.
+	//
+	// DOPPLER: Derived from a radar doppler source.
+	//
+	// ELINT: Derived from an electronics intelligence source.
+	//
+	// HRR: Derived from a radar high range resolution source.
+	//
+	// HUMINT: Derived from a human intelligence source.
+	//
+	// IMAGE: Derived from a still or motion imagery source.
+	//
+	// MASINT: Derived from a measurement and signals intelligence source.
+	//
+	// MIXED: Derived from a combination of two or more sources.
+	//
+	// OSINT: Derived from an open source intelligence source.
+	//
+	// OTHER: Derived from other types of unspecified sources.
+	ModType param.Opt[string] `json:"modType,omitzero"`
+	// Message Timestamp.
+	MsgTs param.Opt[time.Time] `json:"msgTs,omitzero" format:"date-time"`
+	// Mission ID related to the track.
+	MsnID param.Opt[string] `json:"msnId,omitzero"`
+	// Flag indicating that this track is fused from multiple sensor sources.
+	MultiSource param.Opt[bool] `json:"multiSource,omitzero"`
+	// The activity in which the track object is engaged. Intended as, but not
+	// constrained to, MIL-STD-6016 environment dependent activity designations. The
+	// activity can be reported as either a combination of the code and environment
+	// (e.g. 65/AIR) or as the descriptive enumeration (e.g. DIVERTING), which are
+	// equivalent.
+	ObjAct param.Opt[string] `json:"objAct,omitzero"`
+	// The UID or designation of the tracked object.
+	ObjID param.Opt[string] `json:"objId,omitzero"`
+	// The estimated identity of the track object (ASSUMED FRIEND, FRIEND, HOSTILE,
+	// NEUTRAL, PENDING, SUSPECT, UNKNOWN):
+	//
+	// ASSUMED FRIEND: Track assumed to be a friend due to the object characteristics,
+	// behavior, and/or origin.
+	//
+	// FRIEND: Track object supporting friendly forces and belonging to a declared
+	// friendly nation or entity.
+	//
+	// HOSTILE: Track object belonging to an opposing nation, party, group, or entity
+	// deemed to contribute to a threat to friendly forces or their mission due to its
+	// behavior, characteristics, nationality, or origin.
+	//
+	// NEUTRAL: Track object whose characteristics, behavior, nationality, and/or
+	// origin indicate that it is neither supporting nor opposing friendly forces or
+	// their mission.
+	//
+	// PENDING: Track object which has not been evaluated.
+	//
+	// SUSPECT: Track object deemed potentially hostile due to the object
+	// characteristics, behavior, nationality, and/or origin.
+	//
+	// UNKNOWN: Track object which has been evaluated and does not meet criteria for
+	// any standard identity.
+	ObjIdent param.Opt[string] `json:"objIdent,omitzero"`
+	// Nationality or organization of the track object (e.g. FR, NATO, US, etc.).
+	ObjNat param.Opt[string] `json:"objNat,omitzero"`
+	// The object platform type. Intended as, but not constrained to, MIL-STD-6016
+	// environment dependent platform type designations. The platform type can be
+	// reported as either a combination of the code and environment (e.g. 14/LAND) or
+	// as the descriptive representations (e.g. COMBAT VEHICLE), which are equivalent.
+	ObjPlat param.Opt[string] `json:"objPlat,omitzero"`
+	// The object specific type. Intended as, but not constrained to, MIL-STD-6016
+	// environment dependent specific type designations. The specific type can be
+	// reported as either a combination of the code and environment (e.g. 155/SURFACE)
+	// or as the descriptive representation (e.g. AUDACE DDG), which are equivalent.
+	ObjSpec param.Opt[string] `json:"objSpec,omitzero"`
+	// The generic classification of the track object/group (e.g., HELICOPTER, TRACKED,
+	// WATERCRAFT, WHEELED, etc.). Referenced, but not constrained to, NATO STANAG 4676
+	// object type classifications.
+	ObjType param.Opt[string] `json:"objType,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// Id/name of sensor providing the track data.
+	Sen param.Opt[string] `json:"sen,omitzero"`
+	// Sensor quality.
+	SenQual param.Opt[string] `json:"senQual,omitzero"`
+	// The source data library from which this record was received. This could be a
+	// remote or tactical UDL or another data library. If null, the record should be
+	// assumed to have originated from the primary Enterprise UDL.
+	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
+	// Track object spd, in meters/sec.
+	Spd param.Opt[float64] `json:"spd,omitzero"`
+	// The number of objects or units moving as a group and represented as a single
+	// entity in this track message. If null, the track is assumed to represent a
+	// single object. Note that if this track derives from a J-series message then
+	// special definitions apply for the following values: 13 indicates an estimated
+	// 2-7 units, 14 indicates an estimated more than 7 units, and 15 indicates an
+	// estimated more than 12 units.
+	Strength param.Opt[int64] `json:"strength,omitzero"`
+	// Overall track confidence estimate (not standardized, but typically a value
+	// between 0 and 1, with 0 indicating lowest confidence).
+	TrkConf param.Opt[float64] `json:"trkConf,omitzero"`
+	// UUID identifying the track, which should remain the same on subsequent tracks of
+	// the same object.
+	TrkID param.Opt[string] `json:"trkId,omitzero"`
+	// UUID of the track item object, applies to STANAG-4676 messages.
+	TrkItmID param.Opt[string] `json:"trkItmId,omitzero"`
+	// The track number (TN) of a surveillance entity. Intended as, but not constrained
+	// to, the J-series track number encoded as five character alpha-numeric
+	// characters. Users should refer to J-series documentation for specific TN
+	// definitions.
+	TrkNum param.Opt[string] `json:"trkNum,omitzero"`
+	// Means by which the track data was created (e.g., MEASURED, AUTOMATIC PREDICTED,
+	// etc.).
+	TrkPtType param.Opt[string] `json:"trkPtType,omitzero"`
+	// Value indicating track quality (not standardized).
+	TrkQual param.Opt[int64] `json:"trkQual,omitzero"`
+	// Status of the track (e.g., INITIATING, MAINTAINING, DROPPING, TERMINATED, etc.).
+	TrkStat param.Opt[string] `json:"trkStat,omitzero"`
+	// Covariance matrix, in meter and second based units, for the defined cartesian
+	// system.
+	//
+	// The array values represent the lower triangular half of the position-velocity
+	// covariance matrix. The size of the covariance matrix is dynamic. The values are
+	// output as an array of values corresponding to the position-velocity covariance
+	// element positions, ordered as follows:
+	//
+	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;y&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;y'&nbsp;z'&nbsp;&nbsp;
+	//
+	// x&nbsp;&nbsp;&nbsp;&nbsp;1
+	//
+	// y&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3
+	//
+	// z&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6
+	//
+	// x'&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;10
+	//
+	// y'&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+	//
+	// z'&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;
+	// 21
+	//
+	// The covariance matrix will be as large as the last element needed, and with
+	// unused values zero-filled to maintain proper element positioning in the array.
+	// For example, for a 2D (x, y) position-only covariance, the covariance matrix
+	// will be 2x2 and the array would contain the 3 elements corresponding to the x,
+	// and y position. Another example, now for a 2D (x, y) position-velocity
+	// covariance, the covariance matrix will be 5x5 and the array would contain the 15
+	// elements corresponding to the relevant x, y, x', and y' values (with the z-row
+	// and z-column being all zeros). The cov array should contain only the lower left
+	// triangle values from top left down to bottom right, in order.
+	Cov []float64 `json:"cov,omitzero"`
+	// Track object acceleration in ECEF [x”, y”, z”], meters/sec^2. When provided,
+	// array must always contain 3 values.
+	EcefAcc []float64 `json:"ecefAcc,omitzero"`
+	// Track object location in ECEF [x, y, z], meters. When provided, array must
+	// always contain 3 values.
+	EcefPos []float64 `json:"ecefPos,omitzero"`
+	// Track object velocity in ECEF [x', y', z'], meters/sec. When provided, array
+	// must always contain 3 values.
+	EcefVel []float64 `json:"ecefVel,omitzero"`
+	// East, North, Up position components, in meters. When provided, array must always
+	// contain 3 values.
+	ENuPos []float64 `json:"eNUPos,omitzero"`
+	// East, North, Up velocity components, in meters/sec. When provided, array must
+	// always contain 3 values.
+	ENuVel []float64 `json:"eNUVel,omitzero"`
+	// Uncertainty ellipsoid [semi-major axis (m), semi-minor axis (m), orientation
+	// (deg)].
+	ErrEllp []float64 `json:"errEllp,omitzero"`
+	// Estimate of the acceleration, [x”, y”, z”], of the track object in the
+	// defined cartesian system, in meters/sec^2. When provided, array must always
+	// contain 3 values.
+	LcAcc []float64 `json:"lcAcc,omitzero"`
+	// Origin of a local coordinate system [lat, lon, altitude]. When provided, array
+	// must always contain 3 values.
+	Lco []float64 `json:"lco,omitzero"`
+	// Estimate of the position, [x, y, z], of the track object in the defined
+	// cartesian system, in meters. When provided, array must always contain 3 values.
+	LcPos []float64 `json:"lcPos,omitzero"`
+	// x, y, and z-axis rotations about ECEF that define a local cartesian system. When
+	// provided, array must always contain 3 values.
+	Lcs []float64 `json:"lcs,omitzero"`
+	// Estimate of the velocity, [x', y', z'], of the track object in the defined
+	// cartesian system, in meters/sec. When provided, array must always contain 3
+	// values.
+	LcVel []float64 `json:"lcVel,omitzero"`
+	// Array of UUIDs of the UDL data records that contributed to the generation of
+	// this fused track. See the associated 'srcTyps' array for the specific types of
+	// data, positionally corresponding to the UUIDs in this array, used in the track
+	// fusion. The 'srcTyps' and 'srcIds' arrays must match in size. See the
+	// corresponding srcTyps array element for the data type of the UUID and use the
+	// appropriate API operation to retrieve that object (e.g. /udl/poi/{uuid}).
+	SrcIDs []string `json:"srcIds,omitzero"`
+	// Array of UDL record types (POI, MTI, TRACK, GROUNDIMAGE) that contributed to the
+	// generation of this fused track. See the associated 'srcIds' array for the record
+	// UUIDs, positionally corresponding to the record types in this array, used in the
+	// track fusion. The 'srcTyps' and 'srcIds' arrays must match in size.
+	SrcTyps []string `json:"srcTyps,omitzero"`
+	// Optional array of provider/source specific tags for this data, where each
+	// element is no longer than 32 characters, used for implementing data owner
+	// conditional access controls to restrict access to the data. Should be left null
+	// by data providers unless conditional access controls are coordinated with the
+	// UDL team.
+	Tags []string `json:"tags,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f TrackNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r TrackNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow TrackNewBulkParamsBody
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+func init() {
+	apijson.RegisterFieldValidator[TrackNewBulkParamsBody](
+		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+}
+
+type TrackTupleParams struct {
+	// Comma-separated list of valid field names for this data type to be returned in
+	// the response. Only the fields specified will be returned as well as the
+	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
+	// for a complete list of possible fields.
+	Columns string `query:"columns,required" json:"-"`
+	// Track timestamp in ISO8601 UTC format with microsecond precision.
+	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+	Ts          time.Time        `query:"ts,required" format:"date-time" json:"-"`
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f TrackTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [TrackTupleParams]'s query parameters as `url.Values`.
+func (r TrackTupleParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type TrackUnvalidatedPublishParams struct {
+	Body []TrackUnvalidatedPublishParamsBody
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f TrackUnvalidatedPublishParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+func (r TrackUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+	return json.Marshal(r.Body)
+}
+
+// A track is a position and optionally a heading/velocity of an object such as an
+// aircraft at a particular timestamp. It also includes optional information
+// regarding the identity/type of the target object, if known.
+//
+// The properties ClassificationMarking, DataMode, Source, Ts are required.
+type TrackUnvalidatedPublishParamsBody struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,omitzero,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Track timestamp in ISO8601 UTC format.
+	Ts time.Time `json:"ts,required" format:"date-time"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Track point altitude relative to WGS-84 ellipsoid, in meters. Positive values
+	// indicate a track object height above ellipsoid, and negative values indicate a
+	// track object below ellipsoid, applicable to the depth estimate for a subsurface
+	// track.
+	Alt param.Opt[float64] `json:"alt,omitzero"`
+	// Id/name of the platform providing the track data (i.e., tail number for air
+	// platform, tower ID for tower based sensor, site id for fixed radar).
+	Asset param.Opt[string] `json:"asset,omitzero"`
+	// Nationality or organization of the tracking/reporting system or platform (e.g.
+	// FR, NATO, US, etc.).
+	AssetNat param.Opt[string] `json:"assetNat,omitzero"`
+	// The call sign currently assigned to this track object.
+	CallSign param.Opt[string] `json:"callSign,omitzero"`
+	// Contact information for assets reporting PPLI (Precise Participant Location and
+	// Identification). PPLI is a Link 16 message that is used by units to transmit
+	// complete location, identification, and limited status information.
+	Cntct param.Opt[string] `json:"cntct,omitzero"`
+	// The track object course-over-ground, in degrees clockwise from true North at the
+	// object location (0-360 degrees).
+	Course param.Opt[float64] `json:"course,omitzero"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// The track environment type (AIR, LAND, SPACE, SUBSURFACE, SURFACE, UNKNOWN):
+	//
+	// AIR: Between sea level and the Kármán line, which has an altitude of 100
+	// kilometers (62 miles).
+	//
+	// LAND: On the surface of dry land.
+	//
+	// SPACE: Above the Kármán line, which has an altitude of 100 kilometers (62
+	// miles).
+	//
+	// SURFACE: On the surface of a body of water.
+	//
+	// SUBSURFACE: Below the surface of a body of water.
+	//
+	// UNKNOWN: Environment is not known.
+	Env param.Opt[string] `json:"env,omitzero"`
+	// Track environment confidence estimate (not standardized).
+	EnvConf param.Opt[float64] `json:"envConf,omitzero"`
+	// The track object heading, in degrees clockwise from true North at the object
+	// location.
+	Hdng param.Opt[float64] `json:"hdng,omitzero"`
+	// Additional track object identity/status information, typically used for EXERCISE
+	// identity amplification (FAKER, JOKER, KILO, TRAVELLER, ZOMBIE):
+	//
+	// FAKER: Friendly track, object, or entity acting as an exercise hostile.
+	//
+	// JOKER: Friendly track, object, or entity acting as an exercise suspect.
+	//
+	// KILO: Friendly high-value object.
+	//
+	// TRAVELLER: Suspect land or surface track following a recognized traffic route.
+	//
+	// ZOMBIE: Suspect track, object, or entity of special interest.
+	IdentAmp param.Opt[string] `json:"identAmp,omitzero"`
+	// Track object identity credibility.
+	IdentCred param.Opt[int64] `json:"identCred,omitzero"`
+	// Track object identity reliability.
+	IdentRel param.Opt[int64] `json:"identRel,omitzero"`
+	// The J-series message type, if this track is derived from a J-series message.
+	JSeries param.Opt[string] `json:"jSeries,omitzero"`
+	// WGS-84 latitude of the track object, in degrees. -90 to 90 degrees (negative
+	// values south of equator).
+	Lat param.Opt[float64] `json:"lat,omitzero"`
+	// WGS-84 longitude of the track object, in degrees. -180 to 180 degrees (negative
+	// values west of Prime Meridian).
+	Lon param.Opt[float64] `json:"lon,omitzero"`
+	// Mode-1 interrogation response (mission code), indicating mission or aircraft
+	// type.
+	M1 param.Opt[int64] `json:"m1,omitzero"`
+	// Mode-1 validity status.
+	M1v param.Opt[int64] `json:"m1v,omitzero"`
+	// Mode-2 interrogation response (military identification code).
+	M2 param.Opt[int64] `json:"m2,omitzero"`
+	// Mode-2 validity status.
+	M2v param.Opt[int64] `json:"m2v,omitzero"`
+	// Mode-3/A interrogation response (aircraft identification), provides a 4-digit
+	// octal identification code for the aircraft, assigned by the air traffic
+	// controller. Mode-3/A is shared military/civilian use.
+	M3a param.Opt[int64] `json:"m3a,omitzero"`
+	// Mode-3/A validity status.
+	M3av param.Opt[int64] `json:"m3av,omitzero"`
+	// The type of source information from which the track was derived. Intended as,
+	// but not constrained to, NATO STANAG 4676 modality types (AIS, BFT, BIOMETRIC,
+	// COMINT, DOPPLER, ELINT, HRR, HUMINT, IMAGE, MASINT, MIXED, OSINT, OTHER):
+	//
+	// AIS: Derived from an automated identification system source.
+	//
+	// BFT: Derived from a blue force tracking source.
+	//
+	// BIOMETRICS: Derived from a biometrics source.
+	//
+	// COMINT: Derived from a communications intelligence source.
+	//
+	// DOPPLER: Derived from a radar doppler source.
+	//
+	// ELINT: Derived from an electronics intelligence source.
+	//
+	// HRR: Derived from a radar high range resolution source.
+	//
+	// HUMINT: Derived from a human intelligence source.
+	//
+	// IMAGE: Derived from a still or motion imagery source.
+	//
+	// MASINT: Derived from a measurement and signals intelligence source.
+	//
+	// MIXED: Derived from a combination of two or more sources.
+	//
+	// OSINT: Derived from an open source intelligence source.
+	//
+	// OTHER: Derived from other types of unspecified sources.
+	ModType param.Opt[string] `json:"modType,omitzero"`
+	// Message Timestamp.
+	MsgTs param.Opt[time.Time] `json:"msgTs,omitzero" format:"date-time"`
+	// Mission ID related to the track.
+	MsnID param.Opt[string] `json:"msnId,omitzero"`
+	// Flag indicating that this track is fused from multiple sensor sources.
+	MultiSource param.Opt[bool] `json:"multiSource,omitzero"`
+	// The activity in which the track object is engaged. Intended as, but not
+	// constrained to, MIL-STD-6016 environment dependent activity designations. The
+	// activity can be reported as either a combination of the code and environment
+	// (e.g. 65/AIR) or as the descriptive enumeration (e.g. DIVERTING), which are
+	// equivalent.
+	ObjAct param.Opt[string] `json:"objAct,omitzero"`
+	// The UID or designation of the tracked object.
+	ObjID param.Opt[string] `json:"objId,omitzero"`
+	// The estimated identity of the track object (ASSUMED FRIEND, FRIEND, HOSTILE,
+	// NEUTRAL, PENDING, SUSPECT, UNKNOWN):
+	//
+	// ASSUMED FRIEND: Track assumed to be a friend due to the object characteristics,
+	// behavior, and/or origin.
+	//
+	// FRIEND: Track object supporting friendly forces and belonging to a declared
+	// friendly nation or entity.
+	//
+	// HOSTILE: Track object belonging to an opposing nation, party, group, or entity
+	// deemed to contribute to a threat to friendly forces or their mission due to its
+	// behavior, characteristics, nationality, or origin.
+	//
+	// NEUTRAL: Track object whose characteristics, behavior, nationality, and/or
+	// origin indicate that it is neither supporting nor opposing friendly forces or
+	// their mission.
+	//
+	// PENDING: Track object which has not been evaluated.
+	//
+	// SUSPECT: Track object deemed potentially hostile due to the object
+	// characteristics, behavior, nationality, and/or origin.
+	//
+	// UNKNOWN: Track object which has been evaluated and does not meet criteria for
+	// any standard identity.
+	ObjIdent param.Opt[string] `json:"objIdent,omitzero"`
+	// Nationality or organization of the track object (e.g. FR, NATO, US, etc.).
+	ObjNat param.Opt[string] `json:"objNat,omitzero"`
+	// The object platform type. Intended as, but not constrained to, MIL-STD-6016
+	// environment dependent platform type designations. The platform type can be
+	// reported as either a combination of the code and environment (e.g. 14/LAND) or
+	// as the descriptive representations (e.g. COMBAT VEHICLE), which are equivalent.
+	ObjPlat param.Opt[string] `json:"objPlat,omitzero"`
+	// The object specific type. Intended as, but not constrained to, MIL-STD-6016
+	// environment dependent specific type designations. The specific type can be
+	// reported as either a combination of the code and environment (e.g. 155/SURFACE)
+	// or as the descriptive representation (e.g. AUDACE DDG), which are equivalent.
+	ObjSpec param.Opt[string] `json:"objSpec,omitzero"`
+	// The generic classification of the track object/group (e.g., HELICOPTER, TRACKED,
+	// WATERCRAFT, WHEELED, etc.). Referenced, but not constrained to, NATO STANAG 4676
+	// object type classifications.
+	ObjType param.Opt[string] `json:"objType,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// Id/name of sensor providing the track data.
+	Sen param.Opt[string] `json:"sen,omitzero"`
+	// Sensor quality.
+	SenQual param.Opt[string] `json:"senQual,omitzero"`
+	// The source data library from which this record was received. This could be a
+	// remote or tactical UDL or another data library. If null, the record should be
+	// assumed to have originated from the primary Enterprise UDL.
+	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
+	// Track object spd, in meters/sec.
+	Spd param.Opt[float64] `json:"spd,omitzero"`
+	// The number of objects or units moving as a group and represented as a single
+	// entity in this track message. If null, the track is assumed to represent a
+	// single object. Note that if this track derives from a J-series message then
+	// special definitions apply for the following values: 13 indicates an estimated
+	// 2-7 units, 14 indicates an estimated more than 7 units, and 15 indicates an
+	// estimated more than 12 units.
+	Strength param.Opt[int64] `json:"strength,omitzero"`
+	// Overall track confidence estimate (not standardized, but typically a value
+	// between 0 and 1, with 0 indicating lowest confidence).
+	TrkConf param.Opt[float64] `json:"trkConf,omitzero"`
+	// UUID identifying the track, which should remain the same on subsequent tracks of
+	// the same object.
+	TrkID param.Opt[string] `json:"trkId,omitzero"`
+	// UUID of the track item object, applies to STANAG-4676 messages.
+	TrkItmID param.Opt[string] `json:"trkItmId,omitzero"`
+	// The track number (TN) of a surveillance entity. Intended as, but not constrained
+	// to, the J-series track number encoded as five character alpha-numeric
+	// characters. Users should refer to J-series documentation for specific TN
+	// definitions.
+	TrkNum param.Opt[string] `json:"trkNum,omitzero"`
+	// Means by which the track data was created (e.g., MEASURED, AUTOMATIC PREDICTED,
+	// etc.).
+	TrkPtType param.Opt[string] `json:"trkPtType,omitzero"`
+	// Value indicating track quality (not standardized).
+	TrkQual param.Opt[int64] `json:"trkQual,omitzero"`
+	// Status of the track (e.g., INITIATING, MAINTAINING, DROPPING, TERMINATED, etc.).
+	TrkStat param.Opt[string] `json:"trkStat,omitzero"`
+	// Covariance matrix, in meter and second based units, for the defined cartesian
+	// system.
+	//
+	// The array values represent the lower triangular half of the position-velocity
+	// covariance matrix. The size of the covariance matrix is dynamic. The values are
+	// output as an array of values corresponding to the position-velocity covariance
+	// element positions, ordered as follows:
+	//
+	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;y&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;y'&nbsp;z'&nbsp;&nbsp;
+	//
+	// x&nbsp;&nbsp;&nbsp;&nbsp;1
+	//
+	// y&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3
+	//
+	// z&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6
+	//
+	// x'&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;10
+	//
+	// y'&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+	//
+	// z'&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;
+	// 21
+	//
+	// The covariance matrix will be as large as the last element needed, and with
+	// unused values zero-filled to maintain proper element positioning in the array.
+	// For example, for a 2D (x, y) position-only covariance, the covariance matrix
+	// will be 2x2 and the array would contain the 3 elements corresponding to the x,
+	// and y position. Another example, now for a 2D (x, y) position-velocity
+	// covariance, the covariance matrix will be 5x5 and the array would contain the 15
+	// elements corresponding to the relevant x, y, x', and y' values (with the z-row
+	// and z-column being all zeros). The cov array should contain only the lower left
+	// triangle values from top left down to bottom right, in order.
+	Cov []float64 `json:"cov,omitzero"`
+	// Track object acceleration in ECEF [x”, y”, z”], meters/sec^2. When provided,
+	// array must always contain 3 values.
+	EcefAcc []float64 `json:"ecefAcc,omitzero"`
+	// Track object location in ECEF [x, y, z], meters. When provided, array must
+	// always contain 3 values.
+	EcefPos []float64 `json:"ecefPos,omitzero"`
+	// Track object velocity in ECEF [x', y', z'], meters/sec. When provided, array
+	// must always contain 3 values.
+	EcefVel []float64 `json:"ecefVel,omitzero"`
+	// East, North, Up position components, in meters. When provided, array must always
+	// contain 3 values.
+	ENuPos []float64 `json:"eNUPos,omitzero"`
+	// East, North, Up velocity components, in meters/sec. When provided, array must
+	// always contain 3 values.
+	ENuVel []float64 `json:"eNUVel,omitzero"`
+	// Uncertainty ellipsoid [semi-major axis (m), semi-minor axis (m), orientation
+	// (deg)].
+	ErrEllp []float64 `json:"errEllp,omitzero"`
+	// Estimate of the acceleration, [x”, y”, z”], of the track object in the
+	// defined cartesian system, in meters/sec^2. When provided, array must always
+	// contain 3 values.
+	LcAcc []float64 `json:"lcAcc,omitzero"`
+	// Origin of a local coordinate system [lat, lon, altitude]. When provided, array
+	// must always contain 3 values.
+	Lco []float64 `json:"lco,omitzero"`
+	// Estimate of the position, [x, y, z], of the track object in the defined
+	// cartesian system, in meters. When provided, array must always contain 3 values.
+	LcPos []float64 `json:"lcPos,omitzero"`
+	// x, y, and z-axis rotations about ECEF that define a local cartesian system. When
+	// provided, array must always contain 3 values.
+	Lcs []float64 `json:"lcs,omitzero"`
+	// Estimate of the velocity, [x', y', z'], of the track object in the defined
+	// cartesian system, in meters/sec. When provided, array must always contain 3
+	// values.
+	LcVel []float64 `json:"lcVel,omitzero"`
+	// Array of UUIDs of the UDL data records that contributed to the generation of
+	// this fused track. See the associated 'srcTyps' array for the specific types of
+	// data, positionally corresponding to the UUIDs in this array, used in the track
+	// fusion. The 'srcTyps' and 'srcIds' arrays must match in size. See the
+	// corresponding srcTyps array element for the data type of the UUID and use the
+	// appropriate API operation to retrieve that object (e.g. /udl/poi/{uuid}).
+	SrcIDs []string `json:"srcIds,omitzero"`
+	// Array of UDL record types (POI, MTI, TRACK, GROUNDIMAGE) that contributed to the
+	// generation of this fused track. See the associated 'srcIds' array for the record
+	// UUIDs, positionally corresponding to the record types in this array, used in the
+	// track fusion. The 'srcTyps' and 'srcIds' arrays must match in size.
+	SrcTyps []string `json:"srcTyps,omitzero"`
+	// Optional array of provider/source specific tags for this data, where each
+	// element is no longer than 32 characters, used for implementing data owner
+	// conditional access controls to restrict access to the data. Should be left null
+	// by data providers unless conditional access controls are coordinated with the
+	// UDL team.
+	Tags []string `json:"tags,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f TrackUnvalidatedPublishParamsBody) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+func (r TrackUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow TrackUnvalidatedPublishParamsBody
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+func init() {
+	apijson.RegisterFieldValidator[TrackUnvalidatedPublishParamsBody](
+		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+}

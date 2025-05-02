@@ -1,0 +1,1335 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+package unifieddatalibrary
+
+import (
+	"context"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"net/http"
+	"net/url"
+	"time"
+
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
+	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+)
+
+// RoutestatService contains methods and other services that help with interacting
+// with the unifieddatalibrary API.
+//
+// Note, unlike clients, this service does not read variables from the environment
+// automatically. You should not instantiate this service directly, and instead use
+// the [NewRoutestatService] method instead.
+type RoutestatService struct {
+	Options []option.RequestOption
+}
+
+// NewRoutestatService generates a new service that applies the given options to
+// each request. These options are applied after the parent client's options (if
+// there is one), and before any request-specific options.
+func NewRoutestatService(opts ...option.RequestOption) (r RoutestatService) {
+	r = RoutestatService{}
+	r.Options = opts
+	return
+}
+
+// Service operation to take a single routeStats record as a POST body and ingest
+// into the database. A specific role is required to perform this service
+// operation. Please contact the UDL team for assistance.
+func (r *RoutestatService) New(ctx context.Context, body RoutestatNewParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "udl/routestats"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
+	return
+}
+
+// Service operation to get a single routeStats record by its unique ID passed as a
+// path parameter.
+func (r *RoutestatService) Get(ctx context.Context, id string, query RoutestatGetParams, opts ...option.RequestOption) (res *RoutestatGetResponse, err error) {
+	opts = append(r.Options[:], opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("udl/routestats/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Service operation to update a single RouteStats. A specific role is required to
+// perform this service operation. Please contact the UDL team for assistance.
+func (r *RoutestatService) Update(ctx context.Context, id string, body RoutestatUpdateParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("udl/routestats/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
+	return
+}
+
+// Service operation to delete a routeStats record specified by the passed ID path
+// parameter. A specific role is required to perform this service operation. Please
+// contact the UDL team for assistance.
+func (r *RoutestatService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("udl/routestats/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
+	return
+}
+
+// Service operation to return the count of records satisfying the specified query
+// parameters. This operation is useful to determine how many records pass a
+// particular query criteria without retrieving large amounts of data. See the
+// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// valid/required query parameter information.
+func (r *RoutestatService) Count(ctx context.Context, query RoutestatCountParams, opts ...option.RequestOption) (res *string, err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
+	path := "udl/routestats/count"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Service operation intended for initial integration only, to take a list of
+// RouteStats as a POST body and ingest into the database. This operation is not
+// intended to be used for automated feeds into UDL. Data providers should contact
+// the UDL team for specific role assignments and for instructions on setting up a
+// permanent feed through an alternate mechanism.
+func (r *RoutestatService) NewBulk(ctx context.Context, body RoutestatNewBulkParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "udl/routestats/createBulk"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
+	return
+}
+
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *RoutestatService) Query(ctx context.Context, query RoutestatQueryParams, opts ...option.RequestOption) (res *[]RoutestatQueryResponse, err error) {
+	opts = append(r.Options[:], opts...)
+	path := "udl/routestats"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Service operation to provide detailed information on available dynamic query
+// parameters for a particular data type.
+func (r *RoutestatService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "udl/routestats/queryhelp"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, nil, opts...)
+	return
+}
+
+// Service operation to dynamically query data and only return specified
+// columns/fields. Requested columns are specified by the 'columns' query parameter
+// and should be a comma separated list of valid fields for the specified data
+// type. classificationMarking is always returned. See the queryhelp operation
+// (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+// information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
+// hours would return the satNo and period of elsets with an epoch greater than 5
+// hours ago.
+func (r *RoutestatService) Tuple(ctx context.Context, query RoutestatTupleParams, opts ...option.RequestOption) (res *[]RoutestatTupleResponse, err error) {
+	opts = append(r.Options[:], opts...)
+	path := "udl/routestats/tuple"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Service operation to take multiple routestats records as a POST body and ingest
+// into the database. This operation is intended to be used for automated feeds
+// into UDL. A specific role is required to perform this service operation. Please
+// contact the UDL team for assistance.
+func (r *RoutestatService) UnvalidatedPublish(ctx context.Context, body RoutestatUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "filedrop/udl-routestats"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
+	return
+}
+
+// General statistics applying to navigation routes utilized by vessels, aircraft,
+// ground vehicles, etc.
+type RoutestatGetResponse struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode RoutestatGetResponseDataMode `json:"dataMode,required"`
+	// End location of the vehicle.
+	LocationEnd string `json:"locationEnd,required"`
+	// Starting location of the vehicle.
+	LocationStart string `json:"locationStart,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Average travel duration for the indicated distance and type of vehicle in hours.
+	AvgDuration float64 `json:"avgDuration"`
+	// Average speed during travel in the indicated unit of measurement, speedUnit.
+	AvgSpeed float64 `json:"avgSpeed"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The number of data points used in this travel duration calculation.
+	DataPtsUsed int64 `json:"dataPtsUsed"`
+	// Distance between the departure and arrival locations in the indicated unit of
+	// measurement, distUnit.
+	Distance float64 `json:"distance"`
+	// The unit of measurement used for distance in this calculation.
+	DistUnit string `json:"distUnit"`
+	// Date of the first data point used in this calculation, in ISO8601 UTC format
+	// with millisecond precision.
+	FirstPt time.Time `json:"firstPt" format:"date-time"`
+	// Description of the portion of travel used to estimate the value of the
+	// idealDuration field.
+	IdealDesc string `json:"idealDesc"`
+	// Estimated ideal travel duration in hours for the full distance using the
+	// indicated vehicle type. The field "idealDesc" should be used to describe the
+	// ideal travel route.
+	IdealDuration float64 `json:"idealDuration"`
+	// Unique identifier of the Site at the route's end location. This ID can be used
+	// to obtain additional information on a Site using the 'get by ID' operation (e.g.
+	// /udl/site/{id}). For example, the Site object with idSite = abc would be queried
+	// as /udl/site/abc.
+	IDSiteEnd string `json:"idSiteEnd"`
+	// Unique identifier of the Site at the route's starting location. This ID can be
+	// used to obtain additional information on a Site using the 'get by ID' operation
+	// (e.g. /udl/site/{id}). For example, the Site object with idSite = abc would be
+	// queried as /udl/site/abc.
+	IDSiteStart string `json:"idSiteStart"`
+	// Date of the last data point used in this calculation, in ISO8601 UTC format with
+	// millisecond precision.
+	LastPt time.Time `json:"lastPt" format:"date-time"`
+	// Type of location used for route start and end points (e.g., ICAO, PORT, etc.).
+	LocationType string `json:"locationType"`
+	// Maximum travel duration for the indicated distance and type of vehicle in hours.
+	MaxDuration float64 `json:"maxDuration"`
+	// Maximum speed during travel in the indicated unit of measurement, speedUnit.
+	MaxSpeed float64 `json:"maxSpeed"`
+	// Minimum travel duration for the indicated distance and type of vehicle in hours.
+	MinDuration float64 `json:"minDuration"`
+	// Minimum speed during travel in the indicated unit of measurement, speedUnit.
+	MinSpeed float64 `json:"minSpeed"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Description of the portion of travel used to estimate the value of the
+	// partialDuration field.
+	PartialDesc string `json:"partialDesc"`
+	// Estimated ideal travel duration in hours for a partial distance using the
+	// indicated vehicle type. The field "partialDesc" should be used to specify the
+	// intended portion of travel.
+	PartialDuration float64 `json:"partialDuration"`
+	// The source data library from which this record was received. This could be a
+	// remote or tactical UDL or another data library. If null, the record should be
+	// assumed to have originated from the primary Enterprise UDL.
+	SourceDl string `json:"sourceDL"`
+	// The unit of measurement used for speed in this calculation.
+	SpeedUnit string `json:"speedUnit"`
+	// The time period this data was collected.
+	TimePeriod string `json:"timePeriod"`
+	// Time the row was updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// The vehicle category that is the subject of this calculation (e.g., AIRCRAFT,
+	// CAR, BOAT, etc.).
+	VehicleCategory string `json:"vehicleCategory"`
+	// The vehicle type that is the subject of this calculation (e.g., C-17, F-15,
+	// etc.).
+	VehicleType string `json:"vehicleType"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		LocationEnd           resp.Field
+		LocationStart         resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		AvgDuration           resp.Field
+		AvgSpeed              resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		DataPtsUsed           resp.Field
+		Distance              resp.Field
+		DistUnit              resp.Field
+		FirstPt               resp.Field
+		IdealDesc             resp.Field
+		IdealDuration         resp.Field
+		IDSiteEnd             resp.Field
+		IDSiteStart           resp.Field
+		LastPt                resp.Field
+		LocationType          resp.Field
+		MaxDuration           resp.Field
+		MaxSpeed              resp.Field
+		MinDuration           resp.Field
+		MinSpeed              resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		PartialDesc           resp.Field
+		PartialDuration       resp.Field
+		SourceDl              resp.Field
+		SpeedUnit             resp.Field
+		TimePeriod            resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		VehicleCategory       resp.Field
+		VehicleType           resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r RoutestatGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *RoutestatGetResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type RoutestatGetResponseDataMode string
+
+const (
+	RoutestatGetResponseDataModeReal      RoutestatGetResponseDataMode = "REAL"
+	RoutestatGetResponseDataModeTest      RoutestatGetResponseDataMode = "TEST"
+	RoutestatGetResponseDataModeSimulated RoutestatGetResponseDataMode = "SIMULATED"
+	RoutestatGetResponseDataModeExercise  RoutestatGetResponseDataMode = "EXERCISE"
+)
+
+// General statistics applying to navigation routes utilized by vessels, aircraft,
+// ground vehicles, etc.
+type RoutestatQueryResponse struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode RoutestatQueryResponseDataMode `json:"dataMode,required"`
+	// End location of the vehicle.
+	LocationEnd string `json:"locationEnd,required"`
+	// Starting location of the vehicle.
+	LocationStart string `json:"locationStart,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Average travel duration for the indicated distance and type of vehicle in hours.
+	AvgDuration float64 `json:"avgDuration"`
+	// Average speed during travel in the indicated unit of measurement, speedUnit.
+	AvgSpeed float64 `json:"avgSpeed"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The number of data points used in this travel duration calculation.
+	DataPtsUsed int64 `json:"dataPtsUsed"`
+	// Distance between the departure and arrival locations in the indicated unit of
+	// measurement, distUnit.
+	Distance float64 `json:"distance"`
+	// The unit of measurement used for distance in this calculation.
+	DistUnit string `json:"distUnit"`
+	// Date of the first data point used in this calculation, in ISO8601 UTC format
+	// with millisecond precision.
+	FirstPt time.Time `json:"firstPt" format:"date-time"`
+	// Description of the portion of travel used to estimate the value of the
+	// idealDuration field.
+	IdealDesc string `json:"idealDesc"`
+	// Estimated ideal travel duration in hours for the full distance using the
+	// indicated vehicle type. The field "idealDesc" should be used to describe the
+	// ideal travel route.
+	IdealDuration float64 `json:"idealDuration"`
+	// Unique identifier of the Site at the route's end location. This ID can be used
+	// to obtain additional information on a Site using the 'get by ID' operation (e.g.
+	// /udl/site/{id}). For example, the Site object with idSite = abc would be queried
+	// as /udl/site/abc.
+	IDSiteEnd string `json:"idSiteEnd"`
+	// Unique identifier of the Site at the route's starting location. This ID can be
+	// used to obtain additional information on a Site using the 'get by ID' operation
+	// (e.g. /udl/site/{id}). For example, the Site object with idSite = abc would be
+	// queried as /udl/site/abc.
+	IDSiteStart string `json:"idSiteStart"`
+	// Date of the last data point used in this calculation, in ISO8601 UTC format with
+	// millisecond precision.
+	LastPt time.Time `json:"lastPt" format:"date-time"`
+	// Type of location used for route start and end points (e.g., ICAO, PORT, etc.).
+	LocationType string `json:"locationType"`
+	// Maximum travel duration for the indicated distance and type of vehicle in hours.
+	MaxDuration float64 `json:"maxDuration"`
+	// Maximum speed during travel in the indicated unit of measurement, speedUnit.
+	MaxSpeed float64 `json:"maxSpeed"`
+	// Minimum travel duration for the indicated distance and type of vehicle in hours.
+	MinDuration float64 `json:"minDuration"`
+	// Minimum speed during travel in the indicated unit of measurement, speedUnit.
+	MinSpeed float64 `json:"minSpeed"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Description of the portion of travel used to estimate the value of the
+	// partialDuration field.
+	PartialDesc string `json:"partialDesc"`
+	// Estimated ideal travel duration in hours for a partial distance using the
+	// indicated vehicle type. The field "partialDesc" should be used to specify the
+	// intended portion of travel.
+	PartialDuration float64 `json:"partialDuration"`
+	// The source data library from which this record was received. This could be a
+	// remote or tactical UDL or another data library. If null, the record should be
+	// assumed to have originated from the primary Enterprise UDL.
+	SourceDl string `json:"sourceDL"`
+	// The unit of measurement used for speed in this calculation.
+	SpeedUnit string `json:"speedUnit"`
+	// The time period this data was collected.
+	TimePeriod string `json:"timePeriod"`
+	// The vehicle category that is the subject of this calculation (e.g., AIRCRAFT,
+	// CAR, BOAT, etc.).
+	VehicleCategory string `json:"vehicleCategory"`
+	// The vehicle type that is the subject of this calculation (e.g., C-17, F-15,
+	// etc.).
+	VehicleType string `json:"vehicleType"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		LocationEnd           resp.Field
+		LocationStart         resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		AvgDuration           resp.Field
+		AvgSpeed              resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		DataPtsUsed           resp.Field
+		Distance              resp.Field
+		DistUnit              resp.Field
+		FirstPt               resp.Field
+		IdealDesc             resp.Field
+		IdealDuration         resp.Field
+		IDSiteEnd             resp.Field
+		IDSiteStart           resp.Field
+		LastPt                resp.Field
+		LocationType          resp.Field
+		MaxDuration           resp.Field
+		MaxSpeed              resp.Field
+		MinDuration           resp.Field
+		MinSpeed              resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		PartialDesc           resp.Field
+		PartialDuration       resp.Field
+		SourceDl              resp.Field
+		SpeedUnit             resp.Field
+		TimePeriod            resp.Field
+		VehicleCategory       resp.Field
+		VehicleType           resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r RoutestatQueryResponse) RawJSON() string { return r.JSON.raw }
+func (r *RoutestatQueryResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type RoutestatQueryResponseDataMode string
+
+const (
+	RoutestatQueryResponseDataModeReal      RoutestatQueryResponseDataMode = "REAL"
+	RoutestatQueryResponseDataModeTest      RoutestatQueryResponseDataMode = "TEST"
+	RoutestatQueryResponseDataModeSimulated RoutestatQueryResponseDataMode = "SIMULATED"
+	RoutestatQueryResponseDataModeExercise  RoutestatQueryResponseDataMode = "EXERCISE"
+)
+
+// General statistics applying to navigation routes utilized by vessels, aircraft,
+// ground vehicles, etc.
+type RoutestatTupleResponse struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode RoutestatTupleResponseDataMode `json:"dataMode,required"`
+	// End location of the vehicle.
+	LocationEnd string `json:"locationEnd,required"`
+	// Starting location of the vehicle.
+	LocationStart string `json:"locationStart,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Average travel duration for the indicated distance and type of vehicle in hours.
+	AvgDuration float64 `json:"avgDuration"`
+	// Average speed during travel in the indicated unit of measurement, speedUnit.
+	AvgSpeed float64 `json:"avgSpeed"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The number of data points used in this travel duration calculation.
+	DataPtsUsed int64 `json:"dataPtsUsed"`
+	// Distance between the departure and arrival locations in the indicated unit of
+	// measurement, distUnit.
+	Distance float64 `json:"distance"`
+	// The unit of measurement used for distance in this calculation.
+	DistUnit string `json:"distUnit"`
+	// Date of the first data point used in this calculation, in ISO8601 UTC format
+	// with millisecond precision.
+	FirstPt time.Time `json:"firstPt" format:"date-time"`
+	// Description of the portion of travel used to estimate the value of the
+	// idealDuration field.
+	IdealDesc string `json:"idealDesc"`
+	// Estimated ideal travel duration in hours for the full distance using the
+	// indicated vehicle type. The field "idealDesc" should be used to describe the
+	// ideal travel route.
+	IdealDuration float64 `json:"idealDuration"`
+	// Unique identifier of the Site at the route's end location. This ID can be used
+	// to obtain additional information on a Site using the 'get by ID' operation (e.g.
+	// /udl/site/{id}). For example, the Site object with idSite = abc would be queried
+	// as /udl/site/abc.
+	IDSiteEnd string `json:"idSiteEnd"`
+	// Unique identifier of the Site at the route's starting location. This ID can be
+	// used to obtain additional information on a Site using the 'get by ID' operation
+	// (e.g. /udl/site/{id}). For example, the Site object with idSite = abc would be
+	// queried as /udl/site/abc.
+	IDSiteStart string `json:"idSiteStart"`
+	// Date of the last data point used in this calculation, in ISO8601 UTC format with
+	// millisecond precision.
+	LastPt time.Time `json:"lastPt" format:"date-time"`
+	// Type of location used for route start and end points (e.g., ICAO, PORT, etc.).
+	LocationType string `json:"locationType"`
+	// Maximum travel duration for the indicated distance and type of vehicle in hours.
+	MaxDuration float64 `json:"maxDuration"`
+	// Maximum speed during travel in the indicated unit of measurement, speedUnit.
+	MaxSpeed float64 `json:"maxSpeed"`
+	// Minimum travel duration for the indicated distance and type of vehicle in hours.
+	MinDuration float64 `json:"minDuration"`
+	// Minimum speed during travel in the indicated unit of measurement, speedUnit.
+	MinSpeed float64 `json:"minSpeed"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Description of the portion of travel used to estimate the value of the
+	// partialDuration field.
+	PartialDesc string `json:"partialDesc"`
+	// Estimated ideal travel duration in hours for a partial distance using the
+	// indicated vehicle type. The field "partialDesc" should be used to specify the
+	// intended portion of travel.
+	PartialDuration float64 `json:"partialDuration"`
+	// The source data library from which this record was received. This could be a
+	// remote or tactical UDL or another data library. If null, the record should be
+	// assumed to have originated from the primary Enterprise UDL.
+	SourceDl string `json:"sourceDL"`
+	// The unit of measurement used for speed in this calculation.
+	SpeedUnit string `json:"speedUnit"`
+	// The time period this data was collected.
+	TimePeriod string `json:"timePeriod"`
+	// Time the row was updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// The vehicle category that is the subject of this calculation (e.g., AIRCRAFT,
+	// CAR, BOAT, etc.).
+	VehicleCategory string `json:"vehicleCategory"`
+	// The vehicle type that is the subject of this calculation (e.g., C-17, F-15,
+	// etc.).
+	VehicleType string `json:"vehicleType"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		LocationEnd           resp.Field
+		LocationStart         resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		AvgDuration           resp.Field
+		AvgSpeed              resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		DataPtsUsed           resp.Field
+		Distance              resp.Field
+		DistUnit              resp.Field
+		FirstPt               resp.Field
+		IdealDesc             resp.Field
+		IdealDuration         resp.Field
+		IDSiteEnd             resp.Field
+		IDSiteStart           resp.Field
+		LastPt                resp.Field
+		LocationType          resp.Field
+		MaxDuration           resp.Field
+		MaxSpeed              resp.Field
+		MinDuration           resp.Field
+		MinSpeed              resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		PartialDesc           resp.Field
+		PartialDuration       resp.Field
+		SourceDl              resp.Field
+		SpeedUnit             resp.Field
+		TimePeriod            resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		VehicleCategory       resp.Field
+		VehicleType           resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r RoutestatTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *RoutestatTupleResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type RoutestatTupleResponseDataMode string
+
+const (
+	RoutestatTupleResponseDataModeReal      RoutestatTupleResponseDataMode = "REAL"
+	RoutestatTupleResponseDataModeTest      RoutestatTupleResponseDataMode = "TEST"
+	RoutestatTupleResponseDataModeSimulated RoutestatTupleResponseDataMode = "SIMULATED"
+	RoutestatTupleResponseDataModeExercise  RoutestatTupleResponseDataMode = "EXERCISE"
+)
+
+type RoutestatNewParams struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode RoutestatNewParamsDataMode `json:"dataMode,omitzero,required"`
+	// End location of the vehicle.
+	LocationEnd string `json:"locationEnd,required"`
+	// Starting location of the vehicle.
+	LocationStart string `json:"locationStart,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Average travel duration for the indicated distance and type of vehicle in hours.
+	AvgDuration param.Opt[float64] `json:"avgDuration,omitzero"`
+	// Average speed during travel in the indicated unit of measurement, speedUnit.
+	AvgSpeed param.Opt[float64] `json:"avgSpeed,omitzero"`
+	// The number of data points used in this travel duration calculation.
+	DataPtsUsed param.Opt[int64] `json:"dataPtsUsed,omitzero"`
+	// Distance between the departure and arrival locations in the indicated unit of
+	// measurement, distUnit.
+	Distance param.Opt[float64] `json:"distance,omitzero"`
+	// The unit of measurement used for distance in this calculation.
+	DistUnit param.Opt[string] `json:"distUnit,omitzero"`
+	// Date of the first data point used in this calculation, in ISO8601 UTC format
+	// with millisecond precision.
+	FirstPt param.Opt[time.Time] `json:"firstPt,omitzero" format:"date-time"`
+	// Description of the portion of travel used to estimate the value of the
+	// idealDuration field.
+	IdealDesc param.Opt[string] `json:"idealDesc,omitzero"`
+	// Estimated ideal travel duration in hours for the full distance using the
+	// indicated vehicle type. The field "idealDesc" should be used to describe the
+	// ideal travel route.
+	IdealDuration param.Opt[float64] `json:"idealDuration,omitzero"`
+	// Unique identifier of the Site at the route's end location. This ID can be used
+	// to obtain additional information on a Site using the 'get by ID' operation (e.g.
+	// /udl/site/{id}). For example, the Site object with idSite = abc would be queried
+	// as /udl/site/abc.
+	IDSiteEnd param.Opt[string] `json:"idSiteEnd,omitzero"`
+	// Unique identifier of the Site at the route's starting location. This ID can be
+	// used to obtain additional information on a Site using the 'get by ID' operation
+	// (e.g. /udl/site/{id}). For example, the Site object with idSite = abc would be
+	// queried as /udl/site/abc.
+	IDSiteStart param.Opt[string] `json:"idSiteStart,omitzero"`
+	// Date of the last data point used in this calculation, in ISO8601 UTC format with
+	// millisecond precision.
+	LastPt param.Opt[time.Time] `json:"lastPt,omitzero" format:"date-time"`
+	// Type of location used for route start and end points (e.g., ICAO, PORT, etc.).
+	LocationType param.Opt[string] `json:"locationType,omitzero"`
+	// Maximum travel duration for the indicated distance and type of vehicle in hours.
+	MaxDuration param.Opt[float64] `json:"maxDuration,omitzero"`
+	// Maximum speed during travel in the indicated unit of measurement, speedUnit.
+	MaxSpeed param.Opt[float64] `json:"maxSpeed,omitzero"`
+	// Minimum travel duration for the indicated distance and type of vehicle in hours.
+	MinDuration param.Opt[float64] `json:"minDuration,omitzero"`
+	// Minimum speed during travel in the indicated unit of measurement, speedUnit.
+	MinSpeed param.Opt[float64] `json:"minSpeed,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// Description of the portion of travel used to estimate the value of the
+	// partialDuration field.
+	PartialDesc param.Opt[string] `json:"partialDesc,omitzero"`
+	// Estimated ideal travel duration in hours for a partial distance using the
+	// indicated vehicle type. The field "partialDesc" should be used to specify the
+	// intended portion of travel.
+	PartialDuration param.Opt[float64] `json:"partialDuration,omitzero"`
+	// The unit of measurement used for speed in this calculation.
+	SpeedUnit param.Opt[string] `json:"speedUnit,omitzero"`
+	// The time period this data was collected.
+	TimePeriod param.Opt[string] `json:"timePeriod,omitzero"`
+	// The vehicle category that is the subject of this calculation (e.g., AIRCRAFT,
+	// CAR, BOAT, etc.).
+	VehicleCategory param.Opt[string] `json:"vehicleCategory,omitzero"`
+	// The vehicle type that is the subject of this calculation (e.g., C-17, F-15,
+	// etc.).
+	VehicleType param.Opt[string] `json:"vehicleType,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f RoutestatNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+func (r RoutestatNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow RoutestatNewParams
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type RoutestatNewParamsDataMode string
+
+const (
+	RoutestatNewParamsDataModeReal      RoutestatNewParamsDataMode = "REAL"
+	RoutestatNewParamsDataModeTest      RoutestatNewParamsDataMode = "TEST"
+	RoutestatNewParamsDataModeSimulated RoutestatNewParamsDataMode = "SIMULATED"
+	RoutestatNewParamsDataModeExercise  RoutestatNewParamsDataMode = "EXERCISE"
+)
+
+type RoutestatGetParams struct {
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f RoutestatGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [RoutestatGetParams]'s query parameters as `url.Values`.
+func (r RoutestatGetParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type RoutestatUpdateParams struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode RoutestatUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	// End location of the vehicle.
+	LocationEnd string `json:"locationEnd,required"`
+	// Starting location of the vehicle.
+	LocationStart string `json:"locationStart,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Average travel duration for the indicated distance and type of vehicle in hours.
+	AvgDuration param.Opt[float64] `json:"avgDuration,omitzero"`
+	// Average speed during travel in the indicated unit of measurement, speedUnit.
+	AvgSpeed param.Opt[float64] `json:"avgSpeed,omitzero"`
+	// The number of data points used in this travel duration calculation.
+	DataPtsUsed param.Opt[int64] `json:"dataPtsUsed,omitzero"`
+	// Distance between the departure and arrival locations in the indicated unit of
+	// measurement, distUnit.
+	Distance param.Opt[float64] `json:"distance,omitzero"`
+	// The unit of measurement used for distance in this calculation.
+	DistUnit param.Opt[string] `json:"distUnit,omitzero"`
+	// Date of the first data point used in this calculation, in ISO8601 UTC format
+	// with millisecond precision.
+	FirstPt param.Opt[time.Time] `json:"firstPt,omitzero" format:"date-time"`
+	// Description of the portion of travel used to estimate the value of the
+	// idealDuration field.
+	IdealDesc param.Opt[string] `json:"idealDesc,omitzero"`
+	// Estimated ideal travel duration in hours for the full distance using the
+	// indicated vehicle type. The field "idealDesc" should be used to describe the
+	// ideal travel route.
+	IdealDuration param.Opt[float64] `json:"idealDuration,omitzero"`
+	// Unique identifier of the Site at the route's end location. This ID can be used
+	// to obtain additional information on a Site using the 'get by ID' operation (e.g.
+	// /udl/site/{id}). For example, the Site object with idSite = abc would be queried
+	// as /udl/site/abc.
+	IDSiteEnd param.Opt[string] `json:"idSiteEnd,omitzero"`
+	// Unique identifier of the Site at the route's starting location. This ID can be
+	// used to obtain additional information on a Site using the 'get by ID' operation
+	// (e.g. /udl/site/{id}). For example, the Site object with idSite = abc would be
+	// queried as /udl/site/abc.
+	IDSiteStart param.Opt[string] `json:"idSiteStart,omitzero"`
+	// Date of the last data point used in this calculation, in ISO8601 UTC format with
+	// millisecond precision.
+	LastPt param.Opt[time.Time] `json:"lastPt,omitzero" format:"date-time"`
+	// Type of location used for route start and end points (e.g., ICAO, PORT, etc.).
+	LocationType param.Opt[string] `json:"locationType,omitzero"`
+	// Maximum travel duration for the indicated distance and type of vehicle in hours.
+	MaxDuration param.Opt[float64] `json:"maxDuration,omitzero"`
+	// Maximum speed during travel in the indicated unit of measurement, speedUnit.
+	MaxSpeed param.Opt[float64] `json:"maxSpeed,omitzero"`
+	// Minimum travel duration for the indicated distance and type of vehicle in hours.
+	MinDuration param.Opt[float64] `json:"minDuration,omitzero"`
+	// Minimum speed during travel in the indicated unit of measurement, speedUnit.
+	MinSpeed param.Opt[float64] `json:"minSpeed,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// Description of the portion of travel used to estimate the value of the
+	// partialDuration field.
+	PartialDesc param.Opt[string] `json:"partialDesc,omitzero"`
+	// Estimated ideal travel duration in hours for a partial distance using the
+	// indicated vehicle type. The field "partialDesc" should be used to specify the
+	// intended portion of travel.
+	PartialDuration param.Opt[float64] `json:"partialDuration,omitzero"`
+	// The unit of measurement used for speed in this calculation.
+	SpeedUnit param.Opt[string] `json:"speedUnit,omitzero"`
+	// The time period this data was collected.
+	TimePeriod param.Opt[string] `json:"timePeriod,omitzero"`
+	// The vehicle category that is the subject of this calculation (e.g., AIRCRAFT,
+	// CAR, BOAT, etc.).
+	VehicleCategory param.Opt[string] `json:"vehicleCategory,omitzero"`
+	// The vehicle type that is the subject of this calculation (e.g., C-17, F-15,
+	// etc.).
+	VehicleType param.Opt[string] `json:"vehicleType,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f RoutestatUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+func (r RoutestatUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow RoutestatUpdateParams
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type RoutestatUpdateParamsDataMode string
+
+const (
+	RoutestatUpdateParamsDataModeReal      RoutestatUpdateParamsDataMode = "REAL"
+	RoutestatUpdateParamsDataModeTest      RoutestatUpdateParamsDataMode = "TEST"
+	RoutestatUpdateParamsDataModeSimulated RoutestatUpdateParamsDataMode = "SIMULATED"
+	RoutestatUpdateParamsDataModeExercise  RoutestatUpdateParamsDataMode = "EXERCISE"
+)
+
+type RoutestatCountParams struct {
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f RoutestatCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [RoutestatCountParams]'s query parameters as `url.Values`.
+func (r RoutestatCountParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type RoutestatNewBulkParams struct {
+	Body []RoutestatNewBulkParamsBody
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f RoutestatNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+func (r RoutestatNewBulkParams) MarshalJSON() (data []byte, err error) {
+	return json.Marshal(r.Body)
+}
+
+// General statistics applying to navigation routes utilized by vessels, aircraft,
+// ground vehicles, etc.
+//
+// The properties ClassificationMarking, DataMode, LocationEnd, LocationStart,
+// Source are required.
+type RoutestatNewBulkParamsBody struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,omitzero,required"`
+	// End location of the vehicle.
+	LocationEnd string `json:"locationEnd,required"`
+	// Starting location of the vehicle.
+	LocationStart string `json:"locationStart,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Average travel duration for the indicated distance and type of vehicle in hours.
+	AvgDuration param.Opt[float64] `json:"avgDuration,omitzero"`
+	// Average speed during travel in the indicated unit of measurement, speedUnit.
+	AvgSpeed param.Opt[float64] `json:"avgSpeed,omitzero"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// The number of data points used in this travel duration calculation.
+	DataPtsUsed param.Opt[int64] `json:"dataPtsUsed,omitzero"`
+	// Distance between the departure and arrival locations in the indicated unit of
+	// measurement, distUnit.
+	Distance param.Opt[float64] `json:"distance,omitzero"`
+	// The unit of measurement used for distance in this calculation.
+	DistUnit param.Opt[string] `json:"distUnit,omitzero"`
+	// Date of the first data point used in this calculation, in ISO8601 UTC format
+	// with millisecond precision.
+	FirstPt param.Opt[time.Time] `json:"firstPt,omitzero" format:"date-time"`
+	// Description of the portion of travel used to estimate the value of the
+	// idealDuration field.
+	IdealDesc param.Opt[string] `json:"idealDesc,omitzero"`
+	// Estimated ideal travel duration in hours for the full distance using the
+	// indicated vehicle type. The field "idealDesc" should be used to describe the
+	// ideal travel route.
+	IdealDuration param.Opt[float64] `json:"idealDuration,omitzero"`
+	// Unique identifier of the Site at the route's end location. This ID can be used
+	// to obtain additional information on a Site using the 'get by ID' operation (e.g.
+	// /udl/site/{id}). For example, the Site object with idSite = abc would be queried
+	// as /udl/site/abc.
+	IDSiteEnd param.Opt[string] `json:"idSiteEnd,omitzero"`
+	// Unique identifier of the Site at the route's starting location. This ID can be
+	// used to obtain additional information on a Site using the 'get by ID' operation
+	// (e.g. /udl/site/{id}). For example, the Site object with idSite = abc would be
+	// queried as /udl/site/abc.
+	IDSiteStart param.Opt[string] `json:"idSiteStart,omitzero"`
+	// Date of the last data point used in this calculation, in ISO8601 UTC format with
+	// millisecond precision.
+	LastPt param.Opt[time.Time] `json:"lastPt,omitzero" format:"date-time"`
+	// Type of location used for route start and end points (e.g., ICAO, PORT, etc.).
+	LocationType param.Opt[string] `json:"locationType,omitzero"`
+	// Maximum travel duration for the indicated distance and type of vehicle in hours.
+	MaxDuration param.Opt[float64] `json:"maxDuration,omitzero"`
+	// Maximum speed during travel in the indicated unit of measurement, speedUnit.
+	MaxSpeed param.Opt[float64] `json:"maxSpeed,omitzero"`
+	// Minimum travel duration for the indicated distance and type of vehicle in hours.
+	MinDuration param.Opt[float64] `json:"minDuration,omitzero"`
+	// Minimum speed during travel in the indicated unit of measurement, speedUnit.
+	MinSpeed param.Opt[float64] `json:"minSpeed,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// Description of the portion of travel used to estimate the value of the
+	// partialDuration field.
+	PartialDesc param.Opt[string] `json:"partialDesc,omitzero"`
+	// Estimated ideal travel duration in hours for a partial distance using the
+	// indicated vehicle type. The field "partialDesc" should be used to specify the
+	// intended portion of travel.
+	PartialDuration param.Opt[float64] `json:"partialDuration,omitzero"`
+	// The source data library from which this record was received. This could be a
+	// remote or tactical UDL or another data library. If null, the record should be
+	// assumed to have originated from the primary Enterprise UDL.
+	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
+	// The unit of measurement used for speed in this calculation.
+	SpeedUnit param.Opt[string] `json:"speedUnit,omitzero"`
+	// The time period this data was collected.
+	TimePeriod param.Opt[string] `json:"timePeriod,omitzero"`
+	// The vehicle category that is the subject of this calculation (e.g., AIRCRAFT,
+	// CAR, BOAT, etc.).
+	VehicleCategory param.Opt[string] `json:"vehicleCategory,omitzero"`
+	// The vehicle type that is the subject of this calculation (e.g., C-17, F-15,
+	// etc.).
+	VehicleType param.Opt[string] `json:"vehicleType,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f RoutestatNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r RoutestatNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow RoutestatNewBulkParamsBody
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+func init() {
+	apijson.RegisterFieldValidator[RoutestatNewBulkParamsBody](
+		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+}
+
+type RoutestatQueryParams struct {
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f RoutestatQueryParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [RoutestatQueryParams]'s query parameters as `url.Values`.
+func (r RoutestatQueryParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type RoutestatTupleParams struct {
+	// Comma-separated list of valid field names for this data type to be returned in
+	// the response. Only the fields specified will be returned as well as the
+	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
+	// for a complete list of possible fields.
+	Columns     string           `query:"columns,required" json:"-"`
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f RoutestatTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [RoutestatTupleParams]'s query parameters as `url.Values`.
+func (r RoutestatTupleParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type RoutestatUnvalidatedPublishParams struct {
+	Body []RoutestatUnvalidatedPublishParamsBody
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f RoutestatUnvalidatedPublishParams) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+
+func (r RoutestatUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+	return json.Marshal(r.Body)
+}
+
+// General statistics applying to navigation routes utilized by vessels, aircraft,
+// ground vehicles, etc.
+//
+// The properties ClassificationMarking, DataMode, LocationEnd, LocationStart,
+// Source are required.
+type RoutestatUnvalidatedPublishParamsBody struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,omitzero,required"`
+	// End location of the vehicle.
+	LocationEnd string `json:"locationEnd,required"`
+	// Starting location of the vehicle.
+	LocationStart string `json:"locationStart,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Average travel duration for the indicated distance and type of vehicle in hours.
+	AvgDuration param.Opt[float64] `json:"avgDuration,omitzero"`
+	// Average speed during travel in the indicated unit of measurement, speedUnit.
+	AvgSpeed param.Opt[float64] `json:"avgSpeed,omitzero"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// The number of data points used in this travel duration calculation.
+	DataPtsUsed param.Opt[int64] `json:"dataPtsUsed,omitzero"`
+	// Distance between the departure and arrival locations in the indicated unit of
+	// measurement, distUnit.
+	Distance param.Opt[float64] `json:"distance,omitzero"`
+	// The unit of measurement used for distance in this calculation.
+	DistUnit param.Opt[string] `json:"distUnit,omitzero"`
+	// Date of the first data point used in this calculation, in ISO8601 UTC format
+	// with millisecond precision.
+	FirstPt param.Opt[time.Time] `json:"firstPt,omitzero" format:"date-time"`
+	// Description of the portion of travel used to estimate the value of the
+	// idealDuration field.
+	IdealDesc param.Opt[string] `json:"idealDesc,omitzero"`
+	// Estimated ideal travel duration in hours for the full distance using the
+	// indicated vehicle type. The field "idealDesc" should be used to describe the
+	// ideal travel route.
+	IdealDuration param.Opt[float64] `json:"idealDuration,omitzero"`
+	// Unique identifier of the Site at the route's end location. This ID can be used
+	// to obtain additional information on a Site using the 'get by ID' operation (e.g.
+	// /udl/site/{id}). For example, the Site object with idSite = abc would be queried
+	// as /udl/site/abc.
+	IDSiteEnd param.Opt[string] `json:"idSiteEnd,omitzero"`
+	// Unique identifier of the Site at the route's starting location. This ID can be
+	// used to obtain additional information on a Site using the 'get by ID' operation
+	// (e.g. /udl/site/{id}). For example, the Site object with idSite = abc would be
+	// queried as /udl/site/abc.
+	IDSiteStart param.Opt[string] `json:"idSiteStart,omitzero"`
+	// Date of the last data point used in this calculation, in ISO8601 UTC format with
+	// millisecond precision.
+	LastPt param.Opt[time.Time] `json:"lastPt,omitzero" format:"date-time"`
+	// Type of location used for route start and end points (e.g., ICAO, PORT, etc.).
+	LocationType param.Opt[string] `json:"locationType,omitzero"`
+	// Maximum travel duration for the indicated distance and type of vehicle in hours.
+	MaxDuration param.Opt[float64] `json:"maxDuration,omitzero"`
+	// Maximum speed during travel in the indicated unit of measurement, speedUnit.
+	MaxSpeed param.Opt[float64] `json:"maxSpeed,omitzero"`
+	// Minimum travel duration for the indicated distance and type of vehicle in hours.
+	MinDuration param.Opt[float64] `json:"minDuration,omitzero"`
+	// Minimum speed during travel in the indicated unit of measurement, speedUnit.
+	MinSpeed param.Opt[float64] `json:"minSpeed,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// Description of the portion of travel used to estimate the value of the
+	// partialDuration field.
+	PartialDesc param.Opt[string] `json:"partialDesc,omitzero"`
+	// Estimated ideal travel duration in hours for a partial distance using the
+	// indicated vehicle type. The field "partialDesc" should be used to specify the
+	// intended portion of travel.
+	PartialDuration param.Opt[float64] `json:"partialDuration,omitzero"`
+	// The source data library from which this record was received. This could be a
+	// remote or tactical UDL or another data library. If null, the record should be
+	// assumed to have originated from the primary Enterprise UDL.
+	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
+	// The unit of measurement used for speed in this calculation.
+	SpeedUnit param.Opt[string] `json:"speedUnit,omitzero"`
+	// The time period this data was collected.
+	TimePeriod param.Opt[string] `json:"timePeriod,omitzero"`
+	// The vehicle category that is the subject of this calculation (e.g., AIRCRAFT,
+	// CAR, BOAT, etc.).
+	VehicleCategory param.Opt[string] `json:"vehicleCategory,omitzero"`
+	// The vehicle type that is the subject of this calculation (e.g., C-17, F-15,
+	// etc.).
+	VehicleType param.Opt[string] `json:"vehicleType,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f RoutestatUnvalidatedPublishParamsBody) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+func (r RoutestatUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow RoutestatUnvalidatedPublishParamsBody
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+func init() {
+	apijson.RegisterFieldValidator[RoutestatUnvalidatedPublishParamsBody](
+		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+}

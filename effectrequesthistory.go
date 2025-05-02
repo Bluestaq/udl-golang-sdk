@@ -1,0 +1,317 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+package unifieddatalibrary
+
+import (
+	"context"
+	"net/http"
+	"net/url"
+	"time"
+
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
+	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+)
+
+// EffectRequestHistoryService contains methods and other services that help with
+// interacting with the unifieddatalibrary API.
+//
+// Note, unlike clients, this service does not read variables from the environment
+// automatically. You should not instantiate this service directly, and instead use
+// the [NewEffectRequestHistoryService] method instead.
+type EffectRequestHistoryService struct {
+	Options []option.RequestOption
+}
+
+// NewEffectRequestHistoryService generates a new service that applies the given
+// options to each request. These options are applied after the parent client's
+// options (if there is one), and before any request-specific options.
+func NewEffectRequestHistoryService(opts ...option.RequestOption) (r EffectRequestHistoryService) {
+	r = EffectRequestHistoryService{}
+	r.Options = opts
+	return
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *EffectRequestHistoryService) List(ctx context.Context, query EffectRequestHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[EffectRequestHistoryListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/effectrequest/history"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *EffectRequestHistoryService) ListAutoPaging(ctx context.Context, query EffectRequestHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[EffectRequestHistoryListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation, then write that data to the
+// Secure Content Store. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *EffectRequestHistoryService) Aodr(ctx context.Context, query EffectRequestHistoryAodrParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "udl/effectrequest/history/aodr"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
+	return
+}
+
+// Service operation to return the count of records satisfying the specified query
+// parameters. This operation is useful to determine how many records pass a
+// particular query criteria without retrieving large amounts of data. See the
+// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// valid/required query parameter information.
+func (r *EffectRequestHistoryService) Count(ctx context.Context, query EffectRequestHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
+	path := "udl/effectrequest/history/count"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// A request for various effects on a target.
+type EffectRequestHistoryListResponse struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode EffectRequestHistoryListResponseDataMode `json:"dataMode,required"`
+	// List of effects to be achieved on the target (e.g. COVER, DECEIVE, DEGRADE,
+	// DENY, DESTROY, DISRUPT, DIVERSION, DIVERT, FIX, INSPECT, INTERCEPT, ISOLATE,
+	// MANIPULATE, NEUTRALIZE, SHADOW, SUPPRESS, etc.). The effects included in this
+	// list are connected by implied AND.
+	EffectList []string `json:"effectList,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Specific descriptive instantiation of the effect, e.g., playbook to be used.
+	Context string `json:"context"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The indicator of deadline of the bid request (e.g. BETWEEN, IMMEDIATE,
+	// NOEARLIERTHAN, NOLATERTHAN, etc.): BETWEEN:&nbsp;Produce effect any time between
+	// the given start and end times, equal penalty for being early or late
+	// IMMEDIATE:&nbsp;Start as soon as possible, earlier is always better
+	// NOEARLIERTHAN:&nbsp;Produce effect at this time or later. Large penalty for
+	// being earlier, no reward for being later NOLATERTHAN:&nbsp;Produce effect no
+	// later than the given startTime. Large penalty for being later, no reward for
+	// being even earlier as long as the effect starts by the given time.
+	DeadlineType string `json:"deadlineType"`
+	// The time the effect should end, in ISO8601 UTC format.
+	EndTime time.Time `json:"endTime" format:"date-time"`
+	// The extenal system identifier of this request. A human readable unique id.
+	ExternalRequestID string `json:"externalRequestId"`
+	// Array of the the metric classes to be evaluated (e.g. Cost, GoalAchievement,
+	// OpportunityCost, Risk, Timeliness, Unavailable, etc.). See the associated
+	// 'metricWeights' array for the weighting values, positionally corresponding to
+	// these types. The 'metricTypes' and 'metricWeights' arrays must match in size.
+	MetricTypes []string `json:"metricTypes"`
+	// Array of the weights for the metric in the final evaluation score. Normalized (0
+	// to 1). See the associated 'metricTypes' array for the metric classes,
+	// positionally corresponding to these values. The 'metricTypes' and
+	// 'metricWeights' arrays must match in size.
+	MetricWeights []float64 `json:"metricWeights"`
+	// The type or class of the preference model used to evaluate this offer.
+	ModelClass string `json:"modelClass"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// The priority (LOW, MEDIUM, HIGH) of this request.
+	Priority string `json:"priority"`
+	// The time the effect should start, in ISO8601 UTC format.
+	StartTime time.Time `json:"startTime" format:"date-time"`
+	// State of this effect request (e.g. CREATED, UPDATED, DELETED, etc.).
+	State string `json:"state"`
+	// The record ID, depending on the type identified in targetSrcType, of the
+	// requested target. This identifier corresponds to either poi.poiid or track.trkId
+	// from their respective schemas.
+	TargetSrcID string `json:"targetSrcId"`
+	// The source type of the targetId identifier (POI, TRACK).
+	TargetSrcType string `json:"targetSrcType"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		EffectList            resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		Context               resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		DeadlineType          resp.Field
+		EndTime               resp.Field
+		ExternalRequestID     resp.Field
+		MetricTypes           resp.Field
+		MetricWeights         resp.Field
+		ModelClass            resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		Priority              resp.Field
+		StartTime             resp.Field
+		State                 resp.Field
+		TargetSrcID           resp.Field
+		TargetSrcType         resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r EffectRequestHistoryListResponse) RawJSON() string { return r.JSON.raw }
+func (r *EffectRequestHistoryListResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type EffectRequestHistoryListResponseDataMode string
+
+const (
+	EffectRequestHistoryListResponseDataModeReal      EffectRequestHistoryListResponseDataMode = "REAL"
+	EffectRequestHistoryListResponseDataModeTest      EffectRequestHistoryListResponseDataMode = "TEST"
+	EffectRequestHistoryListResponseDataModeSimulated EffectRequestHistoryListResponseDataMode = "SIMULATED"
+	EffectRequestHistoryListResponseDataModeExercise  EffectRequestHistoryListResponseDataMode = "EXERCISE"
+)
+
+type EffectRequestHistoryListParams struct {
+	// Time the row was created in the database, auto-populated by the system.
+	// (YYYY-MM-DDTHH:MM:SS.sssZ)
+	CreatedAt time.Time `query:"createdAt,required" format:"date" json:"-"`
+	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
+	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// query fields that can be selected.
+	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
+	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f EffectRequestHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [EffectRequestHistoryListParams]'s query parameters as
+// `url.Values`.
+func (r EffectRequestHistoryListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type EffectRequestHistoryAodrParams struct {
+	// Time the row was created in the database, auto-populated by the system.
+	// (YYYY-MM-DDTHH:MM:SS.sssZ)
+	CreatedAt time.Time `query:"createdAt,required" format:"date" json:"-"`
+	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
+	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// query fields that can be selected.
+	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
+	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
+	// optional, notification method for the created file link. When omitted, EMAIL is
+	// assumed. Current valid values are: EMAIL, SMS.
+	Notification param.Opt[string] `query:"notification,omitzero" json:"-"`
+	// optional, field delimiter when the created file is not JSON. Must be a single
+	// character chosen from this set: (',', ';', ':', '|'). When omitted, "," is used.
+	// It is strongly encouraged that your field delimiter be a character unlikely to
+	// occur within the data.
+	OutputDelimiter param.Opt[string] `query:"outputDelimiter,omitzero" json:"-"`
+	// optional, output format for the file. When omitted, JSON is assumed. Current
+	// valid values are: JSON and CSV.
+	OutputFormat param.Opt[string] `query:"outputFormat,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f EffectRequestHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [EffectRequestHistoryAodrParams]'s query parameters as
+// `url.Values`.
+func (r EffectRequestHistoryAodrParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type EffectRequestHistoryCountParams struct {
+	// Time the row was created in the database, auto-populated by the system.
+	// (YYYY-MM-DDTHH:MM:SS.sssZ)
+	CreatedAt   time.Time        `query:"createdAt,required" format:"date" json:"-"`
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f EffectRequestHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [EffectRequestHistoryCountParams]'s query parameters as
+// `url.Values`.
+func (r EffectRequestHistoryCountParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}

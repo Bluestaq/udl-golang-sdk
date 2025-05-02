@@ -1,0 +1,581 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+package unifieddatalibrary
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	"net/http"
+	"net/url"
+	"time"
+
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
+	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+)
+
+// SolararraydetailService contains methods and other services that help with
+// interacting with the unifieddatalibrary API.
+//
+// Note, unlike clients, this service does not read variables from the environment
+// automatically. You should not instantiate this service directly, and instead use
+// the [NewSolararraydetailService] method instead.
+type SolararraydetailService struct {
+	Options []option.RequestOption
+}
+
+// NewSolararraydetailService generates a new service that applies the given
+// options to each request. These options are applied after the parent client's
+// options (if there is one), and before any request-specific options.
+func NewSolararraydetailService(opts ...option.RequestOption) (r SolararraydetailService) {
+	r = SolararraydetailService{}
+	r.Options = opts
+	return
+}
+
+// Service operation to take a single SolarArrayDetails as a POST body and ingest
+// into the database. A specific role is required to perform this service
+// operation. Please contact the UDL team for assistance. A SolarArray may have
+// multiple details records compiled by various sources.
+func (r *SolararraydetailService) New(ctx context.Context, body SolararraydetailNewParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "udl/solararraydetails"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
+	return
+}
+
+// Service operation to update a single SolarArrayDetails. A specific role is
+// required to perform this service operation. Please contact the UDL team for
+// assistance. A SolarArray may have multiple details records compiled by various
+// sources.
+func (r *SolararraydetailService) Update(ctx context.Context, id string, body SolararraydetailUpdateParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("udl/solararraydetails/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
+	return
+}
+
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *SolararraydetailService) List(ctx context.Context, query SolararraydetailListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SolararraydetailListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/solararraydetails"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *SolararraydetailService) ListAutoPaging(ctx context.Context, query SolararraydetailListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SolararraydetailListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
+}
+
+// Service operation to delete a SolarArrayDetails object specified by the passed
+// ID path parameter. A specific role is required to perform this service
+// operation. Please contact the UDL team for assistance. A SolarArray may have
+// multiple details records compiled by various sources.
+func (r *SolararraydetailService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("udl/solararraydetails/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
+	return
+}
+
+// Service operation to get a single SolarArrayDetails record by its unique ID
+// passed as a path parameter. A SolarArray may have multiple details records
+// compiled by various sources.
+func (r *SolararraydetailService) Get(ctx context.Context, id string, query SolararraydetailGetParams, opts ...option.RequestOption) (res *SolarArrayDetailsFull, err error) {
+	opts = append(r.Options[:], opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("udl/solararraydetails/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Model representation of Information on spacecraft SolarArrayDetails. A
+// SolarArray may have multiple details records compiled by various sources.
+type SolarArrayDetailsFull struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode SolarArrayDetailsFullDataMode `json:"dataMode,required"`
+	// Unique identifier of the parent SolarArray.
+	IDSolarArray string `json:"idSolarArray,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Solar Array area in square meters.
+	Area float64 `json:"area"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Solar array description/notes.
+	Description string `json:"description"`
+	// Solar array junction technology (e.g. Triple).
+	JunctionTechnology string `json:"junctionTechnology"`
+	// An organization such as a corporation, manufacturer, consortium, government,
+	// etc. An organization may have parent and child organizations as well as link to
+	// a former organization if this org previously existed as another organization.
+	ManufacturerOrg OrganizationFull `json:"manufacturerOrg"`
+	// Unique identifier of the organization that manufactures the solar array.
+	ManufacturerOrgID string `json:"manufacturerOrgId"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Solar Array span in meters.
+	Span float64 `json:"span"`
+	// Optional array of provider/source specific tags for this data, where each
+	// element is no longer than 32 characters, used for implementing data owner
+	// conditional access controls to restrict access to the data. Should be left null
+	// by data providers unless conditional access controls are coordinated with the
+	// UDL team.
+	Tags []string `json:"tags"`
+	// Solar array technology (e.g. Ga-As).
+	Technology string `json:"technology"`
+	// Type of solar array (e.g. U Shaped).
+	Type string `json:"type"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDSolarArray          resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		Area                  resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Description           resp.Field
+		JunctionTechnology    resp.Field
+		ManufacturerOrg       resp.Field
+		ManufacturerOrgID     resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		Span                  resp.Field
+		Tags                  resp.Field
+		Technology            resp.Field
+		Type                  resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SolarArrayDetailsFull) RawJSON() string { return r.JSON.raw }
+func (r *SolarArrayDetailsFull) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type SolarArrayDetailsFullDataMode string
+
+const (
+	SolarArrayDetailsFullDataModeReal      SolarArrayDetailsFullDataMode = "REAL"
+	SolarArrayDetailsFullDataModeTest      SolarArrayDetailsFullDataMode = "TEST"
+	SolarArrayDetailsFullDataModeSimulated SolarArrayDetailsFullDataMode = "SIMULATED"
+	SolarArrayDetailsFullDataModeExercise  SolarArrayDetailsFullDataMode = "EXERCISE"
+)
+
+// Model representation of Information on spacecraft SolarArrayDetails. A
+// SolarArray may have multiple details records compiled by various sources.
+type SolararraydetailListResponse struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode SolararraydetailListResponseDataMode `json:"dataMode,required"`
+	// Unique identifier of the parent SolarArray.
+	IDSolarArray string `json:"idSolarArray,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Solar Array area in square meters.
+	Area float64 `json:"area"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Solar array description/notes.
+	Description string `json:"description"`
+	// Solar array junction technology (e.g. Triple).
+	JunctionTechnology string `json:"junctionTechnology"`
+	// Unique identifier of the organization that manufactures the solar array.
+	ManufacturerOrgID string `json:"manufacturerOrgId"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Solar Array span in meters.
+	Span float64 `json:"span"`
+	// Solar array technology (e.g. Ga-As).
+	Technology string `json:"technology"`
+	// Type of solar array (e.g. U Shaped).
+	Type string `json:"type"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDSolarArray          resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		Area                  resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Description           resp.Field
+		JunctionTechnology    resp.Field
+		ManufacturerOrgID     resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		Span                  resp.Field
+		Technology            resp.Field
+		Type                  resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SolararraydetailListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SolararraydetailListResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type SolararraydetailListResponseDataMode string
+
+const (
+	SolararraydetailListResponseDataModeReal      SolararraydetailListResponseDataMode = "REAL"
+	SolararraydetailListResponseDataModeTest      SolararraydetailListResponseDataMode = "TEST"
+	SolararraydetailListResponseDataModeSimulated SolararraydetailListResponseDataMode = "SIMULATED"
+	SolararraydetailListResponseDataModeExercise  SolararraydetailListResponseDataMode = "EXERCISE"
+)
+
+type SolararraydetailNewParams struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode SolararraydetailNewParamsDataMode `json:"dataMode,omitzero,required"`
+	// Unique identifier of the parent SolarArray.
+	IDSolarArray string `json:"idSolarArray,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Solar Array area in square meters.
+	Area param.Opt[float64] `json:"area,omitzero"`
+	// Solar array description/notes.
+	Description param.Opt[string] `json:"description,omitzero"`
+	// Solar array junction technology (e.g. Triple).
+	JunctionTechnology param.Opt[string] `json:"junctionTechnology,omitzero"`
+	// Unique identifier of the organization that manufactures the solar array.
+	ManufacturerOrgID param.Opt[string] `json:"manufacturerOrgId,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// Solar Array span in meters.
+	Span param.Opt[float64] `json:"span,omitzero"`
+	// Solar array technology (e.g. Ga-As).
+	Technology param.Opt[string] `json:"technology,omitzero"`
+	// Type of solar array (e.g. U Shaped).
+	Type param.Opt[string] `json:"type,omitzero"`
+	// Optional array of provider/source specific tags for this data, where each
+	// element is no longer than 32 characters, used for implementing data owner
+	// conditional access controls to restrict access to the data. Should be left null
+	// by data providers unless conditional access controls are coordinated with the
+	// UDL team.
+	Tags []string `json:"tags,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SolararraydetailNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+func (r SolararraydetailNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow SolararraydetailNewParams
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type SolararraydetailNewParamsDataMode string
+
+const (
+	SolararraydetailNewParamsDataModeReal      SolararraydetailNewParamsDataMode = "REAL"
+	SolararraydetailNewParamsDataModeTest      SolararraydetailNewParamsDataMode = "TEST"
+	SolararraydetailNewParamsDataModeSimulated SolararraydetailNewParamsDataMode = "SIMULATED"
+	SolararraydetailNewParamsDataModeExercise  SolararraydetailNewParamsDataMode = "EXERCISE"
+)
+
+type SolararraydetailUpdateParams struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode SolararraydetailUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	// Unique identifier of the parent SolarArray.
+	IDSolarArray string `json:"idSolarArray,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Solar Array area in square meters.
+	Area param.Opt[float64] `json:"area,omitzero"`
+	// Solar array description/notes.
+	Description param.Opt[string] `json:"description,omitzero"`
+	// Solar array junction technology (e.g. Triple).
+	JunctionTechnology param.Opt[string] `json:"junctionTechnology,omitzero"`
+	// Unique identifier of the organization that manufactures the solar array.
+	ManufacturerOrgID param.Opt[string] `json:"manufacturerOrgId,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// Solar Array span in meters.
+	Span param.Opt[float64] `json:"span,omitzero"`
+	// Solar array technology (e.g. Ga-As).
+	Technology param.Opt[string] `json:"technology,omitzero"`
+	// Type of solar array (e.g. U Shaped).
+	Type param.Opt[string] `json:"type,omitzero"`
+	// Optional array of provider/source specific tags for this data, where each
+	// element is no longer than 32 characters, used for implementing data owner
+	// conditional access controls to restrict access to the data. Should be left null
+	// by data providers unless conditional access controls are coordinated with the
+	// UDL team.
+	Tags []string `json:"tags,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SolararraydetailUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+func (r SolararraydetailUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow SolararraydetailUpdateParams
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type SolararraydetailUpdateParamsDataMode string
+
+const (
+	SolararraydetailUpdateParamsDataModeReal      SolararraydetailUpdateParamsDataMode = "REAL"
+	SolararraydetailUpdateParamsDataModeTest      SolararraydetailUpdateParamsDataMode = "TEST"
+	SolararraydetailUpdateParamsDataModeSimulated SolararraydetailUpdateParamsDataMode = "SIMULATED"
+	SolararraydetailUpdateParamsDataModeExercise  SolararraydetailUpdateParamsDataMode = "EXERCISE"
+)
+
+type SolararraydetailListParams struct {
+	// (One or more of fields 'classificationMarking, dataMode, source' are required.)
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking param.Opt[string] `query:"classificationMarking,omitzero" json:"-"`
+	// (One or more of fields 'classificationMarking, dataMode, source' are required.)
+	// Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE data. (REAL,
+	// TEST, SIMULATED, or EXERCISE)
+	DataMode    param.Opt[string] `query:"dataMode,omitzero" json:"-"`
+	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
+	// (One or more of fields 'classificationMarking, dataMode, source' are required.)
+	// Source of the data.
+	Source param.Opt[string] `query:"source,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SolararraydetailListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [SolararraydetailListParams]'s query parameters as
+// `url.Values`.
+func (r SolararraydetailListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type SolararraydetailGetParams struct {
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SolararraydetailGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [SolararraydetailGetParams]'s query parameters as
+// `url.Values`.
+func (r SolararraydetailGetParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}

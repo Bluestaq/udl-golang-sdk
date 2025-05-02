@@ -1,0 +1,511 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+package unifieddatalibrary
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	"net/http"
+	"net/url"
+	"time"
+
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
+	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+)
+
+// TaiutcService contains methods and other services that help with interacting
+// with the unifieddatalibrary API.
+//
+// Note, unlike clients, this service does not read variables from the environment
+// automatically. You should not instantiate this service directly, and instead use
+// the [NewTaiutcService] method instead.
+type TaiutcService struct {
+	Options []option.RequestOption
+	History TaiutcHistoryService
+}
+
+// NewTaiutcService generates a new service that applies the given options to each
+// request. These options are applied after the parent client's options (if there
+// is one), and before any request-specific options.
+func NewTaiutcService(opts ...option.RequestOption) (r TaiutcService) {
+	r = TaiutcService{}
+	r.Options = opts
+	r.History = NewTaiutcHistoryService(opts...)
+	return
+}
+
+// Service operation to take a single TAIUTC object as a POST body and ingest into
+// the database. A specific role is required to perform this service operation.
+// Please contact the UDL team for assistance.
+func (r *TaiutcService) New(ctx context.Context, body TaiutcNewParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "udl/taiutc"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
+	return
+}
+
+// Service operation to update a single TAIUTC object. A specific role is required
+// to perform this service operation. Please contact the UDL team for assistance.
+func (r *TaiutcService) Update(ctx context.Context, id string, body TaiutcUpdateParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("udl/taiutc/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
+	return
+}
+
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *TaiutcService) List(ctx context.Context, query TaiutcListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[TaiutcListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/taiutc"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *TaiutcService) ListAutoPaging(ctx context.Context, query TaiutcListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[TaiutcListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
+}
+
+// Service operation to delete an TAIUTC object specified by the passed ID path
+// parameter. A specific role is required to perform this service operation. Please
+// contact the UDL team for assistance. Note, delete operations do not remove data
+// from historical or publish/subscribe stores.
+func (r *TaiutcService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("udl/taiutc/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
+	return
+}
+
+// Service operation to return the count of records satisfying the specified query
+// parameters. This operation is useful to determine how many records pass a
+// particular query criteria without retrieving large amounts of data. See the
+// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// valid/required query parameter information.
+func (r *TaiutcService) Count(ctx context.Context, query TaiutcCountParams, opts ...option.RequestOption) (res *string, err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
+	path := "udl/taiutc/count"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Service operation to get a single TAIUTC record by its unique ID passed as a
+// path parameter.
+func (r *TaiutcService) Get(ctx context.Context, id string, query TaiutcGetParams, opts ...option.RequestOption) (res *TaiutcFull, err error) {
+	opts = append(r.Options[:], opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("udl/taiutc/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Service operation to provide detailed information on available dynamic query
+// parameters for a particular data type.
+func (r *TaiutcService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "udl/taiutc/queryhelp"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, nil, opts...)
+	return
+}
+
+// Service operation to dynamically query data and only return specified
+// columns/fields. Requested columns are specified by the 'columns' query parameter
+// and should be a comma separated list of valid fields for the specified data
+// type. classificationMarking is always returned. See the queryhelp operation
+// (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+// information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
+// hours would return the satNo and period of elsets with an epoch greater than 5
+// hours ago.
+func (r *TaiutcService) Tuple(ctx context.Context, query TaiutcTupleParams, opts ...option.RequestOption) (res *[]TaiutcFull, err error) {
+	opts = append(r.Options[:], opts...)
+	path := "udl/taiutc/tuple"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// International Atomic Time (TAI) is a statistical atomic time scale based on a
+// large number of clocks operating at standards laboratories around the world that
+// is maintained by the Bureau International des Poids et Mesures; its unit
+// interval is exactly one SI second at sea level. The origin of TAI is such that
+// UT1-TAI is approximately 0 (zero) on January 1, 1958. TAI is not adjusted for
+// leap seconds. Coordinated Universal Time (UTC) is defined by the CCIR
+// Recommendation 460-4 (1986). It differs from TAI by the total number of leap
+// seconds, so that UT1-UTC stays smaller than 0.9s in absolute value. The decision
+// to introduce a leap second in UTC is the responsibility of the International
+// Earth Rotation Service (IERS). According to the CCIR Recommendation, first
+// preference is given to the opportunities at the end of December and June, and
+// second preference to those at the end of March and September. Since the system
+// was introduced in 1972, only dates in June and December have been used. TAI is
+// expressed in terms of UTC by the relation TAI = UTC + dAT, where dAT is the
+// total algebraic sum of leap seconds. The first leap second was introduced on
+// June 30, 1972. The historical list of leap seconds can be found in this table.
+type TaiutcListResponse struct {
+	// Effective date/time for the leap second adjustment.
+	AdjustmentDate time.Time `json:"adjustmentDate,required" format:"date-time"`
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode TaiutcListResponseDataMode `json:"dataMode,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Multiplication factor of the leap second adjustment.
+	MultiplicationFactor float64 `json:"multiplicationFactor"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Optional URI location in the document repository of the raw file parsed by the
+	// system to produce this record. To download the raw file, prepend
+	// https://udl-hostname/scs/download?id= to this value.
+	RawFileUri string `json:"rawFileURI"`
+	// Total/cumulative offset between TAI and UTC time as of adjustmentDate, in
+	// seconds.
+	TaiUtc float64 `json:"taiUTC"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		AdjustmentDate        resp.Field
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		MultiplicationFactor  resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		RawFileUri            resp.Field
+		TaiUtc                resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r TaiutcListResponse) RawJSON() string { return r.JSON.raw }
+func (r *TaiutcListResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type TaiutcListResponseDataMode string
+
+const (
+	TaiutcListResponseDataModeReal      TaiutcListResponseDataMode = "REAL"
+	TaiutcListResponseDataModeTest      TaiutcListResponseDataMode = "TEST"
+	TaiutcListResponseDataModeSimulated TaiutcListResponseDataMode = "SIMULATED"
+	TaiutcListResponseDataModeExercise  TaiutcListResponseDataMode = "EXERCISE"
+)
+
+type TaiutcNewParams struct {
+	// Effective date/time for the leap second adjustment.
+	AdjustmentDate time.Time `json:"adjustmentDate,required" format:"date-time"`
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode TaiutcNewParamsDataMode `json:"dataMode,omitzero,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Multiplication factor of the leap second adjustment.
+	MultiplicationFactor param.Opt[float64] `json:"multiplicationFactor,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// Optional URI location in the document repository of the raw file parsed by the
+	// system to produce this record. To download the raw file, prepend
+	// https://udl-hostname/scs/download?id= to this value.
+	RawFileUri param.Opt[string] `json:"rawFileURI,omitzero"`
+	// Total/cumulative offset between TAI and UTC time as of adjustmentDate, in
+	// seconds.
+	TaiUtc param.Opt[float64] `json:"taiUTC,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f TaiutcNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+func (r TaiutcNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow TaiutcNewParams
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type TaiutcNewParamsDataMode string
+
+const (
+	TaiutcNewParamsDataModeReal      TaiutcNewParamsDataMode = "REAL"
+	TaiutcNewParamsDataModeTest      TaiutcNewParamsDataMode = "TEST"
+	TaiutcNewParamsDataModeSimulated TaiutcNewParamsDataMode = "SIMULATED"
+	TaiutcNewParamsDataModeExercise  TaiutcNewParamsDataMode = "EXERCISE"
+)
+
+type TaiutcUpdateParams struct {
+	// Effective date/time for the leap second adjustment.
+	AdjustmentDate time.Time `json:"adjustmentDate,required" format:"date-time"`
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode TaiutcUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Multiplication factor of the leap second adjustment.
+	MultiplicationFactor param.Opt[float64] `json:"multiplicationFactor,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// Optional URI location in the document repository of the raw file parsed by the
+	// system to produce this record. To download the raw file, prepend
+	// https://udl-hostname/scs/download?id= to this value.
+	RawFileUri param.Opt[string] `json:"rawFileURI,omitzero"`
+	// Total/cumulative offset between TAI and UTC time as of adjustmentDate, in
+	// seconds.
+	TaiUtc param.Opt[float64] `json:"taiUTC,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f TaiutcUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+func (r TaiutcUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow TaiutcUpdateParams
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type TaiutcUpdateParamsDataMode string
+
+const (
+	TaiutcUpdateParamsDataModeReal      TaiutcUpdateParamsDataMode = "REAL"
+	TaiutcUpdateParamsDataModeTest      TaiutcUpdateParamsDataMode = "TEST"
+	TaiutcUpdateParamsDataModeSimulated TaiutcUpdateParamsDataMode = "SIMULATED"
+	TaiutcUpdateParamsDataModeExercise  TaiutcUpdateParamsDataMode = "EXERCISE"
+)
+
+type TaiutcListParams struct {
+	// Effective date/time for the leap second adjustment. Must be a unique value
+	// across all TAIUTC datasets. (YYYY-MM-DDTHH:MM:SS.sssZ)
+	AdjustmentDate time.Time        `query:"adjustmentDate,required" format:"date-time" json:"-"`
+	FirstResult    param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults     param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f TaiutcListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [TaiutcListParams]'s query parameters as `url.Values`.
+func (r TaiutcListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type TaiutcCountParams struct {
+	// Effective date/time for the leap second adjustment. Must be a unique value
+	// across all TAIUTC datasets. (YYYY-MM-DDTHH:MM:SS.sssZ)
+	AdjustmentDate time.Time        `query:"adjustmentDate,required" format:"date-time" json:"-"`
+	FirstResult    param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults     param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f TaiutcCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [TaiutcCountParams]'s query parameters as `url.Values`.
+func (r TaiutcCountParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type TaiutcGetParams struct {
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f TaiutcGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [TaiutcGetParams]'s query parameters as `url.Values`.
+func (r TaiutcGetParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type TaiutcTupleParams struct {
+	// Effective date/time for the leap second adjustment. Must be a unique value
+	// across all TAIUTC datasets. (YYYY-MM-DDTHH:MM:SS.sssZ)
+	AdjustmentDate time.Time `query:"adjustmentDate,required" format:"date-time" json:"-"`
+	// Comma-separated list of valid field names for this data type to be returned in
+	// the response. Only the fields specified will be returned as well as the
+	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
+	// for a complete list of possible fields.
+	Columns     string           `query:"columns,required" json:"-"`
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f TaiutcTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [TaiutcTupleParams]'s query parameters as `url.Values`.
+func (r TaiutcTupleParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
