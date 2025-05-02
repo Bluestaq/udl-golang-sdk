@@ -1,0 +1,433 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+package unifieddatalibrary
+
+import (
+	"context"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"net/http"
+	"net/url"
+	"time"
+
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
+	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
+)
+
+// ReportAndActivityUdlSigactService contains methods and other services that help
+// with interacting with the unifieddatalibrary API.
+//
+// Note, unlike clients, this service does not read variables from the environment
+// automatically. You should not instantiate this service directly, and instead use
+// the [NewReportAndActivityUdlSigactService] method instead.
+type ReportAndActivityUdlSigactService struct {
+	Options []option.RequestOption
+}
+
+// NewReportAndActivityUdlSigactService generates a new service that applies the
+// given options to each request. These options are applied after the parent
+// client's options (if there is one), and before any request-specific options.
+func NewReportAndActivityUdlSigactService(opts ...option.RequestOption) (r ReportAndActivityUdlSigactService) {
+	r = ReportAndActivityUdlSigactService{}
+	r.Options = opts
+	return
+}
+
+// Service operation to get a single SigAct text file by its unique ID passed as a
+// path parameter. The text file is returned as an attachment Content-Disposition.
+func (r *ReportAndActivityUdlSigactService) FileGet(ctx context.Context, id string, query ReportAndActivityUdlSigactFileGetParams, opts ...option.RequestOption) (res *http.Response, err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("udl/sigact/getFile/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Service operation to take a list of SigAct as a POST body and ingest into the
+// database. A SigAct provides data for Report and Activity information. Requires a
+// specific role, please contact the UDL team to gain access. This operation is
+// intended to be used for automated feeds into UDL.
+func (r *ReportAndActivityUdlSigactService) UnvalidatedPublish(ctx context.Context, body ReportAndActivityUdlSigactUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "filedrop/udl-sigact"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
+	return
+}
+
+type ReportAndActivityUdlSigactFileGetParams struct {
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f ReportAndActivityUdlSigactFileGetParams) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+
+// URLQuery serializes [ReportAndActivityUdlSigactFileGetParams]'s query parameters
+// as `url.Values`.
+func (r ReportAndActivityUdlSigactFileGetParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type ReportAndActivityUdlSigactUnvalidatedPublishParams struct {
+	Body []ReportAndActivityUdlSigactUnvalidatedPublishParamsBody
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f ReportAndActivityUdlSigactUnvalidatedPublishParams) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+
+func (r ReportAndActivityUdlSigactUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+	return json.Marshal(r.Body)
+}
+
+// Provides information on the dates, actors, locations, fatalities, and types of
+// all reported political violence and protest events across the world.
+//
+// The properties ClassificationMarking, DataMode, ReportDate, Source are required.
+type ReportAndActivityUdlSigactUnvalidatedPublishParamsBody struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,omitzero,required"`
+	// Date of the report or filing.
+	ReportDate time.Time `json:"reportDate,required" format:"date-time"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Estimate of the accuracy that this event occurred as described/reported.
+	Accuracy param.Opt[int64] `json:"accuracy,omitzero"`
+	// Geographical region or polygon (lat/lon pairs), as depicted by the GeoJSON
+	// representation of the geometry/geography, of the image as projected on the
+	// ground. GeoJSON Reference: https://geojson.org/. Ignored if included with a POST
+	// or PUT request that also specifies a valid 'area' or 'atext' field.
+	Agjson param.Opt[string] `json:"agjson,omitzero"`
+	// Number of dimensions of the geometry depicted by region.
+	Andims param.Opt[int64] `json:"andims,omitzero"`
+	// Optional geographical region or polygon (lat/lon pairs) of the area surrounding
+	// the point of interest as projected on the ground.
+	Area param.Opt[string] `json:"area,omitzero"`
+	// Geographical spatial_ref_sys for region.
+	Asrid param.Opt[int64] `json:"asrid,omitzero"`
+	// Geographical region or polygon (lon/lat pairs), as depicted by the Well-Known
+	// Text representation of the geometry/geography, of the image as projected on the
+	// ground. WKT reference: https://www.opengeospatial.org/standards/wkt-crs. Ignored
+	// if included with a POST or PUT request that also specifies a valid 'area' field.
+	Atext param.Opt[string] `json:"atext,omitzero"`
+	// Type of region as projected on the ground.
+	Atype param.Opt[string] `json:"atype,omitzero"`
+	// This is the average tone of all documents containing one or more mentions of
+	// this event during the 15 minute update in which it was first seen. The score
+	// ranges from -100 (extremely negative) to +100 (extremely positive). Common
+	// values range between -10 and +10, with 0 indicating neutral.
+	AvgTone param.Opt[float64] `json:"avgTone,omitzero"`
+	// CAMEO event codes are defined in a three-level taxonomy. For events at level
+	// three in the taxonomy, this yields its level two leaf root node. For example,
+	// code 0251 (Appeal for easing of administrative sanctions) would yield an
+	// EventBaseCode of 025 (Appeal to yield). This makes it possible to aggregate
+	// events at various resolutions of specificity. For events at levels two or one,
+	// this field will be set to EventCode.
+	CameoBaseCode param.Opt[string] `json:"cameoBaseCode,omitzero"`
+	// This is the raw CAMEO action code describing the action that Actor1 performed
+	// upon Actor2. Additional information about Cameo Codes can be obtained from the
+	// GDELT project documentation here:
+	// https://www.gdeltproject.org/data.html#documentation.
+	CameoCode param.Opt[string] `json:"cameoCode,omitzero"`
+	// Similar to EventBaseCode, this defines the root-level category the event code
+	// falls under. For example, code 0251 (Appeal for easing of administrative
+	// sanctions) has a root code of 02 (Appeal). This makes it possible to aggregate
+	// events at various resolutions of specificity. For events at levels two or one,
+	// this field will be set to EventCode.
+	CameoRootCode param.Opt[string] `json:"cameoRootCode,omitzero"`
+	// MD5 value of the file. The ingest/create operation will automatically generate
+	// the value.
+	ChecksumValue param.Opt[string] `json:"checksumValue,omitzero"`
+	// The city in or near which this event occurred.
+	City param.Opt[string] `json:"city,omitzero"`
+	// Number of civilians abducted in the activity.
+	CivAbd param.Opt[int64] `json:"civAbd,omitzero"`
+	// Number of civilians detained in the activity.
+	CivDet param.Opt[int64] `json:"civDet,omitzero"`
+	// Number of civilians killed in the activity.
+	CivKia param.Opt[int64] `json:"civKIA,omitzero"`
+	// Number of civilians wounded in the activity.
+	CivWound param.Opt[int64] `json:"civWound,omitzero"`
+	// 1 (high) for events where the reporting allows the coder to identify the event
+	// in full. That is, events where the individual happening is described by the
+	// original source in a sufficiently detailed way as to identify individual
+	// incidents, i.e. separate activities of fighting in a single location:
+	//
+	// 2 (lower) for events where an aggregation of information was already made by the
+	// source material that is impossible to undo in the coding process. Such events
+	// are described by the original source only as aggregates (totals) of multiple
+	// separate activities of fighting spanning over a longer period than a single,
+	// clearly defined day.
+	Clarity param.Opt[int64] `json:"clarity,omitzero"`
+	// Number of coalition members abducted in the activity.
+	CoalAbd param.Opt[int64] `json:"coalAbd,omitzero"`
+	// Number of coalition members detained in the activity.
+	CoalDet param.Opt[int64] `json:"coalDet,omitzero"`
+	// Number of coalition members killed in the activity.
+	CoalKia param.Opt[int64] `json:"coalKIA,omitzero"`
+	// Number of coalition members wounded in the activity.
+	CoalWound param.Opt[int64] `json:"coalWound,omitzero"`
+	// Flag indicating that this attack was of a complex or coordinated nature.
+	ComplexAttack param.Opt[bool] `json:"complexAttack,omitzero"`
+	// Estimate of the confidence that this event occurred.
+	Confidence param.Opt[int64] `json:"confidence,omitzero"`
+	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
+	// country code, however it can also represent various consortiums that do not
+	// appear in the ISO document. The code must correspond to an existing country in
+	// the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
+	// ISO Alpha-3 code, or alternate code values that exist for the specified country
+	// code.
+	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
+	// Time the row was created in the database, auto-populated by the system, example
+	// = 2018-01-01T16:00:00.123Z.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// The district in which this event occurred.
+	District param.Opt[string] `json:"district,omitzero"`
+	// The filename of the document or report.
+	DocumentFilename param.Opt[string] `json:"documentFilename,omitzero"`
+	// The source of the document or report.
+	DocumentSource param.Opt[string] `json:"documentSource,omitzero"`
+	// Number of enemy combatants abducted in the activity.
+	EnemyAbd param.Opt[int64] `json:"enemyAbd,omitzero"`
+	// Number of enemy combatants detained in the activity.
+	EnemyDet param.Opt[int64] `json:"enemyDet,omitzero"`
+	// Number of enemy combatants killed in the activity.
+	EnemyKia param.Opt[int64] `json:"enemyKIA,omitzero"`
+	// A description of the event.
+	EventDescription param.Opt[string] `json:"eventDescription,omitzero"`
+	// The approximate end time of the event, in ISO 8601 UTC format.
+	EventEnd param.Opt[time.Time] `json:"eventEnd,omitzero" format:"date-time"`
+	// The approximate start time of the event, in ISO 8601 UTC format.
+	EventStart param.Opt[time.Time] `json:"eventStart,omitzero" format:"date-time"`
+	// The type of event (e.g. Military, Natural, Political, Social, etc.).
+	EventType param.Opt[string] `json:"eventType,omitzero"`
+	// Size of the associated text file. Units in bytes. If filesize is provided
+	// without an associated file, it defaults to 0.
+	Filesize param.Opt[int64] `json:"filesize,omitzero"`
+	// Number of friendlies abducted in the activity.
+	FriendlyAbd param.Opt[int64] `json:"friendlyAbd,omitzero"`
+	// Number of friendlies in the activity.
+	FriendlyDet param.Opt[int64] `json:"friendlyDet,omitzero"`
+	// Number of friendlies killed in the activity.
+	FriendlyKia param.Opt[int64] `json:"friendlyKIA,omitzero"`
+	// Number of friendlies wounded in the activity.
+	FriendlyWound param.Opt[int64] `json:"friendlyWound,omitzero"`
+	// Each CAMEO event code is assigned a numeric score from -10 to +10, capturing the
+	// theoretical potential impact that type of event will have on the stability of a
+	// country. This is known as the Goldstein Scale. NOTE: this score is based on the
+	// type of event, not the specifics of the actual event record being recorded thus
+	// two riots, one with 10 people and one with 10,000, will both receive the same
+	// Goldstein score. This can be aggregated to various levels of time resolution to
+	// yield an approximation of the stability of a location over time.
+	Goldstein param.Opt[float64] `json:"goldstein,omitzero"`
+	// Flag indicating this SigAct record has an associated txt file stored in the UDL.
+	// Retrieve the txt file by using the GET/udl/sigact/getFile/{id} where id is the
+	// same as the SigAct record id. The maximum file size for this service is
+	// 10,000,000 bytes (10MB). Files exceeding the maximum size will be rejected.
+	HasAttachment param.Opt[bool] `json:"hasAttachment,omitzero"`
+	// Number of Host Nation members abducted in the activity.
+	HostNatAbd param.Opt[int64] `json:"hostNatAbd,omitzero"`
+	// Number of Host Nation members detained in the activity.
+	HostNatDet param.Opt[int64] `json:"hostNatDet,omitzero"`
+	// Number of Host Nation members killed in the activity.
+	HostNatKia param.Opt[int64] `json:"hostNatKIA,omitzero"`
+	// Number of Host Nation members wounded in the activity.
+	HostNatWound param.Opt[int64] `json:"hostNatWound,omitzero"`
+	// Unique identifier assigned to each event record that uniquely identifies it in
+	// the master dataset. This ID is provided for convenience of mapping to external
+	// systems.
+	IDNumber param.Opt[string] `json:"idNumber,omitzero"`
+	// WGS-84 centroid latitude of the event location, in degrees. -90 to 90 degrees
+	// (negative values south of equator).
+	Lat param.Opt[float64] `json:"lat,omitzero"`
+	// WGS-84 centroid longitude of the event location, in degrees. -180 to 180 degrees
+	// (negative values west of Prime Meridian).
+	Lon param.Opt[float64] `json:"lon,omitzero"`
+	// The Military Grid Reference System is the geocoordinate standard used by NATO
+	// militaries for locating points on Earth. The MGRS is derived from the Universal
+	// Transverse Mercator (UTM) grid system and the Universal Polar Stereographic
+	// (UPS) grid system, but uses a different labeling convention. The MGRS is used as
+	// geocode for the entire Earth. Example of an milgrid coordinate, or grid
+	// reference, would be 4QFJ12345678, which consists of three parts:
+	//
+	// &nbsp;&nbsp;4Q (grid zone designator, GZD)
+	//
+	// &nbsp;&nbsp;FJ (the 100,000-meter square identifier)
+	//
+	// &nbsp;&nbsp;12345678 (numerical location; easting is 1234 and northing is 5678,
+	// in this case specifying a location with 10 m resolution).
+	Milgrid param.Opt[string] `json:"milgrid,omitzero"`
+	// Notes related to the documents or event.
+	Notes param.Opt[string] `json:"notes,omitzero"`
+	// This is the total number of source documents containing one or more mentions of
+	// this event during the 15 minute update in which it was first seen. This can be
+	// used as a method of assessing the importance of an event: the more discussion of
+	// that event, the more likely it is to be significant.
+	NumArticles param.Opt[int64] `json:"numArticles,omitzero"`
+	// This is the total number of mentions of this event across all source documents
+	// during the 15 minute update in which it was first seen. Multiple references to
+	// an event within a single document also contribute to this count. This can be
+	// used as a method of assessing the importance of an event: the more discussion of
+	// that event, the more likely it is to be significant.
+	NumMentions param.Opt[int64] `json:"numMentions,omitzero"`
+	// This is the total number of information sources containing one or more mentions
+	// of this event during the 15 minute update in which it was first seen. This can
+	// be used as a method of assessing the importance of an event: the more discussion
+	// of that event, the more likely it is to be significant.
+	NumSources param.Opt[int64] `json:"numSources,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// The province in which this event occurred.
+	Province param.Opt[string] `json:"province,omitzero"`
+	// The reporting unit.
+	RepUnit param.Opt[string] `json:"repUnit,omitzero"`
+	// The activity the unit was engaged in.
+	RepUnitActivity param.Opt[string] `json:"repUnitActivity,omitzero"`
+	// The reporting unit type.
+	RepUnitType param.Opt[string] `json:"repUnitType,omitzero"`
+	// Number of side A members abducted in the activity.
+	SideAAbd param.Opt[int64] `json:"sideAAbd,omitzero"`
+	// Number of side A members detained in the activity.
+	SideADet param.Opt[int64] `json:"sideADet,omitzero"`
+	// Number of side A members killed in the activity.
+	SideAkia param.Opt[int64] `json:"sideAKIA,omitzero"`
+	// Number of side A members wounded in the activity.
+	SideAWound param.Opt[int64] `json:"sideAWound,omitzero"`
+	// Number of side B members abducted in the activity.
+	SideBAbd param.Opt[int64] `json:"sideBAbd,omitzero"`
+	// Number of side B members detained in the activity.
+	SideBDet param.Opt[int64] `json:"sideBDet,omitzero"`
+	// Number of side B members killed in the activity.
+	SideBkia param.Opt[int64] `json:"sideBKIA,omitzero"`
+	// Number of side B members wounded in the activity.
+	SideBWound param.Opt[int64] `json:"sideBWound,omitzero"`
+	// The source language of the significant event using the ISO 639-3, 3 character
+	// code definition.
+	SourceLanguage param.Opt[string] `json:"sourceLanguage,omitzero"`
+	// This field records the URL or citation of the first news report it found this
+	// event in. In most cases this is the first report it saw the article in, but due
+	// to the timing and flow of news reports through the processing pipeline, this may
+	// not always be the very first report, but is at least in the first few reports.
+	SourceURL param.Opt[string] `json:"sourceUrl,omitzero"`
+	// A summary of the event.
+	Summary param.Opt[string] `json:"summary,omitzero"`
+	// The name of the target. The target may be an individual, an entity, or a
+	// country/region.
+	Target param.Opt[string] `json:"target,omitzero"`
+	// Area in which important military events occur or are progressing. A theater can
+	// include the entirety of the airspace, land and sea area that is or that may
+	// potentially become involved in war operations.
+	Theater param.Opt[string] `json:"theater,omitzero"`
+	// The mode of this attack or event (e.g. Direct Fire, IED Explosion, etc.).
+	TypeOfAttack param.Opt[string] `json:"typeOfAttack,omitzero"`
+	// A list of one or more actors involved in the event.
+	Actors []string `json:"actors,omitzero"`
+	// Related document ids.
+	RelatedDocs []ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDoc `json:"relatedDocs,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f ReportAndActivityUdlSigactUnvalidatedPublishParamsBody) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+func (r ReportAndActivityUdlSigactUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow ReportAndActivityUdlSigactUnvalidatedPublishParamsBody
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+func init() {
+	apijson.RegisterFieldValidator[ReportAndActivityUdlSigactUnvalidatedPublishParamsBody](
+		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+}
+
+type ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDoc struct {
+	// The document id of the related document.
+	DocumentID param.Opt[string] `json:"documentId,omitzero"`
+	// List of data sources related to this document.
+	DataSourceRefs []ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDocDataSourceRef `json:"dataSourceRefs,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDoc) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+func (r ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDoc) MarshalJSON() (data []byte, err error) {
+	type shadow ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDoc
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+type ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDocDataSourceRef struct {
+	// Data source id.
+	DataSourceID param.Opt[string] `json:"dataSourceId,omitzero"`
+	// end position.
+	EndPosition param.Opt[string] `json:"endPosition,omitzero"`
+	// paragraph number.
+	ParagraphNumber param.Opt[string] `json:"paragraphNumber,omitzero"`
+	// sentence number.
+	SentenceNumber param.Opt[string] `json:"sentenceNumber,omitzero"`
+	// start position.
+	StartPosition param.Opt[string] `json:"startPosition,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDocDataSourceRef) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+func (r ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDocDataSourceRef) MarshalJSON() (data []byte, err error) {
+	type shadow ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDocDataSourceRef
+	return param.MarshalObject(r, (*shadow)(&r))
+}

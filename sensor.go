@@ -1,0 +1,7663 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+package unifieddatalibrary
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	"net/http"
+	"net/url"
+	"time"
+
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
+	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+)
+
+// SensorService contains methods and other services that help with interacting
+// with the unifieddatalibrary API.
+//
+// Note, unlike clients, this service does not read variables from the environment
+// automatically. You should not instantiate this service directly, and instead use
+// the [NewSensorService] method instead.
+type SensorService struct {
+	Options     []option.RequestOption
+	Calibration SensorCalibrationService
+}
+
+// NewSensorService generates a new service that applies the given options to each
+// request. These options are applied after the parent client's options (if there
+// is one), and before any request-specific options.
+func NewSensorService(opts ...option.RequestOption) (r SensorService) {
+	r = SensorService{}
+	r.Options = opts
+	r.Calibration = NewSensorCalibrationService(opts...)
+	return
+}
+
+// Service operation to take a single sensor as a POST body and ingest into the
+// database. A specific role is required to perform this service operation. Please
+// contact the UDL team for assistance.
+func (r *SensorService) New(ctx context.Context, body SensorNewParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "udl/sensor"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
+	return
+}
+
+// Service operation to update a single Sensor. A specific role is required to
+// perform this service operation. Please contact the UDL team for assistance.
+func (r *SensorService) Update(ctx context.Context, id string, body SensorUpdateParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("udl/sensor/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
+	return
+}
+
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *SensorService) List(ctx context.Context, query SensorListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SensorListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/sensor"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *SensorService) ListAutoPaging(ctx context.Context, query SensorListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SensorListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
+}
+
+// Service operation to delete a Sensor specified by the passed ID path parameter.
+// A specific role is required to perform this service operation. Please contact
+// the UDL team for assistance.
+func (r *SensorService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("udl/sensor/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
+	return
+}
+
+// Service operation to return the count of records satisfying the specified query
+// parameters. This operation is useful to determine how many records pass a
+// particular query criteria without retrieving large amounts of data. See the
+// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// valid/required query parameter information.
+func (r *SensorService) Count(ctx context.Context, query SensorCountParams, opts ...option.RequestOption) (res *string, err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
+	path := "udl/sensor/count"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Service operation to get a single Sensor by its unique ID passed as a path
+// parameter.
+func (r *SensorService) Get(ctx context.Context, id string, query SensorGetParams, opts ...option.RequestOption) (res *SensorGetResponse, err error) {
+	opts = append(r.Options[:], opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("udl/sensor/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Service operation to provide detailed information on available dynamic query
+// parameters for a particular data type.
+func (r *SensorService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "udl/sensor/queryhelp"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, nil, opts...)
+	return
+}
+
+// Service operation to dynamically query data and only return specified
+// columns/fields. Requested columns are specified by the 'columns' query parameter
+// and should be a comma separated list of valid fields for the specified data
+// type. classificationMarking is always returned. See the queryhelp operation
+// (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+// information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
+// hours would return the satNo and period of elsets with an epoch greater than 5
+// hours ago.
+func (r *SensorService) Tuple(ctx context.Context, query SensorTupleParams, opts ...option.RequestOption) (res *[]SensorTupleResponse, err error) {
+	opts = append(r.Options[:], opts...)
+	path := "udl/sensor/tuple"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Model representation of observation data for electro-optical based sensor
+// phenomenologies.
+type SensorListResponse struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode SensorListResponseDataMode `json:"dataMode,required"`
+	// Unique name of this sensor.
+	SensorName string `json:"sensorName,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Optional flag indicating if the sensor is active.
+	Active bool `json:"active"`
+	// Optional US Air Force identifier for the sensor/ASR site, typically for air
+	// surveillance radar (ASR) sensors.
+	AfID string `json:"afId"`
+	// The sensor type at the site. Optional field, intended primarily for ASRs.
+	AsrType string `json:"asrType"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Optional dissemination control required for accessing data (e.g observations)
+	// produced by this sensor. This is typically a proprietary data owner control for
+	// commercial sensors.
+	DataControl string `json:"dataControl"`
+	// An entity is a generic representation of any object within a space/SSA system
+	// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
+	// entity can have an operating unit, a location (if terrestrial), and statuses.
+	Entity SensorListResponseEntity `json:"entity"`
+	// Unique identifier of the parent entity. idEntity is required for Put.
+	IDEntity string `json:"idEntity"`
+	// Unique identifier of the record, auto-generated by the system.
+	IDSensor string `json:"idSensor"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Collection of Sensorcharacteristics which define characteristics and
+	// capabilities of a sensor.
+	Sensorcharacteristics []SensorListResponseSensorcharacteristic `json:"sensorcharacteristics"`
+	// Sensorlimits define 0 to many limits of a particular sensor in terms of
+	// observation coverage of on-orbit objects.
+	SensorlimitsCollection []SensorListResponseSensorlimitsCollection `json:"sensorlimitsCollection"`
+	// Number assigned to this sensor. Since there is no authoritative numbering
+	// scheme, these numbers sometimes collide across sensors (especially commercial
+	// sensors). It is therefore not a unique identifier.
+	SensorNumber          int64                                   `json:"sensorNumber"`
+	SensorObservationType SensorListResponseSensorObservationType `json:"sensorObservationType"`
+	// Collection of SensorStats which contain statistics of a sensor.
+	SensorStats []SensorListResponseSensorStat `json:"sensorStats"`
+	SensorType  SensorListResponseSensorType   `json:"sensorType"`
+	// Optional short name for the sensor.
+	ShortName string `json:"shortName"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking  resp.Field
+		DataMode               resp.Field
+		SensorName             resp.Field
+		Source                 resp.Field
+		Active                 resp.Field
+		AfID                   resp.Field
+		AsrType                resp.Field
+		CreatedAt              resp.Field
+		CreatedBy              resp.Field
+		DataControl            resp.Field
+		Entity                 resp.Field
+		IDEntity               resp.Field
+		IDSensor               resp.Field
+		Origin                 resp.Field
+		OrigNetwork            resp.Field
+		Sensorcharacteristics  resp.Field
+		SensorlimitsCollection resp.Field
+		SensorNumber           resp.Field
+		SensorObservationType  resp.Field
+		SensorStats            resp.Field
+		SensorType             resp.Field
+		ShortName              resp.Field
+		ExtraFields            map[string]resp.Field
+		raw                    string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SensorListResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type SensorListResponseDataMode string
+
+const (
+	SensorListResponseDataModeReal      SensorListResponseDataMode = "REAL"
+	SensorListResponseDataModeTest      SensorListResponseDataMode = "TEST"
+	SensorListResponseDataModeSimulated SensorListResponseDataMode = "SIMULATED"
+	SensorListResponseDataModeExercise  SensorListResponseDataMode = "EXERCISE"
+)
+
+// An entity is a generic representation of any object within a space/SSA system
+// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
+// entity can have an operating unit, a location (if terrestrial), and statuses.
+type SensorListResponseEntity struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Unique entity name.
+	Name string `json:"name,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
+	// NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+	//
+	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "NAVIGATION", "ONORBIT", "RFEMITTER",
+	// "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
+	Type string `json:"type,required"`
+	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
+	// country code, however it can also represent various consortiums that do not
+	// appear in the ISO document. The code must correspond to an existing country in
+	// the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
+	// ISO Alpha-3 code, or alternate code values that exist for the specified country
+	// code.
+	CountryCode string `json:"countryCode"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Unique identifier of the record.
+	IDEntity string `json:"idEntity"`
+	// Unique identifier of the entity location, if terrestrial/fixed.
+	IDLocation string `json:"idLocation"`
+	// Onorbit identifier if this entity is part of an on-orbit object. For the public
+	// catalog, the idOnOrbit is typically the satellite number as a string, but may be
+	// a UUID for analyst or other unknown or untracked satellites.
+	IDOnOrbit string `json:"idOnOrbit"`
+	// Unique identifier of the associated operating unit object.
+	IDOperatingUnit string `json:"idOperatingUnit"`
+	// Model representation of a location, which is a specific fixed point on the earth
+	// and is used to denote the locations of fixed sensors, operating units, etc.
+	Location SensorListResponseEntityLocation `json:"location"`
+	// Model object representing on-orbit objects or satellites in the system.
+	OnOrbit SensorListResponseEntityOnOrbit `json:"onOrbit"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Type of organization which owns this entity (e.g. Commercial, Government,
+	// Academic, Consortium, etc).
+	//
+	// Any of "Commercial", "Government", "Academic", "Consortium", "Other".
+	OwnerType string `json:"ownerType"`
+	// Boolean indicating if this entity is taskable.
+	Taskable bool `json:"taskable"`
+	// Terrestrial identifier of this entity, if applicable.
+	TerrestrialID string `json:"terrestrialId"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		Name                  resp.Field
+		Source                resp.Field
+		Type                  resp.Field
+		CountryCode           resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		IDEntity              resp.Field
+		IDLocation            resp.Field
+		IDOnOrbit             resp.Field
+		IDOperatingUnit       resp.Field
+		Location              resp.Field
+		OnOrbit               resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		OwnerType             resp.Field
+		Taskable              resp.Field
+		TerrestrialID         resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorListResponseEntity) RawJSON() string { return r.JSON.raw }
+func (r *SensorListResponseEntity) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Model representation of a location, which is a specific fixed point on the earth
+// and is used to denote the locations of fixed sensors, operating units, etc.
+type SensorListResponseEntityLocation struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Location name.
+	Name string `json:"name,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Altitude of the location, in kilometers.
+	Altitude float64 `json:"altitude"`
+	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
+	// country code, however it can also represent various consortiums that do not
+	// appear in the ISO document. The code must correspond to an existing country in
+	// the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
+	// ISO Alpha-3 code, or alternate code values that exist for the specified country
+	// code.
+	CountryCode string `json:"countryCode"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Unique identifier of the location, auto-generated by the system.
+	IDLocation string `json:"idLocation"`
+	// WGS84 latitude of the location, in degrees. -90 to 90 degrees (negative values
+	// south of equator).
+	Lat float64 `json:"lat"`
+	// WGS84 longitude of the location, in degrees. -180 to 180 degrees (negative
+	// values west of Prime Meridian).
+	Lon float64 `json:"lon"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		Name                  resp.Field
+		Source                resp.Field
+		Altitude              resp.Field
+		CountryCode           resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		IDLocation            resp.Field
+		Lat                   resp.Field
+		Lon                   resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorListResponseEntityLocation) RawJSON() string { return r.JSON.raw }
+func (r *SensorListResponseEntityLocation) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Model object representing on-orbit objects or satellites in the system.
+type SensorListResponseEntityOnOrbit struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Satellite/Catalog number of the target on-orbit object.
+	SatNo int64 `json:"satNo,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Alternate name of the on-orbit object.
+	AltName string `json:"altName"`
+	// Category of the on-orbit object. (Unknown, On-Orbit, Decayed, Cataloged Without
+	// State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
+	// Heliocentric, Interplanetary, Lagrangian, Docked).
+	//
+	// Any of "Unknown", "On-Orbit", "Decayed", "Cataloged Without State", "Launch
+	// Nominal", "Analyst Satellite", "Cislunar", "Lunar", "Hyperbolic",
+	// "Heliocentric", "Interplanetary", "Lagrangian", "Docked".
+	Category string `json:"category"`
+	// Common name of the on-orbit object.
+	CommonName string `json:"commonName"`
+	// Constellation to which this satellite belongs.
+	Constellation string `json:"constellation"`
+	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
+	// country code, however it can also represent various consortiums that do not
+	// appear in the ISO document. The code must correspond to an existing country in
+	// the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
+	// ISO Alpha-3 code, or alternate code values that exist for the specified country
+	// code.
+	CountryCode string `json:"countryCode"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Date of decay.
+	DecayDate time.Time `json:"decayDate" format:"date-time"`
+	// For the public catalog, the idOnOrbit is typically the satellite number as a
+	// string, but may be a UUID for analyst or other unknown or untracked satellites,
+	// auto-generated by the system.
+	IDOnOrbit string `json:"idOnOrbit"`
+	// International Designator, typically of the format YYYYLLLAAA, where YYYY is the
+	// launch year, LLL is the sequential launch number of that year, and AAA is an
+	// optional launch piece designator for the launch.
+	IntlDes string `json:"intlDes"`
+	// Date of launch.
+	LaunchDate time.Time `json:"launchDate" format:"date"`
+	// Id of the associated launchSite entity.
+	LaunchSiteID string `json:"launchSiteId"`
+	// Estimated lifetime of the on-orbit payload, if known.
+	LifetimeYears int64 `json:"lifetimeYears"`
+	// Mission number of the on-orbit object.
+	MissionNumber string `json:"missionNumber"`
+	// Type of on-orbit object: ROCKET BODY, DEBRIS, PAYLOAD, PLATFORM, MANNED,
+	// UNKNOWN.
+	//
+	// Any of "ROCKET BODY", "DEBRIS", "PAYLOAD", "PLATFORM", "MANNED", "UNKNOWN".
+	ObjectType string `json:"objectType"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		SatNo                 resp.Field
+		Source                resp.Field
+		AltName               resp.Field
+		Category              resp.Field
+		CommonName            resp.Field
+		Constellation         resp.Field
+		CountryCode           resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		DecayDate             resp.Field
+		IDOnOrbit             resp.Field
+		IntlDes               resp.Field
+		LaunchDate            resp.Field
+		LaunchSiteID          resp.Field
+		LifetimeYears         resp.Field
+		MissionNumber         resp.Field
+		ObjectType            resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorListResponseEntityOnOrbit) RawJSON() string { return r.JSON.raw }
+func (r *SensorListResponseEntityOnOrbit) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Model representation of characteristics and capabilities of a sensor.
+type SensorListResponseSensorcharacteristic struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Unique identifier of the parent sensor.
+	IDSensor string `json:"idSensor,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Array of measurement range(s) where radar samples must fall to be acceptable. If
+	// this field is populated, the associated beam(s) must be provided in the
+	// beamOrder field.
+	AcceptSampleRanges []float64 `json:"acceptSampleRanges"`
+	// Optical sensor camera aperture.
+	Aperture float64 `json:"aperture"`
+	// For ASR (Air Surveillance Radar) sensors, the scan (360 deg sweep) rate of the
+	// radar, in scans/minute.
+	AsrScanRate float64 `json:"asrScanRate"`
+	// Array of azimuth angles of a radar beam, in degrees. If this field is populated,
+	// the associated beam(s) must be provided in the beamOrder field.
+	AzAngs []float64 `json:"azAngs"`
+	// Azimuth rate acquisition limit (radians/minute).
+	AzimuthRate float64 `json:"azimuthRate"`
+	// Sensor band.
+	Band string `json:"band"`
+	// Array designating the beam order of provided values (e.g. vb1 for vertical beam
+	// 1, ob1 for oblique beam 1, etc.). Required if any of the following array fields
+	// are populated: azAngs, elAngs, radarPulseWidths, pulseRepPeriods, delayGates,
+	// rangeGates, rangeSpacings, vertGateSpacings, vertGateWidths, specAvgSpectraNums,
+	// tempMedFiltCodes, runMeanCodes, totRecNums, reqRecords, acceptSampleRanges.
+	BeamOrder []string `json:"beamOrder"`
+	// Number of radar beams used by the sensor.
+	BeamQty int64 `json:"beamQty"`
+	// The angle of the center of a phased array sensor.
+	Boresight float64 `json:"boresight"`
+	// The number of degrees off of the boresight for the sensor.
+	BoresightOffAngle float64 `json:"boresightOffAngle"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Threshold shear value beyond which one of the radial velocity values will be
+	// rejected, measured in units of inverse second.
+	CritShear float64 `json:"critShear"`
+	// Array of time delay(s) for pulses from a radar beam to get to the first range
+	// gate, in nanoseconds. If this field is populated, the associated beam(s) must be
+	// provided in the beamOrder field.
+	DelayGates []float64 `json:"delayGates"`
+	// Description of the equipment and data source.
+	Description string `json:"description"`
+	// Array of elevation angles of a radar beam, in degrees. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	ElAngs []float64 `json:"elAngs"`
+	// Elevation rate acquisition limit (radians/minute).
+	ElevationRateGeolm float64 `json:"elevationRateGeolm"`
+	// Type of equipment used to take measurements.
+	EquipmentType string `json:"equipmentType"`
+	// The beam width of a Sensor's Fan (range). The values for this range from (0.0 to
+	// PI).
+	FanBeamWidth float64 `json:"fanBeamWidth"`
+	// Number of Fast Fourier Transform (FFT) points used to convert time varying
+	// signals into the frequency domain.
+	Fft int64 `json:"fft"`
+	// Maximum number of times the first guess was propagated in each gate before
+	// failing the first guess check.
+	FgpCrit int64 `json:"fgpCrit"`
+	// For radar based sensors, the focal point elevation of the radar at the site, in
+	// meters.
+	FocalPoint float64 `json:"focalPoint"`
+	// Horizontal field of view.
+	HFov float64 `json:"hFOV"`
+	// Horizontal pixel resolution.
+	HResPixels int64 `json:"hResPixels"`
+	// For radar based sensors, K-factor is a relative indicator of refractivity that
+	// infers the amount of radar beam bending due to atmosphere. (1<K<2).
+	K float64 `json:"k"`
+	// For Orbiting Sensors, First Card Azimuth limit #1 (left, degrees).
+	LeftClockAngle float64 `json:"leftClockAngle"`
+	// Leftmost GEO belt longitude limit for this sensor (if applicable).
+	LeftGeoBeltLimit float64 `json:"leftGeoBeltLimit"`
+	// Site where measurement is taken.
+	Location string `json:"location"`
+	// Angle between magnetic north and true north at the sensor site, in degrees.
+	MagDec float64 `json:"magDec"`
+	// Absolute magnitude acquisition limit for optical sensors.
+	MagnitudeLimit float64 `json:"magnitudeLimit"`
+	// Max deviation angle of the sensor in degrees.
+	MaxDeviationAngle float64 `json:"maxDeviationAngle"`
+	// Maximum observable sensor range, in kilometers.
+	MaxObservableRange float64 `json:"maxObservableRange"`
+	// Maximum observable range limit in kilometers -- sensor cannot acquire beyond
+	// this range.
+	MaxRangeLimit float64 `json:"maxRangeLimit"`
+	// Minimum range measurement capability of the sensor, in kilometers.
+	MinRangeLimit float64 `json:"minRangeLimit"`
+	// Signal to Noise Ratio, in decibels. The values for this range from 0.0 - + 99.99
+	// dB.
+	MinSignalNoiseRatio float64 `json:"minSignalNoiseRatio"`
+	// Negative Range-rate/relative velocity limit (kilometers/second).
+	NegativeRangeRateLimit float64 `json:"negativeRangeRateLimit"`
+	// For radar based sensors, number of integrated pulses in a transmit cycle.
+	NumIntegratedPulses int64 `json:"numIntegratedPulses"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Positive Range-rate/relative velocity limit (kilometers/second).
+	PositiveRangeRateLimit float64 `json:"positiveRangeRateLimit"`
+	// For radar based sensors, pulse repetition frequency (PRF), in hertz. Number of
+	// new pulses transmitted per second.
+	Prf float64 `json:"prf"`
+	// For radar based sensors, probability of the indication of the presence of a
+	// radar target due to noise or interference.
+	ProbFalseAlarm float64 `json:"probFalseAlarm"`
+	// Array of interval(s) between the start of one radar pulse and the start of
+	// another for a radar beam, in microseconds. If this field is populated, the
+	// associated beam(s) must be provided in the beamOrder field.
+	PulseRepPeriods []float64 `json:"pulseRepPeriods"`
+	// Radar frequency of the sensor (if a radar sensor).
+	RadarFrequency float64 `json:"radarFrequency"`
+	// Message data format transmitted by the sensor digitizer.
+	RadarMessageFormat string `json:"radarMessageFormat"`
+	// For radar based sensors, radar maximum unambiguous range, in kilometers.
+	RadarMur float64 `json:"radarMUR"`
+	// Array of transmit time(s) for a radar beam pulse, in microseconds. If this field
+	// is populated, the associated beam(s) must be provided in the beamOrder field.
+	RadarPulseWidths []float64 `json:"radarPulseWidths"`
+	// Radio frequency (if sensor is RF).
+	RadioFrequency float64 `json:"radioFrequency"`
+	// Array of the number(s) of discrete altitudes where return signals are sampled by
+	// a radar beam. If this field is populated, the associated beam(s) must be
+	// provided in the beamOrder field.
+	RangeGates []int64 `json:"rangeGates"`
+	// Array of range gate spacing(s) for a radar beam, in nanoseconds. If this field
+	// is populated, the associated beam(s) must be provided in the beamOrder field.
+	RangeSpacings []float64 `json:"rangeSpacings"`
+	// Array of the total number(s) of records required to meet consensus for a radar
+	// beam. If this field is populated, the associated beam(s) must be provided in the
+	// beamOrder field.
+	ReqRecords []int64 `json:"reqRecords"`
+	// For Orbiting Sensors, First Card Azimuth limit #3 (right, degrees).
+	RightClockAngle float64 `json:"rightClockAngle"`
+	// Rightmost GEO belt longitude limit for this sensor (if applicable).
+	RightGeoBeltLimit float64 `json:"rightGeoBeltLimit"`
+	// Array of running mean code(s) used by radar data processing. The running mean
+	// method involves taking a series of averages of different selections of the full
+	// data set to smooth out short-term fluctuations in the data. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	RunMeanCodes []int64 `json:"runMeanCodes"`
+	// Site code of the sensor.
+	SiteCode string `json:"siteCode"`
+	// Array of the number(s) of Doppler spectra used to process measurements from
+	// radar. Spectral averaging involves combining multiple Doppler spectra acquired
+	// to obtain a more accurate and representative spectrum. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	SpecAvgSpectraNums []int64 `json:"specAvgSpectraNums"`
+	// For radar based sensors, expression of the radar system noise, aggregated as an
+	// equivalent thermal noise value, in degrees Kelvin.
+	SystemNoiseTemperature float64 `json:"systemNoiseTemperature"`
+	// Maximum taskable range of the sensor, in kilometers.
+	TaskableRange float64 `json:"taskableRange"`
+	// Array of temporal median filter code(s) of a radar beam. Temporal median
+	// filtering is a noise-reducing algorithm which involves replacing each data point
+	// with the median value of a window of neighboring points over time. If this field
+	// is populated, the associated beam(s) must be provided in the beamOrder field.
+	TempMedFiltCodes []int64 `json:"tempMedFiltCodes"`
+	// Test number for the observed measurement.
+	TestNumber string `json:"testNumber"`
+	// Array of the total number(s) of records for a radar beam. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	TotRecNums []int64 `json:"totRecNums"`
+	// For tower sensors, the physical height of the sensor tower, in meters.
+	TowerHeight float64 `json:"towerHeight"`
+	// Beginning track angle limit, in radians. Track angle is the angle between the
+	// camera axis and the gimbal plane. Values range from 0 - PI/2.
+	TrackAngle float64 `json:"trackAngle"`
+	// Radar transmit power in Watts.
+	TransmitPower float64 `json:"transmitPower"`
+	// True North correction for the sensor, in ACP (Azimunth Change Pulse) count.
+	TrueNorthCorrector int64 `json:"trueNorthCorrector"`
+	// Antenna true tilt, in degrees.
+	TrueTilt float64 `json:"trueTilt"`
+	// Flag indicating if a vertical radar beam was used in the wind calculation.
+	VertBeamFlag bool `json:"vertBeamFlag"`
+	// Array of vertical distance(s) between points where radar measurements are taken,
+	// in meters. If this field is populated, the associated beam(s) must be provided
+	// in the beamOrder field.
+	VertGateSpacings []float64 `json:"vertGateSpacings"`
+	// Array of width(s) of each location where radar measurements are taken, in
+	// meters. If this field is populated, the associated beam(s) must be provided in
+	// the beamOrder field.
+	VertGateWidths []float64 `json:"vertGateWidths"`
+	// Vertical field of view.
+	VFov float64 `json:"vFOV"`
+	// Vertical pixel resolution.
+	VResPixels int64 `json:"vResPixels"`
+	// Peformance zone-1 maximum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z1MaxRange float64 `json:"z1MaxRange"`
+	// Peformance zone-1 minimum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z1MinRange float64 `json:"z1MinRange"`
+	// Peformance zone-2 maximum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z2MaxRange float64 `json:"z2MaxRange"`
+	// Peformance zone-2 minimum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z2MinRange float64 `json:"z2MinRange"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking  resp.Field
+		DataMode               resp.Field
+		IDSensor               resp.Field
+		Source                 resp.Field
+		ID                     resp.Field
+		AcceptSampleRanges     resp.Field
+		Aperture               resp.Field
+		AsrScanRate            resp.Field
+		AzAngs                 resp.Field
+		AzimuthRate            resp.Field
+		Band                   resp.Field
+		BeamOrder              resp.Field
+		BeamQty                resp.Field
+		Boresight              resp.Field
+		BoresightOffAngle      resp.Field
+		CreatedAt              resp.Field
+		CreatedBy              resp.Field
+		CritShear              resp.Field
+		DelayGates             resp.Field
+		Description            resp.Field
+		ElAngs                 resp.Field
+		ElevationRateGeolm     resp.Field
+		EquipmentType          resp.Field
+		FanBeamWidth           resp.Field
+		Fft                    resp.Field
+		FgpCrit                resp.Field
+		FocalPoint             resp.Field
+		HFov                   resp.Field
+		HResPixels             resp.Field
+		K                      resp.Field
+		LeftClockAngle         resp.Field
+		LeftGeoBeltLimit       resp.Field
+		Location               resp.Field
+		MagDec                 resp.Field
+		MagnitudeLimit         resp.Field
+		MaxDeviationAngle      resp.Field
+		MaxObservableRange     resp.Field
+		MaxRangeLimit          resp.Field
+		MinRangeLimit          resp.Field
+		MinSignalNoiseRatio    resp.Field
+		NegativeRangeRateLimit resp.Field
+		NumIntegratedPulses    resp.Field
+		OrigNetwork            resp.Field
+		PositiveRangeRateLimit resp.Field
+		Prf                    resp.Field
+		ProbFalseAlarm         resp.Field
+		PulseRepPeriods        resp.Field
+		RadarFrequency         resp.Field
+		RadarMessageFormat     resp.Field
+		RadarMur               resp.Field
+		RadarPulseWidths       resp.Field
+		RadioFrequency         resp.Field
+		RangeGates             resp.Field
+		RangeSpacings          resp.Field
+		ReqRecords             resp.Field
+		RightClockAngle        resp.Field
+		RightGeoBeltLimit      resp.Field
+		RunMeanCodes           resp.Field
+		SiteCode               resp.Field
+		SpecAvgSpectraNums     resp.Field
+		SystemNoiseTemperature resp.Field
+		TaskableRange          resp.Field
+		TempMedFiltCodes       resp.Field
+		TestNumber             resp.Field
+		TotRecNums             resp.Field
+		TowerHeight            resp.Field
+		TrackAngle             resp.Field
+		TransmitPower          resp.Field
+		TrueNorthCorrector     resp.Field
+		TrueTilt               resp.Field
+		VertBeamFlag           resp.Field
+		VertGateSpacings       resp.Field
+		VertGateWidths         resp.Field
+		VFov                   resp.Field
+		VResPixels             resp.Field
+		Z1MaxRange             resp.Field
+		Z1MinRange             resp.Field
+		Z2MaxRange             resp.Field
+		Z2MinRange             resp.Field
+		ExtraFields            map[string]resp.Field
+		raw                    string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorListResponseSensorcharacteristic) RawJSON() string { return r.JSON.raw }
+func (r *SensorListResponseSensorcharacteristic) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Sensorlimits define 0 to many limits of a particular sensor in terms of
+// observation coverage of on-orbit objects.
+type SensorListResponseSensorlimitsCollection struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Unique identifier of the target sensor object.
+	IDSensor string `json:"idSensor"`
+	// Unique identifier of the record, auto-generated by the system.
+	IDSensorLimits string `json:"idSensorLimits"`
+	// Leftmost or minimum lower azimuth within this limit. Interpreted according to
+	// site types as lower left azimuth limit elevation angle of axis of conical
+	// observation pattern. If the limit rectangle is parallel to the horizon, the
+	// upper and lower left azimuth limits would be equal. (degrees).
+	LowerLeftAzimuthLimit float64 `json:"lowerLeftAzimuthLimit"`
+	// Minimum or lower elevation within this limit. Interpreted according to site
+	// types as minimum elevation angle, constant elevation or fan beam centerline.
+	// (Degrees).
+	LowerLeftElevationLimit float64 `json:"lowerLeftElevationLimit"`
+	// Rightmost or maximum lower azimuth within this limit. Interpreted according to
+	// site types as 2nd lower azimuth limit elevation angle of axis of conical
+	// observation pattern. If the limit rectangle is parallel to the horizon, the
+	// upper and lower right azimuth limits would be equal. (degrees).
+	LowerRightAzimuthLimit float64 `json:"lowerRightAzimuthLimit"`
+	// Minimum or lower right elevation within this limit. Interpreted according to
+	// site types as minimum right elevation angle, constant elevation or fan beam
+	// centerline. If the limit rectangle is parallel to the horizon, the left and
+	// right lower elevation limits would be equal. (Degrees).
+	LowerRightElevationLimit float64 `json:"lowerRightElevationLimit"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Leftmost or minimum upper azimuth within this sensor limit. Interpreted
+	// according to site types as beginning upper azimuth limit, left-hand upper
+	// boundary limit. If the limit rectangle is parallel to the horizon, the upper and
+	// lower left azimuth limits would be equal. (in degrees).
+	UpperLeftAzimuthLimit float64 `json:"upperLeftAzimuthLimit"`
+	// Maximum or upper elevation within this limit. Interpreted according to site
+	// types as maximum elevation angle, half the apex of conical observation pattern
+	// or star. (Degrees).
+	UpperLeftElevationLimit float64 `json:"upperLeftElevationLimit"`
+	// Rightmost or maximum upper azimuth within this limit. Interpreted according to
+	// site types as 2nd azimuth limit elevation angle of axis of conical observation
+	// pattern. If the limit rectangle is parallel to the horizon, the upper and lower
+	// right azimuth limits would be equal. (degrees).
+	UpperRightAzimuthLimit float64 `json:"upperRightAzimuthLimit"`
+	// Maximum or upper right elevation within this limit. Interpreted according to
+	// site types as maximum rightmost elevation angle, half the apex of conical
+	// observation pattern or star. If the limit rectangle is parallel to the horizon,
+	// the left and right upper elevation limits would be equal. (Degrees).
+	UpperRightElevationLimit float64 `json:"upperRightElevationLimit"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking    resp.Field
+		DataMode                 resp.Field
+		Source                   resp.Field
+		CreatedAt                resp.Field
+		CreatedBy                resp.Field
+		IDSensor                 resp.Field
+		IDSensorLimits           resp.Field
+		LowerLeftAzimuthLimit    resp.Field
+		LowerLeftElevationLimit  resp.Field
+		LowerRightAzimuthLimit   resp.Field
+		LowerRightElevationLimit resp.Field
+		OrigNetwork              resp.Field
+		UpperLeftAzimuthLimit    resp.Field
+		UpperLeftElevationLimit  resp.Field
+		UpperRightAzimuthLimit   resp.Field
+		UpperRightElevationLimit resp.Field
+		ExtraFields              map[string]resp.Field
+		raw                      string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorListResponseSensorlimitsCollection) RawJSON() string { return r.JSON.raw }
+func (r *SensorListResponseSensorlimitsCollection) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SensorListResponseSensorObservationType struct {
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// The observation measurement type produced by a sensor.
+	Type string `json:"type"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ID          resp.Field
+		CreatedAt   resp.Field
+		CreatedBy   resp.Field
+		OrigNetwork resp.Field
+		Type        resp.Field
+		ExtraFields map[string]resp.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorListResponseSensorObservationType) RawJSON() string { return r.JSON.raw }
+func (r *SensorListResponseSensorObservationType) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// SensorStats contain statistics on sensors related to observation production such
+// as last reported observation time.
+type SensorListResponseSensorStat struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Unique ID of the parent sensor.
+	IDSensor string `json:"idSensor,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Time of last reported observation in ISO 8601 UTC with microsecond precision.
+	LastObTime time.Time `json:"lastObTime" format:"date-time"`
+	// Read-only time the row was updated in the database, set automatically by the
+	// system on update.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who last updated the row in the database, set by the system
+	// automatically and ignored on create/edit operations.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDSensor              resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		LastObTime            resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorListResponseSensorStat) RawJSON() string { return r.JSON.raw }
+func (r *SensorListResponseSensorStat) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SensorListResponseSensorType struct {
+	// Unique identifier of the record, auto-generated by the system.
+	ID int64 `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// The specific sensor type and/or surveillance capability of this sensor.
+	Type string `json:"type"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ID          resp.Field
+		CreatedAt   resp.Field
+		CreatedBy   resp.Field
+		OrigNetwork resp.Field
+		Type        resp.Field
+		ExtraFields map[string]resp.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorListResponseSensorType) RawJSON() string { return r.JSON.raw }
+func (r *SensorListResponseSensorType) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Model representation of observation data for electro-optical based sensor
+// phenomenologies.
+type SensorGetResponse struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode SensorGetResponseDataMode `json:"dataMode,required"`
+	// Unique name of this sensor.
+	SensorName string `json:"sensorName,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Optional flag indicating if the sensor is active.
+	Active bool `json:"active"`
+	// Optional US Air Force identifier for the sensor/ASR site, typically for air
+	// surveillance radar (ASR) sensors.
+	AfID string `json:"afId"`
+	// The sensor type at the site. Optional field, intended primarily for ASRs.
+	AsrType string `json:"asrType"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Optional dissemination control required for accessing data (e.g observations)
+	// produced by this sensor. This is typically a proprietary data owner control for
+	// commercial sensors.
+	DataControl string `json:"dataControl"`
+	// An entity is a generic representation of any object within a space/SSA system
+	// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
+	// entity can have an operating unit, a location (if terrestrial), and statuses.
+	Entity SensorGetResponseEntity `json:"entity"`
+	// Unique identifier of the parent entity. idEntity is required for Put.
+	IDEntity string `json:"idEntity"`
+	// Unique identifier of the record, auto-generated by the system.
+	IDSensor string `json:"idSensor"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Collection of Sensorcharacteristics which define characteristics and
+	// capabilities of a sensor.
+	Sensorcharacteristics []SensorGetResponseSensorcharacteristic `json:"sensorcharacteristics"`
+	// Sensorlimits define 0 to many limits of a particular sensor in terms of
+	// observation coverage of on-orbit objects.
+	SensorlimitsCollection []SensorGetResponseSensorlimitsCollection `json:"sensorlimitsCollection"`
+	// Number assigned to this sensor. Since there is no authoritative numbering
+	// scheme, these numbers sometimes collide across sensors (especially commercial
+	// sensors). It is therefore not a unique identifier.
+	SensorNumber          int64                                  `json:"sensorNumber"`
+	SensorObservationType SensorGetResponseSensorObservationType `json:"sensorObservationType"`
+	// Collection of SensorStats which contain statistics of a sensor.
+	SensorStats []SensorGetResponseSensorStat `json:"sensorStats"`
+	SensorType  SensorGetResponseSensorType   `json:"sensorType"`
+	// Optional short name for the sensor.
+	ShortName string `json:"shortName"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking  resp.Field
+		DataMode               resp.Field
+		SensorName             resp.Field
+		Source                 resp.Field
+		Active                 resp.Field
+		AfID                   resp.Field
+		AsrType                resp.Field
+		CreatedAt              resp.Field
+		CreatedBy              resp.Field
+		DataControl            resp.Field
+		Entity                 resp.Field
+		IDEntity               resp.Field
+		IDSensor               resp.Field
+		Origin                 resp.Field
+		OrigNetwork            resp.Field
+		Sensorcharacteristics  resp.Field
+		SensorlimitsCollection resp.Field
+		SensorNumber           resp.Field
+		SensorObservationType  resp.Field
+		SensorStats            resp.Field
+		SensorType             resp.Field
+		ShortName              resp.Field
+		UpdatedAt              resp.Field
+		UpdatedBy              resp.Field
+		ExtraFields            map[string]resp.Field
+		raw                    string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *SensorGetResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type SensorGetResponseDataMode string
+
+const (
+	SensorGetResponseDataModeReal      SensorGetResponseDataMode = "REAL"
+	SensorGetResponseDataModeTest      SensorGetResponseDataMode = "TEST"
+	SensorGetResponseDataModeSimulated SensorGetResponseDataMode = "SIMULATED"
+	SensorGetResponseDataModeExercise  SensorGetResponseDataMode = "EXERCISE"
+)
+
+// An entity is a generic representation of any object within a space/SSA system
+// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
+// entity can have an operating unit, a location (if terrestrial), and statuses.
+type SensorGetResponseEntity struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Unique entity name.
+	Name string `json:"name,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
+	// NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+	//
+	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "NAVIGATION", "ONORBIT", "RFEMITTER",
+	// "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
+	Type string `json:"type,required"`
+	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
+	// country code, however it can also represent various consortiums that do not
+	// appear in the ISO document. The code must correspond to an existing country in
+	// the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
+	// ISO Alpha-3 code, or alternate code values that exist for the specified country
+	// code.
+	CountryCode string `json:"countryCode"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Unique identifier of the record.
+	IDEntity string `json:"idEntity"`
+	// Unique identifier of the entity location, if terrestrial/fixed.
+	IDLocation string `json:"idLocation"`
+	// Onorbit identifier if this entity is part of an on-orbit object. For the public
+	// catalog, the idOnOrbit is typically the satellite number as a string, but may be
+	// a UUID for analyst or other unknown or untracked satellites.
+	IDOnOrbit string `json:"idOnOrbit"`
+	// Unique identifier of the associated operating unit object.
+	IDOperatingUnit string `json:"idOperatingUnit"`
+	// Model representation of a location, which is a specific fixed point on the earth
+	// and is used to denote the locations of fixed sensors, operating units, etc.
+	Location LocationFull `json:"location"`
+	// Model object representing on-orbit objects or satellites in the system.
+	OnOrbit SensorGetResponseEntityOnOrbit `json:"onOrbit"`
+	// Model representation of a unit or organization which operates or controls a
+	// space-related Entity such as an on-orbit payload, a sensor, etc. A contact may
+	// belong to an organization.
+	OperatingUnit SensorGetResponseEntityOperatingUnit `json:"operatingUnit"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Type of organization which owns this entity (e.g. Commercial, Government,
+	// Academic, Consortium, etc).
+	//
+	// Any of "Commercial", "Government", "Academic", "Consortium", "Other".
+	OwnerType string `json:"ownerType"`
+	// Read-only collection of RF bands utilized by this entity for communication
+	// and/or operation.
+	RfBands []SensorGetResponseEntityRfBand `json:"rfBands"`
+	// Read-only collection of statuses which can be collected by multiple sources.
+	StatusCollection []SensorGetResponseEntityStatusCollection `json:"statusCollection"`
+	// Boolean indicating if this entity is taskable.
+	Taskable bool `json:"taskable"`
+	// Terrestrial identifier of this entity, if applicable.
+	TerrestrialID string `json:"terrestrialId"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// List of URLs to additional details/documents for this entity.
+	URLs []string `json:"urls"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		Name                  resp.Field
+		Source                resp.Field
+		Type                  resp.Field
+		CountryCode           resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		IDEntity              resp.Field
+		IDLocation            resp.Field
+		IDOnOrbit             resp.Field
+		IDOperatingUnit       resp.Field
+		Location              resp.Field
+		OnOrbit               resp.Field
+		OperatingUnit         resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		OwnerType             resp.Field
+		RfBands               resp.Field
+		StatusCollection      resp.Field
+		Taskable              resp.Field
+		TerrestrialID         resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		URLs                  resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorGetResponseEntity) RawJSON() string { return r.JSON.raw }
+func (r *SensorGetResponseEntity) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Model object representing on-orbit objects or satellites in the system.
+type SensorGetResponseEntityOnOrbit struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Satellite/Catalog number of the target on-orbit object.
+	SatNo int64 `json:"satNo,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Alternate name of the on-orbit object.
+	AltName string `json:"altName"`
+	// Read-only collection of antennas on this on-orbit object.
+	Antennas []SensorGetResponseEntityOnOrbitAntenna `json:"antennas"`
+	// Read-only collection of batteries on this on-orbit object.
+	Batteries []SensorGetResponseEntityOnOrbitBattery `json:"batteries"`
+	// Category of the on-orbit object. (Unknown, On-Orbit, Decayed, Cataloged Without
+	// State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
+	// Heliocentric, Interplanetary, Lagrangian, Docked).
+	//
+	// Any of "Unknown", "On-Orbit", "Decayed", "Cataloged Without State", "Launch
+	// Nominal", "Analyst Satellite", "Cislunar", "Lunar", "Hyperbolic",
+	// "Heliocentric", "Interplanetary", "Lagrangian", "Docked".
+	Category string `json:"category"`
+	// Common name of the on-orbit object.
+	CommonName string `json:"commonName"`
+	// Constellation to which this satellite belongs.
+	Constellation string `json:"constellation"`
+	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
+	// country code, however it can also represent various consortiums that do not
+	// appear in the ISO document. The code must correspond to an existing country in
+	// the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
+	// ISO Alpha-3 code, or alternate code values that exist for the specified country
+	// code.
+	CountryCode string `json:"countryCode"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Date of decay.
+	DecayDate time.Time `json:"decayDate" format:"date-time"`
+	// For the public catalog, the idOnOrbit is typically the satellite number as a
+	// string, but may be a UUID for analyst or other unknown or untracked satellites,
+	// auto-generated by the system.
+	IDOnOrbit string `json:"idOnOrbit"`
+	// International Designator, typically of the format YYYYLLLAAA, where YYYY is the
+	// launch year, LLL is the sequential launch number of that year, and AAA is an
+	// optional launch piece designator for the launch.
+	IntlDes string `json:"intlDes"`
+	// Date of launch.
+	LaunchDate time.Time `json:"launchDate" format:"date"`
+	// Id of the associated launchSite entity.
+	LaunchSiteID string `json:"launchSiteId"`
+	// Estimated lifetime of the on-orbit payload, if known.
+	LifetimeYears int64 `json:"lifetimeYears"`
+	// Mission number of the on-orbit object.
+	MissionNumber string `json:"missionNumber"`
+	// Type of on-orbit object: ROCKET BODY, DEBRIS, PAYLOAD, PLATFORM, MANNED,
+	// UNKNOWN.
+	//
+	// Any of "ROCKET BODY", "DEBRIS", "PAYLOAD", "PLATFORM", "MANNED", "UNKNOWN".
+	ObjectType string `json:"objectType"`
+	// Read-only collection of details for this on-orbit object.
+	OnorbitDetails []SensorGetResponseEntityOnOrbitOnorbitDetail `json:"onorbitDetails"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Read-only collection of solar arrays on this on-orbit object.
+	SolarArrays []SensorGetResponseEntityOnOrbitSolarArray `json:"solarArrays"`
+	// Read-only collection of thrusters (engines) on this on-orbit object.
+	Thrusters []SensorGetResponseEntityOnOrbitThruster `json:"thrusters"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		SatNo                 resp.Field
+		Source                resp.Field
+		AltName               resp.Field
+		Antennas              resp.Field
+		Batteries             resp.Field
+		Category              resp.Field
+		CommonName            resp.Field
+		Constellation         resp.Field
+		CountryCode           resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		DecayDate             resp.Field
+		IDOnOrbit             resp.Field
+		IntlDes               resp.Field
+		LaunchDate            resp.Field
+		LaunchSiteID          resp.Field
+		LifetimeYears         resp.Field
+		MissionNumber         resp.Field
+		ObjectType            resp.Field
+		OnorbitDetails        resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		SolarArrays           resp.Field
+		Thrusters             resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorGetResponseEntityOnOrbit) RawJSON() string { return r.JSON.raw }
+func (r *SensorGetResponseEntityOnOrbit) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SensorGetResponseEntityOnOrbitAntenna struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// ID of the antenna.
+	IDAntenna string `json:"idAntenna,required"`
+	// ID of the on-orbit object.
+	IDOnOrbit string `json:"idOnOrbit,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Model representation of information on on-orbit/spacecraft communication
+	// antennas. A spacecraft may have multiple antennas and each antenna can have
+	// multiple 'details' records compiled by different sources.
+	Antenna AntennaFull `json:"antenna"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDAntenna             resp.Field
+		IDOnOrbit             resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		Antenna               resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorGetResponseEntityOnOrbitAntenna) RawJSON() string { return r.JSON.raw }
+func (r *SensorGetResponseEntityOnOrbitAntenna) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SensorGetResponseEntityOnOrbitBattery struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// ID of the battery.
+	IDBattery string `json:"idBattery,required"`
+	// ID of the on-orbit object.
+	IDOnOrbit string `json:"idOnOrbit,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Model representation of specific spacecraft battery types.
+	Battery BatteryFull `json:"battery"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// The number of batteries on the spacecraft of the type identified by idBattery.
+	Quantity int64 `json:"quantity"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDBattery             resp.Field
+		IDOnOrbit             resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		Battery               resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		Quantity              resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorGetResponseEntityOnOrbitBattery) RawJSON() string { return r.JSON.raw }
+func (r *SensorGetResponseEntityOnOrbitBattery) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Contains details of the OnOrbit object.
+type SensorGetResponseEntityOnOrbitOnorbitDetail struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// UUID of the parent Onorbit record.
+	IDOnOrbit string `json:"idOnOrbit,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Mass of fuel and disposables at launch time in kilograms.
+	AdditionalMass float64 `json:"additionalMass"`
+	// The radius used for long-term debris environment projection analyses that is not
+	// as conservative as COLA Radius, in meters.
+	AdeptRadius float64 `json:"adeptRadius"`
+	// The total beginning of life delta V of the spacecraft, in meters per second.
+	BolDeltaV float64 `json:"bolDeltaV"`
+	// Spacecraft beginning of life fuel mass, in orbit, in kilograms.
+	BolFuelMass float64 `json:"bolFuelMass"`
+	// Average cross sectional area of the bus in meters squared.
+	BusCrossSection float64 `json:"busCrossSection"`
+	// Type of the bus on the spacecraft.
+	BusType string `json:"busType"`
+	// Maximum dimension of the box circumscribing the spacecraft (d = sqrt(a*a + b*b +
+	// c\*c) where a is the tip-to-tip dimension, b and c are perpendicular to that.)
+	// in meters.
+	ColaRadius float64 `json:"colaRadius"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Average cross sectional area in meters squared.
+	CrossSection float64 `json:"crossSection"`
+	// The estimated total current mass of the spacecraft, in kilograms.
+	CurrentMass float64 `json:"currentMass"`
+	// The 1-sigma uncertainty of the total spacecraft delta V, in meters per second.
+	DeltaVUnc float64 `json:"deltaVUnc"`
+	// Array of the estimated mass of each deployable object, in kilograms. Must
+	// contain the same number of elements as the value of numDeployable.
+	DepEstMasses []float64 `json:"depEstMasses"`
+	// Array of the 1-sigma uncertainty of the mass for each deployable object, in
+	// kilograms. Must contain the same number of elements as the value of
+	// numDeployable.
+	DepMassUncs []float64 `json:"depMassUncs"`
+	// Array of satellite deployable objects. Must contain the same number of elements
+	// as the value of numDeployable.
+	DepNames []string `json:"depNames"`
+	// GEO drift rate, if applicable in degrees per day.
+	DriftRate float64 `json:"driftRate"`
+	// Spacecraft dry mass (without fuel or disposables) in kilograms.
+	DryMass float64 `json:"dryMass"`
+	// Estimated maximum burn duration for the object, in seconds.
+	EstDeltaVDuration float64 `json:"estDeltaVDuration"`
+	// Estimated remaining fuel for the object in kilograms.
+	FuelRemaining float64 `json:"fuelRemaining"`
+	// GEO slot if applicable, in degrees. -180 (West of Prime Meridian) to 180 degrees
+	// (East of Prime Meridian). Prime Meridian is 0.
+	GeoSlot float64 `json:"geoSlot"`
+	// The name of the source who last provided an observation for this idOnOrbit.
+	LastObSource string `json:"lastObSource"`
+	// Time of last reported observation for this object in ISO 8601 UTC with
+	// microsecond precision.
+	LastObTime time.Time `json:"lastObTime" format:"date-time"`
+	// Nominal mass of spacecraft and fuel at launch time, in kilograms.
+	LaunchMass float64 `json:"launchMass"`
+	// Maximum (estimated) mass of spacecraft and fuel at launch time, in kilograms.
+	LaunchMassMax float64 `json:"launchMassMax"`
+	// Minimum (estimated) mass of spacecraft and fuel at launch time, in kilograms.
+	LaunchMassMin float64 `json:"launchMassMin"`
+	// Boolean indicating whether a spacecraft is maneuverable. Note that a spacecraft
+	// may have propulsion capability but may not be maneuverable due to lack of fuel,
+	// anomalous condition, or other operational constraints.
+	Maneuverable bool `json:"maneuverable"`
+	// Maximum delta V available for this on-orbit spacecraft, in meters per second.
+	MaxDeltaV float64 `json:"maxDeltaV"`
+	// Maximum dimension across the spacecraft (e.g., tip-to-tip across the solar panel
+	// arrays) in meters.
+	MaxRadius float64 `json:"maxRadius"`
+	// Array of the type of missions the spacecraft performs. Must contain the same
+	// number of elements as the value of numMission.
+	MissionTypes []string `json:"missionTypes"`
+	// The number of sub-satellites or deployable objects on the spacecraft.
+	NumDeployable int64 `json:"numDeployable"`
+	// The number of distinct missions the spacecraft performs.
+	NumMission int64 `json:"numMission"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Current/latest radar cross section in meters squared.
+	Rcs float64 `json:"rcs"`
+	// Maximum radar cross section in meters squared.
+	RcsMax float64 `json:"rcsMax"`
+	// Mean radar cross section in meters squared.
+	RcsMean float64 `json:"rcsMean"`
+	// Minimum radar cross section in meters squared.
+	RcsMin float64 `json:"rcsMin"`
+	// The reference source, sources, or URL from which the data in this record was
+	// obtained.
+	RefSource string `json:"refSource"`
+	// Spacecraft deployed area of solar array in meters squared.
+	SolarArrayArea float64 `json:"solarArrayArea"`
+	// The 1-sigma uncertainty of the total spacecraft mass, in kilograms.
+	TotalMassUnc float64 `json:"totalMassUnc"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Current/latest visual magnitude in M.
+	Vismag float64 `json:"vismag"`
+	// Maximum visual magnitude in M.
+	VismagMax float64 `json:"vismagMax"`
+	// Mean visual magnitude in M.
+	VismagMean float64 `json:"vismagMean"`
+	// Minimum visual magnitude in M.
+	VismagMin float64 `json:"vismagMin"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDOnOrbit             resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		AdditionalMass        resp.Field
+		AdeptRadius           resp.Field
+		BolDeltaV             resp.Field
+		BolFuelMass           resp.Field
+		BusCrossSection       resp.Field
+		BusType               resp.Field
+		ColaRadius            resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		CrossSection          resp.Field
+		CurrentMass           resp.Field
+		DeltaVUnc             resp.Field
+		DepEstMasses          resp.Field
+		DepMassUncs           resp.Field
+		DepNames              resp.Field
+		DriftRate             resp.Field
+		DryMass               resp.Field
+		EstDeltaVDuration     resp.Field
+		FuelRemaining         resp.Field
+		GeoSlot               resp.Field
+		LastObSource          resp.Field
+		LastObTime            resp.Field
+		LaunchMass            resp.Field
+		LaunchMassMax         resp.Field
+		LaunchMassMin         resp.Field
+		Maneuverable          resp.Field
+		MaxDeltaV             resp.Field
+		MaxRadius             resp.Field
+		MissionTypes          resp.Field
+		NumDeployable         resp.Field
+		NumMission            resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		Rcs                   resp.Field
+		RcsMax                resp.Field
+		RcsMean               resp.Field
+		RcsMin                resp.Field
+		RefSource             resp.Field
+		SolarArrayArea        resp.Field
+		TotalMassUnc          resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		Vismag                resp.Field
+		VismagMax             resp.Field
+		VismagMean            resp.Field
+		VismagMin             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorGetResponseEntityOnOrbitOnorbitDetail) RawJSON() string { return r.JSON.raw }
+func (r *SensorGetResponseEntityOnOrbitOnorbitDetail) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SensorGetResponseEntityOnOrbitSolarArray struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// ID of the on-orbit object.
+	IDOnOrbit string `json:"idOnOrbit,required"`
+	// ID of the SolarArray.
+	IDSolarArray string `json:"idSolarArray,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// The number of solar arrays on the spacecraft of the type identified by
+	// idSolarArray.
+	Quantity int64 `json:"quantity"`
+	// Model representation of information on on-orbit/spacecraft solar arrays. A
+	// spacecraft may have multiple solar arrays and each solar array can have multiple
+	// 'details' records compiled by different sources.
+	SolarArray SensorGetResponseEntityOnOrbitSolarArraySolarArray `json:"solarArray"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDOnOrbit             resp.Field
+		IDSolarArray          resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		Quantity              resp.Field
+		SolarArray            resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorGetResponseEntityOnOrbitSolarArray) RawJSON() string { return r.JSON.raw }
+func (r *SensorGetResponseEntityOnOrbitSolarArray) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Model representation of information on on-orbit/spacecraft solar arrays. A
+// spacecraft may have multiple solar arrays and each solar array can have multiple
+// 'details' records compiled by different sources.
+type SensorGetResponseEntityOnOrbitSolarArraySolarArray struct {
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Solar Array name.
+	Name string `json:"name,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Read-only collection of additional SolarArrayDetails by various sources for this
+	// organization, ignored on create/update. These details must be created separately
+	// via the /udl/solararraydetails operations.
+	SolarArrayDetails []SolarArrayDetailsFull `json:"solarArrayDetails"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		DataMode          resp.Field
+		Name              resp.Field
+		Source            resp.Field
+		ID                resp.Field
+		CreatedAt         resp.Field
+		CreatedBy         resp.Field
+		Origin            resp.Field
+		OrigNetwork       resp.Field
+		SolarArrayDetails resp.Field
+		UpdatedAt         resp.Field
+		UpdatedBy         resp.Field
+		ExtraFields       map[string]resp.Field
+		raw               string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorGetResponseEntityOnOrbitSolarArraySolarArray) RawJSON() string { return r.JSON.raw }
+func (r *SensorGetResponseEntityOnOrbitSolarArraySolarArray) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SensorGetResponseEntityOnOrbitThruster struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// ID of the Engine.
+	IDEngine string `json:"idEngine,required"`
+	// ID of the on-orbit object.
+	IDOnOrbit string `json:"idOnOrbit,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Known launch vehicle engines and their performance characteristics and limits. A
+	// launch vehicle has 1 to many engines per stage.
+	Engine Engine `json:"engine"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// The number of engines/thrusters on the spacecraft of the type identified by
+	// idEngine.
+	Quantity int64 `json:"quantity"`
+	// The type of thruster associated with this record (e.g. LAE, Hydrazine REA,
+	// etc.).
+	Type string `json:"type"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDEngine              resp.Field
+		IDOnOrbit             resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Engine                resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		Quantity              resp.Field
+		Type                  resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorGetResponseEntityOnOrbitThruster) RawJSON() string { return r.JSON.raw }
+func (r *SensorGetResponseEntityOnOrbitThruster) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Model representation of a unit or organization which operates or controls a
+// space-related Entity such as an on-orbit payload, a sensor, etc. A contact may
+// belong to an organization.
+type SensorGetResponseEntityOperatingUnit struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Name of the operating unit.
+	Name string `json:"name,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Air Defense District (ADD) or Air Defense Area (ADA) in which the geographic
+	// coordinates reside.
+	AirDefArea string `json:"airDefArea"`
+	// The DoD Standard country code designator for the country or political entity to
+	// which the operating unit owes its allegiance. This field will be set to "OTHR"
+	// if the source value does not match a UDL country code value (ISO-3166-ALPHA-2).
+	Allegiance string `json:"allegiance"`
+	// Specifies an alternate allegiance code if the data provider code is not part of
+	// an official Country Code standard such as ISO-3166 or FIPS. This field will be
+	// set to the value provided by the source and should be used for all Queries
+	// specifying allegiance.
+	AltAllegiance string `json:"altAllegiance"`
+	// Specifies an alternate country code if the data provider code is not part of an
+	// official Country Code standard such as ISO-3166 or FIPS. This field will be set
+	// to the value provided by the source and should be used for all Queries
+	// specifying a Country Code.
+	AltCountryCode string `json:"altCountryCode"`
+	// Unique identifier of the operating unit record from the originating system.
+	AltOperatingUnitID string `json:"altOperatingUnitId"`
+	// Indicates the importance of the operating unit to the OES or MIR system. This
+	// data element is restricted to update by DIA (DB-4). Valid values are: 0 - Does
+	// not meet criteria above 1 - Primary importance to system 2 - Secondary
+	// importance to system 3 - Tertiary importance to system O - Other. Explain in
+	// Remarks.
+	ClassRating string `json:"classRating"`
+	// The physical manner of being or state of existence of the operating unit. A
+	// physical condition that must be considered in the determining of a course of
+	// action. The specific usage and enumerations contained in this field may be found
+	// in the documentation provided in the referenceDoc field. If referenceDoc not
+	// provided, users may consult the data provider.
+	Condition string `json:"condition"`
+	// Availability of the operating unit relative to its condition. Indicates the
+	// reason the operating unit is not fully operational. The specific usage and
+	// enumerations contained in this field may be found in the documentation provided
+	// in the referenceDoc field. If referenceDoc not provided, users may consult the
+	// data provider.
+	ConditionAvail string `json:"conditionAvail"`
+	// Indicates any of the magnitudes that serve to define the position of a point by
+	// reference to a fixed figure, system of lines, etc.
+	//
+	// Pos. 1-2. Latitude Degrees [00-90]
+	//
+	// Pos. 3-4. Latitude Minutes [00-59]
+	//
+	// Pos. 5-6. Latitude Seconds [00-59]
+	//
+	// Pos. 7-9. Latitude Thousandths Of Seconds [000-999]
+	//
+	// Pos. 10. Latitude Hemisphere [NS]
+	//
+	// Pos. 11-13. Longitude Degrees [00-180]
+	//
+	// Pos. 14-15. Longitude Minutes [00-59]
+	//
+	// Pos. 16-17. Longitude Seconds [00-59]
+	//
+	// Pos. 18-20. Longitude Thousandths Of Seconds [000-999]
+	//
+	// Pos. 21. Longitude Hemisphere [EW]
+	//
+	// Pos. 1-21. Unknown Latitude and Unknown Longitude [000000000U000000000U]
+	Coord string `json:"coord"`
+	// A mathematical model of the earth used to calculate coordinates on a map. US
+	// Forces use the World Geodetic System 1984 (WGS 84), but also use maps by allied
+	// countries with local datums. The datum must be specified to ensure accuracy of
+	// coordinates. The specific usage and enumerations contained in this field may be
+	// found in the documentation provided in the referenceDoc field. If referenceDoc
+	// not provided, users may consult the data provider.
+	CoordDatum string `json:"coordDatum"`
+	// Indicates the plus or minus error assessed against the method used to derive the
+	// coordinate.
+	CoordDerivAcc float64 `json:"coordDerivAcc"`
+	// The DoD Standard country code designator for the country or political entity to
+	// which the operating unit geographic coordinates reside . This field will be set
+	// to "OTHR" if the source value does not match a UDL country code value
+	// (ISO-3166-ALPHA-2).
+	CountryCode string `json:"countryCode"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// A code describing the amount of operating unit participation in a deployment.
+	// The specific usage and enumerations contained in this field may be found in the
+	// documentation provided in the referenceDoc field. If referenceDoc not provided,
+	// users may consult the data provider.
+	DeployStatus string `json:"deployStatus"`
+	// Description of the operating unit.
+	Description string `json:"description"`
+	// Combat status of a divisional or equivalent operating unit. Currently, this data
+	// element applies only to operating units of the Former Soviet Union. The specific
+	// usage and enumerations contained in this field may be found in the documentation
+	// provided in the referenceDoc field. If referenceDoc not provided, users may
+	// consult the data provider.
+	DivCat string `json:"divCat"`
+	// Organizational level of the operating unit. The specific usage and enumerations
+	// contained in this field may be found in the documentation provided in the
+	// referenceDoc field. If referenceDoc not provided, users may consult the data
+	// provider.
+	Echelon string `json:"echelon"`
+	// Indicates the major group or level to which an echelon belongs. The specific
+	// usage and enumerations contained in this field may be found in the documentation
+	// provided in the referenceDoc field. If referenceDoc not provided, users may
+	// consult the data provider.
+	EchelonTier string `json:"echelonTier"`
+	// Ground elevation of the geographic coordinates referenced to (above or below)
+	// Mean Sea Level (MSL) vertical datum.
+	ElevMsl float64 `json:"elevMsl"`
+	// Indicates the confidence level expressed as a percent that a specific geometric
+	// spatial element, ELEVATION_MSL linear accuracy, has been vertically positioned
+	// to within a specified vertical accuracy.
+	ElevMslConfLvl int64 `json:"elevMslConfLvl"`
+	// Indicates the plus or minus error assessed against the method used to derive the
+	// elevation.
+	ElevMslDerivAcc float64 `json:"elevMslDerivAcc"`
+	// The Intelligence Confidence Level or the Reliability/degree of confidence that
+	// the analyst has assigned to the data within this record. The numerical range is
+	// from 1 to 9 with 1 representing the highest confidence level.
+	Eval int64 `json:"eval"`
+	// The country code of the observed flag flown.
+	FlagFlown string `json:"flagFlown"`
+	// Naval fleet to which an operating unit is assigned. The specific usage and
+	// enumerations contained in this field may be found in the documentation provided
+	// in the referenceDoc field. If referenceDoc not provided, users may consult the
+	// data provider.
+	FleetID string `json:"fleetId"`
+	// An aggregation of military units within a single service (i.e., ARMY, AIR FORCE,
+	// etc.) which operates under a single authority to accomplish a common mission.
+	// The specific usage and enumerations contained in this field may be found in the
+	// documentation provided in the referenceDoc field. If referenceDoc not provided,
+	// users may consult the data provider.
+	Force string `json:"force"`
+	// The specific name for a given force. For example, Force = ADF (Air Defense
+	// Force) and Force Name = Army Air Defense Force.
+	ForceName string `json:"forceName"`
+	// Functional Production Area (FPA) under the Shared Production Program (SPP).
+	// Producers are defined per country per FPA. The specific usage and enumerations
+	// contained in this field may be found in the documentation provided in the
+	// referenceDoc field. If referenceDoc not provided, users may consult the data
+	// provider.
+	Fpa string `json:"fpa"`
+	// Principal combat-related role that an operating unit is organized, structured
+	// and equipped to perform. Or, the specialized military or paramilitary branch in
+	// which an individual serves, their specialization. The specific usage and
+	// enumerations contained in this field may be found in the documentation provided
+	// in the referenceDoc field. If referenceDoc not provided, users may consult the
+	// data provider.
+	FunctRole string `json:"functRole"`
+	// The distance between Mean Sea Level and a referenced ellipsoid.
+	GeoidalMslSep float64 `json:"geoidalMslSep"`
+	// Unique identifier of the contact for this operating unit.
+	IDContact string `json:"idContact"`
+	// Estimated identity of the Site (ASSUMED FRIEND, FRIEND, HOSTILE, FAKER, JOKER,
+	// NEUTRAL, PENDING, SUSPECT, UNKNOWN):
+	//
+	// ASSUMED FRIEND: Track assumed to be a friend due to the object characteristics,
+	// behavior, and/or origin.
+	//
+	// FRIEND: Track object supporting friendly forces and belonging to a declared
+	// friendly nation or entity.
+	//
+	// HOSTILE: Track object belonging to an opposing nation, party, group, or entity
+	// deemed to contribute to a threat to friendly forces or their mission due to its
+	// behavior, characteristics, nationality, or origin.
+	//
+	// FAKER: Friendly track, object, or entity acting as an exercise hostile.
+	//
+	// JOKER: Friendly track, object, or entity acting as an exercise suspect.
+	//
+	// NEUTRAL: Track object whose characteristics, behavior, nationality, and/or
+	// origin indicate that it is neither supporting nor opposing friendly forces or
+	// their mission.
+	//
+	// PENDING: Track object which has not been evaluated.
+	//
+	// SUSPECT: Track object deemed potentially hostile due to the object
+	// characteristics, behavior, nationality, and/or origin.
+	//
+	// UNKNOWN: Track object which has been evaluated and does not meet criteria for
+	// any standard identity.
+	Ident string `json:"ident"`
+	// Unique identifier of the location record for this operating unit.
+	IDLocation string `json:"idLocation"`
+	// Unique identifier of the record, auto-generated by the system.
+	IDOperatingUnit string `json:"idOperatingUnit"`
+	// Unique identifier of the organization record for this operating unit.
+	IDOrganization string `json:"idOrganization"`
+	// WGS84 latitude of the location, in degrees. -90 to 90 degrees (negative values
+	// south of equator).
+	Lat float64 `json:"lat"`
+	// Model representation of a location, which is a specific fixed point on the earth
+	// and is used to denote the locations of fixed sensors, operating units, etc.
+	Location LocationFull `json:"location"`
+	// Location name for the coordinates.
+	LocName string `json:"locName"`
+	// Indicates the reason that the operating unit is at that location. The specific
+	// usage and enumerations contained in this field may be found in the documentation
+	// provided in the referenceDoc field. If referenceDoc not provided, users may
+	// consult the data provider.
+	LocReason string `json:"locReason"`
+	// WGS84 longitude of the location, in degrees. -180 to 180 degrees (negative
+	// values west of Prime Meridian).
+	Lon float64 `json:"lon"`
+	// This field contains a value indicating whether the record is a master unit
+	// record (True) or a detail record (False). Master records contain basic
+	// information that does not change over time for each unit that has been selected
+	// to be projected.
+	MasterUnit bool `json:"masterUnit"`
+	// The Military Grid Reference System is the geocoordinate standard used by NATO
+	// militaries for locating points on Earth. The MGRS is derived from the Universal
+	// Transverse Mercator (UTM) grid system and the Universal Polar Stereographic
+	// (UPS) grid system, but uses a different labeling convention. The MGRS is used as
+	// geocode for the entire Earth. Example of an milgrid coordinate, or grid
+	// reference, would be 4QFJ12345678, which consists of three parts: 4Q (grid zone
+	// designator, GZD) FJ (the 100,000-meter square identifier) 12345678 (numerical
+	// location; easting is 1234 and northing is 5678, in this case specifying a
+	// location with 10 m resolution).
+	MilGrid string `json:"milGrid"`
+	// Indicates the grid system used in the development of the milGrid coordinates.
+	// Values are:
+	//
+	// # UPS - Universal Polar System
+	//
+	// UTM - Universal Transverse Mercator
+	MilGridSys string `json:"milGridSys"`
+	// Indicates the principal type of mission that an operating unit is organized and
+	// equipped to perform. The specific usage and enumerations contained in this field
+	// may be found in the documentation provided in the referenceDoc field. If
+	// referenceDoc not provided, users may consult the data provider.
+	MsnPrimary string `json:"msnPrimary"`
+	// Indicates the principal specialty type of mission that an operating unit is
+	// organized and equipped to perform. The specific usage and enumerations contained
+	// in this field may be found in the documentation provided in the referenceDoc
+	// field. If referenceDoc not provided, users may consult the data provider.
+	MsnPrimarySpecialty string `json:"msnPrimarySpecialty"`
+	// Remarks contain amplifying information for a specific service. The information
+	// may contain context and interpretations for consumer use.
+	OperatingUnitRemarks []SensorGetResponseEntityOperatingUnitOperatingUnitRemark `json:"operatingUnitRemarks"`
+	// The Degree to which an operating unit is ready to perform the overall
+	// operational mission(s) for which it was organized and equipped. The specific
+	// usage and enumerations contained in this field may be found in the documentation
+	// provided in the referenceDoc field. If referenceDoc not provided, users may
+	// consult the data provider.
+	OperStatus string `json:"operStatus"`
+	// An organization such as a corporation, manufacturer, consortium, government,
+	// etc. An organization may have parent and child organizations as well as link to
+	// a former organization if this org previously existed as another organization.
+	Organization OrganizationFull `json:"organization"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// Political subdivision in which the geographic coordinates reside. The specific
+	// usage and enumerations contained in this field may be found in the documentation
+	// provided in the referenceDoc field. If referenceDoc not provided, users may
+	// consult the data provider.
+	PolSubdiv string `json:"polSubdiv"`
+	// Validity and currency of the data in the record to be used in conjunction with
+	// the other elements in the record as defined by SOPs. Values are: A - Active I -
+	// Inactive K - Acknowledged L - Local Q - A nominated (NOM) or Data Change Request
+	// (DCR) record R - Production reduced by CMD decision W - Working Record.
+	RecStatus string `json:"recStatus"`
+	// The reference documentiation that specifies the usage and enumerations contained
+	// in this record. If referenceDoc not provided, users may consult the data
+	// provider.
+	ReferenceDoc string `json:"referenceDoc"`
+	// Responsible Producer - Organization that is responsible for the maintenance of
+	// the record.
+	ResProd string `json:"resProd"`
+	// Date on which the data in the record was last reviewed by the responsible
+	// analyst for accuracy and currency. This date cannot be greater than the current
+	// date.
+	ReviewDate time.Time `json:"reviewDate" format:"date"`
+	// This field contains a value indicating whether the record is a stylized
+	// operating unit record (True) or a regular operating unit record (False). A
+	// stylized operating unit is a type of operating unit with one set of equipment
+	// that can be assigned to one or more superiors. A stylized operating unit is
+	// generally useful for lower echelon operating units where the number of operating
+	// units and types of equipment are equal for multiple organizations. In lieu of
+	// creating unique operating unit records for each operating unit, a template is
+	// created for the operating unit and its equipment. This template enables the user
+	// to assign the operating unit to multiple organizations.
+	StylizedUnit bool `json:"stylizedUnit"`
+	// A standard scheme for symbol coding enabling the transfer, display and use of
+	// symbols and graphics among information systems, as per MIL-STD 2525B, and
+	// supported by the element AFFILIATION.
+	SymCode string `json:"symCode"`
+	// An optional identifier for this operating unit that may be composed from items
+	// such as the originating organization, allegiance, one-up number, etc.
+	UnitIdentifier string `json:"unitIdentifier"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Universal Transverse Mercator (UTM) grid coordinates. Pos. 1-2, UTM Zone Column
+	// [01-60 Pos. 3, UTM Zone Row [C-HJ-NP-X] Pos. 4, UTM False Easting [0-9] Pos.
+	// 5-9, UTM Meter Easting [0-9][0-9][0-9][0-9][0-9] Pos. 10-11, UTM False Northing
+	// [0-9][0-9] Pos. 12-16, UTM Meter Northing [0-9][0-9][0-9][0-9][0-9].
+	Utm string `json:"utm"`
+	// World Aeronautical Chart identifier for the area in which a designated operating
+	// unit is located.
+	Wac string `json:"wac"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		Name                  resp.Field
+		Source                resp.Field
+		AirDefArea            resp.Field
+		Allegiance            resp.Field
+		AltAllegiance         resp.Field
+		AltCountryCode        resp.Field
+		AltOperatingUnitID    resp.Field
+		ClassRating           resp.Field
+		Condition             resp.Field
+		ConditionAvail        resp.Field
+		Coord                 resp.Field
+		CoordDatum            resp.Field
+		CoordDerivAcc         resp.Field
+		CountryCode           resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		DeployStatus          resp.Field
+		Description           resp.Field
+		DivCat                resp.Field
+		Echelon               resp.Field
+		EchelonTier           resp.Field
+		ElevMsl               resp.Field
+		ElevMslConfLvl        resp.Field
+		ElevMslDerivAcc       resp.Field
+		Eval                  resp.Field
+		FlagFlown             resp.Field
+		FleetID               resp.Field
+		Force                 resp.Field
+		ForceName             resp.Field
+		Fpa                   resp.Field
+		FunctRole             resp.Field
+		GeoidalMslSep         resp.Field
+		IDContact             resp.Field
+		Ident                 resp.Field
+		IDLocation            resp.Field
+		IDOperatingUnit       resp.Field
+		IDOrganization        resp.Field
+		Lat                   resp.Field
+		Location              resp.Field
+		LocName               resp.Field
+		LocReason             resp.Field
+		Lon                   resp.Field
+		MasterUnit            resp.Field
+		MilGrid               resp.Field
+		MilGridSys            resp.Field
+		MsnPrimary            resp.Field
+		MsnPrimarySpecialty   resp.Field
+		OperatingUnitRemarks  resp.Field
+		OperStatus            resp.Field
+		Organization          resp.Field
+		Origin                resp.Field
+		PolSubdiv             resp.Field
+		RecStatus             resp.Field
+		ReferenceDoc          resp.Field
+		ResProd               resp.Field
+		ReviewDate            resp.Field
+		StylizedUnit          resp.Field
+		SymCode               resp.Field
+		UnitIdentifier        resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		Utm                   resp.Field
+		Wac                   resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorGetResponseEntityOperatingUnit) RawJSON() string { return r.JSON.raw }
+func (r *SensorGetResponseEntityOperatingUnit) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Remarks contain amplifying information for a specific service. The information
+// may contain context and interpretations for consumer use.
+type SensorGetResponseEntityOperatingUnitOperatingUnitRemark struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// The ID of the operating unit to which this remark applies.
+	IDOperatingUnit string `json:"idOperatingUnit,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// The text of the remark.
+	Text string `json:"text,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Unique identifier of the unit remark record from the originating system.
+	AltRmkID string `json:"altRmkId"`
+	// The remark type identifier. For example, the Mobility Air Forces (MAF) remark
+	// code, defined in the Airfield Suitability and Restriction Report (ASRR).
+	Code string `json:"code"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The name of the remark.
+	Name string `json:"name"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The remark type (e.g. Caution, Information, Misc, Restriction, etc.).
+	Type string `json:"type"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDOperatingUnit       resp.Field
+		Source                resp.Field
+		Text                  resp.Field
+		ID                    resp.Field
+		AltRmkID              resp.Field
+		Code                  resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Name                  resp.Field
+		Origin                resp.Field
+		Type                  resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorGetResponseEntityOperatingUnitOperatingUnitRemark) RawJSON() string { return r.JSON.raw }
+func (r *SensorGetResponseEntityOperatingUnitOperatingUnitRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Details on a particular Radio Frequency (RF) band, also known as a carrier,
+// which may be in use by any type of Entity for communications or operations.
+type SensorGetResponseEntityRfBand struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Unique identifier of the parent Entity which uses this band.
+	IDEntity string `json:"idEntity,required"`
+	// RF Band name.
+	Name string `json:"name,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Name of the band of this RF range (e.g.
+	// X,K,Ku,Ka,L,S,C,UHF,VHF,EHF,SHF,UNK,VLF,HF,E,Q,V,W). See RFBandType for more
+	// details and descriptions of each band name.
+	Band string `json:"band"`
+	// RF Band frequency range bandwidth in Mhz.
+	Bandwidth float64 `json:"bandwidth"`
+	// Angle between the half-power (-3 dB) points of the main lobe of the antenna, in
+	// degrees.
+	Beamwidth float64 `json:"beamwidth"`
+	// Center frequency of RF frequency range, if applicable, in Mhz.
+	CenterFreq float64 `json:"centerFreq"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// RF Range edge gain, in dBi.
+	EdgeGain float64 `json:"edgeGain"`
+	// EIRP is defined as the RMS power input in decibel watts required to a lossless
+	// half-wave dipole antenna to give the same maximum power density far from the
+	// antenna as the actual transmitter. It is equal to the power input to the
+	// transmitter's antenna multiplied by the antenna gain relative to a half-wave
+	// dipole. Effective radiated power and effective isotropic radiated power both
+	// measure the amount of power a radio transmitter and antenna (or other source of
+	// electromagnetic waves) radiates in a specific direction: in the direction of
+	// maximum signal strength (the "main lobe") of its radiation pattern.
+	Eirp float64 `json:"eirp"`
+	// Effective Radiated Power (ERP) is the total power in decibel watts radiated by
+	// an actual antenna relative to a half-wave dipole rather than a theoretical
+	// isotropic antenna. A half-wave dipole has a gain of 2.15 dB compared to an
+	// isotropic antenna. EIRP(dB) = ERP (dB)+2.15 dB or EIRP (W) = 1.64\*ERP(W).
+	// Effective radiated power and effective isotropic radiated power both measure the
+	// amount of power a radio transmitter and antenna (or other source of
+	// electromagnetic waves) radiates in a specific direction: in the direction of
+	// maximum signal strength (the "main lobe") of its radiation pattern.
+	Erp float64 `json:"erp"`
+	// End/maximum of transmit RF frequency range, if applicable, in Mhz.
+	FreqMax float64 `json:"freqMax"`
+	// Start/minimum of transmit RF frequency range, if applicable, in Mhz.
+	FreqMin float64 `json:"freqMin"`
+	// RF Band mode (e.g. TX, RX).
+	//
+	// Any of "TX", "RX".
+	Mode string `json:"mode"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// RF Range maximum gain, in dBi.
+	PeakGain float64 `json:"peakGain"`
+	// Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
+	// Earth's surface, V - (Vertically Polarized) Parallel to Earth's surface, L -
+	// (Left Hand Circularly Polarized) Rotating left relative to the Earth's surface,
+	// R - (Right Hand Circularly Polarized) Rotating right relative to the Earth's
+	// surface.
+	//
+	// Any of "H", "V", "R", "L".
+	Polarization string `json:"polarization"`
+	// Purpose or use of the RF Band -- COMM = communications, TTC =
+	// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+	//
+	// Any of "COMM", "TTC", "OPS", "OTHER".
+	Purpose string `json:"purpose"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDEntity              resp.Field
+		Name                  resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		Band                  resp.Field
+		Bandwidth             resp.Field
+		Beamwidth             resp.Field
+		CenterFreq            resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		EdgeGain              resp.Field
+		Eirp                  resp.Field
+		Erp                   resp.Field
+		FreqMax               resp.Field
+		FreqMin               resp.Field
+		Mode                  resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		PeakGain              resp.Field
+		Polarization          resp.Field
+		Purpose               resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorGetResponseEntityRfBand) RawJSON() string { return r.JSON.raw }
+func (r *SensorGetResponseEntityRfBand) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Status for a particular Entity. An entity may have multiple status records
+// collected by various sources.
+type SensorGetResponseEntityStatusCollection struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Unique identifier of the parent entity.
+	IDEntity string `json:"idEntity,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The declassification date of this data, in ISO 8601 UTC format.
+	DeclassificationDate time.Time `json:"declassificationDate" format:"date-time"`
+	// Declassification string of this data.
+	DeclassificationString string `json:"declassificationString"`
+	// The sources or SCG references from which the classification of this data is
+	// derived.
+	DerivedFrom string `json:"derivedFrom"`
+	// Comments describing the status creation and or updates to an entity.
+	Notes string `json:"notes"`
+	// Operation capability of the entity, if applicable (e.g. FMC, NMC, PMC, UNK).
+	//
+	// Any of "FMC", "NMC", "PMC", "UNK".
+	OpsCap string `json:"opsCap"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Overall state of the entity, if applicable (e.g. UNKNOWN, DEAD, ACTIVE, RF
+	// ACTIVE, STANDBY).
+	//
+	// Any of "UNKNOWN", "DEAD", "ACTIVE", "RF ACTIVE", "STANDBY".
+	State               string                                                       `json:"state"`
+	SubStatusCollection []SensorGetResponseEntityStatusCollectionSubStatusCollection `json:"subStatusCollection"`
+	// System capability of the entity, if applicable (e.g. FMC, NMC, PMC, UNK).
+	//
+	// Any of "FMC", "NMC", "PMC", "UNK".
+	SysCap string `json:"sysCap"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking  resp.Field
+		DataMode               resp.Field
+		IDEntity               resp.Field
+		Source                 resp.Field
+		ID                     resp.Field
+		CreatedAt              resp.Field
+		CreatedBy              resp.Field
+		DeclassificationDate   resp.Field
+		DeclassificationString resp.Field
+		DerivedFrom            resp.Field
+		Notes                  resp.Field
+		OpsCap                 resp.Field
+		Origin                 resp.Field
+		OrigNetwork            resp.Field
+		State                  resp.Field
+		SubStatusCollection    resp.Field
+		SysCap                 resp.Field
+		UpdatedAt              resp.Field
+		UpdatedBy              resp.Field
+		ExtraFields            map[string]resp.Field
+		raw                    string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorGetResponseEntityStatusCollection) RawJSON() string { return r.JSON.raw }
+func (r *SensorGetResponseEntityStatusCollection) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Additional sub-system or capability status for the parent entity.
+type SensorGetResponseEntityStatusCollectionSubStatusCollection struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Descriptions and/or comments associated with the sub-status.
+	Notes string `json:"notes,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Status of the sub-system/capability, e.g. FMC, NMC, PMC, UNK.
+	//
+	// Any of "FMC", "NMC", "PMC", "UNK".
+	Status string `json:"status,required"`
+	// Id of the parent status.
+	StatusID string `json:"statusId,required"`
+	// Parent entity's sub-system or capability status: mwCap, mdCap, ssCap, etc.
+	//
+	// Any of "mwCap", "ssCap", "mdCap".
+	Type string `json:"type,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Time the row was updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		Notes                 resp.Field
+		Source                resp.Field
+		Status                resp.Field
+		StatusID              resp.Field
+		Type                  resp.Field
+		ID                    resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorGetResponseEntityStatusCollectionSubStatusCollection) RawJSON() string {
+	return r.JSON.raw
+}
+func (r *SensorGetResponseEntityStatusCollectionSubStatusCollection) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Model representation of characteristics and capabilities of a sensor.
+type SensorGetResponseSensorcharacteristic struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Unique identifier of the parent sensor.
+	IDSensor string `json:"idSensor,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Array of measurement range(s) where radar samples must fall to be acceptable. If
+	// this field is populated, the associated beam(s) must be provided in the
+	// beamOrder field.
+	AcceptSampleRanges []float64 `json:"acceptSampleRanges"`
+	// Optical sensor camera aperture.
+	Aperture float64 `json:"aperture"`
+	// For ASR (Air Surveillance Radar) sensors, the scan (360 deg sweep) rate of the
+	// radar, in scans/minute.
+	AsrScanRate float64 `json:"asrScanRate"`
+	// Array of azimuth angles of a radar beam, in degrees. If this field is populated,
+	// the associated beam(s) must be provided in the beamOrder field.
+	AzAngs []float64 `json:"azAngs"`
+	// Azimuth rate acquisition limit (radians/minute).
+	AzimuthRate float64 `json:"azimuthRate"`
+	// Sensor band.
+	Band string `json:"band"`
+	// Array designating the beam order of provided values (e.g. vb1 for vertical beam
+	// 1, ob1 for oblique beam 1, etc.). Required if any of the following array fields
+	// are populated: azAngs, elAngs, radarPulseWidths, pulseRepPeriods, delayGates,
+	// rangeGates, rangeSpacings, vertGateSpacings, vertGateWidths, specAvgSpectraNums,
+	// tempMedFiltCodes, runMeanCodes, totRecNums, reqRecords, acceptSampleRanges.
+	BeamOrder []string `json:"beamOrder"`
+	// Number of radar beams used by the sensor.
+	BeamQty int64 `json:"beamQty"`
+	// The angle of the center of a phased array sensor.
+	Boresight float64 `json:"boresight"`
+	// The number of degrees off of the boresight for the sensor.
+	BoresightOffAngle float64 `json:"boresightOffAngle"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Threshold shear value beyond which one of the radial velocity values will be
+	// rejected, measured in units of inverse second.
+	CritShear float64 `json:"critShear"`
+	// Array of time delay(s) for pulses from a radar beam to get to the first range
+	// gate, in nanoseconds. If this field is populated, the associated beam(s) must be
+	// provided in the beamOrder field.
+	DelayGates []float64 `json:"delayGates"`
+	// Description of the equipment and data source.
+	Description string `json:"description"`
+	// Array of elevation angles of a radar beam, in degrees. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	ElAngs []float64 `json:"elAngs"`
+	// Elevation rate acquisition limit (radians/minute).
+	ElevationRateGeolm float64 `json:"elevationRateGeolm"`
+	// Type of equipment used to take measurements.
+	EquipmentType string `json:"equipmentType"`
+	// The beam width of a Sensor's Fan (range). The values for this range from (0.0 to
+	// PI).
+	FanBeamWidth float64 `json:"fanBeamWidth"`
+	// Number of Fast Fourier Transform (FFT) points used to convert time varying
+	// signals into the frequency domain.
+	Fft int64 `json:"fft"`
+	// Maximum number of times the first guess was propagated in each gate before
+	// failing the first guess check.
+	FgpCrit int64 `json:"fgpCrit"`
+	// For radar based sensors, the focal point elevation of the radar at the site, in
+	// meters.
+	FocalPoint float64 `json:"focalPoint"`
+	// Horizontal field of view.
+	HFov float64 `json:"hFOV"`
+	// Horizontal pixel resolution.
+	HResPixels int64 `json:"hResPixels"`
+	// For radar based sensors, K-factor is a relative indicator of refractivity that
+	// infers the amount of radar beam bending due to atmosphere. (1<K<2).
+	K float64 `json:"k"`
+	// For Orbiting Sensors, First Card Azimuth limit #1 (left, degrees).
+	LeftClockAngle float64 `json:"leftClockAngle"`
+	// Leftmost GEO belt longitude limit for this sensor (if applicable).
+	LeftGeoBeltLimit float64 `json:"leftGeoBeltLimit"`
+	// Site where measurement is taken.
+	Location string `json:"location"`
+	// Angle between magnetic north and true north at the sensor site, in degrees.
+	MagDec float64 `json:"magDec"`
+	// Absolute magnitude acquisition limit for optical sensors.
+	MagnitudeLimit float64 `json:"magnitudeLimit"`
+	// Max deviation angle of the sensor in degrees.
+	MaxDeviationAngle float64 `json:"maxDeviationAngle"`
+	// Maximum observable sensor range, in kilometers.
+	MaxObservableRange float64 `json:"maxObservableRange"`
+	// Maximum observable range limit in kilometers -- sensor cannot acquire beyond
+	// this range.
+	MaxRangeLimit float64 `json:"maxRangeLimit"`
+	// Minimum range measurement capability of the sensor, in kilometers.
+	MinRangeLimit float64 `json:"minRangeLimit"`
+	// Signal to Noise Ratio, in decibels. The values for this range from 0.0 - + 99.99
+	// dB.
+	MinSignalNoiseRatio float64 `json:"minSignalNoiseRatio"`
+	// Negative Range-rate/relative velocity limit (kilometers/second).
+	NegativeRangeRateLimit float64 `json:"negativeRangeRateLimit"`
+	// For radar based sensors, number of integrated pulses in a transmit cycle.
+	NumIntegratedPulses int64 `json:"numIntegratedPulses"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Positive Range-rate/relative velocity limit (kilometers/second).
+	PositiveRangeRateLimit float64 `json:"positiveRangeRateLimit"`
+	// For radar based sensors, pulse repetition frequency (PRF), in hertz. Number of
+	// new pulses transmitted per second.
+	Prf float64 `json:"prf"`
+	// For radar based sensors, probability of the indication of the presence of a
+	// radar target due to noise or interference.
+	ProbFalseAlarm float64 `json:"probFalseAlarm"`
+	// Array of interval(s) between the start of one radar pulse and the start of
+	// another for a radar beam, in microseconds. If this field is populated, the
+	// associated beam(s) must be provided in the beamOrder field.
+	PulseRepPeriods []float64 `json:"pulseRepPeriods"`
+	// Radar frequency of the sensor (if a radar sensor).
+	RadarFrequency float64 `json:"radarFrequency"`
+	// Message data format transmitted by the sensor digitizer.
+	RadarMessageFormat string `json:"radarMessageFormat"`
+	// For radar based sensors, radar maximum unambiguous range, in kilometers.
+	RadarMur float64 `json:"radarMUR"`
+	// Array of transmit time(s) for a radar beam pulse, in microseconds. If this field
+	// is populated, the associated beam(s) must be provided in the beamOrder field.
+	RadarPulseWidths []float64 `json:"radarPulseWidths"`
+	// Radio frequency (if sensor is RF).
+	RadioFrequency float64 `json:"radioFrequency"`
+	// Array of the number(s) of discrete altitudes where return signals are sampled by
+	// a radar beam. If this field is populated, the associated beam(s) must be
+	// provided in the beamOrder field.
+	RangeGates []int64 `json:"rangeGates"`
+	// Array of range gate spacing(s) for a radar beam, in nanoseconds. If this field
+	// is populated, the associated beam(s) must be provided in the beamOrder field.
+	RangeSpacings []float64 `json:"rangeSpacings"`
+	// Array of the total number(s) of records required to meet consensus for a radar
+	// beam. If this field is populated, the associated beam(s) must be provided in the
+	// beamOrder field.
+	ReqRecords []int64 `json:"reqRecords"`
+	// For Orbiting Sensors, First Card Azimuth limit #3 (right, degrees).
+	RightClockAngle float64 `json:"rightClockAngle"`
+	// Rightmost GEO belt longitude limit for this sensor (if applicable).
+	RightGeoBeltLimit float64 `json:"rightGeoBeltLimit"`
+	// Array of running mean code(s) used by radar data processing. The running mean
+	// method involves taking a series of averages of different selections of the full
+	// data set to smooth out short-term fluctuations in the data. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	RunMeanCodes []int64 `json:"runMeanCodes"`
+	// Site code of the sensor.
+	SiteCode string `json:"siteCode"`
+	// Array of the number(s) of Doppler spectra used to process measurements from
+	// radar. Spectral averaging involves combining multiple Doppler spectra acquired
+	// to obtain a more accurate and representative spectrum. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	SpecAvgSpectraNums []int64 `json:"specAvgSpectraNums"`
+	// For radar based sensors, expression of the radar system noise, aggregated as an
+	// equivalent thermal noise value, in degrees Kelvin.
+	SystemNoiseTemperature float64 `json:"systemNoiseTemperature"`
+	// Maximum taskable range of the sensor, in kilometers.
+	TaskableRange float64 `json:"taskableRange"`
+	// Array of temporal median filter code(s) of a radar beam. Temporal median
+	// filtering is a noise-reducing algorithm which involves replacing each data point
+	// with the median value of a window of neighboring points over time. If this field
+	// is populated, the associated beam(s) must be provided in the beamOrder field.
+	TempMedFiltCodes []int64 `json:"tempMedFiltCodes"`
+	// Test number for the observed measurement.
+	TestNumber string `json:"testNumber"`
+	// Array of the total number(s) of records for a radar beam. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	TotRecNums []int64 `json:"totRecNums"`
+	// For tower sensors, the physical height of the sensor tower, in meters.
+	TowerHeight float64 `json:"towerHeight"`
+	// Beginning track angle limit, in radians. Track angle is the angle between the
+	// camera axis and the gimbal plane. Values range from 0 - PI/2.
+	TrackAngle float64 `json:"trackAngle"`
+	// Radar transmit power in Watts.
+	TransmitPower float64 `json:"transmitPower"`
+	// True North correction for the sensor, in ACP (Azimunth Change Pulse) count.
+	TrueNorthCorrector int64 `json:"trueNorthCorrector"`
+	// Antenna true tilt, in degrees.
+	TrueTilt float64 `json:"trueTilt"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Flag indicating if a vertical radar beam was used in the wind calculation.
+	VertBeamFlag bool `json:"vertBeamFlag"`
+	// Array of vertical distance(s) between points where radar measurements are taken,
+	// in meters. If this field is populated, the associated beam(s) must be provided
+	// in the beamOrder field.
+	VertGateSpacings []float64 `json:"vertGateSpacings"`
+	// Array of width(s) of each location where radar measurements are taken, in
+	// meters. If this field is populated, the associated beam(s) must be provided in
+	// the beamOrder field.
+	VertGateWidths []float64 `json:"vertGateWidths"`
+	// Vertical field of view.
+	VFov float64 `json:"vFOV"`
+	// Vertical pixel resolution.
+	VResPixels int64 `json:"vResPixels"`
+	// Peformance zone-1 maximum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z1MaxRange float64 `json:"z1MaxRange"`
+	// Peformance zone-1 minimum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z1MinRange float64 `json:"z1MinRange"`
+	// Peformance zone-2 maximum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z2MaxRange float64 `json:"z2MaxRange"`
+	// Peformance zone-2 minimum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z2MinRange float64 `json:"z2MinRange"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking  resp.Field
+		DataMode               resp.Field
+		IDSensor               resp.Field
+		Source                 resp.Field
+		ID                     resp.Field
+		AcceptSampleRanges     resp.Field
+		Aperture               resp.Field
+		AsrScanRate            resp.Field
+		AzAngs                 resp.Field
+		AzimuthRate            resp.Field
+		Band                   resp.Field
+		BeamOrder              resp.Field
+		BeamQty                resp.Field
+		Boresight              resp.Field
+		BoresightOffAngle      resp.Field
+		CreatedAt              resp.Field
+		CreatedBy              resp.Field
+		CritShear              resp.Field
+		DelayGates             resp.Field
+		Description            resp.Field
+		ElAngs                 resp.Field
+		ElevationRateGeolm     resp.Field
+		EquipmentType          resp.Field
+		FanBeamWidth           resp.Field
+		Fft                    resp.Field
+		FgpCrit                resp.Field
+		FocalPoint             resp.Field
+		HFov                   resp.Field
+		HResPixels             resp.Field
+		K                      resp.Field
+		LeftClockAngle         resp.Field
+		LeftGeoBeltLimit       resp.Field
+		Location               resp.Field
+		MagDec                 resp.Field
+		MagnitudeLimit         resp.Field
+		MaxDeviationAngle      resp.Field
+		MaxObservableRange     resp.Field
+		MaxRangeLimit          resp.Field
+		MinRangeLimit          resp.Field
+		MinSignalNoiseRatio    resp.Field
+		NegativeRangeRateLimit resp.Field
+		NumIntegratedPulses    resp.Field
+		OrigNetwork            resp.Field
+		PositiveRangeRateLimit resp.Field
+		Prf                    resp.Field
+		ProbFalseAlarm         resp.Field
+		PulseRepPeriods        resp.Field
+		RadarFrequency         resp.Field
+		RadarMessageFormat     resp.Field
+		RadarMur               resp.Field
+		RadarPulseWidths       resp.Field
+		RadioFrequency         resp.Field
+		RangeGates             resp.Field
+		RangeSpacings          resp.Field
+		ReqRecords             resp.Field
+		RightClockAngle        resp.Field
+		RightGeoBeltLimit      resp.Field
+		RunMeanCodes           resp.Field
+		SiteCode               resp.Field
+		SpecAvgSpectraNums     resp.Field
+		SystemNoiseTemperature resp.Field
+		TaskableRange          resp.Field
+		TempMedFiltCodes       resp.Field
+		TestNumber             resp.Field
+		TotRecNums             resp.Field
+		TowerHeight            resp.Field
+		TrackAngle             resp.Field
+		TransmitPower          resp.Field
+		TrueNorthCorrector     resp.Field
+		TrueTilt               resp.Field
+		UpdatedAt              resp.Field
+		UpdatedBy              resp.Field
+		VertBeamFlag           resp.Field
+		VertGateSpacings       resp.Field
+		VertGateWidths         resp.Field
+		VFov                   resp.Field
+		VResPixels             resp.Field
+		Z1MaxRange             resp.Field
+		Z1MinRange             resp.Field
+		Z2MaxRange             resp.Field
+		Z2MinRange             resp.Field
+		ExtraFields            map[string]resp.Field
+		raw                    string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorGetResponseSensorcharacteristic) RawJSON() string { return r.JSON.raw }
+func (r *SensorGetResponseSensorcharacteristic) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Sensorlimits define 0 to many limits of a particular sensor in terms of
+// observation coverage of on-orbit objects.
+type SensorGetResponseSensorlimitsCollection struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Unique identifier of the target sensor object.
+	IDSensor string `json:"idSensor"`
+	// Unique identifier of the record, auto-generated by the system.
+	IDSensorLimits string `json:"idSensorLimits"`
+	// Leftmost or minimum lower azimuth within this limit. Interpreted according to
+	// site types as lower left azimuth limit elevation angle of axis of conical
+	// observation pattern. If the limit rectangle is parallel to the horizon, the
+	// upper and lower left azimuth limits would be equal. (degrees).
+	LowerLeftAzimuthLimit float64 `json:"lowerLeftAzimuthLimit"`
+	// Minimum or lower elevation within this limit. Interpreted according to site
+	// types as minimum elevation angle, constant elevation or fan beam centerline.
+	// (Degrees).
+	LowerLeftElevationLimit float64 `json:"lowerLeftElevationLimit"`
+	// Rightmost or maximum lower azimuth within this limit. Interpreted according to
+	// site types as 2nd lower azimuth limit elevation angle of axis of conical
+	// observation pattern. If the limit rectangle is parallel to the horizon, the
+	// upper and lower right azimuth limits would be equal. (degrees).
+	LowerRightAzimuthLimit float64 `json:"lowerRightAzimuthLimit"`
+	// Minimum or lower right elevation within this limit. Interpreted according to
+	// site types as minimum right elevation angle, constant elevation or fan beam
+	// centerline. If the limit rectangle is parallel to the horizon, the left and
+	// right lower elevation limits would be equal. (Degrees).
+	LowerRightElevationLimit float64 `json:"lowerRightElevationLimit"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Leftmost or minimum upper azimuth within this sensor limit. Interpreted
+	// according to site types as beginning upper azimuth limit, left-hand upper
+	// boundary limit. If the limit rectangle is parallel to the horizon, the upper and
+	// lower left azimuth limits would be equal. (in degrees).
+	UpperLeftAzimuthLimit float64 `json:"upperLeftAzimuthLimit"`
+	// Maximum or upper elevation within this limit. Interpreted according to site
+	// types as maximum elevation angle, half the apex of conical observation pattern
+	// or star. (Degrees).
+	UpperLeftElevationLimit float64 `json:"upperLeftElevationLimit"`
+	// Rightmost or maximum upper azimuth within this limit. Interpreted according to
+	// site types as 2nd azimuth limit elevation angle of axis of conical observation
+	// pattern. If the limit rectangle is parallel to the horizon, the upper and lower
+	// right azimuth limits would be equal. (degrees).
+	UpperRightAzimuthLimit float64 `json:"upperRightAzimuthLimit"`
+	// Maximum or upper right elevation within this limit. Interpreted according to
+	// site types as maximum rightmost elevation angle, half the apex of conical
+	// observation pattern or star. If the limit rectangle is parallel to the horizon,
+	// the left and right upper elevation limits would be equal. (Degrees).
+	UpperRightElevationLimit float64 `json:"upperRightElevationLimit"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking    resp.Field
+		DataMode                 resp.Field
+		Source                   resp.Field
+		CreatedAt                resp.Field
+		CreatedBy                resp.Field
+		IDSensor                 resp.Field
+		IDSensorLimits           resp.Field
+		LowerLeftAzimuthLimit    resp.Field
+		LowerLeftElevationLimit  resp.Field
+		LowerRightAzimuthLimit   resp.Field
+		LowerRightElevationLimit resp.Field
+		OrigNetwork              resp.Field
+		UpdatedAt                resp.Field
+		UpdatedBy                resp.Field
+		UpperLeftAzimuthLimit    resp.Field
+		UpperLeftElevationLimit  resp.Field
+		UpperRightAzimuthLimit   resp.Field
+		UpperRightElevationLimit resp.Field
+		ExtraFields              map[string]resp.Field
+		raw                      string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorGetResponseSensorlimitsCollection) RawJSON() string { return r.JSON.raw }
+func (r *SensorGetResponseSensorlimitsCollection) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SensorGetResponseSensorObservationType struct {
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// The observation measurement type produced by a sensor.
+	Type string `json:"type"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		DataMode    resp.Field
+		Source      resp.Field
+		ID          resp.Field
+		CreatedAt   resp.Field
+		CreatedBy   resp.Field
+		OrigNetwork resp.Field
+		Type        resp.Field
+		UpdatedAt   resp.Field
+		UpdatedBy   resp.Field
+		ExtraFields map[string]resp.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorGetResponseSensorObservationType) RawJSON() string { return r.JSON.raw }
+func (r *SensorGetResponseSensorObservationType) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// SensorStats contain statistics on sensors related to observation production such
+// as last reported observation time.
+type SensorGetResponseSensorStat struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Unique ID of the parent sensor.
+	IDSensor string `json:"idSensor,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Time of last reported observation in ISO 8601 UTC with microsecond precision.
+	LastObTime time.Time `json:"lastObTime" format:"date-time"`
+	// Read-only time the row was updated in the database, set automatically by the
+	// system on update.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who last updated the row in the database, set by the system
+	// automatically and ignored on create/edit operations.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDSensor              resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		LastObTime            resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorGetResponseSensorStat) RawJSON() string { return r.JSON.raw }
+func (r *SensorGetResponseSensorStat) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SensorGetResponseSensorType struct {
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID int64 `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// The specific sensor type and/or surveillance capability of this sensor.
+	Type string `json:"type"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		DataMode    resp.Field
+		Source      resp.Field
+		ID          resp.Field
+		CreatedAt   resp.Field
+		CreatedBy   resp.Field
+		OrigNetwork resp.Field
+		Type        resp.Field
+		UpdatedAt   resp.Field
+		UpdatedBy   resp.Field
+		ExtraFields map[string]resp.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorGetResponseSensorType) RawJSON() string { return r.JSON.raw }
+func (r *SensorGetResponseSensorType) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Model representation of observation data for electro-optical based sensor
+// phenomenologies.
+type SensorTupleResponse struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode SensorTupleResponseDataMode `json:"dataMode,required"`
+	// Unique name of this sensor.
+	SensorName string `json:"sensorName,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Optional flag indicating if the sensor is active.
+	Active bool `json:"active"`
+	// Optional US Air Force identifier for the sensor/ASR site, typically for air
+	// surveillance radar (ASR) sensors.
+	AfID string `json:"afId"`
+	// The sensor type at the site. Optional field, intended primarily for ASRs.
+	AsrType string `json:"asrType"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Optional dissemination control required for accessing data (e.g observations)
+	// produced by this sensor. This is typically a proprietary data owner control for
+	// commercial sensors.
+	DataControl string `json:"dataControl"`
+	// An entity is a generic representation of any object within a space/SSA system
+	// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
+	// entity can have an operating unit, a location (if terrestrial), and statuses.
+	Entity SensorTupleResponseEntity `json:"entity"`
+	// Unique identifier of the parent entity. idEntity is required for Put.
+	IDEntity string `json:"idEntity"`
+	// Unique identifier of the record, auto-generated by the system.
+	IDSensor string `json:"idSensor"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Collection of Sensorcharacteristics which define characteristics and
+	// capabilities of a sensor.
+	Sensorcharacteristics []SensorTupleResponseSensorcharacteristic `json:"sensorcharacteristics"`
+	// Sensorlimits define 0 to many limits of a particular sensor in terms of
+	// observation coverage of on-orbit objects.
+	SensorlimitsCollection []SensorTupleResponseSensorlimitsCollection `json:"sensorlimitsCollection"`
+	// Number assigned to this sensor. Since there is no authoritative numbering
+	// scheme, these numbers sometimes collide across sensors (especially commercial
+	// sensors). It is therefore not a unique identifier.
+	SensorNumber          int64                                    `json:"sensorNumber"`
+	SensorObservationType SensorTupleResponseSensorObservationType `json:"sensorObservationType"`
+	// Collection of SensorStats which contain statistics of a sensor.
+	SensorStats []SensorTupleResponseSensorStat `json:"sensorStats"`
+	SensorType  SensorTupleResponseSensorType   `json:"sensorType"`
+	// Optional short name for the sensor.
+	ShortName string `json:"shortName"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking  resp.Field
+		DataMode               resp.Field
+		SensorName             resp.Field
+		Source                 resp.Field
+		Active                 resp.Field
+		AfID                   resp.Field
+		AsrType                resp.Field
+		CreatedAt              resp.Field
+		CreatedBy              resp.Field
+		DataControl            resp.Field
+		Entity                 resp.Field
+		IDEntity               resp.Field
+		IDSensor               resp.Field
+		Origin                 resp.Field
+		OrigNetwork            resp.Field
+		Sensorcharacteristics  resp.Field
+		SensorlimitsCollection resp.Field
+		SensorNumber           resp.Field
+		SensorObservationType  resp.Field
+		SensorStats            resp.Field
+		SensorType             resp.Field
+		ShortName              resp.Field
+		UpdatedAt              resp.Field
+		UpdatedBy              resp.Field
+		ExtraFields            map[string]resp.Field
+		raw                    string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *SensorTupleResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type SensorTupleResponseDataMode string
+
+const (
+	SensorTupleResponseDataModeReal      SensorTupleResponseDataMode = "REAL"
+	SensorTupleResponseDataModeTest      SensorTupleResponseDataMode = "TEST"
+	SensorTupleResponseDataModeSimulated SensorTupleResponseDataMode = "SIMULATED"
+	SensorTupleResponseDataModeExercise  SensorTupleResponseDataMode = "EXERCISE"
+)
+
+// An entity is a generic representation of any object within a space/SSA system
+// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
+// entity can have an operating unit, a location (if terrestrial), and statuses.
+type SensorTupleResponseEntity struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Unique entity name.
+	Name string `json:"name,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
+	// NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+	//
+	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "NAVIGATION", "ONORBIT", "RFEMITTER",
+	// "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
+	Type string `json:"type,required"`
+	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
+	// country code, however it can also represent various consortiums that do not
+	// appear in the ISO document. The code must correspond to an existing country in
+	// the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
+	// ISO Alpha-3 code, or alternate code values that exist for the specified country
+	// code.
+	CountryCode string `json:"countryCode"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Unique identifier of the record.
+	IDEntity string `json:"idEntity"`
+	// Unique identifier of the entity location, if terrestrial/fixed.
+	IDLocation string `json:"idLocation"`
+	// Onorbit identifier if this entity is part of an on-orbit object. For the public
+	// catalog, the idOnOrbit is typically the satellite number as a string, but may be
+	// a UUID for analyst or other unknown or untracked satellites.
+	IDOnOrbit string `json:"idOnOrbit"`
+	// Unique identifier of the associated operating unit object.
+	IDOperatingUnit string `json:"idOperatingUnit"`
+	// Model representation of a location, which is a specific fixed point on the earth
+	// and is used to denote the locations of fixed sensors, operating units, etc.
+	Location LocationFull `json:"location"`
+	// Model object representing on-orbit objects or satellites in the system.
+	OnOrbit SensorTupleResponseEntityOnOrbit `json:"onOrbit"`
+	// Model representation of a unit or organization which operates or controls a
+	// space-related Entity such as an on-orbit payload, a sensor, etc. A contact may
+	// belong to an organization.
+	OperatingUnit SensorTupleResponseEntityOperatingUnit `json:"operatingUnit"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Type of organization which owns this entity (e.g. Commercial, Government,
+	// Academic, Consortium, etc).
+	//
+	// Any of "Commercial", "Government", "Academic", "Consortium", "Other".
+	OwnerType string `json:"ownerType"`
+	// Read-only collection of RF bands utilized by this entity for communication
+	// and/or operation.
+	RfBands []SensorTupleResponseEntityRfBand `json:"rfBands"`
+	// Read-only collection of statuses which can be collected by multiple sources.
+	StatusCollection []SensorTupleResponseEntityStatusCollection `json:"statusCollection"`
+	// Boolean indicating if this entity is taskable.
+	Taskable bool `json:"taskable"`
+	// Terrestrial identifier of this entity, if applicable.
+	TerrestrialID string `json:"terrestrialId"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// List of URLs to additional details/documents for this entity.
+	URLs []string `json:"urls"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		Name                  resp.Field
+		Source                resp.Field
+		Type                  resp.Field
+		CountryCode           resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		IDEntity              resp.Field
+		IDLocation            resp.Field
+		IDOnOrbit             resp.Field
+		IDOperatingUnit       resp.Field
+		Location              resp.Field
+		OnOrbit               resp.Field
+		OperatingUnit         resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		OwnerType             resp.Field
+		RfBands               resp.Field
+		StatusCollection      resp.Field
+		Taskable              resp.Field
+		TerrestrialID         resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		URLs                  resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorTupleResponseEntity) RawJSON() string { return r.JSON.raw }
+func (r *SensorTupleResponseEntity) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Model object representing on-orbit objects or satellites in the system.
+type SensorTupleResponseEntityOnOrbit struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Satellite/Catalog number of the target on-orbit object.
+	SatNo int64 `json:"satNo,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Alternate name of the on-orbit object.
+	AltName string `json:"altName"`
+	// Read-only collection of antennas on this on-orbit object.
+	Antennas []SensorTupleResponseEntityOnOrbitAntenna `json:"antennas"`
+	// Read-only collection of batteries on this on-orbit object.
+	Batteries []SensorTupleResponseEntityOnOrbitBattery `json:"batteries"`
+	// Category of the on-orbit object. (Unknown, On-Orbit, Decayed, Cataloged Without
+	// State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
+	// Heliocentric, Interplanetary, Lagrangian, Docked).
+	//
+	// Any of "Unknown", "On-Orbit", "Decayed", "Cataloged Without State", "Launch
+	// Nominal", "Analyst Satellite", "Cislunar", "Lunar", "Hyperbolic",
+	// "Heliocentric", "Interplanetary", "Lagrangian", "Docked".
+	Category string `json:"category"`
+	// Common name of the on-orbit object.
+	CommonName string `json:"commonName"`
+	// Constellation to which this satellite belongs.
+	Constellation string `json:"constellation"`
+	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
+	// country code, however it can also represent various consortiums that do not
+	// appear in the ISO document. The code must correspond to an existing country in
+	// the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
+	// ISO Alpha-3 code, or alternate code values that exist for the specified country
+	// code.
+	CountryCode string `json:"countryCode"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Date of decay.
+	DecayDate time.Time `json:"decayDate" format:"date-time"`
+	// For the public catalog, the idOnOrbit is typically the satellite number as a
+	// string, but may be a UUID for analyst or other unknown or untracked satellites,
+	// auto-generated by the system.
+	IDOnOrbit string `json:"idOnOrbit"`
+	// International Designator, typically of the format YYYYLLLAAA, where YYYY is the
+	// launch year, LLL is the sequential launch number of that year, and AAA is an
+	// optional launch piece designator for the launch.
+	IntlDes string `json:"intlDes"`
+	// Date of launch.
+	LaunchDate time.Time `json:"launchDate" format:"date"`
+	// Id of the associated launchSite entity.
+	LaunchSiteID string `json:"launchSiteId"`
+	// Estimated lifetime of the on-orbit payload, if known.
+	LifetimeYears int64 `json:"lifetimeYears"`
+	// Mission number of the on-orbit object.
+	MissionNumber string `json:"missionNumber"`
+	// Type of on-orbit object: ROCKET BODY, DEBRIS, PAYLOAD, PLATFORM, MANNED,
+	// UNKNOWN.
+	//
+	// Any of "ROCKET BODY", "DEBRIS", "PAYLOAD", "PLATFORM", "MANNED", "UNKNOWN".
+	ObjectType string `json:"objectType"`
+	// Read-only collection of details for this on-orbit object.
+	OnorbitDetails []SensorTupleResponseEntityOnOrbitOnorbitDetail `json:"onorbitDetails"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Read-only collection of solar arrays on this on-orbit object.
+	SolarArrays []SensorTupleResponseEntityOnOrbitSolarArray `json:"solarArrays"`
+	// Read-only collection of thrusters (engines) on this on-orbit object.
+	Thrusters []SensorTupleResponseEntityOnOrbitThruster `json:"thrusters"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		SatNo                 resp.Field
+		Source                resp.Field
+		AltName               resp.Field
+		Antennas              resp.Field
+		Batteries             resp.Field
+		Category              resp.Field
+		CommonName            resp.Field
+		Constellation         resp.Field
+		CountryCode           resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		DecayDate             resp.Field
+		IDOnOrbit             resp.Field
+		IntlDes               resp.Field
+		LaunchDate            resp.Field
+		LaunchSiteID          resp.Field
+		LifetimeYears         resp.Field
+		MissionNumber         resp.Field
+		ObjectType            resp.Field
+		OnorbitDetails        resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		SolarArrays           resp.Field
+		Thrusters             resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorTupleResponseEntityOnOrbit) RawJSON() string { return r.JSON.raw }
+func (r *SensorTupleResponseEntityOnOrbit) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SensorTupleResponseEntityOnOrbitAntenna struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// ID of the antenna.
+	IDAntenna string `json:"idAntenna,required"`
+	// ID of the on-orbit object.
+	IDOnOrbit string `json:"idOnOrbit,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Model representation of information on on-orbit/spacecraft communication
+	// antennas. A spacecraft may have multiple antennas and each antenna can have
+	// multiple 'details' records compiled by different sources.
+	Antenna AntennaFull `json:"antenna"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDAntenna             resp.Field
+		IDOnOrbit             resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		Antenna               resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorTupleResponseEntityOnOrbitAntenna) RawJSON() string { return r.JSON.raw }
+func (r *SensorTupleResponseEntityOnOrbitAntenna) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SensorTupleResponseEntityOnOrbitBattery struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// ID of the battery.
+	IDBattery string `json:"idBattery,required"`
+	// ID of the on-orbit object.
+	IDOnOrbit string `json:"idOnOrbit,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Model representation of specific spacecraft battery types.
+	Battery BatteryFull `json:"battery"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// The number of batteries on the spacecraft of the type identified by idBattery.
+	Quantity int64 `json:"quantity"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDBattery             resp.Field
+		IDOnOrbit             resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		Battery               resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		Quantity              resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorTupleResponseEntityOnOrbitBattery) RawJSON() string { return r.JSON.raw }
+func (r *SensorTupleResponseEntityOnOrbitBattery) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Contains details of the OnOrbit object.
+type SensorTupleResponseEntityOnOrbitOnorbitDetail struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// UUID of the parent Onorbit record.
+	IDOnOrbit string `json:"idOnOrbit,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Mass of fuel and disposables at launch time in kilograms.
+	AdditionalMass float64 `json:"additionalMass"`
+	// The radius used for long-term debris environment projection analyses that is not
+	// as conservative as COLA Radius, in meters.
+	AdeptRadius float64 `json:"adeptRadius"`
+	// The total beginning of life delta V of the spacecraft, in meters per second.
+	BolDeltaV float64 `json:"bolDeltaV"`
+	// Spacecraft beginning of life fuel mass, in orbit, in kilograms.
+	BolFuelMass float64 `json:"bolFuelMass"`
+	// Average cross sectional area of the bus in meters squared.
+	BusCrossSection float64 `json:"busCrossSection"`
+	// Type of the bus on the spacecraft.
+	BusType string `json:"busType"`
+	// Maximum dimension of the box circumscribing the spacecraft (d = sqrt(a*a + b*b +
+	// c\*c) where a is the tip-to-tip dimension, b and c are perpendicular to that.)
+	// in meters.
+	ColaRadius float64 `json:"colaRadius"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Average cross sectional area in meters squared.
+	CrossSection float64 `json:"crossSection"`
+	// The estimated total current mass of the spacecraft, in kilograms.
+	CurrentMass float64 `json:"currentMass"`
+	// The 1-sigma uncertainty of the total spacecraft delta V, in meters per second.
+	DeltaVUnc float64 `json:"deltaVUnc"`
+	// Array of the estimated mass of each deployable object, in kilograms. Must
+	// contain the same number of elements as the value of numDeployable.
+	DepEstMasses []float64 `json:"depEstMasses"`
+	// Array of the 1-sigma uncertainty of the mass for each deployable object, in
+	// kilograms. Must contain the same number of elements as the value of
+	// numDeployable.
+	DepMassUncs []float64 `json:"depMassUncs"`
+	// Array of satellite deployable objects. Must contain the same number of elements
+	// as the value of numDeployable.
+	DepNames []string `json:"depNames"`
+	// GEO drift rate, if applicable in degrees per day.
+	DriftRate float64 `json:"driftRate"`
+	// Spacecraft dry mass (without fuel or disposables) in kilograms.
+	DryMass float64 `json:"dryMass"`
+	// Estimated maximum burn duration for the object, in seconds.
+	EstDeltaVDuration float64 `json:"estDeltaVDuration"`
+	// Estimated remaining fuel for the object in kilograms.
+	FuelRemaining float64 `json:"fuelRemaining"`
+	// GEO slot if applicable, in degrees. -180 (West of Prime Meridian) to 180 degrees
+	// (East of Prime Meridian). Prime Meridian is 0.
+	GeoSlot float64 `json:"geoSlot"`
+	// The name of the source who last provided an observation for this idOnOrbit.
+	LastObSource string `json:"lastObSource"`
+	// Time of last reported observation for this object in ISO 8601 UTC with
+	// microsecond precision.
+	LastObTime time.Time `json:"lastObTime" format:"date-time"`
+	// Nominal mass of spacecraft and fuel at launch time, in kilograms.
+	LaunchMass float64 `json:"launchMass"`
+	// Maximum (estimated) mass of spacecraft and fuel at launch time, in kilograms.
+	LaunchMassMax float64 `json:"launchMassMax"`
+	// Minimum (estimated) mass of spacecraft and fuel at launch time, in kilograms.
+	LaunchMassMin float64 `json:"launchMassMin"`
+	// Boolean indicating whether a spacecraft is maneuverable. Note that a spacecraft
+	// may have propulsion capability but may not be maneuverable due to lack of fuel,
+	// anomalous condition, or other operational constraints.
+	Maneuverable bool `json:"maneuverable"`
+	// Maximum delta V available for this on-orbit spacecraft, in meters per second.
+	MaxDeltaV float64 `json:"maxDeltaV"`
+	// Maximum dimension across the spacecraft (e.g., tip-to-tip across the solar panel
+	// arrays) in meters.
+	MaxRadius float64 `json:"maxRadius"`
+	// Array of the type of missions the spacecraft performs. Must contain the same
+	// number of elements as the value of numMission.
+	MissionTypes []string `json:"missionTypes"`
+	// The number of sub-satellites or deployable objects on the spacecraft.
+	NumDeployable int64 `json:"numDeployable"`
+	// The number of distinct missions the spacecraft performs.
+	NumMission int64 `json:"numMission"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Current/latest radar cross section in meters squared.
+	Rcs float64 `json:"rcs"`
+	// Maximum radar cross section in meters squared.
+	RcsMax float64 `json:"rcsMax"`
+	// Mean radar cross section in meters squared.
+	RcsMean float64 `json:"rcsMean"`
+	// Minimum radar cross section in meters squared.
+	RcsMin float64 `json:"rcsMin"`
+	// The reference source, sources, or URL from which the data in this record was
+	// obtained.
+	RefSource string `json:"refSource"`
+	// Spacecraft deployed area of solar array in meters squared.
+	SolarArrayArea float64 `json:"solarArrayArea"`
+	// The 1-sigma uncertainty of the total spacecraft mass, in kilograms.
+	TotalMassUnc float64 `json:"totalMassUnc"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Current/latest visual magnitude in M.
+	Vismag float64 `json:"vismag"`
+	// Maximum visual magnitude in M.
+	VismagMax float64 `json:"vismagMax"`
+	// Mean visual magnitude in M.
+	VismagMean float64 `json:"vismagMean"`
+	// Minimum visual magnitude in M.
+	VismagMin float64 `json:"vismagMin"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDOnOrbit             resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		AdditionalMass        resp.Field
+		AdeptRadius           resp.Field
+		BolDeltaV             resp.Field
+		BolFuelMass           resp.Field
+		BusCrossSection       resp.Field
+		BusType               resp.Field
+		ColaRadius            resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		CrossSection          resp.Field
+		CurrentMass           resp.Field
+		DeltaVUnc             resp.Field
+		DepEstMasses          resp.Field
+		DepMassUncs           resp.Field
+		DepNames              resp.Field
+		DriftRate             resp.Field
+		DryMass               resp.Field
+		EstDeltaVDuration     resp.Field
+		FuelRemaining         resp.Field
+		GeoSlot               resp.Field
+		LastObSource          resp.Field
+		LastObTime            resp.Field
+		LaunchMass            resp.Field
+		LaunchMassMax         resp.Field
+		LaunchMassMin         resp.Field
+		Maneuverable          resp.Field
+		MaxDeltaV             resp.Field
+		MaxRadius             resp.Field
+		MissionTypes          resp.Field
+		NumDeployable         resp.Field
+		NumMission            resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		Rcs                   resp.Field
+		RcsMax                resp.Field
+		RcsMean               resp.Field
+		RcsMin                resp.Field
+		RefSource             resp.Field
+		SolarArrayArea        resp.Field
+		TotalMassUnc          resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		Vismag                resp.Field
+		VismagMax             resp.Field
+		VismagMean            resp.Field
+		VismagMin             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorTupleResponseEntityOnOrbitOnorbitDetail) RawJSON() string { return r.JSON.raw }
+func (r *SensorTupleResponseEntityOnOrbitOnorbitDetail) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SensorTupleResponseEntityOnOrbitSolarArray struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// ID of the on-orbit object.
+	IDOnOrbit string `json:"idOnOrbit,required"`
+	// ID of the SolarArray.
+	IDSolarArray string `json:"idSolarArray,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// The number of solar arrays on the spacecraft of the type identified by
+	// idSolarArray.
+	Quantity int64 `json:"quantity"`
+	// Model representation of information on on-orbit/spacecraft solar arrays. A
+	// spacecraft may have multiple solar arrays and each solar array can have multiple
+	// 'details' records compiled by different sources.
+	SolarArray SensorTupleResponseEntityOnOrbitSolarArraySolarArray `json:"solarArray"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDOnOrbit             resp.Field
+		IDSolarArray          resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		Quantity              resp.Field
+		SolarArray            resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorTupleResponseEntityOnOrbitSolarArray) RawJSON() string { return r.JSON.raw }
+func (r *SensorTupleResponseEntityOnOrbitSolarArray) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Model representation of information on on-orbit/spacecraft solar arrays. A
+// spacecraft may have multiple solar arrays and each solar array can have multiple
+// 'details' records compiled by different sources.
+type SensorTupleResponseEntityOnOrbitSolarArraySolarArray struct {
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Solar Array name.
+	Name string `json:"name,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Read-only collection of additional SolarArrayDetails by various sources for this
+	// organization, ignored on create/update. These details must be created separately
+	// via the /udl/solararraydetails operations.
+	SolarArrayDetails []SolarArrayDetailsFull `json:"solarArrayDetails"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		DataMode          resp.Field
+		Name              resp.Field
+		Source            resp.Field
+		ID                resp.Field
+		CreatedAt         resp.Field
+		CreatedBy         resp.Field
+		Origin            resp.Field
+		OrigNetwork       resp.Field
+		SolarArrayDetails resp.Field
+		UpdatedAt         resp.Field
+		UpdatedBy         resp.Field
+		ExtraFields       map[string]resp.Field
+		raw               string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorTupleResponseEntityOnOrbitSolarArraySolarArray) RawJSON() string { return r.JSON.raw }
+func (r *SensorTupleResponseEntityOnOrbitSolarArraySolarArray) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SensorTupleResponseEntityOnOrbitThruster struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// ID of the Engine.
+	IDEngine string `json:"idEngine,required"`
+	// ID of the on-orbit object.
+	IDOnOrbit string `json:"idOnOrbit,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Known launch vehicle engines and their performance characteristics and limits. A
+	// launch vehicle has 1 to many engines per stage.
+	Engine Engine `json:"engine"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// The number of engines/thrusters on the spacecraft of the type identified by
+	// idEngine.
+	Quantity int64 `json:"quantity"`
+	// The type of thruster associated with this record (e.g. LAE, Hydrazine REA,
+	// etc.).
+	Type string `json:"type"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDEngine              resp.Field
+		IDOnOrbit             resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Engine                resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		Quantity              resp.Field
+		Type                  resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorTupleResponseEntityOnOrbitThruster) RawJSON() string { return r.JSON.raw }
+func (r *SensorTupleResponseEntityOnOrbitThruster) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Model representation of a unit or organization which operates or controls a
+// space-related Entity such as an on-orbit payload, a sensor, etc. A contact may
+// belong to an organization.
+type SensorTupleResponseEntityOperatingUnit struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Name of the operating unit.
+	Name string `json:"name,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Air Defense District (ADD) or Air Defense Area (ADA) in which the geographic
+	// coordinates reside.
+	AirDefArea string `json:"airDefArea"`
+	// The DoD Standard country code designator for the country or political entity to
+	// which the operating unit owes its allegiance. This field will be set to "OTHR"
+	// if the source value does not match a UDL country code value (ISO-3166-ALPHA-2).
+	Allegiance string `json:"allegiance"`
+	// Specifies an alternate allegiance code if the data provider code is not part of
+	// an official Country Code standard such as ISO-3166 or FIPS. This field will be
+	// set to the value provided by the source and should be used for all Queries
+	// specifying allegiance.
+	AltAllegiance string `json:"altAllegiance"`
+	// Specifies an alternate country code if the data provider code is not part of an
+	// official Country Code standard such as ISO-3166 or FIPS. This field will be set
+	// to the value provided by the source and should be used for all Queries
+	// specifying a Country Code.
+	AltCountryCode string `json:"altCountryCode"`
+	// Unique identifier of the operating unit record from the originating system.
+	AltOperatingUnitID string `json:"altOperatingUnitId"`
+	// Indicates the importance of the operating unit to the OES or MIR system. This
+	// data element is restricted to update by DIA (DB-4). Valid values are: 0 - Does
+	// not meet criteria above 1 - Primary importance to system 2 - Secondary
+	// importance to system 3 - Tertiary importance to system O - Other. Explain in
+	// Remarks.
+	ClassRating string `json:"classRating"`
+	// The physical manner of being or state of existence of the operating unit. A
+	// physical condition that must be considered in the determining of a course of
+	// action. The specific usage and enumerations contained in this field may be found
+	// in the documentation provided in the referenceDoc field. If referenceDoc not
+	// provided, users may consult the data provider.
+	Condition string `json:"condition"`
+	// Availability of the operating unit relative to its condition. Indicates the
+	// reason the operating unit is not fully operational. The specific usage and
+	// enumerations contained in this field may be found in the documentation provided
+	// in the referenceDoc field. If referenceDoc not provided, users may consult the
+	// data provider.
+	ConditionAvail string `json:"conditionAvail"`
+	// Indicates any of the magnitudes that serve to define the position of a point by
+	// reference to a fixed figure, system of lines, etc.
+	//
+	// Pos. 1-2. Latitude Degrees [00-90]
+	//
+	// Pos. 3-4. Latitude Minutes [00-59]
+	//
+	// Pos. 5-6. Latitude Seconds [00-59]
+	//
+	// Pos. 7-9. Latitude Thousandths Of Seconds [000-999]
+	//
+	// Pos. 10. Latitude Hemisphere [NS]
+	//
+	// Pos. 11-13. Longitude Degrees [00-180]
+	//
+	// Pos. 14-15. Longitude Minutes [00-59]
+	//
+	// Pos. 16-17. Longitude Seconds [00-59]
+	//
+	// Pos. 18-20. Longitude Thousandths Of Seconds [000-999]
+	//
+	// Pos. 21. Longitude Hemisphere [EW]
+	//
+	// Pos. 1-21. Unknown Latitude and Unknown Longitude [000000000U000000000U]
+	Coord string `json:"coord"`
+	// A mathematical model of the earth used to calculate coordinates on a map. US
+	// Forces use the World Geodetic System 1984 (WGS 84), but also use maps by allied
+	// countries with local datums. The datum must be specified to ensure accuracy of
+	// coordinates. The specific usage and enumerations contained in this field may be
+	// found in the documentation provided in the referenceDoc field. If referenceDoc
+	// not provided, users may consult the data provider.
+	CoordDatum string `json:"coordDatum"`
+	// Indicates the plus or minus error assessed against the method used to derive the
+	// coordinate.
+	CoordDerivAcc float64 `json:"coordDerivAcc"`
+	// The DoD Standard country code designator for the country or political entity to
+	// which the operating unit geographic coordinates reside . This field will be set
+	// to "OTHR" if the source value does not match a UDL country code value
+	// (ISO-3166-ALPHA-2).
+	CountryCode string `json:"countryCode"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// A code describing the amount of operating unit participation in a deployment.
+	// The specific usage and enumerations contained in this field may be found in the
+	// documentation provided in the referenceDoc field. If referenceDoc not provided,
+	// users may consult the data provider.
+	DeployStatus string `json:"deployStatus"`
+	// Description of the operating unit.
+	Description string `json:"description"`
+	// Combat status of a divisional or equivalent operating unit. Currently, this data
+	// element applies only to operating units of the Former Soviet Union. The specific
+	// usage and enumerations contained in this field may be found in the documentation
+	// provided in the referenceDoc field. If referenceDoc not provided, users may
+	// consult the data provider.
+	DivCat string `json:"divCat"`
+	// Organizational level of the operating unit. The specific usage and enumerations
+	// contained in this field may be found in the documentation provided in the
+	// referenceDoc field. If referenceDoc not provided, users may consult the data
+	// provider.
+	Echelon string `json:"echelon"`
+	// Indicates the major group or level to which an echelon belongs. The specific
+	// usage and enumerations contained in this field may be found in the documentation
+	// provided in the referenceDoc field. If referenceDoc not provided, users may
+	// consult the data provider.
+	EchelonTier string `json:"echelonTier"`
+	// Ground elevation of the geographic coordinates referenced to (above or below)
+	// Mean Sea Level (MSL) vertical datum.
+	ElevMsl float64 `json:"elevMsl"`
+	// Indicates the confidence level expressed as a percent that a specific geometric
+	// spatial element, ELEVATION_MSL linear accuracy, has been vertically positioned
+	// to within a specified vertical accuracy.
+	ElevMslConfLvl int64 `json:"elevMslConfLvl"`
+	// Indicates the plus or minus error assessed against the method used to derive the
+	// elevation.
+	ElevMslDerivAcc float64 `json:"elevMslDerivAcc"`
+	// The Intelligence Confidence Level or the Reliability/degree of confidence that
+	// the analyst has assigned to the data within this record. The numerical range is
+	// from 1 to 9 with 1 representing the highest confidence level.
+	Eval int64 `json:"eval"`
+	// The country code of the observed flag flown.
+	FlagFlown string `json:"flagFlown"`
+	// Naval fleet to which an operating unit is assigned. The specific usage and
+	// enumerations contained in this field may be found in the documentation provided
+	// in the referenceDoc field. If referenceDoc not provided, users may consult the
+	// data provider.
+	FleetID string `json:"fleetId"`
+	// An aggregation of military units within a single service (i.e., ARMY, AIR FORCE,
+	// etc.) which operates under a single authority to accomplish a common mission.
+	// The specific usage and enumerations contained in this field may be found in the
+	// documentation provided in the referenceDoc field. If referenceDoc not provided,
+	// users may consult the data provider.
+	Force string `json:"force"`
+	// The specific name for a given force. For example, Force = ADF (Air Defense
+	// Force) and Force Name = Army Air Defense Force.
+	ForceName string `json:"forceName"`
+	// Functional Production Area (FPA) under the Shared Production Program (SPP).
+	// Producers are defined per country per FPA. The specific usage and enumerations
+	// contained in this field may be found in the documentation provided in the
+	// referenceDoc field. If referenceDoc not provided, users may consult the data
+	// provider.
+	Fpa string `json:"fpa"`
+	// Principal combat-related role that an operating unit is organized, structured
+	// and equipped to perform. Or, the specialized military or paramilitary branch in
+	// which an individual serves, their specialization. The specific usage and
+	// enumerations contained in this field may be found in the documentation provided
+	// in the referenceDoc field. If referenceDoc not provided, users may consult the
+	// data provider.
+	FunctRole string `json:"functRole"`
+	// The distance between Mean Sea Level and a referenced ellipsoid.
+	GeoidalMslSep float64 `json:"geoidalMslSep"`
+	// Unique identifier of the contact for this operating unit.
+	IDContact string `json:"idContact"`
+	// Estimated identity of the Site (ASSUMED FRIEND, FRIEND, HOSTILE, FAKER, JOKER,
+	// NEUTRAL, PENDING, SUSPECT, UNKNOWN):
+	//
+	// ASSUMED FRIEND: Track assumed to be a friend due to the object characteristics,
+	// behavior, and/or origin.
+	//
+	// FRIEND: Track object supporting friendly forces and belonging to a declared
+	// friendly nation or entity.
+	//
+	// HOSTILE: Track object belonging to an opposing nation, party, group, or entity
+	// deemed to contribute to a threat to friendly forces or their mission due to its
+	// behavior, characteristics, nationality, or origin.
+	//
+	// FAKER: Friendly track, object, or entity acting as an exercise hostile.
+	//
+	// JOKER: Friendly track, object, or entity acting as an exercise suspect.
+	//
+	// NEUTRAL: Track object whose characteristics, behavior, nationality, and/or
+	// origin indicate that it is neither supporting nor opposing friendly forces or
+	// their mission.
+	//
+	// PENDING: Track object which has not been evaluated.
+	//
+	// SUSPECT: Track object deemed potentially hostile due to the object
+	// characteristics, behavior, nationality, and/or origin.
+	//
+	// UNKNOWN: Track object which has been evaluated and does not meet criteria for
+	// any standard identity.
+	Ident string `json:"ident"`
+	// Unique identifier of the location record for this operating unit.
+	IDLocation string `json:"idLocation"`
+	// Unique identifier of the record, auto-generated by the system.
+	IDOperatingUnit string `json:"idOperatingUnit"`
+	// Unique identifier of the organization record for this operating unit.
+	IDOrganization string `json:"idOrganization"`
+	// WGS84 latitude of the location, in degrees. -90 to 90 degrees (negative values
+	// south of equator).
+	Lat float64 `json:"lat"`
+	// Model representation of a location, which is a specific fixed point on the earth
+	// and is used to denote the locations of fixed sensors, operating units, etc.
+	Location LocationFull `json:"location"`
+	// Location name for the coordinates.
+	LocName string `json:"locName"`
+	// Indicates the reason that the operating unit is at that location. The specific
+	// usage and enumerations contained in this field may be found in the documentation
+	// provided in the referenceDoc field. If referenceDoc not provided, users may
+	// consult the data provider.
+	LocReason string `json:"locReason"`
+	// WGS84 longitude of the location, in degrees. -180 to 180 degrees (negative
+	// values west of Prime Meridian).
+	Lon float64 `json:"lon"`
+	// This field contains a value indicating whether the record is a master unit
+	// record (True) or a detail record (False). Master records contain basic
+	// information that does not change over time for each unit that has been selected
+	// to be projected.
+	MasterUnit bool `json:"masterUnit"`
+	// The Military Grid Reference System is the geocoordinate standard used by NATO
+	// militaries for locating points on Earth. The MGRS is derived from the Universal
+	// Transverse Mercator (UTM) grid system and the Universal Polar Stereographic
+	// (UPS) grid system, but uses a different labeling convention. The MGRS is used as
+	// geocode for the entire Earth. Example of an milgrid coordinate, or grid
+	// reference, would be 4QFJ12345678, which consists of three parts: 4Q (grid zone
+	// designator, GZD) FJ (the 100,000-meter square identifier) 12345678 (numerical
+	// location; easting is 1234 and northing is 5678, in this case specifying a
+	// location with 10 m resolution).
+	MilGrid string `json:"milGrid"`
+	// Indicates the grid system used in the development of the milGrid coordinates.
+	// Values are:
+	//
+	// # UPS - Universal Polar System
+	//
+	// UTM - Universal Transverse Mercator
+	MilGridSys string `json:"milGridSys"`
+	// Indicates the principal type of mission that an operating unit is organized and
+	// equipped to perform. The specific usage and enumerations contained in this field
+	// may be found in the documentation provided in the referenceDoc field. If
+	// referenceDoc not provided, users may consult the data provider.
+	MsnPrimary string `json:"msnPrimary"`
+	// Indicates the principal specialty type of mission that an operating unit is
+	// organized and equipped to perform. The specific usage and enumerations contained
+	// in this field may be found in the documentation provided in the referenceDoc
+	// field. If referenceDoc not provided, users may consult the data provider.
+	MsnPrimarySpecialty string `json:"msnPrimarySpecialty"`
+	// Remarks contain amplifying information for a specific service. The information
+	// may contain context and interpretations for consumer use.
+	OperatingUnitRemarks []SensorTupleResponseEntityOperatingUnitOperatingUnitRemark `json:"operatingUnitRemarks"`
+	// The Degree to which an operating unit is ready to perform the overall
+	// operational mission(s) for which it was organized and equipped. The specific
+	// usage and enumerations contained in this field may be found in the documentation
+	// provided in the referenceDoc field. If referenceDoc not provided, users may
+	// consult the data provider.
+	OperStatus string `json:"operStatus"`
+	// An organization such as a corporation, manufacturer, consortium, government,
+	// etc. An organization may have parent and child organizations as well as link to
+	// a former organization if this org previously existed as another organization.
+	Organization OrganizationFull `json:"organization"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// Political subdivision in which the geographic coordinates reside. The specific
+	// usage and enumerations contained in this field may be found in the documentation
+	// provided in the referenceDoc field. If referenceDoc not provided, users may
+	// consult the data provider.
+	PolSubdiv string `json:"polSubdiv"`
+	// Validity and currency of the data in the record to be used in conjunction with
+	// the other elements in the record as defined by SOPs. Values are: A - Active I -
+	// Inactive K - Acknowledged L - Local Q - A nominated (NOM) or Data Change Request
+	// (DCR) record R - Production reduced by CMD decision W - Working Record.
+	RecStatus string `json:"recStatus"`
+	// The reference documentiation that specifies the usage and enumerations contained
+	// in this record. If referenceDoc not provided, users may consult the data
+	// provider.
+	ReferenceDoc string `json:"referenceDoc"`
+	// Responsible Producer - Organization that is responsible for the maintenance of
+	// the record.
+	ResProd string `json:"resProd"`
+	// Date on which the data in the record was last reviewed by the responsible
+	// analyst for accuracy and currency. This date cannot be greater than the current
+	// date.
+	ReviewDate time.Time `json:"reviewDate" format:"date"`
+	// This field contains a value indicating whether the record is a stylized
+	// operating unit record (True) or a regular operating unit record (False). A
+	// stylized operating unit is a type of operating unit with one set of equipment
+	// that can be assigned to one or more superiors. A stylized operating unit is
+	// generally useful for lower echelon operating units where the number of operating
+	// units and types of equipment are equal for multiple organizations. In lieu of
+	// creating unique operating unit records for each operating unit, a template is
+	// created for the operating unit and its equipment. This template enables the user
+	// to assign the operating unit to multiple organizations.
+	StylizedUnit bool `json:"stylizedUnit"`
+	// A standard scheme for symbol coding enabling the transfer, display and use of
+	// symbols and graphics among information systems, as per MIL-STD 2525B, and
+	// supported by the element AFFILIATION.
+	SymCode string `json:"symCode"`
+	// An optional identifier for this operating unit that may be composed from items
+	// such as the originating organization, allegiance, one-up number, etc.
+	UnitIdentifier string `json:"unitIdentifier"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Universal Transverse Mercator (UTM) grid coordinates. Pos. 1-2, UTM Zone Column
+	// [01-60 Pos. 3, UTM Zone Row [C-HJ-NP-X] Pos. 4, UTM False Easting [0-9] Pos.
+	// 5-9, UTM Meter Easting [0-9][0-9][0-9][0-9][0-9] Pos. 10-11, UTM False Northing
+	// [0-9][0-9] Pos. 12-16, UTM Meter Northing [0-9][0-9][0-9][0-9][0-9].
+	Utm string `json:"utm"`
+	// World Aeronautical Chart identifier for the area in which a designated operating
+	// unit is located.
+	Wac string `json:"wac"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		Name                  resp.Field
+		Source                resp.Field
+		AirDefArea            resp.Field
+		Allegiance            resp.Field
+		AltAllegiance         resp.Field
+		AltCountryCode        resp.Field
+		AltOperatingUnitID    resp.Field
+		ClassRating           resp.Field
+		Condition             resp.Field
+		ConditionAvail        resp.Field
+		Coord                 resp.Field
+		CoordDatum            resp.Field
+		CoordDerivAcc         resp.Field
+		CountryCode           resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		DeployStatus          resp.Field
+		Description           resp.Field
+		DivCat                resp.Field
+		Echelon               resp.Field
+		EchelonTier           resp.Field
+		ElevMsl               resp.Field
+		ElevMslConfLvl        resp.Field
+		ElevMslDerivAcc       resp.Field
+		Eval                  resp.Field
+		FlagFlown             resp.Field
+		FleetID               resp.Field
+		Force                 resp.Field
+		ForceName             resp.Field
+		Fpa                   resp.Field
+		FunctRole             resp.Field
+		GeoidalMslSep         resp.Field
+		IDContact             resp.Field
+		Ident                 resp.Field
+		IDLocation            resp.Field
+		IDOperatingUnit       resp.Field
+		IDOrganization        resp.Field
+		Lat                   resp.Field
+		Location              resp.Field
+		LocName               resp.Field
+		LocReason             resp.Field
+		Lon                   resp.Field
+		MasterUnit            resp.Field
+		MilGrid               resp.Field
+		MilGridSys            resp.Field
+		MsnPrimary            resp.Field
+		MsnPrimarySpecialty   resp.Field
+		OperatingUnitRemarks  resp.Field
+		OperStatus            resp.Field
+		Organization          resp.Field
+		Origin                resp.Field
+		PolSubdiv             resp.Field
+		RecStatus             resp.Field
+		ReferenceDoc          resp.Field
+		ResProd               resp.Field
+		ReviewDate            resp.Field
+		StylizedUnit          resp.Field
+		SymCode               resp.Field
+		UnitIdentifier        resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		Utm                   resp.Field
+		Wac                   resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorTupleResponseEntityOperatingUnit) RawJSON() string { return r.JSON.raw }
+func (r *SensorTupleResponseEntityOperatingUnit) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Remarks contain amplifying information for a specific service. The information
+// may contain context and interpretations for consumer use.
+type SensorTupleResponseEntityOperatingUnitOperatingUnitRemark struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// The ID of the operating unit to which this remark applies.
+	IDOperatingUnit string `json:"idOperatingUnit,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// The text of the remark.
+	Text string `json:"text,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Unique identifier of the unit remark record from the originating system.
+	AltRmkID string `json:"altRmkId"`
+	// The remark type identifier. For example, the Mobility Air Forces (MAF) remark
+	// code, defined in the Airfield Suitability and Restriction Report (ASRR).
+	Code string `json:"code"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The name of the remark.
+	Name string `json:"name"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The remark type (e.g. Caution, Information, Misc, Restriction, etc.).
+	Type string `json:"type"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDOperatingUnit       resp.Field
+		Source                resp.Field
+		Text                  resp.Field
+		ID                    resp.Field
+		AltRmkID              resp.Field
+		Code                  resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Name                  resp.Field
+		Origin                resp.Field
+		Type                  resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorTupleResponseEntityOperatingUnitOperatingUnitRemark) RawJSON() string {
+	return r.JSON.raw
+}
+func (r *SensorTupleResponseEntityOperatingUnitOperatingUnitRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Details on a particular Radio Frequency (RF) band, also known as a carrier,
+// which may be in use by any type of Entity for communications or operations.
+type SensorTupleResponseEntityRfBand struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Unique identifier of the parent Entity which uses this band.
+	IDEntity string `json:"idEntity,required"`
+	// RF Band name.
+	Name string `json:"name,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Name of the band of this RF range (e.g.
+	// X,K,Ku,Ka,L,S,C,UHF,VHF,EHF,SHF,UNK,VLF,HF,E,Q,V,W). See RFBandType for more
+	// details and descriptions of each band name.
+	Band string `json:"band"`
+	// RF Band frequency range bandwidth in Mhz.
+	Bandwidth float64 `json:"bandwidth"`
+	// Angle between the half-power (-3 dB) points of the main lobe of the antenna, in
+	// degrees.
+	Beamwidth float64 `json:"beamwidth"`
+	// Center frequency of RF frequency range, if applicable, in Mhz.
+	CenterFreq float64 `json:"centerFreq"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// RF Range edge gain, in dBi.
+	EdgeGain float64 `json:"edgeGain"`
+	// EIRP is defined as the RMS power input in decibel watts required to a lossless
+	// half-wave dipole antenna to give the same maximum power density far from the
+	// antenna as the actual transmitter. It is equal to the power input to the
+	// transmitter's antenna multiplied by the antenna gain relative to a half-wave
+	// dipole. Effective radiated power and effective isotropic radiated power both
+	// measure the amount of power a radio transmitter and antenna (or other source of
+	// electromagnetic waves) radiates in a specific direction: in the direction of
+	// maximum signal strength (the "main lobe") of its radiation pattern.
+	Eirp float64 `json:"eirp"`
+	// Effective Radiated Power (ERP) is the total power in decibel watts radiated by
+	// an actual antenna relative to a half-wave dipole rather than a theoretical
+	// isotropic antenna. A half-wave dipole has a gain of 2.15 dB compared to an
+	// isotropic antenna. EIRP(dB) = ERP (dB)+2.15 dB or EIRP (W) = 1.64\*ERP(W).
+	// Effective radiated power and effective isotropic radiated power both measure the
+	// amount of power a radio transmitter and antenna (or other source of
+	// electromagnetic waves) radiates in a specific direction: in the direction of
+	// maximum signal strength (the "main lobe") of its radiation pattern.
+	Erp float64 `json:"erp"`
+	// End/maximum of transmit RF frequency range, if applicable, in Mhz.
+	FreqMax float64 `json:"freqMax"`
+	// Start/minimum of transmit RF frequency range, if applicable, in Mhz.
+	FreqMin float64 `json:"freqMin"`
+	// RF Band mode (e.g. TX, RX).
+	//
+	// Any of "TX", "RX".
+	Mode string `json:"mode"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// RF Range maximum gain, in dBi.
+	PeakGain float64 `json:"peakGain"`
+	// Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
+	// Earth's surface, V - (Vertically Polarized) Parallel to Earth's surface, L -
+	// (Left Hand Circularly Polarized) Rotating left relative to the Earth's surface,
+	// R - (Right Hand Circularly Polarized) Rotating right relative to the Earth's
+	// surface.
+	//
+	// Any of "H", "V", "R", "L".
+	Polarization string `json:"polarization"`
+	// Purpose or use of the RF Band -- COMM = communications, TTC =
+	// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+	//
+	// Any of "COMM", "TTC", "OPS", "OTHER".
+	Purpose string `json:"purpose"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDEntity              resp.Field
+		Name                  resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		Band                  resp.Field
+		Bandwidth             resp.Field
+		Beamwidth             resp.Field
+		CenterFreq            resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		EdgeGain              resp.Field
+		Eirp                  resp.Field
+		Erp                   resp.Field
+		FreqMax               resp.Field
+		FreqMin               resp.Field
+		Mode                  resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		PeakGain              resp.Field
+		Polarization          resp.Field
+		Purpose               resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorTupleResponseEntityRfBand) RawJSON() string { return r.JSON.raw }
+func (r *SensorTupleResponseEntityRfBand) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Status for a particular Entity. An entity may have multiple status records
+// collected by various sources.
+type SensorTupleResponseEntityStatusCollection struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Unique identifier of the parent entity.
+	IDEntity string `json:"idEntity,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The declassification date of this data, in ISO 8601 UTC format.
+	DeclassificationDate time.Time `json:"declassificationDate" format:"date-time"`
+	// Declassification string of this data.
+	DeclassificationString string `json:"declassificationString"`
+	// The sources or SCG references from which the classification of this data is
+	// derived.
+	DerivedFrom string `json:"derivedFrom"`
+	// Comments describing the status creation and or updates to an entity.
+	Notes string `json:"notes"`
+	// Operation capability of the entity, if applicable (e.g. FMC, NMC, PMC, UNK).
+	//
+	// Any of "FMC", "NMC", "PMC", "UNK".
+	OpsCap string `json:"opsCap"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Overall state of the entity, if applicable (e.g. UNKNOWN, DEAD, ACTIVE, RF
+	// ACTIVE, STANDBY).
+	//
+	// Any of "UNKNOWN", "DEAD", "ACTIVE", "RF ACTIVE", "STANDBY".
+	State               string                                                         `json:"state"`
+	SubStatusCollection []SensorTupleResponseEntityStatusCollectionSubStatusCollection `json:"subStatusCollection"`
+	// System capability of the entity, if applicable (e.g. FMC, NMC, PMC, UNK).
+	//
+	// Any of "FMC", "NMC", "PMC", "UNK".
+	SysCap string `json:"sysCap"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking  resp.Field
+		DataMode               resp.Field
+		IDEntity               resp.Field
+		Source                 resp.Field
+		ID                     resp.Field
+		CreatedAt              resp.Field
+		CreatedBy              resp.Field
+		DeclassificationDate   resp.Field
+		DeclassificationString resp.Field
+		DerivedFrom            resp.Field
+		Notes                  resp.Field
+		OpsCap                 resp.Field
+		Origin                 resp.Field
+		OrigNetwork            resp.Field
+		State                  resp.Field
+		SubStatusCollection    resp.Field
+		SysCap                 resp.Field
+		UpdatedAt              resp.Field
+		UpdatedBy              resp.Field
+		ExtraFields            map[string]resp.Field
+		raw                    string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorTupleResponseEntityStatusCollection) RawJSON() string { return r.JSON.raw }
+func (r *SensorTupleResponseEntityStatusCollection) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Additional sub-system or capability status for the parent entity.
+type SensorTupleResponseEntityStatusCollectionSubStatusCollection struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Descriptions and/or comments associated with the sub-status.
+	Notes string `json:"notes,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Status of the sub-system/capability, e.g. FMC, NMC, PMC, UNK.
+	//
+	// Any of "FMC", "NMC", "PMC", "UNK".
+	Status string `json:"status,required"`
+	// Id of the parent status.
+	StatusID string `json:"statusId,required"`
+	// Parent entity's sub-system or capability status: mwCap, mdCap, ssCap, etc.
+	//
+	// Any of "mwCap", "ssCap", "mdCap".
+	Type string `json:"type,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Time the row was updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		Notes                 resp.Field
+		Source                resp.Field
+		Status                resp.Field
+		StatusID              resp.Field
+		Type                  resp.Field
+		ID                    resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorTupleResponseEntityStatusCollectionSubStatusCollection) RawJSON() string {
+	return r.JSON.raw
+}
+func (r *SensorTupleResponseEntityStatusCollectionSubStatusCollection) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Model representation of characteristics and capabilities of a sensor.
+type SensorTupleResponseSensorcharacteristic struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Unique identifier of the parent sensor.
+	IDSensor string `json:"idSensor,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Array of measurement range(s) where radar samples must fall to be acceptable. If
+	// this field is populated, the associated beam(s) must be provided in the
+	// beamOrder field.
+	AcceptSampleRanges []float64 `json:"acceptSampleRanges"`
+	// Optical sensor camera aperture.
+	Aperture float64 `json:"aperture"`
+	// For ASR (Air Surveillance Radar) sensors, the scan (360 deg sweep) rate of the
+	// radar, in scans/minute.
+	AsrScanRate float64 `json:"asrScanRate"`
+	// Array of azimuth angles of a radar beam, in degrees. If this field is populated,
+	// the associated beam(s) must be provided in the beamOrder field.
+	AzAngs []float64 `json:"azAngs"`
+	// Azimuth rate acquisition limit (radians/minute).
+	AzimuthRate float64 `json:"azimuthRate"`
+	// Sensor band.
+	Band string `json:"band"`
+	// Array designating the beam order of provided values (e.g. vb1 for vertical beam
+	// 1, ob1 for oblique beam 1, etc.). Required if any of the following array fields
+	// are populated: azAngs, elAngs, radarPulseWidths, pulseRepPeriods, delayGates,
+	// rangeGates, rangeSpacings, vertGateSpacings, vertGateWidths, specAvgSpectraNums,
+	// tempMedFiltCodes, runMeanCodes, totRecNums, reqRecords, acceptSampleRanges.
+	BeamOrder []string `json:"beamOrder"`
+	// Number of radar beams used by the sensor.
+	BeamQty int64 `json:"beamQty"`
+	// The angle of the center of a phased array sensor.
+	Boresight float64 `json:"boresight"`
+	// The number of degrees off of the boresight for the sensor.
+	BoresightOffAngle float64 `json:"boresightOffAngle"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Threshold shear value beyond which one of the radial velocity values will be
+	// rejected, measured in units of inverse second.
+	CritShear float64 `json:"critShear"`
+	// Array of time delay(s) for pulses from a radar beam to get to the first range
+	// gate, in nanoseconds. If this field is populated, the associated beam(s) must be
+	// provided in the beamOrder field.
+	DelayGates []float64 `json:"delayGates"`
+	// Description of the equipment and data source.
+	Description string `json:"description"`
+	// Array of elevation angles of a radar beam, in degrees. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	ElAngs []float64 `json:"elAngs"`
+	// Elevation rate acquisition limit (radians/minute).
+	ElevationRateGeolm float64 `json:"elevationRateGeolm"`
+	// Type of equipment used to take measurements.
+	EquipmentType string `json:"equipmentType"`
+	// The beam width of a Sensor's Fan (range). The values for this range from (0.0 to
+	// PI).
+	FanBeamWidth float64 `json:"fanBeamWidth"`
+	// Number of Fast Fourier Transform (FFT) points used to convert time varying
+	// signals into the frequency domain.
+	Fft int64 `json:"fft"`
+	// Maximum number of times the first guess was propagated in each gate before
+	// failing the first guess check.
+	FgpCrit int64 `json:"fgpCrit"`
+	// For radar based sensors, the focal point elevation of the radar at the site, in
+	// meters.
+	FocalPoint float64 `json:"focalPoint"`
+	// Horizontal field of view.
+	HFov float64 `json:"hFOV"`
+	// Horizontal pixel resolution.
+	HResPixels int64 `json:"hResPixels"`
+	// For radar based sensors, K-factor is a relative indicator of refractivity that
+	// infers the amount of radar beam bending due to atmosphere. (1<K<2).
+	K float64 `json:"k"`
+	// For Orbiting Sensors, First Card Azimuth limit #1 (left, degrees).
+	LeftClockAngle float64 `json:"leftClockAngle"`
+	// Leftmost GEO belt longitude limit for this sensor (if applicable).
+	LeftGeoBeltLimit float64 `json:"leftGeoBeltLimit"`
+	// Site where measurement is taken.
+	Location string `json:"location"`
+	// Angle between magnetic north and true north at the sensor site, in degrees.
+	MagDec float64 `json:"magDec"`
+	// Absolute magnitude acquisition limit for optical sensors.
+	MagnitudeLimit float64 `json:"magnitudeLimit"`
+	// Max deviation angle of the sensor in degrees.
+	MaxDeviationAngle float64 `json:"maxDeviationAngle"`
+	// Maximum observable sensor range, in kilometers.
+	MaxObservableRange float64 `json:"maxObservableRange"`
+	// Maximum observable range limit in kilometers -- sensor cannot acquire beyond
+	// this range.
+	MaxRangeLimit float64 `json:"maxRangeLimit"`
+	// Minimum range measurement capability of the sensor, in kilometers.
+	MinRangeLimit float64 `json:"minRangeLimit"`
+	// Signal to Noise Ratio, in decibels. The values for this range from 0.0 - + 99.99
+	// dB.
+	MinSignalNoiseRatio float64 `json:"minSignalNoiseRatio"`
+	// Negative Range-rate/relative velocity limit (kilometers/second).
+	NegativeRangeRateLimit float64 `json:"negativeRangeRateLimit"`
+	// For radar based sensors, number of integrated pulses in a transmit cycle.
+	NumIntegratedPulses int64 `json:"numIntegratedPulses"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Positive Range-rate/relative velocity limit (kilometers/second).
+	PositiveRangeRateLimit float64 `json:"positiveRangeRateLimit"`
+	// For radar based sensors, pulse repetition frequency (PRF), in hertz. Number of
+	// new pulses transmitted per second.
+	Prf float64 `json:"prf"`
+	// For radar based sensors, probability of the indication of the presence of a
+	// radar target due to noise or interference.
+	ProbFalseAlarm float64 `json:"probFalseAlarm"`
+	// Array of interval(s) between the start of one radar pulse and the start of
+	// another for a radar beam, in microseconds. If this field is populated, the
+	// associated beam(s) must be provided in the beamOrder field.
+	PulseRepPeriods []float64 `json:"pulseRepPeriods"`
+	// Radar frequency of the sensor (if a radar sensor).
+	RadarFrequency float64 `json:"radarFrequency"`
+	// Message data format transmitted by the sensor digitizer.
+	RadarMessageFormat string `json:"radarMessageFormat"`
+	// For radar based sensors, radar maximum unambiguous range, in kilometers.
+	RadarMur float64 `json:"radarMUR"`
+	// Array of transmit time(s) for a radar beam pulse, in microseconds. If this field
+	// is populated, the associated beam(s) must be provided in the beamOrder field.
+	RadarPulseWidths []float64 `json:"radarPulseWidths"`
+	// Radio frequency (if sensor is RF).
+	RadioFrequency float64 `json:"radioFrequency"`
+	// Array of the number(s) of discrete altitudes where return signals are sampled by
+	// a radar beam. If this field is populated, the associated beam(s) must be
+	// provided in the beamOrder field.
+	RangeGates []int64 `json:"rangeGates"`
+	// Array of range gate spacing(s) for a radar beam, in nanoseconds. If this field
+	// is populated, the associated beam(s) must be provided in the beamOrder field.
+	RangeSpacings []float64 `json:"rangeSpacings"`
+	// Array of the total number(s) of records required to meet consensus for a radar
+	// beam. If this field is populated, the associated beam(s) must be provided in the
+	// beamOrder field.
+	ReqRecords []int64 `json:"reqRecords"`
+	// For Orbiting Sensors, First Card Azimuth limit #3 (right, degrees).
+	RightClockAngle float64 `json:"rightClockAngle"`
+	// Rightmost GEO belt longitude limit for this sensor (if applicable).
+	RightGeoBeltLimit float64 `json:"rightGeoBeltLimit"`
+	// Array of running mean code(s) used by radar data processing. The running mean
+	// method involves taking a series of averages of different selections of the full
+	// data set to smooth out short-term fluctuations in the data. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	RunMeanCodes []int64 `json:"runMeanCodes"`
+	// Site code of the sensor.
+	SiteCode string `json:"siteCode"`
+	// Array of the number(s) of Doppler spectra used to process measurements from
+	// radar. Spectral averaging involves combining multiple Doppler spectra acquired
+	// to obtain a more accurate and representative spectrum. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	SpecAvgSpectraNums []int64 `json:"specAvgSpectraNums"`
+	// For radar based sensors, expression of the radar system noise, aggregated as an
+	// equivalent thermal noise value, in degrees Kelvin.
+	SystemNoiseTemperature float64 `json:"systemNoiseTemperature"`
+	// Maximum taskable range of the sensor, in kilometers.
+	TaskableRange float64 `json:"taskableRange"`
+	// Array of temporal median filter code(s) of a radar beam. Temporal median
+	// filtering is a noise-reducing algorithm which involves replacing each data point
+	// with the median value of a window of neighboring points over time. If this field
+	// is populated, the associated beam(s) must be provided in the beamOrder field.
+	TempMedFiltCodes []int64 `json:"tempMedFiltCodes"`
+	// Test number for the observed measurement.
+	TestNumber string `json:"testNumber"`
+	// Array of the total number(s) of records for a radar beam. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	TotRecNums []int64 `json:"totRecNums"`
+	// For tower sensors, the physical height of the sensor tower, in meters.
+	TowerHeight float64 `json:"towerHeight"`
+	// Beginning track angle limit, in radians. Track angle is the angle between the
+	// camera axis and the gimbal plane. Values range from 0 - PI/2.
+	TrackAngle float64 `json:"trackAngle"`
+	// Radar transmit power in Watts.
+	TransmitPower float64 `json:"transmitPower"`
+	// True North correction for the sensor, in ACP (Azimunth Change Pulse) count.
+	TrueNorthCorrector int64 `json:"trueNorthCorrector"`
+	// Antenna true tilt, in degrees.
+	TrueTilt float64 `json:"trueTilt"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Flag indicating if a vertical radar beam was used in the wind calculation.
+	VertBeamFlag bool `json:"vertBeamFlag"`
+	// Array of vertical distance(s) between points where radar measurements are taken,
+	// in meters. If this field is populated, the associated beam(s) must be provided
+	// in the beamOrder field.
+	VertGateSpacings []float64 `json:"vertGateSpacings"`
+	// Array of width(s) of each location where radar measurements are taken, in
+	// meters. If this field is populated, the associated beam(s) must be provided in
+	// the beamOrder field.
+	VertGateWidths []float64 `json:"vertGateWidths"`
+	// Vertical field of view.
+	VFov float64 `json:"vFOV"`
+	// Vertical pixel resolution.
+	VResPixels int64 `json:"vResPixels"`
+	// Peformance zone-1 maximum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z1MaxRange float64 `json:"z1MaxRange"`
+	// Peformance zone-1 minimum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z1MinRange float64 `json:"z1MinRange"`
+	// Peformance zone-2 maximum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z2MaxRange float64 `json:"z2MaxRange"`
+	// Peformance zone-2 minimum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z2MinRange float64 `json:"z2MinRange"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking  resp.Field
+		DataMode               resp.Field
+		IDSensor               resp.Field
+		Source                 resp.Field
+		ID                     resp.Field
+		AcceptSampleRanges     resp.Field
+		Aperture               resp.Field
+		AsrScanRate            resp.Field
+		AzAngs                 resp.Field
+		AzimuthRate            resp.Field
+		Band                   resp.Field
+		BeamOrder              resp.Field
+		BeamQty                resp.Field
+		Boresight              resp.Field
+		BoresightOffAngle      resp.Field
+		CreatedAt              resp.Field
+		CreatedBy              resp.Field
+		CritShear              resp.Field
+		DelayGates             resp.Field
+		Description            resp.Field
+		ElAngs                 resp.Field
+		ElevationRateGeolm     resp.Field
+		EquipmentType          resp.Field
+		FanBeamWidth           resp.Field
+		Fft                    resp.Field
+		FgpCrit                resp.Field
+		FocalPoint             resp.Field
+		HFov                   resp.Field
+		HResPixels             resp.Field
+		K                      resp.Field
+		LeftClockAngle         resp.Field
+		LeftGeoBeltLimit       resp.Field
+		Location               resp.Field
+		MagDec                 resp.Field
+		MagnitudeLimit         resp.Field
+		MaxDeviationAngle      resp.Field
+		MaxObservableRange     resp.Field
+		MaxRangeLimit          resp.Field
+		MinRangeLimit          resp.Field
+		MinSignalNoiseRatio    resp.Field
+		NegativeRangeRateLimit resp.Field
+		NumIntegratedPulses    resp.Field
+		OrigNetwork            resp.Field
+		PositiveRangeRateLimit resp.Field
+		Prf                    resp.Field
+		ProbFalseAlarm         resp.Field
+		PulseRepPeriods        resp.Field
+		RadarFrequency         resp.Field
+		RadarMessageFormat     resp.Field
+		RadarMur               resp.Field
+		RadarPulseWidths       resp.Field
+		RadioFrequency         resp.Field
+		RangeGates             resp.Field
+		RangeSpacings          resp.Field
+		ReqRecords             resp.Field
+		RightClockAngle        resp.Field
+		RightGeoBeltLimit      resp.Field
+		RunMeanCodes           resp.Field
+		SiteCode               resp.Field
+		SpecAvgSpectraNums     resp.Field
+		SystemNoiseTemperature resp.Field
+		TaskableRange          resp.Field
+		TempMedFiltCodes       resp.Field
+		TestNumber             resp.Field
+		TotRecNums             resp.Field
+		TowerHeight            resp.Field
+		TrackAngle             resp.Field
+		TransmitPower          resp.Field
+		TrueNorthCorrector     resp.Field
+		TrueTilt               resp.Field
+		UpdatedAt              resp.Field
+		UpdatedBy              resp.Field
+		VertBeamFlag           resp.Field
+		VertGateSpacings       resp.Field
+		VertGateWidths         resp.Field
+		VFov                   resp.Field
+		VResPixels             resp.Field
+		Z1MaxRange             resp.Field
+		Z1MinRange             resp.Field
+		Z2MaxRange             resp.Field
+		Z2MinRange             resp.Field
+		ExtraFields            map[string]resp.Field
+		raw                    string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorTupleResponseSensorcharacteristic) RawJSON() string { return r.JSON.raw }
+func (r *SensorTupleResponseSensorcharacteristic) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Sensorlimits define 0 to many limits of a particular sensor in terms of
+// observation coverage of on-orbit objects.
+type SensorTupleResponseSensorlimitsCollection struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Unique identifier of the target sensor object.
+	IDSensor string `json:"idSensor"`
+	// Unique identifier of the record, auto-generated by the system.
+	IDSensorLimits string `json:"idSensorLimits"`
+	// Leftmost or minimum lower azimuth within this limit. Interpreted according to
+	// site types as lower left azimuth limit elevation angle of axis of conical
+	// observation pattern. If the limit rectangle is parallel to the horizon, the
+	// upper and lower left azimuth limits would be equal. (degrees).
+	LowerLeftAzimuthLimit float64 `json:"lowerLeftAzimuthLimit"`
+	// Minimum or lower elevation within this limit. Interpreted according to site
+	// types as minimum elevation angle, constant elevation or fan beam centerline.
+	// (Degrees).
+	LowerLeftElevationLimit float64 `json:"lowerLeftElevationLimit"`
+	// Rightmost or maximum lower azimuth within this limit. Interpreted according to
+	// site types as 2nd lower azimuth limit elevation angle of axis of conical
+	// observation pattern. If the limit rectangle is parallel to the horizon, the
+	// upper and lower right azimuth limits would be equal. (degrees).
+	LowerRightAzimuthLimit float64 `json:"lowerRightAzimuthLimit"`
+	// Minimum or lower right elevation within this limit. Interpreted according to
+	// site types as minimum right elevation angle, constant elevation or fan beam
+	// centerline. If the limit rectangle is parallel to the horizon, the left and
+	// right lower elevation limits would be equal. (Degrees).
+	LowerRightElevationLimit float64 `json:"lowerRightElevationLimit"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Leftmost or minimum upper azimuth within this sensor limit. Interpreted
+	// according to site types as beginning upper azimuth limit, left-hand upper
+	// boundary limit. If the limit rectangle is parallel to the horizon, the upper and
+	// lower left azimuth limits would be equal. (in degrees).
+	UpperLeftAzimuthLimit float64 `json:"upperLeftAzimuthLimit"`
+	// Maximum or upper elevation within this limit. Interpreted according to site
+	// types as maximum elevation angle, half the apex of conical observation pattern
+	// or star. (Degrees).
+	UpperLeftElevationLimit float64 `json:"upperLeftElevationLimit"`
+	// Rightmost or maximum upper azimuth within this limit. Interpreted according to
+	// site types as 2nd azimuth limit elevation angle of axis of conical observation
+	// pattern. If the limit rectangle is parallel to the horizon, the upper and lower
+	// right azimuth limits would be equal. (degrees).
+	UpperRightAzimuthLimit float64 `json:"upperRightAzimuthLimit"`
+	// Maximum or upper right elevation within this limit. Interpreted according to
+	// site types as maximum rightmost elevation angle, half the apex of conical
+	// observation pattern or star. If the limit rectangle is parallel to the horizon,
+	// the left and right upper elevation limits would be equal. (Degrees).
+	UpperRightElevationLimit float64 `json:"upperRightElevationLimit"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking    resp.Field
+		DataMode                 resp.Field
+		Source                   resp.Field
+		CreatedAt                resp.Field
+		CreatedBy                resp.Field
+		IDSensor                 resp.Field
+		IDSensorLimits           resp.Field
+		LowerLeftAzimuthLimit    resp.Field
+		LowerLeftElevationLimit  resp.Field
+		LowerRightAzimuthLimit   resp.Field
+		LowerRightElevationLimit resp.Field
+		OrigNetwork              resp.Field
+		UpdatedAt                resp.Field
+		UpdatedBy                resp.Field
+		UpperLeftAzimuthLimit    resp.Field
+		UpperLeftElevationLimit  resp.Field
+		UpperRightAzimuthLimit   resp.Field
+		UpperRightElevationLimit resp.Field
+		ExtraFields              map[string]resp.Field
+		raw                      string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorTupleResponseSensorlimitsCollection) RawJSON() string { return r.JSON.raw }
+func (r *SensorTupleResponseSensorlimitsCollection) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SensorTupleResponseSensorObservationType struct {
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// The observation measurement type produced by a sensor.
+	Type string `json:"type"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		DataMode    resp.Field
+		Source      resp.Field
+		ID          resp.Field
+		CreatedAt   resp.Field
+		CreatedBy   resp.Field
+		OrigNetwork resp.Field
+		Type        resp.Field
+		UpdatedAt   resp.Field
+		UpdatedBy   resp.Field
+		ExtraFields map[string]resp.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorTupleResponseSensorObservationType) RawJSON() string { return r.JSON.raw }
+func (r *SensorTupleResponseSensorObservationType) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// SensorStats contain statistics on sensors related to observation production such
+// as last reported observation time.
+type SensorTupleResponseSensorStat struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Unique ID of the parent sensor.
+	IDSensor string `json:"idSensor,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Time of last reported observation in ISO 8601 UTC with microsecond precision.
+	LastObTime time.Time `json:"lastObTime" format:"date-time"`
+	// Read-only time the row was updated in the database, set automatically by the
+	// system on update.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who last updated the row in the database, set by the system
+	// automatically and ignored on create/edit operations.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		IDSensor              resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		LastObTime            resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorTupleResponseSensorStat) RawJSON() string { return r.JSON.raw }
+func (r *SensorTupleResponseSensorStat) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SensorTupleResponseSensorType struct {
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID int64 `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// The specific sensor type and/or surveillance capability of this sensor.
+	Type string `json:"type"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		DataMode    resp.Field
+		Source      resp.Field
+		ID          resp.Field
+		CreatedAt   resp.Field
+		CreatedBy   resp.Field
+		OrigNetwork resp.Field
+		Type        resp.Field
+		UpdatedAt   resp.Field
+		UpdatedBy   resp.Field
+		ExtraFields map[string]resp.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorTupleResponseSensorType) RawJSON() string { return r.JSON.raw }
+func (r *SensorTupleResponseSensorType) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SensorNewParams struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode SensorNewParamsDataMode `json:"dataMode,omitzero,required"`
+	// Unique name of this sensor.
+	SensorName string `json:"sensorName,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Optional flag indicating if the sensor is active.
+	Active param.Opt[bool] `json:"active,omitzero"`
+	// Optional US Air Force identifier for the sensor/ASR site, typically for air
+	// surveillance radar (ASR) sensors.
+	AfID param.Opt[string] `json:"afId,omitzero"`
+	// The sensor type at the site. Optional field, intended primarily for ASRs.
+	AsrType param.Opt[string] `json:"asrType,omitzero"`
+	// Optional dissemination control required for accessing data (e.g observations)
+	// produced by this sensor. This is typically a proprietary data owner control for
+	// commercial sensors.
+	DataControl param.Opt[string] `json:"dataControl,omitzero"`
+	// Unique identifier of the parent entity. idEntity is required for Put.
+	IDEntity param.Opt[string] `json:"idEntity,omitzero"`
+	// Unique identifier of the record, auto-generated by the system.
+	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// Number assigned to this sensor. Since there is no authoritative numbering
+	// scheme, these numbers sometimes collide across sensors (especially commercial
+	// sensors). It is therefore not a unique identifier.
+	SensorNumber param.Opt[int64] `json:"sensorNumber,omitzero"`
+	// Optional short name for the sensor.
+	ShortName param.Opt[string] `json:"shortName,omitzero"`
+	// An entity is a generic representation of any object within a space/SSA system
+	// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
+	// entity can have an operating unit, a location (if terrestrial), and statuses.
+	Entity SensorNewParamsEntity `json:"entity,omitzero"`
+	// Collection of Sensorcharacteristics which define characteristics and
+	// capabilities of a sensor.
+	Sensorcharacteristics []SensorNewParamsSensorcharacteristic `json:"sensorcharacteristics,omitzero"`
+	// Sensorlimits define 0 to many limits of a particular sensor in terms of
+	// observation coverage of on-orbit objects.
+	SensorlimitsCollection []SensorNewParamsSensorlimitsCollection `json:"sensorlimitsCollection,omitzero"`
+	SensorObservationType  SensorNewParamsSensorObservationType    `json:"sensorObservationType,omitzero"`
+	// Collection of SensorStats which contain statistics of a sensor.
+	SensorStats []SensorNewParamsSensorStat `json:"sensorStats,omitzero"`
+	SensorType  SensorNewParamsSensorType   `json:"sensorType,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+func (r SensorNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow SensorNewParams
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type SensorNewParamsDataMode string
+
+const (
+	SensorNewParamsDataModeReal      SensorNewParamsDataMode = "REAL"
+	SensorNewParamsDataModeTest      SensorNewParamsDataMode = "TEST"
+	SensorNewParamsDataModeSimulated SensorNewParamsDataMode = "SIMULATED"
+	SensorNewParamsDataModeExercise  SensorNewParamsDataMode = "EXERCISE"
+)
+
+// An entity is a generic representation of any object within a space/SSA system
+// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
+// entity can have an operating unit, a location (if terrestrial), and statuses.
+//
+// The properties ClassificationMarking, DataMode, Name, Source, Type are required.
+type SensorNewParamsEntity struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,omitzero,required"`
+	// Unique entity name.
+	Name string `json:"name,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
+	// NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+	//
+	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "NAVIGATION", "ONORBIT", "RFEMITTER",
+	// "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
+	Type string `json:"type,omitzero,required"`
+	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
+	// country code, however it can also represent various consortiums that do not
+	// appear in the ISO document. The code must correspond to an existing country in
+	// the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
+	// ISO Alpha-3 code, or alternate code values that exist for the specified country
+	// code.
+	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// Unique identifier of the record.
+	IDEntity param.Opt[string] `json:"idEntity,omitzero"`
+	// Unique identifier of the entity location, if terrestrial/fixed.
+	IDLocation param.Opt[string] `json:"idLocation,omitzero"`
+	// Onorbit identifier if this entity is part of an on-orbit object. For the public
+	// catalog, the idOnOrbit is typically the satellite number as a string, but may be
+	// a UUID for analyst or other unknown or untracked satellites.
+	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
+	// Unique identifier of the associated operating unit object.
+	IDOperatingUnit param.Opt[string] `json:"idOperatingUnit,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// Boolean indicating if this entity is taskable.
+	Taskable param.Opt[bool] `json:"taskable,omitzero"`
+	// Terrestrial identifier of this entity, if applicable.
+	TerrestrialID param.Opt[string] `json:"terrestrialId,omitzero"`
+	// Model representation of a location, which is a specific fixed point on the earth
+	// and is used to denote the locations of fixed sensors, operating units, etc.
+	Location LocationIngestParam `json:"location,omitzero"`
+	// Model object representing on-orbit objects or satellites in the system.
+	OnOrbit SensorNewParamsEntityOnOrbit `json:"onOrbit,omitzero"`
+	// Type of organization which owns this entity (e.g. Commercial, Government,
+	// Academic, Consortium, etc).
+	//
+	// Any of "Commercial", "Government", "Academic", "Consortium", "Other".
+	OwnerType string `json:"ownerType,omitzero"`
+	// List of URLs to additional details/documents for this entity.
+	URLs []string `json:"urls,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorNewParamsEntity) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r SensorNewParamsEntity) MarshalJSON() (data []byte, err error) {
+	type shadow SensorNewParamsEntity
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+func init() {
+	apijson.RegisterFieldValidator[SensorNewParamsEntity](
+		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+	apijson.RegisterFieldValidator[SensorNewParamsEntity](
+		"Type", false, "AIRCRAFT", "BUS", "COMM", "IR", "NAVIGATION", "ONORBIT", "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL",
+	)
+	apijson.RegisterFieldValidator[SensorNewParamsEntity](
+		"OwnerType", false, "Commercial", "Government", "Academic", "Consortium", "Other",
+	)
+}
+
+// Model object representing on-orbit objects or satellites in the system.
+//
+// The properties ClassificationMarking, DataMode, SatNo, Source are required.
+type SensorNewParamsEntityOnOrbit struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,omitzero,required"`
+	// Satellite/Catalog number of the target on-orbit object.
+	SatNo int64 `json:"satNo,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Alternate name of the on-orbit object.
+	AltName param.Opt[string] `json:"altName,omitzero"`
+	// Common name of the on-orbit object.
+	CommonName param.Opt[string] `json:"commonName,omitzero"`
+	// Constellation to which this satellite belongs.
+	Constellation param.Opt[string] `json:"constellation,omitzero"`
+	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
+	// country code, however it can also represent various consortiums that do not
+	// appear in the ISO document. The code must correspond to an existing country in
+	// the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
+	// ISO Alpha-3 code, or alternate code values that exist for the specified country
+	// code.
+	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// Date of decay.
+	DecayDate param.Opt[time.Time] `json:"decayDate,omitzero" format:"date-time"`
+	// For the public catalog, the idOnOrbit is typically the satellite number as a
+	// string, but may be a UUID for analyst or other unknown or untracked satellites,
+	// auto-generated by the system.
+	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
+	// International Designator, typically of the format YYYYLLLAAA, where YYYY is the
+	// launch year, LLL is the sequential launch number of that year, and AAA is an
+	// optional launch piece designator for the launch.
+	IntlDes param.Opt[string] `json:"intlDes,omitzero"`
+	// Date of launch.
+	LaunchDate param.Opt[time.Time] `json:"launchDate,omitzero" format:"date"`
+	// Id of the associated launchSite entity.
+	LaunchSiteID param.Opt[string] `json:"launchSiteId,omitzero"`
+	// Estimated lifetime of the on-orbit payload, if known.
+	LifetimeYears param.Opt[int64] `json:"lifetimeYears,omitzero"`
+	// Mission number of the on-orbit object.
+	MissionNumber param.Opt[string] `json:"missionNumber,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// Category of the on-orbit object. (Unknown, On-Orbit, Decayed, Cataloged Without
+	// State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
+	// Heliocentric, Interplanetary, Lagrangian, Docked).
+	//
+	// Any of "Unknown", "On-Orbit", "Decayed", "Cataloged Without State", "Launch
+	// Nominal", "Analyst Satellite", "Cislunar", "Lunar", "Hyperbolic",
+	// "Heliocentric", "Interplanetary", "Lagrangian", "Docked".
+	Category string `json:"category,omitzero"`
+	// Type of on-orbit object: ROCKET BODY, DEBRIS, PAYLOAD, PLATFORM, MANNED,
+	// UNKNOWN.
+	//
+	// Any of "ROCKET BODY", "DEBRIS", "PAYLOAD", "PLATFORM", "MANNED", "UNKNOWN".
+	ObjectType string `json:"objectType,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorNewParamsEntityOnOrbit) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r SensorNewParamsEntityOnOrbit) MarshalJSON() (data []byte, err error) {
+	type shadow SensorNewParamsEntityOnOrbit
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+func init() {
+	apijson.RegisterFieldValidator[SensorNewParamsEntityOnOrbit](
+		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+	apijson.RegisterFieldValidator[SensorNewParamsEntityOnOrbit](
+		"Category", false, "Unknown", "On-Orbit", "Decayed", "Cataloged Without State", "Launch Nominal", "Analyst Satellite", "Cislunar", "Lunar", "Hyperbolic", "Heliocentric", "Interplanetary", "Lagrangian", "Docked",
+	)
+	apijson.RegisterFieldValidator[SensorNewParamsEntityOnOrbit](
+		"ObjectType", false, "ROCKET BODY", "DEBRIS", "PAYLOAD", "PLATFORM", "MANNED", "UNKNOWN",
+	)
+}
+
+// Model representation of characteristics and capabilities of a sensor.
+//
+// The properties ClassificationMarking, DataMode, IDSensor, Source are required.
+type SensorNewParamsSensorcharacteristic struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,omitzero,required"`
+	// Unique identifier of the parent sensor.
+	IDSensor string `json:"idSensor,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Optical sensor camera aperture.
+	Aperture param.Opt[float64] `json:"aperture,omitzero"`
+	// For ASR (Air Surveillance Radar) sensors, the scan (360 deg sweep) rate of the
+	// radar, in scans/minute.
+	AsrScanRate param.Opt[float64] `json:"asrScanRate,omitzero"`
+	// Azimuth rate acquisition limit (radians/minute).
+	AzimuthRate param.Opt[float64] `json:"azimuthRate,omitzero"`
+	// Sensor band.
+	Band param.Opt[string] `json:"band,omitzero"`
+	// Number of radar beams used by the sensor.
+	BeamQty param.Opt[int64] `json:"beamQty,omitzero"`
+	// The angle of the center of a phased array sensor.
+	Boresight param.Opt[float64] `json:"boresight,omitzero"`
+	// The number of degrees off of the boresight for the sensor.
+	BoresightOffAngle param.Opt[float64] `json:"boresightOffAngle,omitzero"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// Threshold shear value beyond which one of the radial velocity values will be
+	// rejected, measured in units of inverse second.
+	CritShear param.Opt[float64] `json:"critShear,omitzero"`
+	// Description of the equipment and data source.
+	Description param.Opt[string] `json:"description,omitzero"`
+	// Elevation rate acquisition limit (radians/minute).
+	ElevationRateGeolm param.Opt[float64] `json:"elevationRateGeolm,omitzero"`
+	// Type of equipment used to take measurements.
+	EquipmentType param.Opt[string] `json:"equipmentType,omitzero"`
+	// The beam width of a Sensor's Fan (range). The values for this range from (0.0 to
+	// PI).
+	FanBeamWidth param.Opt[float64] `json:"fanBeamWidth,omitzero"`
+	// Number of Fast Fourier Transform (FFT) points used to convert time varying
+	// signals into the frequency domain.
+	Fft param.Opt[int64] `json:"fft,omitzero"`
+	// Maximum number of times the first guess was propagated in each gate before
+	// failing the first guess check.
+	FgpCrit param.Opt[int64] `json:"fgpCrit,omitzero"`
+	// For radar based sensors, the focal point elevation of the radar at the site, in
+	// meters.
+	FocalPoint param.Opt[float64] `json:"focalPoint,omitzero"`
+	// Horizontal field of view.
+	HFov param.Opt[float64] `json:"hFOV,omitzero"`
+	// Horizontal pixel resolution.
+	HResPixels param.Opt[int64] `json:"hResPixels,omitzero"`
+	// For radar based sensors, K-factor is a relative indicator of refractivity that
+	// infers the amount of radar beam bending due to atmosphere. (1<K<2).
+	K param.Opt[float64] `json:"k,omitzero"`
+	// For Orbiting Sensors, First Card Azimuth limit #1 (left, degrees).
+	LeftClockAngle param.Opt[float64] `json:"leftClockAngle,omitzero"`
+	// Leftmost GEO belt longitude limit for this sensor (if applicable).
+	LeftGeoBeltLimit param.Opt[float64] `json:"leftGeoBeltLimit,omitzero"`
+	// Site where measurement is taken.
+	Location param.Opt[string] `json:"location,omitzero"`
+	// Angle between magnetic north and true north at the sensor site, in degrees.
+	MagDec param.Opt[float64] `json:"magDec,omitzero"`
+	// Absolute magnitude acquisition limit for optical sensors.
+	MagnitudeLimit param.Opt[float64] `json:"magnitudeLimit,omitzero"`
+	// Max deviation angle of the sensor in degrees.
+	MaxDeviationAngle param.Opt[float64] `json:"maxDeviationAngle,omitzero"`
+	// Maximum observable sensor range, in kilometers.
+	MaxObservableRange param.Opt[float64] `json:"maxObservableRange,omitzero"`
+	// Maximum observable range limit in kilometers -- sensor cannot acquire beyond
+	// this range.
+	MaxRangeLimit param.Opt[float64] `json:"maxRangeLimit,omitzero"`
+	// Minimum range measurement capability of the sensor, in kilometers.
+	MinRangeLimit param.Opt[float64] `json:"minRangeLimit,omitzero"`
+	// Signal to Noise Ratio, in decibels. The values for this range from 0.0 - + 99.99
+	// dB.
+	MinSignalNoiseRatio param.Opt[float64] `json:"minSignalNoiseRatio,omitzero"`
+	// Negative Range-rate/relative velocity limit (kilometers/second).
+	NegativeRangeRateLimit param.Opt[float64] `json:"negativeRangeRateLimit,omitzero"`
+	// For radar based sensors, number of integrated pulses in a transmit cycle.
+	NumIntegratedPulses param.Opt[int64] `json:"numIntegratedPulses,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// Positive Range-rate/relative velocity limit (kilometers/second).
+	PositiveRangeRateLimit param.Opt[float64] `json:"positiveRangeRateLimit,omitzero"`
+	// For radar based sensors, pulse repetition frequency (PRF), in hertz. Number of
+	// new pulses transmitted per second.
+	Prf param.Opt[float64] `json:"prf,omitzero"`
+	// For radar based sensors, probability of the indication of the presence of a
+	// radar target due to noise or interference.
+	ProbFalseAlarm param.Opt[float64] `json:"probFalseAlarm,omitzero"`
+	// Radar frequency of the sensor (if a radar sensor).
+	RadarFrequency param.Opt[float64] `json:"radarFrequency,omitzero"`
+	// Message data format transmitted by the sensor digitizer.
+	RadarMessageFormat param.Opt[string] `json:"radarMessageFormat,omitzero"`
+	// For radar based sensors, radar maximum unambiguous range, in kilometers.
+	RadarMur param.Opt[float64] `json:"radarMUR,omitzero"`
+	// Radio frequency (if sensor is RF).
+	RadioFrequency param.Opt[float64] `json:"radioFrequency,omitzero"`
+	// For Orbiting Sensors, First Card Azimuth limit #3 (right, degrees).
+	RightClockAngle param.Opt[float64] `json:"rightClockAngle,omitzero"`
+	// Rightmost GEO belt longitude limit for this sensor (if applicable).
+	RightGeoBeltLimit param.Opt[float64] `json:"rightGeoBeltLimit,omitzero"`
+	// Site code of the sensor.
+	SiteCode param.Opt[string] `json:"siteCode,omitzero"`
+	// For radar based sensors, expression of the radar system noise, aggregated as an
+	// equivalent thermal noise value, in degrees Kelvin.
+	SystemNoiseTemperature param.Opt[float64] `json:"systemNoiseTemperature,omitzero"`
+	// Maximum taskable range of the sensor, in kilometers.
+	TaskableRange param.Opt[float64] `json:"taskableRange,omitzero"`
+	// Test number for the observed measurement.
+	TestNumber param.Opt[string] `json:"testNumber,omitzero"`
+	// For tower sensors, the physical height of the sensor tower, in meters.
+	TowerHeight param.Opt[float64] `json:"towerHeight,omitzero"`
+	// Beginning track angle limit, in radians. Track angle is the angle between the
+	// camera axis and the gimbal plane. Values range from 0 - PI/2.
+	TrackAngle param.Opt[float64] `json:"trackAngle,omitzero"`
+	// Radar transmit power in Watts.
+	TransmitPower param.Opt[float64] `json:"transmitPower,omitzero"`
+	// True North correction for the sensor, in ACP (Azimunth Change Pulse) count.
+	TrueNorthCorrector param.Opt[int64] `json:"trueNorthCorrector,omitzero"`
+	// Antenna true tilt, in degrees.
+	TrueTilt param.Opt[float64] `json:"trueTilt,omitzero"`
+	// Flag indicating if a vertical radar beam was used in the wind calculation.
+	VertBeamFlag param.Opt[bool] `json:"vertBeamFlag,omitzero"`
+	// Vertical field of view.
+	VFov param.Opt[float64] `json:"vFOV,omitzero"`
+	// Vertical pixel resolution.
+	VResPixels param.Opt[int64] `json:"vResPixels,omitzero"`
+	// Peformance zone-1 maximum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z1MaxRange param.Opt[float64] `json:"z1MaxRange,omitzero"`
+	// Peformance zone-1 minimum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z1MinRange param.Opt[float64] `json:"z1MinRange,omitzero"`
+	// Peformance zone-2 maximum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z2MaxRange param.Opt[float64] `json:"z2MaxRange,omitzero"`
+	// Peformance zone-2 minimum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z2MinRange param.Opt[float64] `json:"z2MinRange,omitzero"`
+	// Array of measurement range(s) where radar samples must fall to be acceptable. If
+	// this field is populated, the associated beam(s) must be provided in the
+	// beamOrder field.
+	AcceptSampleRanges []float64 `json:"acceptSampleRanges,omitzero"`
+	// Array of azimuth angles of a radar beam, in degrees. If this field is populated,
+	// the associated beam(s) must be provided in the beamOrder field.
+	AzAngs []float64 `json:"azAngs,omitzero"`
+	// Array designating the beam order of provided values (e.g. vb1 for vertical beam
+	// 1, ob1 for oblique beam 1, etc.). Required if any of the following array fields
+	// are populated: azAngs, elAngs, radarPulseWidths, pulseRepPeriods, delayGates,
+	// rangeGates, rangeSpacings, vertGateSpacings, vertGateWidths, specAvgSpectraNums,
+	// tempMedFiltCodes, runMeanCodes, totRecNums, reqRecords, acceptSampleRanges.
+	BeamOrder []string `json:"beamOrder,omitzero"`
+	// Array of time delay(s) for pulses from a radar beam to get to the first range
+	// gate, in nanoseconds. If this field is populated, the associated beam(s) must be
+	// provided in the beamOrder field.
+	DelayGates []float64 `json:"delayGates,omitzero"`
+	// Array of elevation angles of a radar beam, in degrees. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	ElAngs []float64 `json:"elAngs,omitzero"`
+	// Array of interval(s) between the start of one radar pulse and the start of
+	// another for a radar beam, in microseconds. If this field is populated, the
+	// associated beam(s) must be provided in the beamOrder field.
+	PulseRepPeriods []float64 `json:"pulseRepPeriods,omitzero"`
+	// Array of transmit time(s) for a radar beam pulse, in microseconds. If this field
+	// is populated, the associated beam(s) must be provided in the beamOrder field.
+	RadarPulseWidths []float64 `json:"radarPulseWidths,omitzero"`
+	// Array of the number(s) of discrete altitudes where return signals are sampled by
+	// a radar beam. If this field is populated, the associated beam(s) must be
+	// provided in the beamOrder field.
+	RangeGates []int64 `json:"rangeGates,omitzero"`
+	// Array of range gate spacing(s) for a radar beam, in nanoseconds. If this field
+	// is populated, the associated beam(s) must be provided in the beamOrder field.
+	RangeSpacings []float64 `json:"rangeSpacings,omitzero"`
+	// Array of the total number(s) of records required to meet consensus for a radar
+	// beam. If this field is populated, the associated beam(s) must be provided in the
+	// beamOrder field.
+	ReqRecords []int64 `json:"reqRecords,omitzero"`
+	// Array of running mean code(s) used by radar data processing. The running mean
+	// method involves taking a series of averages of different selections of the full
+	// data set to smooth out short-term fluctuations in the data. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	RunMeanCodes []int64 `json:"runMeanCodes,omitzero"`
+	// Array of the number(s) of Doppler spectra used to process measurements from
+	// radar. Spectral averaging involves combining multiple Doppler spectra acquired
+	// to obtain a more accurate and representative spectrum. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	SpecAvgSpectraNums []int64 `json:"specAvgSpectraNums,omitzero"`
+	// Array of temporal median filter code(s) of a radar beam. Temporal median
+	// filtering is a noise-reducing algorithm which involves replacing each data point
+	// with the median value of a window of neighboring points over time. If this field
+	// is populated, the associated beam(s) must be provided in the beamOrder field.
+	TempMedFiltCodes []int64 `json:"tempMedFiltCodes,omitzero"`
+	// Array of the total number(s) of records for a radar beam. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	TotRecNums []int64 `json:"totRecNums,omitzero"`
+	// Array of vertical distance(s) between points where radar measurements are taken,
+	// in meters. If this field is populated, the associated beam(s) must be provided
+	// in the beamOrder field.
+	VertGateSpacings []float64 `json:"vertGateSpacings,omitzero"`
+	// Array of width(s) of each location where radar measurements are taken, in
+	// meters. If this field is populated, the associated beam(s) must be provided in
+	// the beamOrder field.
+	VertGateWidths []float64 `json:"vertGateWidths,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorNewParamsSensorcharacteristic) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+func (r SensorNewParamsSensorcharacteristic) MarshalJSON() (data []byte, err error) {
+	type shadow SensorNewParamsSensorcharacteristic
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+func init() {
+	apijson.RegisterFieldValidator[SensorNewParamsSensorcharacteristic](
+		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+}
+
+// Sensorlimits define 0 to many limits of a particular sensor in terms of
+// observation coverage of on-orbit objects.
+//
+// The properties ClassificationMarking, DataMode, Source are required.
+type SensorNewParamsSensorlimitsCollection struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,omitzero,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// Unique identifier of the target sensor object.
+	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
+	// Unique identifier of the record, auto-generated by the system.
+	IDSensorLimits param.Opt[string] `json:"idSensorLimits,omitzero"`
+	// Leftmost or minimum lower azimuth within this limit. Interpreted according to
+	// site types as lower left azimuth limit elevation angle of axis of conical
+	// observation pattern. If the limit rectangle is parallel to the horizon, the
+	// upper and lower left azimuth limits would be equal. (degrees).
+	LowerLeftAzimuthLimit param.Opt[float64] `json:"lowerLeftAzimuthLimit,omitzero"`
+	// Minimum or lower elevation within this limit. Interpreted according to site
+	// types as minimum elevation angle, constant elevation or fan beam centerline.
+	// (Degrees).
+	LowerLeftElevationLimit param.Opt[float64] `json:"lowerLeftElevationLimit,omitzero"`
+	// Rightmost or maximum lower azimuth within this limit. Interpreted according to
+	// site types as 2nd lower azimuth limit elevation angle of axis of conical
+	// observation pattern. If the limit rectangle is parallel to the horizon, the
+	// upper and lower right azimuth limits would be equal. (degrees).
+	LowerRightAzimuthLimit param.Opt[float64] `json:"lowerRightAzimuthLimit,omitzero"`
+	// Minimum or lower right elevation within this limit. Interpreted according to
+	// site types as minimum right elevation angle, constant elevation or fan beam
+	// centerline. If the limit rectangle is parallel to the horizon, the left and
+	// right lower elevation limits would be equal. (Degrees).
+	LowerRightElevationLimit param.Opt[float64] `json:"lowerRightElevationLimit,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// Leftmost or minimum upper azimuth within this sensor limit. Interpreted
+	// according to site types as beginning upper azimuth limit, left-hand upper
+	// boundary limit. If the limit rectangle is parallel to the horizon, the upper and
+	// lower left azimuth limits would be equal. (in degrees).
+	UpperLeftAzimuthLimit param.Opt[float64] `json:"upperLeftAzimuthLimit,omitzero"`
+	// Maximum or upper elevation within this limit. Interpreted according to site
+	// types as maximum elevation angle, half the apex of conical observation pattern
+	// or star. (Degrees).
+	UpperLeftElevationLimit param.Opt[float64] `json:"upperLeftElevationLimit,omitzero"`
+	// Rightmost or maximum upper azimuth within this limit. Interpreted according to
+	// site types as 2nd azimuth limit elevation angle of axis of conical observation
+	// pattern. If the limit rectangle is parallel to the horizon, the upper and lower
+	// right azimuth limits would be equal. (degrees).
+	UpperRightAzimuthLimit param.Opt[float64] `json:"upperRightAzimuthLimit,omitzero"`
+	// Maximum or upper right elevation within this limit. Interpreted according to
+	// site types as maximum rightmost elevation angle, half the apex of conical
+	// observation pattern or star. If the limit rectangle is parallel to the horizon,
+	// the left and right upper elevation limits would be equal. (Degrees).
+	UpperRightElevationLimit param.Opt[float64] `json:"upperRightElevationLimit,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorNewParamsSensorlimitsCollection) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+func (r SensorNewParamsSensorlimitsCollection) MarshalJSON() (data []byte, err error) {
+	type shadow SensorNewParamsSensorlimitsCollection
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+func init() {
+	apijson.RegisterFieldValidator[SensorNewParamsSensorlimitsCollection](
+		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+}
+
+type SensorNewParamsSensorObservationType struct {
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// The observation measurement type produced by a sensor.
+	Type param.Opt[string] `json:"type,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorNewParamsSensorObservationType) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+func (r SensorNewParamsSensorObservationType) MarshalJSON() (data []byte, err error) {
+	type shadow SensorNewParamsSensorObservationType
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+// SensorStats contain statistics on sensors related to observation production such
+// as last reported observation time.
+//
+// The properties ClassificationMarking, DataMode, IDSensor, Source are required.
+type SensorNewParamsSensorStat struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,omitzero,required"`
+	// Unique ID of the parent sensor.
+	IDSensor string `json:"idSensor,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// Time of last reported observation in ISO 8601 UTC with microsecond precision.
+	LastObTime param.Opt[time.Time] `json:"lastObTime,omitzero" format:"date-time"`
+	// Read-only time the row was updated in the database, set automatically by the
+	// system on update.
+	UpdatedAt param.Opt[time.Time] `json:"updatedAt,omitzero" format:"date-time"`
+	// Application user who last updated the row in the database, set by the system
+	// automatically and ignored on create/edit operations.
+	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorNewParamsSensorStat) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r SensorNewParamsSensorStat) MarshalJSON() (data []byte, err error) {
+	type shadow SensorNewParamsSensorStat
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+func init() {
+	apijson.RegisterFieldValidator[SensorNewParamsSensorStat](
+		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+}
+
+type SensorNewParamsSensorType struct {
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[int64] `json:"id,omitzero"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// The specific sensor type and/or surveillance capability of this sensor.
+	Type param.Opt[string] `json:"type,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorNewParamsSensorType) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r SensorNewParamsSensorType) MarshalJSON() (data []byte, err error) {
+	type shadow SensorNewParamsSensorType
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+type SensorUpdateParams struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode SensorUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	// Unique name of this sensor.
+	SensorName string `json:"sensorName,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Optional flag indicating if the sensor is active.
+	Active param.Opt[bool] `json:"active,omitzero"`
+	// Optional US Air Force identifier for the sensor/ASR site, typically for air
+	// surveillance radar (ASR) sensors.
+	AfID param.Opt[string] `json:"afId,omitzero"`
+	// The sensor type at the site. Optional field, intended primarily for ASRs.
+	AsrType param.Opt[string] `json:"asrType,omitzero"`
+	// Optional dissemination control required for accessing data (e.g observations)
+	// produced by this sensor. This is typically a proprietary data owner control for
+	// commercial sensors.
+	DataControl param.Opt[string] `json:"dataControl,omitzero"`
+	// Unique identifier of the parent entity. idEntity is required for Put.
+	IDEntity param.Opt[string] `json:"idEntity,omitzero"`
+	// Unique identifier of the record, auto-generated by the system.
+	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// Number assigned to this sensor. Since there is no authoritative numbering
+	// scheme, these numbers sometimes collide across sensors (especially commercial
+	// sensors). It is therefore not a unique identifier.
+	SensorNumber param.Opt[int64] `json:"sensorNumber,omitzero"`
+	// Optional short name for the sensor.
+	ShortName param.Opt[string] `json:"shortName,omitzero"`
+	// An entity is a generic representation of any object within a space/SSA system
+	// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
+	// entity can have an operating unit, a location (if terrestrial), and statuses.
+	Entity SensorUpdateParamsEntity `json:"entity,omitzero"`
+	// Collection of Sensorcharacteristics which define characteristics and
+	// capabilities of a sensor.
+	Sensorcharacteristics []SensorUpdateParamsSensorcharacteristic `json:"sensorcharacteristics,omitzero"`
+	// Sensorlimits define 0 to many limits of a particular sensor in terms of
+	// observation coverage of on-orbit objects.
+	SensorlimitsCollection []SensorUpdateParamsSensorlimitsCollection `json:"sensorlimitsCollection,omitzero"`
+	SensorObservationType  SensorUpdateParamsSensorObservationType    `json:"sensorObservationType,omitzero"`
+	// Collection of SensorStats which contain statistics of a sensor.
+	SensorStats []SensorUpdateParamsSensorStat `json:"sensorStats,omitzero"`
+	SensorType  SensorUpdateParamsSensorType   `json:"sensorType,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+func (r SensorUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow SensorUpdateParams
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type SensorUpdateParamsDataMode string
+
+const (
+	SensorUpdateParamsDataModeReal      SensorUpdateParamsDataMode = "REAL"
+	SensorUpdateParamsDataModeTest      SensorUpdateParamsDataMode = "TEST"
+	SensorUpdateParamsDataModeSimulated SensorUpdateParamsDataMode = "SIMULATED"
+	SensorUpdateParamsDataModeExercise  SensorUpdateParamsDataMode = "EXERCISE"
+)
+
+// An entity is a generic representation of any object within a space/SSA system
+// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
+// entity can have an operating unit, a location (if terrestrial), and statuses.
+//
+// The properties ClassificationMarking, DataMode, Name, Source, Type are required.
+type SensorUpdateParamsEntity struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,omitzero,required"`
+	// Unique entity name.
+	Name string `json:"name,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
+	// NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+	//
+	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "NAVIGATION", "ONORBIT", "RFEMITTER",
+	// "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
+	Type string `json:"type,omitzero,required"`
+	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
+	// country code, however it can also represent various consortiums that do not
+	// appear in the ISO document. The code must correspond to an existing country in
+	// the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
+	// ISO Alpha-3 code, or alternate code values that exist for the specified country
+	// code.
+	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// Unique identifier of the record.
+	IDEntity param.Opt[string] `json:"idEntity,omitzero"`
+	// Unique identifier of the entity location, if terrestrial/fixed.
+	IDLocation param.Opt[string] `json:"idLocation,omitzero"`
+	// Onorbit identifier if this entity is part of an on-orbit object. For the public
+	// catalog, the idOnOrbit is typically the satellite number as a string, but may be
+	// a UUID for analyst or other unknown or untracked satellites.
+	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
+	// Unique identifier of the associated operating unit object.
+	IDOperatingUnit param.Opt[string] `json:"idOperatingUnit,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// Boolean indicating if this entity is taskable.
+	Taskable param.Opt[bool] `json:"taskable,omitzero"`
+	// Terrestrial identifier of this entity, if applicable.
+	TerrestrialID param.Opt[string] `json:"terrestrialId,omitzero"`
+	// Model representation of a location, which is a specific fixed point on the earth
+	// and is used to denote the locations of fixed sensors, operating units, etc.
+	Location LocationIngestParam `json:"location,omitzero"`
+	// Model object representing on-orbit objects or satellites in the system.
+	OnOrbit SensorUpdateParamsEntityOnOrbit `json:"onOrbit,omitzero"`
+	// Type of organization which owns this entity (e.g. Commercial, Government,
+	// Academic, Consortium, etc).
+	//
+	// Any of "Commercial", "Government", "Academic", "Consortium", "Other".
+	OwnerType string `json:"ownerType,omitzero"`
+	// List of URLs to additional details/documents for this entity.
+	URLs []string `json:"urls,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorUpdateParamsEntity) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r SensorUpdateParamsEntity) MarshalJSON() (data []byte, err error) {
+	type shadow SensorUpdateParamsEntity
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+func init() {
+	apijson.RegisterFieldValidator[SensorUpdateParamsEntity](
+		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+	apijson.RegisterFieldValidator[SensorUpdateParamsEntity](
+		"Type", false, "AIRCRAFT", "BUS", "COMM", "IR", "NAVIGATION", "ONORBIT", "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL",
+	)
+	apijson.RegisterFieldValidator[SensorUpdateParamsEntity](
+		"OwnerType", false, "Commercial", "Government", "Academic", "Consortium", "Other",
+	)
+}
+
+// Model object representing on-orbit objects or satellites in the system.
+//
+// The properties ClassificationMarking, DataMode, SatNo, Source are required.
+type SensorUpdateParamsEntityOnOrbit struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,omitzero,required"`
+	// Satellite/Catalog number of the target on-orbit object.
+	SatNo int64 `json:"satNo,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Alternate name of the on-orbit object.
+	AltName param.Opt[string] `json:"altName,omitzero"`
+	// Common name of the on-orbit object.
+	CommonName param.Opt[string] `json:"commonName,omitzero"`
+	// Constellation to which this satellite belongs.
+	Constellation param.Opt[string] `json:"constellation,omitzero"`
+	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
+	// country code, however it can also represent various consortiums that do not
+	// appear in the ISO document. The code must correspond to an existing country in
+	// the UDL’s country API. Call udl/country/{code} to get any associated FIPS code,
+	// ISO Alpha-3 code, or alternate code values that exist for the specified country
+	// code.
+	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// Date of decay.
+	DecayDate param.Opt[time.Time] `json:"decayDate,omitzero" format:"date-time"`
+	// For the public catalog, the idOnOrbit is typically the satellite number as a
+	// string, but may be a UUID for analyst or other unknown or untracked satellites,
+	// auto-generated by the system.
+	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
+	// International Designator, typically of the format YYYYLLLAAA, where YYYY is the
+	// launch year, LLL is the sequential launch number of that year, and AAA is an
+	// optional launch piece designator for the launch.
+	IntlDes param.Opt[string] `json:"intlDes,omitzero"`
+	// Date of launch.
+	LaunchDate param.Opt[time.Time] `json:"launchDate,omitzero" format:"date"`
+	// Id of the associated launchSite entity.
+	LaunchSiteID param.Opt[string] `json:"launchSiteId,omitzero"`
+	// Estimated lifetime of the on-orbit payload, if known.
+	LifetimeYears param.Opt[int64] `json:"lifetimeYears,omitzero"`
+	// Mission number of the on-orbit object.
+	MissionNumber param.Opt[string] `json:"missionNumber,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// Category of the on-orbit object. (Unknown, On-Orbit, Decayed, Cataloged Without
+	// State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
+	// Heliocentric, Interplanetary, Lagrangian, Docked).
+	//
+	// Any of "Unknown", "On-Orbit", "Decayed", "Cataloged Without State", "Launch
+	// Nominal", "Analyst Satellite", "Cislunar", "Lunar", "Hyperbolic",
+	// "Heliocentric", "Interplanetary", "Lagrangian", "Docked".
+	Category string `json:"category,omitzero"`
+	// Type of on-orbit object: ROCKET BODY, DEBRIS, PAYLOAD, PLATFORM, MANNED,
+	// UNKNOWN.
+	//
+	// Any of "ROCKET BODY", "DEBRIS", "PAYLOAD", "PLATFORM", "MANNED", "UNKNOWN".
+	ObjectType string `json:"objectType,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorUpdateParamsEntityOnOrbit) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r SensorUpdateParamsEntityOnOrbit) MarshalJSON() (data []byte, err error) {
+	type shadow SensorUpdateParamsEntityOnOrbit
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+func init() {
+	apijson.RegisterFieldValidator[SensorUpdateParamsEntityOnOrbit](
+		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+	apijson.RegisterFieldValidator[SensorUpdateParamsEntityOnOrbit](
+		"Category", false, "Unknown", "On-Orbit", "Decayed", "Cataloged Without State", "Launch Nominal", "Analyst Satellite", "Cislunar", "Lunar", "Hyperbolic", "Heliocentric", "Interplanetary", "Lagrangian", "Docked",
+	)
+	apijson.RegisterFieldValidator[SensorUpdateParamsEntityOnOrbit](
+		"ObjectType", false, "ROCKET BODY", "DEBRIS", "PAYLOAD", "PLATFORM", "MANNED", "UNKNOWN",
+	)
+}
+
+// Model representation of characteristics and capabilities of a sensor.
+//
+// The properties ClassificationMarking, DataMode, IDSensor, Source are required.
+type SensorUpdateParamsSensorcharacteristic struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,omitzero,required"`
+	// Unique identifier of the parent sensor.
+	IDSensor string `json:"idSensor,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Optical sensor camera aperture.
+	Aperture param.Opt[float64] `json:"aperture,omitzero"`
+	// For ASR (Air Surveillance Radar) sensors, the scan (360 deg sweep) rate of the
+	// radar, in scans/minute.
+	AsrScanRate param.Opt[float64] `json:"asrScanRate,omitzero"`
+	// Azimuth rate acquisition limit (radians/minute).
+	AzimuthRate param.Opt[float64] `json:"azimuthRate,omitzero"`
+	// Sensor band.
+	Band param.Opt[string] `json:"band,omitzero"`
+	// Number of radar beams used by the sensor.
+	BeamQty param.Opt[int64] `json:"beamQty,omitzero"`
+	// The angle of the center of a phased array sensor.
+	Boresight param.Opt[float64] `json:"boresight,omitzero"`
+	// The number of degrees off of the boresight for the sensor.
+	BoresightOffAngle param.Opt[float64] `json:"boresightOffAngle,omitzero"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// Threshold shear value beyond which one of the radial velocity values will be
+	// rejected, measured in units of inverse second.
+	CritShear param.Opt[float64] `json:"critShear,omitzero"`
+	// Description of the equipment and data source.
+	Description param.Opt[string] `json:"description,omitzero"`
+	// Elevation rate acquisition limit (radians/minute).
+	ElevationRateGeolm param.Opt[float64] `json:"elevationRateGeolm,omitzero"`
+	// Type of equipment used to take measurements.
+	EquipmentType param.Opt[string] `json:"equipmentType,omitzero"`
+	// The beam width of a Sensor's Fan (range). The values for this range from (0.0 to
+	// PI).
+	FanBeamWidth param.Opt[float64] `json:"fanBeamWidth,omitzero"`
+	// Number of Fast Fourier Transform (FFT) points used to convert time varying
+	// signals into the frequency domain.
+	Fft param.Opt[int64] `json:"fft,omitzero"`
+	// Maximum number of times the first guess was propagated in each gate before
+	// failing the first guess check.
+	FgpCrit param.Opt[int64] `json:"fgpCrit,omitzero"`
+	// For radar based sensors, the focal point elevation of the radar at the site, in
+	// meters.
+	FocalPoint param.Opt[float64] `json:"focalPoint,omitzero"`
+	// Horizontal field of view.
+	HFov param.Opt[float64] `json:"hFOV,omitzero"`
+	// Horizontal pixel resolution.
+	HResPixels param.Opt[int64] `json:"hResPixels,omitzero"`
+	// For radar based sensors, K-factor is a relative indicator of refractivity that
+	// infers the amount of radar beam bending due to atmosphere. (1<K<2).
+	K param.Opt[float64] `json:"k,omitzero"`
+	// For Orbiting Sensors, First Card Azimuth limit #1 (left, degrees).
+	LeftClockAngle param.Opt[float64] `json:"leftClockAngle,omitzero"`
+	// Leftmost GEO belt longitude limit for this sensor (if applicable).
+	LeftGeoBeltLimit param.Opt[float64] `json:"leftGeoBeltLimit,omitzero"`
+	// Site where measurement is taken.
+	Location param.Opt[string] `json:"location,omitzero"`
+	// Angle between magnetic north and true north at the sensor site, in degrees.
+	MagDec param.Opt[float64] `json:"magDec,omitzero"`
+	// Absolute magnitude acquisition limit for optical sensors.
+	MagnitudeLimit param.Opt[float64] `json:"magnitudeLimit,omitzero"`
+	// Max deviation angle of the sensor in degrees.
+	MaxDeviationAngle param.Opt[float64] `json:"maxDeviationAngle,omitzero"`
+	// Maximum observable sensor range, in kilometers.
+	MaxObservableRange param.Opt[float64] `json:"maxObservableRange,omitzero"`
+	// Maximum observable range limit in kilometers -- sensor cannot acquire beyond
+	// this range.
+	MaxRangeLimit param.Opt[float64] `json:"maxRangeLimit,omitzero"`
+	// Minimum range measurement capability of the sensor, in kilometers.
+	MinRangeLimit param.Opt[float64] `json:"minRangeLimit,omitzero"`
+	// Signal to Noise Ratio, in decibels. The values for this range from 0.0 - + 99.99
+	// dB.
+	MinSignalNoiseRatio param.Opt[float64] `json:"minSignalNoiseRatio,omitzero"`
+	// Negative Range-rate/relative velocity limit (kilometers/second).
+	NegativeRangeRateLimit param.Opt[float64] `json:"negativeRangeRateLimit,omitzero"`
+	// For radar based sensors, number of integrated pulses in a transmit cycle.
+	NumIntegratedPulses param.Opt[int64] `json:"numIntegratedPulses,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// Positive Range-rate/relative velocity limit (kilometers/second).
+	PositiveRangeRateLimit param.Opt[float64] `json:"positiveRangeRateLimit,omitzero"`
+	// For radar based sensors, pulse repetition frequency (PRF), in hertz. Number of
+	// new pulses transmitted per second.
+	Prf param.Opt[float64] `json:"prf,omitzero"`
+	// For radar based sensors, probability of the indication of the presence of a
+	// radar target due to noise or interference.
+	ProbFalseAlarm param.Opt[float64] `json:"probFalseAlarm,omitzero"`
+	// Radar frequency of the sensor (if a radar sensor).
+	RadarFrequency param.Opt[float64] `json:"radarFrequency,omitzero"`
+	// Message data format transmitted by the sensor digitizer.
+	RadarMessageFormat param.Opt[string] `json:"radarMessageFormat,omitzero"`
+	// For radar based sensors, radar maximum unambiguous range, in kilometers.
+	RadarMur param.Opt[float64] `json:"radarMUR,omitzero"`
+	// Radio frequency (if sensor is RF).
+	RadioFrequency param.Opt[float64] `json:"radioFrequency,omitzero"`
+	// For Orbiting Sensors, First Card Azimuth limit #3 (right, degrees).
+	RightClockAngle param.Opt[float64] `json:"rightClockAngle,omitzero"`
+	// Rightmost GEO belt longitude limit for this sensor (if applicable).
+	RightGeoBeltLimit param.Opt[float64] `json:"rightGeoBeltLimit,omitzero"`
+	// Site code of the sensor.
+	SiteCode param.Opt[string] `json:"siteCode,omitzero"`
+	// For radar based sensors, expression of the radar system noise, aggregated as an
+	// equivalent thermal noise value, in degrees Kelvin.
+	SystemNoiseTemperature param.Opt[float64] `json:"systemNoiseTemperature,omitzero"`
+	// Maximum taskable range of the sensor, in kilometers.
+	TaskableRange param.Opt[float64] `json:"taskableRange,omitzero"`
+	// Test number for the observed measurement.
+	TestNumber param.Opt[string] `json:"testNumber,omitzero"`
+	// For tower sensors, the physical height of the sensor tower, in meters.
+	TowerHeight param.Opt[float64] `json:"towerHeight,omitzero"`
+	// Beginning track angle limit, in radians. Track angle is the angle between the
+	// camera axis and the gimbal plane. Values range from 0 - PI/2.
+	TrackAngle param.Opt[float64] `json:"trackAngle,omitzero"`
+	// Radar transmit power in Watts.
+	TransmitPower param.Opt[float64] `json:"transmitPower,omitzero"`
+	// True North correction for the sensor, in ACP (Azimunth Change Pulse) count.
+	TrueNorthCorrector param.Opt[int64] `json:"trueNorthCorrector,omitzero"`
+	// Antenna true tilt, in degrees.
+	TrueTilt param.Opt[float64] `json:"trueTilt,omitzero"`
+	// Flag indicating if a vertical radar beam was used in the wind calculation.
+	VertBeamFlag param.Opt[bool] `json:"vertBeamFlag,omitzero"`
+	// Vertical field of view.
+	VFov param.Opt[float64] `json:"vFOV,omitzero"`
+	// Vertical pixel resolution.
+	VResPixels param.Opt[int64] `json:"vResPixels,omitzero"`
+	// Peformance zone-1 maximum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z1MaxRange param.Opt[float64] `json:"z1MaxRange,omitzero"`
+	// Peformance zone-1 minimum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z1MinRange param.Opt[float64] `json:"z1MinRange,omitzero"`
+	// Peformance zone-2 maximum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z2MaxRange param.Opt[float64] `json:"z2MaxRange,omitzero"`
+	// Peformance zone-2 minimum range, in kilometers. Note that the zones apply only
+	// to the PSR/Search radars.
+	Z2MinRange param.Opt[float64] `json:"z2MinRange,omitzero"`
+	// Array of measurement range(s) where radar samples must fall to be acceptable. If
+	// this field is populated, the associated beam(s) must be provided in the
+	// beamOrder field.
+	AcceptSampleRanges []float64 `json:"acceptSampleRanges,omitzero"`
+	// Array of azimuth angles of a radar beam, in degrees. If this field is populated,
+	// the associated beam(s) must be provided in the beamOrder field.
+	AzAngs []float64 `json:"azAngs,omitzero"`
+	// Array designating the beam order of provided values (e.g. vb1 for vertical beam
+	// 1, ob1 for oblique beam 1, etc.). Required if any of the following array fields
+	// are populated: azAngs, elAngs, radarPulseWidths, pulseRepPeriods, delayGates,
+	// rangeGates, rangeSpacings, vertGateSpacings, vertGateWidths, specAvgSpectraNums,
+	// tempMedFiltCodes, runMeanCodes, totRecNums, reqRecords, acceptSampleRanges.
+	BeamOrder []string `json:"beamOrder,omitzero"`
+	// Array of time delay(s) for pulses from a radar beam to get to the first range
+	// gate, in nanoseconds. If this field is populated, the associated beam(s) must be
+	// provided in the beamOrder field.
+	DelayGates []float64 `json:"delayGates,omitzero"`
+	// Array of elevation angles of a radar beam, in degrees. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	ElAngs []float64 `json:"elAngs,omitzero"`
+	// Array of interval(s) between the start of one radar pulse and the start of
+	// another for a radar beam, in microseconds. If this field is populated, the
+	// associated beam(s) must be provided in the beamOrder field.
+	PulseRepPeriods []float64 `json:"pulseRepPeriods,omitzero"`
+	// Array of transmit time(s) for a radar beam pulse, in microseconds. If this field
+	// is populated, the associated beam(s) must be provided in the beamOrder field.
+	RadarPulseWidths []float64 `json:"radarPulseWidths,omitzero"`
+	// Array of the number(s) of discrete altitudes where return signals are sampled by
+	// a radar beam. If this field is populated, the associated beam(s) must be
+	// provided in the beamOrder field.
+	RangeGates []int64 `json:"rangeGates,omitzero"`
+	// Array of range gate spacing(s) for a radar beam, in nanoseconds. If this field
+	// is populated, the associated beam(s) must be provided in the beamOrder field.
+	RangeSpacings []float64 `json:"rangeSpacings,omitzero"`
+	// Array of the total number(s) of records required to meet consensus for a radar
+	// beam. If this field is populated, the associated beam(s) must be provided in the
+	// beamOrder field.
+	ReqRecords []int64 `json:"reqRecords,omitzero"`
+	// Array of running mean code(s) used by radar data processing. The running mean
+	// method involves taking a series of averages of different selections of the full
+	// data set to smooth out short-term fluctuations in the data. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	RunMeanCodes []int64 `json:"runMeanCodes,omitzero"`
+	// Array of the number(s) of Doppler spectra used to process measurements from
+	// radar. Spectral averaging involves combining multiple Doppler spectra acquired
+	// to obtain a more accurate and representative spectrum. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	SpecAvgSpectraNums []int64 `json:"specAvgSpectraNums,omitzero"`
+	// Array of temporal median filter code(s) of a radar beam. Temporal median
+	// filtering is a noise-reducing algorithm which involves replacing each data point
+	// with the median value of a window of neighboring points over time. If this field
+	// is populated, the associated beam(s) must be provided in the beamOrder field.
+	TempMedFiltCodes []int64 `json:"tempMedFiltCodes,omitzero"`
+	// Array of the total number(s) of records for a radar beam. If this field is
+	// populated, the associated beam(s) must be provided in the beamOrder field.
+	TotRecNums []int64 `json:"totRecNums,omitzero"`
+	// Array of vertical distance(s) between points where radar measurements are taken,
+	// in meters. If this field is populated, the associated beam(s) must be provided
+	// in the beamOrder field.
+	VertGateSpacings []float64 `json:"vertGateSpacings,omitzero"`
+	// Array of width(s) of each location where radar measurements are taken, in
+	// meters. If this field is populated, the associated beam(s) must be provided in
+	// the beamOrder field.
+	VertGateWidths []float64 `json:"vertGateWidths,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorUpdateParamsSensorcharacteristic) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+func (r SensorUpdateParamsSensorcharacteristic) MarshalJSON() (data []byte, err error) {
+	type shadow SensorUpdateParamsSensorcharacteristic
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+func init() {
+	apijson.RegisterFieldValidator[SensorUpdateParamsSensorcharacteristic](
+		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+}
+
+// Sensorlimits define 0 to many limits of a particular sensor in terms of
+// observation coverage of on-orbit objects.
+//
+// The properties ClassificationMarking, DataMode, Source are required.
+type SensorUpdateParamsSensorlimitsCollection struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,omitzero,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// Unique identifier of the target sensor object.
+	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
+	// Unique identifier of the record, auto-generated by the system.
+	IDSensorLimits param.Opt[string] `json:"idSensorLimits,omitzero"`
+	// Leftmost or minimum lower azimuth within this limit. Interpreted according to
+	// site types as lower left azimuth limit elevation angle of axis of conical
+	// observation pattern. If the limit rectangle is parallel to the horizon, the
+	// upper and lower left azimuth limits would be equal. (degrees).
+	LowerLeftAzimuthLimit param.Opt[float64] `json:"lowerLeftAzimuthLimit,omitzero"`
+	// Minimum or lower elevation within this limit. Interpreted according to site
+	// types as minimum elevation angle, constant elevation or fan beam centerline.
+	// (Degrees).
+	LowerLeftElevationLimit param.Opt[float64] `json:"lowerLeftElevationLimit,omitzero"`
+	// Rightmost or maximum lower azimuth within this limit. Interpreted according to
+	// site types as 2nd lower azimuth limit elevation angle of axis of conical
+	// observation pattern. If the limit rectangle is parallel to the horizon, the
+	// upper and lower right azimuth limits would be equal. (degrees).
+	LowerRightAzimuthLimit param.Opt[float64] `json:"lowerRightAzimuthLimit,omitzero"`
+	// Minimum or lower right elevation within this limit. Interpreted according to
+	// site types as minimum right elevation angle, constant elevation or fan beam
+	// centerline. If the limit rectangle is parallel to the horizon, the left and
+	// right lower elevation limits would be equal. (Degrees).
+	LowerRightElevationLimit param.Opt[float64] `json:"lowerRightElevationLimit,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// Leftmost or minimum upper azimuth within this sensor limit. Interpreted
+	// according to site types as beginning upper azimuth limit, left-hand upper
+	// boundary limit. If the limit rectangle is parallel to the horizon, the upper and
+	// lower left azimuth limits would be equal. (in degrees).
+	UpperLeftAzimuthLimit param.Opt[float64] `json:"upperLeftAzimuthLimit,omitzero"`
+	// Maximum or upper elevation within this limit. Interpreted according to site
+	// types as maximum elevation angle, half the apex of conical observation pattern
+	// or star. (Degrees).
+	UpperLeftElevationLimit param.Opt[float64] `json:"upperLeftElevationLimit,omitzero"`
+	// Rightmost or maximum upper azimuth within this limit. Interpreted according to
+	// site types as 2nd azimuth limit elevation angle of axis of conical observation
+	// pattern. If the limit rectangle is parallel to the horizon, the upper and lower
+	// right azimuth limits would be equal. (degrees).
+	UpperRightAzimuthLimit param.Opt[float64] `json:"upperRightAzimuthLimit,omitzero"`
+	// Maximum or upper right elevation within this limit. Interpreted according to
+	// site types as maximum rightmost elevation angle, half the apex of conical
+	// observation pattern or star. If the limit rectangle is parallel to the horizon,
+	// the left and right upper elevation limits would be equal. (Degrees).
+	UpperRightElevationLimit param.Opt[float64] `json:"upperRightElevationLimit,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorUpdateParamsSensorlimitsCollection) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+func (r SensorUpdateParamsSensorlimitsCollection) MarshalJSON() (data []byte, err error) {
+	type shadow SensorUpdateParamsSensorlimitsCollection
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+func init() {
+	apijson.RegisterFieldValidator[SensorUpdateParamsSensorlimitsCollection](
+		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+}
+
+type SensorUpdateParamsSensorObservationType struct {
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// The observation measurement type produced by a sensor.
+	Type param.Opt[string] `json:"type,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorUpdateParamsSensorObservationType) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+func (r SensorUpdateParamsSensorObservationType) MarshalJSON() (data []byte, err error) {
+	type shadow SensorUpdateParamsSensorObservationType
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+// SensorStats contain statistics on sensors related to observation production such
+// as last reported observation time.
+//
+// The properties ClassificationMarking, DataMode, IDSensor, Source are required.
+type SensorUpdateParamsSensorStat struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,omitzero,required"`
+	// Unique ID of the parent sensor.
+	IDSensor string `json:"idSensor,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// Time of last reported observation in ISO 8601 UTC with microsecond precision.
+	LastObTime param.Opt[time.Time] `json:"lastObTime,omitzero" format:"date-time"`
+	// Read-only time the row was updated in the database, set automatically by the
+	// system on update.
+	UpdatedAt param.Opt[time.Time] `json:"updatedAt,omitzero" format:"date-time"`
+	// Application user who last updated the row in the database, set by the system
+	// automatically and ignored on create/edit operations.
+	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorUpdateParamsSensorStat) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r SensorUpdateParamsSensorStat) MarshalJSON() (data []byte, err error) {
+	type shadow SensorUpdateParamsSensorStat
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+func init() {
+	apijson.RegisterFieldValidator[SensorUpdateParamsSensorStat](
+		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+}
+
+type SensorUpdateParamsSensorType struct {
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[int64] `json:"id,omitzero"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// The specific sensor type and/or surveillance capability of this sensor.
+	Type param.Opt[string] `json:"type,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorUpdateParamsSensorType) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r SensorUpdateParamsSensorType) MarshalJSON() (data []byte, err error) {
+	type shadow SensorUpdateParamsSensorType
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+type SensorListParams struct {
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [SensorListParams]'s query parameters as `url.Values`.
+func (r SensorListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type SensorCountParams struct {
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [SensorCountParams]'s query parameters as `url.Values`.
+func (r SensorCountParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type SensorGetParams struct {
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [SensorGetParams]'s query parameters as `url.Values`.
+func (r SensorGetParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type SensorTupleParams struct {
+	// Comma-separated list of valid field names for this data type to be returned in
+	// the response. Only the fields specified will be returned as well as the
+	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
+	// for a complete list of possible fields.
+	Columns     string           `query:"columns,required" json:"-"`
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SensorTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [SensorTupleParams]'s query parameters as `url.Values`.
+func (r SensorTupleParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}

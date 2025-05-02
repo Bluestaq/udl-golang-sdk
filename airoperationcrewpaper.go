@@ -1,0 +1,135 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+package unifieddatalibrary
+
+import (
+	"bytes"
+	"context"
+	"io"
+	"mime/multipart"
+	"net/http"
+	"net/url"
+
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiform"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
+	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
+)
+
+// AirOperationCrewpaperService contains methods and other services that help with
+// interacting with the unifieddatalibrary API.
+//
+// Note, unlike clients, this service does not read variables from the environment
+// automatically. You should not instantiate this service directly, and instead use
+// the [NewAirOperationCrewpaperService] method instead.
+type AirOperationCrewpaperService struct {
+	Options []option.RequestOption
+}
+
+// NewAirOperationCrewpaperService generates a new service that applies the given
+// options to each request. These options are applied after the parent client's
+// options (if there is one), and before any request-specific options.
+func NewAirOperationCrewpaperService(opts ...option.RequestOption) (r AirOperationCrewpaperService) {
+	r = AirOperationCrewpaperService{}
+	r.Options = opts
+	return
+}
+
+// Service operation to remove supporting PDF from an aircraft sortie or sorties. A
+// specific role is required to perform this service operation. Please contact the
+// UDL team for assistance.
+func (r *AirOperationCrewpaperService) Unpublish(ctx context.Context, body AirOperationCrewpaperUnpublishParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "udl/crewpapers/unpublish"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
+	return
+}
+
+// Service operation to upload a supporting PDF for the aircraft sortie. A specific
+// role is required to perform this service operation. Please contact the UDL team
+// for assistance.
+func (r *AirOperationCrewpaperService) UploadPdf(ctx context.Context, params AirOperationCrewpaperUploadPdfParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "filedrop/crewpapers"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
+	return
+}
+
+type AirOperationCrewpaperUnpublishParams struct {
+	// Comma-separated list of AircraftSortie IDs where Crew Papers are unpublished.
+	IDs string `query:"ids,required" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f AirOperationCrewpaperUnpublishParams) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+
+// URLQuery serializes [AirOperationCrewpaperUnpublishParams]'s query parameters as
+// `url.Values`.
+func (r AirOperationCrewpaperUnpublishParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type AirOperationCrewpaperUploadPdfParams struct {
+	// Comma-separated list of AircraftSortie IDs the Crew Papers are being added to.
+	AircraftSortieIDs string `query:"aircraftSortieIds,required" json:"-"`
+	// classificationMarking of the Crew Papers.
+	ClassificationMarking string `query:"classificationMarking,required" json:"-"`
+	// The status of the supporting document.
+	//
+	// Any of "PUBLISHED", "DELETED", "UPDATED", "READ".
+	PaperStatus AirOperationCrewpaperUploadPdfParamsPaperStatus `query:"paperStatus,omitzero,required" json:"-"`
+	// The version number of the crew paper.
+	PapersVersion string `query:"papersVersion,required" json:"-"`
+	Body          io.Reader
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f AirOperationCrewpaperUploadPdfParams) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+
+func (r AirOperationCrewpaperUploadPdfParams) MarshalMultipart() (data []byte, contentType string, err error) {
+	buf := bytes.NewBuffer(nil)
+	writer := multipart.NewWriter(buf)
+	err = apiform.MarshalRoot(r, writer)
+	if err != nil {
+		writer.Close()
+		return nil, "", err
+	}
+	err = writer.Close()
+	if err != nil {
+		return nil, "", err
+	}
+	return buf.Bytes(), writer.FormDataContentType(), nil
+}
+
+// URLQuery serializes [AirOperationCrewpaperUploadPdfParams]'s query parameters as
+// `url.Values`.
+func (r AirOperationCrewpaperUploadPdfParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+// The status of the supporting document.
+type AirOperationCrewpaperUploadPdfParamsPaperStatus string
+
+const (
+	AirOperationCrewpaperUploadPdfParamsPaperStatusPublished AirOperationCrewpaperUploadPdfParamsPaperStatus = "PUBLISHED"
+	AirOperationCrewpaperUploadPdfParamsPaperStatusDeleted   AirOperationCrewpaperUploadPdfParamsPaperStatus = "DELETED"
+	AirOperationCrewpaperUploadPdfParamsPaperStatusUpdated   AirOperationCrewpaperUploadPdfParamsPaperStatus = "UPDATED"
+	AirOperationCrewpaperUploadPdfParamsPaperStatusRead      AirOperationCrewpaperUploadPdfParamsPaperStatus = "READ"
+)

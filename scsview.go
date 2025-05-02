@@ -1,0 +1,66 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+package unifieddatalibrary
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	"net/http"
+	"net/url"
+
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
+	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
+)
+
+// ScsViewService contains methods and other services that help with interacting
+// with the unifieddatalibrary API.
+//
+// Note, unlike clients, this service does not read variables from the environment
+// automatically. You should not instantiate this service directly, and instead use
+// the [NewScsViewService] method instead.
+type ScsViewService struct {
+	Options []option.RequestOption
+}
+
+// NewScsViewService generates a new service that applies the given options to each
+// request. These options are applied after the parent client's options (if there
+// is one), and before any request-specific options.
+func NewScsViewService(opts ...option.RequestOption) (r ScsViewService) {
+	r = ScsViewService{}
+	r.Options = opts
+	return
+}
+
+// Return a single file to view in browser.
+func (r *ScsViewService) Get(ctx context.Context, id string, query ScsViewGetParams, opts ...option.RequestOption) (res *http.Response, err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("scs/view/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+type ScsViewGetParams struct {
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f ScsViewGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [ScsViewGetParams]'s query parameters as `url.Values`.
+func (r ScsViewGetParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}

@@ -1,0 +1,1025 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+package unifieddatalibrary
+
+import (
+	"context"
+	"net/http"
+	"net/url"
+	"time"
+
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
+	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+)
+
+// UdlMtiHistoryService contains methods and other services that help with
+// interacting with the unifieddatalibrary API.
+//
+// Note, unlike clients, this service does not read variables from the environment
+// automatically. You should not instantiate this service directly, and instead use
+// the [NewUdlMtiHistoryService] method instead.
+type UdlMtiHistoryService struct {
+	Options []option.RequestOption
+}
+
+// NewUdlMtiHistoryService generates a new service that applies the given options
+// to each request. These options are applied after the parent client's options (if
+// there is one), and before any request-specific options.
+func NewUdlMtiHistoryService(opts ...option.RequestOption) (r UdlMtiHistoryService) {
+	r = UdlMtiHistoryService{}
+	r.Options = opts
+	return
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *UdlMtiHistoryService) List(ctx context.Context, query UdlMtiHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[MtiFull], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/mti/history"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *UdlMtiHistoryService) ListAutoPaging(ctx context.Context, query UdlMtiHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[MtiFull] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation, then write that data to the
+// Secure Content Store. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *UdlMtiHistoryService) Aodr(ctx context.Context, query UdlMtiHistoryAodrParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "udl/mti/history/aodr"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
+	return
+}
+
+// Service operation to return the count of records satisfying the specified query
+// parameters. This operation is useful to determine how many records pass a
+// particular query criteria without retrieving large amounts of data. See the
+// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// valid/required query parameter information.
+func (r *UdlMtiHistoryService) Count(ctx context.Context, query UdlMtiHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
+	path := "udl/mti/history/count"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Information on the mission and flight plans, the type and configuration of the
+// platform, and the reference time.
+type MtiFull struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode MtiFullDataMode `json:"dataMode,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// A platform-assigned number identifying the specific request or task that
+	// pertains to all Dwell, HRR, and Range-Doppler segments in the packet. Job ID is
+	// unique within a mission.
+	Dwells []MtiFullDwell `json:"dwells"`
+	// A platform-assigned number identifying the specific request or task that
+	// pertains to all Dwell, HRR, and Range-Doppler segments in the packet. Job ID is
+	// unique within a mission.
+	FreeTexts []MtiFullFreeText `json:"freeTexts"`
+	// A platform-assigned number identifying the specific request or task that
+	// pertains to all Dwell, HRR, and Range-Doppler segments in the packet. Job ID is
+	// unique within a mission.
+	Hrrs []MtiFullHrr `json:"hrrs"`
+	// A platform-assigned number identifying the specific request or task that
+	// pertains to all Dwell, HRR, and Range-Doppler segments in the packet. Job ID is
+	// unique within a mission.
+	JobDefs []MtiFullJobDef `json:"jobDefs"`
+	// A platform-assigned number identifying the specific request or task that
+	// pertains to all Dwell, HRR, and Range-Doppler segments in the packet. Job ID is
+	// unique within a mission.
+	JobRequests []MtiFullJobRequest `json:"jobRequests"`
+	// A platform-assigned number identifying the specific request or task that
+	// pertains to all Dwell, HRR, and Range-Doppler segments in the packet. Job ID is
+	// unique within a mission.
+	Missions []MtiFullMission `json:"missions"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// A platform-assigned number identifying the specific request or task that
+	// pertains to all Dwell, HRR, and Range-Doppler segments in the packet. Job ID is
+	// unique within a mission.
+	P10 int64 `json:"p10"`
+	// Nationality of the platform providing the data.
+	P3 string `json:"p3"`
+	// Control / handling marking.
+	P6 string `json:"p6"`
+	// Data record exercise indicator.
+	P7 string `json:"p7"`
+	// ID of the platform providing the data (tail number for air platform, name and
+	// numerical designator for space-based platforms).
+	P8 string `json:"p8"`
+	// Integer field, assigned by the platform, that uniquely identifies the mission
+	// for the platform.
+	P9 int64 `json:"p9"`
+	// A platform-assigned number identifying the specific request or task that
+	// pertains to all Dwell, HRR, and Range-Doppler segments in the packet. Job ID is
+	// unique within a mission.
+	PlatformLocs []MtiFullPlatformLoc `json:"platformLocs"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Dwells                resp.Field
+		FreeTexts             resp.Field
+		Hrrs                  resp.Field
+		JobDefs               resp.Field
+		JobRequests           resp.Field
+		Missions              resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		P10                   resp.Field
+		P3                    resp.Field
+		P6                    resp.Field
+		P7                    resp.Field
+		P8                    resp.Field
+		P9                    resp.Field
+		PlatformLocs          resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r MtiFull) RawJSON() string { return r.JSON.raw }
+func (r *MtiFull) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type MtiFullDataMode string
+
+const (
+	MtiFullDataModeReal      MtiFullDataMode = "REAL"
+	MtiFullDataModeTest      MtiFullDataMode = "TEST"
+	MtiFullDataModeSimulated MtiFullDataMode = "SIMULATED"
+	MtiFullDataModeExercise  MtiFullDataMode = "EXERCISE"
+)
+
+type MtiFullDwell struct {
+	// Factor which modifies the value of the reported target latitude (Delta Latitude,
+	// field D32.4).
+	D10 float64 `json:"d10"`
+	// Factor which modifies the value of the reported target longitude (Delta
+	// Longitude, field D32.5).
+	D11 float64 `json:"d11"`
+	// Standard deviation in the estimated horizontal sensor location at the time of
+	// the dwell, measured along the sensor track direction (field D15), in
+	// centimeters.
+	D12 int64 `json:"d12"`
+	// Standard deviation in the estimated horizontal sensor location at the time of
+	// the dwell, measured orthogonal to the sensor track direction (field D15), in
+	// centimeters.
+	D13 int64 `json:"d13"`
+	// Standard deviation of the sensor altitude estimate (field D9), in centimeters.
+	D14 int64 `json:"d14"`
+	// Ground track of the sensor at the time of the dwell, as the angle in degrees
+	// (clockwise) from True North.
+	D15 float64 `json:"d15"`
+	// Ground speed of the sensor at the time of the dwell, in millimeters per second.
+	D16 int64 `json:"d16"`
+	// Velocity of the sensor in the vertical direction, in decimeters per second.
+	D17 int64 `json:"d17"`
+	// Standard deviation of the estimate of the sensor track, in degrees.
+	D18 int64 `json:"d18"`
+	// Standard deviation of estimate of the sensor speed, in millimeters per second.
+	D19 int64 `json:"d19"`
+	// Sequential count of a revisit of the bounding area in the last sent Job
+	// Definition Segment, where a Revisit Index of '0' indicates the first revisit.
+	D2 int64 `json:"d2"`
+	// Standard deviation of estimate of the sensor vertical velocity, expressed in
+	// centimeters per second.
+	D20 int64 `json:"d20"`
+	// Heading of the platform at the time of the dwell, as the angle in degrees
+	// (clockwise) from True North to the roll axis of the platform.
+	D21 float64 `json:"d21"`
+	// Pitch angle of the platform at the time of the dwell, in degrees.
+	D22 float64 `json:"d22"`
+	// Roll angle of the platform at the time of the dwell, in degrees.
+	D23 float64 `json:"d23"`
+	// The North-South position of the center of the dwell area, expressed as degrees
+	// North (positive) or South (negative) of the Equator.
+	D24 float64 `json:"d24"`
+	// The East-West position of the center of the dwell area, expressed as degrees
+	// East (positive, 0 to 180) or West (negative, 0 to -180) of the Prime Meridian.
+	D25 float64 `json:"d25"`
+	// Distance on the earth surface, expressed in kilometers, from the near edge to
+	// the center of the dwell area.
+	D26 float64 `json:"d26"`
+	// For dwell based radars, one-half of the 3-dB beamwidth. For non-dwell based
+	// radars, the angle between the beginning of the dwell to the center of the dwell.
+	// Measured in degrees.
+	D27 float64 `json:"d27"`
+	// Rotation of the sensor broadside face about the local vertical axis of the
+	// platform, in degrees.
+	D28 float64 `json:"d28"`
+	// Rotation angle of the sensor about the transverse axis of the sensor broadside,
+	// in degrees.
+	D29 float64 `json:"d29"`
+	// Temporally sequential count of a dwell within the revisit of a particular
+	// bounding area for a given job ID.
+	D3 int64 `json:"d3"`
+	// Rotation angle of the sensor about the transverse axis of the sensor broadside,
+	// in degrees.
+	D30 float64 `json:"d30"`
+	// Minimum velocity component, along the line of sight, which can be detected by
+	// the sensor, in decimeters per second.
+	D31 int64 `json:"d31"`
+	// Minimum velocity component, along the line of sight, which can be detected by
+	// the sensor, in decimeters per second.
+	D32 []MtiFullDwellD32 `json:"d32"`
+	// Flag indicating the last dwell of the revisit.
+	D4 bool `json:"d4"`
+	// Count of the total number of targets reported during this dwell and sent in this
+	// Dwell Segment.
+	D5 int64 `json:"d5"`
+	// Elapsed time, expressed in milliseconds, from midnight at the beginning of the
+	// day specified in the Reference Time fields (missionRefTime) of the Mission
+	// Segment.
+	D6 int64 `json:"d6"`
+	// North-South position of the sensor at the temporal center of the dwell, in
+	// degrees.
+	D7 float64 `json:"d7"`
+	// The East-West position of the sensor at the temporal center of the dwell, in
+	// degrees East (positive, 0 to 180) or West (negative, 0 to -180) of the Prime
+	// Meridian.
+	D8 float64 `json:"d8"`
+	// The altitude of the sensor at temporal center of the dwell, above the WGS 84
+	// ellipsoid, expressed in centimeters.
+	D9 int64 `json:"d9"`
+	// Dwell timestamp in ISO8601 UTC format.
+	Dwellts time.Time `json:"dwellts" format:"date-time"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		D10         resp.Field
+		D11         resp.Field
+		D12         resp.Field
+		D13         resp.Field
+		D14         resp.Field
+		D15         resp.Field
+		D16         resp.Field
+		D17         resp.Field
+		D18         resp.Field
+		D19         resp.Field
+		D2          resp.Field
+		D20         resp.Field
+		D21         resp.Field
+		D22         resp.Field
+		D23         resp.Field
+		D24         resp.Field
+		D25         resp.Field
+		D26         resp.Field
+		D27         resp.Field
+		D28         resp.Field
+		D29         resp.Field
+		D3          resp.Field
+		D30         resp.Field
+		D31         resp.Field
+		D32         resp.Field
+		D4          resp.Field
+		D5          resp.Field
+		D6          resp.Field
+		D7          resp.Field
+		D8          resp.Field
+		D9          resp.Field
+		Dwellts     resp.Field
+		ExtraFields map[string]resp.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r MtiFullDwell) RawJSON() string { return r.JSON.raw }
+func (r *MtiFullDwell) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// A grouping of zero or more target reports for which the sensor provides a single
+// time, sensor position, reference position on the ground with simple estimates
+// for the observed area at the reported time, and other pertinent data.
+type MtiFullDwellD32 struct {
+	// Sequential count of this MTI report within the dwell.
+	D32_1 int64 `json:"d32_1"`
+	// The classification of the target (i.e. vehicle, aircraft, …).
+	D32_10 string `json:"d32_10"`
+	// Estimated probability that the target classification field is correctly
+	// classified.
+	D32_11 int64 `json:"d32_11"`
+	// Standard deviation of the estimated slant range of the reported detection, in
+	// centimeters.
+	D32_12 int64 `json:"d32_12"`
+	// Standard deviation of the position estimate, in the cross-range direction, of
+	// the reported detection, in decimeters.
+	D32_13 int64 `json:"d32_13"`
+	// Standard deviation of the estimated geodetic height, in meters.
+	D32_14 int64 `json:"d32_14"`
+	// Standard deviation of the measured line-of-sight velocity component, in
+	// centimeters per second.
+	D32_15 int64 `json:"d32_15"`
+	// The Truth Tag- Application is the Application Field truncated to 8 bits, from
+	// the Entity State Protocol Data Unit (PDU) used to generate the MTI Target.
+	D32_16 int64 `json:"d32_16"`
+	// The Truth Tag - Entity is the Entity Field from the Entity State PDU used to
+	// generate the MTI Target.
+	D32_17 int64 `json:"d32_17"`
+	// Estimated radar cross section of the target return, in half-decibels.
+	D32_18 int64 `json:"d32_18"`
+	// The North-South position of the reported detection, expressed as degrees North
+	// (positive) or South (negative) of the Equator.
+	D32_2 float64 `json:"d32_2"`
+	// The East-West position of the reported detection, expressed as degrees East
+	// (positive) from the Prime Meridian.
+	D32_3 float64 `json:"d32_3"`
+	// The North-South position of the reported detection, expressed as degrees North
+	// (positive) or South (negative) from the Dwell Area Center Latitude.
+	D32_4 int64 `json:"d32_4"`
+	// The East-West position of the reported detection, expressed as degrees East
+	// (positive, 0 to 180) or West (negative, 0 to -180) of the Prime Meridian from
+	// the Dwell Area Center Longitude.
+	D32_5 int64 `json:"d32_5"`
+	// Height of the reported detection, referenced to its position above the WGS 84
+	// ellipsoid, in meters.
+	D32_6 int64 `json:"d32_6"`
+	// The component of velocity for the reported detection, expressed in centimeters
+	// per second, corrected for platform motion, along the line of sight between the
+	// sensor and the reported detection, where the positive direction is away from the
+	// sensor.
+	D32_7 int64 `json:"d32_7"`
+	// The target wrap velocity permits trackers to un-wrap velocities for targets with
+	// line-of-sight components large enough to exceed the first velocity period.
+	// Expressed in centimeters/sec.
+	D32_8 int64 `json:"d32_8"`
+	// Estimated signal-to-noise ratio (SNR) of the target return, in decibels.
+	D32_9 int64 `json:"d32_9"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		D32_1       resp.Field
+		D32_10      resp.Field
+		D32_11      resp.Field
+		D32_12      resp.Field
+		D32_13      resp.Field
+		D32_14      resp.Field
+		D32_15      resp.Field
+		D32_16      resp.Field
+		D32_17      resp.Field
+		D32_18      resp.Field
+		D32_2       resp.Field
+		D32_3       resp.Field
+		D32_4       resp.Field
+		D32_5       resp.Field
+		D32_6       resp.Field
+		D32_7       resp.Field
+		D32_8       resp.Field
+		D32_9       resp.Field
+		ExtraFields map[string]resp.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r MtiFullDwellD32) RawJSON() string { return r.JSON.raw }
+func (r *MtiFullDwellD32) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type MtiFullFreeText struct {
+	// The originator of the Free Text message.
+	F1 string `json:"f1"`
+	// The recipient for which the Free Text message is intended.
+	F2 string `json:"f2"`
+	// Free text data message.
+	F3 string `json:"f3"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		F1          resp.Field
+		F2          resp.Field
+		F3          resp.Field
+		ExtraFields map[string]resp.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r MtiFullFreeText) RawJSON() string { return r.JSON.raw }
+func (r *MtiFullFreeText) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type MtiFullHrr struct {
+	// Detection threshold used to isolate significant target scatterer pixels,
+	// expressed as power relative to clutter mean in negative quarter-decibels.
+	H10 int64 `json:"h10"`
+	// 3dB range impulse response of the radar, expressed in centimeters.
+	H11 float64 `json:"h11"`
+	// Slant Range pixel spacing after over sampling, expressed in centimeters.
+	H12 float64 `json:"h12"`
+	// 3dB Doppler resolution of the radar, expressed in Hertz.
+	H13 float64 `json:"h13"`
+	// Doppler pixel spacing after over sampling, expressed in Hertz.
+	H14 float64 `json:"h14"`
+	// Center Frequency of the radar in GHz.
+	H15 float64 `json:"h15"`
+	// Enumeration table denoting the compression technique used.
+	H16 string `json:"h16"`
+	// Enumeration table indicating the spectral weighting used in the range
+	// compression process.
+	H17 string `json:"h17"`
+	// Enumeration table indicating the spectral weighting used in the cross-range or
+	// Doppler compression process.
+	H18 string `json:"h18"`
+	// Initial power of the peak scatterer, expressed in dB.
+	H19 float64 `json:"h19"`
+	// Sequential count of a revisit of the bounding area for a given job ID.
+	H2 int64 `json:"h2"`
+	// RCS of the peak scatterer, expressed in half-decibels (dB/2).
+	H20 int64 `json:"h20"`
+	// When the RDM does not correlate to a single MTI report index or when the center
+	// range bin does not correlate to the center of the dwell; provide the range
+	// sample offset in meters from Dwell Center (positive is away from the sensor) of
+	// the first scatterer record.
+	H21 int64 `json:"h21"`
+	// When the RDM does not correlate to a single MTI report index or the center
+	// doppler bin does not correlate to the doppler centroid of the dwell; Doppler
+	// sample value in Hz of the first scatterer record.
+	H22 int64 `json:"h22"`
+	// Enumeration field which designates the type of data being delivered.
+	H23 string `json:"h23"`
+	// Flag field to indicate the additional signal processing techniques applied to
+	// the data.
+	H24 string `json:"h24"`
+	// Number of pixels in the range dimension of the chip.
+	H27 int64 `json:"h27"`
+	// Distance from Range Bin to closest edge in the entire chip, expressed in
+	// centimeters.
+	H28 int64 `json:"h28"`
+	// Relative velocity to skin line.
+	H29 int64 `json:"h29"`
+	// Sequential count of a dwell within the revisit of a particular bounding area for
+	// a given job ID.
+	H3 int64 `json:"h3"`
+	// Computed object length based upon HRR profile, in meters.
+	H30 int64 `json:"h30"`
+	// Standard deviation of estimate of the object length, expressed in meters.
+	H31 int64 `json:"h31"`
+	// Standard deviation of estimate of the object length, expressed in meters.
+	H32 []MtiFullHrrH32 `json:"h32"`
+	// Flag to indicate the last dwell of the revisit.
+	H4 bool `json:"h4"`
+	// Sequential index of the associated MTI Report.
+	H5 int64 `json:"h5"`
+	// Number of Range Doppler pixels that exceed target scatterer threshold and are
+	// reported in this segment.
+	H6 int64 `json:"h6"`
+	// Number of Range Bins/Samples in a Range Doppler Chip.
+	H7 int64 `json:"h7"`
+	// Number of Doppler bins in a Range-Doppler chip.
+	H8 int64 `json:"h8"`
+	// The Peak Scatter returns the maximum power level (e.g. in milliwatts, or dBm)
+	// registered by the sensor.
+	H9 int64 `json:"h9"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		H10         resp.Field
+		H11         resp.Field
+		H12         resp.Field
+		H13         resp.Field
+		H14         resp.Field
+		H15         resp.Field
+		H16         resp.Field
+		H17         resp.Field
+		H18         resp.Field
+		H19         resp.Field
+		H2          resp.Field
+		H20         resp.Field
+		H21         resp.Field
+		H22         resp.Field
+		H23         resp.Field
+		H24         resp.Field
+		H27         resp.Field
+		H28         resp.Field
+		H29         resp.Field
+		H3          resp.Field
+		H30         resp.Field
+		H31         resp.Field
+		H32         resp.Field
+		H4          resp.Field
+		H5          resp.Field
+		H6          resp.Field
+		H7          resp.Field
+		H8          resp.Field
+		H9          resp.Field
+		ExtraFields map[string]resp.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r MtiFullHrr) RawJSON() string { return r.JSON.raw }
+func (r *MtiFullHrr) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// HRR Scatterer record for a target pixel that exceeds the target detection
+// threshold.
+type MtiFullHrrH32 struct {
+	// Scatterer’s power magnitude.
+	H32_1 int64 `json:"h32_1"`
+	// Scatterer’s complex phase, in degrees.
+	H32_2 int64 `json:"h32_2"`
+	// Scatterer’s Range index relative to Range-Doppler chip, where increasing index
+	// equates to increasing range.
+	H32_3 int64 `json:"h32_3"`
+	// Scatterer’s Doppler index relative to Range-Doppler chip, where increasing index
+	// equates to increasing Doppler.
+	H32_4 int64 `json:"h32_4"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		H32_1       resp.Field
+		H32_2       resp.Field
+		H32_3       resp.Field
+		H32_4       resp.Field
+		ExtraFields map[string]resp.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r MtiFullHrrH32) RawJSON() string { return r.JSON.raw }
+func (r *MtiFullHrrH32) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// The means for the platform to pass information pertaining to the sensor job that
+// will be performed and details of the location parameters (terrain elevation
+// model and geoid model) used in the measurement.
+type MtiFullJobDef struct {
+	// A platform assigned number identifying the specific request or task to which the
+	// specific dwell pertains.
+	J1 int64 `json:"j1"`
+	// North-South position of the third corner (Point C) defining the area for sensor
+	// service, expressed as degrees North (positive) or South (negative) of the
+	// Equator.
+	J10 float64 `json:"j10"`
+	// East-West position of the third corner (Point C) defining the area for sensor
+	// service, expressed as degrees East (positive, 0 to 180) or West (negative, 0 to
+	// -180) of the Prime Meridian.
+	J11 float64 `json:"j11"`
+	// North-South position of the fourth corner (Point D) defining the area for sensor
+	// service, expressed as degrees North (positive) or South (negative) of the
+	// Equator.
+	J12 float64 `json:"j12"`
+	// East-West position of the fourth corner (Point D) defining the area for sensor
+	// service, expressed as degrees East (positive, 0 to 180) or West (negative, 0 to
+	// -180) of the Prime Meridian.
+	J13 float64 `json:"j13"`
+	// Mode in which the radar will operate for the given job ID.
+	J14 string `json:"j14"`
+	// The nominal revisit interval for the job ID, expressed in deciseconds. Value of
+	// zero, indicates that the sensor is not revisiting the previous area.
+	J15 int64 `json:"j15"`
+	// Nominal estimate of the standard deviation in the estimated horizontal (along
+	// track) sensor location, expressed in decimeters. measured along the sensor track
+	// direction defined in the Dwell segment.
+	J16 int64 `json:"j16"`
+	// Nominal estimate of the standard deviation in the estimated horizontal sensor
+	// location, measured orthogonal to the track direction, expressed in decimeters.
+	J17 int64 `json:"j17"`
+	// Nominal estimate of the standard deviation of the measured sensor altitude,
+	// expressed in decimeters.
+	J18 int64 `json:"j18"`
+	// Standard deviation of the estimate of sensor track heading, expressed in
+	// degrees.
+	J19 int64 `json:"j19"`
+	// The type of sensor or the platform.
+	J2 string `json:"j2"`
+	// Nominal standard deviation of the estimate of sensor speed, expressed in
+	// millimeters per second.
+	J20 int64 `json:"j20"`
+	// Nominal standard deviation of the slant range of the reported detection,
+	// expressed in centimeters.
+	J21 int64 `json:"j21"`
+	// Nominal standard deviation of the measured cross angle to the reported
+	// detection, expressed in degrees.
+	J22 float64 `json:"j22"`
+	// Nominal standard deviation of the velocity line-of-sight component, expressed in
+	// centimeters per second.
+	J23 int64 `json:"j23"`
+	// Nominal minimum velocity component along the line of sight, which can be
+	// detected by the sensor, expressed in decimeters per second.
+	J24 int64 `json:"j24"`
+	// Nominal probability that an unobscured ten square-meter target will be detected
+	// within the given area of surveillance.
+	J25 int64 `json:"j25"`
+	// The expected density of False Alarms (FA), expressed as the negative of the
+	// decibel value.
+	J26 int64 `json:"j26"`
+	// The terrain elevation model used for developing the target reports.
+	J27 string `json:"j27"`
+	// The geoid model used for developing the target reports.
+	J28 string `json:"j28"`
+	// Identifier of the particular variant of the sensor type.
+	J3 string `json:"j3"`
+	// Flag field indicating whether filtering has been applied to the targets detected
+	// within the dwell area.
+	J4 int64 `json:"j4"`
+	// Priority of this tasking request relative to all other active tasking requests
+	// scheduled for execution on the specified platform.
+	J5 int64 `json:"j5"`
+	// North-South position of the first corner (Point A) defining the area for sensor
+	// service, expressed as degrees North (positive) or South (negative) of the
+	// Equator.
+	J6 float64 `json:"j6"`
+	// East-West position of the first corner (Point A) defining the area for sensor
+	// service, expressed as degrees East (positive, 0 to 180) or West (negative, 0 to
+	// -180) of the Prime Meridian.
+	J7 float64 `json:"j7"`
+	// North-South position of the second corner (Point B) defining the area for sensor
+	// service, expressed as degrees North (positive) or South (negative) of the
+	// Equator.
+	J8 float64 `json:"j8"`
+	// East-West position of the second corner (Point B) defining the area for sensor
+	// service, expressed as degrees East (positive, 0 to 180) or West (negative, 0 to
+	// -180) of the Prime Meridian.
+	J9 float64 `json:"j9"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		J1          resp.Field
+		J10         resp.Field
+		J11         resp.Field
+		J12         resp.Field
+		J13         resp.Field
+		J14         resp.Field
+		J15         resp.Field
+		J16         resp.Field
+		J17         resp.Field
+		J18         resp.Field
+		J19         resp.Field
+		J2          resp.Field
+		J20         resp.Field
+		J21         resp.Field
+		J22         resp.Field
+		J23         resp.Field
+		J24         resp.Field
+		J25         resp.Field
+		J26         resp.Field
+		J27         resp.Field
+		J28         resp.Field
+		J3          resp.Field
+		J4          resp.Field
+		J5          resp.Field
+		J6          resp.Field
+		J7          resp.Field
+		J8          resp.Field
+		J9          resp.Field
+		ExtraFields map[string]resp.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r MtiFullJobDef) RawJSON() string { return r.JSON.raw }
+func (r *MtiFullJobDef) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type MtiFullJobRequest struct {
+	// Specifies the Earliest Start Time for which the service is requested. Composite
+	// of fields R15-R20.
+	JobReqEst time.Time `json:"jobReqEst" format:"date-time"`
+	// The requestor of the sensor service.
+	R1 string `json:"r1"`
+	// North-South position of the fourth corner (Point D) defining the requested area
+	// for service, expressed as degrees North (positive) or South (negative) of the
+	// Equator.
+	R10 float64 `json:"r10"`
+	// East-West position of the fourth corner (Point D) defining the requested area
+	// for service, expressed as degrees East (positive, 0 to 180) or West (negative, 0
+	// to -180) of the Prime Meridian.
+	R11 float64 `json:"r11"`
+	// Identifies the radar mode requested by the requestor.
+	R12 string `json:"r12"`
+	// Specifies the radar range resolution requested by the requestor, expressed in
+	// centimeters.
+	R13 int64 `json:"r13"`
+	// Specifies the radar cross-range resolution requested by the requestor, expressed
+	// in decimeters.
+	R14 int64 `json:"r14"`
+	// Identifier for the tasking message sent by the requesting station.
+	R2 string `json:"r2"`
+	// Specifies the maximum time from the requested start time after which the request
+	// is to be abandoned, expressed in seconds.
+	R21 int64 `json:"r21"`
+	// Specifies the time duration for the radar job, measured from the actual start of
+	// the job, expressed in seconds.
+	R22 int64 `json:"r22"`
+	// Specifies the revisit interval for the radar job, expressed in deciseconds.
+	R23 int64 `json:"r23"`
+	// the type of sensor or the platform.
+	R24 string `json:"r24"`
+	// The particular variant of the sensor type.
+	R25 string `json:"r25"`
+	// Flag field indicating that it is an initial request (flag = 0) or the desire of
+	// the requestor to cancel (flag = 1) the requested job.
+	R26 bool `json:"r26"`
+	// The priority of the request relative to other requests originated by the
+	// requesting station.
+	R3 int64 `json:"r3"`
+	// North-South position of the first corner (Point A) defining the requested area
+	// for service, expressed as degrees North (positive) or South (negative) of the
+	// Equator.
+	R4 float64 `json:"r4"`
+	// East-West position of the first corner (Point A) defining the requested area for
+	// service, expressed as degrees East (positive, 0 to 180) or West (negative, 0 to
+	// -180) of the Prime Meridian.
+	R5 float64 `json:"r5"`
+	// North-South position of the second corner (Point B) defining the requested area
+	// for service, expressed as degrees North (positive) or South (negative) of the
+	// Equator.
+	R6 float64 `json:"r6"`
+	// East-West position of the second corner (Point B) defining the requested area
+	// for service, expressed as degrees East (positive, 0 to 180) or West (negative, 0
+	// to -180) of the Prime Meridian.
+	R7 float64 `json:"r7"`
+	// North-South position of the third corner (Point C) defining the requested area
+	// for service, expressed as degrees North (positive) or South (negative) of the
+	// Equator.
+	R8 float64 `json:"r8"`
+	// East-West position of the third corner (Point C) defining the requested area for
+	// service, expressed as degrees East (positive, 0 to 180) or West (negative, 0 to
+	// -180) of the Prime Meridian.
+	R9 float64 `json:"r9"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		JobReqEst   resp.Field
+		R1          resp.Field
+		R10         resp.Field
+		R11         resp.Field
+		R12         resp.Field
+		R13         resp.Field
+		R14         resp.Field
+		R2          resp.Field
+		R21         resp.Field
+		R22         resp.Field
+		R23         resp.Field
+		R24         resp.Field
+		R25         resp.Field
+		R26         resp.Field
+		R3          resp.Field
+		R4          resp.Field
+		R5          resp.Field
+		R6          resp.Field
+		R7          resp.Field
+		R8          resp.Field
+		R9          resp.Field
+		ExtraFields map[string]resp.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r MtiFullJobRequest) RawJSON() string { return r.JSON.raw }
+func (r *MtiFullJobRequest) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type MtiFullMission struct {
+	// The mission plan id.
+	M1 string `json:"m1"`
+	// Unique identification of the flight plan.
+	M2 string `json:"m2"`
+	// Platform type that originated the data.
+	M3 string `json:"m3"`
+	// Identification of the platform variant, modifications, etc.
+	M4 string `json:"m4"`
+	// Mission origination date.
+	MsnRefTs time.Time `json:"msnRefTs" format:"date"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		M1          resp.Field
+		M2          resp.Field
+		M3          resp.Field
+		M4          resp.Field
+		MsnRefTs    resp.Field
+		ExtraFields map[string]resp.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r MtiFullMission) RawJSON() string { return r.JSON.raw }
+func (r *MtiFullMission) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type MtiFullPlatformLoc struct {
+	// Elapsed time, expressed in milliseconds, from midnight at the beginning of the
+	// day specified in the Reference Time fields of the Mission Segment to the time
+	// the report is prepared.
+	L1 int64 `json:"l1"`
+	// North-South position of the platform at the time the report is prepared,
+	// expressed as degrees North (positive) or South (negative) of the Equator.
+	L2 float64 `json:"l2"`
+	// East-West position of the platform at the time the report is prepared, expressed
+	// as degrees East (positive) from the Prime Meridian.
+	L3 float64 `json:"l3"`
+	// Altitude of the platform at the time the report is prepared, referenced to its
+	// position above the WGS-84 ellipsoid, in centimeters.
+	L4 int64 `json:"l4"`
+	// Ground track of the platform at the time the report is prepared, expressed as
+	// the angle in degrees (clockwise) from True North.
+	L5 float64 `json:"l5"`
+	// Ground speed of the platform at the time the report is prepared, expressed as
+	// millimeters per second.
+	L6 int64 `json:"l6"`
+	// Velocity of the platform in the vertical direction, expressed as decimeters per
+	// second.
+	L7 int64 `json:"l7"`
+	// Platform location timestamp in ISO8601 UTC format.
+	Platlocts time.Time `json:"platlocts" format:"date-time"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		L1          resp.Field
+		L2          resp.Field
+		L3          resp.Field
+		L4          resp.Field
+		L5          resp.Field
+		L6          resp.Field
+		L7          resp.Field
+		Platlocts   resp.Field
+		ExtraFields map[string]resp.Field
+		raw         string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r MtiFullPlatformLoc) RawJSON() string { return r.JSON.raw }
+func (r *MtiFullPlatformLoc) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type UdlMtiHistoryListParams struct {
+	// Time the row was created in the database. (YYYY-MM-DDTHH:MM:SS.sssZ)
+	CreatedAt time.Time `query:"createdAt,required" format:"date" json:"-"`
+	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
+	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// query fields that can be selected.
+	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
+	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f UdlMtiHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [UdlMtiHistoryListParams]'s query parameters as
+// `url.Values`.
+func (r UdlMtiHistoryListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type UdlMtiHistoryAodrParams struct {
+	// Time the row was created in the database. (YYYY-MM-DDTHH:MM:SS.sssZ)
+	CreatedAt time.Time `query:"createdAt,required" format:"date" json:"-"`
+	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
+	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// query fields that can be selected.
+	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
+	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
+	// optional, notification method for the created file link. When omitted, EMAIL is
+	// assumed. Current valid values are: EMAIL, SMS.
+	Notification param.Opt[string] `query:"notification,omitzero" json:"-"`
+	// optional, field delimiter when the created file is not JSON. Must be a single
+	// character chosen from this set: (',', ';', ':', '|'). When omitted, "," is used.
+	// It is strongly encouraged that your field delimiter be a character unlikely to
+	// occur within the data.
+	OutputDelimiter param.Opt[string] `query:"outputDelimiter,omitzero" json:"-"`
+	// optional, output format for the file. When omitted, JSON is assumed. Current
+	// valid values are: JSON and CSV.
+	OutputFormat param.Opt[string] `query:"outputFormat,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f UdlMtiHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [UdlMtiHistoryAodrParams]'s query parameters as
+// `url.Values`.
+func (r UdlMtiHistoryAodrParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type UdlMtiHistoryCountParams struct {
+	// Time the row was created in the database. (YYYY-MM-DDTHH:MM:SS.sssZ)
+	CreatedAt   time.Time        `query:"createdAt,required" format:"date" json:"-"`
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f UdlMtiHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [UdlMtiHistoryCountParams]'s query parameters as
+// `url.Values`.
+func (r UdlMtiHistoryCountParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}

@@ -1,0 +1,962 @@
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+package unifieddatalibrary
+
+import (
+	"context"
+	"encoding/json"
+	"net/http"
+	"net/url"
+	"time"
+
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
+	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+)
+
+// SpaceenvobservationService contains methods and other services that help with
+// interacting with the unifieddatalibrary API.
+//
+// Note, unlike clients, this service does not read variables from the environment
+// automatically. You should not instantiate this service directly, and instead use
+// the [NewSpaceenvobservationService] method instead.
+type SpaceenvobservationService struct {
+	Options []option.RequestOption
+	History SpaceenvobservationHistoryService
+}
+
+// NewSpaceenvobservationService generates a new service that applies the given
+// options to each request. These options are applied after the parent client's
+// options (if there is one), and before any request-specific options.
+func NewSpaceenvobservationService(opts ...option.RequestOption) (r SpaceenvobservationService) {
+	r = SpaceenvobservationService{}
+	r.Options = opts
+	r.History = NewSpaceenvobservationHistoryService(opts...)
+	return
+}
+
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *SpaceenvobservationService) List(ctx context.Context, query SpaceenvobservationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SpaceenvobservationListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/spaceenvobservation"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *SpaceenvobservationService) ListAutoPaging(ctx context.Context, query SpaceenvobservationListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SpaceenvobservationListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
+}
+
+// Service operation to return the count of records satisfying the specified query
+// parameters. This operation is useful to determine how many records pass a
+// particular query criteria without retrieving large amounts of data. See the
+// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// valid/required query parameter information.
+func (r *SpaceenvobservationService) Count(ctx context.Context, query SpaceenvobservationCountParams, opts ...option.RequestOption) (res *string, err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
+	path := "udl/spaceenvobservation/count"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Service operation intended for initial integration only, to take a list of
+// SpaceEnvObservation records as a POST body and ingest into the database. This
+// operation is not intended to be used for automated feeds into UDL. Data
+// providers should contact the UDL team for specific role assignments and for
+// instructions on setting up a permanent feed through an alternate mechanism.
+func (r *SpaceenvobservationService) NewBulk(ctx context.Context, body SpaceenvobservationNewBulkParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "udl/spaceenvobservation/createBulk"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
+	return
+}
+
+// Service operation to provide detailed information on available dynamic query
+// parameters for a particular data type.
+func (r *SpaceenvobservationService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "udl/spaceenvobservation/queryhelp"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, nil, opts...)
+	return
+}
+
+// Service operation to dynamically query data and only return specified
+// columns/fields. Requested columns are specified by the 'columns' query parameter
+// and should be a comma separated list of valid fields for the specified data
+// type. classificationMarking is always returned. See the queryhelp operation
+// (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+// information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
+// hours would return the satNo and period of elsets with an epoch greater than 5
+// hours ago.
+func (r *SpaceenvobservationService) Tuple(ctx context.Context, query SpaceenvobservationTupleParams, opts ...option.RequestOption) (res *[]SpaceEnvObservationFull, err error) {
+	opts = append(r.Options[:], opts...)
+	path := "udl/spaceenvobservation/tuple"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Service operation to accept one or more SpaceEnvObservation(s) as a POST body
+// and ingest into the database. This operation is intended to be used for
+// automated feeds into UDL. A specific role is required to perform this service
+// operation. Please contact the UDL team for assistance.
+func (r *SpaceenvobservationService) UnvalidatedPublish(ctx context.Context, body SpaceenvobservationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "filedrop/udl-spaceenvobs"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
+	return
+}
+
+// SpaceEnvObservation data.
+type SpaceenvobservationListResponse struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode SpaceenvobservationListResponseDataMode `json:"dataMode,required"`
+	// Time of the observation, in ISO 8601 UTC format with millisecond precision.
+	ObTime time.Time `json:"obTime,required" format:"date-time"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Spacecraft/sensor altitude at observation time, expressed in kilometers above
+	// WGS-84 ellipsoid.
+	Alt float64 `json:"alt"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The data type (e.g. AP, AURORAL FLUX, ECP, KINDEX, PROPAGATED SOLAR WIND, XRAY
+	// FLUX, etc.) of observations in this record.
+	DataType string `json:"dataType"`
+	// Flag indicating that this record contains derived data.
+	Derived bool `json:"derived"`
+	// Descriptive or additional information associated with this observation record.
+	Description string `json:"description"`
+	// Optional source-provided and searchable metadata or descriptor of the data.
+	Descriptor string `json:"descriptor"`
+	// Optional ID from external systems. This field has no meaning within UDL and is
+	// provided as a convenience for systems that require tracking of an internal
+	// system generated ID.
+	ExternalID string `json:"externalId"`
+	// Flag indicating that this record contains forecast data.
+	Forecast bool `json:"forecast"`
+	// The external system which generated the message, if applicable.
+	GenSystem string `json:"genSystem"`
+	// The time at which the associated data message was generated, in ISO 8601 UTC
+	// format with millisecond precision.
+	GenTime time.Time `json:"genTime" format:"date-time"`
+	// Unique identifier of the on-orbit satellite hosting the sensor which produced
+	// this data.
+	IDOnOrbit string `json:"idOnOrbit"`
+	// Unique identifier of the reporting sensor.
+	IDSensor string `json:"idSensor"`
+	// The type of instrument from which this data was collected (e.g. ANTENNA,
+	// CHANNELTRON, INTERFEROMETER, MAGNETOMETER, RADIOMETER, etc.).
+	InstrumentType string `json:"instrumentType"`
+	// WGS-84 spacecraft/sensor latitude sub-point at observation time, represented as
+	// -90 to 90 degrees (negative values south of equator).
+	Lat float64 `json:"lat"`
+	// WGS-84 spacecraft/sensor longitude sub-point at observation time, represented as
+	// -180 to 180 degrees (negative values west of Prime Meridian).
+	Lon float64 `json:"lon"`
+	// The sensor measurement type of the observation data contained in this record.
+	MeasType string `json:"measType"`
+	// The type of message associated with this record.
+	MsgType string `json:"msgType"`
+	// The name of the observatory from which this data was collected.
+	ObservatoryName string `json:"observatoryName"`
+	// Additional notes concerning the observatory.
+	ObservatoryNotes string `json:"observatoryNotes"`
+	// The type of observatory from which this data was collected (e.g. FACILITY,
+	// ONORBIT, NETWORK, etc.).
+	ObservatoryType string `json:"observatoryType"`
+	// A user-defined name or ID of a set of observations, if applicable. Used for
+	// identifying multiple observation records as part of one observation set.
+	ObSetID string `json:"obSetId"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Optional identifier provided by the record source to indicate the satellite
+	// hosting the sensor which produced this data. This may be an internal identifier
+	// and not necessarily map to a valid satellite number.
+	OrigObjectID string `json:"origObjectId"`
+	// Optional identifier provided by the observation source to indicate the sensor
+	// which produced this observation. This may be an internal identifier and not
+	// necessarily a valid sensor ID.
+	OrigSensorID string `json:"origSensorId"`
+	// The particle type (AEROSOL, ALPHA PARTICLE, ATOM, DUST, ELECTRON, ION, MOLECULE,
+	// NEUTRON, POSITRON, PROTON) associated with this measurement.
+	ParticleType string `json:"particleType"`
+	// The quality of the overall data contained in this record. The quality indicator
+	// value may vary among providers and may be a generalized statement (BAD, GOOD,
+	// UNCERTAIN, UNKNOWN) or a numeric value. Users should consult the data provider
+	// to verify the usage of the quality indicator.
+	Quality string `json:"quality"`
+	// Satellite/catalog number of the on-orbit satellite hosting the sensor which
+	// produced this data.
+	SatNo int64 `json:"satNo"`
+	// The energy level bin of the sensor associated with this measurement.
+	SenEnergyLevel string `json:"senEnergyLevel"`
+	// Three element array, expressing the observing spacecraft/sensor position vector
+	// components at observation time, in kilometers, in the specified
+	// senReferenceFrame. If senReferenceFrame is null then J2000 should be assumed.
+	// The array element order is [xpos, ypos, zpos].
+	SenPos []float64 `json:"senPos"`
+	// The reference frame of the observing spacecraft/sensor state. If the
+	// senReferenceFrame is null it is assumed to be J2000.
+	//
+	// Any of "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF".
+	SenReferenceFrame SpaceenvobservationListResponseSenReferenceFrame `json:"senReferenceFrame"`
+	// Three element array, expressing the observing spacecraft/sensor velocity vector
+	// components at observation time, in kilometers/second, in the specified
+	// senReferenceFrame. If senReferenceFrame is null then J2000 should be assumed.
+	// The array element order is [xvel, yvel, zvel].
+	SenVel []float64 `json:"senVel"`
+	// A collection of individual space environment observations.
+	SeoList []SpaceenvobservationListResponseSeoList `json:"seoList"`
+	// Array of UUIDs of the UDL data records that are related to this observation
+	// record. See the associated 'srcTyps' array for specific types of data,
+	// positionally corresponding to the UUIDs in this array. The 'srcTyps' and
+	// 'srcIds' arrays must match in size. See the corresponding srcTyps array element
+	// of the data type of the UUID and use the appropriate API operation to retrieve
+	// that object.
+	SrcIDs []string `json:"srcIds"`
+	// Array of UDL record types (AIS, CONJUNCTION, DOA, ELSET, EO, ESID, GROUNDIMAGE,
+	// POI, MANEUVER, MTI, NOTIFICATION, RADAR, RF, SGI, SIGACT, SKYIMAGE, SPACEENVOB,
+	// SV, TRACK) that are related to this observation record. See the associated
+	// 'srcIds' array for the record UUIDs, positionally corresponding to the record
+	// types in this array. The 'srcTyps' and 'srcIds' arrays must match in size.
+	SrcTyps []string `json:"srcTyps"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		ObTime                resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		Alt                   resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		DataType              resp.Field
+		Derived               resp.Field
+		Description           resp.Field
+		Descriptor            resp.Field
+		ExternalID            resp.Field
+		Forecast              resp.Field
+		GenSystem             resp.Field
+		GenTime               resp.Field
+		IDOnOrbit             resp.Field
+		IDSensor              resp.Field
+		InstrumentType        resp.Field
+		Lat                   resp.Field
+		Lon                   resp.Field
+		MeasType              resp.Field
+		MsgType               resp.Field
+		ObservatoryName       resp.Field
+		ObservatoryNotes      resp.Field
+		ObservatoryType       resp.Field
+		ObSetID               resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		OrigObjectID          resp.Field
+		OrigSensorID          resp.Field
+		ParticleType          resp.Field
+		Quality               resp.Field
+		SatNo                 resp.Field
+		SenEnergyLevel        resp.Field
+		SenPos                resp.Field
+		SenReferenceFrame     resp.Field
+		SenVel                resp.Field
+		SeoList               resp.Field
+		SrcIDs                resp.Field
+		SrcTyps               resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SpaceenvobservationListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SpaceenvobservationListResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type SpaceenvobservationListResponseDataMode string
+
+const (
+	SpaceenvobservationListResponseDataModeReal      SpaceenvobservationListResponseDataMode = "REAL"
+	SpaceenvobservationListResponseDataModeTest      SpaceenvobservationListResponseDataMode = "TEST"
+	SpaceenvobservationListResponseDataModeSimulated SpaceenvobservationListResponseDataMode = "SIMULATED"
+	SpaceenvobservationListResponseDataModeExercise  SpaceenvobservationListResponseDataMode = "EXERCISE"
+)
+
+// The reference frame of the observing spacecraft/sensor state. If the
+// senReferenceFrame is null it is assumed to be J2000.
+type SpaceenvobservationListResponseSenReferenceFrame string
+
+const (
+	SpaceenvobservationListResponseSenReferenceFrameJ2000   SpaceenvobservationListResponseSenReferenceFrame = "J2000"
+	SpaceenvobservationListResponseSenReferenceFrameEfgTdr  SpaceenvobservationListResponseSenReferenceFrame = "EFG/TDR"
+	SpaceenvobservationListResponseSenReferenceFrameEcrEcef SpaceenvobservationListResponseSenReferenceFrame = "ECR/ECEF"
+	SpaceenvobservationListResponseSenReferenceFrameTeme    SpaceenvobservationListResponseSenReferenceFrame = "TEME"
+	SpaceenvobservationListResponseSenReferenceFrameItrf    SpaceenvobservationListResponseSenReferenceFrame = "ITRF"
+	SpaceenvobservationListResponseSenReferenceFrameGcrf    SpaceenvobservationListResponseSenReferenceFrame = "GCRF"
+)
+
+// A single space environment observation.
+type SpaceenvobservationListResponseSeoList struct {
+	// The type of observation associated with this record.
+	ObType string `json:"obType,required"`
+	// The Unit of Measure associated with this observation. If there are no physical
+	// units associated with the measurement, a value of NONE should be specified.
+	ObUoM string `json:"obUoM,required"`
+	// An array of observation values expressed in the specified unit of measure
+	// (obUoM). Because of the variability of the Space Environment data types, each
+	// record may employ a numeric observation value (obValue), a string observation
+	// value (obString), a Boolean observation value (obBool), an array of numeric
+	// observation values (obArray), or any combination of these.
+	ObArray []float64 `json:"obArray"`
+	// A Boolean observation. Because of the variability of the Space Environment data
+	// types, each record may employ a numeric observation value (obValue), a string
+	// observation value (obString), a Boolean observation value (obBool), an array of
+	// numeric observation values (obArray), or any combination of these.
+	ObBool bool `json:"obBool"`
+	// Descriptive or additional information associated with this individual
+	// observation.
+	ObDescription string `json:"obDescription"`
+	// The quality of this individual observation. The observation quality indicator
+	// value may vary among providers and may be a generalized statement (BAD, GOOD,
+	// UNCERTAIN, UNKNOWN) or a numeric value. Users should consult the data provider
+	// to verify the usage of the observation.
+	ObQuality string `json:"obQuality"`
+	// A single observation string expressed in the specified unit of measure (obUoM).
+	// Because of the variability of the Space Environment data types, each record may
+	// employ a numeric observation value (obValue), a string observation value
+	// (obString), a Boolean observation value (obBool), an array of numeric
+	// observation values (obArray), or any combination of these.
+	ObString string `json:"obString"`
+	// A single observation value expressed in the specified unit of measure (obUoM).
+	// Because of the variability of the Space Environment data types, each record may
+	// employ a numeric observation value (obValue), a string observation value
+	// (obString), a Boolean observation value (obBool), an array of numeric
+	// observation values (obArray), or any combination of these.
+	ObValue float64 `json:"obValue"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ObType        resp.Field
+		ObUoM         resp.Field
+		ObArray       resp.Field
+		ObBool        resp.Field
+		ObDescription resp.Field
+		ObQuality     resp.Field
+		ObString      resp.Field
+		ObValue       resp.Field
+		ExtraFields   map[string]resp.Field
+		raw           string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SpaceenvobservationListResponseSeoList) RawJSON() string { return r.JSON.raw }
+func (r *SpaceenvobservationListResponseSeoList) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SpaceenvobservationListParams struct {
+	// Time of the observation, in ISO 8601 UTC format with millisecond precision.
+	// (YYYY-MM-DDTHH:MM:SS.sssZ)
+	ObTime      time.Time        `query:"obTime,required" format:"date-time" json:"-"`
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SpaceenvobservationListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [SpaceenvobservationListParams]'s query parameters as
+// `url.Values`.
+func (r SpaceenvobservationListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type SpaceenvobservationCountParams struct {
+	// Time of the observation, in ISO 8601 UTC format with millisecond precision.
+	// (YYYY-MM-DDTHH:MM:SS.sssZ)
+	ObTime      time.Time        `query:"obTime,required" format:"date-time" json:"-"`
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SpaceenvobservationCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [SpaceenvobservationCountParams]'s query parameters as
+// `url.Values`.
+func (r SpaceenvobservationCountParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type SpaceenvobservationNewBulkParams struct {
+	Body []SpaceenvobservationNewBulkParamsBody
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SpaceenvobservationNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+func (r SpaceenvobservationNewBulkParams) MarshalJSON() (data []byte, err error) {
+	return json.Marshal(r.Body)
+}
+
+// SpaceEnvObservation data.
+//
+// The properties ClassificationMarking, DataMode, ObTime, Source are required.
+type SpaceenvobservationNewBulkParamsBody struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,omitzero,required"`
+	// Time of the observation, in ISO 8601 UTC format with millisecond precision.
+	ObTime time.Time `json:"obTime,required" format:"date-time"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Spacecraft/sensor altitude at observation time, expressed in kilometers above
+	// WGS-84 ellipsoid.
+	Alt param.Opt[float64] `json:"alt,omitzero"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// The data type (e.g. AP, AURORAL FLUX, ECP, KINDEX, PROPAGATED SOLAR WIND, XRAY
+	// FLUX, etc.) of observations in this record.
+	DataType param.Opt[string] `json:"dataType,omitzero"`
+	// Flag indicating that this record contains derived data.
+	Derived param.Opt[bool] `json:"derived,omitzero"`
+	// Descriptive or additional information associated with this observation record.
+	Description param.Opt[string] `json:"description,omitzero"`
+	// Optional source-provided and searchable metadata or descriptor of the data.
+	Descriptor param.Opt[string] `json:"descriptor,omitzero"`
+	// Optional ID from external systems. This field has no meaning within UDL and is
+	// provided as a convenience for systems that require tracking of an internal
+	// system generated ID.
+	ExternalID param.Opt[string] `json:"externalId,omitzero"`
+	// Flag indicating that this record contains forecast data.
+	Forecast param.Opt[bool] `json:"forecast,omitzero"`
+	// The external system which generated the message, if applicable.
+	GenSystem param.Opt[string] `json:"genSystem,omitzero"`
+	// The time at which the associated data message was generated, in ISO 8601 UTC
+	// format with millisecond precision.
+	GenTime param.Opt[time.Time] `json:"genTime,omitzero" format:"date-time"`
+	// Unique identifier of the on-orbit satellite hosting the sensor which produced
+	// this data.
+	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
+	// Unique identifier of the reporting sensor.
+	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
+	// The type of instrument from which this data was collected (e.g. ANTENNA,
+	// CHANNELTRON, INTERFEROMETER, MAGNETOMETER, RADIOMETER, etc.).
+	InstrumentType param.Opt[string] `json:"instrumentType,omitzero"`
+	// WGS-84 spacecraft/sensor latitude sub-point at observation time, represented as
+	// -90 to 90 degrees (negative values south of equator).
+	Lat param.Opt[float64] `json:"lat,omitzero"`
+	// WGS-84 spacecraft/sensor longitude sub-point at observation time, represented as
+	// -180 to 180 degrees (negative values west of Prime Meridian).
+	Lon param.Opt[float64] `json:"lon,omitzero"`
+	// The sensor measurement type of the observation data contained in this record.
+	MeasType param.Opt[string] `json:"measType,omitzero"`
+	// The type of message associated with this record.
+	MsgType param.Opt[string] `json:"msgType,omitzero"`
+	// The name of the observatory from which this data was collected.
+	ObservatoryName param.Opt[string] `json:"observatoryName,omitzero"`
+	// Additional notes concerning the observatory.
+	ObservatoryNotes param.Opt[string] `json:"observatoryNotes,omitzero"`
+	// The type of observatory from which this data was collected (e.g. FACILITY,
+	// ONORBIT, NETWORK, etc.).
+	ObservatoryType param.Opt[string] `json:"observatoryType,omitzero"`
+	// A user-defined name or ID of a set of observations, if applicable. Used for
+	// identifying multiple observation records as part of one observation set.
+	ObSetID param.Opt[string] `json:"obSetId,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// Optional identifier provided by the record source to indicate the satellite
+	// hosting the sensor which produced this data. This may be an internal identifier
+	// and not necessarily map to a valid satellite number.
+	OrigObjectID param.Opt[string] `json:"origObjectId,omitzero"`
+	// Optional identifier provided by the observation source to indicate the sensor
+	// which produced this observation. This may be an internal identifier and not
+	// necessarily a valid sensor ID.
+	OrigSensorID param.Opt[string] `json:"origSensorId,omitzero"`
+	// The particle type (AEROSOL, ALPHA PARTICLE, ATOM, DUST, ELECTRON, ION, MOLECULE,
+	// NEUTRON, POSITRON, PROTON) associated with this measurement.
+	ParticleType param.Opt[string] `json:"particleType,omitzero"`
+	// The quality of the overall data contained in this record. The quality indicator
+	// value may vary among providers and may be a generalized statement (BAD, GOOD,
+	// UNCERTAIN, UNKNOWN) or a numeric value. Users should consult the data provider
+	// to verify the usage of the quality indicator.
+	Quality param.Opt[string] `json:"quality,omitzero"`
+	// Satellite/catalog number of the on-orbit satellite hosting the sensor which
+	// produced this data.
+	SatNo param.Opt[int64] `json:"satNo,omitzero"`
+	// The energy level bin of the sensor associated with this measurement.
+	SenEnergyLevel param.Opt[string] `json:"senEnergyLevel,omitzero"`
+	// Three element array, expressing the observing spacecraft/sensor position vector
+	// components at observation time, in kilometers, in the specified
+	// senReferenceFrame. If senReferenceFrame is null then J2000 should be assumed.
+	// The array element order is [xpos, ypos, zpos].
+	SenPos []float64 `json:"senPos,omitzero"`
+	// The reference frame of the observing spacecraft/sensor state. If the
+	// senReferenceFrame is null it is assumed to be J2000.
+	//
+	// Any of "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF".
+	SenReferenceFrame string `json:"senReferenceFrame,omitzero"`
+	// Three element array, expressing the observing spacecraft/sensor velocity vector
+	// components at observation time, in kilometers/second, in the specified
+	// senReferenceFrame. If senReferenceFrame is null then J2000 should be assumed.
+	// The array element order is [xvel, yvel, zvel].
+	SenVel []float64 `json:"senVel,omitzero"`
+	// A collection of individual space environment observations.
+	SeoList []SpaceenvobservationNewBulkParamsBodySeoList `json:"seoList,omitzero"`
+	// Array of UUIDs of the UDL data records that are related to this observation
+	// record. See the associated 'srcTyps' array for specific types of data,
+	// positionally corresponding to the UUIDs in this array. The 'srcTyps' and
+	// 'srcIds' arrays must match in size. See the corresponding srcTyps array element
+	// of the data type of the UUID and use the appropriate API operation to retrieve
+	// that object.
+	SrcIDs []string `json:"srcIds,omitzero"`
+	// Array of UDL record types (AIS, CONJUNCTION, DOA, ELSET, EO, ESID, GROUNDIMAGE,
+	// POI, MANEUVER, MTI, NOTIFICATION, RADAR, RF, SGI, SIGACT, SKYIMAGE, SPACEENVOB,
+	// SV, TRACK) that are related to this observation record. See the associated
+	// 'srcIds' array for the record UUIDs, positionally corresponding to the record
+	// types in this array. The 'srcTyps' and 'srcIds' arrays must match in size.
+	SrcTyps []string `json:"srcTyps,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SpaceenvobservationNewBulkParamsBody) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+func (r SpaceenvobservationNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow SpaceenvobservationNewBulkParamsBody
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+func init() {
+	apijson.RegisterFieldValidator[SpaceenvobservationNewBulkParamsBody](
+		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+	apijson.RegisterFieldValidator[SpaceenvobservationNewBulkParamsBody](
+		"SenReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+	)
+}
+
+// A single space environment observation.
+//
+// The properties ObType, ObUoM are required.
+type SpaceenvobservationNewBulkParamsBodySeoList struct {
+	// The type of observation associated with this record.
+	ObType string `json:"obType,required"`
+	// The Unit of Measure associated with this observation. If there are no physical
+	// units associated with the measurement, a value of NONE should be specified.
+	ObUoM string `json:"obUoM,required"`
+	// A Boolean observation. Because of the variability of the Space Environment data
+	// types, each record may employ a numeric observation value (obValue), a string
+	// observation value (obString), a Boolean observation value (obBool), an array of
+	// numeric observation values (obArray), or any combination of these.
+	ObBool param.Opt[bool] `json:"obBool,omitzero"`
+	// Descriptive or additional information associated with this individual
+	// observation.
+	ObDescription param.Opt[string] `json:"obDescription,omitzero"`
+	// The quality of this individual observation. The observation quality indicator
+	// value may vary among providers and may be a generalized statement (BAD, GOOD,
+	// UNCERTAIN, UNKNOWN) or a numeric value. Users should consult the data provider
+	// to verify the usage of the observation.
+	ObQuality param.Opt[string] `json:"obQuality,omitzero"`
+	// A single observation string expressed in the specified unit of measure (obUoM).
+	// Because of the variability of the Space Environment data types, each record may
+	// employ a numeric observation value (obValue), a string observation value
+	// (obString), a Boolean observation value (obBool), an array of numeric
+	// observation values (obArray), or any combination of these.
+	ObString param.Opt[string] `json:"obString,omitzero"`
+	// A single observation value expressed in the specified unit of measure (obUoM).
+	// Because of the variability of the Space Environment data types, each record may
+	// employ a numeric observation value (obValue), a string observation value
+	// (obString), a Boolean observation value (obBool), an array of numeric
+	// observation values (obArray), or any combination of these.
+	ObValue param.Opt[float64] `json:"obValue,omitzero"`
+	// An array of observation values expressed in the specified unit of measure
+	// (obUoM). Because of the variability of the Space Environment data types, each
+	// record may employ a numeric observation value (obValue), a string observation
+	// value (obString), a Boolean observation value (obBool), an array of numeric
+	// observation values (obArray), or any combination of these.
+	ObArray []float64 `json:"obArray,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SpaceenvobservationNewBulkParamsBodySeoList) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+func (r SpaceenvobservationNewBulkParamsBodySeoList) MarshalJSON() (data []byte, err error) {
+	type shadow SpaceenvobservationNewBulkParamsBodySeoList
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+type SpaceenvobservationTupleParams struct {
+	// Comma-separated list of valid field names for this data type to be returned in
+	// the response. Only the fields specified will be returned as well as the
+	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
+	// for a complete list of possible fields.
+	Columns string `query:"columns,required" json:"-"`
+	// Time of the observation, in ISO 8601 UTC format with millisecond precision.
+	// (YYYY-MM-DDTHH:MM:SS.sssZ)
+	ObTime      time.Time        `query:"obTime,required" format:"date-time" json:"-"`
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SpaceenvobservationTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+
+// URLQuery serializes [SpaceenvobservationTupleParams]'s query parameters as
+// `url.Values`.
+func (r SpaceenvobservationTupleParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type SpaceenvobservationUnvalidatedPublishParams struct {
+	Body []SpaceenvobservationUnvalidatedPublishParamsBody
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SpaceenvobservationUnvalidatedPublishParams) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+
+func (r SpaceenvobservationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+	return json.Marshal(r.Body)
+}
+
+// SpaceEnvObservation data.
+//
+// The properties ClassificationMarking, DataMode, ObTime, Source are required.
+type SpaceenvobservationUnvalidatedPublishParamsBody struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,omitzero,required"`
+	// Time of the observation, in ISO 8601 UTC format with millisecond precision.
+	ObTime time.Time `json:"obTime,required" format:"date-time"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Spacecraft/sensor altitude at observation time, expressed in kilometers above
+	// WGS-84 ellipsoid.
+	Alt param.Opt[float64] `json:"alt,omitzero"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// The data type (e.g. AP, AURORAL FLUX, ECP, KINDEX, PROPAGATED SOLAR WIND, XRAY
+	// FLUX, etc.) of observations in this record.
+	DataType param.Opt[string] `json:"dataType,omitzero"`
+	// Flag indicating that this record contains derived data.
+	Derived param.Opt[bool] `json:"derived,omitzero"`
+	// Descriptive or additional information associated with this observation record.
+	Description param.Opt[string] `json:"description,omitzero"`
+	// Optional source-provided and searchable metadata or descriptor of the data.
+	Descriptor param.Opt[string] `json:"descriptor,omitzero"`
+	// Optional ID from external systems. This field has no meaning within UDL and is
+	// provided as a convenience for systems that require tracking of an internal
+	// system generated ID.
+	ExternalID param.Opt[string] `json:"externalId,omitzero"`
+	// Flag indicating that this record contains forecast data.
+	Forecast param.Opt[bool] `json:"forecast,omitzero"`
+	// The external system which generated the message, if applicable.
+	GenSystem param.Opt[string] `json:"genSystem,omitzero"`
+	// The time at which the associated data message was generated, in ISO 8601 UTC
+	// format with millisecond precision.
+	GenTime param.Opt[time.Time] `json:"genTime,omitzero" format:"date-time"`
+	// Unique identifier of the on-orbit satellite hosting the sensor which produced
+	// this data.
+	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
+	// Unique identifier of the reporting sensor.
+	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
+	// The type of instrument from which this data was collected (e.g. ANTENNA,
+	// CHANNELTRON, INTERFEROMETER, MAGNETOMETER, RADIOMETER, etc.).
+	InstrumentType param.Opt[string] `json:"instrumentType,omitzero"`
+	// WGS-84 spacecraft/sensor latitude sub-point at observation time, represented as
+	// -90 to 90 degrees (negative values south of equator).
+	Lat param.Opt[float64] `json:"lat,omitzero"`
+	// WGS-84 spacecraft/sensor longitude sub-point at observation time, represented as
+	// -180 to 180 degrees (negative values west of Prime Meridian).
+	Lon param.Opt[float64] `json:"lon,omitzero"`
+	// The sensor measurement type of the observation data contained in this record.
+	MeasType param.Opt[string] `json:"measType,omitzero"`
+	// The type of message associated with this record.
+	MsgType param.Opt[string] `json:"msgType,omitzero"`
+	// The name of the observatory from which this data was collected.
+	ObservatoryName param.Opt[string] `json:"observatoryName,omitzero"`
+	// Additional notes concerning the observatory.
+	ObservatoryNotes param.Opt[string] `json:"observatoryNotes,omitzero"`
+	// The type of observatory from which this data was collected (e.g. FACILITY,
+	// ONORBIT, NETWORK, etc.).
+	ObservatoryType param.Opt[string] `json:"observatoryType,omitzero"`
+	// A user-defined name or ID of a set of observations, if applicable. Used for
+	// identifying multiple observation records as part of one observation set.
+	ObSetID param.Opt[string] `json:"obSetId,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// Optional identifier provided by the record source to indicate the satellite
+	// hosting the sensor which produced this data. This may be an internal identifier
+	// and not necessarily map to a valid satellite number.
+	OrigObjectID param.Opt[string] `json:"origObjectId,omitzero"`
+	// Optional identifier provided by the observation source to indicate the sensor
+	// which produced this observation. This may be an internal identifier and not
+	// necessarily a valid sensor ID.
+	OrigSensorID param.Opt[string] `json:"origSensorId,omitzero"`
+	// The particle type (AEROSOL, ALPHA PARTICLE, ATOM, DUST, ELECTRON, ION, MOLECULE,
+	// NEUTRON, POSITRON, PROTON) associated with this measurement.
+	ParticleType param.Opt[string] `json:"particleType,omitzero"`
+	// The quality of the overall data contained in this record. The quality indicator
+	// value may vary among providers and may be a generalized statement (BAD, GOOD,
+	// UNCERTAIN, UNKNOWN) or a numeric value. Users should consult the data provider
+	// to verify the usage of the quality indicator.
+	Quality param.Opt[string] `json:"quality,omitzero"`
+	// Satellite/catalog number of the on-orbit satellite hosting the sensor which
+	// produced this data.
+	SatNo param.Opt[int64] `json:"satNo,omitzero"`
+	// The energy level bin of the sensor associated with this measurement.
+	SenEnergyLevel param.Opt[string] `json:"senEnergyLevel,omitzero"`
+	// Three element array, expressing the observing spacecraft/sensor position vector
+	// components at observation time, in kilometers, in the specified
+	// senReferenceFrame. If senReferenceFrame is null then J2000 should be assumed.
+	// The array element order is [xpos, ypos, zpos].
+	SenPos []float64 `json:"senPos,omitzero"`
+	// The reference frame of the observing spacecraft/sensor state. If the
+	// senReferenceFrame is null it is assumed to be J2000.
+	//
+	// Any of "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF".
+	SenReferenceFrame string `json:"senReferenceFrame,omitzero"`
+	// Three element array, expressing the observing spacecraft/sensor velocity vector
+	// components at observation time, in kilometers/second, in the specified
+	// senReferenceFrame. If senReferenceFrame is null then J2000 should be assumed.
+	// The array element order is [xvel, yvel, zvel].
+	SenVel []float64 `json:"senVel,omitzero"`
+	// A collection of individual space environment observations.
+	SeoList []SpaceenvobservationUnvalidatedPublishParamsBodySeoList `json:"seoList,omitzero"`
+	// Array of UUIDs of the UDL data records that are related to this observation
+	// record. See the associated 'srcTyps' array for specific types of data,
+	// positionally corresponding to the UUIDs in this array. The 'srcTyps' and
+	// 'srcIds' arrays must match in size. See the corresponding srcTyps array element
+	// of the data type of the UUID and use the appropriate API operation to retrieve
+	// that object.
+	SrcIDs []string `json:"srcIds,omitzero"`
+	// Array of UDL record types (AIS, CONJUNCTION, DOA, ELSET, EO, ESID, GROUNDIMAGE,
+	// POI, MANEUVER, MTI, NOTIFICATION, RADAR, RF, SGI, SIGACT, SKYIMAGE, SPACEENVOB,
+	// SV, TRACK) that are related to this observation record. See the associated
+	// 'srcIds' array for the record UUIDs, positionally corresponding to the record
+	// types in this array. The 'srcTyps' and 'srcIds' arrays must match in size.
+	SrcTyps []string `json:"srcTyps,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SpaceenvobservationUnvalidatedPublishParamsBody) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+func (r SpaceenvobservationUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow SpaceenvobservationUnvalidatedPublishParamsBody
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+
+func init() {
+	apijson.RegisterFieldValidator[SpaceenvobservationUnvalidatedPublishParamsBody](
+		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+	apijson.RegisterFieldValidator[SpaceenvobservationUnvalidatedPublishParamsBody](
+		"SenReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+	)
+}
+
+// A single space environment observation.
+//
+// The properties ObType, ObUoM are required.
+type SpaceenvobservationUnvalidatedPublishParamsBodySeoList struct {
+	// The type of observation associated with this record.
+	ObType string `json:"obType,required"`
+	// The Unit of Measure associated with this observation. If there are no physical
+	// units associated with the measurement, a value of NONE should be specified.
+	ObUoM string `json:"obUoM,required"`
+	// A Boolean observation. Because of the variability of the Space Environment data
+	// types, each record may employ a numeric observation value (obValue), a string
+	// observation value (obString), a Boolean observation value (obBool), an array of
+	// numeric observation values (obArray), or any combination of these.
+	ObBool param.Opt[bool] `json:"obBool,omitzero"`
+	// Descriptive or additional information associated with this individual
+	// observation.
+	ObDescription param.Opt[string] `json:"obDescription,omitzero"`
+	// The quality of this individual observation. The observation quality indicator
+	// value may vary among providers and may be a generalized statement (BAD, GOOD,
+	// UNCERTAIN, UNKNOWN) or a numeric value. Users should consult the data provider
+	// to verify the usage of the observation.
+	ObQuality param.Opt[string] `json:"obQuality,omitzero"`
+	// A single observation string expressed in the specified unit of measure (obUoM).
+	// Because of the variability of the Space Environment data types, each record may
+	// employ a numeric observation value (obValue), a string observation value
+	// (obString), a Boolean observation value (obBool), an array of numeric
+	// observation values (obArray), or any combination of these.
+	ObString param.Opt[string] `json:"obString,omitzero"`
+	// A single observation value expressed in the specified unit of measure (obUoM).
+	// Because of the variability of the Space Environment data types, each record may
+	// employ a numeric observation value (obValue), a string observation value
+	// (obString), a Boolean observation value (obBool), an array of numeric
+	// observation values (obArray), or any combination of these.
+	ObValue param.Opt[float64] `json:"obValue,omitzero"`
+	// An array of observation values expressed in the specified unit of measure
+	// (obUoM). Because of the variability of the Space Environment data types, each
+	// record may employ a numeric observation value (obValue), a string observation
+	// value (obString), a Boolean observation value (obBool), an array of numeric
+	// observation values (obArray), or any combination of these.
+	ObArray []float64 `json:"obArray,omitzero"`
+	paramObj
+}
+
+// IsPresent returns true if the field's value is not omitted and not the JSON
+// "null". To check if this field is omitted, use [param.IsOmitted].
+func (f SpaceenvobservationUnvalidatedPublishParamsBodySeoList) IsPresent() bool {
+	return !param.IsOmitted(f) && !f.IsNull()
+}
+func (r SpaceenvobservationUnvalidatedPublishParamsBodySeoList) MarshalJSON() (data []byte, err error) {
+	type shadow SpaceenvobservationUnvalidatedPublishParamsBodySeoList
+	return param.MarshalObject(r, (*shadow)(&r))
+}
