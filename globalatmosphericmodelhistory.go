@@ -16,21 +16,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// GlobalatmosphericmodelHistoryService contains methods and other services that
+// GlobalAtmosphericModelHistoryService contains methods and other services that
 // help with interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewGlobalatmosphericmodelHistoryService] method instead.
-type GlobalatmosphericmodelHistoryService struct {
+// the [NewGlobalAtmosphericModelHistoryService] method instead.
+type GlobalAtmosphericModelHistoryService struct {
 	Options []option.RequestOption
 }
 
-// NewGlobalatmosphericmodelHistoryService generates a new service that applies the
+// NewGlobalAtmosphericModelHistoryService generates a new service that applies the
 // given options to each request. These options are applied after the parent
 // client's options (if there is one), and before any request-specific options.
-func NewGlobalatmosphericmodelHistoryService(opts ...option.RequestOption) (r GlobalatmosphericmodelHistoryService) {
-	r = GlobalatmosphericmodelHistoryService{}
+func NewGlobalAtmosphericModelHistoryService(opts ...option.RequestOption) (r GlobalAtmosphericModelHistoryService) {
+	r = GlobalAtmosphericModelHistoryService{}
 	r.Options = opts
 	return
 }
@@ -40,7 +40,7 @@ func NewGlobalatmosphericmodelHistoryService(opts ...option.RequestOption) (r Gl
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *GlobalatmosphericmodelHistoryService) Count(ctx context.Context, query GlobalatmosphericmodelHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *GlobalAtmosphericModelHistoryService) Count(ctx context.Context, query GlobalAtmosphericModelHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/globalatmosphericmodel/history/count"
@@ -52,7 +52,7 @@ func (r *GlobalatmosphericmodelHistoryService) Count(ctx context.Context, query 
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *GlobalatmosphericmodelHistoryService) Query(ctx context.Context, query GlobalatmosphericmodelHistoryQueryParams, opts ...option.RequestOption) (res *[]GlobalatmosphericmodelHistoryQueryResponse, err error) {
+func (r *GlobalAtmosphericModelHistoryService) Query(ctx context.Context, query GlobalAtmosphericModelHistoryQueryParams, opts ...option.RequestOption) (res *[]GlobalAtmosphericModelHistoryQueryResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/globalatmosphericmodel/history"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -64,7 +64,7 @@ func (r *GlobalatmosphericmodelHistoryService) Query(ctx context.Context, query 
 // Secure Content Store. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *GlobalatmosphericmodelHistoryService) WriteAodr(ctx context.Context, query GlobalatmosphericmodelHistoryWriteAodrParams, opts ...option.RequestOption) (err error) {
+func (r *GlobalAtmosphericModelHistoryService) WriteAodr(ctx context.Context, query GlobalAtmosphericModelHistoryWriteAodrParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/globalatmosphericmodel/history/aodr"
@@ -75,7 +75,7 @@ func (r *GlobalatmosphericmodelHistoryService) WriteAodr(ctx context.Context, qu
 // The GlobalAtmosphericModel service provides atmospheric model output data for
 // use in space situational awareness such as the Global Total Electron Content
 // (2D) data, Global Total Electron Density (3D) data, etc.
-type GlobalatmosphericmodelHistoryQueryResponse struct {
+type GlobalAtmosphericModelHistoryQueryResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -94,7 +94,7 @@ type GlobalatmosphericmodelHistoryQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode GlobalatmosphericmodelHistoryQueryResponseDataMode `json:"dataMode,required"`
+	DataMode GlobalAtmosphericModelHistoryQueryResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Target time of the model in ISO 8601 UTC format with millisecond precision.
@@ -200,8 +200,8 @@ type GlobalatmosphericmodelHistoryQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r GlobalatmosphericmodelHistoryQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *GlobalatmosphericmodelHistoryQueryResponse) UnmarshalJSON(data []byte) error {
+func (r GlobalAtmosphericModelHistoryQueryResponse) RawJSON() string { return r.JSON.raw }
+func (r *GlobalAtmosphericModelHistoryQueryResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -219,16 +219,16 @@ func (r *GlobalatmosphericmodelHistoryQueryResponse) UnmarshalJSON(data []byte) 
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type GlobalatmosphericmodelHistoryQueryResponseDataMode string
+type GlobalAtmosphericModelHistoryQueryResponseDataMode string
 
 const (
-	GlobalatmosphericmodelHistoryQueryResponseDataModeReal      GlobalatmosphericmodelHistoryQueryResponseDataMode = "REAL"
-	GlobalatmosphericmodelHistoryQueryResponseDataModeTest      GlobalatmosphericmodelHistoryQueryResponseDataMode = "TEST"
-	GlobalatmosphericmodelHistoryQueryResponseDataModeSimulated GlobalatmosphericmodelHistoryQueryResponseDataMode = "SIMULATED"
-	GlobalatmosphericmodelHistoryQueryResponseDataModeExercise  GlobalatmosphericmodelHistoryQueryResponseDataMode = "EXERCISE"
+	GlobalAtmosphericModelHistoryQueryResponseDataModeReal      GlobalAtmosphericModelHistoryQueryResponseDataMode = "REAL"
+	GlobalAtmosphericModelHistoryQueryResponseDataModeTest      GlobalAtmosphericModelHistoryQueryResponseDataMode = "TEST"
+	GlobalAtmosphericModelHistoryQueryResponseDataModeSimulated GlobalAtmosphericModelHistoryQueryResponseDataMode = "SIMULATED"
+	GlobalAtmosphericModelHistoryQueryResponseDataModeExercise  GlobalAtmosphericModelHistoryQueryResponseDataMode = "EXERCISE"
 )
 
-type GlobalatmosphericmodelHistoryCountParams struct {
+type GlobalAtmosphericModelHistoryCountParams struct {
 	// Target time of the model in ISO 8601 UTC format with millisecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	Ts          time.Time        `query:"ts,required" format:"date-time" json:"-"`
@@ -239,20 +239,20 @@ type GlobalatmosphericmodelHistoryCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GlobalatmosphericmodelHistoryCountParams) IsPresent() bool {
+func (f GlobalAtmosphericModelHistoryCountParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [GlobalatmosphericmodelHistoryCountParams]'s query
+// URLQuery serializes [GlobalAtmosphericModelHistoryCountParams]'s query
 // parameters as `url.Values`.
-func (r GlobalatmosphericmodelHistoryCountParams) URLQuery() (v url.Values, err error) {
+func (r GlobalAtmosphericModelHistoryCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type GlobalatmosphericmodelHistoryQueryParams struct {
+type GlobalAtmosphericModelHistoryQueryParams struct {
 	// Target time of the model in ISO 8601 UTC format with millisecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	Ts time.Time `query:"ts,required" format:"date-time" json:"-"`
@@ -267,20 +267,20 @@ type GlobalatmosphericmodelHistoryQueryParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GlobalatmosphericmodelHistoryQueryParams) IsPresent() bool {
+func (f GlobalAtmosphericModelHistoryQueryParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [GlobalatmosphericmodelHistoryQueryParams]'s query
+// URLQuery serializes [GlobalAtmosphericModelHistoryQueryParams]'s query
 // parameters as `url.Values`.
-func (r GlobalatmosphericmodelHistoryQueryParams) URLQuery() (v url.Values, err error) {
+func (r GlobalAtmosphericModelHistoryQueryParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type GlobalatmosphericmodelHistoryWriteAodrParams struct {
+type GlobalAtmosphericModelHistoryWriteAodrParams struct {
 	// Target time of the model in ISO 8601 UTC format with millisecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	Ts time.Time `query:"ts,required" format:"date-time" json:"-"`
@@ -306,13 +306,13 @@ type GlobalatmosphericmodelHistoryWriteAodrParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GlobalatmosphericmodelHistoryWriteAodrParams) IsPresent() bool {
+func (f GlobalAtmosphericModelHistoryWriteAodrParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [GlobalatmosphericmodelHistoryWriteAodrParams]'s query
+// URLQuery serializes [GlobalAtmosphericModelHistoryWriteAodrParams]'s query
 // parameters as `url.Values`.
-func (r GlobalatmosphericmodelHistoryWriteAodrParams) URLQuery() (v url.Values, err error) {
+func (r GlobalAtmosphericModelHistoryWriteAodrParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

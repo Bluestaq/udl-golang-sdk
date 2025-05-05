@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSpaceenvobservationHistoryListWithOptionalParams(t *testing.T) {
+func TestSpaceEnvObservationHistoryListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestSpaceenvobservationHistoryListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Spaceenvobservation.History.List(context.TODO(), unifieddatalibrary.SpaceenvobservationHistoryListParams{
+	_, err := client.SpaceEnvObservation.History.List(context.TODO(), unifieddatalibrary.SpaceEnvObservationHistoryListParams{
 		ObTime:      time.Now(),
 		Columns:     unifieddatalibrary.String("columns"),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -42,7 +42,7 @@ func TestSpaceenvobservationHistoryListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSpaceenvobservationHistoryAodrWithOptionalParams(t *testing.T) {
+func TestSpaceEnvObservationHistoryAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -55,7 +55,7 @@ func TestSpaceenvobservationHistoryAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Spaceenvobservation.History.Aodr(context.TODO(), unifieddatalibrary.SpaceenvobservationHistoryAodrParams{
+	err := client.SpaceEnvObservation.History.Aodr(context.TODO(), unifieddatalibrary.SpaceEnvObservationHistoryAodrParams{
 		ObTime:          time.Now(),
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -73,7 +73,7 @@ func TestSpaceenvobservationHistoryAodrWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSpaceenvobservationHistoryCountWithOptionalParams(t *testing.T) {
+func TestSpaceEnvObservationHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -86,7 +86,7 @@ func TestSpaceenvobservationHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Spaceenvobservation.History.Count(context.TODO(), unifieddatalibrary.SpaceenvobservationHistoryCountParams{
+	_, err := client.SpaceEnvObservation.History.Count(context.TODO(), unifieddatalibrary.SpaceEnvObservationHistoryCountParams{
 		ObTime:      time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

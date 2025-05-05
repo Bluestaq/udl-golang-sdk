@@ -26,6 +26,7 @@ import (
 // the [NewMtiService] method instead.
 type MtiService struct {
 	Options []option.RequestOption
+	History MtiHistoryService
 }
 
 // NewMtiService generates a new service that applies the given options to each
@@ -34,6 +35,7 @@ type MtiService struct {
 func NewMtiService(opts ...option.RequestOption) (r MtiService) {
 	r = MtiService{}
 	r.Options = opts
+	r.History = NewMtiHistoryService(opts...)
 	return
 }
 

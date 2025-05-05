@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestEquipmentremarkNewWithOptionalParams(t *testing.T) {
+func TestEquipmentRemarkNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,9 +26,9 @@ func TestEquipmentremarkNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Equipmentremarks.New(context.TODO(), unifieddatalibrary.EquipmentremarkNewParams{
+	err := client.EquipmentRemarks.New(context.TODO(), unifieddatalibrary.EquipmentRemarkNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.EquipmentremarkNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.EquipmentRemarkNewParamsDataModeTest,
 		IDEquipment:           "EQUIPMENT-ID",
 		Source:                "Bluestaq",
 		Text:                  "This is a remark",
@@ -48,7 +48,7 @@ func TestEquipmentremarkNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestEquipmentremarkGetWithOptionalParams(t *testing.T) {
+func TestEquipmentRemarkGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -61,10 +61,10 @@ func TestEquipmentremarkGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Equipmentremarks.Get(
+	_, err := client.EquipmentRemarks.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.EquipmentremarkGetParams{
+		unifieddatalibrary.EquipmentRemarkGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -78,7 +78,7 @@ func TestEquipmentremarkGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestEquipmentremarkListWithOptionalParams(t *testing.T) {
+func TestEquipmentRemarkListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -91,7 +91,7 @@ func TestEquipmentremarkListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Equipmentremarks.List(context.TODO(), unifieddatalibrary.EquipmentremarkListParams{
+	_, err := client.EquipmentRemarks.List(context.TODO(), unifieddatalibrary.EquipmentRemarkListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -104,7 +104,7 @@ func TestEquipmentremarkListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestEquipmentremarkCountWithOptionalParams(t *testing.T) {
+func TestEquipmentRemarkCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -117,7 +117,7 @@ func TestEquipmentremarkCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Equipmentremarks.Count(context.TODO(), unifieddatalibrary.EquipmentremarkCountParams{
+	_, err := client.EquipmentRemarks.Count(context.TODO(), unifieddatalibrary.EquipmentRemarkCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -130,7 +130,7 @@ func TestEquipmentremarkCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestEquipmentremarkNewBulk(t *testing.T) {
+func TestEquipmentRemarkNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -143,8 +143,8 @@ func TestEquipmentremarkNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Equipmentremarks.NewBulk(context.TODO(), unifieddatalibrary.EquipmentremarkNewBulkParams{
-		Body: []unifieddatalibrary.EquipmentremarkNewBulkParamsBody{{
+	err := client.EquipmentRemarks.NewBulk(context.TODO(), unifieddatalibrary.EquipmentRemarkNewBulkParams{
+		Body: []unifieddatalibrary.EquipmentRemarkNewBulkParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			IDEquipment:           "EQUIPMENT-ID",
@@ -167,7 +167,7 @@ func TestEquipmentremarkNewBulk(t *testing.T) {
 	}
 }
 
-func TestEquipmentremarkQueryHelp(t *testing.T) {
+func TestEquipmentRemarkQueryHelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -180,7 +180,7 @@ func TestEquipmentremarkQueryHelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Equipmentremarks.QueryHelp(context.TODO())
+	err := client.EquipmentRemarks.QueryHelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -190,7 +190,7 @@ func TestEquipmentremarkQueryHelp(t *testing.T) {
 	}
 }
 
-func TestEquipmentremarkTupleWithOptionalParams(t *testing.T) {
+func TestEquipmentRemarkTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -203,7 +203,7 @@ func TestEquipmentremarkTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Equipmentremarks.Tuple(context.TODO(), unifieddatalibrary.EquipmentremarkTupleParams{
+	_, err := client.EquipmentRemarks.Tuple(context.TODO(), unifieddatalibrary.EquipmentRemarkTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

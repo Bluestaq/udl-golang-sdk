@@ -19,31 +19,31 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// FeatureassessmentService contains methods and other services that help with
+// FeatureAssessmentService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewFeatureassessmentService] method instead.
-type FeatureassessmentService struct {
+// the [NewFeatureAssessmentService] method instead.
+type FeatureAssessmentService struct {
 	Options []option.RequestOption
-	History FeatureassessmentHistoryService
+	History FeatureAssessmentHistoryService
 }
 
-// NewFeatureassessmentService generates a new service that applies the given
+// NewFeatureAssessmentService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewFeatureassessmentService(opts ...option.RequestOption) (r FeatureassessmentService) {
-	r = FeatureassessmentService{}
+func NewFeatureAssessmentService(opts ...option.RequestOption) (r FeatureAssessmentService) {
+	r = FeatureAssessmentService{}
 	r.Options = opts
-	r.History = NewFeatureassessmentHistoryService(opts...)
+	r.History = NewFeatureAssessmentHistoryService(opts...)
 	return
 }
 
 // Service operation to take a single FeatureAssessment record as a POST body and
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *FeatureassessmentService) New(ctx context.Context, body FeatureassessmentNewParams, opts ...option.RequestOption) (err error) {
+func (r *FeatureAssessmentService) New(ctx context.Context, body FeatureAssessmentNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/featureassessment"
@@ -53,7 +53,7 @@ func (r *FeatureassessmentService) New(ctx context.Context, body Featureassessme
 
 // Service operation to get a single FeatureAssessment record by its unique ID
 // passed as a path parameter.
-func (r *FeatureassessmentService) Get(ctx context.Context, id string, query FeatureassessmentGetParams, opts ...option.RequestOption) (res *FeatureassessmentGetResponse, err error) {
+func (r *FeatureAssessmentService) Get(ctx context.Context, id string, query FeatureAssessmentGetParams, opts ...option.RequestOption) (res *FeatureAssessmentGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -69,7 +69,7 @@ func (r *FeatureassessmentService) Get(ctx context.Context, id string, query Fea
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *FeatureassessmentService) Count(ctx context.Context, query FeatureassessmentCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *FeatureAssessmentService) Count(ctx context.Context, query FeatureAssessmentCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/featureassessment/count"
@@ -82,7 +82,7 @@ func (r *FeatureassessmentService) Count(ctx context.Context, query Featureasses
 // operation is not intended to be used for automated feeds into UDL. Data
 // providers should contact the UDL team for specific role assignments and for
 // instructions on setting up a permanent feed through an alternate mechanism.
-func (r *FeatureassessmentService) NewBulk(ctx context.Context, body FeatureassessmentNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *FeatureAssessmentService) NewBulk(ctx context.Context, body FeatureAssessmentNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/featureassessment/createBulk"
@@ -94,7 +94,7 @@ func (r *FeatureassessmentService) NewBulk(ctx context.Context, body Featureasse
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *FeatureassessmentService) Query(ctx context.Context, query FeatureassessmentQueryParams, opts ...option.RequestOption) (res *[]FeatureassessmentQueryResponse, err error) {
+func (r *FeatureAssessmentService) Query(ctx context.Context, query FeatureAssessmentQueryParams, opts ...option.RequestOption) (res *[]FeatureAssessmentQueryResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/featureassessment"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -103,7 +103,7 @@ func (r *FeatureassessmentService) Query(ctx context.Context, query Featureasses
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *FeatureassessmentService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *FeatureAssessmentService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/featureassessment/queryhelp"
@@ -119,7 +119,7 @@ func (r *FeatureassessmentService) QueryHelp(ctx context.Context, opts ...option
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *FeatureassessmentService) Tuple(ctx context.Context, query FeatureassessmentTupleParams, opts ...option.RequestOption) (res *[]FeatureassessmentTupleResponse, err error) {
+func (r *FeatureAssessmentService) Tuple(ctx context.Context, query FeatureAssessmentTupleParams, opts ...option.RequestOption) (res *[]FeatureAssessmentTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/featureassessment/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -130,7 +130,7 @@ func (r *FeatureassessmentService) Tuple(ctx context.Context, query Featureasses
 // ingest into the database. This operation is intended to be used for automated
 // feeds into UDL. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
-func (r *FeatureassessmentService) UnvalidatedPublish(ctx context.Context, body FeatureassessmentUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+func (r *FeatureAssessmentService) UnvalidatedPublish(ctx context.Context, body FeatureAssessmentUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-featureassessment"
@@ -143,7 +143,7 @@ func (r *FeatureassessmentService) UnvalidatedPublish(ctx context.Context, body 
 // vessels, vehicles, buildings, etc., or contain other types of non terrestrial
 // assessments such as spacecraft structures. Geospatial queries are supported
 // through either the regionText (WKT) or regionGeoJSON fields.
-type FeatureassessmentGetResponse struct {
+type FeatureAssessmentGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -162,7 +162,7 @@ type FeatureassessmentGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode FeatureassessmentGetResponseDataMode `json:"dataMode,required"`
+	DataMode FeatureAssessmentGetResponseDataMode `json:"dataMode,required"`
 	// Datetime type value associated with this record, in ISO 8601 UTC format with
 	// millisecond precision.
 	FeatureTs time.Time `json:"featureTs,required" format:"date-time"`
@@ -364,8 +364,8 @@ type FeatureassessmentGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r FeatureassessmentGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *FeatureassessmentGetResponse) UnmarshalJSON(data []byte) error {
+func (r FeatureAssessmentGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *FeatureAssessmentGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -383,13 +383,13 @@ func (r *FeatureassessmentGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type FeatureassessmentGetResponseDataMode string
+type FeatureAssessmentGetResponseDataMode string
 
 const (
-	FeatureassessmentGetResponseDataModeReal      FeatureassessmentGetResponseDataMode = "REAL"
-	FeatureassessmentGetResponseDataModeTest      FeatureassessmentGetResponseDataMode = "TEST"
-	FeatureassessmentGetResponseDataModeSimulated FeatureassessmentGetResponseDataMode = "SIMULATED"
-	FeatureassessmentGetResponseDataModeExercise  FeatureassessmentGetResponseDataMode = "EXERCISE"
+	FeatureAssessmentGetResponseDataModeReal      FeatureAssessmentGetResponseDataMode = "REAL"
+	FeatureAssessmentGetResponseDataModeTest      FeatureAssessmentGetResponseDataMode = "TEST"
+	FeatureAssessmentGetResponseDataModeSimulated FeatureAssessmentGetResponseDataMode = "SIMULATED"
+	FeatureAssessmentGetResponseDataModeExercise  FeatureAssessmentGetResponseDataMode = "EXERCISE"
 )
 
 // Feature assessments obtained from imagery analysis or other data analytics.
@@ -397,7 +397,7 @@ const (
 // vessels, vehicles, buildings, etc., or contain other types of non terrestrial
 // assessments such as spacecraft structures. Geospatial queries are supported
 // through either the regionText (WKT) or regionGeoJSON fields.
-type FeatureassessmentQueryResponse struct {
+type FeatureAssessmentQueryResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -416,7 +416,7 @@ type FeatureassessmentQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode FeatureassessmentQueryResponseDataMode `json:"dataMode,required"`
+	DataMode FeatureAssessmentQueryResponseDataMode `json:"dataMode,required"`
 	// Datetime type value associated with this record, in ISO 8601 UTC format with
 	// millisecond precision.
 	FeatureTs time.Time `json:"featureTs,required" format:"date-time"`
@@ -607,8 +607,8 @@ type FeatureassessmentQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r FeatureassessmentQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *FeatureassessmentQueryResponse) UnmarshalJSON(data []byte) error {
+func (r FeatureAssessmentQueryResponse) RawJSON() string { return r.JSON.raw }
+func (r *FeatureAssessmentQueryResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -626,13 +626,13 @@ func (r *FeatureassessmentQueryResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type FeatureassessmentQueryResponseDataMode string
+type FeatureAssessmentQueryResponseDataMode string
 
 const (
-	FeatureassessmentQueryResponseDataModeReal      FeatureassessmentQueryResponseDataMode = "REAL"
-	FeatureassessmentQueryResponseDataModeTest      FeatureassessmentQueryResponseDataMode = "TEST"
-	FeatureassessmentQueryResponseDataModeSimulated FeatureassessmentQueryResponseDataMode = "SIMULATED"
-	FeatureassessmentQueryResponseDataModeExercise  FeatureassessmentQueryResponseDataMode = "EXERCISE"
+	FeatureAssessmentQueryResponseDataModeReal      FeatureAssessmentQueryResponseDataMode = "REAL"
+	FeatureAssessmentQueryResponseDataModeTest      FeatureAssessmentQueryResponseDataMode = "TEST"
+	FeatureAssessmentQueryResponseDataModeSimulated FeatureAssessmentQueryResponseDataMode = "SIMULATED"
+	FeatureAssessmentQueryResponseDataModeExercise  FeatureAssessmentQueryResponseDataMode = "EXERCISE"
 )
 
 // Feature assessments obtained from imagery analysis or other data analytics.
@@ -640,7 +640,7 @@ const (
 // vessels, vehicles, buildings, etc., or contain other types of non terrestrial
 // assessments such as spacecraft structures. Geospatial queries are supported
 // through either the regionText (WKT) or regionGeoJSON fields.
-type FeatureassessmentTupleResponse struct {
+type FeatureAssessmentTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -659,7 +659,7 @@ type FeatureassessmentTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode FeatureassessmentTupleResponseDataMode `json:"dataMode,required"`
+	DataMode FeatureAssessmentTupleResponseDataMode `json:"dataMode,required"`
 	// Datetime type value associated with this record, in ISO 8601 UTC format with
 	// millisecond precision.
 	FeatureTs time.Time `json:"featureTs,required" format:"date-time"`
@@ -861,8 +861,8 @@ type FeatureassessmentTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r FeatureassessmentTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *FeatureassessmentTupleResponse) UnmarshalJSON(data []byte) error {
+func (r FeatureAssessmentTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *FeatureAssessmentTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -880,16 +880,16 @@ func (r *FeatureassessmentTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type FeatureassessmentTupleResponseDataMode string
+type FeatureAssessmentTupleResponseDataMode string
 
 const (
-	FeatureassessmentTupleResponseDataModeReal      FeatureassessmentTupleResponseDataMode = "REAL"
-	FeatureassessmentTupleResponseDataModeTest      FeatureassessmentTupleResponseDataMode = "TEST"
-	FeatureassessmentTupleResponseDataModeSimulated FeatureassessmentTupleResponseDataMode = "SIMULATED"
-	FeatureassessmentTupleResponseDataModeExercise  FeatureassessmentTupleResponseDataMode = "EXERCISE"
+	FeatureAssessmentTupleResponseDataModeReal      FeatureAssessmentTupleResponseDataMode = "REAL"
+	FeatureAssessmentTupleResponseDataModeTest      FeatureAssessmentTupleResponseDataMode = "TEST"
+	FeatureAssessmentTupleResponseDataModeSimulated FeatureAssessmentTupleResponseDataMode = "SIMULATED"
+	FeatureAssessmentTupleResponseDataModeExercise  FeatureAssessmentTupleResponseDataMode = "EXERCISE"
 )
 
-type FeatureassessmentNewParams struct {
+type FeatureAssessmentNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -908,7 +908,7 @@ type FeatureassessmentNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode FeatureassessmentNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode FeatureAssessmentNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Datetime type value associated with this record, in ISO 8601 UTC format with
 	// millisecond precision.
 	FeatureTs time.Time `json:"featureTs,required" format:"date-time"`
@@ -1054,10 +1054,10 @@ type FeatureassessmentNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureassessmentNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f FeatureAssessmentNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r FeatureassessmentNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow FeatureassessmentNewParams
+func (r FeatureAssessmentNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow FeatureAssessmentNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -1075,16 +1075,16 @@ func (r FeatureassessmentNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type FeatureassessmentNewParamsDataMode string
+type FeatureAssessmentNewParamsDataMode string
 
 const (
-	FeatureassessmentNewParamsDataModeReal      FeatureassessmentNewParamsDataMode = "REAL"
-	FeatureassessmentNewParamsDataModeTest      FeatureassessmentNewParamsDataMode = "TEST"
-	FeatureassessmentNewParamsDataModeSimulated FeatureassessmentNewParamsDataMode = "SIMULATED"
-	FeatureassessmentNewParamsDataModeExercise  FeatureassessmentNewParamsDataMode = "EXERCISE"
+	FeatureAssessmentNewParamsDataModeReal      FeatureAssessmentNewParamsDataMode = "REAL"
+	FeatureAssessmentNewParamsDataModeTest      FeatureAssessmentNewParamsDataMode = "TEST"
+	FeatureAssessmentNewParamsDataModeSimulated FeatureAssessmentNewParamsDataMode = "SIMULATED"
+	FeatureAssessmentNewParamsDataModeExercise  FeatureAssessmentNewParamsDataMode = "EXERCISE"
 )
 
-type FeatureassessmentGetParams struct {
+type FeatureAssessmentGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1092,18 +1092,18 @@ type FeatureassessmentGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureassessmentGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f FeatureAssessmentGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [FeatureassessmentGetParams]'s query parameters as
+// URLQuery serializes [FeatureAssessmentGetParams]'s query parameters as
 // `url.Values`.
-func (r FeatureassessmentGetParams) URLQuery() (v url.Values, err error) {
+func (r FeatureAssessmentGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type FeatureassessmentCountParams struct {
+type FeatureAssessmentCountParams struct {
 	// Unique identifier of the Analytic Imagery associated with this Feature
 	// Assessment record.
 	IDAnalyticImagery string           `query:"idAnalyticImagery,required" json:"-"`
@@ -1114,27 +1114,27 @@ type FeatureassessmentCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureassessmentCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f FeatureAssessmentCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [FeatureassessmentCountParams]'s query parameters as
+// URLQuery serializes [FeatureAssessmentCountParams]'s query parameters as
 // `url.Values`.
-func (r FeatureassessmentCountParams) URLQuery() (v url.Values, err error) {
+func (r FeatureAssessmentCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type FeatureassessmentNewBulkParams struct {
-	Body []FeatureassessmentNewBulkParamsBody
+type FeatureAssessmentNewBulkParams struct {
+	Body []FeatureAssessmentNewBulkParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureassessmentNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f FeatureAssessmentNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r FeatureassessmentNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r FeatureAssessmentNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -1146,7 +1146,7 @@ func (r FeatureassessmentNewBulkParams) MarshalJSON() (data []byte, err error) {
 //
 // The properties ClassificationMarking, DataMode, FeatureTs, FeatureUoM,
 // IDAnalyticImagery, Source are required.
-type FeatureassessmentNewBulkParamsBody struct {
+type FeatureAssessmentNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1323,21 +1323,21 @@ type FeatureassessmentNewBulkParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureassessmentNewBulkParamsBody) IsPresent() bool {
+func (f FeatureAssessmentNewBulkParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r FeatureassessmentNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow FeatureassessmentNewBulkParamsBody
+func (r FeatureAssessmentNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow FeatureAssessmentNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[FeatureassessmentNewBulkParamsBody](
+	apijson.RegisterFieldValidator[FeatureAssessmentNewBulkParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
-type FeatureassessmentQueryParams struct {
+type FeatureAssessmentQueryParams struct {
 	// Unique identifier of the Analytic Imagery associated with this Feature
 	// Assessment record.
 	IDAnalyticImagery string           `query:"idAnalyticImagery,required" json:"-"`
@@ -1348,18 +1348,18 @@ type FeatureassessmentQueryParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureassessmentQueryParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f FeatureAssessmentQueryParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [FeatureassessmentQueryParams]'s query parameters as
+// URLQuery serializes [FeatureAssessmentQueryParams]'s query parameters as
 // `url.Values`.
-func (r FeatureassessmentQueryParams) URLQuery() (v url.Values, err error) {
+func (r FeatureAssessmentQueryParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type FeatureassessmentTupleParams struct {
+type FeatureAssessmentTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -1375,29 +1375,29 @@ type FeatureassessmentTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureassessmentTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f FeatureAssessmentTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [FeatureassessmentTupleParams]'s query parameters as
+// URLQuery serializes [FeatureAssessmentTupleParams]'s query parameters as
 // `url.Values`.
-func (r FeatureassessmentTupleParams) URLQuery() (v url.Values, err error) {
+func (r FeatureAssessmentTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type FeatureassessmentUnvalidatedPublishParams struct {
-	Body []FeatureassessmentUnvalidatedPublishParamsBody
+type FeatureAssessmentUnvalidatedPublishParams struct {
+	Body []FeatureAssessmentUnvalidatedPublishParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureassessmentUnvalidatedPublishParams) IsPresent() bool {
+func (f FeatureAssessmentUnvalidatedPublishParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r FeatureassessmentUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+func (r FeatureAssessmentUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -1409,7 +1409,7 @@ func (r FeatureassessmentUnvalidatedPublishParams) MarshalJSON() (data []byte, e
 //
 // The properties ClassificationMarking, DataMode, FeatureTs, FeatureUoM,
 // IDAnalyticImagery, Source are required.
-type FeatureassessmentUnvalidatedPublishParamsBody struct {
+type FeatureAssessmentUnvalidatedPublishParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1586,16 +1586,16 @@ type FeatureassessmentUnvalidatedPublishParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureassessmentUnvalidatedPublishParamsBody) IsPresent() bool {
+func (f FeatureAssessmentUnvalidatedPublishParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r FeatureassessmentUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow FeatureassessmentUnvalidatedPublishParamsBody
+func (r FeatureAssessmentUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow FeatureAssessmentUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[FeatureassessmentUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[FeatureAssessmentUnvalidatedPublishParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

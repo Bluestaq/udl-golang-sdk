@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestRoutestatNewWithOptionalParams(t *testing.T) {
+func TestRouteStatNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,9 +27,9 @@ func TestRoutestatNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Routestats.New(context.TODO(), unifieddatalibrary.RoutestatNewParams{
+	err := client.RouteStats.New(context.TODO(), unifieddatalibrary.RouteStatNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.RoutestatNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.RouteStatNewParamsDataModeTest,
 		LocationEnd:           "KCOS",
 		LocationStart:         "KDEN",
 		Source:                "Bluestaq",
@@ -67,7 +67,7 @@ func TestRoutestatNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRoutestatGetWithOptionalParams(t *testing.T) {
+func TestRouteStatGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -80,10 +80,10 @@ func TestRoutestatGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Routestats.Get(
+	_, err := client.RouteStats.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.RoutestatGetParams{
+		unifieddatalibrary.RouteStatGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -97,7 +97,7 @@ func TestRoutestatGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRoutestatUpdateWithOptionalParams(t *testing.T) {
+func TestRouteStatUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -110,12 +110,12 @@ func TestRoutestatUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Routestats.Update(
+	err := client.RouteStats.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.RoutestatUpdateParams{
+		unifieddatalibrary.RouteStatUpdateParams{
 			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.RoutestatUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.RouteStatUpdateParamsDataModeTest,
 			LocationEnd:           "KCOS",
 			LocationStart:         "KDEN",
 			Source:                "Bluestaq",
@@ -154,7 +154,7 @@ func TestRoutestatUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRoutestatDelete(t *testing.T) {
+func TestRouteStatDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -167,7 +167,7 @@ func TestRoutestatDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Routestats.Delete(context.TODO(), "id")
+	err := client.RouteStats.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -177,7 +177,7 @@ func TestRoutestatDelete(t *testing.T) {
 	}
 }
 
-func TestRoutestatCountWithOptionalParams(t *testing.T) {
+func TestRouteStatCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -190,7 +190,7 @@ func TestRoutestatCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Routestats.Count(context.TODO(), unifieddatalibrary.RoutestatCountParams{
+	_, err := client.RouteStats.Count(context.TODO(), unifieddatalibrary.RouteStatCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -203,7 +203,7 @@ func TestRoutestatCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRoutestatNewBulk(t *testing.T) {
+func TestRouteStatNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -216,8 +216,8 @@ func TestRoutestatNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Routestats.NewBulk(context.TODO(), unifieddatalibrary.RoutestatNewBulkParams{
-		Body: []unifieddatalibrary.RoutestatNewBulkParamsBody{{
+	err := client.RouteStats.NewBulk(context.TODO(), unifieddatalibrary.RouteStatNewBulkParams{
+		Body: []unifieddatalibrary.RouteStatNewBulkParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			LocationEnd:           "KCOS",
@@ -258,7 +258,7 @@ func TestRoutestatNewBulk(t *testing.T) {
 	}
 }
 
-func TestRoutestatQueryWithOptionalParams(t *testing.T) {
+func TestRouteStatQueryWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -271,7 +271,7 @@ func TestRoutestatQueryWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Routestats.Query(context.TODO(), unifieddatalibrary.RoutestatQueryParams{
+	_, err := client.RouteStats.Query(context.TODO(), unifieddatalibrary.RouteStatQueryParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -284,7 +284,7 @@ func TestRoutestatQueryWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRoutestatQueryHelp(t *testing.T) {
+func TestRouteStatQueryHelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -297,7 +297,7 @@ func TestRoutestatQueryHelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Routestats.QueryHelp(context.TODO())
+	err := client.RouteStats.QueryHelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -307,7 +307,7 @@ func TestRoutestatQueryHelp(t *testing.T) {
 	}
 }
 
-func TestRoutestatTupleWithOptionalParams(t *testing.T) {
+func TestRouteStatTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -320,7 +320,7 @@ func TestRoutestatTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Routestats.Tuple(context.TODO(), unifieddatalibrary.RoutestatTupleParams{
+	_, err := client.RouteStats.Tuple(context.TODO(), unifieddatalibrary.RouteStatTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -334,7 +334,7 @@ func TestRoutestatTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRoutestatUnvalidatedPublish(t *testing.T) {
+func TestRouteStatUnvalidatedPublish(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -347,8 +347,8 @@ func TestRoutestatUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Routestats.UnvalidatedPublish(context.TODO(), unifieddatalibrary.RoutestatUnvalidatedPublishParams{
-		Body: []unifieddatalibrary.RoutestatUnvalidatedPublishParamsBody{{
+	err := client.RouteStats.UnvalidatedPublish(context.TODO(), unifieddatalibrary.RouteStatUnvalidatedPublishParams{
+		Body: []unifieddatalibrary.RouteStatUnvalidatedPublishParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			LocationEnd:           "KCOS",

@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestAirfieldstatusHistoryListWithOptionalParams(t *testing.T) {
+func TestAirfieldStatusHistoryListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,7 +26,7 @@ func TestAirfieldstatusHistoryListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Airfieldstatus.History.List(context.TODO(), unifieddatalibrary.AirfieldstatusHistoryListParams{
+	_, err := client.AirfieldStatus.History.List(context.TODO(), unifieddatalibrary.AirfieldStatusHistoryListParams{
 		Columns:     unifieddatalibrary.String("columns"),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -40,7 +40,7 @@ func TestAirfieldstatusHistoryListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestAirfieldstatusHistoryCountWithOptionalParams(t *testing.T) {
+func TestAirfieldStatusHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -53,7 +53,7 @@ func TestAirfieldstatusHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Airfieldstatus.History.Count(context.TODO(), unifieddatalibrary.AirfieldstatusHistoryCountParams{
+	_, err := client.AirfieldStatus.History.Count(context.TODO(), unifieddatalibrary.AirfieldStatusHistoryCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})

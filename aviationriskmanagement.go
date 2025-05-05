@@ -19,21 +19,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// AviationriskmanagementService contains methods and other services that help with
+// AviationRiskManagementService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewAviationriskmanagementService] method instead.
-type AviationriskmanagementService struct {
+// the [NewAviationRiskManagementService] method instead.
+type AviationRiskManagementService struct {
 	Options []option.RequestOption
 }
 
-// NewAviationriskmanagementService generates a new service that applies the given
+// NewAviationRiskManagementService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewAviationriskmanagementService(opts ...option.RequestOption) (r AviationriskmanagementService) {
-	r = AviationriskmanagementService{}
+func NewAviationRiskManagementService(opts ...option.RequestOption) (r AviationRiskManagementService) {
+	r = AviationRiskManagementService{}
 	r.Options = opts
 	return
 }
@@ -41,7 +41,7 @@ func NewAviationriskmanagementService(opts ...option.RequestOption) (r Aviationr
 // Service operation to take a single Aviation Risk Management record as a POST
 // body and ingest into the database. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
-func (r *AviationriskmanagementService) New(ctx context.Context, body AviationriskmanagementNewParams, opts ...option.RequestOption) (err error) {
+func (r *AviationRiskManagementService) New(ctx context.Context, body AviationRiskManagementNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/aviationriskmanagement"
@@ -51,7 +51,7 @@ func (r *AviationriskmanagementService) New(ctx context.Context, body Aviationri
 
 // Service operation to get a single Aviation Risk Management record by its unique
 // ID passed as a path parameter.
-func (r *AviationriskmanagementService) Get(ctx context.Context, id string, query AviationriskmanagementGetParams, opts ...option.RequestOption) (res *AviationriskmanagementGetResponse, err error) {
+func (r *AviationRiskManagementService) Get(ctx context.Context, id string, query AviationRiskManagementGetParams, opts ...option.RequestOption) (res *AviationRiskManagementGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -65,7 +65,7 @@ func (r *AviationriskmanagementService) Get(ctx context.Context, id string, quer
 // Service operation to update a single Aviation Risk Management record. A specific
 // role is required to perform this service operation. Please contact the UDL team
 // for assistance.
-func (r *AviationriskmanagementService) Update(ctx context.Context, id string, body AviationriskmanagementUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *AviationRiskManagementService) Update(ctx context.Context, id string, body AviationRiskManagementUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -80,7 +80,7 @@ func (r *AviationriskmanagementService) Update(ctx context.Context, id string, b
 // Service operation to delete an Aviation Risk Management record specified by the
 // passed ID path parameter. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *AviationriskmanagementService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *AviationRiskManagementService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -97,7 +97,7 @@ func (r *AviationriskmanagementService) Delete(ctx context.Context, id string, o
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *AviationriskmanagementService) Count(ctx context.Context, query AviationriskmanagementCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *AviationRiskManagementService) Count(ctx context.Context, query AviationRiskManagementCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/aviationriskmanagement/count"
@@ -110,7 +110,7 @@ func (r *AviationriskmanagementService) Count(ctx context.Context, query Aviatio
 // This operation is not intended to be used for automated feeds into UDL. Data
 // providers should contact the UDL team for specific role assignments and for
 // instructions on setting up a permanent feed through an alternate mechanism.
-func (r *AviationriskmanagementService) NewBulk(ctx context.Context, body AviationriskmanagementNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *AviationRiskManagementService) NewBulk(ctx context.Context, body AviationRiskManagementNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/aviationriskmanagement/createBulk"
@@ -122,7 +122,7 @@ func (r *AviationriskmanagementService) NewBulk(ctx context.Context, body Aviati
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *AviationriskmanagementService) Query(ctx context.Context, query AviationriskmanagementQueryParams, opts ...option.RequestOption) (res *[]AviationriskmanagementQueryResponse, err error) {
+func (r *AviationRiskManagementService) Query(ctx context.Context, query AviationRiskManagementQueryParams, opts ...option.RequestOption) (res *[]AviationRiskManagementQueryResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/aviationriskmanagement"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -131,7 +131,7 @@ func (r *AviationriskmanagementService) Query(ctx context.Context, query Aviatio
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *AviationriskmanagementService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *AviationRiskManagementService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/aviationriskmanagement/queryhelp"
@@ -147,7 +147,7 @@ func (r *AviationriskmanagementService) QueryHelp(ctx context.Context, opts ...o
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *AviationriskmanagementService) Tuple(ctx context.Context, query AviationriskmanagementTupleParams, opts ...option.RequestOption) (res *[]AviationriskmanagementTupleResponse, err error) {
+func (r *AviationRiskManagementService) Tuple(ctx context.Context, query AviationRiskManagementTupleParams, opts ...option.RequestOption) (res *[]AviationRiskManagementTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/aviationriskmanagement/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -158,7 +158,7 @@ func (r *AviationriskmanagementService) Tuple(ctx context.Context, query Aviatio
 // body and ingest into the database. This operation is intended to be used for
 // automated feeds into UDL. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *AviationriskmanagementService) UnvalidatedPublish(ctx context.Context, body AviationriskmanagementUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+func (r *AviationRiskManagementService) UnvalidatedPublish(ctx context.Context, body AviationRiskManagementUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-aviationriskmanagement"
@@ -169,7 +169,7 @@ func (r *AviationriskmanagementService) UnvalidatedPublish(ctx context.Context, 
 // Aviation Risk Management is used to identify, evaluate, and track risks when
 // mission planning by accounting for factors such as crew fatigue and mission
 // complexity.
-type AviationriskmanagementGetResponse struct {
+type AviationRiskManagementGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -188,7 +188,7 @@ type AviationriskmanagementGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode AviationriskmanagementGetResponseDataMode `json:"dataMode,required"`
+	DataMode AviationRiskManagementGetResponseDataMode `json:"dataMode,required"`
 	// The unique identifier of the mission to which this risk management record is
 	// assigned.
 	IDMission string `json:"idMission,required"`
@@ -198,7 +198,7 @@ type AviationriskmanagementGetResponse struct {
 	// create operations.
 	ID string `json:"id"`
 	// Collection of Aviation Risk Management Worksheet Records.
-	AviationRiskManagementWorksheetRecord []AviationriskmanagementGetResponseAviationRiskManagementWorksheetRecord `json:"aviationRiskManagementWorksheetRecord"`
+	AviationRiskManagementWorksheetRecord []AviationRiskManagementGetResponseAviationRiskManagementWorksheetRecord `json:"aviationRiskManagementWorksheetRecord"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -257,8 +257,8 @@ type AviationriskmanagementGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r AviationriskmanagementGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *AviationriskmanagementGetResponse) UnmarshalJSON(data []byte) error {
+func (r AviationRiskManagementGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *AviationRiskManagementGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -276,17 +276,17 @@ func (r *AviationriskmanagementGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type AviationriskmanagementGetResponseDataMode string
+type AviationRiskManagementGetResponseDataMode string
 
 const (
-	AviationriskmanagementGetResponseDataModeReal      AviationriskmanagementGetResponseDataMode = "REAL"
-	AviationriskmanagementGetResponseDataModeTest      AviationriskmanagementGetResponseDataMode = "TEST"
-	AviationriskmanagementGetResponseDataModeSimulated AviationriskmanagementGetResponseDataMode = "SIMULATED"
-	AviationriskmanagementGetResponseDataModeExercise  AviationriskmanagementGetResponseDataMode = "EXERCISE"
+	AviationRiskManagementGetResponseDataModeReal      AviationRiskManagementGetResponseDataMode = "REAL"
+	AviationRiskManagementGetResponseDataModeTest      AviationRiskManagementGetResponseDataMode = "TEST"
+	AviationRiskManagementGetResponseDataModeSimulated AviationRiskManagementGetResponseDataMode = "SIMULATED"
+	AviationRiskManagementGetResponseDataModeExercise  AviationRiskManagementGetResponseDataMode = "EXERCISE"
 )
 
 // Collection of Aviation Risk Management Worksheet Records.
-type AviationriskmanagementGetResponseAviationRiskManagementWorksheetRecord struct {
+type AviationRiskManagementGetResponseAviationRiskManagementWorksheetRecord struct {
 	// Date of the mission in ISO 8601 date-only format (YYYY-MM-DD).
 	MissionDate time.Time `json:"missionDate,required" format:"date"`
 	// The aircraft Model Design Series (MDS) designation (e.g. E-2C HAWKEYE, F-15
@@ -299,7 +299,7 @@ type AviationriskmanagementGetResponseAviationRiskManagementWorksheetRecord stru
 	// Flag indicating the worksheet record is approved.
 	Approved bool `json:"approved"`
 	// Collection of Aviation Risk Management worksheet record scores.
-	AviationRiskManagementWorksheetScore []AviationriskmanagementGetResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore `json:"aviationRiskManagementWorksheetScore"`
+	AviationRiskManagementWorksheetScore []AviationRiskManagementGetResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore `json:"aviationRiskManagementWorksheetScore"`
 	// Comment(s) explaining why the worksheet record has been approved or disapproved.
 	DispositionComments string `json:"dispositionComments"`
 	// Optional identifier of the worksheet record provided by the data source. This
@@ -355,15 +355,15 @@ type AviationriskmanagementGetResponseAviationRiskManagementWorksheetRecord stru
 }
 
 // Returns the unmodified JSON received from the API
-func (r AviationriskmanagementGetResponseAviationRiskManagementWorksheetRecord) RawJSON() string {
+func (r AviationRiskManagementGetResponseAviationRiskManagementWorksheetRecord) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *AviationriskmanagementGetResponseAviationRiskManagementWorksheetRecord) UnmarshalJSON(data []byte) error {
+func (r *AviationRiskManagementGetResponseAviationRiskManagementWorksheetRecord) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of Aviation Risk Management worksheet record scores.
-type AviationriskmanagementGetResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
+type AviationRiskManagementGetResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
 	// Timestamp the worksheet record score was approval or disapproval, in ISO 8601
 	// UTC format with millisecond precision.
 	ApprovalDate time.Time `json:"approvalDate" format:"date-time"`
@@ -374,7 +374,7 @@ type AviationriskmanagementGetResponseAviationRiskManagementWorksheetRecordAviat
 	// DISAPPROVED.
 	ApprovedCode int64 `json:"approvedCode"`
 	// Collection of aviation risk management worksheet record score aircraft sorties.
-	AviationRiskManagementSortie []AviationriskmanagementGetResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie `json:"aviationRiskManagementSortie"`
+	AviationRiskManagementSortie []AviationRiskManagementGetResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie `json:"aviationRiskManagementSortie"`
 	// Optional identifier of the worksheet record score provided by the data source.
 	// This field has no meaning within UDL and is provided as a convenience for
 	// systems that require tracking of an internal system generated ID.
@@ -413,15 +413,15 @@ type AviationriskmanagementGetResponseAviationRiskManagementWorksheetRecordAviat
 }
 
 // Returns the unmodified JSON received from the API
-func (r AviationriskmanagementGetResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) RawJSON() string {
+func (r AviationRiskManagementGetResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *AviationriskmanagementGetResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) UnmarshalJSON(data []byte) error {
+func (r *AviationRiskManagementGetResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of aviation risk management worksheet record score aircraft sorties.
-type AviationriskmanagementGetResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
+type AviationRiskManagementGetResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
 	// Optional aircraft sortie ID from external systems. This field has no meaning
 	// within UDL and is provided as a convenience for systems that require tracking of
 	// an internal system generated ID.
@@ -448,17 +448,17 @@ type AviationriskmanagementGetResponseAviationRiskManagementWorksheetRecordAviat
 }
 
 // Returns the unmodified JSON received from the API
-func (r AviationriskmanagementGetResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) RawJSON() string {
+func (r AviationRiskManagementGetResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *AviationriskmanagementGetResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) UnmarshalJSON(data []byte) error {
+func (r *AviationRiskManagementGetResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Aviation Risk Management is used to identify, evaluate, and track risks when
 // mission planning by accounting for factors such as crew fatigue and mission
 // complexity.
-type AviationriskmanagementQueryResponse struct {
+type AviationRiskManagementQueryResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -477,7 +477,7 @@ type AviationriskmanagementQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode AviationriskmanagementQueryResponseDataMode `json:"dataMode,required"`
+	DataMode AviationRiskManagementQueryResponseDataMode `json:"dataMode,required"`
 	// The unique identifier of the mission to which this risk management record is
 	// assigned.
 	IDMission string `json:"idMission,required"`
@@ -487,7 +487,7 @@ type AviationriskmanagementQueryResponse struct {
 	// create operations.
 	ID string `json:"id"`
 	// Collection of Aviation Risk Management Worksheet Records.
-	AviationRiskManagementWorksheetRecord []AviationriskmanagementQueryResponseAviationRiskManagementWorksheetRecord `json:"aviationRiskManagementWorksheetRecord"`
+	AviationRiskManagementWorksheetRecord []AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecord `json:"aviationRiskManagementWorksheetRecord"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -546,8 +546,8 @@ type AviationriskmanagementQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r AviationriskmanagementQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *AviationriskmanagementQueryResponse) UnmarshalJSON(data []byte) error {
+func (r AviationRiskManagementQueryResponse) RawJSON() string { return r.JSON.raw }
+func (r *AviationRiskManagementQueryResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -565,17 +565,17 @@ func (r *AviationriskmanagementQueryResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type AviationriskmanagementQueryResponseDataMode string
+type AviationRiskManagementQueryResponseDataMode string
 
 const (
-	AviationriskmanagementQueryResponseDataModeReal      AviationriskmanagementQueryResponseDataMode = "REAL"
-	AviationriskmanagementQueryResponseDataModeTest      AviationriskmanagementQueryResponseDataMode = "TEST"
-	AviationriskmanagementQueryResponseDataModeSimulated AviationriskmanagementQueryResponseDataMode = "SIMULATED"
-	AviationriskmanagementQueryResponseDataModeExercise  AviationriskmanagementQueryResponseDataMode = "EXERCISE"
+	AviationRiskManagementQueryResponseDataModeReal      AviationRiskManagementQueryResponseDataMode = "REAL"
+	AviationRiskManagementQueryResponseDataModeTest      AviationRiskManagementQueryResponseDataMode = "TEST"
+	AviationRiskManagementQueryResponseDataModeSimulated AviationRiskManagementQueryResponseDataMode = "SIMULATED"
+	AviationRiskManagementQueryResponseDataModeExercise  AviationRiskManagementQueryResponseDataMode = "EXERCISE"
 )
 
 // Collection of Aviation Risk Management Worksheet Records.
-type AviationriskmanagementQueryResponseAviationRiskManagementWorksheetRecord struct {
+type AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecord struct {
 	// Date of the mission in ISO 8601 date-only format (YYYY-MM-DD).
 	MissionDate time.Time `json:"missionDate,required" format:"date"`
 	// The aircraft Model Design Series (MDS) designation (e.g. E-2C HAWKEYE, F-15
@@ -588,7 +588,7 @@ type AviationriskmanagementQueryResponseAviationRiskManagementWorksheetRecord st
 	// Flag indicating the worksheet record is approved.
 	Approved bool `json:"approved"`
 	// Collection of Aviation Risk Management worksheet record scores.
-	AviationRiskManagementWorksheetScore []AviationriskmanagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore `json:"aviationRiskManagementWorksheetScore"`
+	AviationRiskManagementWorksheetScore []AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore `json:"aviationRiskManagementWorksheetScore"`
 	// Comment(s) explaining why the worksheet record has been approved or disapproved.
 	DispositionComments string `json:"dispositionComments"`
 	// Optional identifier of the worksheet record provided by the data source. This
@@ -644,15 +644,15 @@ type AviationriskmanagementQueryResponseAviationRiskManagementWorksheetRecord st
 }
 
 // Returns the unmodified JSON received from the API
-func (r AviationriskmanagementQueryResponseAviationRiskManagementWorksheetRecord) RawJSON() string {
+func (r AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecord) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *AviationriskmanagementQueryResponseAviationRiskManagementWorksheetRecord) UnmarshalJSON(data []byte) error {
+func (r *AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecord) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of Aviation Risk Management worksheet record scores.
-type AviationriskmanagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
+type AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
 	// Timestamp the worksheet record score was approval or disapproval, in ISO 8601
 	// UTC format with millisecond precision.
 	ApprovalDate time.Time `json:"approvalDate" format:"date-time"`
@@ -663,7 +663,7 @@ type AviationriskmanagementQueryResponseAviationRiskManagementWorksheetRecordAvi
 	// DISAPPROVED.
 	ApprovedCode int64 `json:"approvedCode"`
 	// Collection of aviation risk management worksheet record score aircraft sorties.
-	AviationRiskManagementSortie []AviationriskmanagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie `json:"aviationRiskManagementSortie"`
+	AviationRiskManagementSortie []AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie `json:"aviationRiskManagementSortie"`
 	// Optional identifier of the worksheet record score provided by the data source.
 	// This field has no meaning within UDL and is provided as a convenience for
 	// systems that require tracking of an internal system generated ID.
@@ -702,15 +702,15 @@ type AviationriskmanagementQueryResponseAviationRiskManagementWorksheetRecordAvi
 }
 
 // Returns the unmodified JSON received from the API
-func (r AviationriskmanagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) RawJSON() string {
+func (r AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *AviationriskmanagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) UnmarshalJSON(data []byte) error {
+func (r *AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of aviation risk management worksheet record score aircraft sorties.
-type AviationriskmanagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
+type AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
 	// Optional aircraft sortie ID from external systems. This field has no meaning
 	// within UDL and is provided as a convenience for systems that require tracking of
 	// an internal system generated ID.
@@ -737,17 +737,17 @@ type AviationriskmanagementQueryResponseAviationRiskManagementWorksheetRecordAvi
 }
 
 // Returns the unmodified JSON received from the API
-func (r AviationriskmanagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) RawJSON() string {
+func (r AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *AviationriskmanagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) UnmarshalJSON(data []byte) error {
+func (r *AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Aviation Risk Management is used to identify, evaluate, and track risks when
 // mission planning by accounting for factors such as crew fatigue and mission
 // complexity.
-type AviationriskmanagementTupleResponse struct {
+type AviationRiskManagementTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -766,7 +766,7 @@ type AviationriskmanagementTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode AviationriskmanagementTupleResponseDataMode `json:"dataMode,required"`
+	DataMode AviationRiskManagementTupleResponseDataMode `json:"dataMode,required"`
 	// The unique identifier of the mission to which this risk management record is
 	// assigned.
 	IDMission string `json:"idMission,required"`
@@ -776,7 +776,7 @@ type AviationriskmanagementTupleResponse struct {
 	// create operations.
 	ID string `json:"id"`
 	// Collection of Aviation Risk Management Worksheet Records.
-	AviationRiskManagementWorksheetRecord []AviationriskmanagementTupleResponseAviationRiskManagementWorksheetRecord `json:"aviationRiskManagementWorksheetRecord"`
+	AviationRiskManagementWorksheetRecord []AviationRiskManagementTupleResponseAviationRiskManagementWorksheetRecord `json:"aviationRiskManagementWorksheetRecord"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -835,8 +835,8 @@ type AviationriskmanagementTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r AviationriskmanagementTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *AviationriskmanagementTupleResponse) UnmarshalJSON(data []byte) error {
+func (r AviationRiskManagementTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *AviationRiskManagementTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -854,17 +854,17 @@ func (r *AviationriskmanagementTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type AviationriskmanagementTupleResponseDataMode string
+type AviationRiskManagementTupleResponseDataMode string
 
 const (
-	AviationriskmanagementTupleResponseDataModeReal      AviationriskmanagementTupleResponseDataMode = "REAL"
-	AviationriskmanagementTupleResponseDataModeTest      AviationriskmanagementTupleResponseDataMode = "TEST"
-	AviationriskmanagementTupleResponseDataModeSimulated AviationriskmanagementTupleResponseDataMode = "SIMULATED"
-	AviationriskmanagementTupleResponseDataModeExercise  AviationriskmanagementTupleResponseDataMode = "EXERCISE"
+	AviationRiskManagementTupleResponseDataModeReal      AviationRiskManagementTupleResponseDataMode = "REAL"
+	AviationRiskManagementTupleResponseDataModeTest      AviationRiskManagementTupleResponseDataMode = "TEST"
+	AviationRiskManagementTupleResponseDataModeSimulated AviationRiskManagementTupleResponseDataMode = "SIMULATED"
+	AviationRiskManagementTupleResponseDataModeExercise  AviationRiskManagementTupleResponseDataMode = "EXERCISE"
 )
 
 // Collection of Aviation Risk Management Worksheet Records.
-type AviationriskmanagementTupleResponseAviationRiskManagementWorksheetRecord struct {
+type AviationRiskManagementTupleResponseAviationRiskManagementWorksheetRecord struct {
 	// Date of the mission in ISO 8601 date-only format (YYYY-MM-DD).
 	MissionDate time.Time `json:"missionDate,required" format:"date"`
 	// The aircraft Model Design Series (MDS) designation (e.g. E-2C HAWKEYE, F-15
@@ -877,7 +877,7 @@ type AviationriskmanagementTupleResponseAviationRiskManagementWorksheetRecord st
 	// Flag indicating the worksheet record is approved.
 	Approved bool `json:"approved"`
 	// Collection of Aviation Risk Management worksheet record scores.
-	AviationRiskManagementWorksheetScore []AviationriskmanagementTupleResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore `json:"aviationRiskManagementWorksheetScore"`
+	AviationRiskManagementWorksheetScore []AviationRiskManagementTupleResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore `json:"aviationRiskManagementWorksheetScore"`
 	// Comment(s) explaining why the worksheet record has been approved or disapproved.
 	DispositionComments string `json:"dispositionComments"`
 	// Optional identifier of the worksheet record provided by the data source. This
@@ -933,15 +933,15 @@ type AviationriskmanagementTupleResponseAviationRiskManagementWorksheetRecord st
 }
 
 // Returns the unmodified JSON received from the API
-func (r AviationriskmanagementTupleResponseAviationRiskManagementWorksheetRecord) RawJSON() string {
+func (r AviationRiskManagementTupleResponseAviationRiskManagementWorksheetRecord) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *AviationriskmanagementTupleResponseAviationRiskManagementWorksheetRecord) UnmarshalJSON(data []byte) error {
+func (r *AviationRiskManagementTupleResponseAviationRiskManagementWorksheetRecord) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of Aviation Risk Management worksheet record scores.
-type AviationriskmanagementTupleResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
+type AviationRiskManagementTupleResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
 	// Timestamp the worksheet record score was approval or disapproval, in ISO 8601
 	// UTC format with millisecond precision.
 	ApprovalDate time.Time `json:"approvalDate" format:"date-time"`
@@ -952,7 +952,7 @@ type AviationriskmanagementTupleResponseAviationRiskManagementWorksheetRecordAvi
 	// DISAPPROVED.
 	ApprovedCode int64 `json:"approvedCode"`
 	// Collection of aviation risk management worksheet record score aircraft sorties.
-	AviationRiskManagementSortie []AviationriskmanagementTupleResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie `json:"aviationRiskManagementSortie"`
+	AviationRiskManagementSortie []AviationRiskManagementTupleResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie `json:"aviationRiskManagementSortie"`
 	// Optional identifier of the worksheet record score provided by the data source.
 	// This field has no meaning within UDL and is provided as a convenience for
 	// systems that require tracking of an internal system generated ID.
@@ -991,15 +991,15 @@ type AviationriskmanagementTupleResponseAviationRiskManagementWorksheetRecordAvi
 }
 
 // Returns the unmodified JSON received from the API
-func (r AviationriskmanagementTupleResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) RawJSON() string {
+func (r AviationRiskManagementTupleResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *AviationriskmanagementTupleResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) UnmarshalJSON(data []byte) error {
+func (r *AviationRiskManagementTupleResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of aviation risk management worksheet record score aircraft sorties.
-type AviationriskmanagementTupleResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
+type AviationRiskManagementTupleResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
 	// Optional aircraft sortie ID from external systems. This field has no meaning
 	// within UDL and is provided as a convenience for systems that require tracking of
 	// an internal system generated ID.
@@ -1026,14 +1026,14 @@ type AviationriskmanagementTupleResponseAviationRiskManagementWorksheetRecordAvi
 }
 
 // Returns the unmodified JSON received from the API
-func (r AviationriskmanagementTupleResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) RawJSON() string {
+func (r AviationRiskManagementTupleResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *AviationriskmanagementTupleResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) UnmarshalJSON(data []byte) error {
+func (r *AviationRiskManagementTupleResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type AviationriskmanagementNewParams struct {
+type AviationRiskManagementNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1052,7 +1052,7 @@ type AviationriskmanagementNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode AviationriskmanagementNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode AviationRiskManagementNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// The unique identifier of the mission to which this risk management record is
 	// assigned.
 	IDMission string `json:"idMission,required"`
@@ -1077,16 +1077,16 @@ type AviationriskmanagementNewParams struct {
 	// Identifier for the unit which this risk management record is evaluated.
 	UnitID param.Opt[string] `json:"unitId,omitzero"`
 	// Collection of Aviation Risk Management Worksheet Records.
-	AviationRiskManagementWorksheetRecord []AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecord `json:"aviationRiskManagementWorksheetRecord,omitzero"`
+	AviationRiskManagementWorksheetRecord []AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecord `json:"aviationRiskManagementWorksheetRecord,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f AviationRiskManagementNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r AviationriskmanagementNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow AviationriskmanagementNewParams
+func (r AviationRiskManagementNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow AviationRiskManagementNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -1104,19 +1104,19 @@ func (r AviationriskmanagementNewParams) MarshalJSON() (data []byte, err error) 
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type AviationriskmanagementNewParamsDataMode string
+type AviationRiskManagementNewParamsDataMode string
 
 const (
-	AviationriskmanagementNewParamsDataModeReal      AviationriskmanagementNewParamsDataMode = "REAL"
-	AviationriskmanagementNewParamsDataModeTest      AviationriskmanagementNewParamsDataMode = "TEST"
-	AviationriskmanagementNewParamsDataModeSimulated AviationriskmanagementNewParamsDataMode = "SIMULATED"
-	AviationriskmanagementNewParamsDataModeExercise  AviationriskmanagementNewParamsDataMode = "EXERCISE"
+	AviationRiskManagementNewParamsDataModeReal      AviationRiskManagementNewParamsDataMode = "REAL"
+	AviationRiskManagementNewParamsDataModeTest      AviationRiskManagementNewParamsDataMode = "TEST"
+	AviationRiskManagementNewParamsDataModeSimulated AviationRiskManagementNewParamsDataMode = "SIMULATED"
+	AviationRiskManagementNewParamsDataModeExercise  AviationRiskManagementNewParamsDataMode = "EXERCISE"
 )
 
 // Collection of Aviation Risk Management Worksheet Records.
 //
 // The property MissionDate is required.
-type AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecord struct {
+type AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecord struct {
 	// Date of the mission in ISO 8601 date-only format (YYYY-MM-DD).
 	MissionDate time.Time `json:"missionDate,required" format:"date"`
 	// The aircraft Model Design Series (MDS) designation (e.g. E-2C HAWKEYE, F-15
@@ -1160,22 +1160,22 @@ type AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecord struct
 	// User identifier associated to the worksheet record.
 	UserID param.Opt[string] `json:"userId,omitzero"`
 	// Collection of Aviation Risk Management worksheet record scores.
-	AviationRiskManagementWorksheetScore []AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore `json:"aviationRiskManagementWorksheetScore,omitzero"`
+	AviationRiskManagementWorksheetScore []AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore `json:"aviationRiskManagementWorksheetScore,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecord) IsPresent() bool {
+func (f AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecord) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecord) MarshalJSON() (data []byte, err error) {
-	type shadow AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecord
+func (r AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecord) MarshalJSON() (data []byte, err error) {
+	type shadow AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecord
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Collection of Aviation Risk Management worksheet record scores.
-type AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
+type AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
 	// Timestamp the worksheet record score was approval or disapproval, in ISO 8601
 	// UTC format with millisecond precision.
 	ApprovalDate param.Opt[time.Time] `json:"approvalDate,omitzero" format:"date-time"`
@@ -1204,22 +1204,22 @@ type AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecordAviatio
 	// Remarks and/or comments regarding the worksheet score.
 	ScoreRemark param.Opt[string] `json:"scoreRemark,omitzero"`
 	// Collection of aviation risk management worksheet record score aircraft sorties.
-	AviationRiskManagementSortie []AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie `json:"aviationRiskManagementSortie,omitzero"`
+	AviationRiskManagementSortie []AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie `json:"aviationRiskManagementSortie,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) IsPresent() bool {
+func (f AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) MarshalJSON() (data []byte, err error) {
-	type shadow AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore
+func (r AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) MarshalJSON() (data []byte, err error) {
+	type shadow AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Collection of aviation risk management worksheet record score aircraft sorties.
-type AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
+type AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
 	// Optional aircraft sortie ID from external systems. This field has no meaning
 	// within UDL and is provided as a convenience for systems that require tracking of
 	// an internal system generated ID.
@@ -1238,15 +1238,15 @@ type AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecordAviatio
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) IsPresent() bool {
+func (f AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) MarshalJSON() (data []byte, err error) {
-	type shadow AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie
+func (r AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) MarshalJSON() (data []byte, err error) {
+	type shadow AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
-type AviationriskmanagementGetParams struct {
+type AviationRiskManagementGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1254,18 +1254,18 @@ type AviationriskmanagementGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f AviationRiskManagementGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [AviationriskmanagementGetParams]'s query parameters as
+// URLQuery serializes [AviationRiskManagementGetParams]'s query parameters as
 // `url.Values`.
-func (r AviationriskmanagementGetParams) URLQuery() (v url.Values, err error) {
+func (r AviationRiskManagementGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type AviationriskmanagementUpdateParams struct {
+type AviationRiskManagementUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1284,7 +1284,7 @@ type AviationriskmanagementUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode AviationriskmanagementUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode AviationRiskManagementUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// The unique identifier of the mission to which this risk management record is
 	// assigned.
 	IDMission string `json:"idMission,required"`
@@ -1309,18 +1309,18 @@ type AviationriskmanagementUpdateParams struct {
 	// Identifier for the unit which this risk management record is evaluated.
 	UnitID param.Opt[string] `json:"unitId,omitzero"`
 	// Collection of Aviation Risk Management Worksheet Records.
-	AviationRiskManagementWorksheetRecord []AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecord `json:"aviationRiskManagementWorksheetRecord,omitzero"`
+	AviationRiskManagementWorksheetRecord []AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecord `json:"aviationRiskManagementWorksheetRecord,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementUpdateParams) IsPresent() bool {
+func (f AviationRiskManagementUpdateParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r AviationriskmanagementUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow AviationriskmanagementUpdateParams
+func (r AviationRiskManagementUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow AviationRiskManagementUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -1338,19 +1338,19 @@ func (r AviationriskmanagementUpdateParams) MarshalJSON() (data []byte, err erro
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type AviationriskmanagementUpdateParamsDataMode string
+type AviationRiskManagementUpdateParamsDataMode string
 
 const (
-	AviationriskmanagementUpdateParamsDataModeReal      AviationriskmanagementUpdateParamsDataMode = "REAL"
-	AviationriskmanagementUpdateParamsDataModeTest      AviationriskmanagementUpdateParamsDataMode = "TEST"
-	AviationriskmanagementUpdateParamsDataModeSimulated AviationriskmanagementUpdateParamsDataMode = "SIMULATED"
-	AviationriskmanagementUpdateParamsDataModeExercise  AviationriskmanagementUpdateParamsDataMode = "EXERCISE"
+	AviationRiskManagementUpdateParamsDataModeReal      AviationRiskManagementUpdateParamsDataMode = "REAL"
+	AviationRiskManagementUpdateParamsDataModeTest      AviationRiskManagementUpdateParamsDataMode = "TEST"
+	AviationRiskManagementUpdateParamsDataModeSimulated AviationRiskManagementUpdateParamsDataMode = "SIMULATED"
+	AviationRiskManagementUpdateParamsDataModeExercise  AviationRiskManagementUpdateParamsDataMode = "EXERCISE"
 )
 
 // Collection of Aviation Risk Management Worksheet Records.
 //
 // The property MissionDate is required.
-type AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecord struct {
+type AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecord struct {
 	// Date of the mission in ISO 8601 date-only format (YYYY-MM-DD).
 	MissionDate time.Time `json:"missionDate,required" format:"date"`
 	// The aircraft Model Design Series (MDS) designation (e.g. E-2C HAWKEYE, F-15
@@ -1394,22 +1394,22 @@ type AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecord str
 	// User identifier associated to the worksheet record.
 	UserID param.Opt[string] `json:"userId,omitzero"`
 	// Collection of Aviation Risk Management worksheet record scores.
-	AviationRiskManagementWorksheetScore []AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore `json:"aviationRiskManagementWorksheetScore,omitzero"`
+	AviationRiskManagementWorksheetScore []AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore `json:"aviationRiskManagementWorksheetScore,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecord) IsPresent() bool {
+func (f AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecord) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecord) MarshalJSON() (data []byte, err error) {
-	type shadow AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecord
+func (r AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecord) MarshalJSON() (data []byte, err error) {
+	type shadow AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecord
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Collection of Aviation Risk Management worksheet record scores.
-type AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
+type AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
 	// Timestamp the worksheet record score was approval or disapproval, in ISO 8601
 	// UTC format with millisecond precision.
 	ApprovalDate param.Opt[time.Time] `json:"approvalDate,omitzero" format:"date-time"`
@@ -1438,22 +1438,22 @@ type AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecordAvia
 	// Remarks and/or comments regarding the worksheet score.
 	ScoreRemark param.Opt[string] `json:"scoreRemark,omitzero"`
 	// Collection of aviation risk management worksheet record score aircraft sorties.
-	AviationRiskManagementSortie []AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie `json:"aviationRiskManagementSortie,omitzero"`
+	AviationRiskManagementSortie []AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie `json:"aviationRiskManagementSortie,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) IsPresent() bool {
+func (f AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) MarshalJSON() (data []byte, err error) {
-	type shadow AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore
+func (r AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) MarshalJSON() (data []byte, err error) {
+	type shadow AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Collection of aviation risk management worksheet record score aircraft sorties.
-type AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
+type AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
 	// Optional aircraft sortie ID from external systems. This field has no meaning
 	// within UDL and is provided as a convenience for systems that require tracking of
 	// an internal system generated ID.
@@ -1472,15 +1472,15 @@ type AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecordAvia
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) IsPresent() bool {
+func (f AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) MarshalJSON() (data []byte, err error) {
-	type shadow AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie
+func (r AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) MarshalJSON() (data []byte, err error) {
+	type shadow AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
-type AviationriskmanagementCountParams struct {
+type AviationRiskManagementCountParams struct {
 	// The unique identifier of the mission to which this risk management record is
 	// assigned.
 	IDMission   string           `query:"idMission,required" json:"-"`
@@ -1491,31 +1491,31 @@ type AviationriskmanagementCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementCountParams) IsPresent() bool {
+func (f AviationRiskManagementCountParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [AviationriskmanagementCountParams]'s query parameters as
+// URLQuery serializes [AviationRiskManagementCountParams]'s query parameters as
 // `url.Values`.
-func (r AviationriskmanagementCountParams) URLQuery() (v url.Values, err error) {
+func (r AviationRiskManagementCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type AviationriskmanagementNewBulkParams struct {
-	Body []AviationriskmanagementNewBulkParamsBody
+type AviationRiskManagementNewBulkParams struct {
+	Body []AviationRiskManagementNewBulkParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementNewBulkParams) IsPresent() bool {
+func (f AviationRiskManagementNewBulkParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r AviationriskmanagementNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r AviationRiskManagementNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -1524,7 +1524,7 @@ func (r AviationriskmanagementNewBulkParams) MarshalJSON() (data []byte, err err
 // complexity.
 //
 // The properties ClassificationMarking, DataMode, IDMission, Source are required.
-type AviationriskmanagementNewBulkParamsBody struct {
+type AviationRiskManagementNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1585,22 +1585,22 @@ type AviationriskmanagementNewBulkParamsBody struct {
 	// system.
 	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// Collection of Aviation Risk Management Worksheet Records.
-	AviationRiskManagementWorksheetRecord []AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecord `json:"aviationRiskManagementWorksheetRecord,omitzero"`
+	AviationRiskManagementWorksheetRecord []AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecord `json:"aviationRiskManagementWorksheetRecord,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementNewBulkParamsBody) IsPresent() bool {
+func (f AviationRiskManagementNewBulkParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r AviationriskmanagementNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow AviationriskmanagementNewBulkParamsBody
+func (r AviationRiskManagementNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow AviationRiskManagementNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[AviationriskmanagementNewBulkParamsBody](
+	apijson.RegisterFieldValidator[AviationRiskManagementNewBulkParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
@@ -1608,7 +1608,7 @@ func init() {
 // Collection of Aviation Risk Management Worksheet Records.
 //
 // The property MissionDate is required.
-type AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecord struct {
+type AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecord struct {
 	// Date of the mission in ISO 8601 date-only format (YYYY-MM-DD).
 	MissionDate time.Time `json:"missionDate,required" format:"date"`
 	// The aircraft Model Design Series (MDS) designation (e.g. E-2C HAWKEYE, F-15
@@ -1652,22 +1652,22 @@ type AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecor
 	// User identifier associated to the worksheet record.
 	UserID param.Opt[string] `json:"userId,omitzero"`
 	// Collection of Aviation Risk Management worksheet record scores.
-	AviationRiskManagementWorksheetScore []AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore `json:"aviationRiskManagementWorksheetScore,omitzero"`
+	AviationRiskManagementWorksheetScore []AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore `json:"aviationRiskManagementWorksheetScore,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecord) IsPresent() bool {
+func (f AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecord) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecord) MarshalJSON() (data []byte, err error) {
-	type shadow AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecord
+func (r AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecord) MarshalJSON() (data []byte, err error) {
+	type shadow AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecord
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Collection of Aviation Risk Management worksheet record scores.
-type AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
+type AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
 	// Timestamp the worksheet record score was approval or disapproval, in ISO 8601
 	// UTC format with millisecond precision.
 	ApprovalDate param.Opt[time.Time] `json:"approvalDate,omitzero" format:"date-time"`
@@ -1696,22 +1696,22 @@ type AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecor
 	// Remarks and/or comments regarding the worksheet score.
 	ScoreRemark param.Opt[string] `json:"scoreRemark,omitzero"`
 	// Collection of aviation risk management worksheet record score aircraft sorties.
-	AviationRiskManagementSortie []AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie `json:"aviationRiskManagementSortie,omitzero"`
+	AviationRiskManagementSortie []AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie `json:"aviationRiskManagementSortie,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) IsPresent() bool {
+func (f AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) MarshalJSON() (data []byte, err error) {
-	type shadow AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore
+func (r AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) MarshalJSON() (data []byte, err error) {
+	type shadow AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Collection of aviation risk management worksheet record score aircraft sorties.
-type AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
+type AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
 	// Optional aircraft sortie ID from external systems. This field has no meaning
 	// within UDL and is provided as a convenience for systems that require tracking of
 	// an internal system generated ID.
@@ -1730,15 +1730,15 @@ type AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecor
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) IsPresent() bool {
+func (f AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) MarshalJSON() (data []byte, err error) {
-	type shadow AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie
+func (r AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) MarshalJSON() (data []byte, err error) {
+	type shadow AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
-type AviationriskmanagementQueryParams struct {
+type AviationRiskManagementQueryParams struct {
 	// The unique identifier of the mission to which this risk management record is
 	// assigned.
 	IDMission   string           `query:"idMission,required" json:"-"`
@@ -1749,20 +1749,20 @@ type AviationriskmanagementQueryParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementQueryParams) IsPresent() bool {
+func (f AviationRiskManagementQueryParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [AviationriskmanagementQueryParams]'s query parameters as
+// URLQuery serializes [AviationRiskManagementQueryParams]'s query parameters as
 // `url.Values`.
-func (r AviationriskmanagementQueryParams) URLQuery() (v url.Values, err error) {
+func (r AviationRiskManagementQueryParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type AviationriskmanagementTupleParams struct {
+type AviationRiskManagementTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -1778,31 +1778,31 @@ type AviationriskmanagementTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementTupleParams) IsPresent() bool {
+func (f AviationRiskManagementTupleParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [AviationriskmanagementTupleParams]'s query parameters as
+// URLQuery serializes [AviationRiskManagementTupleParams]'s query parameters as
 // `url.Values`.
-func (r AviationriskmanagementTupleParams) URLQuery() (v url.Values, err error) {
+func (r AviationRiskManagementTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type AviationriskmanagementUnvalidatedPublishParams struct {
-	Body []AviationriskmanagementUnvalidatedPublishParamsBody
+type AviationRiskManagementUnvalidatedPublishParams struct {
+	Body []AviationRiskManagementUnvalidatedPublishParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementUnvalidatedPublishParams) IsPresent() bool {
+func (f AviationRiskManagementUnvalidatedPublishParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r AviationriskmanagementUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+func (r AviationRiskManagementUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -1811,7 +1811,7 @@ func (r AviationriskmanagementUnvalidatedPublishParams) MarshalJSON() (data []by
 // complexity.
 //
 // The properties ClassificationMarking, DataMode, IDMission, Source are required.
-type AviationriskmanagementUnvalidatedPublishParamsBody struct {
+type AviationRiskManagementUnvalidatedPublishParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1872,22 +1872,22 @@ type AviationriskmanagementUnvalidatedPublishParamsBody struct {
 	// system.
 	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// Collection of Aviation Risk Management Worksheet Records.
-	AviationRiskManagementWorksheetRecord []AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecord `json:"aviationRiskManagementWorksheetRecord,omitzero"`
+	AviationRiskManagementWorksheetRecord []AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecord `json:"aviationRiskManagementWorksheetRecord,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementUnvalidatedPublishParamsBody) IsPresent() bool {
+func (f AviationRiskManagementUnvalidatedPublishParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r AviationriskmanagementUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow AviationriskmanagementUnvalidatedPublishParamsBody
+func (r AviationRiskManagementUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow AviationRiskManagementUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[AviationriskmanagementUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[AviationRiskManagementUnvalidatedPublishParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
@@ -1895,7 +1895,7 @@ func init() {
 // Collection of Aviation Risk Management Worksheet Records.
 //
 // The property MissionDate is required.
-type AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecord struct {
+type AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecord struct {
 	// Date of the mission in ISO 8601 date-only format (YYYY-MM-DD).
 	MissionDate time.Time `json:"missionDate,required" format:"date"`
 	// The aircraft Model Design Series (MDS) designation (e.g. E-2C HAWKEYE, F-15
@@ -1939,22 +1939,22 @@ type AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWor
 	// User identifier associated to the worksheet record.
 	UserID param.Opt[string] `json:"userId,omitzero"`
 	// Collection of Aviation Risk Management worksheet record scores.
-	AviationRiskManagementWorksheetScore []AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore `json:"aviationRiskManagementWorksheetScore,omitzero"`
+	AviationRiskManagementWorksheetScore []AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore `json:"aviationRiskManagementWorksheetScore,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecord) IsPresent() bool {
+func (f AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecord) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecord) MarshalJSON() (data []byte, err error) {
-	type shadow AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecord
+func (r AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecord) MarshalJSON() (data []byte, err error) {
+	type shadow AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecord
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Collection of Aviation Risk Management worksheet record scores.
-type AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
+type AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
 	// Timestamp the worksheet record score was approval or disapproval, in ISO 8601
 	// UTC format with millisecond precision.
 	ApprovalDate param.Opt[time.Time] `json:"approvalDate,omitzero" format:"date-time"`
@@ -1983,22 +1983,22 @@ type AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWor
 	// Remarks and/or comments regarding the worksheet score.
 	ScoreRemark param.Opt[string] `json:"scoreRemark,omitzero"`
 	// Collection of aviation risk management worksheet record score aircraft sorties.
-	AviationRiskManagementSortie []AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie `json:"aviationRiskManagementSortie,omitzero"`
+	AviationRiskManagementSortie []AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie `json:"aviationRiskManagementSortie,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) IsPresent() bool {
+func (f AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) MarshalJSON() (data []byte, err error) {
-	type shadow AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore
+func (r AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) MarshalJSON() (data []byte, err error) {
+	type shadow AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Collection of aviation risk management worksheet record score aircraft sorties.
-type AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
+type AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
 	// Optional aircraft sortie ID from external systems. This field has no meaning
 	// within UDL and is provided as a convenience for systems that require tracking of
 	// an internal system generated ID.
@@ -2017,10 +2017,10 @@ type AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWor
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) IsPresent() bool {
+func (f AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) MarshalJSON() (data []byte, err error) {
-	type shadow AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie
+func (r AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) MarshalJSON() (data []byte, err error) {
+	type shadow AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie
 	return param.MarshalObject(r, (*shadow)(&r))
 }

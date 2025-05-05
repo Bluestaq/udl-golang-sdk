@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestWeatherreportHistoryListWithOptionalParams(t *testing.T) {
+func TestWeatherReportHistoryListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestWeatherreportHistoryListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Weatherreport.History.List(context.TODO(), unifieddatalibrary.WeatherreportHistoryListParams{
+	_, err := client.WeatherReport.History.List(context.TODO(), unifieddatalibrary.WeatherReportHistoryListParams{
 		ObTime:      time.Now(),
 		Columns:     unifieddatalibrary.String("columns"),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -42,7 +42,7 @@ func TestWeatherreportHistoryListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestWeatherreportHistoryAodrWithOptionalParams(t *testing.T) {
+func TestWeatherReportHistoryAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -55,7 +55,7 @@ func TestWeatherreportHistoryAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Weatherreport.History.Aodr(context.TODO(), unifieddatalibrary.WeatherreportHistoryAodrParams{
+	err := client.WeatherReport.History.Aodr(context.TODO(), unifieddatalibrary.WeatherReportHistoryAodrParams{
 		ObTime:          time.Now(),
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -73,7 +73,7 @@ func TestWeatherreportHistoryAodrWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestWeatherreportHistoryCountWithOptionalParams(t *testing.T) {
+func TestWeatherReportHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -86,7 +86,7 @@ func TestWeatherreportHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Weatherreport.History.Count(context.TODO(), unifieddatalibrary.WeatherreportHistoryCountParams{
+	_, err := client.WeatherReport.History.Count(context.TODO(), unifieddatalibrary.WeatherReportHistoryCountParams{
 		ObTime:      time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

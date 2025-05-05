@@ -19,21 +19,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// SolararrayService contains methods and other services that help with interacting
+// SolarArrayService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewSolararrayService] method instead.
-type SolararrayService struct {
+// the [NewSolarArrayService] method instead.
+type SolarArrayService struct {
 	Options []option.RequestOption
 }
 
-// NewSolararrayService generates a new service that applies the given options to
+// NewSolarArrayService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewSolararrayService(opts ...option.RequestOption) (r SolararrayService) {
-	r = SolararrayService{}
+func NewSolarArrayService(opts ...option.RequestOption) (r SolarArrayService) {
+	r = SolarArrayService{}
 	r.Options = opts
 	return
 }
@@ -41,7 +41,7 @@ func NewSolararrayService(opts ...option.RequestOption) (r SolararrayService) {
 // Service operation to take a single SolarArray as a POST body and ingest into the
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
-func (r *SolararrayService) New(ctx context.Context, body SolararrayNewParams, opts ...option.RequestOption) (err error) {
+func (r *SolarArrayService) New(ctx context.Context, body SolarArrayNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/solararray"
@@ -51,7 +51,7 @@ func (r *SolararrayService) New(ctx context.Context, body SolararrayNewParams, o
 
 // Service operation to update a single SolarArray. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
-func (r *SolararrayService) Update(ctx context.Context, id string, body SolararrayUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *SolarArrayService) Update(ctx context.Context, id string, body SolarArrayUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -67,7 +67,7 @@ func (r *SolararrayService) Update(ctx context.Context, id string, body Solararr
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SolararrayService) List(ctx context.Context, query SolararrayListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SolararrayListResponse], err error) {
+func (r *SolarArrayService) List(ctx context.Context, query SolarArrayListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SolarArrayListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -88,14 +88,14 @@ func (r *SolararrayService) List(ctx context.Context, query SolararrayListParams
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SolararrayService) ListAutoPaging(ctx context.Context, query SolararrayListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SolararrayListResponse] {
+func (r *SolarArrayService) ListAutoPaging(ctx context.Context, query SolarArrayListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SolarArrayListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to delete a SolarArray object specified by the passed ID path
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
-func (r *SolararrayService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *SolarArrayService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -112,7 +112,7 @@ func (r *SolararrayService) Delete(ctx context.Context, id string, opts ...optio
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *SolararrayService) Count(ctx context.Context, query SolararrayCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *SolarArrayService) Count(ctx context.Context, query SolarArrayCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/solararray/count"
@@ -122,7 +122,7 @@ func (r *SolararrayService) Count(ctx context.Context, query SolararrayCountPara
 
 // Service operation to get a single SolarArray record by its unique ID passed as a
 // path parameter.
-func (r *SolararrayService) Get(ctx context.Context, id string, query SolararrayGetParams, opts ...option.RequestOption) (res *SolararrayGetResponse, err error) {
+func (r *SolarArrayService) Get(ctx context.Context, id string, query SolarArrayGetParams, opts ...option.RequestOption) (res *SolarArrayGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -135,7 +135,7 @@ func (r *SolararrayService) Get(ctx context.Context, id string, query Solararray
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *SolararrayService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *SolarArrayService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/solararray/queryhelp"
@@ -151,7 +151,7 @@ func (r *SolararrayService) Queryhelp(ctx context.Context, opts ...option.Reques
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *SolararrayService) Tuple(ctx context.Context, query SolararrayTupleParams, opts ...option.RequestOption) (res *[]SolararrayTupleResponse, err error) {
+func (r *SolarArrayService) Tuple(ctx context.Context, query SolarArrayTupleParams, opts ...option.RequestOption) (res *[]SolarArrayTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/solararray/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -161,7 +161,7 @@ func (r *SolararrayService) Tuple(ctx context.Context, query SolararrayTuplePara
 // Model representation of information on on-orbit/spacecraft solar arrays. A
 // spacecraft may have multiple solar arrays and each solar array can have multiple
 // 'details' records compiled by different sources.
-type SolararrayListResponse struct {
+type SolarArrayListResponse struct {
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 	//
 	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
@@ -178,7 +178,7 @@ type SolararrayListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SolararrayListResponseDataMode `json:"dataMode,required"`
+	DataMode SolarArrayListResponseDataMode `json:"dataMode,required"`
 	// Solar Array name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -215,8 +215,8 @@ type SolararrayListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SolararrayListResponse) RawJSON() string { return r.JSON.raw }
-func (r *SolararrayListResponse) UnmarshalJSON(data []byte) error {
+func (r SolarArrayListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SolarArrayListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -234,19 +234,19 @@ func (r *SolararrayListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SolararrayListResponseDataMode string
+type SolarArrayListResponseDataMode string
 
 const (
-	SolararrayListResponseDataModeReal      SolararrayListResponseDataMode = "REAL"
-	SolararrayListResponseDataModeTest      SolararrayListResponseDataMode = "TEST"
-	SolararrayListResponseDataModeSimulated SolararrayListResponseDataMode = "SIMULATED"
-	SolararrayListResponseDataModeExercise  SolararrayListResponseDataMode = "EXERCISE"
+	SolarArrayListResponseDataModeReal      SolarArrayListResponseDataMode = "REAL"
+	SolarArrayListResponseDataModeTest      SolarArrayListResponseDataMode = "TEST"
+	SolarArrayListResponseDataModeSimulated SolarArrayListResponseDataMode = "SIMULATED"
+	SolarArrayListResponseDataModeExercise  SolarArrayListResponseDataMode = "EXERCISE"
 )
 
 // Model representation of information on on-orbit/spacecraft solar arrays. A
 // spacecraft may have multiple solar arrays and each solar array can have multiple
 // 'details' records compiled by different sources.
-type SolararrayGetResponse struct {
+type SolarArrayGetResponse struct {
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 	//
 	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
@@ -263,7 +263,7 @@ type SolararrayGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SolararrayGetResponseDataMode `json:"dataMode,required"`
+	DataMode SolarArrayGetResponseDataMode `json:"dataMode,required"`
 	// Solar Array name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -312,8 +312,8 @@ type SolararrayGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SolararrayGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *SolararrayGetResponse) UnmarshalJSON(data []byte) error {
+func (r SolarArrayGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *SolarArrayGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -331,19 +331,19 @@ func (r *SolararrayGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SolararrayGetResponseDataMode string
+type SolarArrayGetResponseDataMode string
 
 const (
-	SolararrayGetResponseDataModeReal      SolararrayGetResponseDataMode = "REAL"
-	SolararrayGetResponseDataModeTest      SolararrayGetResponseDataMode = "TEST"
-	SolararrayGetResponseDataModeSimulated SolararrayGetResponseDataMode = "SIMULATED"
-	SolararrayGetResponseDataModeExercise  SolararrayGetResponseDataMode = "EXERCISE"
+	SolarArrayGetResponseDataModeReal      SolarArrayGetResponseDataMode = "REAL"
+	SolarArrayGetResponseDataModeTest      SolarArrayGetResponseDataMode = "TEST"
+	SolarArrayGetResponseDataModeSimulated SolarArrayGetResponseDataMode = "SIMULATED"
+	SolarArrayGetResponseDataModeExercise  SolarArrayGetResponseDataMode = "EXERCISE"
 )
 
 // Model representation of information on on-orbit/spacecraft solar arrays. A
 // spacecraft may have multiple solar arrays and each solar array can have multiple
 // 'details' records compiled by different sources.
-type SolararrayTupleResponse struct {
+type SolarArrayTupleResponse struct {
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 	//
 	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
@@ -360,7 +360,7 @@ type SolararrayTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SolararrayTupleResponseDataMode `json:"dataMode,required"`
+	DataMode SolarArrayTupleResponseDataMode `json:"dataMode,required"`
 	// Solar Array name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -409,8 +409,8 @@ type SolararrayTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SolararrayTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *SolararrayTupleResponse) UnmarshalJSON(data []byte) error {
+func (r SolarArrayTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *SolarArrayTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -428,16 +428,16 @@ func (r *SolararrayTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SolararrayTupleResponseDataMode string
+type SolarArrayTupleResponseDataMode string
 
 const (
-	SolararrayTupleResponseDataModeReal      SolararrayTupleResponseDataMode = "REAL"
-	SolararrayTupleResponseDataModeTest      SolararrayTupleResponseDataMode = "TEST"
-	SolararrayTupleResponseDataModeSimulated SolararrayTupleResponseDataMode = "SIMULATED"
-	SolararrayTupleResponseDataModeExercise  SolararrayTupleResponseDataMode = "EXERCISE"
+	SolarArrayTupleResponseDataModeReal      SolarArrayTupleResponseDataMode = "REAL"
+	SolarArrayTupleResponseDataModeTest      SolarArrayTupleResponseDataMode = "TEST"
+	SolarArrayTupleResponseDataModeSimulated SolarArrayTupleResponseDataMode = "SIMULATED"
+	SolarArrayTupleResponseDataModeExercise  SolarArrayTupleResponseDataMode = "EXERCISE"
 )
 
-type SolararrayNewParams struct {
+type SolarArrayNewParams struct {
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 	//
 	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
@@ -454,7 +454,7 @@ type SolararrayNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SolararrayNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SolarArrayNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Solar Array name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -471,10 +471,10 @@ type SolararrayNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SolararrayNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SolarArrayNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SolararrayNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow SolararrayNewParams
+func (r SolarArrayNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow SolarArrayNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -492,16 +492,16 @@ func (r SolararrayNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SolararrayNewParamsDataMode string
+type SolarArrayNewParamsDataMode string
 
 const (
-	SolararrayNewParamsDataModeReal      SolararrayNewParamsDataMode = "REAL"
-	SolararrayNewParamsDataModeTest      SolararrayNewParamsDataMode = "TEST"
-	SolararrayNewParamsDataModeSimulated SolararrayNewParamsDataMode = "SIMULATED"
-	SolararrayNewParamsDataModeExercise  SolararrayNewParamsDataMode = "EXERCISE"
+	SolarArrayNewParamsDataModeReal      SolarArrayNewParamsDataMode = "REAL"
+	SolarArrayNewParamsDataModeTest      SolarArrayNewParamsDataMode = "TEST"
+	SolarArrayNewParamsDataModeSimulated SolarArrayNewParamsDataMode = "SIMULATED"
+	SolarArrayNewParamsDataModeExercise  SolarArrayNewParamsDataMode = "EXERCISE"
 )
 
-type SolararrayUpdateParams struct {
+type SolarArrayUpdateParams struct {
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 	//
 	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
@@ -518,7 +518,7 @@ type SolararrayUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SolararrayUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SolarArrayUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// Solar Array name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -535,10 +535,10 @@ type SolararrayUpdateParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SolararrayUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SolarArrayUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SolararrayUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow SolararrayUpdateParams
+func (r SolarArrayUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow SolarArrayUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -556,16 +556,16 @@ func (r SolararrayUpdateParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SolararrayUpdateParamsDataMode string
+type SolarArrayUpdateParamsDataMode string
 
 const (
-	SolararrayUpdateParamsDataModeReal      SolararrayUpdateParamsDataMode = "REAL"
-	SolararrayUpdateParamsDataModeTest      SolararrayUpdateParamsDataMode = "TEST"
-	SolararrayUpdateParamsDataModeSimulated SolararrayUpdateParamsDataMode = "SIMULATED"
-	SolararrayUpdateParamsDataModeExercise  SolararrayUpdateParamsDataMode = "EXERCISE"
+	SolarArrayUpdateParamsDataModeReal      SolarArrayUpdateParamsDataMode = "REAL"
+	SolarArrayUpdateParamsDataModeTest      SolarArrayUpdateParamsDataMode = "TEST"
+	SolarArrayUpdateParamsDataModeSimulated SolarArrayUpdateParamsDataMode = "SIMULATED"
+	SolarArrayUpdateParamsDataModeExercise  SolarArrayUpdateParamsDataMode = "EXERCISE"
 )
 
-type SolararrayListParams struct {
+type SolarArrayListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -573,17 +573,17 @@ type SolararrayListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SolararrayListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SolarArrayListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SolararrayListParams]'s query parameters as `url.Values`.
-func (r SolararrayListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SolarArrayListParams]'s query parameters as `url.Values`.
+func (r SolarArrayListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SolararrayCountParams struct {
+type SolarArrayCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -591,17 +591,17 @@ type SolararrayCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SolararrayCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SolarArrayCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SolararrayCountParams]'s query parameters as `url.Values`.
-func (r SolararrayCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SolarArrayCountParams]'s query parameters as `url.Values`.
+func (r SolarArrayCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SolararrayGetParams struct {
+type SolarArrayGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -609,17 +609,17 @@ type SolararrayGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SolararrayGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SolarArrayGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SolararrayGetParams]'s query parameters as `url.Values`.
-func (r SolararrayGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SolarArrayGetParams]'s query parameters as `url.Values`.
+func (r SolarArrayGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SolararrayTupleParams struct {
+type SolarArrayTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -632,10 +632,10 @@ type SolararrayTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SolararrayTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SolarArrayTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SolararrayTupleParams]'s query parameters as `url.Values`.
-func (r SolararrayTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SolarArrayTupleParams]'s query parameters as `url.Values`.
+func (r SolarArrayTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

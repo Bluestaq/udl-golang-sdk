@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSolararraydetailNewWithOptionalParams(t *testing.T) {
+func TestSolarArrayDetailNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,9 +26,9 @@ func TestSolararraydetailNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Solararraydetails.New(context.TODO(), unifieddatalibrary.SolararraydetailNewParams{
+	err := client.SolarArrayDetails.New(context.TODO(), unifieddatalibrary.SolarArrayDetailNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.SolararraydetailNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.SolarArrayDetailNewParamsDataModeTest,
 		IDSolarArray:          "SOLARARRAY-ID",
 		Source:                "Bluestaq",
 		ID:                    unifieddatalibrary.String("SOLARARRAYDETAILS-ID"),
@@ -51,7 +51,7 @@ func TestSolararraydetailNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSolararraydetailUpdateWithOptionalParams(t *testing.T) {
+func TestSolarArrayDetailUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -64,12 +64,12 @@ func TestSolararraydetailUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Solararraydetails.Update(
+	err := client.SolarArrayDetails.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SolararraydetailUpdateParams{
+		unifieddatalibrary.SolarArrayDetailUpdateParams{
 			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.SolararraydetailUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.SolarArrayDetailUpdateParamsDataModeTest,
 			IDSolarArray:          "SOLARARRAY-ID",
 			Source:                "Bluestaq",
 			ID:                    unifieddatalibrary.String("SOLARARRAYDETAILS-ID"),
@@ -93,7 +93,7 @@ func TestSolararraydetailUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSolararraydetailListWithOptionalParams(t *testing.T) {
+func TestSolarArrayDetailListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -106,7 +106,7 @@ func TestSolararraydetailListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Solararraydetails.List(context.TODO(), unifieddatalibrary.SolararraydetailListParams{
+	_, err := client.SolarArrayDetails.List(context.TODO(), unifieddatalibrary.SolarArrayDetailListParams{
 		ClassificationMarking: unifieddatalibrary.String("classificationMarking"),
 		DataMode:              unifieddatalibrary.String("dataMode"),
 		FirstResult:           unifieddatalibrary.Int(0),
@@ -122,7 +122,7 @@ func TestSolararraydetailListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSolararraydetailDelete(t *testing.T) {
+func TestSolarArrayDetailDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -135,7 +135,7 @@ func TestSolararraydetailDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Solararraydetails.Delete(context.TODO(), "id")
+	err := client.SolarArrayDetails.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -145,7 +145,7 @@ func TestSolararraydetailDelete(t *testing.T) {
 	}
 }
 
-func TestSolararraydetailGetWithOptionalParams(t *testing.T) {
+func TestSolarArrayDetailGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -158,10 +158,10 @@ func TestSolararraydetailGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Solararraydetails.Get(
+	_, err := client.SolarArrayDetails.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SolararraydetailGetParams{
+		unifieddatalibrary.SolarArrayDetailGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},

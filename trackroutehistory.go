@@ -17,21 +17,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// TrackrouteHistoryService contains methods and other services that help with
+// TrackRouteHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewTrackrouteHistoryService] method instead.
-type TrackrouteHistoryService struct {
+// the [NewTrackRouteHistoryService] method instead.
+type TrackRouteHistoryService struct {
 	Options []option.RequestOption
 }
 
-// NewTrackrouteHistoryService generates a new service that applies the given
+// NewTrackRouteHistoryService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewTrackrouteHistoryService(opts ...option.RequestOption) (r TrackrouteHistoryService) {
-	r = TrackrouteHistoryService{}
+func NewTrackRouteHistoryService(opts ...option.RequestOption) (r TrackRouteHistoryService) {
+	r = TrackRouteHistoryService{}
 	r.Options = opts
 	return
 }
@@ -40,7 +40,7 @@ func NewTrackrouteHistoryService(opts ...option.RequestOption) (r TrackrouteHist
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *TrackrouteHistoryService) List(ctx context.Context, query TrackrouteHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[TrackRouteFull], err error) {
+func (r *TrackRouteHistoryService) List(ctx context.Context, query TrackRouteHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[TrackRouteFull], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -61,7 +61,7 @@ func (r *TrackrouteHistoryService) List(ctx context.Context, query TrackrouteHis
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *TrackrouteHistoryService) ListAutoPaging(ctx context.Context, query TrackrouteHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[TrackRouteFull] {
+func (r *TrackRouteHistoryService) ListAutoPaging(ctx context.Context, query TrackRouteHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[TrackRouteFull] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -70,7 +70,7 @@ func (r *TrackrouteHistoryService) ListAutoPaging(ctx context.Context, query Tra
 // Secure Content Store. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *TrackrouteHistoryService) Aodr(ctx context.Context, query TrackrouteHistoryAodrParams, opts ...option.RequestOption) (err error) {
+func (r *TrackRouteHistoryService) Aodr(ctx context.Context, query TrackRouteHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/trackroute/history/aodr"
@@ -83,7 +83,7 @@ func (r *TrackrouteHistoryService) Aodr(ctx context.Context, query TrackrouteHis
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *TrackrouteHistoryService) Count(ctx context.Context, query TrackrouteHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *TrackRouteHistoryService) Count(ctx context.Context, query TrackRouteHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/trackroute/history/count"
@@ -417,7 +417,7 @@ func (r *TrackRouteFullRoutePoint) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type TrackrouteHistoryListParams struct {
+type TrackRouteHistoryListParams struct {
 	// The last updated date of the track route in ISO 8601 UTC format with millisecond
 	// precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	LastUpdateDate time.Time `query:"lastUpdateDate,required" format:"date-time" json:"-"`
@@ -432,18 +432,18 @@ type TrackrouteHistoryListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TrackRouteHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [TrackrouteHistoryListParams]'s query parameters as
+// URLQuery serializes [TrackRouteHistoryListParams]'s query parameters as
 // `url.Values`.
-func (r TrackrouteHistoryListParams) URLQuery() (v url.Values, err error) {
+func (r TrackRouteHistoryListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type TrackrouteHistoryAodrParams struct {
+type TrackRouteHistoryAodrParams struct {
 	// The last updated date of the track route in ISO 8601 UTC format with millisecond
 	// precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	LastUpdateDate time.Time `query:"lastUpdateDate,required" format:"date-time" json:"-"`
@@ -469,18 +469,18 @@ type TrackrouteHistoryAodrParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TrackRouteHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [TrackrouteHistoryAodrParams]'s query parameters as
+// URLQuery serializes [TrackRouteHistoryAodrParams]'s query parameters as
 // `url.Values`.
-func (r TrackrouteHistoryAodrParams) URLQuery() (v url.Values, err error) {
+func (r TrackRouteHistoryAodrParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type TrackrouteHistoryCountParams struct {
+type TrackRouteHistoryCountParams struct {
 	// The last updated date of the track route in ISO 8601 UTC format with millisecond
 	// precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	LastUpdateDate time.Time        `query:"lastUpdateDate,required" format:"date-time" json:"-"`
@@ -491,11 +491,11 @@ type TrackrouteHistoryCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TrackRouteHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [TrackrouteHistoryCountParams]'s query parameters as
+// URLQuery serializes [TrackRouteHistoryCountParams]'s query parameters as
 // `url.Values`.
-func (r TrackrouteHistoryCountParams) URLQuery() (v url.Values, err error) {
+func (r TrackRouteHistoryCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

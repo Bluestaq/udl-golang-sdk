@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestLogisticssupportHistoryListWithOptionalParams(t *testing.T) {
+func TestLogisticsSupportHistoryListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,7 +26,7 @@ func TestLogisticssupportHistoryListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Logisticssupport.History.List(context.TODO(), unifieddatalibrary.LogisticssupportHistoryListParams{
+	_, err := client.LogisticsSupport.History.List(context.TODO(), unifieddatalibrary.LogisticsSupportHistoryListParams{
 		Columns:     unifieddatalibrary.String("columns"),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -40,7 +40,7 @@ func TestLogisticssupportHistoryListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLogisticssupportHistoryAodrWithOptionalParams(t *testing.T) {
+func TestLogisticsSupportHistoryAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -53,7 +53,7 @@ func TestLogisticssupportHistoryAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Logisticssupport.History.Aodr(context.TODO(), unifieddatalibrary.LogisticssupportHistoryAodrParams{
+	err := client.LogisticsSupport.History.Aodr(context.TODO(), unifieddatalibrary.LogisticsSupportHistoryAodrParams{
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),
 		MaxResults:      unifieddatalibrary.Int(0),
@@ -70,7 +70,7 @@ func TestLogisticssupportHistoryAodrWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLogisticssupportHistoryCountWithOptionalParams(t *testing.T) {
+func TestLogisticsSupportHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -83,7 +83,7 @@ func TestLogisticssupportHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Logisticssupport.History.Count(context.TODO(), unifieddatalibrary.LogisticssupportHistoryCountParams{
+	_, err := client.LogisticsSupport.History.Count(context.TODO(), unifieddatalibrary.LogisticsSupportHistoryCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})

@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSensorobservationtypeListWithOptionalParams(t *testing.T) {
+func TestSensorObservationTypeListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,7 +26,7 @@ func TestSensorobservationtypeListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sensorobservationtype.List(context.TODO(), unifieddatalibrary.SensorobservationtypeListParams{
+	_, err := client.SensorObservationType.List(context.TODO(), unifieddatalibrary.SensorObservationTypeListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -39,7 +39,7 @@ func TestSensorobservationtypeListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensorobservationtypeGetWithOptionalParams(t *testing.T) {
+func TestSensorObservationTypeGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -52,10 +52,10 @@ func TestSensorobservationtypeGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sensorobservationtype.Get(
+	_, err := client.SensorObservationType.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SensorobservationtypeGetParams{
+		unifieddatalibrary.SensorObservationTypeGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -69,7 +69,7 @@ func TestSensorobservationtypeGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensorobservationtypeQueryhelp(t *testing.T) {
+func TestSensorObservationTypeQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -82,7 +82,7 @@ func TestSensorobservationtypeQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sensorobservationtype.Queryhelp(context.TODO())
+	err := client.SensorObservationType.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {

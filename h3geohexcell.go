@@ -17,21 +17,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// H3geohexcellService contains methods and other services that help with
+// H3GeoHexCellService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewH3geohexcellService] method instead.
-type H3geohexcellService struct {
+// the [NewH3GeoHexCellService] method instead.
+type H3GeoHexCellService struct {
 	Options []option.RequestOption
 }
 
-// NewH3geohexcellService generates a new service that applies the given options to
+// NewH3GeoHexCellService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewH3geohexcellService(opts ...option.RequestOption) (r H3geohexcellService) {
-	r = H3geohexcellService{}
+func NewH3GeoHexCellService(opts ...option.RequestOption) (r H3GeoHexCellService) {
+	r = H3GeoHexCellService{}
 	r.Options = opts
 	return
 }
@@ -40,7 +40,7 @@ func NewH3geohexcellService(opts ...option.RequestOption) (r H3geohexcellService
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *H3geohexcellService) List(ctx context.Context, query H3geohexcellListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[H3geohexcellListResponse], err error) {
+func (r *H3GeoHexCellService) List(ctx context.Context, query H3GeoHexCellListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[H3GeoHexCellListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -61,7 +61,7 @@ func (r *H3geohexcellService) List(ctx context.Context, query H3geohexcellListPa
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *H3geohexcellService) ListAutoPaging(ctx context.Context, query H3geohexcellListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[H3geohexcellListResponse] {
+func (r *H3GeoHexCellService) ListAutoPaging(ctx context.Context, query H3GeoHexCellListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[H3GeoHexCellListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -70,7 +70,7 @@ func (r *H3geohexcellService) ListAutoPaging(ctx context.Context, query H3geohex
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *H3geohexcellService) Count(ctx context.Context, query H3geohexcellCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *H3GeoHexCellService) Count(ctx context.Context, query H3GeoHexCellCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/h3geohexcell/count"
@@ -80,7 +80,7 @@ func (r *H3geohexcellService) Count(ctx context.Context, query H3geohexcellCount
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *H3geohexcellService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *H3GeoHexCellService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/h3geohexcell/queryhelp"
@@ -96,7 +96,7 @@ func (r *H3geohexcellService) Queryhelp(ctx context.Context, opts ...option.Requ
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *H3geohexcellService) Tuple(ctx context.Context, query H3geohexcellTupleParams, opts ...option.RequestOption) (res *[]H3geohexcellTupleResponse, err error) {
+func (r *H3GeoHexCellService) Tuple(ctx context.Context, query H3GeoHexCellTupleParams, opts ...option.RequestOption) (res *[]H3GeoHexCellTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/h3geohexcell/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -105,7 +105,7 @@ func (r *H3geohexcellService) Tuple(ctx context.Context, query H3geohexcellTuple
 
 // Model representation of a hex cell array containing data for a set of
 // observations.
-type H3geohexcellListResponse struct {
+type H3GeoHexCellListResponse struct {
 	// The H3 index represented as a 16 character hexadecimal string.
 	CellID string `json:"cellId,required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -126,7 +126,7 @@ type H3geohexcellListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode H3geohexcellListResponseDataMode `json:"dataMode,required"`
+	DataMode H3GeoHexCellListResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Unique identifier of the record, auto-generated by the system.
@@ -214,8 +214,8 @@ type H3geohexcellListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r H3geohexcellListResponse) RawJSON() string { return r.JSON.raw }
-func (r *H3geohexcellListResponse) UnmarshalJSON(data []byte) error {
+func (r H3GeoHexCellListResponse) RawJSON() string { return r.JSON.raw }
+func (r *H3GeoHexCellListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -233,18 +233,18 @@ func (r *H3geohexcellListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type H3geohexcellListResponseDataMode string
+type H3GeoHexCellListResponseDataMode string
 
 const (
-	H3geohexcellListResponseDataModeReal      H3geohexcellListResponseDataMode = "REAL"
-	H3geohexcellListResponseDataModeTest      H3geohexcellListResponseDataMode = "TEST"
-	H3geohexcellListResponseDataModeSimulated H3geohexcellListResponseDataMode = "SIMULATED"
-	H3geohexcellListResponseDataModeExercise  H3geohexcellListResponseDataMode = "EXERCISE"
+	H3GeoHexCellListResponseDataModeReal      H3GeoHexCellListResponseDataMode = "REAL"
+	H3GeoHexCellListResponseDataModeTest      H3GeoHexCellListResponseDataMode = "TEST"
+	H3GeoHexCellListResponseDataModeSimulated H3GeoHexCellListResponseDataMode = "SIMULATED"
+	H3GeoHexCellListResponseDataModeExercise  H3GeoHexCellListResponseDataMode = "EXERCISE"
 )
 
 // Model representation of a hex cell array containing data for a set of
 // observations.
-type H3geohexcellTupleResponse struct {
+type H3GeoHexCellTupleResponse struct {
 	// The H3 index represented as a 16 character hexadecimal string.
 	CellID string `json:"cellId,required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -265,7 +265,7 @@ type H3geohexcellTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode H3geohexcellTupleResponseDataMode `json:"dataMode,required"`
+	DataMode H3GeoHexCellTupleResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Unique identifier of the record, auto-generated by the system.
@@ -353,8 +353,8 @@ type H3geohexcellTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r H3geohexcellTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *H3geohexcellTupleResponse) UnmarshalJSON(data []byte) error {
+func (r H3GeoHexCellTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *H3GeoHexCellTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -372,16 +372,16 @@ func (r *H3geohexcellTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type H3geohexcellTupleResponseDataMode string
+type H3GeoHexCellTupleResponseDataMode string
 
 const (
-	H3geohexcellTupleResponseDataModeReal      H3geohexcellTupleResponseDataMode = "REAL"
-	H3geohexcellTupleResponseDataModeTest      H3geohexcellTupleResponseDataMode = "TEST"
-	H3geohexcellTupleResponseDataModeSimulated H3geohexcellTupleResponseDataMode = "SIMULATED"
-	H3geohexcellTupleResponseDataModeExercise  H3geohexcellTupleResponseDataMode = "EXERCISE"
+	H3GeoHexCellTupleResponseDataModeReal      H3GeoHexCellTupleResponseDataMode = "REAL"
+	H3GeoHexCellTupleResponseDataModeTest      H3GeoHexCellTupleResponseDataMode = "TEST"
+	H3GeoHexCellTupleResponseDataModeSimulated H3GeoHexCellTupleResponseDataMode = "SIMULATED"
+	H3GeoHexCellTupleResponseDataModeExercise  H3GeoHexCellTupleResponseDataMode = "EXERCISE"
 )
 
-type H3geohexcellListParams struct {
+type H3GeoHexCellListParams struct {
 	// Unique identifier of the parent H3 Geo record containing this hex cell. (uuid)
 	IDH3Geo     string           `query:"idH3Geo,required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
@@ -391,17 +391,17 @@ type H3geohexcellListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f H3geohexcellListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f H3GeoHexCellListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [H3geohexcellListParams]'s query parameters as `url.Values`.
-func (r H3geohexcellListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [H3GeoHexCellListParams]'s query parameters as `url.Values`.
+func (r H3GeoHexCellListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type H3geohexcellCountParams struct {
+type H3GeoHexCellCountParams struct {
 	// Unique identifier of the parent H3 Geo record containing this hex cell. (uuid)
 	IDH3Geo     string           `query:"idH3Geo,required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
@@ -411,18 +411,18 @@ type H3geohexcellCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f H3geohexcellCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f H3GeoHexCellCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [H3geohexcellCountParams]'s query parameters as
+// URLQuery serializes [H3GeoHexCellCountParams]'s query parameters as
 // `url.Values`.
-func (r H3geohexcellCountParams) URLQuery() (v url.Values, err error) {
+func (r H3GeoHexCellCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type H3geohexcellTupleParams struct {
+type H3GeoHexCellTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -437,11 +437,11 @@ type H3geohexcellTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f H3geohexcellTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f H3GeoHexCellTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [H3geohexcellTupleParams]'s query parameters as
+// URLQuery serializes [H3GeoHexCellTupleParams]'s query parameters as
 // `url.Values`.
-func (r H3geohexcellTupleParams) URLQuery() (v url.Values, err error) {
+func (r H3GeoHexCellTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

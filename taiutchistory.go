@@ -17,21 +17,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// TaiutcHistoryService contains methods and other services that help with
+// TaiUtcHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewTaiutcHistoryService] method instead.
-type TaiutcHistoryService struct {
+// the [NewTaiUtcHistoryService] method instead.
+type TaiUtcHistoryService struct {
 	Options []option.RequestOption
 }
 
-// NewTaiutcHistoryService generates a new service that applies the given options
+// NewTaiUtcHistoryService generates a new service that applies the given options
 // to each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewTaiutcHistoryService(opts ...option.RequestOption) (r TaiutcHistoryService) {
-	r = TaiutcHistoryService{}
+func NewTaiUtcHistoryService(opts ...option.RequestOption) (r TaiUtcHistoryService) {
+	r = TaiUtcHistoryService{}
 	r.Options = opts
 	return
 }
@@ -40,7 +40,7 @@ func NewTaiutcHistoryService(opts ...option.RequestOption) (r TaiutcHistoryServi
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *TaiutcHistoryService) List(ctx context.Context, query TaiutcHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[TaiutcFull], err error) {
+func (r *TaiUtcHistoryService) List(ctx context.Context, query TaiUtcHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[TaiutcFull], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -61,7 +61,7 @@ func (r *TaiutcHistoryService) List(ctx context.Context, query TaiutcHistoryList
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *TaiutcHistoryService) ListAutoPaging(ctx context.Context, query TaiutcHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[TaiutcFull] {
+func (r *TaiUtcHistoryService) ListAutoPaging(ctx context.Context, query TaiUtcHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[TaiutcFull] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -70,7 +70,7 @@ func (r *TaiutcHistoryService) ListAutoPaging(ctx context.Context, query TaiutcH
 // Secure Content Store. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *TaiutcHistoryService) Aodr(ctx context.Context, query TaiutcHistoryAodrParams, opts ...option.RequestOption) (err error) {
+func (r *TaiUtcHistoryService) Aodr(ctx context.Context, query TaiUtcHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/taiutc/history/aodr"
@@ -83,7 +83,7 @@ func (r *TaiutcHistoryService) Aodr(ctx context.Context, query TaiutcHistoryAodr
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *TaiutcHistoryService) Count(ctx context.Context, query TaiutcHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *TaiUtcHistoryService) Count(ctx context.Context, query TaiUtcHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/taiutc/history/count"
@@ -211,7 +211,7 @@ const (
 	TaiutcFullDataModeExercise  TaiutcFullDataMode = "EXERCISE"
 )
 
-type TaiutcHistoryListParams struct {
+type TaiUtcHistoryListParams struct {
 	// Effective date/time for the leap second adjustment. Must be a unique value
 	// across all TAIUTC datasets. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	AdjustmentDate time.Time `query:"adjustmentDate,required" format:"date-time" json:"-"`
@@ -226,18 +226,18 @@ type TaiutcHistoryListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TaiutcHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TaiUtcHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [TaiutcHistoryListParams]'s query parameters as
+// URLQuery serializes [TaiUtcHistoryListParams]'s query parameters as
 // `url.Values`.
-func (r TaiutcHistoryListParams) URLQuery() (v url.Values, err error) {
+func (r TaiUtcHistoryListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type TaiutcHistoryAodrParams struct {
+type TaiUtcHistoryAodrParams struct {
 	// Effective date/time for the leap second adjustment. Must be a unique value
 	// across all TAIUTC datasets. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	AdjustmentDate time.Time `query:"adjustmentDate,required" format:"date-time" json:"-"`
@@ -263,18 +263,18 @@ type TaiutcHistoryAodrParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TaiutcHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TaiUtcHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [TaiutcHistoryAodrParams]'s query parameters as
+// URLQuery serializes [TaiUtcHistoryAodrParams]'s query parameters as
 // `url.Values`.
-func (r TaiutcHistoryAodrParams) URLQuery() (v url.Values, err error) {
+func (r TaiUtcHistoryAodrParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type TaiutcHistoryCountParams struct {
+type TaiUtcHistoryCountParams struct {
 	// Effective date/time for the leap second adjustment. Must be a unique value
 	// across all TAIUTC datasets. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	AdjustmentDate time.Time        `query:"adjustmentDate,required" format:"date-time" json:"-"`
@@ -285,11 +285,11 @@ type TaiutcHistoryCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TaiutcHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TaiUtcHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [TaiutcHistoryCountParams]'s query parameters as
+// URLQuery serializes [TaiUtcHistoryCountParams]'s query parameters as
 // `url.Values`.
-func (r TaiutcHistoryCountParams) URLQuery() (v url.Values, err error) {
+func (r TaiUtcHistoryCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

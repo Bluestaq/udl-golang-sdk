@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestRfemitterdetailNewWithOptionalParams(t *testing.T) {
+func TestRfEmitterDetailNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,9 +26,9 @@ func TestRfemitterdetailNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Rfemitterdetails.New(context.TODO(), unifieddatalibrary.RfemitterdetailNewParams{
+	err := client.RfEmitterDetails.New(context.TODO(), unifieddatalibrary.RfEmitterDetailNewParams{
 		ClassificationMarking:        "U",
-		DataMode:                     unifieddatalibrary.RfemitterdetailNewParamsDataModeTest,
+		DataMode:                     unifieddatalibrary.RfEmitterDetailNewParamsDataModeTest,
 		IDRfEmitter:                  "RFEMITTER-ID",
 		Source:                       "Bluestaq",
 		ID:                           unifieddatalibrary.String("RFEMITTERDETAILS-ID"),
@@ -69,7 +69,7 @@ func TestRfemitterdetailNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRfemitterdetailUpdateWithOptionalParams(t *testing.T) {
+func TestRfEmitterDetailUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -82,12 +82,12 @@ func TestRfemitterdetailUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Rfemitterdetails.Update(
+	err := client.RfEmitterDetails.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.RfemitterdetailUpdateParams{
+		unifieddatalibrary.RfEmitterDetailUpdateParams{
 			ClassificationMarking:        "U",
-			DataMode:                     unifieddatalibrary.RfemitterdetailUpdateParamsDataModeTest,
+			DataMode:                     unifieddatalibrary.RfEmitterDetailUpdateParamsDataModeTest,
 			IDRfEmitter:                  "RFEMITTER-ID",
 			Source:                       "Bluestaq",
 			ID:                           unifieddatalibrary.String("RFEMITTERDETAILS-ID"),
@@ -129,7 +129,7 @@ func TestRfemitterdetailUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRfemitterdetailListWithOptionalParams(t *testing.T) {
+func TestRfEmitterDetailListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -142,7 +142,7 @@ func TestRfemitterdetailListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Rfemitterdetails.List(context.TODO(), unifieddatalibrary.RfemitterdetailListParams{
+	_, err := client.RfEmitterDetails.List(context.TODO(), unifieddatalibrary.RfEmitterDetailListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -155,7 +155,7 @@ func TestRfemitterdetailListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRfemitterdetailDelete(t *testing.T) {
+func TestRfEmitterDetailDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -168,7 +168,7 @@ func TestRfemitterdetailDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Rfemitterdetails.Delete(context.TODO(), "id")
+	err := client.RfEmitterDetails.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -178,7 +178,7 @@ func TestRfemitterdetailDelete(t *testing.T) {
 	}
 }
 
-func TestRfemitterdetailCountWithOptionalParams(t *testing.T) {
+func TestRfEmitterDetailCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -191,7 +191,7 @@ func TestRfemitterdetailCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Rfemitterdetails.Count(context.TODO(), unifieddatalibrary.RfemitterdetailCountParams{
+	_, err := client.RfEmitterDetails.Count(context.TODO(), unifieddatalibrary.RfEmitterDetailCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -204,7 +204,7 @@ func TestRfemitterdetailCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRfemitterdetailGetWithOptionalParams(t *testing.T) {
+func TestRfEmitterDetailGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -217,10 +217,10 @@ func TestRfemitterdetailGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Rfemitterdetails.Get(
+	_, err := client.RfEmitterDetails.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.RfemitterdetailGetParams{
+		unifieddatalibrary.RfEmitterDetailGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -234,7 +234,7 @@ func TestRfemitterdetailGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRfemitterdetailQueryhelp(t *testing.T) {
+func TestRfEmitterDetailQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -247,7 +247,7 @@ func TestRfemitterdetailQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Rfemitterdetails.Queryhelp(context.TODO())
+	err := client.RfEmitterDetails.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -257,7 +257,7 @@ func TestRfemitterdetailQueryhelp(t *testing.T) {
 	}
 }
 
-func TestRfemitterdetailTupleWithOptionalParams(t *testing.T) {
+func TestRfEmitterDetailTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -270,7 +270,7 @@ func TestRfemitterdetailTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Rfemitterdetails.Tuple(context.TODO(), unifieddatalibrary.RfemitterdetailTupleParams{
+	_, err := client.RfEmitterDetails.Tuple(context.TODO(), unifieddatalibrary.RfEmitterDetailTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

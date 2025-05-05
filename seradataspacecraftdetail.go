@@ -19,21 +19,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// SeradataspacecraftdetailService contains methods and other services that help
+// SeradataSpacecraftDetailService contains methods and other services that help
 // with interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewSeradataspacecraftdetailService] method instead.
-type SeradataspacecraftdetailService struct {
+// the [NewSeradataSpacecraftDetailService] method instead.
+type SeradataSpacecraftDetailService struct {
 	Options []option.RequestOption
 }
 
-// NewSeradataspacecraftdetailService generates a new service that applies the
+// NewSeradataSpacecraftDetailService generates a new service that applies the
 // given options to each request. These options are applied after the parent
 // client's options (if there is one), and before any request-specific options.
-func NewSeradataspacecraftdetailService(opts ...option.RequestOption) (r SeradataspacecraftdetailService) {
-	r = SeradataspacecraftdetailService{}
+func NewSeradataSpacecraftDetailService(opts ...option.RequestOption) (r SeradataSpacecraftDetailService) {
+	r = SeradataSpacecraftDetailService{}
 	r.Options = opts
 	return
 }
@@ -41,7 +41,7 @@ func NewSeradataspacecraftdetailService(opts ...option.RequestOption) (r Seradat
 // Service operation to take a single SeradataSpacecraftDetails as a POST body and
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *SeradataspacecraftdetailService) New(ctx context.Context, body SeradataspacecraftdetailNewParams, opts ...option.RequestOption) (err error) {
+func (r *SeradataSpacecraftDetailService) New(ctx context.Context, body SeradataSpacecraftDetailNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/seradataspacecraftdetails"
@@ -52,7 +52,7 @@ func (r *SeradataspacecraftdetailService) New(ctx context.Context, body Seradata
 // Service operation to update an SeradataSpacecraftDetails. A specific role is
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
-func (r *SeradataspacecraftdetailService) Update(ctx context.Context, id string, body SeradataspacecraftdetailUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *SeradataSpacecraftDetailService) Update(ctx context.Context, id string, body SeradataSpacecraftDetailUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -68,7 +68,7 @@ func (r *SeradataspacecraftdetailService) Update(ctx context.Context, id string,
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SeradataspacecraftdetailService) List(ctx context.Context, query SeradataspacecraftdetailListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SeradataspacecraftdetailListResponse], err error) {
+func (r *SeradataSpacecraftDetailService) List(ctx context.Context, query SeradataSpacecraftDetailListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SeradataSpacecraftDetailListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -89,14 +89,14 @@ func (r *SeradataspacecraftdetailService) List(ctx context.Context, query Serada
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SeradataspacecraftdetailService) ListAutoPaging(ctx context.Context, query SeradataspacecraftdetailListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SeradataspacecraftdetailListResponse] {
+func (r *SeradataSpacecraftDetailService) ListAutoPaging(ctx context.Context, query SeradataSpacecraftDetailListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SeradataSpacecraftDetailListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to delete an SeradataSpacecraftDetails specified by the passed
 // ID path parameter. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *SeradataspacecraftdetailService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *SeradataSpacecraftDetailService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -113,7 +113,7 @@ func (r *SeradataspacecraftdetailService) Delete(ctx context.Context, id string,
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *SeradataspacecraftdetailService) Count(ctx context.Context, query SeradataspacecraftdetailCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *SeradataSpacecraftDetailService) Count(ctx context.Context, query SeradataSpacecraftDetailCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/seradataspacecraftdetails/count"
@@ -123,7 +123,7 @@ func (r *SeradataspacecraftdetailService) Count(ctx context.Context, query Serad
 
 // Service operation to get a single SeradataSpacecraftDetails by its unique ID
 // passed as a path parameter.
-func (r *SeradataspacecraftdetailService) Get(ctx context.Context, id string, query SeradataspacecraftdetailGetParams, opts ...option.RequestOption) (res *SeradataspacecraftdetailGetResponse, err error) {
+func (r *SeradataSpacecraftDetailService) Get(ctx context.Context, id string, query SeradataSpacecraftDetailGetParams, opts ...option.RequestOption) (res *SeradataSpacecraftDetailGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -136,7 +136,7 @@ func (r *SeradataspacecraftdetailService) Get(ctx context.Context, id string, qu
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *SeradataspacecraftdetailService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *SeradataSpacecraftDetailService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/seradataspacecraftdetails/queryhelp"
@@ -152,7 +152,7 @@ func (r *SeradataspacecraftdetailService) Queryhelp(ctx context.Context, opts ..
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *SeradataspacecraftdetailService) Tuple(ctx context.Context, query SeradataspacecraftdetailTupleParams, opts ...option.RequestOption) (res *[]SeradataspacecraftdetailTupleResponse, err error) {
+func (r *SeradataSpacecraftDetailService) Tuple(ctx context.Context, query SeradataSpacecraftDetailTupleParams, opts ...option.RequestOption) (res *[]SeradataSpacecraftDetailTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/seradataspacecraftdetails/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -160,7 +160,7 @@ func (r *SeradataspacecraftdetailService) Tuple(ctx context.Context, query Serad
 }
 
 // On-orbit spacecraft details compiled by Seradata for a particular satellite.
-type SeradataspacecraftdetailListResponse struct {
+type SeradataSpacecraftDetailListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -179,7 +179,7 @@ type SeradataspacecraftdetailListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradataspacecraftdetailListResponseDataMode `json:"dataMode,required"`
+	DataMode SeradataSpacecraftDetailListResponseDataMode `json:"dataMode,required"`
 	// Spacecraft name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -478,8 +478,8 @@ type SeradataspacecraftdetailListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailListResponse) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailListResponse) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -497,17 +497,17 @@ func (r *SeradataspacecraftdetailListResponse) UnmarshalJSON(data []byte) error 
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradataspacecraftdetailListResponseDataMode string
+type SeradataSpacecraftDetailListResponseDataMode string
 
 const (
-	SeradataspacecraftdetailListResponseDataModeReal      SeradataspacecraftdetailListResponseDataMode = "REAL"
-	SeradataspacecraftdetailListResponseDataModeTest      SeradataspacecraftdetailListResponseDataMode = "TEST"
-	SeradataspacecraftdetailListResponseDataModeSimulated SeradataspacecraftdetailListResponseDataMode = "SIMULATED"
-	SeradataspacecraftdetailListResponseDataModeExercise  SeradataspacecraftdetailListResponseDataMode = "EXERCISE"
+	SeradataSpacecraftDetailListResponseDataModeReal      SeradataSpacecraftDetailListResponseDataMode = "REAL"
+	SeradataSpacecraftDetailListResponseDataModeTest      SeradataSpacecraftDetailListResponseDataMode = "TEST"
+	SeradataSpacecraftDetailListResponseDataModeSimulated SeradataSpacecraftDetailListResponseDataMode = "SIMULATED"
+	SeradataSpacecraftDetailListResponseDataModeExercise  SeradataSpacecraftDetailListResponseDataMode = "EXERCISE"
 )
 
 // On-orbit spacecraft details compiled by Seradata for a particular satellite.
-type SeradataspacecraftdetailGetResponse struct {
+type SeradataSpacecraftDetailGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -526,7 +526,7 @@ type SeradataspacecraftdetailGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradataspacecraftdetailGetResponseDataMode `json:"dataMode,required"`
+	DataMode SeradataSpacecraftDetailGetResponseDataMode `json:"dataMode,required"`
 	// Spacecraft name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -666,7 +666,7 @@ type SeradataspacecraftdetailGetResponse struct {
 	// Number of humans carried on spacecraft.
 	NumHumans int64 `json:"numHumans"`
 	// Model object representing on-orbit objects or satellites in the system.
-	OnOrbit SeradataspacecraftdetailGetResponseOnOrbit `json:"onOrbit"`
+	OnOrbit SeradataSpacecraftDetailGetResponseOnOrbit `json:"onOrbit"`
 	// Spacecraft operator name.
 	Operator string `json:"operator"`
 	// Spacecraft operator country.
@@ -707,27 +707,27 @@ type SeradataspacecraftdetailGetResponse struct {
 	ReusedHullName string `json:"reusedHullName"`
 	// Read-only details of the Scientific object, only used during detail queries (not
 	// to be provided on create/update operations).
-	Scientific []SeradataspacecraftdetailGetResponseScientific `json:"scientific"`
+	Scientific []SeradataSpacecraftDetailGetResponseScientific `json:"scientific"`
 	// Seradata sector (e.g. Commercial, Military, Civil/Other).
 	Sector string `json:"sector"`
 	// Read-only details of the SeradataCommDetails object, only used during detail
 	// queries (not to be provided on create/update operations).
-	SeradataCommDetails []SeradataspacecraftdetailGetResponseSeradataCommDetail `json:"seradataCommDetails"`
+	SeradataCommDetails []SeradataSpacecraftDetailGetResponseSeradataCommDetail `json:"seradataCommDetails"`
 	// Read-only details of the SeradataEarlyWarning object, only used during detail
 	// queries (not to be provided on create/update operations).
-	SeradataEarlyWarning []SeradataspacecraftdetailGetResponseSeradataEarlyWarning `json:"seradataEarlyWarning"`
+	SeradataEarlyWarning []SeradataSpacecraftDetailGetResponseSeradataEarlyWarning `json:"seradataEarlyWarning"`
 	// Read-only details of the SeradataNavigation object, only used during detail
 	// queries (not to be provided on create/update operations).
-	SeradataNavigation []SeradataspacecraftdetailGetResponseSeradataNavigation `json:"seradataNavigation"`
+	SeradataNavigation []SeradataSpacecraftDetailGetResponseSeradataNavigation `json:"seradataNavigation"`
 	// Read-only details of the SeradataOpticalPayload object, only used during detail
 	// queries (not to be provided on create/update operations).
-	SeradataOpticalPayload []SeradataspacecraftdetailGetResponseSeradataOpticalPayload `json:"seradataOpticalPayload"`
+	SeradataOpticalPayload []SeradataSpacecraftDetailGetResponseSeradataOpticalPayload `json:"seradataOpticalPayload"`
 	// Read-only details of the SeradataRadarPayload object, only used during detail
 	// queries (not to be provided on create/update operations).
-	SeradataRadarPayload []SeradataspacecraftdetailGetResponseSeradataRadarPayload `json:"seradataRadarPayload"`
+	SeradataRadarPayload []SeradataSpacecraftDetailGetResponseSeradataRadarPayload `json:"seradataRadarPayload"`
 	// Read-only details of the SeradataSigIntPayload object, only used during detail
 	// queries (not to be provided on create/update operations).
-	SeradataSigIntPayload []SeradataspacecraftdetailGetResponseSeradataSigIntPayload `json:"seradataSigIntPayload"`
+	SeradataSigIntPayload []SeradataSpacecraftDetailGetResponseSeradataSigIntPayload `json:"seradataSigIntPayload"`
 	// Spacecraft serial number.
 	SerialNumber string `json:"serialNumber"`
 	// Spacecraft stabilizer (e.g. 3-Axis, Gravity Gradiant, etc).
@@ -863,8 +863,8 @@ type SeradataspacecraftdetailGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailGetResponse) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -882,17 +882,17 @@ func (r *SeradataspacecraftdetailGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradataspacecraftdetailGetResponseDataMode string
+type SeradataSpacecraftDetailGetResponseDataMode string
 
 const (
-	SeradataspacecraftdetailGetResponseDataModeReal      SeradataspacecraftdetailGetResponseDataMode = "REAL"
-	SeradataspacecraftdetailGetResponseDataModeTest      SeradataspacecraftdetailGetResponseDataMode = "TEST"
-	SeradataspacecraftdetailGetResponseDataModeSimulated SeradataspacecraftdetailGetResponseDataMode = "SIMULATED"
-	SeradataspacecraftdetailGetResponseDataModeExercise  SeradataspacecraftdetailGetResponseDataMode = "EXERCISE"
+	SeradataSpacecraftDetailGetResponseDataModeReal      SeradataSpacecraftDetailGetResponseDataMode = "REAL"
+	SeradataSpacecraftDetailGetResponseDataModeTest      SeradataSpacecraftDetailGetResponseDataMode = "TEST"
+	SeradataSpacecraftDetailGetResponseDataModeSimulated SeradataSpacecraftDetailGetResponseDataMode = "SIMULATED"
+	SeradataSpacecraftDetailGetResponseDataModeExercise  SeradataSpacecraftDetailGetResponseDataMode = "EXERCISE"
 )
 
 // Model object representing on-orbit objects or satellites in the system.
-type SeradataspacecraftdetailGetResponseOnOrbit struct {
+type SeradataSpacecraftDetailGetResponseOnOrbit struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -919,9 +919,9 @@ type SeradataspacecraftdetailGetResponseOnOrbit struct {
 	// Alternate name of the on-orbit object.
 	AltName string `json:"altName"`
 	// Read-only collection of antennas on this on-orbit object.
-	Antennas []SeradataspacecraftdetailGetResponseOnOrbitAntenna `json:"antennas"`
+	Antennas []SeradataSpacecraftDetailGetResponseOnOrbitAntenna `json:"antennas"`
 	// Read-only collection of batteries on this on-orbit object.
-	Batteries []SeradataspacecraftdetailGetResponseOnOrbitBattery `json:"batteries"`
+	Batteries []SeradataSpacecraftDetailGetResponseOnOrbitBattery `json:"batteries"`
 	// Category of the on-orbit object. (Unknown, On-Orbit, Decayed, Cataloged Without
 	// State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
 	// Heliocentric, Interplanetary, Lagrangian, Docked).
@@ -970,7 +970,7 @@ type SeradataspacecraftdetailGetResponseOnOrbit struct {
 	// Any of "ROCKET BODY", "DEBRIS", "PAYLOAD", "PLATFORM", "MANNED", "UNKNOWN".
 	ObjectType string `json:"objectType"`
 	// Read-only collection of details for this on-orbit object.
-	OnorbitDetails []SeradataspacecraftdetailGetResponseOnOrbitOnorbitDetail `json:"onorbitDetails"`
+	OnorbitDetails []SeradataSpacecraftDetailGetResponseOnOrbitOnorbitDetail `json:"onorbitDetails"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
@@ -980,9 +980,9 @@ type SeradataspacecraftdetailGetResponseOnOrbit struct {
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
 	// Read-only collection of solar arrays on this on-orbit object.
-	SolarArrays []SeradataspacecraftdetailGetResponseOnOrbitSolarArray `json:"solarArrays"`
+	SolarArrays []SeradataSpacecraftDetailGetResponseOnOrbitSolarArray `json:"solarArrays"`
 	// Read-only collection of thrusters (engines) on this on-orbit object.
-	Thrusters []SeradataspacecraftdetailGetResponseOnOrbitThruster `json:"thrusters"`
+	Thrusters []SeradataSpacecraftDetailGetResponseOnOrbitThruster `json:"thrusters"`
 	// Time the row was last updated in the database, auto-populated by the system.
 	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
 	// Application user who updated the row in the database, auto-populated by the
@@ -1025,12 +1025,12 @@ type SeradataspacecraftdetailGetResponseOnOrbit struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailGetResponseOnOrbit) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailGetResponseOnOrbit) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailGetResponseOnOrbit) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailGetResponseOnOrbit) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type SeradataspacecraftdetailGetResponseOnOrbitAntenna struct {
+type SeradataSpacecraftDetailGetResponseOnOrbitAntenna struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1102,12 +1102,12 @@ type SeradataspacecraftdetailGetResponseOnOrbitAntenna struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailGetResponseOnOrbitAntenna) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailGetResponseOnOrbitAntenna) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailGetResponseOnOrbitAntenna) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailGetResponseOnOrbitAntenna) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type SeradataspacecraftdetailGetResponseOnOrbitBattery struct {
+type SeradataSpacecraftDetailGetResponseOnOrbitBattery struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1180,13 +1180,13 @@ type SeradataspacecraftdetailGetResponseOnOrbitBattery struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailGetResponseOnOrbitBattery) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailGetResponseOnOrbitBattery) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailGetResponseOnOrbitBattery) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailGetResponseOnOrbitBattery) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Contains details of the OnOrbit object.
-type SeradataspacecraftdetailGetResponseOnOrbitOnorbitDetail struct {
+type SeradataSpacecraftDetailGetResponseOnOrbitOnorbitDetail struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1384,12 +1384,12 @@ type SeradataspacecraftdetailGetResponseOnOrbitOnorbitDetail struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailGetResponseOnOrbitOnorbitDetail) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailGetResponseOnOrbitOnorbitDetail) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailGetResponseOnOrbitOnorbitDetail) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailGetResponseOnOrbitOnorbitDetail) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type SeradataspacecraftdetailGetResponseOnOrbitSolarArray struct {
+type SeradataSpacecraftDetailGetResponseOnOrbitSolarArray struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1436,7 +1436,7 @@ type SeradataspacecraftdetailGetResponseOnOrbitSolarArray struct {
 	// Model representation of information on on-orbit/spacecraft solar arrays. A
 	// spacecraft may have multiple solar arrays and each solar array can have multiple
 	// 'details' records compiled by different sources.
-	SolarArray SeradataspacecraftdetailGetResponseOnOrbitSolarArraySolarArray `json:"solarArray"`
+	SolarArray SeradataSpacecraftDetailGetResponseOnOrbitSolarArraySolarArray `json:"solarArray"`
 	// Time the row was last updated in the database, auto-populated by the system.
 	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
 	// Application user who updated the row in the database, auto-populated by the
@@ -1465,15 +1465,15 @@ type SeradataspacecraftdetailGetResponseOnOrbitSolarArray struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailGetResponseOnOrbitSolarArray) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailGetResponseOnOrbitSolarArray) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailGetResponseOnOrbitSolarArray) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailGetResponseOnOrbitSolarArray) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of information on on-orbit/spacecraft solar arrays. A
 // spacecraft may have multiple solar arrays and each solar array can have multiple
 // 'details' records compiled by different sources.
-type SeradataspacecraftdetailGetResponseOnOrbitSolarArraySolarArray struct {
+type SeradataSpacecraftDetailGetResponseOnOrbitSolarArraySolarArray struct {
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 	//
 	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
@@ -1539,14 +1539,14 @@ type SeradataspacecraftdetailGetResponseOnOrbitSolarArraySolarArray struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailGetResponseOnOrbitSolarArraySolarArray) RawJSON() string {
+func (r SeradataSpacecraftDetailGetResponseOnOrbitSolarArraySolarArray) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *SeradataspacecraftdetailGetResponseOnOrbitSolarArraySolarArray) UnmarshalJSON(data []byte) error {
+func (r *SeradataSpacecraftDetailGetResponseOnOrbitSolarArraySolarArray) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type SeradataspacecraftdetailGetResponseOnOrbitThruster struct {
+type SeradataSpacecraftDetailGetResponseOnOrbitThruster struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1625,13 +1625,13 @@ type SeradataspacecraftdetailGetResponseOnOrbitThruster struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailGetResponseOnOrbitThruster) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailGetResponseOnOrbitThruster) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailGetResponseOnOrbitThruster) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailGetResponseOnOrbitThruster) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Scientific or other data from Seradata.
-type SeradataspacecraftdetailGetResponseScientific struct {
+type SeradataSpacecraftDetailGetResponseScientific struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1721,13 +1721,13 @@ type SeradataspacecraftdetailGetResponseScientific struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailGetResponseScientific) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailGetResponseScientific) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailGetResponseScientific) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailGetResponseScientific) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Seradata-compiled information on communications payloads.
-type SeradataspacecraftdetailGetResponseSeradataCommDetail struct {
+type SeradataSpacecraftDetailGetResponseSeradataCommDetail struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1877,13 +1877,13 @@ type SeradataspacecraftdetailGetResponseSeradataCommDetail struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailGetResponseSeradataCommDetail) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailGetResponseSeradataCommDetail) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailGetResponseSeradataCommDetail) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailGetResponseSeradataCommDetail) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Details for an early warning payload from Seradata.
-type SeradataspacecraftdetailGetResponseSeradataEarlyWarning struct {
+type SeradataSpacecraftDetailGetResponseSeradataEarlyWarning struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1986,13 +1986,13 @@ type SeradataspacecraftdetailGetResponseSeradataEarlyWarning struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailGetResponseSeradataEarlyWarning) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailGetResponseSeradataEarlyWarning) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailGetResponseSeradataEarlyWarning) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailGetResponseSeradataEarlyWarning) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Details for a navigation payload from Seradata.
-type SeradataspacecraftdetailGetResponseSeradataNavigation struct {
+type SeradataSpacecraftDetailGetResponseSeradataNavigation struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -2092,13 +2092,13 @@ type SeradataspacecraftdetailGetResponseSeradataNavigation struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailGetResponseSeradataNavigation) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailGetResponseSeradataNavigation) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailGetResponseSeradataNavigation) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailGetResponseSeradataNavigation) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Details for an optical payload from Seradata.
-type SeradataspacecraftdetailGetResponseSeradataOpticalPayload struct {
+type SeradataSpacecraftDetailGetResponseSeradataOpticalPayload struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -2215,15 +2215,15 @@ type SeradataspacecraftdetailGetResponseSeradataOpticalPayload struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailGetResponseSeradataOpticalPayload) RawJSON() string {
+func (r SeradataSpacecraftDetailGetResponseSeradataOpticalPayload) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *SeradataspacecraftdetailGetResponseSeradataOpticalPayload) UnmarshalJSON(data []byte) error {
+func (r *SeradataSpacecraftDetailGetResponseSeradataOpticalPayload) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Details for an radar payload from Seradata.
-type SeradataspacecraftdetailGetResponseSeradataRadarPayload struct {
+type SeradataSpacecraftDetailGetResponseSeradataRadarPayload struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -2359,13 +2359,13 @@ type SeradataspacecraftdetailGetResponseSeradataRadarPayload struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailGetResponseSeradataRadarPayload) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailGetResponseSeradataRadarPayload) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailGetResponseSeradataRadarPayload) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailGetResponseSeradataRadarPayload) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Details for an sigint payload from Seradata.
-type SeradataspacecraftdetailGetResponseSeradataSigIntPayload struct {
+type SeradataSpacecraftDetailGetResponseSeradataSigIntPayload struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -2465,13 +2465,13 @@ type SeradataspacecraftdetailGetResponseSeradataSigIntPayload struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailGetResponseSeradataSigIntPayload) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailGetResponseSeradataSigIntPayload) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailGetResponseSeradataSigIntPayload) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailGetResponseSeradataSigIntPayload) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // On-orbit spacecraft details compiled by Seradata for a particular satellite.
-type SeradataspacecraftdetailTupleResponse struct {
+type SeradataSpacecraftDetailTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -2490,7 +2490,7 @@ type SeradataspacecraftdetailTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradataspacecraftdetailTupleResponseDataMode `json:"dataMode,required"`
+	DataMode SeradataSpacecraftDetailTupleResponseDataMode `json:"dataMode,required"`
 	// Spacecraft name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -2630,7 +2630,7 @@ type SeradataspacecraftdetailTupleResponse struct {
 	// Number of humans carried on spacecraft.
 	NumHumans int64 `json:"numHumans"`
 	// Model object representing on-orbit objects or satellites in the system.
-	OnOrbit SeradataspacecraftdetailTupleResponseOnOrbit `json:"onOrbit"`
+	OnOrbit SeradataSpacecraftDetailTupleResponseOnOrbit `json:"onOrbit"`
 	// Spacecraft operator name.
 	Operator string `json:"operator"`
 	// Spacecraft operator country.
@@ -2671,27 +2671,27 @@ type SeradataspacecraftdetailTupleResponse struct {
 	ReusedHullName string `json:"reusedHullName"`
 	// Read-only details of the Scientific object, only used during detail queries (not
 	// to be provided on create/update operations).
-	Scientific []SeradataspacecraftdetailTupleResponseScientific `json:"scientific"`
+	Scientific []SeradataSpacecraftDetailTupleResponseScientific `json:"scientific"`
 	// Seradata sector (e.g. Commercial, Military, Civil/Other).
 	Sector string `json:"sector"`
 	// Read-only details of the SeradataCommDetails object, only used during detail
 	// queries (not to be provided on create/update operations).
-	SeradataCommDetails []SeradataspacecraftdetailTupleResponseSeradataCommDetail `json:"seradataCommDetails"`
+	SeradataCommDetails []SeradataSpacecraftDetailTupleResponseSeradataCommDetail `json:"seradataCommDetails"`
 	// Read-only details of the SeradataEarlyWarning object, only used during detail
 	// queries (not to be provided on create/update operations).
-	SeradataEarlyWarning []SeradataspacecraftdetailTupleResponseSeradataEarlyWarning `json:"seradataEarlyWarning"`
+	SeradataEarlyWarning []SeradataSpacecraftDetailTupleResponseSeradataEarlyWarning `json:"seradataEarlyWarning"`
 	// Read-only details of the SeradataNavigation object, only used during detail
 	// queries (not to be provided on create/update operations).
-	SeradataNavigation []SeradataspacecraftdetailTupleResponseSeradataNavigation `json:"seradataNavigation"`
+	SeradataNavigation []SeradataSpacecraftDetailTupleResponseSeradataNavigation `json:"seradataNavigation"`
 	// Read-only details of the SeradataOpticalPayload object, only used during detail
 	// queries (not to be provided on create/update operations).
-	SeradataOpticalPayload []SeradataspacecraftdetailTupleResponseSeradataOpticalPayload `json:"seradataOpticalPayload"`
+	SeradataOpticalPayload []SeradataSpacecraftDetailTupleResponseSeradataOpticalPayload `json:"seradataOpticalPayload"`
 	// Read-only details of the SeradataRadarPayload object, only used during detail
 	// queries (not to be provided on create/update operations).
-	SeradataRadarPayload []SeradataspacecraftdetailTupleResponseSeradataRadarPayload `json:"seradataRadarPayload"`
+	SeradataRadarPayload []SeradataSpacecraftDetailTupleResponseSeradataRadarPayload `json:"seradataRadarPayload"`
 	// Read-only details of the SeradataSigIntPayload object, only used during detail
 	// queries (not to be provided on create/update operations).
-	SeradataSigIntPayload []SeradataspacecraftdetailTupleResponseSeradataSigIntPayload `json:"seradataSigIntPayload"`
+	SeradataSigIntPayload []SeradataSpacecraftDetailTupleResponseSeradataSigIntPayload `json:"seradataSigIntPayload"`
 	// Spacecraft serial number.
 	SerialNumber string `json:"serialNumber"`
 	// Spacecraft stabilizer (e.g. 3-Axis, Gravity Gradiant, etc).
@@ -2827,8 +2827,8 @@ type SeradataspacecraftdetailTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailTupleResponse) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -2846,17 +2846,17 @@ func (r *SeradataspacecraftdetailTupleResponse) UnmarshalJSON(data []byte) error
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradataspacecraftdetailTupleResponseDataMode string
+type SeradataSpacecraftDetailTupleResponseDataMode string
 
 const (
-	SeradataspacecraftdetailTupleResponseDataModeReal      SeradataspacecraftdetailTupleResponseDataMode = "REAL"
-	SeradataspacecraftdetailTupleResponseDataModeTest      SeradataspacecraftdetailTupleResponseDataMode = "TEST"
-	SeradataspacecraftdetailTupleResponseDataModeSimulated SeradataspacecraftdetailTupleResponseDataMode = "SIMULATED"
-	SeradataspacecraftdetailTupleResponseDataModeExercise  SeradataspacecraftdetailTupleResponseDataMode = "EXERCISE"
+	SeradataSpacecraftDetailTupleResponseDataModeReal      SeradataSpacecraftDetailTupleResponseDataMode = "REAL"
+	SeradataSpacecraftDetailTupleResponseDataModeTest      SeradataSpacecraftDetailTupleResponseDataMode = "TEST"
+	SeradataSpacecraftDetailTupleResponseDataModeSimulated SeradataSpacecraftDetailTupleResponseDataMode = "SIMULATED"
+	SeradataSpacecraftDetailTupleResponseDataModeExercise  SeradataSpacecraftDetailTupleResponseDataMode = "EXERCISE"
 )
 
 // Model object representing on-orbit objects or satellites in the system.
-type SeradataspacecraftdetailTupleResponseOnOrbit struct {
+type SeradataSpacecraftDetailTupleResponseOnOrbit struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -2883,9 +2883,9 @@ type SeradataspacecraftdetailTupleResponseOnOrbit struct {
 	// Alternate name of the on-orbit object.
 	AltName string `json:"altName"`
 	// Read-only collection of antennas on this on-orbit object.
-	Antennas []SeradataspacecraftdetailTupleResponseOnOrbitAntenna `json:"antennas"`
+	Antennas []SeradataSpacecraftDetailTupleResponseOnOrbitAntenna `json:"antennas"`
 	// Read-only collection of batteries on this on-orbit object.
-	Batteries []SeradataspacecraftdetailTupleResponseOnOrbitBattery `json:"batteries"`
+	Batteries []SeradataSpacecraftDetailTupleResponseOnOrbitBattery `json:"batteries"`
 	// Category of the on-orbit object. (Unknown, On-Orbit, Decayed, Cataloged Without
 	// State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
 	// Heliocentric, Interplanetary, Lagrangian, Docked).
@@ -2934,7 +2934,7 @@ type SeradataspacecraftdetailTupleResponseOnOrbit struct {
 	// Any of "ROCKET BODY", "DEBRIS", "PAYLOAD", "PLATFORM", "MANNED", "UNKNOWN".
 	ObjectType string `json:"objectType"`
 	// Read-only collection of details for this on-orbit object.
-	OnorbitDetails []SeradataspacecraftdetailTupleResponseOnOrbitOnorbitDetail `json:"onorbitDetails"`
+	OnorbitDetails []SeradataSpacecraftDetailTupleResponseOnOrbitOnorbitDetail `json:"onorbitDetails"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
@@ -2944,9 +2944,9 @@ type SeradataspacecraftdetailTupleResponseOnOrbit struct {
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
 	// Read-only collection of solar arrays on this on-orbit object.
-	SolarArrays []SeradataspacecraftdetailTupleResponseOnOrbitSolarArray `json:"solarArrays"`
+	SolarArrays []SeradataSpacecraftDetailTupleResponseOnOrbitSolarArray `json:"solarArrays"`
 	// Read-only collection of thrusters (engines) on this on-orbit object.
-	Thrusters []SeradataspacecraftdetailTupleResponseOnOrbitThruster `json:"thrusters"`
+	Thrusters []SeradataSpacecraftDetailTupleResponseOnOrbitThruster `json:"thrusters"`
 	// Time the row was last updated in the database, auto-populated by the system.
 	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
 	// Application user who updated the row in the database, auto-populated by the
@@ -2989,12 +2989,12 @@ type SeradataspacecraftdetailTupleResponseOnOrbit struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailTupleResponseOnOrbit) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailTupleResponseOnOrbit) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailTupleResponseOnOrbit) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailTupleResponseOnOrbit) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type SeradataspacecraftdetailTupleResponseOnOrbitAntenna struct {
+type SeradataSpacecraftDetailTupleResponseOnOrbitAntenna struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -3066,12 +3066,12 @@ type SeradataspacecraftdetailTupleResponseOnOrbitAntenna struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailTupleResponseOnOrbitAntenna) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailTupleResponseOnOrbitAntenna) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailTupleResponseOnOrbitAntenna) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailTupleResponseOnOrbitAntenna) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type SeradataspacecraftdetailTupleResponseOnOrbitBattery struct {
+type SeradataSpacecraftDetailTupleResponseOnOrbitBattery struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -3144,13 +3144,13 @@ type SeradataspacecraftdetailTupleResponseOnOrbitBattery struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailTupleResponseOnOrbitBattery) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailTupleResponseOnOrbitBattery) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailTupleResponseOnOrbitBattery) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailTupleResponseOnOrbitBattery) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Contains details of the OnOrbit object.
-type SeradataspacecraftdetailTupleResponseOnOrbitOnorbitDetail struct {
+type SeradataSpacecraftDetailTupleResponseOnOrbitOnorbitDetail struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -3348,14 +3348,14 @@ type SeradataspacecraftdetailTupleResponseOnOrbitOnorbitDetail struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailTupleResponseOnOrbitOnorbitDetail) RawJSON() string {
+func (r SeradataSpacecraftDetailTupleResponseOnOrbitOnorbitDetail) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *SeradataspacecraftdetailTupleResponseOnOrbitOnorbitDetail) UnmarshalJSON(data []byte) error {
+func (r *SeradataSpacecraftDetailTupleResponseOnOrbitOnorbitDetail) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type SeradataspacecraftdetailTupleResponseOnOrbitSolarArray struct {
+type SeradataSpacecraftDetailTupleResponseOnOrbitSolarArray struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -3402,7 +3402,7 @@ type SeradataspacecraftdetailTupleResponseOnOrbitSolarArray struct {
 	// Model representation of information on on-orbit/spacecraft solar arrays. A
 	// spacecraft may have multiple solar arrays and each solar array can have multiple
 	// 'details' records compiled by different sources.
-	SolarArray SeradataspacecraftdetailTupleResponseOnOrbitSolarArraySolarArray `json:"solarArray"`
+	SolarArray SeradataSpacecraftDetailTupleResponseOnOrbitSolarArraySolarArray `json:"solarArray"`
 	// Time the row was last updated in the database, auto-populated by the system.
 	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
 	// Application user who updated the row in the database, auto-populated by the
@@ -3431,15 +3431,15 @@ type SeradataspacecraftdetailTupleResponseOnOrbitSolarArray struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailTupleResponseOnOrbitSolarArray) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailTupleResponseOnOrbitSolarArray) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailTupleResponseOnOrbitSolarArray) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailTupleResponseOnOrbitSolarArray) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of information on on-orbit/spacecraft solar arrays. A
 // spacecraft may have multiple solar arrays and each solar array can have multiple
 // 'details' records compiled by different sources.
-type SeradataspacecraftdetailTupleResponseOnOrbitSolarArraySolarArray struct {
+type SeradataSpacecraftDetailTupleResponseOnOrbitSolarArraySolarArray struct {
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 	//
 	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
@@ -3505,14 +3505,14 @@ type SeradataspacecraftdetailTupleResponseOnOrbitSolarArraySolarArray struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailTupleResponseOnOrbitSolarArraySolarArray) RawJSON() string {
+func (r SeradataSpacecraftDetailTupleResponseOnOrbitSolarArraySolarArray) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *SeradataspacecraftdetailTupleResponseOnOrbitSolarArraySolarArray) UnmarshalJSON(data []byte) error {
+func (r *SeradataSpacecraftDetailTupleResponseOnOrbitSolarArraySolarArray) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type SeradataspacecraftdetailTupleResponseOnOrbitThruster struct {
+type SeradataSpacecraftDetailTupleResponseOnOrbitThruster struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -3591,13 +3591,13 @@ type SeradataspacecraftdetailTupleResponseOnOrbitThruster struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailTupleResponseOnOrbitThruster) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailTupleResponseOnOrbitThruster) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailTupleResponseOnOrbitThruster) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailTupleResponseOnOrbitThruster) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Scientific or other data from Seradata.
-type SeradataspacecraftdetailTupleResponseScientific struct {
+type SeradataSpacecraftDetailTupleResponseScientific struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -3687,13 +3687,13 @@ type SeradataspacecraftdetailTupleResponseScientific struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailTupleResponseScientific) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailTupleResponseScientific) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailTupleResponseScientific) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailTupleResponseScientific) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Seradata-compiled information on communications payloads.
-type SeradataspacecraftdetailTupleResponseSeradataCommDetail struct {
+type SeradataSpacecraftDetailTupleResponseSeradataCommDetail struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -3843,13 +3843,13 @@ type SeradataspacecraftdetailTupleResponseSeradataCommDetail struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailTupleResponseSeradataCommDetail) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailTupleResponseSeradataCommDetail) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailTupleResponseSeradataCommDetail) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailTupleResponseSeradataCommDetail) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Details for an early warning payload from Seradata.
-type SeradataspacecraftdetailTupleResponseSeradataEarlyWarning struct {
+type SeradataSpacecraftDetailTupleResponseSeradataEarlyWarning struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -3952,15 +3952,15 @@ type SeradataspacecraftdetailTupleResponseSeradataEarlyWarning struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailTupleResponseSeradataEarlyWarning) RawJSON() string {
+func (r SeradataSpacecraftDetailTupleResponseSeradataEarlyWarning) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *SeradataspacecraftdetailTupleResponseSeradataEarlyWarning) UnmarshalJSON(data []byte) error {
+func (r *SeradataSpacecraftDetailTupleResponseSeradataEarlyWarning) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Details for a navigation payload from Seradata.
-type SeradataspacecraftdetailTupleResponseSeradataNavigation struct {
+type SeradataSpacecraftDetailTupleResponseSeradataNavigation struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -4060,13 +4060,13 @@ type SeradataspacecraftdetailTupleResponseSeradataNavigation struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailTupleResponseSeradataNavigation) RawJSON() string { return r.JSON.raw }
-func (r *SeradataspacecraftdetailTupleResponseSeradataNavigation) UnmarshalJSON(data []byte) error {
+func (r SeradataSpacecraftDetailTupleResponseSeradataNavigation) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSpacecraftDetailTupleResponseSeradataNavigation) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Details for an optical payload from Seradata.
-type SeradataspacecraftdetailTupleResponseSeradataOpticalPayload struct {
+type SeradataSpacecraftDetailTupleResponseSeradataOpticalPayload struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -4183,15 +4183,15 @@ type SeradataspacecraftdetailTupleResponseSeradataOpticalPayload struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailTupleResponseSeradataOpticalPayload) RawJSON() string {
+func (r SeradataSpacecraftDetailTupleResponseSeradataOpticalPayload) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *SeradataspacecraftdetailTupleResponseSeradataOpticalPayload) UnmarshalJSON(data []byte) error {
+func (r *SeradataSpacecraftDetailTupleResponseSeradataOpticalPayload) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Details for an radar payload from Seradata.
-type SeradataspacecraftdetailTupleResponseSeradataRadarPayload struct {
+type SeradataSpacecraftDetailTupleResponseSeradataRadarPayload struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -4327,15 +4327,15 @@ type SeradataspacecraftdetailTupleResponseSeradataRadarPayload struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailTupleResponseSeradataRadarPayload) RawJSON() string {
+func (r SeradataSpacecraftDetailTupleResponseSeradataRadarPayload) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *SeradataspacecraftdetailTupleResponseSeradataRadarPayload) UnmarshalJSON(data []byte) error {
+func (r *SeradataSpacecraftDetailTupleResponseSeradataRadarPayload) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Details for an sigint payload from Seradata.
-type SeradataspacecraftdetailTupleResponseSeradataSigIntPayload struct {
+type SeradataSpacecraftDetailTupleResponseSeradataSigIntPayload struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -4435,14 +4435,14 @@ type SeradataspacecraftdetailTupleResponseSeradataSigIntPayload struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataspacecraftdetailTupleResponseSeradataSigIntPayload) RawJSON() string {
+func (r SeradataSpacecraftDetailTupleResponseSeradataSigIntPayload) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *SeradataspacecraftdetailTupleResponseSeradataSigIntPayload) UnmarshalJSON(data []byte) error {
+func (r *SeradataSpacecraftDetailTupleResponseSeradataSigIntPayload) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type SeradataspacecraftdetailNewParams struct {
+type SeradataSpacecraftDetailNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -4461,7 +4461,7 @@ type SeradataspacecraftdetailNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradataspacecraftdetailNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SeradataSpacecraftDetailNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Spacecraft name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -4653,12 +4653,12 @@ type SeradataspacecraftdetailNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataspacecraftdetailNewParams) IsPresent() bool {
+func (f SeradataSpacecraftDetailNewParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r SeradataspacecraftdetailNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow SeradataspacecraftdetailNewParams
+func (r SeradataSpacecraftDetailNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow SeradataSpacecraftDetailNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -4676,16 +4676,16 @@ func (r SeradataspacecraftdetailNewParams) MarshalJSON() (data []byte, err error
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradataspacecraftdetailNewParamsDataMode string
+type SeradataSpacecraftDetailNewParamsDataMode string
 
 const (
-	SeradataspacecraftdetailNewParamsDataModeReal      SeradataspacecraftdetailNewParamsDataMode = "REAL"
-	SeradataspacecraftdetailNewParamsDataModeTest      SeradataspacecraftdetailNewParamsDataMode = "TEST"
-	SeradataspacecraftdetailNewParamsDataModeSimulated SeradataspacecraftdetailNewParamsDataMode = "SIMULATED"
-	SeradataspacecraftdetailNewParamsDataModeExercise  SeradataspacecraftdetailNewParamsDataMode = "EXERCISE"
+	SeradataSpacecraftDetailNewParamsDataModeReal      SeradataSpacecraftDetailNewParamsDataMode = "REAL"
+	SeradataSpacecraftDetailNewParamsDataModeTest      SeradataSpacecraftDetailNewParamsDataMode = "TEST"
+	SeradataSpacecraftDetailNewParamsDataModeSimulated SeradataSpacecraftDetailNewParamsDataMode = "SIMULATED"
+	SeradataSpacecraftDetailNewParamsDataModeExercise  SeradataSpacecraftDetailNewParamsDataMode = "EXERCISE"
 )
 
-type SeradataspacecraftdetailUpdateParams struct {
+type SeradataSpacecraftDetailUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -4704,7 +4704,7 @@ type SeradataspacecraftdetailUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradataspacecraftdetailUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SeradataSpacecraftDetailUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// Spacecraft name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -4896,12 +4896,12 @@ type SeradataspacecraftdetailUpdateParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataspacecraftdetailUpdateParams) IsPresent() bool {
+func (f SeradataSpacecraftDetailUpdateParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r SeradataspacecraftdetailUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow SeradataspacecraftdetailUpdateParams
+func (r SeradataSpacecraftDetailUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow SeradataSpacecraftDetailUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -4919,16 +4919,16 @@ func (r SeradataspacecraftdetailUpdateParams) MarshalJSON() (data []byte, err er
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradataspacecraftdetailUpdateParamsDataMode string
+type SeradataSpacecraftDetailUpdateParamsDataMode string
 
 const (
-	SeradataspacecraftdetailUpdateParamsDataModeReal      SeradataspacecraftdetailUpdateParamsDataMode = "REAL"
-	SeradataspacecraftdetailUpdateParamsDataModeTest      SeradataspacecraftdetailUpdateParamsDataMode = "TEST"
-	SeradataspacecraftdetailUpdateParamsDataModeSimulated SeradataspacecraftdetailUpdateParamsDataMode = "SIMULATED"
-	SeradataspacecraftdetailUpdateParamsDataModeExercise  SeradataspacecraftdetailUpdateParamsDataMode = "EXERCISE"
+	SeradataSpacecraftDetailUpdateParamsDataModeReal      SeradataSpacecraftDetailUpdateParamsDataMode = "REAL"
+	SeradataSpacecraftDetailUpdateParamsDataModeTest      SeradataSpacecraftDetailUpdateParamsDataMode = "TEST"
+	SeradataSpacecraftDetailUpdateParamsDataModeSimulated SeradataSpacecraftDetailUpdateParamsDataMode = "SIMULATED"
+	SeradataSpacecraftDetailUpdateParamsDataModeExercise  SeradataSpacecraftDetailUpdateParamsDataMode = "EXERCISE"
 )
 
-type SeradataspacecraftdetailListParams struct {
+type SeradataSpacecraftDetailListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -4936,20 +4936,20 @@ type SeradataspacecraftdetailListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataspacecraftdetailListParams) IsPresent() bool {
+func (f SeradataSpacecraftDetailListParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [SeradataspacecraftdetailListParams]'s query parameters as
+// URLQuery serializes [SeradataSpacecraftDetailListParams]'s query parameters as
 // `url.Values`.
-func (r SeradataspacecraftdetailListParams) URLQuery() (v url.Values, err error) {
+func (r SeradataSpacecraftDetailListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SeradataspacecraftdetailCountParams struct {
+type SeradataSpacecraftDetailCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -4957,20 +4957,20 @@ type SeradataspacecraftdetailCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataspacecraftdetailCountParams) IsPresent() bool {
+func (f SeradataSpacecraftDetailCountParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [SeradataspacecraftdetailCountParams]'s query parameters as
+// URLQuery serializes [SeradataSpacecraftDetailCountParams]'s query parameters as
 // `url.Values`.
-func (r SeradataspacecraftdetailCountParams) URLQuery() (v url.Values, err error) {
+func (r SeradataSpacecraftDetailCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SeradataspacecraftdetailGetParams struct {
+type SeradataSpacecraftDetailGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -4978,20 +4978,20 @@ type SeradataspacecraftdetailGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataspacecraftdetailGetParams) IsPresent() bool {
+func (f SeradataSpacecraftDetailGetParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [SeradataspacecraftdetailGetParams]'s query parameters as
+// URLQuery serializes [SeradataSpacecraftDetailGetParams]'s query parameters as
 // `url.Values`.
-func (r SeradataspacecraftdetailGetParams) URLQuery() (v url.Values, err error) {
+func (r SeradataSpacecraftDetailGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SeradataspacecraftdetailTupleParams struct {
+type SeradataSpacecraftDetailTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -5004,13 +5004,13 @@ type SeradataspacecraftdetailTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataspacecraftdetailTupleParams) IsPresent() bool {
+func (f SeradataSpacecraftDetailTupleParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [SeradataspacecraftdetailTupleParams]'s query parameters as
+// URLQuery serializes [SeradataSpacecraftDetailTupleParams]'s query parameters as
 // `url.Values`.
-func (r SeradataspacecraftdetailTupleParams) URLQuery() (v url.Values, err error) {
+func (r SeradataSpacecraftDetailTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

@@ -14,21 +14,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
 )
 
-// AirfieldstatusHistoryService contains methods and other services that help with
+// AirfieldStatusHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewAirfieldstatusHistoryService] method instead.
-type AirfieldstatusHistoryService struct {
+// the [NewAirfieldStatusHistoryService] method instead.
+type AirfieldStatusHistoryService struct {
 	Options []option.RequestOption
 }
 
-// NewAirfieldstatusHistoryService generates a new service that applies the given
+// NewAirfieldStatusHistoryService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewAirfieldstatusHistoryService(opts ...option.RequestOption) (r AirfieldstatusHistoryService) {
-	r = AirfieldstatusHistoryService{}
+func NewAirfieldStatusHistoryService(opts ...option.RequestOption) (r AirfieldStatusHistoryService) {
+	r = AirfieldStatusHistoryService{}
 	r.Options = opts
 	return
 }
@@ -37,7 +37,7 @@ func NewAirfieldstatusHistoryService(opts ...option.RequestOption) (r Airfieldst
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *AirfieldstatusHistoryService) List(ctx context.Context, query AirfieldstatusHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AirfieldstatusFull], err error) {
+func (r *AirfieldStatusHistoryService) List(ctx context.Context, query AirfieldStatusHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AirfieldstatusFull], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -58,7 +58,7 @@ func (r *AirfieldstatusHistoryService) List(ctx context.Context, query Airfields
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *AirfieldstatusHistoryService) ListAutoPaging(ctx context.Context, query AirfieldstatusHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[AirfieldstatusFull] {
+func (r *AirfieldStatusHistoryService) ListAutoPaging(ctx context.Context, query AirfieldStatusHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[AirfieldstatusFull] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -67,7 +67,7 @@ func (r *AirfieldstatusHistoryService) ListAutoPaging(ctx context.Context, query
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *AirfieldstatusHistoryService) Count(ctx context.Context, query AirfieldstatusHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *AirfieldStatusHistoryService) Count(ctx context.Context, query AirfieldStatusHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/airfieldstatus/history/count"
@@ -75,7 +75,7 @@ func (r *AirfieldstatusHistoryService) Count(ctx context.Context, query Airfield
 	return
 }
 
-type AirfieldstatusHistoryListParams struct {
+type AirfieldStatusHistoryListParams struct {
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -87,18 +87,18 @@ type AirfieldstatusHistoryListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldstatusHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f AirfieldStatusHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [AirfieldstatusHistoryListParams]'s query parameters as
+// URLQuery serializes [AirfieldStatusHistoryListParams]'s query parameters as
 // `url.Values`.
-func (r AirfieldstatusHistoryListParams) URLQuery() (v url.Values, err error) {
+func (r AirfieldStatusHistoryListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type AirfieldstatusHistoryCountParams struct {
+type AirfieldStatusHistoryCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -106,11 +106,11 @@ type AirfieldstatusHistoryCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldstatusHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f AirfieldStatusHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [AirfieldstatusHistoryCountParams]'s query parameters as
+// URLQuery serializes [AirfieldStatusHistoryCountParams]'s query parameters as
 // `url.Values`.
-func (r AirfieldstatusHistoryCountParams) URLQuery() (v url.Values, err error) {
+func (r AirfieldStatusHistoryCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

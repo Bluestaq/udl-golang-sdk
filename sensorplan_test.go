@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSensorplanNewWithOptionalParams(t *testing.T) {
+func TestSensorPlanNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,15 +27,15 @@ func TestSensorplanNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sensorplan.New(context.TODO(), unifieddatalibrary.SensorplanNewParams{
+	err := client.SensorPlan.New(context.TODO(), unifieddatalibrary.SensorPlanNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.SensorplanNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.SensorPlanNewParamsDataModeTest,
 		RecType:               "COLLECT",
 		Source:                "Bluestaq",
 		StartTime:             time.Now(),
 		Type:                  "PLAN",
 		ID:                    unifieddatalibrary.String("SENSORPLAN-ID"),
-		CollectRequests: []unifieddatalibrary.SensorplanNewParamsCollectRequest{{
+		CollectRequests: []unifieddatalibrary.SensorPlanNewParamsCollectRequest{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			Source:                "Bluestaq",
@@ -51,7 +51,7 @@ func TestSensorplanNewWithOptionalParams(t *testing.T) {
 			DwellID:               unifieddatalibrary.String("DWELL-ID"),
 			Eccentricity:          unifieddatalibrary.Float(1.1),
 			El:                    unifieddatalibrary.Float(1.1),
-			Elset: unifieddatalibrary.SensorplanNewParamsCollectRequestElset{
+			Elset: unifieddatalibrary.SensorPlanNewParamsCollectRequestElset{
 				ClassificationMarking: "U",
 				DataMode:              "TEST",
 				Epoch:                 time.Now(),
@@ -138,7 +138,7 @@ func TestSensorplanNewWithOptionalParams(t *testing.T) {
 			SpectralModel:   unifieddatalibrary.String("Example Model"),
 			SrchInc:         unifieddatalibrary.Float(1.1),
 			SrchPattern:     unifieddatalibrary.String("SCAN"),
-			StateVector: unifieddatalibrary.SensorplanNewParamsCollectRequestStateVector{
+			StateVector: unifieddatalibrary.SensorPlanNewParamsCollectRequestStateVector{
 				ClassificationMarking: "U",
 				DataMode:              "TEST",
 				Epoch:                 time.Now(),
@@ -273,7 +273,7 @@ func TestSensorplanNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensorplanUpdateWithOptionalParams(t *testing.T) {
+func TestSensorPlanUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -286,18 +286,18 @@ func TestSensorplanUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sensorplan.Update(
+	err := client.SensorPlan.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SensorplanUpdateParams{
+		unifieddatalibrary.SensorPlanUpdateParams{
 			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.SensorplanUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.SensorPlanUpdateParamsDataModeTest,
 			RecType:               "COLLECT",
 			Source:                "Bluestaq",
 			StartTime:             time.Now(),
 			Type:                  "PLAN",
 			ID:                    unifieddatalibrary.String("SENSORPLAN-ID"),
-			CollectRequests: []unifieddatalibrary.SensorplanUpdateParamsCollectRequest{{
+			CollectRequests: []unifieddatalibrary.SensorPlanUpdateParamsCollectRequest{{
 				ClassificationMarking: "U",
 				DataMode:              "TEST",
 				Source:                "Bluestaq",
@@ -313,7 +313,7 @@ func TestSensorplanUpdateWithOptionalParams(t *testing.T) {
 				DwellID:               unifieddatalibrary.String("DWELL-ID"),
 				Eccentricity:          unifieddatalibrary.Float(1.1),
 				El:                    unifieddatalibrary.Float(1.1),
-				Elset: unifieddatalibrary.SensorplanUpdateParamsCollectRequestElset{
+				Elset: unifieddatalibrary.SensorPlanUpdateParamsCollectRequestElset{
 					ClassificationMarking: "U",
 					DataMode:              "TEST",
 					Epoch:                 time.Now(),
@@ -400,7 +400,7 @@ func TestSensorplanUpdateWithOptionalParams(t *testing.T) {
 				SpectralModel:   unifieddatalibrary.String("Example Model"),
 				SrchInc:         unifieddatalibrary.Float(1.1),
 				SrchPattern:     unifieddatalibrary.String("SCAN"),
-				StateVector: unifieddatalibrary.SensorplanUpdateParamsCollectRequestStateVector{
+				StateVector: unifieddatalibrary.SensorPlanUpdateParamsCollectRequestStateVector{
 					ClassificationMarking: "U",
 					DataMode:              "TEST",
 					Epoch:                 time.Now(),
@@ -536,7 +536,7 @@ func TestSensorplanUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensorplanListWithOptionalParams(t *testing.T) {
+func TestSensorPlanListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -549,7 +549,7 @@ func TestSensorplanListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sensorplan.List(context.TODO(), unifieddatalibrary.SensorplanListParams{
+	_, err := client.SensorPlan.List(context.TODO(), unifieddatalibrary.SensorPlanListParams{
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -563,7 +563,7 @@ func TestSensorplanListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensorplanCountWithOptionalParams(t *testing.T) {
+func TestSensorPlanCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -576,7 +576,7 @@ func TestSensorplanCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sensorplan.Count(context.TODO(), unifieddatalibrary.SensorplanCountParams{
+	_, err := client.SensorPlan.Count(context.TODO(), unifieddatalibrary.SensorPlanCountParams{
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -590,7 +590,7 @@ func TestSensorplanCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensorplanGetWithOptionalParams(t *testing.T) {
+func TestSensorPlanGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -603,10 +603,10 @@ func TestSensorplanGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sensorplan.Get(
+	_, err := client.SensorPlan.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SensorplanGetParams{
+		unifieddatalibrary.SensorPlanGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -620,7 +620,7 @@ func TestSensorplanGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensorplanQueryhelp(t *testing.T) {
+func TestSensorPlanQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -633,7 +633,7 @@ func TestSensorplanQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sensorplan.Queryhelp(context.TODO())
+	err := client.SensorPlan.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -643,7 +643,7 @@ func TestSensorplanQueryhelp(t *testing.T) {
 	}
 }
 
-func TestSensorplanTupleWithOptionalParams(t *testing.T) {
+func TestSensorPlanTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -656,7 +656,7 @@ func TestSensorplanTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sensorplan.Tuple(context.TODO(), unifieddatalibrary.SensorplanTupleParams{
+	_, err := client.SensorPlan.Tuple(context.TODO(), unifieddatalibrary.SensorPlanTupleParams{
 		Columns:     "columns",
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -671,7 +671,7 @@ func TestSensorplanTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensorplanUnvalidatedPublish(t *testing.T) {
+func TestSensorPlanUnvalidatedPublish(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -684,8 +684,8 @@ func TestSensorplanUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sensorplan.UnvalidatedPublish(context.TODO(), unifieddatalibrary.SensorplanUnvalidatedPublishParams{
-		Body: []unifieddatalibrary.SensorplanUnvalidatedPublishParamsBody{{
+	err := client.SensorPlan.UnvalidatedPublish(context.TODO(), unifieddatalibrary.SensorPlanUnvalidatedPublishParams{
+		Body: []unifieddatalibrary.SensorPlanUnvalidatedPublishParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			RecType:               "COLLECT",
@@ -693,7 +693,7 @@ func TestSensorplanUnvalidatedPublish(t *testing.T) {
 			StartTime:             time.Now(),
 			Type:                  "PLAN",
 			ID:                    unifieddatalibrary.String("SENSORPLAN-ID"),
-			CollectRequests: []unifieddatalibrary.SensorplanUnvalidatedPublishParamsBodyCollectRequest{{
+			CollectRequests: []unifieddatalibrary.SensorPlanUnvalidatedPublishParamsBodyCollectRequest{{
 				ClassificationMarking: "U",
 				DataMode:              "TEST",
 				Source:                "Bluestaq",
@@ -709,7 +709,7 @@ func TestSensorplanUnvalidatedPublish(t *testing.T) {
 				DwellID:               unifieddatalibrary.String("DWELL-ID"),
 				Eccentricity:          unifieddatalibrary.Float(1.1),
 				El:                    unifieddatalibrary.Float(1.1),
-				Elset: unifieddatalibrary.SensorplanUnvalidatedPublishParamsBodyCollectRequestElset{
+				Elset: unifieddatalibrary.SensorPlanUnvalidatedPublishParamsBodyCollectRequestElset{
 					ClassificationMarking: "U",
 					DataMode:              "TEST",
 					Epoch:                 time.Now(),
@@ -796,7 +796,7 @@ func TestSensorplanUnvalidatedPublish(t *testing.T) {
 				SpectralModel:   unifieddatalibrary.String("Example Model"),
 				SrchInc:         unifieddatalibrary.Float(1.1),
 				SrchPattern:     unifieddatalibrary.String("SCAN"),
-				StateVector: unifieddatalibrary.SensorplanUnvalidatedPublishParamsBodyCollectRequestStateVector{
+				StateVector: unifieddatalibrary.SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector{
 					ClassificationMarking: "U",
 					DataMode:              "TEST",
 					Epoch:                 time.Now(),

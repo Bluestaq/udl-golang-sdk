@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestH3geohexcellListWithOptionalParams(t *testing.T) {
+func TestH3GeoHexCellListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,7 +26,7 @@ func TestH3geohexcellListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.H3geohexcell.List(context.TODO(), unifieddatalibrary.H3geohexcellListParams{
+	_, err := client.H3GeoHexCell.List(context.TODO(), unifieddatalibrary.H3GeoHexCellListParams{
 		IDH3Geo:     "idH3Geo",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -40,7 +40,7 @@ func TestH3geohexcellListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestH3geohexcellCountWithOptionalParams(t *testing.T) {
+func TestH3GeoHexCellCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -53,7 +53,7 @@ func TestH3geohexcellCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.H3geohexcell.Count(context.TODO(), unifieddatalibrary.H3geohexcellCountParams{
+	_, err := client.H3GeoHexCell.Count(context.TODO(), unifieddatalibrary.H3GeoHexCellCountParams{
 		IDH3Geo:     "idH3Geo",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -67,7 +67,7 @@ func TestH3geohexcellCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestH3geohexcellQueryhelp(t *testing.T) {
+func TestH3GeoHexCellQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -80,7 +80,7 @@ func TestH3geohexcellQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.H3geohexcell.Queryhelp(context.TODO())
+	err := client.H3GeoHexCell.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -90,7 +90,7 @@ func TestH3geohexcellQueryhelp(t *testing.T) {
 	}
 }
 
-func TestH3geohexcellTupleWithOptionalParams(t *testing.T) {
+func TestH3GeoHexCellTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -103,7 +103,7 @@ func TestH3geohexcellTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.H3geohexcell.Tuple(context.TODO(), unifieddatalibrary.H3geohexcellTupleParams{
+	_, err := client.H3GeoHexCell.Tuple(context.TODO(), unifieddatalibrary.H3GeoHexCellTupleParams{
 		Columns:     "columns",
 		IDH3Geo:     "idH3Geo",
 		FirstResult: unifieddatalibrary.Int(0),

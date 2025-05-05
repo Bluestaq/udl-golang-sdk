@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestAirloadplanUpdateWithOptionalParams(t *testing.T) {
+func TestAirloadPlanUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,19 +27,19 @@ func TestAirloadplanUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Airloadplans.Update(
+	err := client.AirloadPlans.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.AirloadplanUpdateParams{
+		unifieddatalibrary.AirloadPlanUpdateParams{
 			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.AirloadplanUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.AirloadPlanUpdateParamsDataModeTest,
 			EstDepTime:            time.Now(),
 			Source:                "source",
 			ID:                    unifieddatalibrary.String("0457f578-e29c-312e-85aa-0a04a430bdd0"),
 			ACLOnboard:            unifieddatalibrary.Float(500.1),
 			ACLReleased:           unifieddatalibrary.Float(200.1),
 			AircraftMds:           unifieddatalibrary.String("C17A"),
-			AirLoadPlanHazmatActuals: []unifieddatalibrary.AirloadplanUpdateParamsAirLoadPlanHazmatActual{{
+			AirLoadPlanHazmatActuals: []unifieddatalibrary.AirloadPlanUpdateParamsAirLoadPlanHazmatActual{{
 				Ashc:           unifieddatalibrary.String("RFL"),
 				Cgc:            unifieddatalibrary.String("A"),
 				ClassDiv:       unifieddatalibrary.String("1.1"),
@@ -58,7 +58,7 @@ func TestAirloadplanUpdateWithOptionalParams(t *testing.T) {
 				LotNum:         unifieddatalibrary.String("1234A"),
 				NetExpWt:       unifieddatalibrary.Float(12.1),
 			}},
-			AirLoadPlanHr: []unifieddatalibrary.AirloadplanUpdateParamsAirLoadPlanHr{{
+			AirLoadPlanHr: []unifieddatalibrary.AirloadPlanUpdateParamsAirLoadPlanHr{{
 				Container:    unifieddatalibrary.String("Metal"),
 				Escort:       unifieddatalibrary.String("Jane Doe"),
 				HrEstArrTime: unifieddatalibrary.Time(time.Now()),
@@ -73,7 +73,7 @@ func TestAirloadplanUpdateWithOptionalParams(t *testing.T) {
 				Service:      unifieddatalibrary.String("Air Force"),
 				Viewable:     unifieddatalibrary.Bool(true),
 			}},
-			AirLoadPlanPalletDetails: []unifieddatalibrary.AirloadplanUpdateParamsAirLoadPlanPalletDetail{{
+			AirLoadPlanPalletDetails: []unifieddatalibrary.AirloadPlanUpdateParamsAirLoadPlanPalletDetail{{
 				Category:        unifieddatalibrary.String("AMCMICAP"),
 				Pp:              unifieddatalibrary.String("2"),
 				PpDescription:   unifieddatalibrary.String("Ammunition"),
@@ -84,7 +84,7 @@ func TestAirloadplanUpdateWithOptionalParams(t *testing.T) {
 				PpWeight:        unifieddatalibrary.Float(100.1),
 				SpecialInterest: unifieddatalibrary.Bool(true),
 			}},
-			AirLoadPlanPaxCargo: []unifieddatalibrary.AirloadplanUpdateParamsAirLoadPlanPaxCargo{{
+			AirLoadPlanPaxCargo: []unifieddatalibrary.AirloadPlanUpdateParamsAirLoadPlanPaxCargo{{
 				AmbPax:           unifieddatalibrary.Int(5),
 				AttPax:           unifieddatalibrary.Int(6),
 				AvailablePax:     unifieddatalibrary.Int(20),
@@ -101,7 +101,7 @@ func TestAirloadplanUpdateWithOptionalParams(t *testing.T) {
 				PaxWeight:        unifieddatalibrary.Float(8000.1),
 				RequiredPax:      unifieddatalibrary.Int(20),
 			}},
-			AirLoadPlanUlnActuals: []unifieddatalibrary.AirloadplanUpdateParamsAirLoadPlanUlnActual{{
+			AirLoadPlanUlnActuals: []unifieddatalibrary.AirloadPlanUpdateParamsAirLoadPlanUlnActual{{
 				NumAmbulatory:  unifieddatalibrary.Int(10),
 				NumAttendant:   unifieddatalibrary.Int(10),
 				NumLitter:      unifieddatalibrary.Int(10),
@@ -178,7 +178,7 @@ func TestAirloadplanUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestAirloadplanDelete(t *testing.T) {
+func TestAirloadPlanDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -191,7 +191,7 @@ func TestAirloadplanDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Airloadplans.Delete(context.TODO(), "id")
+	err := client.AirloadPlans.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {

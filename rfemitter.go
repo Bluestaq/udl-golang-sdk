@@ -19,21 +19,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// RfemitterService contains methods and other services that help with interacting
+// RfEmitterService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewRfemitterService] method instead.
-type RfemitterService struct {
+// the [NewRfEmitterService] method instead.
+type RfEmitterService struct {
 	Options []option.RequestOption
 }
 
-// NewRfemitterService generates a new service that applies the given options to
+// NewRfEmitterService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewRfemitterService(opts ...option.RequestOption) (r RfemitterService) {
-	r = RfemitterService{}
+func NewRfEmitterService(opts ...option.RequestOption) (r RfEmitterService) {
+	r = RfEmitterService{}
 	r.Options = opts
 	return
 }
@@ -41,7 +41,7 @@ func NewRfemitterService(opts ...option.RequestOption) (r RfemitterService) {
 // Service operation to take a single RFEmitter as a POST body and ingest into the
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
-func (r *RfemitterService) New(ctx context.Context, body RfemitterNewParams, opts ...option.RequestOption) (err error) {
+func (r *RfEmitterService) New(ctx context.Context, body RfEmitterNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/rfemitter"
@@ -51,7 +51,7 @@ func (r *RfemitterService) New(ctx context.Context, body RfemitterNewParams, opt
 
 // Service operation to update an RFEmitter. A specific role is required to perform
 // this service operation. Please contact the UDL team for assistance.
-func (r *RfemitterService) Update(ctx context.Context, id string, body RfemitterUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *RfEmitterService) Update(ctx context.Context, id string, body RfEmitterUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -67,7 +67,7 @@ func (r *RfemitterService) Update(ctx context.Context, id string, body Rfemitter
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *RfemitterService) List(ctx context.Context, query RfemitterListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[RfemitterListResponse], err error) {
+func (r *RfEmitterService) List(ctx context.Context, query RfEmitterListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[RfEmitterListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -88,14 +88,14 @@ func (r *RfemitterService) List(ctx context.Context, query RfemitterListParams, 
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *RfemitterService) ListAutoPaging(ctx context.Context, query RfemitterListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[RfemitterListResponse] {
+func (r *RfEmitterService) ListAutoPaging(ctx context.Context, query RfEmitterListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[RfEmitterListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to delete an RFEmitter specified by the passed ID path
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
-func (r *RfemitterService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *RfEmitterService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -112,7 +112,7 @@ func (r *RfemitterService) Delete(ctx context.Context, id string, opts ...option
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *RfemitterService) Count(ctx context.Context, query RfemitterCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *RfEmitterService) Count(ctx context.Context, query RfEmitterCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/rfemitter/count"
@@ -122,7 +122,7 @@ func (r *RfemitterService) Count(ctx context.Context, query RfemitterCountParams
 
 // Service operation to get a single RFEmitter by its unique ID passed as a path
 // parameter.
-func (r *RfemitterService) Get(ctx context.Context, id string, query RfemitterGetParams, opts ...option.RequestOption) (res *RfemitterGetResponse, err error) {
+func (r *RfEmitterService) Get(ctx context.Context, id string, query RfEmitterGetParams, opts ...option.RequestOption) (res *RfEmitterGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -135,7 +135,7 @@ func (r *RfemitterService) Get(ctx context.Context, id string, query RfemitterGe
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *RfemitterService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *RfEmitterService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/rfemitter/queryhelp"
@@ -151,7 +151,7 @@ func (r *RfemitterService) Queryhelp(ctx context.Context, opts ...option.Request
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *RfemitterService) Tuple(ctx context.Context, query RfemitterTupleParams, opts ...option.RequestOption) (res *[]RfemitterTupleResponse, err error) {
+func (r *RfEmitterService) Tuple(ctx context.Context, query RfEmitterTupleParams, opts ...option.RequestOption) (res *[]RfEmitterTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/rfemitter/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -160,7 +160,7 @@ func (r *RfemitterService) Tuple(ctx context.Context, query RfemitterTupleParams
 
 // An RF Emitter is a source of active Radio Frequency (RF) signals which could
 // potentially interfere with other RF receivers.
-type RfemitterListResponse struct {
+type RfEmitterListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -179,7 +179,7 @@ type RfemitterListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfemitterListResponseDataMode `json:"dataMode,required"`
+	DataMode RfEmitterListResponseDataMode `json:"dataMode,required"`
 	// Unique name of this RF Emitter.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -223,8 +223,8 @@ type RfemitterListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r RfemitterListResponse) RawJSON() string { return r.JSON.raw }
-func (r *RfemitterListResponse) UnmarshalJSON(data []byte) error {
+func (r RfEmitterListResponse) RawJSON() string { return r.JSON.raw }
+func (r *RfEmitterListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -242,18 +242,18 @@ func (r *RfemitterListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RfemitterListResponseDataMode string
+type RfEmitterListResponseDataMode string
 
 const (
-	RfemitterListResponseDataModeReal      RfemitterListResponseDataMode = "REAL"
-	RfemitterListResponseDataModeTest      RfemitterListResponseDataMode = "TEST"
-	RfemitterListResponseDataModeSimulated RfemitterListResponseDataMode = "SIMULATED"
-	RfemitterListResponseDataModeExercise  RfemitterListResponseDataMode = "EXERCISE"
+	RfEmitterListResponseDataModeReal      RfEmitterListResponseDataMode = "REAL"
+	RfEmitterListResponseDataModeTest      RfEmitterListResponseDataMode = "TEST"
+	RfEmitterListResponseDataModeSimulated RfEmitterListResponseDataMode = "SIMULATED"
+	RfEmitterListResponseDataModeExercise  RfEmitterListResponseDataMode = "EXERCISE"
 )
 
 // An RF Emitter is a source of active Radio Frequency (RF) signals which could
 // potentially interfere with other RF receivers.
-type RfemitterGetResponse struct {
+type RfEmitterGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -272,7 +272,7 @@ type RfemitterGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfemitterGetResponseDataMode `json:"dataMode,required"`
+	DataMode RfEmitterGetResponseDataMode `json:"dataMode,required"`
 	// Unique name of this RF Emitter.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -299,7 +299,7 @@ type RfemitterGetResponse struct {
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
 	// Read-only details for this RFEmitter.
-	RfEmitterDetails []RfemitterGetResponseRfEmitterDetail `json:"rfEmitterDetails"`
+	RfEmitterDetails []RfEmitterGetResponseRfEmitterDetail `json:"rfEmitterDetails"`
 	// Type of this RF Emitter.
 	Type string `json:"type"`
 	// Time the row was last updated in the database, auto-populated by the system.
@@ -331,8 +331,8 @@ type RfemitterGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r RfemitterGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *RfemitterGetResponse) UnmarshalJSON(data []byte) error {
+func (r RfEmitterGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *RfEmitterGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -350,18 +350,18 @@ func (r *RfemitterGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RfemitterGetResponseDataMode string
+type RfEmitterGetResponseDataMode string
 
 const (
-	RfemitterGetResponseDataModeReal      RfemitterGetResponseDataMode = "REAL"
-	RfemitterGetResponseDataModeTest      RfemitterGetResponseDataMode = "TEST"
-	RfemitterGetResponseDataModeSimulated RfemitterGetResponseDataMode = "SIMULATED"
-	RfemitterGetResponseDataModeExercise  RfemitterGetResponseDataMode = "EXERCISE"
+	RfEmitterGetResponseDataModeReal      RfEmitterGetResponseDataMode = "REAL"
+	RfEmitterGetResponseDataModeTest      RfEmitterGetResponseDataMode = "TEST"
+	RfEmitterGetResponseDataModeSimulated RfEmitterGetResponseDataMode = "SIMULATED"
+	RfEmitterGetResponseDataModeExercise  RfEmitterGetResponseDataMode = "EXERCISE"
 )
 
 // Details for a particular RF Emitter, collected by a particular source. An RF
 // Emitter may have multiple details records from various sources.
-type RfemitterGetResponseRfEmitterDetail struct {
+type RfEmitterGetResponseRfEmitterDetail struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -518,14 +518,14 @@ type RfemitterGetResponseRfEmitterDetail struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r RfemitterGetResponseRfEmitterDetail) RawJSON() string { return r.JSON.raw }
-func (r *RfemitterGetResponseRfEmitterDetail) UnmarshalJSON(data []byte) error {
+func (r RfEmitterGetResponseRfEmitterDetail) RawJSON() string { return r.JSON.raw }
+func (r *RfEmitterGetResponseRfEmitterDetail) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // An RF Emitter is a source of active Radio Frequency (RF) signals which could
 // potentially interfere with other RF receivers.
-type RfemitterTupleResponse struct {
+type RfEmitterTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -544,7 +544,7 @@ type RfemitterTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfemitterTupleResponseDataMode `json:"dataMode,required"`
+	DataMode RfEmitterTupleResponseDataMode `json:"dataMode,required"`
 	// Unique name of this RF Emitter.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -571,7 +571,7 @@ type RfemitterTupleResponse struct {
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
 	// Read-only details for this RFEmitter.
-	RfEmitterDetails []RfemitterTupleResponseRfEmitterDetail `json:"rfEmitterDetails"`
+	RfEmitterDetails []RfEmitterTupleResponseRfEmitterDetail `json:"rfEmitterDetails"`
 	// Type of this RF Emitter.
 	Type string `json:"type"`
 	// Time the row was last updated in the database, auto-populated by the system.
@@ -603,8 +603,8 @@ type RfemitterTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r RfemitterTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *RfemitterTupleResponse) UnmarshalJSON(data []byte) error {
+func (r RfEmitterTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *RfEmitterTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -622,18 +622,18 @@ func (r *RfemitterTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RfemitterTupleResponseDataMode string
+type RfEmitterTupleResponseDataMode string
 
 const (
-	RfemitterTupleResponseDataModeReal      RfemitterTupleResponseDataMode = "REAL"
-	RfemitterTupleResponseDataModeTest      RfemitterTupleResponseDataMode = "TEST"
-	RfemitterTupleResponseDataModeSimulated RfemitterTupleResponseDataMode = "SIMULATED"
-	RfemitterTupleResponseDataModeExercise  RfemitterTupleResponseDataMode = "EXERCISE"
+	RfEmitterTupleResponseDataModeReal      RfEmitterTupleResponseDataMode = "REAL"
+	RfEmitterTupleResponseDataModeTest      RfEmitterTupleResponseDataMode = "TEST"
+	RfEmitterTupleResponseDataModeSimulated RfEmitterTupleResponseDataMode = "SIMULATED"
+	RfEmitterTupleResponseDataModeExercise  RfEmitterTupleResponseDataMode = "EXERCISE"
 )
 
 // Details for a particular RF Emitter, collected by a particular source. An RF
 // Emitter may have multiple details records from various sources.
-type RfemitterTupleResponseRfEmitterDetail struct {
+type RfEmitterTupleResponseRfEmitterDetail struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -790,12 +790,12 @@ type RfemitterTupleResponseRfEmitterDetail struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r RfemitterTupleResponseRfEmitterDetail) RawJSON() string { return r.JSON.raw }
-func (r *RfemitterTupleResponseRfEmitterDetail) UnmarshalJSON(data []byte) error {
+func (r RfEmitterTupleResponseRfEmitterDetail) RawJSON() string { return r.JSON.raw }
+func (r *RfEmitterTupleResponseRfEmitterDetail) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type RfemitterNewParams struct {
+type RfEmitterNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -814,7 +814,7 @@ type RfemitterNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfemitterNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode RfEmitterNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Unique name of this RF Emitter.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -839,10 +839,10 @@ type RfemitterNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfemitterNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RfEmitterNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r RfemitterNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow RfemitterNewParams
+func (r RfEmitterNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow RfEmitterNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -860,16 +860,16 @@ func (r RfemitterNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RfemitterNewParamsDataMode string
+type RfEmitterNewParamsDataMode string
 
 const (
-	RfemitterNewParamsDataModeReal      RfemitterNewParamsDataMode = "REAL"
-	RfemitterNewParamsDataModeTest      RfemitterNewParamsDataMode = "TEST"
-	RfemitterNewParamsDataModeSimulated RfemitterNewParamsDataMode = "SIMULATED"
-	RfemitterNewParamsDataModeExercise  RfemitterNewParamsDataMode = "EXERCISE"
+	RfEmitterNewParamsDataModeReal      RfEmitterNewParamsDataMode = "REAL"
+	RfEmitterNewParamsDataModeTest      RfEmitterNewParamsDataMode = "TEST"
+	RfEmitterNewParamsDataModeSimulated RfEmitterNewParamsDataMode = "SIMULATED"
+	RfEmitterNewParamsDataModeExercise  RfEmitterNewParamsDataMode = "EXERCISE"
 )
 
-type RfemitterUpdateParams struct {
+type RfEmitterUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -888,7 +888,7 @@ type RfemitterUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfemitterUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode RfEmitterUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// Unique name of this RF Emitter.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -913,10 +913,10 @@ type RfemitterUpdateParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfemitterUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RfEmitterUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r RfemitterUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow RfemitterUpdateParams
+func (r RfEmitterUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow RfEmitterUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -934,16 +934,16 @@ func (r RfemitterUpdateParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RfemitterUpdateParamsDataMode string
+type RfEmitterUpdateParamsDataMode string
 
 const (
-	RfemitterUpdateParamsDataModeReal      RfemitterUpdateParamsDataMode = "REAL"
-	RfemitterUpdateParamsDataModeTest      RfemitterUpdateParamsDataMode = "TEST"
-	RfemitterUpdateParamsDataModeSimulated RfemitterUpdateParamsDataMode = "SIMULATED"
-	RfemitterUpdateParamsDataModeExercise  RfemitterUpdateParamsDataMode = "EXERCISE"
+	RfEmitterUpdateParamsDataModeReal      RfEmitterUpdateParamsDataMode = "REAL"
+	RfEmitterUpdateParamsDataModeTest      RfEmitterUpdateParamsDataMode = "TEST"
+	RfEmitterUpdateParamsDataModeSimulated RfEmitterUpdateParamsDataMode = "SIMULATED"
+	RfEmitterUpdateParamsDataModeExercise  RfEmitterUpdateParamsDataMode = "EXERCISE"
 )
 
-type RfemitterListParams struct {
+type RfEmitterListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -951,17 +951,17 @@ type RfemitterListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfemitterListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RfEmitterListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [RfemitterListParams]'s query parameters as `url.Values`.
-func (r RfemitterListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [RfEmitterListParams]'s query parameters as `url.Values`.
+func (r RfEmitterListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type RfemitterCountParams struct {
+type RfEmitterCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -969,17 +969,17 @@ type RfemitterCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfemitterCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RfEmitterCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [RfemitterCountParams]'s query parameters as `url.Values`.
-func (r RfemitterCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [RfEmitterCountParams]'s query parameters as `url.Values`.
+func (r RfEmitterCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type RfemitterGetParams struct {
+type RfEmitterGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -987,17 +987,17 @@ type RfemitterGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfemitterGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RfEmitterGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [RfemitterGetParams]'s query parameters as `url.Values`.
-func (r RfemitterGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [RfEmitterGetParams]'s query parameters as `url.Values`.
+func (r RfEmitterGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type RfemitterTupleParams struct {
+type RfEmitterTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -1010,10 +1010,10 @@ type RfemitterTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfemitterTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RfEmitterTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [RfemitterTupleParams]'s query parameters as `url.Values`.
-func (r RfemitterTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [RfEmitterTupleParams]'s query parameters as `url.Values`.
+func (r RfEmitterTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

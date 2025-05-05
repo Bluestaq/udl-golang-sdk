@@ -20,21 +20,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
-// ObjectofinterestService contains methods and other services that help with
+// ObjectOfInterestService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewObjectofinterestService] method instead.
-type ObjectofinterestService struct {
+// the [NewObjectOfInterestService] method instead.
+type ObjectOfInterestService struct {
 	Options []option.RequestOption
 }
 
-// NewObjectofinterestService generates a new service that applies the given
+// NewObjectOfInterestService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewObjectofinterestService(opts ...option.RequestOption) (r ObjectofinterestService) {
-	r = ObjectofinterestService{}
+func NewObjectOfInterestService(opts ...option.RequestOption) (r ObjectOfInterestService) {
+	r = ObjectOfInterestService{}
 	r.Options = opts
 	return
 }
@@ -42,7 +42,7 @@ func NewObjectofinterestService(opts ...option.RequestOption) (r Objectofinteres
 // Service operation to take a single ObjectOfInterest as a POST body and ingest
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *ObjectofinterestService) New(ctx context.Context, body ObjectofinterestNewParams, opts ...option.RequestOption) (err error) {
+func (r *ObjectOfInterestService) New(ctx context.Context, body ObjectOfInterestNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/objectofinterest"
@@ -53,7 +53,7 @@ func (r *ObjectofinterestService) New(ctx context.Context, body Objectofinterest
 // Service operation to update a single ObjectOfInterest. A specific role is
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
-func (r *ObjectofinterestService) Update(ctx context.Context, id string, body ObjectofinterestUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *ObjectOfInterestService) Update(ctx context.Context, id string, body ObjectOfInterestUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -69,7 +69,7 @@ func (r *ObjectofinterestService) Update(ctx context.Context, id string, body Ob
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *ObjectofinterestService) List(ctx context.Context, query ObjectofinterestListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[ObjectofinterestListResponse], err error) {
+func (r *ObjectOfInterestService) List(ctx context.Context, query ObjectOfInterestListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[ObjectOfInterestListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -90,7 +90,7 @@ func (r *ObjectofinterestService) List(ctx context.Context, query Objectofintere
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *ObjectofinterestService) ListAutoPaging(ctx context.Context, query ObjectofinterestListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[ObjectofinterestListResponse] {
+func (r *ObjectOfInterestService) ListAutoPaging(ctx context.Context, query ObjectOfInterestListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[ObjectOfInterestListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -99,7 +99,7 @@ func (r *ObjectofinterestService) ListAutoPaging(ctx context.Context, query Obje
 // payload, including supporting data such as transponders and channels, etc. A
 // specific role is required to perform this service operation. Please contact the
 // UDL team for assistance.
-func (r *ObjectofinterestService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *ObjectOfInterestService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -116,7 +116,7 @@ func (r *ObjectofinterestService) Delete(ctx context.Context, id string, opts ..
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *ObjectofinterestService) Count(ctx context.Context, query ObjectofinterestCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *ObjectOfInterestService) Count(ctx context.Context, query ObjectOfInterestCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/objectofinterest/count"
@@ -126,7 +126,7 @@ func (r *ObjectofinterestService) Count(ctx context.Context, query Objectofinter
 
 // Service operation to get a single ObjectOfInterest record by its unique ID
 // passed as a path parameter.
-func (r *ObjectofinterestService) Get(ctx context.Context, id string, query ObjectofinterestGetParams, opts ...option.RequestOption) (res *ObjectofinterestGetResponse, err error) {
+func (r *ObjectOfInterestService) Get(ctx context.Context, id string, query ObjectOfInterestGetParams, opts ...option.RequestOption) (res *ObjectOfInterestGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -139,7 +139,7 @@ func (r *ObjectofinterestService) Get(ctx context.Context, id string, query Obje
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *ObjectofinterestService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *ObjectOfInterestService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/objectofinterest/queryhelp"
@@ -155,7 +155,7 @@ func (r *ObjectofinterestService) Queryhelp(ctx context.Context, opts ...option.
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *ObjectofinterestService) Tuple(ctx context.Context, query ObjectofinterestTupleParams, opts ...option.RequestOption) (res *[]ObjectofinterestTupleResponse, err error) {
+func (r *ObjectOfInterestService) Tuple(ctx context.Context, query ObjectOfInterestTupleParams, opts ...option.RequestOption) (res *[]ObjectOfInterestTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/objectofinterest/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -164,7 +164,7 @@ func (r *ObjectofinterestService) Tuple(ctx context.Context, query Objectofinter
 
 // OnOrbit objects of interest, which include information about the last known
 // state of the object.
-type ObjectofinterestListResponse struct {
+type ObjectOfInterestListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -183,7 +183,7 @@ type ObjectofinterestListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode ObjectofinterestListResponseDataMode `json:"dataMode,required"`
+	DataMode ObjectOfInterestListResponseDataMode `json:"dataMode,required"`
 	// UUID of the parent Onorbit record.
 	IDOnOrbit string `json:"idOnOrbit,required"`
 	// Sensor tasking start time for object of interest.
@@ -353,8 +353,8 @@ type ObjectofinterestListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r ObjectofinterestListResponse) RawJSON() string { return r.JSON.raw }
-func (r *ObjectofinterestListResponse) UnmarshalJSON(data []byte) error {
+func (r ObjectOfInterestListResponse) RawJSON() string { return r.JSON.raw }
+func (r *ObjectOfInterestListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -372,18 +372,18 @@ func (r *ObjectofinterestListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type ObjectofinterestListResponseDataMode string
+type ObjectOfInterestListResponseDataMode string
 
 const (
-	ObjectofinterestListResponseDataModeReal      ObjectofinterestListResponseDataMode = "REAL"
-	ObjectofinterestListResponseDataModeTest      ObjectofinterestListResponseDataMode = "TEST"
-	ObjectofinterestListResponseDataModeSimulated ObjectofinterestListResponseDataMode = "SIMULATED"
-	ObjectofinterestListResponseDataModeExercise  ObjectofinterestListResponseDataMode = "EXERCISE"
+	ObjectOfInterestListResponseDataModeReal      ObjectOfInterestListResponseDataMode = "REAL"
+	ObjectOfInterestListResponseDataModeTest      ObjectOfInterestListResponseDataMode = "TEST"
+	ObjectOfInterestListResponseDataModeSimulated ObjectOfInterestListResponseDataMode = "SIMULATED"
+	ObjectOfInterestListResponseDataModeExercise  ObjectOfInterestListResponseDataMode = "EXERCISE"
 )
 
 // OnOrbit objects of interest, which include information about the last known
 // state of the object.
-type ObjectofinterestGetResponse struct {
+type ObjectOfInterestGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -402,7 +402,7 @@ type ObjectofinterestGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode ObjectofinterestGetResponseDataMode `json:"dataMode,required"`
+	DataMode ObjectOfInterestGetResponseDataMode `json:"dataMode,required"`
 	// UUID of the parent Onorbit record.
 	IDOnOrbit string `json:"idOnOrbit,required"`
 	// Sensor tasking start time for object of interest.
@@ -453,7 +453,7 @@ type ObjectofinterestGetResponse struct {
 	// Last reported observation time in ISO 8601 UTC time, with microsecond precision.
 	LastObTime time.Time `json:"lastObTime" format:"date-time"`
 	// Manifolds associated with this object of interest.
-	Manifolds []ObjectofinterestGetResponseManifold `json:"manifolds"`
+	Manifolds []ObjectOfInterestGetResponseManifold `json:"manifolds"`
 	// Last reported meanAnomaly. Mean anomoly is where the satellite is in its orbital
 	// path. The mean anomaly ranges from 0 to 360 degrees. The mean anomaly is
 	// referenced to the perigee. If the satellite were at the perigee, the mean
@@ -589,8 +589,8 @@ type ObjectofinterestGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r ObjectofinterestGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *ObjectofinterestGetResponse) UnmarshalJSON(data []byte) error {
+func (r ObjectOfInterestGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *ObjectOfInterestGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -608,18 +608,18 @@ func (r *ObjectofinterestGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type ObjectofinterestGetResponseDataMode string
+type ObjectOfInterestGetResponseDataMode string
 
 const (
-	ObjectofinterestGetResponseDataModeReal      ObjectofinterestGetResponseDataMode = "REAL"
-	ObjectofinterestGetResponseDataModeTest      ObjectofinterestGetResponseDataMode = "TEST"
-	ObjectofinterestGetResponseDataModeSimulated ObjectofinterestGetResponseDataMode = "SIMULATED"
-	ObjectofinterestGetResponseDataModeExercise  ObjectofinterestGetResponseDataMode = "EXERCISE"
+	ObjectOfInterestGetResponseDataModeReal      ObjectOfInterestGetResponseDataMode = "REAL"
+	ObjectOfInterestGetResponseDataModeTest      ObjectOfInterestGetResponseDataMode = "TEST"
+	ObjectOfInterestGetResponseDataModeSimulated ObjectOfInterestGetResponseDataMode = "SIMULATED"
+	ObjectOfInterestGetResponseDataModeExercise  ObjectOfInterestGetResponseDataMode = "EXERCISE"
 )
 
 // A manifold represents a set of possible/theoretical orbits for an object of
 // interest based on a delta V and delta T.
-type ObjectofinterestGetResponseManifold struct {
+type ObjectOfInterestGetResponseManifold struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -699,14 +699,14 @@ type ObjectofinterestGetResponseManifold struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r ObjectofinterestGetResponseManifold) RawJSON() string { return r.JSON.raw }
-func (r *ObjectofinterestGetResponseManifold) UnmarshalJSON(data []byte) error {
+func (r ObjectOfInterestGetResponseManifold) RawJSON() string { return r.JSON.raw }
+func (r *ObjectOfInterestGetResponseManifold) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // OnOrbit objects of interest, which include information about the last known
 // state of the object.
-type ObjectofinterestTupleResponse struct {
+type ObjectOfInterestTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -725,7 +725,7 @@ type ObjectofinterestTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode ObjectofinterestTupleResponseDataMode `json:"dataMode,required"`
+	DataMode ObjectOfInterestTupleResponseDataMode `json:"dataMode,required"`
 	// UUID of the parent Onorbit record.
 	IDOnOrbit string `json:"idOnOrbit,required"`
 	// Sensor tasking start time for object of interest.
@@ -776,7 +776,7 @@ type ObjectofinterestTupleResponse struct {
 	// Last reported observation time in ISO 8601 UTC time, with microsecond precision.
 	LastObTime time.Time `json:"lastObTime" format:"date-time"`
 	// Manifolds associated with this object of interest.
-	Manifolds []ObjectofinterestTupleResponseManifold `json:"manifolds"`
+	Manifolds []ObjectOfInterestTupleResponseManifold `json:"manifolds"`
 	// Last reported meanAnomaly. Mean anomoly is where the satellite is in its orbital
 	// path. The mean anomaly ranges from 0 to 360 degrees. The mean anomaly is
 	// referenced to the perigee. If the satellite were at the perigee, the mean
@@ -912,8 +912,8 @@ type ObjectofinterestTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r ObjectofinterestTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *ObjectofinterestTupleResponse) UnmarshalJSON(data []byte) error {
+func (r ObjectOfInterestTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *ObjectOfInterestTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -931,18 +931,18 @@ func (r *ObjectofinterestTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type ObjectofinterestTupleResponseDataMode string
+type ObjectOfInterestTupleResponseDataMode string
 
 const (
-	ObjectofinterestTupleResponseDataModeReal      ObjectofinterestTupleResponseDataMode = "REAL"
-	ObjectofinterestTupleResponseDataModeTest      ObjectofinterestTupleResponseDataMode = "TEST"
-	ObjectofinterestTupleResponseDataModeSimulated ObjectofinterestTupleResponseDataMode = "SIMULATED"
-	ObjectofinterestTupleResponseDataModeExercise  ObjectofinterestTupleResponseDataMode = "EXERCISE"
+	ObjectOfInterestTupleResponseDataModeReal      ObjectOfInterestTupleResponseDataMode = "REAL"
+	ObjectOfInterestTupleResponseDataModeTest      ObjectOfInterestTupleResponseDataMode = "TEST"
+	ObjectOfInterestTupleResponseDataModeSimulated ObjectOfInterestTupleResponseDataMode = "SIMULATED"
+	ObjectOfInterestTupleResponseDataModeExercise  ObjectOfInterestTupleResponseDataMode = "EXERCISE"
 )
 
 // A manifold represents a set of possible/theoretical orbits for an object of
 // interest based on a delta V and delta T.
-type ObjectofinterestTupleResponseManifold struct {
+type ObjectOfInterestTupleResponseManifold struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1022,12 +1022,12 @@ type ObjectofinterestTupleResponseManifold struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r ObjectofinterestTupleResponseManifold) RawJSON() string { return r.JSON.raw }
-func (r *ObjectofinterestTupleResponseManifold) UnmarshalJSON(data []byte) error {
+func (r ObjectOfInterestTupleResponseManifold) RawJSON() string { return r.JSON.raw }
+func (r *ObjectOfInterestTupleResponseManifold) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type ObjectofinterestNewParams struct {
+type ObjectOfInterestNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1046,7 +1046,7 @@ type ObjectofinterestNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode ObjectofinterestNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode ObjectOfInterestNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// UUID of the parent Onorbit record.
 	IDOnOrbit string `json:"idOnOrbit,required"`
 	// Sensor tasking start time for object of interest.
@@ -1164,10 +1164,10 @@ type ObjectofinterestNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObjectofinterestNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f ObjectOfInterestNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r ObjectofinterestNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow ObjectofinterestNewParams
+func (r ObjectOfInterestNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow ObjectOfInterestNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -1185,16 +1185,16 @@ func (r ObjectofinterestNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type ObjectofinterestNewParamsDataMode string
+type ObjectOfInterestNewParamsDataMode string
 
 const (
-	ObjectofinterestNewParamsDataModeReal      ObjectofinterestNewParamsDataMode = "REAL"
-	ObjectofinterestNewParamsDataModeTest      ObjectofinterestNewParamsDataMode = "TEST"
-	ObjectofinterestNewParamsDataModeSimulated ObjectofinterestNewParamsDataMode = "SIMULATED"
-	ObjectofinterestNewParamsDataModeExercise  ObjectofinterestNewParamsDataMode = "EXERCISE"
+	ObjectOfInterestNewParamsDataModeReal      ObjectOfInterestNewParamsDataMode = "REAL"
+	ObjectOfInterestNewParamsDataModeTest      ObjectOfInterestNewParamsDataMode = "TEST"
+	ObjectOfInterestNewParamsDataModeSimulated ObjectOfInterestNewParamsDataMode = "SIMULATED"
+	ObjectOfInterestNewParamsDataModeExercise  ObjectOfInterestNewParamsDataMode = "EXERCISE"
 )
 
-type ObjectofinterestUpdateParams struct {
+type ObjectOfInterestUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1213,7 +1213,7 @@ type ObjectofinterestUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode ObjectofinterestUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode ObjectOfInterestUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// UUID of the parent Onorbit record.
 	IDOnOrbit string `json:"idOnOrbit,required"`
 	// Sensor tasking start time for object of interest.
@@ -1331,10 +1331,10 @@ type ObjectofinterestUpdateParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObjectofinterestUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f ObjectOfInterestUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r ObjectofinterestUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow ObjectofinterestUpdateParams
+func (r ObjectOfInterestUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow ObjectOfInterestUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -1352,16 +1352,16 @@ func (r ObjectofinterestUpdateParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type ObjectofinterestUpdateParamsDataMode string
+type ObjectOfInterestUpdateParamsDataMode string
 
 const (
-	ObjectofinterestUpdateParamsDataModeReal      ObjectofinterestUpdateParamsDataMode = "REAL"
-	ObjectofinterestUpdateParamsDataModeTest      ObjectofinterestUpdateParamsDataMode = "TEST"
-	ObjectofinterestUpdateParamsDataModeSimulated ObjectofinterestUpdateParamsDataMode = "SIMULATED"
-	ObjectofinterestUpdateParamsDataModeExercise  ObjectofinterestUpdateParamsDataMode = "EXERCISE"
+	ObjectOfInterestUpdateParamsDataModeReal      ObjectOfInterestUpdateParamsDataMode = "REAL"
+	ObjectOfInterestUpdateParamsDataModeTest      ObjectOfInterestUpdateParamsDataMode = "TEST"
+	ObjectOfInterestUpdateParamsDataModeSimulated ObjectOfInterestUpdateParamsDataMode = "SIMULATED"
+	ObjectOfInterestUpdateParamsDataModeExercise  ObjectOfInterestUpdateParamsDataMode = "EXERCISE"
 )
 
-type ObjectofinterestListParams struct {
+type ObjectOfInterestListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1369,18 +1369,18 @@ type ObjectofinterestListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObjectofinterestListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f ObjectOfInterestListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [ObjectofinterestListParams]'s query parameters as
+// URLQuery serializes [ObjectOfInterestListParams]'s query parameters as
 // `url.Values`.
-func (r ObjectofinterestListParams) URLQuery() (v url.Values, err error) {
+func (r ObjectOfInterestListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type ObjectofinterestCountParams struct {
+type ObjectOfInterestCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1388,18 +1388,18 @@ type ObjectofinterestCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObjectofinterestCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f ObjectOfInterestCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [ObjectofinterestCountParams]'s query parameters as
+// URLQuery serializes [ObjectOfInterestCountParams]'s query parameters as
 // `url.Values`.
-func (r ObjectofinterestCountParams) URLQuery() (v url.Values, err error) {
+func (r ObjectOfInterestCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type ObjectofinterestGetParams struct {
+type ObjectOfInterestGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1407,18 +1407,18 @@ type ObjectofinterestGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObjectofinterestGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f ObjectOfInterestGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [ObjectofinterestGetParams]'s query parameters as
+// URLQuery serializes [ObjectOfInterestGetParams]'s query parameters as
 // `url.Values`.
-func (r ObjectofinterestGetParams) URLQuery() (v url.Values, err error) {
+func (r ObjectOfInterestGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type ObjectofinterestTupleParams struct {
+type ObjectOfInterestTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -1431,11 +1431,11 @@ type ObjectofinterestTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObjectofinterestTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f ObjectOfInterestTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [ObjectofinterestTupleParams]'s query parameters as
+// URLQuery serializes [ObjectOfInterestTupleParams]'s query parameters as
 // `url.Values`.
-func (r ObjectofinterestTupleParams) URLQuery() (v url.Values, err error) {
+func (r ObjectOfInterestTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

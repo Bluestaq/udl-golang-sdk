@@ -14,21 +14,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
 )
 
-// StatevectorCurrentService contains methods and other services that help with
+// StateVectorCurrentService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewStatevectorCurrentService] method instead.
-type StatevectorCurrentService struct {
+// the [NewStateVectorCurrentService] method instead.
+type StateVectorCurrentService struct {
 	Options []option.RequestOption
 }
 
-// NewStatevectorCurrentService generates a new service that applies the given
+// NewStateVectorCurrentService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewStatevectorCurrentService(opts ...option.RequestOption) (r StatevectorCurrentService) {
-	r = StatevectorCurrentService{}
+func NewStateVectorCurrentService(opts ...option.RequestOption) (r StateVectorCurrentService) {
+	r = StateVectorCurrentService{}
 	r.Options = opts
 	return
 }
@@ -43,7 +43,7 @@ func NewStatevectorCurrentService(opts ...option.RequestOption) (r StatevectorCu
 // information, or explicitly specify the desired source. See the queryhelp
 // operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required
 // query parameter information.
-func (r *StatevectorCurrentService) List(ctx context.Context, query StatevectorCurrentListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[StateVectorAbridged], err error) {
+func (r *StateVectorCurrentService) List(ctx context.Context, query StateVectorCurrentListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[StateVectorAbridged], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -70,7 +70,7 @@ func (r *StatevectorCurrentService) List(ctx context.Context, query StatevectorC
 // information, or explicitly specify the desired source. See the queryhelp
 // operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required
 // query parameter information.
-func (r *StatevectorCurrentService) ListAutoPaging(ctx context.Context, query StatevectorCurrentListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[StateVectorAbridged] {
+func (r *StateVectorCurrentService) ListAutoPaging(ctx context.Context, query StateVectorCurrentListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[StateVectorAbridged] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -84,14 +84,14 @@ func (r *StatevectorCurrentService) ListAutoPaging(ctx context.Context, query St
 // information, or explicitly specify the desired source. See the queryhelp
 // operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required
 // query parameter information.
-func (r *StatevectorCurrentService) Tuple(ctx context.Context, query StatevectorCurrentTupleParams, opts ...option.RequestOption) (res *[]StateVectorFull, err error) {
+func (r *StateVectorCurrentService) Tuple(ctx context.Context, query StateVectorCurrentTupleParams, opts ...option.RequestOption) (res *[]StateVectorFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/statevector/current/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
 }
 
-type StatevectorCurrentListParams struct {
+type StateVectorCurrentListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -99,18 +99,18 @@ type StatevectorCurrentListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatevectorCurrentListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f StateVectorCurrentListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [StatevectorCurrentListParams]'s query parameters as
+// URLQuery serializes [StateVectorCurrentListParams]'s query parameters as
 // `url.Values`.
-func (r StatevectorCurrentListParams) URLQuery() (v url.Values, err error) {
+func (r StateVectorCurrentListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type StatevectorCurrentTupleParams struct {
+type StateVectorCurrentTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -123,11 +123,11 @@ type StatevectorCurrentTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatevectorCurrentTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f StateVectorCurrentTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [StatevectorCurrentTupleParams]'s query parameters as
+// URLQuery serializes [StateVectorCurrentTupleParams]'s query parameters as
 // `url.Values`.
-func (r StatevectorCurrentTupleParams) URLQuery() (v url.Values, err error) {
+func (r StateVectorCurrentTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

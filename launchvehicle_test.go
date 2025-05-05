@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestLaunchvehicleNewWithOptionalParams(t *testing.T) {
+func TestLaunchVehicleNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,9 +26,9 @@ func TestLaunchvehicleNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchvehicle.New(context.TODO(), unifieddatalibrary.LaunchvehicleNewParams{
+	err := client.LaunchVehicle.New(context.TODO(), unifieddatalibrary.LaunchVehicleNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.LaunchvehicleNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.LaunchVehicleNewParamsDataModeTest,
 		Name:                  "Example-name",
 		Source:                "Bluestaq",
 		ID:                    unifieddatalibrary.String("LAUNCHVEHICLE-ID"),
@@ -44,7 +44,7 @@ func TestLaunchvehicleNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchvehicleUpdateWithOptionalParams(t *testing.T) {
+func TestLaunchVehicleUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -57,12 +57,12 @@ func TestLaunchvehicleUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchvehicle.Update(
+	err := client.LaunchVehicle.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.LaunchvehicleUpdateParams{
+		unifieddatalibrary.LaunchVehicleUpdateParams{
 			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.LaunchvehicleUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.LaunchVehicleUpdateParamsDataModeTest,
 			Name:                  "Example-name",
 			Source:                "Bluestaq",
 			ID:                    unifieddatalibrary.String("LAUNCHVEHICLE-ID"),
@@ -79,7 +79,7 @@ func TestLaunchvehicleUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchvehicleListWithOptionalParams(t *testing.T) {
+func TestLaunchVehicleListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -92,7 +92,7 @@ func TestLaunchvehicleListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchvehicle.List(context.TODO(), unifieddatalibrary.LaunchvehicleListParams{
+	_, err := client.LaunchVehicle.List(context.TODO(), unifieddatalibrary.LaunchVehicleListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -105,7 +105,7 @@ func TestLaunchvehicleListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchvehicleDelete(t *testing.T) {
+func TestLaunchVehicleDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -118,7 +118,7 @@ func TestLaunchvehicleDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchvehicle.Delete(context.TODO(), "id")
+	err := client.LaunchVehicle.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -128,7 +128,7 @@ func TestLaunchvehicleDelete(t *testing.T) {
 	}
 }
 
-func TestLaunchvehicleCountWithOptionalParams(t *testing.T) {
+func TestLaunchVehicleCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -141,7 +141,7 @@ func TestLaunchvehicleCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchvehicle.Count(context.TODO(), unifieddatalibrary.LaunchvehicleCountParams{
+	_, err := client.LaunchVehicle.Count(context.TODO(), unifieddatalibrary.LaunchVehicleCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -154,7 +154,7 @@ func TestLaunchvehicleCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchvehicleGetWithOptionalParams(t *testing.T) {
+func TestLaunchVehicleGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -167,10 +167,10 @@ func TestLaunchvehicleGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchvehicle.Get(
+	_, err := client.LaunchVehicle.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.LaunchvehicleGetParams{
+		unifieddatalibrary.LaunchVehicleGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -184,7 +184,7 @@ func TestLaunchvehicleGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchvehicleQueryhelp(t *testing.T) {
+func TestLaunchVehicleQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -197,7 +197,7 @@ func TestLaunchvehicleQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchvehicle.Queryhelp(context.TODO())
+	err := client.LaunchVehicle.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -207,7 +207,7 @@ func TestLaunchvehicleQueryhelp(t *testing.T) {
 	}
 }
 
-func TestLaunchvehicleTupleWithOptionalParams(t *testing.T) {
+func TestLaunchVehicleTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -220,7 +220,7 @@ func TestLaunchvehicleTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchvehicle.Tuple(context.TODO(), unifieddatalibrary.LaunchvehicleTupleParams{
+	_, err := client.LaunchVehicle.Tuple(context.TODO(), unifieddatalibrary.LaunchVehicleTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

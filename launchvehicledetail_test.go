@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestLaunchvehicledetailNewWithOptionalParams(t *testing.T) {
+func TestLaunchVehicleDetailNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,9 +26,9 @@ func TestLaunchvehicledetailNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchvehicledetails.New(context.TODO(), unifieddatalibrary.LaunchvehicledetailNewParams{
+	err := client.LaunchVehicleDetails.New(context.TODO(), unifieddatalibrary.LaunchVehicleDetailNewParams{
 		ClassificationMarking:               "U",
-		DataMode:                            unifieddatalibrary.LaunchvehicledetailNewParamsDataModeTest,
+		DataMode:                            unifieddatalibrary.LaunchVehicleDetailNewParamsDataModeTest,
 		IDLaunchVehicle:                     "LAUNCHVEHICLE-ID",
 		Source:                              "Bluestaq",
 		ID:                                  unifieddatalibrary.String("LAUNCHVEHICLEDETAILS-ID"),
@@ -89,7 +89,7 @@ func TestLaunchvehicledetailNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchvehicledetailUpdateWithOptionalParams(t *testing.T) {
+func TestLaunchVehicleDetailUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -102,12 +102,12 @@ func TestLaunchvehicledetailUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchvehicledetails.Update(
+	err := client.LaunchVehicleDetails.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.LaunchvehicledetailUpdateParams{
+		unifieddatalibrary.LaunchVehicleDetailUpdateParams{
 			ClassificationMarking:               "U",
-			DataMode:                            unifieddatalibrary.LaunchvehicledetailUpdateParamsDataModeTest,
+			DataMode:                            unifieddatalibrary.LaunchVehicleDetailUpdateParamsDataModeTest,
 			IDLaunchVehicle:                     "LAUNCHVEHICLE-ID",
 			Source:                              "Bluestaq",
 			ID:                                  unifieddatalibrary.String("LAUNCHVEHICLEDETAILS-ID"),
@@ -169,7 +169,7 @@ func TestLaunchvehicledetailUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchvehicledetailListWithOptionalParams(t *testing.T) {
+func TestLaunchVehicleDetailListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -182,7 +182,7 @@ func TestLaunchvehicledetailListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchvehicledetails.List(context.TODO(), unifieddatalibrary.LaunchvehicledetailListParams{
+	_, err := client.LaunchVehicleDetails.List(context.TODO(), unifieddatalibrary.LaunchVehicleDetailListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -195,7 +195,7 @@ func TestLaunchvehicledetailListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchvehicledetailDelete(t *testing.T) {
+func TestLaunchVehicleDetailDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -208,7 +208,7 @@ func TestLaunchvehicledetailDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchvehicledetails.Delete(context.TODO(), "id")
+	err := client.LaunchVehicleDetails.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -218,7 +218,7 @@ func TestLaunchvehicledetailDelete(t *testing.T) {
 	}
 }
 
-func TestLaunchvehicledetailGetWithOptionalParams(t *testing.T) {
+func TestLaunchVehicleDetailGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -231,10 +231,10 @@ func TestLaunchvehicledetailGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchvehicledetails.Get(
+	_, err := client.LaunchVehicleDetails.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.LaunchvehicledetailGetParams{
+		unifieddatalibrary.LaunchVehicleDetailGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},

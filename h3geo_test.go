@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestH3geoNewWithOptionalParams(t *testing.T) {
+func TestH3GeoNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,8 +27,8 @@ func TestH3geoNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.H3geo.New(context.TODO(), unifieddatalibrary.H3geoNewParams{
-		Cells: []unifieddatalibrary.H3geoNewParamsCell{{
+	err := client.H3Geo.New(context.TODO(), unifieddatalibrary.H3GeoNewParams{
+		Cells: []unifieddatalibrary.H3GeoNewParamsCell{{
 			CellID:                "830b90fffffffff",
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
@@ -49,7 +49,7 @@ func TestH3geoNewWithOptionalParams(t *testing.T) {
 			RpmSigma:              unifieddatalibrary.Float(1.23),
 		}},
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.H3geoNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.H3GeoNewParamsDataModeTest,
 		NumCells:              1,
 		Source:                "Bluestaq",
 		StartTime:             time.Now(),
@@ -70,7 +70,7 @@ func TestH3geoNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestH3geoListWithOptionalParams(t *testing.T) {
+func TestH3GeoListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -83,7 +83,7 @@ func TestH3geoListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.H3geo.List(context.TODO(), unifieddatalibrary.H3geoListParams{
+	_, err := client.H3Geo.List(context.TODO(), unifieddatalibrary.H3GeoListParams{
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -97,7 +97,7 @@ func TestH3geoListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestH3geoCountWithOptionalParams(t *testing.T) {
+func TestH3GeoCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -110,7 +110,7 @@ func TestH3geoCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.H3geo.Count(context.TODO(), unifieddatalibrary.H3geoCountParams{
+	_, err := client.H3Geo.Count(context.TODO(), unifieddatalibrary.H3GeoCountParams{
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -124,7 +124,7 @@ func TestH3geoCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestH3geoGetWithOptionalParams(t *testing.T) {
+func TestH3GeoGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -137,10 +137,10 @@ func TestH3geoGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.H3geo.Get(
+	_, err := client.H3Geo.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.H3geoGetParams{
+		unifieddatalibrary.H3GeoGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -154,7 +154,7 @@ func TestH3geoGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestH3geoQueryhelp(t *testing.T) {
+func TestH3GeoQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -167,7 +167,7 @@ func TestH3geoQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.H3geo.Queryhelp(context.TODO())
+	err := client.H3Geo.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -177,7 +177,7 @@ func TestH3geoQueryhelp(t *testing.T) {
 	}
 }
 
-func TestH3geoTupleWithOptionalParams(t *testing.T) {
+func TestH3GeoTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -190,7 +190,7 @@ func TestH3geoTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.H3geo.Tuple(context.TODO(), unifieddatalibrary.H3geoTupleParams{
+	_, err := client.H3Geo.Tuple(context.TODO(), unifieddatalibrary.H3GeoTupleParams{
 		Columns:     "columns",
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),

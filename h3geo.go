@@ -19,24 +19,24 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// H3geoService contains methods and other services that help with interacting with
+// H3GeoService contains methods and other services that help with interacting with
 // the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewH3geoService] method instead.
-type H3geoService struct {
+// the [NewH3GeoService] method instead.
+type H3GeoService struct {
 	Options []option.RequestOption
-	History H3geoHistoryService
+	History H3GeoHistoryService
 }
 
-// NewH3geoService generates a new service that applies the given options to each
+// NewH3GeoService generates a new service that applies the given options to each
 // request. These options are applied after the parent client's options (if there
 // is one), and before any request-specific options.
-func NewH3geoService(opts ...option.RequestOption) (r H3geoService) {
-	r = H3geoService{}
+func NewH3GeoService(opts ...option.RequestOption) (r H3GeoService) {
+	r = H3GeoService{}
 	r.Options = opts
-	r.History = NewH3geoHistoryService(opts...)
+	r.History = NewH3GeoHistoryService(opts...)
 	return
 }
 
@@ -46,7 +46,7 @@ func NewH3geoService(opts ...option.RequestOption) (r H3geoService) {
 // for automated feeds into UDL. Data providers should contact the UDL team for
 // specific role assignments and for instructions on setting up a permanent feed
 // through an alternate mechanism.
-func (r *H3geoService) New(ctx context.Context, body H3geoNewParams, opts ...option.RequestOption) (err error) {
+func (r *H3GeoService) New(ctx context.Context, body H3GeoNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/h3geo"
@@ -58,7 +58,7 @@ func (r *H3geoService) New(ctx context.Context, body H3geoNewParams, opts ...opt
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *H3geoService) List(ctx context.Context, query H3geoListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[H3geoListResponse], err error) {
+func (r *H3GeoService) List(ctx context.Context, query H3GeoListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[H3GeoListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -79,7 +79,7 @@ func (r *H3geoService) List(ctx context.Context, query H3geoListParams, opts ...
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *H3geoService) ListAutoPaging(ctx context.Context, query H3geoListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[H3geoListResponse] {
+func (r *H3GeoService) ListAutoPaging(ctx context.Context, query H3GeoListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[H3GeoListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -88,7 +88,7 @@ func (r *H3geoService) ListAutoPaging(ctx context.Context, query H3geoListParams
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *H3geoService) Count(ctx context.Context, query H3geoCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *H3GeoService) Count(ctx context.Context, query H3GeoCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/h3geo/count"
@@ -98,7 +98,7 @@ func (r *H3geoService) Count(ctx context.Context, query H3geoCountParams, opts .
 
 // Service operation to get a single RF geolocation by its unique ID passed as a
 // path parameter.
-func (r *H3geoService) Get(ctx context.Context, id string, query H3geoGetParams, opts ...option.RequestOption) (res *H3geoGetResponse, err error) {
+func (r *H3GeoService) Get(ctx context.Context, id string, query H3GeoGetParams, opts ...option.RequestOption) (res *H3GeoGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -111,7 +111,7 @@ func (r *H3geoService) Get(ctx context.Context, id string, query H3geoGetParams,
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *H3geoService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *H3GeoService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/h3geo/queryhelp"
@@ -127,7 +127,7 @@ func (r *H3geoService) Queryhelp(ctx context.Context, opts ...option.RequestOpti
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *H3geoService) Tuple(ctx context.Context, query H3geoTupleParams, opts ...option.RequestOption) (res *[]H3geoTupleResponse, err error) {
+func (r *H3GeoService) Tuple(ctx context.Context, query H3GeoTupleParams, opts ...option.RequestOption) (res *[]H3GeoTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/h3geo/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -137,7 +137,7 @@ func (r *H3geoService) Tuple(ctx context.Context, query H3geoTupleParams, opts .
 // H3 Geospatial Binning is a discrete global grid system for indexing geographies
 // into a hexagonal grid. The H3 schema is a collection of hexagonal cells that
 // contain data for producing geospatial maps over a specified time span.
-type H3geoListResponse struct {
+type H3GeoListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -156,7 +156,7 @@ type H3geoListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode H3geoListResponseDataMode `json:"dataMode,required"`
+	DataMode H3GeoListResponseDataMode `json:"dataMode,required"`
 	// The number of cells associated with this H3 Geo data set. At this time, UDL
 	// supports up to 50,000 cells.
 	NumCells int64 `json:"numCells,required"`
@@ -217,8 +217,8 @@ type H3geoListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r H3geoListResponse) RawJSON() string { return r.JSON.raw }
-func (r *H3geoListResponse) UnmarshalJSON(data []byte) error {
+func (r H3GeoListResponse) RawJSON() string { return r.JSON.raw }
+func (r *H3GeoListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -236,22 +236,22 @@ func (r *H3geoListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type H3geoListResponseDataMode string
+type H3GeoListResponseDataMode string
 
 const (
-	H3geoListResponseDataModeReal      H3geoListResponseDataMode = "REAL"
-	H3geoListResponseDataModeTest      H3geoListResponseDataMode = "TEST"
-	H3geoListResponseDataModeSimulated H3geoListResponseDataMode = "SIMULATED"
-	H3geoListResponseDataModeExercise  H3geoListResponseDataMode = "EXERCISE"
+	H3GeoListResponseDataModeReal      H3GeoListResponseDataMode = "REAL"
+	H3GeoListResponseDataModeTest      H3GeoListResponseDataMode = "TEST"
+	H3GeoListResponseDataModeSimulated H3GeoListResponseDataMode = "SIMULATED"
+	H3GeoListResponseDataModeExercise  H3GeoListResponseDataMode = "EXERCISE"
 )
 
 // H3 Geospatial Binning is a discrete global grid system for indexing geographies
 // into a hexagonal grid. The H3 schema is a collection of hexagonal cells that
 // contain data for producing geospatial maps over a specified time span.
-type H3geoGetResponse struct {
+type H3GeoGetResponse struct {
 	// The collection of hex cells contained in this H3 data set. The number of cells
 	// is a function of the specified resolution.
-	Cells []H3geoGetResponseCell `json:"cells,required"`
+	Cells []H3GeoGetResponseCell `json:"cells,required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -270,7 +270,7 @@ type H3geoGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode H3geoGetResponseDataMode `json:"dataMode,required"`
+	DataMode H3GeoGetResponseDataMode `json:"dataMode,required"`
 	// The number of cells associated with this H3 Geo data set. At this time, UDL
 	// supports up to 50,000 cells.
 	NumCells int64 `json:"numCells,required"`
@@ -339,14 +339,14 @@ type H3geoGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r H3geoGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *H3geoGetResponse) UnmarshalJSON(data []byte) error {
+func (r H3GeoGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *H3GeoGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of a hex cell array containing data for a set of
 // observations.
-type H3geoGetResponseCell struct {
+type H3GeoGetResponseCell struct {
 	// The H3 index represented as a 16 character hexadecimal string.
 	CellID string `json:"cellId,required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -455,8 +455,8 @@ type H3geoGetResponseCell struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r H3geoGetResponseCell) RawJSON() string { return r.JSON.raw }
-func (r *H3geoGetResponseCell) UnmarshalJSON(data []byte) error {
+func (r H3GeoGetResponseCell) RawJSON() string { return r.JSON.raw }
+func (r *H3GeoGetResponseCell) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -474,22 +474,22 @@ func (r *H3geoGetResponseCell) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type H3geoGetResponseDataMode string
+type H3GeoGetResponseDataMode string
 
 const (
-	H3geoGetResponseDataModeReal      H3geoGetResponseDataMode = "REAL"
-	H3geoGetResponseDataModeTest      H3geoGetResponseDataMode = "TEST"
-	H3geoGetResponseDataModeSimulated H3geoGetResponseDataMode = "SIMULATED"
-	H3geoGetResponseDataModeExercise  H3geoGetResponseDataMode = "EXERCISE"
+	H3GeoGetResponseDataModeReal      H3GeoGetResponseDataMode = "REAL"
+	H3GeoGetResponseDataModeTest      H3GeoGetResponseDataMode = "TEST"
+	H3GeoGetResponseDataModeSimulated H3GeoGetResponseDataMode = "SIMULATED"
+	H3GeoGetResponseDataModeExercise  H3GeoGetResponseDataMode = "EXERCISE"
 )
 
 // H3 Geospatial Binning is a discrete global grid system for indexing geographies
 // into a hexagonal grid. The H3 schema is a collection of hexagonal cells that
 // contain data for producing geospatial maps over a specified time span.
-type H3geoTupleResponse struct {
+type H3GeoTupleResponse struct {
 	// The collection of hex cells contained in this H3 data set. The number of cells
 	// is a function of the specified resolution.
-	Cells []H3geoTupleResponseCell `json:"cells,required"`
+	Cells []H3GeoTupleResponseCell `json:"cells,required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -508,7 +508,7 @@ type H3geoTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode H3geoTupleResponseDataMode `json:"dataMode,required"`
+	DataMode H3GeoTupleResponseDataMode `json:"dataMode,required"`
 	// The number of cells associated with this H3 Geo data set. At this time, UDL
 	// supports up to 50,000 cells.
 	NumCells int64 `json:"numCells,required"`
@@ -577,14 +577,14 @@ type H3geoTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r H3geoTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *H3geoTupleResponse) UnmarshalJSON(data []byte) error {
+func (r H3GeoTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *H3GeoTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of a hex cell array containing data for a set of
 // observations.
-type H3geoTupleResponseCell struct {
+type H3GeoTupleResponseCell struct {
 	// The H3 index represented as a 16 character hexadecimal string.
 	CellID string `json:"cellId,required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -693,8 +693,8 @@ type H3geoTupleResponseCell struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r H3geoTupleResponseCell) RawJSON() string { return r.JSON.raw }
-func (r *H3geoTupleResponseCell) UnmarshalJSON(data []byte) error {
+func (r H3GeoTupleResponseCell) RawJSON() string { return r.JSON.raw }
+func (r *H3GeoTupleResponseCell) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -712,19 +712,19 @@ func (r *H3geoTupleResponseCell) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type H3geoTupleResponseDataMode string
+type H3GeoTupleResponseDataMode string
 
 const (
-	H3geoTupleResponseDataModeReal      H3geoTupleResponseDataMode = "REAL"
-	H3geoTupleResponseDataModeTest      H3geoTupleResponseDataMode = "TEST"
-	H3geoTupleResponseDataModeSimulated H3geoTupleResponseDataMode = "SIMULATED"
-	H3geoTupleResponseDataModeExercise  H3geoTupleResponseDataMode = "EXERCISE"
+	H3GeoTupleResponseDataModeReal      H3GeoTupleResponseDataMode = "REAL"
+	H3GeoTupleResponseDataModeTest      H3GeoTupleResponseDataMode = "TEST"
+	H3GeoTupleResponseDataModeSimulated H3GeoTupleResponseDataMode = "SIMULATED"
+	H3GeoTupleResponseDataModeExercise  H3GeoTupleResponseDataMode = "EXERCISE"
 )
 
-type H3geoNewParams struct {
+type H3GeoNewParams struct {
 	// The collection of hex cells contained in this H3 data set. The number of cells
 	// is a function of the specified resolution.
-	Cells []H3geoNewParamsCell `json:"cells,omitzero,required"`
+	Cells []H3GeoNewParamsCell `json:"cells,omitzero,required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -743,7 +743,7 @@ type H3geoNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode H3geoNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode H3GeoNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// The number of cells associated with this H3 Geo data set. At this time, UDL
 	// supports up to 50,000 cells.
 	NumCells int64 `json:"numCells,required"`
@@ -779,10 +779,10 @@ type H3geoNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f H3geoNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f H3GeoNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r H3geoNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow H3geoNewParams
+func (r H3GeoNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow H3GeoNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -790,7 +790,7 @@ func (r H3geoNewParams) MarshalJSON() (data []byte, err error) {
 // observations.
 //
 // The properties CellID, ClassificationMarking, DataMode, Source are required.
-type H3geoNewParamsCell struct {
+type H3GeoNewParamsCell struct {
 	// The H3 index represented as a 16 character hexadecimal string.
 	CellID string `json:"cellId,required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -873,14 +873,14 @@ type H3geoNewParamsCell struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f H3geoNewParamsCell) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-func (r H3geoNewParamsCell) MarshalJSON() (data []byte, err error) {
-	type shadow H3geoNewParamsCell
+func (f H3GeoNewParamsCell) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r H3GeoNewParamsCell) MarshalJSON() (data []byte, err error) {
+	type shadow H3GeoNewParamsCell
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[H3geoNewParamsCell](
+	apijson.RegisterFieldValidator[H3GeoNewParamsCell](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
@@ -899,16 +899,16 @@ func init() {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type H3geoNewParamsDataMode string
+type H3GeoNewParamsDataMode string
 
 const (
-	H3geoNewParamsDataModeReal      H3geoNewParamsDataMode = "REAL"
-	H3geoNewParamsDataModeTest      H3geoNewParamsDataMode = "TEST"
-	H3geoNewParamsDataModeSimulated H3geoNewParamsDataMode = "SIMULATED"
-	H3geoNewParamsDataModeExercise  H3geoNewParamsDataMode = "EXERCISE"
+	H3GeoNewParamsDataModeReal      H3GeoNewParamsDataMode = "REAL"
+	H3GeoNewParamsDataModeTest      H3GeoNewParamsDataMode = "TEST"
+	H3GeoNewParamsDataModeSimulated H3GeoNewParamsDataMode = "SIMULATED"
+	H3GeoNewParamsDataModeExercise  H3GeoNewParamsDataMode = "EXERCISE"
 )
 
-type H3geoListParams struct {
+type H3GeoListParams struct {
 	// Start time for this H3 Geo data set in ISO 8601 UTC with millisecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
@@ -919,17 +919,17 @@ type H3geoListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f H3geoListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f H3GeoListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [H3geoListParams]'s query parameters as `url.Values`.
-func (r H3geoListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [H3GeoListParams]'s query parameters as `url.Values`.
+func (r H3GeoListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type H3geoCountParams struct {
+type H3GeoCountParams struct {
 	// Start time for this H3 Geo data set in ISO 8601 UTC with millisecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
@@ -940,17 +940,17 @@ type H3geoCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f H3geoCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f H3GeoCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [H3geoCountParams]'s query parameters as `url.Values`.
-func (r H3geoCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [H3GeoCountParams]'s query parameters as `url.Values`.
+func (r H3GeoCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type H3geoGetParams struct {
+type H3GeoGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -958,17 +958,17 @@ type H3geoGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f H3geoGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f H3GeoGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [H3geoGetParams]'s query parameters as `url.Values`.
-func (r H3geoGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [H3GeoGetParams]'s query parameters as `url.Values`.
+func (r H3GeoGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type H3geoTupleParams struct {
+type H3GeoTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -984,10 +984,10 @@ type H3geoTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f H3geoTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f H3GeoTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [H3geoTupleParams]'s query parameters as `url.Values`.
-func (r H3geoTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [H3GeoTupleParams]'s query parameters as `url.Values`.
+func (r H3GeoTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

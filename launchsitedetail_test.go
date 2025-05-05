@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestLaunchsitedetailNewWithOptionalParams(t *testing.T) {
+func TestLaunchSiteDetailNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,9 +26,9 @@ func TestLaunchsitedetailNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchsitedetails.New(context.TODO(), unifieddatalibrary.LaunchsitedetailNewParams{
+	err := client.LaunchSiteDetails.New(context.TODO(), unifieddatalibrary.LaunchSiteDetailNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.LaunchsitedetailNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.LaunchSiteDetailNewParamsDataModeTest,
 		IDLaunchSite:          "LAUNCHSITE-ID",
 		Source:                "Bluestaq",
 		ID:                    unifieddatalibrary.String("LAUNCHSITEDETAILS-ID"),
@@ -59,7 +59,7 @@ func TestLaunchsitedetailNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchsitedetailUpdateWithOptionalParams(t *testing.T) {
+func TestLaunchSiteDetailUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -72,12 +72,12 @@ func TestLaunchsitedetailUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchsitedetails.Update(
+	err := client.LaunchSiteDetails.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.LaunchsitedetailUpdateParams{
+		unifieddatalibrary.LaunchSiteDetailUpdateParams{
 			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.LaunchsitedetailUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.LaunchSiteDetailUpdateParamsDataModeTest,
 			IDLaunchSite:          "LAUNCHSITE-ID",
 			Source:                "Bluestaq",
 			ID:                    unifieddatalibrary.String("LAUNCHSITEDETAILS-ID"),
@@ -109,7 +109,7 @@ func TestLaunchsitedetailUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchsitedetailListWithOptionalParams(t *testing.T) {
+func TestLaunchSiteDetailListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -122,7 +122,7 @@ func TestLaunchsitedetailListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchsitedetails.List(context.TODO(), unifieddatalibrary.LaunchsitedetailListParams{
+	_, err := client.LaunchSiteDetails.List(context.TODO(), unifieddatalibrary.LaunchSiteDetailListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -135,7 +135,7 @@ func TestLaunchsitedetailListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchsitedetailDelete(t *testing.T) {
+func TestLaunchSiteDetailDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -148,7 +148,7 @@ func TestLaunchsitedetailDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchsitedetails.Delete(context.TODO(), "id")
+	err := client.LaunchSiteDetails.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -158,7 +158,7 @@ func TestLaunchsitedetailDelete(t *testing.T) {
 	}
 }
 
-func TestLaunchsitedetailFindBySourceWithOptionalParams(t *testing.T) {
+func TestLaunchSiteDetailFindBySourceWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -171,7 +171,7 @@ func TestLaunchsitedetailFindBySourceWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchsitedetails.FindBySource(context.TODO(), unifieddatalibrary.LaunchsitedetailFindBySourceParams{
+	_, err := client.LaunchSiteDetails.FindBySource(context.TODO(), unifieddatalibrary.LaunchSiteDetailFindBySourceParams{
 		Source:      "source",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -185,7 +185,7 @@ func TestLaunchsitedetailFindBySourceWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchsitedetailGetWithOptionalParams(t *testing.T) {
+func TestLaunchSiteDetailGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -198,10 +198,10 @@ func TestLaunchsitedetailGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchsitedetails.Get(
+	_, err := client.LaunchSiteDetails.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.LaunchsitedetailGetParams{
+		unifieddatalibrary.LaunchSiteDetailGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},

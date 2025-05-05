@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestGnssobservationsetListWithOptionalParams(t *testing.T) {
+func TestGnssObservationsetListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestGnssobservationsetListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Gnssobservationset.List(context.TODO(), unifieddatalibrary.GnssobservationsetListParams{
+	_, err := client.GnssObservationset.List(context.TODO(), unifieddatalibrary.GnssObservationsetListParams{
 		Ts:          time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -41,7 +41,7 @@ func TestGnssobservationsetListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestGnssobservationsetCountWithOptionalParams(t *testing.T) {
+func TestGnssObservationsetCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -54,7 +54,7 @@ func TestGnssobservationsetCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Gnssobservationset.Count(context.TODO(), unifieddatalibrary.GnssobservationsetCountParams{
+	_, err := client.GnssObservationset.Count(context.TODO(), unifieddatalibrary.GnssObservationsetCountParams{
 		Ts:          time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -68,7 +68,7 @@ func TestGnssobservationsetCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestGnssobservationsetNewBulk(t *testing.T) {
+func TestGnssObservationsetNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -81,8 +81,8 @@ func TestGnssobservationsetNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Gnssobservationset.NewBulk(context.TODO(), unifieddatalibrary.GnssobservationsetNewBulkParams{
-		Body: []unifieddatalibrary.GnssobservationsetNewBulkParamsBody{{
+	err := client.GnssObservationset.NewBulk(context.TODO(), unifieddatalibrary.GnssObservationsetNewBulkParams{
+		Body: []unifieddatalibrary.GnssObservationsetNewBulkParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			Source:                "Bluestaq",
@@ -94,7 +94,7 @@ func TestGnssobservationsetNewBulk(t *testing.T) {
 			EsID:                  unifieddatalibrary.String("ES-ID"),
 			EventID:               unifieddatalibrary.String("2f2205c9-7bc2-4e1a-8416-2f80cc71f64b"),
 			GDop:                  unifieddatalibrary.Float(0.33),
-			GnssObservationList: []unifieddatalibrary.GnssobservationsetNewBulkParamsBodyGnssObservationList{{
+			GnssObservationList: []unifieddatalibrary.GnssObservationsetNewBulkParamsBodyGnssObservationList{{
 				AgcState:       unifieddatalibrary.Int(20),
 				GnssSatID:      unifieddatalibrary.String("GEJ"),
 				Ob:             []float64{42.1, 1000, 0.9},
@@ -134,7 +134,7 @@ func TestGnssobservationsetNewBulk(t *testing.T) {
 	}
 }
 
-func TestGnssobservationsetQueryhelp(t *testing.T) {
+func TestGnssObservationsetQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -147,7 +147,7 @@ func TestGnssobservationsetQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Gnssobservationset.Queryhelp(context.TODO())
+	err := client.GnssObservationset.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -157,7 +157,7 @@ func TestGnssobservationsetQueryhelp(t *testing.T) {
 	}
 }
 
-func TestGnssobservationsetTupleWithOptionalParams(t *testing.T) {
+func TestGnssObservationsetTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -170,7 +170,7 @@ func TestGnssobservationsetTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Gnssobservationset.Tuple(context.TODO(), unifieddatalibrary.GnssobservationsetTupleParams{
+	_, err := client.GnssObservationset.Tuple(context.TODO(), unifieddatalibrary.GnssObservationsetTupleParams{
 		Columns:     "columns",
 		Ts:          time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -185,7 +185,7 @@ func TestGnssobservationsetTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestGnssobservationsetUnvalidatedPublish(t *testing.T) {
+func TestGnssObservationsetUnvalidatedPublish(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -198,8 +198,8 @@ func TestGnssobservationsetUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Gnssobservationset.UnvalidatedPublish(context.TODO(), unifieddatalibrary.GnssobservationsetUnvalidatedPublishParams{
-		Body: []unifieddatalibrary.GnssobservationsetUnvalidatedPublishParamsBody{{
+	err := client.GnssObservationset.UnvalidatedPublish(context.TODO(), unifieddatalibrary.GnssObservationsetUnvalidatedPublishParams{
+		Body: []unifieddatalibrary.GnssObservationsetUnvalidatedPublishParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			Source:                "Bluestaq",
@@ -211,7 +211,7 @@ func TestGnssobservationsetUnvalidatedPublish(t *testing.T) {
 			EsID:                  unifieddatalibrary.String("ES-ID"),
 			EventID:               unifieddatalibrary.String("2f2205c9-7bc2-4e1a-8416-2f80cc71f64b"),
 			GDop:                  unifieddatalibrary.Float(0.33),
-			GnssObservationList: []unifieddatalibrary.GnssobservationsetUnvalidatedPublishParamsBodyGnssObservationList{{
+			GnssObservationList: []unifieddatalibrary.GnssObservationsetUnvalidatedPublishParamsBodyGnssObservationList{{
 				AgcState:       unifieddatalibrary.Int(20),
 				GnssSatID:      unifieddatalibrary.String("GEJ"),
 				Ob:             []float64{42.1, 1000, 0.9},

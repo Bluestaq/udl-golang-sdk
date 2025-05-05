@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestObservationRfobservationHistoryListWithOptionalParams(t *testing.T) {
+func TestObservationRfObservationHistoryListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestObservationRfobservationHistoryListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Observations.Rfobservation.History.List(context.TODO(), unifieddatalibrary.ObservationRfobservationHistoryListParams{
+	_, err := client.Observations.RfObservation.History.List(context.TODO(), unifieddatalibrary.ObservationRfObservationHistoryListParams{
 		ObTime:      time.Now(),
 		Columns:     unifieddatalibrary.String("columns"),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -42,7 +42,7 @@ func TestObservationRfobservationHistoryListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestObservationRfobservationHistoryAodrWithOptionalParams(t *testing.T) {
+func TestObservationRfObservationHistoryAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -55,7 +55,7 @@ func TestObservationRfobservationHistoryAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Observations.Rfobservation.History.Aodr(context.TODO(), unifieddatalibrary.ObservationRfobservationHistoryAodrParams{
+	err := client.Observations.RfObservation.History.Aodr(context.TODO(), unifieddatalibrary.ObservationRfObservationHistoryAodrParams{
 		ObTime:          time.Now(),
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -63,6 +63,33 @@ func TestObservationRfobservationHistoryAodrWithOptionalParams(t *testing.T) {
 		Notification:    unifieddatalibrary.String("notification"),
 		OutputDelimiter: unifieddatalibrary.String("outputDelimiter"),
 		OutputFormat:    unifieddatalibrary.String("outputFormat"),
+	})
+	if err != nil {
+		var apierr *unifieddatalibrary.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestObservationRfObservationHistoryCountWithOptionalParams(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := unifieddatalibrary.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithPassword("My Password"),
+		option.WithUsername("My Username"),
+	)
+	_, err := client.Observations.RfObservation.History.Count(context.TODO(), unifieddatalibrary.ObservationRfObservationHistoryCountParams{
+		ObTime:      time.Now(),
+		FirstResult: unifieddatalibrary.Int(0),
+		MaxResults:  unifieddatalibrary.Int(0),
 	})
 	if err != nil {
 		var apierr *unifieddatalibrary.Error

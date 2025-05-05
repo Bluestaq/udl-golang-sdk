@@ -20,31 +20,31 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// StarcatalogService contains methods and other services that help with
+// StarCatalogService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewStarcatalogService] method instead.
-type StarcatalogService struct {
+// the [NewStarCatalogService] method instead.
+type StarCatalogService struct {
 	Options []option.RequestOption
-	History StarcatalogHistoryService
+	History StarCatalogHistoryService
 }
 
-// NewStarcatalogService generates a new service that applies the given options to
+// NewStarCatalogService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewStarcatalogService(opts ...option.RequestOption) (r StarcatalogService) {
-	r = StarcatalogService{}
+func NewStarCatalogService(opts ...option.RequestOption) (r StarCatalogService) {
+	r = StarCatalogService{}
 	r.Options = opts
-	r.History = NewStarcatalogHistoryService(opts...)
+	r.History = NewStarCatalogHistoryService(opts...)
 	return
 }
 
 // Service operation to take a single StarCatalog record as a POST body and ingest
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *StarcatalogService) New(ctx context.Context, body StarcatalogNewParams, opts ...option.RequestOption) (err error) {
+func (r *StarCatalogService) New(ctx context.Context, body StarCatalogNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/starcatalog"
@@ -55,7 +55,7 @@ func (r *StarcatalogService) New(ctx context.Context, body StarcatalogNewParams,
 // Service operation to update a single starcatalog record. A specific role is
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
-func (r *StarcatalogService) Update(ctx context.Context, id string, body StarcatalogUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *StarCatalogService) Update(ctx context.Context, id string, body StarCatalogUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -71,7 +71,7 @@ func (r *StarcatalogService) Update(ctx context.Context, id string, body Starcat
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *StarcatalogService) List(ctx context.Context, query StarcatalogListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[StarcatalogListResponse], err error) {
+func (r *StarCatalogService) List(ctx context.Context, query StarCatalogListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[StarCatalogListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -92,14 +92,14 @@ func (r *StarcatalogService) List(ctx context.Context, query StarcatalogListPara
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *StarcatalogService) ListAutoPaging(ctx context.Context, query StarcatalogListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[StarcatalogListResponse] {
+func (r *StarCatalogService) ListAutoPaging(ctx context.Context, query StarCatalogListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[StarCatalogListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to delete a dataset specified by the passed ID path parameter.
 // A specific role is required to perform this service operation. Please contact
 // the UDL team for assistance.
-func (r *StarcatalogService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *StarCatalogService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -116,7 +116,7 @@ func (r *StarcatalogService) Delete(ctx context.Context, id string, opts ...opti
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *StarcatalogService) Count(ctx context.Context, query StarcatalogCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *StarCatalogService) Count(ctx context.Context, query StarCatalogCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/starcatalog/count"
@@ -129,7 +129,7 @@ func (r *StarcatalogService) Count(ctx context.Context, query StarcatalogCountPa
 // is not intended to be used for automated feeds into UDL. Data providers should
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
-func (r *StarcatalogService) NewBulk(ctx context.Context, body StarcatalogNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *StarCatalogService) NewBulk(ctx context.Context, body StarCatalogNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/starcatalog/createBulk"
@@ -139,7 +139,7 @@ func (r *StarcatalogService) NewBulk(ctx context.Context, body StarcatalogNewBul
 
 // Service operation to get a single StarCatalog record by its unique ID passed as
 // a path parameter.
-func (r *StarcatalogService) Get(ctx context.Context, id string, query StarcatalogGetParams, opts ...option.RequestOption) (res *StarcatalogGetResponse, err error) {
+func (r *StarCatalogService) Get(ctx context.Context, id string, query StarCatalogGetParams, opts ...option.RequestOption) (res *StarCatalogGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -152,7 +152,7 @@ func (r *StarcatalogService) Get(ctx context.Context, id string, query Starcatal
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *StarcatalogService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *StarCatalogService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/starcatalog/queryhelp"
@@ -168,7 +168,7 @@ func (r *StarcatalogService) Queryhelp(ctx context.Context, opts ...option.Reque
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *StarcatalogService) Tuple(ctx context.Context, query StarcatalogTupleParams, opts ...option.RequestOption) (res *[]StarcatalogTupleResponse, err error) {
+func (r *StarCatalogService) Tuple(ctx context.Context, query StarCatalogTupleParams, opts ...option.RequestOption) (res *[]StarCatalogTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/starcatalog/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -179,7 +179,7 @@ func (r *StarcatalogService) Tuple(ctx context.Context, query StarcatalogTuplePa
 // into the database. This operation is intended to be used for automated feeds
 // into UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
-func (r *StarcatalogService) UnvalidatedPublish(ctx context.Context, body StarcatalogUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+func (r *StarCatalogService) UnvalidatedPublish(ctx context.Context, body StarCatalogUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-starcatalog"
@@ -189,12 +189,12 @@ func (r *StarcatalogService) UnvalidatedPublish(ctx context.Context, body Starca
 
 // The star catalog provides the position, proper motion, parallax, and photometric
 // magnitudes at various bandpasses of a star.
-type StarcatalogListResponse struct {
+type StarCatalogListResponse struct {
 	// Originating astrometric catalog for this object. Enum: [GAIADR3, HIPPARCOS,
 	// USNOBSC].
 	//
 	// Any of "GAIADR3", "HIPPARCOS", "USNOBSC".
-	AstrometryOrigin StarcatalogListResponseAstrometryOrigin `json:"astrometryOrigin,required"`
+	AstrometryOrigin StarCatalogListResponseAstrometryOrigin `json:"astrometryOrigin,required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// The ID of this object in the specific catalog associated with this record.
@@ -215,7 +215,7 @@ type StarcatalogListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode StarcatalogListResponseDataMode `json:"dataMode,required"`
+	DataMode StarCatalogListResponseDataMode `json:"dataMode,required"`
 	// Barycentric declination of the source in International Celestial Reference
 	// System (ICRS) at the reference epoch, in degrees.
 	Dec float64 `json:"dec,required"`
@@ -381,19 +381,19 @@ type StarcatalogListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r StarcatalogListResponse) RawJSON() string { return r.JSON.raw }
-func (r *StarcatalogListResponse) UnmarshalJSON(data []byte) error {
+func (r StarCatalogListResponse) RawJSON() string { return r.JSON.raw }
+func (r *StarCatalogListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Originating astrometric catalog for this object. Enum: [GAIADR3, HIPPARCOS,
 // USNOBSC].
-type StarcatalogListResponseAstrometryOrigin string
+type StarCatalogListResponseAstrometryOrigin string
 
 const (
-	StarcatalogListResponseAstrometryOriginGaiadr3   StarcatalogListResponseAstrometryOrigin = "GAIADR3"
-	StarcatalogListResponseAstrometryOriginHipparcos StarcatalogListResponseAstrometryOrigin = "HIPPARCOS"
-	StarcatalogListResponseAstrometryOriginUsnobsc   StarcatalogListResponseAstrometryOrigin = "USNOBSC"
+	StarCatalogListResponseAstrometryOriginGaiadr3   StarCatalogListResponseAstrometryOrigin = "GAIADR3"
+	StarCatalogListResponseAstrometryOriginHipparcos StarCatalogListResponseAstrometryOrigin = "HIPPARCOS"
+	StarCatalogListResponseAstrometryOriginUsnobsc   StarCatalogListResponseAstrometryOrigin = "USNOBSC"
 )
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -410,23 +410,23 @@ const (
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type StarcatalogListResponseDataMode string
+type StarCatalogListResponseDataMode string
 
 const (
-	StarcatalogListResponseDataModeReal      StarcatalogListResponseDataMode = "REAL"
-	StarcatalogListResponseDataModeTest      StarcatalogListResponseDataMode = "TEST"
-	StarcatalogListResponseDataModeSimulated StarcatalogListResponseDataMode = "SIMULATED"
-	StarcatalogListResponseDataModeExercise  StarcatalogListResponseDataMode = "EXERCISE"
+	StarCatalogListResponseDataModeReal      StarCatalogListResponseDataMode = "REAL"
+	StarCatalogListResponseDataModeTest      StarCatalogListResponseDataMode = "TEST"
+	StarCatalogListResponseDataModeSimulated StarCatalogListResponseDataMode = "SIMULATED"
+	StarCatalogListResponseDataModeExercise  StarCatalogListResponseDataMode = "EXERCISE"
 )
 
 // The star catalog provides the position, proper motion, parallax, and photometric
 // magnitudes at various bandpasses of a star.
-type StarcatalogGetResponse struct {
+type StarCatalogGetResponse struct {
 	// Originating astrometric catalog for this object. Enum: [GAIADR3, HIPPARCOS,
 	// USNOBSC].
 	//
 	// Any of "GAIADR3", "HIPPARCOS", "USNOBSC".
-	AstrometryOrigin StarcatalogGetResponseAstrometryOrigin `json:"astrometryOrigin,required"`
+	AstrometryOrigin StarCatalogGetResponseAstrometryOrigin `json:"astrometryOrigin,required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// The ID of this object in the specific catalog associated with this record.
@@ -447,7 +447,7 @@ type StarcatalogGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode StarcatalogGetResponseDataMode `json:"dataMode,required"`
+	DataMode StarCatalogGetResponseDataMode `json:"dataMode,required"`
 	// Barycentric declination of the source in International Celestial Reference
 	// System (ICRS) at the reference epoch, in degrees.
 	Dec float64 `json:"dec,required"`
@@ -613,19 +613,19 @@ type StarcatalogGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r StarcatalogGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *StarcatalogGetResponse) UnmarshalJSON(data []byte) error {
+func (r StarCatalogGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *StarCatalogGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Originating astrometric catalog for this object. Enum: [GAIADR3, HIPPARCOS,
 // USNOBSC].
-type StarcatalogGetResponseAstrometryOrigin string
+type StarCatalogGetResponseAstrometryOrigin string
 
 const (
-	StarcatalogGetResponseAstrometryOriginGaiadr3   StarcatalogGetResponseAstrometryOrigin = "GAIADR3"
-	StarcatalogGetResponseAstrometryOriginHipparcos StarcatalogGetResponseAstrometryOrigin = "HIPPARCOS"
-	StarcatalogGetResponseAstrometryOriginUsnobsc   StarcatalogGetResponseAstrometryOrigin = "USNOBSC"
+	StarCatalogGetResponseAstrometryOriginGaiadr3   StarCatalogGetResponseAstrometryOrigin = "GAIADR3"
+	StarCatalogGetResponseAstrometryOriginHipparcos StarCatalogGetResponseAstrometryOrigin = "HIPPARCOS"
+	StarCatalogGetResponseAstrometryOriginUsnobsc   StarCatalogGetResponseAstrometryOrigin = "USNOBSC"
 )
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -642,23 +642,23 @@ const (
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type StarcatalogGetResponseDataMode string
+type StarCatalogGetResponseDataMode string
 
 const (
-	StarcatalogGetResponseDataModeReal      StarcatalogGetResponseDataMode = "REAL"
-	StarcatalogGetResponseDataModeTest      StarcatalogGetResponseDataMode = "TEST"
-	StarcatalogGetResponseDataModeSimulated StarcatalogGetResponseDataMode = "SIMULATED"
-	StarcatalogGetResponseDataModeExercise  StarcatalogGetResponseDataMode = "EXERCISE"
+	StarCatalogGetResponseDataModeReal      StarCatalogGetResponseDataMode = "REAL"
+	StarCatalogGetResponseDataModeTest      StarCatalogGetResponseDataMode = "TEST"
+	StarCatalogGetResponseDataModeSimulated StarCatalogGetResponseDataMode = "SIMULATED"
+	StarCatalogGetResponseDataModeExercise  StarCatalogGetResponseDataMode = "EXERCISE"
 )
 
 // The star catalog provides the position, proper motion, parallax, and photometric
 // magnitudes at various bandpasses of a star.
-type StarcatalogTupleResponse struct {
+type StarCatalogTupleResponse struct {
 	// Originating astrometric catalog for this object. Enum: [GAIADR3, HIPPARCOS,
 	// USNOBSC].
 	//
 	// Any of "GAIADR3", "HIPPARCOS", "USNOBSC".
-	AstrometryOrigin StarcatalogTupleResponseAstrometryOrigin `json:"astrometryOrigin,required"`
+	AstrometryOrigin StarCatalogTupleResponseAstrometryOrigin `json:"astrometryOrigin,required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// The ID of this object in the specific catalog associated with this record.
@@ -679,7 +679,7 @@ type StarcatalogTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode StarcatalogTupleResponseDataMode `json:"dataMode,required"`
+	DataMode StarCatalogTupleResponseDataMode `json:"dataMode,required"`
 	// Barycentric declination of the source in International Celestial Reference
 	// System (ICRS) at the reference epoch, in degrees.
 	Dec float64 `json:"dec,required"`
@@ -845,19 +845,19 @@ type StarcatalogTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r StarcatalogTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *StarcatalogTupleResponse) UnmarshalJSON(data []byte) error {
+func (r StarCatalogTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *StarCatalogTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Originating astrometric catalog for this object. Enum: [GAIADR3, HIPPARCOS,
 // USNOBSC].
-type StarcatalogTupleResponseAstrometryOrigin string
+type StarCatalogTupleResponseAstrometryOrigin string
 
 const (
-	StarcatalogTupleResponseAstrometryOriginGaiadr3   StarcatalogTupleResponseAstrometryOrigin = "GAIADR3"
-	StarcatalogTupleResponseAstrometryOriginHipparcos StarcatalogTupleResponseAstrometryOrigin = "HIPPARCOS"
-	StarcatalogTupleResponseAstrometryOriginUsnobsc   StarcatalogTupleResponseAstrometryOrigin = "USNOBSC"
+	StarCatalogTupleResponseAstrometryOriginGaiadr3   StarCatalogTupleResponseAstrometryOrigin = "GAIADR3"
+	StarCatalogTupleResponseAstrometryOriginHipparcos StarCatalogTupleResponseAstrometryOrigin = "HIPPARCOS"
+	StarCatalogTupleResponseAstrometryOriginUsnobsc   StarCatalogTupleResponseAstrometryOrigin = "USNOBSC"
 )
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -874,21 +874,21 @@ const (
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type StarcatalogTupleResponseDataMode string
+type StarCatalogTupleResponseDataMode string
 
 const (
-	StarcatalogTupleResponseDataModeReal      StarcatalogTupleResponseDataMode = "REAL"
-	StarcatalogTupleResponseDataModeTest      StarcatalogTupleResponseDataMode = "TEST"
-	StarcatalogTupleResponseDataModeSimulated StarcatalogTupleResponseDataMode = "SIMULATED"
-	StarcatalogTupleResponseDataModeExercise  StarcatalogTupleResponseDataMode = "EXERCISE"
+	StarCatalogTupleResponseDataModeReal      StarCatalogTupleResponseDataMode = "REAL"
+	StarCatalogTupleResponseDataModeTest      StarCatalogTupleResponseDataMode = "TEST"
+	StarCatalogTupleResponseDataModeSimulated StarCatalogTupleResponseDataMode = "SIMULATED"
+	StarCatalogTupleResponseDataModeExercise  StarCatalogTupleResponseDataMode = "EXERCISE"
 )
 
-type StarcatalogNewParams struct {
+type StarCatalogNewParams struct {
 	// Originating astrometric catalog for this object. Enum: [GAIADR3, HIPPARCOS,
 	// USNOBSC].
 	//
 	// Any of "GAIADR3", "HIPPARCOS", "USNOBSC".
-	AstrometryOrigin StarcatalogNewParamsAstrometryOrigin `json:"astrometryOrigin,omitzero,required"`
+	AstrometryOrigin StarCatalogNewParamsAstrometryOrigin `json:"astrometryOrigin,omitzero,required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// The ID of this object in the specific catalog associated with this record.
@@ -909,7 +909,7 @@ type StarcatalogNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode StarcatalogNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode StarCatalogNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Barycentric declination of the source in International Celestial Reference
 	// System (ICRS) at the reference epoch, in degrees.
 	Dec float64 `json:"dec,required"`
@@ -1011,21 +1011,21 @@ type StarcatalogNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarcatalogNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f StarCatalogNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r StarcatalogNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow StarcatalogNewParams
+func (r StarCatalogNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow StarCatalogNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Originating astrometric catalog for this object. Enum: [GAIADR3, HIPPARCOS,
 // USNOBSC].
-type StarcatalogNewParamsAstrometryOrigin string
+type StarCatalogNewParamsAstrometryOrigin string
 
 const (
-	StarcatalogNewParamsAstrometryOriginGaiadr3   StarcatalogNewParamsAstrometryOrigin = "GAIADR3"
-	StarcatalogNewParamsAstrometryOriginHipparcos StarcatalogNewParamsAstrometryOrigin = "HIPPARCOS"
-	StarcatalogNewParamsAstrometryOriginUsnobsc   StarcatalogNewParamsAstrometryOrigin = "USNOBSC"
+	StarCatalogNewParamsAstrometryOriginGaiadr3   StarCatalogNewParamsAstrometryOrigin = "GAIADR3"
+	StarCatalogNewParamsAstrometryOriginHipparcos StarCatalogNewParamsAstrometryOrigin = "HIPPARCOS"
+	StarCatalogNewParamsAstrometryOriginUsnobsc   StarCatalogNewParamsAstrometryOrigin = "USNOBSC"
 )
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1042,21 +1042,21 @@ const (
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type StarcatalogNewParamsDataMode string
+type StarCatalogNewParamsDataMode string
 
 const (
-	StarcatalogNewParamsDataModeReal      StarcatalogNewParamsDataMode = "REAL"
-	StarcatalogNewParamsDataModeTest      StarcatalogNewParamsDataMode = "TEST"
-	StarcatalogNewParamsDataModeSimulated StarcatalogNewParamsDataMode = "SIMULATED"
-	StarcatalogNewParamsDataModeExercise  StarcatalogNewParamsDataMode = "EXERCISE"
+	StarCatalogNewParamsDataModeReal      StarCatalogNewParamsDataMode = "REAL"
+	StarCatalogNewParamsDataModeTest      StarCatalogNewParamsDataMode = "TEST"
+	StarCatalogNewParamsDataModeSimulated StarCatalogNewParamsDataMode = "SIMULATED"
+	StarCatalogNewParamsDataModeExercise  StarCatalogNewParamsDataMode = "EXERCISE"
 )
 
-type StarcatalogUpdateParams struct {
+type StarCatalogUpdateParams struct {
 	// Originating astrometric catalog for this object. Enum: [GAIADR3, HIPPARCOS,
 	// USNOBSC].
 	//
 	// Any of "GAIADR3", "HIPPARCOS", "USNOBSC".
-	AstrometryOrigin StarcatalogUpdateParamsAstrometryOrigin `json:"astrometryOrigin,omitzero,required"`
+	AstrometryOrigin StarCatalogUpdateParamsAstrometryOrigin `json:"astrometryOrigin,omitzero,required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// The ID of this object in the specific catalog associated with this record.
@@ -1077,7 +1077,7 @@ type StarcatalogUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode StarcatalogUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode StarCatalogUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// Barycentric declination of the source in International Celestial Reference
 	// System (ICRS) at the reference epoch, in degrees.
 	Dec float64 `json:"dec,required"`
@@ -1179,21 +1179,21 @@ type StarcatalogUpdateParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarcatalogUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f StarCatalogUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r StarcatalogUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow StarcatalogUpdateParams
+func (r StarCatalogUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow StarCatalogUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Originating astrometric catalog for this object. Enum: [GAIADR3, HIPPARCOS,
 // USNOBSC].
-type StarcatalogUpdateParamsAstrometryOrigin string
+type StarCatalogUpdateParamsAstrometryOrigin string
 
 const (
-	StarcatalogUpdateParamsAstrometryOriginGaiadr3   StarcatalogUpdateParamsAstrometryOrigin = "GAIADR3"
-	StarcatalogUpdateParamsAstrometryOriginHipparcos StarcatalogUpdateParamsAstrometryOrigin = "HIPPARCOS"
-	StarcatalogUpdateParamsAstrometryOriginUsnobsc   StarcatalogUpdateParamsAstrometryOrigin = "USNOBSC"
+	StarCatalogUpdateParamsAstrometryOriginGaiadr3   StarCatalogUpdateParamsAstrometryOrigin = "GAIADR3"
+	StarCatalogUpdateParamsAstrometryOriginHipparcos StarCatalogUpdateParamsAstrometryOrigin = "HIPPARCOS"
+	StarCatalogUpdateParamsAstrometryOriginUsnobsc   StarCatalogUpdateParamsAstrometryOrigin = "USNOBSC"
 )
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1210,16 +1210,16 @@ const (
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type StarcatalogUpdateParamsDataMode string
+type StarCatalogUpdateParamsDataMode string
 
 const (
-	StarcatalogUpdateParamsDataModeReal      StarcatalogUpdateParamsDataMode = "REAL"
-	StarcatalogUpdateParamsDataModeTest      StarcatalogUpdateParamsDataMode = "TEST"
-	StarcatalogUpdateParamsDataModeSimulated StarcatalogUpdateParamsDataMode = "SIMULATED"
-	StarcatalogUpdateParamsDataModeExercise  StarcatalogUpdateParamsDataMode = "EXERCISE"
+	StarCatalogUpdateParamsDataModeReal      StarCatalogUpdateParamsDataMode = "REAL"
+	StarCatalogUpdateParamsDataModeTest      StarCatalogUpdateParamsDataMode = "TEST"
+	StarCatalogUpdateParamsDataModeSimulated StarCatalogUpdateParamsDataMode = "SIMULATED"
+	StarCatalogUpdateParamsDataModeExercise  StarCatalogUpdateParamsDataMode = "EXERCISE"
 )
 
-type StarcatalogListParams struct {
+type StarCatalogListParams struct {
 	// (One or more of fields 'dec, ra' are required.) Barycentric declination of the
 	// source in International Celestial Reference System (ICRS) at the reference
 	// epoch, in degrees.
@@ -1235,17 +1235,17 @@ type StarcatalogListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarcatalogListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f StarCatalogListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [StarcatalogListParams]'s query parameters as `url.Values`.
-func (r StarcatalogListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [StarCatalogListParams]'s query parameters as `url.Values`.
+func (r StarCatalogListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type StarcatalogCountParams struct {
+type StarCatalogCountParams struct {
 	// (One or more of fields 'dec, ra' are required.) Barycentric declination of the
 	// source in International Celestial Reference System (ICRS) at the reference
 	// epoch, in degrees.
@@ -1261,26 +1261,26 @@ type StarcatalogCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarcatalogCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f StarCatalogCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [StarcatalogCountParams]'s query parameters as `url.Values`.
-func (r StarcatalogCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [StarCatalogCountParams]'s query parameters as `url.Values`.
+func (r StarCatalogCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type StarcatalogNewBulkParams struct {
-	Body []StarcatalogNewBulkParamsBody
+type StarCatalogNewBulkParams struct {
+	Body []StarCatalogNewBulkParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarcatalogNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f StarCatalogNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r StarcatalogNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r StarCatalogNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -1289,7 +1289,7 @@ func (r StarcatalogNewBulkParams) MarshalJSON() (data []byte, err error) {
 //
 // The properties AstrometryOrigin, ClassificationMarking, CsID, DataMode, Dec, Ra,
 // Source, StarEpoch are required.
-type StarcatalogNewBulkParamsBody struct {
+type StarCatalogNewBulkParamsBody struct {
 	// Originating astrometric catalog for this object. Enum: [GAIADR3, HIPPARCOS,
 	// USNOBSC].
 	//
@@ -1429,22 +1429,22 @@ type StarcatalogNewBulkParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarcatalogNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-func (r StarcatalogNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow StarcatalogNewBulkParamsBody
+func (f StarCatalogNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r StarCatalogNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow StarCatalogNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[StarcatalogNewBulkParamsBody](
+	apijson.RegisterFieldValidator[StarCatalogNewBulkParamsBody](
 		"AstrometryOrigin", false, "GAIADR3", "HIPPARCOS", "USNOBSC",
 	)
-	apijson.RegisterFieldValidator[StarcatalogNewBulkParamsBody](
+	apijson.RegisterFieldValidator[StarCatalogNewBulkParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
-type StarcatalogGetParams struct {
+type StarCatalogGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1452,17 +1452,17 @@ type StarcatalogGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarcatalogGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f StarCatalogGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [StarcatalogGetParams]'s query parameters as `url.Values`.
-func (r StarcatalogGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [StarCatalogGetParams]'s query parameters as `url.Values`.
+func (r StarCatalogGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type StarcatalogTupleParams struct {
+type StarCatalogTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -1483,28 +1483,28 @@ type StarcatalogTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarcatalogTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f StarCatalogTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [StarcatalogTupleParams]'s query parameters as `url.Values`.
-func (r StarcatalogTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [StarCatalogTupleParams]'s query parameters as `url.Values`.
+func (r StarCatalogTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type StarcatalogUnvalidatedPublishParams struct {
-	Body []StarcatalogUnvalidatedPublishParamsBody
+type StarCatalogUnvalidatedPublishParams struct {
+	Body []StarCatalogUnvalidatedPublishParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarcatalogUnvalidatedPublishParams) IsPresent() bool {
+func (f StarCatalogUnvalidatedPublishParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r StarcatalogUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+func (r StarCatalogUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -1513,7 +1513,7 @@ func (r StarcatalogUnvalidatedPublishParams) MarshalJSON() (data []byte, err err
 //
 // The properties AstrometryOrigin, ClassificationMarking, CsID, DataMode, Dec, Ra,
 // Source, StarEpoch are required.
-type StarcatalogUnvalidatedPublishParamsBody struct {
+type StarCatalogUnvalidatedPublishParamsBody struct {
 	// Originating astrometric catalog for this object. Enum: [GAIADR3, HIPPARCOS,
 	// USNOBSC].
 	//
@@ -1653,19 +1653,19 @@ type StarcatalogUnvalidatedPublishParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarcatalogUnvalidatedPublishParamsBody) IsPresent() bool {
+func (f StarCatalogUnvalidatedPublishParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r StarcatalogUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow StarcatalogUnvalidatedPublishParamsBody
+func (r StarCatalogUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow StarCatalogUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[StarcatalogUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[StarCatalogUnvalidatedPublishParamsBody](
 		"AstrometryOrigin", false, "GAIADR3", "HIPPARCOS", "USNOBSC",
 	)
-	apijson.RegisterFieldValidator[StarcatalogUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[StarCatalogUnvalidatedPublishParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

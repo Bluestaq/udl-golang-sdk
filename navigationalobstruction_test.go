@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestNavigationalobstructionNewWithOptionalParams(t *testing.T) {
+func TestNavigationalObstructionNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,10 +27,10 @@ func TestNavigationalobstructionNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Navigationalobstruction.New(context.TODO(), unifieddatalibrary.NavigationalobstructionNewParams{
+	err := client.NavigationalObstruction.New(context.TODO(), unifieddatalibrary.NavigationalObstructionNewParams{
 		ClassificationMarking: "U",
 		CycleDate:             time.Now(),
-		DataMode:              unifieddatalibrary.NavigationalobstructionNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.NavigationalObstructionNewParamsDataModeTest,
 		ObstacleID:            "359655",
 		ObstacleType:          "V",
 		Source:                "Bluestaq",
@@ -110,7 +110,7 @@ func TestNavigationalobstructionNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestNavigationalobstructionUpdateWithOptionalParams(t *testing.T) {
+func TestNavigationalObstructionUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -123,13 +123,13 @@ func TestNavigationalobstructionUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Navigationalobstruction.Update(
+	err := client.NavigationalObstruction.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.NavigationalobstructionUpdateParams{
+		unifieddatalibrary.NavigationalObstructionUpdateParams{
 			ClassificationMarking: "U",
 			CycleDate:             time.Now(),
-			DataMode:              unifieddatalibrary.NavigationalobstructionUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.NavigationalObstructionUpdateParamsDataModeTest,
 			ObstacleID:            "359655",
 			ObstacleType:          "V",
 			Source:                "Bluestaq",
@@ -210,7 +210,7 @@ func TestNavigationalobstructionUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestNavigationalobstructionListWithOptionalParams(t *testing.T) {
+func TestNavigationalObstructionListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -223,7 +223,7 @@ func TestNavigationalobstructionListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Navigationalobstruction.List(context.TODO(), unifieddatalibrary.NavigationalobstructionListParams{
+	_, err := client.NavigationalObstruction.List(context.TODO(), unifieddatalibrary.NavigationalObstructionListParams{
 		CycleDate:   unifieddatalibrary.Time(time.Now()),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -238,7 +238,7 @@ func TestNavigationalobstructionListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestNavigationalobstructionCountWithOptionalParams(t *testing.T) {
+func TestNavigationalObstructionCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -251,7 +251,7 @@ func TestNavigationalobstructionCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Navigationalobstruction.Count(context.TODO(), unifieddatalibrary.NavigationalobstructionCountParams{
+	_, err := client.NavigationalObstruction.Count(context.TODO(), unifieddatalibrary.NavigationalObstructionCountParams{
 		CycleDate:   unifieddatalibrary.Time(time.Now()),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -266,7 +266,7 @@ func TestNavigationalobstructionCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestNavigationalobstructionNewBulk(t *testing.T) {
+func TestNavigationalObstructionNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -279,8 +279,8 @@ func TestNavigationalobstructionNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Navigationalobstruction.NewBulk(context.TODO(), unifieddatalibrary.NavigationalobstructionNewBulkParams{
-		Body: []unifieddatalibrary.NavigationalobstructionNewBulkParamsBody{{
+	err := client.NavigationalObstruction.NewBulk(context.TODO(), unifieddatalibrary.NavigationalObstructionNewBulkParams{
+		Body: []unifieddatalibrary.NavigationalObstructionNewBulkParamsBody{{
 			ClassificationMarking: "U",
 			CycleDate:             time.Now(),
 			DataMode:              "TEST",
@@ -364,7 +364,7 @@ func TestNavigationalobstructionNewBulk(t *testing.T) {
 	}
 }
 
-func TestNavigationalobstructionGetWithOptionalParams(t *testing.T) {
+func TestNavigationalObstructionGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -377,10 +377,10 @@ func TestNavigationalobstructionGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Navigationalobstruction.Get(
+	_, err := client.NavigationalObstruction.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.NavigationalobstructionGetParams{
+		unifieddatalibrary.NavigationalObstructionGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -394,7 +394,7 @@ func TestNavigationalobstructionGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestNavigationalobstructionQueryhelp(t *testing.T) {
+func TestNavigationalObstructionQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -407,7 +407,7 @@ func TestNavigationalobstructionQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Navigationalobstruction.Queryhelp(context.TODO())
+	err := client.NavigationalObstruction.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -417,7 +417,7 @@ func TestNavigationalobstructionQueryhelp(t *testing.T) {
 	}
 }
 
-func TestNavigationalobstructionTupleWithOptionalParams(t *testing.T) {
+func TestNavigationalObstructionTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -430,7 +430,7 @@ func TestNavigationalobstructionTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Navigationalobstruction.Tuple(context.TODO(), unifieddatalibrary.NavigationalobstructionTupleParams{
+	_, err := client.NavigationalObstruction.Tuple(context.TODO(), unifieddatalibrary.NavigationalObstructionTupleParams{
 		Columns:     "columns",
 		CycleDate:   unifieddatalibrary.Time(time.Now()),
 		FirstResult: unifieddatalibrary.Int(0),

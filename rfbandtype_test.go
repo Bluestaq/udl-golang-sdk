@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestRfbandtypeNewWithOptionalParams(t *testing.T) {
+func TestRfBandTypeNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,10 +26,10 @@ func TestRfbandtypeNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Rfbandtype.New(context.TODO(), unifieddatalibrary.RfbandtypeNewParams{
+	err := client.RfBandType.New(context.TODO(), unifieddatalibrary.RfBandTypeNewParams{
 		ID:                    "Ku",
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.RfbandtypeNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.RfBandTypeNewParamsDataModeTest,
 		Description:           "Example description",
 		Source:                "Bluestaq",
 		EndFreq:               unifieddatalibrary.Float(123.4),
@@ -45,7 +45,7 @@ func TestRfbandtypeNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRfbandtypeUpdateWithOptionalParams(t *testing.T) {
+func TestRfBandTypeUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -58,13 +58,13 @@ func TestRfbandtypeUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Rfbandtype.Update(
+	err := client.RfBandType.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.RfbandtypeUpdateParams{
+		unifieddatalibrary.RfBandTypeUpdateParams{
 			ID:                    "Ku",
 			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.RfbandtypeUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.RfBandTypeUpdateParamsDataModeTest,
 			Description:           "Example description",
 			Source:                "Bluestaq",
 			EndFreq:               unifieddatalibrary.Float(123.4),
@@ -81,7 +81,7 @@ func TestRfbandtypeUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRfbandtypeListWithOptionalParams(t *testing.T) {
+func TestRfBandTypeListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -94,7 +94,7 @@ func TestRfbandtypeListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Rfbandtype.List(context.TODO(), unifieddatalibrary.RfbandtypeListParams{
+	_, err := client.RfBandType.List(context.TODO(), unifieddatalibrary.RfBandTypeListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -107,7 +107,7 @@ func TestRfbandtypeListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRfbandtypeDelete(t *testing.T) {
+func TestRfBandTypeDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -120,7 +120,7 @@ func TestRfbandtypeDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Rfbandtype.Delete(context.TODO(), "id")
+	err := client.RfBandType.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -130,7 +130,7 @@ func TestRfbandtypeDelete(t *testing.T) {
 	}
 }
 
-func TestRfbandtypeCountWithOptionalParams(t *testing.T) {
+func TestRfBandTypeCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -143,7 +143,7 @@ func TestRfbandtypeCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Rfbandtype.Count(context.TODO(), unifieddatalibrary.RfbandtypeCountParams{
+	_, err := client.RfBandType.Count(context.TODO(), unifieddatalibrary.RfBandTypeCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -156,7 +156,7 @@ func TestRfbandtypeCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRfbandtypeGetWithOptionalParams(t *testing.T) {
+func TestRfBandTypeGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -169,10 +169,10 @@ func TestRfbandtypeGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Rfbandtype.Get(
+	_, err := client.RfBandType.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.RfbandtypeGetParams{
+		unifieddatalibrary.RfBandTypeGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -186,7 +186,7 @@ func TestRfbandtypeGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRfbandtypeQueryhelp(t *testing.T) {
+func TestRfBandTypeQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -199,7 +199,7 @@ func TestRfbandtypeQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Rfbandtype.Queryhelp(context.TODO())
+	err := client.RfBandType.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -209,7 +209,7 @@ func TestRfbandtypeQueryhelp(t *testing.T) {
 	}
 }
 
-func TestRfbandtypeTupleWithOptionalParams(t *testing.T) {
+func TestRfBandTypeTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -222,7 +222,7 @@ func TestRfbandtypeTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Rfbandtype.Tuple(context.TODO(), unifieddatalibrary.RfbandtypeTupleParams{
+	_, err := client.RfBandType.Tuple(context.TODO(), unifieddatalibrary.RfBandTypeTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

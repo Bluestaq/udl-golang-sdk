@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestAviationriskmanagementNewWithOptionalParams(t *testing.T) {
+func TestAviationRiskManagementNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,22 +27,22 @@ func TestAviationriskmanagementNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Aviationriskmanagement.New(context.TODO(), unifieddatalibrary.AviationriskmanagementNewParams{
+	err := client.AviationRiskManagement.New(context.TODO(), unifieddatalibrary.AviationRiskManagementNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.AviationriskmanagementNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.AviationRiskManagementNewParamsDataModeTest,
 		IDMission:             "fa18d96e-91ea-60da-a7a8-1af6500066c8",
 		Source:                "Bluestaq",
 		ID:                    unifieddatalibrary.String("026dd511-8ba5-47d3-9909-836149f87686"),
-		AviationRiskManagementWorksheetRecord: []unifieddatalibrary.AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecord{{
+		AviationRiskManagementWorksheetRecord: []unifieddatalibrary.AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecord{{
 			MissionDate:     time.Now(),
 			AircraftMds:     unifieddatalibrary.String("E-2C HAWKEYE"),
 			ApprovalPending: unifieddatalibrary.Bool(true),
 			Approved:        unifieddatalibrary.Bool(false),
-			AviationRiskManagementWorksheetScore: []unifieddatalibrary.AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore{{
+			AviationRiskManagementWorksheetScore: []unifieddatalibrary.AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore{{
 				ApprovalDate: unifieddatalibrary.Time(time.Now()),
 				ApprovedBy:   unifieddatalibrary.String("John Smith"),
 				ApprovedCode: unifieddatalibrary.Int(0),
-				AviationRiskManagementSortie: []unifieddatalibrary.AviationriskmanagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie{{
+				AviationRiskManagementSortie: []unifieddatalibrary.AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie{{
 					ExtSortieID: unifieddatalibrary.String("MB014313032022407540"),
 					IDSortie:    unifieddatalibrary.String("4ef3d1e8-ab08-ab70-498f-edc479734e5c"),
 					LegNum:      unifieddatalibrary.Int(100),
@@ -82,7 +82,7 @@ func TestAviationriskmanagementNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestAviationriskmanagementGetWithOptionalParams(t *testing.T) {
+func TestAviationRiskManagementGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -95,10 +95,10 @@ func TestAviationriskmanagementGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Aviationriskmanagement.Get(
+	_, err := client.AviationRiskManagement.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.AviationriskmanagementGetParams{
+		unifieddatalibrary.AviationRiskManagementGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -112,7 +112,7 @@ func TestAviationriskmanagementGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestAviationriskmanagementUpdateWithOptionalParams(t *testing.T) {
+func TestAviationRiskManagementUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -125,25 +125,25 @@ func TestAviationriskmanagementUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Aviationriskmanagement.Update(
+	err := client.AviationRiskManagement.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.AviationriskmanagementUpdateParams{
+		unifieddatalibrary.AviationRiskManagementUpdateParams{
 			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.AviationriskmanagementUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.AviationRiskManagementUpdateParamsDataModeTest,
 			IDMission:             "fa18d96e-91ea-60da-a7a8-1af6500066c8",
 			Source:                "Bluestaq",
 			ID:                    unifieddatalibrary.String("026dd511-8ba5-47d3-9909-836149f87686"),
-			AviationRiskManagementWorksheetRecord: []unifieddatalibrary.AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecord{{
+			AviationRiskManagementWorksheetRecord: []unifieddatalibrary.AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecord{{
 				MissionDate:     time.Now(),
 				AircraftMds:     unifieddatalibrary.String("E-2C HAWKEYE"),
 				ApprovalPending: unifieddatalibrary.Bool(true),
 				Approved:        unifieddatalibrary.Bool(false),
-				AviationRiskManagementWorksheetScore: []unifieddatalibrary.AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore{{
+				AviationRiskManagementWorksheetScore: []unifieddatalibrary.AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore{{
 					ApprovalDate: unifieddatalibrary.Time(time.Now()),
 					ApprovedBy:   unifieddatalibrary.String("John Smith"),
 					ApprovedCode: unifieddatalibrary.Int(0),
-					AviationRiskManagementSortie: []unifieddatalibrary.AviationriskmanagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie{{
+					AviationRiskManagementSortie: []unifieddatalibrary.AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie{{
 						ExtSortieID: unifieddatalibrary.String("MB014313032022407540"),
 						IDSortie:    unifieddatalibrary.String("4ef3d1e8-ab08-ab70-498f-edc479734e5c"),
 						LegNum:      unifieddatalibrary.Int(100),
@@ -184,7 +184,7 @@ func TestAviationriskmanagementUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestAviationriskmanagementDelete(t *testing.T) {
+func TestAviationRiskManagementDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -197,7 +197,7 @@ func TestAviationriskmanagementDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Aviationriskmanagement.Delete(context.TODO(), "id")
+	err := client.AviationRiskManagement.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -207,7 +207,7 @@ func TestAviationriskmanagementDelete(t *testing.T) {
 	}
 }
 
-func TestAviationriskmanagementCountWithOptionalParams(t *testing.T) {
+func TestAviationRiskManagementCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -220,7 +220,7 @@ func TestAviationriskmanagementCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Aviationriskmanagement.Count(context.TODO(), unifieddatalibrary.AviationriskmanagementCountParams{
+	_, err := client.AviationRiskManagement.Count(context.TODO(), unifieddatalibrary.AviationRiskManagementCountParams{
 		IDMission:   "idMission",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -234,7 +234,7 @@ func TestAviationriskmanagementCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestAviationriskmanagementNewBulk(t *testing.T) {
+func TestAviationRiskManagementNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -247,23 +247,23 @@ func TestAviationriskmanagementNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Aviationriskmanagement.NewBulk(context.TODO(), unifieddatalibrary.AviationriskmanagementNewBulkParams{
-		Body: []unifieddatalibrary.AviationriskmanagementNewBulkParamsBody{{
+	err := client.AviationRiskManagement.NewBulk(context.TODO(), unifieddatalibrary.AviationRiskManagementNewBulkParams{
+		Body: []unifieddatalibrary.AviationRiskManagementNewBulkParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			IDMission:             "fa18d96e-91ea-60da-a7a8-1af6500066c8",
 			Source:                "Bluestaq",
 			ID:                    unifieddatalibrary.String("026dd511-8ba5-47d3-9909-836149f87686"),
-			AviationRiskManagementWorksheetRecord: []unifieddatalibrary.AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecord{{
+			AviationRiskManagementWorksheetRecord: []unifieddatalibrary.AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecord{{
 				MissionDate:     time.Now(),
 				AircraftMds:     unifieddatalibrary.String("E-2C HAWKEYE"),
 				ApprovalPending: unifieddatalibrary.Bool(true),
 				Approved:        unifieddatalibrary.Bool(false),
-				AviationRiskManagementWorksheetScore: []unifieddatalibrary.AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore{{
+				AviationRiskManagementWorksheetScore: []unifieddatalibrary.AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore{{
 					ApprovalDate: unifieddatalibrary.Time(time.Now()),
 					ApprovedBy:   unifieddatalibrary.String("John Smith"),
 					ApprovedCode: unifieddatalibrary.Int(0),
-					AviationRiskManagementSortie: []unifieddatalibrary.AviationriskmanagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie{{
+					AviationRiskManagementSortie: []unifieddatalibrary.AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie{{
 						ExtSortieID: unifieddatalibrary.String("MB014313032022407540"),
 						IDSortie:    unifieddatalibrary.String("4ef3d1e8-ab08-ab70-498f-edc479734e5c"),
 						LegNum:      unifieddatalibrary.Int(100),
@@ -304,7 +304,7 @@ func TestAviationriskmanagementNewBulk(t *testing.T) {
 	}
 }
 
-func TestAviationriskmanagementQueryWithOptionalParams(t *testing.T) {
+func TestAviationRiskManagementQueryWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -317,7 +317,7 @@ func TestAviationriskmanagementQueryWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Aviationriskmanagement.Query(context.TODO(), unifieddatalibrary.AviationriskmanagementQueryParams{
+	_, err := client.AviationRiskManagement.Query(context.TODO(), unifieddatalibrary.AviationRiskManagementQueryParams{
 		IDMission:   "idMission",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -331,7 +331,7 @@ func TestAviationriskmanagementQueryWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestAviationriskmanagementQueryHelp(t *testing.T) {
+func TestAviationRiskManagementQueryHelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -344,7 +344,7 @@ func TestAviationriskmanagementQueryHelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Aviationriskmanagement.QueryHelp(context.TODO())
+	err := client.AviationRiskManagement.QueryHelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -354,7 +354,7 @@ func TestAviationriskmanagementQueryHelp(t *testing.T) {
 	}
 }
 
-func TestAviationriskmanagementTupleWithOptionalParams(t *testing.T) {
+func TestAviationRiskManagementTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -367,7 +367,7 @@ func TestAviationriskmanagementTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Aviationriskmanagement.Tuple(context.TODO(), unifieddatalibrary.AviationriskmanagementTupleParams{
+	_, err := client.AviationRiskManagement.Tuple(context.TODO(), unifieddatalibrary.AviationRiskManagementTupleParams{
 		Columns:     "columns",
 		IDMission:   "idMission",
 		FirstResult: unifieddatalibrary.Int(0),
@@ -382,7 +382,7 @@ func TestAviationriskmanagementTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestAviationriskmanagementUnvalidatedPublish(t *testing.T) {
+func TestAviationRiskManagementUnvalidatedPublish(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -395,23 +395,23 @@ func TestAviationriskmanagementUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Aviationriskmanagement.UnvalidatedPublish(context.TODO(), unifieddatalibrary.AviationriskmanagementUnvalidatedPublishParams{
-		Body: []unifieddatalibrary.AviationriskmanagementUnvalidatedPublishParamsBody{{
+	err := client.AviationRiskManagement.UnvalidatedPublish(context.TODO(), unifieddatalibrary.AviationRiskManagementUnvalidatedPublishParams{
+		Body: []unifieddatalibrary.AviationRiskManagementUnvalidatedPublishParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			IDMission:             "fa18d96e-91ea-60da-a7a8-1af6500066c8",
 			Source:                "Bluestaq",
 			ID:                    unifieddatalibrary.String("026dd511-8ba5-47d3-9909-836149f87686"),
-			AviationRiskManagementWorksheetRecord: []unifieddatalibrary.AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecord{{
+			AviationRiskManagementWorksheetRecord: []unifieddatalibrary.AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecord{{
 				MissionDate:     time.Now(),
 				AircraftMds:     unifieddatalibrary.String("E-2C HAWKEYE"),
 				ApprovalPending: unifieddatalibrary.Bool(true),
 				Approved:        unifieddatalibrary.Bool(false),
-				AviationRiskManagementWorksheetScore: []unifieddatalibrary.AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore{{
+				AviationRiskManagementWorksheetScore: []unifieddatalibrary.AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore{{
 					ApprovalDate: unifieddatalibrary.Time(time.Now()),
 					ApprovedBy:   unifieddatalibrary.String("John Smith"),
 					ApprovedCode: unifieddatalibrary.Int(0),
-					AviationRiskManagementSortie: []unifieddatalibrary.AviationriskmanagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie{{
+					AviationRiskManagementSortie: []unifieddatalibrary.AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie{{
 						ExtSortieID: unifieddatalibrary.String("MB014313032022407540"),
 						IDSortie:    unifieddatalibrary.String("4ef3d1e8-ab08-ab70-498f-edc479734e5c"),
 						LegNum:      unifieddatalibrary.Int(100),

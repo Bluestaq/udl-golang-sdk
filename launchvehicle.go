@@ -19,21 +19,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// LaunchvehicleService contains methods and other services that help with
+// LaunchVehicleService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewLaunchvehicleService] method instead.
-type LaunchvehicleService struct {
+// the [NewLaunchVehicleService] method instead.
+type LaunchVehicleService struct {
 	Options []option.RequestOption
 }
 
-// NewLaunchvehicleService generates a new service that applies the given options
+// NewLaunchVehicleService generates a new service that applies the given options
 // to each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewLaunchvehicleService(opts ...option.RequestOption) (r LaunchvehicleService) {
-	r = LaunchvehicleService{}
+func NewLaunchVehicleService(opts ...option.RequestOption) (r LaunchVehicleService) {
+	r = LaunchVehicleService{}
 	r.Options = opts
 	return
 }
@@ -41,7 +41,7 @@ func NewLaunchvehicleService(opts ...option.RequestOption) (r LaunchvehicleServi
 // Service operation to take a single LaunchVehicle as a POST body and ingest into
 // the database. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
-func (r *LaunchvehicleService) New(ctx context.Context, body LaunchvehicleNewParams, opts ...option.RequestOption) (err error) {
+func (r *LaunchVehicleService) New(ctx context.Context, body LaunchVehicleNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/launchvehicle"
@@ -51,7 +51,7 @@ func (r *LaunchvehicleService) New(ctx context.Context, body LaunchvehicleNewPar
 
 // Service operation to update a single LaunchVehicle. A specific role is required
 // to perform this service operation. Please contact the UDL team for assistance.
-func (r *LaunchvehicleService) Update(ctx context.Context, id string, body LaunchvehicleUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *LaunchVehicleService) Update(ctx context.Context, id string, body LaunchVehicleUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -67,7 +67,7 @@ func (r *LaunchvehicleService) Update(ctx context.Context, id string, body Launc
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *LaunchvehicleService) List(ctx context.Context, query LaunchvehicleListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LaunchvehicleListResponse], err error) {
+func (r *LaunchVehicleService) List(ctx context.Context, query LaunchVehicleListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LaunchVehicleListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -88,14 +88,14 @@ func (r *LaunchvehicleService) List(ctx context.Context, query LaunchvehicleList
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *LaunchvehicleService) ListAutoPaging(ctx context.Context, query LaunchvehicleListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[LaunchvehicleListResponse] {
+func (r *LaunchVehicleService) ListAutoPaging(ctx context.Context, query LaunchVehicleListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[LaunchVehicleListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to delete a LaunchVehicle object specified by the passed ID
 // path parameter. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
-func (r *LaunchvehicleService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *LaunchVehicleService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -112,7 +112,7 @@ func (r *LaunchvehicleService) Delete(ctx context.Context, id string, opts ...op
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *LaunchvehicleService) Count(ctx context.Context, query LaunchvehicleCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *LaunchVehicleService) Count(ctx context.Context, query LaunchVehicleCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/launchvehicle/count"
@@ -122,7 +122,7 @@ func (r *LaunchvehicleService) Count(ctx context.Context, query LaunchvehicleCou
 
 // Service operation to get a single LaunchVehicle record by its unique ID passed
 // as a path parameter.
-func (r *LaunchvehicleService) Get(ctx context.Context, id string, query LaunchvehicleGetParams, opts ...option.RequestOption) (res *LaunchvehicleGetResponse, err error) {
+func (r *LaunchVehicleService) Get(ctx context.Context, id string, query LaunchVehicleGetParams, opts ...option.RequestOption) (res *LaunchVehicleGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -135,7 +135,7 @@ func (r *LaunchvehicleService) Get(ctx context.Context, id string, query Launchv
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *LaunchvehicleService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *LaunchVehicleService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/launchvehicle/queryhelp"
@@ -151,7 +151,7 @@ func (r *LaunchvehicleService) Queryhelp(ctx context.Context, opts ...option.Req
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *LaunchvehicleService) Tuple(ctx context.Context, query LaunchvehicleTupleParams, opts ...option.RequestOption) (res *[]LaunchvehicleTupleResponse, err error) {
+func (r *LaunchVehicleService) Tuple(ctx context.Context, query LaunchVehicleTupleParams, opts ...option.RequestOption) (res *[]LaunchVehicleTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/launchvehicle/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -161,7 +161,7 @@ func (r *LaunchvehicleService) Tuple(ctx context.Context, query LaunchvehicleTup
 // Model representation of basic information about known launch vehicles. A launch
 // vehicle may have several details records including characteristics and
 // information compiled by a particular source.
-type LaunchvehicleListResponse struct {
+type LaunchVehicleListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -180,7 +180,7 @@ type LaunchvehicleListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LaunchvehicleListResponseDataMode `json:"dataMode,required"`
+	DataMode LaunchVehicleListResponseDataMode `json:"dataMode,required"`
 	// Launch vehicle name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -221,8 +221,8 @@ type LaunchvehicleListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LaunchvehicleListResponse) RawJSON() string { return r.JSON.raw }
-func (r *LaunchvehicleListResponse) UnmarshalJSON(data []byte) error {
+func (r LaunchVehicleListResponse) RawJSON() string { return r.JSON.raw }
+func (r *LaunchVehicleListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -240,19 +240,19 @@ func (r *LaunchvehicleListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LaunchvehicleListResponseDataMode string
+type LaunchVehicleListResponseDataMode string
 
 const (
-	LaunchvehicleListResponseDataModeReal      LaunchvehicleListResponseDataMode = "REAL"
-	LaunchvehicleListResponseDataModeTest      LaunchvehicleListResponseDataMode = "TEST"
-	LaunchvehicleListResponseDataModeSimulated LaunchvehicleListResponseDataMode = "SIMULATED"
-	LaunchvehicleListResponseDataModeExercise  LaunchvehicleListResponseDataMode = "EXERCISE"
+	LaunchVehicleListResponseDataModeReal      LaunchVehicleListResponseDataMode = "REAL"
+	LaunchVehicleListResponseDataModeTest      LaunchVehicleListResponseDataMode = "TEST"
+	LaunchVehicleListResponseDataModeSimulated LaunchVehicleListResponseDataMode = "SIMULATED"
+	LaunchVehicleListResponseDataModeExercise  LaunchVehicleListResponseDataMode = "EXERCISE"
 )
 
 // Model representation of basic information about known launch vehicles. A launch
 // vehicle may have several details records including characteristics and
 // information compiled by a particular source.
-type LaunchvehicleGetResponse struct {
+type LaunchVehicleGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -271,7 +271,7 @@ type LaunchvehicleGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LaunchvehicleGetResponseDataMode `json:"dataMode,required"`
+	DataMode LaunchVehicleGetResponseDataMode `json:"dataMode,required"`
 	// Launch vehicle name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -286,7 +286,7 @@ type LaunchvehicleGetResponse struct {
 	// Read-only collection of additional LaunchVehicleDetails by various sources for
 	// this launch vehicle, ignored on create/update. These details must be created
 	// separately via the /udl/launchvehicledetails operations.
-	LaunchVehicleDetails []LaunchvehicleGetResponseLaunchVehicleDetail `json:"launchVehicleDetails"`
+	LaunchVehicleDetails []LaunchVehicleGetResponseLaunchVehicleDetail `json:"launchVehicleDetails"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
@@ -297,7 +297,7 @@ type LaunchvehicleGetResponse struct {
 	OrigNetwork string `json:"origNetwork"`
 	// Read-only collection of stages for this launch vehicle, ignored on
 	// create/update.
-	Stages []LaunchvehicleGetResponseStage `json:"stages"`
+	Stages []LaunchVehicleGetResponseStage `json:"stages"`
 	// Vehicle type.
 	Type string `json:"type"`
 	// Time the row was last updated in the database, auto-populated by the system.
@@ -328,8 +328,8 @@ type LaunchvehicleGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LaunchvehicleGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *LaunchvehicleGetResponse) UnmarshalJSON(data []byte) error {
+func (r LaunchVehicleGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *LaunchVehicleGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -347,19 +347,19 @@ func (r *LaunchvehicleGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LaunchvehicleGetResponseDataMode string
+type LaunchVehicleGetResponseDataMode string
 
 const (
-	LaunchvehicleGetResponseDataModeReal      LaunchvehicleGetResponseDataMode = "REAL"
-	LaunchvehicleGetResponseDataModeTest      LaunchvehicleGetResponseDataMode = "TEST"
-	LaunchvehicleGetResponseDataModeSimulated LaunchvehicleGetResponseDataMode = "SIMULATED"
-	LaunchvehicleGetResponseDataModeExercise  LaunchvehicleGetResponseDataMode = "EXERCISE"
+	LaunchVehicleGetResponseDataModeReal      LaunchVehicleGetResponseDataMode = "REAL"
+	LaunchVehicleGetResponseDataModeTest      LaunchVehicleGetResponseDataMode = "TEST"
+	LaunchVehicleGetResponseDataModeSimulated LaunchVehicleGetResponseDataMode = "SIMULATED"
+	LaunchVehicleGetResponseDataModeExercise  LaunchVehicleGetResponseDataMode = "EXERCISE"
 )
 
 // Model representation of launch vehicle details and characteristics, compiled by
 // a particular source. A vehicle may have multiple details records from various
 // sources.
-type LaunchvehicleGetResponseLaunchVehicleDetail struct {
+type LaunchVehicleGetResponseLaunchVehicleDetail struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -570,14 +570,14 @@ type LaunchvehicleGetResponseLaunchVehicleDetail struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LaunchvehicleGetResponseLaunchVehicleDetail) RawJSON() string { return r.JSON.raw }
-func (r *LaunchvehicleGetResponseLaunchVehicleDetail) UnmarshalJSON(data []byte) error {
+func (r LaunchVehicleGetResponseLaunchVehicleDetail) RawJSON() string { return r.JSON.raw }
+func (r *LaunchVehicleGetResponseLaunchVehicleDetail) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Launch stage information for a particular launch vehicle. A launch vehicle can
 // have several stages, each with 1 to many engines.
-type LaunchvehicleGetResponseStage struct {
+type LaunchVehicleGetResponseStage struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -743,15 +743,15 @@ type LaunchvehicleGetResponseStage struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LaunchvehicleGetResponseStage) RawJSON() string { return r.JSON.raw }
-func (r *LaunchvehicleGetResponseStage) UnmarshalJSON(data []byte) error {
+func (r LaunchVehicleGetResponseStage) RawJSON() string { return r.JSON.raw }
+func (r *LaunchVehicleGetResponseStage) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of basic information about known launch vehicles. A launch
 // vehicle may have several details records including characteristics and
 // information compiled by a particular source.
-type LaunchvehicleTupleResponse struct {
+type LaunchVehicleTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -770,7 +770,7 @@ type LaunchvehicleTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LaunchvehicleTupleResponseDataMode `json:"dataMode,required"`
+	DataMode LaunchVehicleTupleResponseDataMode `json:"dataMode,required"`
 	// Launch vehicle name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -785,7 +785,7 @@ type LaunchvehicleTupleResponse struct {
 	// Read-only collection of additional LaunchVehicleDetails by various sources for
 	// this launch vehicle, ignored on create/update. These details must be created
 	// separately via the /udl/launchvehicledetails operations.
-	LaunchVehicleDetails []LaunchvehicleTupleResponseLaunchVehicleDetail `json:"launchVehicleDetails"`
+	LaunchVehicleDetails []LaunchVehicleTupleResponseLaunchVehicleDetail `json:"launchVehicleDetails"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
@@ -796,7 +796,7 @@ type LaunchvehicleTupleResponse struct {
 	OrigNetwork string `json:"origNetwork"`
 	// Read-only collection of stages for this launch vehicle, ignored on
 	// create/update.
-	Stages []LaunchvehicleTupleResponseStage `json:"stages"`
+	Stages []LaunchVehicleTupleResponseStage `json:"stages"`
 	// Vehicle type.
 	Type string `json:"type"`
 	// Time the row was last updated in the database, auto-populated by the system.
@@ -827,8 +827,8 @@ type LaunchvehicleTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LaunchvehicleTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *LaunchvehicleTupleResponse) UnmarshalJSON(data []byte) error {
+func (r LaunchVehicleTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *LaunchVehicleTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -846,19 +846,19 @@ func (r *LaunchvehicleTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LaunchvehicleTupleResponseDataMode string
+type LaunchVehicleTupleResponseDataMode string
 
 const (
-	LaunchvehicleTupleResponseDataModeReal      LaunchvehicleTupleResponseDataMode = "REAL"
-	LaunchvehicleTupleResponseDataModeTest      LaunchvehicleTupleResponseDataMode = "TEST"
-	LaunchvehicleTupleResponseDataModeSimulated LaunchvehicleTupleResponseDataMode = "SIMULATED"
-	LaunchvehicleTupleResponseDataModeExercise  LaunchvehicleTupleResponseDataMode = "EXERCISE"
+	LaunchVehicleTupleResponseDataModeReal      LaunchVehicleTupleResponseDataMode = "REAL"
+	LaunchVehicleTupleResponseDataModeTest      LaunchVehicleTupleResponseDataMode = "TEST"
+	LaunchVehicleTupleResponseDataModeSimulated LaunchVehicleTupleResponseDataMode = "SIMULATED"
+	LaunchVehicleTupleResponseDataModeExercise  LaunchVehicleTupleResponseDataMode = "EXERCISE"
 )
 
 // Model representation of launch vehicle details and characteristics, compiled by
 // a particular source. A vehicle may have multiple details records from various
 // sources.
-type LaunchvehicleTupleResponseLaunchVehicleDetail struct {
+type LaunchVehicleTupleResponseLaunchVehicleDetail struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1069,14 +1069,14 @@ type LaunchvehicleTupleResponseLaunchVehicleDetail struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LaunchvehicleTupleResponseLaunchVehicleDetail) RawJSON() string { return r.JSON.raw }
-func (r *LaunchvehicleTupleResponseLaunchVehicleDetail) UnmarshalJSON(data []byte) error {
+func (r LaunchVehicleTupleResponseLaunchVehicleDetail) RawJSON() string { return r.JSON.raw }
+func (r *LaunchVehicleTupleResponseLaunchVehicleDetail) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Launch stage information for a particular launch vehicle. A launch vehicle can
 // have several stages, each with 1 to many engines.
-type LaunchvehicleTupleResponseStage struct {
+type LaunchVehicleTupleResponseStage struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1242,12 +1242,12 @@ type LaunchvehicleTupleResponseStage struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LaunchvehicleTupleResponseStage) RawJSON() string { return r.JSON.raw }
-func (r *LaunchvehicleTupleResponseStage) UnmarshalJSON(data []byte) error {
+func (r LaunchVehicleTupleResponseStage) RawJSON() string { return r.JSON.raw }
+func (r *LaunchVehicleTupleResponseStage) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type LaunchvehicleNewParams struct {
+type LaunchVehicleNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1266,7 +1266,7 @@ type LaunchvehicleNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LaunchvehicleNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode LaunchVehicleNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Launch vehicle name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -1285,10 +1285,10 @@ type LaunchvehicleNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchvehicleNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchVehicleNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r LaunchvehicleNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow LaunchvehicleNewParams
+func (r LaunchVehicleNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow LaunchVehicleNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -1306,16 +1306,16 @@ func (r LaunchvehicleNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LaunchvehicleNewParamsDataMode string
+type LaunchVehicleNewParamsDataMode string
 
 const (
-	LaunchvehicleNewParamsDataModeReal      LaunchvehicleNewParamsDataMode = "REAL"
-	LaunchvehicleNewParamsDataModeTest      LaunchvehicleNewParamsDataMode = "TEST"
-	LaunchvehicleNewParamsDataModeSimulated LaunchvehicleNewParamsDataMode = "SIMULATED"
-	LaunchvehicleNewParamsDataModeExercise  LaunchvehicleNewParamsDataMode = "EXERCISE"
+	LaunchVehicleNewParamsDataModeReal      LaunchVehicleNewParamsDataMode = "REAL"
+	LaunchVehicleNewParamsDataModeTest      LaunchVehicleNewParamsDataMode = "TEST"
+	LaunchVehicleNewParamsDataModeSimulated LaunchVehicleNewParamsDataMode = "SIMULATED"
+	LaunchVehicleNewParamsDataModeExercise  LaunchVehicleNewParamsDataMode = "EXERCISE"
 )
 
-type LaunchvehicleUpdateParams struct {
+type LaunchVehicleUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1334,7 +1334,7 @@ type LaunchvehicleUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LaunchvehicleUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode LaunchVehicleUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// Launch vehicle name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -1353,10 +1353,10 @@ type LaunchvehicleUpdateParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchvehicleUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchVehicleUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r LaunchvehicleUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow LaunchvehicleUpdateParams
+func (r LaunchVehicleUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow LaunchVehicleUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -1374,16 +1374,16 @@ func (r LaunchvehicleUpdateParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LaunchvehicleUpdateParamsDataMode string
+type LaunchVehicleUpdateParamsDataMode string
 
 const (
-	LaunchvehicleUpdateParamsDataModeReal      LaunchvehicleUpdateParamsDataMode = "REAL"
-	LaunchvehicleUpdateParamsDataModeTest      LaunchvehicleUpdateParamsDataMode = "TEST"
-	LaunchvehicleUpdateParamsDataModeSimulated LaunchvehicleUpdateParamsDataMode = "SIMULATED"
-	LaunchvehicleUpdateParamsDataModeExercise  LaunchvehicleUpdateParamsDataMode = "EXERCISE"
+	LaunchVehicleUpdateParamsDataModeReal      LaunchVehicleUpdateParamsDataMode = "REAL"
+	LaunchVehicleUpdateParamsDataModeTest      LaunchVehicleUpdateParamsDataMode = "TEST"
+	LaunchVehicleUpdateParamsDataModeSimulated LaunchVehicleUpdateParamsDataMode = "SIMULATED"
+	LaunchVehicleUpdateParamsDataModeExercise  LaunchVehicleUpdateParamsDataMode = "EXERCISE"
 )
 
-type LaunchvehicleListParams struct {
+type LaunchVehicleListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1391,18 +1391,18 @@ type LaunchvehicleListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchvehicleListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchVehicleListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LaunchvehicleListParams]'s query parameters as
+// URLQuery serializes [LaunchVehicleListParams]'s query parameters as
 // `url.Values`.
-func (r LaunchvehicleListParams) URLQuery() (v url.Values, err error) {
+func (r LaunchVehicleListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type LaunchvehicleCountParams struct {
+type LaunchVehicleCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1410,18 +1410,18 @@ type LaunchvehicleCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchvehicleCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchVehicleCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LaunchvehicleCountParams]'s query parameters as
+// URLQuery serializes [LaunchVehicleCountParams]'s query parameters as
 // `url.Values`.
-func (r LaunchvehicleCountParams) URLQuery() (v url.Values, err error) {
+func (r LaunchVehicleCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type LaunchvehicleGetParams struct {
+type LaunchVehicleGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1429,17 +1429,17 @@ type LaunchvehicleGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchvehicleGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchVehicleGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LaunchvehicleGetParams]'s query parameters as `url.Values`.
-func (r LaunchvehicleGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [LaunchVehicleGetParams]'s query parameters as `url.Values`.
+func (r LaunchVehicleGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type LaunchvehicleTupleParams struct {
+type LaunchVehicleTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -1452,11 +1452,11 @@ type LaunchvehicleTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchvehicleTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchVehicleTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LaunchvehicleTupleParams]'s query parameters as
+// URLQuery serializes [LaunchVehicleTupleParams]'s query parameters as
 // `url.Values`.
-func (r LaunchvehicleTupleParams) URLQuery() (v url.Values, err error) {
+func (r LaunchVehicleTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

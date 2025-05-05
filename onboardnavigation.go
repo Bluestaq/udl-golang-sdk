@@ -26,6 +26,7 @@ import (
 // the [NewOnboardnavigationService] method instead.
 type OnboardnavigationService struct {
 	Options []option.RequestOption
+	History OnboardnavigationHistoryService
 }
 
 // NewOnboardnavigationService generates a new service that applies the given
@@ -34,6 +35,7 @@ type OnboardnavigationService struct {
 func NewOnboardnavigationService(opts ...option.RequestOption) (r OnboardnavigationService) {
 	r = OnboardnavigationService{}
 	r.Options = opts
+	r.History = NewOnboardnavigationHistoryService(opts...)
 	return
 }
 

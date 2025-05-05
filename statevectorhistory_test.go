@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestStatevectorHistoryListWithOptionalParams(t *testing.T) {
+func TestStateVectorHistoryListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestStatevectorHistoryListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Statevector.History.List(context.TODO(), unifieddatalibrary.StatevectorHistoryListParams{
+	_, err := client.StateVector.History.List(context.TODO(), unifieddatalibrary.StateVectorHistoryListParams{
 		Epoch:       time.Now(),
 		Columns:     unifieddatalibrary.String("columns"),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -42,7 +42,7 @@ func TestStatevectorHistoryListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestStatevectorHistoryAodrWithOptionalParams(t *testing.T) {
+func TestStateVectorHistoryAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -55,7 +55,7 @@ func TestStatevectorHistoryAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Statevector.History.Aodr(context.TODO(), unifieddatalibrary.StatevectorHistoryAodrParams{
+	err := client.StateVector.History.Aodr(context.TODO(), unifieddatalibrary.StateVectorHistoryAodrParams{
 		Epoch:           time.Now(),
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -73,7 +73,7 @@ func TestStatevectorHistoryAodrWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestStatevectorHistoryCountWithOptionalParams(t *testing.T) {
+func TestStateVectorHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -86,7 +86,7 @@ func TestStatevectorHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Statevector.History.Count(context.TODO(), unifieddatalibrary.StatevectorHistoryCountParams{
+	_, err := client.StateVector.History.Count(context.TODO(), unifieddatalibrary.StateVectorHistoryCountParams{
 		Epoch:       time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

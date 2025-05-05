@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSitestatusHistoryListWithOptionalParams(t *testing.T) {
+func TestSiteStatusHistoryListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,7 +26,7 @@ func TestSitestatusHistoryListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sitestatus.History.List(context.TODO(), unifieddatalibrary.SitestatusHistoryListParams{
+	_, err := client.SiteStatus.History.List(context.TODO(), unifieddatalibrary.SiteStatusHistoryListParams{
 		Columns:     unifieddatalibrary.String("columns"),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -40,7 +40,7 @@ func TestSitestatusHistoryListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSitestatusHistoryCountWithOptionalParams(t *testing.T) {
+func TestSiteStatusHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -53,7 +53,7 @@ func TestSitestatusHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sitestatus.History.Count(context.TODO(), unifieddatalibrary.SitestatusHistoryCountParams{
+	_, err := client.SiteStatus.History.Count(context.TODO(), unifieddatalibrary.SiteStatusHistoryCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})

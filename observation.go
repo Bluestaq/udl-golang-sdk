@@ -13,14 +13,14 @@ import (
 // automatically. You should not instantiate this service directly, and instead use
 // the [NewObservationService] method instead.
 type ObservationService struct {
-	Options          []option.RequestOption
-	Ecpsdr           ObservationEcpsdrService
-	Eo               ObservationEoService
-	Gnssobservations ObservationGnssobservationService
-	Monoradar        ObservationMonoradarService
-	Swir             ObservationSwirService
-	Radarobservation ObservationRadarobservationService
-	Rfobservation    ObservationRfobservationService
+	Options                 []option.RequestOption
+	Ecpsdr                  ObservationEcpsdrService
+	Monoradar               ObservationMonoradarService
+	Swir                    ObservationSwirService
+	Radarobservation        ObservationRadarobservationService
+	RfObservation           ObservationRfObservationService
+	PassiveRadarObservation ObservationPassiveRadarObservationService
+	EoObservations          ObservationEoObservationService
 }
 
 // NewObservationService generates a new service that applies the given options to
@@ -30,11 +30,11 @@ func NewObservationService(opts ...option.RequestOption) (r ObservationService) 
 	r = ObservationService{}
 	r.Options = opts
 	r.Ecpsdr = NewObservationEcpsdrService(opts...)
-	r.Eo = NewObservationEoService(opts...)
-	r.Gnssobservations = NewObservationGnssobservationService(opts...)
 	r.Monoradar = NewObservationMonoradarService(opts...)
 	r.Swir = NewObservationSwirService(opts...)
 	r.Radarobservation = NewObservationRadarobservationService(opts...)
-	r.Rfobservation = NewObservationRfobservationService(opts...)
+	r.RfObservation = NewObservationRfObservationService(opts...)
+	r.PassiveRadarObservation = NewObservationPassiveRadarObservationService(opts...)
+	r.EoObservations = NewObservationEoObservationService(opts...)
 	return
 }

@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSeradataopticalpayloadNewWithOptionalParams(t *testing.T) {
+func TestSeradataOpticalPayloadNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,9 +26,9 @@ func TestSeradataopticalpayloadNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradataopticalpayload.New(context.TODO(), unifieddatalibrary.SeradataopticalpayloadNewParams{
+	err := client.SeradataOpticalPayload.New(context.TODO(), unifieddatalibrary.SeradataOpticalPayloadNewParams{
 		ClassificationMarking:       "U",
-		DataMode:                    unifieddatalibrary.SeradataopticalpayloadNewParamsDataModeTest,
+		DataMode:                    unifieddatalibrary.SeradataOpticalPayloadNewParamsDataModeTest,
 		Source:                      "Bluestaq",
 		SpacecraftID:                "spacecraftId",
 		ID:                          unifieddatalibrary.String("SERADATAOPTICALPAYLOAD-ID"),
@@ -60,7 +60,7 @@ func TestSeradataopticalpayloadNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradataopticalpayloadUpdateWithOptionalParams(t *testing.T) {
+func TestSeradataOpticalPayloadUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -73,12 +73,12 @@ func TestSeradataopticalpayloadUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradataopticalpayload.Update(
+	err := client.SeradataOpticalPayload.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SeradataopticalpayloadUpdateParams{
+		unifieddatalibrary.SeradataOpticalPayloadUpdateParams{
 			ClassificationMarking:       "U",
-			DataMode:                    unifieddatalibrary.SeradataopticalpayloadUpdateParamsDataModeTest,
+			DataMode:                    unifieddatalibrary.SeradataOpticalPayloadUpdateParamsDataModeTest,
 			Source:                      "Bluestaq",
 			SpacecraftID:                "spacecraftId",
 			ID:                          unifieddatalibrary.String("SERADATAOPTICALPAYLOAD-ID"),
@@ -111,7 +111,7 @@ func TestSeradataopticalpayloadUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradataopticalpayloadListWithOptionalParams(t *testing.T) {
+func TestSeradataOpticalPayloadListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -124,7 +124,7 @@ func TestSeradataopticalpayloadListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradataopticalpayload.List(context.TODO(), unifieddatalibrary.SeradataopticalpayloadListParams{
+	_, err := client.SeradataOpticalPayload.List(context.TODO(), unifieddatalibrary.SeradataOpticalPayloadListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -137,7 +137,7 @@ func TestSeradataopticalpayloadListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradataopticalpayloadDelete(t *testing.T) {
+func TestSeradataOpticalPayloadDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -150,7 +150,7 @@ func TestSeradataopticalpayloadDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradataopticalpayload.Delete(context.TODO(), "id")
+	err := client.SeradataOpticalPayload.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -160,7 +160,7 @@ func TestSeradataopticalpayloadDelete(t *testing.T) {
 	}
 }
 
-func TestSeradataopticalpayloadCountWithOptionalParams(t *testing.T) {
+func TestSeradataOpticalPayloadCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -173,7 +173,7 @@ func TestSeradataopticalpayloadCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradataopticalpayload.Count(context.TODO(), unifieddatalibrary.SeradataopticalpayloadCountParams{
+	_, err := client.SeradataOpticalPayload.Count(context.TODO(), unifieddatalibrary.SeradataOpticalPayloadCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -186,7 +186,7 @@ func TestSeradataopticalpayloadCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradataopticalpayloadGetWithOptionalParams(t *testing.T) {
+func TestSeradataOpticalPayloadGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -199,10 +199,10 @@ func TestSeradataopticalpayloadGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradataopticalpayload.Get(
+	_, err := client.SeradataOpticalPayload.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SeradataopticalpayloadGetParams{
+		unifieddatalibrary.SeradataOpticalPayloadGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -216,7 +216,7 @@ func TestSeradataopticalpayloadGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradataopticalpayloadQueryhelp(t *testing.T) {
+func TestSeradataOpticalPayloadQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -229,7 +229,7 @@ func TestSeradataopticalpayloadQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradataopticalpayload.Queryhelp(context.TODO())
+	err := client.SeradataOpticalPayload.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -239,7 +239,7 @@ func TestSeradataopticalpayloadQueryhelp(t *testing.T) {
 	}
 }
 
-func TestSeradataopticalpayloadTupleWithOptionalParams(t *testing.T) {
+func TestSeradataOpticalPayloadTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -252,7 +252,7 @@ func TestSeradataopticalpayloadTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradataopticalpayload.Tuple(context.TODO(), unifieddatalibrary.SeradataopticalpayloadTupleParams{
+	_, err := client.SeradataOpticalPayload.Tuple(context.TODO(), unifieddatalibrary.SeradataOpticalPayloadTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

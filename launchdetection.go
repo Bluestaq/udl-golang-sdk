@@ -19,21 +19,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// LaunchdetectionService contains methods and other services that help with
+// LaunchDetectionService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewLaunchdetectionService] method instead.
-type LaunchdetectionService struct {
+// the [NewLaunchDetectionService] method instead.
+type LaunchDetectionService struct {
 	Options []option.RequestOption
 }
 
-// NewLaunchdetectionService generates a new service that applies the given options
+// NewLaunchDetectionService generates a new service that applies the given options
 // to each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewLaunchdetectionService(opts ...option.RequestOption) (r LaunchdetectionService) {
-	r = LaunchdetectionService{}
+func NewLaunchDetectionService(opts ...option.RequestOption) (r LaunchDetectionService) {
+	r = LaunchDetectionService{}
 	r.Options = opts
 	return
 }
@@ -41,7 +41,7 @@ func NewLaunchdetectionService(opts ...option.RequestOption) (r LaunchdetectionS
 // Service operation to take a single launch detection as a POST body and ingest
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *LaunchdetectionService) New(ctx context.Context, body LaunchdetectionNewParams, opts ...option.RequestOption) (err error) {
+func (r *LaunchDetectionService) New(ctx context.Context, body LaunchDetectionNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/launchdetection"
@@ -52,7 +52,7 @@ func (r *LaunchdetectionService) New(ctx context.Context, body LaunchdetectionNe
 // Service operation to update a single launch detection. A specific role is
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
-func (r *LaunchdetectionService) Update(ctx context.Context, id string, body LaunchdetectionUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *LaunchDetectionService) Update(ctx context.Context, id string, body LaunchDetectionUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -68,7 +68,7 @@ func (r *LaunchdetectionService) Update(ctx context.Context, id string, body Lau
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *LaunchdetectionService) List(ctx context.Context, query LaunchdetectionListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LaunchdetectionListResponse], err error) {
+func (r *LaunchDetectionService) List(ctx context.Context, query LaunchDetectionListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LaunchDetectionListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -89,14 +89,14 @@ func (r *LaunchdetectionService) List(ctx context.Context, query Launchdetection
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *LaunchdetectionService) ListAutoPaging(ctx context.Context, query LaunchdetectionListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[LaunchdetectionListResponse] {
+func (r *LaunchDetectionService) ListAutoPaging(ctx context.Context, query LaunchDetectionListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[LaunchDetectionListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to delete a launch detection object specified by the passed ID
 // path parameter. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
-func (r *LaunchdetectionService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *LaunchDetectionService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -113,7 +113,7 @@ func (r *LaunchdetectionService) Delete(ctx context.Context, id string, opts ...
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *LaunchdetectionService) Count(ctx context.Context, query LaunchdetectionCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *LaunchDetectionService) Count(ctx context.Context, query LaunchDetectionCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/launchdetection/count"
@@ -123,7 +123,7 @@ func (r *LaunchdetectionService) Count(ctx context.Context, query Launchdetectio
 
 // Service operation to get a single launch detection record by its unique ID
 // passed as a path parameter.
-func (r *LaunchdetectionService) Get(ctx context.Context, id string, query LaunchdetectionGetParams, opts ...option.RequestOption) (res *LaunchdetectionGetResponse, err error) {
+func (r *LaunchDetectionService) Get(ctx context.Context, id string, query LaunchDetectionGetParams, opts ...option.RequestOption) (res *LaunchDetectionGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -136,7 +136,7 @@ func (r *LaunchdetectionService) Get(ctx context.Context, id string, query Launc
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *LaunchdetectionService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *LaunchDetectionService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/launchdetection/queryhelp"
@@ -152,7 +152,7 @@ func (r *LaunchdetectionService) Queryhelp(ctx context.Context, opts ...option.R
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *LaunchdetectionService) Tuple(ctx context.Context, query LaunchdetectionTupleParams, opts ...option.RequestOption) (res *[]LaunchdetectionTupleResponse, err error) {
+func (r *LaunchDetectionService) Tuple(ctx context.Context, query LaunchDetectionTupleParams, opts ...option.RequestOption) (res *[]LaunchDetectionTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/launchdetection/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -160,7 +160,7 @@ func (r *LaunchdetectionService) Tuple(ctx context.Context, query Launchdetectio
 }
 
 // Data to analyze launch detections.
-type LaunchdetectionListResponse struct {
+type LaunchDetectionListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -179,7 +179,7 @@ type LaunchdetectionListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LaunchdetectionListResponseDataMode `json:"dataMode,required"`
+	DataMode LaunchDetectionListResponseDataMode `json:"dataMode,required"`
 	// Type of message for the data.
 	MessageType string `json:"messageType,required"`
 	// Latitude of launch vehicle at observation time (in Degrees). -90 to 90 degrees
@@ -273,8 +273,8 @@ type LaunchdetectionListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LaunchdetectionListResponse) RawJSON() string { return r.JSON.raw }
-func (r *LaunchdetectionListResponse) UnmarshalJSON(data []byte) error {
+func (r LaunchDetectionListResponse) RawJSON() string { return r.JSON.raw }
+func (r *LaunchDetectionListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -292,17 +292,17 @@ func (r *LaunchdetectionListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LaunchdetectionListResponseDataMode string
+type LaunchDetectionListResponseDataMode string
 
 const (
-	LaunchdetectionListResponseDataModeReal      LaunchdetectionListResponseDataMode = "REAL"
-	LaunchdetectionListResponseDataModeTest      LaunchdetectionListResponseDataMode = "TEST"
-	LaunchdetectionListResponseDataModeSimulated LaunchdetectionListResponseDataMode = "SIMULATED"
-	LaunchdetectionListResponseDataModeExercise  LaunchdetectionListResponseDataMode = "EXERCISE"
+	LaunchDetectionListResponseDataModeReal      LaunchDetectionListResponseDataMode = "REAL"
+	LaunchDetectionListResponseDataModeTest      LaunchDetectionListResponseDataMode = "TEST"
+	LaunchDetectionListResponseDataModeSimulated LaunchDetectionListResponseDataMode = "SIMULATED"
+	LaunchDetectionListResponseDataModeExercise  LaunchDetectionListResponseDataMode = "EXERCISE"
 )
 
 // Data to analyze launch detections.
-type LaunchdetectionGetResponse struct {
+type LaunchDetectionGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -321,7 +321,7 @@ type LaunchdetectionGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LaunchdetectionGetResponseDataMode `json:"dataMode,required"`
+	DataMode LaunchDetectionGetResponseDataMode `json:"dataMode,required"`
 	// Type of message for the data.
 	MessageType string `json:"messageType,required"`
 	// Latitude of launch vehicle at observation time (in Degrees). -90 to 90 degrees
@@ -422,8 +422,8 @@ type LaunchdetectionGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LaunchdetectionGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *LaunchdetectionGetResponse) UnmarshalJSON(data []byte) error {
+func (r LaunchDetectionGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *LaunchDetectionGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -441,17 +441,17 @@ func (r *LaunchdetectionGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LaunchdetectionGetResponseDataMode string
+type LaunchDetectionGetResponseDataMode string
 
 const (
-	LaunchdetectionGetResponseDataModeReal      LaunchdetectionGetResponseDataMode = "REAL"
-	LaunchdetectionGetResponseDataModeTest      LaunchdetectionGetResponseDataMode = "TEST"
-	LaunchdetectionGetResponseDataModeSimulated LaunchdetectionGetResponseDataMode = "SIMULATED"
-	LaunchdetectionGetResponseDataModeExercise  LaunchdetectionGetResponseDataMode = "EXERCISE"
+	LaunchDetectionGetResponseDataModeReal      LaunchDetectionGetResponseDataMode = "REAL"
+	LaunchDetectionGetResponseDataModeTest      LaunchDetectionGetResponseDataMode = "TEST"
+	LaunchDetectionGetResponseDataModeSimulated LaunchDetectionGetResponseDataMode = "SIMULATED"
+	LaunchDetectionGetResponseDataModeExercise  LaunchDetectionGetResponseDataMode = "EXERCISE"
 )
 
 // Data to analyze launch detections.
-type LaunchdetectionTupleResponse struct {
+type LaunchDetectionTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -470,7 +470,7 @@ type LaunchdetectionTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LaunchdetectionTupleResponseDataMode `json:"dataMode,required"`
+	DataMode LaunchDetectionTupleResponseDataMode `json:"dataMode,required"`
 	// Type of message for the data.
 	MessageType string `json:"messageType,required"`
 	// Latitude of launch vehicle at observation time (in Degrees). -90 to 90 degrees
@@ -571,8 +571,8 @@ type LaunchdetectionTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LaunchdetectionTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *LaunchdetectionTupleResponse) UnmarshalJSON(data []byte) error {
+func (r LaunchDetectionTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *LaunchDetectionTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -590,16 +590,16 @@ func (r *LaunchdetectionTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LaunchdetectionTupleResponseDataMode string
+type LaunchDetectionTupleResponseDataMode string
 
 const (
-	LaunchdetectionTupleResponseDataModeReal      LaunchdetectionTupleResponseDataMode = "REAL"
-	LaunchdetectionTupleResponseDataModeTest      LaunchdetectionTupleResponseDataMode = "TEST"
-	LaunchdetectionTupleResponseDataModeSimulated LaunchdetectionTupleResponseDataMode = "SIMULATED"
-	LaunchdetectionTupleResponseDataModeExercise  LaunchdetectionTupleResponseDataMode = "EXERCISE"
+	LaunchDetectionTupleResponseDataModeReal      LaunchDetectionTupleResponseDataMode = "REAL"
+	LaunchDetectionTupleResponseDataModeTest      LaunchDetectionTupleResponseDataMode = "TEST"
+	LaunchDetectionTupleResponseDataModeSimulated LaunchDetectionTupleResponseDataMode = "SIMULATED"
+	LaunchDetectionTupleResponseDataModeExercise  LaunchDetectionTupleResponseDataMode = "EXERCISE"
 )
 
-type LaunchdetectionNewParams struct {
+type LaunchDetectionNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -618,7 +618,7 @@ type LaunchdetectionNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LaunchdetectionNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode LaunchDetectionNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Type of message for the data.
 	MessageType string `json:"messageType,required"`
 	// Latitude of launch vehicle at observation time (in Degrees). -90 to 90 degrees
@@ -675,10 +675,10 @@ type LaunchdetectionNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchdetectionNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchDetectionNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r LaunchdetectionNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow LaunchdetectionNewParams
+func (r LaunchDetectionNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow LaunchDetectionNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -696,16 +696,16 @@ func (r LaunchdetectionNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LaunchdetectionNewParamsDataMode string
+type LaunchDetectionNewParamsDataMode string
 
 const (
-	LaunchdetectionNewParamsDataModeReal      LaunchdetectionNewParamsDataMode = "REAL"
-	LaunchdetectionNewParamsDataModeTest      LaunchdetectionNewParamsDataMode = "TEST"
-	LaunchdetectionNewParamsDataModeSimulated LaunchdetectionNewParamsDataMode = "SIMULATED"
-	LaunchdetectionNewParamsDataModeExercise  LaunchdetectionNewParamsDataMode = "EXERCISE"
+	LaunchDetectionNewParamsDataModeReal      LaunchDetectionNewParamsDataMode = "REAL"
+	LaunchDetectionNewParamsDataModeTest      LaunchDetectionNewParamsDataMode = "TEST"
+	LaunchDetectionNewParamsDataModeSimulated LaunchDetectionNewParamsDataMode = "SIMULATED"
+	LaunchDetectionNewParamsDataModeExercise  LaunchDetectionNewParamsDataMode = "EXERCISE"
 )
 
-type LaunchdetectionUpdateParams struct {
+type LaunchDetectionUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -724,7 +724,7 @@ type LaunchdetectionUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LaunchdetectionUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode LaunchDetectionUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// Type of message for the data.
 	MessageType string `json:"messageType,required"`
 	// Latitude of launch vehicle at observation time (in Degrees). -90 to 90 degrees
@@ -781,10 +781,10 @@ type LaunchdetectionUpdateParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchdetectionUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchDetectionUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r LaunchdetectionUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow LaunchdetectionUpdateParams
+func (r LaunchDetectionUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow LaunchDetectionUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -802,16 +802,16 @@ func (r LaunchdetectionUpdateParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LaunchdetectionUpdateParamsDataMode string
+type LaunchDetectionUpdateParamsDataMode string
 
 const (
-	LaunchdetectionUpdateParamsDataModeReal      LaunchdetectionUpdateParamsDataMode = "REAL"
-	LaunchdetectionUpdateParamsDataModeTest      LaunchdetectionUpdateParamsDataMode = "TEST"
-	LaunchdetectionUpdateParamsDataModeSimulated LaunchdetectionUpdateParamsDataMode = "SIMULATED"
-	LaunchdetectionUpdateParamsDataModeExercise  LaunchdetectionUpdateParamsDataMode = "EXERCISE"
+	LaunchDetectionUpdateParamsDataModeReal      LaunchDetectionUpdateParamsDataMode = "REAL"
+	LaunchDetectionUpdateParamsDataModeTest      LaunchDetectionUpdateParamsDataMode = "TEST"
+	LaunchDetectionUpdateParamsDataModeSimulated LaunchDetectionUpdateParamsDataMode = "SIMULATED"
+	LaunchDetectionUpdateParamsDataModeExercise  LaunchDetectionUpdateParamsDataMode = "EXERCISE"
 )
 
-type LaunchdetectionListParams struct {
+type LaunchDetectionListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -819,18 +819,18 @@ type LaunchdetectionListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchdetectionListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchDetectionListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LaunchdetectionListParams]'s query parameters as
+// URLQuery serializes [LaunchDetectionListParams]'s query parameters as
 // `url.Values`.
-func (r LaunchdetectionListParams) URLQuery() (v url.Values, err error) {
+func (r LaunchDetectionListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type LaunchdetectionCountParams struct {
+type LaunchDetectionCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -838,18 +838,18 @@ type LaunchdetectionCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchdetectionCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchDetectionCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LaunchdetectionCountParams]'s query parameters as
+// URLQuery serializes [LaunchDetectionCountParams]'s query parameters as
 // `url.Values`.
-func (r LaunchdetectionCountParams) URLQuery() (v url.Values, err error) {
+func (r LaunchDetectionCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type LaunchdetectionGetParams struct {
+type LaunchDetectionGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -857,18 +857,18 @@ type LaunchdetectionGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchdetectionGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchDetectionGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LaunchdetectionGetParams]'s query parameters as
+// URLQuery serializes [LaunchDetectionGetParams]'s query parameters as
 // `url.Values`.
-func (r LaunchdetectionGetParams) URLQuery() (v url.Values, err error) {
+func (r LaunchDetectionGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type LaunchdetectionTupleParams struct {
+type LaunchDetectionTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -881,11 +881,11 @@ type LaunchdetectionTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchdetectionTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchDetectionTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LaunchdetectionTupleParams]'s query parameters as
+// URLQuery serializes [LaunchDetectionTupleParams]'s query parameters as
 // `url.Values`.
-func (r LaunchdetectionTupleParams) URLQuery() (v url.Values, err error) {
+func (r LaunchDetectionTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

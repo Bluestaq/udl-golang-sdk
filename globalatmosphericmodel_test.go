@@ -18,7 +18,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestGlobalatmosphericmodelGetWithOptionalParams(t *testing.T) {
+func TestGlobalAtmosphericModelGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -31,10 +31,10 @@ func TestGlobalatmosphericmodelGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Globalatmosphericmodel.Get(
+	_, err := client.GlobalAtmosphericModel.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.GlobalatmosphericmodelGetParams{
+		unifieddatalibrary.GlobalAtmosphericModelGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -48,7 +48,7 @@ func TestGlobalatmosphericmodelGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestGlobalatmosphericmodelCountWithOptionalParams(t *testing.T) {
+func TestGlobalAtmosphericModelCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -61,7 +61,7 @@ func TestGlobalatmosphericmodelCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Globalatmosphericmodel.Count(context.TODO(), unifieddatalibrary.GlobalatmosphericmodelCountParams{
+	_, err := client.GlobalAtmosphericModel.Count(context.TODO(), unifieddatalibrary.GlobalAtmosphericModelCountParams{
 		Ts:          time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -75,7 +75,7 @@ func TestGlobalatmosphericmodelCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestGlobalatmosphericmodelGetFileWithOptionalParams(t *testing.T) {
+func TestGlobalAtmosphericModelGetFileWithOptionalParams(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(200)
 		w.Write([]byte("abc"))
@@ -87,10 +87,10 @@ func TestGlobalatmosphericmodelGetFileWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	resp, err := client.Globalatmosphericmodel.GetFile(
+	resp, err := client.GlobalAtmosphericModel.GetFile(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.GlobalatmosphericmodelGetFileParams{
+		unifieddatalibrary.GlobalAtmosphericModelGetFileParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -117,7 +117,7 @@ func TestGlobalatmosphericmodelGetFileWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestGlobalatmosphericmodelQueryWithOptionalParams(t *testing.T) {
+func TestGlobalAtmosphericModelQueryWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -130,7 +130,7 @@ func TestGlobalatmosphericmodelQueryWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Globalatmosphericmodel.Query(context.TODO(), unifieddatalibrary.GlobalatmosphericmodelQueryParams{
+	_, err := client.GlobalAtmosphericModel.Query(context.TODO(), unifieddatalibrary.GlobalAtmosphericModelQueryParams{
 		Ts:          time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -144,7 +144,7 @@ func TestGlobalatmosphericmodelQueryWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestGlobalatmosphericmodelQueryHelp(t *testing.T) {
+func TestGlobalAtmosphericModelQueryHelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -157,7 +157,7 @@ func TestGlobalatmosphericmodelQueryHelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Globalatmosphericmodel.QueryHelp(context.TODO())
+	err := client.GlobalAtmosphericModel.QueryHelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -167,7 +167,7 @@ func TestGlobalatmosphericmodelQueryHelp(t *testing.T) {
 	}
 }
 
-func TestGlobalatmosphericmodelTupleWithOptionalParams(t *testing.T) {
+func TestGlobalAtmosphericModelTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -180,7 +180,7 @@ func TestGlobalatmosphericmodelTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Globalatmosphericmodel.Tuple(context.TODO(), unifieddatalibrary.GlobalatmosphericmodelTupleParams{
+	_, err := client.GlobalAtmosphericModel.Tuple(context.TODO(), unifieddatalibrary.GlobalAtmosphericModelTupleParams{
 		Columns:     "columns",
 		Ts:          time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -195,7 +195,7 @@ func TestGlobalatmosphericmodelTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestGlobalatmosphericmodelUnvalidatedPublishWithOptionalParams(t *testing.T) {
+func TestGlobalAtmosphericModelUnvalidatedPublishWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -208,9 +208,9 @@ func TestGlobalatmosphericmodelUnvalidatedPublishWithOptionalParams(t *testing.T
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Globalatmosphericmodel.UnvalidatedPublish(context.TODO(), unifieddatalibrary.GlobalatmosphericmodelUnvalidatedPublishParams{
+	err := client.GlobalAtmosphericModel.UnvalidatedPublish(context.TODO(), unifieddatalibrary.GlobalAtmosphericModelUnvalidatedPublishParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.GlobalatmosphericmodelUnvalidatedPublishParamsDataModeTest,
+		DataMode:              unifieddatalibrary.GlobalAtmosphericModelUnvalidatedPublishParamsDataModeTest,
 		Source:                "Bluestaq",
 		Ts:                    time.Now(),
 		Type:                  "Global Total Electron Density",

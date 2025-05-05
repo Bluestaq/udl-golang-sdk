@@ -19,21 +19,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// SiteremarkService contains methods and other services that help with interacting
+// SiteRemarkService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewSiteremarkService] method instead.
-type SiteremarkService struct {
+// the [NewSiteRemarkService] method instead.
+type SiteRemarkService struct {
 	Options []option.RequestOption
 }
 
-// NewSiteremarkService generates a new service that applies the given options to
+// NewSiteRemarkService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewSiteremarkService(opts ...option.RequestOption) (r SiteremarkService) {
-	r = SiteremarkService{}
+func NewSiteRemarkService(opts ...option.RequestOption) (r SiteRemarkService) {
+	r = SiteRemarkService{}
 	r.Options = opts
 	return
 }
@@ -41,7 +41,7 @@ func NewSiteremarkService(opts ...option.RequestOption) (r SiteremarkService) {
 // Service operation to take a single remark record as a POST body and ingest into
 // the database. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
-func (r *SiteremarkService) New(ctx context.Context, body SiteremarkNewParams, opts ...option.RequestOption) (err error) {
+func (r *SiteRemarkService) New(ctx context.Context, body SiteRemarkNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/siteremark"
@@ -53,7 +53,7 @@ func (r *SiteremarkService) New(ctx context.Context, body SiteremarkNewParams, o
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SiteremarkService) List(ctx context.Context, query SiteremarkListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SiteremarkListResponse], err error) {
+func (r *SiteRemarkService) List(ctx context.Context, query SiteRemarkListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SiteRemarkListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -74,7 +74,7 @@ func (r *SiteremarkService) List(ctx context.Context, query SiteremarkListParams
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SiteremarkService) ListAutoPaging(ctx context.Context, query SiteremarkListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SiteremarkListResponse] {
+func (r *SiteRemarkService) ListAutoPaging(ctx context.Context, query SiteRemarkListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SiteRemarkListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -83,7 +83,7 @@ func (r *SiteremarkService) ListAutoPaging(ctx context.Context, query Siteremark
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *SiteremarkService) Count(ctx context.Context, query SiteremarkCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *SiteRemarkService) Count(ctx context.Context, query SiteRemarkCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/siteremark/count"
@@ -93,7 +93,7 @@ func (r *SiteremarkService) Count(ctx context.Context, query SiteremarkCountPara
 
 // Service operation to get a single remark record by its unique ID passed as a
 // path parameter.
-func (r *SiteremarkService) Get(ctx context.Context, id string, query SiteremarkGetParams, opts ...option.RequestOption) (res *SiteremarkGetResponse, err error) {
+func (r *SiteRemarkService) Get(ctx context.Context, id string, query SiteRemarkGetParams, opts ...option.RequestOption) (res *SiteRemarkGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -106,7 +106,7 @@ func (r *SiteremarkService) Get(ctx context.Context, id string, query Siteremark
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *SiteremarkService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *SiteRemarkService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/siteremark/queryhelp"
@@ -122,7 +122,7 @@ func (r *SiteremarkService) Queryhelp(ctx context.Context, opts ...option.Reques
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *SiteremarkService) Tuple(ctx context.Context, query SiteremarkTupleParams, opts ...option.RequestOption) (res *[]SiteremarkTupleResponse, err error) {
+func (r *SiteRemarkService) Tuple(ctx context.Context, query SiteRemarkTupleParams, opts ...option.RequestOption) (res *[]SiteRemarkTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/siteremark/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -131,7 +131,7 @@ func (r *SiteremarkService) Tuple(ctx context.Context, query SiteremarkTuplePara
 
 // Remarks contain amplifying information for a specific service. The information
 // may contain context and interpretations for consumer use.
-type SiteremarkListResponse struct {
+type SiteRemarkListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -150,7 +150,7 @@ type SiteremarkListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SiteremarkListResponseDataMode `json:"dataMode,required"`
+	DataMode SiteRemarkListResponseDataMode `json:"dataMode,required"`
 	// The ID of the site to which this remark applies.
 	IDSite string `json:"idSite,required"`
 	// Source of the data.
@@ -204,8 +204,8 @@ type SiteremarkListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SiteremarkListResponse) RawJSON() string { return r.JSON.raw }
-func (r *SiteremarkListResponse) UnmarshalJSON(data []byte) error {
+func (r SiteRemarkListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SiteRemarkListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -223,18 +223,18 @@ func (r *SiteremarkListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SiteremarkListResponseDataMode string
+type SiteRemarkListResponseDataMode string
 
 const (
-	SiteremarkListResponseDataModeReal      SiteremarkListResponseDataMode = "REAL"
-	SiteremarkListResponseDataModeTest      SiteremarkListResponseDataMode = "TEST"
-	SiteremarkListResponseDataModeSimulated SiteremarkListResponseDataMode = "SIMULATED"
-	SiteremarkListResponseDataModeExercise  SiteremarkListResponseDataMode = "EXERCISE"
+	SiteRemarkListResponseDataModeReal      SiteRemarkListResponseDataMode = "REAL"
+	SiteRemarkListResponseDataModeTest      SiteRemarkListResponseDataMode = "TEST"
+	SiteRemarkListResponseDataModeSimulated SiteRemarkListResponseDataMode = "SIMULATED"
+	SiteRemarkListResponseDataModeExercise  SiteRemarkListResponseDataMode = "EXERCISE"
 )
 
 // Remarks contain amplifying information for a specific service. The information
 // may contain context and interpretations for consumer use.
-type SiteremarkGetResponse struct {
+type SiteRemarkGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -253,7 +253,7 @@ type SiteremarkGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SiteremarkGetResponseDataMode `json:"dataMode,required"`
+	DataMode SiteRemarkGetResponseDataMode `json:"dataMode,required"`
 	// The ID of the site to which this remark applies.
 	IDSite string `json:"idSite,required"`
 	// Source of the data.
@@ -307,8 +307,8 @@ type SiteremarkGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SiteremarkGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *SiteremarkGetResponse) UnmarshalJSON(data []byte) error {
+func (r SiteRemarkGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *SiteRemarkGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -326,18 +326,18 @@ func (r *SiteremarkGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SiteremarkGetResponseDataMode string
+type SiteRemarkGetResponseDataMode string
 
 const (
-	SiteremarkGetResponseDataModeReal      SiteremarkGetResponseDataMode = "REAL"
-	SiteremarkGetResponseDataModeTest      SiteremarkGetResponseDataMode = "TEST"
-	SiteremarkGetResponseDataModeSimulated SiteremarkGetResponseDataMode = "SIMULATED"
-	SiteremarkGetResponseDataModeExercise  SiteremarkGetResponseDataMode = "EXERCISE"
+	SiteRemarkGetResponseDataModeReal      SiteRemarkGetResponseDataMode = "REAL"
+	SiteRemarkGetResponseDataModeTest      SiteRemarkGetResponseDataMode = "TEST"
+	SiteRemarkGetResponseDataModeSimulated SiteRemarkGetResponseDataMode = "SIMULATED"
+	SiteRemarkGetResponseDataModeExercise  SiteRemarkGetResponseDataMode = "EXERCISE"
 )
 
 // Remarks contain amplifying information for a specific service. The information
 // may contain context and interpretations for consumer use.
-type SiteremarkTupleResponse struct {
+type SiteRemarkTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -356,7 +356,7 @@ type SiteremarkTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SiteremarkTupleResponseDataMode `json:"dataMode,required"`
+	DataMode SiteRemarkTupleResponseDataMode `json:"dataMode,required"`
 	// The ID of the site to which this remark applies.
 	IDSite string `json:"idSite,required"`
 	// Source of the data.
@@ -410,8 +410,8 @@ type SiteremarkTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SiteremarkTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *SiteremarkTupleResponse) UnmarshalJSON(data []byte) error {
+func (r SiteRemarkTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *SiteRemarkTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -429,16 +429,16 @@ func (r *SiteremarkTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SiteremarkTupleResponseDataMode string
+type SiteRemarkTupleResponseDataMode string
 
 const (
-	SiteremarkTupleResponseDataModeReal      SiteremarkTupleResponseDataMode = "REAL"
-	SiteremarkTupleResponseDataModeTest      SiteremarkTupleResponseDataMode = "TEST"
-	SiteremarkTupleResponseDataModeSimulated SiteremarkTupleResponseDataMode = "SIMULATED"
-	SiteremarkTupleResponseDataModeExercise  SiteremarkTupleResponseDataMode = "EXERCISE"
+	SiteRemarkTupleResponseDataModeReal      SiteRemarkTupleResponseDataMode = "REAL"
+	SiteRemarkTupleResponseDataModeTest      SiteRemarkTupleResponseDataMode = "TEST"
+	SiteRemarkTupleResponseDataModeSimulated SiteRemarkTupleResponseDataMode = "SIMULATED"
+	SiteRemarkTupleResponseDataModeExercise  SiteRemarkTupleResponseDataMode = "EXERCISE"
 )
 
-type SiteremarkNewParams struct {
+type SiteRemarkNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -457,7 +457,7 @@ type SiteremarkNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SiteremarkNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SiteRemarkNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// The ID of the site to which this remark applies.
 	IDSite string `json:"idSite,required"`
 	// Source of the data.
@@ -485,10 +485,10 @@ type SiteremarkNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteremarkNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SiteRemarkNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SiteremarkNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow SiteremarkNewParams
+func (r SiteRemarkNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow SiteRemarkNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -506,16 +506,16 @@ func (r SiteremarkNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SiteremarkNewParamsDataMode string
+type SiteRemarkNewParamsDataMode string
 
 const (
-	SiteremarkNewParamsDataModeReal      SiteremarkNewParamsDataMode = "REAL"
-	SiteremarkNewParamsDataModeTest      SiteremarkNewParamsDataMode = "TEST"
-	SiteremarkNewParamsDataModeSimulated SiteremarkNewParamsDataMode = "SIMULATED"
-	SiteremarkNewParamsDataModeExercise  SiteremarkNewParamsDataMode = "EXERCISE"
+	SiteRemarkNewParamsDataModeReal      SiteRemarkNewParamsDataMode = "REAL"
+	SiteRemarkNewParamsDataModeTest      SiteRemarkNewParamsDataMode = "TEST"
+	SiteRemarkNewParamsDataModeSimulated SiteRemarkNewParamsDataMode = "SIMULATED"
+	SiteRemarkNewParamsDataModeExercise  SiteRemarkNewParamsDataMode = "EXERCISE"
 )
 
-type SiteremarkListParams struct {
+type SiteRemarkListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -523,17 +523,17 @@ type SiteremarkListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteremarkListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SiteRemarkListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SiteremarkListParams]'s query parameters as `url.Values`.
-func (r SiteremarkListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SiteRemarkListParams]'s query parameters as `url.Values`.
+func (r SiteRemarkListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SiteremarkCountParams struct {
+type SiteRemarkCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -541,17 +541,17 @@ type SiteremarkCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteremarkCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SiteRemarkCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SiteremarkCountParams]'s query parameters as `url.Values`.
-func (r SiteremarkCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SiteRemarkCountParams]'s query parameters as `url.Values`.
+func (r SiteRemarkCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SiteremarkGetParams struct {
+type SiteRemarkGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -559,17 +559,17 @@ type SiteremarkGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteremarkGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SiteRemarkGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SiteremarkGetParams]'s query parameters as `url.Values`.
-func (r SiteremarkGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SiteRemarkGetParams]'s query parameters as `url.Values`.
+func (r SiteRemarkGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SiteremarkTupleParams struct {
+type SiteRemarkTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -582,10 +582,10 @@ type SiteremarkTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteremarkTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SiteRemarkTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SiteremarkTupleParams]'s query parameters as `url.Values`.
-func (r SiteremarkTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SiteRemarkTupleParams]'s query parameters as `url.Values`.
+func (r SiteRemarkTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

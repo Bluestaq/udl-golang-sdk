@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestDiffofarrivalGetWithOptionalParams(t *testing.T) {
+func TestDiffOfArrivalGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,10 +27,10 @@ func TestDiffofarrivalGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Diffofarrival.Get(
+	_, err := client.DiffOfArrival.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.DiffofarrivalGetParams{
+		unifieddatalibrary.DiffOfArrivalGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -44,7 +44,7 @@ func TestDiffofarrivalGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestDiffofarrivalQueryhelp(t *testing.T) {
+func TestDiffOfArrivalQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -57,7 +57,7 @@ func TestDiffofarrivalQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Diffofarrival.Queryhelp(context.TODO())
+	err := client.DiffOfArrival.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -67,7 +67,7 @@ func TestDiffofarrivalQueryhelp(t *testing.T) {
 	}
 }
 
-func TestDiffofarrivalTupleWithOptionalParams(t *testing.T) {
+func TestDiffOfArrivalTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -80,7 +80,7 @@ func TestDiffofarrivalTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Diffofarrival.Tuple(context.TODO(), unifieddatalibrary.DiffofarrivalTupleParams{
+	_, err := client.DiffOfArrival.Tuple(context.TODO(), unifieddatalibrary.DiffOfArrivalTupleParams{
 		Columns:     "columns",
 		ObTime:      time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -95,7 +95,7 @@ func TestDiffofarrivalTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestDiffofarrivalUnvalidatedPublish(t *testing.T) {
+func TestDiffOfArrivalUnvalidatedPublish(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -108,8 +108,8 @@ func TestDiffofarrivalUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Diffofarrival.UnvalidatedPublish(context.TODO(), unifieddatalibrary.DiffofarrivalUnvalidatedPublishParams{
-		Body: []unifieddatalibrary.DiffofarrivalUnvalidatedPublishParamsBody{{
+	err := client.DiffOfArrival.UnvalidatedPublish(context.TODO(), unifieddatalibrary.DiffOfArrivalUnvalidatedPublishParams{
+		Body: []unifieddatalibrary.DiffOfArrivalUnvalidatedPublishParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			ObTime:                time.Now(),

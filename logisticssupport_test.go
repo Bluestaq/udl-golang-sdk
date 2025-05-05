@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestLogisticssupportNewWithOptionalParams(t *testing.T) {
+func TestLogisticsSupportNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,9 +27,9 @@ func TestLogisticssupportNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Logisticssupport.New(context.TODO(), unifieddatalibrary.LogisticssupportNewParams{
+	err := client.LogisticsSupport.New(context.TODO(), unifieddatalibrary.LogisticsSupportNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.LogisticssupportNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.LogisticsSupportNewParamsDataModeTest,
 		RptCreatedTime:        time.Now(),
 		Source:                "Bluestaq",
 		ID:                    unifieddatalibrary.String("LOGISTICS-SUPPORT-DETAILS UUID"),
@@ -39,29 +39,29 @@ func TestLogisticssupportNewWithOptionalParams(t *testing.T) {
 		Etmc:                  unifieddatalibrary.Time(time.Now()),
 		ExtSystemID:           unifieddatalibrary.String("GDSSBL012307131347070165"),
 		LogisticAction:        unifieddatalibrary.String("WA"),
-		LogisticsDiscrepancyInfos: []unifieddatalibrary.LogisticssupportNewParamsLogisticsDiscrepancyInfo{{
+		LogisticsDiscrepancyInfos: []unifieddatalibrary.LogisticsSupportNewParamsLogisticsDiscrepancyInfo{{
 			ClosureTime:     unifieddatalibrary.Time(time.Now()),
 			DiscrepancyInfo: unifieddatalibrary.String("PILOT WINDSHIELD PANEL ASSY CRACKED, AND ARCING REQ R2 IAW 56.11.10"),
 			Jcn:             unifieddatalibrary.String("231942400"),
 			JobStTime:       unifieddatalibrary.Time(time.Now()),
 		}},
 		LogisticsRecordID: unifieddatalibrary.String("L62017"),
-		LogisticsRemarks: []unifieddatalibrary.LogisticssupportNewParamsLogisticsRemark{{
+		LogisticsRemarks: []unifieddatalibrary.LogisticsSupportNewParamsLogisticsRemark{{
 			LastChanged: unifieddatalibrary.Time(time.Now()),
 			Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 			Username:    unifieddatalibrary.String("JSMITH"),
 		}},
-		LogisticsSupportItems: []unifieddatalibrary.LogisticssupportNewParamsLogisticsSupportItem{{
+		LogisticsSupportItems: []unifieddatalibrary.LogisticsSupportNewParamsLogisticsSupportItem{{
 			Cannibalized:        unifieddatalibrary.Bool(true),
 			DeployPlanNumber:    unifieddatalibrary.String("T89003"),
 			Description:         unifieddatalibrary.String("HOIST ADAPTER KIT"),
 			ItemLastChangedDate: unifieddatalibrary.Time(time.Now()),
 			JobControlNumber:    unifieddatalibrary.String("231942400"),
-			LogisticsParts: []unifieddatalibrary.LogisticssupportNewParamsLogisticsSupportItemLogisticsPart{{
+			LogisticsParts: []unifieddatalibrary.LogisticsSupportNewParamsLogisticsSupportItemLogisticsPart{{
 				FigureNumber:     unifieddatalibrary.String("3"),
 				IndexNumber:      unifieddatalibrary.String("4"),
 				LocationVerifier: unifieddatalibrary.String("JANE DOE"),
-				LogisticsStocks: []unifieddatalibrary.LogisticssupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock{{
+				LogisticsStocks: []unifieddatalibrary.LogisticsSupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock{{
 					Quantity:       unifieddatalibrary.Int(4),
 					SourceIcao:     unifieddatalibrary.String("PHIK"),
 					StockCheckTime: unifieddatalibrary.Time(time.Now()),
@@ -75,12 +75,12 @@ func TestLogisticssupportNewWithOptionalParams(t *testing.T) {
 				TechnicalOrderText:   unifieddatalibrary.String("1C-17A-4"),
 				WorkUnitCode:         unifieddatalibrary.String("5611UU001"),
 			}},
-			LogisticsRemarks: []unifieddatalibrary.LogisticssupportNewParamsLogisticsSupportItemLogisticsRemark{{
+			LogisticsRemarks: []unifieddatalibrary.LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark{{
 				LastChanged: unifieddatalibrary.Time(time.Now()),
 				Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 				Username:    unifieddatalibrary.String("JSMITH"),
 			}},
-			LogisticsSpecialties: []unifieddatalibrary.LogisticssupportNewParamsLogisticsSupportItemLogisticsSpecialty{{
+			LogisticsSpecialties: []unifieddatalibrary.LogisticsSupportNewParamsLogisticsSupportItemLogisticsSpecialty{{
 				FirstName:    unifieddatalibrary.String("JOHN"),
 				Last4Ssn:     unifieddatalibrary.String("9999"),
 				LastName:     unifieddatalibrary.String("SMITH"),
@@ -101,7 +101,7 @@ func TestLogisticssupportNewWithOptionalParams(t *testing.T) {
 			SiPoc:                   unifieddatalibrary.String("SMITH, JOHN J"),
 			SourceIcao:              unifieddatalibrary.String("PHIK"),
 		}},
-		LogisticsTransportationPlans: []unifieddatalibrary.LogisticssupportNewParamsLogisticsTransportationPlan{{
+		LogisticsTransportationPlans: []unifieddatalibrary.LogisticsSupportNewParamsLogisticsTransportationPlan{{
 			ActDepTime:             unifieddatalibrary.Time(time.Now()),
 			AircraftStatus:         unifieddatalibrary.String("NMCMU"),
 			ApproxArrTime:          unifieddatalibrary.Time(time.Now()),
@@ -115,7 +115,7 @@ func TestLogisticssupportNewWithOptionalParams(t *testing.T) {
 			EstDepTime:             unifieddatalibrary.Time(time.Now()),
 			LastChangedDate:        unifieddatalibrary.Time(time.Now()),
 			LogisticMasterRecordID: unifieddatalibrary.String("L62126"),
-			LogisticsSegments: []unifieddatalibrary.LogisticssupportNewParamsLogisticsTransportationPlanLogisticsSegment{{
+			LogisticsSegments: []unifieddatalibrary.LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsSegment{{
 				ArrivalIcao:    unifieddatalibrary.String("YBCS"),
 				DepartureIcao:  unifieddatalibrary.String("PHIK"),
 				ExtMissionID:   unifieddatalibrary.String("2001101RF01202307062205"),
@@ -132,7 +132,7 @@ func TestLogisticssupportNewWithOptionalParams(t *testing.T) {
 				SegmentNumber:  unifieddatalibrary.Int(3),
 				SegTailNumber:  unifieddatalibrary.String("N819AX"),
 			}},
-			LogisticsTransportationPlansRemarks: []unifieddatalibrary.LogisticssupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark{{
+			LogisticsTransportationPlansRemarks: []unifieddatalibrary.LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark{{
 				LastChanged: unifieddatalibrary.Time(time.Now()),
 				Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 				Username:    unifieddatalibrary.String("JSMITH"),
@@ -168,7 +168,7 @@ func TestLogisticssupportNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLogisticssupportUpdateWithOptionalParams(t *testing.T) {
+func TestLogisticsSupportUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -181,12 +181,12 @@ func TestLogisticssupportUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Logisticssupport.Update(
+	err := client.LogisticsSupport.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.LogisticssupportUpdateParams{
+		unifieddatalibrary.LogisticsSupportUpdateParams{
 			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.LogisticssupportUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.LogisticsSupportUpdateParamsDataModeTest,
 			RptCreatedTime:        time.Now(),
 			Source:                "Bluestaq",
 			ID:                    unifieddatalibrary.String("LOGISTICS-SUPPORT-DETAILS UUID"),
@@ -196,29 +196,29 @@ func TestLogisticssupportUpdateWithOptionalParams(t *testing.T) {
 			Etmc:                  unifieddatalibrary.Time(time.Now()),
 			ExtSystemID:           unifieddatalibrary.String("GDSSBL012307131347070165"),
 			LogisticAction:        unifieddatalibrary.String("WA"),
-			LogisticsDiscrepancyInfos: []unifieddatalibrary.LogisticssupportUpdateParamsLogisticsDiscrepancyInfo{{
+			LogisticsDiscrepancyInfos: []unifieddatalibrary.LogisticsSupportUpdateParamsLogisticsDiscrepancyInfo{{
 				ClosureTime:     unifieddatalibrary.Time(time.Now()),
 				DiscrepancyInfo: unifieddatalibrary.String("PILOT WINDSHIELD PANEL ASSY CRACKED, AND ARCING REQ R2 IAW 56.11.10"),
 				Jcn:             unifieddatalibrary.String("231942400"),
 				JobStTime:       unifieddatalibrary.Time(time.Now()),
 			}},
 			LogisticsRecordID: unifieddatalibrary.String("L62017"),
-			LogisticsRemarks: []unifieddatalibrary.LogisticssupportUpdateParamsLogisticsRemark{{
+			LogisticsRemarks: []unifieddatalibrary.LogisticsSupportUpdateParamsLogisticsRemark{{
 				LastChanged: unifieddatalibrary.Time(time.Now()),
 				Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 				Username:    unifieddatalibrary.String("JSMITH"),
 			}},
-			LogisticsSupportItems: []unifieddatalibrary.LogisticssupportUpdateParamsLogisticsSupportItem{{
+			LogisticsSupportItems: []unifieddatalibrary.LogisticsSupportUpdateParamsLogisticsSupportItem{{
 				Cannibalized:        unifieddatalibrary.Bool(true),
 				DeployPlanNumber:    unifieddatalibrary.String("T89003"),
 				Description:         unifieddatalibrary.String("HOIST ADAPTER KIT"),
 				ItemLastChangedDate: unifieddatalibrary.Time(time.Now()),
 				JobControlNumber:    unifieddatalibrary.String("231942400"),
-				LogisticsParts: []unifieddatalibrary.LogisticssupportUpdateParamsLogisticsSupportItemLogisticsPart{{
+				LogisticsParts: []unifieddatalibrary.LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPart{{
 					FigureNumber:     unifieddatalibrary.String("3"),
 					IndexNumber:      unifieddatalibrary.String("4"),
 					LocationVerifier: unifieddatalibrary.String("JANE DOE"),
-					LogisticsStocks: []unifieddatalibrary.LogisticssupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock{{
+					LogisticsStocks: []unifieddatalibrary.LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock{{
 						Quantity:       unifieddatalibrary.Int(4),
 						SourceIcao:     unifieddatalibrary.String("PHIK"),
 						StockCheckTime: unifieddatalibrary.Time(time.Now()),
@@ -232,12 +232,12 @@ func TestLogisticssupportUpdateWithOptionalParams(t *testing.T) {
 					TechnicalOrderText:   unifieddatalibrary.String("1C-17A-4"),
 					WorkUnitCode:         unifieddatalibrary.String("5611UU001"),
 				}},
-				LogisticsRemarks: []unifieddatalibrary.LogisticssupportUpdateParamsLogisticsSupportItemLogisticsRemark{{
+				LogisticsRemarks: []unifieddatalibrary.LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark{{
 					LastChanged: unifieddatalibrary.Time(time.Now()),
 					Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 					Username:    unifieddatalibrary.String("JSMITH"),
 				}},
-				LogisticsSpecialties: []unifieddatalibrary.LogisticssupportUpdateParamsLogisticsSupportItemLogisticsSpecialty{{
+				LogisticsSpecialties: []unifieddatalibrary.LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsSpecialty{{
 					FirstName:    unifieddatalibrary.String("JOHN"),
 					Last4Ssn:     unifieddatalibrary.String("9999"),
 					LastName:     unifieddatalibrary.String("SMITH"),
@@ -258,7 +258,7 @@ func TestLogisticssupportUpdateWithOptionalParams(t *testing.T) {
 				SiPoc:                   unifieddatalibrary.String("SMITH, JOHN J"),
 				SourceIcao:              unifieddatalibrary.String("PHIK"),
 			}},
-			LogisticsTransportationPlans: []unifieddatalibrary.LogisticssupportUpdateParamsLogisticsTransportationPlan{{
+			LogisticsTransportationPlans: []unifieddatalibrary.LogisticsSupportUpdateParamsLogisticsTransportationPlan{{
 				ActDepTime:             unifieddatalibrary.Time(time.Now()),
 				AircraftStatus:         unifieddatalibrary.String("NMCMU"),
 				ApproxArrTime:          unifieddatalibrary.Time(time.Now()),
@@ -272,7 +272,7 @@ func TestLogisticssupportUpdateWithOptionalParams(t *testing.T) {
 				EstDepTime:             unifieddatalibrary.Time(time.Now()),
 				LastChangedDate:        unifieddatalibrary.Time(time.Now()),
 				LogisticMasterRecordID: unifieddatalibrary.String("L62126"),
-				LogisticsSegments: []unifieddatalibrary.LogisticssupportUpdateParamsLogisticsTransportationPlanLogisticsSegment{{
+				LogisticsSegments: []unifieddatalibrary.LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsSegment{{
 					ArrivalIcao:    unifieddatalibrary.String("YBCS"),
 					DepartureIcao:  unifieddatalibrary.String("PHIK"),
 					ExtMissionID:   unifieddatalibrary.String("2001101RF01202307062205"),
@@ -289,7 +289,7 @@ func TestLogisticssupportUpdateWithOptionalParams(t *testing.T) {
 					SegmentNumber:  unifieddatalibrary.Int(3),
 					SegTailNumber:  unifieddatalibrary.String("N819AX"),
 				}},
-				LogisticsTransportationPlansRemarks: []unifieddatalibrary.LogisticssupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark{{
+				LogisticsTransportationPlansRemarks: []unifieddatalibrary.LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark{{
 					LastChanged: unifieddatalibrary.Time(time.Now()),
 					Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 					Username:    unifieddatalibrary.String("JSMITH"),
@@ -326,7 +326,7 @@ func TestLogisticssupportUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLogisticssupportListWithOptionalParams(t *testing.T) {
+func TestLogisticsSupportListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -339,7 +339,7 @@ func TestLogisticssupportListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Logisticssupport.List(context.TODO(), unifieddatalibrary.LogisticssupportListParams{
+	_, err := client.LogisticsSupport.List(context.TODO(), unifieddatalibrary.LogisticsSupportListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -352,7 +352,7 @@ func TestLogisticssupportListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLogisticssupportCountWithOptionalParams(t *testing.T) {
+func TestLogisticsSupportCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -365,7 +365,7 @@ func TestLogisticssupportCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Logisticssupport.Count(context.TODO(), unifieddatalibrary.LogisticssupportCountParams{
+	_, err := client.LogisticsSupport.Count(context.TODO(), unifieddatalibrary.LogisticsSupportCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -378,7 +378,7 @@ func TestLogisticssupportCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLogisticssupportNewBulk(t *testing.T) {
+func TestLogisticsSupportNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -391,8 +391,8 @@ func TestLogisticssupportNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Logisticssupport.NewBulk(context.TODO(), unifieddatalibrary.LogisticssupportNewBulkParams{
-		Body: []unifieddatalibrary.LogisticssupportNewBulkParamsBody{{
+	err := client.LogisticsSupport.NewBulk(context.TODO(), unifieddatalibrary.LogisticsSupportNewBulkParams{
+		Body: []unifieddatalibrary.LogisticsSupportNewBulkParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			RptCreatedTime:        time.Now(),
@@ -404,29 +404,29 @@ func TestLogisticssupportNewBulk(t *testing.T) {
 			Etmc:                  unifieddatalibrary.Time(time.Now()),
 			ExtSystemID:           unifieddatalibrary.String("GDSSBL012307131347070165"),
 			LogisticAction:        unifieddatalibrary.String("WA"),
-			LogisticsDiscrepancyInfos: []unifieddatalibrary.LogisticssupportNewBulkParamsBodyLogisticsDiscrepancyInfo{{
+			LogisticsDiscrepancyInfos: []unifieddatalibrary.LogisticsSupportNewBulkParamsBodyLogisticsDiscrepancyInfo{{
 				ClosureTime:     unifieddatalibrary.Time(time.Now()),
 				DiscrepancyInfo: unifieddatalibrary.String("PILOT WINDSHIELD PANEL ASSY CRACKED, AND ARCING REQ R2 IAW 56.11.10"),
 				Jcn:             unifieddatalibrary.String("231942400"),
 				JobStTime:       unifieddatalibrary.Time(time.Now()),
 			}},
 			LogisticsRecordID: unifieddatalibrary.String("L62017"),
-			LogisticsRemarks: []unifieddatalibrary.LogisticssupportNewBulkParamsBodyLogisticsRemark{{
+			LogisticsRemarks: []unifieddatalibrary.LogisticsSupportNewBulkParamsBodyLogisticsRemark{{
 				LastChanged: unifieddatalibrary.Time(time.Now()),
 				Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 				Username:    unifieddatalibrary.String("JSMITH"),
 			}},
-			LogisticsSupportItems: []unifieddatalibrary.LogisticssupportNewBulkParamsBodyLogisticsSupportItem{{
+			LogisticsSupportItems: []unifieddatalibrary.LogisticsSupportNewBulkParamsBodyLogisticsSupportItem{{
 				Cannibalized:        unifieddatalibrary.Bool(true),
 				DeployPlanNumber:    unifieddatalibrary.String("T89003"),
 				Description:         unifieddatalibrary.String("HOIST ADAPTER KIT"),
 				ItemLastChangedDate: unifieddatalibrary.Time(time.Now()),
 				JobControlNumber:    unifieddatalibrary.String("231942400"),
-				LogisticsParts: []unifieddatalibrary.LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart{{
+				LogisticsParts: []unifieddatalibrary.LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart{{
 					FigureNumber:     unifieddatalibrary.String("3"),
 					IndexNumber:      unifieddatalibrary.String("4"),
 					LocationVerifier: unifieddatalibrary.String("JANE DOE"),
-					LogisticsStocks: []unifieddatalibrary.LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock{{
+					LogisticsStocks: []unifieddatalibrary.LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock{{
 						Quantity:       unifieddatalibrary.Int(4),
 						SourceIcao:     unifieddatalibrary.String("PHIK"),
 						StockCheckTime: unifieddatalibrary.Time(time.Now()),
@@ -440,12 +440,12 @@ func TestLogisticssupportNewBulk(t *testing.T) {
 					TechnicalOrderText:   unifieddatalibrary.String("1C-17A-4"),
 					WorkUnitCode:         unifieddatalibrary.String("5611UU001"),
 				}},
-				LogisticsRemarks: []unifieddatalibrary.LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark{{
+				LogisticsRemarks: []unifieddatalibrary.LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark{{
 					LastChanged: unifieddatalibrary.Time(time.Now()),
 					Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 					Username:    unifieddatalibrary.String("JSMITH"),
 				}},
-				LogisticsSpecialties: []unifieddatalibrary.LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty{{
+				LogisticsSpecialties: []unifieddatalibrary.LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty{{
 					FirstName:    unifieddatalibrary.String("JOHN"),
 					Last4Ssn:     unifieddatalibrary.String("9999"),
 					LastName:     unifieddatalibrary.String("SMITH"),
@@ -466,7 +466,7 @@ func TestLogisticssupportNewBulk(t *testing.T) {
 				SiPoc:                   unifieddatalibrary.String("SMITH, JOHN J"),
 				SourceIcao:              unifieddatalibrary.String("PHIK"),
 			}},
-			LogisticsTransportationPlans: []unifieddatalibrary.LogisticssupportNewBulkParamsBodyLogisticsTransportationPlan{{
+			LogisticsTransportationPlans: []unifieddatalibrary.LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlan{{
 				ActDepTime:             unifieddatalibrary.Time(time.Now()),
 				AircraftStatus:         unifieddatalibrary.String("NMCMU"),
 				ApproxArrTime:          unifieddatalibrary.Time(time.Now()),
@@ -480,7 +480,7 @@ func TestLogisticssupportNewBulk(t *testing.T) {
 				EstDepTime:             unifieddatalibrary.Time(time.Now()),
 				LastChangedDate:        unifieddatalibrary.Time(time.Now()),
 				LogisticMasterRecordID: unifieddatalibrary.String("L62126"),
-				LogisticsSegments: []unifieddatalibrary.LogisticssupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment{{
+				LogisticsSegments: []unifieddatalibrary.LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment{{
 					ArrivalIcao:    unifieddatalibrary.String("YBCS"),
 					DepartureIcao:  unifieddatalibrary.String("PHIK"),
 					ExtMissionID:   unifieddatalibrary.String("2001101RF01202307062205"),
@@ -497,7 +497,7 @@ func TestLogisticssupportNewBulk(t *testing.T) {
 					SegmentNumber:  unifieddatalibrary.Int(3),
 					SegTailNumber:  unifieddatalibrary.String("N819AX"),
 				}},
-				LogisticsTransportationPlansRemarks: []unifieddatalibrary.LogisticssupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark{{
+				LogisticsTransportationPlansRemarks: []unifieddatalibrary.LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark{{
 					LastChanged: unifieddatalibrary.Time(time.Now()),
 					Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 					Username:    unifieddatalibrary.String("JSMITH"),
@@ -534,7 +534,7 @@ func TestLogisticssupportNewBulk(t *testing.T) {
 	}
 }
 
-func TestLogisticssupportGetWithOptionalParams(t *testing.T) {
+func TestLogisticsSupportGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -547,10 +547,10 @@ func TestLogisticssupportGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Logisticssupport.Get(
+	_, err := client.LogisticsSupport.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.LogisticssupportGetParams{
+		unifieddatalibrary.LogisticsSupportGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -564,7 +564,7 @@ func TestLogisticssupportGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLogisticssupportQueryhelp(t *testing.T) {
+func TestLogisticsSupportQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -577,7 +577,7 @@ func TestLogisticssupportQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Logisticssupport.Queryhelp(context.TODO())
+	err := client.LogisticsSupport.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -587,7 +587,7 @@ func TestLogisticssupportQueryhelp(t *testing.T) {
 	}
 }
 
-func TestLogisticssupportTupleWithOptionalParams(t *testing.T) {
+func TestLogisticsSupportTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -600,7 +600,7 @@ func TestLogisticssupportTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Logisticssupport.Tuple(context.TODO(), unifieddatalibrary.LogisticssupportTupleParams{
+	_, err := client.LogisticsSupport.Tuple(context.TODO(), unifieddatalibrary.LogisticsSupportTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -614,7 +614,7 @@ func TestLogisticssupportTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLogisticssupportUnvalidatedPublish(t *testing.T) {
+func TestLogisticsSupportUnvalidatedPublish(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -627,8 +627,8 @@ func TestLogisticssupportUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Logisticssupport.UnvalidatedPublish(context.TODO(), unifieddatalibrary.LogisticssupportUnvalidatedPublishParams{
-		Body: []unifieddatalibrary.LogisticssupportUnvalidatedPublishParamsBody{{
+	err := client.LogisticsSupport.UnvalidatedPublish(context.TODO(), unifieddatalibrary.LogisticsSupportUnvalidatedPublishParams{
+		Body: []unifieddatalibrary.LogisticsSupportUnvalidatedPublishParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			RptCreatedTime:        time.Now(),
@@ -640,29 +640,29 @@ func TestLogisticssupportUnvalidatedPublish(t *testing.T) {
 			Etmc:                  unifieddatalibrary.Time(time.Now()),
 			ExtSystemID:           unifieddatalibrary.String("GDSSBL012307131347070165"),
 			LogisticAction:        unifieddatalibrary.String("WA"),
-			LogisticsDiscrepancyInfos: []unifieddatalibrary.LogisticssupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo{{
+			LogisticsDiscrepancyInfos: []unifieddatalibrary.LogisticsSupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo{{
 				ClosureTime:     unifieddatalibrary.Time(time.Now()),
 				DiscrepancyInfo: unifieddatalibrary.String("PILOT WINDSHIELD PANEL ASSY CRACKED, AND ARCING REQ R2 IAW 56.11.10"),
 				Jcn:             unifieddatalibrary.String("231942400"),
 				JobStTime:       unifieddatalibrary.Time(time.Now()),
 			}},
 			LogisticsRecordID: unifieddatalibrary.String("L62017"),
-			LogisticsRemarks: []unifieddatalibrary.LogisticssupportUnvalidatedPublishParamsBodyLogisticsRemark{{
+			LogisticsRemarks: []unifieddatalibrary.LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark{{
 				LastChanged: unifieddatalibrary.Time(time.Now()),
 				Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 				Username:    unifieddatalibrary.String("JSMITH"),
 			}},
-			LogisticsSupportItems: []unifieddatalibrary.LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItem{{
+			LogisticsSupportItems: []unifieddatalibrary.LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItem{{
 				Cannibalized:        unifieddatalibrary.Bool(true),
 				DeployPlanNumber:    unifieddatalibrary.String("T89003"),
 				Description:         unifieddatalibrary.String("HOIST ADAPTER KIT"),
 				ItemLastChangedDate: unifieddatalibrary.Time(time.Now()),
 				JobControlNumber:    unifieddatalibrary.String("231942400"),
-				LogisticsParts: []unifieddatalibrary.LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPart{{
+				LogisticsParts: []unifieddatalibrary.LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPart{{
 					FigureNumber:     unifieddatalibrary.String("3"),
 					IndexNumber:      unifieddatalibrary.String("4"),
 					LocationVerifier: unifieddatalibrary.String("JANE DOE"),
-					LogisticsStocks: []unifieddatalibrary.LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock{{
+					LogisticsStocks: []unifieddatalibrary.LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock{{
 						Quantity:       unifieddatalibrary.Int(4),
 						SourceIcao:     unifieddatalibrary.String("PHIK"),
 						StockCheckTime: unifieddatalibrary.Time(time.Now()),
@@ -676,12 +676,12 @@ func TestLogisticssupportUnvalidatedPublish(t *testing.T) {
 					TechnicalOrderText:   unifieddatalibrary.String("1C-17A-4"),
 					WorkUnitCode:         unifieddatalibrary.String("5611UU001"),
 				}},
-				LogisticsRemarks: []unifieddatalibrary.LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark{{
+				LogisticsRemarks: []unifieddatalibrary.LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark{{
 					LastChanged: unifieddatalibrary.Time(time.Now()),
 					Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 					Username:    unifieddatalibrary.String("JSMITH"),
 				}},
-				LogisticsSpecialties: []unifieddatalibrary.LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSpecialty{{
+				LogisticsSpecialties: []unifieddatalibrary.LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSpecialty{{
 					FirstName:    unifieddatalibrary.String("JOHN"),
 					Last4Ssn:     unifieddatalibrary.String("9999"),
 					LastName:     unifieddatalibrary.String("SMITH"),
@@ -702,7 +702,7 @@ func TestLogisticssupportUnvalidatedPublish(t *testing.T) {
 				SiPoc:                   unifieddatalibrary.String("SMITH, JOHN J"),
 				SourceIcao:              unifieddatalibrary.String("PHIK"),
 			}},
-			LogisticsTransportationPlans: []unifieddatalibrary.LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan{{
+			LogisticsTransportationPlans: []unifieddatalibrary.LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan{{
 				ActDepTime:             unifieddatalibrary.Time(time.Now()),
 				AircraftStatus:         unifieddatalibrary.String("NMCMU"),
 				ApproxArrTime:          unifieddatalibrary.Time(time.Now()),
@@ -716,7 +716,7 @@ func TestLogisticssupportUnvalidatedPublish(t *testing.T) {
 				EstDepTime:             unifieddatalibrary.Time(time.Now()),
 				LastChangedDate:        unifieddatalibrary.Time(time.Now()),
 				LogisticMasterRecordID: unifieddatalibrary.String("L62126"),
-				LogisticsSegments: []unifieddatalibrary.LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment{{
+				LogisticsSegments: []unifieddatalibrary.LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment{{
 					ArrivalIcao:    unifieddatalibrary.String("YBCS"),
 					DepartureIcao:  unifieddatalibrary.String("PHIK"),
 					ExtMissionID:   unifieddatalibrary.String("2001101RF01202307062205"),
@@ -733,7 +733,7 @@ func TestLogisticssupportUnvalidatedPublish(t *testing.T) {
 					SegmentNumber:  unifieddatalibrary.Int(3),
 					SegTailNumber:  unifieddatalibrary.String("N819AX"),
 				}},
-				LogisticsTransportationPlansRemarks: []unifieddatalibrary.LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark{{
+				LogisticsTransportationPlansRemarks: []unifieddatalibrary.LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark{{
 					LastChanged: unifieddatalibrary.Time(time.Now()),
 					Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 					Username:    unifieddatalibrary.String("JSMITH"),

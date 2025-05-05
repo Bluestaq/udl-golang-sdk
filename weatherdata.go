@@ -20,31 +20,31 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// WeatherdataService contains methods and other services that help with
+// WeatherDataService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewWeatherdataService] method instead.
-type WeatherdataService struct {
+// the [NewWeatherDataService] method instead.
+type WeatherDataService struct {
 	Options []option.RequestOption
-	History WeatherdataHistoryService
+	History WeatherDataHistoryService
 }
 
-// NewWeatherdataService generates a new service that applies the given options to
+// NewWeatherDataService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewWeatherdataService(opts ...option.RequestOption) (r WeatherdataService) {
-	r = WeatherdataService{}
+func NewWeatherDataService(opts ...option.RequestOption) (r WeatherDataService) {
+	r = WeatherDataService{}
 	r.Options = opts
-	r.History = NewWeatherdataHistoryService(opts...)
+	r.History = NewWeatherDataHistoryService(opts...)
 	return
 }
 
 // Service operation to take a single WeatherData as a POST body and ingest into
 // the database. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
-func (r *WeatherdataService) New(ctx context.Context, body WeatherdataNewParams, opts ...option.RequestOption) (err error) {
+func (r *WeatherDataService) New(ctx context.Context, body WeatherDataNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/weatherdata"
@@ -56,7 +56,7 @@ func (r *WeatherdataService) New(ctx context.Context, body WeatherdataNewParams,
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *WeatherdataService) List(ctx context.Context, query WeatherdataListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[WeatherdataListResponse], err error) {
+func (r *WeatherDataService) List(ctx context.Context, query WeatherDataListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[WeatherDataListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -77,7 +77,7 @@ func (r *WeatherdataService) List(ctx context.Context, query WeatherdataListPara
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *WeatherdataService) ListAutoPaging(ctx context.Context, query WeatherdataListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[WeatherdataListResponse] {
+func (r *WeatherDataService) ListAutoPaging(ctx context.Context, query WeatherDataListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[WeatherDataListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -86,7 +86,7 @@ func (r *WeatherdataService) ListAutoPaging(ctx context.Context, query Weatherda
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *WeatherdataService) Count(ctx context.Context, query WeatherdataCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *WeatherDataService) Count(ctx context.Context, query WeatherDataCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/weatherdata/count"
@@ -97,7 +97,7 @@ func (r *WeatherdataService) Count(ctx context.Context, query WeatherdataCountPa
 // Service operation to take multiple WeatherData as a POST body and ingest into
 // the database. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
-func (r *WeatherdataService) NewBulk(ctx context.Context, body WeatherdataNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *WeatherDataService) NewBulk(ctx context.Context, body WeatherDataNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/weatherdata/createBulk"
@@ -107,7 +107,7 @@ func (r *WeatherdataService) NewBulk(ctx context.Context, body WeatherdataNewBul
 
 // Service operation to get a single WeatherData by its unique ID passed as a path
 // parameter.
-func (r *WeatherdataService) Get(ctx context.Context, id string, query WeatherdataGetParams, opts ...option.RequestOption) (res *WeatherDataFull, err error) {
+func (r *WeatherDataService) Get(ctx context.Context, id string, query WeatherDataGetParams, opts ...option.RequestOption) (res *WeatherDataFull, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -120,7 +120,7 @@ func (r *WeatherdataService) Get(ctx context.Context, id string, query Weatherda
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *WeatherdataService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *WeatherDataService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/weatherdata/queryhelp"
@@ -136,7 +136,7 @@ func (r *WeatherdataService) Queryhelp(ctx context.Context, opts ...option.Reque
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *WeatherdataService) Tuple(ctx context.Context, query WeatherdataTupleParams, opts ...option.RequestOption) (res *[]WeatherDataFull, err error) {
+func (r *WeatherDataService) Tuple(ctx context.Context, query WeatherDataTupleParams, opts ...option.RequestOption) (res *[]WeatherDataFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/weatherdata/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -147,7 +147,7 @@ func (r *WeatherdataService) Tuple(ctx context.Context, query WeatherdataTuplePa
 // the database. This operation is intended to be used for automated feeds into
 // UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
-func (r *WeatherdataService) UnvalidatedPublish(ctx context.Context, body WeatherdataUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+func (r *WeatherDataService) UnvalidatedPublish(ctx context.Context, body WeatherDataUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-weatherdata"
@@ -158,7 +158,7 @@ func (r *WeatherdataService) UnvalidatedPublish(ctx context.Context, body Weathe
 // These services provide for posting and querying Weather Data. Weather Data
 // integrates dynamic data measured by Doppler/CG such as signal power and noise
 // levels, to produce useful weather information.
-type WeatherdataListResponse struct {
+type WeatherDataListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -177,7 +177,7 @@ type WeatherdataListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode WeatherdataListResponseDataMode `json:"dataMode,required"`
+	DataMode WeatherDataListResponseDataMode `json:"dataMode,required"`
 	// Datetime of the weather observation in ISO 8601 UTC datetime format with
 	// microsecond precision.
 	ObTime time.Time `json:"obTime,required" format:"date-time"`
@@ -346,8 +346,8 @@ type WeatherdataListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r WeatherdataListResponse) RawJSON() string { return r.JSON.raw }
-func (r *WeatherdataListResponse) UnmarshalJSON(data []byte) error {
+func (r WeatherDataListResponse) RawJSON() string { return r.JSON.raw }
+func (r *WeatherDataListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -365,16 +365,16 @@ func (r *WeatherdataListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type WeatherdataListResponseDataMode string
+type WeatherDataListResponseDataMode string
 
 const (
-	WeatherdataListResponseDataModeReal      WeatherdataListResponseDataMode = "REAL"
-	WeatherdataListResponseDataModeTest      WeatherdataListResponseDataMode = "TEST"
-	WeatherdataListResponseDataModeSimulated WeatherdataListResponseDataMode = "SIMULATED"
-	WeatherdataListResponseDataModeExercise  WeatherdataListResponseDataMode = "EXERCISE"
+	WeatherDataListResponseDataModeReal      WeatherDataListResponseDataMode = "REAL"
+	WeatherDataListResponseDataModeTest      WeatherDataListResponseDataMode = "TEST"
+	WeatherDataListResponseDataModeSimulated WeatherDataListResponseDataMode = "SIMULATED"
+	WeatherDataListResponseDataModeExercise  WeatherDataListResponseDataMode = "EXERCISE"
 )
 
-type WeatherdataNewParams struct {
+type WeatherDataNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -393,7 +393,7 @@ type WeatherdataNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode WeatherdataNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode WeatherDataNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Datetime of the weather observation in ISO 8601 UTC datetime format with
 	// microsecond precision.
 	ObTime time.Time `json:"obTime,required" format:"date-time"`
@@ -512,10 +512,10 @@ type WeatherdataNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherdataNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f WeatherDataNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r WeatherdataNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow WeatherdataNewParams
+func (r WeatherDataNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow WeatherDataNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -533,16 +533,16 @@ func (r WeatherdataNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type WeatherdataNewParamsDataMode string
+type WeatherDataNewParamsDataMode string
 
 const (
-	WeatherdataNewParamsDataModeReal      WeatherdataNewParamsDataMode = "REAL"
-	WeatherdataNewParamsDataModeTest      WeatherdataNewParamsDataMode = "TEST"
-	WeatherdataNewParamsDataModeSimulated WeatherdataNewParamsDataMode = "SIMULATED"
-	WeatherdataNewParamsDataModeExercise  WeatherdataNewParamsDataMode = "EXERCISE"
+	WeatherDataNewParamsDataModeReal      WeatherDataNewParamsDataMode = "REAL"
+	WeatherDataNewParamsDataModeTest      WeatherDataNewParamsDataMode = "TEST"
+	WeatherDataNewParamsDataModeSimulated WeatherDataNewParamsDataMode = "SIMULATED"
+	WeatherDataNewParamsDataModeExercise  WeatherDataNewParamsDataMode = "EXERCISE"
 )
 
-type WeatherdataListParams struct {
+type WeatherDataListParams struct {
 	// Datetime of the weather observation in ISO 8601 UTC datetime format with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	ObTime      time.Time        `query:"obTime,required" format:"date-time" json:"-"`
@@ -553,17 +553,17 @@ type WeatherdataListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherdataListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f WeatherDataListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [WeatherdataListParams]'s query parameters as `url.Values`.
-func (r WeatherdataListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [WeatherDataListParams]'s query parameters as `url.Values`.
+func (r WeatherDataListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type WeatherdataCountParams struct {
+type WeatherDataCountParams struct {
 	// Datetime of the weather observation in ISO 8601 UTC datetime format with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	ObTime      time.Time        `query:"obTime,required" format:"date-time" json:"-"`
@@ -574,26 +574,26 @@ type WeatherdataCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherdataCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f WeatherDataCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [WeatherdataCountParams]'s query parameters as `url.Values`.
-func (r WeatherdataCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [WeatherDataCountParams]'s query parameters as `url.Values`.
+func (r WeatherDataCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type WeatherdataNewBulkParams struct {
-	Body []WeatherdataNewBulkParamsBody
+type WeatherDataNewBulkParams struct {
+	Body []WeatherDataNewBulkParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherdataNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f WeatherDataNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r WeatherdataNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r WeatherDataNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -602,7 +602,7 @@ func (r WeatherdataNewBulkParams) MarshalJSON() (data []byte, err error) {
 // levels, to produce useful weather information.
 //
 // The properties ClassificationMarking, DataMode, ObTime, Source are required.
-type WeatherdataNewBulkParamsBody struct {
+type WeatherDataNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -747,19 +747,19 @@ type WeatherdataNewBulkParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherdataNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-func (r WeatherdataNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow WeatherdataNewBulkParamsBody
+func (f WeatherDataNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r WeatherDataNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow WeatherDataNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[WeatherdataNewBulkParamsBody](
+	apijson.RegisterFieldValidator[WeatherDataNewBulkParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
-type WeatherdataGetParams struct {
+type WeatherDataGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -767,17 +767,17 @@ type WeatherdataGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherdataGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f WeatherDataGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [WeatherdataGetParams]'s query parameters as `url.Values`.
-func (r WeatherdataGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [WeatherDataGetParams]'s query parameters as `url.Values`.
+func (r WeatherDataGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type WeatherdataTupleParams struct {
+type WeatherDataTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -793,28 +793,28 @@ type WeatherdataTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherdataTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f WeatherDataTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [WeatherdataTupleParams]'s query parameters as `url.Values`.
-func (r WeatherdataTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [WeatherDataTupleParams]'s query parameters as `url.Values`.
+func (r WeatherDataTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type WeatherdataUnvalidatedPublishParams struct {
-	Body []WeatherdataUnvalidatedPublishParamsBody
+type WeatherDataUnvalidatedPublishParams struct {
+	Body []WeatherDataUnvalidatedPublishParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherdataUnvalidatedPublishParams) IsPresent() bool {
+func (f WeatherDataUnvalidatedPublishParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r WeatherdataUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+func (r WeatherDataUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -823,7 +823,7 @@ func (r WeatherdataUnvalidatedPublishParams) MarshalJSON() (data []byte, err err
 // levels, to produce useful weather information.
 //
 // The properties ClassificationMarking, DataMode, ObTime, Source are required.
-type WeatherdataUnvalidatedPublishParamsBody struct {
+type WeatherDataUnvalidatedPublishParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -968,16 +968,16 @@ type WeatherdataUnvalidatedPublishParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherdataUnvalidatedPublishParamsBody) IsPresent() bool {
+func (f WeatherDataUnvalidatedPublishParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r WeatherdataUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow WeatherdataUnvalidatedPublishParamsBody
+func (r WeatherDataUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow WeatherDataUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[WeatherdataUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[WeatherDataUnvalidatedPublishParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

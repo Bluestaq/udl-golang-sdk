@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSoiobservationsetNewWithOptionalParams(t *testing.T) {
+func TestSoiObservationSetNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,18 +27,18 @@ func TestSoiobservationsetNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Soiobservationset.New(context.TODO(), unifieddatalibrary.SoiobservationsetNewParams{
+	err := client.SoiObservationSet.New(context.TODO(), unifieddatalibrary.SoiObservationSetNewParams{
 		ClassificationMarking:            "U",
-		DataMode:                         unifieddatalibrary.SoiobservationsetNewParamsDataModeTest,
+		DataMode:                         unifieddatalibrary.SoiObservationSetNewParamsDataModeTest,
 		NumObs:                           1,
 		Source:                           "Bluestaq",
 		StartTime:                        time.Now(),
-		Type:                             unifieddatalibrary.SoiobservationsetNewParamsTypeOptical,
+		Type:                             unifieddatalibrary.SoiObservationSetNewParamsTypeOptical,
 		ID:                               unifieddatalibrary.String("026dd511-8ba5-47d3-9909-836149f87686"),
 		BinningHoriz:                     unifieddatalibrary.Int(2),
 		BinningVert:                      unifieddatalibrary.Int(2),
 		BrightnessVarianceChangeDetected: unifieddatalibrary.Bool(true),
-		Calibrations: []unifieddatalibrary.SoiobservationsetNewParamsCalibration{{
+		Calibrations: []unifieddatalibrary.SoiObservationSetNewParamsCalibration{{
 			CalBgIntensity:            unifieddatalibrary.Float(1.1),
 			CalExtinctionCoeff:        unifieddatalibrary.Float(0.2),
 			CalExtinctionCoeffMaxUnc:  unifieddatalibrary.Float(0.19708838),
@@ -66,7 +66,7 @@ func TestSoiobservationsetNewWithOptionalParams(t *testing.T) {
 		LosDeclinationStart:   unifieddatalibrary.Float(1.1),
 		MsgCreateDate:         unifieddatalibrary.Time(time.Now()),
 		NumSpectralFilters:    unifieddatalibrary.Int(10),
-		OpticalSoiObservationList: []unifieddatalibrary.SoiobservationsetNewParamsOpticalSoiObservationList{{
+		OpticalSoiObservationList: []unifieddatalibrary.SoiObservationSetNewParamsOpticalSoiObservationList{{
 			ObStartTime:              time.Now(),
 			CurrentSpectralFilterNum: unifieddatalibrary.Int(0),
 			Declinations:             []float64{-0.45, -0.45, -0.45},
@@ -102,7 +102,7 @@ func TestSoiobservationsetNewWithOptionalParams(t *testing.T) {
 		PointingAngleElStart:      unifieddatalibrary.Float(1.1),
 		PolarAngleEnd:             unifieddatalibrary.Float(1.1),
 		PolarAngleStart:           unifieddatalibrary.Float(1.1),
-		RadarSoiObservationList: []unifieddatalibrary.SoiobservationsetNewParamsRadarSoiObservationList{{
+		RadarSoiObservationList: []unifieddatalibrary.SoiObservationSetNewParamsRadarSoiObservationList{{
 			ObStartTime:       time.Now(),
 			AspectAngles:      []float64{4.278, 4.278, 4.278},
 			AzimuthBiases:     []float64{45.23, 45.23, 45.23},
@@ -144,13 +144,13 @@ func TestSoiobservationsetNewWithOptionalParams(t *testing.T) {
 			Zpos:              []float64{6167.831808, 6167.831808, 6167.831808},
 			Zvel:              []float64{-3.356493869, -3.356493869, -3.356493869},
 		}},
-		ReferenceFrame:                          unifieddatalibrary.SoiobservationsetNewParamsReferenceFrameJ2000,
+		ReferenceFrame:                          unifieddatalibrary.SoiObservationSetNewParamsReferenceFrameJ2000,
 		SatelliteName:                           unifieddatalibrary.String("TITAN 3C TRANSTAGE R/B"),
 		SatNo:                                   unifieddatalibrary.Int(101),
 		Senalt:                                  unifieddatalibrary.Float(1.1),
 		Senlat:                                  unifieddatalibrary.Float(45.1),
 		Senlon:                                  unifieddatalibrary.Float(179.1),
-		SenReferenceFrame:                       unifieddatalibrary.SoiobservationsetNewParamsSenReferenceFrameJ2000,
+		SenReferenceFrame:                       unifieddatalibrary.SoiObservationSetNewParamsSenReferenceFrameJ2000,
 		SensorAsID:                              unifieddatalibrary.String("026dd511-8ba5-47d3-9909-836149f87686"),
 		Senvelx:                                 unifieddatalibrary.Float(1.1),
 		Senvely:                                 unifieddatalibrary.Float(1.1),
@@ -177,7 +177,7 @@ func TestSoiobservationsetNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSoiobservationsetListWithOptionalParams(t *testing.T) {
+func TestSoiObservationSetListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -190,7 +190,7 @@ func TestSoiobservationsetListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Soiobservationset.List(context.TODO(), unifieddatalibrary.SoiobservationsetListParams{
+	_, err := client.SoiObservationSet.List(context.TODO(), unifieddatalibrary.SoiObservationSetListParams{
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -204,7 +204,7 @@ func TestSoiobservationsetListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSoiobservationsetCountWithOptionalParams(t *testing.T) {
+func TestSoiObservationSetCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -217,7 +217,7 @@ func TestSoiobservationsetCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Soiobservationset.Count(context.TODO(), unifieddatalibrary.SoiobservationsetCountParams{
+	_, err := client.SoiObservationSet.Count(context.TODO(), unifieddatalibrary.SoiObservationSetCountParams{
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -231,7 +231,7 @@ func TestSoiobservationsetCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSoiobservationsetNewBulk(t *testing.T) {
+func TestSoiObservationSetNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -244,8 +244,8 @@ func TestSoiobservationsetNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Soiobservationset.NewBulk(context.TODO(), unifieddatalibrary.SoiobservationsetNewBulkParams{
-		Body: []unifieddatalibrary.SoiobservationsetNewBulkParamsBody{{
+	err := client.SoiObservationSet.NewBulk(context.TODO(), unifieddatalibrary.SoiObservationSetNewBulkParams{
+		Body: []unifieddatalibrary.SoiObservationSetNewBulkParamsBody{{
 			ClassificationMarking:            "U",
 			DataMode:                         "TEST",
 			NumObs:                           1,
@@ -256,7 +256,7 @@ func TestSoiobservationsetNewBulk(t *testing.T) {
 			BinningHoriz:                     unifieddatalibrary.Int(2),
 			BinningVert:                      unifieddatalibrary.Int(2),
 			BrightnessVarianceChangeDetected: unifieddatalibrary.Bool(true),
-			Calibrations: []unifieddatalibrary.SoiobservationsetNewBulkParamsBodyCalibration{{
+			Calibrations: []unifieddatalibrary.SoiObservationSetNewBulkParamsBodyCalibration{{
 				CalBgIntensity:            unifieddatalibrary.Float(1.1),
 				CalExtinctionCoeff:        unifieddatalibrary.Float(0.2),
 				CalExtinctionCoeffMaxUnc:  unifieddatalibrary.Float(0.19708838),
@@ -284,7 +284,7 @@ func TestSoiobservationsetNewBulk(t *testing.T) {
 			LosDeclinationStart:   unifieddatalibrary.Float(1.1),
 			MsgCreateDate:         unifieddatalibrary.Time(time.Now()),
 			NumSpectralFilters:    unifieddatalibrary.Int(10),
-			OpticalSoiObservationList: []unifieddatalibrary.SoiobservationsetNewBulkParamsBodyOpticalSoiObservationList{{
+			OpticalSoiObservationList: []unifieddatalibrary.SoiObservationSetNewBulkParamsBodyOpticalSoiObservationList{{
 				ObStartTime:              time.Now(),
 				CurrentSpectralFilterNum: unifieddatalibrary.Int(0),
 				Declinations:             []float64{-0.45, -0.45, -0.45},
@@ -320,7 +320,7 @@ func TestSoiobservationsetNewBulk(t *testing.T) {
 			PointingAngleElStart:      unifieddatalibrary.Float(1.1),
 			PolarAngleEnd:             unifieddatalibrary.Float(1.1),
 			PolarAngleStart:           unifieddatalibrary.Float(1.1),
-			RadarSoiObservationList: []unifieddatalibrary.SoiobservationsetNewBulkParamsBodyRadarSoiObservationList{{
+			RadarSoiObservationList: []unifieddatalibrary.SoiObservationSetNewBulkParamsBodyRadarSoiObservationList{{
 				ObStartTime:       time.Now(),
 				AspectAngles:      []float64{4.278, 4.278, 4.278},
 				AzimuthBiases:     []float64{45.23, 45.23, 45.23},
@@ -396,7 +396,7 @@ func TestSoiobservationsetNewBulk(t *testing.T) {
 	}
 }
 
-func TestSoiobservationsetGetWithOptionalParams(t *testing.T) {
+func TestSoiObservationSetGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -409,10 +409,10 @@ func TestSoiobservationsetGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Soiobservationset.Get(
+	_, err := client.SoiObservationSet.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SoiobservationsetGetParams{
+		unifieddatalibrary.SoiObservationSetGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -426,7 +426,7 @@ func TestSoiobservationsetGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSoiobservationsetQueryhelp(t *testing.T) {
+func TestSoiObservationSetQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -439,7 +439,7 @@ func TestSoiobservationsetQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Soiobservationset.Queryhelp(context.TODO())
+	err := client.SoiObservationSet.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -449,7 +449,7 @@ func TestSoiobservationsetQueryhelp(t *testing.T) {
 	}
 }
 
-func TestSoiobservationsetTupleWithOptionalParams(t *testing.T) {
+func TestSoiObservationSetTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -462,7 +462,7 @@ func TestSoiobservationsetTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Soiobservationset.Tuple(context.TODO(), unifieddatalibrary.SoiobservationsetTupleParams{
+	_, err := client.SoiObservationSet.Tuple(context.TODO(), unifieddatalibrary.SoiObservationSetTupleParams{
 		Columns:     "columns",
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -477,7 +477,7 @@ func TestSoiobservationsetTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSoiobservationsetUnvalidatedPublish(t *testing.T) {
+func TestSoiObservationSetUnvalidatedPublish(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -490,8 +490,8 @@ func TestSoiobservationsetUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Soiobservationset.UnvalidatedPublish(context.TODO(), unifieddatalibrary.SoiobservationsetUnvalidatedPublishParams{
-		Body: []unifieddatalibrary.SoiobservationsetUnvalidatedPublishParamsBody{{
+	err := client.SoiObservationSet.UnvalidatedPublish(context.TODO(), unifieddatalibrary.SoiObservationSetUnvalidatedPublishParams{
+		Body: []unifieddatalibrary.SoiObservationSetUnvalidatedPublishParamsBody{{
 			ClassificationMarking:            "U",
 			DataMode:                         "TEST",
 			NumObs:                           1,
@@ -502,7 +502,7 @@ func TestSoiobservationsetUnvalidatedPublish(t *testing.T) {
 			BinningHoriz:                     unifieddatalibrary.Int(2),
 			BinningVert:                      unifieddatalibrary.Int(2),
 			BrightnessVarianceChangeDetected: unifieddatalibrary.Bool(true),
-			Calibrations: []unifieddatalibrary.SoiobservationsetUnvalidatedPublishParamsBodyCalibration{{
+			Calibrations: []unifieddatalibrary.SoiObservationSetUnvalidatedPublishParamsBodyCalibration{{
 				CalBgIntensity:            unifieddatalibrary.Float(1.1),
 				CalExtinctionCoeff:        unifieddatalibrary.Float(0.2),
 				CalExtinctionCoeffMaxUnc:  unifieddatalibrary.Float(0.19708838),
@@ -530,7 +530,7 @@ func TestSoiobservationsetUnvalidatedPublish(t *testing.T) {
 			LosDeclinationStart:   unifieddatalibrary.Float(1.1),
 			MsgCreateDate:         unifieddatalibrary.Time(time.Now()),
 			NumSpectralFilters:    unifieddatalibrary.Int(10),
-			OpticalSoiObservationList: []unifieddatalibrary.SoiobservationsetUnvalidatedPublishParamsBodyOpticalSoiObservationList{{
+			OpticalSoiObservationList: []unifieddatalibrary.SoiObservationSetUnvalidatedPublishParamsBodyOpticalSoiObservationList{{
 				ObStartTime:              time.Now(),
 				CurrentSpectralFilterNum: unifieddatalibrary.Int(0),
 				Declinations:             []float64{-0.45, -0.45, -0.45},
@@ -566,7 +566,7 @@ func TestSoiobservationsetUnvalidatedPublish(t *testing.T) {
 			PointingAngleElStart:      unifieddatalibrary.Float(1.1),
 			PolarAngleEnd:             unifieddatalibrary.Float(1.1),
 			PolarAngleStart:           unifieddatalibrary.Float(1.1),
-			RadarSoiObservationList: []unifieddatalibrary.SoiobservationsetUnvalidatedPublishParamsBodyRadarSoiObservationList{{
+			RadarSoiObservationList: []unifieddatalibrary.SoiObservationSetUnvalidatedPublishParamsBodyRadarSoiObservationList{{
 				ObStartTime:       time.Now(),
 				AspectAngles:      []float64{4.278, 4.278, 4.278},
 				AzimuthBiases:     []float64{45.23, 45.23, 45.23},

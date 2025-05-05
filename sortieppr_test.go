@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSortiepprNewWithOptionalParams(t *testing.T) {
+func TestSortiePprNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,9 +27,9 @@ func TestSortiepprNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sortieppr.New(context.TODO(), unifieddatalibrary.SortiepprNewParams{
+	err := client.SortiePpr.New(context.TODO(), unifieddatalibrary.SortiePprNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.SortiepprNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.SortiePprNewParamsDataModeTest,
 		IDSortie:              "4ef3d1e8-ab08-ab70-498f-edc479734e5c",
 		Source:                "Bluestaq",
 		ID:                    unifieddatalibrary.String("SORTIEPPR-ID"),
@@ -41,7 +41,7 @@ func TestSortiepprNewWithOptionalParams(t *testing.T) {
 		Remarks:               unifieddatalibrary.String("PPR remark"),
 		Requestor:             unifieddatalibrary.String("jsmith1"),
 		StartTime:             unifieddatalibrary.Time(time.Now()),
-		Type:                  unifieddatalibrary.SortiepprNewParamsTypeM,
+		Type:                  unifieddatalibrary.SortiePprNewParamsTypeM,
 	})
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
@@ -52,7 +52,7 @@ func TestSortiepprNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSortiepprUpdateWithOptionalParams(t *testing.T) {
+func TestSortiePprUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -65,12 +65,12 @@ func TestSortiepprUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sortieppr.Update(
+	err := client.SortiePpr.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SortiepprUpdateParams{
+		unifieddatalibrary.SortiePprUpdateParams{
 			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.SortiepprUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.SortiePprUpdateParamsDataModeTest,
 			IDSortie:              "4ef3d1e8-ab08-ab70-498f-edc479734e5c",
 			Source:                "Bluestaq",
 			ID:                    unifieddatalibrary.String("SORTIEPPR-ID"),
@@ -82,7 +82,7 @@ func TestSortiepprUpdateWithOptionalParams(t *testing.T) {
 			Remarks:               unifieddatalibrary.String("PPR remark"),
 			Requestor:             unifieddatalibrary.String("jsmith1"),
 			StartTime:             unifieddatalibrary.Time(time.Now()),
-			Type:                  unifieddatalibrary.SortiepprUpdateParamsTypeM,
+			Type:                  unifieddatalibrary.SortiePprUpdateParamsTypeM,
 		},
 	)
 	if err != nil {
@@ -94,7 +94,7 @@ func TestSortiepprUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSortiepprListWithOptionalParams(t *testing.T) {
+func TestSortiePprListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -107,7 +107,7 @@ func TestSortiepprListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sortieppr.List(context.TODO(), unifieddatalibrary.SortiepprListParams{
+	_, err := client.SortiePpr.List(context.TODO(), unifieddatalibrary.SortiePprListParams{
 		IDSortie:    "idSortie",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -121,7 +121,7 @@ func TestSortiepprListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSortiepprDelete(t *testing.T) {
+func TestSortiePprDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -134,7 +134,7 @@ func TestSortiepprDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sortieppr.Delete(context.TODO(), "id")
+	err := client.SortiePpr.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -144,7 +144,7 @@ func TestSortiepprDelete(t *testing.T) {
 	}
 }
 
-func TestSortiepprCountWithOptionalParams(t *testing.T) {
+func TestSortiePprCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -157,7 +157,7 @@ func TestSortiepprCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sortieppr.Count(context.TODO(), unifieddatalibrary.SortiepprCountParams{
+	_, err := client.SortiePpr.Count(context.TODO(), unifieddatalibrary.SortiePprCountParams{
 		IDSortie:    "idSortie",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -171,7 +171,7 @@ func TestSortiepprCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSortiepprNewBulk(t *testing.T) {
+func TestSortiePprNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -184,8 +184,8 @@ func TestSortiepprNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sortieppr.NewBulk(context.TODO(), unifieddatalibrary.SortiepprNewBulkParams{
-		Body: []unifieddatalibrary.SortiepprNewBulkParamsBody{{
+	err := client.SortiePpr.NewBulk(context.TODO(), unifieddatalibrary.SortiePprNewBulkParams{
+		Body: []unifieddatalibrary.SortiePprNewBulkParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			IDSortie:              "4ef3d1e8-ab08-ab70-498f-edc479734e5c",
@@ -211,7 +211,7 @@ func TestSortiepprNewBulk(t *testing.T) {
 	}
 }
 
-func TestSortiepprGetWithOptionalParams(t *testing.T) {
+func TestSortiePprGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -224,10 +224,10 @@ func TestSortiepprGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sortieppr.Get(
+	_, err := client.SortiePpr.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SortiepprGetParams{
+		unifieddatalibrary.SortiePprGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -241,7 +241,7 @@ func TestSortiepprGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSortiepprQueryhelp(t *testing.T) {
+func TestSortiePprQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -254,7 +254,7 @@ func TestSortiepprQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sortieppr.Queryhelp(context.TODO())
+	err := client.SortiePpr.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -264,7 +264,7 @@ func TestSortiepprQueryhelp(t *testing.T) {
 	}
 }
 
-func TestSortiepprTupleWithOptionalParams(t *testing.T) {
+func TestSortiePprTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -277,7 +277,7 @@ func TestSortiepprTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sortieppr.Tuple(context.TODO(), unifieddatalibrary.SortiepprTupleParams{
+	_, err := client.SortiePpr.Tuple(context.TODO(), unifieddatalibrary.SortiePprTupleParams{
 		Columns:     "columns",
 		IDSortie:    "idSortie",
 		FirstResult: unifieddatalibrary.Int(0),
@@ -292,7 +292,7 @@ func TestSortiepprTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSortiepprUnvalidatedPublish(t *testing.T) {
+func TestSortiePprUnvalidatedPublish(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -305,8 +305,8 @@ func TestSortiepprUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sortieppr.UnvalidatedPublish(context.TODO(), unifieddatalibrary.SortiepprUnvalidatedPublishParams{
-		Body: []unifieddatalibrary.SortiepprUnvalidatedPublishParamsBody{{
+	err := client.SortiePpr.UnvalidatedPublish(context.TODO(), unifieddatalibrary.SortiePprUnvalidatedPublishParams{
+		Body: []unifieddatalibrary.SortiePprUnvalidatedPublishParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			IDSortie:              "4ef3d1e8-ab08-ab70-498f-edc479734e5c",

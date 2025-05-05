@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSeradatacommdetailNewWithOptionalParams(t *testing.T) {
+func TestSeraDataCommDetailNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,9 +26,9 @@ func TestSeradatacommdetailNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradatacommdetails.New(context.TODO(), unifieddatalibrary.SeradatacommdetailNewParams{
+	err := client.SeraDataCommDetails.New(context.TODO(), unifieddatalibrary.SeraDataCommDetailNewParams{
 		ClassificationMarking:                   "U",
-		DataMode:                                unifieddatalibrary.SeradatacommdetailNewParamsDataModeTest,
+		DataMode:                                unifieddatalibrary.SeraDataCommDetailNewParamsDataModeTest,
 		Source:                                  "Bluestaq",
 		ID:                                      unifieddatalibrary.String("SERADATACOMMDETAILS-ID"),
 		Band:                                    unifieddatalibrary.String("X"),
@@ -71,7 +71,7 @@ func TestSeradatacommdetailNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradatacommdetailUpdateWithOptionalParams(t *testing.T) {
+func TestSeraDataCommDetailUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -84,12 +84,12 @@ func TestSeradatacommdetailUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradatacommdetails.Update(
+	err := client.SeraDataCommDetails.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SeradatacommdetailUpdateParams{
+		unifieddatalibrary.SeraDataCommDetailUpdateParams{
 			ClassificationMarking:                   "U",
-			DataMode:                                unifieddatalibrary.SeradatacommdetailUpdateParamsDataModeTest,
+			DataMode:                                unifieddatalibrary.SeraDataCommDetailUpdateParamsDataModeTest,
 			Source:                                  "Bluestaq",
 			ID:                                      unifieddatalibrary.String("SERADATACOMMDETAILS-ID"),
 			Band:                                    unifieddatalibrary.String("X"),
@@ -133,7 +133,7 @@ func TestSeradatacommdetailUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradatacommdetailListWithOptionalParams(t *testing.T) {
+func TestSeraDataCommDetailListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -146,7 +146,7 @@ func TestSeradatacommdetailListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradatacommdetails.List(context.TODO(), unifieddatalibrary.SeradatacommdetailListParams{
+	_, err := client.SeraDataCommDetails.List(context.TODO(), unifieddatalibrary.SeraDataCommDetailListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -159,7 +159,7 @@ func TestSeradatacommdetailListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradatacommdetailDelete(t *testing.T) {
+func TestSeraDataCommDetailDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -172,7 +172,7 @@ func TestSeradatacommdetailDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradatacommdetails.Delete(context.TODO(), "id")
+	err := client.SeraDataCommDetails.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -182,7 +182,7 @@ func TestSeradatacommdetailDelete(t *testing.T) {
 	}
 }
 
-func TestSeradatacommdetailCountWithOptionalParams(t *testing.T) {
+func TestSeraDataCommDetailCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -195,7 +195,7 @@ func TestSeradatacommdetailCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradatacommdetails.Count(context.TODO(), unifieddatalibrary.SeradatacommdetailCountParams{
+	_, err := client.SeraDataCommDetails.Count(context.TODO(), unifieddatalibrary.SeraDataCommDetailCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -208,7 +208,7 @@ func TestSeradatacommdetailCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradatacommdetailGetWithOptionalParams(t *testing.T) {
+func TestSeraDataCommDetailGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -221,10 +221,10 @@ func TestSeradatacommdetailGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradatacommdetails.Get(
+	_, err := client.SeraDataCommDetails.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SeradatacommdetailGetParams{
+		unifieddatalibrary.SeraDataCommDetailGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -238,7 +238,7 @@ func TestSeradatacommdetailGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradatacommdetailQueryhelp(t *testing.T) {
+func TestSeraDataCommDetailQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -251,7 +251,7 @@ func TestSeradatacommdetailQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradatacommdetails.Queryhelp(context.TODO())
+	err := client.SeraDataCommDetails.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -261,7 +261,7 @@ func TestSeradatacommdetailQueryhelp(t *testing.T) {
 	}
 }
 
-func TestSeradatacommdetailTupleWithOptionalParams(t *testing.T) {
+func TestSeraDataCommDetailTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -274,7 +274,7 @@ func TestSeradatacommdetailTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradatacommdetails.Tuple(context.TODO(), unifieddatalibrary.SeradatacommdetailTupleParams{
+	_, err := client.SeraDataCommDetails.Tuple(context.TODO(), unifieddatalibrary.SeraDataCommDetailTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestStatevectorCurrentListWithOptionalParams(t *testing.T) {
+func TestStateVectorCurrentListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,7 +26,7 @@ func TestStatevectorCurrentListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Statevector.Current.List(context.TODO(), unifieddatalibrary.StatevectorCurrentListParams{
+	_, err := client.StateVector.Current.List(context.TODO(), unifieddatalibrary.StateVectorCurrentListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -39,7 +39,7 @@ func TestStatevectorCurrentListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestStatevectorCurrentTupleWithOptionalParams(t *testing.T) {
+func TestStateVectorCurrentTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -52,7 +52,7 @@ func TestStatevectorCurrentTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Statevector.Current.Tuple(context.TODO(), unifieddatalibrary.StatevectorCurrentTupleParams{
+	_, err := client.StateVector.Current.Tuple(context.TODO(), unifieddatalibrary.StateVectorCurrentTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

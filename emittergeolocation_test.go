@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestEmittergeolocationNewWithOptionalParams(t *testing.T) {
+func TestEmitterGeolocationNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,9 +27,9 @@ func TestEmittergeolocationNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Emittergeolocation.New(context.TODO(), unifieddatalibrary.EmittergeolocationNewParams{
+	err := client.EmitterGeolocation.New(context.TODO(), unifieddatalibrary.EmitterGeolocationNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.EmittergeolocationNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.EmitterGeolocationNewParamsDataModeTest,
 		SignalOfInterestType:  "RF",
 		Source:                "Bluestaq",
 		StartTime:             time.Now(),
@@ -77,7 +77,7 @@ func TestEmittergeolocationNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestEmittergeolocationGetWithOptionalParams(t *testing.T) {
+func TestEmitterGeolocationGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -90,10 +90,10 @@ func TestEmittergeolocationGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Emittergeolocation.Get(
+	_, err := client.EmitterGeolocation.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.EmittergeolocationGetParams{
+		unifieddatalibrary.EmitterGeolocationGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -107,7 +107,7 @@ func TestEmittergeolocationGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestEmittergeolocationDelete(t *testing.T) {
+func TestEmitterGeolocationDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -120,7 +120,7 @@ func TestEmittergeolocationDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Emittergeolocation.Delete(context.TODO(), "id")
+	err := client.EmitterGeolocation.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -130,7 +130,7 @@ func TestEmittergeolocationDelete(t *testing.T) {
 	}
 }
 
-func TestEmittergeolocationCountWithOptionalParams(t *testing.T) {
+func TestEmitterGeolocationCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -143,7 +143,7 @@ func TestEmittergeolocationCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Emittergeolocation.Count(context.TODO(), unifieddatalibrary.EmittergeolocationCountParams{
+	_, err := client.EmitterGeolocation.Count(context.TODO(), unifieddatalibrary.EmitterGeolocationCountParams{
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -157,7 +157,7 @@ func TestEmittergeolocationCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestEmittergeolocationNewBulk(t *testing.T) {
+func TestEmitterGeolocationNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -170,8 +170,8 @@ func TestEmittergeolocationNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Emittergeolocation.NewBulk(context.TODO(), unifieddatalibrary.EmittergeolocationNewBulkParams{
-		Body: []unifieddatalibrary.EmittergeolocationNewBulkParamsBody{{
+	err := client.EmitterGeolocation.NewBulk(context.TODO(), unifieddatalibrary.EmitterGeolocationNewBulkParams{
+		Body: []unifieddatalibrary.EmitterGeolocationNewBulkParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			SignalOfInterestType:  "RF",
@@ -222,7 +222,7 @@ func TestEmittergeolocationNewBulk(t *testing.T) {
 	}
 }
 
-func TestEmittergeolocationQueryWithOptionalParams(t *testing.T) {
+func TestEmitterGeolocationQueryWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -235,7 +235,7 @@ func TestEmittergeolocationQueryWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Emittergeolocation.Query(context.TODO(), unifieddatalibrary.EmittergeolocationQueryParams{
+	_, err := client.EmitterGeolocation.Query(context.TODO(), unifieddatalibrary.EmitterGeolocationQueryParams{
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -249,7 +249,7 @@ func TestEmittergeolocationQueryWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestEmittergeolocationQueryHelp(t *testing.T) {
+func TestEmitterGeolocationQueryHelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -262,7 +262,7 @@ func TestEmittergeolocationQueryHelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Emittergeolocation.QueryHelp(context.TODO())
+	err := client.EmitterGeolocation.QueryHelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -272,7 +272,7 @@ func TestEmittergeolocationQueryHelp(t *testing.T) {
 	}
 }
 
-func TestEmittergeolocationTupleWithOptionalParams(t *testing.T) {
+func TestEmitterGeolocationTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -285,7 +285,7 @@ func TestEmittergeolocationTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Emittergeolocation.Tuple(context.TODO(), unifieddatalibrary.EmittergeolocationTupleParams{
+	_, err := client.EmitterGeolocation.Tuple(context.TODO(), unifieddatalibrary.EmitterGeolocationTupleParams{
 		Columns:     "columns",
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -300,7 +300,7 @@ func TestEmittergeolocationTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestEmittergeolocationUnvalidatedPublish(t *testing.T) {
+func TestEmitterGeolocationUnvalidatedPublish(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -313,8 +313,8 @@ func TestEmittergeolocationUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Emittergeolocation.UnvalidatedPublish(context.TODO(), unifieddatalibrary.EmittergeolocationUnvalidatedPublishParams{
-		Body: []unifieddatalibrary.EmittergeolocationUnvalidatedPublishParamsBody{{
+	err := client.EmitterGeolocation.UnvalidatedPublish(context.TODO(), unifieddatalibrary.EmitterGeolocationUnvalidatedPublishParams{
+		Body: []unifieddatalibrary.EmitterGeolocationUnvalidatedPublishParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			SignalOfInterestType:  "RF",

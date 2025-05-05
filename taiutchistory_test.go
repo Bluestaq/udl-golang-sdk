@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestTaiutcHistoryListWithOptionalParams(t *testing.T) {
+func TestTaiUtcHistoryListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestTaiutcHistoryListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Taiutc.History.List(context.TODO(), unifieddatalibrary.TaiutcHistoryListParams{
+	_, err := client.TaiUtc.History.List(context.TODO(), unifieddatalibrary.TaiUtcHistoryListParams{
 		AdjustmentDate: time.Now(),
 		Columns:        unifieddatalibrary.String("columns"),
 		FirstResult:    unifieddatalibrary.Int(0),
@@ -42,7 +42,7 @@ func TestTaiutcHistoryListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestTaiutcHistoryAodrWithOptionalParams(t *testing.T) {
+func TestTaiUtcHistoryAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -55,7 +55,7 @@ func TestTaiutcHistoryAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Taiutc.History.Aodr(context.TODO(), unifieddatalibrary.TaiutcHistoryAodrParams{
+	err := client.TaiUtc.History.Aodr(context.TODO(), unifieddatalibrary.TaiUtcHistoryAodrParams{
 		AdjustmentDate:  time.Now(),
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -73,7 +73,7 @@ func TestTaiutcHistoryAodrWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestTaiutcHistoryCountWithOptionalParams(t *testing.T) {
+func TestTaiUtcHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -86,7 +86,7 @@ func TestTaiutcHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Taiutc.History.Count(context.TODO(), unifieddatalibrary.TaiutcHistoryCountParams{
+	_, err := client.TaiUtc.History.Count(context.TODO(), unifieddatalibrary.TaiUtcHistoryCountParams{
 		AdjustmentDate: time.Now(),
 		FirstResult:    unifieddatalibrary.Int(0),
 		MaxResults:     unifieddatalibrary.Int(0),

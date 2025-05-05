@@ -20,22 +20,24 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// GeostatusService contains methods and other services that help with interacting
+// GeoStatusService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewGeostatusService] method instead.
-type GeostatusService struct {
+// the [NewGeoStatusService] method instead.
+type GeoStatusService struct {
 	Options []option.RequestOption
+	History GeoStatusHistoryService
 }
 
-// NewGeostatusService generates a new service that applies the given options to
+// NewGeoStatusService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewGeostatusService(opts ...option.RequestOption) (r GeostatusService) {
-	r = GeostatusService{}
+func NewGeoStatusService(opts ...option.RequestOption) (r GeoStatusService) {
+	r = GeoStatusService{}
 	r.Options = opts
+	r.History = NewGeoStatusHistoryService(opts...)
 	return
 }
 
@@ -44,7 +46,7 @@ func NewGeostatusService(opts ...option.RequestOption) (r GeostatusService) {
 // into UDL. Data providers should contact the UDL team for specific role
 // assignments and for instructions on setting up a permanent feed through an
 // alternate mechanism.
-func (r *GeostatusService) New(ctx context.Context, body GeostatusNewParams, opts ...option.RequestOption) (err error) {
+func (r *GeoStatusService) New(ctx context.Context, body GeoStatusNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/geostatus"
@@ -56,7 +58,7 @@ func (r *GeostatusService) New(ctx context.Context, body GeostatusNewParams, opt
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *GeostatusService) List(ctx context.Context, query GeostatusListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[GeostatusListResponse], err error) {
+func (r *GeoStatusService) List(ctx context.Context, query GeoStatusListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[GeoStatusListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -77,7 +79,7 @@ func (r *GeostatusService) List(ctx context.Context, query GeostatusListParams, 
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *GeostatusService) ListAutoPaging(ctx context.Context, query GeostatusListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[GeostatusListResponse] {
+func (r *GeoStatusService) ListAutoPaging(ctx context.Context, query GeoStatusListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[GeoStatusListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -86,7 +88,7 @@ func (r *GeostatusService) ListAutoPaging(ctx context.Context, query GeostatusLi
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *GeostatusService) Count(ctx context.Context, query GeostatusCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *GeoStatusService) Count(ctx context.Context, query GeoStatusCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/geostatus/count"
@@ -99,7 +101,7 @@ func (r *GeostatusService) Count(ctx context.Context, query GeostatusCountParams
 // not intended to be used for automated feeds into UDL. Data providers should
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
-func (r *GeostatusService) NewBulk(ctx context.Context, body GeostatusNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *GeoStatusService) NewBulk(ctx context.Context, body GeoStatusNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/geostatus/createBulk"
@@ -109,7 +111,7 @@ func (r *GeostatusService) NewBulk(ctx context.Context, body GeostatusNewBulkPar
 
 // Service operation to get a single GEOStatus record by its unique ID passed as a
 // path parameter.
-func (r *GeostatusService) Get(ctx context.Context, id string, query GeostatusGetParams, opts ...option.RequestOption) (res *GeoStatusFull, err error) {
+func (r *GeoStatusService) Get(ctx context.Context, id string, query GeoStatusGetParams, opts ...option.RequestOption) (res *GeoStatusFull, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -122,7 +124,7 @@ func (r *GeostatusService) Get(ctx context.Context, id string, query GeostatusGe
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *GeostatusService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *GeoStatusService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/geostatus/queryhelp"
@@ -138,7 +140,7 @@ func (r *GeostatusService) Queryhelp(ctx context.Context, opts ...option.Request
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *GeostatusService) Tuple(ctx context.Context, query GeostatusTupleParams, opts ...option.RequestOption) (res *[]GeoStatusFull, err error) {
+func (r *GeoStatusService) Tuple(ctx context.Context, query GeoStatusTupleParams, opts ...option.RequestOption) (res *[]GeoStatusFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/geostatus/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -147,7 +149,7 @@ func (r *GeostatusService) Tuple(ctx context.Context, query GeostatusTupleParams
 
 // Information for the specified on-orbit GEO spacecraft, including status,
 // expected longitude limits, and drift rates.
-type GeostatusListResponse struct {
+type GeoStatusListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -166,7 +168,7 @@ type GeostatusListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode GeostatusListResponseDataMode `json:"dataMode,required"`
+	DataMode GeoStatusListResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Unique identifier of the record, auto-generated by the system.
@@ -266,8 +268,8 @@ type GeostatusListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r GeostatusListResponse) RawJSON() string { return r.JSON.raw }
-func (r *GeostatusListResponse) UnmarshalJSON(data []byte) error {
+func (r GeoStatusListResponse) RawJSON() string { return r.JSON.raw }
+func (r *GeoStatusListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -285,16 +287,16 @@ func (r *GeostatusListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type GeostatusListResponseDataMode string
+type GeoStatusListResponseDataMode string
 
 const (
-	GeostatusListResponseDataModeReal      GeostatusListResponseDataMode = "REAL"
-	GeostatusListResponseDataModeTest      GeostatusListResponseDataMode = "TEST"
-	GeostatusListResponseDataModeSimulated GeostatusListResponseDataMode = "SIMULATED"
-	GeostatusListResponseDataModeExercise  GeostatusListResponseDataMode = "EXERCISE"
+	GeoStatusListResponseDataModeReal      GeoStatusListResponseDataMode = "REAL"
+	GeoStatusListResponseDataModeTest      GeoStatusListResponseDataMode = "TEST"
+	GeoStatusListResponseDataModeSimulated GeoStatusListResponseDataMode = "SIMULATED"
+	GeoStatusListResponseDataModeExercise  GeoStatusListResponseDataMode = "EXERCISE"
 )
 
-type GeostatusNewParams struct {
+type GeoStatusNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -313,7 +315,7 @@ type GeostatusNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode GeostatusNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode GeoStatusNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Unique identifier of the record, auto-generated by the system.
@@ -375,10 +377,10 @@ type GeostatusNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GeostatusNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f GeoStatusNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r GeostatusNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow GeostatusNewParams
+func (r GeoStatusNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow GeoStatusNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -396,16 +398,16 @@ func (r GeostatusNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type GeostatusNewParamsDataMode string
+type GeoStatusNewParamsDataMode string
 
 const (
-	GeostatusNewParamsDataModeReal      GeostatusNewParamsDataMode = "REAL"
-	GeostatusNewParamsDataModeTest      GeostatusNewParamsDataMode = "TEST"
-	GeostatusNewParamsDataModeSimulated GeostatusNewParamsDataMode = "SIMULATED"
-	GeostatusNewParamsDataModeExercise  GeostatusNewParamsDataMode = "EXERCISE"
+	GeoStatusNewParamsDataModeReal      GeoStatusNewParamsDataMode = "REAL"
+	GeoStatusNewParamsDataModeTest      GeoStatusNewParamsDataMode = "TEST"
+	GeoStatusNewParamsDataModeSimulated GeoStatusNewParamsDataMode = "SIMULATED"
+	GeoStatusNewParamsDataModeExercise  GeoStatusNewParamsDataMode = "EXERCISE"
 )
 
-type GeostatusListParams struct {
+type GeoStatusListParams struct {
 	// Time the row was created in the database, auto-populated by the system.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	CreatedAt   time.Time        `query:"createdAt,required" format:"date" json:"-"`
@@ -416,17 +418,17 @@ type GeostatusListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GeostatusListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f GeoStatusListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [GeostatusListParams]'s query parameters as `url.Values`.
-func (r GeostatusListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [GeoStatusListParams]'s query parameters as `url.Values`.
+func (r GeoStatusListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type GeostatusCountParams struct {
+type GeoStatusCountParams struct {
 	// Time the row was created in the database, auto-populated by the system.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	CreatedAt   time.Time        `query:"createdAt,required" format:"date" json:"-"`
@@ -437,26 +439,26 @@ type GeostatusCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GeostatusCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f GeoStatusCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [GeostatusCountParams]'s query parameters as `url.Values`.
-func (r GeostatusCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [GeoStatusCountParams]'s query parameters as `url.Values`.
+func (r GeoStatusCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type GeostatusNewBulkParams struct {
-	Body []GeostatusNewBulkParamsBody
+type GeoStatusNewBulkParams struct {
+	Body []GeoStatusNewBulkParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GeostatusNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f GeoStatusNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r GeostatusNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r GeoStatusNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -464,7 +466,7 @@ func (r GeostatusNewBulkParams) MarshalJSON() (data []byte, err error) {
 // expected longitude limits, and drift rates.
 //
 // The properties ClassificationMarking, DataMode, Source are required.
-type GeostatusNewBulkParamsBody struct {
+type GeoStatusNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -555,19 +557,19 @@ type GeostatusNewBulkParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GeostatusNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-func (r GeostatusNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow GeostatusNewBulkParamsBody
+func (f GeoStatusNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r GeoStatusNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow GeoStatusNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[GeostatusNewBulkParamsBody](
+	apijson.RegisterFieldValidator[GeoStatusNewBulkParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
-type GeostatusGetParams struct {
+type GeoStatusGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -575,17 +577,17 @@ type GeostatusGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GeostatusGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f GeoStatusGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [GeostatusGetParams]'s query parameters as `url.Values`.
-func (r GeostatusGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [GeoStatusGetParams]'s query parameters as `url.Values`.
+func (r GeoStatusGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type GeostatusTupleParams struct {
+type GeoStatusTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -601,10 +603,10 @@ type GeostatusTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GeostatusTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f GeoStatusTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [GeostatusTupleParams]'s query parameters as `url.Values`.
-func (r GeostatusTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [GeoStatusTupleParams]'s query parameters as `url.Values`.
+func (r GeoStatusTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

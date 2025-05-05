@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestStarcatalogHistoryAodrWithOptionalParams(t *testing.T) {
+func TestStarCatalogHistoryAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,7 +26,7 @@ func TestStarcatalogHistoryAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Starcatalog.History.Aodr(context.TODO(), unifieddatalibrary.StarcatalogHistoryAodrParams{
+	err := client.StarCatalog.History.Aodr(context.TODO(), unifieddatalibrary.StarCatalogHistoryAodrParams{
 		Columns:         unifieddatalibrary.String("columns"),
 		Dec:             unifieddatalibrary.Float(0),
 		FirstResult:     unifieddatalibrary.Int(0),

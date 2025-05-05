@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestTrackdetailListWithOptionalParams(t *testing.T) {
+func TestTrackDetailListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestTrackdetailListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Trackdetails.List(context.TODO(), unifieddatalibrary.TrackdetailListParams{
+	_, err := client.TrackDetails.List(context.TODO(), unifieddatalibrary.TrackDetailListParams{
 		Ts:          time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -41,7 +41,7 @@ func TestTrackdetailListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestTrackdetailCountWithOptionalParams(t *testing.T) {
+func TestTrackDetailCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -54,7 +54,7 @@ func TestTrackdetailCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Trackdetails.Count(context.TODO(), unifieddatalibrary.TrackdetailCountParams{
+	_, err := client.TrackDetails.Count(context.TODO(), unifieddatalibrary.TrackDetailCountParams{
 		Ts:          time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -68,7 +68,7 @@ func TestTrackdetailCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestTrackdetailNewBulk(t *testing.T) {
+func TestTrackDetailNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -81,8 +81,8 @@ func TestTrackdetailNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Trackdetails.NewBulk(context.TODO(), unifieddatalibrary.TrackdetailNewBulkParams{
-		Body: []unifieddatalibrary.TrackdetailNewBulkParamsBody{{
+	err := client.TrackDetails.NewBulk(context.TODO(), unifieddatalibrary.TrackDetailNewBulkParams{
+		Body: []unifieddatalibrary.TrackDetailNewBulkParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			Lat:                   19.88550102,
@@ -249,7 +249,7 @@ func TestTrackdetailNewBulk(t *testing.T) {
 	}
 }
 
-func TestTrackdetailQueryhelp(t *testing.T) {
+func TestTrackDetailQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -262,7 +262,7 @@ func TestTrackdetailQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Trackdetails.Queryhelp(context.TODO())
+	err := client.TrackDetails.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -272,7 +272,7 @@ func TestTrackdetailQueryhelp(t *testing.T) {
 	}
 }
 
-func TestTrackdetailTupleWithOptionalParams(t *testing.T) {
+func TestTrackDetailTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -285,7 +285,7 @@ func TestTrackdetailTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Trackdetails.Tuple(context.TODO(), unifieddatalibrary.TrackdetailTupleParams{
+	_, err := client.TrackDetails.Tuple(context.TODO(), unifieddatalibrary.TrackDetailTupleParams{
 		Columns:     "columns",
 		Ts:          time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),

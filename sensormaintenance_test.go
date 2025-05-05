@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSensormaintenanceNewWithOptionalParams(t *testing.T) {
+func TestSensorMaintenanceNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,9 +27,9 @@ func TestSensormaintenanceNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sensormaintenance.New(context.TODO(), unifieddatalibrary.SensormaintenanceNewParams{
+	err := client.SensorMaintenance.New(context.TODO(), unifieddatalibrary.SensorMaintenanceNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.SensormaintenanceNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.SensorMaintenanceNewParamsDataModeTest,
 		EndTime:               time.Now(),
 		SiteCode:              "site01",
 		Source:                "Bluestaq",
@@ -65,7 +65,7 @@ func TestSensormaintenanceNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensormaintenanceUpdateWithOptionalParams(t *testing.T) {
+func TestSensorMaintenanceUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -78,12 +78,12 @@ func TestSensormaintenanceUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sensormaintenance.Update(
+	err := client.SensorMaintenance.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SensormaintenanceUpdateParams{
+		unifieddatalibrary.SensorMaintenanceUpdateParams{
 			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.SensormaintenanceUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.SensorMaintenanceUpdateParamsDataModeTest,
 			EndTime:               time.Now(),
 			SiteCode:              "site01",
 			Source:                "Bluestaq",
@@ -120,7 +120,7 @@ func TestSensormaintenanceUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensormaintenanceListWithOptionalParams(t *testing.T) {
+func TestSensorMaintenanceListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -133,7 +133,7 @@ func TestSensormaintenanceListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sensormaintenance.List(context.TODO(), unifieddatalibrary.SensormaintenanceListParams{
+	_, err := client.SensorMaintenance.List(context.TODO(), unifieddatalibrary.SensorMaintenanceListParams{
 		EndTime:     unifieddatalibrary.Time(time.Now()),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -148,7 +148,7 @@ func TestSensormaintenanceListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensormaintenanceDelete(t *testing.T) {
+func TestSensorMaintenanceDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -161,7 +161,7 @@ func TestSensormaintenanceDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sensormaintenance.Delete(context.TODO(), "id")
+	err := client.SensorMaintenance.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -171,7 +171,7 @@ func TestSensormaintenanceDelete(t *testing.T) {
 	}
 }
 
-func TestSensormaintenanceCountWithOptionalParams(t *testing.T) {
+func TestSensorMaintenanceCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -184,7 +184,7 @@ func TestSensormaintenanceCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sensormaintenance.Count(context.TODO(), unifieddatalibrary.SensormaintenanceCountParams{
+	_, err := client.SensorMaintenance.Count(context.TODO(), unifieddatalibrary.SensorMaintenanceCountParams{
 		EndTime:     unifieddatalibrary.Time(time.Now()),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -199,7 +199,7 @@ func TestSensormaintenanceCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensormaintenanceNewBulkWithOptionalParams(t *testing.T) {
+func TestSensorMaintenanceNewBulkWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -212,8 +212,8 @@ func TestSensormaintenanceNewBulkWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sensormaintenance.NewBulk(context.TODO(), unifieddatalibrary.SensormaintenanceNewBulkParams{
-		Body: []unifieddatalibrary.SensormaintenanceNewBulkParamsBody{{
+	err := client.SensorMaintenance.NewBulk(context.TODO(), unifieddatalibrary.SensorMaintenanceNewBulkParams{
+		Body: []unifieddatalibrary.SensorMaintenanceNewBulkParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			EndTime:               time.Now(),
@@ -254,7 +254,7 @@ func TestSensormaintenanceNewBulkWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensormaintenanceCurrentWithOptionalParams(t *testing.T) {
+func TestSensorMaintenanceCurrentWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -267,7 +267,7 @@ func TestSensormaintenanceCurrentWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sensormaintenance.Current(context.TODO(), unifieddatalibrary.SensormaintenanceCurrentParams{
+	_, err := client.SensorMaintenance.Current(context.TODO(), unifieddatalibrary.SensorMaintenanceCurrentParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -280,7 +280,7 @@ func TestSensormaintenanceCurrentWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensormaintenanceGetWithOptionalParams(t *testing.T) {
+func TestSensorMaintenanceGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -293,10 +293,10 @@ func TestSensormaintenanceGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sensormaintenance.Get(
+	_, err := client.SensorMaintenance.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SensormaintenanceGetParams{
+		unifieddatalibrary.SensorMaintenanceGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -310,7 +310,7 @@ func TestSensormaintenanceGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensormaintenanceQueryhelp(t *testing.T) {
+func TestSensorMaintenanceQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -323,7 +323,7 @@ func TestSensormaintenanceQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sensormaintenance.Queryhelp(context.TODO())
+	err := client.SensorMaintenance.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -333,7 +333,7 @@ func TestSensormaintenanceQueryhelp(t *testing.T) {
 	}
 }
 
-func TestSensormaintenanceTupleWithOptionalParams(t *testing.T) {
+func TestSensorMaintenanceTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -346,7 +346,7 @@ func TestSensormaintenanceTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sensormaintenance.Tuple(context.TODO(), unifieddatalibrary.SensormaintenanceTupleParams{
+	_, err := client.SensorMaintenance.Tuple(context.TODO(), unifieddatalibrary.SensorMaintenanceTupleParams{
 		Columns:     "columns",
 		EndTime:     unifieddatalibrary.Time(time.Now()),
 		FirstResult: unifieddatalibrary.Int(0),

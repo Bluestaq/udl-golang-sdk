@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestLaunchsiteNewWithOptionalParams(t *testing.T) {
+func TestLaunchSiteNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,10 +26,10 @@ func TestLaunchsiteNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchsite.New(context.TODO(), unifieddatalibrary.LaunchsiteNewParams{
+	err := client.LaunchSite.New(context.TODO(), unifieddatalibrary.LaunchSiteNewParams{
 		ClassificationMarking: "U",
 		Code:                  "SAN MARCO",
-		DataMode:              unifieddatalibrary.LaunchsiteNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.LaunchSiteNewParamsDataModeTest,
 		Name:                  "Example launch site name",
 		Source:                "Bluestaq",
 		ID:                    unifieddatalibrary.String("LAUNCHSITE-ID"),
@@ -47,7 +47,7 @@ func TestLaunchsiteNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchsiteUpdateWithOptionalParams(t *testing.T) {
+func TestLaunchSiteUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -60,13 +60,13 @@ func TestLaunchsiteUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchsite.Update(
+	err := client.LaunchSite.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.LaunchsiteUpdateParams{
+		unifieddatalibrary.LaunchSiteUpdateParams{
 			ClassificationMarking: "U",
 			Code:                  "SAN MARCO",
-			DataMode:              unifieddatalibrary.LaunchsiteUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.LaunchSiteUpdateParamsDataModeTest,
 			Name:                  "Example launch site name",
 			Source:                "Bluestaq",
 			ID:                    unifieddatalibrary.String("LAUNCHSITE-ID"),
@@ -85,7 +85,7 @@ func TestLaunchsiteUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchsiteListWithOptionalParams(t *testing.T) {
+func TestLaunchSiteListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -98,7 +98,7 @@ func TestLaunchsiteListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchsite.List(context.TODO(), unifieddatalibrary.LaunchsiteListParams{
+	_, err := client.LaunchSite.List(context.TODO(), unifieddatalibrary.LaunchSiteListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -111,7 +111,7 @@ func TestLaunchsiteListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchsiteDelete(t *testing.T) {
+func TestLaunchSiteDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -124,7 +124,7 @@ func TestLaunchsiteDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchsite.Delete(context.TODO(), "id")
+	err := client.LaunchSite.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -134,7 +134,7 @@ func TestLaunchsiteDelete(t *testing.T) {
 	}
 }
 
-func TestLaunchsiteCountWithOptionalParams(t *testing.T) {
+func TestLaunchSiteCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -147,7 +147,7 @@ func TestLaunchsiteCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchsite.Count(context.TODO(), unifieddatalibrary.LaunchsiteCountParams{
+	_, err := client.LaunchSite.Count(context.TODO(), unifieddatalibrary.LaunchSiteCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -160,7 +160,7 @@ func TestLaunchsiteCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchsiteGetWithOptionalParams(t *testing.T) {
+func TestLaunchSiteGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -173,10 +173,10 @@ func TestLaunchsiteGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchsite.Get(
+	_, err := client.LaunchSite.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.LaunchsiteGetParams{
+		unifieddatalibrary.LaunchSiteGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -190,7 +190,7 @@ func TestLaunchsiteGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchsiteQueryhelp(t *testing.T) {
+func TestLaunchSiteQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -203,7 +203,7 @@ func TestLaunchsiteQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchsite.Queryhelp(context.TODO())
+	err := client.LaunchSite.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -213,7 +213,7 @@ func TestLaunchsiteQueryhelp(t *testing.T) {
 	}
 }
 
-func TestLaunchsiteTupleWithOptionalParams(t *testing.T) {
+func TestLaunchSiteTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -226,7 +226,7 @@ func TestLaunchsiteTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchsite.Tuple(context.TODO(), unifieddatalibrary.LaunchsiteTupleParams{
+	_, err := client.LaunchSite.Tuple(context.TODO(), unifieddatalibrary.LaunchSiteTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

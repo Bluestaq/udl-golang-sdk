@@ -16,21 +16,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// FeatureassessmentHistoryService contains methods and other services that help
+// FeatureAssessmentHistoryService contains methods and other services that help
 // with interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewFeatureassessmentHistoryService] method instead.
-type FeatureassessmentHistoryService struct {
+// the [NewFeatureAssessmentHistoryService] method instead.
+type FeatureAssessmentHistoryService struct {
 	Options []option.RequestOption
 }
 
-// NewFeatureassessmentHistoryService generates a new service that applies the
+// NewFeatureAssessmentHistoryService generates a new service that applies the
 // given options to each request. These options are applied after the parent
 // client's options (if there is one), and before any request-specific options.
-func NewFeatureassessmentHistoryService(opts ...option.RequestOption) (r FeatureassessmentHistoryService) {
-	r = FeatureassessmentHistoryService{}
+func NewFeatureAssessmentHistoryService(opts ...option.RequestOption) (r FeatureAssessmentHistoryService) {
+	r = FeatureAssessmentHistoryService{}
 	r.Options = opts
 	return
 }
@@ -40,7 +40,7 @@ func NewFeatureassessmentHistoryService(opts ...option.RequestOption) (r Feature
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *FeatureassessmentHistoryService) Count(ctx context.Context, query FeatureassessmentHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *FeatureAssessmentHistoryService) Count(ctx context.Context, query FeatureAssessmentHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/featureassessment/history/count"
@@ -52,7 +52,7 @@ func (r *FeatureassessmentHistoryService) Count(ctx context.Context, query Featu
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *FeatureassessmentHistoryService) Query(ctx context.Context, query FeatureassessmentHistoryQueryParams, opts ...option.RequestOption) (res *[]FeatureassessmentHistoryQueryResponse, err error) {
+func (r *FeatureAssessmentHistoryService) Query(ctx context.Context, query FeatureAssessmentHistoryQueryParams, opts ...option.RequestOption) (res *[]FeatureAssessmentHistoryQueryResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/featureassessment/history"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -64,7 +64,7 @@ func (r *FeatureassessmentHistoryService) Query(ctx context.Context, query Featu
 // Secure Content Store. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *FeatureassessmentHistoryService) WriteAodr(ctx context.Context, query FeatureassessmentHistoryWriteAodrParams, opts ...option.RequestOption) (err error) {
+func (r *FeatureAssessmentHistoryService) WriteAodr(ctx context.Context, query FeatureAssessmentHistoryWriteAodrParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/featureassessment/history/aodr"
@@ -77,7 +77,7 @@ func (r *FeatureassessmentHistoryService) WriteAodr(ctx context.Context, query F
 // vessels, vehicles, buildings, etc., or contain other types of non terrestrial
 // assessments such as spacecraft structures. Geospatial queries are supported
 // through either the regionText (WKT) or regionGeoJSON fields.
-type FeatureassessmentHistoryQueryResponse struct {
+type FeatureAssessmentHistoryQueryResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -96,7 +96,7 @@ type FeatureassessmentHistoryQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode FeatureassessmentHistoryQueryResponseDataMode `json:"dataMode,required"`
+	DataMode FeatureAssessmentHistoryQueryResponseDataMode `json:"dataMode,required"`
 	// Datetime type value associated with this record, in ISO 8601 UTC format with
 	// millisecond precision.
 	FeatureTs time.Time `json:"featureTs,required" format:"date-time"`
@@ -298,8 +298,8 @@ type FeatureassessmentHistoryQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r FeatureassessmentHistoryQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *FeatureassessmentHistoryQueryResponse) UnmarshalJSON(data []byte) error {
+func (r FeatureAssessmentHistoryQueryResponse) RawJSON() string { return r.JSON.raw }
+func (r *FeatureAssessmentHistoryQueryResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -317,16 +317,16 @@ func (r *FeatureassessmentHistoryQueryResponse) UnmarshalJSON(data []byte) error
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type FeatureassessmentHistoryQueryResponseDataMode string
+type FeatureAssessmentHistoryQueryResponseDataMode string
 
 const (
-	FeatureassessmentHistoryQueryResponseDataModeReal      FeatureassessmentHistoryQueryResponseDataMode = "REAL"
-	FeatureassessmentHistoryQueryResponseDataModeTest      FeatureassessmentHistoryQueryResponseDataMode = "TEST"
-	FeatureassessmentHistoryQueryResponseDataModeSimulated FeatureassessmentHistoryQueryResponseDataMode = "SIMULATED"
-	FeatureassessmentHistoryQueryResponseDataModeExercise  FeatureassessmentHistoryQueryResponseDataMode = "EXERCISE"
+	FeatureAssessmentHistoryQueryResponseDataModeReal      FeatureAssessmentHistoryQueryResponseDataMode = "REAL"
+	FeatureAssessmentHistoryQueryResponseDataModeTest      FeatureAssessmentHistoryQueryResponseDataMode = "TEST"
+	FeatureAssessmentHistoryQueryResponseDataModeSimulated FeatureAssessmentHistoryQueryResponseDataMode = "SIMULATED"
+	FeatureAssessmentHistoryQueryResponseDataModeExercise  FeatureAssessmentHistoryQueryResponseDataMode = "EXERCISE"
 )
 
-type FeatureassessmentHistoryCountParams struct {
+type FeatureAssessmentHistoryCountParams struct {
 	// Unique identifier of the Analytic Imagery associated with this Feature
 	// Assessment record.
 	IDAnalyticImagery string           `query:"idAnalyticImagery,required" json:"-"`
@@ -337,20 +337,20 @@ type FeatureassessmentHistoryCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureassessmentHistoryCountParams) IsPresent() bool {
+func (f FeatureAssessmentHistoryCountParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [FeatureassessmentHistoryCountParams]'s query parameters as
+// URLQuery serializes [FeatureAssessmentHistoryCountParams]'s query parameters as
 // `url.Values`.
-func (r FeatureassessmentHistoryCountParams) URLQuery() (v url.Values, err error) {
+func (r FeatureAssessmentHistoryCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type FeatureassessmentHistoryQueryParams struct {
+type FeatureAssessmentHistoryQueryParams struct {
 	// Unique identifier of the Analytic Imagery associated with this Feature
 	// Assessment record.
 	IDAnalyticImagery string `query:"idAnalyticImagery,required" json:"-"`
@@ -365,20 +365,20 @@ type FeatureassessmentHistoryQueryParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureassessmentHistoryQueryParams) IsPresent() bool {
+func (f FeatureAssessmentHistoryQueryParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [FeatureassessmentHistoryQueryParams]'s query parameters as
+// URLQuery serializes [FeatureAssessmentHistoryQueryParams]'s query parameters as
 // `url.Values`.
-func (r FeatureassessmentHistoryQueryParams) URLQuery() (v url.Values, err error) {
+func (r FeatureAssessmentHistoryQueryParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type FeatureassessmentHistoryWriteAodrParams struct {
+type FeatureAssessmentHistoryWriteAodrParams struct {
 	// Unique identifier of the Analytic Imagery associated with this Feature
 	// Assessment record.
 	IDAnalyticImagery string `query:"idAnalyticImagery,required" json:"-"`
@@ -404,13 +404,13 @@ type FeatureassessmentHistoryWriteAodrParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureassessmentHistoryWriteAodrParams) IsPresent() bool {
+func (f FeatureAssessmentHistoryWriteAodrParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [FeatureassessmentHistoryWriteAodrParams]'s query parameters
+// URLQuery serializes [FeatureAssessmentHistoryWriteAodrParams]'s query parameters
 // as `url.Values`.
-func (r FeatureassessmentHistoryWriteAodrParams) URLQuery() (v url.Values, err error) {
+func (r FeatureAssessmentHistoryWriteAodrParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

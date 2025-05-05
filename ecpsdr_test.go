@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestEcpsdrUnvalidatedPublish(t *testing.T) {
+func TestEcpSdrUnvalidatedPublish(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,8 +27,8 @@ func TestEcpsdrUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Ecpsdr.UnvalidatedPublish(context.TODO(), unifieddatalibrary.EcpsdrUnvalidatedPublishParams{
-		Body: []unifieddatalibrary.EcpsdrUnvalidatedPublishParamsBody{{
+	err := client.EcpSdr.UnvalidatedPublish(context.TODO(), unifieddatalibrary.EcpSdrUnvalidatedPublishParams{
+		Body: []unifieddatalibrary.EcpSdrUnvalidatedPublishParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			MsgTime:               time.Now(),

@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestFeatureassessmentNewWithOptionalParams(t *testing.T) {
+func TestFeatureAssessmentNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,9 +27,9 @@ func TestFeatureassessmentNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Featureassessment.New(context.TODO(), unifieddatalibrary.FeatureassessmentNewParams{
+	err := client.FeatureAssessment.New(context.TODO(), unifieddatalibrary.FeatureAssessmentNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.FeatureassessmentNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.FeatureAssessmentNewParamsDataModeTest,
 		FeatureTs:             time.Now(),
 		FeatureUoM:            "MHz",
 		IDAnalyticImagery:     "fa1509ae-c19d-432e-9542-e5d1e0f47bc3",
@@ -74,7 +74,7 @@ func TestFeatureassessmentNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestFeatureassessmentGetWithOptionalParams(t *testing.T) {
+func TestFeatureAssessmentGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -87,10 +87,10 @@ func TestFeatureassessmentGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Featureassessment.Get(
+	_, err := client.FeatureAssessment.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.FeatureassessmentGetParams{
+		unifieddatalibrary.FeatureAssessmentGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -104,7 +104,7 @@ func TestFeatureassessmentGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestFeatureassessmentCountWithOptionalParams(t *testing.T) {
+func TestFeatureAssessmentCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -117,7 +117,7 @@ func TestFeatureassessmentCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Featureassessment.Count(context.TODO(), unifieddatalibrary.FeatureassessmentCountParams{
+	_, err := client.FeatureAssessment.Count(context.TODO(), unifieddatalibrary.FeatureAssessmentCountParams{
 		IDAnalyticImagery: "idAnalyticImagery",
 		FirstResult:       unifieddatalibrary.Int(0),
 		MaxResults:        unifieddatalibrary.Int(0),
@@ -131,7 +131,7 @@ func TestFeatureassessmentCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestFeatureassessmentNewBulk(t *testing.T) {
+func TestFeatureAssessmentNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -144,8 +144,8 @@ func TestFeatureassessmentNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Featureassessment.NewBulk(context.TODO(), unifieddatalibrary.FeatureassessmentNewBulkParams{
-		Body: []unifieddatalibrary.FeatureassessmentNewBulkParamsBody{{
+	err := client.FeatureAssessment.NewBulk(context.TODO(), unifieddatalibrary.FeatureAssessmentNewBulkParams{
+		Body: []unifieddatalibrary.FeatureAssessmentNewBulkParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			FeatureTs:             time.Now(),
@@ -193,7 +193,7 @@ func TestFeatureassessmentNewBulk(t *testing.T) {
 	}
 }
 
-func TestFeatureassessmentQueryWithOptionalParams(t *testing.T) {
+func TestFeatureAssessmentQueryWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -206,7 +206,7 @@ func TestFeatureassessmentQueryWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Featureassessment.Query(context.TODO(), unifieddatalibrary.FeatureassessmentQueryParams{
+	_, err := client.FeatureAssessment.Query(context.TODO(), unifieddatalibrary.FeatureAssessmentQueryParams{
 		IDAnalyticImagery: "idAnalyticImagery",
 		FirstResult:       unifieddatalibrary.Int(0),
 		MaxResults:        unifieddatalibrary.Int(0),
@@ -220,7 +220,7 @@ func TestFeatureassessmentQueryWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestFeatureassessmentQueryHelp(t *testing.T) {
+func TestFeatureAssessmentQueryHelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -233,7 +233,7 @@ func TestFeatureassessmentQueryHelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Featureassessment.QueryHelp(context.TODO())
+	err := client.FeatureAssessment.QueryHelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -243,7 +243,7 @@ func TestFeatureassessmentQueryHelp(t *testing.T) {
 	}
 }
 
-func TestFeatureassessmentTupleWithOptionalParams(t *testing.T) {
+func TestFeatureAssessmentTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -256,7 +256,7 @@ func TestFeatureassessmentTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Featureassessment.Tuple(context.TODO(), unifieddatalibrary.FeatureassessmentTupleParams{
+	_, err := client.FeatureAssessment.Tuple(context.TODO(), unifieddatalibrary.FeatureAssessmentTupleParams{
 		Columns:           "columns",
 		IDAnalyticImagery: "idAnalyticImagery",
 		FirstResult:       unifieddatalibrary.Int(0),
@@ -271,7 +271,7 @@ func TestFeatureassessmentTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestFeatureassessmentUnvalidatedPublish(t *testing.T) {
+func TestFeatureAssessmentUnvalidatedPublish(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -284,8 +284,8 @@ func TestFeatureassessmentUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Featureassessment.UnvalidatedPublish(context.TODO(), unifieddatalibrary.FeatureassessmentUnvalidatedPublishParams{
-		Body: []unifieddatalibrary.FeatureassessmentUnvalidatedPublishParamsBody{{
+	err := client.FeatureAssessment.UnvalidatedPublish(context.TODO(), unifieddatalibrary.FeatureAssessmentUnvalidatedPublishParams{
+		Body: []unifieddatalibrary.FeatureAssessmentUnvalidatedPublishParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			FeatureTs:             time.Now(),

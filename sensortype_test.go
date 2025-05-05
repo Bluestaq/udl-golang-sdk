@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSensortypeListWithOptionalParams(t *testing.T) {
+func TestSensorTypeListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,7 +26,7 @@ func TestSensortypeListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sensortype.List(context.TODO(), unifieddatalibrary.SensortypeListParams{
+	_, err := client.SensorType.List(context.TODO(), unifieddatalibrary.SensorTypeListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -39,7 +39,7 @@ func TestSensortypeListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensortypeGetWithOptionalParams(t *testing.T) {
+func TestSensorTypeGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -52,10 +52,10 @@ func TestSensortypeGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sensortype.Get(
+	_, err := client.SensorType.Get(
 		context.TODO(),
 		0,
-		unifieddatalibrary.SensortypeGetParams{
+		unifieddatalibrary.SensorTypeGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -69,7 +69,7 @@ func TestSensortypeGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensortypeQueryhelp(t *testing.T) {
+func TestSensorTypeQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -82,7 +82,7 @@ func TestSensortypeQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sensortype.Queryhelp(context.TODO())
+	err := client.SensorType.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {

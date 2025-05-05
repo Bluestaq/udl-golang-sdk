@@ -19,21 +19,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// SeradatanavigationService contains methods and other services that help with
+// SeraDataNavigationService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewSeradatanavigationService] method instead.
-type SeradatanavigationService struct {
+// the [NewSeraDataNavigationService] method instead.
+type SeraDataNavigationService struct {
 	Options []option.RequestOption
 }
 
-// NewSeradatanavigationService generates a new service that applies the given
+// NewSeraDataNavigationService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewSeradatanavigationService(opts ...option.RequestOption) (r SeradatanavigationService) {
-	r = SeradatanavigationService{}
+func NewSeraDataNavigationService(opts ...option.RequestOption) (r SeraDataNavigationService) {
+	r = SeraDataNavigationService{}
 	r.Options = opts
 	return
 }
@@ -41,7 +41,7 @@ func NewSeradatanavigationService(opts ...option.RequestOption) (r Seradatanavig
 // Service operation to take a single SeradataNavigation as a POST body and ingest
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *SeradatanavigationService) New(ctx context.Context, body SeradatanavigationNewParams, opts ...option.RequestOption) (err error) {
+func (r *SeraDataNavigationService) New(ctx context.Context, body SeraDataNavigationNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/seradatanavigation"
@@ -51,7 +51,7 @@ func (r *SeradatanavigationService) New(ctx context.Context, body Seradatanaviga
 
 // Service operation to update an SeradataNavigation. A specific role is required
 // to perform this service operation. Please contact the UDL team for assistance.
-func (r *SeradatanavigationService) Update(ctx context.Context, id string, body SeradatanavigationUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *SeraDataNavigationService) Update(ctx context.Context, id string, body SeraDataNavigationUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -67,7 +67,7 @@ func (r *SeradatanavigationService) Update(ctx context.Context, id string, body 
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SeradatanavigationService) List(ctx context.Context, query SeradatanavigationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SeradatanavigationListResponse], err error) {
+func (r *SeraDataNavigationService) List(ctx context.Context, query SeraDataNavigationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SeraDataNavigationListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -88,14 +88,14 @@ func (r *SeradatanavigationService) List(ctx context.Context, query Seradatanavi
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SeradatanavigationService) ListAutoPaging(ctx context.Context, query SeradatanavigationListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SeradatanavigationListResponse] {
+func (r *SeraDataNavigationService) ListAutoPaging(ctx context.Context, query SeraDataNavigationListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SeraDataNavigationListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to delete an SeradataNavigation specified by the passed ID
 // path parameter. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
-func (r *SeradatanavigationService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *SeraDataNavigationService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -112,7 +112,7 @@ func (r *SeradatanavigationService) Delete(ctx context.Context, id string, opts 
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *SeradatanavigationService) Count(ctx context.Context, query SeradatanavigationCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *SeraDataNavigationService) Count(ctx context.Context, query SeraDataNavigationCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/seradatanavigation/count"
@@ -122,7 +122,7 @@ func (r *SeradatanavigationService) Count(ctx context.Context, query Seradatanav
 
 // Service operation to get a single SeradataNavigation by its unique ID passed as
 // a path parameter.
-func (r *SeradatanavigationService) Get(ctx context.Context, id string, query SeradatanavigationGetParams, opts ...option.RequestOption) (res *SeradatanavigationGetResponse, err error) {
+func (r *SeraDataNavigationService) Get(ctx context.Context, id string, query SeraDataNavigationGetParams, opts ...option.RequestOption) (res *SeraDataNavigationGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -135,7 +135,7 @@ func (r *SeradatanavigationService) Get(ctx context.Context, id string, query Se
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *SeradatanavigationService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *SeraDataNavigationService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/seradatanavigation/queryhelp"
@@ -151,7 +151,7 @@ func (r *SeradatanavigationService) Queryhelp(ctx context.Context, opts ...optio
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *SeradatanavigationService) Tuple(ctx context.Context, query SeradatanavigationTupleParams, opts ...option.RequestOption) (res *[]SeradatanavigationTupleResponse, err error) {
+func (r *SeraDataNavigationService) Tuple(ctx context.Context, query SeraDataNavigationTupleParams, opts ...option.RequestOption) (res *[]SeraDataNavigationTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/seradatanavigation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -159,7 +159,7 @@ func (r *SeradatanavigationService) Tuple(ctx context.Context, query Seradatanav
 }
 
 // Details for a navigation payload from Seradata.
-type SeradatanavigationListResponse struct {
+type SeraDataNavigationListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -178,7 +178,7 @@ type SeradatanavigationListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradatanavigationListResponseDataMode `json:"dataMode,required"`
+	DataMode SeraDataNavigationListResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -252,8 +252,8 @@ type SeradatanavigationListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradatanavigationListResponse) RawJSON() string { return r.JSON.raw }
-func (r *SeradatanavigationListResponse) UnmarshalJSON(data []byte) error {
+func (r SeraDataNavigationListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SeraDataNavigationListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -271,17 +271,17 @@ func (r *SeradatanavigationListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradatanavigationListResponseDataMode string
+type SeraDataNavigationListResponseDataMode string
 
 const (
-	SeradatanavigationListResponseDataModeReal      SeradatanavigationListResponseDataMode = "REAL"
-	SeradatanavigationListResponseDataModeTest      SeradatanavigationListResponseDataMode = "TEST"
-	SeradatanavigationListResponseDataModeSimulated SeradatanavigationListResponseDataMode = "SIMULATED"
-	SeradatanavigationListResponseDataModeExercise  SeradatanavigationListResponseDataMode = "EXERCISE"
+	SeraDataNavigationListResponseDataModeReal      SeraDataNavigationListResponseDataMode = "REAL"
+	SeraDataNavigationListResponseDataModeTest      SeraDataNavigationListResponseDataMode = "TEST"
+	SeraDataNavigationListResponseDataModeSimulated SeraDataNavigationListResponseDataMode = "SIMULATED"
+	SeraDataNavigationListResponseDataModeExercise  SeraDataNavigationListResponseDataMode = "EXERCISE"
 )
 
 // Details for a navigation payload from Seradata.
-type SeradatanavigationGetResponse struct {
+type SeraDataNavigationGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -300,7 +300,7 @@ type SeradatanavigationGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradatanavigationGetResponseDataMode `json:"dataMode,required"`
+	DataMode SeraDataNavigationGetResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -381,8 +381,8 @@ type SeradatanavigationGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradatanavigationGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *SeradatanavigationGetResponse) UnmarshalJSON(data []byte) error {
+func (r SeraDataNavigationGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *SeraDataNavigationGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -400,17 +400,17 @@ func (r *SeradatanavigationGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradatanavigationGetResponseDataMode string
+type SeraDataNavigationGetResponseDataMode string
 
 const (
-	SeradatanavigationGetResponseDataModeReal      SeradatanavigationGetResponseDataMode = "REAL"
-	SeradatanavigationGetResponseDataModeTest      SeradatanavigationGetResponseDataMode = "TEST"
-	SeradatanavigationGetResponseDataModeSimulated SeradatanavigationGetResponseDataMode = "SIMULATED"
-	SeradatanavigationGetResponseDataModeExercise  SeradatanavigationGetResponseDataMode = "EXERCISE"
+	SeraDataNavigationGetResponseDataModeReal      SeraDataNavigationGetResponseDataMode = "REAL"
+	SeraDataNavigationGetResponseDataModeTest      SeraDataNavigationGetResponseDataMode = "TEST"
+	SeraDataNavigationGetResponseDataModeSimulated SeraDataNavigationGetResponseDataMode = "SIMULATED"
+	SeraDataNavigationGetResponseDataModeExercise  SeraDataNavigationGetResponseDataMode = "EXERCISE"
 )
 
 // Details for a navigation payload from Seradata.
-type SeradatanavigationTupleResponse struct {
+type SeraDataNavigationTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -429,7 +429,7 @@ type SeradatanavigationTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradatanavigationTupleResponseDataMode `json:"dataMode,required"`
+	DataMode SeraDataNavigationTupleResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -510,8 +510,8 @@ type SeradatanavigationTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradatanavigationTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *SeradatanavigationTupleResponse) UnmarshalJSON(data []byte) error {
+func (r SeraDataNavigationTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *SeraDataNavigationTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -529,16 +529,16 @@ func (r *SeradatanavigationTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradatanavigationTupleResponseDataMode string
+type SeraDataNavigationTupleResponseDataMode string
 
 const (
-	SeradatanavigationTupleResponseDataModeReal      SeradatanavigationTupleResponseDataMode = "REAL"
-	SeradatanavigationTupleResponseDataModeTest      SeradatanavigationTupleResponseDataMode = "TEST"
-	SeradatanavigationTupleResponseDataModeSimulated SeradatanavigationTupleResponseDataMode = "SIMULATED"
-	SeradatanavigationTupleResponseDataModeExercise  SeradatanavigationTupleResponseDataMode = "EXERCISE"
+	SeraDataNavigationTupleResponseDataModeReal      SeraDataNavigationTupleResponseDataMode = "REAL"
+	SeraDataNavigationTupleResponseDataModeTest      SeraDataNavigationTupleResponseDataMode = "TEST"
+	SeraDataNavigationTupleResponseDataModeSimulated SeraDataNavigationTupleResponseDataMode = "SIMULATED"
+	SeraDataNavigationTupleResponseDataModeExercise  SeraDataNavigationTupleResponseDataMode = "EXERCISE"
 )
 
-type SeradatanavigationNewParams struct {
+type SeraDataNavigationNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -557,7 +557,7 @@ type SeradatanavigationNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradatanavigationNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SeraDataNavigationNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -598,10 +598,10 @@ type SeradatanavigationNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradatanavigationNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeraDataNavigationNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SeradatanavigationNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow SeradatanavigationNewParams
+func (r SeraDataNavigationNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow SeraDataNavigationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -619,16 +619,16 @@ func (r SeradatanavigationNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradatanavigationNewParamsDataMode string
+type SeraDataNavigationNewParamsDataMode string
 
 const (
-	SeradatanavigationNewParamsDataModeReal      SeradatanavigationNewParamsDataMode = "REAL"
-	SeradatanavigationNewParamsDataModeTest      SeradatanavigationNewParamsDataMode = "TEST"
-	SeradatanavigationNewParamsDataModeSimulated SeradatanavigationNewParamsDataMode = "SIMULATED"
-	SeradatanavigationNewParamsDataModeExercise  SeradatanavigationNewParamsDataMode = "EXERCISE"
+	SeraDataNavigationNewParamsDataModeReal      SeraDataNavigationNewParamsDataMode = "REAL"
+	SeraDataNavigationNewParamsDataModeTest      SeraDataNavigationNewParamsDataMode = "TEST"
+	SeraDataNavigationNewParamsDataModeSimulated SeraDataNavigationNewParamsDataMode = "SIMULATED"
+	SeraDataNavigationNewParamsDataModeExercise  SeraDataNavigationNewParamsDataMode = "EXERCISE"
 )
 
-type SeradatanavigationUpdateParams struct {
+type SeraDataNavigationUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -647,7 +647,7 @@ type SeradatanavigationUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradatanavigationUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SeraDataNavigationUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -688,10 +688,10 @@ type SeradatanavigationUpdateParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradatanavigationUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeraDataNavigationUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SeradatanavigationUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow SeradatanavigationUpdateParams
+func (r SeraDataNavigationUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow SeraDataNavigationUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -709,16 +709,16 @@ func (r SeradatanavigationUpdateParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradatanavigationUpdateParamsDataMode string
+type SeraDataNavigationUpdateParamsDataMode string
 
 const (
-	SeradatanavigationUpdateParamsDataModeReal      SeradatanavigationUpdateParamsDataMode = "REAL"
-	SeradatanavigationUpdateParamsDataModeTest      SeradatanavigationUpdateParamsDataMode = "TEST"
-	SeradatanavigationUpdateParamsDataModeSimulated SeradatanavigationUpdateParamsDataMode = "SIMULATED"
-	SeradatanavigationUpdateParamsDataModeExercise  SeradatanavigationUpdateParamsDataMode = "EXERCISE"
+	SeraDataNavigationUpdateParamsDataModeReal      SeraDataNavigationUpdateParamsDataMode = "REAL"
+	SeraDataNavigationUpdateParamsDataModeTest      SeraDataNavigationUpdateParamsDataMode = "TEST"
+	SeraDataNavigationUpdateParamsDataModeSimulated SeraDataNavigationUpdateParamsDataMode = "SIMULATED"
+	SeraDataNavigationUpdateParamsDataModeExercise  SeraDataNavigationUpdateParamsDataMode = "EXERCISE"
 )
 
-type SeradatanavigationListParams struct {
+type SeraDataNavigationListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -726,18 +726,18 @@ type SeradatanavigationListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradatanavigationListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeraDataNavigationListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SeradatanavigationListParams]'s query parameters as
+// URLQuery serializes [SeraDataNavigationListParams]'s query parameters as
 // `url.Values`.
-func (r SeradatanavigationListParams) URLQuery() (v url.Values, err error) {
+func (r SeraDataNavigationListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SeradatanavigationCountParams struct {
+type SeraDataNavigationCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -745,18 +745,18 @@ type SeradatanavigationCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradatanavigationCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeraDataNavigationCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SeradatanavigationCountParams]'s query parameters as
+// URLQuery serializes [SeraDataNavigationCountParams]'s query parameters as
 // `url.Values`.
-func (r SeradatanavigationCountParams) URLQuery() (v url.Values, err error) {
+func (r SeraDataNavigationCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SeradatanavigationGetParams struct {
+type SeraDataNavigationGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -764,18 +764,18 @@ type SeradatanavigationGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradatanavigationGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeraDataNavigationGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SeradatanavigationGetParams]'s query parameters as
+// URLQuery serializes [SeraDataNavigationGetParams]'s query parameters as
 // `url.Values`.
-func (r SeradatanavigationGetParams) URLQuery() (v url.Values, err error) {
+func (r SeraDataNavigationGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SeradatanavigationTupleParams struct {
+type SeraDataNavigationTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -788,11 +788,11 @@ type SeradatanavigationTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradatanavigationTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeraDataNavigationTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SeradatanavigationTupleParams]'s query parameters as
+// URLQuery serializes [SeraDataNavigationTupleParams]'s query parameters as
 // `url.Values`.
-func (r SeradatanavigationTupleParams) URLQuery() (v url.Values, err error) {
+func (r SeraDataNavigationTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

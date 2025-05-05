@@ -14,21 +14,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
 )
 
-// AirloadplanService contains methods and other services that help with
+// AirloadPlanService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewAirloadplanService] method instead.
-type AirloadplanService struct {
+// the [NewAirloadPlanService] method instead.
+type AirloadPlanService struct {
 	Options []option.RequestOption
 }
 
-// NewAirloadplanService generates a new service that applies the given options to
+// NewAirloadPlanService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewAirloadplanService(opts ...option.RequestOption) (r AirloadplanService) {
-	r = AirloadplanService{}
+func NewAirloadPlanService(opts ...option.RequestOption) (r AirloadPlanService) {
+	r = AirloadPlanService{}
 	r.Options = opts
 	return
 }
@@ -36,7 +36,7 @@ func NewAirloadplanService(opts ...option.RequestOption) (r AirloadplanService) 
 // Service operation to update a single airloadplan record. A specific role is
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
-func (r *AirloadplanService) Update(ctx context.Context, id string, body AirloadplanUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *AirloadPlanService) Update(ctx context.Context, id string, body AirloadPlanUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -51,7 +51,7 @@ func (r *AirloadplanService) Update(ctx context.Context, id string, body Airload
 // Service operation to delete a airloadplan record specified by the passed ID path
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
-func (r *AirloadplanService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *AirloadPlanService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -63,7 +63,7 @@ func (r *AirloadplanService) Delete(ctx context.Context, id string, opts ...opti
 	return
 }
 
-type AirloadplanUpdateParams struct {
+type AirloadPlanUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -82,7 +82,7 @@ type AirloadplanUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode AirloadplanUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode AirloadPlanUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// The current estimated time that the aircraft is planned to depart, in ISO 8601
 	// UTC format with millisecond precision.
 	EstDepTime time.Time `json:"estDepTime,required" format:"date-time"`
@@ -237,27 +237,27 @@ type AirloadplanUpdateParams struct {
 	// passengers, but without usable fuel, in kilograms.
 	ZeroFuelWeight param.Opt[float64] `json:"zeroFuelWeight,omitzero"`
 	// Collection of hazmat actuals associated with this load plan.
-	AirLoadPlanHazmatActuals []AirloadplanUpdateParamsAirLoadPlanHazmatActual `json:"airLoadPlanHazmatActuals,omitzero"`
+	AirLoadPlanHazmatActuals []AirloadPlanUpdateParamsAirLoadPlanHazmatActual `json:"airLoadPlanHazmatActuals,omitzero"`
 	// Collection of human remains transport information associated with this load
 	// plan.
-	AirLoadPlanHr []AirloadplanUpdateParamsAirLoadPlanHr `json:"airLoadPlanHR,omitzero"`
+	AirLoadPlanHr []AirloadPlanUpdateParamsAirLoadPlanHr `json:"airLoadPlanHR,omitzero"`
 	// Collection of cargo information located at the pallet positions associated with
 	// this load plan.
-	AirLoadPlanPalletDetails []AirloadplanUpdateParamsAirLoadPlanPalletDetail `json:"airLoadPlanPalletDetails,omitzero"`
+	AirLoadPlanPalletDetails []AirloadPlanUpdateParamsAirLoadPlanPalletDetail `json:"airLoadPlanPalletDetails,omitzero"`
 	// Collection of passenger and cargo details associated with this load plan for
 	// this leg of the mission.
-	AirLoadPlanPaxCargo []AirloadplanUpdateParamsAirLoadPlanPaxCargo `json:"airLoadPlanPaxCargo,omitzero"`
+	AirLoadPlanPaxCargo []AirloadPlanUpdateParamsAirLoadPlanPaxCargo `json:"airLoadPlanPaxCargo,omitzero"`
 	// Collection of unit line number actuals associated with this load plan.
-	AirLoadPlanUlnActuals []AirloadplanUpdateParamsAirLoadPlanUlnActual `json:"airLoadPlanULNActuals,omitzero"`
+	AirLoadPlanUlnActuals []AirloadPlanUpdateParamsAirLoadPlanUlnActual `json:"airLoadPlanULNActuals,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirloadplanUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f AirloadPlanUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r AirloadplanUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow AirloadplanUpdateParams
+func (r AirloadPlanUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow AirloadPlanUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -275,17 +275,17 @@ func (r AirloadplanUpdateParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type AirloadplanUpdateParamsDataMode string
+type AirloadPlanUpdateParamsDataMode string
 
 const (
-	AirloadplanUpdateParamsDataModeReal      AirloadplanUpdateParamsDataMode = "REAL"
-	AirloadplanUpdateParamsDataModeTest      AirloadplanUpdateParamsDataMode = "TEST"
-	AirloadplanUpdateParamsDataModeSimulated AirloadplanUpdateParamsDataMode = "SIMULATED"
-	AirloadplanUpdateParamsDataModeExercise  AirloadplanUpdateParamsDataMode = "EXERCISE"
+	AirloadPlanUpdateParamsDataModeReal      AirloadPlanUpdateParamsDataMode = "REAL"
+	AirloadPlanUpdateParamsDataModeTest      AirloadPlanUpdateParamsDataMode = "TEST"
+	AirloadPlanUpdateParamsDataModeSimulated AirloadPlanUpdateParamsDataMode = "SIMULATED"
+	AirloadPlanUpdateParamsDataModeExercise  AirloadPlanUpdateParamsDataMode = "EXERCISE"
 )
 
 // Collection of hazmat actuals associated with this load plan.
-type AirloadplanUpdateParamsAirLoadPlanHazmatActual struct {
+type AirloadPlanUpdateParamsAirLoadPlanHazmatActual struct {
 	// The Air Special Handling Code (ASHC) indicates the type of special handling
 	// required for hazardous cargo.
 	Ashc param.Opt[string] `json:"ashc,omitzero"`
@@ -335,17 +335,17 @@ type AirloadplanUpdateParamsAirLoadPlanHazmatActual struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirloadplanUpdateParamsAirLoadPlanHazmatActual) IsPresent() bool {
+func (f AirloadPlanUpdateParamsAirLoadPlanHazmatActual) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r AirloadplanUpdateParamsAirLoadPlanHazmatActual) MarshalJSON() (data []byte, err error) {
-	type shadow AirloadplanUpdateParamsAirLoadPlanHazmatActual
+func (r AirloadPlanUpdateParamsAirLoadPlanHazmatActual) MarshalJSON() (data []byte, err error) {
+	type shadow AirloadPlanUpdateParamsAirLoadPlanHazmatActual
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Collection of human remains transport information associated with this load
 // plan.
-type AirloadplanUpdateParamsAirLoadPlanHr struct {
+type AirloadPlanUpdateParamsAirLoadPlanHr struct {
 	// Type of transfer case used.
 	Container param.Opt[string] `json:"container,omitzero"`
 	// Name of the escort for the remains.
@@ -381,17 +381,17 @@ type AirloadplanUpdateParamsAirLoadPlanHr struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirloadplanUpdateParamsAirLoadPlanHr) IsPresent() bool {
+func (f AirloadPlanUpdateParamsAirLoadPlanHr) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r AirloadplanUpdateParamsAirLoadPlanHr) MarshalJSON() (data []byte, err error) {
-	type shadow AirloadplanUpdateParamsAirLoadPlanHr
+func (r AirloadPlanUpdateParamsAirLoadPlanHr) MarshalJSON() (data []byte, err error) {
+	type shadow AirloadPlanUpdateParamsAirLoadPlanHr
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Collection of cargo information located at the pallet positions associated with
 // this load plan.
-type AirloadplanUpdateParamsAirLoadPlanPalletDetail struct {
+type AirloadPlanUpdateParamsAirLoadPlanPalletDetail struct {
 	// Category of special interest cargo.
 	Category param.Opt[string] `json:"category,omitzero"`
 	// Pallet position of the cargo.
@@ -416,17 +416,17 @@ type AirloadplanUpdateParamsAirLoadPlanPalletDetail struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirloadplanUpdateParamsAirLoadPlanPalletDetail) IsPresent() bool {
+func (f AirloadPlanUpdateParamsAirLoadPlanPalletDetail) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r AirloadplanUpdateParamsAirLoadPlanPalletDetail) MarshalJSON() (data []byte, err error) {
-	type shadow AirloadplanUpdateParamsAirLoadPlanPalletDetail
+func (r AirloadPlanUpdateParamsAirLoadPlanPalletDetail) MarshalJSON() (data []byte, err error) {
+	type shadow AirloadPlanUpdateParamsAirLoadPlanPalletDetail
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Collection of passenger and cargo details associated with this load plan for
 // this leg of the mission.
-type AirloadplanUpdateParamsAirLoadPlanPaxCargo struct {
+type AirloadPlanUpdateParamsAirLoadPlanPaxCargo struct {
 	// Number of ambulatory medical passengers in this group.
 	AmbPax param.Opt[int64] `json:"ambPax,omitzero"`
 	// Number of patient attendant passengers in this group.
@@ -463,16 +463,16 @@ type AirloadplanUpdateParamsAirLoadPlanPaxCargo struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirloadplanUpdateParamsAirLoadPlanPaxCargo) IsPresent() bool {
+func (f AirloadPlanUpdateParamsAirLoadPlanPaxCargo) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r AirloadplanUpdateParamsAirLoadPlanPaxCargo) MarshalJSON() (data []byte, err error) {
-	type shadow AirloadplanUpdateParamsAirLoadPlanPaxCargo
+func (r AirloadPlanUpdateParamsAirLoadPlanPaxCargo) MarshalJSON() (data []byte, err error) {
+	type shadow AirloadPlanUpdateParamsAirLoadPlanPaxCargo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Collection of unit line number actuals associated with this load plan.
-type AirloadplanUpdateParamsAirLoadPlanUlnActual struct {
+type AirloadPlanUpdateParamsAirLoadPlanUlnActual struct {
 	// Number of ambulatory patients associated with this load plan.
 	NumAmbulatory param.Opt[int64] `json:"numAmbulatory,omitzero"`
 	// Number of attendants associated with this load plan.
@@ -505,10 +505,10 @@ type AirloadplanUpdateParamsAirLoadPlanUlnActual struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirloadplanUpdateParamsAirLoadPlanUlnActual) IsPresent() bool {
+func (f AirloadPlanUpdateParamsAirLoadPlanUlnActual) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r AirloadplanUpdateParamsAirLoadPlanUlnActual) MarshalJSON() (data []byte, err error) {
-	type shadow AirloadplanUpdateParamsAirLoadPlanUlnActual
+func (r AirloadPlanUpdateParamsAirLoadPlanUlnActual) MarshalJSON() (data []byte, err error) {
+	type shadow AirloadPlanUpdateParamsAirLoadPlanUlnActual
 	return param.MarshalObject(r, (*shadow)(&r))
 }

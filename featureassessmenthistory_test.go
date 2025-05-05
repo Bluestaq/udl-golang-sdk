@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestFeatureassessmentHistoryCountWithOptionalParams(t *testing.T) {
+func TestFeatureAssessmentHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,7 +26,7 @@ func TestFeatureassessmentHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Featureassessment.History.Count(context.TODO(), unifieddatalibrary.FeatureassessmentHistoryCountParams{
+	_, err := client.FeatureAssessment.History.Count(context.TODO(), unifieddatalibrary.FeatureAssessmentHistoryCountParams{
 		IDAnalyticImagery: "idAnalyticImagery",
 		FirstResult:       unifieddatalibrary.Int(0),
 		MaxResults:        unifieddatalibrary.Int(0),
@@ -40,7 +40,7 @@ func TestFeatureassessmentHistoryCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestFeatureassessmentHistoryQueryWithOptionalParams(t *testing.T) {
+func TestFeatureAssessmentHistoryQueryWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -53,7 +53,7 @@ func TestFeatureassessmentHistoryQueryWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Featureassessment.History.Query(context.TODO(), unifieddatalibrary.FeatureassessmentHistoryQueryParams{
+	_, err := client.FeatureAssessment.History.Query(context.TODO(), unifieddatalibrary.FeatureAssessmentHistoryQueryParams{
 		IDAnalyticImagery: "idAnalyticImagery",
 		Columns:           unifieddatalibrary.String("columns"),
 		FirstResult:       unifieddatalibrary.Int(0),
@@ -68,7 +68,7 @@ func TestFeatureassessmentHistoryQueryWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestFeatureassessmentHistoryWriteAodrWithOptionalParams(t *testing.T) {
+func TestFeatureAssessmentHistoryWriteAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -81,7 +81,7 @@ func TestFeatureassessmentHistoryWriteAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Featureassessment.History.WriteAodr(context.TODO(), unifieddatalibrary.FeatureassessmentHistoryWriteAodrParams{
+	err := client.FeatureAssessment.History.WriteAodr(context.TODO(), unifieddatalibrary.FeatureAssessmentHistoryWriteAodrParams{
 		IDAnalyticImagery: "idAnalyticImagery",
 		Columns:           unifieddatalibrary.String("columns"),
 		FirstResult:       unifieddatalibrary.Int(0),
