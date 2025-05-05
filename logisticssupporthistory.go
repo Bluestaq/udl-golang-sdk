@@ -17,21 +17,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// LogisticssupportHistoryService contains methods and other services that help
+// LogisticsSupportHistoryService contains methods and other services that help
 // with interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewLogisticssupportHistoryService] method instead.
-type LogisticssupportHistoryService struct {
+// the [NewLogisticsSupportHistoryService] method instead.
+type LogisticsSupportHistoryService struct {
 	Options []option.RequestOption
 }
 
-// NewLogisticssupportHistoryService generates a new service that applies the given
+// NewLogisticsSupportHistoryService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewLogisticssupportHistoryService(opts ...option.RequestOption) (r LogisticssupportHistoryService) {
-	r = LogisticssupportHistoryService{}
+func NewLogisticsSupportHistoryService(opts ...option.RequestOption) (r LogisticsSupportHistoryService) {
+	r = LogisticsSupportHistoryService{}
 	r.Options = opts
 	return
 }
@@ -40,7 +40,7 @@ func NewLogisticssupportHistoryService(opts ...option.RequestOption) (r Logistic
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *LogisticssupportHistoryService) List(ctx context.Context, query LogisticssupportHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LogisticssupportHistoryListResponse], err error) {
+func (r *LogisticsSupportHistoryService) List(ctx context.Context, query LogisticsSupportHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LogisticsSupportHistoryListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -61,7 +61,7 @@ func (r *LogisticssupportHistoryService) List(ctx context.Context, query Logisti
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *LogisticssupportHistoryService) ListAutoPaging(ctx context.Context, query LogisticssupportHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[LogisticssupportHistoryListResponse] {
+func (r *LogisticsSupportHistoryService) ListAutoPaging(ctx context.Context, query LogisticsSupportHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[LogisticsSupportHistoryListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -70,7 +70,7 @@ func (r *LogisticssupportHistoryService) ListAutoPaging(ctx context.Context, que
 // Secure Content Store. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *LogisticssupportHistoryService) Aodr(ctx context.Context, query LogisticssupportHistoryAodrParams, opts ...option.RequestOption) (err error) {
+func (r *LogisticsSupportHistoryService) Aodr(ctx context.Context, query LogisticsSupportHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/logisticssupport/history/aodr"
@@ -83,7 +83,7 @@ func (r *LogisticssupportHistoryService) Aodr(ctx context.Context, query Logisti
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *LogisticssupportHistoryService) Count(ctx context.Context, query LogisticssupportHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *LogisticsSupportHistoryService) Count(ctx context.Context, query LogisticsSupportHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/logisticssupport/history/count"
@@ -94,7 +94,7 @@ func (r *LogisticssupportHistoryService) Count(ctx context.Context, query Logist
 // Comprehensive logistical details concerning the planned support of maintenance
 // operations required by an aircraft, including transportation information,
 // supplies coordination, and service personnel.
-type LogisticssupportHistoryListResponse struct {
+type LogisticsSupportHistoryListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -113,7 +113,7 @@ type LogisticssupportHistoryListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LogisticssupportHistoryListResponseDataMode `json:"dataMode,required"`
+	DataMode LogisticsSupportHistoryListResponseDataMode `json:"dataMode,required"`
 	// The time this report was created, in ISO 8601 UTC format with millisecond
 	// precision.
 	RptCreatedTime time.Time `json:"rptCreatedTime,required" format:"date-time"`
@@ -150,16 +150,16 @@ type LogisticssupportHistoryListResponse struct {
 	// EQ+hhh.h (EQ=equipment), MRT+hhh.h (MRT=maintenance recovery team).
 	LogisticAction string `json:"logisticAction"`
 	// Discrepancy information associated with this LogisticsSupport record.
-	LogisticsDiscrepancyInfos []LogisticssupportHistoryListResponseLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos"`
+	LogisticsDiscrepancyInfos []LogisticsSupportHistoryListResponseLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos"`
 	// The identifier that represents a Logistics Master Record.
 	LogisticsRecordID string `json:"logisticsRecordId"`
 	// Remarks associated with this LogisticsSupport record.
 	LogisticsRemarks []LogisticsRemarksFull `json:"logisticsRemarks"`
 	// Support items associated with this LogisticsSupport record.
-	LogisticsSupportItems []LogisticssupportHistoryListResponseLogisticsSupportItem `json:"logisticsSupportItems"`
+	LogisticsSupportItems []LogisticsSupportHistoryListResponseLogisticsSupportItem `json:"logisticsSupportItems"`
 	// Transportation plans associated with this LogisticsSupport record, used to
 	// coordinate maintenance efforts.
-	LogisticsTransportationPlans []LogisticssupportHistoryListResponseLogisticsTransportationPlan `json:"logisticsTransportationPlans"`
+	LogisticsTransportationPlans []LogisticsSupportHistoryListResponseLogisticsTransportationPlan `json:"logisticsTransportationPlans"`
 	// The maintenance status code of the aircraft which may be based on pilot
 	// descriptions or evaluation codes. Contact the source provider for details.
 	MaintStatusCode string `json:"maintStatusCode"`
@@ -235,8 +235,8 @@ type LogisticssupportHistoryListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportHistoryListResponse) RawJSON() string { return r.JSON.raw }
-func (r *LogisticssupportHistoryListResponse) UnmarshalJSON(data []byte) error {
+func (r LogisticsSupportHistoryListResponse) RawJSON() string { return r.JSON.raw }
+func (r *LogisticsSupportHistoryListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -254,17 +254,17 @@ func (r *LogisticssupportHistoryListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LogisticssupportHistoryListResponseDataMode string
+type LogisticsSupportHistoryListResponseDataMode string
 
 const (
-	LogisticssupportHistoryListResponseDataModeReal      LogisticssupportHistoryListResponseDataMode = "REAL"
-	LogisticssupportHistoryListResponseDataModeTest      LogisticssupportHistoryListResponseDataMode = "TEST"
-	LogisticssupportHistoryListResponseDataModeSimulated LogisticssupportHistoryListResponseDataMode = "SIMULATED"
-	LogisticssupportHistoryListResponseDataModeExercise  LogisticssupportHistoryListResponseDataMode = "EXERCISE"
+	LogisticsSupportHistoryListResponseDataModeReal      LogisticsSupportHistoryListResponseDataMode = "REAL"
+	LogisticsSupportHistoryListResponseDataModeTest      LogisticsSupportHistoryListResponseDataMode = "TEST"
+	LogisticsSupportHistoryListResponseDataModeSimulated LogisticsSupportHistoryListResponseDataMode = "SIMULATED"
+	LogisticsSupportHistoryListResponseDataModeExercise  LogisticsSupportHistoryListResponseDataMode = "EXERCISE"
 )
 
 // Discrepancy information associated with this LogisticsSupport record.
-type LogisticssupportHistoryListResponseLogisticsDiscrepancyInfo struct {
+type LogisticsSupportHistoryListResponseLogisticsDiscrepancyInfo struct {
 	// The discrepancy closure time, in ISO 8601 UTC format with millisecond precision.
 	ClosureTime time.Time `json:"closureTime" format:"date-time"`
 	// The aircraft discrepancy description.
@@ -286,15 +286,15 @@ type LogisticssupportHistoryListResponseLogisticsDiscrepancyInfo struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportHistoryListResponseLogisticsDiscrepancyInfo) RawJSON() string {
+func (r LogisticsSupportHistoryListResponseLogisticsDiscrepancyInfo) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportHistoryListResponseLogisticsDiscrepancyInfo) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportHistoryListResponseLogisticsDiscrepancyInfo) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Support items associated with this LogisticsSupport record.
-type LogisticssupportHistoryListResponseLogisticsSupportItem struct {
+type LogisticsSupportHistoryListResponseLogisticsSupportItem struct {
 	// This element indicates whether or not the supplied item is contained within
 	// another item.
 	Cannibalized bool `json:"cannibalized"`
@@ -316,11 +316,11 @@ type LogisticssupportHistoryListResponseLogisticsSupportItem struct {
 	// sequence numbers, and 10-12 are a three-digit supplemental number.
 	JobControlNumber string `json:"jobControlNumber"`
 	// The parts associated with this support item.
-	LogisticsParts []LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsPart `json:"logisticsParts"`
+	LogisticsParts []LogisticsSupportHistoryListResponseLogisticsSupportItemLogisticsPart `json:"logisticsParts"`
 	// Remarks associated with this support item.
 	LogisticsRemarks []LogisticsRemarksFull `json:"logisticsRemarks"`
 	// The specialties required to implement this support item.
-	LogisticsSpecialties []LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties"`
+	LogisticsSpecialties []LogisticsSupportHistoryListResponseLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties"`
 	// Military aircraft discrepancy logistics requisition ordered quantity. The
 	// quantity of equipment ordered that is required to fix the aircraft.
 	Quantity int64 `json:"quantity"`
@@ -382,13 +382,13 @@ type LogisticssupportHistoryListResponseLogisticsSupportItem struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportHistoryListResponseLogisticsSupportItem) RawJSON() string { return r.JSON.raw }
-func (r *LogisticssupportHistoryListResponseLogisticsSupportItem) UnmarshalJSON(data []byte) error {
+func (r LogisticsSupportHistoryListResponseLogisticsSupportItem) RawJSON() string { return r.JSON.raw }
+func (r *LogisticsSupportHistoryListResponseLogisticsSupportItem) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // The parts associated with this support item.
-type LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsPart struct {
+type LogisticsSupportHistoryListResponseLogisticsSupportItemLogisticsPart struct {
 	// Technical order manual figure number for the requested / supplied part.
 	FigureNumber string `json:"figureNumber"`
 	// Technical order manual index number for the requested part.
@@ -397,7 +397,7 @@ type LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsPart struct
 	// requested parts.
 	LocationVerifier string `json:"locationVerifier"`
 	// The supply stocks for this support item.
-	LogisticsStocks []LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsPartLogisticsStock `json:"logisticsStocks"`
+	LogisticsStocks []LogisticsSupportHistoryListResponseLogisticsSupportItemLogisticsPartLogisticsStock `json:"logisticsStocks"`
 	// Code for a unit of measurement.
 	MeasurementUnitCode string `json:"measurementUnitCode"`
 	// The National Stock Number of the part being requested or supplied.
@@ -433,15 +433,15 @@ type LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsPart struct
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsPart) RawJSON() string {
+func (r LogisticsSupportHistoryListResponseLogisticsSupportItemLogisticsPart) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsPart) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportHistoryListResponseLogisticsSupportItemLogisticsPart) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // The supply stocks for this support item.
-type LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsPartLogisticsStock struct {
+type LogisticsSupportHistoryListResponseLogisticsSupportItemLogisticsPartLogisticsStock struct {
 	// The quantity of available parts needed from sourceICAO.
 	Quantity int64 `json:"quantity"`
 	// The ICAO code for the primary location with available parts.
@@ -464,15 +464,15 @@ type LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsPartLogisti
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsPartLogisticsStock) RawJSON() string {
+func (r LogisticsSupportHistoryListResponseLogisticsSupportItemLogisticsPartLogisticsStock) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsPartLogisticsStock) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportHistoryListResponseLogisticsSupportItemLogisticsPartLogisticsStock) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // The specialties required to implement this support item.
-type LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsSpecialty struct {
+type LogisticsSupportHistoryListResponseLogisticsSupportItemLogisticsSpecialty struct {
 	// The first name of the specialist.
 	FirstName string `json:"firstName"`
 	// The last four digits of the specialist's social security number.
@@ -506,16 +506,16 @@ type LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsSpecialty s
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsSpecialty) RawJSON() string {
+func (r LogisticsSupportHistoryListResponseLogisticsSupportItemLogisticsSpecialty) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportHistoryListResponseLogisticsSupportItemLogisticsSpecialty) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportHistoryListResponseLogisticsSupportItemLogisticsSpecialty) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Transportation plans associated with this LogisticsSupport record, used to
 // coordinate maintenance efforts.
-type LogisticssupportHistoryListResponseLogisticsTransportationPlan struct {
+type LogisticsSupportHistoryListResponseLogisticsTransportationPlan struct {
 	// Actual time of departure of first segment, in ISO 8601 UTC format with
 	// millisecond precision.
 	ActDepTime time.Time `json:"actDepTime" format:"date-time"`
@@ -551,7 +551,7 @@ type LogisticssupportHistoryListResponseLogisticsTransportationPlan struct {
 	// The identifier that represents a Logistics Master Record.
 	LogisticMasterRecordID string `json:"logisticMasterRecordId"`
 	// The transportation segments associated with this transportation plan.
-	LogisticsSegments []LogisticssupportHistoryListResponseLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments"`
+	LogisticsSegments []LogisticsSupportHistoryListResponseLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments"`
 	// Remarks associated with this transportation plan.
 	LogisticsTransportationPlansRemarks []LogisticsRemarksFull `json:"logisticsTransportationPlansRemarks"`
 	// The major command for the current unit.
@@ -617,15 +617,15 @@ type LogisticssupportHistoryListResponseLogisticsTransportationPlan struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportHistoryListResponseLogisticsTransportationPlan) RawJSON() string {
+func (r LogisticsSupportHistoryListResponseLogisticsTransportationPlan) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportHistoryListResponseLogisticsTransportationPlan) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportHistoryListResponseLogisticsTransportationPlan) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportHistoryListResponseLogisticsTransportationPlanLogisticsSegment struct {
+type LogisticsSupportHistoryListResponseLogisticsTransportationPlanLogisticsSegment struct {
 	// Airport ICAO arrival code.
 	ArrivalIcao string `json:"arrivalICAO"`
 	// Airport ICAO departure code.
@@ -691,14 +691,14 @@ type LogisticssupportHistoryListResponseLogisticsTransportationPlanLogisticsSegm
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportHistoryListResponseLogisticsTransportationPlanLogisticsSegment) RawJSON() string {
+func (r LogisticsSupportHistoryListResponseLogisticsTransportationPlanLogisticsSegment) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportHistoryListResponseLogisticsTransportationPlanLogisticsSegment) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportHistoryListResponseLogisticsTransportationPlanLogisticsSegment) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type LogisticssupportHistoryListParams struct {
+type LogisticsSupportHistoryListParams struct {
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -710,20 +710,20 @@ type LogisticssupportHistoryListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportHistoryListParams) IsPresent() bool {
+func (f LogisticsSupportHistoryListParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [LogisticssupportHistoryListParams]'s query parameters as
+// URLQuery serializes [LogisticsSupportHistoryListParams]'s query parameters as
 // `url.Values`.
-func (r LogisticssupportHistoryListParams) URLQuery() (v url.Values, err error) {
+func (r LogisticsSupportHistoryListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type LogisticssupportHistoryAodrParams struct {
+type LogisticsSupportHistoryAodrParams struct {
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -746,20 +746,20 @@ type LogisticssupportHistoryAodrParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportHistoryAodrParams) IsPresent() bool {
+func (f LogisticsSupportHistoryAodrParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [LogisticssupportHistoryAodrParams]'s query parameters as
+// URLQuery serializes [LogisticsSupportHistoryAodrParams]'s query parameters as
 // `url.Values`.
-func (r LogisticssupportHistoryAodrParams) URLQuery() (v url.Values, err error) {
+func (r LogisticsSupportHistoryAodrParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type LogisticssupportHistoryCountParams struct {
+type LogisticsSupportHistoryCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -767,13 +767,13 @@ type LogisticssupportHistoryCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportHistoryCountParams) IsPresent() bool {
+func (f LogisticsSupportHistoryCountParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [LogisticssupportHistoryCountParams]'s query parameters as
+// URLQuery serializes [LogisticsSupportHistoryCountParams]'s query parameters as
 // `url.Values`.
-func (r LogisticssupportHistoryCountParams) URLQuery() (v url.Values, err error) {
+func (r LogisticsSupportHistoryCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

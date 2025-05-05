@@ -19,21 +19,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// RfbandtypeService contains methods and other services that help with interacting
+// RfBandTypeService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewRfbandtypeService] method instead.
-type RfbandtypeService struct {
+// the [NewRfBandTypeService] method instead.
+type RfBandTypeService struct {
 	Options []option.RequestOption
 }
 
-// NewRfbandtypeService generates a new service that applies the given options to
+// NewRfBandTypeService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewRfbandtypeService(opts ...option.RequestOption) (r RfbandtypeService) {
-	r = RfbandtypeService{}
+func NewRfBandTypeService(opts ...option.RequestOption) (r RfBandTypeService) {
+	r = RfBandTypeService{}
 	r.Options = opts
 	return
 }
@@ -41,7 +41,7 @@ func NewRfbandtypeService(opts ...option.RequestOption) (r RfbandtypeService) {
 // Service operation to take a single RFBandType as a POST body and ingest into the
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
-func (r *RfbandtypeService) New(ctx context.Context, body RfbandtypeNewParams, opts ...option.RequestOption) (err error) {
+func (r *RfBandTypeService) New(ctx context.Context, body RfBandTypeNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/rfbandtype"
@@ -51,7 +51,7 @@ func (r *RfbandtypeService) New(ctx context.Context, body RfbandtypeNewParams, o
 
 // Service operation to update an RFBandType. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
-func (r *RfbandtypeService) Update(ctx context.Context, id string, body RfbandtypeUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *RfBandTypeService) Update(ctx context.Context, id string, body RfBandTypeUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -67,7 +67,7 @@ func (r *RfbandtypeService) Update(ctx context.Context, id string, body Rfbandty
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *RfbandtypeService) List(ctx context.Context, query RfbandtypeListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[RfbandtypeListResponse], err error) {
+func (r *RfBandTypeService) List(ctx context.Context, query RfBandTypeListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[RfBandTypeListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -88,14 +88,14 @@ func (r *RfbandtypeService) List(ctx context.Context, query RfbandtypeListParams
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *RfbandtypeService) ListAutoPaging(ctx context.Context, query RfbandtypeListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[RfbandtypeListResponse] {
+func (r *RfBandTypeService) ListAutoPaging(ctx context.Context, query RfBandTypeListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[RfBandTypeListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to delete an RFBandType specified by the passed ID path
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
-func (r *RfbandtypeService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *RfBandTypeService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -112,7 +112,7 @@ func (r *RfbandtypeService) Delete(ctx context.Context, id string, opts ...optio
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *RfbandtypeService) Count(ctx context.Context, query RfbandtypeCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *RfBandTypeService) Count(ctx context.Context, query RfBandTypeCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/rfbandtype/count"
@@ -122,7 +122,7 @@ func (r *RfbandtypeService) Count(ctx context.Context, query RfbandtypeCountPara
 
 // Service operation to get a single RFBandType by its unique ID passed as a path
 // parameter.
-func (r *RfbandtypeService) Get(ctx context.Context, id string, query RfbandtypeGetParams, opts ...option.RequestOption) (res *RfbandtypeGetResponse, err error) {
+func (r *RfBandTypeService) Get(ctx context.Context, id string, query RfBandTypeGetParams, opts ...option.RequestOption) (res *RfBandTypeGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -135,7 +135,7 @@ func (r *RfbandtypeService) Get(ctx context.Context, id string, query Rfbandtype
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *RfbandtypeService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *RfBandTypeService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/rfbandtype/queryhelp"
@@ -151,7 +151,7 @@ func (r *RfbandtypeService) Queryhelp(ctx context.Context, opts ...option.Reques
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *RfbandtypeService) Tuple(ctx context.Context, query RfbandtypeTupleParams, opts ...option.RequestOption) (res *[]RfbandtypeTupleResponse, err error) {
+func (r *RfBandTypeService) Tuple(ctx context.Context, query RfBandTypeTupleParams, opts ...option.RequestOption) (res *[]RfBandTypeTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/rfbandtype/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -159,7 +159,7 @@ func (r *RfbandtypeService) Tuple(ctx context.Context, query RfbandtypeTuplePara
 }
 
 // This table contains descriptions for common satellite RF bands.
-type RfbandtypeListResponse struct {
+type RfBandTypeListResponse struct {
 	// Unique identifier for the RF band (e.g. X, K, Ku, etc).
 	ID string `json:"id,required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -180,7 +180,7 @@ type RfbandtypeListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfbandtypeListResponseDataMode `json:"dataMode,required"`
+	DataMode RfBandTypeListResponseDataMode `json:"dataMode,required"`
 	// Description of the band and common uses.
 	Description string `json:"description,required"`
 	// Source of the data.
@@ -218,8 +218,8 @@ type RfbandtypeListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r RfbandtypeListResponse) RawJSON() string { return r.JSON.raw }
-func (r *RfbandtypeListResponse) UnmarshalJSON(data []byte) error {
+func (r RfBandTypeListResponse) RawJSON() string { return r.JSON.raw }
+func (r *RfBandTypeListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -237,17 +237,17 @@ func (r *RfbandtypeListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RfbandtypeListResponseDataMode string
+type RfBandTypeListResponseDataMode string
 
 const (
-	RfbandtypeListResponseDataModeReal      RfbandtypeListResponseDataMode = "REAL"
-	RfbandtypeListResponseDataModeTest      RfbandtypeListResponseDataMode = "TEST"
-	RfbandtypeListResponseDataModeSimulated RfbandtypeListResponseDataMode = "SIMULATED"
-	RfbandtypeListResponseDataModeExercise  RfbandtypeListResponseDataMode = "EXERCISE"
+	RfBandTypeListResponseDataModeReal      RfBandTypeListResponseDataMode = "REAL"
+	RfBandTypeListResponseDataModeTest      RfBandTypeListResponseDataMode = "TEST"
+	RfBandTypeListResponseDataModeSimulated RfBandTypeListResponseDataMode = "SIMULATED"
+	RfBandTypeListResponseDataModeExercise  RfBandTypeListResponseDataMode = "EXERCISE"
 )
 
 // This table contains descriptions for common satellite RF bands.
-type RfbandtypeGetResponse struct {
+type RfBandTypeGetResponse struct {
 	// Unique identifier for the RF band (e.g. X, K, Ku, etc).
 	ID string `json:"id,required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -268,7 +268,7 @@ type RfbandtypeGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfbandtypeGetResponseDataMode `json:"dataMode,required"`
+	DataMode RfBandTypeGetResponseDataMode `json:"dataMode,required"`
 	// Description of the band and common uses.
 	Description string `json:"description,required"`
 	// Source of the data.
@@ -313,8 +313,8 @@ type RfbandtypeGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r RfbandtypeGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *RfbandtypeGetResponse) UnmarshalJSON(data []byte) error {
+func (r RfBandTypeGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *RfBandTypeGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -332,17 +332,17 @@ func (r *RfbandtypeGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RfbandtypeGetResponseDataMode string
+type RfBandTypeGetResponseDataMode string
 
 const (
-	RfbandtypeGetResponseDataModeReal      RfbandtypeGetResponseDataMode = "REAL"
-	RfbandtypeGetResponseDataModeTest      RfbandtypeGetResponseDataMode = "TEST"
-	RfbandtypeGetResponseDataModeSimulated RfbandtypeGetResponseDataMode = "SIMULATED"
-	RfbandtypeGetResponseDataModeExercise  RfbandtypeGetResponseDataMode = "EXERCISE"
+	RfBandTypeGetResponseDataModeReal      RfBandTypeGetResponseDataMode = "REAL"
+	RfBandTypeGetResponseDataModeTest      RfBandTypeGetResponseDataMode = "TEST"
+	RfBandTypeGetResponseDataModeSimulated RfBandTypeGetResponseDataMode = "SIMULATED"
+	RfBandTypeGetResponseDataModeExercise  RfBandTypeGetResponseDataMode = "EXERCISE"
 )
 
 // This table contains descriptions for common satellite RF bands.
-type RfbandtypeTupleResponse struct {
+type RfBandTypeTupleResponse struct {
 	// Unique identifier for the RF band (e.g. X, K, Ku, etc).
 	ID string `json:"id,required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -363,7 +363,7 @@ type RfbandtypeTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfbandtypeTupleResponseDataMode `json:"dataMode,required"`
+	DataMode RfBandTypeTupleResponseDataMode `json:"dataMode,required"`
 	// Description of the band and common uses.
 	Description string `json:"description,required"`
 	// Source of the data.
@@ -408,8 +408,8 @@ type RfbandtypeTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r RfbandtypeTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *RfbandtypeTupleResponse) UnmarshalJSON(data []byte) error {
+func (r RfBandTypeTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *RfBandTypeTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -427,16 +427,16 @@ func (r *RfbandtypeTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RfbandtypeTupleResponseDataMode string
+type RfBandTypeTupleResponseDataMode string
 
 const (
-	RfbandtypeTupleResponseDataModeReal      RfbandtypeTupleResponseDataMode = "REAL"
-	RfbandtypeTupleResponseDataModeTest      RfbandtypeTupleResponseDataMode = "TEST"
-	RfbandtypeTupleResponseDataModeSimulated RfbandtypeTupleResponseDataMode = "SIMULATED"
-	RfbandtypeTupleResponseDataModeExercise  RfbandtypeTupleResponseDataMode = "EXERCISE"
+	RfBandTypeTupleResponseDataModeReal      RfBandTypeTupleResponseDataMode = "REAL"
+	RfBandTypeTupleResponseDataModeTest      RfBandTypeTupleResponseDataMode = "TEST"
+	RfBandTypeTupleResponseDataModeSimulated RfBandTypeTupleResponseDataMode = "SIMULATED"
+	RfBandTypeTupleResponseDataModeExercise  RfBandTypeTupleResponseDataMode = "EXERCISE"
 )
 
-type RfbandtypeNewParams struct {
+type RfBandTypeNewParams struct {
 	// Unique identifier for the RF band (e.g. X, K, Ku, etc).
 	ID string `json:"id,required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -457,7 +457,7 @@ type RfbandtypeNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfbandtypeNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode RfBandTypeNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Description of the band and common uses.
 	Description string `json:"description,required"`
 	// Source of the data.
@@ -476,10 +476,10 @@ type RfbandtypeNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfbandtypeNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RfBandTypeNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r RfbandtypeNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow RfbandtypeNewParams
+func (r RfBandTypeNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow RfBandTypeNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -497,16 +497,16 @@ func (r RfbandtypeNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RfbandtypeNewParamsDataMode string
+type RfBandTypeNewParamsDataMode string
 
 const (
-	RfbandtypeNewParamsDataModeReal      RfbandtypeNewParamsDataMode = "REAL"
-	RfbandtypeNewParamsDataModeTest      RfbandtypeNewParamsDataMode = "TEST"
-	RfbandtypeNewParamsDataModeSimulated RfbandtypeNewParamsDataMode = "SIMULATED"
-	RfbandtypeNewParamsDataModeExercise  RfbandtypeNewParamsDataMode = "EXERCISE"
+	RfBandTypeNewParamsDataModeReal      RfBandTypeNewParamsDataMode = "REAL"
+	RfBandTypeNewParamsDataModeTest      RfBandTypeNewParamsDataMode = "TEST"
+	RfBandTypeNewParamsDataModeSimulated RfBandTypeNewParamsDataMode = "SIMULATED"
+	RfBandTypeNewParamsDataModeExercise  RfBandTypeNewParamsDataMode = "EXERCISE"
 )
 
-type RfbandtypeUpdateParams struct {
+type RfBandTypeUpdateParams struct {
 	// Unique identifier for the RF band (e.g. X, K, Ku, etc).
 	ID string `json:"id,required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -527,7 +527,7 @@ type RfbandtypeUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfbandtypeUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode RfBandTypeUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// Description of the band and common uses.
 	Description string `json:"description,required"`
 	// Source of the data.
@@ -546,10 +546,10 @@ type RfbandtypeUpdateParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfbandtypeUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RfBandTypeUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r RfbandtypeUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow RfbandtypeUpdateParams
+func (r RfBandTypeUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow RfBandTypeUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -567,16 +567,16 @@ func (r RfbandtypeUpdateParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RfbandtypeUpdateParamsDataMode string
+type RfBandTypeUpdateParamsDataMode string
 
 const (
-	RfbandtypeUpdateParamsDataModeReal      RfbandtypeUpdateParamsDataMode = "REAL"
-	RfbandtypeUpdateParamsDataModeTest      RfbandtypeUpdateParamsDataMode = "TEST"
-	RfbandtypeUpdateParamsDataModeSimulated RfbandtypeUpdateParamsDataMode = "SIMULATED"
-	RfbandtypeUpdateParamsDataModeExercise  RfbandtypeUpdateParamsDataMode = "EXERCISE"
+	RfBandTypeUpdateParamsDataModeReal      RfBandTypeUpdateParamsDataMode = "REAL"
+	RfBandTypeUpdateParamsDataModeTest      RfBandTypeUpdateParamsDataMode = "TEST"
+	RfBandTypeUpdateParamsDataModeSimulated RfBandTypeUpdateParamsDataMode = "SIMULATED"
+	RfBandTypeUpdateParamsDataModeExercise  RfBandTypeUpdateParamsDataMode = "EXERCISE"
 )
 
-type RfbandtypeListParams struct {
+type RfBandTypeListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -584,17 +584,17 @@ type RfbandtypeListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfbandtypeListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RfBandTypeListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [RfbandtypeListParams]'s query parameters as `url.Values`.
-func (r RfbandtypeListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [RfBandTypeListParams]'s query parameters as `url.Values`.
+func (r RfBandTypeListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type RfbandtypeCountParams struct {
+type RfBandTypeCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -602,17 +602,17 @@ type RfbandtypeCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfbandtypeCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RfBandTypeCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [RfbandtypeCountParams]'s query parameters as `url.Values`.
-func (r RfbandtypeCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [RfBandTypeCountParams]'s query parameters as `url.Values`.
+func (r RfBandTypeCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type RfbandtypeGetParams struct {
+type RfBandTypeGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -620,17 +620,17 @@ type RfbandtypeGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfbandtypeGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RfBandTypeGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [RfbandtypeGetParams]'s query parameters as `url.Values`.
-func (r RfbandtypeGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [RfBandTypeGetParams]'s query parameters as `url.Values`.
+func (r RfBandTypeGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type RfbandtypeTupleParams struct {
+type RfBandTypeTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -643,10 +643,10 @@ type RfbandtypeTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfbandtypeTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RfBandTypeTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [RfbandtypeTupleParams]'s query parameters as `url.Values`.
-func (r RfbandtypeTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [RfBandTypeTupleParams]'s query parameters as `url.Values`.
+func (r RfBandTypeTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

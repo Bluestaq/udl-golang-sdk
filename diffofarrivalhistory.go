@@ -14,21 +14,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
 )
 
-// DiffofarrivalHistoryService contains methods and other services that help with
+// DiffOfArrivalHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewDiffofarrivalHistoryService] method instead.
-type DiffofarrivalHistoryService struct {
+// the [NewDiffOfArrivalHistoryService] method instead.
+type DiffOfArrivalHistoryService struct {
 	Options []option.RequestOption
 }
 
-// NewDiffofarrivalHistoryService generates a new service that applies the given
+// NewDiffOfArrivalHistoryService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewDiffofarrivalHistoryService(opts ...option.RequestOption) (r DiffofarrivalHistoryService) {
-	r = DiffofarrivalHistoryService{}
+func NewDiffOfArrivalHistoryService(opts ...option.RequestOption) (r DiffOfArrivalHistoryService) {
+	r = DiffOfArrivalHistoryService{}
 	r.Options = opts
 	return
 }
@@ -38,7 +38,7 @@ func NewDiffofarrivalHistoryService(opts ...option.RequestOption) (r Diffofarriv
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *DiffofarrivalHistoryService) Count(ctx context.Context, query DiffofarrivalHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *DiffOfArrivalHistoryService) Count(ctx context.Context, query DiffOfArrivalHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/diffofarrival/history/count"
@@ -46,7 +46,7 @@ func (r *DiffofarrivalHistoryService) Count(ctx context.Context, query Diffofarr
 	return
 }
 
-type DiffofarrivalHistoryCountParams struct {
+type DiffOfArrivalHistoryCountParams struct {
 	// Ob detection time in ISO 8601 UTC with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	ObTime      time.Time        `query:"obTime,required" format:"date-time" json:"-"`
@@ -57,11 +57,11 @@ type DiffofarrivalHistoryCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiffofarrivalHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f DiffOfArrivalHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [DiffofarrivalHistoryCountParams]'s query parameters as
+// URLQuery serializes [DiffOfArrivalHistoryCountParams]'s query parameters as
 // `url.Values`.
-func (r DiffofarrivalHistoryCountParams) URLQuery() (v url.Values, err error) {
+func (r DiffOfArrivalHistoryCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

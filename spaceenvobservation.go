@@ -18,24 +18,24 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// SpaceenvobservationService contains methods and other services that help with
+// SpaceEnvObservationService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewSpaceenvobservationService] method instead.
-type SpaceenvobservationService struct {
+// the [NewSpaceEnvObservationService] method instead.
+type SpaceEnvObservationService struct {
 	Options []option.RequestOption
-	History SpaceenvobservationHistoryService
+	History SpaceEnvObservationHistoryService
 }
 
-// NewSpaceenvobservationService generates a new service that applies the given
+// NewSpaceEnvObservationService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewSpaceenvobservationService(opts ...option.RequestOption) (r SpaceenvobservationService) {
-	r = SpaceenvobservationService{}
+func NewSpaceEnvObservationService(opts ...option.RequestOption) (r SpaceEnvObservationService) {
+	r = SpaceEnvObservationService{}
 	r.Options = opts
-	r.History = NewSpaceenvobservationHistoryService(opts...)
+	r.History = NewSpaceEnvObservationHistoryService(opts...)
 	return
 }
 
@@ -43,7 +43,7 @@ func NewSpaceenvobservationService(opts ...option.RequestOption) (r Spaceenvobse
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SpaceenvobservationService) List(ctx context.Context, query SpaceenvobservationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SpaceenvobservationListResponse], err error) {
+func (r *SpaceEnvObservationService) List(ctx context.Context, query SpaceEnvObservationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SpaceEnvObservationListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -64,7 +64,7 @@ func (r *SpaceenvobservationService) List(ctx context.Context, query Spaceenvobs
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SpaceenvobservationService) ListAutoPaging(ctx context.Context, query SpaceenvobservationListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SpaceenvobservationListResponse] {
+func (r *SpaceEnvObservationService) ListAutoPaging(ctx context.Context, query SpaceEnvObservationListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SpaceEnvObservationListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -73,7 +73,7 @@ func (r *SpaceenvobservationService) ListAutoPaging(ctx context.Context, query S
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *SpaceenvobservationService) Count(ctx context.Context, query SpaceenvobservationCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *SpaceEnvObservationService) Count(ctx context.Context, query SpaceEnvObservationCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/spaceenvobservation/count"
@@ -86,7 +86,7 @@ func (r *SpaceenvobservationService) Count(ctx context.Context, query Spaceenvob
 // operation is not intended to be used for automated feeds into UDL. Data
 // providers should contact the UDL team for specific role assignments and for
 // instructions on setting up a permanent feed through an alternate mechanism.
-func (r *SpaceenvobservationService) NewBulk(ctx context.Context, body SpaceenvobservationNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *SpaceEnvObservationService) NewBulk(ctx context.Context, body SpaceEnvObservationNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/spaceenvobservation/createBulk"
@@ -96,7 +96,7 @@ func (r *SpaceenvobservationService) NewBulk(ctx context.Context, body Spaceenvo
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *SpaceenvobservationService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *SpaceEnvObservationService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/spaceenvobservation/queryhelp"
@@ -112,7 +112,7 @@ func (r *SpaceenvobservationService) Queryhelp(ctx context.Context, opts ...opti
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *SpaceenvobservationService) Tuple(ctx context.Context, query SpaceenvobservationTupleParams, opts ...option.RequestOption) (res *[]SpaceEnvObservationFull, err error) {
+func (r *SpaceEnvObservationService) Tuple(ctx context.Context, query SpaceEnvObservationTupleParams, opts ...option.RequestOption) (res *[]SpaceEnvObservationFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/spaceenvobservation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -123,7 +123,7 @@ func (r *SpaceenvobservationService) Tuple(ctx context.Context, query Spaceenvob
 // and ingest into the database. This operation is intended to be used for
 // automated feeds into UDL. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *SpaceenvobservationService) UnvalidatedPublish(ctx context.Context, body SpaceenvobservationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+func (r *SpaceEnvObservationService) UnvalidatedPublish(ctx context.Context, body SpaceEnvObservationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-spaceenvobs"
@@ -132,7 +132,7 @@ func (r *SpaceenvobservationService) UnvalidatedPublish(ctx context.Context, bod
 }
 
 // SpaceEnvObservation data.
-type SpaceenvobservationListResponse struct {
+type SpaceEnvObservationListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -151,7 +151,7 @@ type SpaceenvobservationListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SpaceenvobservationListResponseDataMode `json:"dataMode,required"`
+	DataMode SpaceEnvObservationListResponseDataMode `json:"dataMode,required"`
 	// Time of the observation, in ISO 8601 UTC format with millisecond precision.
 	ObTime time.Time `json:"obTime,required" format:"date-time"`
 	// Source of the data.
@@ -252,14 +252,14 @@ type SpaceenvobservationListResponse struct {
 	// senReferenceFrame is null it is assumed to be J2000.
 	//
 	// Any of "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF".
-	SenReferenceFrame SpaceenvobservationListResponseSenReferenceFrame `json:"senReferenceFrame"`
+	SenReferenceFrame SpaceEnvObservationListResponseSenReferenceFrame `json:"senReferenceFrame"`
 	// Three element array, expressing the observing spacecraft/sensor velocity vector
 	// components at observation time, in kilometers/second, in the specified
 	// senReferenceFrame. If senReferenceFrame is null then J2000 should be assumed.
 	// The array element order is [xvel, yvel, zvel].
 	SenVel []float64 `json:"senVel"`
 	// A collection of individual space environment observations.
-	SeoList []SpaceenvobservationListResponseSeoList `json:"seoList"`
+	SeoList []SpaceEnvObservationListResponseSeoList `json:"seoList"`
 	// Array of UUIDs of the UDL data records that are related to this observation
 	// record. See the associated 'srcTyps' array for specific types of data,
 	// positionally corresponding to the UUIDs in this array. The 'srcTyps' and
@@ -323,8 +323,8 @@ type SpaceenvobservationListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SpaceenvobservationListResponse) RawJSON() string { return r.JSON.raw }
-func (r *SpaceenvobservationListResponse) UnmarshalJSON(data []byte) error {
+func (r SpaceEnvObservationListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SpaceEnvObservationListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -342,30 +342,30 @@ func (r *SpaceenvobservationListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SpaceenvobservationListResponseDataMode string
+type SpaceEnvObservationListResponseDataMode string
 
 const (
-	SpaceenvobservationListResponseDataModeReal      SpaceenvobservationListResponseDataMode = "REAL"
-	SpaceenvobservationListResponseDataModeTest      SpaceenvobservationListResponseDataMode = "TEST"
-	SpaceenvobservationListResponseDataModeSimulated SpaceenvobservationListResponseDataMode = "SIMULATED"
-	SpaceenvobservationListResponseDataModeExercise  SpaceenvobservationListResponseDataMode = "EXERCISE"
+	SpaceEnvObservationListResponseDataModeReal      SpaceEnvObservationListResponseDataMode = "REAL"
+	SpaceEnvObservationListResponseDataModeTest      SpaceEnvObservationListResponseDataMode = "TEST"
+	SpaceEnvObservationListResponseDataModeSimulated SpaceEnvObservationListResponseDataMode = "SIMULATED"
+	SpaceEnvObservationListResponseDataModeExercise  SpaceEnvObservationListResponseDataMode = "EXERCISE"
 )
 
 // The reference frame of the observing spacecraft/sensor state. If the
 // senReferenceFrame is null it is assumed to be J2000.
-type SpaceenvobservationListResponseSenReferenceFrame string
+type SpaceEnvObservationListResponseSenReferenceFrame string
 
 const (
-	SpaceenvobservationListResponseSenReferenceFrameJ2000   SpaceenvobservationListResponseSenReferenceFrame = "J2000"
-	SpaceenvobservationListResponseSenReferenceFrameEfgTdr  SpaceenvobservationListResponseSenReferenceFrame = "EFG/TDR"
-	SpaceenvobservationListResponseSenReferenceFrameEcrEcef SpaceenvobservationListResponseSenReferenceFrame = "ECR/ECEF"
-	SpaceenvobservationListResponseSenReferenceFrameTeme    SpaceenvobservationListResponseSenReferenceFrame = "TEME"
-	SpaceenvobservationListResponseSenReferenceFrameItrf    SpaceenvobservationListResponseSenReferenceFrame = "ITRF"
-	SpaceenvobservationListResponseSenReferenceFrameGcrf    SpaceenvobservationListResponseSenReferenceFrame = "GCRF"
+	SpaceEnvObservationListResponseSenReferenceFrameJ2000   SpaceEnvObservationListResponseSenReferenceFrame = "J2000"
+	SpaceEnvObservationListResponseSenReferenceFrameEfgTdr  SpaceEnvObservationListResponseSenReferenceFrame = "EFG/TDR"
+	SpaceEnvObservationListResponseSenReferenceFrameEcrEcef SpaceEnvObservationListResponseSenReferenceFrame = "ECR/ECEF"
+	SpaceEnvObservationListResponseSenReferenceFrameTeme    SpaceEnvObservationListResponseSenReferenceFrame = "TEME"
+	SpaceEnvObservationListResponseSenReferenceFrameItrf    SpaceEnvObservationListResponseSenReferenceFrame = "ITRF"
+	SpaceEnvObservationListResponseSenReferenceFrameGcrf    SpaceEnvObservationListResponseSenReferenceFrame = "GCRF"
 )
 
 // A single space environment observation.
-type SpaceenvobservationListResponseSeoList struct {
+type SpaceEnvObservationListResponseSeoList struct {
 	// The type of observation associated with this record.
 	ObType string `json:"obType,required"`
 	// The Unit of Measure associated with this observation. If there are no physical
@@ -419,12 +419,12 @@ type SpaceenvobservationListResponseSeoList struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SpaceenvobservationListResponseSeoList) RawJSON() string { return r.JSON.raw }
-func (r *SpaceenvobservationListResponseSeoList) UnmarshalJSON(data []byte) error {
+func (r SpaceEnvObservationListResponseSeoList) RawJSON() string { return r.JSON.raw }
+func (r *SpaceEnvObservationListResponseSeoList) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type SpaceenvobservationListParams struct {
+type SpaceEnvObservationListParams struct {
 	// Time of the observation, in ISO 8601 UTC format with millisecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	ObTime      time.Time        `query:"obTime,required" format:"date-time" json:"-"`
@@ -435,18 +435,18 @@ type SpaceenvobservationListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceenvobservationListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SpaceEnvObservationListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SpaceenvobservationListParams]'s query parameters as
+// URLQuery serializes [SpaceEnvObservationListParams]'s query parameters as
 // `url.Values`.
-func (r SpaceenvobservationListParams) URLQuery() (v url.Values, err error) {
+func (r SpaceEnvObservationListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SpaceenvobservationCountParams struct {
+type SpaceEnvObservationCountParams struct {
 	// Time of the observation, in ISO 8601 UTC format with millisecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	ObTime      time.Time        `query:"obTime,required" format:"date-time" json:"-"`
@@ -457,34 +457,34 @@ type SpaceenvobservationCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceenvobservationCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SpaceEnvObservationCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SpaceenvobservationCountParams]'s query parameters as
+// URLQuery serializes [SpaceEnvObservationCountParams]'s query parameters as
 // `url.Values`.
-func (r SpaceenvobservationCountParams) URLQuery() (v url.Values, err error) {
+func (r SpaceEnvObservationCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SpaceenvobservationNewBulkParams struct {
-	Body []SpaceenvobservationNewBulkParamsBody
+type SpaceEnvObservationNewBulkParams struct {
+	Body []SpaceEnvObservationNewBulkParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceenvobservationNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SpaceEnvObservationNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SpaceenvobservationNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r SpaceEnvObservationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
 // SpaceEnvObservation data.
 //
 // The properties ClassificationMarking, DataMode, ObTime, Source are required.
-type SpaceenvobservationNewBulkParamsBody struct {
+type SpaceEnvObservationNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -611,7 +611,7 @@ type SpaceenvobservationNewBulkParamsBody struct {
 	// The array element order is [xvel, yvel, zvel].
 	SenVel []float64 `json:"senVel,omitzero"`
 	// A collection of individual space environment observations.
-	SeoList []SpaceenvobservationNewBulkParamsBodySeoList `json:"seoList,omitzero"`
+	SeoList []SpaceEnvObservationNewBulkParamsBodySeoList `json:"seoList,omitzero"`
 	// Array of UUIDs of the UDL data records that are related to this observation
 	// record. See the associated 'srcTyps' array for specific types of data,
 	// positionally corresponding to the UUIDs in this array. The 'srcTyps' and
@@ -630,19 +630,19 @@ type SpaceenvobservationNewBulkParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceenvobservationNewBulkParamsBody) IsPresent() bool {
+func (f SpaceEnvObservationNewBulkParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SpaceenvobservationNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow SpaceenvobservationNewBulkParamsBody
+func (r SpaceEnvObservationNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow SpaceEnvObservationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[SpaceenvobservationNewBulkParamsBody](
+	apijson.RegisterFieldValidator[SpaceEnvObservationNewBulkParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
-	apijson.RegisterFieldValidator[SpaceenvobservationNewBulkParamsBody](
+	apijson.RegisterFieldValidator[SpaceEnvObservationNewBulkParamsBody](
 		"SenReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
@@ -650,7 +650,7 @@ func init() {
 // A single space environment observation.
 //
 // The properties ObType, ObUoM are required.
-type SpaceenvobservationNewBulkParamsBodySeoList struct {
+type SpaceEnvObservationNewBulkParamsBodySeoList struct {
 	// The type of observation associated with this record.
 	ObType string `json:"obType,required"`
 	// The Unit of Measure associated with this observation. If there are no physical
@@ -692,15 +692,15 @@ type SpaceenvobservationNewBulkParamsBodySeoList struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceenvobservationNewBulkParamsBodySeoList) IsPresent() bool {
+func (f SpaceEnvObservationNewBulkParamsBodySeoList) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SpaceenvobservationNewBulkParamsBodySeoList) MarshalJSON() (data []byte, err error) {
-	type shadow SpaceenvobservationNewBulkParamsBodySeoList
+func (r SpaceEnvObservationNewBulkParamsBodySeoList) MarshalJSON() (data []byte, err error) {
+	type shadow SpaceEnvObservationNewBulkParamsBodySeoList
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
-type SpaceenvobservationTupleParams struct {
+type SpaceEnvObservationTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -716,36 +716,36 @@ type SpaceenvobservationTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceenvobservationTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SpaceEnvObservationTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SpaceenvobservationTupleParams]'s query parameters as
+// URLQuery serializes [SpaceEnvObservationTupleParams]'s query parameters as
 // `url.Values`.
-func (r SpaceenvobservationTupleParams) URLQuery() (v url.Values, err error) {
+func (r SpaceEnvObservationTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SpaceenvobservationUnvalidatedPublishParams struct {
-	Body []SpaceenvobservationUnvalidatedPublishParamsBody
+type SpaceEnvObservationUnvalidatedPublishParams struct {
+	Body []SpaceEnvObservationUnvalidatedPublishParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceenvobservationUnvalidatedPublishParams) IsPresent() bool {
+func (f SpaceEnvObservationUnvalidatedPublishParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r SpaceenvobservationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+func (r SpaceEnvObservationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
 // SpaceEnvObservation data.
 //
 // The properties ClassificationMarking, DataMode, ObTime, Source are required.
-type SpaceenvobservationUnvalidatedPublishParamsBody struct {
+type SpaceEnvObservationUnvalidatedPublishParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -872,7 +872,7 @@ type SpaceenvobservationUnvalidatedPublishParamsBody struct {
 	// The array element order is [xvel, yvel, zvel].
 	SenVel []float64 `json:"senVel,omitzero"`
 	// A collection of individual space environment observations.
-	SeoList []SpaceenvobservationUnvalidatedPublishParamsBodySeoList `json:"seoList,omitzero"`
+	SeoList []SpaceEnvObservationUnvalidatedPublishParamsBodySeoList `json:"seoList,omitzero"`
 	// Array of UUIDs of the UDL data records that are related to this observation
 	// record. See the associated 'srcTyps' array for specific types of data,
 	// positionally corresponding to the UUIDs in this array. The 'srcTyps' and
@@ -891,19 +891,19 @@ type SpaceenvobservationUnvalidatedPublishParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceenvobservationUnvalidatedPublishParamsBody) IsPresent() bool {
+func (f SpaceEnvObservationUnvalidatedPublishParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SpaceenvobservationUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow SpaceenvobservationUnvalidatedPublishParamsBody
+func (r SpaceEnvObservationUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow SpaceEnvObservationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[SpaceenvobservationUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[SpaceEnvObservationUnvalidatedPublishParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
-	apijson.RegisterFieldValidator[SpaceenvobservationUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[SpaceEnvObservationUnvalidatedPublishParamsBody](
 		"SenReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
@@ -911,7 +911,7 @@ func init() {
 // A single space environment observation.
 //
 // The properties ObType, ObUoM are required.
-type SpaceenvobservationUnvalidatedPublishParamsBodySeoList struct {
+type SpaceEnvObservationUnvalidatedPublishParamsBodySeoList struct {
 	// The type of observation associated with this record.
 	ObType string `json:"obType,required"`
 	// The Unit of Measure associated with this observation. If there are no physical
@@ -953,10 +953,10 @@ type SpaceenvobservationUnvalidatedPublishParamsBodySeoList struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceenvobservationUnvalidatedPublishParamsBodySeoList) IsPresent() bool {
+func (f SpaceEnvObservationUnvalidatedPublishParamsBodySeoList) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SpaceenvobservationUnvalidatedPublishParamsBodySeoList) MarshalJSON() (data []byte, err error) {
-	type shadow SpaceenvobservationUnvalidatedPublishParamsBodySeoList
+func (r SpaceEnvObservationUnvalidatedPublishParamsBodySeoList) MarshalJSON() (data []byte, err error) {
+	type shadow SpaceEnvObservationUnvalidatedPublishParamsBodySeoList
 	return param.MarshalObject(r, (*shadow)(&r))
 }

@@ -18,7 +18,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSkyimageryListWithOptionalParams(t *testing.T) {
+func TestSkyImageryListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -31,7 +31,7 @@ func TestSkyimageryListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Skyimagery.List(context.TODO(), unifieddatalibrary.SkyimageryListParams{
+	_, err := client.SkyImagery.List(context.TODO(), unifieddatalibrary.SkyImageryListParams{
 		ExpStartTime: time.Now(),
 		FirstResult:  unifieddatalibrary.Int(0),
 		MaxResults:   unifieddatalibrary.Int(0),
@@ -45,7 +45,7 @@ func TestSkyimageryListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSkyimageryCountWithOptionalParams(t *testing.T) {
+func TestSkyImageryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -58,7 +58,7 @@ func TestSkyimageryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Skyimagery.Count(context.TODO(), unifieddatalibrary.SkyimageryCountParams{
+	_, err := client.SkyImagery.Count(context.TODO(), unifieddatalibrary.SkyImageryCountParams{
 		ExpStartTime: time.Now(),
 		FirstResult:  unifieddatalibrary.Int(0),
 		MaxResults:   unifieddatalibrary.Int(0),
@@ -72,7 +72,7 @@ func TestSkyimageryCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSkyimageryFileGetWithOptionalParams(t *testing.T) {
+func TestSkyImageryFileGetWithOptionalParams(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(200)
 		w.Write([]byte("abc"))
@@ -84,10 +84,10 @@ func TestSkyimageryFileGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	resp, err := client.Skyimagery.FileGet(
+	resp, err := client.SkyImagery.FileGet(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SkyimageryFileGetParams{
+		unifieddatalibrary.SkyImageryFileGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -114,7 +114,7 @@ func TestSkyimageryFileGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSkyimageryGetWithOptionalParams(t *testing.T) {
+func TestSkyImageryGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -127,10 +127,10 @@ func TestSkyimageryGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Skyimagery.Get(
+	_, err := client.SkyImagery.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SkyimageryGetParams{
+		unifieddatalibrary.SkyImageryGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -144,7 +144,7 @@ func TestSkyimageryGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSkyimageryQueryhelp(t *testing.T) {
+func TestSkyImageryQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -157,7 +157,7 @@ func TestSkyimageryQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Skyimagery.Queryhelp(context.TODO())
+	err := client.SkyImagery.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -167,7 +167,7 @@ func TestSkyimageryQueryhelp(t *testing.T) {
 	}
 }
 
-func TestSkyimageryTupleWithOptionalParams(t *testing.T) {
+func TestSkyImageryTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -180,7 +180,7 @@ func TestSkyimageryTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Skyimagery.Tuple(context.TODO(), unifieddatalibrary.SkyimageryTupleParams{
+	_, err := client.SkyImagery.Tuple(context.TODO(), unifieddatalibrary.SkyImageryTupleParams{
 		Columns:      "columns",
 		ExpStartTime: time.Now(),
 		FirstResult:  unifieddatalibrary.Int(0),
@@ -195,7 +195,7 @@ func TestSkyimageryTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSkyimageryUploadZip(t *testing.T) {
+func TestSkyImageryUploadZip(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -208,7 +208,7 @@ func TestSkyimageryUploadZip(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Skyimagery.UploadZip(context.TODO(), unifieddatalibrary.SkyimageryUploadZipParams{
+	err := client.SkyImagery.UploadZip(context.TODO(), unifieddatalibrary.SkyImageryUploadZipParams{
 		File: io.Reader(bytes.NewBuffer([]byte("some file contents"))),
 	})
 	if err != nil {

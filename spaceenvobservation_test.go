@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSpaceenvobservationListWithOptionalParams(t *testing.T) {
+func TestSpaceEnvObservationListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestSpaceenvobservationListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Spaceenvobservation.List(context.TODO(), unifieddatalibrary.SpaceenvobservationListParams{
+	_, err := client.SpaceEnvObservation.List(context.TODO(), unifieddatalibrary.SpaceEnvObservationListParams{
 		ObTime:      time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -41,7 +41,7 @@ func TestSpaceenvobservationListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSpaceenvobservationCountWithOptionalParams(t *testing.T) {
+func TestSpaceEnvObservationCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -54,7 +54,7 @@ func TestSpaceenvobservationCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Spaceenvobservation.Count(context.TODO(), unifieddatalibrary.SpaceenvobservationCountParams{
+	_, err := client.SpaceEnvObservation.Count(context.TODO(), unifieddatalibrary.SpaceEnvObservationCountParams{
 		ObTime:      time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -68,7 +68,7 @@ func TestSpaceenvobservationCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSpaceenvobservationNewBulk(t *testing.T) {
+func TestSpaceEnvObservationNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -81,8 +81,8 @@ func TestSpaceenvobservationNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Spaceenvobservation.NewBulk(context.TODO(), unifieddatalibrary.SpaceenvobservationNewBulkParams{
-		Body: []unifieddatalibrary.SpaceenvobservationNewBulkParamsBody{{
+	err := client.SpaceEnvObservation.NewBulk(context.TODO(), unifieddatalibrary.SpaceEnvObservationNewBulkParams{
+		Body: []unifieddatalibrary.SpaceEnvObservationNewBulkParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			ObTime:                time.Now(),
@@ -117,7 +117,7 @@ func TestSpaceenvobservationNewBulk(t *testing.T) {
 			SenPos:                []float64{4174.78541785946, -9969.69867853067, 40733.9284531208},
 			SenReferenceFrame:     "J2000",
 			SenVel:                []float64{0.727059797295872, 0.298037087322647, 0.00157064850994095},
-			SeoList: []unifieddatalibrary.SpaceenvobservationNewBulkParamsBodySeoList{{
+			SeoList: []unifieddatalibrary.SpaceEnvObservationNewBulkParamsBodySeoList{{
 				ObType:        "INTEGRAL FLUX",
 				ObUoM:         "particles/cm^2/s/sr",
 				ObArray:       []float64{1.7, 35.6, 21.2, 19.01},
@@ -140,7 +140,7 @@ func TestSpaceenvobservationNewBulk(t *testing.T) {
 	}
 }
 
-func TestSpaceenvobservationQueryhelp(t *testing.T) {
+func TestSpaceEnvObservationQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -153,7 +153,7 @@ func TestSpaceenvobservationQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Spaceenvobservation.Queryhelp(context.TODO())
+	err := client.SpaceEnvObservation.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -163,7 +163,7 @@ func TestSpaceenvobservationQueryhelp(t *testing.T) {
 	}
 }
 
-func TestSpaceenvobservationTupleWithOptionalParams(t *testing.T) {
+func TestSpaceEnvObservationTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -176,7 +176,7 @@ func TestSpaceenvobservationTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Spaceenvobservation.Tuple(context.TODO(), unifieddatalibrary.SpaceenvobservationTupleParams{
+	_, err := client.SpaceEnvObservation.Tuple(context.TODO(), unifieddatalibrary.SpaceEnvObservationTupleParams{
 		Columns:     "columns",
 		ObTime:      time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -191,7 +191,7 @@ func TestSpaceenvobservationTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSpaceenvobservationUnvalidatedPublish(t *testing.T) {
+func TestSpaceEnvObservationUnvalidatedPublish(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -204,8 +204,8 @@ func TestSpaceenvobservationUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Spaceenvobservation.UnvalidatedPublish(context.TODO(), unifieddatalibrary.SpaceenvobservationUnvalidatedPublishParams{
-		Body: []unifieddatalibrary.SpaceenvobservationUnvalidatedPublishParamsBody{{
+	err := client.SpaceEnvObservation.UnvalidatedPublish(context.TODO(), unifieddatalibrary.SpaceEnvObservationUnvalidatedPublishParams{
+		Body: []unifieddatalibrary.SpaceEnvObservationUnvalidatedPublishParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			ObTime:                time.Now(),
@@ -240,7 +240,7 @@ func TestSpaceenvobservationUnvalidatedPublish(t *testing.T) {
 			SenPos:                []float64{4174.78541785946, -9969.69867853067, 40733.9284531208},
 			SenReferenceFrame:     "J2000",
 			SenVel:                []float64{0.727059797295872, 0.298037087322647, 0.00157064850994095},
-			SeoList: []unifieddatalibrary.SpaceenvobservationUnvalidatedPublishParamsBodySeoList{{
+			SeoList: []unifieddatalibrary.SpaceEnvObservationUnvalidatedPublishParamsBodySeoList{{
 				ObType:        "INTEGRAL FLUX",
 				ObUoM:         "particles/cm^2/s/sr",
 				ObArray:       []float64{1.7, 35.6, 21.2, 19.01},

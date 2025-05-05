@@ -19,21 +19,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// SeradatasigintpayloadService contains methods and other services that help with
+// SeradataSigintPayloadService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewSeradatasigintpayloadService] method instead.
-type SeradatasigintpayloadService struct {
+// the [NewSeradataSigintPayloadService] method instead.
+type SeradataSigintPayloadService struct {
 	Options []option.RequestOption
 }
 
-// NewSeradatasigintpayloadService generates a new service that applies the given
+// NewSeradataSigintPayloadService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewSeradatasigintpayloadService(opts ...option.RequestOption) (r SeradatasigintpayloadService) {
-	r = SeradatasigintpayloadService{}
+func NewSeradataSigintPayloadService(opts ...option.RequestOption) (r SeradataSigintPayloadService) {
+	r = SeradataSigintPayloadService{}
 	r.Options = opts
 	return
 }
@@ -41,7 +41,7 @@ func NewSeradatasigintpayloadService(opts ...option.RequestOption) (r Seradatasi
 // Service operation to take a single SeradataSigIntPayload as a POST body and
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *SeradatasigintpayloadService) New(ctx context.Context, body SeradatasigintpayloadNewParams, opts ...option.RequestOption) (err error) {
+func (r *SeradataSigintPayloadService) New(ctx context.Context, body SeradataSigintPayloadNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/seradatasigintpayload"
@@ -52,7 +52,7 @@ func (r *SeradatasigintpayloadService) New(ctx context.Context, body Seradatasig
 // Service operation to update an SeradataSigIntPayload. A specific role is
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
-func (r *SeradatasigintpayloadService) Update(ctx context.Context, id string, body SeradatasigintpayloadUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *SeradataSigintPayloadService) Update(ctx context.Context, id string, body SeradataSigintPayloadUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -68,7 +68,7 @@ func (r *SeradatasigintpayloadService) Update(ctx context.Context, id string, bo
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SeradatasigintpayloadService) List(ctx context.Context, query SeradatasigintpayloadListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SeradatasigintpayloadListResponse], err error) {
+func (r *SeradataSigintPayloadService) List(ctx context.Context, query SeradataSigintPayloadListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SeradataSigintPayloadListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -89,14 +89,14 @@ func (r *SeradatasigintpayloadService) List(ctx context.Context, query Seradatas
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SeradatasigintpayloadService) ListAutoPaging(ctx context.Context, query SeradatasigintpayloadListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SeradatasigintpayloadListResponse] {
+func (r *SeradataSigintPayloadService) ListAutoPaging(ctx context.Context, query SeradataSigintPayloadListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SeradataSigintPayloadListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to delete an SeradataSigIntPayload specified by the passed ID
 // path parameter. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
-func (r *SeradatasigintpayloadService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *SeradataSigintPayloadService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -113,7 +113,7 @@ func (r *SeradatasigintpayloadService) Delete(ctx context.Context, id string, op
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *SeradatasigintpayloadService) Count(ctx context.Context, query SeradatasigintpayloadCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *SeradataSigintPayloadService) Count(ctx context.Context, query SeradataSigintPayloadCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/seradatasigintpayload/count"
@@ -123,7 +123,7 @@ func (r *SeradatasigintpayloadService) Count(ctx context.Context, query Seradata
 
 // Service operation to get a single SeradataSigIntPayload by its unique ID passed
 // as a path parameter.
-func (r *SeradatasigintpayloadService) Get(ctx context.Context, id string, query SeradatasigintpayloadGetParams, opts ...option.RequestOption) (res *SeradatasigintpayloadGetResponse, err error) {
+func (r *SeradataSigintPayloadService) Get(ctx context.Context, id string, query SeradataSigintPayloadGetParams, opts ...option.RequestOption) (res *SeradataSigintPayloadGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -136,7 +136,7 @@ func (r *SeradatasigintpayloadService) Get(ctx context.Context, id string, query
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *SeradatasigintpayloadService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *SeradataSigintPayloadService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/seradatasigintpayload/queryhelp"
@@ -152,7 +152,7 @@ func (r *SeradatasigintpayloadService) Queryhelp(ctx context.Context, opts ...op
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *SeradatasigintpayloadService) Tuple(ctx context.Context, query SeradatasigintpayloadTupleParams, opts ...option.RequestOption) (res *[]SeradatasigintpayloadTupleResponse, err error) {
+func (r *SeradataSigintPayloadService) Tuple(ctx context.Context, query SeradataSigintPayloadTupleParams, opts ...option.RequestOption) (res *[]SeradataSigintPayloadTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/seradatasigintpayload/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -160,7 +160,7 @@ func (r *SeradatasigintpayloadService) Tuple(ctx context.Context, query Seradata
 }
 
 // Details for an sigint payload from Seradata.
-type SeradatasigintpayloadListResponse struct {
+type SeradataSigintPayloadListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -179,7 +179,7 @@ type SeradatasigintpayloadListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradatasigintpayloadListResponseDataMode `json:"dataMode,required"`
+	DataMode SeradataSigintPayloadListResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -253,8 +253,8 @@ type SeradatasigintpayloadListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradatasigintpayloadListResponse) RawJSON() string { return r.JSON.raw }
-func (r *SeradatasigintpayloadListResponse) UnmarshalJSON(data []byte) error {
+func (r SeradataSigintPayloadListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSigintPayloadListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -272,17 +272,17 @@ func (r *SeradatasigintpayloadListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradatasigintpayloadListResponseDataMode string
+type SeradataSigintPayloadListResponseDataMode string
 
 const (
-	SeradatasigintpayloadListResponseDataModeReal      SeradatasigintpayloadListResponseDataMode = "REAL"
-	SeradatasigintpayloadListResponseDataModeTest      SeradatasigintpayloadListResponseDataMode = "TEST"
-	SeradatasigintpayloadListResponseDataModeSimulated SeradatasigintpayloadListResponseDataMode = "SIMULATED"
-	SeradatasigintpayloadListResponseDataModeExercise  SeradatasigintpayloadListResponseDataMode = "EXERCISE"
+	SeradataSigintPayloadListResponseDataModeReal      SeradataSigintPayloadListResponseDataMode = "REAL"
+	SeradataSigintPayloadListResponseDataModeTest      SeradataSigintPayloadListResponseDataMode = "TEST"
+	SeradataSigintPayloadListResponseDataModeSimulated SeradataSigintPayloadListResponseDataMode = "SIMULATED"
+	SeradataSigintPayloadListResponseDataModeExercise  SeradataSigintPayloadListResponseDataMode = "EXERCISE"
 )
 
 // Details for an sigint payload from Seradata.
-type SeradatasigintpayloadGetResponse struct {
+type SeradataSigintPayloadGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -301,7 +301,7 @@ type SeradatasigintpayloadGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradatasigintpayloadGetResponseDataMode `json:"dataMode,required"`
+	DataMode SeradataSigintPayloadGetResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -382,8 +382,8 @@ type SeradatasigintpayloadGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradatasigintpayloadGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *SeradatasigintpayloadGetResponse) UnmarshalJSON(data []byte) error {
+func (r SeradataSigintPayloadGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSigintPayloadGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -401,17 +401,17 @@ func (r *SeradatasigintpayloadGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradatasigintpayloadGetResponseDataMode string
+type SeradataSigintPayloadGetResponseDataMode string
 
 const (
-	SeradatasigintpayloadGetResponseDataModeReal      SeradatasigintpayloadGetResponseDataMode = "REAL"
-	SeradatasigintpayloadGetResponseDataModeTest      SeradatasigintpayloadGetResponseDataMode = "TEST"
-	SeradatasigintpayloadGetResponseDataModeSimulated SeradatasigintpayloadGetResponseDataMode = "SIMULATED"
-	SeradatasigintpayloadGetResponseDataModeExercise  SeradatasigintpayloadGetResponseDataMode = "EXERCISE"
+	SeradataSigintPayloadGetResponseDataModeReal      SeradataSigintPayloadGetResponseDataMode = "REAL"
+	SeradataSigintPayloadGetResponseDataModeTest      SeradataSigintPayloadGetResponseDataMode = "TEST"
+	SeradataSigintPayloadGetResponseDataModeSimulated SeradataSigintPayloadGetResponseDataMode = "SIMULATED"
+	SeradataSigintPayloadGetResponseDataModeExercise  SeradataSigintPayloadGetResponseDataMode = "EXERCISE"
 )
 
 // Details for an sigint payload from Seradata.
-type SeradatasigintpayloadTupleResponse struct {
+type SeradataSigintPayloadTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -430,7 +430,7 @@ type SeradatasigintpayloadTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradatasigintpayloadTupleResponseDataMode `json:"dataMode,required"`
+	DataMode SeradataSigintPayloadTupleResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -511,8 +511,8 @@ type SeradatasigintpayloadTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradatasigintpayloadTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *SeradatasigintpayloadTupleResponse) UnmarshalJSON(data []byte) error {
+func (r SeradataSigintPayloadTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *SeradataSigintPayloadTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -530,16 +530,16 @@ func (r *SeradatasigintpayloadTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradatasigintpayloadTupleResponseDataMode string
+type SeradataSigintPayloadTupleResponseDataMode string
 
 const (
-	SeradatasigintpayloadTupleResponseDataModeReal      SeradatasigintpayloadTupleResponseDataMode = "REAL"
-	SeradatasigintpayloadTupleResponseDataModeTest      SeradatasigintpayloadTupleResponseDataMode = "TEST"
-	SeradatasigintpayloadTupleResponseDataModeSimulated SeradatasigintpayloadTupleResponseDataMode = "SIMULATED"
-	SeradatasigintpayloadTupleResponseDataModeExercise  SeradatasigintpayloadTupleResponseDataMode = "EXERCISE"
+	SeradataSigintPayloadTupleResponseDataModeReal      SeradataSigintPayloadTupleResponseDataMode = "REAL"
+	SeradataSigintPayloadTupleResponseDataModeTest      SeradataSigintPayloadTupleResponseDataMode = "TEST"
+	SeradataSigintPayloadTupleResponseDataModeSimulated SeradataSigintPayloadTupleResponseDataMode = "SIMULATED"
+	SeradataSigintPayloadTupleResponseDataModeExercise  SeradataSigintPayloadTupleResponseDataMode = "EXERCISE"
 )
 
-type SeradatasigintpayloadNewParams struct {
+type SeradataSigintPayloadNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -558,7 +558,7 @@ type SeradatasigintpayloadNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradatasigintpayloadNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SeradataSigintPayloadNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -599,10 +599,10 @@ type SeradatasigintpayloadNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradatasigintpayloadNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeradataSigintPayloadNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SeradatasigintpayloadNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow SeradatasigintpayloadNewParams
+func (r SeradataSigintPayloadNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow SeradataSigintPayloadNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -620,16 +620,16 @@ func (r SeradatasigintpayloadNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradatasigintpayloadNewParamsDataMode string
+type SeradataSigintPayloadNewParamsDataMode string
 
 const (
-	SeradatasigintpayloadNewParamsDataModeReal      SeradatasigintpayloadNewParamsDataMode = "REAL"
-	SeradatasigintpayloadNewParamsDataModeTest      SeradatasigintpayloadNewParamsDataMode = "TEST"
-	SeradatasigintpayloadNewParamsDataModeSimulated SeradatasigintpayloadNewParamsDataMode = "SIMULATED"
-	SeradatasigintpayloadNewParamsDataModeExercise  SeradatasigintpayloadNewParamsDataMode = "EXERCISE"
+	SeradataSigintPayloadNewParamsDataModeReal      SeradataSigintPayloadNewParamsDataMode = "REAL"
+	SeradataSigintPayloadNewParamsDataModeTest      SeradataSigintPayloadNewParamsDataMode = "TEST"
+	SeradataSigintPayloadNewParamsDataModeSimulated SeradataSigintPayloadNewParamsDataMode = "SIMULATED"
+	SeradataSigintPayloadNewParamsDataModeExercise  SeradataSigintPayloadNewParamsDataMode = "EXERCISE"
 )
 
-type SeradatasigintpayloadUpdateParams struct {
+type SeradataSigintPayloadUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -648,7 +648,7 @@ type SeradatasigintpayloadUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradatasigintpayloadUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SeradataSigintPayloadUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -689,12 +689,12 @@ type SeradatasigintpayloadUpdateParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradatasigintpayloadUpdateParams) IsPresent() bool {
+func (f SeradataSigintPayloadUpdateParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r SeradatasigintpayloadUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow SeradatasigintpayloadUpdateParams
+func (r SeradataSigintPayloadUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow SeradataSigintPayloadUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -712,16 +712,16 @@ func (r SeradatasigintpayloadUpdateParams) MarshalJSON() (data []byte, err error
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradatasigintpayloadUpdateParamsDataMode string
+type SeradataSigintPayloadUpdateParamsDataMode string
 
 const (
-	SeradatasigintpayloadUpdateParamsDataModeReal      SeradatasigintpayloadUpdateParamsDataMode = "REAL"
-	SeradatasigintpayloadUpdateParamsDataModeTest      SeradatasigintpayloadUpdateParamsDataMode = "TEST"
-	SeradatasigintpayloadUpdateParamsDataModeSimulated SeradatasigintpayloadUpdateParamsDataMode = "SIMULATED"
-	SeradatasigintpayloadUpdateParamsDataModeExercise  SeradatasigintpayloadUpdateParamsDataMode = "EXERCISE"
+	SeradataSigintPayloadUpdateParamsDataModeReal      SeradataSigintPayloadUpdateParamsDataMode = "REAL"
+	SeradataSigintPayloadUpdateParamsDataModeTest      SeradataSigintPayloadUpdateParamsDataMode = "TEST"
+	SeradataSigintPayloadUpdateParamsDataModeSimulated SeradataSigintPayloadUpdateParamsDataMode = "SIMULATED"
+	SeradataSigintPayloadUpdateParamsDataModeExercise  SeradataSigintPayloadUpdateParamsDataMode = "EXERCISE"
 )
 
-type SeradatasigintpayloadListParams struct {
+type SeradataSigintPayloadListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -729,18 +729,18 @@ type SeradatasigintpayloadListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradatasigintpayloadListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeradataSigintPayloadListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SeradatasigintpayloadListParams]'s query parameters as
+// URLQuery serializes [SeradataSigintPayloadListParams]'s query parameters as
 // `url.Values`.
-func (r SeradatasigintpayloadListParams) URLQuery() (v url.Values, err error) {
+func (r SeradataSigintPayloadListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SeradatasigintpayloadCountParams struct {
+type SeradataSigintPayloadCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -748,18 +748,18 @@ type SeradatasigintpayloadCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradatasigintpayloadCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeradataSigintPayloadCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SeradatasigintpayloadCountParams]'s query parameters as
+// URLQuery serializes [SeradataSigintPayloadCountParams]'s query parameters as
 // `url.Values`.
-func (r SeradatasigintpayloadCountParams) URLQuery() (v url.Values, err error) {
+func (r SeradataSigintPayloadCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SeradatasigintpayloadGetParams struct {
+type SeradataSigintPayloadGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -767,18 +767,18 @@ type SeradatasigintpayloadGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradatasigintpayloadGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeradataSigintPayloadGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SeradatasigintpayloadGetParams]'s query parameters as
+// URLQuery serializes [SeradataSigintPayloadGetParams]'s query parameters as
 // `url.Values`.
-func (r SeradatasigintpayloadGetParams) URLQuery() (v url.Values, err error) {
+func (r SeradataSigintPayloadGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SeradatasigintpayloadTupleParams struct {
+type SeradataSigintPayloadTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -791,11 +791,11 @@ type SeradatasigintpayloadTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradatasigintpayloadTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeradataSigintPayloadTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SeradatasigintpayloadTupleParams]'s query parameters as
+// URLQuery serializes [SeradataSigintPayloadTupleParams]'s query parameters as
 // `url.Values`.
-func (r SeradatasigintpayloadTupleParams) URLQuery() (v url.Values, err error) {
+func (r SeradataSigintPayloadTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

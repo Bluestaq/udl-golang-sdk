@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSolararrayNewWithOptionalParams(t *testing.T) {
+func TestSolarArrayNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,8 +26,8 @@ func TestSolararrayNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Solararray.New(context.TODO(), unifieddatalibrary.SolararrayNewParams{
-		DataMode: unifieddatalibrary.SolararrayNewParamsDataModeTest,
+	err := client.SolarArray.New(context.TODO(), unifieddatalibrary.SolarArrayNewParams{
+		DataMode: unifieddatalibrary.SolarArrayNewParamsDataModeTest,
 		Name:     "Solar1",
 		Source:   "Bluestaq",
 		ID:       unifieddatalibrary.String("SOLARARRAY-ID"),
@@ -42,7 +42,7 @@ func TestSolararrayNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSolararrayUpdateWithOptionalParams(t *testing.T) {
+func TestSolarArrayUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -55,11 +55,11 @@ func TestSolararrayUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Solararray.Update(
+	err := client.SolarArray.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SolararrayUpdateParams{
-			DataMode: unifieddatalibrary.SolararrayUpdateParamsDataModeTest,
+		unifieddatalibrary.SolarArrayUpdateParams{
+			DataMode: unifieddatalibrary.SolarArrayUpdateParamsDataModeTest,
 			Name:     "Solar1",
 			Source:   "Bluestaq",
 			ID:       unifieddatalibrary.String("SOLARARRAY-ID"),
@@ -75,7 +75,7 @@ func TestSolararrayUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSolararrayListWithOptionalParams(t *testing.T) {
+func TestSolarArrayListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -88,7 +88,7 @@ func TestSolararrayListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Solararray.List(context.TODO(), unifieddatalibrary.SolararrayListParams{
+	_, err := client.SolarArray.List(context.TODO(), unifieddatalibrary.SolarArrayListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -101,7 +101,7 @@ func TestSolararrayListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSolararrayDelete(t *testing.T) {
+func TestSolarArrayDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -114,7 +114,7 @@ func TestSolararrayDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Solararray.Delete(context.TODO(), "id")
+	err := client.SolarArray.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -124,7 +124,7 @@ func TestSolararrayDelete(t *testing.T) {
 	}
 }
 
-func TestSolararrayCountWithOptionalParams(t *testing.T) {
+func TestSolarArrayCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -137,7 +137,7 @@ func TestSolararrayCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Solararray.Count(context.TODO(), unifieddatalibrary.SolararrayCountParams{
+	_, err := client.SolarArray.Count(context.TODO(), unifieddatalibrary.SolarArrayCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -150,7 +150,7 @@ func TestSolararrayCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSolararrayGetWithOptionalParams(t *testing.T) {
+func TestSolarArrayGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -163,10 +163,10 @@ func TestSolararrayGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Solararray.Get(
+	_, err := client.SolarArray.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SolararrayGetParams{
+		unifieddatalibrary.SolarArrayGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -180,7 +180,7 @@ func TestSolararrayGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSolararrayQueryhelp(t *testing.T) {
+func TestSolarArrayQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -193,7 +193,7 @@ func TestSolararrayQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Solararray.Queryhelp(context.TODO())
+	err := client.SolarArray.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -203,7 +203,7 @@ func TestSolararrayQueryhelp(t *testing.T) {
 	}
 }
 
-func TestSolararrayTupleWithOptionalParams(t *testing.T) {
+func TestSolarArrayTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -216,7 +216,7 @@ func TestSolararrayTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Solararray.Tuple(context.TODO(), unifieddatalibrary.SolararrayTupleParams{
+	_, err := client.SolarArray.Tuple(context.TODO(), unifieddatalibrary.SolarArrayTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

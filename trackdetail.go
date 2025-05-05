@@ -18,24 +18,24 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// TrackdetailService contains methods and other services that help with
+// TrackDetailService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewTrackdetailService] method instead.
-type TrackdetailService struct {
+// the [NewTrackDetailService] method instead.
+type TrackDetailService struct {
 	Options []option.RequestOption
-	History TrackdetailHistoryService
+	History TrackDetailHistoryService
 }
 
-// NewTrackdetailService generates a new service that applies the given options to
+// NewTrackDetailService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewTrackdetailService(opts ...option.RequestOption) (r TrackdetailService) {
-	r = TrackdetailService{}
+func NewTrackDetailService(opts ...option.RequestOption) (r TrackDetailService) {
+	r = TrackDetailService{}
 	r.Options = opts
-	r.History = NewTrackdetailHistoryService(opts...)
+	r.History = NewTrackDetailHistoryService(opts...)
 	return
 }
 
@@ -43,7 +43,7 @@ func NewTrackdetailService(opts ...option.RequestOption) (r TrackdetailService) 
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *TrackdetailService) List(ctx context.Context, query TrackdetailListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[TrackdetailListResponse], err error) {
+func (r *TrackDetailService) List(ctx context.Context, query TrackDetailListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[TrackDetailListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -64,7 +64,7 @@ func (r *TrackdetailService) List(ctx context.Context, query TrackdetailListPara
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *TrackdetailService) ListAutoPaging(ctx context.Context, query TrackdetailListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[TrackdetailListResponse] {
+func (r *TrackDetailService) ListAutoPaging(ctx context.Context, query TrackDetailListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[TrackDetailListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -73,7 +73,7 @@ func (r *TrackdetailService) ListAutoPaging(ctx context.Context, query Trackdeta
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *TrackdetailService) Count(ctx context.Context, query TrackdetailCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *TrackDetailService) Count(ctx context.Context, query TrackDetailCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/trackdetails/count"
@@ -86,7 +86,7 @@ func (r *TrackdetailService) Count(ctx context.Context, query TrackdetailCountPa
 // not intended to be used for automated feeds into UDL. Data providers should
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
-func (r *TrackdetailService) NewBulk(ctx context.Context, body TrackdetailNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *TrackDetailService) NewBulk(ctx context.Context, body TrackDetailNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/trackdetails/createBulk"
@@ -96,7 +96,7 @@ func (r *TrackdetailService) NewBulk(ctx context.Context, body TrackdetailNewBul
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *TrackdetailService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *TrackDetailService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/trackdetails/queryhelp"
@@ -112,7 +112,7 @@ func (r *TrackdetailService) Queryhelp(ctx context.Context, opts ...option.Reque
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *TrackdetailService) Tuple(ctx context.Context, query TrackdetailTupleParams, opts ...option.RequestOption) (res *[]TrackDetailsFull, err error) {
+func (r *TrackDetailService) Tuple(ctx context.Context, query TrackDetailTupleParams, opts ...option.RequestOption) (res *[]TrackDetailsFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/trackdetails/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -124,7 +124,7 @@ func (r *TrackdetailService) Tuple(ctx context.Context, query TrackdetailTuplePa
 // heading/velocity of an object such as an aircraft, marine vessel, etc at a
 // particular timestamp. It also includes optional information regarding the
 // identity/type of the target object and other amplifying object data, if known.
-type TrackdetailListResponse struct {
+type TrackDetailListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -143,7 +143,7 @@ type TrackdetailListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode TrackdetailListResponseDataMode `json:"dataMode,required"`
+	DataMode TrackDetailListResponseDataMode `json:"dataMode,required"`
 	// WGS-84 latitude of the track object, in degrees. -90 to 90 degrees (negative
 	// values south of equator).
 	Lat float64 `json:"lat,required"`
@@ -381,7 +381,7 @@ type TrackdetailListResponse struct {
 	// UNKNOWN: Environment is not known.
 	//
 	// Any of "AIR", "LAND", "SPACE", "SURFACE", "SUBSURFACE", "UNKNOWN".
-	Env TrackdetailListResponseEnv `json:"env"`
+	Env TrackDetailListResponseEnv `json:"env"`
 	// The error in the Area Orientation. Area Orientation is the angle or roll in
 	// degrees, between area semi-minor axis and plane defined by local vertical and
 	// area semi-major axis. When reported without major and minor axis, it is angle
@@ -699,7 +699,7 @@ type TrackdetailListResponse struct {
 	//
 	// Any of "ASSUMED FRIEND", "FRIEND", "HOSTILE", "NEUTRAL", "PENDING", "SUSPECT",
 	// "UNKNOWN".
-	ObjIdent TrackdetailListResponseObjIdent `json:"objIdent"`
+	ObjIdent TrackDetailListResponseObjIdent `json:"objIdent"`
 	// Nationality of the tracked object.
 	ObjNat string `json:"objNat"`
 	// The object platform type is intended as, but not constrained to, MIL-STD-6016
@@ -1033,8 +1033,8 @@ type TrackdetailListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r TrackdetailListResponse) RawJSON() string { return r.JSON.raw }
-func (r *TrackdetailListResponse) UnmarshalJSON(data []byte) error {
+func (r TrackDetailListResponse) RawJSON() string { return r.JSON.raw }
+func (r *TrackDetailListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -1052,13 +1052,13 @@ func (r *TrackdetailListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type TrackdetailListResponseDataMode string
+type TrackDetailListResponseDataMode string
 
 const (
-	TrackdetailListResponseDataModeReal      TrackdetailListResponseDataMode = "REAL"
-	TrackdetailListResponseDataModeTest      TrackdetailListResponseDataMode = "TEST"
-	TrackdetailListResponseDataModeSimulated TrackdetailListResponseDataMode = "SIMULATED"
-	TrackdetailListResponseDataModeExercise  TrackdetailListResponseDataMode = "EXERCISE"
+	TrackDetailListResponseDataModeReal      TrackDetailListResponseDataMode = "REAL"
+	TrackDetailListResponseDataModeTest      TrackDetailListResponseDataMode = "TEST"
+	TrackDetailListResponseDataModeSimulated TrackDetailListResponseDataMode = "SIMULATED"
+	TrackDetailListResponseDataModeExercise  TrackDetailListResponseDataMode = "EXERCISE"
 )
 
 // The track environment type (AIR, LAND, SPACE, SUBSURFACE, SURFACE, UNKNOWN):
@@ -1076,15 +1076,15 @@ const (
 // SUBSURFACE: Below the surface of a body of water.
 //
 // UNKNOWN: Environment is not known.
-type TrackdetailListResponseEnv string
+type TrackDetailListResponseEnv string
 
 const (
-	TrackdetailListResponseEnvAir        TrackdetailListResponseEnv = "AIR"
-	TrackdetailListResponseEnvLand       TrackdetailListResponseEnv = "LAND"
-	TrackdetailListResponseEnvSpace      TrackdetailListResponseEnv = "SPACE"
-	TrackdetailListResponseEnvSurface    TrackdetailListResponseEnv = "SURFACE"
-	TrackdetailListResponseEnvSubsurface TrackdetailListResponseEnv = "SUBSURFACE"
-	TrackdetailListResponseEnvUnknown    TrackdetailListResponseEnv = "UNKNOWN"
+	TrackDetailListResponseEnvAir        TrackDetailListResponseEnv = "AIR"
+	TrackDetailListResponseEnvLand       TrackDetailListResponseEnv = "LAND"
+	TrackDetailListResponseEnvSpace      TrackDetailListResponseEnv = "SPACE"
+	TrackDetailListResponseEnvSurface    TrackDetailListResponseEnv = "SURFACE"
+	TrackDetailListResponseEnvSubsurface TrackDetailListResponseEnv = "SUBSURFACE"
+	TrackDetailListResponseEnvUnknown    TrackDetailListResponseEnv = "UNKNOWN"
 )
 
 // The estimated identity of the track object (ASSUMED FRIEND, FRIEND, HOSTILE,
@@ -1111,19 +1111,19 @@ const (
 //
 // UNKNOWN: Track object which has been evaluated and does not meet criteria for
 // any standard identity.
-type TrackdetailListResponseObjIdent string
+type TrackDetailListResponseObjIdent string
 
 const (
-	TrackdetailListResponseObjIdentAssumedFriend TrackdetailListResponseObjIdent = "ASSUMED FRIEND"
-	TrackdetailListResponseObjIdentFriend        TrackdetailListResponseObjIdent = "FRIEND"
-	TrackdetailListResponseObjIdentHostile       TrackdetailListResponseObjIdent = "HOSTILE"
-	TrackdetailListResponseObjIdentNeutral       TrackdetailListResponseObjIdent = "NEUTRAL"
-	TrackdetailListResponseObjIdentPending       TrackdetailListResponseObjIdent = "PENDING"
-	TrackdetailListResponseObjIdentSuspect       TrackdetailListResponseObjIdent = "SUSPECT"
-	TrackdetailListResponseObjIdentUnknown       TrackdetailListResponseObjIdent = "UNKNOWN"
+	TrackDetailListResponseObjIdentAssumedFriend TrackDetailListResponseObjIdent = "ASSUMED FRIEND"
+	TrackDetailListResponseObjIdentFriend        TrackDetailListResponseObjIdent = "FRIEND"
+	TrackDetailListResponseObjIdentHostile       TrackDetailListResponseObjIdent = "HOSTILE"
+	TrackDetailListResponseObjIdentNeutral       TrackDetailListResponseObjIdent = "NEUTRAL"
+	TrackDetailListResponseObjIdentPending       TrackDetailListResponseObjIdent = "PENDING"
+	TrackDetailListResponseObjIdentSuspect       TrackDetailListResponseObjIdent = "SUSPECT"
+	TrackDetailListResponseObjIdentUnknown       TrackDetailListResponseObjIdent = "UNKNOWN"
 )
 
-type TrackdetailListParams struct {
+type TrackDetailListParams struct {
 	// Track timestamp in ISO8601 UTC format with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	Ts          time.Time        `query:"ts,required" format:"date-time" json:"-"`
@@ -1134,17 +1134,17 @@ type TrackdetailListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackdetailListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TrackDetailListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [TrackdetailListParams]'s query parameters as `url.Values`.
-func (r TrackdetailListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [TrackDetailListParams]'s query parameters as `url.Values`.
+func (r TrackDetailListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type TrackdetailCountParams struct {
+type TrackDetailCountParams struct {
 	// Track timestamp in ISO8601 UTC format with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	Ts          time.Time        `query:"ts,required" format:"date-time" json:"-"`
@@ -1155,26 +1155,26 @@ type TrackdetailCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackdetailCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TrackDetailCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [TrackdetailCountParams]'s query parameters as `url.Values`.
-func (r TrackdetailCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [TrackDetailCountParams]'s query parameters as `url.Values`.
+func (r TrackDetailCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type TrackdetailNewBulkParams struct {
-	Body []TrackdetailNewBulkParamsBody
+type TrackDetailNewBulkParams struct {
+	Body []TrackDetailNewBulkParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackdetailNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TrackDetailNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r TrackdetailNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r TrackDetailNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -1186,7 +1186,7 @@ func (r TrackdetailNewBulkParams) MarshalJSON() (data []byte, err error) {
 //
 // The properties ClassificationMarking, DataMode, Lat, Lon, Source, Ts are
 // required.
-type TrackdetailNewBulkParamsBody struct {
+type TrackDetailNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1933,25 +1933,25 @@ type TrackdetailNewBulkParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackdetailNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-func (r TrackdetailNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow TrackdetailNewBulkParamsBody
+func (f TrackDetailNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r TrackDetailNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow TrackDetailNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[TrackdetailNewBulkParamsBody](
+	apijson.RegisterFieldValidator[TrackDetailNewBulkParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
-	apijson.RegisterFieldValidator[TrackdetailNewBulkParamsBody](
+	apijson.RegisterFieldValidator[TrackDetailNewBulkParamsBody](
 		"Env", false, "AIR", "LAND", "SPACE", "SURFACE", "SUBSURFACE", "UNKNOWN",
 	)
-	apijson.RegisterFieldValidator[TrackdetailNewBulkParamsBody](
+	apijson.RegisterFieldValidator[TrackDetailNewBulkParamsBody](
 		"ObjIdent", false, "ASSUMED FRIEND", "FRIEND", "HOSTILE", "NEUTRAL", "PENDING", "SUSPECT", "UNKNOWN",
 	)
 }
 
-type TrackdetailTupleParams struct {
+type TrackDetailTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -1967,10 +1967,10 @@ type TrackdetailTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackdetailTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TrackDetailTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [TrackdetailTupleParams]'s query parameters as `url.Values`.
-func (r TrackdetailTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [TrackDetailTupleParams]'s query parameters as `url.Values`.
+func (r TrackDetailTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

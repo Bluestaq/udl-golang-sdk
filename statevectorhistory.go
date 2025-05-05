@@ -15,21 +15,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
 )
 
-// StatevectorHistoryService contains methods and other services that help with
+// StateVectorHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewStatevectorHistoryService] method instead.
-type StatevectorHistoryService struct {
+// the [NewStateVectorHistoryService] method instead.
+type StateVectorHistoryService struct {
 	Options []option.RequestOption
 }
 
-// NewStatevectorHistoryService generates a new service that applies the given
+// NewStateVectorHistoryService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewStatevectorHistoryService(opts ...option.RequestOption) (r StatevectorHistoryService) {
-	r = StatevectorHistoryService{}
+func NewStateVectorHistoryService(opts ...option.RequestOption) (r StateVectorHistoryService) {
+	r = StateVectorHistoryService{}
 	r.Options = opts
 	return
 }
@@ -38,7 +38,7 @@ func NewStatevectorHistoryService(opts ...option.RequestOption) (r StatevectorHi
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *StatevectorHistoryService) List(ctx context.Context, query StatevectorHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[StateVectorFull], err error) {
+func (r *StateVectorHistoryService) List(ctx context.Context, query StateVectorHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[StateVectorFull], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -59,7 +59,7 @@ func (r *StatevectorHistoryService) List(ctx context.Context, query StatevectorH
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *StatevectorHistoryService) ListAutoPaging(ctx context.Context, query StatevectorHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[StateVectorFull] {
+func (r *StateVectorHistoryService) ListAutoPaging(ctx context.Context, query StateVectorHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[StateVectorFull] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -68,7 +68,7 @@ func (r *StatevectorHistoryService) ListAutoPaging(ctx context.Context, query St
 // Secure Content Store. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *StatevectorHistoryService) Aodr(ctx context.Context, query StatevectorHistoryAodrParams, opts ...option.RequestOption) (err error) {
+func (r *StateVectorHistoryService) Aodr(ctx context.Context, query StateVectorHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/statevector/history/aodr"
@@ -81,7 +81,7 @@ func (r *StatevectorHistoryService) Aodr(ctx context.Context, query StatevectorH
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *StatevectorHistoryService) Count(ctx context.Context, query StatevectorHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *StateVectorHistoryService) Count(ctx context.Context, query StateVectorHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/statevector/history/count"
@@ -89,7 +89,7 @@ func (r *StatevectorHistoryService) Count(ctx context.Context, query Statevector
 	return
 }
 
-type StatevectorHistoryListParams struct {
+type StateVectorHistoryListParams struct {
 	// Time of validity for state vector in ISO 8601 UTC datetime format, with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	Epoch time.Time `query:"epoch,required" format:"date-time" json:"-"`
@@ -104,18 +104,18 @@ type StatevectorHistoryListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatevectorHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f StateVectorHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [StatevectorHistoryListParams]'s query parameters as
+// URLQuery serializes [StateVectorHistoryListParams]'s query parameters as
 // `url.Values`.
-func (r StatevectorHistoryListParams) URLQuery() (v url.Values, err error) {
+func (r StateVectorHistoryListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type StatevectorHistoryAodrParams struct {
+type StateVectorHistoryAodrParams struct {
 	// Time of validity for state vector in ISO 8601 UTC datetime format, with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	Epoch time.Time `query:"epoch,required" format:"date-time" json:"-"`
@@ -141,18 +141,18 @@ type StatevectorHistoryAodrParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatevectorHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f StateVectorHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [StatevectorHistoryAodrParams]'s query parameters as
+// URLQuery serializes [StateVectorHistoryAodrParams]'s query parameters as
 // `url.Values`.
-func (r StatevectorHistoryAodrParams) URLQuery() (v url.Values, err error) {
+func (r StateVectorHistoryAodrParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type StatevectorHistoryCountParams struct {
+type StateVectorHistoryCountParams struct {
 	// Time of validity for state vector in ISO 8601 UTC datetime format, with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	Epoch       time.Time        `query:"epoch,required" format:"date-time" json:"-"`
@@ -163,11 +163,11 @@ type StatevectorHistoryCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatevectorHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f StateVectorHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [StatevectorHistoryCountParams]'s query parameters as
+// URLQuery serializes [StateVectorHistoryCountParams]'s query parameters as
 // `url.Values`.
-func (r StatevectorHistoryCountParams) URLQuery() (v url.Values, err error) {
+func (r StateVectorHistoryCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

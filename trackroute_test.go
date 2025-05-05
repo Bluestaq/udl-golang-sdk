@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestTrackrouteNewWithOptionalParams(t *testing.T) {
+func TestTrackRouteNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,14 +27,14 @@ func TestTrackrouteNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Trackroute.New(context.TODO(), unifieddatalibrary.TrackrouteNewParams{
+	err := client.TrackRoute.New(context.TODO(), unifieddatalibrary.TrackRouteNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.TrackrouteNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.TrackRouteNewParamsDataModeTest,
 		LastUpdateDate:        time.Now(),
 		Source:                "Bluestaq",
 		Type:                  "AIR REFUELING",
 		ID:                    unifieddatalibrary.String("026dd511-8ba5-47d3-9909-836149f87686"),
-		AltitudeBlocks: []unifieddatalibrary.TrackrouteNewParamsAltitudeBlock{{
+		AltitudeBlocks: []unifieddatalibrary.TrackRouteNewParamsAltitudeBlock{{
 			AltitudeSequenceID: unifieddatalibrary.String("A1"),
 			LowerAltitude:      unifieddatalibrary.Float(27000.1),
 			UpperAltitude:      unifieddatalibrary.Float(27200.5),
@@ -49,7 +49,7 @@ func TestTrackrouteNewWithOptionalParams(t *testing.T) {
 		LastUsedDate:    unifieddatalibrary.Time(time.Now()),
 		LocationTrackID: unifieddatalibrary.String("POACHR"),
 		Origin:          unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
-		Poc: []unifieddatalibrary.TrackrouteNewParamsPoc{{
+		Poc: []unifieddatalibrary.TrackRouteNewParamsPoc{{
 			Office:        unifieddatalibrary.String("A34"),
 			Phone:         unifieddatalibrary.String("8675309"),
 			PocName:       unifieddatalibrary.String("Fred Smith"),
@@ -65,7 +65,7 @@ func TestTrackrouteNewWithOptionalParams(t *testing.T) {
 		RegionCode:           unifieddatalibrary.String("5"),
 		RegionName:           unifieddatalibrary.String("North America"),
 		ReviewDate:           unifieddatalibrary.Time(time.Now()),
-		RoutePoints: []unifieddatalibrary.TrackrouteNewParamsRoutePoint{{
+		RoutePoints: []unifieddatalibrary.TrackRouteNewParamsRoutePoint{{
 			AltCountryCode: unifieddatalibrary.String("IZ"),
 			CountryCode:    unifieddatalibrary.String("NL"),
 			DafifPt:        unifieddatalibrary.Bool(true),
@@ -98,7 +98,7 @@ func TestTrackrouteNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestTrackrouteUpdateWithOptionalParams(t *testing.T) {
+func TestTrackRouteUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -111,17 +111,17 @@ func TestTrackrouteUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Trackroute.Update(
+	err := client.TrackRoute.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.TrackrouteUpdateParams{
+		unifieddatalibrary.TrackRouteUpdateParams{
 			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.TrackrouteUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.TrackRouteUpdateParamsDataModeTest,
 			LastUpdateDate:        time.Now(),
 			Source:                "Bluestaq",
 			Type:                  "AIR REFUELING",
 			ID:                    unifieddatalibrary.String("026dd511-8ba5-47d3-9909-836149f87686"),
-			AltitudeBlocks: []unifieddatalibrary.TrackrouteUpdateParamsAltitudeBlock{{
+			AltitudeBlocks: []unifieddatalibrary.TrackRouteUpdateParamsAltitudeBlock{{
 				AltitudeSequenceID: unifieddatalibrary.String("A1"),
 				LowerAltitude:      unifieddatalibrary.Float(27000.1),
 				UpperAltitude:      unifieddatalibrary.Float(27200.5),
@@ -136,7 +136,7 @@ func TestTrackrouteUpdateWithOptionalParams(t *testing.T) {
 			LastUsedDate:    unifieddatalibrary.Time(time.Now()),
 			LocationTrackID: unifieddatalibrary.String("POACHR"),
 			Origin:          unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
-			Poc: []unifieddatalibrary.TrackrouteUpdateParamsPoc{{
+			Poc: []unifieddatalibrary.TrackRouteUpdateParamsPoc{{
 				Office:        unifieddatalibrary.String("A34"),
 				Phone:         unifieddatalibrary.String("8675309"),
 				PocName:       unifieddatalibrary.String("Fred Smith"),
@@ -152,7 +152,7 @@ func TestTrackrouteUpdateWithOptionalParams(t *testing.T) {
 			RegionCode:           unifieddatalibrary.String("5"),
 			RegionName:           unifieddatalibrary.String("North America"),
 			ReviewDate:           unifieddatalibrary.Time(time.Now()),
-			RoutePoints: []unifieddatalibrary.TrackrouteUpdateParamsRoutePoint{{
+			RoutePoints: []unifieddatalibrary.TrackRouteUpdateParamsRoutePoint{{
 				AltCountryCode: unifieddatalibrary.String("IZ"),
 				CountryCode:    unifieddatalibrary.String("NL"),
 				DafifPt:        unifieddatalibrary.Bool(true),
@@ -186,7 +186,7 @@ func TestTrackrouteUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestTrackrouteListWithOptionalParams(t *testing.T) {
+func TestTrackRouteListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -199,7 +199,7 @@ func TestTrackrouteListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Trackroute.List(context.TODO(), unifieddatalibrary.TrackrouteListParams{
+	_, err := client.TrackRoute.List(context.TODO(), unifieddatalibrary.TrackRouteListParams{
 		LastUpdateDate: time.Now(),
 		FirstResult:    unifieddatalibrary.Int(0),
 		MaxResults:     unifieddatalibrary.Int(0),
@@ -213,7 +213,7 @@ func TestTrackrouteListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestTrackrouteDelete(t *testing.T) {
+func TestTrackRouteDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -226,7 +226,7 @@ func TestTrackrouteDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Trackroute.Delete(context.TODO(), "id")
+	err := client.TrackRoute.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -236,7 +236,7 @@ func TestTrackrouteDelete(t *testing.T) {
 	}
 }
 
-func TestTrackrouteCountWithOptionalParams(t *testing.T) {
+func TestTrackRouteCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -249,7 +249,7 @@ func TestTrackrouteCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Trackroute.Count(context.TODO(), unifieddatalibrary.TrackrouteCountParams{
+	_, err := client.TrackRoute.Count(context.TODO(), unifieddatalibrary.TrackRouteCountParams{
 		LastUpdateDate: time.Now(),
 		FirstResult:    unifieddatalibrary.Int(0),
 		MaxResults:     unifieddatalibrary.Int(0),
@@ -263,7 +263,7 @@ func TestTrackrouteCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestTrackrouteNewBulk(t *testing.T) {
+func TestTrackRouteNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -276,15 +276,15 @@ func TestTrackrouteNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Trackroute.NewBulk(context.TODO(), unifieddatalibrary.TrackrouteNewBulkParams{
-		Body: []unifieddatalibrary.TrackrouteNewBulkParamsBody{{
+	err := client.TrackRoute.NewBulk(context.TODO(), unifieddatalibrary.TrackRouteNewBulkParams{
+		Body: []unifieddatalibrary.TrackRouteNewBulkParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			LastUpdateDate:        time.Now(),
 			Source:                "Bluestaq",
 			Type:                  "AIR REFUELING",
 			ID:                    unifieddatalibrary.String("026dd511-8ba5-47d3-9909-836149f87686"),
-			AltitudeBlocks: []unifieddatalibrary.TrackrouteNewBulkParamsBodyAltitudeBlock{{
+			AltitudeBlocks: []unifieddatalibrary.TrackRouteNewBulkParamsBodyAltitudeBlock{{
 				AltitudeSequenceID: unifieddatalibrary.String("A1"),
 				LowerAltitude:      unifieddatalibrary.Float(27000.1),
 				UpperAltitude:      unifieddatalibrary.Float(27200.5),
@@ -299,7 +299,7 @@ func TestTrackrouteNewBulk(t *testing.T) {
 			LastUsedDate:    unifieddatalibrary.Time(time.Now()),
 			LocationTrackID: unifieddatalibrary.String("POACHR"),
 			Origin:          unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
-			Poc: []unifieddatalibrary.TrackrouteNewBulkParamsBodyPoc{{
+			Poc: []unifieddatalibrary.TrackRouteNewBulkParamsBodyPoc{{
 				Office:        unifieddatalibrary.String("A34"),
 				Phone:         unifieddatalibrary.String("8675309"),
 				PocName:       unifieddatalibrary.String("Fred Smith"),
@@ -315,7 +315,7 @@ func TestTrackrouteNewBulk(t *testing.T) {
 			RegionCode:           unifieddatalibrary.String("5"),
 			RegionName:           unifieddatalibrary.String("North America"),
 			ReviewDate:           unifieddatalibrary.Time(time.Now()),
-			RoutePoints: []unifieddatalibrary.TrackrouteNewBulkParamsBodyRoutePoint{{
+			RoutePoints: []unifieddatalibrary.TrackRouteNewBulkParamsBodyRoutePoint{{
 				AltCountryCode: unifieddatalibrary.String("IZ"),
 				CountryCode:    unifieddatalibrary.String("NL"),
 				DafifPt:        unifieddatalibrary.Bool(true),
@@ -349,7 +349,7 @@ func TestTrackrouteNewBulk(t *testing.T) {
 	}
 }
 
-func TestTrackrouteGetWithOptionalParams(t *testing.T) {
+func TestTrackRouteGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -362,10 +362,10 @@ func TestTrackrouteGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Trackroute.Get(
+	_, err := client.TrackRoute.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.TrackrouteGetParams{
+		unifieddatalibrary.TrackRouteGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -379,7 +379,7 @@ func TestTrackrouteGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestTrackrouteQueryhelp(t *testing.T) {
+func TestTrackRouteQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -392,7 +392,7 @@ func TestTrackrouteQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Trackroute.Queryhelp(context.TODO())
+	err := client.TrackRoute.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -402,7 +402,7 @@ func TestTrackrouteQueryhelp(t *testing.T) {
 	}
 }
 
-func TestTrackrouteTupleWithOptionalParams(t *testing.T) {
+func TestTrackRouteTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -415,7 +415,7 @@ func TestTrackrouteTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Trackroute.Tuple(context.TODO(), unifieddatalibrary.TrackrouteTupleParams{
+	_, err := client.TrackRoute.Tuple(context.TODO(), unifieddatalibrary.TrackRouteTupleParams{
 		Columns:        "columns",
 		LastUpdateDate: time.Now(),
 		FirstResult:    unifieddatalibrary.Int(0),
@@ -430,7 +430,7 @@ func TestTrackrouteTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestTrackrouteUnvalidatedPublishWithOptionalParams(t *testing.T) {
+func TestTrackRouteUnvalidatedPublishWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -443,14 +443,14 @@ func TestTrackrouteUnvalidatedPublishWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Trackroute.UnvalidatedPublish(context.TODO(), unifieddatalibrary.TrackrouteUnvalidatedPublishParams{
+	err := client.TrackRoute.UnvalidatedPublish(context.TODO(), unifieddatalibrary.TrackRouteUnvalidatedPublishParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.TrackrouteUnvalidatedPublishParamsDataModeTest,
+		DataMode:              unifieddatalibrary.TrackRouteUnvalidatedPublishParamsDataModeTest,
 		LastUpdateDate:        time.Now(),
 		Source:                "Bluestaq",
 		Type:                  "AIR REFUELING",
 		ID:                    unifieddatalibrary.String("026dd511-8ba5-47d3-9909-836149f87686"),
-		AltitudeBlocks: []unifieddatalibrary.TrackrouteUnvalidatedPublishParamsAltitudeBlock{{
+		AltitudeBlocks: []unifieddatalibrary.TrackRouteUnvalidatedPublishParamsAltitudeBlock{{
 			AltitudeSequenceID: unifieddatalibrary.String("A1"),
 			LowerAltitude:      unifieddatalibrary.Float(27000.1),
 			UpperAltitude:      unifieddatalibrary.Float(27200.5),
@@ -465,7 +465,7 @@ func TestTrackrouteUnvalidatedPublishWithOptionalParams(t *testing.T) {
 		LastUsedDate:    unifieddatalibrary.Time(time.Now()),
 		LocationTrackID: unifieddatalibrary.String("POACHR"),
 		Origin:          unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
-		Poc: []unifieddatalibrary.TrackrouteUnvalidatedPublishParamsPoc{{
+		Poc: []unifieddatalibrary.TrackRouteUnvalidatedPublishParamsPoc{{
 			Office:        unifieddatalibrary.String("A34"),
 			Phone:         unifieddatalibrary.String("8675309"),
 			PocName:       unifieddatalibrary.String("Fred Smith"),
@@ -481,7 +481,7 @@ func TestTrackrouteUnvalidatedPublishWithOptionalParams(t *testing.T) {
 		RegionCode:           unifieddatalibrary.String("5"),
 		RegionName:           unifieddatalibrary.String("North America"),
 		ReviewDate:           unifieddatalibrary.Time(time.Now()),
-		RoutePoints: []unifieddatalibrary.TrackrouteUnvalidatedPublishParamsRoutePoint{{
+		RoutePoints: []unifieddatalibrary.TrackRouteUnvalidatedPublishParamsRoutePoint{{
 			AltCountryCode: unifieddatalibrary.String("IZ"),
 			CountryCode:    unifieddatalibrary.String("NL"),
 			DafifPt:        unifieddatalibrary.Bool(true),

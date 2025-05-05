@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSurfaceobstructionNewWithOptionalParams(t *testing.T) {
+func TestSurfaceObstructionNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,9 +26,9 @@ func TestSurfaceobstructionNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Surfaceobstruction.New(context.TODO(), unifieddatalibrary.SurfaceobstructionNewParams{
+	err := client.SurfaceObstruction.New(context.TODO(), unifieddatalibrary.SurfaceObstructionNewParams{
 		ClassificationMarking:     "U",
-		DataMode:                  unifieddatalibrary.SurfaceobstructionNewParamsDataModeTest,
+		DataMode:                  unifieddatalibrary.SurfaceObstructionNewParamsDataModeTest,
 		IDSurface:                 "be831d39-1822-da9f-7ace-6cc5643397dc",
 		Source:                    "Bluestaq",
 		ID:                        unifieddatalibrary.String("be831d39-1822-da9f-7ace-6cc5643397dc"),
@@ -52,7 +52,7 @@ func TestSurfaceobstructionNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSurfaceobstructionUpdateWithOptionalParams(t *testing.T) {
+func TestSurfaceObstructionUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -65,12 +65,12 @@ func TestSurfaceobstructionUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Surfaceobstruction.Update(
+	err := client.SurfaceObstruction.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SurfaceobstructionUpdateParams{
+		unifieddatalibrary.SurfaceObstructionUpdateParams{
 			ClassificationMarking:     "U",
-			DataMode:                  unifieddatalibrary.SurfaceobstructionUpdateParamsDataModeTest,
+			DataMode:                  unifieddatalibrary.SurfaceObstructionUpdateParamsDataModeTest,
 			IDSurface:                 "be831d39-1822-da9f-7ace-6cc5643397dc",
 			Source:                    "Bluestaq",
 			ID:                        unifieddatalibrary.String("be831d39-1822-da9f-7ace-6cc5643397dc"),
@@ -95,7 +95,7 @@ func TestSurfaceobstructionUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSurfaceobstructionListWithOptionalParams(t *testing.T) {
+func TestSurfaceObstructionListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -108,7 +108,7 @@ func TestSurfaceobstructionListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Surfaceobstruction.List(context.TODO(), unifieddatalibrary.SurfaceobstructionListParams{
+	_, err := client.SurfaceObstruction.List(context.TODO(), unifieddatalibrary.SurfaceObstructionListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -121,7 +121,7 @@ func TestSurfaceobstructionListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSurfaceobstructionDelete(t *testing.T) {
+func TestSurfaceObstructionDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -134,7 +134,7 @@ func TestSurfaceobstructionDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Surfaceobstruction.Delete(context.TODO(), "id")
+	err := client.SurfaceObstruction.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -144,7 +144,7 @@ func TestSurfaceobstructionDelete(t *testing.T) {
 	}
 }
 
-func TestSurfaceobstructionCountWithOptionalParams(t *testing.T) {
+func TestSurfaceObstructionCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -157,7 +157,7 @@ func TestSurfaceobstructionCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Surfaceobstruction.Count(context.TODO(), unifieddatalibrary.SurfaceobstructionCountParams{
+	_, err := client.SurfaceObstruction.Count(context.TODO(), unifieddatalibrary.SurfaceObstructionCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -170,7 +170,7 @@ func TestSurfaceobstructionCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSurfaceobstructionGetWithOptionalParams(t *testing.T) {
+func TestSurfaceObstructionGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -183,10 +183,10 @@ func TestSurfaceobstructionGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Surfaceobstruction.Get(
+	_, err := client.SurfaceObstruction.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SurfaceobstructionGetParams{
+		unifieddatalibrary.SurfaceObstructionGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -200,7 +200,7 @@ func TestSurfaceobstructionGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSurfaceobstructionQueryhelp(t *testing.T) {
+func TestSurfaceObstructionQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -213,7 +213,7 @@ func TestSurfaceobstructionQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Surfaceobstruction.Queryhelp(context.TODO())
+	err := client.SurfaceObstruction.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -223,7 +223,7 @@ func TestSurfaceobstructionQueryhelp(t *testing.T) {
 	}
 }
 
-func TestSurfaceobstructionTupleWithOptionalParams(t *testing.T) {
+func TestSurfaceObstructionTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -236,7 +236,7 @@ func TestSurfaceobstructionTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Surfaceobstruction.Tuple(context.TODO(), unifieddatalibrary.SurfaceobstructionTupleParams{
+	_, err := client.SurfaceObstruction.Tuple(context.TODO(), unifieddatalibrary.SurfaceObstructionTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -250,7 +250,7 @@ func TestSurfaceobstructionTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSurfaceobstructionUnvalidatedPublish(t *testing.T) {
+func TestSurfaceObstructionUnvalidatedPublish(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -263,8 +263,8 @@ func TestSurfaceobstructionUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Surfaceobstruction.UnvalidatedPublish(context.TODO(), unifieddatalibrary.SurfaceobstructionUnvalidatedPublishParams{
-		Body: []unifieddatalibrary.SurfaceobstructionUnvalidatedPublishParamsBody{{
+	err := client.SurfaceObstruction.UnvalidatedPublish(context.TODO(), unifieddatalibrary.SurfaceObstructionUnvalidatedPublishParams{
+		Body: []unifieddatalibrary.SurfaceObstructionUnvalidatedPublishParamsBody{{
 			ClassificationMarking:     "U",
 			DataMode:                  "TEST",
 			IDSurface:                 "be831d39-1822-da9f-7ace-6cc5643397dc",

@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestLaunchdetectionNewWithOptionalParams(t *testing.T) {
+func TestLaunchDetectionNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,9 +27,9 @@ func TestLaunchdetectionNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchdetection.New(context.TODO(), unifieddatalibrary.LaunchdetectionNewParams{
+	err := client.LaunchDetection.New(context.TODO(), unifieddatalibrary.LaunchDetectionNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.LaunchdetectionNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.LaunchDetectionNewParamsDataModeTest,
 		MessageType:           "Example-Msg-Type",
 		ObservationLatitude:   45.23,
 		ObservationLongitude:  1.23,
@@ -60,7 +60,7 @@ func TestLaunchdetectionNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchdetectionUpdateWithOptionalParams(t *testing.T) {
+func TestLaunchDetectionUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -73,12 +73,12 @@ func TestLaunchdetectionUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchdetection.Update(
+	err := client.LaunchDetection.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.LaunchdetectionUpdateParams{
+		unifieddatalibrary.LaunchDetectionUpdateParams{
 			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.LaunchdetectionUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.LaunchDetectionUpdateParamsDataModeTest,
 			MessageType:           "Example-Msg-Type",
 			ObservationLatitude:   45.23,
 			ObservationLongitude:  1.23,
@@ -110,7 +110,7 @@ func TestLaunchdetectionUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchdetectionListWithOptionalParams(t *testing.T) {
+func TestLaunchDetectionListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -123,7 +123,7 @@ func TestLaunchdetectionListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchdetection.List(context.TODO(), unifieddatalibrary.LaunchdetectionListParams{
+	_, err := client.LaunchDetection.List(context.TODO(), unifieddatalibrary.LaunchDetectionListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -136,7 +136,7 @@ func TestLaunchdetectionListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchdetectionDelete(t *testing.T) {
+func TestLaunchDetectionDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -149,7 +149,7 @@ func TestLaunchdetectionDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchdetection.Delete(context.TODO(), "id")
+	err := client.LaunchDetection.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -159,7 +159,7 @@ func TestLaunchdetectionDelete(t *testing.T) {
 	}
 }
 
-func TestLaunchdetectionCountWithOptionalParams(t *testing.T) {
+func TestLaunchDetectionCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -172,7 +172,7 @@ func TestLaunchdetectionCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchdetection.Count(context.TODO(), unifieddatalibrary.LaunchdetectionCountParams{
+	_, err := client.LaunchDetection.Count(context.TODO(), unifieddatalibrary.LaunchDetectionCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -185,7 +185,7 @@ func TestLaunchdetectionCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchdetectionGetWithOptionalParams(t *testing.T) {
+func TestLaunchDetectionGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -198,10 +198,10 @@ func TestLaunchdetectionGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchdetection.Get(
+	_, err := client.LaunchDetection.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.LaunchdetectionGetParams{
+		unifieddatalibrary.LaunchDetectionGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -215,7 +215,7 @@ func TestLaunchdetectionGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLaunchdetectionQueryhelp(t *testing.T) {
+func TestLaunchDetectionQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -228,7 +228,7 @@ func TestLaunchdetectionQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchdetection.Queryhelp(context.TODO())
+	err := client.LaunchDetection.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -238,7 +238,7 @@ func TestLaunchdetectionQueryhelp(t *testing.T) {
 	}
 }
 
-func TestLaunchdetectionTupleWithOptionalParams(t *testing.T) {
+func TestLaunchDetectionTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -251,7 +251,7 @@ func TestLaunchdetectionTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchdetection.Tuple(context.TODO(), unifieddatalibrary.LaunchdetectionTupleParams{
+	_, err := client.LaunchDetection.Tuple(context.TODO(), unifieddatalibrary.LaunchDetectionTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

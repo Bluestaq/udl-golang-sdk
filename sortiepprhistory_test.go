@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSortiepprHistoryListWithOptionalParams(t *testing.T) {
+func TestSortiePprHistoryListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,7 +26,7 @@ func TestSortiepprHistoryListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sortieppr.History.List(context.TODO(), unifieddatalibrary.SortiepprHistoryListParams{
+	_, err := client.SortiePpr.History.List(context.TODO(), unifieddatalibrary.SortiePprHistoryListParams{
 		IDSortie:    "idSortie",
 		Columns:     unifieddatalibrary.String("columns"),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -41,7 +41,7 @@ func TestSortiepprHistoryListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSortiepprHistoryAodrWithOptionalParams(t *testing.T) {
+func TestSortiePprHistoryAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -54,7 +54,7 @@ func TestSortiepprHistoryAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sortieppr.History.Aodr(context.TODO(), unifieddatalibrary.SortiepprHistoryAodrParams{
+	err := client.SortiePpr.History.Aodr(context.TODO(), unifieddatalibrary.SortiePprHistoryAodrParams{
 		IDSortie:        "idSortie",
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -72,7 +72,7 @@ func TestSortiepprHistoryAodrWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSortiepprHistoryCountWithOptionalParams(t *testing.T) {
+func TestSortiePprHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -85,7 +85,7 @@ func TestSortiepprHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sortieppr.History.Count(context.TODO(), unifieddatalibrary.SortiepprHistoryCountParams{
+	_, err := client.SortiePpr.History.Count(context.TODO(), unifieddatalibrary.SortiePprHistoryCountParams{
 		IDSortie:    "idSortie",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

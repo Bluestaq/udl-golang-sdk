@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestDiffofarrivalHistoryCountWithOptionalParams(t *testing.T) {
+func TestDiffOfArrivalHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestDiffofarrivalHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Diffofarrival.History.Count(context.TODO(), unifieddatalibrary.DiffofarrivalHistoryCountParams{
+	_, err := client.DiffOfArrival.History.Count(context.TODO(), unifieddatalibrary.DiffOfArrivalHistoryCountParams{
 		ObTime:      time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

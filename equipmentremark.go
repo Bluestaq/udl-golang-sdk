@@ -20,21 +20,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// EquipmentremarkService contains methods and other services that help with
+// EquipmentRemarkService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewEquipmentremarkService] method instead.
-type EquipmentremarkService struct {
+// the [NewEquipmentRemarkService] method instead.
+type EquipmentRemarkService struct {
 	Options []option.RequestOption
 }
 
-// NewEquipmentremarkService generates a new service that applies the given options
+// NewEquipmentRemarkService generates a new service that applies the given options
 // to each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewEquipmentremarkService(opts ...option.RequestOption) (r EquipmentremarkService) {
-	r = EquipmentremarkService{}
+func NewEquipmentRemarkService(opts ...option.RequestOption) (r EquipmentRemarkService) {
+	r = EquipmentRemarkService{}
 	r.Options = opts
 	return
 }
@@ -42,7 +42,7 @@ func NewEquipmentremarkService(opts ...option.RequestOption) (r EquipmentremarkS
 // Service operation to take a single equipmentremark record as a POST body and
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *EquipmentremarkService) New(ctx context.Context, body EquipmentremarkNewParams, opts ...option.RequestOption) (err error) {
+func (r *EquipmentRemarkService) New(ctx context.Context, body EquipmentRemarkNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/equipmentremark"
@@ -52,7 +52,7 @@ func (r *EquipmentremarkService) New(ctx context.Context, body EquipmentremarkNe
 
 // Service operation to get a single equipmentremark record by its unique ID passed
 // as a path parameter.
-func (r *EquipmentremarkService) Get(ctx context.Context, id string, query EquipmentremarkGetParams, opts ...option.RequestOption) (res *EquipmentRemarkFull, err error) {
+func (r *EquipmentRemarkService) Get(ctx context.Context, id string, query EquipmentRemarkGetParams, opts ...option.RequestOption) (res *EquipmentRemarkFull, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -67,7 +67,7 @@ func (r *EquipmentremarkService) Get(ctx context.Context, id string, query Equip
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *EquipmentremarkService) List(ctx context.Context, query EquipmentremarkListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[EquipmentRemarkAbridged], err error) {
+func (r *EquipmentRemarkService) List(ctx context.Context, query EquipmentRemarkListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[EquipmentRemarkAbridged], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -88,7 +88,7 @@ func (r *EquipmentremarkService) List(ctx context.Context, query Equipmentremark
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *EquipmentremarkService) ListAutoPaging(ctx context.Context, query EquipmentremarkListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[EquipmentRemarkAbridged] {
+func (r *EquipmentRemarkService) ListAutoPaging(ctx context.Context, query EquipmentRemarkListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[EquipmentRemarkAbridged] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -97,7 +97,7 @@ func (r *EquipmentremarkService) ListAutoPaging(ctx context.Context, query Equip
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *EquipmentremarkService) Count(ctx context.Context, query EquipmentremarkCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *EquipmentRemarkService) Count(ctx context.Context, query EquipmentRemarkCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/equipmentremark/count"
@@ -110,7 +110,7 @@ func (r *EquipmentremarkService) Count(ctx context.Context, query Equipmentremar
 // operation is not intended to be used for automated feeds into UDL. Data
 // providers should contact the UDL team for specific role assignments and for
 // instructions on setting up a permanent feed through an alternate mechanism.
-func (r *EquipmentremarkService) NewBulk(ctx context.Context, body EquipmentremarkNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *EquipmentRemarkService) NewBulk(ctx context.Context, body EquipmentRemarkNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/equipmentremark/createBulk"
@@ -120,7 +120,7 @@ func (r *EquipmentremarkService) NewBulk(ctx context.Context, body Equipmentrema
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *EquipmentremarkService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *EquipmentRemarkService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/equipmentremark/queryhelp"
@@ -136,7 +136,7 @@ func (r *EquipmentremarkService) QueryHelp(ctx context.Context, opts ...option.R
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *EquipmentremarkService) Tuple(ctx context.Context, query EquipmentremarkTupleParams, opts ...option.RequestOption) (res *[]EquipmentRemarkFull, err error) {
+func (r *EquipmentRemarkService) Tuple(ctx context.Context, query EquipmentRemarkTupleParams, opts ...option.RequestOption) (res *[]EquipmentRemarkFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/equipmentremark/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -348,7 +348,7 @@ const (
 	EquipmentRemarkFullDataModeExercise  EquipmentRemarkFullDataMode = "EXERCISE"
 )
 
-type EquipmentremarkNewParams struct {
+type EquipmentRemarkNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -367,7 +367,7 @@ type EquipmentremarkNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode EquipmentremarkNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode EquipmentRemarkNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// The ID of the Equipment to which this remark applies.
 	IDEquipment string `json:"idEquipment,required"`
 	// Source of the data.
@@ -395,10 +395,10 @@ type EquipmentremarkNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EquipmentremarkNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f EquipmentRemarkNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r EquipmentremarkNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow EquipmentremarkNewParams
+func (r EquipmentRemarkNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow EquipmentRemarkNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -416,16 +416,16 @@ func (r EquipmentremarkNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type EquipmentremarkNewParamsDataMode string
+type EquipmentRemarkNewParamsDataMode string
 
 const (
-	EquipmentremarkNewParamsDataModeReal      EquipmentremarkNewParamsDataMode = "REAL"
-	EquipmentremarkNewParamsDataModeTest      EquipmentremarkNewParamsDataMode = "TEST"
-	EquipmentremarkNewParamsDataModeSimulated EquipmentremarkNewParamsDataMode = "SIMULATED"
-	EquipmentremarkNewParamsDataModeExercise  EquipmentremarkNewParamsDataMode = "EXERCISE"
+	EquipmentRemarkNewParamsDataModeReal      EquipmentRemarkNewParamsDataMode = "REAL"
+	EquipmentRemarkNewParamsDataModeTest      EquipmentRemarkNewParamsDataMode = "TEST"
+	EquipmentRemarkNewParamsDataModeSimulated EquipmentRemarkNewParamsDataMode = "SIMULATED"
+	EquipmentRemarkNewParamsDataModeExercise  EquipmentRemarkNewParamsDataMode = "EXERCISE"
 )
 
-type EquipmentremarkGetParams struct {
+type EquipmentRemarkGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -433,18 +433,18 @@ type EquipmentremarkGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EquipmentremarkGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f EquipmentRemarkGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [EquipmentremarkGetParams]'s query parameters as
+// URLQuery serializes [EquipmentRemarkGetParams]'s query parameters as
 // `url.Values`.
-func (r EquipmentremarkGetParams) URLQuery() (v url.Values, err error) {
+func (r EquipmentRemarkGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type EquipmentremarkListParams struct {
+type EquipmentRemarkListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -452,18 +452,18 @@ type EquipmentremarkListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EquipmentremarkListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f EquipmentRemarkListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [EquipmentremarkListParams]'s query parameters as
+// URLQuery serializes [EquipmentRemarkListParams]'s query parameters as
 // `url.Values`.
-func (r EquipmentremarkListParams) URLQuery() (v url.Values, err error) {
+func (r EquipmentRemarkListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type EquipmentremarkCountParams struct {
+type EquipmentRemarkCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -471,27 +471,27 @@ type EquipmentremarkCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EquipmentremarkCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f EquipmentRemarkCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [EquipmentremarkCountParams]'s query parameters as
+// URLQuery serializes [EquipmentRemarkCountParams]'s query parameters as
 // `url.Values`.
-func (r EquipmentremarkCountParams) URLQuery() (v url.Values, err error) {
+func (r EquipmentRemarkCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type EquipmentremarkNewBulkParams struct {
-	Body []EquipmentremarkNewBulkParamsBody
+type EquipmentRemarkNewBulkParams struct {
+	Body []EquipmentRemarkNewBulkParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EquipmentremarkNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f EquipmentRemarkNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r EquipmentremarkNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r EquipmentRemarkNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -500,7 +500,7 @@ func (r EquipmentremarkNewBulkParams) MarshalJSON() (data []byte, err error) {
 //
 // The properties ClassificationMarking, DataMode, IDEquipment, Source, Text are
 // required.
-type EquipmentremarkNewBulkParamsBody struct {
+type EquipmentRemarkNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -552,19 +552,19 @@ type EquipmentremarkNewBulkParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EquipmentremarkNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-func (r EquipmentremarkNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow EquipmentremarkNewBulkParamsBody
+func (f EquipmentRemarkNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r EquipmentRemarkNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow EquipmentRemarkNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[EquipmentremarkNewBulkParamsBody](
+	apijson.RegisterFieldValidator[EquipmentRemarkNewBulkParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
-type EquipmentremarkTupleParams struct {
+type EquipmentRemarkTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -577,11 +577,11 @@ type EquipmentremarkTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EquipmentremarkTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f EquipmentRemarkTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [EquipmentremarkTupleParams]'s query parameters as
+// URLQuery serializes [EquipmentRemarkTupleParams]'s query parameters as
 // `url.Values`.
-func (r EquipmentremarkTupleParams) URLQuery() (v url.Values, err error) {
+func (r EquipmentRemarkTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

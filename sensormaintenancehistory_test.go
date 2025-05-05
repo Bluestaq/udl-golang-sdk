@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSensormaintenanceHistoryGetWithOptionalParams(t *testing.T) {
+func TestSensorMaintenanceHistoryGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestSensormaintenanceHistoryGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sensormaintenance.History.Get(context.TODO(), unifieddatalibrary.SensormaintenanceHistoryGetParams{
+	_, err := client.SensorMaintenance.History.Get(context.TODO(), unifieddatalibrary.SensorMaintenanceHistoryGetParams{
 		Columns:     unifieddatalibrary.String("columns"),
 		EndTime:     unifieddatalibrary.Time(time.Now()),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -43,7 +43,7 @@ func TestSensormaintenanceHistoryGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensormaintenanceHistoryAodrWithOptionalParams(t *testing.T) {
+func TestSensorMaintenanceHistoryAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -56,7 +56,7 @@ func TestSensormaintenanceHistoryAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sensormaintenance.History.Aodr(context.TODO(), unifieddatalibrary.SensormaintenanceHistoryAodrParams{
+	err := client.SensorMaintenance.History.Aodr(context.TODO(), unifieddatalibrary.SensorMaintenanceHistoryAodrParams{
 		Columns:         unifieddatalibrary.String("columns"),
 		EndTime:         unifieddatalibrary.Time(time.Now()),
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -75,7 +75,7 @@ func TestSensormaintenanceHistoryAodrWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensormaintenanceHistoryCountWithOptionalParams(t *testing.T) {
+func TestSensorMaintenanceHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -88,7 +88,7 @@ func TestSensormaintenanceHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sensormaintenance.History.Count(context.TODO(), unifieddatalibrary.SensormaintenanceHistoryCountParams{
+	_, err := client.SensorMaintenance.History.Count(context.TODO(), unifieddatalibrary.SensorMaintenanceHistoryCountParams{
 		EndTime:     unifieddatalibrary.Time(time.Now()),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

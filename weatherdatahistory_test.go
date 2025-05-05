@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestWeatherdataHistoryListWithOptionalParams(t *testing.T) {
+func TestWeatherDataHistoryListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestWeatherdataHistoryListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Weatherdata.History.List(context.TODO(), unifieddatalibrary.WeatherdataHistoryListParams{
+	_, err := client.WeatherData.History.List(context.TODO(), unifieddatalibrary.WeatherDataHistoryListParams{
 		ObTime:      time.Now(),
 		Columns:     unifieddatalibrary.String("columns"),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -42,7 +42,7 @@ func TestWeatherdataHistoryListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestWeatherdataHistoryAodrWithOptionalParams(t *testing.T) {
+func TestWeatherDataHistoryAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -55,7 +55,7 @@ func TestWeatherdataHistoryAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Weatherdata.History.Aodr(context.TODO(), unifieddatalibrary.WeatherdataHistoryAodrParams{
+	err := client.WeatherData.History.Aodr(context.TODO(), unifieddatalibrary.WeatherDataHistoryAodrParams{
 		ObTime:          time.Now(),
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -73,7 +73,7 @@ func TestWeatherdataHistoryAodrWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestWeatherdataHistoryCountWithOptionalParams(t *testing.T) {
+func TestWeatherDataHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -86,7 +86,7 @@ func TestWeatherdataHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Weatherdata.History.Count(context.TODO(), unifieddatalibrary.WeatherdataHistoryCountParams{
+	_, err := client.WeatherData.History.Count(context.TODO(), unifieddatalibrary.WeatherDataHistoryCountParams{
 		ObTime:      time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

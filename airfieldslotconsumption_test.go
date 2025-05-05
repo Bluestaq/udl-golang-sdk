@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestAirfieldslotconsumptionNewWithOptionalParams(t *testing.T) {
+func TestAirfieldSlotConsumptionNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,9 +27,9 @@ func TestAirfieldslotconsumptionNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Airfieldslotconsumptions.New(context.TODO(), unifieddatalibrary.AirfieldslotconsumptionNewParams{
+	err := client.AirfieldSlotConsumptions.New(context.TODO(), unifieddatalibrary.AirfieldSlotConsumptionNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.AirfieldslotconsumptionNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.AirfieldSlotConsumptionNewParamsDataModeTest,
 		IDAirfieldSlot:        "3136498f-2969-3535-1432-e984b2e2e686",
 		NumAircraft:           1,
 		Source:                "Bluestaq",
@@ -59,7 +59,7 @@ func TestAirfieldslotconsumptionNewWithOptionalParams(t *testing.T) {
 		ResReason:             unifieddatalibrary.String("Maintenance needed"),
 		ResTailNumber:         unifieddatalibrary.String("N702JG"),
 		ResType:               unifieddatalibrary.String("M"),
-		Status:                unifieddatalibrary.AirfieldslotconsumptionNewParamsStatusApproved,
+		Status:                unifieddatalibrary.AirfieldSlotConsumptionNewParamsStatusApproved,
 		TargetTime:            unifieddatalibrary.Time(time.Now()),
 	})
 	if err != nil {
@@ -71,7 +71,7 @@ func TestAirfieldslotconsumptionNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestAirfieldslotconsumptionGetWithOptionalParams(t *testing.T) {
+func TestAirfieldSlotConsumptionGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -84,10 +84,10 @@ func TestAirfieldslotconsumptionGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Airfieldslotconsumptions.Get(
+	_, err := client.AirfieldSlotConsumptions.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.AirfieldslotconsumptionGetParams{
+		unifieddatalibrary.AirfieldSlotConsumptionGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -101,7 +101,7 @@ func TestAirfieldslotconsumptionGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestAirfieldslotconsumptionUpdateWithOptionalParams(t *testing.T) {
+func TestAirfieldSlotConsumptionUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -114,12 +114,12 @@ func TestAirfieldslotconsumptionUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Airfieldslotconsumptions.Update(
+	err := client.AirfieldSlotConsumptions.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.AirfieldslotconsumptionUpdateParams{
+		unifieddatalibrary.AirfieldSlotConsumptionUpdateParams{
 			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.AirfieldslotconsumptionUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.AirfieldSlotConsumptionUpdateParamsDataModeTest,
 			IDAirfieldSlot:        "3136498f-2969-3535-1432-e984b2e2e686",
 			NumAircraft:           1,
 			Source:                "Bluestaq",
@@ -149,7 +149,7 @@ func TestAirfieldslotconsumptionUpdateWithOptionalParams(t *testing.T) {
 			ResReason:             unifieddatalibrary.String("Maintenance needed"),
 			ResTailNumber:         unifieddatalibrary.String("N702JG"),
 			ResType:               unifieddatalibrary.String("M"),
-			Status:                unifieddatalibrary.AirfieldslotconsumptionUpdateParamsStatusApproved,
+			Status:                unifieddatalibrary.AirfieldSlotConsumptionUpdateParamsStatusApproved,
 			TargetTime:            unifieddatalibrary.Time(time.Now()),
 		},
 	)
@@ -162,7 +162,7 @@ func TestAirfieldslotconsumptionUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestAirfieldslotconsumptionListWithOptionalParams(t *testing.T) {
+func TestAirfieldSlotConsumptionListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -175,7 +175,7 @@ func TestAirfieldslotconsumptionListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Airfieldslotconsumptions.List(context.TODO(), unifieddatalibrary.AirfieldslotconsumptionListParams{
+	_, err := client.AirfieldSlotConsumptions.List(context.TODO(), unifieddatalibrary.AirfieldSlotConsumptionListParams{
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -189,7 +189,7 @@ func TestAirfieldslotconsumptionListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestAirfieldslotconsumptionDelete(t *testing.T) {
+func TestAirfieldSlotConsumptionDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -202,7 +202,7 @@ func TestAirfieldslotconsumptionDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Airfieldslotconsumptions.Delete(context.TODO(), "id")
+	err := client.AirfieldSlotConsumptions.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -212,7 +212,7 @@ func TestAirfieldslotconsumptionDelete(t *testing.T) {
 	}
 }
 
-func TestAirfieldslotconsumptionCountWithOptionalParams(t *testing.T) {
+func TestAirfieldSlotConsumptionCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -225,7 +225,7 @@ func TestAirfieldslotconsumptionCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Airfieldslotconsumptions.Count(context.TODO(), unifieddatalibrary.AirfieldslotconsumptionCountParams{
+	_, err := client.AirfieldSlotConsumptions.Count(context.TODO(), unifieddatalibrary.AirfieldSlotConsumptionCountParams{
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -239,7 +239,7 @@ func TestAirfieldslotconsumptionCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestAirfieldslotconsumptionQueryhelp(t *testing.T) {
+func TestAirfieldSlotConsumptionQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -252,7 +252,7 @@ func TestAirfieldslotconsumptionQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Airfieldslotconsumptions.Queryhelp(context.TODO())
+	err := client.AirfieldSlotConsumptions.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -262,7 +262,7 @@ func TestAirfieldslotconsumptionQueryhelp(t *testing.T) {
 	}
 }
 
-func TestAirfieldslotconsumptionTupleWithOptionalParams(t *testing.T) {
+func TestAirfieldSlotConsumptionTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -275,7 +275,7 @@ func TestAirfieldslotconsumptionTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Airfieldslotconsumptions.Tuple(context.TODO(), unifieddatalibrary.AirfieldslotconsumptionTupleParams{
+	_, err := client.AirfieldSlotConsumptions.Tuple(context.TODO(), unifieddatalibrary.AirfieldSlotConsumptionTupleParams{
 		Columns:     "columns",
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),

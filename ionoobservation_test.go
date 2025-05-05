@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestIonoobservationListWithOptionalParams(t *testing.T) {
+func TestIonOobservationListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestIonoobservationListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Ionoobservation.List(context.TODO(), unifieddatalibrary.IonoobservationListParams{
+	_, err := client.IonOobservation.List(context.TODO(), unifieddatalibrary.IonOobservationListParams{
 		StartTimeUtc: time.Now(),
 		FirstResult:  unifieddatalibrary.Int(0),
 		MaxResults:   unifieddatalibrary.Int(0),
@@ -41,7 +41,7 @@ func TestIonoobservationListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestIonoobservationCountWithOptionalParams(t *testing.T) {
+func TestIonOobservationCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -54,7 +54,7 @@ func TestIonoobservationCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Ionoobservation.Count(context.TODO(), unifieddatalibrary.IonoobservationCountParams{
+	_, err := client.IonOobservation.Count(context.TODO(), unifieddatalibrary.IonOobservationCountParams{
 		StartTimeUtc: time.Now(),
 		FirstResult:  unifieddatalibrary.Int(0),
 		MaxResults:   unifieddatalibrary.Int(0),
@@ -68,7 +68,7 @@ func TestIonoobservationCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestIonoobservationNewBulk(t *testing.T) {
+func TestIonOobservationNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -81,8 +81,8 @@ func TestIonoobservationNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Ionoobservation.NewBulk(context.TODO(), unifieddatalibrary.IonoobservationNewBulkParams{
-		Body: []unifieddatalibrary.IonoobservationNewBulkParamsBody{{
+	err := client.IonOobservation.NewBulk(context.TODO(), unifieddatalibrary.IonOobservationNewBulkParams{
+		Body: []unifieddatalibrary.IonOobservationNewBulkParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			Source:                "Bluestaq",
@@ -91,20 +91,20 @@ func TestIonoobservationNewBulk(t *testing.T) {
 			System:                "Example hardware type",
 			SystemInfo:            "Example settings",
 			ID:                    unifieddatalibrary.String("IONOOBSERVATION-ID"),
-			Amplitude: unifieddatalibrary.IonoobservationNewBulkParamsBodyAmplitude{
+			Amplitude: unifieddatalibrary.IonOobservationNewBulkParamsBodyAmplitude{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{4, 5},
 				Notes:         unifieddatalibrary.String("NOTES"),
 			},
-			AntennaElementPosition: unifieddatalibrary.IonoobservationNewBulkParamsBodyAntennaElementPosition{
+			AntennaElementPosition: unifieddatalibrary.IonOobservationNewBulkParamsBodyAntennaElementPosition{
 				Data:          [][]float64{{1.23, 0.123}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{3, 4},
 			},
 			AntennaElementPositionCoordinateSystem: "J2000",
 			ArtistFlags:                            []int64{1, 2, 3},
-			Azimuth: unifieddatalibrary.IonoobservationNewBulkParamsBodyAzimuth{
+			Azimuth: unifieddatalibrary.IonOobservationNewBulkParamsBodyAzimuth{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{1, 2},
@@ -112,7 +112,7 @@ func TestIonoobservationNewBulk(t *testing.T) {
 			},
 			B0: unifieddatalibrary.Float(68.07),
 			B1: unifieddatalibrary.Float(1.87),
-			CharAtts: []unifieddatalibrary.IonoobservationNewBulkParamsBodyCharAtt{{
+			CharAtts: []unifieddatalibrary.IonOobservationNewBulkParamsBodyCharAtt{{
 				CharName:                unifieddatalibrary.String("hprimeF2"),
 				ClimateModelInputParams: []string{"ISSN1 88.1", "Option 2"},
 				ClimateModelName:        unifieddatalibrary.String("IRI"),
@@ -126,13 +126,13 @@ func TestIonoobservationNewBulk(t *testing.T) {
 			}},
 			D:  unifieddatalibrary.Float(1.1),
 			D1: unifieddatalibrary.Float(1.94),
-			Datum: unifieddatalibrary.IonoobservationNewBulkParamsBodyDatum{
+			Datum: unifieddatalibrary.IonOobservationNewBulkParamsBodyDatum{
 				Data:  []float64{1.1, 2.1, 3.1},
 				Notes: unifieddatalibrary.String("NOTES"),
 			},
 			DeltafoF2: unifieddatalibrary.Float(1.1),
-			DensityProfile: unifieddatalibrary.IonoobservationNewBulkParamsBodyDensityProfile{
-				Iri: unifieddatalibrary.IonoobservationNewBulkParamsBodyDensityProfileIri{
+			DensityProfile: unifieddatalibrary.IonOobservationNewBulkParamsBodyDensityProfile{
+				Iri: unifieddatalibrary.IonOobservationNewBulkParamsBodyDensityProfileIri{
 					B0:          unifieddatalibrary.Float(245.1),
 					B1:          unifieddatalibrary.Float(3.45),
 					Chi:         unifieddatalibrary.Float(35.1),
@@ -156,19 +156,19 @@ func TestIonoobservationNewBulk(t *testing.T) {
 					NmF2:        unifieddatalibrary.Float(313283.1),
 					NValB:       unifieddatalibrary.Float(147025.1),
 				},
-				Parabolic: unifieddatalibrary.IonoobservationNewBulkParamsBodyDensityProfileParabolic{
+				Parabolic: unifieddatalibrary.IonOobservationNewBulkParamsBodyDensityProfileParabolic{
 					Description: unifieddatalibrary.String("Best-fit algorithm in NHPC software."),
-					ParabolicItems: []unifieddatalibrary.IonoobservationNewBulkParamsBodyDensityProfileParabolicParabolicItem{{
+					ParabolicItems: []unifieddatalibrary.IonOobservationNewBulkParamsBodyDensityProfileParabolicParabolicItem{{
 						F:     unifieddatalibrary.Float(3.621),
 						Layer: unifieddatalibrary.String("E"),
 						Y:     unifieddatalibrary.Float(11.1),
 						Z:     unifieddatalibrary.Float(110.2),
 					}},
 				},
-				QuasiParabolic: unifieddatalibrary.IonoobservationNewBulkParamsBodyDensityProfileQuasiParabolic{
+				QuasiParabolic: unifieddatalibrary.IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolic{
 					Description: unifieddatalibrary.String("Array of the best-fit 3-parameter quasi-parabolas defined via A, B, C coefficients, f^2=A/r^2+B/r+C"),
 					EarthRadius: unifieddatalibrary.Float(6370.1),
-					QuasiParabolicSegments: []unifieddatalibrary.IonoobservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment{{
+					QuasiParabolicSegments: []unifieddatalibrary.IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment{{
 						A:     unifieddatalibrary.Float(-550273940000),
 						B:     unifieddatalibrary.Float(169837632),
 						C:     unifieddatalibrary.Float(13104.63),
@@ -178,9 +178,9 @@ func TestIonoobservationNewBulk(t *testing.T) {
 						Re:    unifieddatalibrary.Float(6480.001),
 					}},
 				},
-				ShiftedChebyshev: unifieddatalibrary.IonoobservationNewBulkParamsBodyDensityProfileShiftedChebyshev{
+				ShiftedChebyshev: unifieddatalibrary.IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshev{
 					Description: unifieddatalibrary.String("Best-fit Huang-Reinisch formalism based on shifted Chebyshev expansion."),
-					ShiftedChebyshevs: []unifieddatalibrary.IonoobservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev{{
+					ShiftedChebyshevs: []unifieddatalibrary.IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev{{
 						Coeffs:     []float64{-11.2, -10.536, 3.357, -0.888, 0.155},
 						Error:      unifieddatalibrary.Float(0.02),
 						Fstart:     unifieddatalibrary.Float(0.2),
@@ -191,14 +191,14 @@ func TestIonoobservationNewBulk(t *testing.T) {
 						ZhalfNm:    unifieddatalibrary.Float(210.1),
 					}},
 				},
-				TopsideExtensionChapmanConst: unifieddatalibrary.IonoobservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst{
+				TopsideExtensionChapmanConst: unifieddatalibrary.IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst{
 					Chi:         unifieddatalibrary.Float(35.1),
 					Description: unifieddatalibrary.String("Constant scale height Chapman topside layer determined using bottomside peak density parameters and placed chi km above the ionosonde-determined peak height."),
 					HmF2:        unifieddatalibrary.Float(265.42),
 					NmF2:        unifieddatalibrary.Float(313283.1),
 					ScaleF2:     unifieddatalibrary.Float(45.191),
 				},
-				TopsideExtensionVaryChap: unifieddatalibrary.IonoobservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap{
+				TopsideExtensionVaryChap: unifieddatalibrary.IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap{
 					Alpha:       unifieddatalibrary.Float(30.1),
 					Beta:        unifieddatalibrary.Float(30.1),
 					Chi:         unifieddatalibrary.Float(30.1),
@@ -211,7 +211,7 @@ func TestIonoobservationNewBulk(t *testing.T) {
 				ValleyModelCoeffs:      []float64{39.597, 0.1777},
 				ValleyModelDescription: unifieddatalibrary.String("2-parameter UMLCAR model with width W in km and depth D in MHz, no fitting."),
 			},
-			Doppler: unifieddatalibrary.IonoobservationNewBulkParamsBodyDoppler{
+			Doppler: unifieddatalibrary.IonOobservationNewBulkParamsBodyDoppler{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{1, 2},
@@ -222,7 +222,7 @@ func TestIonoobservationNewBulk(t *testing.T) {
 			DownF:                      unifieddatalibrary.Float(1.1),
 			ElectronDensity:            []float64{1.1, 2.1, 3.1},
 			ElectronDensityUncertainty: []float64{0.8, 0.2, 0.5},
-			Elevation: unifieddatalibrary.IonoobservationNewBulkParamsBodyElevation{
+			Elevation: unifieddatalibrary.IonOobservationNewBulkParamsBodyElevation{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{2, 3},
@@ -247,7 +247,7 @@ func TestIonoobservationNewBulk(t *testing.T) {
 			FoF2:      unifieddatalibrary.Float(6.75),
 			FoF2p:     unifieddatalibrary.Float(1.1),
 			FoP:       unifieddatalibrary.Float(87.21),
-			Frequency: unifieddatalibrary.IonoobservationNewBulkParamsBodyFrequency{
+			Frequency: unifieddatalibrary.IonOobservationNewBulkParamsBodyFrequency{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{1, 2},
@@ -277,7 +277,7 @@ func TestIonoobservationNewBulk(t *testing.T) {
 			NeProfileVersion: unifieddatalibrary.Float(4.32),
 			Origin:           unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
 			OrigSensorID:     unifieddatalibrary.String("ORIGSENSOR-ID"),
-			Phase: unifieddatalibrary.IonoobservationNewBulkParamsBodyPhase{
+			Phase: unifieddatalibrary.IonOobservationNewBulkParamsBodyPhase{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{1, 2},
@@ -286,13 +286,13 @@ func TestIonoobservationNewBulk(t *testing.T) {
 			PlasmaFrequency:            []float64{1.1, 2.1, 3.1},
 			PlasmaFrequencyUncertainty: []float64{0.8, 0.2, 0.5},
 			PlatformName:               unifieddatalibrary.String("Millstone Hill"),
-			Polarization: unifieddatalibrary.IonoobservationNewBulkParamsBodyPolarization{
+			Polarization: unifieddatalibrary.IonOobservationNewBulkParamsBodyPolarization{
 				Data:          [][][][][][][]string{{{{{{{"X", "O"}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{1, 2},
 				Notes:         unifieddatalibrary.String("NOTES"),
 			},
-			Power: unifieddatalibrary.IonoobservationNewBulkParamsBodyPower{
+			Power: unifieddatalibrary.IonOobservationNewBulkParamsBodyPower{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{1, 2},
@@ -300,7 +300,7 @@ func TestIonoobservationNewBulk(t *testing.T) {
 			},
 			Qe: unifieddatalibrary.Float(0.95),
 			Qf: unifieddatalibrary.Float(1.83),
-			Range: unifieddatalibrary.IonoobservationNewBulkParamsBodyRange{
+			Range: unifieddatalibrary.IonOobservationNewBulkParamsBodyRange{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{1, 2},
@@ -311,7 +311,7 @@ func TestIonoobservationNewBulk(t *testing.T) {
 			RestrictedFrequency:      []float64{12.5, 34.5, 45.3},
 			RestrictedFrequencyNotes: unifieddatalibrary.String("Example notes"),
 			ScaleHeightF2Peak:        unifieddatalibrary.Float(35.613),
-			ScalerInfo: unifieddatalibrary.IonoobservationNewBulkParamsBodyScalerInfo{
+			ScalerInfo: unifieddatalibrary.IonOobservationNewBulkParamsBodyScalerInfo{
 				ConfidenceLevel: unifieddatalibrary.Int(11),
 				ConfidenceScore: unifieddatalibrary.Int(75),
 				Name:            unifieddatalibrary.String("ARTIST-4"),
@@ -319,7 +319,7 @@ func TestIonoobservationNewBulk(t *testing.T) {
 				Type:            unifieddatalibrary.String("MANUAL"),
 				Version:         unifieddatalibrary.Float(500200.1),
 			},
-			Stokes: unifieddatalibrary.IonoobservationNewBulkParamsBodyStokes{
+			Stokes: unifieddatalibrary.IonOobservationNewBulkParamsBodyStokes{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAMES1", "NAMES2"},
 				Dimensions:    []int64{2, 3},
@@ -331,13 +331,13 @@ func TestIonoobservationNewBulk(t *testing.T) {
 			TidAzimuth:     []float64{1.1, 2.1, 3.1},
 			TidPeriods:     []float64{1.1, 2.1, 3.1},
 			TidPhaseSpeeds: []float64{1.1, 2.1, 3.1},
-			Time: unifieddatalibrary.IonoobservationNewBulkParamsBodyTime{
+			Time: unifieddatalibrary.IonOobservationNewBulkParamsBodyTime{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{1, 2},
 				Notes:         unifieddatalibrary.String("NOTES"),
 			},
-			TraceGeneric: unifieddatalibrary.IonoobservationNewBulkParamsBodyTraceGeneric{
+			TraceGeneric: unifieddatalibrary.IonOobservationNewBulkParamsBodyTraceGeneric{
 				Data:          [][][]float64{{{1.23, 1.0903}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Notes:         unifieddatalibrary.String("NOTES"),
@@ -361,7 +361,7 @@ func TestIonoobservationNewBulk(t *testing.T) {
 	}
 }
 
-func TestIonoobservationQueryhelp(t *testing.T) {
+func TestIonOobservationQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -374,7 +374,7 @@ func TestIonoobservationQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Ionoobservation.Queryhelp(context.TODO())
+	err := client.IonOobservation.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -384,7 +384,7 @@ func TestIonoobservationQueryhelp(t *testing.T) {
 	}
 }
 
-func TestIonoobservationTupleWithOptionalParams(t *testing.T) {
+func TestIonOobservationTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -397,7 +397,7 @@ func TestIonoobservationTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Ionoobservation.Tuple(context.TODO(), unifieddatalibrary.IonoobservationTupleParams{
+	_, err := client.IonOobservation.Tuple(context.TODO(), unifieddatalibrary.IonOobservationTupleParams{
 		Columns:      "columns",
 		StartTimeUtc: time.Now(),
 		FirstResult:  unifieddatalibrary.Int(0),
@@ -412,7 +412,7 @@ func TestIonoobservationTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestIonoobservationUnvalidatedPublish(t *testing.T) {
+func TestIonOobservationUnvalidatedPublish(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -425,8 +425,8 @@ func TestIonoobservationUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Ionoobservation.UnvalidatedPublish(context.TODO(), unifieddatalibrary.IonoobservationUnvalidatedPublishParams{
-		Body: []unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBody{{
+	err := client.IonOobservation.UnvalidatedPublish(context.TODO(), unifieddatalibrary.IonOobservationUnvalidatedPublishParams{
+		Body: []unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			Source:                "Bluestaq",
@@ -435,20 +435,20 @@ func TestIonoobservationUnvalidatedPublish(t *testing.T) {
 			System:                "Example hardware type",
 			SystemInfo:            "Example settings",
 			ID:                    unifieddatalibrary.String("IONOOBSERVATION-ID"),
-			Amplitude: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyAmplitude{
+			Amplitude: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyAmplitude{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{4, 5},
 				Notes:         unifieddatalibrary.String("NOTES"),
 			},
-			AntennaElementPosition: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyAntennaElementPosition{
+			AntennaElementPosition: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyAntennaElementPosition{
 				Data:          [][]float64{{1.23, 0.123}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{3, 4},
 			},
 			AntennaElementPositionCoordinateSystem: "J2000",
 			ArtistFlags:                            []int64{1, 2, 3},
-			Azimuth: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyAzimuth{
+			Azimuth: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyAzimuth{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{1, 2},
@@ -456,7 +456,7 @@ func TestIonoobservationUnvalidatedPublish(t *testing.T) {
 			},
 			B0: unifieddatalibrary.Float(68.07),
 			B1: unifieddatalibrary.Float(1.87),
-			CharAtts: []unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyCharAtt{{
+			CharAtts: []unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyCharAtt{{
 				CharName:                unifieddatalibrary.String("hprimeF2"),
 				ClimateModelInputParams: []string{"ISSN1 88.1", "Option 2"},
 				ClimateModelName:        unifieddatalibrary.String("IRI"),
@@ -470,13 +470,13 @@ func TestIonoobservationUnvalidatedPublish(t *testing.T) {
 			}},
 			D:  unifieddatalibrary.Float(1.1),
 			D1: unifieddatalibrary.Float(1.94),
-			Datum: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyDatum{
+			Datum: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyDatum{
 				Data:  []float64{1.1, 2.1, 3.1},
 				Notes: unifieddatalibrary.String("NOTES"),
 			},
 			DeltafoF2: unifieddatalibrary.Float(1.1),
-			DensityProfile: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyDensityProfile{
-				Iri: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyDensityProfileIri{
+			DensityProfile: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyDensityProfile{
+				Iri: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyDensityProfileIri{
 					B0:          unifieddatalibrary.Float(245.1),
 					B1:          unifieddatalibrary.Float(3.45),
 					Chi:         unifieddatalibrary.Float(35.1),
@@ -500,19 +500,19 @@ func TestIonoobservationUnvalidatedPublish(t *testing.T) {
 					NmF2:        unifieddatalibrary.Float(313283.1),
 					NValB:       unifieddatalibrary.Float(147025.1),
 				},
-				Parabolic: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyDensityProfileParabolic{
+				Parabolic: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolic{
 					Description: unifieddatalibrary.String("Best-fit algorithm in NHPC software."),
-					ParabolicItems: []unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabolicItem{{
+					ParabolicItems: []unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabolicItem{{
 						F:     unifieddatalibrary.Float(3.621),
 						Layer: unifieddatalibrary.String("E"),
 						Y:     unifieddatalibrary.Float(11.1),
 						Z:     unifieddatalibrary.Float(110.2),
 					}},
 				},
-				QuasiParabolic: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic{
+				QuasiParabolic: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic{
 					Description: unifieddatalibrary.String("Array of the best-fit 3-parameter quasi-parabolas defined via A, B, C coefficients, f^2=A/r^2+B/r+C"),
 					EarthRadius: unifieddatalibrary.Float(6370.1),
-					QuasiParabolicSegments: []unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment{{
+					QuasiParabolicSegments: []unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment{{
 						A:     unifieddatalibrary.Float(-550273940000),
 						B:     unifieddatalibrary.Float(169837632),
 						C:     unifieddatalibrary.Float(13104.63),
@@ -522,9 +522,9 @@ func TestIonoobservationUnvalidatedPublish(t *testing.T) {
 						Re:    unifieddatalibrary.Float(6480.001),
 					}},
 				},
-				ShiftedChebyshev: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev{
+				ShiftedChebyshev: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev{
 					Description: unifieddatalibrary.String("Best-fit Huang-Reinisch formalism based on shifted Chebyshev expansion."),
-					ShiftedChebyshevs: []unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev{{
+					ShiftedChebyshevs: []unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev{{
 						Coeffs:     []float64{-11.2, -10.536, 3.357, -0.888, 0.155},
 						Error:      unifieddatalibrary.Float(0.02),
 						Fstart:     unifieddatalibrary.Float(0.2),
@@ -535,14 +535,14 @@ func TestIonoobservationUnvalidatedPublish(t *testing.T) {
 						ZhalfNm:    unifieddatalibrary.Float(210.1),
 					}},
 				},
-				TopsideExtensionChapmanConst: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionChapmanConst{
+				TopsideExtensionChapmanConst: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionChapmanConst{
 					Chi:         unifieddatalibrary.Float(35.1),
 					Description: unifieddatalibrary.String("Constant scale height Chapman topside layer determined using bottomside peak density parameters and placed chi km above the ionosonde-determined peak height."),
 					HmF2:        unifieddatalibrary.Float(265.42),
 					NmF2:        unifieddatalibrary.Float(313283.1),
 					ScaleF2:     unifieddatalibrary.Float(45.191),
 				},
-				TopsideExtensionVaryChap: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionVaryChap{
+				TopsideExtensionVaryChap: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionVaryChap{
 					Alpha:       unifieddatalibrary.Float(30.1),
 					Beta:        unifieddatalibrary.Float(30.1),
 					Chi:         unifieddatalibrary.Float(30.1),
@@ -555,7 +555,7 @@ func TestIonoobservationUnvalidatedPublish(t *testing.T) {
 				ValleyModelCoeffs:      []float64{39.597, 0.1777},
 				ValleyModelDescription: unifieddatalibrary.String("2-parameter UMLCAR model with width W in km and depth D in MHz, no fitting."),
 			},
-			Doppler: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyDoppler{
+			Doppler: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyDoppler{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{1, 2},
@@ -566,7 +566,7 @@ func TestIonoobservationUnvalidatedPublish(t *testing.T) {
 			DownF:                      unifieddatalibrary.Float(1.1),
 			ElectronDensity:            []float64{1.1, 2.1, 3.1},
 			ElectronDensityUncertainty: []float64{0.8, 0.2, 0.5},
-			Elevation: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyElevation{
+			Elevation: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyElevation{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{2, 3},
@@ -591,7 +591,7 @@ func TestIonoobservationUnvalidatedPublish(t *testing.T) {
 			FoF2:      unifieddatalibrary.Float(6.75),
 			FoF2p:     unifieddatalibrary.Float(1.1),
 			FoP:       unifieddatalibrary.Float(87.21),
-			Frequency: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyFrequency{
+			Frequency: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyFrequency{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{1, 2},
@@ -621,7 +621,7 @@ func TestIonoobservationUnvalidatedPublish(t *testing.T) {
 			NeProfileVersion: unifieddatalibrary.Float(4.32),
 			Origin:           unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
 			OrigSensorID:     unifieddatalibrary.String("ORIGSENSOR-ID"),
-			Phase: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyPhase{
+			Phase: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyPhase{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{1, 2},
@@ -630,13 +630,13 @@ func TestIonoobservationUnvalidatedPublish(t *testing.T) {
 			PlasmaFrequency:            []float64{1.1, 2.1, 3.1},
 			PlasmaFrequencyUncertainty: []float64{0.8, 0.2, 0.5},
 			PlatformName:               unifieddatalibrary.String("Millstone Hill"),
-			Polarization: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyPolarization{
+			Polarization: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyPolarization{
 				Data:          [][][][][][][]string{{{{{{{"X", "O"}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{1, 2},
 				Notes:         unifieddatalibrary.String("NOTES"),
 			},
-			Power: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyPower{
+			Power: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyPower{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{1, 2},
@@ -644,7 +644,7 @@ func TestIonoobservationUnvalidatedPublish(t *testing.T) {
 			},
 			Qe: unifieddatalibrary.Float(0.95),
 			Qf: unifieddatalibrary.Float(1.83),
-			Range: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyRange{
+			Range: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyRange{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{1, 2},
@@ -655,7 +655,7 @@ func TestIonoobservationUnvalidatedPublish(t *testing.T) {
 			RestrictedFrequency:      []float64{12.5, 34.5, 45.3},
 			RestrictedFrequencyNotes: unifieddatalibrary.String("Example notes"),
 			ScaleHeightF2Peak:        unifieddatalibrary.Float(35.613),
-			ScalerInfo: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyScalerInfo{
+			ScalerInfo: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyScalerInfo{
 				ConfidenceLevel: unifieddatalibrary.Int(11),
 				ConfidenceScore: unifieddatalibrary.Int(75),
 				Name:            unifieddatalibrary.String("ARTIST-4"),
@@ -663,7 +663,7 @@ func TestIonoobservationUnvalidatedPublish(t *testing.T) {
 				Type:            unifieddatalibrary.String("MANUAL"),
 				Version:         unifieddatalibrary.Float(500200.1),
 			},
-			Stokes: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyStokes{
+			Stokes: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyStokes{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAMES1", "NAMES2"},
 				Dimensions:    []int64{2, 3},
@@ -675,13 +675,13 @@ func TestIonoobservationUnvalidatedPublish(t *testing.T) {
 			TidAzimuth:     []float64{1.1, 2.1, 3.1},
 			TidPeriods:     []float64{1.1, 2.1, 3.1},
 			TidPhaseSpeeds: []float64{1.1, 2.1, 3.1},
-			Time: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyTime{
+			Time: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyTime{
 				Data:          [][][][][][][]float64{{{{{{{0.02, 0.034}}}}}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Dimensions:    []int64{1, 2},
 				Notes:         unifieddatalibrary.String("NOTES"),
 			},
-			TraceGeneric: unifieddatalibrary.IonoobservationUnvalidatedPublishParamsBodyTraceGeneric{
+			TraceGeneric: unifieddatalibrary.IonOobservationUnvalidatedPublishParamsBodyTraceGeneric{
 				Data:          [][][]float64{{{1.23, 1.0903}}},
 				DimensionName: []string{"NAME1", "NAME2"},
 				Notes:         unifieddatalibrary.String("NOTES"),

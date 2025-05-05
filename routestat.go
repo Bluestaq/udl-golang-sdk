@@ -19,21 +19,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// RoutestatService contains methods and other services that help with interacting
+// RouteStatService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewRoutestatService] method instead.
-type RoutestatService struct {
+// the [NewRouteStatService] method instead.
+type RouteStatService struct {
 	Options []option.RequestOption
 }
 
-// NewRoutestatService generates a new service that applies the given options to
+// NewRouteStatService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewRoutestatService(opts ...option.RequestOption) (r RoutestatService) {
-	r = RoutestatService{}
+func NewRouteStatService(opts ...option.RequestOption) (r RouteStatService) {
+	r = RouteStatService{}
 	r.Options = opts
 	return
 }
@@ -41,7 +41,7 @@ func NewRoutestatService(opts ...option.RequestOption) (r RoutestatService) {
 // Service operation to take a single routeStats record as a POST body and ingest
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *RoutestatService) New(ctx context.Context, body RoutestatNewParams, opts ...option.RequestOption) (err error) {
+func (r *RouteStatService) New(ctx context.Context, body RouteStatNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/routestats"
@@ -51,7 +51,7 @@ func (r *RoutestatService) New(ctx context.Context, body RoutestatNewParams, opt
 
 // Service operation to get a single routeStats record by its unique ID passed as a
 // path parameter.
-func (r *RoutestatService) Get(ctx context.Context, id string, query RoutestatGetParams, opts ...option.RequestOption) (res *RoutestatGetResponse, err error) {
+func (r *RouteStatService) Get(ctx context.Context, id string, query RouteStatGetParams, opts ...option.RequestOption) (res *RouteStatGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -64,7 +64,7 @@ func (r *RoutestatService) Get(ctx context.Context, id string, query RoutestatGe
 
 // Service operation to update a single RouteStats. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
-func (r *RoutestatService) Update(ctx context.Context, id string, body RoutestatUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *RouteStatService) Update(ctx context.Context, id string, body RouteStatUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -79,7 +79,7 @@ func (r *RoutestatService) Update(ctx context.Context, id string, body Routestat
 // Service operation to delete a routeStats record specified by the passed ID path
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
-func (r *RoutestatService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *RouteStatService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -96,7 +96,7 @@ func (r *RoutestatService) Delete(ctx context.Context, id string, opts ...option
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *RoutestatService) Count(ctx context.Context, query RoutestatCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *RouteStatService) Count(ctx context.Context, query RouteStatCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/routestats/count"
@@ -109,7 +109,7 @@ func (r *RoutestatService) Count(ctx context.Context, query RoutestatCountParams
 // intended to be used for automated feeds into UDL. Data providers should contact
 // the UDL team for specific role assignments and for instructions on setting up a
 // permanent feed through an alternate mechanism.
-func (r *RoutestatService) NewBulk(ctx context.Context, body RoutestatNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *RouteStatService) NewBulk(ctx context.Context, body RouteStatNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/routestats/createBulk"
@@ -121,7 +121,7 @@ func (r *RoutestatService) NewBulk(ctx context.Context, body RoutestatNewBulkPar
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *RoutestatService) Query(ctx context.Context, query RoutestatQueryParams, opts ...option.RequestOption) (res *[]RoutestatQueryResponse, err error) {
+func (r *RouteStatService) Query(ctx context.Context, query RouteStatQueryParams, opts ...option.RequestOption) (res *[]RouteStatQueryResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/routestats"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -130,7 +130,7 @@ func (r *RoutestatService) Query(ctx context.Context, query RoutestatQueryParams
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *RoutestatService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *RouteStatService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/routestats/queryhelp"
@@ -146,7 +146,7 @@ func (r *RoutestatService) QueryHelp(ctx context.Context, opts ...option.Request
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *RoutestatService) Tuple(ctx context.Context, query RoutestatTupleParams, opts ...option.RequestOption) (res *[]RoutestatTupleResponse, err error) {
+func (r *RouteStatService) Tuple(ctx context.Context, query RouteStatTupleParams, opts ...option.RequestOption) (res *[]RouteStatTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/routestats/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -157,7 +157,7 @@ func (r *RoutestatService) Tuple(ctx context.Context, query RoutestatTupleParams
 // into the database. This operation is intended to be used for automated feeds
 // into UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
-func (r *RoutestatService) UnvalidatedPublish(ctx context.Context, body RoutestatUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+func (r *RouteStatService) UnvalidatedPublish(ctx context.Context, body RouteStatUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-routestats"
@@ -167,7 +167,7 @@ func (r *RoutestatService) UnvalidatedPublish(ctx context.Context, body Routesta
 
 // General statistics applying to navigation routes utilized by vessels, aircraft,
 // ground vehicles, etc.
-type RoutestatGetResponse struct {
+type RouteStatGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -186,7 +186,7 @@ type RoutestatGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RoutestatGetResponseDataMode `json:"dataMode,required"`
+	DataMode RouteStatGetResponseDataMode `json:"dataMode,required"`
 	// End location of the vehicle.
 	LocationEnd string `json:"locationEnd,required"`
 	// Starting location of the vehicle.
@@ -322,8 +322,8 @@ type RoutestatGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r RoutestatGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *RoutestatGetResponse) UnmarshalJSON(data []byte) error {
+func (r RouteStatGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *RouteStatGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -341,18 +341,18 @@ func (r *RoutestatGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RoutestatGetResponseDataMode string
+type RouteStatGetResponseDataMode string
 
 const (
-	RoutestatGetResponseDataModeReal      RoutestatGetResponseDataMode = "REAL"
-	RoutestatGetResponseDataModeTest      RoutestatGetResponseDataMode = "TEST"
-	RoutestatGetResponseDataModeSimulated RoutestatGetResponseDataMode = "SIMULATED"
-	RoutestatGetResponseDataModeExercise  RoutestatGetResponseDataMode = "EXERCISE"
+	RouteStatGetResponseDataModeReal      RouteStatGetResponseDataMode = "REAL"
+	RouteStatGetResponseDataModeTest      RouteStatGetResponseDataMode = "TEST"
+	RouteStatGetResponseDataModeSimulated RouteStatGetResponseDataMode = "SIMULATED"
+	RouteStatGetResponseDataModeExercise  RouteStatGetResponseDataMode = "EXERCISE"
 )
 
 // General statistics applying to navigation routes utilized by vessels, aircraft,
 // ground vehicles, etc.
-type RoutestatQueryResponse struct {
+type RouteStatQueryResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -371,7 +371,7 @@ type RoutestatQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RoutestatQueryResponseDataMode `json:"dataMode,required"`
+	DataMode RouteStatQueryResponseDataMode `json:"dataMode,required"`
 	// End location of the vehicle.
 	LocationEnd string `json:"locationEnd,required"`
 	// Starting location of the vehicle.
@@ -500,8 +500,8 @@ type RoutestatQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r RoutestatQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *RoutestatQueryResponse) UnmarshalJSON(data []byte) error {
+func (r RouteStatQueryResponse) RawJSON() string { return r.JSON.raw }
+func (r *RouteStatQueryResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -519,18 +519,18 @@ func (r *RoutestatQueryResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RoutestatQueryResponseDataMode string
+type RouteStatQueryResponseDataMode string
 
 const (
-	RoutestatQueryResponseDataModeReal      RoutestatQueryResponseDataMode = "REAL"
-	RoutestatQueryResponseDataModeTest      RoutestatQueryResponseDataMode = "TEST"
-	RoutestatQueryResponseDataModeSimulated RoutestatQueryResponseDataMode = "SIMULATED"
-	RoutestatQueryResponseDataModeExercise  RoutestatQueryResponseDataMode = "EXERCISE"
+	RouteStatQueryResponseDataModeReal      RouteStatQueryResponseDataMode = "REAL"
+	RouteStatQueryResponseDataModeTest      RouteStatQueryResponseDataMode = "TEST"
+	RouteStatQueryResponseDataModeSimulated RouteStatQueryResponseDataMode = "SIMULATED"
+	RouteStatQueryResponseDataModeExercise  RouteStatQueryResponseDataMode = "EXERCISE"
 )
 
 // General statistics applying to navigation routes utilized by vessels, aircraft,
 // ground vehicles, etc.
-type RoutestatTupleResponse struct {
+type RouteStatTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -549,7 +549,7 @@ type RoutestatTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RoutestatTupleResponseDataMode `json:"dataMode,required"`
+	DataMode RouteStatTupleResponseDataMode `json:"dataMode,required"`
 	// End location of the vehicle.
 	LocationEnd string `json:"locationEnd,required"`
 	// Starting location of the vehicle.
@@ -685,8 +685,8 @@ type RoutestatTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r RoutestatTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *RoutestatTupleResponse) UnmarshalJSON(data []byte) error {
+func (r RouteStatTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *RouteStatTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -704,16 +704,16 @@ func (r *RoutestatTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RoutestatTupleResponseDataMode string
+type RouteStatTupleResponseDataMode string
 
 const (
-	RoutestatTupleResponseDataModeReal      RoutestatTupleResponseDataMode = "REAL"
-	RoutestatTupleResponseDataModeTest      RoutestatTupleResponseDataMode = "TEST"
-	RoutestatTupleResponseDataModeSimulated RoutestatTupleResponseDataMode = "SIMULATED"
-	RoutestatTupleResponseDataModeExercise  RoutestatTupleResponseDataMode = "EXERCISE"
+	RouteStatTupleResponseDataModeReal      RouteStatTupleResponseDataMode = "REAL"
+	RouteStatTupleResponseDataModeTest      RouteStatTupleResponseDataMode = "TEST"
+	RouteStatTupleResponseDataModeSimulated RouteStatTupleResponseDataMode = "SIMULATED"
+	RouteStatTupleResponseDataModeExercise  RouteStatTupleResponseDataMode = "EXERCISE"
 )
 
-type RoutestatNewParams struct {
+type RouteStatNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -732,7 +732,7 @@ type RoutestatNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RoutestatNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode RouteStatNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// End location of the vehicle.
 	LocationEnd string `json:"locationEnd,required"`
 	// Starting location of the vehicle.
@@ -812,10 +812,10 @@ type RoutestatNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RoutestatNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RouteStatNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r RoutestatNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow RoutestatNewParams
+func (r RouteStatNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow RouteStatNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -833,16 +833,16 @@ func (r RoutestatNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RoutestatNewParamsDataMode string
+type RouteStatNewParamsDataMode string
 
 const (
-	RoutestatNewParamsDataModeReal      RoutestatNewParamsDataMode = "REAL"
-	RoutestatNewParamsDataModeTest      RoutestatNewParamsDataMode = "TEST"
-	RoutestatNewParamsDataModeSimulated RoutestatNewParamsDataMode = "SIMULATED"
-	RoutestatNewParamsDataModeExercise  RoutestatNewParamsDataMode = "EXERCISE"
+	RouteStatNewParamsDataModeReal      RouteStatNewParamsDataMode = "REAL"
+	RouteStatNewParamsDataModeTest      RouteStatNewParamsDataMode = "TEST"
+	RouteStatNewParamsDataModeSimulated RouteStatNewParamsDataMode = "SIMULATED"
+	RouteStatNewParamsDataModeExercise  RouteStatNewParamsDataMode = "EXERCISE"
 )
 
-type RoutestatGetParams struct {
+type RouteStatGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -850,17 +850,17 @@ type RoutestatGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RoutestatGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RouteStatGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [RoutestatGetParams]'s query parameters as `url.Values`.
-func (r RoutestatGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [RouteStatGetParams]'s query parameters as `url.Values`.
+func (r RouteStatGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type RoutestatUpdateParams struct {
+type RouteStatUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -879,7 +879,7 @@ type RoutestatUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RoutestatUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode RouteStatUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// End location of the vehicle.
 	LocationEnd string `json:"locationEnd,required"`
 	// Starting location of the vehicle.
@@ -959,10 +959,10 @@ type RoutestatUpdateParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RoutestatUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RouteStatUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r RoutestatUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow RoutestatUpdateParams
+func (r RouteStatUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow RouteStatUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -980,16 +980,16 @@ func (r RoutestatUpdateParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RoutestatUpdateParamsDataMode string
+type RouteStatUpdateParamsDataMode string
 
 const (
-	RoutestatUpdateParamsDataModeReal      RoutestatUpdateParamsDataMode = "REAL"
-	RoutestatUpdateParamsDataModeTest      RoutestatUpdateParamsDataMode = "TEST"
-	RoutestatUpdateParamsDataModeSimulated RoutestatUpdateParamsDataMode = "SIMULATED"
-	RoutestatUpdateParamsDataModeExercise  RoutestatUpdateParamsDataMode = "EXERCISE"
+	RouteStatUpdateParamsDataModeReal      RouteStatUpdateParamsDataMode = "REAL"
+	RouteStatUpdateParamsDataModeTest      RouteStatUpdateParamsDataMode = "TEST"
+	RouteStatUpdateParamsDataModeSimulated RouteStatUpdateParamsDataMode = "SIMULATED"
+	RouteStatUpdateParamsDataModeExercise  RouteStatUpdateParamsDataMode = "EXERCISE"
 )
 
-type RoutestatCountParams struct {
+type RouteStatCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -997,26 +997,26 @@ type RoutestatCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RoutestatCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RouteStatCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [RoutestatCountParams]'s query parameters as `url.Values`.
-func (r RoutestatCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [RouteStatCountParams]'s query parameters as `url.Values`.
+func (r RouteStatCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type RoutestatNewBulkParams struct {
-	Body []RoutestatNewBulkParamsBody
+type RouteStatNewBulkParams struct {
+	Body []RouteStatNewBulkParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RoutestatNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RouteStatNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r RoutestatNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r RouteStatNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -1025,7 +1025,7 @@ func (r RoutestatNewBulkParams) MarshalJSON() (data []byte, err error) {
 //
 // The properties ClassificationMarking, DataMode, LocationEnd, LocationStart,
 // Source are required.
-type RoutestatNewBulkParamsBody struct {
+type RouteStatNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1136,19 +1136,19 @@ type RoutestatNewBulkParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RoutestatNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-func (r RoutestatNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow RoutestatNewBulkParamsBody
+func (f RouteStatNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r RouteStatNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow RouteStatNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[RoutestatNewBulkParamsBody](
+	apijson.RegisterFieldValidator[RouteStatNewBulkParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
-type RoutestatQueryParams struct {
+type RouteStatQueryParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1156,17 +1156,17 @@ type RoutestatQueryParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RoutestatQueryParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RouteStatQueryParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [RoutestatQueryParams]'s query parameters as `url.Values`.
-func (r RoutestatQueryParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [RouteStatQueryParams]'s query parameters as `url.Values`.
+func (r RouteStatQueryParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type RoutestatTupleParams struct {
+type RouteStatTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -1179,28 +1179,28 @@ type RoutestatTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RoutestatTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RouteStatTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [RoutestatTupleParams]'s query parameters as `url.Values`.
-func (r RoutestatTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [RouteStatTupleParams]'s query parameters as `url.Values`.
+func (r RouteStatTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type RoutestatUnvalidatedPublishParams struct {
-	Body []RoutestatUnvalidatedPublishParamsBody
+type RouteStatUnvalidatedPublishParams struct {
+	Body []RouteStatUnvalidatedPublishParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RoutestatUnvalidatedPublishParams) IsPresent() bool {
+func (f RouteStatUnvalidatedPublishParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r RoutestatUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+func (r RouteStatUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -1209,7 +1209,7 @@ func (r RoutestatUnvalidatedPublishParams) MarshalJSON() (data []byte, err error
 //
 // The properties ClassificationMarking, DataMode, LocationEnd, LocationStart,
 // Source are required.
-type RoutestatUnvalidatedPublishParamsBody struct {
+type RouteStatUnvalidatedPublishParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1320,16 +1320,16 @@ type RoutestatUnvalidatedPublishParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RoutestatUnvalidatedPublishParamsBody) IsPresent() bool {
+func (f RouteStatUnvalidatedPublishParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r RoutestatUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow RoutestatUnvalidatedPublishParamsBody
+func (r RouteStatUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow RouteStatUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[RoutestatUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[RouteStatUnvalidatedPublishParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

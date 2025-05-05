@@ -17,21 +17,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// WeatherreportHistoryService contains methods and other services that help with
+// WeatherReportHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewWeatherreportHistoryService] method instead.
-type WeatherreportHistoryService struct {
+// the [NewWeatherReportHistoryService] method instead.
+type WeatherReportHistoryService struct {
 	Options []option.RequestOption
 }
 
-// NewWeatherreportHistoryService generates a new service that applies the given
+// NewWeatherReportHistoryService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewWeatherreportHistoryService(opts ...option.RequestOption) (r WeatherreportHistoryService) {
-	r = WeatherreportHistoryService{}
+func NewWeatherReportHistoryService(opts ...option.RequestOption) (r WeatherReportHistoryService) {
+	r = WeatherReportHistoryService{}
 	r.Options = opts
 	return
 }
@@ -40,7 +40,7 @@ func NewWeatherreportHistoryService(opts ...option.RequestOption) (r Weatherrepo
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *WeatherreportHistoryService) List(ctx context.Context, query WeatherreportHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[WeatherReportFull], err error) {
+func (r *WeatherReportHistoryService) List(ctx context.Context, query WeatherReportHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[WeatherReportFull], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -61,7 +61,7 @@ func (r *WeatherreportHistoryService) List(ctx context.Context, query Weatherrep
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *WeatherreportHistoryService) ListAutoPaging(ctx context.Context, query WeatherreportHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[WeatherReportFull] {
+func (r *WeatherReportHistoryService) ListAutoPaging(ctx context.Context, query WeatherReportHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[WeatherReportFull] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -70,7 +70,7 @@ func (r *WeatherreportHistoryService) ListAutoPaging(ctx context.Context, query 
 // Secure Content Store. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *WeatherreportHistoryService) Aodr(ctx context.Context, query WeatherreportHistoryAodrParams, opts ...option.RequestOption) (err error) {
+func (r *WeatherReportHistoryService) Aodr(ctx context.Context, query WeatherReportHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/weatherreport/history/aodr"
@@ -83,7 +83,7 @@ func (r *WeatherreportHistoryService) Aodr(ctx context.Context, query Weatherrep
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *WeatherreportHistoryService) Count(ctx context.Context, query WeatherreportHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *WeatherReportHistoryService) Count(ctx context.Context, query WeatherReportHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/weatherreport/history/count"
@@ -521,7 +521,7 @@ const (
 	WeatherReportFullDataModeExercise  WeatherReportFullDataMode = "EXERCISE"
 )
 
-type WeatherreportHistoryListParams struct {
+type WeatherReportHistoryListParams struct {
 	// Datetime when a weather observation was made or forecast was issued in ISO 8601
 	// UTC datetime format with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	ObTime time.Time `query:"obTime,required" format:"date-time" json:"-"`
@@ -536,18 +536,18 @@ type WeatherreportHistoryListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherreportHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f WeatherReportHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [WeatherreportHistoryListParams]'s query parameters as
+// URLQuery serializes [WeatherReportHistoryListParams]'s query parameters as
 // `url.Values`.
-func (r WeatherreportHistoryListParams) URLQuery() (v url.Values, err error) {
+func (r WeatherReportHistoryListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type WeatherreportHistoryAodrParams struct {
+type WeatherReportHistoryAodrParams struct {
 	// Datetime when a weather observation was made or forecast was issued in ISO 8601
 	// UTC datetime format with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	ObTime time.Time `query:"obTime,required" format:"date-time" json:"-"`
@@ -573,18 +573,18 @@ type WeatherreportHistoryAodrParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherreportHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f WeatherReportHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [WeatherreportHistoryAodrParams]'s query parameters as
+// URLQuery serializes [WeatherReportHistoryAodrParams]'s query parameters as
 // `url.Values`.
-func (r WeatherreportHistoryAodrParams) URLQuery() (v url.Values, err error) {
+func (r WeatherReportHistoryAodrParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type WeatherreportHistoryCountParams struct {
+type WeatherReportHistoryCountParams struct {
 	// Datetime when a weather observation was made or forecast was issued in ISO 8601
 	// UTC datetime format with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	ObTime      time.Time        `query:"obTime,required" format:"date-time" json:"-"`
@@ -595,11 +595,11 @@ type WeatherreportHistoryCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherreportHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f WeatherReportHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [WeatherreportHistoryCountParams]'s query parameters as
+// URLQuery serializes [WeatherReportHistoryCountParams]'s query parameters as
 // `url.Values`.
-func (r WeatherreportHistoryCountParams) URLQuery() (v url.Values, err error) {
+func (r WeatherReportHistoryCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

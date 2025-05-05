@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSarobservationHistoryGetWithOptionalParams(t *testing.T) {
+func TestSarObservationHistoryGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestSarobservationHistoryGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sarobservation.History.Get(context.TODO(), unifieddatalibrary.SarobservationHistoryGetParams{
+	_, err := client.SarObservation.History.Get(context.TODO(), unifieddatalibrary.SarObservationHistoryGetParams{
 		CollectionStart: time.Now(),
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -42,7 +42,7 @@ func TestSarobservationHistoryGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSarobservationHistoryAodrWithOptionalParams(t *testing.T) {
+func TestSarObservationHistoryAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -55,7 +55,7 @@ func TestSarobservationHistoryAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sarobservation.History.Aodr(context.TODO(), unifieddatalibrary.SarobservationHistoryAodrParams{
+	err := client.SarObservation.History.Aodr(context.TODO(), unifieddatalibrary.SarObservationHistoryAodrParams{
 		CollectionStart: time.Now(),
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -73,7 +73,7 @@ func TestSarobservationHistoryAodrWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSarobservationHistoryCountWithOptionalParams(t *testing.T) {
+func TestSarObservationHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -86,7 +86,7 @@ func TestSarobservationHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sarobservation.History.Count(context.TODO(), unifieddatalibrary.SarobservationHistoryCountParams{
+	_, err := client.SarObservation.History.Count(context.TODO(), unifieddatalibrary.SarObservationHistoryCountParams{
 		CollectionStart: time.Now(),
 		FirstResult:     unifieddatalibrary.Int(0),
 		MaxResults:      unifieddatalibrary.Int(0),

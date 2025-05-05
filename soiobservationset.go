@@ -20,31 +20,31 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// SoiobservationsetService contains methods and other services that help with
+// SoiObservationSetService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewSoiobservationsetService] method instead.
-type SoiobservationsetService struct {
+// the [NewSoiObservationSetService] method instead.
+type SoiObservationSetService struct {
 	Options []option.RequestOption
-	History SoiobservationsetHistoryService
+	History SoiObservationSetHistoryService
 }
 
-// NewSoiobservationsetService generates a new service that applies the given
+// NewSoiObservationSetService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewSoiobservationsetService(opts ...option.RequestOption) (r SoiobservationsetService) {
-	r = SoiobservationsetService{}
+func NewSoiObservationSetService(opts ...option.RequestOption) (r SoiObservationSetService) {
+	r = SoiObservationSetService{}
 	r.Options = opts
-	r.History = NewSoiobservationsetHistoryService(opts...)
+	r.History = NewSoiObservationSetHistoryService(opts...)
 	return
 }
 
 // Service operation to take a single SOIObservationSet record as a POST body and
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *SoiobservationsetService) New(ctx context.Context, body SoiobservationsetNewParams, opts ...option.RequestOption) (err error) {
+func (r *SoiObservationSetService) New(ctx context.Context, body SoiObservationSetNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/soiobservationset"
@@ -56,7 +56,7 @@ func (r *SoiobservationsetService) New(ctx context.Context, body Soiobservations
 // The query will return the SOI Observation Sets and not the associated SOI
 // Observations. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for
 // more details on valid/required query parameter information.
-func (r *SoiobservationsetService) List(ctx context.Context, query SoiobservationsetListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SoiobservationsetListResponse], err error) {
+func (r *SoiObservationSetService) List(ctx context.Context, query SoiObservationSetListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SoiObservationSetListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -77,7 +77,7 @@ func (r *SoiobservationsetService) List(ctx context.Context, query Soiobservatio
 // The query will return the SOI Observation Sets and not the associated SOI
 // Observations. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for
 // more details on valid/required query parameter information.
-func (r *SoiobservationsetService) ListAutoPaging(ctx context.Context, query SoiobservationsetListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SoiobservationsetListResponse] {
+func (r *SoiObservationSetService) ListAutoPaging(ctx context.Context, query SoiObservationSetListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SoiObservationSetListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -86,7 +86,7 @@ func (r *SoiobservationsetService) ListAutoPaging(ctx context.Context, query Soi
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *SoiobservationsetService) Count(ctx context.Context, query SoiobservationsetCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *SoiObservationSetService) Count(ctx context.Context, query SoiObservationSetCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/soiobservationset/count"
@@ -99,7 +99,7 @@ func (r *SoiobservationsetService) Count(ctx context.Context, query Soiobservati
 // operation is not intended to be used for automated feeds into UDL. Data
 // providers should contact the UDL team for specific role assignments and for
 // instructions on setting up a permanent feed through an alternate mechanism.
-func (r *SoiobservationsetService) NewBulk(ctx context.Context, body SoiobservationsetNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *SoiObservationSetService) NewBulk(ctx context.Context, body SoiObservationSetNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/soiobservationset/createBulk"
@@ -109,7 +109,7 @@ func (r *SoiobservationsetService) NewBulk(ctx context.Context, body Soiobservat
 
 // Service operation to get a single SOIObservationSet by its unique ID passed as a
 // path parameter.
-func (r *SoiobservationsetService) Get(ctx context.Context, id string, query SoiobservationsetGetParams, opts ...option.RequestOption) (res *SoiObservationSetFull, err error) {
+func (r *SoiObservationSetService) Get(ctx context.Context, id string, query SoiObservationSetGetParams, opts ...option.RequestOption) (res *SoiObservationSetFull, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -122,7 +122,7 @@ func (r *SoiobservationsetService) Get(ctx context.Context, id string, query Soi
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *SoiobservationsetService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *SoiObservationSetService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/soiobservationset/queryhelp"
@@ -138,7 +138,7 @@ func (r *SoiobservationsetService) Queryhelp(ctx context.Context, opts ...option
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *SoiobservationsetService) Tuple(ctx context.Context, query SoiobservationsetTupleParams, opts ...option.RequestOption) (res *[]SoiObservationSetFull, err error) {
+func (r *SoiObservationSetService) Tuple(ctx context.Context, query SoiObservationSetTupleParams, opts ...option.RequestOption) (res *[]SoiObservationSetFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/soiobservationset/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -149,7 +149,7 @@ func (r *SoiobservationsetService) Tuple(ctx context.Context, query Soiobservati
 // ingest into the database. This operation is intended to be used for automated
 // feeds into UDL. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
-func (r *SoiobservationsetService) UnvalidatedPublish(ctx context.Context, body SoiobservationsetUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+func (r *SoiObservationSetService) UnvalidatedPublish(ctx context.Context, body SoiObservationSetUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-soiobservationset"
@@ -159,7 +159,7 @@ func (r *SoiobservationsetService) UnvalidatedPublish(ctx context.Context, body 
 
 // These services provide operations for posting space object idenfification
 // observation sets.
-type SoiobservationsetListResponse struct {
+type SoiObservationSetListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -178,7 +178,7 @@ type SoiobservationsetListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SoiobservationsetListResponseDataMode `json:"dataMode,required"`
+	DataMode SoiObservationSetListResponseDataMode `json:"dataMode,required"`
 	// The number of observation records in the set.
 	NumObs int64 `json:"numObs,required"`
 	// Source of the data.
@@ -188,7 +188,7 @@ type SoiobservationsetListResponse struct {
 	// Observation type (OPTICAL, RADAR).
 	//
 	// Any of "OPTICAL", "RADAR".
-	Type SoiobservationsetListResponseType `json:"type,required"`
+	Type SoiObservationSetListResponseType `json:"type,required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// The number of pixels binned horizontally.
@@ -199,7 +199,7 @@ type SoiobservationsetListResponse struct {
 	// historical collection data for the object.
 	BrightnessVarianceChangeDetected bool `json:"brightnessVarianceChangeDetected"`
 	// Array of SOI Calibrations associated with this SOIObservationSet.
-	Calibrations []SoiobservationsetListResponseCalibration `json:"calibrations"`
+	Calibrations []SoiObservationSetListResponseCalibration `json:"calibrations"`
 	// Type of calibration used by the Sensor (e.g. ALL SKY, DIFFERENTIAL, DEFAULT,
 	// NONE).
 	CalibrationType string `json:"calibrationType"`
@@ -313,7 +313,7 @@ type SoiobservationsetListResponse struct {
 	// null it is assumed to be J2000.
 	//
 	// Any of "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF".
-	ReferenceFrame SoiobservationsetListResponseReferenceFrame `json:"referenceFrame"`
+	ReferenceFrame SoiObservationSetListResponseReferenceFrame `json:"referenceFrame"`
 	// Name of the target satellite.
 	SatelliteName string `json:"satelliteName"`
 	// Satellite/catalog number of the target on-orbit object.
@@ -332,7 +332,7 @@ type SoiobservationsetListResponse struct {
 	// null it is assumed to be J2000.
 	//
 	// Any of "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF".
-	SenReferenceFrame SoiobservationsetListResponseSenReferenceFrame `json:"senReferenceFrame"`
+	SenReferenceFrame SoiObservationSetListResponseSenReferenceFrame `json:"senReferenceFrame"`
 	// ID of the AttitudeSet record for the observing sensor.
 	SensorAsID string `json:"sensorAsId"`
 	// Cartesian X velocity of the observing mobile/onorbit sensor at startTime, in
@@ -475,8 +475,8 @@ type SoiobservationsetListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SoiobservationsetListResponse) RawJSON() string { return r.JSON.raw }
-func (r *SoiobservationsetListResponse) UnmarshalJSON(data []byte) error {
+func (r SoiObservationSetListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SoiObservationSetListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -494,25 +494,25 @@ func (r *SoiobservationsetListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SoiobservationsetListResponseDataMode string
+type SoiObservationSetListResponseDataMode string
 
 const (
-	SoiobservationsetListResponseDataModeReal      SoiobservationsetListResponseDataMode = "REAL"
-	SoiobservationsetListResponseDataModeTest      SoiobservationsetListResponseDataMode = "TEST"
-	SoiobservationsetListResponseDataModeSimulated SoiobservationsetListResponseDataMode = "SIMULATED"
-	SoiobservationsetListResponseDataModeExercise  SoiobservationsetListResponseDataMode = "EXERCISE"
+	SoiObservationSetListResponseDataModeReal      SoiObservationSetListResponseDataMode = "REAL"
+	SoiObservationSetListResponseDataModeTest      SoiObservationSetListResponseDataMode = "TEST"
+	SoiObservationSetListResponseDataModeSimulated SoiObservationSetListResponseDataMode = "SIMULATED"
+	SoiObservationSetListResponseDataModeExercise  SoiObservationSetListResponseDataMode = "EXERCISE"
 )
 
 // Observation type (OPTICAL, RADAR).
-type SoiobservationsetListResponseType string
+type SoiObservationSetListResponseType string
 
 const (
-	SoiobservationsetListResponseTypeOptical SoiobservationsetListResponseType = "OPTICAL"
-	SoiobservationsetListResponseTypeRadar   SoiobservationsetListResponseType = "RADAR"
+	SoiObservationSetListResponseTypeOptical SoiObservationSetListResponseType = "OPTICAL"
+	SoiObservationSetListResponseTypeRadar   SoiObservationSetListResponseType = "RADAR"
 )
 
 // Schema for SOI Calibration data.
-type SoiobservationsetListResponseCalibration struct {
+type SoiObservationSetListResponseCalibration struct {
 	// Background intensity, at calibration, specified in kilowatts per steradian per
 	// micrometer.
 	CalBgIntensity float64 `json:"calBgIntensity"`
@@ -565,38 +565,38 @@ type SoiobservationsetListResponseCalibration struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SoiobservationsetListResponseCalibration) RawJSON() string { return r.JSON.raw }
-func (r *SoiobservationsetListResponseCalibration) UnmarshalJSON(data []byte) error {
+func (r SoiObservationSetListResponseCalibration) RawJSON() string { return r.JSON.raw }
+func (r *SoiObservationSetListResponseCalibration) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // The reference frame of the observation measurements. If the referenceFrame is
 // null it is assumed to be J2000.
-type SoiobservationsetListResponseReferenceFrame string
+type SoiObservationSetListResponseReferenceFrame string
 
 const (
-	SoiobservationsetListResponseReferenceFrameJ2000   SoiobservationsetListResponseReferenceFrame = "J2000"
-	SoiobservationsetListResponseReferenceFrameEfgTdr  SoiobservationsetListResponseReferenceFrame = "EFG/TDR"
-	SoiobservationsetListResponseReferenceFrameEcrEcef SoiobservationsetListResponseReferenceFrame = "ECR/ECEF"
-	SoiobservationsetListResponseReferenceFrameTeme    SoiobservationsetListResponseReferenceFrame = "TEME"
-	SoiobservationsetListResponseReferenceFrameItrf    SoiobservationsetListResponseReferenceFrame = "ITRF"
-	SoiobservationsetListResponseReferenceFrameGcrf    SoiobservationsetListResponseReferenceFrame = "GCRF"
+	SoiObservationSetListResponseReferenceFrameJ2000   SoiObservationSetListResponseReferenceFrame = "J2000"
+	SoiObservationSetListResponseReferenceFrameEfgTdr  SoiObservationSetListResponseReferenceFrame = "EFG/TDR"
+	SoiObservationSetListResponseReferenceFrameEcrEcef SoiObservationSetListResponseReferenceFrame = "ECR/ECEF"
+	SoiObservationSetListResponseReferenceFrameTeme    SoiObservationSetListResponseReferenceFrame = "TEME"
+	SoiObservationSetListResponseReferenceFrameItrf    SoiObservationSetListResponseReferenceFrame = "ITRF"
+	SoiObservationSetListResponseReferenceFrameGcrf    SoiObservationSetListResponseReferenceFrame = "GCRF"
 )
 
 // The reference frame of the observing sensor state. If the senReferenceFrame is
 // null it is assumed to be J2000.
-type SoiobservationsetListResponseSenReferenceFrame string
+type SoiObservationSetListResponseSenReferenceFrame string
 
 const (
-	SoiobservationsetListResponseSenReferenceFrameJ2000   SoiobservationsetListResponseSenReferenceFrame = "J2000"
-	SoiobservationsetListResponseSenReferenceFrameEfgTdr  SoiobservationsetListResponseSenReferenceFrame = "EFG/TDR"
-	SoiobservationsetListResponseSenReferenceFrameEcrEcef SoiobservationsetListResponseSenReferenceFrame = "ECR/ECEF"
-	SoiobservationsetListResponseSenReferenceFrameTeme    SoiobservationsetListResponseSenReferenceFrame = "TEME"
-	SoiobservationsetListResponseSenReferenceFrameItrf    SoiobservationsetListResponseSenReferenceFrame = "ITRF"
-	SoiobservationsetListResponseSenReferenceFrameGcrf    SoiobservationsetListResponseSenReferenceFrame = "GCRF"
+	SoiObservationSetListResponseSenReferenceFrameJ2000   SoiObservationSetListResponseSenReferenceFrame = "J2000"
+	SoiObservationSetListResponseSenReferenceFrameEfgTdr  SoiObservationSetListResponseSenReferenceFrame = "EFG/TDR"
+	SoiObservationSetListResponseSenReferenceFrameEcrEcef SoiObservationSetListResponseSenReferenceFrame = "ECR/ECEF"
+	SoiObservationSetListResponseSenReferenceFrameTeme    SoiObservationSetListResponseSenReferenceFrame = "TEME"
+	SoiObservationSetListResponseSenReferenceFrameItrf    SoiObservationSetListResponseSenReferenceFrame = "ITRF"
+	SoiObservationSetListResponseSenReferenceFrameGcrf    SoiObservationSetListResponseSenReferenceFrame = "GCRF"
 )
 
-type SoiobservationsetNewParams struct {
+type SoiObservationSetNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -615,7 +615,7 @@ type SoiobservationsetNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SoiobservationsetNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SoiObservationSetNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// The number of observation records in the set.
 	NumObs int64 `json:"numObs,required"`
 	// Source of the data.
@@ -625,7 +625,7 @@ type SoiobservationsetNewParams struct {
 	// Observation type (OPTICAL, RADAR).
 	//
 	// Any of "OPTICAL", "RADAR".
-	Type SoiobservationsetNewParamsType `json:"type,omitzero,required"`
+	Type SoiObservationSetNewParamsType `json:"type,omitzero,required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// The number of pixels binned horizontally.
@@ -798,21 +798,21 @@ type SoiobservationsetNewParams struct {
 	// (e.g. PRE, POST, BOTH, NONE).
 	ValidCalibrations param.Opt[string] `json:"validCalibrations,omitzero"`
 	// Array of SOI Calibrations associated with this SOIObservationSet.
-	Calibrations []SoiobservationsetNewParamsCalibration `json:"calibrations,omitzero"`
+	Calibrations []SoiObservationSetNewParamsCalibration `json:"calibrations,omitzero"`
 	// OpticalSOIObservations associated with this SOIObservationSet.
-	OpticalSoiObservationList []SoiobservationsetNewParamsOpticalSoiObservationList `json:"opticalSOIObservationList,omitzero"`
+	OpticalSoiObservationList []SoiObservationSetNewParamsOpticalSoiObservationList `json:"opticalSOIObservationList,omitzero"`
 	// RadarSOIObservations associated with this RadarSOIObservationSet.
-	RadarSoiObservationList []SoiobservationsetNewParamsRadarSoiObservationList `json:"radarSOIObservationList,omitzero"`
+	RadarSoiObservationList []SoiObservationSetNewParamsRadarSoiObservationList `json:"radarSOIObservationList,omitzero"`
 	// The reference frame of the observation measurements. If the referenceFrame is
 	// null it is assumed to be J2000.
 	//
 	// Any of "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF".
-	ReferenceFrame SoiobservationsetNewParamsReferenceFrame `json:"referenceFrame,omitzero"`
+	ReferenceFrame SoiObservationSetNewParamsReferenceFrame `json:"referenceFrame,omitzero"`
 	// The reference frame of the observing sensor state. If the senReferenceFrame is
 	// null it is assumed to be J2000.
 	//
 	// Any of "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF".
-	SenReferenceFrame SoiobservationsetNewParamsSenReferenceFrame `json:"senReferenceFrame,omitzero"`
+	SenReferenceFrame SoiObservationSetNewParamsSenReferenceFrame `json:"senReferenceFrame,omitzero"`
 	// Array of the SpectralFilters keywords, must be present for all values n=1 to
 	// numSpectralFilters, in incrementing order of n, and for no other values of n.
 	SpectralFilters []string `json:"spectralFilters,omitzero"`
@@ -827,10 +827,10 @@ type SoiobservationsetNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SoiObservationSetNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SoiobservationsetNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow SoiobservationsetNewParams
+func (r SoiObservationSetNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow SoiObservationSetNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -848,25 +848,25 @@ func (r SoiobservationsetNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SoiobservationsetNewParamsDataMode string
+type SoiObservationSetNewParamsDataMode string
 
 const (
-	SoiobservationsetNewParamsDataModeReal      SoiobservationsetNewParamsDataMode = "REAL"
-	SoiobservationsetNewParamsDataModeTest      SoiobservationsetNewParamsDataMode = "TEST"
-	SoiobservationsetNewParamsDataModeSimulated SoiobservationsetNewParamsDataMode = "SIMULATED"
-	SoiobservationsetNewParamsDataModeExercise  SoiobservationsetNewParamsDataMode = "EXERCISE"
+	SoiObservationSetNewParamsDataModeReal      SoiObservationSetNewParamsDataMode = "REAL"
+	SoiObservationSetNewParamsDataModeTest      SoiObservationSetNewParamsDataMode = "TEST"
+	SoiObservationSetNewParamsDataModeSimulated SoiObservationSetNewParamsDataMode = "SIMULATED"
+	SoiObservationSetNewParamsDataModeExercise  SoiObservationSetNewParamsDataMode = "EXERCISE"
 )
 
 // Observation type (OPTICAL, RADAR).
-type SoiobservationsetNewParamsType string
+type SoiObservationSetNewParamsType string
 
 const (
-	SoiobservationsetNewParamsTypeOptical SoiobservationsetNewParamsType = "OPTICAL"
-	SoiobservationsetNewParamsTypeRadar   SoiobservationsetNewParamsType = "RADAR"
+	SoiObservationSetNewParamsTypeOptical SoiObservationSetNewParamsType = "OPTICAL"
+	SoiObservationSetNewParamsTypeRadar   SoiObservationSetNewParamsType = "RADAR"
 )
 
 // Schema for SOI Calibration data.
-type SoiobservationsetNewParamsCalibration struct {
+type SoiObservationSetNewParamsCalibration struct {
 	// Background intensity, at calibration, specified in kilowatts per steradian per
 	// micrometer.
 	CalBgIntensity param.Opt[float64] `json:"calBgIntensity,omitzero"`
@@ -904,11 +904,11 @@ type SoiobservationsetNewParamsCalibration struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetNewParamsCalibration) IsPresent() bool {
+func (f SoiObservationSetNewParamsCalibration) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SoiobservationsetNewParamsCalibration) MarshalJSON() (data []byte, err error) {
-	type shadow SoiobservationsetNewParamsCalibration
+func (r SoiObservationSetNewParamsCalibration) MarshalJSON() (data []byte, err error) {
+	type shadow SoiObservationSetNewParamsCalibration
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -916,7 +916,7 @@ func (r SoiobservationsetNewParamsCalibration) MarshalJSON() (data []byte, err e
 // a Space Object.
 //
 // The property ObStartTime is required.
-type SoiobservationsetNewParamsOpticalSoiObservationList struct {
+type SoiObservationSetNewParamsOpticalSoiObservationList struct {
 	// Observation detection start time in ISO 8601 UTC with microsecond precision.
 	ObStartTime time.Time `json:"obStartTime,required" format:"date-time"`
 	// The reference number, x, where x ranges from 1 to n, where n is the number
@@ -982,11 +982,11 @@ type SoiobservationsetNewParamsOpticalSoiObservationList struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetNewParamsOpticalSoiObservationList) IsPresent() bool {
+func (f SoiObservationSetNewParamsOpticalSoiObservationList) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SoiobservationsetNewParamsOpticalSoiObservationList) MarshalJSON() (data []byte, err error) {
-	type shadow SoiobservationsetNewParamsOpticalSoiObservationList
+func (r SoiObservationSetNewParamsOpticalSoiObservationList) MarshalJSON() (data []byte, err error) {
+	type shadow SoiObservationSetNewParamsOpticalSoiObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -994,7 +994,7 @@ func (r SoiobservationsetNewParamsOpticalSoiObservationList) MarshalJSON() (data
 // Space Object.
 //
 // The property ObStartTime is required.
-type SoiobservationsetNewParamsRadarSoiObservationList struct {
+type SoiObservationSetNewParamsRadarSoiObservationList struct {
 	// Observation detection start time in ISO 8601 UTC format with microsecond
 	// precision.
 	ObStartTime time.Time `json:"obStartTime,required" format:"date-time"`
@@ -1142,41 +1142,41 @@ type SoiobservationsetNewParamsRadarSoiObservationList struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetNewParamsRadarSoiObservationList) IsPresent() bool {
+func (f SoiObservationSetNewParamsRadarSoiObservationList) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SoiobservationsetNewParamsRadarSoiObservationList) MarshalJSON() (data []byte, err error) {
-	type shadow SoiobservationsetNewParamsRadarSoiObservationList
+func (r SoiObservationSetNewParamsRadarSoiObservationList) MarshalJSON() (data []byte, err error) {
+	type shadow SoiObservationSetNewParamsRadarSoiObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // The reference frame of the observation measurements. If the referenceFrame is
 // null it is assumed to be J2000.
-type SoiobservationsetNewParamsReferenceFrame string
+type SoiObservationSetNewParamsReferenceFrame string
 
 const (
-	SoiobservationsetNewParamsReferenceFrameJ2000   SoiobservationsetNewParamsReferenceFrame = "J2000"
-	SoiobservationsetNewParamsReferenceFrameEfgTdr  SoiobservationsetNewParamsReferenceFrame = "EFG/TDR"
-	SoiobservationsetNewParamsReferenceFrameEcrEcef SoiobservationsetNewParamsReferenceFrame = "ECR/ECEF"
-	SoiobservationsetNewParamsReferenceFrameTeme    SoiobservationsetNewParamsReferenceFrame = "TEME"
-	SoiobservationsetNewParamsReferenceFrameItrf    SoiobservationsetNewParamsReferenceFrame = "ITRF"
-	SoiobservationsetNewParamsReferenceFrameGcrf    SoiobservationsetNewParamsReferenceFrame = "GCRF"
+	SoiObservationSetNewParamsReferenceFrameJ2000   SoiObservationSetNewParamsReferenceFrame = "J2000"
+	SoiObservationSetNewParamsReferenceFrameEfgTdr  SoiObservationSetNewParamsReferenceFrame = "EFG/TDR"
+	SoiObservationSetNewParamsReferenceFrameEcrEcef SoiObservationSetNewParamsReferenceFrame = "ECR/ECEF"
+	SoiObservationSetNewParamsReferenceFrameTeme    SoiObservationSetNewParamsReferenceFrame = "TEME"
+	SoiObservationSetNewParamsReferenceFrameItrf    SoiObservationSetNewParamsReferenceFrame = "ITRF"
+	SoiObservationSetNewParamsReferenceFrameGcrf    SoiObservationSetNewParamsReferenceFrame = "GCRF"
 )
 
 // The reference frame of the observing sensor state. If the senReferenceFrame is
 // null it is assumed to be J2000.
-type SoiobservationsetNewParamsSenReferenceFrame string
+type SoiObservationSetNewParamsSenReferenceFrame string
 
 const (
-	SoiobservationsetNewParamsSenReferenceFrameJ2000   SoiobservationsetNewParamsSenReferenceFrame = "J2000"
-	SoiobservationsetNewParamsSenReferenceFrameEfgTdr  SoiobservationsetNewParamsSenReferenceFrame = "EFG/TDR"
-	SoiobservationsetNewParamsSenReferenceFrameEcrEcef SoiobservationsetNewParamsSenReferenceFrame = "ECR/ECEF"
-	SoiobservationsetNewParamsSenReferenceFrameTeme    SoiobservationsetNewParamsSenReferenceFrame = "TEME"
-	SoiobservationsetNewParamsSenReferenceFrameItrf    SoiobservationsetNewParamsSenReferenceFrame = "ITRF"
-	SoiobservationsetNewParamsSenReferenceFrameGcrf    SoiobservationsetNewParamsSenReferenceFrame = "GCRF"
+	SoiObservationSetNewParamsSenReferenceFrameJ2000   SoiObservationSetNewParamsSenReferenceFrame = "J2000"
+	SoiObservationSetNewParamsSenReferenceFrameEfgTdr  SoiObservationSetNewParamsSenReferenceFrame = "EFG/TDR"
+	SoiObservationSetNewParamsSenReferenceFrameEcrEcef SoiObservationSetNewParamsSenReferenceFrame = "ECR/ECEF"
+	SoiObservationSetNewParamsSenReferenceFrameTeme    SoiObservationSetNewParamsSenReferenceFrame = "TEME"
+	SoiObservationSetNewParamsSenReferenceFrameItrf    SoiObservationSetNewParamsSenReferenceFrame = "ITRF"
+	SoiObservationSetNewParamsSenReferenceFrameGcrf    SoiObservationSetNewParamsSenReferenceFrame = "GCRF"
 )
 
-type SoiobservationsetListParams struct {
+type SoiObservationSetListParams struct {
 	// Observation set detection start time in ISO 8601 UTC with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
@@ -1187,18 +1187,18 @@ type SoiobservationsetListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SoiObservationSetListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SoiobservationsetListParams]'s query parameters as
+// URLQuery serializes [SoiObservationSetListParams]'s query parameters as
 // `url.Values`.
-func (r SoiobservationsetListParams) URLQuery() (v url.Values, err error) {
+func (r SoiObservationSetListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SoiobservationsetCountParams struct {
+type SoiObservationSetCountParams struct {
 	// Observation set detection start time in ISO 8601 UTC with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
@@ -1209,27 +1209,27 @@ type SoiobservationsetCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SoiObservationSetCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SoiobservationsetCountParams]'s query parameters as
+// URLQuery serializes [SoiObservationSetCountParams]'s query parameters as
 // `url.Values`.
-func (r SoiobservationsetCountParams) URLQuery() (v url.Values, err error) {
+func (r SoiObservationSetCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SoiobservationsetNewBulkParams struct {
-	Body []SoiobservationsetNewBulkParamsBody
+type SoiObservationSetNewBulkParams struct {
+	Body []SoiObservationSetNewBulkParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SoiObservationSetNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SoiobservationsetNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r SoiObservationSetNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -1238,7 +1238,7 @@ func (r SoiobservationsetNewBulkParams) MarshalJSON() (data []byte, err error) {
 //
 // The properties ClassificationMarking, DataMode, NumObs, Source, StartTime, Type
 // are required.
-type SoiobservationsetNewBulkParamsBody struct {
+type SoiObservationSetNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1454,11 +1454,11 @@ type SoiobservationsetNewBulkParamsBody struct {
 	// (e.g. PRE, POST, BOTH, NONE).
 	ValidCalibrations param.Opt[string] `json:"validCalibrations,omitzero"`
 	// Array of SOI Calibrations associated with this SOIObservationSet.
-	Calibrations []SoiobservationsetNewBulkParamsBodyCalibration `json:"calibrations,omitzero"`
+	Calibrations []SoiObservationSetNewBulkParamsBodyCalibration `json:"calibrations,omitzero"`
 	// OpticalSOIObservations associated with this SOIObservationSet.
-	OpticalSoiObservationList []SoiobservationsetNewBulkParamsBodyOpticalSoiObservationList `json:"opticalSOIObservationList,omitzero"`
+	OpticalSoiObservationList []SoiObservationSetNewBulkParamsBodyOpticalSoiObservationList `json:"opticalSOIObservationList,omitzero"`
 	// RadarSOIObservations associated with this RadarSOIObservationSet.
-	RadarSoiObservationList []SoiobservationsetNewBulkParamsBodyRadarSoiObservationList `json:"radarSOIObservationList,omitzero"`
+	RadarSoiObservationList []SoiObservationSetNewBulkParamsBodyRadarSoiObservationList `json:"radarSOIObservationList,omitzero"`
 	// The reference frame of the observation measurements. If the referenceFrame is
 	// null it is assumed to be J2000.
 	//
@@ -1483,31 +1483,31 @@ type SoiobservationsetNewBulkParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetNewBulkParamsBody) IsPresent() bool {
+func (f SoiObservationSetNewBulkParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SoiobservationsetNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow SoiobservationsetNewBulkParamsBody
+func (r SoiObservationSetNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow SoiObservationSetNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[SoiobservationsetNewBulkParamsBody](
+	apijson.RegisterFieldValidator[SoiObservationSetNewBulkParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
-	apijson.RegisterFieldValidator[SoiobservationsetNewBulkParamsBody](
+	apijson.RegisterFieldValidator[SoiObservationSetNewBulkParamsBody](
 		"Type", false, "OPTICAL", "RADAR",
 	)
-	apijson.RegisterFieldValidator[SoiobservationsetNewBulkParamsBody](
+	apijson.RegisterFieldValidator[SoiObservationSetNewBulkParamsBody](
 		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
-	apijson.RegisterFieldValidator[SoiobservationsetNewBulkParamsBody](
+	apijson.RegisterFieldValidator[SoiObservationSetNewBulkParamsBody](
 		"SenReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
 // Schema for SOI Calibration data.
-type SoiobservationsetNewBulkParamsBodyCalibration struct {
+type SoiObservationSetNewBulkParamsBodyCalibration struct {
 	// Background intensity, at calibration, specified in kilowatts per steradian per
 	// micrometer.
 	CalBgIntensity param.Opt[float64] `json:"calBgIntensity,omitzero"`
@@ -1545,11 +1545,11 @@ type SoiobservationsetNewBulkParamsBodyCalibration struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetNewBulkParamsBodyCalibration) IsPresent() bool {
+func (f SoiObservationSetNewBulkParamsBodyCalibration) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SoiobservationsetNewBulkParamsBodyCalibration) MarshalJSON() (data []byte, err error) {
-	type shadow SoiobservationsetNewBulkParamsBodyCalibration
+func (r SoiObservationSetNewBulkParamsBodyCalibration) MarshalJSON() (data []byte, err error) {
+	type shadow SoiObservationSetNewBulkParamsBodyCalibration
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -1557,7 +1557,7 @@ func (r SoiobservationsetNewBulkParamsBodyCalibration) MarshalJSON() (data []byt
 // a Space Object.
 //
 // The property ObStartTime is required.
-type SoiobservationsetNewBulkParamsBodyOpticalSoiObservationList struct {
+type SoiObservationSetNewBulkParamsBodyOpticalSoiObservationList struct {
 	// Observation detection start time in ISO 8601 UTC with microsecond precision.
 	ObStartTime time.Time `json:"obStartTime,required" format:"date-time"`
 	// The reference number, x, where x ranges from 1 to n, where n is the number
@@ -1623,11 +1623,11 @@ type SoiobservationsetNewBulkParamsBodyOpticalSoiObservationList struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetNewBulkParamsBodyOpticalSoiObservationList) IsPresent() bool {
+func (f SoiObservationSetNewBulkParamsBodyOpticalSoiObservationList) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SoiobservationsetNewBulkParamsBodyOpticalSoiObservationList) MarshalJSON() (data []byte, err error) {
-	type shadow SoiobservationsetNewBulkParamsBodyOpticalSoiObservationList
+func (r SoiObservationSetNewBulkParamsBodyOpticalSoiObservationList) MarshalJSON() (data []byte, err error) {
+	type shadow SoiObservationSetNewBulkParamsBodyOpticalSoiObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -1635,7 +1635,7 @@ func (r SoiobservationsetNewBulkParamsBodyOpticalSoiObservationList) MarshalJSON
 // Space Object.
 //
 // The property ObStartTime is required.
-type SoiobservationsetNewBulkParamsBodyRadarSoiObservationList struct {
+type SoiObservationSetNewBulkParamsBodyRadarSoiObservationList struct {
 	// Observation detection start time in ISO 8601 UTC format with microsecond
 	// precision.
 	ObStartTime time.Time `json:"obStartTime,required" format:"date-time"`
@@ -1783,15 +1783,15 @@ type SoiobservationsetNewBulkParamsBodyRadarSoiObservationList struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetNewBulkParamsBodyRadarSoiObservationList) IsPresent() bool {
+func (f SoiObservationSetNewBulkParamsBodyRadarSoiObservationList) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SoiobservationsetNewBulkParamsBodyRadarSoiObservationList) MarshalJSON() (data []byte, err error) {
-	type shadow SoiobservationsetNewBulkParamsBodyRadarSoiObservationList
+func (r SoiObservationSetNewBulkParamsBodyRadarSoiObservationList) MarshalJSON() (data []byte, err error) {
+	type shadow SoiObservationSetNewBulkParamsBodyRadarSoiObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
-type SoiobservationsetGetParams struct {
+type SoiObservationSetGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1799,18 +1799,18 @@ type SoiobservationsetGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SoiObservationSetGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SoiobservationsetGetParams]'s query parameters as
+// URLQuery serializes [SoiObservationSetGetParams]'s query parameters as
 // `url.Values`.
-func (r SoiobservationsetGetParams) URLQuery() (v url.Values, err error) {
+func (r SoiObservationSetGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SoiobservationsetTupleParams struct {
+type SoiObservationSetTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -1826,29 +1826,29 @@ type SoiobservationsetTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SoiObservationSetTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SoiobservationsetTupleParams]'s query parameters as
+// URLQuery serializes [SoiObservationSetTupleParams]'s query parameters as
 // `url.Values`.
-func (r SoiobservationsetTupleParams) URLQuery() (v url.Values, err error) {
+func (r SoiObservationSetTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SoiobservationsetUnvalidatedPublishParams struct {
-	Body []SoiobservationsetUnvalidatedPublishParamsBody
+type SoiObservationSetUnvalidatedPublishParams struct {
+	Body []SoiObservationSetUnvalidatedPublishParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetUnvalidatedPublishParams) IsPresent() bool {
+func (f SoiObservationSetUnvalidatedPublishParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r SoiobservationsetUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+func (r SoiObservationSetUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -1857,7 +1857,7 @@ func (r SoiobservationsetUnvalidatedPublishParams) MarshalJSON() (data []byte, e
 //
 // The properties ClassificationMarking, DataMode, NumObs, Source, StartTime, Type
 // are required.
-type SoiobservationsetUnvalidatedPublishParamsBody struct {
+type SoiObservationSetUnvalidatedPublishParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -2073,11 +2073,11 @@ type SoiobservationsetUnvalidatedPublishParamsBody struct {
 	// (e.g. PRE, POST, BOTH, NONE).
 	ValidCalibrations param.Opt[string] `json:"validCalibrations,omitzero"`
 	// Array of SOI Calibrations associated with this SOIObservationSet.
-	Calibrations []SoiobservationsetUnvalidatedPublishParamsBodyCalibration `json:"calibrations,omitzero"`
+	Calibrations []SoiObservationSetUnvalidatedPublishParamsBodyCalibration `json:"calibrations,omitzero"`
 	// OpticalSOIObservations associated with this SOIObservationSet.
-	OpticalSoiObservationList []SoiobservationsetUnvalidatedPublishParamsBodyOpticalSoiObservationList `json:"opticalSOIObservationList,omitzero"`
+	OpticalSoiObservationList []SoiObservationSetUnvalidatedPublishParamsBodyOpticalSoiObservationList `json:"opticalSOIObservationList,omitzero"`
 	// RadarSOIObservations associated with this RadarSOIObservationSet.
-	RadarSoiObservationList []SoiobservationsetUnvalidatedPublishParamsBodyRadarSoiObservationList `json:"radarSOIObservationList,omitzero"`
+	RadarSoiObservationList []SoiObservationSetUnvalidatedPublishParamsBodyRadarSoiObservationList `json:"radarSOIObservationList,omitzero"`
 	// The reference frame of the observation measurements. If the referenceFrame is
 	// null it is assumed to be J2000.
 	//
@@ -2102,31 +2102,31 @@ type SoiobservationsetUnvalidatedPublishParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetUnvalidatedPublishParamsBody) IsPresent() bool {
+func (f SoiObservationSetUnvalidatedPublishParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SoiobservationsetUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow SoiobservationsetUnvalidatedPublishParamsBody
+func (r SoiObservationSetUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow SoiObservationSetUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[SoiobservationsetUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[SoiObservationSetUnvalidatedPublishParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
-	apijson.RegisterFieldValidator[SoiobservationsetUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[SoiObservationSetUnvalidatedPublishParamsBody](
 		"Type", false, "OPTICAL", "RADAR",
 	)
-	apijson.RegisterFieldValidator[SoiobservationsetUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[SoiObservationSetUnvalidatedPublishParamsBody](
 		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
-	apijson.RegisterFieldValidator[SoiobservationsetUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[SoiObservationSetUnvalidatedPublishParamsBody](
 		"SenReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
 // Schema for SOI Calibration data.
-type SoiobservationsetUnvalidatedPublishParamsBodyCalibration struct {
+type SoiObservationSetUnvalidatedPublishParamsBodyCalibration struct {
 	// Background intensity, at calibration, specified in kilowatts per steradian per
 	// micrometer.
 	CalBgIntensity param.Opt[float64] `json:"calBgIntensity,omitzero"`
@@ -2164,11 +2164,11 @@ type SoiobservationsetUnvalidatedPublishParamsBodyCalibration struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetUnvalidatedPublishParamsBodyCalibration) IsPresent() bool {
+func (f SoiObservationSetUnvalidatedPublishParamsBodyCalibration) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SoiobservationsetUnvalidatedPublishParamsBodyCalibration) MarshalJSON() (data []byte, err error) {
-	type shadow SoiobservationsetUnvalidatedPublishParamsBodyCalibration
+func (r SoiObservationSetUnvalidatedPublishParamsBodyCalibration) MarshalJSON() (data []byte, err error) {
+	type shadow SoiObservationSetUnvalidatedPublishParamsBodyCalibration
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -2176,7 +2176,7 @@ func (r SoiobservationsetUnvalidatedPublishParamsBodyCalibration) MarshalJSON() 
 // a Space Object.
 //
 // The property ObStartTime is required.
-type SoiobservationsetUnvalidatedPublishParamsBodyOpticalSoiObservationList struct {
+type SoiObservationSetUnvalidatedPublishParamsBodyOpticalSoiObservationList struct {
 	// Observation detection start time in ISO 8601 UTC with microsecond precision.
 	ObStartTime time.Time `json:"obStartTime,required" format:"date-time"`
 	// The reference number, x, where x ranges from 1 to n, where n is the number
@@ -2242,11 +2242,11 @@ type SoiobservationsetUnvalidatedPublishParamsBodyOpticalSoiObservationList stru
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetUnvalidatedPublishParamsBodyOpticalSoiObservationList) IsPresent() bool {
+func (f SoiObservationSetUnvalidatedPublishParamsBodyOpticalSoiObservationList) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SoiobservationsetUnvalidatedPublishParamsBodyOpticalSoiObservationList) MarshalJSON() (data []byte, err error) {
-	type shadow SoiobservationsetUnvalidatedPublishParamsBodyOpticalSoiObservationList
+func (r SoiObservationSetUnvalidatedPublishParamsBodyOpticalSoiObservationList) MarshalJSON() (data []byte, err error) {
+	type shadow SoiObservationSetUnvalidatedPublishParamsBodyOpticalSoiObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -2254,7 +2254,7 @@ func (r SoiobservationsetUnvalidatedPublishParamsBodyOpticalSoiObservationList) 
 // Space Object.
 //
 // The property ObStartTime is required.
-type SoiobservationsetUnvalidatedPublishParamsBodyRadarSoiObservationList struct {
+type SoiObservationSetUnvalidatedPublishParamsBodyRadarSoiObservationList struct {
 	// Observation detection start time in ISO 8601 UTC format with microsecond
 	// precision.
 	ObStartTime time.Time `json:"obStartTime,required" format:"date-time"`
@@ -2402,10 +2402,10 @@ type SoiobservationsetUnvalidatedPublishParamsBodyRadarSoiObservationList struct
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetUnvalidatedPublishParamsBodyRadarSoiObservationList) IsPresent() bool {
+func (f SoiObservationSetUnvalidatedPublishParamsBodyRadarSoiObservationList) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SoiobservationsetUnvalidatedPublishParamsBodyRadarSoiObservationList) MarshalJSON() (data []byte, err error) {
-	type shadow SoiobservationsetUnvalidatedPublishParamsBodyRadarSoiObservationList
+func (r SoiObservationSetUnvalidatedPublishParamsBodyRadarSoiObservationList) MarshalJSON() (data []byte, err error) {
+	type shadow SoiObservationSetUnvalidatedPublishParamsBodyRadarSoiObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
 }

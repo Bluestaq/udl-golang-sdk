@@ -20,31 +20,31 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// SensormaintenanceService contains methods and other services that help with
+// SensorMaintenanceService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewSensormaintenanceService] method instead.
-type SensormaintenanceService struct {
+// the [NewSensorMaintenanceService] method instead.
+type SensorMaintenanceService struct {
 	Options []option.RequestOption
-	History SensormaintenanceHistoryService
+	History SensorMaintenanceHistoryService
 }
 
-// NewSensormaintenanceService generates a new service that applies the given
+// NewSensorMaintenanceService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewSensormaintenanceService(opts ...option.RequestOption) (r SensormaintenanceService) {
-	r = SensormaintenanceService{}
+func NewSensorMaintenanceService(opts ...option.RequestOption) (r SensorMaintenanceService) {
+	r = SensorMaintenanceService{}
 	r.Options = opts
-	r.History = NewSensormaintenanceHistoryService(opts...)
+	r.History = NewSensorMaintenanceHistoryService(opts...)
 	return
 }
 
 // Service operation to take a single SensorMaintenance as a POST body and ingest
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *SensormaintenanceService) New(ctx context.Context, body SensormaintenanceNewParams, opts ...option.RequestOption) (err error) {
+func (r *SensorMaintenanceService) New(ctx context.Context, body SensorMaintenanceNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sensormaintenance"
@@ -55,7 +55,7 @@ func (r *SensormaintenanceService) New(ctx context.Context, body Sensormaintenan
 // Service operation to update a single SensorMaintenance. A specific role is
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
-func (r *SensormaintenanceService) Update(ctx context.Context, id string, body SensormaintenanceUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *SensorMaintenanceService) Update(ctx context.Context, id string, body SensorMaintenanceUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -71,7 +71,7 @@ func (r *SensormaintenanceService) Update(ctx context.Context, id string, body S
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SensormaintenanceService) List(ctx context.Context, query SensormaintenanceListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SensormaintenanceListResponse], err error) {
+func (r *SensorMaintenanceService) List(ctx context.Context, query SensorMaintenanceListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SensorMaintenanceListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -92,14 +92,14 @@ func (r *SensormaintenanceService) List(ctx context.Context, query Sensormainten
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SensormaintenanceService) ListAutoPaging(ctx context.Context, query SensormaintenanceListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SensormaintenanceListResponse] {
+func (r *SensorMaintenanceService) ListAutoPaging(ctx context.Context, query SensorMaintenanceListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SensorMaintenanceListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to delete a SensorMaintenance object specified by the passed
 // ID path parameter. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *SensormaintenanceService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *SensorMaintenanceService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -116,7 +116,7 @@ func (r *SensormaintenanceService) Delete(ctx context.Context, id string, opts .
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *SensormaintenanceService) Count(ctx context.Context, query SensormaintenanceCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *SensorMaintenanceService) Count(ctx context.Context, query SensorMaintenanceCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sensormaintenance/count"
@@ -127,7 +127,7 @@ func (r *SensormaintenanceService) Count(ctx context.Context, query Sensormainte
 // Service operation to take multiple SensorMaintenance as a POST body and ingest
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *SensormaintenanceService) NewBulk(ctx context.Context, params SensormaintenanceNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *SensorMaintenanceService) NewBulk(ctx context.Context, params SensorMaintenanceNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sensormaintenance/createBulk"
@@ -137,7 +137,7 @@ func (r *SensormaintenanceService) NewBulk(ctx context.Context, params Sensormai
 
 // Service operation to get current Sensor Maintenance records using any number of
 // additional parameters.
-func (r *SensormaintenanceService) Current(ctx context.Context, query SensormaintenanceCurrentParams, opts ...option.RequestOption) (res *[]SensormaintenanceFull, err error) {
+func (r *SensorMaintenanceService) Current(ctx context.Context, query SensorMaintenanceCurrentParams, opts ...option.RequestOption) (res *[]SensorMaintenanceCurrentResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/sensormaintenance/current"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -146,7 +146,7 @@ func (r *SensormaintenanceService) Current(ctx context.Context, query Sensormain
 
 // Service operation to get a single SensorMaintenance record by its unique ID
 // passed as a path parameter.
-func (r *SensormaintenanceService) Get(ctx context.Context, id string, query SensormaintenanceGetParams, opts ...option.RequestOption) (res *SensormaintenanceFull, err error) {
+func (r *SensorMaintenanceService) Get(ctx context.Context, id string, query SensorMaintenanceGetParams, opts ...option.RequestOption) (res *SensorMaintenanceGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -159,7 +159,7 @@ func (r *SensormaintenanceService) Get(ctx context.Context, id string, query Sen
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *SensormaintenanceService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *SensorMaintenanceService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sensormaintenance/queryhelp"
@@ -175,7 +175,7 @@ func (r *SensormaintenanceService) Queryhelp(ctx context.Context, opts ...option
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *SensormaintenanceService) Tuple(ctx context.Context, query SensormaintenanceTupleParams, opts ...option.RequestOption) (res *[]SensormaintenanceFull, err error) {
+func (r *SensorMaintenanceService) Tuple(ctx context.Context, query SensorMaintenanceTupleParams, opts ...option.RequestOption) (res *[]SensorMaintenanceTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/sensormaintenance/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -183,7 +183,7 @@ func (r *SensormaintenanceService) Tuple(ctx context.Context, query Sensormainte
 }
 
 // Maintenance schedule and operational status of Sensor.
-type SensormaintenanceListResponse struct {
+type SensorMaintenanceListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -202,7 +202,7 @@ type SensormaintenanceListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SensormaintenanceListResponseDataMode `json:"dataMode,required"`
+	DataMode SensorMaintenanceListResponseDataMode `json:"dataMode,required"`
 	// The planned outage end time in ISO8601 UTC format.
 	EndTime time.Time `json:"endTime,required" format:"date-time"`
 	// The site to which this item applies. NOTE - this site code is COLT specific and
@@ -310,8 +310,8 @@ type SensormaintenanceListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SensormaintenanceListResponse) RawJSON() string { return r.JSON.raw }
-func (r *SensormaintenanceListResponse) UnmarshalJSON(data []byte) error {
+func (r SensorMaintenanceListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SensorMaintenanceListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -329,16 +329,17 @@ func (r *SensormaintenanceListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SensormaintenanceListResponseDataMode string
+type SensorMaintenanceListResponseDataMode string
 
 const (
-	SensormaintenanceListResponseDataModeReal      SensormaintenanceListResponseDataMode = "REAL"
-	SensormaintenanceListResponseDataModeTest      SensormaintenanceListResponseDataMode = "TEST"
-	SensormaintenanceListResponseDataModeSimulated SensormaintenanceListResponseDataMode = "SIMULATED"
-	SensormaintenanceListResponseDataModeExercise  SensormaintenanceListResponseDataMode = "EXERCISE"
+	SensorMaintenanceListResponseDataModeReal      SensorMaintenanceListResponseDataMode = "REAL"
+	SensorMaintenanceListResponseDataModeTest      SensorMaintenanceListResponseDataMode = "TEST"
+	SensorMaintenanceListResponseDataModeSimulated SensorMaintenanceListResponseDataMode = "SIMULATED"
+	SensorMaintenanceListResponseDataModeExercise  SensorMaintenanceListResponseDataMode = "EXERCISE"
 )
 
-type SensormaintenanceNewParams struct {
+// Maintenance schedule and operational status of Sensor.
+type SensorMaintenanceCurrentResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -357,7 +358,495 @@ type SensormaintenanceNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SensormaintenanceNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SensorMaintenanceCurrentResponseDataMode `json:"dataMode,required"`
+	// The planned outage end time in ISO8601 UTC format.
+	EndTime time.Time `json:"endTime,required" format:"date-time"`
+	// The site to which this item applies. NOTE - this site code is COLT specific and
+	// may not identically correspond to other UDL site IDs.
+	SiteCode string `json:"siteCode,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// The planned outage start time in ISO8601 UTC format.
+	StartTime time.Time `json:"startTime,required" format:"date-time"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Description of the activity taking place during this outage.
+	Activity string `json:"activity"`
+	// The name of the approver.
+	Approver string `json:"approver"`
+	// The name of the changer, if applicable.
+	Changer string `json:"changer"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The duration of the planned outage, expressed as ddd:hh:mm.
+	Duration string `json:"duration"`
+	// COLT EOWID.
+	EowID string `json:"eowId"`
+	// The mission capability status of the equipment (e.g. FMC, NMC, PMC, UNK, etc.).
+	EquipStatus string `json:"equipStatus"`
+	// UUID of the sensor.
+	IDSensor string `json:"idSensor"`
+	// The sensor face(s) to which this COLT maintenance item applies, if applicable.
+	ImpactedFaces string `json:"impactedFaces"`
+	// The date that this item became inactive in ISO8601 UTC format.
+	InactiveDate time.Time `json:"inactiveDate" format:"date-time"`
+	// The internal COLT line number assigned to this item.
+	LineNumber string `json:"lineNumber"`
+	// The Missile Defense operational capability of this maintenance item. Typical
+	// values are G, Y, R, and - for non-applicable sites.
+	MdOpsCap string `json:"mdOpsCap"`
+	// The Missile Warning operational capability of this maintenance item. Typical
+	// values are G, Y, R, and - for non-applicable sites.
+	MwOpsCap string `json:"mwOpsCap"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// The priority of this maintenance item.
+	Priority string `json:"priority"`
+	// The minimum time required to recall this activity, expressed as ddd:hh:mm.
+	Recall string `json:"recall"`
+	// Release.
+	Rel string `json:"rel"`
+	// Remarks concerning this outage.
+	Remark string `json:"remark"`
+	// The name of the requestor.
+	Requestor string `json:"requestor"`
+	// The name of the resource(s) affected by this maintenance item.
+	Resource string `json:"resource"`
+	// The revision number for this maintenance item.
+	Rev string `json:"rev"`
+	// The Space Surveillance operational capability of this maintenance item. Typical
+	// values are G, Y, R, and - for non-applicable sites.
+	SSOpsCap string `json:"ssOpsCap"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		EndTime               resp.Field
+		SiteCode              resp.Field
+		Source                resp.Field
+		StartTime             resp.Field
+		ID                    resp.Field
+		Activity              resp.Field
+		Approver              resp.Field
+		Changer               resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Duration              resp.Field
+		EowID                 resp.Field
+		EquipStatus           resp.Field
+		IDSensor              resp.Field
+		ImpactedFaces         resp.Field
+		InactiveDate          resp.Field
+		LineNumber            resp.Field
+		MdOpsCap              resp.Field
+		MwOpsCap              resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		Priority              resp.Field
+		Recall                resp.Field
+		Rel                   resp.Field
+		Remark                resp.Field
+		Requestor             resp.Field
+		Resource              resp.Field
+		Rev                   resp.Field
+		SSOpsCap              resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorMaintenanceCurrentResponse) RawJSON() string { return r.JSON.raw }
+func (r *SensorMaintenanceCurrentResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type SensorMaintenanceCurrentResponseDataMode string
+
+const (
+	SensorMaintenanceCurrentResponseDataModeReal      SensorMaintenanceCurrentResponseDataMode = "REAL"
+	SensorMaintenanceCurrentResponseDataModeTest      SensorMaintenanceCurrentResponseDataMode = "TEST"
+	SensorMaintenanceCurrentResponseDataModeSimulated SensorMaintenanceCurrentResponseDataMode = "SIMULATED"
+	SensorMaintenanceCurrentResponseDataModeExercise  SensorMaintenanceCurrentResponseDataMode = "EXERCISE"
+)
+
+// Maintenance schedule and operational status of Sensor.
+type SensorMaintenanceGetResponse struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode SensorMaintenanceGetResponseDataMode `json:"dataMode,required"`
+	// The planned outage end time in ISO8601 UTC format.
+	EndTime time.Time `json:"endTime,required" format:"date-time"`
+	// The site to which this item applies. NOTE - this site code is COLT specific and
+	// may not identically correspond to other UDL site IDs.
+	SiteCode string `json:"siteCode,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// The planned outage start time in ISO8601 UTC format.
+	StartTime time.Time `json:"startTime,required" format:"date-time"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Description of the activity taking place during this outage.
+	Activity string `json:"activity"`
+	// The name of the approver.
+	Approver string `json:"approver"`
+	// The name of the changer, if applicable.
+	Changer string `json:"changer"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The duration of the planned outage, expressed as ddd:hh:mm.
+	Duration string `json:"duration"`
+	// COLT EOWID.
+	EowID string `json:"eowId"`
+	// The mission capability status of the equipment (e.g. FMC, NMC, PMC, UNK, etc.).
+	EquipStatus string `json:"equipStatus"`
+	// UUID of the sensor.
+	IDSensor string `json:"idSensor"`
+	// The sensor face(s) to which this COLT maintenance item applies, if applicable.
+	ImpactedFaces string `json:"impactedFaces"`
+	// The date that this item became inactive in ISO8601 UTC format.
+	InactiveDate time.Time `json:"inactiveDate" format:"date-time"`
+	// The internal COLT line number assigned to this item.
+	LineNumber string `json:"lineNumber"`
+	// The Missile Defense operational capability of this maintenance item. Typical
+	// values are G, Y, R, and - for non-applicable sites.
+	MdOpsCap string `json:"mdOpsCap"`
+	// The Missile Warning operational capability of this maintenance item. Typical
+	// values are G, Y, R, and - for non-applicable sites.
+	MwOpsCap string `json:"mwOpsCap"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// The priority of this maintenance item.
+	Priority string `json:"priority"`
+	// The minimum time required to recall this activity, expressed as ddd:hh:mm.
+	Recall string `json:"recall"`
+	// Release.
+	Rel string `json:"rel"`
+	// Remarks concerning this outage.
+	Remark string `json:"remark"`
+	// The name of the requestor.
+	Requestor string `json:"requestor"`
+	// The name of the resource(s) affected by this maintenance item.
+	Resource string `json:"resource"`
+	// The revision number for this maintenance item.
+	Rev string `json:"rev"`
+	// The Space Surveillance operational capability of this maintenance item. Typical
+	// values are G, Y, R, and - for non-applicable sites.
+	SSOpsCap string `json:"ssOpsCap"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		EndTime               resp.Field
+		SiteCode              resp.Field
+		Source                resp.Field
+		StartTime             resp.Field
+		ID                    resp.Field
+		Activity              resp.Field
+		Approver              resp.Field
+		Changer               resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Duration              resp.Field
+		EowID                 resp.Field
+		EquipStatus           resp.Field
+		IDSensor              resp.Field
+		ImpactedFaces         resp.Field
+		InactiveDate          resp.Field
+		LineNumber            resp.Field
+		MdOpsCap              resp.Field
+		MwOpsCap              resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		Priority              resp.Field
+		Recall                resp.Field
+		Rel                   resp.Field
+		Remark                resp.Field
+		Requestor             resp.Field
+		Resource              resp.Field
+		Rev                   resp.Field
+		SSOpsCap              resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorMaintenanceGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *SensorMaintenanceGetResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type SensorMaintenanceGetResponseDataMode string
+
+const (
+	SensorMaintenanceGetResponseDataModeReal      SensorMaintenanceGetResponseDataMode = "REAL"
+	SensorMaintenanceGetResponseDataModeTest      SensorMaintenanceGetResponseDataMode = "TEST"
+	SensorMaintenanceGetResponseDataModeSimulated SensorMaintenanceGetResponseDataMode = "SIMULATED"
+	SensorMaintenanceGetResponseDataModeExercise  SensorMaintenanceGetResponseDataMode = "EXERCISE"
+)
+
+// Maintenance schedule and operational status of Sensor.
+type SensorMaintenanceTupleResponse struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode SensorMaintenanceTupleResponseDataMode `json:"dataMode,required"`
+	// The planned outage end time in ISO8601 UTC format.
+	EndTime time.Time `json:"endTime,required" format:"date-time"`
+	// The site to which this item applies. NOTE - this site code is COLT specific and
+	// may not identically correspond to other UDL site IDs.
+	SiteCode string `json:"siteCode,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// The planned outage start time in ISO8601 UTC format.
+	StartTime time.Time `json:"startTime,required" format:"date-time"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Description of the activity taking place during this outage.
+	Activity string `json:"activity"`
+	// The name of the approver.
+	Approver string `json:"approver"`
+	// The name of the changer, if applicable.
+	Changer string `json:"changer"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The duration of the planned outage, expressed as ddd:hh:mm.
+	Duration string `json:"duration"`
+	// COLT EOWID.
+	EowID string `json:"eowId"`
+	// The mission capability status of the equipment (e.g. FMC, NMC, PMC, UNK, etc.).
+	EquipStatus string `json:"equipStatus"`
+	// UUID of the sensor.
+	IDSensor string `json:"idSensor"`
+	// The sensor face(s) to which this COLT maintenance item applies, if applicable.
+	ImpactedFaces string `json:"impactedFaces"`
+	// The date that this item became inactive in ISO8601 UTC format.
+	InactiveDate time.Time `json:"inactiveDate" format:"date-time"`
+	// The internal COLT line number assigned to this item.
+	LineNumber string `json:"lineNumber"`
+	// The Missile Defense operational capability of this maintenance item. Typical
+	// values are G, Y, R, and - for non-applicable sites.
+	MdOpsCap string `json:"mdOpsCap"`
+	// The Missile Warning operational capability of this maintenance item. Typical
+	// values are G, Y, R, and - for non-applicable sites.
+	MwOpsCap string `json:"mwOpsCap"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// The priority of this maintenance item.
+	Priority string `json:"priority"`
+	// The minimum time required to recall this activity, expressed as ddd:hh:mm.
+	Recall string `json:"recall"`
+	// Release.
+	Rel string `json:"rel"`
+	// Remarks concerning this outage.
+	Remark string `json:"remark"`
+	// The name of the requestor.
+	Requestor string `json:"requestor"`
+	// The name of the resource(s) affected by this maintenance item.
+	Resource string `json:"resource"`
+	// The revision number for this maintenance item.
+	Rev string `json:"rev"`
+	// The Space Surveillance operational capability of this maintenance item. Typical
+	// values are G, Y, R, and - for non-applicable sites.
+	SSOpsCap string `json:"ssOpsCap"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		EndTime               resp.Field
+		SiteCode              resp.Field
+		Source                resp.Field
+		StartTime             resp.Field
+		ID                    resp.Field
+		Activity              resp.Field
+		Approver              resp.Field
+		Changer               resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Duration              resp.Field
+		EowID                 resp.Field
+		EquipStatus           resp.Field
+		IDSensor              resp.Field
+		ImpactedFaces         resp.Field
+		InactiveDate          resp.Field
+		LineNumber            resp.Field
+		MdOpsCap              resp.Field
+		MwOpsCap              resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		Priority              resp.Field
+		Recall                resp.Field
+		Rel                   resp.Field
+		Remark                resp.Field
+		Requestor             resp.Field
+		Resource              resp.Field
+		Rev                   resp.Field
+		SSOpsCap              resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorMaintenanceTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *SensorMaintenanceTupleResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type SensorMaintenanceTupleResponseDataMode string
+
+const (
+	SensorMaintenanceTupleResponseDataModeReal      SensorMaintenanceTupleResponseDataMode = "REAL"
+	SensorMaintenanceTupleResponseDataModeTest      SensorMaintenanceTupleResponseDataMode = "TEST"
+	SensorMaintenanceTupleResponseDataModeSimulated SensorMaintenanceTupleResponseDataMode = "SIMULATED"
+	SensorMaintenanceTupleResponseDataModeExercise  SensorMaintenanceTupleResponseDataMode = "EXERCISE"
+)
+
+type SensorMaintenanceNewParams struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode SensorMaintenanceNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// The planned outage end time in ISO8601 UTC format.
 	EndTime time.Time `json:"endTime,required" format:"date-time"`
 	// The site to which this item applies. NOTE - this site code is COLT specific and
@@ -420,10 +909,10 @@ type SensormaintenanceNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensormaintenanceNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SensorMaintenanceNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SensormaintenanceNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow SensormaintenanceNewParams
+func (r SensorMaintenanceNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow SensorMaintenanceNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -441,16 +930,16 @@ func (r SensormaintenanceNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SensormaintenanceNewParamsDataMode string
+type SensorMaintenanceNewParamsDataMode string
 
 const (
-	SensormaintenanceNewParamsDataModeReal      SensormaintenanceNewParamsDataMode = "REAL"
-	SensormaintenanceNewParamsDataModeTest      SensormaintenanceNewParamsDataMode = "TEST"
-	SensormaintenanceNewParamsDataModeSimulated SensormaintenanceNewParamsDataMode = "SIMULATED"
-	SensormaintenanceNewParamsDataModeExercise  SensormaintenanceNewParamsDataMode = "EXERCISE"
+	SensorMaintenanceNewParamsDataModeReal      SensorMaintenanceNewParamsDataMode = "REAL"
+	SensorMaintenanceNewParamsDataModeTest      SensorMaintenanceNewParamsDataMode = "TEST"
+	SensorMaintenanceNewParamsDataModeSimulated SensorMaintenanceNewParamsDataMode = "SIMULATED"
+	SensorMaintenanceNewParamsDataModeExercise  SensorMaintenanceNewParamsDataMode = "EXERCISE"
 )
 
-type SensormaintenanceUpdateParams struct {
+type SensorMaintenanceUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -469,7 +958,7 @@ type SensormaintenanceUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SensormaintenanceUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SensorMaintenanceUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// The planned outage end time in ISO8601 UTC format.
 	EndTime time.Time `json:"endTime,required" format:"date-time"`
 	// The site to which this item applies. NOTE - this site code is COLT specific and
@@ -532,10 +1021,10 @@ type SensormaintenanceUpdateParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensormaintenanceUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SensorMaintenanceUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SensormaintenanceUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow SensormaintenanceUpdateParams
+func (r SensorMaintenanceUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow SensorMaintenanceUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -553,16 +1042,16 @@ func (r SensormaintenanceUpdateParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SensormaintenanceUpdateParamsDataMode string
+type SensorMaintenanceUpdateParamsDataMode string
 
 const (
-	SensormaintenanceUpdateParamsDataModeReal      SensormaintenanceUpdateParamsDataMode = "REAL"
-	SensormaintenanceUpdateParamsDataModeTest      SensormaintenanceUpdateParamsDataMode = "TEST"
-	SensormaintenanceUpdateParamsDataModeSimulated SensormaintenanceUpdateParamsDataMode = "SIMULATED"
-	SensormaintenanceUpdateParamsDataModeExercise  SensormaintenanceUpdateParamsDataMode = "EXERCISE"
+	SensorMaintenanceUpdateParamsDataModeReal      SensorMaintenanceUpdateParamsDataMode = "REAL"
+	SensorMaintenanceUpdateParamsDataModeTest      SensorMaintenanceUpdateParamsDataMode = "TEST"
+	SensorMaintenanceUpdateParamsDataModeSimulated SensorMaintenanceUpdateParamsDataMode = "SIMULATED"
+	SensorMaintenanceUpdateParamsDataModeExercise  SensorMaintenanceUpdateParamsDataMode = "EXERCISE"
 )
 
-type SensormaintenanceListParams struct {
+type SensorMaintenanceListParams struct {
 	// (One or more of fields 'endTime, startTime' are required.) The planned outage
 	// end time in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	EndTime     param.Opt[time.Time] `query:"endTime,omitzero" format:"date-time" json:"-"`
@@ -576,18 +1065,18 @@ type SensormaintenanceListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensormaintenanceListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SensorMaintenanceListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SensormaintenanceListParams]'s query parameters as
+// URLQuery serializes [SensorMaintenanceListParams]'s query parameters as
 // `url.Values`.
-func (r SensormaintenanceListParams) URLQuery() (v url.Values, err error) {
+func (r SensorMaintenanceListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SensormaintenanceCountParams struct {
+type SensorMaintenanceCountParams struct {
 	// (One or more of fields 'endTime, startTime' are required.) The planned outage
 	// end time in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	EndTime     param.Opt[time.Time] `query:"endTime,omitzero" format:"date-time" json:"-"`
@@ -601,19 +1090,19 @@ type SensormaintenanceCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensormaintenanceCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SensorMaintenanceCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SensormaintenanceCountParams]'s query parameters as
+// URLQuery serializes [SensorMaintenanceCountParams]'s query parameters as
 // `url.Values`.
-func (r SensormaintenanceCountParams) URLQuery() (v url.Values, err error) {
+func (r SensorMaintenanceCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SensormaintenanceNewBulkParams struct {
-	Body []SensormaintenanceNewBulkParamsBody
+type SensorMaintenanceNewBulkParams struct {
+	Body []SensorMaintenanceNewBulkParamsBody
 	// Origin of the SensorMaintenance data.
 	Origin param.Opt[string] `query:"origin,omitzero" json:"-"`
 	// Source of the SensorMaintenance data.
@@ -623,15 +1112,15 @@ type SensormaintenanceNewBulkParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensormaintenanceNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SensorMaintenanceNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SensormaintenanceNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r SensorMaintenanceNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
-// URLQuery serializes [SensormaintenanceNewBulkParams]'s query parameters as
+// URLQuery serializes [SensorMaintenanceNewBulkParams]'s query parameters as
 // `url.Values`.
-func (r SensormaintenanceNewBulkParams) URLQuery() (v url.Values, err error) {
+func (r SensorMaintenanceNewBulkParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
@@ -642,7 +1131,7 @@ func (r SensormaintenanceNewBulkParams) URLQuery() (v url.Values, err error) {
 //
 // The properties ClassificationMarking, DataMode, EndTime, SiteCode, Source,
 // StartTime are required.
-type SensormaintenanceNewBulkParamsBody struct {
+type SensorMaintenanceNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -734,21 +1223,21 @@ type SensormaintenanceNewBulkParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensormaintenanceNewBulkParamsBody) IsPresent() bool {
+func (f SensorMaintenanceNewBulkParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SensormaintenanceNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow SensormaintenanceNewBulkParamsBody
+func (r SensorMaintenanceNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow SensorMaintenanceNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[SensormaintenanceNewBulkParamsBody](
+	apijson.RegisterFieldValidator[SensorMaintenanceNewBulkParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
-type SensormaintenanceCurrentParams struct {
+type SensorMaintenanceCurrentParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -756,18 +1245,18 @@ type SensormaintenanceCurrentParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensormaintenanceCurrentParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SensorMaintenanceCurrentParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SensormaintenanceCurrentParams]'s query parameters as
+// URLQuery serializes [SensorMaintenanceCurrentParams]'s query parameters as
 // `url.Values`.
-func (r SensormaintenanceCurrentParams) URLQuery() (v url.Values, err error) {
+func (r SensorMaintenanceCurrentParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SensormaintenanceGetParams struct {
+type SensorMaintenanceGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -775,18 +1264,18 @@ type SensormaintenanceGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensormaintenanceGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SensorMaintenanceGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SensormaintenanceGetParams]'s query parameters as
+// URLQuery serializes [SensorMaintenanceGetParams]'s query parameters as
 // `url.Values`.
-func (r SensormaintenanceGetParams) URLQuery() (v url.Values, err error) {
+func (r SensorMaintenanceGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SensormaintenanceTupleParams struct {
+type SensorMaintenanceTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -805,11 +1294,11 @@ type SensormaintenanceTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensormaintenanceTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SensorMaintenanceTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SensormaintenanceTupleParams]'s query parameters as
+// URLQuery serializes [SensorMaintenanceTupleParams]'s query parameters as
 // `url.Values`.
-func (r SensormaintenanceTupleParams) URLQuery() (v url.Values, err error) {
+func (r SensorMaintenanceTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

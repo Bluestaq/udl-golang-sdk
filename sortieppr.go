@@ -20,31 +20,31 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// SortiepprService contains methods and other services that help with interacting
+// SortiePprService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewSortiepprService] method instead.
-type SortiepprService struct {
+// the [NewSortiePprService] method instead.
+type SortiePprService struct {
 	Options []option.RequestOption
-	History SortiepprHistoryService
+	History SortiePprHistoryService
 }
 
-// NewSortiepprService generates a new service that applies the given options to
+// NewSortiePprService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewSortiepprService(opts ...option.RequestOption) (r SortiepprService) {
-	r = SortiepprService{}
+func NewSortiePprService(opts ...option.RequestOption) (r SortiePprService) {
+	r = SortiePprService{}
 	r.Options = opts
-	r.History = NewSortiepprHistoryService(opts...)
+	r.History = NewSortiePprHistoryService(opts...)
 	return
 }
 
 // Service operation to take a single sortieppr record as a POST body and ingest
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *SortiepprService) New(ctx context.Context, body SortiepprNewParams, opts ...option.RequestOption) (err error) {
+func (r *SortiePprService) New(ctx context.Context, body SortiePprNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sortieppr"
@@ -55,7 +55,7 @@ func (r *SortiepprService) New(ctx context.Context, body SortiepprNewParams, opt
 // Service operation to update a single sortieppr record. A specific role is
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
-func (r *SortiepprService) Update(ctx context.Context, id string, body SortiepprUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *SortiePprService) Update(ctx context.Context, id string, body SortiePprUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -71,7 +71,7 @@ func (r *SortiepprService) Update(ctx context.Context, id string, body Sortieppr
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SortiepprService) List(ctx context.Context, query SortiepprListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SortiepprListResponse], err error) {
+func (r *SortiePprService) List(ctx context.Context, query SortiePprListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SortiePprListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -92,14 +92,14 @@ func (r *SortiepprService) List(ctx context.Context, query SortiepprListParams, 
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SortiepprService) ListAutoPaging(ctx context.Context, query SortiepprListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SortiepprListResponse] {
+func (r *SortiePprService) ListAutoPaging(ctx context.Context, query SortiePprListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SortiePprListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to delete a sortieppr record specified by the passed ID path
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
-func (r *SortiepprService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *SortiePprService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -116,7 +116,7 @@ func (r *SortiepprService) Delete(ctx context.Context, id string, opts ...option
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *SortiepprService) Count(ctx context.Context, query SortiepprCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *SortiePprService) Count(ctx context.Context, query SortiePprCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sortieppr/count"
@@ -129,7 +129,7 @@ func (r *SortiepprService) Count(ctx context.Context, query SortiepprCountParams
 // not intended to be used for automated feeds into UDL. Data providers should
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
-func (r *SortiepprService) NewBulk(ctx context.Context, body SortiepprNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *SortiePprService) NewBulk(ctx context.Context, body SortiePprNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sortieppr/createBulk"
@@ -139,7 +139,7 @@ func (r *SortiepprService) NewBulk(ctx context.Context, body SortiepprNewBulkPar
 
 // Service operation to get a single sortieppr record by its unique ID passed as a
 // path parameter.
-func (r *SortiepprService) Get(ctx context.Context, id string, query SortiepprGetParams, opts ...option.RequestOption) (res *SortiePprFull, err error) {
+func (r *SortiePprService) Get(ctx context.Context, id string, query SortiePprGetParams, opts ...option.RequestOption) (res *SortiePprFull, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -152,7 +152,7 @@ func (r *SortiepprService) Get(ctx context.Context, id string, query SortiepprGe
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *SortiepprService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *SortiePprService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sortieppr/queryhelp"
@@ -168,7 +168,7 @@ func (r *SortiepprService) Queryhelp(ctx context.Context, opts ...option.Request
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *SortiepprService) Tuple(ctx context.Context, query SortiepprTupleParams, opts ...option.RequestOption) (res *[]SortiePprFull, err error) {
+func (r *SortiePprService) Tuple(ctx context.Context, query SortiePprTupleParams, opts ...option.RequestOption) (res *[]SortiePprFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/sortieppr/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -179,7 +179,7 @@ func (r *SortiepprService) Tuple(ctx context.Context, query SortiepprTupleParams
 // This operation is intended to be used for automated feeds into UDL. A specific
 // role is required to perform this service operation. Please contact the UDL team
 // for assistance.
-func (r *SortiepprService) UnvalidatedPublish(ctx context.Context, body SortiepprUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+func (r *SortiePprService) UnvalidatedPublish(ctx context.Context, body SortiePprUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-sortieppr"
@@ -189,7 +189,7 @@ func (r *SortiepprService) UnvalidatedPublish(ctx context.Context, body Sortiepp
 
 // SortiePPR is a regulatory requirement where operators must obtain permissions to
 // full operational access to a runway, taxiway, or airport service.
-type SortiepprListResponse struct {
+type SortiePprListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -208,7 +208,7 @@ type SortiepprListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SortiepprListResponseDataMode `json:"dataMode,required"`
+	DataMode SortiePprListResponseDataMode `json:"dataMode,required"`
 	// Unique identifier of the Aircraft Sortie associated with this prior permission
 	// required (PPR) record.
 	IDSortie string `json:"idSortie,required"`
@@ -255,7 +255,7 @@ type SortiepprListResponse struct {
 	// Civilian). Enum: [M, C].
 	//
 	// Any of "M", "C".
-	Type SortiepprListResponseType `json:"type"`
+	Type SortiePprListResponseType `json:"type"`
 	// Metadata for the response, check the presence of optional fields with the
 	// [resp.Field.IsPresent] method.
 	JSON struct {
@@ -283,8 +283,8 @@ type SortiepprListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SortiepprListResponse) RawJSON() string { return r.JSON.raw }
-func (r *SortiepprListResponse) UnmarshalJSON(data []byte) error {
+func (r SortiePprListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SortiePprListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -302,25 +302,25 @@ func (r *SortiepprListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SortiepprListResponseDataMode string
+type SortiePprListResponseDataMode string
 
 const (
-	SortiepprListResponseDataModeReal      SortiepprListResponseDataMode = "REAL"
-	SortiepprListResponseDataModeTest      SortiepprListResponseDataMode = "TEST"
-	SortiepprListResponseDataModeSimulated SortiepprListResponseDataMode = "SIMULATED"
-	SortiepprListResponseDataModeExercise  SortiepprListResponseDataMode = "EXERCISE"
+	SortiePprListResponseDataModeReal      SortiePprListResponseDataMode = "REAL"
+	SortiePprListResponseDataModeTest      SortiePprListResponseDataMode = "TEST"
+	SortiePprListResponseDataModeSimulated SortiePprListResponseDataMode = "SIMULATED"
+	SortiePprListResponseDataModeExercise  SortiePprListResponseDataMode = "EXERCISE"
 )
 
 // Type of prior permission required (PPR) for a sortie (M - Military or C -
 // Civilian). Enum: [M, C].
-type SortiepprListResponseType string
+type SortiePprListResponseType string
 
 const (
-	SortiepprListResponseTypeM SortiepprListResponseType = "M"
-	SortiepprListResponseTypeC SortiepprListResponseType = "C"
+	SortiePprListResponseTypeM SortiePprListResponseType = "M"
+	SortiePprListResponseTypeC SortiePprListResponseType = "C"
 )
 
-type SortiepprNewParams struct {
+type SortiePprNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -339,7 +339,7 @@ type SortiepprNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SortiepprNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SortiePprNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Unique identifier of the Aircraft Sortie associated with this prior permission
 	// required (PPR) record.
 	IDSortie string `json:"idSortie,required"`
@@ -374,16 +374,16 @@ type SortiepprNewParams struct {
 	// Civilian). Enum: [M, C].
 	//
 	// Any of "M", "C".
-	Type SortiepprNewParamsType `json:"type,omitzero"`
+	Type SortiePprNewParamsType `json:"type,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiepprNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SortiePprNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SortiepprNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow SortiepprNewParams
+func (r SortiePprNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow SortiePprNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -401,25 +401,25 @@ func (r SortiepprNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SortiepprNewParamsDataMode string
+type SortiePprNewParamsDataMode string
 
 const (
-	SortiepprNewParamsDataModeReal      SortiepprNewParamsDataMode = "REAL"
-	SortiepprNewParamsDataModeTest      SortiepprNewParamsDataMode = "TEST"
-	SortiepprNewParamsDataModeSimulated SortiepprNewParamsDataMode = "SIMULATED"
-	SortiepprNewParamsDataModeExercise  SortiepprNewParamsDataMode = "EXERCISE"
+	SortiePprNewParamsDataModeReal      SortiePprNewParamsDataMode = "REAL"
+	SortiePprNewParamsDataModeTest      SortiePprNewParamsDataMode = "TEST"
+	SortiePprNewParamsDataModeSimulated SortiePprNewParamsDataMode = "SIMULATED"
+	SortiePprNewParamsDataModeExercise  SortiePprNewParamsDataMode = "EXERCISE"
 )
 
 // Type of prior permission required (PPR) for a sortie (M - Military or C -
 // Civilian). Enum: [M, C].
-type SortiepprNewParamsType string
+type SortiePprNewParamsType string
 
 const (
-	SortiepprNewParamsTypeM SortiepprNewParamsType = "M"
-	SortiepprNewParamsTypeC SortiepprNewParamsType = "C"
+	SortiePprNewParamsTypeM SortiePprNewParamsType = "M"
+	SortiePprNewParamsTypeC SortiePprNewParamsType = "C"
 )
 
-type SortiepprUpdateParams struct {
+type SortiePprUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -438,7 +438,7 @@ type SortiepprUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SortiepprUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SortiePprUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// Unique identifier of the Aircraft Sortie associated with this prior permission
 	// required (PPR) record.
 	IDSortie string `json:"idSortie,required"`
@@ -473,16 +473,16 @@ type SortiepprUpdateParams struct {
 	// Civilian). Enum: [M, C].
 	//
 	// Any of "M", "C".
-	Type SortiepprUpdateParamsType `json:"type,omitzero"`
+	Type SortiePprUpdateParamsType `json:"type,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiepprUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SortiePprUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SortiepprUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow SortiepprUpdateParams
+func (r SortiePprUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow SortiePprUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -500,25 +500,25 @@ func (r SortiepprUpdateParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SortiepprUpdateParamsDataMode string
+type SortiePprUpdateParamsDataMode string
 
 const (
-	SortiepprUpdateParamsDataModeReal      SortiepprUpdateParamsDataMode = "REAL"
-	SortiepprUpdateParamsDataModeTest      SortiepprUpdateParamsDataMode = "TEST"
-	SortiepprUpdateParamsDataModeSimulated SortiepprUpdateParamsDataMode = "SIMULATED"
-	SortiepprUpdateParamsDataModeExercise  SortiepprUpdateParamsDataMode = "EXERCISE"
+	SortiePprUpdateParamsDataModeReal      SortiePprUpdateParamsDataMode = "REAL"
+	SortiePprUpdateParamsDataModeTest      SortiePprUpdateParamsDataMode = "TEST"
+	SortiePprUpdateParamsDataModeSimulated SortiePprUpdateParamsDataMode = "SIMULATED"
+	SortiePprUpdateParamsDataModeExercise  SortiePprUpdateParamsDataMode = "EXERCISE"
 )
 
 // Type of prior permission required (PPR) for a sortie (M - Military or C -
 // Civilian). Enum: [M, C].
-type SortiepprUpdateParamsType string
+type SortiePprUpdateParamsType string
 
 const (
-	SortiepprUpdateParamsTypeM SortiepprUpdateParamsType = "M"
-	SortiepprUpdateParamsTypeC SortiepprUpdateParamsType = "C"
+	SortiePprUpdateParamsTypeM SortiePprUpdateParamsType = "M"
+	SortiePprUpdateParamsTypeC SortiePprUpdateParamsType = "C"
 )
 
-type SortiepprListParams struct {
+type SortiePprListParams struct {
 	// Unique identifier of the Aircraft Sortie associated with this prior permission
 	// required (PPR) record.
 	IDSortie    string           `query:"idSortie,required" json:"-"`
@@ -529,17 +529,17 @@ type SortiepprListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiepprListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SortiePprListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SortiepprListParams]'s query parameters as `url.Values`.
-func (r SortiepprListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SortiePprListParams]'s query parameters as `url.Values`.
+func (r SortiePprListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SortiepprCountParams struct {
+type SortiePprCountParams struct {
 	// Unique identifier of the Aircraft Sortie associated with this prior permission
 	// required (PPR) record.
 	IDSortie    string           `query:"idSortie,required" json:"-"`
@@ -550,26 +550,26 @@ type SortiepprCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiepprCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SortiePprCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SortiepprCountParams]'s query parameters as `url.Values`.
-func (r SortiepprCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SortiePprCountParams]'s query parameters as `url.Values`.
+func (r SortiePprCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SortiepprNewBulkParams struct {
-	Body []SortiepprNewBulkParamsBody
+type SortiePprNewBulkParams struct {
+	Body []SortiePprNewBulkParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiepprNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SortiePprNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SortiepprNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r SortiePprNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -577,7 +577,7 @@ func (r SortiepprNewBulkParams) MarshalJSON() (data []byte, err error) {
 // full operational access to a runway, taxiway, or airport service.
 //
 // The properties ClassificationMarking, DataMode, IDSortie, Source are required.
-type SortiepprNewBulkParamsBody struct {
+type SortiePprNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -649,22 +649,22 @@ type SortiepprNewBulkParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiepprNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-func (r SortiepprNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow SortiepprNewBulkParamsBody
+func (f SortiePprNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r SortiePprNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow SortiePprNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[SortiepprNewBulkParamsBody](
+	apijson.RegisterFieldValidator[SortiePprNewBulkParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
-	apijson.RegisterFieldValidator[SortiepprNewBulkParamsBody](
+	apijson.RegisterFieldValidator[SortiePprNewBulkParamsBody](
 		"Type", false, "M", "C",
 	)
 }
 
-type SortiepprGetParams struct {
+type SortiePprGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -672,17 +672,17 @@ type SortiepprGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiepprGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SortiePprGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SortiepprGetParams]'s query parameters as `url.Values`.
-func (r SortiepprGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SortiePprGetParams]'s query parameters as `url.Values`.
+func (r SortiePprGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SortiepprTupleParams struct {
+type SortiePprTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -698,28 +698,28 @@ type SortiepprTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiepprTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SortiePprTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SortiepprTupleParams]'s query parameters as `url.Values`.
-func (r SortiepprTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SortiePprTupleParams]'s query parameters as `url.Values`.
+func (r SortiePprTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SortiepprUnvalidatedPublishParams struct {
-	Body []SortiepprUnvalidatedPublishParamsBody
+type SortiePprUnvalidatedPublishParams struct {
+	Body []SortiePprUnvalidatedPublishParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiepprUnvalidatedPublishParams) IsPresent() bool {
+func (f SortiePprUnvalidatedPublishParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r SortiepprUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+func (r SortiePprUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -727,7 +727,7 @@ func (r SortiepprUnvalidatedPublishParams) MarshalJSON() (data []byte, err error
 // full operational access to a runway, taxiway, or airport service.
 //
 // The properties ClassificationMarking, DataMode, IDSortie, Source are required.
-type SortiepprUnvalidatedPublishParamsBody struct {
+type SortiePprUnvalidatedPublishParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -799,19 +799,19 @@ type SortiepprUnvalidatedPublishParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiepprUnvalidatedPublishParamsBody) IsPresent() bool {
+func (f SortiePprUnvalidatedPublishParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SortiepprUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow SortiepprUnvalidatedPublishParamsBody
+func (r SortiePprUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow SortiePprUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[SortiepprUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[SortiePprUnvalidatedPublishParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
-	apijson.RegisterFieldValidator[SortiepprUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[SortiePprUnvalidatedPublishParamsBody](
 		"Type", false, "M", "C",
 	)
 }

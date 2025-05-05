@@ -19,21 +19,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// SeradataearlywarningService contains methods and other services that help with
+// SeraDataEarlyWarningService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewSeradataearlywarningService] method instead.
-type SeradataearlywarningService struct {
+// the [NewSeraDataEarlyWarningService] method instead.
+type SeraDataEarlyWarningService struct {
 	Options []option.RequestOption
 }
 
-// NewSeradataearlywarningService generates a new service that applies the given
+// NewSeraDataEarlyWarningService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewSeradataearlywarningService(opts ...option.RequestOption) (r SeradataearlywarningService) {
-	r = SeradataearlywarningService{}
+func NewSeraDataEarlyWarningService(opts ...option.RequestOption) (r SeraDataEarlyWarningService) {
+	r = SeraDataEarlyWarningService{}
 	r.Options = opts
 	return
 }
@@ -41,7 +41,7 @@ func NewSeradataearlywarningService(opts ...option.RequestOption) (r Seradataear
 // Service operation to take a single SeradataEarlyWarning as a POST body and
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *SeradataearlywarningService) New(ctx context.Context, body SeradataearlywarningNewParams, opts ...option.RequestOption) (err error) {
+func (r *SeraDataEarlyWarningService) New(ctx context.Context, body SeraDataEarlyWarningNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/seradataearlywarning"
@@ -51,7 +51,7 @@ func (r *SeradataearlywarningService) New(ctx context.Context, body Seradataearl
 
 // Service operation to update an SeradataEarlyWarning. A specific role is required
 // to perform this service operation. Please contact the UDL team for assistance.
-func (r *SeradataearlywarningService) Update(ctx context.Context, id string, body SeradataearlywarningUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *SeraDataEarlyWarningService) Update(ctx context.Context, id string, body SeraDataEarlyWarningUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -67,7 +67,7 @@ func (r *SeradataearlywarningService) Update(ctx context.Context, id string, bod
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SeradataearlywarningService) List(ctx context.Context, query SeradataearlywarningListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SeradataearlywarningListResponse], err error) {
+func (r *SeraDataEarlyWarningService) List(ctx context.Context, query SeraDataEarlyWarningListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SeraDataEarlyWarningListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -88,14 +88,14 @@ func (r *SeradataearlywarningService) List(ctx context.Context, query Seradataea
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SeradataearlywarningService) ListAutoPaging(ctx context.Context, query SeradataearlywarningListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SeradataearlywarningListResponse] {
+func (r *SeraDataEarlyWarningService) ListAutoPaging(ctx context.Context, query SeraDataEarlyWarningListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SeraDataEarlyWarningListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to delete an SeradataEarlyWarning specified by the passed ID
 // path parameter. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
-func (r *SeradataearlywarningService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *SeraDataEarlyWarningService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -112,7 +112,7 @@ func (r *SeradataearlywarningService) Delete(ctx context.Context, id string, opt
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *SeradataearlywarningService) Count(ctx context.Context, query SeradataearlywarningCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *SeraDataEarlyWarningService) Count(ctx context.Context, query SeraDataEarlyWarningCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/seradataearlywarning/count"
@@ -122,7 +122,7 @@ func (r *SeradataearlywarningService) Count(ctx context.Context, query Seradatae
 
 // Service operation to get a single SeradataEarlyWarning by its unique ID passed
 // as a path parameter.
-func (r *SeradataearlywarningService) Get(ctx context.Context, id string, query SeradataearlywarningGetParams, opts ...option.RequestOption) (res *SeradataearlywarningGetResponse, err error) {
+func (r *SeraDataEarlyWarningService) Get(ctx context.Context, id string, query SeraDataEarlyWarningGetParams, opts ...option.RequestOption) (res *SeraDataEarlyWarningGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -135,7 +135,7 @@ func (r *SeradataearlywarningService) Get(ctx context.Context, id string, query 
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *SeradataearlywarningService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *SeraDataEarlyWarningService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/seradataearlywarning/queryhelp"
@@ -151,7 +151,7 @@ func (r *SeradataearlywarningService) Queryhelp(ctx context.Context, opts ...opt
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *SeradataearlywarningService) Tuple(ctx context.Context, query SeradataearlywarningTupleParams, opts ...option.RequestOption) (res *[]SeradataearlywarningTupleResponse, err error) {
+func (r *SeraDataEarlyWarningService) Tuple(ctx context.Context, query SeraDataEarlyWarningTupleParams, opts ...option.RequestOption) (res *[]SeraDataEarlyWarningTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/seradataearlywarning/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -159,7 +159,7 @@ func (r *SeradataearlywarningService) Tuple(ctx context.Context, query Seradatae
 }
 
 // Details for an early warning payload from Seradata.
-type SeradataearlywarningListResponse struct {
+type SeraDataEarlyWarningListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -178,7 +178,7 @@ type SeradataearlywarningListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradataearlywarningListResponseDataMode `json:"dataMode,required"`
+	DataMode SeraDataEarlyWarningListResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -255,8 +255,8 @@ type SeradataearlywarningListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataearlywarningListResponse) RawJSON() string { return r.JSON.raw }
-func (r *SeradataearlywarningListResponse) UnmarshalJSON(data []byte) error {
+func (r SeraDataEarlyWarningListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SeraDataEarlyWarningListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -274,17 +274,17 @@ func (r *SeradataearlywarningListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradataearlywarningListResponseDataMode string
+type SeraDataEarlyWarningListResponseDataMode string
 
 const (
-	SeradataearlywarningListResponseDataModeReal      SeradataearlywarningListResponseDataMode = "REAL"
-	SeradataearlywarningListResponseDataModeTest      SeradataearlywarningListResponseDataMode = "TEST"
-	SeradataearlywarningListResponseDataModeSimulated SeradataearlywarningListResponseDataMode = "SIMULATED"
-	SeradataearlywarningListResponseDataModeExercise  SeradataearlywarningListResponseDataMode = "EXERCISE"
+	SeraDataEarlyWarningListResponseDataModeReal      SeraDataEarlyWarningListResponseDataMode = "REAL"
+	SeraDataEarlyWarningListResponseDataModeTest      SeraDataEarlyWarningListResponseDataMode = "TEST"
+	SeraDataEarlyWarningListResponseDataModeSimulated SeraDataEarlyWarningListResponseDataMode = "SIMULATED"
+	SeraDataEarlyWarningListResponseDataModeExercise  SeraDataEarlyWarningListResponseDataMode = "EXERCISE"
 )
 
 // Details for an early warning payload from Seradata.
-type SeradataearlywarningGetResponse struct {
+type SeraDataEarlyWarningGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -303,7 +303,7 @@ type SeradataearlywarningGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradataearlywarningGetResponseDataMode `json:"dataMode,required"`
+	DataMode SeraDataEarlyWarningGetResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -387,8 +387,8 @@ type SeradataearlywarningGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataearlywarningGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *SeradataearlywarningGetResponse) UnmarshalJSON(data []byte) error {
+func (r SeraDataEarlyWarningGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *SeraDataEarlyWarningGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -406,17 +406,17 @@ func (r *SeradataearlywarningGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradataearlywarningGetResponseDataMode string
+type SeraDataEarlyWarningGetResponseDataMode string
 
 const (
-	SeradataearlywarningGetResponseDataModeReal      SeradataearlywarningGetResponseDataMode = "REAL"
-	SeradataearlywarningGetResponseDataModeTest      SeradataearlywarningGetResponseDataMode = "TEST"
-	SeradataearlywarningGetResponseDataModeSimulated SeradataearlywarningGetResponseDataMode = "SIMULATED"
-	SeradataearlywarningGetResponseDataModeExercise  SeradataearlywarningGetResponseDataMode = "EXERCISE"
+	SeraDataEarlyWarningGetResponseDataModeReal      SeraDataEarlyWarningGetResponseDataMode = "REAL"
+	SeraDataEarlyWarningGetResponseDataModeTest      SeraDataEarlyWarningGetResponseDataMode = "TEST"
+	SeraDataEarlyWarningGetResponseDataModeSimulated SeraDataEarlyWarningGetResponseDataMode = "SIMULATED"
+	SeraDataEarlyWarningGetResponseDataModeExercise  SeraDataEarlyWarningGetResponseDataMode = "EXERCISE"
 )
 
 // Details for an early warning payload from Seradata.
-type SeradataearlywarningTupleResponse struct {
+type SeraDataEarlyWarningTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -435,7 +435,7 @@ type SeradataearlywarningTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradataearlywarningTupleResponseDataMode `json:"dataMode,required"`
+	DataMode SeraDataEarlyWarningTupleResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -519,8 +519,8 @@ type SeradataearlywarningTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataearlywarningTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *SeradataearlywarningTupleResponse) UnmarshalJSON(data []byte) error {
+func (r SeraDataEarlyWarningTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *SeraDataEarlyWarningTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -538,16 +538,16 @@ func (r *SeradataearlywarningTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradataearlywarningTupleResponseDataMode string
+type SeraDataEarlyWarningTupleResponseDataMode string
 
 const (
-	SeradataearlywarningTupleResponseDataModeReal      SeradataearlywarningTupleResponseDataMode = "REAL"
-	SeradataearlywarningTupleResponseDataModeTest      SeradataearlywarningTupleResponseDataMode = "TEST"
-	SeradataearlywarningTupleResponseDataModeSimulated SeradataearlywarningTupleResponseDataMode = "SIMULATED"
-	SeradataearlywarningTupleResponseDataModeExercise  SeradataearlywarningTupleResponseDataMode = "EXERCISE"
+	SeraDataEarlyWarningTupleResponseDataModeReal      SeraDataEarlyWarningTupleResponseDataMode = "REAL"
+	SeraDataEarlyWarningTupleResponseDataModeTest      SeraDataEarlyWarningTupleResponseDataMode = "TEST"
+	SeraDataEarlyWarningTupleResponseDataModeSimulated SeraDataEarlyWarningTupleResponseDataMode = "SIMULATED"
+	SeraDataEarlyWarningTupleResponseDataModeExercise  SeraDataEarlyWarningTupleResponseDataMode = "EXERCISE"
 )
 
-type SeradataearlywarningNewParams struct {
+type SeraDataEarlyWarningNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -566,7 +566,7 @@ type SeradataearlywarningNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradataearlywarningNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SeraDataEarlyWarningNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -609,10 +609,10 @@ type SeradataearlywarningNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataearlywarningNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeraDataEarlyWarningNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SeradataearlywarningNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow SeradataearlywarningNewParams
+func (r SeraDataEarlyWarningNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow SeraDataEarlyWarningNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -630,16 +630,16 @@ func (r SeradataearlywarningNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradataearlywarningNewParamsDataMode string
+type SeraDataEarlyWarningNewParamsDataMode string
 
 const (
-	SeradataearlywarningNewParamsDataModeReal      SeradataearlywarningNewParamsDataMode = "REAL"
-	SeradataearlywarningNewParamsDataModeTest      SeradataearlywarningNewParamsDataMode = "TEST"
-	SeradataearlywarningNewParamsDataModeSimulated SeradataearlywarningNewParamsDataMode = "SIMULATED"
-	SeradataearlywarningNewParamsDataModeExercise  SeradataearlywarningNewParamsDataMode = "EXERCISE"
+	SeraDataEarlyWarningNewParamsDataModeReal      SeraDataEarlyWarningNewParamsDataMode = "REAL"
+	SeraDataEarlyWarningNewParamsDataModeTest      SeraDataEarlyWarningNewParamsDataMode = "TEST"
+	SeraDataEarlyWarningNewParamsDataModeSimulated SeraDataEarlyWarningNewParamsDataMode = "SIMULATED"
+	SeraDataEarlyWarningNewParamsDataModeExercise  SeraDataEarlyWarningNewParamsDataMode = "EXERCISE"
 )
 
-type SeradataearlywarningUpdateParams struct {
+type SeraDataEarlyWarningUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -658,7 +658,7 @@ type SeradataearlywarningUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradataearlywarningUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SeraDataEarlyWarningUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -701,10 +701,10 @@ type SeradataearlywarningUpdateParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataearlywarningUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeraDataEarlyWarningUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SeradataearlywarningUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow SeradataearlywarningUpdateParams
+func (r SeraDataEarlyWarningUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow SeraDataEarlyWarningUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -722,16 +722,16 @@ func (r SeradataearlywarningUpdateParams) MarshalJSON() (data []byte, err error)
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradataearlywarningUpdateParamsDataMode string
+type SeraDataEarlyWarningUpdateParamsDataMode string
 
 const (
-	SeradataearlywarningUpdateParamsDataModeReal      SeradataearlywarningUpdateParamsDataMode = "REAL"
-	SeradataearlywarningUpdateParamsDataModeTest      SeradataearlywarningUpdateParamsDataMode = "TEST"
-	SeradataearlywarningUpdateParamsDataModeSimulated SeradataearlywarningUpdateParamsDataMode = "SIMULATED"
-	SeradataearlywarningUpdateParamsDataModeExercise  SeradataearlywarningUpdateParamsDataMode = "EXERCISE"
+	SeraDataEarlyWarningUpdateParamsDataModeReal      SeraDataEarlyWarningUpdateParamsDataMode = "REAL"
+	SeraDataEarlyWarningUpdateParamsDataModeTest      SeraDataEarlyWarningUpdateParamsDataMode = "TEST"
+	SeraDataEarlyWarningUpdateParamsDataModeSimulated SeraDataEarlyWarningUpdateParamsDataMode = "SIMULATED"
+	SeraDataEarlyWarningUpdateParamsDataModeExercise  SeraDataEarlyWarningUpdateParamsDataMode = "EXERCISE"
 )
 
-type SeradataearlywarningListParams struct {
+type SeraDataEarlyWarningListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -739,18 +739,18 @@ type SeradataearlywarningListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataearlywarningListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeraDataEarlyWarningListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SeradataearlywarningListParams]'s query parameters as
+// URLQuery serializes [SeraDataEarlyWarningListParams]'s query parameters as
 // `url.Values`.
-func (r SeradataearlywarningListParams) URLQuery() (v url.Values, err error) {
+func (r SeraDataEarlyWarningListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SeradataearlywarningCountParams struct {
+type SeraDataEarlyWarningCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -758,18 +758,18 @@ type SeradataearlywarningCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataearlywarningCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeraDataEarlyWarningCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SeradataearlywarningCountParams]'s query parameters as
+// URLQuery serializes [SeraDataEarlyWarningCountParams]'s query parameters as
 // `url.Values`.
-func (r SeradataearlywarningCountParams) URLQuery() (v url.Values, err error) {
+func (r SeraDataEarlyWarningCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SeradataearlywarningGetParams struct {
+type SeraDataEarlyWarningGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -777,18 +777,18 @@ type SeradataearlywarningGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataearlywarningGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeraDataEarlyWarningGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SeradataearlywarningGetParams]'s query parameters as
+// URLQuery serializes [SeraDataEarlyWarningGetParams]'s query parameters as
 // `url.Values`.
-func (r SeradataearlywarningGetParams) URLQuery() (v url.Values, err error) {
+func (r SeraDataEarlyWarningGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SeradataearlywarningTupleParams struct {
+type SeraDataEarlyWarningTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -801,11 +801,11 @@ type SeradataearlywarningTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataearlywarningTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeraDataEarlyWarningTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SeradataearlywarningTupleParams]'s query parameters as
+// URLQuery serializes [SeraDataEarlyWarningTupleParams]'s query parameters as
 // `url.Values`.
-func (r SeradataearlywarningTupleParams) URLQuery() (v url.Values, err error) {
+func (r SeraDataEarlyWarningTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

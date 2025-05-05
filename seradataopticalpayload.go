@@ -19,21 +19,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// SeradataopticalpayloadService contains methods and other services that help with
+// SeradataOpticalPayloadService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewSeradataopticalpayloadService] method instead.
-type SeradataopticalpayloadService struct {
+// the [NewSeradataOpticalPayloadService] method instead.
+type SeradataOpticalPayloadService struct {
 	Options []option.RequestOption
 }
 
-// NewSeradataopticalpayloadService generates a new service that applies the given
+// NewSeradataOpticalPayloadService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewSeradataopticalpayloadService(opts ...option.RequestOption) (r SeradataopticalpayloadService) {
-	r = SeradataopticalpayloadService{}
+func NewSeradataOpticalPayloadService(opts ...option.RequestOption) (r SeradataOpticalPayloadService) {
+	r = SeradataOpticalPayloadService{}
 	r.Options = opts
 	return
 }
@@ -41,7 +41,7 @@ func NewSeradataopticalpayloadService(opts ...option.RequestOption) (r Seradatao
 // Service operation to take a single SeradataOpticalPayload as a POST body and
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *SeradataopticalpayloadService) New(ctx context.Context, body SeradataopticalpayloadNewParams, opts ...option.RequestOption) (err error) {
+func (r *SeradataOpticalPayloadService) New(ctx context.Context, body SeradataOpticalPayloadNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/seradataopticalpayload"
@@ -52,7 +52,7 @@ func (r *SeradataopticalpayloadService) New(ctx context.Context, body Seradataop
 // Service operation to update an SeradataOpticalPayload. A specific role is
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
-func (r *SeradataopticalpayloadService) Update(ctx context.Context, id string, body SeradataopticalpayloadUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *SeradataOpticalPayloadService) Update(ctx context.Context, id string, body SeradataOpticalPayloadUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -68,7 +68,7 @@ func (r *SeradataopticalpayloadService) Update(ctx context.Context, id string, b
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SeradataopticalpayloadService) List(ctx context.Context, query SeradataopticalpayloadListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SeradataopticalpayloadListResponse], err error) {
+func (r *SeradataOpticalPayloadService) List(ctx context.Context, query SeradataOpticalPayloadListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SeradataOpticalPayloadListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -89,14 +89,14 @@ func (r *SeradataopticalpayloadService) List(ctx context.Context, query Seradata
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SeradataopticalpayloadService) ListAutoPaging(ctx context.Context, query SeradataopticalpayloadListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SeradataopticalpayloadListResponse] {
+func (r *SeradataOpticalPayloadService) ListAutoPaging(ctx context.Context, query SeradataOpticalPayloadListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SeradataOpticalPayloadListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to delete an SeradataOpticalPayload specified by the passed ID
 // path parameter. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
-func (r *SeradataopticalpayloadService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *SeradataOpticalPayloadService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -113,7 +113,7 @@ func (r *SeradataopticalpayloadService) Delete(ctx context.Context, id string, o
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *SeradataopticalpayloadService) Count(ctx context.Context, query SeradataopticalpayloadCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *SeradataOpticalPayloadService) Count(ctx context.Context, query SeradataOpticalPayloadCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/seradataopticalpayload/count"
@@ -123,7 +123,7 @@ func (r *SeradataopticalpayloadService) Count(ctx context.Context, query Seradat
 
 // Service operation to get a single SeradataOpticalPayload by its unique ID passed
 // as a path parameter.
-func (r *SeradataopticalpayloadService) Get(ctx context.Context, id string, query SeradataopticalpayloadGetParams, opts ...option.RequestOption) (res *SeradataopticalpayloadGetResponse, err error) {
+func (r *SeradataOpticalPayloadService) Get(ctx context.Context, id string, query SeradataOpticalPayloadGetParams, opts ...option.RequestOption) (res *SeradataOpticalPayloadGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -136,7 +136,7 @@ func (r *SeradataopticalpayloadService) Get(ctx context.Context, id string, quer
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *SeradataopticalpayloadService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *SeradataOpticalPayloadService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/seradataopticalpayload/queryhelp"
@@ -152,7 +152,7 @@ func (r *SeradataopticalpayloadService) Queryhelp(ctx context.Context, opts ...o
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *SeradataopticalpayloadService) Tuple(ctx context.Context, query SeradataopticalpayloadTupleParams, opts ...option.RequestOption) (res *[]SeradataopticalpayloadTupleResponse, err error) {
+func (r *SeradataOpticalPayloadService) Tuple(ctx context.Context, query SeradataOpticalPayloadTupleParams, opts ...option.RequestOption) (res *[]SeradataOpticalPayloadTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/seradataopticalpayload/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -160,7 +160,7 @@ func (r *SeradataopticalpayloadService) Tuple(ctx context.Context, query Seradat
 }
 
 // Details for an optical payload from Seradata.
-type SeradataopticalpayloadListResponse struct {
+type SeradataOpticalPayloadListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -179,7 +179,7 @@ type SeradataopticalpayloadListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradataopticalpayloadListResponseDataMode `json:"dataMode,required"`
+	DataMode SeradataOpticalPayloadListResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -270,8 +270,8 @@ type SeradataopticalpayloadListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataopticalpayloadListResponse) RawJSON() string { return r.JSON.raw }
-func (r *SeradataopticalpayloadListResponse) UnmarshalJSON(data []byte) error {
+func (r SeradataOpticalPayloadListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SeradataOpticalPayloadListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -289,17 +289,17 @@ func (r *SeradataopticalpayloadListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradataopticalpayloadListResponseDataMode string
+type SeradataOpticalPayloadListResponseDataMode string
 
 const (
-	SeradataopticalpayloadListResponseDataModeReal      SeradataopticalpayloadListResponseDataMode = "REAL"
-	SeradataopticalpayloadListResponseDataModeTest      SeradataopticalpayloadListResponseDataMode = "TEST"
-	SeradataopticalpayloadListResponseDataModeSimulated SeradataopticalpayloadListResponseDataMode = "SIMULATED"
-	SeradataopticalpayloadListResponseDataModeExercise  SeradataopticalpayloadListResponseDataMode = "EXERCISE"
+	SeradataOpticalPayloadListResponseDataModeReal      SeradataOpticalPayloadListResponseDataMode = "REAL"
+	SeradataOpticalPayloadListResponseDataModeTest      SeradataOpticalPayloadListResponseDataMode = "TEST"
+	SeradataOpticalPayloadListResponseDataModeSimulated SeradataOpticalPayloadListResponseDataMode = "SIMULATED"
+	SeradataOpticalPayloadListResponseDataModeExercise  SeradataOpticalPayloadListResponseDataMode = "EXERCISE"
 )
 
 // Details for an optical payload from Seradata.
-type SeradataopticalpayloadGetResponse struct {
+type SeradataOpticalPayloadGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -318,7 +318,7 @@ type SeradataopticalpayloadGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradataopticalpayloadGetResponseDataMode `json:"dataMode,required"`
+	DataMode SeradataOpticalPayloadGetResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -416,8 +416,8 @@ type SeradataopticalpayloadGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataopticalpayloadGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *SeradataopticalpayloadGetResponse) UnmarshalJSON(data []byte) error {
+func (r SeradataOpticalPayloadGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *SeradataOpticalPayloadGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -435,17 +435,17 @@ func (r *SeradataopticalpayloadGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradataopticalpayloadGetResponseDataMode string
+type SeradataOpticalPayloadGetResponseDataMode string
 
 const (
-	SeradataopticalpayloadGetResponseDataModeReal      SeradataopticalpayloadGetResponseDataMode = "REAL"
-	SeradataopticalpayloadGetResponseDataModeTest      SeradataopticalpayloadGetResponseDataMode = "TEST"
-	SeradataopticalpayloadGetResponseDataModeSimulated SeradataopticalpayloadGetResponseDataMode = "SIMULATED"
-	SeradataopticalpayloadGetResponseDataModeExercise  SeradataopticalpayloadGetResponseDataMode = "EXERCISE"
+	SeradataOpticalPayloadGetResponseDataModeReal      SeradataOpticalPayloadGetResponseDataMode = "REAL"
+	SeradataOpticalPayloadGetResponseDataModeTest      SeradataOpticalPayloadGetResponseDataMode = "TEST"
+	SeradataOpticalPayloadGetResponseDataModeSimulated SeradataOpticalPayloadGetResponseDataMode = "SIMULATED"
+	SeradataOpticalPayloadGetResponseDataModeExercise  SeradataOpticalPayloadGetResponseDataMode = "EXERCISE"
 )
 
 // Details for an optical payload from Seradata.
-type SeradataopticalpayloadTupleResponse struct {
+type SeradataOpticalPayloadTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -464,7 +464,7 @@ type SeradataopticalpayloadTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradataopticalpayloadTupleResponseDataMode `json:"dataMode,required"`
+	DataMode SeradataOpticalPayloadTupleResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -562,8 +562,8 @@ type SeradataopticalpayloadTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SeradataopticalpayloadTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *SeradataopticalpayloadTupleResponse) UnmarshalJSON(data []byte) error {
+func (r SeradataOpticalPayloadTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *SeradataOpticalPayloadTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -581,16 +581,16 @@ func (r *SeradataopticalpayloadTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradataopticalpayloadTupleResponseDataMode string
+type SeradataOpticalPayloadTupleResponseDataMode string
 
 const (
-	SeradataopticalpayloadTupleResponseDataModeReal      SeradataopticalpayloadTupleResponseDataMode = "REAL"
-	SeradataopticalpayloadTupleResponseDataModeTest      SeradataopticalpayloadTupleResponseDataMode = "TEST"
-	SeradataopticalpayloadTupleResponseDataModeSimulated SeradataopticalpayloadTupleResponseDataMode = "SIMULATED"
-	SeradataopticalpayloadTupleResponseDataModeExercise  SeradataopticalpayloadTupleResponseDataMode = "EXERCISE"
+	SeradataOpticalPayloadTupleResponseDataModeReal      SeradataOpticalPayloadTupleResponseDataMode = "REAL"
+	SeradataOpticalPayloadTupleResponseDataModeTest      SeradataOpticalPayloadTupleResponseDataMode = "TEST"
+	SeradataOpticalPayloadTupleResponseDataModeSimulated SeradataOpticalPayloadTupleResponseDataMode = "SIMULATED"
+	SeradataOpticalPayloadTupleResponseDataModeExercise  SeradataOpticalPayloadTupleResponseDataMode = "EXERCISE"
 )
 
-type SeradataopticalpayloadNewParams struct {
+type SeradataOpticalPayloadNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -609,7 +609,7 @@ type SeradataopticalpayloadNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradataopticalpayloadNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SeradataOpticalPayloadNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -662,10 +662,10 @@ type SeradataopticalpayloadNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataopticalpayloadNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeradataOpticalPayloadNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SeradataopticalpayloadNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow SeradataopticalpayloadNewParams
+func (r SeradataOpticalPayloadNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow SeradataOpticalPayloadNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -683,16 +683,16 @@ func (r SeradataopticalpayloadNewParams) MarshalJSON() (data []byte, err error) 
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradataopticalpayloadNewParamsDataMode string
+type SeradataOpticalPayloadNewParamsDataMode string
 
 const (
-	SeradataopticalpayloadNewParamsDataModeReal      SeradataopticalpayloadNewParamsDataMode = "REAL"
-	SeradataopticalpayloadNewParamsDataModeTest      SeradataopticalpayloadNewParamsDataMode = "TEST"
-	SeradataopticalpayloadNewParamsDataModeSimulated SeradataopticalpayloadNewParamsDataMode = "SIMULATED"
-	SeradataopticalpayloadNewParamsDataModeExercise  SeradataopticalpayloadNewParamsDataMode = "EXERCISE"
+	SeradataOpticalPayloadNewParamsDataModeReal      SeradataOpticalPayloadNewParamsDataMode = "REAL"
+	SeradataOpticalPayloadNewParamsDataModeTest      SeradataOpticalPayloadNewParamsDataMode = "TEST"
+	SeradataOpticalPayloadNewParamsDataModeSimulated SeradataOpticalPayloadNewParamsDataMode = "SIMULATED"
+	SeradataOpticalPayloadNewParamsDataModeExercise  SeradataOpticalPayloadNewParamsDataMode = "EXERCISE"
 )
 
-type SeradataopticalpayloadUpdateParams struct {
+type SeradataOpticalPayloadUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -711,7 +711,7 @@ type SeradataopticalpayloadUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SeradataopticalpayloadUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SeradataOpticalPayloadUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Seradata ID of the spacecraft (SeradataSpacecraftDetails ID).
@@ -764,12 +764,12 @@ type SeradataopticalpayloadUpdateParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataopticalpayloadUpdateParams) IsPresent() bool {
+func (f SeradataOpticalPayloadUpdateParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r SeradataopticalpayloadUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow SeradataopticalpayloadUpdateParams
+func (r SeradataOpticalPayloadUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow SeradataOpticalPayloadUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -787,16 +787,16 @@ func (r SeradataopticalpayloadUpdateParams) MarshalJSON() (data []byte, err erro
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SeradataopticalpayloadUpdateParamsDataMode string
+type SeradataOpticalPayloadUpdateParamsDataMode string
 
 const (
-	SeradataopticalpayloadUpdateParamsDataModeReal      SeradataopticalpayloadUpdateParamsDataMode = "REAL"
-	SeradataopticalpayloadUpdateParamsDataModeTest      SeradataopticalpayloadUpdateParamsDataMode = "TEST"
-	SeradataopticalpayloadUpdateParamsDataModeSimulated SeradataopticalpayloadUpdateParamsDataMode = "SIMULATED"
-	SeradataopticalpayloadUpdateParamsDataModeExercise  SeradataopticalpayloadUpdateParamsDataMode = "EXERCISE"
+	SeradataOpticalPayloadUpdateParamsDataModeReal      SeradataOpticalPayloadUpdateParamsDataMode = "REAL"
+	SeradataOpticalPayloadUpdateParamsDataModeTest      SeradataOpticalPayloadUpdateParamsDataMode = "TEST"
+	SeradataOpticalPayloadUpdateParamsDataModeSimulated SeradataOpticalPayloadUpdateParamsDataMode = "SIMULATED"
+	SeradataOpticalPayloadUpdateParamsDataModeExercise  SeradataOpticalPayloadUpdateParamsDataMode = "EXERCISE"
 )
 
-type SeradataopticalpayloadListParams struct {
+type SeradataOpticalPayloadListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -804,18 +804,18 @@ type SeradataopticalpayloadListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataopticalpayloadListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeradataOpticalPayloadListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SeradataopticalpayloadListParams]'s query parameters as
+// URLQuery serializes [SeradataOpticalPayloadListParams]'s query parameters as
 // `url.Values`.
-func (r SeradataopticalpayloadListParams) URLQuery() (v url.Values, err error) {
+func (r SeradataOpticalPayloadListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SeradataopticalpayloadCountParams struct {
+type SeradataOpticalPayloadCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -823,20 +823,20 @@ type SeradataopticalpayloadCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataopticalpayloadCountParams) IsPresent() bool {
+func (f SeradataOpticalPayloadCountParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [SeradataopticalpayloadCountParams]'s query parameters as
+// URLQuery serializes [SeradataOpticalPayloadCountParams]'s query parameters as
 // `url.Values`.
-func (r SeradataopticalpayloadCountParams) URLQuery() (v url.Values, err error) {
+func (r SeradataOpticalPayloadCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SeradataopticalpayloadGetParams struct {
+type SeradataOpticalPayloadGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -844,18 +844,18 @@ type SeradataopticalpayloadGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataopticalpayloadGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SeradataOpticalPayloadGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SeradataopticalpayloadGetParams]'s query parameters as
+// URLQuery serializes [SeradataOpticalPayloadGetParams]'s query parameters as
 // `url.Values`.
-func (r SeradataopticalpayloadGetParams) URLQuery() (v url.Values, err error) {
+func (r SeradataOpticalPayloadGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SeradataopticalpayloadTupleParams struct {
+type SeradataOpticalPayloadTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -868,13 +868,13 @@ type SeradataopticalpayloadTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataopticalpayloadTupleParams) IsPresent() bool {
+func (f SeradataOpticalPayloadTupleParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [SeradataopticalpayloadTupleParams]'s query parameters as
+// URLQuery serializes [SeradataOpticalPayloadTupleParams]'s query parameters as
 // `url.Values`.
-func (r SeradataopticalpayloadTupleParams) URLQuery() (v url.Values, err error) {
+func (r SeradataOpticalPayloadTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

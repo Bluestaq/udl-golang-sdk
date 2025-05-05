@@ -19,31 +19,31 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// TaiutcService contains methods and other services that help with interacting
+// TaiUtcService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewTaiutcService] method instead.
-type TaiutcService struct {
+// the [NewTaiUtcService] method instead.
+type TaiUtcService struct {
 	Options []option.RequestOption
-	History TaiutcHistoryService
+	History TaiUtcHistoryService
 }
 
-// NewTaiutcService generates a new service that applies the given options to each
+// NewTaiUtcService generates a new service that applies the given options to each
 // request. These options are applied after the parent client's options (if there
 // is one), and before any request-specific options.
-func NewTaiutcService(opts ...option.RequestOption) (r TaiutcService) {
-	r = TaiutcService{}
+func NewTaiUtcService(opts ...option.RequestOption) (r TaiUtcService) {
+	r = TaiUtcService{}
 	r.Options = opts
-	r.History = NewTaiutcHistoryService(opts...)
+	r.History = NewTaiUtcHistoryService(opts...)
 	return
 }
 
 // Service operation to take a single TAIUTC object as a POST body and ingest into
 // the database. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
-func (r *TaiutcService) New(ctx context.Context, body TaiutcNewParams, opts ...option.RequestOption) (err error) {
+func (r *TaiUtcService) New(ctx context.Context, body TaiUtcNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/taiutc"
@@ -53,7 +53,7 @@ func (r *TaiutcService) New(ctx context.Context, body TaiutcNewParams, opts ...o
 
 // Service operation to update a single TAIUTC object. A specific role is required
 // to perform this service operation. Please contact the UDL team for assistance.
-func (r *TaiutcService) Update(ctx context.Context, id string, body TaiutcUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *TaiUtcService) Update(ctx context.Context, id string, body TaiUtcUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -69,7 +69,7 @@ func (r *TaiutcService) Update(ctx context.Context, id string, body TaiutcUpdate
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *TaiutcService) List(ctx context.Context, query TaiutcListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[TaiutcListResponse], err error) {
+func (r *TaiUtcService) List(ctx context.Context, query TaiUtcListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[TaiUtcListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -90,7 +90,7 @@ func (r *TaiutcService) List(ctx context.Context, query TaiutcListParams, opts .
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *TaiutcService) ListAutoPaging(ctx context.Context, query TaiutcListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[TaiutcListResponse] {
+func (r *TaiUtcService) ListAutoPaging(ctx context.Context, query TaiUtcListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[TaiUtcListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -98,7 +98,7 @@ func (r *TaiutcService) ListAutoPaging(ctx context.Context, query TaiutcListPara
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance. Note, delete operations do not remove data
 // from historical or publish/subscribe stores.
-func (r *TaiutcService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *TaiUtcService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -115,7 +115,7 @@ func (r *TaiutcService) Delete(ctx context.Context, id string, opts ...option.Re
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *TaiutcService) Count(ctx context.Context, query TaiutcCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *TaiUtcService) Count(ctx context.Context, query TaiUtcCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/taiutc/count"
@@ -125,7 +125,7 @@ func (r *TaiutcService) Count(ctx context.Context, query TaiutcCountParams, opts
 
 // Service operation to get a single TAIUTC record by its unique ID passed as a
 // path parameter.
-func (r *TaiutcService) Get(ctx context.Context, id string, query TaiutcGetParams, opts ...option.RequestOption) (res *TaiutcFull, err error) {
+func (r *TaiUtcService) Get(ctx context.Context, id string, query TaiUtcGetParams, opts ...option.RequestOption) (res *TaiutcFull, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -138,7 +138,7 @@ func (r *TaiutcService) Get(ctx context.Context, id string, query TaiutcGetParam
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *TaiutcService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *TaiUtcService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/taiutc/queryhelp"
@@ -154,7 +154,7 @@ func (r *TaiutcService) Queryhelp(ctx context.Context, opts ...option.RequestOpt
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *TaiutcService) Tuple(ctx context.Context, query TaiutcTupleParams, opts ...option.RequestOption) (res *[]TaiutcFull, err error) {
+func (r *TaiUtcService) Tuple(ctx context.Context, query TaiUtcTupleParams, opts ...option.RequestOption) (res *[]TaiutcFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/taiutc/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -177,7 +177,7 @@ func (r *TaiutcService) Tuple(ctx context.Context, query TaiutcTupleParams, opts
 // expressed in terms of UTC by the relation TAI = UTC + dAT, where dAT is the
 // total algebraic sum of leap seconds. The first leap second was introduced on
 // June 30, 1972. The historical list of leap seconds can be found in this table.
-type TaiutcListResponse struct {
+type TaiUtcListResponse struct {
 	// Effective date/time for the leap second adjustment.
 	AdjustmentDate time.Time `json:"adjustmentDate,required" format:"date-time"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -198,7 +198,7 @@ type TaiutcListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode TaiutcListResponseDataMode `json:"dataMode,required"`
+	DataMode TaiUtcListResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Unique identifier of the record, auto-generated by the system.
@@ -246,8 +246,8 @@ type TaiutcListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r TaiutcListResponse) RawJSON() string { return r.JSON.raw }
-func (r *TaiutcListResponse) UnmarshalJSON(data []byte) error {
+func (r TaiUtcListResponse) RawJSON() string { return r.JSON.raw }
+func (r *TaiUtcListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -265,16 +265,16 @@ func (r *TaiutcListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type TaiutcListResponseDataMode string
+type TaiUtcListResponseDataMode string
 
 const (
-	TaiutcListResponseDataModeReal      TaiutcListResponseDataMode = "REAL"
-	TaiutcListResponseDataModeTest      TaiutcListResponseDataMode = "TEST"
-	TaiutcListResponseDataModeSimulated TaiutcListResponseDataMode = "SIMULATED"
-	TaiutcListResponseDataModeExercise  TaiutcListResponseDataMode = "EXERCISE"
+	TaiUtcListResponseDataModeReal      TaiUtcListResponseDataMode = "REAL"
+	TaiUtcListResponseDataModeTest      TaiUtcListResponseDataMode = "TEST"
+	TaiUtcListResponseDataModeSimulated TaiUtcListResponseDataMode = "SIMULATED"
+	TaiUtcListResponseDataModeExercise  TaiUtcListResponseDataMode = "EXERCISE"
 )
 
-type TaiutcNewParams struct {
+type TaiUtcNewParams struct {
 	// Effective date/time for the leap second adjustment.
 	AdjustmentDate time.Time `json:"adjustmentDate,required" format:"date-time"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -295,7 +295,7 @@ type TaiutcNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode TaiutcNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode TaiUtcNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Unique identifier of the record, auto-generated by the system.
@@ -319,10 +319,10 @@ type TaiutcNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TaiutcNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TaiUtcNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r TaiutcNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow TaiutcNewParams
+func (r TaiUtcNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow TaiUtcNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -340,16 +340,16 @@ func (r TaiutcNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type TaiutcNewParamsDataMode string
+type TaiUtcNewParamsDataMode string
 
 const (
-	TaiutcNewParamsDataModeReal      TaiutcNewParamsDataMode = "REAL"
-	TaiutcNewParamsDataModeTest      TaiutcNewParamsDataMode = "TEST"
-	TaiutcNewParamsDataModeSimulated TaiutcNewParamsDataMode = "SIMULATED"
-	TaiutcNewParamsDataModeExercise  TaiutcNewParamsDataMode = "EXERCISE"
+	TaiUtcNewParamsDataModeReal      TaiUtcNewParamsDataMode = "REAL"
+	TaiUtcNewParamsDataModeTest      TaiUtcNewParamsDataMode = "TEST"
+	TaiUtcNewParamsDataModeSimulated TaiUtcNewParamsDataMode = "SIMULATED"
+	TaiUtcNewParamsDataModeExercise  TaiUtcNewParamsDataMode = "EXERCISE"
 )
 
-type TaiutcUpdateParams struct {
+type TaiUtcUpdateParams struct {
 	// Effective date/time for the leap second adjustment.
 	AdjustmentDate time.Time `json:"adjustmentDate,required" format:"date-time"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -370,7 +370,7 @@ type TaiutcUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode TaiutcUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode TaiUtcUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Unique identifier of the record, auto-generated by the system.
@@ -394,10 +394,10 @@ type TaiutcUpdateParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TaiutcUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TaiUtcUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r TaiutcUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow TaiutcUpdateParams
+func (r TaiUtcUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow TaiUtcUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -415,16 +415,16 @@ func (r TaiutcUpdateParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type TaiutcUpdateParamsDataMode string
+type TaiUtcUpdateParamsDataMode string
 
 const (
-	TaiutcUpdateParamsDataModeReal      TaiutcUpdateParamsDataMode = "REAL"
-	TaiutcUpdateParamsDataModeTest      TaiutcUpdateParamsDataMode = "TEST"
-	TaiutcUpdateParamsDataModeSimulated TaiutcUpdateParamsDataMode = "SIMULATED"
-	TaiutcUpdateParamsDataModeExercise  TaiutcUpdateParamsDataMode = "EXERCISE"
+	TaiUtcUpdateParamsDataModeReal      TaiUtcUpdateParamsDataMode = "REAL"
+	TaiUtcUpdateParamsDataModeTest      TaiUtcUpdateParamsDataMode = "TEST"
+	TaiUtcUpdateParamsDataModeSimulated TaiUtcUpdateParamsDataMode = "SIMULATED"
+	TaiUtcUpdateParamsDataModeExercise  TaiUtcUpdateParamsDataMode = "EXERCISE"
 )
 
-type TaiutcListParams struct {
+type TaiUtcListParams struct {
 	// Effective date/time for the leap second adjustment. Must be a unique value
 	// across all TAIUTC datasets. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	AdjustmentDate time.Time        `query:"adjustmentDate,required" format:"date-time" json:"-"`
@@ -435,17 +435,17 @@ type TaiutcListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TaiutcListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TaiUtcListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [TaiutcListParams]'s query parameters as `url.Values`.
-func (r TaiutcListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [TaiUtcListParams]'s query parameters as `url.Values`.
+func (r TaiUtcListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type TaiutcCountParams struct {
+type TaiUtcCountParams struct {
 	// Effective date/time for the leap second adjustment. Must be a unique value
 	// across all TAIUTC datasets. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	AdjustmentDate time.Time        `query:"adjustmentDate,required" format:"date-time" json:"-"`
@@ -456,17 +456,17 @@ type TaiutcCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TaiutcCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TaiUtcCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [TaiutcCountParams]'s query parameters as `url.Values`.
-func (r TaiutcCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [TaiUtcCountParams]'s query parameters as `url.Values`.
+func (r TaiUtcCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type TaiutcGetParams struct {
+type TaiUtcGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -474,17 +474,17 @@ type TaiutcGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TaiutcGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TaiUtcGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [TaiutcGetParams]'s query parameters as `url.Values`.
-func (r TaiutcGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [TaiUtcGetParams]'s query parameters as `url.Values`.
+func (r TaiUtcGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type TaiutcTupleParams struct {
+type TaiUtcTupleParams struct {
 	// Effective date/time for the leap second adjustment. Must be a unique value
 	// across all TAIUTC datasets. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	AdjustmentDate time.Time `query:"adjustmentDate,required" format:"date-time" json:"-"`
@@ -500,10 +500,10 @@ type TaiutcTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TaiutcTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TaiUtcTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [TaiutcTupleParams]'s query parameters as `url.Values`.
-func (r TaiutcTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [TaiUtcTupleParams]'s query parameters as `url.Values`.
+func (r TaiUtcTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

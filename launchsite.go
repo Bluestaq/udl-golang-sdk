@@ -19,21 +19,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// LaunchsiteService contains methods and other services that help with interacting
+// LaunchSiteService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewLaunchsiteService] method instead.
-type LaunchsiteService struct {
+// the [NewLaunchSiteService] method instead.
+type LaunchSiteService struct {
 	Options []option.RequestOption
 }
 
-// NewLaunchsiteService generates a new service that applies the given options to
+// NewLaunchSiteService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewLaunchsiteService(opts ...option.RequestOption) (r LaunchsiteService) {
-	r = LaunchsiteService{}
+func NewLaunchSiteService(opts ...option.RequestOption) (r LaunchSiteService) {
+	r = LaunchSiteService{}
 	r.Options = opts
 	return
 }
@@ -41,7 +41,7 @@ func NewLaunchsiteService(opts ...option.RequestOption) (r LaunchsiteService) {
 // Service operation to take a single launch site as a POST body and ingest into
 // the database. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
-func (r *LaunchsiteService) New(ctx context.Context, body LaunchsiteNewParams, opts ...option.RequestOption) (err error) {
+func (r *LaunchSiteService) New(ctx context.Context, body LaunchSiteNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/launchsite"
@@ -51,7 +51,7 @@ func (r *LaunchsiteService) New(ctx context.Context, body LaunchsiteNewParams, o
 
 // Service operation to update a launch. A specific role is required to perform
 // this service operation. Please contact the UDL team for assistance.
-func (r *LaunchsiteService) Update(ctx context.Context, id string, body LaunchsiteUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *LaunchSiteService) Update(ctx context.Context, id string, body LaunchSiteUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -67,7 +67,7 @@ func (r *LaunchsiteService) Update(ctx context.Context, id string, body Launchsi
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *LaunchsiteService) List(ctx context.Context, query LaunchsiteListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LaunchsiteListResponse], err error) {
+func (r *LaunchSiteService) List(ctx context.Context, query LaunchSiteListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LaunchSiteListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -88,14 +88,14 @@ func (r *LaunchsiteService) List(ctx context.Context, query LaunchsiteListParams
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *LaunchsiteService) ListAutoPaging(ctx context.Context, query LaunchsiteListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[LaunchsiteListResponse] {
+func (r *LaunchSiteService) ListAutoPaging(ctx context.Context, query LaunchSiteListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[LaunchSiteListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to delete a launch site specified by the passed ID path
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
-func (r *LaunchsiteService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *LaunchSiteService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -112,7 +112,7 @@ func (r *LaunchsiteService) Delete(ctx context.Context, id string, opts ...optio
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *LaunchsiteService) Count(ctx context.Context, query LaunchsiteCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *LaunchSiteService) Count(ctx context.Context, query LaunchSiteCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/launchsite/count"
@@ -122,7 +122,7 @@ func (r *LaunchsiteService) Count(ctx context.Context, query LaunchsiteCountPara
 
 // Service operation to get a single launch site by its unique ID passed as a path
 // parameter.
-func (r *LaunchsiteService) Get(ctx context.Context, id string, query LaunchsiteGetParams, opts ...option.RequestOption) (res *LaunchsiteGetResponse, err error) {
+func (r *LaunchSiteService) Get(ctx context.Context, id string, query LaunchSiteGetParams, opts ...option.RequestOption) (res *LaunchSiteGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -135,7 +135,7 @@ func (r *LaunchsiteService) Get(ctx context.Context, id string, query Launchsite
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *LaunchsiteService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *LaunchSiteService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/launchsite/queryhelp"
@@ -151,7 +151,7 @@ func (r *LaunchsiteService) Queryhelp(ctx context.Context, opts ...option.Reques
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *LaunchsiteService) Tuple(ctx context.Context, query LaunchsiteTupleParams, opts ...option.RequestOption) (res *[]LaunchsiteTupleResponse, err error) {
+func (r *LaunchSiteService) Tuple(ctx context.Context, query LaunchSiteTupleParams, opts ...option.RequestOption) (res *[]LaunchSiteTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/launchsite/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -159,7 +159,7 @@ func (r *LaunchsiteService) Tuple(ctx context.Context, query LaunchsiteTuplePara
 }
 
 // Model representation of known launch sites.
-type LaunchsiteListResponse struct {
+type LaunchSiteListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Launch site code.
@@ -180,7 +180,7 @@ type LaunchsiteListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LaunchsiteListResponseDataMode `json:"dataMode,required"`
+	DataMode LaunchSiteListResponseDataMode `json:"dataMode,required"`
 	// Launch site name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -228,8 +228,8 @@ type LaunchsiteListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LaunchsiteListResponse) RawJSON() string { return r.JSON.raw }
-func (r *LaunchsiteListResponse) UnmarshalJSON(data []byte) error {
+func (r LaunchSiteListResponse) RawJSON() string { return r.JSON.raw }
+func (r *LaunchSiteListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -247,17 +247,17 @@ func (r *LaunchsiteListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LaunchsiteListResponseDataMode string
+type LaunchSiteListResponseDataMode string
 
 const (
-	LaunchsiteListResponseDataModeReal      LaunchsiteListResponseDataMode = "REAL"
-	LaunchsiteListResponseDataModeTest      LaunchsiteListResponseDataMode = "TEST"
-	LaunchsiteListResponseDataModeSimulated LaunchsiteListResponseDataMode = "SIMULATED"
-	LaunchsiteListResponseDataModeExercise  LaunchsiteListResponseDataMode = "EXERCISE"
+	LaunchSiteListResponseDataModeReal      LaunchSiteListResponseDataMode = "REAL"
+	LaunchSiteListResponseDataModeTest      LaunchSiteListResponseDataMode = "TEST"
+	LaunchSiteListResponseDataModeSimulated LaunchSiteListResponseDataMode = "SIMULATED"
+	LaunchSiteListResponseDataModeExercise  LaunchSiteListResponseDataMode = "EXERCISE"
 )
 
 // Model representation of known launch sites.
-type LaunchsiteGetResponse struct {
+type LaunchSiteGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Launch site code.
@@ -278,7 +278,7 @@ type LaunchsiteGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LaunchsiteGetResponseDataMode `json:"dataMode,required"`
+	DataMode LaunchSiteGetResponseDataMode `json:"dataMode,required"`
 	// Launch site name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -297,7 +297,7 @@ type LaunchsiteGetResponse struct {
 	// Read-only collection of additional LaunchSiteDetails by various sources for this
 	// launch site, ignored on create/update. These details must be created separately
 	// via the /udl/launchsitedetails operations.
-	LaunchSiteDetails []LaunchsiteGetResponseLaunchSiteDetail `json:"launchSiteDetails"`
+	LaunchSiteDetails []LaunchSiteGetResponseLaunchSiteDetail `json:"launchSiteDetails"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
@@ -338,8 +338,8 @@ type LaunchsiteGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LaunchsiteGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *LaunchsiteGetResponse) UnmarshalJSON(data []byte) error {
+func (r LaunchSiteGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *LaunchSiteGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -357,18 +357,18 @@ func (r *LaunchsiteGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LaunchsiteGetResponseDataMode string
+type LaunchSiteGetResponseDataMode string
 
 const (
-	LaunchsiteGetResponseDataModeReal      LaunchsiteGetResponseDataMode = "REAL"
-	LaunchsiteGetResponseDataModeTest      LaunchsiteGetResponseDataMode = "TEST"
-	LaunchsiteGetResponseDataModeSimulated LaunchsiteGetResponseDataMode = "SIMULATED"
-	LaunchsiteGetResponseDataModeExercise  LaunchsiteGetResponseDataMode = "EXERCISE"
+	LaunchSiteGetResponseDataModeReal      LaunchSiteGetResponseDataMode = "REAL"
+	LaunchSiteGetResponseDataModeTest      LaunchSiteGetResponseDataMode = "TEST"
+	LaunchSiteGetResponseDataModeSimulated LaunchSiteGetResponseDataMode = "SIMULATED"
+	LaunchSiteGetResponseDataModeExercise  LaunchSiteGetResponseDataMode = "EXERCISE"
 )
 
 // Model representation of details compiled/collected on a launch site by a
 // particular source. A launch site may have several details records.
-type LaunchsiteGetResponseLaunchSiteDetail struct {
+type LaunchSiteGetResponseLaunchSiteDetail struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -460,13 +460,13 @@ type LaunchsiteGetResponseLaunchSiteDetail struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LaunchsiteGetResponseLaunchSiteDetail) RawJSON() string { return r.JSON.raw }
-func (r *LaunchsiteGetResponseLaunchSiteDetail) UnmarshalJSON(data []byte) error {
+func (r LaunchSiteGetResponseLaunchSiteDetail) RawJSON() string { return r.JSON.raw }
+func (r *LaunchSiteGetResponseLaunchSiteDetail) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of known launch sites.
-type LaunchsiteTupleResponse struct {
+type LaunchSiteTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Launch site code.
@@ -487,7 +487,7 @@ type LaunchsiteTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LaunchsiteTupleResponseDataMode `json:"dataMode,required"`
+	DataMode LaunchSiteTupleResponseDataMode `json:"dataMode,required"`
 	// Launch site name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -506,7 +506,7 @@ type LaunchsiteTupleResponse struct {
 	// Read-only collection of additional LaunchSiteDetails by various sources for this
 	// launch site, ignored on create/update. These details must be created separately
 	// via the /udl/launchsitedetails operations.
-	LaunchSiteDetails []LaunchsiteTupleResponseLaunchSiteDetail `json:"launchSiteDetails"`
+	LaunchSiteDetails []LaunchSiteTupleResponseLaunchSiteDetail `json:"launchSiteDetails"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
@@ -547,8 +547,8 @@ type LaunchsiteTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LaunchsiteTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *LaunchsiteTupleResponse) UnmarshalJSON(data []byte) error {
+func (r LaunchSiteTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *LaunchSiteTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -566,18 +566,18 @@ func (r *LaunchsiteTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LaunchsiteTupleResponseDataMode string
+type LaunchSiteTupleResponseDataMode string
 
 const (
-	LaunchsiteTupleResponseDataModeReal      LaunchsiteTupleResponseDataMode = "REAL"
-	LaunchsiteTupleResponseDataModeTest      LaunchsiteTupleResponseDataMode = "TEST"
-	LaunchsiteTupleResponseDataModeSimulated LaunchsiteTupleResponseDataMode = "SIMULATED"
-	LaunchsiteTupleResponseDataModeExercise  LaunchsiteTupleResponseDataMode = "EXERCISE"
+	LaunchSiteTupleResponseDataModeReal      LaunchSiteTupleResponseDataMode = "REAL"
+	LaunchSiteTupleResponseDataModeTest      LaunchSiteTupleResponseDataMode = "TEST"
+	LaunchSiteTupleResponseDataModeSimulated LaunchSiteTupleResponseDataMode = "SIMULATED"
+	LaunchSiteTupleResponseDataModeExercise  LaunchSiteTupleResponseDataMode = "EXERCISE"
 )
 
 // Model representation of details compiled/collected on a launch site by a
 // particular source. A launch site may have several details records.
-type LaunchsiteTupleResponseLaunchSiteDetail struct {
+type LaunchSiteTupleResponseLaunchSiteDetail struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -669,12 +669,12 @@ type LaunchsiteTupleResponseLaunchSiteDetail struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LaunchsiteTupleResponseLaunchSiteDetail) RawJSON() string { return r.JSON.raw }
-func (r *LaunchsiteTupleResponseLaunchSiteDetail) UnmarshalJSON(data []byte) error {
+func (r LaunchSiteTupleResponseLaunchSiteDetail) RawJSON() string { return r.JSON.raw }
+func (r *LaunchSiteTupleResponseLaunchSiteDetail) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type LaunchsiteNewParams struct {
+type LaunchSiteNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Launch site code.
@@ -695,7 +695,7 @@ type LaunchsiteNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LaunchsiteNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode LaunchSiteNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Launch site name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -718,10 +718,10 @@ type LaunchsiteNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchsiteNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchSiteNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r LaunchsiteNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow LaunchsiteNewParams
+func (r LaunchSiteNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow LaunchSiteNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -739,16 +739,16 @@ func (r LaunchsiteNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LaunchsiteNewParamsDataMode string
+type LaunchSiteNewParamsDataMode string
 
 const (
-	LaunchsiteNewParamsDataModeReal      LaunchsiteNewParamsDataMode = "REAL"
-	LaunchsiteNewParamsDataModeTest      LaunchsiteNewParamsDataMode = "TEST"
-	LaunchsiteNewParamsDataModeSimulated LaunchsiteNewParamsDataMode = "SIMULATED"
-	LaunchsiteNewParamsDataModeExercise  LaunchsiteNewParamsDataMode = "EXERCISE"
+	LaunchSiteNewParamsDataModeReal      LaunchSiteNewParamsDataMode = "REAL"
+	LaunchSiteNewParamsDataModeTest      LaunchSiteNewParamsDataMode = "TEST"
+	LaunchSiteNewParamsDataModeSimulated LaunchSiteNewParamsDataMode = "SIMULATED"
+	LaunchSiteNewParamsDataModeExercise  LaunchSiteNewParamsDataMode = "EXERCISE"
 )
 
-type LaunchsiteUpdateParams struct {
+type LaunchSiteUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Launch site code.
@@ -769,7 +769,7 @@ type LaunchsiteUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LaunchsiteUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode LaunchSiteUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// Launch site name.
 	Name string `json:"name,required"`
 	// Source of the data.
@@ -792,10 +792,10 @@ type LaunchsiteUpdateParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchsiteUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchSiteUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r LaunchsiteUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow LaunchsiteUpdateParams
+func (r LaunchSiteUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow LaunchSiteUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -813,16 +813,16 @@ func (r LaunchsiteUpdateParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LaunchsiteUpdateParamsDataMode string
+type LaunchSiteUpdateParamsDataMode string
 
 const (
-	LaunchsiteUpdateParamsDataModeReal      LaunchsiteUpdateParamsDataMode = "REAL"
-	LaunchsiteUpdateParamsDataModeTest      LaunchsiteUpdateParamsDataMode = "TEST"
-	LaunchsiteUpdateParamsDataModeSimulated LaunchsiteUpdateParamsDataMode = "SIMULATED"
-	LaunchsiteUpdateParamsDataModeExercise  LaunchsiteUpdateParamsDataMode = "EXERCISE"
+	LaunchSiteUpdateParamsDataModeReal      LaunchSiteUpdateParamsDataMode = "REAL"
+	LaunchSiteUpdateParamsDataModeTest      LaunchSiteUpdateParamsDataMode = "TEST"
+	LaunchSiteUpdateParamsDataModeSimulated LaunchSiteUpdateParamsDataMode = "SIMULATED"
+	LaunchSiteUpdateParamsDataModeExercise  LaunchSiteUpdateParamsDataMode = "EXERCISE"
 )
 
-type LaunchsiteListParams struct {
+type LaunchSiteListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -830,17 +830,17 @@ type LaunchsiteListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchsiteListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchSiteListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LaunchsiteListParams]'s query parameters as `url.Values`.
-func (r LaunchsiteListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [LaunchSiteListParams]'s query parameters as `url.Values`.
+func (r LaunchSiteListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type LaunchsiteCountParams struct {
+type LaunchSiteCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -848,17 +848,17 @@ type LaunchsiteCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchsiteCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchSiteCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LaunchsiteCountParams]'s query parameters as `url.Values`.
-func (r LaunchsiteCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [LaunchSiteCountParams]'s query parameters as `url.Values`.
+func (r LaunchSiteCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type LaunchsiteGetParams struct {
+type LaunchSiteGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -866,17 +866,17 @@ type LaunchsiteGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchsiteGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchSiteGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LaunchsiteGetParams]'s query parameters as `url.Values`.
-func (r LaunchsiteGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [LaunchSiteGetParams]'s query parameters as `url.Values`.
+func (r LaunchSiteGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type LaunchsiteTupleParams struct {
+type LaunchSiteTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -889,10 +889,10 @@ type LaunchsiteTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchsiteTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchSiteTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LaunchsiteTupleParams]'s query parameters as `url.Values`.
-func (r LaunchsiteTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [LaunchSiteTupleParams]'s query parameters as `url.Values`.
+func (r LaunchSiteTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

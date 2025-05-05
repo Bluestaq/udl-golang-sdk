@@ -19,21 +19,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// RfbandService contains methods and other services that help with interacting
+// RfBandService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewRfbandService] method instead.
-type RfbandService struct {
+// the [NewRfBandService] method instead.
+type RfBandService struct {
 	Options []option.RequestOption
 }
 
-// NewRfbandService generates a new service that applies the given options to each
+// NewRfBandService generates a new service that applies the given options to each
 // request. These options are applied after the parent client's options (if there
 // is one), and before any request-specific options.
-func NewRfbandService(opts ...option.RequestOption) (r RfbandService) {
-	r = RfbandService{}
+func NewRfBandService(opts ...option.RequestOption) (r RfBandService) {
+	r = RfBandService{}
 	r.Options = opts
 	return
 }
@@ -41,7 +41,7 @@ func NewRfbandService(opts ...option.RequestOption) (r RfbandService) {
 // Service operation to take a single RFBand as a POST body and ingest into the
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
-func (r *RfbandService) New(ctx context.Context, body RfbandNewParams, opts ...option.RequestOption) (err error) {
+func (r *RfBandService) New(ctx context.Context, body RfBandNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/rfband"
@@ -51,7 +51,7 @@ func (r *RfbandService) New(ctx context.Context, body RfbandNewParams, opts ...o
 
 // Service operation to update an RFBand. A specific role is required to perform
 // this service operation. Please contact the UDL team for assistance.
-func (r *RfbandService) Update(ctx context.Context, id string, body RfbandUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *RfBandService) Update(ctx context.Context, id string, body RfBandUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -67,7 +67,7 @@ func (r *RfbandService) Update(ctx context.Context, id string, body RfbandUpdate
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *RfbandService) List(ctx context.Context, query RfbandListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[RfbandListResponse], err error) {
+func (r *RfBandService) List(ctx context.Context, query RfBandListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[RfBandListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -88,14 +88,14 @@ func (r *RfbandService) List(ctx context.Context, query RfbandListParams, opts .
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *RfbandService) ListAutoPaging(ctx context.Context, query RfbandListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[RfbandListResponse] {
+func (r *RfBandService) ListAutoPaging(ctx context.Context, query RfBandListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[RfBandListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to delete an RFBand specified by the passed ID path parameter.
 // A specific role is required to perform this service operation. Please contact
 // the UDL team for assistance.
-func (r *RfbandService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *RfBandService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -112,7 +112,7 @@ func (r *RfbandService) Delete(ctx context.Context, id string, opts ...option.Re
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *RfbandService) Count(ctx context.Context, query RfbandCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *RfBandService) Count(ctx context.Context, query RfBandCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/rfband/count"
@@ -122,7 +122,7 @@ func (r *RfbandService) Count(ctx context.Context, query RfbandCountParams, opts
 
 // Service operation to get a single RFBand by its unique ID passed as a path
 // parameter.
-func (r *RfbandService) Get(ctx context.Context, id string, query RfbandGetParams, opts ...option.RequestOption) (res *RfbandGetResponse, err error) {
+func (r *RfBandService) Get(ctx context.Context, id string, query RfBandGetParams, opts ...option.RequestOption) (res *RfBandGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -135,7 +135,7 @@ func (r *RfbandService) Get(ctx context.Context, id string, query RfbandGetParam
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *RfbandService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *RfBandService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/rfband/queryhelp"
@@ -151,7 +151,7 @@ func (r *RfbandService) Queryhelp(ctx context.Context, opts ...option.RequestOpt
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *RfbandService) Tuple(ctx context.Context, query RfbandTupleParams, opts ...option.RequestOption) (res *[]RfbandTupleResponse, err error) {
+func (r *RfBandService) Tuple(ctx context.Context, query RfBandTupleParams, opts ...option.RequestOption) (res *[]RfBandTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/rfband/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -160,7 +160,7 @@ func (r *RfbandService) Tuple(ctx context.Context, query RfbandTupleParams, opts
 
 // Details on a particular Radio Frequency (RF) band, also known as a carrier,
 // which may be in use by any type of Entity for communications or operations.
-type RfbandListResponse struct {
+type RfBandListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -179,7 +179,7 @@ type RfbandListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfbandListResponseDataMode `json:"dataMode,required"`
+	DataMode RfBandListResponseDataMode `json:"dataMode,required"`
 	// Unique identifier of the parent Entity which uses this band.
 	IDEntity string `json:"idEntity,required"`
 	// RF Band name.
@@ -231,7 +231,7 @@ type RfbandListResponse struct {
 	// RF Band mode (e.g. TX, RX).
 	//
 	// Any of "TX", "RX".
-	Mode RfbandListResponseMode `json:"mode"`
+	Mode RfBandListResponseMode `json:"mode"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
@@ -249,12 +249,12 @@ type RfbandListResponse struct {
 	// surface.
 	//
 	// Any of "H", "V", "R", "L".
-	Polarization RfbandListResponsePolarization `json:"polarization"`
+	Polarization RfBandListResponsePolarization `json:"polarization"`
 	// Purpose or use of the RF Band -- COMM = communications, TTC =
 	// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
 	//
 	// Any of "COMM", "TTC", "OPS", "OTHER".
-	Purpose RfbandListResponsePurpose `json:"purpose"`
+	Purpose RfBandListResponsePurpose `json:"purpose"`
 	// Metadata for the response, check the presence of optional fields with the
 	// [resp.Field.IsPresent] method.
 	JSON struct {
@@ -287,8 +287,8 @@ type RfbandListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r RfbandListResponse) RawJSON() string { return r.JSON.raw }
-func (r *RfbandListResponse) UnmarshalJSON(data []byte) error {
+func (r RfBandListResponse) RawJSON() string { return r.JSON.raw }
+func (r *RfBandListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -306,21 +306,21 @@ func (r *RfbandListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RfbandListResponseDataMode string
+type RfBandListResponseDataMode string
 
 const (
-	RfbandListResponseDataModeReal      RfbandListResponseDataMode = "REAL"
-	RfbandListResponseDataModeTest      RfbandListResponseDataMode = "TEST"
-	RfbandListResponseDataModeSimulated RfbandListResponseDataMode = "SIMULATED"
-	RfbandListResponseDataModeExercise  RfbandListResponseDataMode = "EXERCISE"
+	RfBandListResponseDataModeReal      RfBandListResponseDataMode = "REAL"
+	RfBandListResponseDataModeTest      RfBandListResponseDataMode = "TEST"
+	RfBandListResponseDataModeSimulated RfBandListResponseDataMode = "SIMULATED"
+	RfBandListResponseDataModeExercise  RfBandListResponseDataMode = "EXERCISE"
 )
 
 // RF Band mode (e.g. TX, RX).
-type RfbandListResponseMode string
+type RfBandListResponseMode string
 
 const (
-	RfbandListResponseModeTx RfbandListResponseMode = "TX"
-	RfbandListResponseModeRx RfbandListResponseMode = "RX"
+	RfBandListResponseModeTx RfBandListResponseMode = "TX"
+	RfBandListResponseModeRx RfBandListResponseMode = "RX"
 )
 
 // Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
@@ -328,29 +328,29 @@ const (
 // (Left Hand Circularly Polarized) Rotating left relative to the Earth's surface,
 // R - (Right Hand Circularly Polarized) Rotating right relative to the Earth's
 // surface.
-type RfbandListResponsePolarization string
+type RfBandListResponsePolarization string
 
 const (
-	RfbandListResponsePolarizationH RfbandListResponsePolarization = "H"
-	RfbandListResponsePolarizationV RfbandListResponsePolarization = "V"
-	RfbandListResponsePolarizationR RfbandListResponsePolarization = "R"
-	RfbandListResponsePolarizationL RfbandListResponsePolarization = "L"
+	RfBandListResponsePolarizationH RfBandListResponsePolarization = "H"
+	RfBandListResponsePolarizationV RfBandListResponsePolarization = "V"
+	RfBandListResponsePolarizationR RfBandListResponsePolarization = "R"
+	RfBandListResponsePolarizationL RfBandListResponsePolarization = "L"
 )
 
 // Purpose or use of the RF Band -- COMM = communications, TTC =
 // Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
-type RfbandListResponsePurpose string
+type RfBandListResponsePurpose string
 
 const (
-	RfbandListResponsePurposeComm  RfbandListResponsePurpose = "COMM"
-	RfbandListResponsePurposeTtc   RfbandListResponsePurpose = "TTC"
-	RfbandListResponsePurposeOps   RfbandListResponsePurpose = "OPS"
-	RfbandListResponsePurposeOther RfbandListResponsePurpose = "OTHER"
+	RfBandListResponsePurposeComm  RfBandListResponsePurpose = "COMM"
+	RfBandListResponsePurposeTtc   RfBandListResponsePurpose = "TTC"
+	RfBandListResponsePurposeOps   RfBandListResponsePurpose = "OPS"
+	RfBandListResponsePurposeOther RfBandListResponsePurpose = "OTHER"
 )
 
 // Details on a particular Radio Frequency (RF) band, also known as a carrier,
 // which may be in use by any type of Entity for communications or operations.
-type RfbandGetResponse struct {
+type RfBandGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -369,7 +369,7 @@ type RfbandGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfbandGetResponseDataMode `json:"dataMode,required"`
+	DataMode RfBandGetResponseDataMode `json:"dataMode,required"`
 	// Unique identifier of the parent Entity which uses this band.
 	IDEntity string `json:"idEntity,required"`
 	// RF Band name.
@@ -421,7 +421,7 @@ type RfbandGetResponse struct {
 	// RF Band mode (e.g. TX, RX).
 	//
 	// Any of "TX", "RX".
-	Mode RfbandGetResponseMode `json:"mode"`
+	Mode RfBandGetResponseMode `json:"mode"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
@@ -439,12 +439,12 @@ type RfbandGetResponse struct {
 	// surface.
 	//
 	// Any of "H", "V", "R", "L".
-	Polarization RfbandGetResponsePolarization `json:"polarization"`
+	Polarization RfBandGetResponsePolarization `json:"polarization"`
 	// Purpose or use of the RF Band -- COMM = communications, TTC =
 	// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
 	//
 	// Any of "COMM", "TTC", "OPS", "OTHER".
-	Purpose RfbandGetResponsePurpose `json:"purpose"`
+	Purpose RfBandGetResponsePurpose `json:"purpose"`
 	// Time the row was last updated in the database, auto-populated by the system.
 	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
 	// Application user who updated the row in the database, auto-populated by the
@@ -484,8 +484,8 @@ type RfbandGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r RfbandGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *RfbandGetResponse) UnmarshalJSON(data []byte) error {
+func (r RfBandGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *RfBandGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -503,21 +503,21 @@ func (r *RfbandGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RfbandGetResponseDataMode string
+type RfBandGetResponseDataMode string
 
 const (
-	RfbandGetResponseDataModeReal      RfbandGetResponseDataMode = "REAL"
-	RfbandGetResponseDataModeTest      RfbandGetResponseDataMode = "TEST"
-	RfbandGetResponseDataModeSimulated RfbandGetResponseDataMode = "SIMULATED"
-	RfbandGetResponseDataModeExercise  RfbandGetResponseDataMode = "EXERCISE"
+	RfBandGetResponseDataModeReal      RfBandGetResponseDataMode = "REAL"
+	RfBandGetResponseDataModeTest      RfBandGetResponseDataMode = "TEST"
+	RfBandGetResponseDataModeSimulated RfBandGetResponseDataMode = "SIMULATED"
+	RfBandGetResponseDataModeExercise  RfBandGetResponseDataMode = "EXERCISE"
 )
 
 // RF Band mode (e.g. TX, RX).
-type RfbandGetResponseMode string
+type RfBandGetResponseMode string
 
 const (
-	RfbandGetResponseModeTx RfbandGetResponseMode = "TX"
-	RfbandGetResponseModeRx RfbandGetResponseMode = "RX"
+	RfBandGetResponseModeTx RfBandGetResponseMode = "TX"
+	RfBandGetResponseModeRx RfBandGetResponseMode = "RX"
 )
 
 // Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
@@ -525,29 +525,29 @@ const (
 // (Left Hand Circularly Polarized) Rotating left relative to the Earth's surface,
 // R - (Right Hand Circularly Polarized) Rotating right relative to the Earth's
 // surface.
-type RfbandGetResponsePolarization string
+type RfBandGetResponsePolarization string
 
 const (
-	RfbandGetResponsePolarizationH RfbandGetResponsePolarization = "H"
-	RfbandGetResponsePolarizationV RfbandGetResponsePolarization = "V"
-	RfbandGetResponsePolarizationR RfbandGetResponsePolarization = "R"
-	RfbandGetResponsePolarizationL RfbandGetResponsePolarization = "L"
+	RfBandGetResponsePolarizationH RfBandGetResponsePolarization = "H"
+	RfBandGetResponsePolarizationV RfBandGetResponsePolarization = "V"
+	RfBandGetResponsePolarizationR RfBandGetResponsePolarization = "R"
+	RfBandGetResponsePolarizationL RfBandGetResponsePolarization = "L"
 )
 
 // Purpose or use of the RF Band -- COMM = communications, TTC =
 // Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
-type RfbandGetResponsePurpose string
+type RfBandGetResponsePurpose string
 
 const (
-	RfbandGetResponsePurposeComm  RfbandGetResponsePurpose = "COMM"
-	RfbandGetResponsePurposeTtc   RfbandGetResponsePurpose = "TTC"
-	RfbandGetResponsePurposeOps   RfbandGetResponsePurpose = "OPS"
-	RfbandGetResponsePurposeOther RfbandGetResponsePurpose = "OTHER"
+	RfBandGetResponsePurposeComm  RfBandGetResponsePurpose = "COMM"
+	RfBandGetResponsePurposeTtc   RfBandGetResponsePurpose = "TTC"
+	RfBandGetResponsePurposeOps   RfBandGetResponsePurpose = "OPS"
+	RfBandGetResponsePurposeOther RfBandGetResponsePurpose = "OTHER"
 )
 
 // Details on a particular Radio Frequency (RF) band, also known as a carrier,
 // which may be in use by any type of Entity for communications or operations.
-type RfbandTupleResponse struct {
+type RfBandTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -566,7 +566,7 @@ type RfbandTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfbandTupleResponseDataMode `json:"dataMode,required"`
+	DataMode RfBandTupleResponseDataMode `json:"dataMode,required"`
 	// Unique identifier of the parent Entity which uses this band.
 	IDEntity string `json:"idEntity,required"`
 	// RF Band name.
@@ -618,7 +618,7 @@ type RfbandTupleResponse struct {
 	// RF Band mode (e.g. TX, RX).
 	//
 	// Any of "TX", "RX".
-	Mode RfbandTupleResponseMode `json:"mode"`
+	Mode RfBandTupleResponseMode `json:"mode"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
@@ -636,12 +636,12 @@ type RfbandTupleResponse struct {
 	// surface.
 	//
 	// Any of "H", "V", "R", "L".
-	Polarization RfbandTupleResponsePolarization `json:"polarization"`
+	Polarization RfBandTupleResponsePolarization `json:"polarization"`
 	// Purpose or use of the RF Band -- COMM = communications, TTC =
 	// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
 	//
 	// Any of "COMM", "TTC", "OPS", "OTHER".
-	Purpose RfbandTupleResponsePurpose `json:"purpose"`
+	Purpose RfBandTupleResponsePurpose `json:"purpose"`
 	// Time the row was last updated in the database, auto-populated by the system.
 	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
 	// Application user who updated the row in the database, auto-populated by the
@@ -681,8 +681,8 @@ type RfbandTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r RfbandTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *RfbandTupleResponse) UnmarshalJSON(data []byte) error {
+func (r RfBandTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *RfBandTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -700,21 +700,21 @@ func (r *RfbandTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RfbandTupleResponseDataMode string
+type RfBandTupleResponseDataMode string
 
 const (
-	RfbandTupleResponseDataModeReal      RfbandTupleResponseDataMode = "REAL"
-	RfbandTupleResponseDataModeTest      RfbandTupleResponseDataMode = "TEST"
-	RfbandTupleResponseDataModeSimulated RfbandTupleResponseDataMode = "SIMULATED"
-	RfbandTupleResponseDataModeExercise  RfbandTupleResponseDataMode = "EXERCISE"
+	RfBandTupleResponseDataModeReal      RfBandTupleResponseDataMode = "REAL"
+	RfBandTupleResponseDataModeTest      RfBandTupleResponseDataMode = "TEST"
+	RfBandTupleResponseDataModeSimulated RfBandTupleResponseDataMode = "SIMULATED"
+	RfBandTupleResponseDataModeExercise  RfBandTupleResponseDataMode = "EXERCISE"
 )
 
 // RF Band mode (e.g. TX, RX).
-type RfbandTupleResponseMode string
+type RfBandTupleResponseMode string
 
 const (
-	RfbandTupleResponseModeTx RfbandTupleResponseMode = "TX"
-	RfbandTupleResponseModeRx RfbandTupleResponseMode = "RX"
+	RfBandTupleResponseModeTx RfBandTupleResponseMode = "TX"
+	RfBandTupleResponseModeRx RfBandTupleResponseMode = "RX"
 )
 
 // Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
@@ -722,27 +722,27 @@ const (
 // (Left Hand Circularly Polarized) Rotating left relative to the Earth's surface,
 // R - (Right Hand Circularly Polarized) Rotating right relative to the Earth's
 // surface.
-type RfbandTupleResponsePolarization string
+type RfBandTupleResponsePolarization string
 
 const (
-	RfbandTupleResponsePolarizationH RfbandTupleResponsePolarization = "H"
-	RfbandTupleResponsePolarizationV RfbandTupleResponsePolarization = "V"
-	RfbandTupleResponsePolarizationR RfbandTupleResponsePolarization = "R"
-	RfbandTupleResponsePolarizationL RfbandTupleResponsePolarization = "L"
+	RfBandTupleResponsePolarizationH RfBandTupleResponsePolarization = "H"
+	RfBandTupleResponsePolarizationV RfBandTupleResponsePolarization = "V"
+	RfBandTupleResponsePolarizationR RfBandTupleResponsePolarization = "R"
+	RfBandTupleResponsePolarizationL RfBandTupleResponsePolarization = "L"
 )
 
 // Purpose or use of the RF Band -- COMM = communications, TTC =
 // Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
-type RfbandTupleResponsePurpose string
+type RfBandTupleResponsePurpose string
 
 const (
-	RfbandTupleResponsePurposeComm  RfbandTupleResponsePurpose = "COMM"
-	RfbandTupleResponsePurposeTtc   RfbandTupleResponsePurpose = "TTC"
-	RfbandTupleResponsePurposeOps   RfbandTupleResponsePurpose = "OPS"
-	RfbandTupleResponsePurposeOther RfbandTupleResponsePurpose = "OTHER"
+	RfBandTupleResponsePurposeComm  RfBandTupleResponsePurpose = "COMM"
+	RfBandTupleResponsePurposeTtc   RfBandTupleResponsePurpose = "TTC"
+	RfBandTupleResponsePurposeOps   RfBandTupleResponsePurpose = "OPS"
+	RfBandTupleResponsePurposeOther RfBandTupleResponsePurpose = "OTHER"
 )
 
-type RfbandNewParams struct {
+type RfBandNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -761,7 +761,7 @@ type RfbandNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfbandNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode RfBandNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Unique identifier of the parent Entity which uses this band.
 	IDEntity string `json:"idEntity,required"`
 	// RF Band name.
@@ -815,7 +815,7 @@ type RfbandNewParams struct {
 	// RF Band mode (e.g. TX, RX).
 	//
 	// Any of "TX", "RX".
-	Mode RfbandNewParamsMode `json:"mode,omitzero"`
+	Mode RfBandNewParamsMode `json:"mode,omitzero"`
 	// Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
 	// Earth's surface, V - (Vertically Polarized) Parallel to Earth's surface, L -
 	// (Left Hand Circularly Polarized) Rotating left relative to the Earth's surface,
@@ -823,21 +823,21 @@ type RfbandNewParams struct {
 	// surface.
 	//
 	// Any of "H", "V", "R", "L".
-	Polarization RfbandNewParamsPolarization `json:"polarization,omitzero"`
+	Polarization RfBandNewParamsPolarization `json:"polarization,omitzero"`
 	// Purpose or use of the RF Band -- COMM = communications, TTC =
 	// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
 	//
 	// Any of "COMM", "TTC", "OPS", "OTHER".
-	Purpose RfbandNewParamsPurpose `json:"purpose,omitzero"`
+	Purpose RfBandNewParamsPurpose `json:"purpose,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfbandNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RfBandNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r RfbandNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow RfbandNewParams
+func (r RfBandNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow RfBandNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -855,21 +855,21 @@ func (r RfbandNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RfbandNewParamsDataMode string
+type RfBandNewParamsDataMode string
 
 const (
-	RfbandNewParamsDataModeReal      RfbandNewParamsDataMode = "REAL"
-	RfbandNewParamsDataModeTest      RfbandNewParamsDataMode = "TEST"
-	RfbandNewParamsDataModeSimulated RfbandNewParamsDataMode = "SIMULATED"
-	RfbandNewParamsDataModeExercise  RfbandNewParamsDataMode = "EXERCISE"
+	RfBandNewParamsDataModeReal      RfBandNewParamsDataMode = "REAL"
+	RfBandNewParamsDataModeTest      RfBandNewParamsDataMode = "TEST"
+	RfBandNewParamsDataModeSimulated RfBandNewParamsDataMode = "SIMULATED"
+	RfBandNewParamsDataModeExercise  RfBandNewParamsDataMode = "EXERCISE"
 )
 
 // RF Band mode (e.g. TX, RX).
-type RfbandNewParamsMode string
+type RfBandNewParamsMode string
 
 const (
-	RfbandNewParamsModeTx RfbandNewParamsMode = "TX"
-	RfbandNewParamsModeRx RfbandNewParamsMode = "RX"
+	RfBandNewParamsModeTx RfBandNewParamsMode = "TX"
+	RfBandNewParamsModeRx RfBandNewParamsMode = "RX"
 )
 
 // Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
@@ -877,27 +877,27 @@ const (
 // (Left Hand Circularly Polarized) Rotating left relative to the Earth's surface,
 // R - (Right Hand Circularly Polarized) Rotating right relative to the Earth's
 // surface.
-type RfbandNewParamsPolarization string
+type RfBandNewParamsPolarization string
 
 const (
-	RfbandNewParamsPolarizationH RfbandNewParamsPolarization = "H"
-	RfbandNewParamsPolarizationV RfbandNewParamsPolarization = "V"
-	RfbandNewParamsPolarizationR RfbandNewParamsPolarization = "R"
-	RfbandNewParamsPolarizationL RfbandNewParamsPolarization = "L"
+	RfBandNewParamsPolarizationH RfBandNewParamsPolarization = "H"
+	RfBandNewParamsPolarizationV RfBandNewParamsPolarization = "V"
+	RfBandNewParamsPolarizationR RfBandNewParamsPolarization = "R"
+	RfBandNewParamsPolarizationL RfBandNewParamsPolarization = "L"
 )
 
 // Purpose or use of the RF Band -- COMM = communications, TTC =
 // Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
-type RfbandNewParamsPurpose string
+type RfBandNewParamsPurpose string
 
 const (
-	RfbandNewParamsPurposeComm  RfbandNewParamsPurpose = "COMM"
-	RfbandNewParamsPurposeTtc   RfbandNewParamsPurpose = "TTC"
-	RfbandNewParamsPurposeOps   RfbandNewParamsPurpose = "OPS"
-	RfbandNewParamsPurposeOther RfbandNewParamsPurpose = "OTHER"
+	RfBandNewParamsPurposeComm  RfBandNewParamsPurpose = "COMM"
+	RfBandNewParamsPurposeTtc   RfBandNewParamsPurpose = "TTC"
+	RfBandNewParamsPurposeOps   RfBandNewParamsPurpose = "OPS"
+	RfBandNewParamsPurposeOther RfBandNewParamsPurpose = "OTHER"
 )
 
-type RfbandUpdateParams struct {
+type RfBandUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -916,7 +916,7 @@ type RfbandUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfbandUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode RfBandUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// Unique identifier of the parent Entity which uses this band.
 	IDEntity string `json:"idEntity,required"`
 	// RF Band name.
@@ -970,7 +970,7 @@ type RfbandUpdateParams struct {
 	// RF Band mode (e.g. TX, RX).
 	//
 	// Any of "TX", "RX".
-	Mode RfbandUpdateParamsMode `json:"mode,omitzero"`
+	Mode RfBandUpdateParamsMode `json:"mode,omitzero"`
 	// Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
 	// Earth's surface, V - (Vertically Polarized) Parallel to Earth's surface, L -
 	// (Left Hand Circularly Polarized) Rotating left relative to the Earth's surface,
@@ -978,21 +978,21 @@ type RfbandUpdateParams struct {
 	// surface.
 	//
 	// Any of "H", "V", "R", "L".
-	Polarization RfbandUpdateParamsPolarization `json:"polarization,omitzero"`
+	Polarization RfBandUpdateParamsPolarization `json:"polarization,omitzero"`
 	// Purpose or use of the RF Band -- COMM = communications, TTC =
 	// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
 	//
 	// Any of "COMM", "TTC", "OPS", "OTHER".
-	Purpose RfbandUpdateParamsPurpose `json:"purpose,omitzero"`
+	Purpose RfBandUpdateParamsPurpose `json:"purpose,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfbandUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RfBandUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r RfbandUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow RfbandUpdateParams
+func (r RfBandUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow RfBandUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -1010,21 +1010,21 @@ func (r RfbandUpdateParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RfbandUpdateParamsDataMode string
+type RfBandUpdateParamsDataMode string
 
 const (
-	RfbandUpdateParamsDataModeReal      RfbandUpdateParamsDataMode = "REAL"
-	RfbandUpdateParamsDataModeTest      RfbandUpdateParamsDataMode = "TEST"
-	RfbandUpdateParamsDataModeSimulated RfbandUpdateParamsDataMode = "SIMULATED"
-	RfbandUpdateParamsDataModeExercise  RfbandUpdateParamsDataMode = "EXERCISE"
+	RfBandUpdateParamsDataModeReal      RfBandUpdateParamsDataMode = "REAL"
+	RfBandUpdateParamsDataModeTest      RfBandUpdateParamsDataMode = "TEST"
+	RfBandUpdateParamsDataModeSimulated RfBandUpdateParamsDataMode = "SIMULATED"
+	RfBandUpdateParamsDataModeExercise  RfBandUpdateParamsDataMode = "EXERCISE"
 )
 
 // RF Band mode (e.g. TX, RX).
-type RfbandUpdateParamsMode string
+type RfBandUpdateParamsMode string
 
 const (
-	RfbandUpdateParamsModeTx RfbandUpdateParamsMode = "TX"
-	RfbandUpdateParamsModeRx RfbandUpdateParamsMode = "RX"
+	RfBandUpdateParamsModeTx RfBandUpdateParamsMode = "TX"
+	RfBandUpdateParamsModeRx RfBandUpdateParamsMode = "RX"
 )
 
 // Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
@@ -1032,27 +1032,27 @@ const (
 // (Left Hand Circularly Polarized) Rotating left relative to the Earth's surface,
 // R - (Right Hand Circularly Polarized) Rotating right relative to the Earth's
 // surface.
-type RfbandUpdateParamsPolarization string
+type RfBandUpdateParamsPolarization string
 
 const (
-	RfbandUpdateParamsPolarizationH RfbandUpdateParamsPolarization = "H"
-	RfbandUpdateParamsPolarizationV RfbandUpdateParamsPolarization = "V"
-	RfbandUpdateParamsPolarizationR RfbandUpdateParamsPolarization = "R"
-	RfbandUpdateParamsPolarizationL RfbandUpdateParamsPolarization = "L"
+	RfBandUpdateParamsPolarizationH RfBandUpdateParamsPolarization = "H"
+	RfBandUpdateParamsPolarizationV RfBandUpdateParamsPolarization = "V"
+	RfBandUpdateParamsPolarizationR RfBandUpdateParamsPolarization = "R"
+	RfBandUpdateParamsPolarizationL RfBandUpdateParamsPolarization = "L"
 )
 
 // Purpose or use of the RF Band -- COMM = communications, TTC =
 // Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
-type RfbandUpdateParamsPurpose string
+type RfBandUpdateParamsPurpose string
 
 const (
-	RfbandUpdateParamsPurposeComm  RfbandUpdateParamsPurpose = "COMM"
-	RfbandUpdateParamsPurposeTtc   RfbandUpdateParamsPurpose = "TTC"
-	RfbandUpdateParamsPurposeOps   RfbandUpdateParamsPurpose = "OPS"
-	RfbandUpdateParamsPurposeOther RfbandUpdateParamsPurpose = "OTHER"
+	RfBandUpdateParamsPurposeComm  RfBandUpdateParamsPurpose = "COMM"
+	RfBandUpdateParamsPurposeTtc   RfBandUpdateParamsPurpose = "TTC"
+	RfBandUpdateParamsPurposeOps   RfBandUpdateParamsPurpose = "OPS"
+	RfBandUpdateParamsPurposeOther RfBandUpdateParamsPurpose = "OTHER"
 )
 
-type RfbandListParams struct {
+type RfBandListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1060,17 +1060,17 @@ type RfbandListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfbandListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RfBandListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [RfbandListParams]'s query parameters as `url.Values`.
-func (r RfbandListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [RfBandListParams]'s query parameters as `url.Values`.
+func (r RfBandListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type RfbandCountParams struct {
+type RfBandCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1078,17 +1078,17 @@ type RfbandCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfbandCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RfBandCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [RfbandCountParams]'s query parameters as `url.Values`.
-func (r RfbandCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [RfBandCountParams]'s query parameters as `url.Values`.
+func (r RfBandCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type RfbandGetParams struct {
+type RfBandGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1096,17 +1096,17 @@ type RfbandGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfbandGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RfBandGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [RfbandGetParams]'s query parameters as `url.Values`.
-func (r RfbandGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [RfBandGetParams]'s query parameters as `url.Values`.
+func (r RfBandGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type RfbandTupleParams struct {
+type RfBandTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -1119,10 +1119,10 @@ type RfbandTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfbandTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f RfBandTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [RfbandTupleParams]'s query parameters as `url.Values`.
-func (r RfbandTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [RfBandTupleParams]'s query parameters as `url.Values`.
+func (r RfBandTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestTrackdetailHistoryListWithOptionalParams(t *testing.T) {
+func TestTrackDetailHistoryListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestTrackdetailHistoryListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Trackdetails.History.List(context.TODO(), unifieddatalibrary.TrackdetailHistoryListParams{
+	_, err := client.TrackDetails.History.List(context.TODO(), unifieddatalibrary.TrackDetailHistoryListParams{
 		Ts:          time.Now(),
 		Columns:     unifieddatalibrary.String("columns"),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -42,7 +42,7 @@ func TestTrackdetailHistoryListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestTrackdetailHistoryAodrWithOptionalParams(t *testing.T) {
+func TestTrackDetailHistoryAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -55,7 +55,7 @@ func TestTrackdetailHistoryAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Trackdetails.History.Aodr(context.TODO(), unifieddatalibrary.TrackdetailHistoryAodrParams{
+	err := client.TrackDetails.History.Aodr(context.TODO(), unifieddatalibrary.TrackDetailHistoryAodrParams{
 		Ts:              time.Now(),
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -73,7 +73,7 @@ func TestTrackdetailHistoryAodrWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestTrackdetailHistoryCountWithOptionalParams(t *testing.T) {
+func TestTrackDetailHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -86,7 +86,7 @@ func TestTrackdetailHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Trackdetails.History.Count(context.TODO(), unifieddatalibrary.TrackdetailHistoryCountParams{
+	_, err := client.TrackDetails.History.Count(context.TODO(), unifieddatalibrary.TrackDetailHistoryCountParams{
 		Ts:          time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

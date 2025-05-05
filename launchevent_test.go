@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestLauncheventNewWithOptionalParams(t *testing.T) {
+func TestLaunchEventNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,9 +27,9 @@ func TestLauncheventNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchevent.New(context.TODO(), unifieddatalibrary.LauncheventNewParams{
+	err := client.LaunchEvent.New(context.TODO(), unifieddatalibrary.LaunchEventNewParams{
 		ClassificationMarking:  "U",
-		DataMode:               unifieddatalibrary.LauncheventNewParamsDataModeTest,
+		DataMode:               unifieddatalibrary.LaunchEventNewParamsDataModeTest,
 		MsgCreateDate:          time.Now(),
 		Source:                 "Bluestaq",
 		ID:                     unifieddatalibrary.String("LAUNCHEVENT-ID"),
@@ -54,7 +54,7 @@ func TestLauncheventNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLauncheventListWithOptionalParams(t *testing.T) {
+func TestLaunchEventListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -67,7 +67,7 @@ func TestLauncheventListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchevent.List(context.TODO(), unifieddatalibrary.LauncheventListParams{
+	_, err := client.LaunchEvent.List(context.TODO(), unifieddatalibrary.LaunchEventListParams{
 		MsgCreateDate: time.Now(),
 		FirstResult:   unifieddatalibrary.Int(0),
 		MaxResults:    unifieddatalibrary.Int(0),
@@ -81,7 +81,7 @@ func TestLauncheventListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLauncheventCountWithOptionalParams(t *testing.T) {
+func TestLaunchEventCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -94,7 +94,7 @@ func TestLauncheventCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchevent.Count(context.TODO(), unifieddatalibrary.LauncheventCountParams{
+	_, err := client.LaunchEvent.Count(context.TODO(), unifieddatalibrary.LaunchEventCountParams{
 		MsgCreateDate: time.Now(),
 		FirstResult:   unifieddatalibrary.Int(0),
 		MaxResults:    unifieddatalibrary.Int(0),
@@ -108,7 +108,7 @@ func TestLauncheventCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLauncheventNewBulk(t *testing.T) {
+func TestLaunchEventNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -121,8 +121,8 @@ func TestLauncheventNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchevent.NewBulk(context.TODO(), unifieddatalibrary.LauncheventNewBulkParams{
-		Body: []unifieddatalibrary.LauncheventNewBulkParamsBody{{
+	err := client.LaunchEvent.NewBulk(context.TODO(), unifieddatalibrary.LaunchEventNewBulkParams{
+		Body: []unifieddatalibrary.LaunchEventNewBulkParamsBody{{
 			ClassificationMarking:  "U",
 			DataMode:               "TEST",
 			MsgCreateDate:          time.Now(),
@@ -150,7 +150,7 @@ func TestLauncheventNewBulk(t *testing.T) {
 	}
 }
 
-func TestLauncheventGetWithOptionalParams(t *testing.T) {
+func TestLaunchEventGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -163,10 +163,10 @@ func TestLauncheventGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchevent.Get(
+	_, err := client.LaunchEvent.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.LauncheventGetParams{
+		unifieddatalibrary.LaunchEventGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -180,7 +180,7 @@ func TestLauncheventGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLauncheventQueryhelp(t *testing.T) {
+func TestLaunchEventQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -193,7 +193,7 @@ func TestLauncheventQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchevent.Queryhelp(context.TODO())
+	err := client.LaunchEvent.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -203,7 +203,7 @@ func TestLauncheventQueryhelp(t *testing.T) {
 	}
 }
 
-func TestLauncheventTupleWithOptionalParams(t *testing.T) {
+func TestLaunchEventTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -216,7 +216,7 @@ func TestLauncheventTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Launchevent.Tuple(context.TODO(), unifieddatalibrary.LauncheventTupleParams{
+	_, err := client.LaunchEvent.Tuple(context.TODO(), unifieddatalibrary.LaunchEventTupleParams{
 		Columns:       "columns",
 		MsgCreateDate: time.Now(),
 		FirstResult:   unifieddatalibrary.Int(0),
@@ -231,7 +231,7 @@ func TestLauncheventTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestLauncheventUnvalidatedPublish(t *testing.T) {
+func TestLaunchEventUnvalidatedPublish(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -244,8 +244,8 @@ func TestLauncheventUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Launchevent.UnvalidatedPublish(context.TODO(), unifieddatalibrary.LauncheventUnvalidatedPublishParams{
-		Body: []unifieddatalibrary.LauncheventUnvalidatedPublishParamsBody{{
+	err := client.LaunchEvent.UnvalidatedPublish(context.TODO(), unifieddatalibrary.LaunchEventUnvalidatedPublishParams{
+		Body: []unifieddatalibrary.LaunchEventUnvalidatedPublishParamsBody{{
 			ClassificationMarking:  "U",
 			DataMode:               "TEST",
 			MsgCreateDate:          time.Now(),

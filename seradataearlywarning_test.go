@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSeradataearlywarningNewWithOptionalParams(t *testing.T) {
+func TestSeraDataEarlyWarningNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,9 +26,9 @@ func TestSeradataearlywarningNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradataearlywarning.New(context.TODO(), unifieddatalibrary.SeradataearlywarningNewParams{
+	err := client.SeraDataEarlyWarning.New(context.TODO(), unifieddatalibrary.SeraDataEarlyWarningNewParams{
 		ClassificationMarking:              "U",
-		DataMode:                           unifieddatalibrary.SeradataearlywarningNewParamsDataModeTest,
+		DataMode:                           unifieddatalibrary.SeraDataEarlyWarningNewParamsDataModeTest,
 		Source:                             "Bluestaq",
 		SpacecraftID:                       "spacecraftId",
 		ID:                                 unifieddatalibrary.String("SERADATAEARLYWARNING-ID"),
@@ -56,7 +56,7 @@ func TestSeradataearlywarningNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradataearlywarningUpdateWithOptionalParams(t *testing.T) {
+func TestSeraDataEarlyWarningUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -69,12 +69,12 @@ func TestSeradataearlywarningUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradataearlywarning.Update(
+	err := client.SeraDataEarlyWarning.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SeradataearlywarningUpdateParams{
+		unifieddatalibrary.SeraDataEarlyWarningUpdateParams{
 			ClassificationMarking:              "U",
-			DataMode:                           unifieddatalibrary.SeradataearlywarningUpdateParamsDataModeTest,
+			DataMode:                           unifieddatalibrary.SeraDataEarlyWarningUpdateParamsDataModeTest,
 			Source:                             "Bluestaq",
 			SpacecraftID:                       "spacecraftId",
 			ID:                                 unifieddatalibrary.String("SERADATAEARLYWARNING-ID"),
@@ -103,7 +103,7 @@ func TestSeradataearlywarningUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradataearlywarningListWithOptionalParams(t *testing.T) {
+func TestSeraDataEarlyWarningListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -116,7 +116,7 @@ func TestSeradataearlywarningListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradataearlywarning.List(context.TODO(), unifieddatalibrary.SeradataearlywarningListParams{
+	_, err := client.SeraDataEarlyWarning.List(context.TODO(), unifieddatalibrary.SeraDataEarlyWarningListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -129,7 +129,7 @@ func TestSeradataearlywarningListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradataearlywarningDelete(t *testing.T) {
+func TestSeraDataEarlyWarningDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -142,7 +142,7 @@ func TestSeradataearlywarningDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradataearlywarning.Delete(context.TODO(), "id")
+	err := client.SeraDataEarlyWarning.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -152,7 +152,7 @@ func TestSeradataearlywarningDelete(t *testing.T) {
 	}
 }
 
-func TestSeradataearlywarningCountWithOptionalParams(t *testing.T) {
+func TestSeraDataEarlyWarningCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -165,7 +165,7 @@ func TestSeradataearlywarningCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradataearlywarning.Count(context.TODO(), unifieddatalibrary.SeradataearlywarningCountParams{
+	_, err := client.SeraDataEarlyWarning.Count(context.TODO(), unifieddatalibrary.SeraDataEarlyWarningCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -178,7 +178,7 @@ func TestSeradataearlywarningCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradataearlywarningGetWithOptionalParams(t *testing.T) {
+func TestSeraDataEarlyWarningGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -191,10 +191,10 @@ func TestSeradataearlywarningGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradataearlywarning.Get(
+	_, err := client.SeraDataEarlyWarning.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SeradataearlywarningGetParams{
+		unifieddatalibrary.SeraDataEarlyWarningGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -208,7 +208,7 @@ func TestSeradataearlywarningGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradataearlywarningQueryhelp(t *testing.T) {
+func TestSeraDataEarlyWarningQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -221,7 +221,7 @@ func TestSeradataearlywarningQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradataearlywarning.Queryhelp(context.TODO())
+	err := client.SeraDataEarlyWarning.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -231,7 +231,7 @@ func TestSeradataearlywarningQueryhelp(t *testing.T) {
 	}
 }
 
-func TestSeradataearlywarningTupleWithOptionalParams(t *testing.T) {
+func TestSeraDataEarlyWarningTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -244,7 +244,7 @@ func TestSeradataearlywarningTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradataearlywarning.Tuple(context.TODO(), unifieddatalibrary.SeradataearlywarningTupleParams{
+	_, err := client.SeraDataEarlyWarning.Tuple(context.TODO(), unifieddatalibrary.SeraDataEarlyWarningTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSiteremarkNewWithOptionalParams(t *testing.T) {
+func TestSiteRemarkNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,9 +26,9 @@ func TestSiteremarkNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Siteremark.New(context.TODO(), unifieddatalibrary.SiteremarkNewParams{
+	err := client.SiteRemark.New(context.TODO(), unifieddatalibrary.SiteRemarkNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.SiteremarkNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.SiteRemarkNewParamsDataModeTest,
 		IDSite:                "SITE-ID",
 		Source:                "Bluestaq",
 		Text:                  "This is a remark",
@@ -48,7 +48,7 @@ func TestSiteremarkNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSiteremarkListWithOptionalParams(t *testing.T) {
+func TestSiteRemarkListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -61,7 +61,7 @@ func TestSiteremarkListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Siteremark.List(context.TODO(), unifieddatalibrary.SiteremarkListParams{
+	_, err := client.SiteRemark.List(context.TODO(), unifieddatalibrary.SiteRemarkListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -74,7 +74,7 @@ func TestSiteremarkListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSiteremarkCountWithOptionalParams(t *testing.T) {
+func TestSiteRemarkCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -87,7 +87,7 @@ func TestSiteremarkCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Siteremark.Count(context.TODO(), unifieddatalibrary.SiteremarkCountParams{
+	_, err := client.SiteRemark.Count(context.TODO(), unifieddatalibrary.SiteRemarkCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -100,7 +100,7 @@ func TestSiteremarkCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSiteremarkGetWithOptionalParams(t *testing.T) {
+func TestSiteRemarkGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -113,10 +113,10 @@ func TestSiteremarkGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Siteremark.Get(
+	_, err := client.SiteRemark.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SiteremarkGetParams{
+		unifieddatalibrary.SiteRemarkGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -130,7 +130,7 @@ func TestSiteremarkGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSiteremarkQueryhelp(t *testing.T) {
+func TestSiteRemarkQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -143,7 +143,7 @@ func TestSiteremarkQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Siteremark.Queryhelp(context.TODO())
+	err := client.SiteRemark.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -153,7 +153,7 @@ func TestSiteremarkQueryhelp(t *testing.T) {
 	}
 }
 
-func TestSiteremarkTupleWithOptionalParams(t *testing.T) {
+func TestSiteRemarkTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -166,7 +166,7 @@ func TestSiteremarkTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Siteremark.Tuple(context.TODO(), unifieddatalibrary.SiteremarkTupleParams{
+	_, err := client.SiteRemark.Tuple(context.TODO(), unifieddatalibrary.SiteRemarkTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSkyimageryHistoryListWithOptionalParams(t *testing.T) {
+func TestSkyImageryHistoryListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestSkyimageryHistoryListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Skyimagery.History.List(context.TODO(), unifieddatalibrary.SkyimageryHistoryListParams{
+	_, err := client.SkyImagery.History.List(context.TODO(), unifieddatalibrary.SkyImageryHistoryListParams{
 		ExpStartTime: time.Now(),
 		Columns:      unifieddatalibrary.String("columns"),
 		FirstResult:  unifieddatalibrary.Int(0),
@@ -42,7 +42,7 @@ func TestSkyimageryHistoryListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSkyimageryHistoryAodrWithOptionalParams(t *testing.T) {
+func TestSkyImageryHistoryAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -55,7 +55,7 @@ func TestSkyimageryHistoryAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Skyimagery.History.Aodr(context.TODO(), unifieddatalibrary.SkyimageryHistoryAodrParams{
+	err := client.SkyImagery.History.Aodr(context.TODO(), unifieddatalibrary.SkyImageryHistoryAodrParams{
 		ExpStartTime:    time.Now(),
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -73,7 +73,7 @@ func TestSkyimageryHistoryAodrWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSkyimageryHistoryCountWithOptionalParams(t *testing.T) {
+func TestSkyImageryHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -86,7 +86,7 @@ func TestSkyimageryHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Skyimagery.History.Count(context.TODO(), unifieddatalibrary.SkyimageryHistoryCountParams{
+	_, err := client.SkyImagery.History.Count(context.TODO(), unifieddatalibrary.SkyImageryHistoryCountParams{
 		ExpStartTime: time.Now(),
 		FirstResult:  unifieddatalibrary.Int(0),
 		MaxResults:   unifieddatalibrary.Int(0),

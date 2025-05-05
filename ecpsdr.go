@@ -14,21 +14,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
 )
 
-// EcpsdrService contains methods and other services that help with interacting
+// EcpSdrService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewEcpsdrService] method instead.
-type EcpsdrService struct {
+// the [NewEcpSdrService] method instead.
+type EcpSdrService struct {
 	Options []option.RequestOption
 }
 
-// NewEcpsdrService generates a new service that applies the given options to each
+// NewEcpSdrService generates a new service that applies the given options to each
 // request. These options are applied after the parent client's options (if there
 // is one), and before any request-specific options.
-func NewEcpsdrService(opts ...option.RequestOption) (r EcpsdrService) {
-	r = EcpsdrService{}
+func NewEcpSdrService(opts ...option.RequestOption) (r EcpSdrService) {
+	r = EcpSdrService{}
 	r.Options = opts
 	return
 }
@@ -37,7 +37,7 @@ func NewEcpsdrService(opts ...option.RequestOption) (r EcpsdrService) {
 // database. This operation is intended to be used for automated feeds into UDL. A
 // specific role is required to perform this service operation. Please contact the
 // UDL team for assistance.
-func (r *EcpsdrService) UnvalidatedPublish(ctx context.Context, body EcpsdrUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+func (r *EcpSdrService) UnvalidatedPublish(ctx context.Context, body EcpSdrUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-ecpsdr"
@@ -45,16 +45,16 @@ func (r *EcpsdrService) UnvalidatedPublish(ctx context.Context, body EcpsdrUnval
 	return
 }
 
-type EcpsdrUnvalidatedPublishParams struct {
-	Body []EcpsdrUnvalidatedPublishParamsBody
+type EcpSdrUnvalidatedPublishParams struct {
+	Body []EcpSdrUnvalidatedPublishParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EcpsdrUnvalidatedPublishParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f EcpSdrUnvalidatedPublishParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r EcpsdrUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+func (r EcpSdrUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -64,7 +64,7 @@ func (r EcpsdrUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 //
 // The properties ClassificationMarking, DataMode, MsgTime, Source, Type are
 // required.
-type EcpsdrUnvalidatedPublishParamsBody struct {
+type EcpSdrUnvalidatedPublishParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -220,16 +220,16 @@ type EcpsdrUnvalidatedPublishParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EcpsdrUnvalidatedPublishParamsBody) IsPresent() bool {
+func (f EcpSdrUnvalidatedPublishParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r EcpsdrUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow EcpsdrUnvalidatedPublishParamsBody
+func (r EcpSdrUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow EcpSdrUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[EcpsdrUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[EcpSdrUnvalidatedPublishParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

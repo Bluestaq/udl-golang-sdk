@@ -17,21 +17,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// SpaceenvobservationHistoryService contains methods and other services that help
+// SpaceEnvObservationHistoryService contains methods and other services that help
 // with interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewSpaceenvobservationHistoryService] method instead.
-type SpaceenvobservationHistoryService struct {
+// the [NewSpaceEnvObservationHistoryService] method instead.
+type SpaceEnvObservationHistoryService struct {
 	Options []option.RequestOption
 }
 
-// NewSpaceenvobservationHistoryService generates a new service that applies the
+// NewSpaceEnvObservationHistoryService generates a new service that applies the
 // given options to each request. These options are applied after the parent
 // client's options (if there is one), and before any request-specific options.
-func NewSpaceenvobservationHistoryService(opts ...option.RequestOption) (r SpaceenvobservationHistoryService) {
-	r = SpaceenvobservationHistoryService{}
+func NewSpaceEnvObservationHistoryService(opts ...option.RequestOption) (r SpaceEnvObservationHistoryService) {
+	r = SpaceEnvObservationHistoryService{}
 	r.Options = opts
 	return
 }
@@ -40,7 +40,7 @@ func NewSpaceenvobservationHistoryService(opts ...option.RequestOption) (r Space
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SpaceenvobservationHistoryService) List(ctx context.Context, query SpaceenvobservationHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SpaceEnvObservationFull], err error) {
+func (r *SpaceEnvObservationHistoryService) List(ctx context.Context, query SpaceEnvObservationHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SpaceEnvObservationFull], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -61,7 +61,7 @@ func (r *SpaceenvobservationHistoryService) List(ctx context.Context, query Spac
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SpaceenvobservationHistoryService) ListAutoPaging(ctx context.Context, query SpaceenvobservationHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SpaceEnvObservationFull] {
+func (r *SpaceEnvObservationHistoryService) ListAutoPaging(ctx context.Context, query SpaceEnvObservationHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SpaceEnvObservationFull] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -70,7 +70,7 @@ func (r *SpaceenvobservationHistoryService) ListAutoPaging(ctx context.Context, 
 // Secure Content Store. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SpaceenvobservationHistoryService) Aodr(ctx context.Context, query SpaceenvobservationHistoryAodrParams, opts ...option.RequestOption) (err error) {
+func (r *SpaceEnvObservationHistoryService) Aodr(ctx context.Context, query SpaceEnvObservationHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/spaceenvobservation/history/aodr"
@@ -83,7 +83,7 @@ func (r *SpaceenvobservationHistoryService) Aodr(ctx context.Context, query Spac
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *SpaceenvobservationHistoryService) Count(ctx context.Context, query SpaceenvobservationHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *SpaceEnvObservationHistoryService) Count(ctx context.Context, query SpaceEnvObservationHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/spaceenvobservation/history/count"
@@ -384,7 +384,7 @@ func (r *SpaceEnvObservationFullSeoList) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type SpaceenvobservationHistoryListParams struct {
+type SpaceEnvObservationHistoryListParams struct {
 	// Time of the observation, in ISO 8601 UTC format with millisecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	ObTime time.Time `query:"obTime,required" format:"date-time" json:"-"`
@@ -399,20 +399,20 @@ type SpaceenvobservationHistoryListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceenvobservationHistoryListParams) IsPresent() bool {
+func (f SpaceEnvObservationHistoryListParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [SpaceenvobservationHistoryListParams]'s query parameters as
+// URLQuery serializes [SpaceEnvObservationHistoryListParams]'s query parameters as
 // `url.Values`.
-func (r SpaceenvobservationHistoryListParams) URLQuery() (v url.Values, err error) {
+func (r SpaceEnvObservationHistoryListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SpaceenvobservationHistoryAodrParams struct {
+type SpaceEnvObservationHistoryAodrParams struct {
 	// Time of the observation, in ISO 8601 UTC format with millisecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	ObTime time.Time `query:"obTime,required" format:"date-time" json:"-"`
@@ -438,20 +438,20 @@ type SpaceenvobservationHistoryAodrParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceenvobservationHistoryAodrParams) IsPresent() bool {
+func (f SpaceEnvObservationHistoryAodrParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [SpaceenvobservationHistoryAodrParams]'s query parameters as
+// URLQuery serializes [SpaceEnvObservationHistoryAodrParams]'s query parameters as
 // `url.Values`.
-func (r SpaceenvobservationHistoryAodrParams) URLQuery() (v url.Values, err error) {
+func (r SpaceEnvObservationHistoryAodrParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SpaceenvobservationHistoryCountParams struct {
+type SpaceEnvObservationHistoryCountParams struct {
 	// Time of the observation, in ISO 8601 UTC format with millisecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	ObTime      time.Time        `query:"obTime,required" format:"date-time" json:"-"`
@@ -462,13 +462,13 @@ type SpaceenvobservationHistoryCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceenvobservationHistoryCountParams) IsPresent() bool {
+func (f SpaceEnvObservationHistoryCountParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [SpaceenvobservationHistoryCountParams]'s query parameters
+// URLQuery serializes [SpaceEnvObservationHistoryCountParams]'s query parameters
 // as `url.Values`.
-func (r SpaceenvobservationHistoryCountParams) URLQuery() (v url.Values, err error) {
+func (r SpaceEnvObservationHistoryCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

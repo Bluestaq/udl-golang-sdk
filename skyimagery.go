@@ -21,26 +21,27 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
-// SkyimageryService contains methods and other services that help with interacting
+// SkyImageryService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewSkyimageryService] method instead.
-type SkyimageryService struct {
+// the [NewSkyImageryService] method instead.
+type SkyImageryService struct {
 	Options []option.RequestOption
-	History SkyimageryHistoryService
+	History SkyImageryHistoryService
 }
 
-// NewSkyimageryService generates a new service that applies the given options to
+// NewSkyImageryService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewSkyimageryService(opts ...option.RequestOption) (r SkyimageryService) {
-	r = SkyimageryService{}
+func NewSkyImageryService(opts ...option.RequestOption) (r SkyImageryService) {
+	r = SkyImageryService{}
 	r.Options = opts
-	r.History = NewSkyimageryHistoryService(opts...)
+	r.History = NewSkyImageryHistoryService(opts...)
 	return
 }
 
@@ -48,7 +49,7 @@ func NewSkyimageryService(opts ...option.RequestOption) (r SkyimageryService) {
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SkyimageryService) List(ctx context.Context, query SkyimageryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SkyimageryListResponse], err error) {
+func (r *SkyImageryService) List(ctx context.Context, query SkyImageryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SkyImageryListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -69,7 +70,7 @@ func (r *SkyimageryService) List(ctx context.Context, query SkyimageryListParams
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SkyimageryService) ListAutoPaging(ctx context.Context, query SkyimageryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SkyimageryListResponse] {
+func (r *SkyImageryService) ListAutoPaging(ctx context.Context, query SkyImageryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SkyImageryListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -78,7 +79,7 @@ func (r *SkyimageryService) ListAutoPaging(ctx context.Context, query Skyimagery
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *SkyimageryService) Count(ctx context.Context, query SkyimageryCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *SkyImageryService) Count(ctx context.Context, query SkyImageryCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/skyimagery/count"
@@ -89,7 +90,7 @@ func (r *SkyimageryService) Count(ctx context.Context, query SkyimageryCountPara
 // Service operation to get a single SkyImagery binary image by its unique ID
 // passed as a path parameter. The image is returned as an attachment
 // Content-Disposition.
-func (r *SkyimageryService) FileGet(ctx context.Context, id string, query SkyimageryFileGetParams, opts ...option.RequestOption) (res *http.Response, err error) {
+func (r *SkyImageryService) FileGet(ctx context.Context, id string, query SkyImageryFileGetParams, opts ...option.RequestOption) (res *http.Response, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	if id == "" {
@@ -104,7 +105,7 @@ func (r *SkyimageryService) FileGet(ctx context.Context, id string, query Skyima
 // Service operation to get a single SkyImagery record by its unique ID passed as a
 // path parameter. SkyImagery represents metadata about a sky image, as well as the
 // actual binary image data.
-func (r *SkyimageryService) Get(ctx context.Context, id string, query SkyimageryGetParams, opts ...option.RequestOption) (res *SkyimageryFull, err error) {
+func (r *SkyImageryService) Get(ctx context.Context, id string, query SkyImageryGetParams, opts ...option.RequestOption) (res *SkyImageryGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -117,7 +118,7 @@ func (r *SkyimageryService) Get(ctx context.Context, id string, query Skyimagery
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *SkyimageryService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *SkyImageryService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/skyimagery/queryhelp"
@@ -133,7 +134,7 @@ func (r *SkyimageryService) Queryhelp(ctx context.Context, opts ...option.Reques
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *SkyimageryService) Tuple(ctx context.Context, query SkyimageryTupleParams, opts ...option.RequestOption) (res *[]SkyimageryFull, err error) {
+func (r *SkyImageryService) Tuple(ctx context.Context, query SkyImageryTupleParams, opts ...option.RequestOption) (res *[]SkyImageryTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/skyimagery/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -157,7 +158,7 @@ func (r *SkyimageryService) Tuple(ctx context.Context, query SkyimageryTuplePara
 // This operation is intended to be used for automated feeds into UDL. A specific
 // role is required to perform this service operation. Please contact the UDL team
 // for assistance.
-func (r *SkyimageryService) UploadZip(ctx context.Context, body SkyimageryUploadZipParams, opts ...option.RequestOption) (err error) {
+func (r *SkyImageryService) UploadZip(ctx context.Context, body SkyImageryUploadZipParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-skyimagery"
@@ -169,7 +170,7 @@ func (r *SkyimageryService) UploadZip(ctx context.Context, body SkyimageryUpload
 // telescope imagery of RSO's and includes metadata on the image (time, source,
 // etc) as well as binary image content (e.g. FITS, EOSSA, EOCHIP, MP4). Binary
 // content must be downloaded individually by ID using the 'getFile' operation.
-type SkyimageryListResponse struct {
+type SkyImageryListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -188,7 +189,7 @@ type SkyimageryListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SkyimageryListResponseDataMode `json:"dataMode,required"`
+	DataMode SkyImageryListResponseDataMode `json:"dataMode,required"`
 	// Start time of the exposure, in ISO 8601 UTC format with microsecond precision.
 	ExpStartTime time.Time `json:"expStartTime,required" format:"date-time"`
 	// The type of image associated with this record (e.g. FITS, EOSSA, EOCHIP, MP4).
@@ -379,8 +380,8 @@ type SkyimageryListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SkyimageryListResponse) RawJSON() string { return r.JSON.raw }
-func (r *SkyimageryListResponse) UnmarshalJSON(data []byte) error {
+func (r SkyImageryListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SkyImageryListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -398,16 +399,512 @@ func (r *SkyimageryListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SkyimageryListResponseDataMode string
+type SkyImageryListResponseDataMode string
 
 const (
-	SkyimageryListResponseDataModeReal      SkyimageryListResponseDataMode = "REAL"
-	SkyimageryListResponseDataModeTest      SkyimageryListResponseDataMode = "TEST"
-	SkyimageryListResponseDataModeSimulated SkyimageryListResponseDataMode = "SIMULATED"
-	SkyimageryListResponseDataModeExercise  SkyimageryListResponseDataMode = "EXERCISE"
+	SkyImageryListResponseDataModeReal      SkyImageryListResponseDataMode = "REAL"
+	SkyImageryListResponseDataModeTest      SkyImageryListResponseDataMode = "TEST"
+	SkyImageryListResponseDataModeSimulated SkyImageryListResponseDataMode = "SIMULATED"
+	SkyImageryListResponseDataModeExercise  SkyImageryListResponseDataMode = "EXERCISE"
 )
 
-type SkyimageryListParams struct {
+// Model representation of sky imagery data. Sky imagery is ground or space based
+// telescope imagery of RSO's and includes metadata on the image (time, source,
+// etc) as well as binary image content (e.g. FITS, EOSSA, EOCHIP, MP4). Binary
+// content must be downloaded individually by ID using the 'getFile' operation.
+type SkyImageryGetResponse struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode SkyImageryGetResponseDataMode `json:"dataMode,required"`
+	// Start time of the exposure, in ISO 8601 UTC format with microsecond precision.
+	ExpStartTime time.Time `json:"expStartTime,required" format:"date-time"`
+	// The type of image associated with this record (e.g. FITS, EOSSA, EOCHIP, MP4).
+	ImageType string `json:"imageType,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Reference to an annotation document associated with this image.
+	AnnotationKey string `json:"annotationKey"`
+	// Reference to a calibration document associated with this image.
+	CalibrationKey string `json:"calibrationKey"`
+	// MD5 value of the file. The ingest/create operation will automatically generate
+	// the value.
+	ChecksumValue string `json:"checksumValue"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Optional name/description associated with this image.
+	Description string `json:"description"`
+	// Collection of linked EOObservations.
+	EoObservations []EoObservationFull `json:"eoObservations"`
+	// End time of the exposure, in ISO 8601 UTC format with microsecond precision.
+	ExpEndTime time.Time `json:"expEndTime" format:"date-time"`
+	// Name of the uploaded image file.
+	Filename string `json:"filename"`
+	// Size of the image file, in bytes.
+	Filesize int64 `json:"filesize"`
+	// Field Of View frame height, in degrees.
+	FrameFovHeight float64 `json:"frameFOVHeight"`
+	// Field Of View frame width, in degrees.
+	FrameFovWidth float64 `json:"frameFOVWidth"`
+	// Frame height of the image, in number of pixels.
+	FrameHeightPixels int64 `json:"frameHeightPixels"`
+	// Frame width of the image, in number of pixels.
+	FrameWidthPixels int64 `json:"frameWidthPixels"`
+	// Optional identifier of the AttitudeSet data record describing the orientation of
+	// an object body.
+	IDAttitudeSet string `json:"idAttitudeSet"`
+	// Optional identifier of the target on-orbit object, if correlated.
+	IDOnOrbit string `json:"idOnOrbit"`
+	// Unique identifier of the reporting sensor.
+	IDSensor string `json:"idSensor"`
+	// Optional unique identifier of the SOI Observation Set associated with this
+	// image.
+	IDSoiSet string `json:"idSOISet"`
+	// The user-defined set ID of a sequence of images.
+	ImageSetID string `json:"imageSetId"`
+	// The number of images in an image set.
+	ImageSetLength int64 `json:"imageSetLength"`
+	// String that uniquely identifies the data source.
+	ImageSourceInfo string `json:"imageSourceInfo"`
+	// Model object representing on-orbit objects or satellites in the system.
+	OnOrbit shared.OnorbitFull `json:"onOrbit"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Optional identifier provided by the imaging source to indicate the target
+	// onorbit object of this image. This may be an internal identifier and not
+	// necessarily a valid satellite number.
+	OrigObjectID string `json:"origObjectId"`
+	// Optional identifier provided by the imaging source to indicate the sensor
+	// identifier which produced this image. This may be an internal identifier and not
+	// necessarily a valid sensor ID.
+	OrigSensorID string `json:"origSensorId"`
+	// Bit depth of the image, in number of pixels.
+	PixelBitDepth int64 `json:"pixelBitDepth"`
+	// Field Of View pixel height, in degrees.
+	PixelFovHeight float64 `json:"pixelFOVHeight"`
+	// Field Of View pixel width, in degrees.
+	PixelFovWidth float64 `json:"pixelFOVWidth"`
+	// Catalog number of the target on-orbit object.
+	SatNo int64 `json:"satNo"`
+	// Sensor altitude at exposure start epoch, in km. If null, can be obtained from
+	// sensor info.
+	Senalt float64 `json:"senalt"`
+	// Sensor latitude at exposure start epoch, in degrees. If null, can be obtained
+	// from sensor info. -90 to 90 degrees (negative values south of equator).
+	Senlat float64 `json:"senlat"`
+	// Sensor longitude at exposure start epoch, in degrees. If null, can be obtained
+	// from sensor info. -180 to 180 degrees (negative values west of Prime Meridian).
+	Senlon float64 `json:"senlon"`
+	// The quaternion describing the rotation of the body-fixed frame used for this
+	// system into the local geodetic frame, at exposure start epoch (expStartTime).
+	// The array element order convention is scalar component first, followed by the
+	// three vector components. For a vector u in the body-fixed frame, the
+	// corresponding vector u' in the geodetic frame should satisfy u' = quq\*, where q
+	// is this quaternion.
+	SenQuat []float64 `json:"senQuat"`
+	// The derivative of the quaternion describing the rotation of the body-fixed frame
+	// used for this system into the local geodetic frame, exposure start epoch
+	// (expStartTime). The array element order convention is scalar component first,
+	// followed by the three vector components. For a vector u in the body-fixed frame,
+	// the corresponding vector u' in the geodetic frame should satisfy u' = quq\*,
+	// where q is this quaternion.
+	SenQuatDot []float64 `json:"senQuatDot"`
+	// Sensor x position at exposure start epoch, in km (if mobile/onorbit) in J2000
+	// coordinate frame.
+	Senx float64 `json:"senx"`
+	// Sensor y position at exposure start epoch, in km (if mobile/onorbit) in J2000
+	// coordinate frame.
+	Seny float64 `json:"seny"`
+	// Sensor z position at exposure start epoch, in km (if mobile/onorbit) in J2000
+	// coordinate frame.
+	Senz float64 `json:"senz"`
+	// The sequence ID of an image within an image set.
+	SequenceID int64 `json:"sequenceId"`
+	// The source data library from which this record was received. This could be a
+	// remote or tactical UDL or another data library. If null, the record should be
+	// assumed to have originated from the primary Enterprise UDL.
+	SourceDl string `json:"sourceDL"`
+	// Optional array of provider/source specific tags for this data, where each
+	// element is no longer than 32 characters, used for implementing data owner
+	// conditional access controls to restrict access to the data. Should be left null
+	// by data providers unless conditional access controls are coordinated with the
+	// UDL team.
+	Tags []string `json:"tags"`
+	// The telescope pointing azimuth, in degrees, at the exposure start epoch.
+	TopLeftStartAz float64 `json:"topLeftStartAz"`
+	// The telescope pointing elevation, in degrees, at the exposure start epoch.
+	TopLeftStartEl float64 `json:"topLeftStartEl"`
+	// The telescope pointing azimuth, in degrees, at the exposure stop epoch.
+	TopLeftStopAz float64 `json:"topLeftStopAz"`
+	// The telescope pointing elevation, in degrees, at the exposure stop epoch.
+	TopLeftStopEl float64 `json:"topLeftStopEl"`
+	// Optional identifier to track a commercial or marketplace transaction executed to
+	// produce this data.
+	TransactionID string `json:"transactionId"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		ExpStartTime          resp.Field
+		ImageType             resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		AnnotationKey         resp.Field
+		CalibrationKey        resp.Field
+		ChecksumValue         resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Description           resp.Field
+		EoObservations        resp.Field
+		ExpEndTime            resp.Field
+		Filename              resp.Field
+		Filesize              resp.Field
+		FrameFovHeight        resp.Field
+		FrameFovWidth         resp.Field
+		FrameHeightPixels     resp.Field
+		FrameWidthPixels      resp.Field
+		IDAttitudeSet         resp.Field
+		IDOnOrbit             resp.Field
+		IDSensor              resp.Field
+		IDSoiSet              resp.Field
+		ImageSetID            resp.Field
+		ImageSetLength        resp.Field
+		ImageSourceInfo       resp.Field
+		OnOrbit               resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		OrigObjectID          resp.Field
+		OrigSensorID          resp.Field
+		PixelBitDepth         resp.Field
+		PixelFovHeight        resp.Field
+		PixelFovWidth         resp.Field
+		SatNo                 resp.Field
+		Senalt                resp.Field
+		Senlat                resp.Field
+		Senlon                resp.Field
+		SenQuat               resp.Field
+		SenQuatDot            resp.Field
+		Senx                  resp.Field
+		Seny                  resp.Field
+		Senz                  resp.Field
+		SequenceID            resp.Field
+		SourceDl              resp.Field
+		Tags                  resp.Field
+		TopLeftStartAz        resp.Field
+		TopLeftStartEl        resp.Field
+		TopLeftStopAz         resp.Field
+		TopLeftStopEl         resp.Field
+		TransactionID         resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SkyImageryGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *SkyImageryGetResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type SkyImageryGetResponseDataMode string
+
+const (
+	SkyImageryGetResponseDataModeReal      SkyImageryGetResponseDataMode = "REAL"
+	SkyImageryGetResponseDataModeTest      SkyImageryGetResponseDataMode = "TEST"
+	SkyImageryGetResponseDataModeSimulated SkyImageryGetResponseDataMode = "SIMULATED"
+	SkyImageryGetResponseDataModeExercise  SkyImageryGetResponseDataMode = "EXERCISE"
+)
+
+// Model representation of sky imagery data. Sky imagery is ground or space based
+// telescope imagery of RSO's and includes metadata on the image (time, source,
+// etc) as well as binary image content (e.g. FITS, EOSSA, EOCHIP, MP4). Binary
+// content must be downloaded individually by ID using the 'getFile' operation.
+type SkyImageryTupleResponse struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode SkyImageryTupleResponseDataMode `json:"dataMode,required"`
+	// Start time of the exposure, in ISO 8601 UTC format with microsecond precision.
+	ExpStartTime time.Time `json:"expStartTime,required" format:"date-time"`
+	// The type of image associated with this record (e.g. FITS, EOSSA, EOCHIP, MP4).
+	ImageType string `json:"imageType,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Reference to an annotation document associated with this image.
+	AnnotationKey string `json:"annotationKey"`
+	// Reference to a calibration document associated with this image.
+	CalibrationKey string `json:"calibrationKey"`
+	// MD5 value of the file. The ingest/create operation will automatically generate
+	// the value.
+	ChecksumValue string `json:"checksumValue"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Optional name/description associated with this image.
+	Description string `json:"description"`
+	// Collection of linked EOObservations.
+	EoObservations []EoObservationFull `json:"eoObservations"`
+	// End time of the exposure, in ISO 8601 UTC format with microsecond precision.
+	ExpEndTime time.Time `json:"expEndTime" format:"date-time"`
+	// Name of the uploaded image file.
+	Filename string `json:"filename"`
+	// Size of the image file, in bytes.
+	Filesize int64 `json:"filesize"`
+	// Field Of View frame height, in degrees.
+	FrameFovHeight float64 `json:"frameFOVHeight"`
+	// Field Of View frame width, in degrees.
+	FrameFovWidth float64 `json:"frameFOVWidth"`
+	// Frame height of the image, in number of pixels.
+	FrameHeightPixels int64 `json:"frameHeightPixels"`
+	// Frame width of the image, in number of pixels.
+	FrameWidthPixels int64 `json:"frameWidthPixels"`
+	// Optional identifier of the AttitudeSet data record describing the orientation of
+	// an object body.
+	IDAttitudeSet string `json:"idAttitudeSet"`
+	// Optional identifier of the target on-orbit object, if correlated.
+	IDOnOrbit string `json:"idOnOrbit"`
+	// Unique identifier of the reporting sensor.
+	IDSensor string `json:"idSensor"`
+	// Optional unique identifier of the SOI Observation Set associated with this
+	// image.
+	IDSoiSet string `json:"idSOISet"`
+	// The user-defined set ID of a sequence of images.
+	ImageSetID string `json:"imageSetId"`
+	// The number of images in an image set.
+	ImageSetLength int64 `json:"imageSetLength"`
+	// String that uniquely identifies the data source.
+	ImageSourceInfo string `json:"imageSourceInfo"`
+	// Model object representing on-orbit objects or satellites in the system.
+	OnOrbit shared.OnorbitFull `json:"onOrbit"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Optional identifier provided by the imaging source to indicate the target
+	// onorbit object of this image. This may be an internal identifier and not
+	// necessarily a valid satellite number.
+	OrigObjectID string `json:"origObjectId"`
+	// Optional identifier provided by the imaging source to indicate the sensor
+	// identifier which produced this image. This may be an internal identifier and not
+	// necessarily a valid sensor ID.
+	OrigSensorID string `json:"origSensorId"`
+	// Bit depth of the image, in number of pixels.
+	PixelBitDepth int64 `json:"pixelBitDepth"`
+	// Field Of View pixel height, in degrees.
+	PixelFovHeight float64 `json:"pixelFOVHeight"`
+	// Field Of View pixel width, in degrees.
+	PixelFovWidth float64 `json:"pixelFOVWidth"`
+	// Catalog number of the target on-orbit object.
+	SatNo int64 `json:"satNo"`
+	// Sensor altitude at exposure start epoch, in km. If null, can be obtained from
+	// sensor info.
+	Senalt float64 `json:"senalt"`
+	// Sensor latitude at exposure start epoch, in degrees. If null, can be obtained
+	// from sensor info. -90 to 90 degrees (negative values south of equator).
+	Senlat float64 `json:"senlat"`
+	// Sensor longitude at exposure start epoch, in degrees. If null, can be obtained
+	// from sensor info. -180 to 180 degrees (negative values west of Prime Meridian).
+	Senlon float64 `json:"senlon"`
+	// The quaternion describing the rotation of the body-fixed frame used for this
+	// system into the local geodetic frame, at exposure start epoch (expStartTime).
+	// The array element order convention is scalar component first, followed by the
+	// three vector components. For a vector u in the body-fixed frame, the
+	// corresponding vector u' in the geodetic frame should satisfy u' = quq\*, where q
+	// is this quaternion.
+	SenQuat []float64 `json:"senQuat"`
+	// The derivative of the quaternion describing the rotation of the body-fixed frame
+	// used for this system into the local geodetic frame, exposure start epoch
+	// (expStartTime). The array element order convention is scalar component first,
+	// followed by the three vector components. For a vector u in the body-fixed frame,
+	// the corresponding vector u' in the geodetic frame should satisfy u' = quq\*,
+	// where q is this quaternion.
+	SenQuatDot []float64 `json:"senQuatDot"`
+	// Sensor x position at exposure start epoch, in km (if mobile/onorbit) in J2000
+	// coordinate frame.
+	Senx float64 `json:"senx"`
+	// Sensor y position at exposure start epoch, in km (if mobile/onorbit) in J2000
+	// coordinate frame.
+	Seny float64 `json:"seny"`
+	// Sensor z position at exposure start epoch, in km (if mobile/onorbit) in J2000
+	// coordinate frame.
+	Senz float64 `json:"senz"`
+	// The sequence ID of an image within an image set.
+	SequenceID int64 `json:"sequenceId"`
+	// The source data library from which this record was received. This could be a
+	// remote or tactical UDL or another data library. If null, the record should be
+	// assumed to have originated from the primary Enterprise UDL.
+	SourceDl string `json:"sourceDL"`
+	// Optional array of provider/source specific tags for this data, where each
+	// element is no longer than 32 characters, used for implementing data owner
+	// conditional access controls to restrict access to the data. Should be left null
+	// by data providers unless conditional access controls are coordinated with the
+	// UDL team.
+	Tags []string `json:"tags"`
+	// The telescope pointing azimuth, in degrees, at the exposure start epoch.
+	TopLeftStartAz float64 `json:"topLeftStartAz"`
+	// The telescope pointing elevation, in degrees, at the exposure start epoch.
+	TopLeftStartEl float64 `json:"topLeftStartEl"`
+	// The telescope pointing azimuth, in degrees, at the exposure stop epoch.
+	TopLeftStopAz float64 `json:"topLeftStopAz"`
+	// The telescope pointing elevation, in degrees, at the exposure stop epoch.
+	TopLeftStopEl float64 `json:"topLeftStopEl"`
+	// Optional identifier to track a commercial or marketplace transaction executed to
+	// produce this data.
+	TransactionID string `json:"transactionId"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		ExpStartTime          resp.Field
+		ImageType             resp.Field
+		Source                resp.Field
+		ID                    resp.Field
+		AnnotationKey         resp.Field
+		CalibrationKey        resp.Field
+		ChecksumValue         resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Description           resp.Field
+		EoObservations        resp.Field
+		ExpEndTime            resp.Field
+		Filename              resp.Field
+		Filesize              resp.Field
+		FrameFovHeight        resp.Field
+		FrameFovWidth         resp.Field
+		FrameHeightPixels     resp.Field
+		FrameWidthPixels      resp.Field
+		IDAttitudeSet         resp.Field
+		IDOnOrbit             resp.Field
+		IDSensor              resp.Field
+		IDSoiSet              resp.Field
+		ImageSetID            resp.Field
+		ImageSetLength        resp.Field
+		ImageSourceInfo       resp.Field
+		OnOrbit               resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		OrigObjectID          resp.Field
+		OrigSensorID          resp.Field
+		PixelBitDepth         resp.Field
+		PixelFovHeight        resp.Field
+		PixelFovWidth         resp.Field
+		SatNo                 resp.Field
+		Senalt                resp.Field
+		Senlat                resp.Field
+		Senlon                resp.Field
+		SenQuat               resp.Field
+		SenQuatDot            resp.Field
+		Senx                  resp.Field
+		Seny                  resp.Field
+		Senz                  resp.Field
+		SequenceID            resp.Field
+		SourceDl              resp.Field
+		Tags                  resp.Field
+		TopLeftStartAz        resp.Field
+		TopLeftStartEl        resp.Field
+		TopLeftStopAz         resp.Field
+		TopLeftStopEl         resp.Field
+		TransactionID         resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SkyImageryTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *SkyImageryTupleResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type SkyImageryTupleResponseDataMode string
+
+const (
+	SkyImageryTupleResponseDataModeReal      SkyImageryTupleResponseDataMode = "REAL"
+	SkyImageryTupleResponseDataModeTest      SkyImageryTupleResponseDataMode = "TEST"
+	SkyImageryTupleResponseDataModeSimulated SkyImageryTupleResponseDataMode = "SIMULATED"
+	SkyImageryTupleResponseDataModeExercise  SkyImageryTupleResponseDataMode = "EXERCISE"
+)
+
+type SkyImageryListParams struct {
 	// Start time of the exposure, in ISO 8601 UTC format with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	ExpStartTime time.Time        `query:"expStartTime,required" format:"date-time" json:"-"`
@@ -418,17 +915,17 @@ type SkyimageryListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SkyimageryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SkyImageryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SkyimageryListParams]'s query parameters as `url.Values`.
-func (r SkyimageryListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SkyImageryListParams]'s query parameters as `url.Values`.
+func (r SkyImageryListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SkyimageryCountParams struct {
+type SkyImageryCountParams struct {
 	// Start time of the exposure, in ISO 8601 UTC format with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	ExpStartTime time.Time        `query:"expStartTime,required" format:"date-time" json:"-"`
@@ -439,17 +936,17 @@ type SkyimageryCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SkyimageryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SkyImageryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SkyimageryCountParams]'s query parameters as `url.Values`.
-func (r SkyimageryCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SkyImageryCountParams]'s query parameters as `url.Values`.
+func (r SkyImageryCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SkyimageryFileGetParams struct {
+type SkyImageryFileGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -457,18 +954,18 @@ type SkyimageryFileGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SkyimageryFileGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SkyImageryFileGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SkyimageryFileGetParams]'s query parameters as
+// URLQuery serializes [SkyImageryFileGetParams]'s query parameters as
 // `url.Values`.
-func (r SkyimageryFileGetParams) URLQuery() (v url.Values, err error) {
+func (r SkyImageryFileGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SkyimageryGetParams struct {
+type SkyImageryGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -476,17 +973,17 @@ type SkyimageryGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SkyimageryGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SkyImageryGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SkyimageryGetParams]'s query parameters as `url.Values`.
-func (r SkyimageryGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SkyImageryGetParams]'s query parameters as `url.Values`.
+func (r SkyImageryGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SkyimageryTupleParams struct {
+type SkyImageryTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -502,17 +999,17 @@ type SkyimageryTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SkyimageryTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SkyImageryTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SkyimageryTupleParams]'s query parameters as `url.Values`.
-func (r SkyimageryTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SkyImageryTupleParams]'s query parameters as `url.Values`.
+func (r SkyImageryTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SkyimageryUploadZipParams struct {
+type SkyImageryUploadZipParams struct {
 	// Zip file containing files described in the specification
 	File io.Reader `json:"file,omitzero,required" format:"binary"`
 	paramObj
@@ -520,9 +1017,9 @@ type SkyimageryUploadZipParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SkyimageryUploadZipParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SkyImageryUploadZipParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SkyimageryUploadZipParams) MarshalMultipart() (data []byte, contentType string, err error) {
+func (r SkyImageryUploadZipParams) MarshalMultipart() (data []byte, contentType string, err error) {
 	buf := bytes.NewBuffer(nil)
 	writer := multipart.NewWriter(buf)
 	err = apiform.MarshalRoot(r, writer)

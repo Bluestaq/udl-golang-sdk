@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestWeatherdataNewWithOptionalParams(t *testing.T) {
+func TestWeatherDataNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,9 +27,9 @@ func TestWeatherdataNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Weatherdata.New(context.TODO(), unifieddatalibrary.WeatherdataNewParams{
+	err := client.WeatherData.New(context.TODO(), unifieddatalibrary.WeatherDataNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.WeatherdataNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.WeatherDataNewParamsDataModeTest,
 		ObTime:                time.Now(),
 		Source:                "Bluestaq",
 		ID:                    unifieddatalibrary.String("WEATHER-DATA-ID"),
@@ -74,7 +74,7 @@ func TestWeatherdataNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestWeatherdataListWithOptionalParams(t *testing.T) {
+func TestWeatherDataListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -87,7 +87,7 @@ func TestWeatherdataListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Weatherdata.List(context.TODO(), unifieddatalibrary.WeatherdataListParams{
+	_, err := client.WeatherData.List(context.TODO(), unifieddatalibrary.WeatherDataListParams{
 		ObTime:      time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -101,7 +101,7 @@ func TestWeatherdataListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestWeatherdataCountWithOptionalParams(t *testing.T) {
+func TestWeatherDataCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -114,7 +114,7 @@ func TestWeatherdataCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Weatherdata.Count(context.TODO(), unifieddatalibrary.WeatherdataCountParams{
+	_, err := client.WeatherData.Count(context.TODO(), unifieddatalibrary.WeatherDataCountParams{
 		ObTime:      time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -128,7 +128,7 @@ func TestWeatherdataCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestWeatherdataNewBulk(t *testing.T) {
+func TestWeatherDataNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -141,8 +141,8 @@ func TestWeatherdataNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Weatherdata.NewBulk(context.TODO(), unifieddatalibrary.WeatherdataNewBulkParams{
-		Body: []unifieddatalibrary.WeatherdataNewBulkParamsBody{{
+	err := client.WeatherData.NewBulk(context.TODO(), unifieddatalibrary.WeatherDataNewBulkParams{
+		Body: []unifieddatalibrary.WeatherDataNewBulkParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			ObTime:                time.Now(),
@@ -190,7 +190,7 @@ func TestWeatherdataNewBulk(t *testing.T) {
 	}
 }
 
-func TestWeatherdataGetWithOptionalParams(t *testing.T) {
+func TestWeatherDataGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -203,10 +203,10 @@ func TestWeatherdataGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Weatherdata.Get(
+	_, err := client.WeatherData.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.WeatherdataGetParams{
+		unifieddatalibrary.WeatherDataGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -220,7 +220,7 @@ func TestWeatherdataGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestWeatherdataQueryhelp(t *testing.T) {
+func TestWeatherDataQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -233,7 +233,7 @@ func TestWeatherdataQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Weatherdata.Queryhelp(context.TODO())
+	err := client.WeatherData.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -243,7 +243,7 @@ func TestWeatherdataQueryhelp(t *testing.T) {
 	}
 }
 
-func TestWeatherdataTupleWithOptionalParams(t *testing.T) {
+func TestWeatherDataTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -256,7 +256,7 @@ func TestWeatherdataTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Weatherdata.Tuple(context.TODO(), unifieddatalibrary.WeatherdataTupleParams{
+	_, err := client.WeatherData.Tuple(context.TODO(), unifieddatalibrary.WeatherDataTupleParams{
 		Columns:     "columns",
 		ObTime:      time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -271,7 +271,7 @@ func TestWeatherdataTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestWeatherdataUnvalidatedPublish(t *testing.T) {
+func TestWeatherDataUnvalidatedPublish(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -284,8 +284,8 @@ func TestWeatherdataUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Weatherdata.UnvalidatedPublish(context.TODO(), unifieddatalibrary.WeatherdataUnvalidatedPublishParams{
-		Body: []unifieddatalibrary.WeatherdataUnvalidatedPublishParamsBody{{
+	err := client.WeatherData.UnvalidatedPublish(context.TODO(), unifieddatalibrary.WeatherDataUnvalidatedPublishParams{
+		Body: []unifieddatalibrary.WeatherDataUnvalidatedPublishParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			ObTime:                time.Now(),

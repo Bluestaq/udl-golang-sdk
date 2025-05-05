@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestRfemitterNewWithOptionalParams(t *testing.T) {
+func TestRfEmitterNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,9 +27,9 @@ func TestRfemitterNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Rfemitter.New(context.TODO(), unifieddatalibrary.RfemitterNewParams{
+	err := client.RfEmitter.New(context.TODO(), unifieddatalibrary.RfEmitterNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.RfemitterNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.RfEmitterNewParamsDataModeTest,
 		Name:                  "RF_NAME",
 		Source:                "Bluestaq",
 		ID:                    unifieddatalibrary.String("RFEMITTER-ID"),
@@ -94,7 +94,7 @@ func TestRfemitterNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRfemitterUpdateWithOptionalParams(t *testing.T) {
+func TestRfEmitterUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -107,12 +107,12 @@ func TestRfemitterUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Rfemitter.Update(
+	err := client.RfEmitter.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.RfemitterUpdateParams{
+		unifieddatalibrary.RfEmitterUpdateParams{
 			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.RfemitterUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.RfEmitterUpdateParamsDataModeTest,
 			Name:                  "RF_NAME",
 			Source:                "Bluestaq",
 			ID:                    unifieddatalibrary.String("RFEMITTER-ID"),
@@ -178,7 +178,7 @@ func TestRfemitterUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRfemitterListWithOptionalParams(t *testing.T) {
+func TestRfEmitterListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -191,7 +191,7 @@ func TestRfemitterListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Rfemitter.List(context.TODO(), unifieddatalibrary.RfemitterListParams{
+	_, err := client.RfEmitter.List(context.TODO(), unifieddatalibrary.RfEmitterListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -204,7 +204,7 @@ func TestRfemitterListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRfemitterDelete(t *testing.T) {
+func TestRfEmitterDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -217,7 +217,7 @@ func TestRfemitterDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Rfemitter.Delete(context.TODO(), "id")
+	err := client.RfEmitter.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -227,7 +227,7 @@ func TestRfemitterDelete(t *testing.T) {
 	}
 }
 
-func TestRfemitterCountWithOptionalParams(t *testing.T) {
+func TestRfEmitterCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -240,7 +240,7 @@ func TestRfemitterCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Rfemitter.Count(context.TODO(), unifieddatalibrary.RfemitterCountParams{
+	_, err := client.RfEmitter.Count(context.TODO(), unifieddatalibrary.RfEmitterCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -253,7 +253,7 @@ func TestRfemitterCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRfemitterGetWithOptionalParams(t *testing.T) {
+func TestRfEmitterGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -266,10 +266,10 @@ func TestRfemitterGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Rfemitter.Get(
+	_, err := client.RfEmitter.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.RfemitterGetParams{
+		unifieddatalibrary.RfEmitterGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -283,7 +283,7 @@ func TestRfemitterGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestRfemitterQueryhelp(t *testing.T) {
+func TestRfEmitterQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -296,7 +296,7 @@ func TestRfemitterQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Rfemitter.Queryhelp(context.TODO())
+	err := client.RfEmitter.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -306,7 +306,7 @@ func TestRfemitterQueryhelp(t *testing.T) {
 	}
 }
 
-func TestRfemitterTupleWithOptionalParams(t *testing.T) {
+func TestRfEmitterTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -319,7 +319,7 @@ func TestRfemitterTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Rfemitter.Tuple(context.TODO(), unifieddatalibrary.RfemitterTupleParams{
+	_, err := client.RfEmitter.Tuple(context.TODO(), unifieddatalibrary.RfEmitterTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

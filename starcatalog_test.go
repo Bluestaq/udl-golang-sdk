@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestStarcatalogNewWithOptionalParams(t *testing.T) {
+func TestStarCatalogNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,11 +26,11 @@ func TestStarcatalogNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Starcatalog.New(context.TODO(), unifieddatalibrary.StarcatalogNewParams{
-		AstrometryOrigin:      unifieddatalibrary.StarcatalogNewParamsAstrometryOriginGaiadr3,
+	err := client.StarCatalog.New(context.TODO(), unifieddatalibrary.StarCatalogNewParams{
+		AstrometryOrigin:      unifieddatalibrary.StarCatalogNewParamsAstrometryOriginGaiadr3,
 		ClassificationMarking: "U",
 		CsID:                  12345,
-		DataMode:              unifieddatalibrary.StarcatalogNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.StarCatalogNewParamsDataModeTest,
 		Dec:                   21.8,
 		Ra:                    14.43,
 		Source:                "Bluestaq",
@@ -80,7 +80,7 @@ func TestStarcatalogNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestStarcatalogUpdateWithOptionalParams(t *testing.T) {
+func TestStarCatalogUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -93,14 +93,14 @@ func TestStarcatalogUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Starcatalog.Update(
+	err := client.StarCatalog.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.StarcatalogUpdateParams{
-			AstrometryOrigin:      unifieddatalibrary.StarcatalogUpdateParamsAstrometryOriginGaiadr3,
+		unifieddatalibrary.StarCatalogUpdateParams{
+			AstrometryOrigin:      unifieddatalibrary.StarCatalogUpdateParamsAstrometryOriginGaiadr3,
 			ClassificationMarking: "U",
 			CsID:                  12345,
-			DataMode:              unifieddatalibrary.StarcatalogUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.StarCatalogUpdateParamsDataModeTest,
 			Dec:                   21.8,
 			Ra:                    14.43,
 			Source:                "Bluestaq",
@@ -151,7 +151,7 @@ func TestStarcatalogUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestStarcatalogListWithOptionalParams(t *testing.T) {
+func TestStarCatalogListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -164,7 +164,7 @@ func TestStarcatalogListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Starcatalog.List(context.TODO(), unifieddatalibrary.StarcatalogListParams{
+	_, err := client.StarCatalog.List(context.TODO(), unifieddatalibrary.StarCatalogListParams{
 		Dec:         unifieddatalibrary.Float(0),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -179,7 +179,7 @@ func TestStarcatalogListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestStarcatalogDelete(t *testing.T) {
+func TestStarCatalogDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -192,7 +192,7 @@ func TestStarcatalogDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Starcatalog.Delete(context.TODO(), "id")
+	err := client.StarCatalog.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -202,7 +202,7 @@ func TestStarcatalogDelete(t *testing.T) {
 	}
 }
 
-func TestStarcatalogCountWithOptionalParams(t *testing.T) {
+func TestStarCatalogCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -215,7 +215,7 @@ func TestStarcatalogCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Starcatalog.Count(context.TODO(), unifieddatalibrary.StarcatalogCountParams{
+	_, err := client.StarCatalog.Count(context.TODO(), unifieddatalibrary.StarCatalogCountParams{
 		Dec:         unifieddatalibrary.Float(0),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -230,7 +230,7 @@ func TestStarcatalogCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestStarcatalogNewBulk(t *testing.T) {
+func TestStarCatalogNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -243,8 +243,8 @@ func TestStarcatalogNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Starcatalog.NewBulk(context.TODO(), unifieddatalibrary.StarcatalogNewBulkParams{
-		Body: []unifieddatalibrary.StarcatalogNewBulkParamsBody{{
+	err := client.StarCatalog.NewBulk(context.TODO(), unifieddatalibrary.StarCatalogNewBulkParams{
+		Body: []unifieddatalibrary.StarCatalogNewBulkParamsBody{{
 			AstrometryOrigin:      "GAIADR3",
 			ClassificationMarking: "U",
 			CsID:                  12345,
@@ -299,7 +299,7 @@ func TestStarcatalogNewBulk(t *testing.T) {
 	}
 }
 
-func TestStarcatalogGetWithOptionalParams(t *testing.T) {
+func TestStarCatalogGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -312,10 +312,10 @@ func TestStarcatalogGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Starcatalog.Get(
+	_, err := client.StarCatalog.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.StarcatalogGetParams{
+		unifieddatalibrary.StarCatalogGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -329,7 +329,7 @@ func TestStarcatalogGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestStarcatalogQueryhelp(t *testing.T) {
+func TestStarCatalogQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -342,7 +342,7 @@ func TestStarcatalogQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Starcatalog.Queryhelp(context.TODO())
+	err := client.StarCatalog.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -352,7 +352,7 @@ func TestStarcatalogQueryhelp(t *testing.T) {
 	}
 }
 
-func TestStarcatalogTupleWithOptionalParams(t *testing.T) {
+func TestStarCatalogTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -365,7 +365,7 @@ func TestStarcatalogTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Starcatalog.Tuple(context.TODO(), unifieddatalibrary.StarcatalogTupleParams{
+	_, err := client.StarCatalog.Tuple(context.TODO(), unifieddatalibrary.StarCatalogTupleParams{
 		Columns:     "columns",
 		Dec:         unifieddatalibrary.Float(0),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -381,7 +381,7 @@ func TestStarcatalogTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestStarcatalogUnvalidatedPublish(t *testing.T) {
+func TestStarCatalogUnvalidatedPublish(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -394,8 +394,8 @@ func TestStarcatalogUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Starcatalog.UnvalidatedPublish(context.TODO(), unifieddatalibrary.StarcatalogUnvalidatedPublishParams{
-		Body: []unifieddatalibrary.StarcatalogUnvalidatedPublishParamsBody{{
+	err := client.StarCatalog.UnvalidatedPublish(context.TODO(), unifieddatalibrary.StarCatalogUnvalidatedPublishParams{
+		Body: []unifieddatalibrary.StarCatalogUnvalidatedPublishParamsBody{{
 			AstrometryOrigin:      "GAIADR3",
 			ClassificationMarking: "U",
 			CsID:                  12345,

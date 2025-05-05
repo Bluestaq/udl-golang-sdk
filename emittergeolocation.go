@@ -20,21 +20,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
-// EmittergeolocationService contains methods and other services that help with
+// EmitterGeolocationService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewEmittergeolocationService] method instead.
-type EmittergeolocationService struct {
+// the [NewEmitterGeolocationService] method instead.
+type EmitterGeolocationService struct {
 	Options []option.RequestOption
 }
 
-// NewEmittergeolocationService generates a new service that applies the given
+// NewEmitterGeolocationService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewEmittergeolocationService(opts ...option.RequestOption) (r EmittergeolocationService) {
-	r = EmittergeolocationService{}
+func NewEmitterGeolocationService(opts ...option.RequestOption) (r EmitterGeolocationService) {
+	r = EmitterGeolocationService{}
 	r.Options = opts
 	return
 }
@@ -44,7 +44,7 @@ func NewEmittergeolocationService(opts ...option.RequestOption) (r Emittergeoloc
 // UDL. Data providers should contact the UDL team for specific role assignments
 // and for instructions on setting up a permanent feed through an alternate
 // mechanism.
-func (r *EmittergeolocationService) New(ctx context.Context, body EmittergeolocationNewParams, opts ...option.RequestOption) (err error) {
+func (r *EmitterGeolocationService) New(ctx context.Context, body EmitterGeolocationNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/emittergeolocation"
@@ -54,7 +54,7 @@ func (r *EmittergeolocationService) New(ctx context.Context, body Emittergeoloca
 
 // Service operation to get a single RF geolocation by its unique ID passed as a
 // path parameter.
-func (r *EmittergeolocationService) Get(ctx context.Context, id string, query EmittergeolocationGetParams, opts ...option.RequestOption) (res *EmittergeolocationGetResponse, err error) {
+func (r *EmitterGeolocationService) Get(ctx context.Context, id string, query EmitterGeolocationGetParams, opts ...option.RequestOption) (res *EmitterGeolocationGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -69,7 +69,7 @@ func (r *EmittergeolocationService) Get(ctx context.Context, id string, query Em
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance. Note, delete operations do not remove data
 // from historical or publish/subscribe stores.
-func (r *EmittergeolocationService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *EmitterGeolocationService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -86,7 +86,7 @@ func (r *EmittergeolocationService) Delete(ctx context.Context, id string, opts 
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *EmittergeolocationService) Count(ctx context.Context, query EmittergeolocationCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *EmitterGeolocationService) Count(ctx context.Context, query EmitterGeolocationCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/emittergeolocation/count"
@@ -99,7 +99,7 @@ func (r *EmittergeolocationService) Count(ctx context.Context, query Emittergeol
 // intended to be used for automated feeds into UDL. Data providers should contact
 // the UDL team for specific role assignments and for instructions on setting up a
 // permanent feed through an alternate mechanism.
-func (r *EmittergeolocationService) NewBulk(ctx context.Context, body EmittergeolocationNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *EmitterGeolocationService) NewBulk(ctx context.Context, body EmitterGeolocationNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/emittergeolocation/createBulk"
@@ -111,7 +111,7 @@ func (r *EmittergeolocationService) NewBulk(ctx context.Context, body Emittergeo
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *EmittergeolocationService) Query(ctx context.Context, query EmittergeolocationQueryParams, opts ...option.RequestOption) (res *[]EmittergeolocationQueryResponse, err error) {
+func (r *EmitterGeolocationService) Query(ctx context.Context, query EmitterGeolocationQueryParams, opts ...option.RequestOption) (res *[]EmitterGeolocationQueryResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/emittergeolocation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -120,7 +120,7 @@ func (r *EmittergeolocationService) Query(ctx context.Context, query Emittergeol
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *EmittergeolocationService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *EmitterGeolocationService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/emittergeolocation/queryhelp"
@@ -136,7 +136,7 @@ func (r *EmittergeolocationService) QueryHelp(ctx context.Context, opts ...optio
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *EmittergeolocationService) Tuple(ctx context.Context, query EmittergeolocationTupleParams, opts ...option.RequestOption) (res *[]EmittergeolocationTupleResponse, err error) {
+func (r *EmitterGeolocationService) Tuple(ctx context.Context, query EmitterGeolocationTupleParams, opts ...option.RequestOption) (res *[]EmitterGeolocationTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/emittergeolocation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -147,7 +147,7 @@ func (r *EmittergeolocationService) Tuple(ctx context.Context, query Emittergeol
 // ingest into the database. This operation is intended to be used for automated
 // feeds into UDL. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
-func (r *EmittergeolocationService) UnvalidatedPublish(ctx context.Context, body EmittergeolocationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+func (r *EmitterGeolocationService) UnvalidatedPublish(ctx context.Context, body EmitterGeolocationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-emittergeolocation"
@@ -156,7 +156,7 @@ func (r *EmittergeolocationService) UnvalidatedPublish(ctx context.Context, body
 }
 
 // Model representation of Emitter geolocation data for a signal of interest.
-type EmittergeolocationGetResponse struct {
+type EmitterGeolocationGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -175,7 +175,7 @@ type EmittergeolocationGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode EmittergeolocationGetResponseDataMode `json:"dataMode,required"`
+	DataMode EmitterGeolocationGetResponseDataMode `json:"dataMode,required"`
 	// Type of the signal of interest of this Emitter Geo Location (e.g. RF).
 	SignalOfInterestType string `json:"signalOfInterestType,required"`
 	// Source of the data.
@@ -366,8 +366,8 @@ type EmittergeolocationGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r EmittergeolocationGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *EmittergeolocationGetResponse) UnmarshalJSON(data []byte) error {
+func (r EmitterGeolocationGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *EmitterGeolocationGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -385,17 +385,17 @@ func (r *EmittergeolocationGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type EmittergeolocationGetResponseDataMode string
+type EmitterGeolocationGetResponseDataMode string
 
 const (
-	EmittergeolocationGetResponseDataModeReal      EmittergeolocationGetResponseDataMode = "REAL"
-	EmittergeolocationGetResponseDataModeTest      EmittergeolocationGetResponseDataMode = "TEST"
-	EmittergeolocationGetResponseDataModeSimulated EmittergeolocationGetResponseDataMode = "SIMULATED"
-	EmittergeolocationGetResponseDataModeExercise  EmittergeolocationGetResponseDataMode = "EXERCISE"
+	EmitterGeolocationGetResponseDataModeReal      EmitterGeolocationGetResponseDataMode = "REAL"
+	EmitterGeolocationGetResponseDataModeTest      EmitterGeolocationGetResponseDataMode = "TEST"
+	EmitterGeolocationGetResponseDataModeSimulated EmitterGeolocationGetResponseDataMode = "SIMULATED"
+	EmitterGeolocationGetResponseDataModeExercise  EmitterGeolocationGetResponseDataMode = "EXERCISE"
 )
 
 // Model representation of Emitter geolocation data for a signal of interest.
-type EmittergeolocationQueryResponse struct {
+type EmitterGeolocationQueryResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -414,7 +414,7 @@ type EmittergeolocationQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode EmittergeolocationQueryResponseDataMode `json:"dataMode,required"`
+	DataMode EmitterGeolocationQueryResponseDataMode `json:"dataMode,required"`
 	// Type of the signal of interest of this Emitter Geo Location (e.g. RF).
 	SignalOfInterestType string `json:"signalOfInterestType,required"`
 	// Source of the data.
@@ -598,8 +598,8 @@ type EmittergeolocationQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r EmittergeolocationQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *EmittergeolocationQueryResponse) UnmarshalJSON(data []byte) error {
+func (r EmitterGeolocationQueryResponse) RawJSON() string { return r.JSON.raw }
+func (r *EmitterGeolocationQueryResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -617,17 +617,17 @@ func (r *EmittergeolocationQueryResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type EmittergeolocationQueryResponseDataMode string
+type EmitterGeolocationQueryResponseDataMode string
 
 const (
-	EmittergeolocationQueryResponseDataModeReal      EmittergeolocationQueryResponseDataMode = "REAL"
-	EmittergeolocationQueryResponseDataModeTest      EmittergeolocationQueryResponseDataMode = "TEST"
-	EmittergeolocationQueryResponseDataModeSimulated EmittergeolocationQueryResponseDataMode = "SIMULATED"
-	EmittergeolocationQueryResponseDataModeExercise  EmittergeolocationQueryResponseDataMode = "EXERCISE"
+	EmitterGeolocationQueryResponseDataModeReal      EmitterGeolocationQueryResponseDataMode = "REAL"
+	EmitterGeolocationQueryResponseDataModeTest      EmitterGeolocationQueryResponseDataMode = "TEST"
+	EmitterGeolocationQueryResponseDataModeSimulated EmitterGeolocationQueryResponseDataMode = "SIMULATED"
+	EmitterGeolocationQueryResponseDataModeExercise  EmitterGeolocationQueryResponseDataMode = "EXERCISE"
 )
 
 // Model representation of Emitter geolocation data for a signal of interest.
-type EmittergeolocationTupleResponse struct {
+type EmitterGeolocationTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -646,7 +646,7 @@ type EmittergeolocationTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode EmittergeolocationTupleResponseDataMode `json:"dataMode,required"`
+	DataMode EmitterGeolocationTupleResponseDataMode `json:"dataMode,required"`
 	// Type of the signal of interest of this Emitter Geo Location (e.g. RF).
 	SignalOfInterestType string `json:"signalOfInterestType,required"`
 	// Source of the data.
@@ -837,8 +837,8 @@ type EmittergeolocationTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r EmittergeolocationTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *EmittergeolocationTupleResponse) UnmarshalJSON(data []byte) error {
+func (r EmitterGeolocationTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *EmitterGeolocationTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -856,16 +856,16 @@ func (r *EmittergeolocationTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type EmittergeolocationTupleResponseDataMode string
+type EmitterGeolocationTupleResponseDataMode string
 
 const (
-	EmittergeolocationTupleResponseDataModeReal      EmittergeolocationTupleResponseDataMode = "REAL"
-	EmittergeolocationTupleResponseDataModeTest      EmittergeolocationTupleResponseDataMode = "TEST"
-	EmittergeolocationTupleResponseDataModeSimulated EmittergeolocationTupleResponseDataMode = "SIMULATED"
-	EmittergeolocationTupleResponseDataModeExercise  EmittergeolocationTupleResponseDataMode = "EXERCISE"
+	EmitterGeolocationTupleResponseDataModeReal      EmitterGeolocationTupleResponseDataMode = "REAL"
+	EmitterGeolocationTupleResponseDataModeTest      EmitterGeolocationTupleResponseDataMode = "TEST"
+	EmitterGeolocationTupleResponseDataModeSimulated EmitterGeolocationTupleResponseDataMode = "SIMULATED"
+	EmitterGeolocationTupleResponseDataModeExercise  EmitterGeolocationTupleResponseDataMode = "EXERCISE"
 )
 
-type EmittergeolocationNewParams struct {
+type EmitterGeolocationNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -884,7 +884,7 @@ type EmittergeolocationNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode EmittergeolocationNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode EmitterGeolocationNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Type of the signal of interest of this Emitter Geo Location (e.g. RF).
 	SignalOfInterestType string `json:"signalOfInterestType,required"`
 	// Source of the data.
@@ -1006,10 +1006,10 @@ type EmittergeolocationNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EmittergeolocationNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f EmitterGeolocationNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r EmittergeolocationNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow EmittergeolocationNewParams
+func (r EmitterGeolocationNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow EmitterGeolocationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -1027,16 +1027,16 @@ func (r EmittergeolocationNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type EmittergeolocationNewParamsDataMode string
+type EmitterGeolocationNewParamsDataMode string
 
 const (
-	EmittergeolocationNewParamsDataModeReal      EmittergeolocationNewParamsDataMode = "REAL"
-	EmittergeolocationNewParamsDataModeTest      EmittergeolocationNewParamsDataMode = "TEST"
-	EmittergeolocationNewParamsDataModeSimulated EmittergeolocationNewParamsDataMode = "SIMULATED"
-	EmittergeolocationNewParamsDataModeExercise  EmittergeolocationNewParamsDataMode = "EXERCISE"
+	EmitterGeolocationNewParamsDataModeReal      EmitterGeolocationNewParamsDataMode = "REAL"
+	EmitterGeolocationNewParamsDataModeTest      EmitterGeolocationNewParamsDataMode = "TEST"
+	EmitterGeolocationNewParamsDataModeSimulated EmitterGeolocationNewParamsDataMode = "SIMULATED"
+	EmitterGeolocationNewParamsDataModeExercise  EmitterGeolocationNewParamsDataMode = "EXERCISE"
 )
 
-type EmittergeolocationGetParams struct {
+type EmitterGeolocationGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1044,18 +1044,18 @@ type EmittergeolocationGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EmittergeolocationGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f EmitterGeolocationGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [EmittergeolocationGetParams]'s query parameters as
+// URLQuery serializes [EmitterGeolocationGetParams]'s query parameters as
 // `url.Values`.
-func (r EmittergeolocationGetParams) URLQuery() (v url.Values, err error) {
+func (r EmitterGeolocationGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type EmittergeolocationCountParams struct {
+type EmitterGeolocationCountParams struct {
 	// The start time for this Emitter Geo Location data set in ISO 8601 UTC with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
@@ -1066,27 +1066,27 @@ type EmittergeolocationCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EmittergeolocationCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f EmitterGeolocationCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [EmittergeolocationCountParams]'s query parameters as
+// URLQuery serializes [EmitterGeolocationCountParams]'s query parameters as
 // `url.Values`.
-func (r EmittergeolocationCountParams) URLQuery() (v url.Values, err error) {
+func (r EmitterGeolocationCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type EmittergeolocationNewBulkParams struct {
-	Body []EmittergeolocationNewBulkParamsBody
+type EmitterGeolocationNewBulkParams struct {
+	Body []EmitterGeolocationNewBulkParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EmittergeolocationNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f EmitterGeolocationNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r EmittergeolocationNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r EmitterGeolocationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -1094,7 +1094,7 @@ func (r EmittergeolocationNewBulkParams) MarshalJSON() (data []byte, err error) 
 //
 // The properties ClassificationMarking, DataMode, SignalOfInterestType, Source,
 // StartTime are required.
-type EmittergeolocationNewBulkParamsBody struct {
+type EmitterGeolocationNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1253,21 +1253,21 @@ type EmittergeolocationNewBulkParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EmittergeolocationNewBulkParamsBody) IsPresent() bool {
+func (f EmitterGeolocationNewBulkParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r EmittergeolocationNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow EmittergeolocationNewBulkParamsBody
+func (r EmitterGeolocationNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow EmitterGeolocationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[EmittergeolocationNewBulkParamsBody](
+	apijson.RegisterFieldValidator[EmitterGeolocationNewBulkParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
-type EmittergeolocationQueryParams struct {
+type EmitterGeolocationQueryParams struct {
 	// The start time for this Emitter Geo Location data set in ISO 8601 UTC with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
@@ -1278,18 +1278,18 @@ type EmittergeolocationQueryParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EmittergeolocationQueryParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f EmitterGeolocationQueryParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [EmittergeolocationQueryParams]'s query parameters as
+// URLQuery serializes [EmitterGeolocationQueryParams]'s query parameters as
 // `url.Values`.
-func (r EmittergeolocationQueryParams) URLQuery() (v url.Values, err error) {
+func (r EmitterGeolocationQueryParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type EmittergeolocationTupleParams struct {
+type EmitterGeolocationTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -1305,29 +1305,29 @@ type EmittergeolocationTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EmittergeolocationTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f EmitterGeolocationTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [EmittergeolocationTupleParams]'s query parameters as
+// URLQuery serializes [EmitterGeolocationTupleParams]'s query parameters as
 // `url.Values`.
-func (r EmittergeolocationTupleParams) URLQuery() (v url.Values, err error) {
+func (r EmitterGeolocationTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type EmittergeolocationUnvalidatedPublishParams struct {
-	Body []EmittergeolocationUnvalidatedPublishParamsBody
+type EmitterGeolocationUnvalidatedPublishParams struct {
+	Body []EmitterGeolocationUnvalidatedPublishParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EmittergeolocationUnvalidatedPublishParams) IsPresent() bool {
+func (f EmitterGeolocationUnvalidatedPublishParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r EmittergeolocationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+func (r EmitterGeolocationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -1335,7 +1335,7 @@ func (r EmittergeolocationUnvalidatedPublishParams) MarshalJSON() (data []byte, 
 //
 // The properties ClassificationMarking, DataMode, SignalOfInterestType, Source,
 // StartTime are required.
-type EmittergeolocationUnvalidatedPublishParamsBody struct {
+type EmitterGeolocationUnvalidatedPublishParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1494,16 +1494,16 @@ type EmittergeolocationUnvalidatedPublishParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EmittergeolocationUnvalidatedPublishParamsBody) IsPresent() bool {
+func (f EmitterGeolocationUnvalidatedPublishParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r EmittergeolocationUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow EmittergeolocationUnvalidatedPublishParamsBody
+func (r EmitterGeolocationUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow EmitterGeolocationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[EmittergeolocationUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[EmitterGeolocationUnvalidatedPublishParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

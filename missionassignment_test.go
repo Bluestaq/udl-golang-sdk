@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestMissionassignmentNewWithOptionalParams(t *testing.T) {
+func TestMissionAssignmentNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,9 +27,9 @@ func TestMissionassignmentNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Missionassignment.New(context.TODO(), unifieddatalibrary.MissionassignmentNewParams{
+	err := client.MissionAssignment.New(context.TODO(), unifieddatalibrary.MissionAssignmentNewParams{
 		ClassificationMarking:      "U",
-		DataMode:                   unifieddatalibrary.MissionassignmentNewParamsDataModeTest,
+		DataMode:                   unifieddatalibrary.MissionAssignmentNewParamsDataModeTest,
 		Mad:                        "MAD",
 		Source:                     "Bluestaq",
 		Ts:                         time.Now(),
@@ -101,7 +101,7 @@ func TestMissionassignmentNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestMissionassignmentUpdateWithOptionalParams(t *testing.T) {
+func TestMissionAssignmentUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -114,12 +114,12 @@ func TestMissionassignmentUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Missionassignment.Update(
+	err := client.MissionAssignment.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.MissionassignmentUpdateParams{
+		unifieddatalibrary.MissionAssignmentUpdateParams{
 			ClassificationMarking:      "U",
-			DataMode:                   unifieddatalibrary.MissionassignmentUpdateParamsDataModeTest,
+			DataMode:                   unifieddatalibrary.MissionAssignmentUpdateParamsDataModeTest,
 			Mad:                        "MAD",
 			Source:                     "Bluestaq",
 			Ts:                         time.Now(),
@@ -192,7 +192,7 @@ func TestMissionassignmentUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestMissionassignmentListWithOptionalParams(t *testing.T) {
+func TestMissionAssignmentListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -205,7 +205,7 @@ func TestMissionassignmentListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Missionassignment.List(context.TODO(), unifieddatalibrary.MissionassignmentListParams{
+	_, err := client.MissionAssignment.List(context.TODO(), unifieddatalibrary.MissionAssignmentListParams{
 		Ts:          time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -219,7 +219,7 @@ func TestMissionassignmentListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestMissionassignmentDelete(t *testing.T) {
+func TestMissionAssignmentDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -232,7 +232,7 @@ func TestMissionassignmentDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Missionassignment.Delete(context.TODO(), "id")
+	err := client.MissionAssignment.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -242,7 +242,7 @@ func TestMissionassignmentDelete(t *testing.T) {
 	}
 }
 
-func TestMissionassignmentCountWithOptionalParams(t *testing.T) {
+func TestMissionAssignmentCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -255,7 +255,7 @@ func TestMissionassignmentCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Missionassignment.Count(context.TODO(), unifieddatalibrary.MissionassignmentCountParams{
+	_, err := client.MissionAssignment.Count(context.TODO(), unifieddatalibrary.MissionAssignmentCountParams{
 		Ts:          time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -269,7 +269,7 @@ func TestMissionassignmentCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestMissionassignmentNewBulk(t *testing.T) {
+func TestMissionAssignmentNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -282,8 +282,8 @@ func TestMissionassignmentNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Missionassignment.NewBulk(context.TODO(), unifieddatalibrary.MissionassignmentNewBulkParams{
-		Body: []unifieddatalibrary.MissionassignmentNewBulkParamsBody{{
+	err := client.MissionAssignment.NewBulk(context.TODO(), unifieddatalibrary.MissionAssignmentNewBulkParams{
+		Body: []unifieddatalibrary.MissionAssignmentNewBulkParamsBody{{
 			ClassificationMarking:      "U",
 			DataMode:                   "TEST",
 			Mad:                        "MAD",
@@ -358,7 +358,7 @@ func TestMissionassignmentNewBulk(t *testing.T) {
 	}
 }
 
-func TestMissionassignmentGetWithOptionalParams(t *testing.T) {
+func TestMissionAssignmentGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -371,10 +371,10 @@ func TestMissionassignmentGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Missionassignment.Get(
+	_, err := client.MissionAssignment.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.MissionassignmentGetParams{
+		unifieddatalibrary.MissionAssignmentGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -388,7 +388,7 @@ func TestMissionassignmentGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestMissionassignmentQueryhelp(t *testing.T) {
+func TestMissionAssignmentQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -401,7 +401,7 @@ func TestMissionassignmentQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Missionassignment.Queryhelp(context.TODO())
+	err := client.MissionAssignment.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -411,7 +411,7 @@ func TestMissionassignmentQueryhelp(t *testing.T) {
 	}
 }
 
-func TestMissionassignmentTupleWithOptionalParams(t *testing.T) {
+func TestMissionAssignmentTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -424,7 +424,7 @@ func TestMissionassignmentTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Missionassignment.Tuple(context.TODO(), unifieddatalibrary.MissionassignmentTupleParams{
+	_, err := client.MissionAssignment.Tuple(context.TODO(), unifieddatalibrary.MissionAssignmentTupleParams{
 		Columns:     "columns",
 		Ts:          time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),

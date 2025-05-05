@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSeradatasigintpayloadNewWithOptionalParams(t *testing.T) {
+func TestSeradataSigintPayloadNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,9 +26,9 @@ func TestSeradatasigintpayloadNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradatasigintpayload.New(context.TODO(), unifieddatalibrary.SeradatasigintpayloadNewParams{
+	err := client.SeradataSigintPayload.New(context.TODO(), unifieddatalibrary.SeradataSigintPayloadNewParams{
 		ClassificationMarking:  "U",
-		DataMode:               unifieddatalibrary.SeradatasigintpayloadNewParamsDataModeTest,
+		DataMode:               unifieddatalibrary.SeradataSigintPayloadNewParamsDataModeTest,
 		Source:                 "Bluestaq",
 		SpacecraftID:           "spacecraftId",
 		ID:                     unifieddatalibrary.String("SERADATASIGINTPAYLOAD-ID"),
@@ -55,7 +55,7 @@ func TestSeradatasigintpayloadNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradatasigintpayloadUpdateWithOptionalParams(t *testing.T) {
+func TestSeradataSigintPayloadUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -68,12 +68,12 @@ func TestSeradatasigintpayloadUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradatasigintpayload.Update(
+	err := client.SeradataSigintPayload.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SeradatasigintpayloadUpdateParams{
+		unifieddatalibrary.SeradataSigintPayloadUpdateParams{
 			ClassificationMarking:  "U",
-			DataMode:               unifieddatalibrary.SeradatasigintpayloadUpdateParamsDataModeTest,
+			DataMode:               unifieddatalibrary.SeradataSigintPayloadUpdateParamsDataModeTest,
 			Source:                 "Bluestaq",
 			SpacecraftID:           "spacecraftId",
 			ID:                     unifieddatalibrary.String("SERADATASIGINTPAYLOAD-ID"),
@@ -101,7 +101,7 @@ func TestSeradatasigintpayloadUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradatasigintpayloadListWithOptionalParams(t *testing.T) {
+func TestSeradataSigintPayloadListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -114,7 +114,7 @@ func TestSeradatasigintpayloadListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradatasigintpayload.List(context.TODO(), unifieddatalibrary.SeradatasigintpayloadListParams{
+	_, err := client.SeradataSigintPayload.List(context.TODO(), unifieddatalibrary.SeradataSigintPayloadListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -127,7 +127,7 @@ func TestSeradatasigintpayloadListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradatasigintpayloadDelete(t *testing.T) {
+func TestSeradataSigintPayloadDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -140,7 +140,7 @@ func TestSeradatasigintpayloadDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradatasigintpayload.Delete(context.TODO(), "id")
+	err := client.SeradataSigintPayload.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -150,7 +150,7 @@ func TestSeradatasigintpayloadDelete(t *testing.T) {
 	}
 }
 
-func TestSeradatasigintpayloadCountWithOptionalParams(t *testing.T) {
+func TestSeradataSigintPayloadCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -163,7 +163,7 @@ func TestSeradatasigintpayloadCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradatasigintpayload.Count(context.TODO(), unifieddatalibrary.SeradatasigintpayloadCountParams{
+	_, err := client.SeradataSigintPayload.Count(context.TODO(), unifieddatalibrary.SeradataSigintPayloadCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -176,7 +176,7 @@ func TestSeradatasigintpayloadCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradatasigintpayloadGetWithOptionalParams(t *testing.T) {
+func TestSeradataSigintPayloadGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -189,10 +189,10 @@ func TestSeradatasigintpayloadGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradatasigintpayload.Get(
+	_, err := client.SeradataSigintPayload.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SeradatasigintpayloadGetParams{
+		unifieddatalibrary.SeradataSigintPayloadGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -206,7 +206,7 @@ func TestSeradatasigintpayloadGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradatasigintpayloadQueryhelp(t *testing.T) {
+func TestSeradataSigintPayloadQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -219,7 +219,7 @@ func TestSeradatasigintpayloadQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradatasigintpayload.Queryhelp(context.TODO())
+	err := client.SeradataSigintPayload.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -229,7 +229,7 @@ func TestSeradatasigintpayloadQueryhelp(t *testing.T) {
 	}
 }
 
-func TestSeradatasigintpayloadTupleWithOptionalParams(t *testing.T) {
+func TestSeradataSigintPayloadTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -242,7 +242,7 @@ func TestSeradatasigintpayloadTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradatasigintpayload.Tuple(context.TODO(), unifieddatalibrary.SeradatasigintpayloadTupleParams{
+	_, err := client.SeradataSigintPayload.Tuple(context.TODO(), unifieddatalibrary.SeradataSigintPayloadTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

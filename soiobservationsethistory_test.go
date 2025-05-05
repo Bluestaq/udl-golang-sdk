@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSoiobservationsetHistoryListWithOptionalParams(t *testing.T) {
+func TestSoiObservationSetHistoryListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestSoiobservationsetHistoryListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Soiobservationset.History.List(context.TODO(), unifieddatalibrary.SoiobservationsetHistoryListParams{
+	_, err := client.SoiObservationSet.History.List(context.TODO(), unifieddatalibrary.SoiObservationSetHistoryListParams{
 		StartTime:   time.Now(),
 		Columns:     unifieddatalibrary.String("columns"),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -42,7 +42,7 @@ func TestSoiobservationsetHistoryListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSoiobservationsetHistoryAodrWithOptionalParams(t *testing.T) {
+func TestSoiObservationSetHistoryAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -55,7 +55,7 @@ func TestSoiobservationsetHistoryAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Soiobservationset.History.Aodr(context.TODO(), unifieddatalibrary.SoiobservationsetHistoryAodrParams{
+	err := client.SoiObservationSet.History.Aodr(context.TODO(), unifieddatalibrary.SoiObservationSetHistoryAodrParams{
 		StartTime:       time.Now(),
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -73,7 +73,7 @@ func TestSoiobservationsetHistoryAodrWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSoiobservationsetHistoryCountWithOptionalParams(t *testing.T) {
+func TestSoiObservationSetHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -86,7 +86,7 @@ func TestSoiobservationsetHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Soiobservationset.History.Count(context.TODO(), unifieddatalibrary.SoiobservationsetHistoryCountParams{
+	_, err := client.SoiObservationSet.History.Count(context.TODO(), unifieddatalibrary.SoiObservationSetHistoryCountParams{
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

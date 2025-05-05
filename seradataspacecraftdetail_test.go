@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSeradataspacecraftdetailNewWithOptionalParams(t *testing.T) {
+func TestSeradataSpacecraftDetailNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,9 +27,9 @@ func TestSeradataspacecraftdetailNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradataspacecraftdetails.New(context.TODO(), unifieddatalibrary.SeradataspacecraftdetailNewParams{
+	err := client.SeradataSpacecraftDetails.New(context.TODO(), unifieddatalibrary.SeradataSpacecraftDetailNewParams{
 		ClassificationMarking:                    "U",
-		DataMode:                                 unifieddatalibrary.SeradataspacecraftdetailNewParamsDataModeTest,
+		DataMode:                                 unifieddatalibrary.SeradataSpacecraftDetailNewParamsDataModeTest,
 		Name:                                     "name",
 		Source:                                   "Bluestaq",
 		ID:                                       unifieddatalibrary.String("SERADATASPACECRAFTDETAILS-ID"),
@@ -130,7 +130,7 @@ func TestSeradataspacecraftdetailNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradataspacecraftdetailUpdateWithOptionalParams(t *testing.T) {
+func TestSeradataSpacecraftDetailUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -143,12 +143,12 @@ func TestSeradataspacecraftdetailUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradataspacecraftdetails.Update(
+	err := client.SeradataSpacecraftDetails.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SeradataspacecraftdetailUpdateParams{
+		unifieddatalibrary.SeradataSpacecraftDetailUpdateParams{
 			ClassificationMarking:                    "U",
-			DataMode:                                 unifieddatalibrary.SeradataspacecraftdetailUpdateParamsDataModeTest,
+			DataMode:                                 unifieddatalibrary.SeradataSpacecraftDetailUpdateParamsDataModeTest,
 			Name:                                     "name",
 			Source:                                   "Bluestaq",
 			ID:                                       unifieddatalibrary.String("SERADATASPACECRAFTDETAILS-ID"),
@@ -250,7 +250,7 @@ func TestSeradataspacecraftdetailUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradataspacecraftdetailListWithOptionalParams(t *testing.T) {
+func TestSeradataSpacecraftDetailListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -263,7 +263,7 @@ func TestSeradataspacecraftdetailListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradataspacecraftdetails.List(context.TODO(), unifieddatalibrary.SeradataspacecraftdetailListParams{
+	_, err := client.SeradataSpacecraftDetails.List(context.TODO(), unifieddatalibrary.SeradataSpacecraftDetailListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -276,7 +276,7 @@ func TestSeradataspacecraftdetailListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradataspacecraftdetailDelete(t *testing.T) {
+func TestSeradataSpacecraftDetailDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -289,7 +289,7 @@ func TestSeradataspacecraftdetailDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradataspacecraftdetails.Delete(context.TODO(), "id")
+	err := client.SeradataSpacecraftDetails.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -299,7 +299,7 @@ func TestSeradataspacecraftdetailDelete(t *testing.T) {
 	}
 }
 
-func TestSeradataspacecraftdetailCountWithOptionalParams(t *testing.T) {
+func TestSeradataSpacecraftDetailCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -312,7 +312,7 @@ func TestSeradataspacecraftdetailCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradataspacecraftdetails.Count(context.TODO(), unifieddatalibrary.SeradataspacecraftdetailCountParams{
+	_, err := client.SeradataSpacecraftDetails.Count(context.TODO(), unifieddatalibrary.SeradataSpacecraftDetailCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -325,7 +325,7 @@ func TestSeradataspacecraftdetailCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradataspacecraftdetailGetWithOptionalParams(t *testing.T) {
+func TestSeradataSpacecraftDetailGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -338,10 +338,10 @@ func TestSeradataspacecraftdetailGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradataspacecraftdetails.Get(
+	_, err := client.SeradataSpacecraftDetails.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SeradataspacecraftdetailGetParams{
+		unifieddatalibrary.SeradataSpacecraftDetailGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -355,7 +355,7 @@ func TestSeradataspacecraftdetailGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradataspacecraftdetailQueryhelp(t *testing.T) {
+func TestSeradataSpacecraftDetailQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -368,7 +368,7 @@ func TestSeradataspacecraftdetailQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradataspacecraftdetails.Queryhelp(context.TODO())
+	err := client.SeradataSpacecraftDetails.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -378,7 +378,7 @@ func TestSeradataspacecraftdetailQueryhelp(t *testing.T) {
 	}
 }
 
-func TestSeradataspacecraftdetailTupleWithOptionalParams(t *testing.T) {
+func TestSeradataSpacecraftDetailTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -391,7 +391,7 @@ func TestSeradataspacecraftdetailTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradataspacecraftdetails.Tuple(context.TODO(), unifieddatalibrary.SeradataspacecraftdetailTupleParams{
+	_, err := client.SeradataSpacecraftDetails.Tuple(context.TODO(), unifieddatalibrary.SeradataSpacecraftDetailTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

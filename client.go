@@ -19,22 +19,17 @@ type Client struct {
 	AirEvents                 AirEventService
 	AirLoadPlans              AirLoadPlanService
 	AirOperations             AirOperationService
-	AirTaskingOrders          AirTaskingOrderService
 	AirTransportMissions      AirTransportMissionService
 	Aircraft                  AircraftService
 	AircraftSorties           AircraftSortyService
 	AircraftStatusRemarks     AircraftStatusRemarkService
 	AircraftStatuses          AircraftStatusService
-	Aircraftstatusremark      AircraftstatusremarkService
 	AirfieldSlots             AirfieldSlotService
 	AirfieldStatus            AirfieldStatusService
 	Airfields                 AirfieldService
-	Airfieldslotconsumptions  AirfieldslotconsumptionService
-	Airfieldslots             AirfieldslotService
-	Airfieldstatus            AirfieldstatusService
-	Airloadplans              AirloadplanService
+	AirfieldSlotConsumptions  AirfieldSlotConsumptionService
+	AirloadPlans              AirloadPlanService
 	AirspaceControlOrders     AirspaceControlOrderService
-	Airtaskingorders          AirtaskingorderService
 	AIs                       AIService
 	AIsObjects                AIsObjectService
 	AnalyticImagery           AnalyticImageryService
@@ -53,68 +48,63 @@ type Client struct {
 	Comm                      CommService
 	Conjunctions              ConjunctionService
 	Cots                      CotService
-	Aviationriskmanagement    AviationriskmanagementService
+	AviationRiskManagement    AviationRiskManagementService
 	Dropzone                  DropzoneService
-	Emittergeolocation        EmittergeolocationService
-	Featureassessment         FeatureassessmentService
-	Globalatmosphericmodel    GlobalatmosphericmodelService
-	Routestats                RoutestatService
+	EmitterGeolocation        EmitterGeolocationService
+	FeatureAssessment         FeatureAssessmentService
+	GlobalAtmosphericModel    GlobalAtmosphericModelService
+	RouteStats                RouteStatService
 	Countries                 CountryService
 	Crew                      CrewService
-	Diffofarrival             DiffofarrivalService
+	DiffOfArrival             DiffOfArrivalService
 	DiplomaticClearance       DiplomaticClearanceService
 	DriftHistory              DriftHistoryService
-	Ecpsdr                    EcpsdrService
+	EcpSdr                    EcpSdrService
 	EffectRequests            EffectRequestService
 	EffectResponses           EffectResponseService
 	Elsets                    ElsetService
 	EngineDetails             EngineDetailService
-	Enginedetails             EnginedetailService
 	Engines                   EngineService
 	Entities                  EntityService
-	EoObservations            EoObservationService
-	Eoobservations            EoobservationService
 	Eop                       EopService
 	Ephemeris                 EphemerisService
 	EphemerisSets             EphemerisSetService
 	Equipment                 EquipmentService
-	Equipmentremarks          EquipmentremarkService
+	EquipmentRemarks          EquipmentRemarkService
 	Evac                      EvacService
 	EventEvolution            EventEvolutionService
 	Flightplan                FlightplanService
-	Geostatus                 GeostatusService
-	Gnssobservationset        GnssobservationsetService
-	Gnssrawif                 GnssrawifService
+	GeoStatus                 GeoStatusService
+	GnssObservationset        GnssObservationsetService
+	GnssRawif                 GnssRawifService
 	GroundImagery             GroundImageryService
-	Groundimagery             GroundimageryService
-	H3geo                     H3geoService
-	H3geohexcell              H3geohexcellService
+	H3Geo                     H3GeoService
+	H3GeoHexCell              H3GeoHexCellService
 	Hazard                    HazardService
-	Ionoobservation           IonoobservationService
+	IonOobservation           IonOobservationService
 	Ir                        IrService
 	IsrCollections            IsrCollectionService
 	Item                      ItemService
 	ItemTrackings             ItemTrackingService
-	Launchdetection           LaunchdetectionService
-	Launchevent               LauncheventService
-	Launchsite                LaunchsiteService
-	Launchsitedetails         LaunchsitedetailService
-	Launchvehicle             LaunchvehicleService
-	Launchvehicledetails      LaunchvehicledetailService
+	LaunchDetection           LaunchDetectionService
+	LaunchEvent               LaunchEventService
+	LaunchSite                LaunchSiteService
+	LaunchSiteDetails         LaunchSiteDetailService
+	LaunchVehicle             LaunchVehicleService
+	LaunchVehicleDetails      LaunchVehicleDetailService
 	LinkStatus                LinkStatusService
 	Location                  LocationService
-	Logisticssupport          LogisticssupportService
+	LogisticsSupport          LogisticsSupportService
 	Maneuvers                 ManeuverService
 	Manifold                  ManifoldService
 	Manifoldelset             ManifoldelsetService
 	MissileTracks             MissileTrackService
-	Missionassignment         MissionassignmentService
-	Monoradar                 MonoradarService
+	MissionAssignment         MissionAssignmentService
 	Mti                       MtiService
 	Navigation                NavigationService
-	Navigationalobstruction   NavigationalobstructionService
+	NavigationalObstruction   NavigationalObstructionService
 	Notification              NotificationService
-	Objectofinterest          ObjectofinterestService
+	ObjectOfInterest          ObjectOfInterestService
 	Observations              ObservationService
 	Onboardnavigation         OnboardnavigationService
 	Onorbit                   OnorbitService
@@ -132,65 +122,60 @@ type Client struct {
 	Orbittrack                OrbittrackService
 	Organization              OrganizationService
 	Organizationdetails       OrganizationdetailService
-	Passiveradarobservation   PassiveradarobservationService
 	Personnelrecovery         PersonnelrecoveryService
 	Poi                       PoiService
 	Port                      PortService
-	Radarobservation          RadarobservationService
-	Rfband                    RfbandService
-	Rfbandtype                RfbandtypeService
-	Rfemitter                 RfemitterService
-	Rfemitterdetails          RfemitterdetailService
-	Rfobservation             RfobservationService
-	Sarobservation            SarobservationService
+	RfBand                    RfBandService
+	RfBandType                RfBandTypeService
+	RfEmitter                 RfEmitterService
+	RfEmitterDetails          RfEmitterDetailService
+	SarObservation            SarObservationService
 	Scientific                ScientificService
 	Sensor                    SensorService
-	Sensormaintenance         SensormaintenanceService
-	Sensorobservationtype     SensorobservationtypeService
-	Sensorplan                SensorplanService
-	Sensortype                SensortypeService
-	Seradatacommdetails       SeradatacommdetailService
-	Seradataearlywarning      SeradataearlywarningService
-	Seradatanavigation        SeradatanavigationService
-	Seradataopticalpayload    SeradataopticalpayloadService
-	Seradataradarpayload      SeradataradarpayloadService
-	Seradatasigintpayload     SeradatasigintpayloadService
-	Seradataspacecraftdetails SeradataspacecraftdetailService
+	SensorMaintenance         SensorMaintenanceService
+	SensorObservationType     SensorObservationTypeService
+	SensorPlan                SensorPlanService
+	SensorType                SensorTypeService
+	SeraDataCommDetails       SeraDataCommDetailService
+	SeraDataEarlyWarning      SeraDataEarlyWarningService
+	SeraDataNavigation        SeraDataNavigationService
+	SeradataOpticalPayload    SeradataOpticalPayloadService
+	SeradataRadarPayload      SeradataRadarPayloadService
+	SeradataSigintPayload     SeradataSigintPayloadService
+	SeradataSpacecraftDetails SeradataSpacecraftDetailService
 	Sgi                       SgiService
 	Sigact                    SigactService
 	Site                      SiteService
-	Siteremark                SiteremarkService
-	Sitestatus                SitestatusService
-	Skyimagery                SkyimageryService
-	Soiobservationset         SoiobservationsetService
-	Solararray                SolararrayService
-	Solararraydetails         SolararraydetailService
-	Sortieppr                 SortiepprService
-	Spaceenvobservation       SpaceenvobservationService
+	SiteRemark                SiteRemarkService
+	SiteStatus                SiteStatusService
+	SkyImagery                SkyImageryService
+	SoiObservationSet         SoiObservationSetService
+	SolarArray                SolarArrayService
+	SolarArrayDetails         SolarArrayDetailService
+	SortiePpr                 SortiePprService
+	SpaceEnvObservation       SpaceEnvObservationService
 	Stage                     StageService
-	Starcatalog               StarcatalogService
-	Statevector               StatevectorService
+	StarCatalog               StarCatalogService
+	StateVector               StateVectorService
 	Status                    StatusService
 	Substatus                 SubstatusService
 	SupportingData            SupportingDataService
 	Surface                   SurfaceService
-	Surfaceobstruction        SurfaceobstructionService
+	SurfaceObstruction        SurfaceObstructionService
 	Swir                      SwirService
-	Taiutc                    TaiutcService
+	TaiUtc                    TaiUtcService
 	TdoaFdoa                  TdoaFdoaService
 	Track                     TrackService
-	Trackdetails              TrackdetailService
-	Trackroute                TrackrouteService
+	TrackDetails              TrackDetailService
+	TrackRoute                TrackRouteService
 	Transponder               TransponderService
 	Vessel                    VesselService
 	Video                     VideoService
-	Weatherdata               WeatherdataService
-	Weatherreport             WeatherreportService
-	Udl                       UdlService
+	WeatherData               WeatherDataService
+	WeatherReport             WeatherReportService
 	GnssObservations          GnssObservationService
 	GnssRawIf                 GnssRawIfService
 	IonoObservation           IonoObservationService
-	LaunchEvent               LaunchEventService
 	ReportAndActivity         ReportAndActivityService
 	SecureMessaging           SecureMessagingService
 	Scs                       ScService
@@ -227,22 +212,17 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.AirEvents = NewAirEventService(opts...)
 	r.AirLoadPlans = NewAirLoadPlanService(opts...)
 	r.AirOperations = NewAirOperationService(opts...)
-	r.AirTaskingOrders = NewAirTaskingOrderService(opts...)
 	r.AirTransportMissions = NewAirTransportMissionService(opts...)
 	r.Aircraft = NewAircraftService(opts...)
 	r.AircraftSorties = NewAircraftSortyService(opts...)
 	r.AircraftStatusRemarks = NewAircraftStatusRemarkService(opts...)
 	r.AircraftStatuses = NewAircraftStatusService(opts...)
-	r.Aircraftstatusremark = NewAircraftstatusremarkService(opts...)
 	r.AirfieldSlots = NewAirfieldSlotService(opts...)
 	r.AirfieldStatus = NewAirfieldStatusService(opts...)
 	r.Airfields = NewAirfieldService(opts...)
-	r.Airfieldslotconsumptions = NewAirfieldslotconsumptionService(opts...)
-	r.Airfieldslots = NewAirfieldslotService(opts...)
-	r.Airfieldstatus = NewAirfieldstatusService(opts...)
-	r.Airloadplans = NewAirloadplanService(opts...)
+	r.AirfieldSlotConsumptions = NewAirfieldSlotConsumptionService(opts...)
+	r.AirloadPlans = NewAirloadPlanService(opts...)
 	r.AirspaceControlOrders = NewAirspaceControlOrderService(opts...)
-	r.Airtaskingorders = NewAirtaskingorderService(opts...)
 	r.AIs = NewAIService(opts...)
 	r.AIsObjects = NewAIsObjectService(opts...)
 	r.AnalyticImagery = NewAnalyticImageryService(opts...)
@@ -261,68 +241,63 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.Comm = NewCommService(opts...)
 	r.Conjunctions = NewConjunctionService(opts...)
 	r.Cots = NewCotService(opts...)
-	r.Aviationriskmanagement = NewAviationriskmanagementService(opts...)
+	r.AviationRiskManagement = NewAviationRiskManagementService(opts...)
 	r.Dropzone = NewDropzoneService(opts...)
-	r.Emittergeolocation = NewEmittergeolocationService(opts...)
-	r.Featureassessment = NewFeatureassessmentService(opts...)
-	r.Globalatmosphericmodel = NewGlobalatmosphericmodelService(opts...)
-	r.Routestats = NewRoutestatService(opts...)
+	r.EmitterGeolocation = NewEmitterGeolocationService(opts...)
+	r.FeatureAssessment = NewFeatureAssessmentService(opts...)
+	r.GlobalAtmosphericModel = NewGlobalAtmosphericModelService(opts...)
+	r.RouteStats = NewRouteStatService(opts...)
 	r.Countries = NewCountryService(opts...)
 	r.Crew = NewCrewService(opts...)
-	r.Diffofarrival = NewDiffofarrivalService(opts...)
+	r.DiffOfArrival = NewDiffOfArrivalService(opts...)
 	r.DiplomaticClearance = NewDiplomaticClearanceService(opts...)
 	r.DriftHistory = NewDriftHistoryService(opts...)
-	r.Ecpsdr = NewEcpsdrService(opts...)
+	r.EcpSdr = NewEcpSdrService(opts...)
 	r.EffectRequests = NewEffectRequestService(opts...)
 	r.EffectResponses = NewEffectResponseService(opts...)
 	r.Elsets = NewElsetService(opts...)
 	r.EngineDetails = NewEngineDetailService(opts...)
-	r.Enginedetails = NewEnginedetailService(opts...)
 	r.Engines = NewEngineService(opts...)
 	r.Entities = NewEntityService(opts...)
-	r.EoObservations = NewEoObservationService(opts...)
-	r.Eoobservations = NewEoobservationService(opts...)
 	r.Eop = NewEopService(opts...)
 	r.Ephemeris = NewEphemerisService(opts...)
 	r.EphemerisSets = NewEphemerisSetService(opts...)
 	r.Equipment = NewEquipmentService(opts...)
-	r.Equipmentremarks = NewEquipmentremarkService(opts...)
+	r.EquipmentRemarks = NewEquipmentRemarkService(opts...)
 	r.Evac = NewEvacService(opts...)
 	r.EventEvolution = NewEventEvolutionService(opts...)
 	r.Flightplan = NewFlightplanService(opts...)
-	r.Geostatus = NewGeostatusService(opts...)
-	r.Gnssobservationset = NewGnssobservationsetService(opts...)
-	r.Gnssrawif = NewGnssrawifService(opts...)
+	r.GeoStatus = NewGeoStatusService(opts...)
+	r.GnssObservationset = NewGnssObservationsetService(opts...)
+	r.GnssRawif = NewGnssRawifService(opts...)
 	r.GroundImagery = NewGroundImageryService(opts...)
-	r.Groundimagery = NewGroundimageryService(opts...)
-	r.H3geo = NewH3geoService(opts...)
-	r.H3geohexcell = NewH3geohexcellService(opts...)
+	r.H3Geo = NewH3GeoService(opts...)
+	r.H3GeoHexCell = NewH3GeoHexCellService(opts...)
 	r.Hazard = NewHazardService(opts...)
-	r.Ionoobservation = NewIonoobservationService(opts...)
+	r.IonOobservation = NewIonOobservationService(opts...)
 	r.Ir = NewIrService(opts...)
 	r.IsrCollections = NewIsrCollectionService(opts...)
 	r.Item = NewItemService(opts...)
 	r.ItemTrackings = NewItemTrackingService(opts...)
-	r.Launchdetection = NewLaunchdetectionService(opts...)
-	r.Launchevent = NewLauncheventService(opts...)
-	r.Launchsite = NewLaunchsiteService(opts...)
-	r.Launchsitedetails = NewLaunchsitedetailService(opts...)
-	r.Launchvehicle = NewLaunchvehicleService(opts...)
-	r.Launchvehicledetails = NewLaunchvehicledetailService(opts...)
+	r.LaunchDetection = NewLaunchDetectionService(opts...)
+	r.LaunchEvent = NewLaunchEventService(opts...)
+	r.LaunchSite = NewLaunchSiteService(opts...)
+	r.LaunchSiteDetails = NewLaunchSiteDetailService(opts...)
+	r.LaunchVehicle = NewLaunchVehicleService(opts...)
+	r.LaunchVehicleDetails = NewLaunchVehicleDetailService(opts...)
 	r.LinkStatus = NewLinkStatusService(opts...)
 	r.Location = NewLocationService(opts...)
-	r.Logisticssupport = NewLogisticssupportService(opts...)
+	r.LogisticsSupport = NewLogisticsSupportService(opts...)
 	r.Maneuvers = NewManeuverService(opts...)
 	r.Manifold = NewManifoldService(opts...)
 	r.Manifoldelset = NewManifoldelsetService(opts...)
 	r.MissileTracks = NewMissileTrackService(opts...)
-	r.Missionassignment = NewMissionassignmentService(opts...)
-	r.Monoradar = NewMonoradarService(opts...)
+	r.MissionAssignment = NewMissionAssignmentService(opts...)
 	r.Mti = NewMtiService(opts...)
 	r.Navigation = NewNavigationService(opts...)
-	r.Navigationalobstruction = NewNavigationalobstructionService(opts...)
+	r.NavigationalObstruction = NewNavigationalObstructionService(opts...)
 	r.Notification = NewNotificationService(opts...)
-	r.Objectofinterest = NewObjectofinterestService(opts...)
+	r.ObjectOfInterest = NewObjectOfInterestService(opts...)
 	r.Observations = NewObservationService(opts...)
 	r.Onboardnavigation = NewOnboardnavigationService(opts...)
 	r.Onorbit = NewOnorbitService(opts...)
@@ -340,65 +315,60 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.Orbittrack = NewOrbittrackService(opts...)
 	r.Organization = NewOrganizationService(opts...)
 	r.Organizationdetails = NewOrganizationdetailService(opts...)
-	r.Passiveradarobservation = NewPassiveradarobservationService(opts...)
 	r.Personnelrecovery = NewPersonnelrecoveryService(opts...)
 	r.Poi = NewPoiService(opts...)
 	r.Port = NewPortService(opts...)
-	r.Radarobservation = NewRadarobservationService(opts...)
-	r.Rfband = NewRfbandService(opts...)
-	r.Rfbandtype = NewRfbandtypeService(opts...)
-	r.Rfemitter = NewRfemitterService(opts...)
-	r.Rfemitterdetails = NewRfemitterdetailService(opts...)
-	r.Rfobservation = NewRfobservationService(opts...)
-	r.Sarobservation = NewSarobservationService(opts...)
+	r.RfBand = NewRfBandService(opts...)
+	r.RfBandType = NewRfBandTypeService(opts...)
+	r.RfEmitter = NewRfEmitterService(opts...)
+	r.RfEmitterDetails = NewRfEmitterDetailService(opts...)
+	r.SarObservation = NewSarObservationService(opts...)
 	r.Scientific = NewScientificService(opts...)
 	r.Sensor = NewSensorService(opts...)
-	r.Sensormaintenance = NewSensormaintenanceService(opts...)
-	r.Sensorobservationtype = NewSensorobservationtypeService(opts...)
-	r.Sensorplan = NewSensorplanService(opts...)
-	r.Sensortype = NewSensortypeService(opts...)
-	r.Seradatacommdetails = NewSeradatacommdetailService(opts...)
-	r.Seradataearlywarning = NewSeradataearlywarningService(opts...)
-	r.Seradatanavigation = NewSeradatanavigationService(opts...)
-	r.Seradataopticalpayload = NewSeradataopticalpayloadService(opts...)
-	r.Seradataradarpayload = NewSeradataradarpayloadService(opts...)
-	r.Seradatasigintpayload = NewSeradatasigintpayloadService(opts...)
-	r.Seradataspacecraftdetails = NewSeradataspacecraftdetailService(opts...)
+	r.SensorMaintenance = NewSensorMaintenanceService(opts...)
+	r.SensorObservationType = NewSensorObservationTypeService(opts...)
+	r.SensorPlan = NewSensorPlanService(opts...)
+	r.SensorType = NewSensorTypeService(opts...)
+	r.SeraDataCommDetails = NewSeraDataCommDetailService(opts...)
+	r.SeraDataEarlyWarning = NewSeraDataEarlyWarningService(opts...)
+	r.SeraDataNavigation = NewSeraDataNavigationService(opts...)
+	r.SeradataOpticalPayload = NewSeradataOpticalPayloadService(opts...)
+	r.SeradataRadarPayload = NewSeradataRadarPayloadService(opts...)
+	r.SeradataSigintPayload = NewSeradataSigintPayloadService(opts...)
+	r.SeradataSpacecraftDetails = NewSeradataSpacecraftDetailService(opts...)
 	r.Sgi = NewSgiService(opts...)
 	r.Sigact = NewSigactService(opts...)
 	r.Site = NewSiteService(opts...)
-	r.Siteremark = NewSiteremarkService(opts...)
-	r.Sitestatus = NewSitestatusService(opts...)
-	r.Skyimagery = NewSkyimageryService(opts...)
-	r.Soiobservationset = NewSoiobservationsetService(opts...)
-	r.Solararray = NewSolararrayService(opts...)
-	r.Solararraydetails = NewSolararraydetailService(opts...)
-	r.Sortieppr = NewSortiepprService(opts...)
-	r.Spaceenvobservation = NewSpaceenvobservationService(opts...)
+	r.SiteRemark = NewSiteRemarkService(opts...)
+	r.SiteStatus = NewSiteStatusService(opts...)
+	r.SkyImagery = NewSkyImageryService(opts...)
+	r.SoiObservationSet = NewSoiObservationSetService(opts...)
+	r.SolarArray = NewSolarArrayService(opts...)
+	r.SolarArrayDetails = NewSolarArrayDetailService(opts...)
+	r.SortiePpr = NewSortiePprService(opts...)
+	r.SpaceEnvObservation = NewSpaceEnvObservationService(opts...)
 	r.Stage = NewStageService(opts...)
-	r.Starcatalog = NewStarcatalogService(opts...)
-	r.Statevector = NewStatevectorService(opts...)
+	r.StarCatalog = NewStarCatalogService(opts...)
+	r.StateVector = NewStateVectorService(opts...)
 	r.Status = NewStatusService(opts...)
 	r.Substatus = NewSubstatusService(opts...)
 	r.SupportingData = NewSupportingDataService(opts...)
 	r.Surface = NewSurfaceService(opts...)
-	r.Surfaceobstruction = NewSurfaceobstructionService(opts...)
+	r.SurfaceObstruction = NewSurfaceObstructionService(opts...)
 	r.Swir = NewSwirService(opts...)
-	r.Taiutc = NewTaiutcService(opts...)
+	r.TaiUtc = NewTaiUtcService(opts...)
 	r.TdoaFdoa = NewTdoaFdoaService(opts...)
 	r.Track = NewTrackService(opts...)
-	r.Trackdetails = NewTrackdetailService(opts...)
-	r.Trackroute = NewTrackrouteService(opts...)
+	r.TrackDetails = NewTrackDetailService(opts...)
+	r.TrackRoute = NewTrackRouteService(opts...)
 	r.Transponder = NewTransponderService(opts...)
 	r.Vessel = NewVesselService(opts...)
 	r.Video = NewVideoService(opts...)
-	r.Weatherdata = NewWeatherdataService(opts...)
-	r.Weatherreport = NewWeatherreportService(opts...)
-	r.Udl = NewUdlService(opts...)
+	r.WeatherData = NewWeatherDataService(opts...)
+	r.WeatherReport = NewWeatherReportService(opts...)
 	r.GnssObservations = NewGnssObservationService(opts...)
 	r.GnssRawIf = NewGnssRawIfService(opts...)
 	r.IonoObservation = NewIonoObservationService(opts...)
-	r.LaunchEvent = NewLaunchEventService(opts...)
 	r.ReportAndActivity = NewReportAndActivityService(opts...)
 	r.SecureMessaging = NewSecureMessagingService(opts...)
 	r.Scs = NewScService(opts...)

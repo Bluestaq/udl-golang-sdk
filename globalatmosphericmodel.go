@@ -18,30 +18,30 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// GlobalatmosphericmodelService contains methods and other services that help with
+// GlobalAtmosphericModelService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewGlobalatmosphericmodelService] method instead.
-type GlobalatmosphericmodelService struct {
+// the [NewGlobalAtmosphericModelService] method instead.
+type GlobalAtmosphericModelService struct {
 	Options []option.RequestOption
-	History GlobalatmosphericmodelHistoryService
+	History GlobalAtmosphericModelHistoryService
 }
 
-// NewGlobalatmosphericmodelService generates a new service that applies the given
+// NewGlobalAtmosphericModelService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewGlobalatmosphericmodelService(opts ...option.RequestOption) (r GlobalatmosphericmodelService) {
-	r = GlobalatmosphericmodelService{}
+func NewGlobalAtmosphericModelService(opts ...option.RequestOption) (r GlobalAtmosphericModelService) {
+	r = GlobalAtmosphericModelService{}
 	r.Options = opts
-	r.History = NewGlobalatmosphericmodelHistoryService(opts...)
+	r.History = NewGlobalAtmosphericModelHistoryService(opts...)
 	return
 }
 
 // Service operation to get a single GlobalAtmosphericModel record by its unique ID
 // passed as a path parameter.
-func (r *GlobalatmosphericmodelService) Get(ctx context.Context, id string, query GlobalatmosphericmodelGetParams, opts ...option.RequestOption) (res *GlobalatmosphericmodelGetResponse, err error) {
+func (r *GlobalAtmosphericModelService) Get(ctx context.Context, id string, query GlobalAtmosphericModelGetParams, opts ...option.RequestOption) (res *GlobalAtmosphericModelGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -57,7 +57,7 @@ func (r *GlobalatmosphericmodelService) Get(ctx context.Context, id string, quer
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *GlobalatmosphericmodelService) Count(ctx context.Context, query GlobalatmosphericmodelCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *GlobalAtmosphericModelService) Count(ctx context.Context, query GlobalAtmosphericModelCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/globalatmosphericmodel/count"
@@ -68,7 +68,7 @@ func (r *GlobalatmosphericmodelService) Count(ctx context.Context, query Globala
 // Service operation to get a single GlobalAtmosphericModel compressed data file by
 // its unique ID passed as a path parameter. The compressed data file is returned
 // as an attachment Content-Disposition.
-func (r *GlobalatmosphericmodelService) GetFile(ctx context.Context, id string, query GlobalatmosphericmodelGetFileParams, opts ...option.RequestOption) (res *http.Response, err error) {
+func (r *GlobalAtmosphericModelService) GetFile(ctx context.Context, id string, query GlobalAtmosphericModelGetFileParams, opts ...option.RequestOption) (res *http.Response, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	if id == "" {
@@ -84,7 +84,7 @@ func (r *GlobalatmosphericmodelService) GetFile(ctx context.Context, id string, 
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *GlobalatmosphericmodelService) Query(ctx context.Context, query GlobalatmosphericmodelQueryParams, opts ...option.RequestOption) (res *[]GlobalatmosphericmodelQueryResponse, err error) {
+func (r *GlobalAtmosphericModelService) Query(ctx context.Context, query GlobalAtmosphericModelQueryParams, opts ...option.RequestOption) (res *[]GlobalAtmosphericModelQueryResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/globalatmosphericmodel"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -93,7 +93,7 @@ func (r *GlobalatmosphericmodelService) Query(ctx context.Context, query Globala
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *GlobalatmosphericmodelService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *GlobalAtmosphericModelService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/globalatmosphericmodel/queryhelp"
@@ -109,7 +109,7 @@ func (r *GlobalatmosphericmodelService) QueryHelp(ctx context.Context, opts ...o
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *GlobalatmosphericmodelService) Tuple(ctx context.Context, query GlobalatmosphericmodelTupleParams, opts ...option.RequestOption) (res *[]GlobalatmosphericmodelTupleResponse, err error) {
+func (r *GlobalAtmosphericModelService) Tuple(ctx context.Context, query GlobalAtmosphericModelTupleParams, opts ...option.RequestOption) (res *[]GlobalAtmosphericModelTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/globalatmosphericmodel/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -134,7 +134,7 @@ func (r *GlobalatmosphericmodelService) Tuple(ctx context.Context, query Globala
 // This operation is intended to be used for automated feeds into UDL. A specific
 // role is required to perform this service operation. Please contact the UDL team
 // for assistance.
-func (r *GlobalatmosphericmodelService) UnvalidatedPublish(ctx context.Context, body GlobalatmosphericmodelUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+func (r *GlobalAtmosphericModelService) UnvalidatedPublish(ctx context.Context, body GlobalAtmosphericModelUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-globalatmosphericmodel"
@@ -145,7 +145,7 @@ func (r *GlobalatmosphericmodelService) UnvalidatedPublish(ctx context.Context, 
 // The GlobalAtmosphericModel service provides atmospheric model output data for
 // use in space situational awareness such as the Global Total Electron Content
 // (2D) data, Global Total Electron Density (3D) data, etc.
-type GlobalatmosphericmodelGetResponse struct {
+type GlobalAtmosphericModelGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -164,7 +164,7 @@ type GlobalatmosphericmodelGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode GlobalatmosphericmodelGetResponseDataMode `json:"dataMode,required"`
+	DataMode GlobalAtmosphericModelGetResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Target time of the model in ISO 8601 UTC format with millisecond precision.
@@ -270,8 +270,8 @@ type GlobalatmosphericmodelGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r GlobalatmosphericmodelGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *GlobalatmosphericmodelGetResponse) UnmarshalJSON(data []byte) error {
+func (r GlobalAtmosphericModelGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *GlobalAtmosphericModelGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -289,19 +289,19 @@ func (r *GlobalatmosphericmodelGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type GlobalatmosphericmodelGetResponseDataMode string
+type GlobalAtmosphericModelGetResponseDataMode string
 
 const (
-	GlobalatmosphericmodelGetResponseDataModeReal      GlobalatmosphericmodelGetResponseDataMode = "REAL"
-	GlobalatmosphericmodelGetResponseDataModeTest      GlobalatmosphericmodelGetResponseDataMode = "TEST"
-	GlobalatmosphericmodelGetResponseDataModeSimulated GlobalatmosphericmodelGetResponseDataMode = "SIMULATED"
-	GlobalatmosphericmodelGetResponseDataModeExercise  GlobalatmosphericmodelGetResponseDataMode = "EXERCISE"
+	GlobalAtmosphericModelGetResponseDataModeReal      GlobalAtmosphericModelGetResponseDataMode = "REAL"
+	GlobalAtmosphericModelGetResponseDataModeTest      GlobalAtmosphericModelGetResponseDataMode = "TEST"
+	GlobalAtmosphericModelGetResponseDataModeSimulated GlobalAtmosphericModelGetResponseDataMode = "SIMULATED"
+	GlobalAtmosphericModelGetResponseDataModeExercise  GlobalAtmosphericModelGetResponseDataMode = "EXERCISE"
 )
 
 // The GlobalAtmosphericModel service provides atmospheric model output data for
 // use in space situational awareness such as the Global Total Electron Content
 // (2D) data, Global Total Electron Density (3D) data, etc.
-type GlobalatmosphericmodelQueryResponse struct {
+type GlobalAtmosphericModelQueryResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -320,7 +320,7 @@ type GlobalatmosphericmodelQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode GlobalatmosphericmodelQueryResponseDataMode `json:"dataMode,required"`
+	DataMode GlobalAtmosphericModelQueryResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Target time of the model in ISO 8601 UTC format with millisecond precision.
@@ -426,8 +426,8 @@ type GlobalatmosphericmodelQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r GlobalatmosphericmodelQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *GlobalatmosphericmodelQueryResponse) UnmarshalJSON(data []byte) error {
+func (r GlobalAtmosphericModelQueryResponse) RawJSON() string { return r.JSON.raw }
+func (r *GlobalAtmosphericModelQueryResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -445,19 +445,19 @@ func (r *GlobalatmosphericmodelQueryResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type GlobalatmosphericmodelQueryResponseDataMode string
+type GlobalAtmosphericModelQueryResponseDataMode string
 
 const (
-	GlobalatmosphericmodelQueryResponseDataModeReal      GlobalatmosphericmodelQueryResponseDataMode = "REAL"
-	GlobalatmosphericmodelQueryResponseDataModeTest      GlobalatmosphericmodelQueryResponseDataMode = "TEST"
-	GlobalatmosphericmodelQueryResponseDataModeSimulated GlobalatmosphericmodelQueryResponseDataMode = "SIMULATED"
-	GlobalatmosphericmodelQueryResponseDataModeExercise  GlobalatmosphericmodelQueryResponseDataMode = "EXERCISE"
+	GlobalAtmosphericModelQueryResponseDataModeReal      GlobalAtmosphericModelQueryResponseDataMode = "REAL"
+	GlobalAtmosphericModelQueryResponseDataModeTest      GlobalAtmosphericModelQueryResponseDataMode = "TEST"
+	GlobalAtmosphericModelQueryResponseDataModeSimulated GlobalAtmosphericModelQueryResponseDataMode = "SIMULATED"
+	GlobalAtmosphericModelQueryResponseDataModeExercise  GlobalAtmosphericModelQueryResponseDataMode = "EXERCISE"
 )
 
 // The GlobalAtmosphericModel service provides atmospheric model output data for
 // use in space situational awareness such as the Global Total Electron Content
 // (2D) data, Global Total Electron Density (3D) data, etc.
-type GlobalatmosphericmodelTupleResponse struct {
+type GlobalAtmosphericModelTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -476,7 +476,7 @@ type GlobalatmosphericmodelTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode GlobalatmosphericmodelTupleResponseDataMode `json:"dataMode,required"`
+	DataMode GlobalAtmosphericModelTupleResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Target time of the model in ISO 8601 UTC format with millisecond precision.
@@ -582,8 +582,8 @@ type GlobalatmosphericmodelTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r GlobalatmosphericmodelTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *GlobalatmosphericmodelTupleResponse) UnmarshalJSON(data []byte) error {
+func (r GlobalAtmosphericModelTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *GlobalAtmosphericModelTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -601,16 +601,16 @@ func (r *GlobalatmosphericmodelTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type GlobalatmosphericmodelTupleResponseDataMode string
+type GlobalAtmosphericModelTupleResponseDataMode string
 
 const (
-	GlobalatmosphericmodelTupleResponseDataModeReal      GlobalatmosphericmodelTupleResponseDataMode = "REAL"
-	GlobalatmosphericmodelTupleResponseDataModeTest      GlobalatmosphericmodelTupleResponseDataMode = "TEST"
-	GlobalatmosphericmodelTupleResponseDataModeSimulated GlobalatmosphericmodelTupleResponseDataMode = "SIMULATED"
-	GlobalatmosphericmodelTupleResponseDataModeExercise  GlobalatmosphericmodelTupleResponseDataMode = "EXERCISE"
+	GlobalAtmosphericModelTupleResponseDataModeReal      GlobalAtmosphericModelTupleResponseDataMode = "REAL"
+	GlobalAtmosphericModelTupleResponseDataModeTest      GlobalAtmosphericModelTupleResponseDataMode = "TEST"
+	GlobalAtmosphericModelTupleResponseDataModeSimulated GlobalAtmosphericModelTupleResponseDataMode = "SIMULATED"
+	GlobalAtmosphericModelTupleResponseDataModeExercise  GlobalAtmosphericModelTupleResponseDataMode = "EXERCISE"
 )
 
-type GlobalatmosphericmodelGetParams struct {
+type GlobalAtmosphericModelGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -618,18 +618,18 @@ type GlobalatmosphericmodelGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GlobalatmosphericmodelGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f GlobalAtmosphericModelGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [GlobalatmosphericmodelGetParams]'s query parameters as
+// URLQuery serializes [GlobalAtmosphericModelGetParams]'s query parameters as
 // `url.Values`.
-func (r GlobalatmosphericmodelGetParams) URLQuery() (v url.Values, err error) {
+func (r GlobalAtmosphericModelGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type GlobalatmosphericmodelCountParams struct {
+type GlobalAtmosphericModelCountParams struct {
 	// Target time of the model in ISO 8601 UTC format with millisecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	Ts          time.Time        `query:"ts,required" format:"date-time" json:"-"`
@@ -640,20 +640,20 @@ type GlobalatmosphericmodelCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GlobalatmosphericmodelCountParams) IsPresent() bool {
+func (f GlobalAtmosphericModelCountParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [GlobalatmosphericmodelCountParams]'s query parameters as
+// URLQuery serializes [GlobalAtmosphericModelCountParams]'s query parameters as
 // `url.Values`.
-func (r GlobalatmosphericmodelCountParams) URLQuery() (v url.Values, err error) {
+func (r GlobalAtmosphericModelCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type GlobalatmosphericmodelGetFileParams struct {
+type GlobalAtmosphericModelGetFileParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -661,20 +661,20 @@ type GlobalatmosphericmodelGetFileParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GlobalatmosphericmodelGetFileParams) IsPresent() bool {
+func (f GlobalAtmosphericModelGetFileParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [GlobalatmosphericmodelGetFileParams]'s query parameters as
+// URLQuery serializes [GlobalAtmosphericModelGetFileParams]'s query parameters as
 // `url.Values`.
-func (r GlobalatmosphericmodelGetFileParams) URLQuery() (v url.Values, err error) {
+func (r GlobalAtmosphericModelGetFileParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type GlobalatmosphericmodelQueryParams struct {
+type GlobalAtmosphericModelQueryParams struct {
 	// Target time of the model in ISO 8601 UTC format with millisecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	Ts          time.Time        `query:"ts,required" format:"date-time" json:"-"`
@@ -685,20 +685,20 @@ type GlobalatmosphericmodelQueryParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GlobalatmosphericmodelQueryParams) IsPresent() bool {
+func (f GlobalAtmosphericModelQueryParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [GlobalatmosphericmodelQueryParams]'s query parameters as
+// URLQuery serializes [GlobalAtmosphericModelQueryParams]'s query parameters as
 // `url.Values`.
-func (r GlobalatmosphericmodelQueryParams) URLQuery() (v url.Values, err error) {
+func (r GlobalAtmosphericModelQueryParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type GlobalatmosphericmodelTupleParams struct {
+type GlobalAtmosphericModelTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -714,20 +714,20 @@ type GlobalatmosphericmodelTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GlobalatmosphericmodelTupleParams) IsPresent() bool {
+func (f GlobalAtmosphericModelTupleParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [GlobalatmosphericmodelTupleParams]'s query parameters as
+// URLQuery serializes [GlobalAtmosphericModelTupleParams]'s query parameters as
 // `url.Values`.
-func (r GlobalatmosphericmodelTupleParams) URLQuery() (v url.Values, err error) {
+func (r GlobalAtmosphericModelTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type GlobalatmosphericmodelUnvalidatedPublishParams struct {
+type GlobalAtmosphericModelUnvalidatedPublishParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -746,7 +746,7 @@ type GlobalatmosphericmodelUnvalidatedPublishParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode GlobalatmosphericmodelUnvalidatedPublishParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode GlobalAtmosphericModelUnvalidatedPublishParamsDataMode `json:"dataMode,omitzero,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Target time of the model in ISO 8601 UTC format with millisecond precision.
@@ -805,12 +805,12 @@ type GlobalatmosphericmodelUnvalidatedPublishParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GlobalatmosphericmodelUnvalidatedPublishParams) IsPresent() bool {
+func (f GlobalAtmosphericModelUnvalidatedPublishParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r GlobalatmosphericmodelUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
-	type shadow GlobalatmosphericmodelUnvalidatedPublishParams
+func (r GlobalAtmosphericModelUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+	type shadow GlobalAtmosphericModelUnvalidatedPublishParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -828,11 +828,11 @@ func (r GlobalatmosphericmodelUnvalidatedPublishParams) MarshalJSON() (data []by
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type GlobalatmosphericmodelUnvalidatedPublishParamsDataMode string
+type GlobalAtmosphericModelUnvalidatedPublishParamsDataMode string
 
 const (
-	GlobalatmosphericmodelUnvalidatedPublishParamsDataModeReal      GlobalatmosphericmodelUnvalidatedPublishParamsDataMode = "REAL"
-	GlobalatmosphericmodelUnvalidatedPublishParamsDataModeTest      GlobalatmosphericmodelUnvalidatedPublishParamsDataMode = "TEST"
-	GlobalatmosphericmodelUnvalidatedPublishParamsDataModeSimulated GlobalatmosphericmodelUnvalidatedPublishParamsDataMode = "SIMULATED"
-	GlobalatmosphericmodelUnvalidatedPublishParamsDataModeExercise  GlobalatmosphericmodelUnvalidatedPublishParamsDataMode = "EXERCISE"
+	GlobalAtmosphericModelUnvalidatedPublishParamsDataModeReal      GlobalAtmosphericModelUnvalidatedPublishParamsDataMode = "REAL"
+	GlobalAtmosphericModelUnvalidatedPublishParamsDataModeTest      GlobalAtmosphericModelUnvalidatedPublishParamsDataMode = "TEST"
+	GlobalAtmosphericModelUnvalidatedPublishParamsDataModeSimulated GlobalAtmosphericModelUnvalidatedPublishParamsDataMode = "SIMULATED"
+	GlobalAtmosphericModelUnvalidatedPublishParamsDataModeExercise  GlobalAtmosphericModelUnvalidatedPublishParamsDataMode = "EXERCISE"
 )

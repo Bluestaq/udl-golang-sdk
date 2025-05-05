@@ -28,6 +28,7 @@ import (
 // the [NewNotificationService] method instead.
 type NotificationService struct {
 	Options []option.RequestOption
+	History NotificationHistoryService
 }
 
 // NewNotificationService generates a new service that applies the given options to
@@ -36,6 +37,7 @@ type NotificationService struct {
 func NewNotificationService(opts ...option.RequestOption) (r NotificationService) {
 	r = NotificationService{}
 	r.Options = opts
+	r.History = NewNotificationHistoryService(opts...)
 	return
 }
 

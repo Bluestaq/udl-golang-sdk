@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSensorplanHistoryGetWithOptionalParams(t *testing.T) {
+func TestSensorPlanHistoryGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestSensorplanHistoryGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sensorplan.History.Get(context.TODO(), unifieddatalibrary.SensorplanHistoryGetParams{
+	_, err := client.SensorPlan.History.Get(context.TODO(), unifieddatalibrary.SensorPlanHistoryGetParams{
 		StartTime:   time.Now(),
 		Columns:     unifieddatalibrary.String("columns"),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -42,7 +42,7 @@ func TestSensorplanHistoryGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensorplanHistoryAodrWithOptionalParams(t *testing.T) {
+func TestSensorPlanHistoryAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -55,7 +55,7 @@ func TestSensorplanHistoryAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sensorplan.History.Aodr(context.TODO(), unifieddatalibrary.SensorplanHistoryAodrParams{
+	err := client.SensorPlan.History.Aodr(context.TODO(), unifieddatalibrary.SensorPlanHistoryAodrParams{
 		StartTime:       time.Now(),
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -73,7 +73,7 @@ func TestSensorplanHistoryAodrWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensorplanHistoryCountWithOptionalParams(t *testing.T) {
+func TestSensorPlanHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -86,7 +86,7 @@ func TestSensorplanHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sensorplan.History.Count(context.TODO(), unifieddatalibrary.SensorplanHistoryCountParams{
+	_, err := client.SensorPlan.History.Count(context.TODO(), unifieddatalibrary.SensorPlanHistoryCountParams{
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

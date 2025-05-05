@@ -13,21 +13,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
 )
 
-// StarcatalogHistoryService contains methods and other services that help with
+// StarCatalogHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewStarcatalogHistoryService] method instead.
-type StarcatalogHistoryService struct {
+// the [NewStarCatalogHistoryService] method instead.
+type StarCatalogHistoryService struct {
 	Options []option.RequestOption
 }
 
-// NewStarcatalogHistoryService generates a new service that applies the given
+// NewStarCatalogHistoryService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewStarcatalogHistoryService(opts ...option.RequestOption) (r StarcatalogHistoryService) {
-	r = StarcatalogHistoryService{}
+func NewStarCatalogHistoryService(opts ...option.RequestOption) (r StarCatalogHistoryService) {
+	r = StarCatalogHistoryService{}
 	r.Options = opts
 	return
 }
@@ -37,7 +37,7 @@ func NewStarcatalogHistoryService(opts ...option.RequestOption) (r StarcatalogHi
 // Secure Content Store. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *StarcatalogHistoryService) Aodr(ctx context.Context, query StarcatalogHistoryAodrParams, opts ...option.RequestOption) (err error) {
+func (r *StarCatalogHistoryService) Aodr(ctx context.Context, query StarCatalogHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/starcatalog/history/aodr"
@@ -45,7 +45,7 @@ func (r *StarcatalogHistoryService) Aodr(ctx context.Context, query StarcatalogH
 	return
 }
 
-type StarcatalogHistoryAodrParams struct {
+type StarCatalogHistoryAodrParams struct {
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -76,11 +76,11 @@ type StarcatalogHistoryAodrParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarcatalogHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f StarCatalogHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [StarcatalogHistoryAodrParams]'s query parameters as
+// URLQuery serializes [StarCatalogHistoryAodrParams]'s query parameters as
 // `url.Values`.
-func (r StarcatalogHistoryAodrParams) URLQuery() (v url.Values, err error) {
+func (r StarCatalogHistoryAodrParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

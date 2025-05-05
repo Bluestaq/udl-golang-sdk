@@ -17,21 +17,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// WeatherdataHistoryService contains methods and other services that help with
+// WeatherDataHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewWeatherdataHistoryService] method instead.
-type WeatherdataHistoryService struct {
+// the [NewWeatherDataHistoryService] method instead.
+type WeatherDataHistoryService struct {
 	Options []option.RequestOption
 }
 
-// NewWeatherdataHistoryService generates a new service that applies the given
+// NewWeatherDataHistoryService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewWeatherdataHistoryService(opts ...option.RequestOption) (r WeatherdataHistoryService) {
-	r = WeatherdataHistoryService{}
+func NewWeatherDataHistoryService(opts ...option.RequestOption) (r WeatherDataHistoryService) {
+	r = WeatherDataHistoryService{}
 	r.Options = opts
 	return
 }
@@ -40,7 +40,7 @@ func NewWeatherdataHistoryService(opts ...option.RequestOption) (r WeatherdataHi
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *WeatherdataHistoryService) List(ctx context.Context, query WeatherdataHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[WeatherDataFull], err error) {
+func (r *WeatherDataHistoryService) List(ctx context.Context, query WeatherDataHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[WeatherDataFull], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -61,7 +61,7 @@ func (r *WeatherdataHistoryService) List(ctx context.Context, query WeatherdataH
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *WeatherdataHistoryService) ListAutoPaging(ctx context.Context, query WeatherdataHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[WeatherDataFull] {
+func (r *WeatherDataHistoryService) ListAutoPaging(ctx context.Context, query WeatherDataHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[WeatherDataFull] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -70,7 +70,7 @@ func (r *WeatherdataHistoryService) ListAutoPaging(ctx context.Context, query We
 // Secure Content Store. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *WeatherdataHistoryService) Aodr(ctx context.Context, query WeatherdataHistoryAodrParams, opts ...option.RequestOption) (err error) {
+func (r *WeatherDataHistoryService) Aodr(ctx context.Context, query WeatherDataHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/weatherdata/history/aodr"
@@ -83,7 +83,7 @@ func (r *WeatherdataHistoryService) Aodr(ctx context.Context, query WeatherdataH
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *WeatherdataHistoryService) Count(ctx context.Context, query WeatherdataHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *WeatherDataHistoryService) Count(ctx context.Context, query WeatherDataHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/weatherdata/history/count"
@@ -310,7 +310,7 @@ const (
 	WeatherDataFullDataModeExercise  WeatherDataFullDataMode = "EXERCISE"
 )
 
-type WeatherdataHistoryListParams struct {
+type WeatherDataHistoryListParams struct {
 	// Datetime of the weather observation in ISO 8601 UTC datetime format with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	ObTime time.Time `query:"obTime,required" format:"date-time" json:"-"`
@@ -325,18 +325,18 @@ type WeatherdataHistoryListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherdataHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f WeatherDataHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [WeatherdataHistoryListParams]'s query parameters as
+// URLQuery serializes [WeatherDataHistoryListParams]'s query parameters as
 // `url.Values`.
-func (r WeatherdataHistoryListParams) URLQuery() (v url.Values, err error) {
+func (r WeatherDataHistoryListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type WeatherdataHistoryAodrParams struct {
+type WeatherDataHistoryAodrParams struct {
 	// Datetime of the weather observation in ISO 8601 UTC datetime format with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	ObTime time.Time `query:"obTime,required" format:"date-time" json:"-"`
@@ -362,18 +362,18 @@ type WeatherdataHistoryAodrParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherdataHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f WeatherDataHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [WeatherdataHistoryAodrParams]'s query parameters as
+// URLQuery serializes [WeatherDataHistoryAodrParams]'s query parameters as
 // `url.Values`.
-func (r WeatherdataHistoryAodrParams) URLQuery() (v url.Values, err error) {
+func (r WeatherDataHistoryAodrParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type WeatherdataHistoryCountParams struct {
+type WeatherDataHistoryCountParams struct {
 	// Datetime of the weather observation in ISO 8601 UTC datetime format with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	ObTime      time.Time        `query:"obTime,required" format:"date-time" json:"-"`
@@ -384,11 +384,11 @@ type WeatherdataHistoryCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherdataHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f WeatherDataHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [WeatherdataHistoryCountParams]'s query parameters as
+// URLQuery serializes [WeatherDataHistoryCountParams]'s query parameters as
 // `url.Values`.
-func (r WeatherdataHistoryCountParams) URLQuery() (v url.Values, err error) {
+func (r WeatherDataHistoryCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

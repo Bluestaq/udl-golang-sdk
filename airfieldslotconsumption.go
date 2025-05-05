@@ -19,21 +19,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// AirfieldslotconsumptionService contains methods and other services that help
+// AirfieldSlotConsumptionService contains methods and other services that help
 // with interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewAirfieldslotconsumptionService] method instead.
-type AirfieldslotconsumptionService struct {
+// the [NewAirfieldSlotConsumptionService] method instead.
+type AirfieldSlotConsumptionService struct {
 	Options []option.RequestOption
 }
 
-// NewAirfieldslotconsumptionService generates a new service that applies the given
+// NewAirfieldSlotConsumptionService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewAirfieldslotconsumptionService(opts ...option.RequestOption) (r AirfieldslotconsumptionService) {
-	r = AirfieldslotconsumptionService{}
+func NewAirfieldSlotConsumptionService(opts ...option.RequestOption) (r AirfieldSlotConsumptionService) {
+	r = AirfieldSlotConsumptionService{}
 	r.Options = opts
 	return
 }
@@ -41,7 +41,7 @@ func NewAirfieldslotconsumptionService(opts ...option.RequestOption) (r Airfield
 // Service operation to take a single airfieldslotconsumption record as a POST body
 // and ingest into the database. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
-func (r *AirfieldslotconsumptionService) New(ctx context.Context, body AirfieldslotconsumptionNewParams, opts ...option.RequestOption) (err error) {
+func (r *AirfieldSlotConsumptionService) New(ctx context.Context, body AirfieldSlotConsumptionNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/airfieldslotconsumption"
@@ -51,7 +51,7 @@ func (r *AirfieldslotconsumptionService) New(ctx context.Context, body Airfields
 
 // Service operation to get a single airfieldslotconsumption record by its unique
 // ID passed as a path parameter.
-func (r *AirfieldslotconsumptionService) Get(ctx context.Context, id string, query AirfieldslotconsumptionGetParams, opts ...option.RequestOption) (res *AirfieldslotconsumptionFull, err error) {
+func (r *AirfieldSlotConsumptionService) Get(ctx context.Context, id string, query AirfieldSlotConsumptionGetParams, opts ...option.RequestOption) (res *AirfieldslotconsumptionFull, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -65,7 +65,7 @@ func (r *AirfieldslotconsumptionService) Get(ctx context.Context, id string, que
 // Service operation to update a single AirfieldSlotConsumption. A specific role is
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
-func (r *AirfieldslotconsumptionService) Update(ctx context.Context, id string, body AirfieldslotconsumptionUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *AirfieldSlotConsumptionService) Update(ctx context.Context, id string, body AirfieldSlotConsumptionUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -81,7 +81,7 @@ func (r *AirfieldslotconsumptionService) Update(ctx context.Context, id string, 
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *AirfieldslotconsumptionService) List(ctx context.Context, query AirfieldslotconsumptionListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AirfieldslotconsumptionAbridged], err error) {
+func (r *AirfieldSlotConsumptionService) List(ctx context.Context, query AirfieldSlotConsumptionListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AirfieldslotconsumptionAbridged], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -102,14 +102,14 @@ func (r *AirfieldslotconsumptionService) List(ctx context.Context, query Airfiel
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *AirfieldslotconsumptionService) ListAutoPaging(ctx context.Context, query AirfieldslotconsumptionListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[AirfieldslotconsumptionAbridged] {
+func (r *AirfieldSlotConsumptionService) ListAutoPaging(ctx context.Context, query AirfieldSlotConsumptionListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[AirfieldslotconsumptionAbridged] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to delete an airfieldslotconsumption record specified by the
 // passed ID path parameter. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *AirfieldslotconsumptionService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *AirfieldSlotConsumptionService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -126,7 +126,7 @@ func (r *AirfieldslotconsumptionService) Delete(ctx context.Context, id string, 
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *AirfieldslotconsumptionService) Count(ctx context.Context, query AirfieldslotconsumptionCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *AirfieldSlotConsumptionService) Count(ctx context.Context, query AirfieldSlotConsumptionCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/airfieldslotconsumption/count"
@@ -136,7 +136,7 @@ func (r *AirfieldslotconsumptionService) Count(ctx context.Context, query Airfie
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *AirfieldslotconsumptionService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *AirfieldSlotConsumptionService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/airfieldslotconsumption/queryhelp"
@@ -152,7 +152,7 @@ func (r *AirfieldslotconsumptionService) Queryhelp(ctx context.Context, opts ...
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *AirfieldslotconsumptionService) Tuple(ctx context.Context, query AirfieldslotconsumptionTupleParams, opts ...option.RequestOption) (res *[]AirfieldslotconsumptionFull, err error) {
+func (r *AirfieldSlotConsumptionService) Tuple(ctx context.Context, query AirfieldSlotConsumptionTupleParams, opts ...option.RequestOption) (res *[]AirfieldslotconsumptionFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/airfieldslotconsumption/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -564,7 +564,7 @@ const (
 	AirfieldslotconsumptionFullStatusOther     AirfieldslotconsumptionFullStatus = "OTHER"
 )
 
-type AirfieldslotconsumptionNewParams struct {
+type AirfieldSlotConsumptionNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -583,7 +583,7 @@ type AirfieldslotconsumptionNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode AirfieldslotconsumptionNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode AirfieldSlotConsumptionNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Unique identifier of the airfield slot for which this slot consumption record is
 	// referencing.
 	IDAirfieldSlot string `json:"idAirfieldSlot,required"`
@@ -663,16 +663,16 @@ type AirfieldslotconsumptionNewParams struct {
 	// Current status of this slot (REQUESTED / APPROVED / DENIED / BLOCKED / OTHER).
 	//
 	// Any of "REQUESTED", "APPROVED", "DENIED", "BLOCKED", "OTHER".
-	Status AirfieldslotconsumptionNewParamsStatus `json:"status,omitzero"`
+	Status AirfieldSlotConsumptionNewParamsStatus `json:"status,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldslotconsumptionNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f AirfieldSlotConsumptionNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r AirfieldslotconsumptionNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow AirfieldslotconsumptionNewParams
+func (r AirfieldSlotConsumptionNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow AirfieldSlotConsumptionNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -690,27 +690,27 @@ func (r AirfieldslotconsumptionNewParams) MarshalJSON() (data []byte, err error)
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type AirfieldslotconsumptionNewParamsDataMode string
+type AirfieldSlotConsumptionNewParamsDataMode string
 
 const (
-	AirfieldslotconsumptionNewParamsDataModeReal      AirfieldslotconsumptionNewParamsDataMode = "REAL"
-	AirfieldslotconsumptionNewParamsDataModeTest      AirfieldslotconsumptionNewParamsDataMode = "TEST"
-	AirfieldslotconsumptionNewParamsDataModeSimulated AirfieldslotconsumptionNewParamsDataMode = "SIMULATED"
-	AirfieldslotconsumptionNewParamsDataModeExercise  AirfieldslotconsumptionNewParamsDataMode = "EXERCISE"
+	AirfieldSlotConsumptionNewParamsDataModeReal      AirfieldSlotConsumptionNewParamsDataMode = "REAL"
+	AirfieldSlotConsumptionNewParamsDataModeTest      AirfieldSlotConsumptionNewParamsDataMode = "TEST"
+	AirfieldSlotConsumptionNewParamsDataModeSimulated AirfieldSlotConsumptionNewParamsDataMode = "SIMULATED"
+	AirfieldSlotConsumptionNewParamsDataModeExercise  AirfieldSlotConsumptionNewParamsDataMode = "EXERCISE"
 )
 
 // Current status of this slot (REQUESTED / APPROVED / DENIED / BLOCKED / OTHER).
-type AirfieldslotconsumptionNewParamsStatus string
+type AirfieldSlotConsumptionNewParamsStatus string
 
 const (
-	AirfieldslotconsumptionNewParamsStatusRequested AirfieldslotconsumptionNewParamsStatus = "REQUESTED"
-	AirfieldslotconsumptionNewParamsStatusApproved  AirfieldslotconsumptionNewParamsStatus = "APPROVED"
-	AirfieldslotconsumptionNewParamsStatusDenied    AirfieldslotconsumptionNewParamsStatus = "DENIED"
-	AirfieldslotconsumptionNewParamsStatusBlocked   AirfieldslotconsumptionNewParamsStatus = "BLOCKED"
-	AirfieldslotconsumptionNewParamsStatusOther     AirfieldslotconsumptionNewParamsStatus = "OTHER"
+	AirfieldSlotConsumptionNewParamsStatusRequested AirfieldSlotConsumptionNewParamsStatus = "REQUESTED"
+	AirfieldSlotConsumptionNewParamsStatusApproved  AirfieldSlotConsumptionNewParamsStatus = "APPROVED"
+	AirfieldSlotConsumptionNewParamsStatusDenied    AirfieldSlotConsumptionNewParamsStatus = "DENIED"
+	AirfieldSlotConsumptionNewParamsStatusBlocked   AirfieldSlotConsumptionNewParamsStatus = "BLOCKED"
+	AirfieldSlotConsumptionNewParamsStatusOther     AirfieldSlotConsumptionNewParamsStatus = "OTHER"
 )
 
-type AirfieldslotconsumptionGetParams struct {
+type AirfieldSlotConsumptionGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -718,18 +718,18 @@ type AirfieldslotconsumptionGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldslotconsumptionGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f AirfieldSlotConsumptionGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [AirfieldslotconsumptionGetParams]'s query parameters as
+// URLQuery serializes [AirfieldSlotConsumptionGetParams]'s query parameters as
 // `url.Values`.
-func (r AirfieldslotconsumptionGetParams) URLQuery() (v url.Values, err error) {
+func (r AirfieldSlotConsumptionGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type AirfieldslotconsumptionUpdateParams struct {
+type AirfieldSlotConsumptionUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -748,7 +748,7 @@ type AirfieldslotconsumptionUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode AirfieldslotconsumptionUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode AirfieldSlotConsumptionUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// Unique identifier of the airfield slot for which this slot consumption record is
 	// referencing.
 	IDAirfieldSlot string `json:"idAirfieldSlot,required"`
@@ -828,18 +828,18 @@ type AirfieldslotconsumptionUpdateParams struct {
 	// Current status of this slot (REQUESTED / APPROVED / DENIED / BLOCKED / OTHER).
 	//
 	// Any of "REQUESTED", "APPROVED", "DENIED", "BLOCKED", "OTHER".
-	Status AirfieldslotconsumptionUpdateParamsStatus `json:"status,omitzero"`
+	Status AirfieldSlotConsumptionUpdateParamsStatus `json:"status,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldslotconsumptionUpdateParams) IsPresent() bool {
+func (f AirfieldSlotConsumptionUpdateParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r AirfieldslotconsumptionUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow AirfieldslotconsumptionUpdateParams
+func (r AirfieldSlotConsumptionUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow AirfieldSlotConsumptionUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -857,27 +857,27 @@ func (r AirfieldslotconsumptionUpdateParams) MarshalJSON() (data []byte, err err
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type AirfieldslotconsumptionUpdateParamsDataMode string
+type AirfieldSlotConsumptionUpdateParamsDataMode string
 
 const (
-	AirfieldslotconsumptionUpdateParamsDataModeReal      AirfieldslotconsumptionUpdateParamsDataMode = "REAL"
-	AirfieldslotconsumptionUpdateParamsDataModeTest      AirfieldslotconsumptionUpdateParamsDataMode = "TEST"
-	AirfieldslotconsumptionUpdateParamsDataModeSimulated AirfieldslotconsumptionUpdateParamsDataMode = "SIMULATED"
-	AirfieldslotconsumptionUpdateParamsDataModeExercise  AirfieldslotconsumptionUpdateParamsDataMode = "EXERCISE"
+	AirfieldSlotConsumptionUpdateParamsDataModeReal      AirfieldSlotConsumptionUpdateParamsDataMode = "REAL"
+	AirfieldSlotConsumptionUpdateParamsDataModeTest      AirfieldSlotConsumptionUpdateParamsDataMode = "TEST"
+	AirfieldSlotConsumptionUpdateParamsDataModeSimulated AirfieldSlotConsumptionUpdateParamsDataMode = "SIMULATED"
+	AirfieldSlotConsumptionUpdateParamsDataModeExercise  AirfieldSlotConsumptionUpdateParamsDataMode = "EXERCISE"
 )
 
 // Current status of this slot (REQUESTED / APPROVED / DENIED / BLOCKED / OTHER).
-type AirfieldslotconsumptionUpdateParamsStatus string
+type AirfieldSlotConsumptionUpdateParamsStatus string
 
 const (
-	AirfieldslotconsumptionUpdateParamsStatusRequested AirfieldslotconsumptionUpdateParamsStatus = "REQUESTED"
-	AirfieldslotconsumptionUpdateParamsStatusApproved  AirfieldslotconsumptionUpdateParamsStatus = "APPROVED"
-	AirfieldslotconsumptionUpdateParamsStatusDenied    AirfieldslotconsumptionUpdateParamsStatus = "DENIED"
-	AirfieldslotconsumptionUpdateParamsStatusBlocked   AirfieldslotconsumptionUpdateParamsStatus = "BLOCKED"
-	AirfieldslotconsumptionUpdateParamsStatusOther     AirfieldslotconsumptionUpdateParamsStatus = "OTHER"
+	AirfieldSlotConsumptionUpdateParamsStatusRequested AirfieldSlotConsumptionUpdateParamsStatus = "REQUESTED"
+	AirfieldSlotConsumptionUpdateParamsStatusApproved  AirfieldSlotConsumptionUpdateParamsStatus = "APPROVED"
+	AirfieldSlotConsumptionUpdateParamsStatusDenied    AirfieldSlotConsumptionUpdateParamsStatus = "DENIED"
+	AirfieldSlotConsumptionUpdateParamsStatusBlocked   AirfieldSlotConsumptionUpdateParamsStatus = "BLOCKED"
+	AirfieldSlotConsumptionUpdateParamsStatusOther     AirfieldSlotConsumptionUpdateParamsStatus = "OTHER"
 )
 
-type AirfieldslotconsumptionListParams struct {
+type AirfieldSlotConsumptionListParams struct {
 	// The start of the slot window, in ISO 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
@@ -887,20 +887,20 @@ type AirfieldslotconsumptionListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldslotconsumptionListParams) IsPresent() bool {
+func (f AirfieldSlotConsumptionListParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [AirfieldslotconsumptionListParams]'s query parameters as
+// URLQuery serializes [AirfieldSlotConsumptionListParams]'s query parameters as
 // `url.Values`.
-func (r AirfieldslotconsumptionListParams) URLQuery() (v url.Values, err error) {
+func (r AirfieldSlotConsumptionListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type AirfieldslotconsumptionCountParams struct {
+type AirfieldSlotConsumptionCountParams struct {
 	// The start of the slot window, in ISO 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
@@ -910,20 +910,20 @@ type AirfieldslotconsumptionCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldslotconsumptionCountParams) IsPresent() bool {
+func (f AirfieldSlotConsumptionCountParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [AirfieldslotconsumptionCountParams]'s query parameters as
+// URLQuery serializes [AirfieldSlotConsumptionCountParams]'s query parameters as
 // `url.Values`.
-func (r AirfieldslotconsumptionCountParams) URLQuery() (v url.Values, err error) {
+func (r AirfieldSlotConsumptionCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type AirfieldslotconsumptionTupleParams struct {
+type AirfieldSlotConsumptionTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -938,13 +938,13 @@ type AirfieldslotconsumptionTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldslotconsumptionTupleParams) IsPresent() bool {
+func (f AirfieldSlotConsumptionTupleParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [AirfieldslotconsumptionTupleParams]'s query parameters as
+// URLQuery serializes [AirfieldSlotConsumptionTupleParams]'s query parameters as
 // `url.Values`.
-func (r AirfieldslotconsumptionTupleParams) URLQuery() (v url.Values, err error) {
+func (r AirfieldSlotConsumptionTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

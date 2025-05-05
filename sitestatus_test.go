@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSitestatusNewWithOptionalParams(t *testing.T) {
+func TestSiteStatusNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,21 +27,21 @@ func TestSitestatusNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sitestatus.New(context.TODO(), unifieddatalibrary.SitestatusNewParams{
+	err := client.SiteStatus.New(context.TODO(), unifieddatalibrary.SiteStatusNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.SitestatusNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.SiteStatusNewParamsDataModeTest,
 		IDSite:                "41e3e554-9790-40b9-bd7b-f30d864dcad8",
 		Source:                "Bluestaq",
 		ID:                    unifieddatalibrary.String("SITESTATUS-ID"),
-		Cat:                   unifieddatalibrary.SitestatusNewParamsCatCold,
+		Cat:                   unifieddatalibrary.SiteStatusNewParamsCatCold,
 		ColdInventory:         unifieddatalibrary.Int(1),
 		CommImpairment:        unifieddatalibrary.String("commImpairment"),
-		Cpcon:                 unifieddatalibrary.SitestatusNewParamsCpcon4,
-		Eoc:                   unifieddatalibrary.SitestatusNewParamsEocWarm,
-		Fpcon:                 unifieddatalibrary.SitestatusNewParamsFpconBravo,
+		Cpcon:                 unifieddatalibrary.SiteStatusNewParamsCpcon4,
+		Eoc:                   unifieddatalibrary.SiteStatusNewParamsEocWarm,
+		Fpcon:                 unifieddatalibrary.SiteStatusNewParamsFpconBravo,
 		HotInventory:          unifieddatalibrary.Int(1),
-		Hpcon:                 unifieddatalibrary.SitestatusNewParamsHpconCharlie,
-		InstStatus:            unifieddatalibrary.SitestatusNewParamsInstStatusPmc,
+		Hpcon:                 unifieddatalibrary.SiteStatusNewParamsHpconCharlie,
+		InstStatus:            unifieddatalibrary.SiteStatusNewParamsInstStatusPmc,
 		Link:                  []string{"ATDL", "IJMS", "LINK-1"},
 		LinkStatus:            []string{"AVAILABLE", "DEGRADED", "NOT AVAILABLE"},
 		Missile:               []string{"GMD", "HARPOON", "JAVELIN"},
@@ -72,7 +72,7 @@ func TestSitestatusNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSitestatusUpdateWithOptionalParams(t *testing.T) {
+func TestSiteStatusUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -85,24 +85,24 @@ func TestSitestatusUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sitestatus.Update(
+	err := client.SiteStatus.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SitestatusUpdateParams{
+		unifieddatalibrary.SiteStatusUpdateParams{
 			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.SitestatusUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.SiteStatusUpdateParamsDataModeTest,
 			IDSite:                "41e3e554-9790-40b9-bd7b-f30d864dcad8",
 			Source:                "Bluestaq",
 			ID:                    unifieddatalibrary.String("SITESTATUS-ID"),
-			Cat:                   unifieddatalibrary.SitestatusUpdateParamsCatCold,
+			Cat:                   unifieddatalibrary.SiteStatusUpdateParamsCatCold,
 			ColdInventory:         unifieddatalibrary.Int(1),
 			CommImpairment:        unifieddatalibrary.String("commImpairment"),
-			Cpcon:                 unifieddatalibrary.SitestatusUpdateParamsCpcon4,
-			Eoc:                   unifieddatalibrary.SitestatusUpdateParamsEocWarm,
-			Fpcon:                 unifieddatalibrary.SitestatusUpdateParamsFpconBravo,
+			Cpcon:                 unifieddatalibrary.SiteStatusUpdateParamsCpcon4,
+			Eoc:                   unifieddatalibrary.SiteStatusUpdateParamsEocWarm,
+			Fpcon:                 unifieddatalibrary.SiteStatusUpdateParamsFpconBravo,
 			HotInventory:          unifieddatalibrary.Int(1),
-			Hpcon:                 unifieddatalibrary.SitestatusUpdateParamsHpconCharlie,
-			InstStatus:            unifieddatalibrary.SitestatusUpdateParamsInstStatusPmc,
+			Hpcon:                 unifieddatalibrary.SiteStatusUpdateParamsHpconCharlie,
+			InstStatus:            unifieddatalibrary.SiteStatusUpdateParamsInstStatusPmc,
 			Link:                  []string{"ATDL", "IJMS", "LINK-1"},
 			LinkStatus:            []string{"AVAILABLE", "DEGRADED", "NOT AVAILABLE"},
 			Missile:               []string{"GMD", "HARPOON", "JAVELIN"},
@@ -134,7 +134,7 @@ func TestSitestatusUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSitestatusListWithOptionalParams(t *testing.T) {
+func TestSiteStatusListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -147,7 +147,7 @@ func TestSitestatusListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sitestatus.List(context.TODO(), unifieddatalibrary.SitestatusListParams{
+	_, err := client.SiteStatus.List(context.TODO(), unifieddatalibrary.SiteStatusListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -160,7 +160,7 @@ func TestSitestatusListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSitestatusDelete(t *testing.T) {
+func TestSiteStatusDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -173,7 +173,7 @@ func TestSitestatusDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sitestatus.Delete(context.TODO(), "id")
+	err := client.SiteStatus.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -183,7 +183,7 @@ func TestSitestatusDelete(t *testing.T) {
 	}
 }
 
-func TestSitestatusCountWithOptionalParams(t *testing.T) {
+func TestSiteStatusCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -196,7 +196,7 @@ func TestSitestatusCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sitestatus.Count(context.TODO(), unifieddatalibrary.SitestatusCountParams{
+	_, err := client.SiteStatus.Count(context.TODO(), unifieddatalibrary.SiteStatusCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -209,7 +209,7 @@ func TestSitestatusCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSitestatusGetWithOptionalParams(t *testing.T) {
+func TestSiteStatusGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -222,10 +222,10 @@ func TestSitestatusGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sitestatus.Get(
+	_, err := client.SiteStatus.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SitestatusGetParams{
+		unifieddatalibrary.SiteStatusGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -239,7 +239,7 @@ func TestSitestatusGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSitestatusQueryhelp(t *testing.T) {
+func TestSiteStatusQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -252,7 +252,7 @@ func TestSitestatusQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sitestatus.Queryhelp(context.TODO())
+	err := client.SiteStatus.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -262,7 +262,7 @@ func TestSitestatusQueryhelp(t *testing.T) {
 	}
 }
 
-func TestSitestatusTupleWithOptionalParams(t *testing.T) {
+func TestSiteStatusTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -275,7 +275,7 @@ func TestSitestatusTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sitestatus.Tuple(context.TODO(), unifieddatalibrary.SitestatusTupleParams{
+	_, err := client.SiteStatus.Tuple(context.TODO(), unifieddatalibrary.SiteStatusTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

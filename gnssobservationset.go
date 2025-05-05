@@ -18,22 +18,24 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// GnssobservationsetService contains methods and other services that help with
+// GnssObservationsetService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewGnssobservationsetService] method instead.
-type GnssobservationsetService struct {
+// the [NewGnssObservationsetService] method instead.
+type GnssObservationsetService struct {
 	Options []option.RequestOption
+	History GnssObservationsetHistoryService
 }
 
-// NewGnssobservationsetService generates a new service that applies the given
+// NewGnssObservationsetService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewGnssobservationsetService(opts ...option.RequestOption) (r GnssobservationsetService) {
-	r = GnssobservationsetService{}
+func NewGnssObservationsetService(opts ...option.RequestOption) (r GnssObservationsetService) {
+	r = GnssObservationsetService{}
 	r.Options = opts
+	r.History = NewGnssObservationsetHistoryService(opts...)
 	return
 }
 
@@ -41,7 +43,7 @@ func NewGnssobservationsetService(opts ...option.RequestOption) (r Gnssobservati
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *GnssobservationsetService) List(ctx context.Context, query GnssobservationsetListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[GnssobservationsetListResponse], err error) {
+func (r *GnssObservationsetService) List(ctx context.Context, query GnssObservationsetListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[GnssObservationsetListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -62,7 +64,7 @@ func (r *GnssobservationsetService) List(ctx context.Context, query Gnssobservat
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *GnssobservationsetService) ListAutoPaging(ctx context.Context, query GnssobservationsetListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[GnssobservationsetListResponse] {
+func (r *GnssObservationsetService) ListAutoPaging(ctx context.Context, query GnssObservationsetListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[GnssObservationsetListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -71,7 +73,7 @@ func (r *GnssobservationsetService) ListAutoPaging(ctx context.Context, query Gn
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *GnssobservationsetService) Count(ctx context.Context, query GnssobservationsetCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *GnssObservationsetService) Count(ctx context.Context, query GnssObservationsetCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/gnssobservationset/count"
@@ -84,7 +86,7 @@ func (r *GnssobservationsetService) Count(ctx context.Context, query Gnssobserva
 // not intended to be used for automated feeds into UDL. Data providers should
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
-func (r *GnssobservationsetService) NewBulk(ctx context.Context, body GnssobservationsetNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *GnssObservationsetService) NewBulk(ctx context.Context, body GnssObservationsetNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/gnssobservationset/createBulk"
@@ -94,7 +96,7 @@ func (r *GnssobservationsetService) NewBulk(ctx context.Context, body Gnssobserv
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *GnssobservationsetService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *GnssObservationsetService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/gnssobservationset/queryhelp"
@@ -110,7 +112,7 @@ func (r *GnssobservationsetService) Queryhelp(ctx context.Context, opts ...optio
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *GnssobservationsetService) Tuple(ctx context.Context, query GnssobservationsetTupleParams, opts ...option.RequestOption) (res *[]GnssObservationSetFull, err error) {
+func (r *GnssObservationsetService) Tuple(ctx context.Context, query GnssObservationsetTupleParams, opts ...option.RequestOption) (res *[]GnssObservationSetFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/gnssobservationset/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -121,7 +123,7 @@ func (r *GnssobservationsetService) Tuple(ctx context.Context, query Gnssobserva
 // GNSS Observation(s) as a POST body and ingest into the database. This operation
 // is intended to be used for automated feeds into UDL. A specific role is required
 // to perform this service operation. Please contact the UDL team for assistance.
-func (r *GnssobservationsetService) UnvalidatedPublish(ctx context.Context, body GnssobservationsetUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+func (r *GnssObservationsetService) UnvalidatedPublish(ctx context.Context, body GnssObservationsetUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-gnssobset"
@@ -130,7 +132,7 @@ func (r *GnssobservationsetService) UnvalidatedPublish(ctx context.Context, body
 }
 
 // Set of GNSSObservation data.
-type GnssobservationsetListResponse struct {
+type GnssObservationsetListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -149,7 +151,7 @@ type GnssobservationsetListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode GnssobservationsetListResponseDataMode `json:"dataMode,required"`
+	DataMode GnssObservationsetListResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Observation Time, in ISO8601 UTC format with microsecond precision. This
@@ -181,7 +183,7 @@ type GnssobservationsetListResponse struct {
 	// Geometric Dilution of Precision.
 	GDop float64 `json:"gDop"`
 	// GNSSObservations associated with this GNSSObservationSet.
-	GnssObservationList []GnssobservationsetListResponseGnssObservationList `json:"gnssObservationList"`
+	GnssObservationList []GnssObservationsetListResponseGnssObservationList `json:"gnssObservationList"`
 	// Horizontal Dilution of Precision.
 	HDop float64 `json:"hDop"`
 	// Unique identifier of the primary satellite on-orbit object.
@@ -322,8 +324,8 @@ type GnssobservationsetListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r GnssobservationsetListResponse) RawJSON() string { return r.JSON.raw }
-func (r *GnssobservationsetListResponse) UnmarshalJSON(data []byte) error {
+func (r GnssObservationsetListResponse) RawJSON() string { return r.JSON.raw }
+func (r *GnssObservationsetListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -341,13 +343,13 @@ func (r *GnssobservationsetListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type GnssobservationsetListResponseDataMode string
+type GnssObservationsetListResponseDataMode string
 
 const (
-	GnssobservationsetListResponseDataModeReal      GnssobservationsetListResponseDataMode = "REAL"
-	GnssobservationsetListResponseDataModeTest      GnssobservationsetListResponseDataMode = "TEST"
-	GnssobservationsetListResponseDataModeSimulated GnssobservationsetListResponseDataMode = "SIMULATED"
-	GnssobservationsetListResponseDataModeExercise  GnssobservationsetListResponseDataMode = "EXERCISE"
+	GnssObservationsetListResponseDataModeReal      GnssObservationsetListResponseDataMode = "REAL"
+	GnssObservationsetListResponseDataModeTest      GnssObservationsetListResponseDataMode = "TEST"
+	GnssObservationsetListResponseDataModeSimulated GnssObservationsetListResponseDataMode = "SIMULATED"
+	GnssObservationsetListResponseDataModeExercise  GnssObservationsetListResponseDataMode = "EXERCISE"
 )
 
 // Information for Global Navigation Satellite Systems (GNSS) Observations
@@ -358,7 +360,7 @@ const (
 // observation time, receiver location, and Dilution of Precision (DOP) values.
 // Users can Reference RINEX 3+ documentation for further information concerning
 // many of the standards and conventions for GNSS observations.
-type GnssobservationsetListResponseGnssObservationList struct {
+type GnssObservationsetListResponseGnssObservationList struct {
 	// GNSS Automatic Gain Control State.
 	AgcState int64 `json:"agcState"`
 	// RINEX 3+ compliant GNSS System and Satellite Identifier (represented as SNN,
@@ -404,12 +406,12 @@ type GnssobservationsetListResponseGnssObservationList struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r GnssobservationsetListResponseGnssObservationList) RawJSON() string { return r.JSON.raw }
-func (r *GnssobservationsetListResponseGnssObservationList) UnmarshalJSON(data []byte) error {
+func (r GnssObservationsetListResponseGnssObservationList) RawJSON() string { return r.JSON.raw }
+func (r *GnssObservationsetListResponseGnssObservationList) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type GnssobservationsetListParams struct {
+type GnssObservationsetListParams struct {
 	// Observation Time, in ISO8601 UTC format with microsecond precision. This
 	// timestamp applies to all observations within the set.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
@@ -421,18 +423,18 @@ type GnssobservationsetListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssobservationsetListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f GnssObservationsetListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [GnssobservationsetListParams]'s query parameters as
+// URLQuery serializes [GnssObservationsetListParams]'s query parameters as
 // `url.Values`.
-func (r GnssobservationsetListParams) URLQuery() (v url.Values, err error) {
+func (r GnssObservationsetListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type GnssobservationsetCountParams struct {
+type GnssObservationsetCountParams struct {
 	// Observation Time, in ISO8601 UTC format with microsecond precision. This
 	// timestamp applies to all observations within the set.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
@@ -444,34 +446,34 @@ type GnssobservationsetCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssobservationsetCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f GnssObservationsetCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [GnssobservationsetCountParams]'s query parameters as
+// URLQuery serializes [GnssObservationsetCountParams]'s query parameters as
 // `url.Values`.
-func (r GnssobservationsetCountParams) URLQuery() (v url.Values, err error) {
+func (r GnssObservationsetCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type GnssobservationsetNewBulkParams struct {
-	Body []GnssobservationsetNewBulkParamsBody
+type GnssObservationsetNewBulkParams struct {
+	Body []GnssObservationsetNewBulkParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssobservationsetNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f GnssObservationsetNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r GnssobservationsetNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r GnssObservationsetNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
 // Set of GNSSObservation data.
 //
 // The properties ClassificationMarking, DataMode, Source, Ts are required.
-type GnssobservationsetNewBulkParamsBody struct {
+type GnssObservationsetNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -575,7 +577,7 @@ type GnssobservationsetNewBulkParamsBody struct {
 	// body-fixed coordinate system.
 	Boresight []float64 `json:"boresight,omitzero"`
 	// GNSSObservations associated with this GNSSObservationSet.
-	GnssObservationList []GnssobservationsetNewBulkParamsBodyGnssObservationList `json:"gnssObservationList,omitzero"`
+	GnssObservationList []GnssObservationsetNewBulkParamsBodyGnssObservationList `json:"gnssObservationList,omitzero"`
 	// Array of the strings containing the individual observation code sets that are
 	// contained within this GNSS Observation set. Each string is a three-character
 	// representation of the measurement type, the channel, and the coding, in
@@ -621,16 +623,16 @@ type GnssobservationsetNewBulkParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssobservationsetNewBulkParamsBody) IsPresent() bool {
+func (f GnssObservationsetNewBulkParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r GnssobservationsetNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow GnssobservationsetNewBulkParamsBody
+func (r GnssObservationsetNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow GnssObservationsetNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[GnssobservationsetNewBulkParamsBody](
+	apijson.RegisterFieldValidator[GnssObservationsetNewBulkParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
@@ -643,7 +645,7 @@ func init() {
 // observation time, receiver location, and Dilution of Precision (DOP) values.
 // Users can Reference RINEX 3+ documentation for further information concerning
 // many of the standards and conventions for GNSS observations.
-type GnssobservationsetNewBulkParamsBodyGnssObservationList struct {
+type GnssObservationsetNewBulkParamsBodyGnssObservationList struct {
 	// GNSS Automatic Gain Control State.
 	AgcState param.Opt[int64] `json:"agcState,omitzero"`
 	// RINEX 3+ compliant GNSS System and Satellite Identifier (represented as SNN,
@@ -680,15 +682,15 @@ type GnssobservationsetNewBulkParamsBodyGnssObservationList struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssobservationsetNewBulkParamsBodyGnssObservationList) IsPresent() bool {
+func (f GnssObservationsetNewBulkParamsBodyGnssObservationList) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r GnssobservationsetNewBulkParamsBodyGnssObservationList) MarshalJSON() (data []byte, err error) {
-	type shadow GnssobservationsetNewBulkParamsBodyGnssObservationList
+func (r GnssObservationsetNewBulkParamsBodyGnssObservationList) MarshalJSON() (data []byte, err error) {
+	type shadow GnssObservationsetNewBulkParamsBodyGnssObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
-type GnssobservationsetTupleParams struct {
+type GnssObservationsetTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -705,36 +707,36 @@ type GnssobservationsetTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssobservationsetTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f GnssObservationsetTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [GnssobservationsetTupleParams]'s query parameters as
+// URLQuery serializes [GnssObservationsetTupleParams]'s query parameters as
 // `url.Values`.
-func (r GnssobservationsetTupleParams) URLQuery() (v url.Values, err error) {
+func (r GnssObservationsetTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type GnssobservationsetUnvalidatedPublishParams struct {
-	Body []GnssobservationsetUnvalidatedPublishParamsBody
+type GnssObservationsetUnvalidatedPublishParams struct {
+	Body []GnssObservationsetUnvalidatedPublishParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssobservationsetUnvalidatedPublishParams) IsPresent() bool {
+func (f GnssObservationsetUnvalidatedPublishParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r GnssobservationsetUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+func (r GnssObservationsetUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
 // Set of GNSSObservation data.
 //
 // The properties ClassificationMarking, DataMode, Source, Ts are required.
-type GnssobservationsetUnvalidatedPublishParamsBody struct {
+type GnssObservationsetUnvalidatedPublishParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -838,7 +840,7 @@ type GnssobservationsetUnvalidatedPublishParamsBody struct {
 	// body-fixed coordinate system.
 	Boresight []float64 `json:"boresight,omitzero"`
 	// GNSSObservations associated with this GNSSObservationSet.
-	GnssObservationList []GnssobservationsetUnvalidatedPublishParamsBodyGnssObservationList `json:"gnssObservationList,omitzero"`
+	GnssObservationList []GnssObservationsetUnvalidatedPublishParamsBodyGnssObservationList `json:"gnssObservationList,omitzero"`
 	// Array of the strings containing the individual observation code sets that are
 	// contained within this GNSS Observation set. Each string is a three-character
 	// representation of the measurement type, the channel, and the coding, in
@@ -884,16 +886,16 @@ type GnssobservationsetUnvalidatedPublishParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssobservationsetUnvalidatedPublishParamsBody) IsPresent() bool {
+func (f GnssObservationsetUnvalidatedPublishParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r GnssobservationsetUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow GnssobservationsetUnvalidatedPublishParamsBody
+func (r GnssObservationsetUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow GnssObservationsetUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[GnssobservationsetUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[GnssObservationsetUnvalidatedPublishParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
@@ -906,7 +908,7 @@ func init() {
 // observation time, receiver location, and Dilution of Precision (DOP) values.
 // Users can Reference RINEX 3+ documentation for further information concerning
 // many of the standards and conventions for GNSS observations.
-type GnssobservationsetUnvalidatedPublishParamsBodyGnssObservationList struct {
+type GnssObservationsetUnvalidatedPublishParamsBodyGnssObservationList struct {
 	// GNSS Automatic Gain Control State.
 	AgcState param.Opt[int64] `json:"agcState,omitzero"`
 	// RINEX 3+ compliant GNSS System and Satellite Identifier (represented as SNN,
@@ -943,10 +945,10 @@ type GnssobservationsetUnvalidatedPublishParamsBodyGnssObservationList struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssobservationsetUnvalidatedPublishParamsBodyGnssObservationList) IsPresent() bool {
+func (f GnssObservationsetUnvalidatedPublishParamsBodyGnssObservationList) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r GnssobservationsetUnvalidatedPublishParamsBodyGnssObservationList) MarshalJSON() (data []byte, err error) {
-	type shadow GnssobservationsetUnvalidatedPublishParamsBodyGnssObservationList
+func (r GnssObservationsetUnvalidatedPublishParamsBodyGnssObservationList) MarshalJSON() (data []byte, err error) {
+	type shadow GnssObservationsetUnvalidatedPublishParamsBodyGnssObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
 }

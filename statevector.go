@@ -21,26 +21,26 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
-// StatevectorService contains methods and other services that help with
+// StateVectorService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewStatevectorService] method instead.
-type StatevectorService struct {
+// the [NewStateVectorService] method instead.
+type StateVectorService struct {
 	Options []option.RequestOption
-	History StatevectorHistoryService
-	Current StatevectorCurrentService
+	History StateVectorHistoryService
+	Current StateVectorCurrentService
 }
 
-// NewStatevectorService generates a new service that applies the given options to
+// NewStateVectorService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewStatevectorService(opts ...option.RequestOption) (r StatevectorService) {
-	r = StatevectorService{}
+func NewStateVectorService(opts ...option.RequestOption) (r StateVectorService) {
+	r = StateVectorService{}
 	r.Options = opts
-	r.History = NewStatevectorHistoryService(opts...)
-	r.Current = NewStatevectorCurrentService(opts...)
+	r.History = NewStateVectorHistoryService(opts...)
+	r.Current = NewStateVectorCurrentService(opts...)
 	return
 }
 
@@ -49,7 +49,7 @@ func NewStatevectorService(opts ...option.RequestOption) (r StatevectorService) 
 // UDL. Data providers should contact the UDL team for specific role assignments
 // and for instructions on setting up a permanent feed through an alternate
 // mechanism.
-func (r *StatevectorService) New(ctx context.Context, body StatevectorNewParams, opts ...option.RequestOption) (err error) {
+func (r *StateVectorService) New(ctx context.Context, body StateVectorNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/statevector"
@@ -61,7 +61,7 @@ func (r *StatevectorService) New(ctx context.Context, body StatevectorNewParams,
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *StatevectorService) List(ctx context.Context, query StatevectorListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[StateVectorAbridged], err error) {
+func (r *StateVectorService) List(ctx context.Context, query StateVectorListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[StateVectorAbridged], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -82,7 +82,7 @@ func (r *StatevectorService) List(ctx context.Context, query StatevectorListPara
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *StatevectorService) ListAutoPaging(ctx context.Context, query StatevectorListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[StateVectorAbridged] {
+func (r *StateVectorService) ListAutoPaging(ctx context.Context, query StateVectorListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[StateVectorAbridged] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -91,7 +91,7 @@ func (r *StatevectorService) ListAutoPaging(ctx context.Context, query Statevect
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *StatevectorService) Count(ctx context.Context, query StatevectorCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *StateVectorService) Count(ctx context.Context, query StateVectorCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/statevector/count"
@@ -104,7 +104,7 @@ func (r *StatevectorService) Count(ctx context.Context, query StatevectorCountPa
 // intended to be used for automated feeds into UDL. Data providers should contact
 // the UDL team for specific role assignments and for instructions on setting up a
 // permanent feed through an alternate mechanism.
-func (r *StatevectorService) NewBulk(ctx context.Context, body StatevectorNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *StateVectorService) NewBulk(ctx context.Context, body StateVectorNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/statevector/createBulk"
@@ -114,7 +114,7 @@ func (r *StatevectorService) NewBulk(ctx context.Context, body StatevectorNewBul
 
 // Service operation to get a single state vector by its unique ID passed as a path
 // parameter.
-func (r *StatevectorService) Get(ctx context.Context, id string, query StatevectorGetParams, opts ...option.RequestOption) (res *StateVectorFull, err error) {
+func (r *StateVectorService) Get(ctx context.Context, id string, query StateVectorGetParams, opts ...option.RequestOption) (res *StateVectorFull, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -127,7 +127,7 @@ func (r *StatevectorService) Get(ctx context.Context, id string, query Statevect
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *StatevectorService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *StateVectorService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/statevector/queryhelp"
@@ -143,7 +143,7 @@ func (r *StatevectorService) Queryhelp(ctx context.Context, opts ...option.Reque
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *StatevectorService) Tuple(ctx context.Context, query StatevectorTupleParams, opts ...option.RequestOption) (res *[]StateVectorFull, err error) {
+func (r *StateVectorService) Tuple(ctx context.Context, query StateVectorTupleParams, opts ...option.RequestOption) (res *[]StateVectorFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/statevector/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -154,7 +154,7 @@ func (r *StatevectorService) Tuple(ctx context.Context, query StatevectorTuplePa
 // the database. This operation is intended to be used for automated feeds into
 // UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
-func (r *StatevectorService) UnvalidatedPublish(ctx context.Context, body StatevectorUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+func (r *StateVectorService) UnvalidatedPublish(ctx context.Context, body StateVectorUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-sv"
@@ -1835,7 +1835,7 @@ const (
 	StateVectorIngestReferenceFrameGcrf    StateVectorIngestReferenceFrame = "GCRF"
 )
 
-type StatevectorNewParams struct {
+type StateVectorNewParams struct {
 	// This service provides operations for querying and manipulation of state vectors
 	// for OnOrbit objects. State vectors are cartesian vectors of position (r) and
 	// velocity (v) that, together with their time (epoch) (t), uniquely determine the
@@ -1850,13 +1850,13 @@ type StatevectorNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatevectorNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f StateVectorNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r StatevectorNewParams) MarshalJSON() (data []byte, err error) {
+func (r StateVectorNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.StateVectorIngest)
 }
 
-type StatevectorListParams struct {
+type StateVectorListParams struct {
 	// Time of validity for state vector in ISO 8601 UTC datetime format, with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	Epoch       time.Time        `query:"epoch,required" format:"date-time" json:"-"`
@@ -1867,17 +1867,17 @@ type StatevectorListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatevectorListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f StateVectorListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [StatevectorListParams]'s query parameters as `url.Values`.
-func (r StatevectorListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [StateVectorListParams]'s query parameters as `url.Values`.
+func (r StateVectorListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type StatevectorCountParams struct {
+type StateVectorCountParams struct {
 	// Time of validity for state vector in ISO 8601 UTC datetime format, with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	Epoch       time.Time        `query:"epoch,required" format:"date-time" json:"-"`
@@ -1888,30 +1888,30 @@ type StatevectorCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatevectorCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f StateVectorCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [StatevectorCountParams]'s query parameters as `url.Values`.
-func (r StatevectorCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [StateVectorCountParams]'s query parameters as `url.Values`.
+func (r StateVectorCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type StatevectorNewBulkParams struct {
+type StateVectorNewBulkParams struct {
 	Body []StateVectorIngestParam
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatevectorNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f StateVectorNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r StatevectorNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r StateVectorNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
-type StatevectorGetParams struct {
+type StateVectorGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1919,17 +1919,17 @@ type StatevectorGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatevectorGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f StateVectorGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [StatevectorGetParams]'s query parameters as `url.Values`.
-func (r StatevectorGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [StateVectorGetParams]'s query parameters as `url.Values`.
+func (r StateVectorGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type StatevectorTupleParams struct {
+type StateVectorTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -1945,27 +1945,27 @@ type StatevectorTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatevectorTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f StateVectorTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [StatevectorTupleParams]'s query parameters as `url.Values`.
-func (r StatevectorTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [StateVectorTupleParams]'s query parameters as `url.Values`.
+func (r StateVectorTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type StatevectorUnvalidatedPublishParams struct {
+type StateVectorUnvalidatedPublishParams struct {
 	Body []StateVectorIngestParam
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatevectorUnvalidatedPublishParams) IsPresent() bool {
+func (f StateVectorUnvalidatedPublishParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r StatevectorUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+func (r StateVectorUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }

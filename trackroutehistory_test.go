@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestTrackrouteHistoryListWithOptionalParams(t *testing.T) {
+func TestTrackRouteHistoryListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestTrackrouteHistoryListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Trackroute.History.List(context.TODO(), unifieddatalibrary.TrackrouteHistoryListParams{
+	_, err := client.TrackRoute.History.List(context.TODO(), unifieddatalibrary.TrackRouteHistoryListParams{
 		LastUpdateDate: time.Now(),
 		Columns:        unifieddatalibrary.String("columns"),
 		FirstResult:    unifieddatalibrary.Int(0),
@@ -42,7 +42,7 @@ func TestTrackrouteHistoryListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestTrackrouteHistoryAodrWithOptionalParams(t *testing.T) {
+func TestTrackRouteHistoryAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -55,7 +55,7 @@ func TestTrackrouteHistoryAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Trackroute.History.Aodr(context.TODO(), unifieddatalibrary.TrackrouteHistoryAodrParams{
+	err := client.TrackRoute.History.Aodr(context.TODO(), unifieddatalibrary.TrackRouteHistoryAodrParams{
 		LastUpdateDate:  time.Now(),
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -73,7 +73,7 @@ func TestTrackrouteHistoryAodrWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestTrackrouteHistoryCountWithOptionalParams(t *testing.T) {
+func TestTrackRouteHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -86,7 +86,7 @@ func TestTrackrouteHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Trackroute.History.Count(context.TODO(), unifieddatalibrary.TrackrouteHistoryCountParams{
+	_, err := client.TrackRoute.History.Count(context.TODO(), unifieddatalibrary.TrackRouteHistoryCountParams{
 		LastUpdateDate: time.Now(),
 		FirstResult:    unifieddatalibrary.Int(0),
 		MaxResults:     unifieddatalibrary.Int(0),

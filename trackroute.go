@@ -20,31 +20,31 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// TrackrouteService contains methods and other services that help with interacting
+// TrackRouteService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewTrackrouteService] method instead.
-type TrackrouteService struct {
+// the [NewTrackRouteService] method instead.
+type TrackRouteService struct {
 	Options []option.RequestOption
-	History TrackrouteHistoryService
+	History TrackRouteHistoryService
 }
 
-// NewTrackrouteService generates a new service that applies the given options to
+// NewTrackRouteService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewTrackrouteService(opts ...option.RequestOption) (r TrackrouteService) {
-	r = TrackrouteService{}
+func NewTrackRouteService(opts ...option.RequestOption) (r TrackRouteService) {
+	r = TrackRouteService{}
 	r.Options = opts
-	r.History = NewTrackrouteHistoryService(opts...)
+	r.History = NewTrackRouteHistoryService(opts...)
 	return
 }
 
 // Service operation to take a single trackroute record as a POST body and ingest
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *TrackrouteService) New(ctx context.Context, body TrackrouteNewParams, opts ...option.RequestOption) (err error) {
+func (r *TrackRouteService) New(ctx context.Context, body TrackRouteNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/trackroute"
@@ -55,7 +55,7 @@ func (r *TrackrouteService) New(ctx context.Context, body TrackrouteNewParams, o
 // Service operation to update a single trackroute record. A specific role is
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
-func (r *TrackrouteService) Update(ctx context.Context, id string, body TrackrouteUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *TrackRouteService) Update(ctx context.Context, id string, body TrackRouteUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -71,7 +71,7 @@ func (r *TrackrouteService) Update(ctx context.Context, id string, body Trackrou
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *TrackrouteService) List(ctx context.Context, query TrackrouteListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[TrackrouteListResponse], err error) {
+func (r *TrackRouteService) List(ctx context.Context, query TrackRouteListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[TrackRouteListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -92,14 +92,14 @@ func (r *TrackrouteService) List(ctx context.Context, query TrackrouteListParams
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *TrackrouteService) ListAutoPaging(ctx context.Context, query TrackrouteListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[TrackrouteListResponse] {
+func (r *TrackRouteService) ListAutoPaging(ctx context.Context, query TrackRouteListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[TrackRouteListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to delete a trackroute record specified by the passed ID path
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
-func (r *TrackrouteService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+func (r *TrackRouteService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -116,7 +116,7 @@ func (r *TrackrouteService) Delete(ctx context.Context, id string, opts ...optio
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *TrackrouteService) Count(ctx context.Context, query TrackrouteCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *TrackRouteService) Count(ctx context.Context, query TrackRouteCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/trackroute/count"
@@ -129,7 +129,7 @@ func (r *TrackrouteService) Count(ctx context.Context, query TrackrouteCountPara
 // is not intended to be used for automated feeds into UDL. Data providers should
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
-func (r *TrackrouteService) NewBulk(ctx context.Context, body TrackrouteNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *TrackRouteService) NewBulk(ctx context.Context, body TrackRouteNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/trackroute/createBulk"
@@ -139,7 +139,7 @@ func (r *TrackrouteService) NewBulk(ctx context.Context, body TrackrouteNewBulkP
 
 // Service operation to get a single trackroute record by its unique ID passed as a
 // path parameter.
-func (r *TrackrouteService) Get(ctx context.Context, id string, query TrackrouteGetParams, opts ...option.RequestOption) (res *TrackRouteFull, err error) {
+func (r *TrackRouteService) Get(ctx context.Context, id string, query TrackRouteGetParams, opts ...option.RequestOption) (res *TrackRouteFull, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -152,7 +152,7 @@ func (r *TrackrouteService) Get(ctx context.Context, id string, query Trackroute
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *TrackrouteService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *TrackRouteService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/trackroute/queryhelp"
@@ -168,7 +168,7 @@ func (r *TrackrouteService) Queryhelp(ctx context.Context, opts ...option.Reques
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *TrackrouteService) Tuple(ctx context.Context, query TrackrouteTupleParams, opts ...option.RequestOption) (res *[]TrackRouteFull, err error) {
+func (r *TrackRouteService) Tuple(ctx context.Context, query TrackRouteTupleParams, opts ...option.RequestOption) (res *[]TrackRouteFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/trackroute/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -179,7 +179,7 @@ func (r *TrackrouteService) Tuple(ctx context.Context, query TrackrouteTuplePara
 // into the database. This operation is intended to be used for automated feeds
 // into UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
-func (r *TrackrouteService) UnvalidatedPublish(ctx context.Context, body TrackrouteUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+func (r *TrackRouteService) UnvalidatedPublish(ctx context.Context, body TrackRouteUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-trackroute"
@@ -189,7 +189,7 @@ func (r *TrackrouteService) UnvalidatedPublish(ctx context.Context, body Trackro
 
 // A track route is a prescribed route for performing training events or operations
 // such as air refueling.
-type TrackrouteListResponse struct {
+type TrackRouteListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -208,7 +208,7 @@ type TrackrouteListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode TrackrouteListResponseDataMode `json:"dataMode,required"`
+	DataMode TrackRouteListResponseDataMode `json:"dataMode,required"`
 	// The last updated date of the track route in ISO 8601 UTC format with millisecond
 	// precision.
 	LastUpdateDate time.Time `json:"lastUpdateDate,required" format:"date-time"`
@@ -219,7 +219,7 @@ type TrackrouteListResponse struct {
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// Minimum and maximum altitude bounds for the track.
-	AltitudeBlocks []TrackrouteListResponseAltitudeBlock `json:"altitudeBlocks"`
+	AltitudeBlocks []TrackRouteListResponseAltitudeBlock `json:"altitudeBlocks"`
 	// The APN radar code sent and received by the aircraft for identification.
 	ApnSetting string `json:"apnSetting"`
 	// The APX radar code sent and received by the aircraft for identification.
@@ -256,7 +256,7 @@ type TrackrouteListResponse struct {
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
 	// Point of contacts for scheduling or modifying the route.
-	Poc []TrackrouteListResponsePoc `json:"poc"`
+	Poc []TrackRouteListResponsePoc `json:"poc"`
 	// The primary UHF radio frequency used for the track route in megahertz.
 	PriFreq float64 `json:"priFreq"`
 	// The receiver tanker channel identifer for air refueling tracks.
@@ -269,7 +269,7 @@ type TrackrouteListResponse struct {
 	// format with millisecond precision.
 	ReviewDate time.Time `json:"reviewDate" format:"date-time"`
 	// Points identified within the route.
-	RoutePoints []TrackrouteListResponseRoutePoint `json:"routePoints"`
+	RoutePoints []TrackRouteListResponseRoutePoint `json:"routePoints"`
 	// Point of contact for the air refueling track route scheduler.
 	SchedulerOrgName string `json:"schedulerOrgName"`
 	// The unit responsible for scheduling the track route.
@@ -348,8 +348,8 @@ type TrackrouteListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r TrackrouteListResponse) RawJSON() string { return r.JSON.raw }
-func (r *TrackrouteListResponse) UnmarshalJSON(data []byte) error {
+func (r TrackRouteListResponse) RawJSON() string { return r.JSON.raw }
+func (r *TrackRouteListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -367,17 +367,17 @@ func (r *TrackrouteListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type TrackrouteListResponseDataMode string
+type TrackRouteListResponseDataMode string
 
 const (
-	TrackrouteListResponseDataModeReal      TrackrouteListResponseDataMode = "REAL"
-	TrackrouteListResponseDataModeTest      TrackrouteListResponseDataMode = "TEST"
-	TrackrouteListResponseDataModeSimulated TrackrouteListResponseDataMode = "SIMULATED"
-	TrackrouteListResponseDataModeExercise  TrackrouteListResponseDataMode = "EXERCISE"
+	TrackRouteListResponseDataModeReal      TrackRouteListResponseDataMode = "REAL"
+	TrackRouteListResponseDataModeTest      TrackRouteListResponseDataMode = "TEST"
+	TrackRouteListResponseDataModeSimulated TrackRouteListResponseDataMode = "SIMULATED"
+	TrackRouteListResponseDataModeExercise  TrackRouteListResponseDataMode = "EXERCISE"
 )
 
 // Minimum and maximum altitude bounds for the track.
-type TrackrouteListResponseAltitudeBlock struct {
+type TrackRouteListResponseAltitudeBlock struct {
 	// Sequencing field for the altitude block.
 	AltitudeSequenceID string `json:"altitudeSequenceId"`
 	// Lowest altitude of the track route altitude block above mean sea level in feet.
@@ -396,13 +396,13 @@ type TrackrouteListResponseAltitudeBlock struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r TrackrouteListResponseAltitudeBlock) RawJSON() string { return r.JSON.raw }
-func (r *TrackrouteListResponseAltitudeBlock) UnmarshalJSON(data []byte) error {
+func (r TrackRouteListResponseAltitudeBlock) RawJSON() string { return r.JSON.raw }
+func (r *TrackRouteListResponseAltitudeBlock) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Point of contacts for scheduling or modifying the route.
-type TrackrouteListResponsePoc struct {
+type TrackRouteListResponsePoc struct {
 	// Office name for which the contact belongs.
 	Office string `json:"office"`
 	// Phone number of the contact.
@@ -440,13 +440,13 @@ type TrackrouteListResponsePoc struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r TrackrouteListResponsePoc) RawJSON() string { return r.JSON.raw }
-func (r *TrackrouteListResponsePoc) UnmarshalJSON(data []byte) error {
+func (r TrackRouteListResponsePoc) RawJSON() string { return r.JSON.raw }
+func (r *TrackRouteListResponsePoc) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Points identified within the route.
-type TrackrouteListResponseRoutePoint struct {
+type TrackRouteListResponseRoutePoint struct {
 	// Specifies an alternate country code if the data provider code is not part of an
 	// official NAVAID Country Code standard such as ISO-3166 or FIPS. This field will
 	// be set to the value provided by the source and should be used for all Queries
@@ -508,12 +508,12 @@ type TrackrouteListResponseRoutePoint struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r TrackrouteListResponseRoutePoint) RawJSON() string { return r.JSON.raw }
-func (r *TrackrouteListResponseRoutePoint) UnmarshalJSON(data []byte) error {
+func (r TrackRouteListResponseRoutePoint) RawJSON() string { return r.JSON.raw }
+func (r *TrackRouteListResponseRoutePoint) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type TrackrouteNewParams struct {
+type TrackRouteNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -532,7 +532,7 @@ type TrackrouteNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode TrackrouteNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode TrackRouteNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// The last updated date of the track route in ISO 8601 UTC format with millisecond
 	// precision.
 	LastUpdateDate time.Time `json:"lastUpdateDate,required" format:"date-time"`
@@ -603,20 +603,20 @@ type TrackrouteNewParams struct {
 	// Refueling).
 	TypeCode param.Opt[string] `json:"typeCode,omitzero"`
 	// Minimum and maximum altitude bounds for the track.
-	AltitudeBlocks []TrackrouteNewParamsAltitudeBlock `json:"altitudeBlocks,omitzero"`
+	AltitudeBlocks []TrackRouteNewParamsAltitudeBlock `json:"altitudeBlocks,omitzero"`
 	// Point of contacts for scheduling or modifying the route.
-	Poc []TrackrouteNewParamsPoc `json:"poc,omitzero"`
+	Poc []TrackRouteNewParamsPoc `json:"poc,omitzero"`
 	// Points identified within the route.
-	RoutePoints []TrackrouteNewParamsRoutePoint `json:"routePoints,omitzero"`
+	RoutePoints []TrackRouteNewParamsRoutePoint `json:"routePoints,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TrackRouteNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r TrackrouteNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow TrackrouteNewParams
+func (r TrackRouteNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow TrackRouteNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -634,17 +634,17 @@ func (r TrackrouteNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type TrackrouteNewParamsDataMode string
+type TrackRouteNewParamsDataMode string
 
 const (
-	TrackrouteNewParamsDataModeReal      TrackrouteNewParamsDataMode = "REAL"
-	TrackrouteNewParamsDataModeTest      TrackrouteNewParamsDataMode = "TEST"
-	TrackrouteNewParamsDataModeSimulated TrackrouteNewParamsDataMode = "SIMULATED"
-	TrackrouteNewParamsDataModeExercise  TrackrouteNewParamsDataMode = "EXERCISE"
+	TrackRouteNewParamsDataModeReal      TrackRouteNewParamsDataMode = "REAL"
+	TrackRouteNewParamsDataModeTest      TrackRouteNewParamsDataMode = "TEST"
+	TrackRouteNewParamsDataModeSimulated TrackRouteNewParamsDataMode = "SIMULATED"
+	TrackRouteNewParamsDataModeExercise  TrackRouteNewParamsDataMode = "EXERCISE"
 )
 
 // Minimum and maximum altitude bounds for the track.
-type TrackrouteNewParamsAltitudeBlock struct {
+type TrackRouteNewParamsAltitudeBlock struct {
 	// Sequencing field for the altitude block.
 	AltitudeSequenceID param.Opt[string] `json:"altitudeSequenceId,omitzero"`
 	// Lowest altitude of the track route altitude block above mean sea level in feet.
@@ -656,14 +656,14 @@ type TrackrouteNewParamsAltitudeBlock struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteNewParamsAltitudeBlock) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-func (r TrackrouteNewParamsAltitudeBlock) MarshalJSON() (data []byte, err error) {
-	type shadow TrackrouteNewParamsAltitudeBlock
+func (f TrackRouteNewParamsAltitudeBlock) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r TrackRouteNewParamsAltitudeBlock) MarshalJSON() (data []byte, err error) {
+	type shadow TrackRouteNewParamsAltitudeBlock
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Point of contacts for scheduling or modifying the route.
-type TrackrouteNewParamsPoc struct {
+type TrackRouteNewParamsPoc struct {
 	// Office name for which the contact belongs.
 	Office param.Opt[string] `json:"office,omitzero"`
 	// Phone number of the contact.
@@ -688,14 +688,14 @@ type TrackrouteNewParamsPoc struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteNewParamsPoc) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-func (r TrackrouteNewParamsPoc) MarshalJSON() (data []byte, err error) {
-	type shadow TrackrouteNewParamsPoc
+func (f TrackRouteNewParamsPoc) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r TrackRouteNewParamsPoc) MarshalJSON() (data []byte, err error) {
+	type shadow TrackRouteNewParamsPoc
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Points identified within the route.
-type TrackrouteNewParamsRoutePoint struct {
+type TrackRouteNewParamsRoutePoint struct {
 	// Specifies an alternate country code if the data provider code is not part of an
 	// official NAVAID Country Code standard such as ISO-3166 or FIPS. This field will
 	// be set to the value provided by the source and should be used for all Queries
@@ -740,13 +740,13 @@ type TrackrouteNewParamsRoutePoint struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteNewParamsRoutePoint) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-func (r TrackrouteNewParamsRoutePoint) MarshalJSON() (data []byte, err error) {
-	type shadow TrackrouteNewParamsRoutePoint
+func (f TrackRouteNewParamsRoutePoint) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r TrackRouteNewParamsRoutePoint) MarshalJSON() (data []byte, err error) {
+	type shadow TrackRouteNewParamsRoutePoint
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
-type TrackrouteUpdateParams struct {
+type TrackRouteUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -765,7 +765,7 @@ type TrackrouteUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode TrackrouteUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode TrackRouteUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// The last updated date of the track route in ISO 8601 UTC format with millisecond
 	// precision.
 	LastUpdateDate time.Time `json:"lastUpdateDate,required" format:"date-time"`
@@ -836,20 +836,20 @@ type TrackrouteUpdateParams struct {
 	// Refueling).
 	TypeCode param.Opt[string] `json:"typeCode,omitzero"`
 	// Minimum and maximum altitude bounds for the track.
-	AltitudeBlocks []TrackrouteUpdateParamsAltitudeBlock `json:"altitudeBlocks,omitzero"`
+	AltitudeBlocks []TrackRouteUpdateParamsAltitudeBlock `json:"altitudeBlocks,omitzero"`
 	// Point of contacts for scheduling or modifying the route.
-	Poc []TrackrouteUpdateParamsPoc `json:"poc,omitzero"`
+	Poc []TrackRouteUpdateParamsPoc `json:"poc,omitzero"`
 	// Points identified within the route.
-	RoutePoints []TrackrouteUpdateParamsRoutePoint `json:"routePoints,omitzero"`
+	RoutePoints []TrackRouteUpdateParamsRoutePoint `json:"routePoints,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TrackRouteUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r TrackrouteUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow TrackrouteUpdateParams
+func (r TrackRouteUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow TrackRouteUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -867,17 +867,17 @@ func (r TrackrouteUpdateParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type TrackrouteUpdateParamsDataMode string
+type TrackRouteUpdateParamsDataMode string
 
 const (
-	TrackrouteUpdateParamsDataModeReal      TrackrouteUpdateParamsDataMode = "REAL"
-	TrackrouteUpdateParamsDataModeTest      TrackrouteUpdateParamsDataMode = "TEST"
-	TrackrouteUpdateParamsDataModeSimulated TrackrouteUpdateParamsDataMode = "SIMULATED"
-	TrackrouteUpdateParamsDataModeExercise  TrackrouteUpdateParamsDataMode = "EXERCISE"
+	TrackRouteUpdateParamsDataModeReal      TrackRouteUpdateParamsDataMode = "REAL"
+	TrackRouteUpdateParamsDataModeTest      TrackRouteUpdateParamsDataMode = "TEST"
+	TrackRouteUpdateParamsDataModeSimulated TrackRouteUpdateParamsDataMode = "SIMULATED"
+	TrackRouteUpdateParamsDataModeExercise  TrackRouteUpdateParamsDataMode = "EXERCISE"
 )
 
 // Minimum and maximum altitude bounds for the track.
-type TrackrouteUpdateParamsAltitudeBlock struct {
+type TrackRouteUpdateParamsAltitudeBlock struct {
 	// Sequencing field for the altitude block.
 	AltitudeSequenceID param.Opt[string] `json:"altitudeSequenceId,omitzero"`
 	// Lowest altitude of the track route altitude block above mean sea level in feet.
@@ -889,16 +889,16 @@ type TrackrouteUpdateParamsAltitudeBlock struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteUpdateParamsAltitudeBlock) IsPresent() bool {
+func (f TrackRouteUpdateParamsAltitudeBlock) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r TrackrouteUpdateParamsAltitudeBlock) MarshalJSON() (data []byte, err error) {
-	type shadow TrackrouteUpdateParamsAltitudeBlock
+func (r TrackRouteUpdateParamsAltitudeBlock) MarshalJSON() (data []byte, err error) {
+	type shadow TrackRouteUpdateParamsAltitudeBlock
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Point of contacts for scheduling or modifying the route.
-type TrackrouteUpdateParamsPoc struct {
+type TrackRouteUpdateParamsPoc struct {
 	// Office name for which the contact belongs.
 	Office param.Opt[string] `json:"office,omitzero"`
 	// Phone number of the contact.
@@ -923,14 +923,14 @@ type TrackrouteUpdateParamsPoc struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteUpdateParamsPoc) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-func (r TrackrouteUpdateParamsPoc) MarshalJSON() (data []byte, err error) {
-	type shadow TrackrouteUpdateParamsPoc
+func (f TrackRouteUpdateParamsPoc) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r TrackRouteUpdateParamsPoc) MarshalJSON() (data []byte, err error) {
+	type shadow TrackRouteUpdateParamsPoc
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Points identified within the route.
-type TrackrouteUpdateParamsRoutePoint struct {
+type TrackRouteUpdateParamsRoutePoint struct {
 	// Specifies an alternate country code if the data provider code is not part of an
 	// official NAVAID Country Code standard such as ISO-3166 or FIPS. This field will
 	// be set to the value provided by the source and should be used for all Queries
@@ -975,13 +975,13 @@ type TrackrouteUpdateParamsRoutePoint struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteUpdateParamsRoutePoint) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-func (r TrackrouteUpdateParamsRoutePoint) MarshalJSON() (data []byte, err error) {
-	type shadow TrackrouteUpdateParamsRoutePoint
+func (f TrackRouteUpdateParamsRoutePoint) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r TrackRouteUpdateParamsRoutePoint) MarshalJSON() (data []byte, err error) {
+	type shadow TrackRouteUpdateParamsRoutePoint
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
-type TrackrouteListParams struct {
+type TrackRouteListParams struct {
 	// The last updated date of the track route in ISO 8601 UTC format with millisecond
 	// precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	LastUpdateDate time.Time        `query:"lastUpdateDate,required" format:"date-time" json:"-"`
@@ -992,17 +992,17 @@ type TrackrouteListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TrackRouteListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [TrackrouteListParams]'s query parameters as `url.Values`.
-func (r TrackrouteListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [TrackRouteListParams]'s query parameters as `url.Values`.
+func (r TrackRouteListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type TrackrouteCountParams struct {
+type TrackRouteCountParams struct {
 	// The last updated date of the track route in ISO 8601 UTC format with millisecond
 	// precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	LastUpdateDate time.Time        `query:"lastUpdateDate,required" format:"date-time" json:"-"`
@@ -1013,26 +1013,26 @@ type TrackrouteCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TrackRouteCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [TrackrouteCountParams]'s query parameters as `url.Values`.
-func (r TrackrouteCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [TrackRouteCountParams]'s query parameters as `url.Values`.
+func (r TrackRouteCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type TrackrouteNewBulkParams struct {
-	Body []TrackrouteNewBulkParamsBody
+type TrackRouteNewBulkParams struct {
+	Body []TrackRouteNewBulkParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TrackRouteNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r TrackrouteNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r TrackRouteNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -1041,7 +1041,7 @@ func (r TrackrouteNewBulkParams) MarshalJSON() (data []byte, err error) {
 //
 // The properties ClassificationMarking, DataMode, LastUpdateDate, Source, Type are
 // required.
-type TrackrouteNewBulkParamsBody struct {
+type TrackRouteNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1148,30 +1148,30 @@ type TrackrouteNewBulkParamsBody struct {
 	// system.
 	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// Minimum and maximum altitude bounds for the track.
-	AltitudeBlocks []TrackrouteNewBulkParamsBodyAltitudeBlock `json:"altitudeBlocks,omitzero"`
+	AltitudeBlocks []TrackRouteNewBulkParamsBodyAltitudeBlock `json:"altitudeBlocks,omitzero"`
 	// Point of contacts for scheduling or modifying the route.
-	Poc []TrackrouteNewBulkParamsBodyPoc `json:"poc,omitzero"`
+	Poc []TrackRouteNewBulkParamsBodyPoc `json:"poc,omitzero"`
 	// Points identified within the route.
-	RoutePoints []TrackrouteNewBulkParamsBodyRoutePoint `json:"routePoints,omitzero"`
+	RoutePoints []TrackRouteNewBulkParamsBodyRoutePoint `json:"routePoints,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-func (r TrackrouteNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow TrackrouteNewBulkParamsBody
+func (f TrackRouteNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r TrackRouteNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow TrackRouteNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[TrackrouteNewBulkParamsBody](
+	apijson.RegisterFieldValidator[TrackRouteNewBulkParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
 // Minimum and maximum altitude bounds for the track.
-type TrackrouteNewBulkParamsBodyAltitudeBlock struct {
+type TrackRouteNewBulkParamsBodyAltitudeBlock struct {
 	// Sequencing field for the altitude block.
 	AltitudeSequenceID param.Opt[string] `json:"altitudeSequenceId,omitzero"`
 	// Lowest altitude of the track route altitude block above mean sea level in feet.
@@ -1183,16 +1183,16 @@ type TrackrouteNewBulkParamsBodyAltitudeBlock struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteNewBulkParamsBodyAltitudeBlock) IsPresent() bool {
+func (f TrackRouteNewBulkParamsBodyAltitudeBlock) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r TrackrouteNewBulkParamsBodyAltitudeBlock) MarshalJSON() (data []byte, err error) {
-	type shadow TrackrouteNewBulkParamsBodyAltitudeBlock
+func (r TrackRouteNewBulkParamsBodyAltitudeBlock) MarshalJSON() (data []byte, err error) {
+	type shadow TrackRouteNewBulkParamsBodyAltitudeBlock
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Point of contacts for scheduling or modifying the route.
-type TrackrouteNewBulkParamsBodyPoc struct {
+type TrackRouteNewBulkParamsBodyPoc struct {
 	// Office name for which the contact belongs.
 	Office param.Opt[string] `json:"office,omitzero"`
 	// Phone number of the contact.
@@ -1217,14 +1217,14 @@ type TrackrouteNewBulkParamsBodyPoc struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteNewBulkParamsBodyPoc) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-func (r TrackrouteNewBulkParamsBodyPoc) MarshalJSON() (data []byte, err error) {
-	type shadow TrackrouteNewBulkParamsBodyPoc
+func (f TrackRouteNewBulkParamsBodyPoc) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r TrackRouteNewBulkParamsBodyPoc) MarshalJSON() (data []byte, err error) {
+	type shadow TrackRouteNewBulkParamsBodyPoc
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Points identified within the route.
-type TrackrouteNewBulkParamsBodyRoutePoint struct {
+type TrackRouteNewBulkParamsBodyRoutePoint struct {
 	// Specifies an alternate country code if the data provider code is not part of an
 	// official NAVAID Country Code standard such as ISO-3166 or FIPS. This field will
 	// be set to the value provided by the source and should be used for all Queries
@@ -1269,15 +1269,15 @@ type TrackrouteNewBulkParamsBodyRoutePoint struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteNewBulkParamsBodyRoutePoint) IsPresent() bool {
+func (f TrackRouteNewBulkParamsBodyRoutePoint) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r TrackrouteNewBulkParamsBodyRoutePoint) MarshalJSON() (data []byte, err error) {
-	type shadow TrackrouteNewBulkParamsBodyRoutePoint
+func (r TrackRouteNewBulkParamsBodyRoutePoint) MarshalJSON() (data []byte, err error) {
+	type shadow TrackRouteNewBulkParamsBodyRoutePoint
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
-type TrackrouteGetParams struct {
+type TrackRouteGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1285,17 +1285,17 @@ type TrackrouteGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TrackRouteGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [TrackrouteGetParams]'s query parameters as `url.Values`.
-func (r TrackrouteGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [TrackRouteGetParams]'s query parameters as `url.Values`.
+func (r TrackRouteGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type TrackrouteTupleParams struct {
+type TrackRouteTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -1311,17 +1311,17 @@ type TrackrouteTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f TrackRouteTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [TrackrouteTupleParams]'s query parameters as `url.Values`.
-func (r TrackrouteTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [TrackRouteTupleParams]'s query parameters as `url.Values`.
+func (r TrackRouteTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type TrackrouteUnvalidatedPublishParams struct {
+type TrackRouteUnvalidatedPublishParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1340,7 +1340,7 @@ type TrackrouteUnvalidatedPublishParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode TrackrouteUnvalidatedPublishParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode TrackRouteUnvalidatedPublishParamsDataMode `json:"dataMode,omitzero,required"`
 	// The last updated date of the track route in ISO 8601 UTC format with millisecond
 	// precision.
 	LastUpdateDate time.Time `json:"lastUpdateDate,required" format:"date-time"`
@@ -1411,22 +1411,22 @@ type TrackrouteUnvalidatedPublishParams struct {
 	// Refueling).
 	TypeCode param.Opt[string] `json:"typeCode,omitzero"`
 	// Minimum and maximum altitude bounds for the track.
-	AltitudeBlocks []TrackrouteUnvalidatedPublishParamsAltitudeBlock `json:"altitudeBlocks,omitzero"`
+	AltitudeBlocks []TrackRouteUnvalidatedPublishParamsAltitudeBlock `json:"altitudeBlocks,omitzero"`
 	// Point of contacts for scheduling or modifying the route.
-	Poc []TrackrouteUnvalidatedPublishParamsPoc `json:"poc,omitzero"`
+	Poc []TrackRouteUnvalidatedPublishParamsPoc `json:"poc,omitzero"`
 	// Points identified within the route.
-	RoutePoints []TrackrouteUnvalidatedPublishParamsRoutePoint `json:"routePoints,omitzero"`
+	RoutePoints []TrackRouteUnvalidatedPublishParamsRoutePoint `json:"routePoints,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteUnvalidatedPublishParams) IsPresent() bool {
+func (f TrackRouteUnvalidatedPublishParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r TrackrouteUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
-	type shadow TrackrouteUnvalidatedPublishParams
+func (r TrackRouteUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+	type shadow TrackRouteUnvalidatedPublishParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -1444,17 +1444,17 @@ func (r TrackrouteUnvalidatedPublishParams) MarshalJSON() (data []byte, err erro
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type TrackrouteUnvalidatedPublishParamsDataMode string
+type TrackRouteUnvalidatedPublishParamsDataMode string
 
 const (
-	TrackrouteUnvalidatedPublishParamsDataModeReal      TrackrouteUnvalidatedPublishParamsDataMode = "REAL"
-	TrackrouteUnvalidatedPublishParamsDataModeTest      TrackrouteUnvalidatedPublishParamsDataMode = "TEST"
-	TrackrouteUnvalidatedPublishParamsDataModeSimulated TrackrouteUnvalidatedPublishParamsDataMode = "SIMULATED"
-	TrackrouteUnvalidatedPublishParamsDataModeExercise  TrackrouteUnvalidatedPublishParamsDataMode = "EXERCISE"
+	TrackRouteUnvalidatedPublishParamsDataModeReal      TrackRouteUnvalidatedPublishParamsDataMode = "REAL"
+	TrackRouteUnvalidatedPublishParamsDataModeTest      TrackRouteUnvalidatedPublishParamsDataMode = "TEST"
+	TrackRouteUnvalidatedPublishParamsDataModeSimulated TrackRouteUnvalidatedPublishParamsDataMode = "SIMULATED"
+	TrackRouteUnvalidatedPublishParamsDataModeExercise  TrackRouteUnvalidatedPublishParamsDataMode = "EXERCISE"
 )
 
 // Minimum and maximum altitude bounds for the track.
-type TrackrouteUnvalidatedPublishParamsAltitudeBlock struct {
+type TrackRouteUnvalidatedPublishParamsAltitudeBlock struct {
 	// Sequencing field for the altitude block.
 	AltitudeSequenceID param.Opt[string] `json:"altitudeSequenceId,omitzero"`
 	// Lowest altitude of the track route altitude block above mean sea level in feet.
@@ -1466,16 +1466,16 @@ type TrackrouteUnvalidatedPublishParamsAltitudeBlock struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteUnvalidatedPublishParamsAltitudeBlock) IsPresent() bool {
+func (f TrackRouteUnvalidatedPublishParamsAltitudeBlock) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r TrackrouteUnvalidatedPublishParamsAltitudeBlock) MarshalJSON() (data []byte, err error) {
-	type shadow TrackrouteUnvalidatedPublishParamsAltitudeBlock
+func (r TrackRouteUnvalidatedPublishParamsAltitudeBlock) MarshalJSON() (data []byte, err error) {
+	type shadow TrackRouteUnvalidatedPublishParamsAltitudeBlock
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Point of contacts for scheduling or modifying the route.
-type TrackrouteUnvalidatedPublishParamsPoc struct {
+type TrackRouteUnvalidatedPublishParamsPoc struct {
 	// Office name for which the contact belongs.
 	Office param.Opt[string] `json:"office,omitzero"`
 	// Phone number of the contact.
@@ -1500,16 +1500,16 @@ type TrackrouteUnvalidatedPublishParamsPoc struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteUnvalidatedPublishParamsPoc) IsPresent() bool {
+func (f TrackRouteUnvalidatedPublishParamsPoc) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r TrackrouteUnvalidatedPublishParamsPoc) MarshalJSON() (data []byte, err error) {
-	type shadow TrackrouteUnvalidatedPublishParamsPoc
+func (r TrackRouteUnvalidatedPublishParamsPoc) MarshalJSON() (data []byte, err error) {
+	type shadow TrackRouteUnvalidatedPublishParamsPoc
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Points identified within the route.
-type TrackrouteUnvalidatedPublishParamsRoutePoint struct {
+type TrackRouteUnvalidatedPublishParamsRoutePoint struct {
 	// Specifies an alternate country code if the data provider code is not part of an
 	// official NAVAID Country Code standard such as ISO-3166 or FIPS. This field will
 	// be set to the value provided by the source and should be used for all Queries
@@ -1554,10 +1554,10 @@ type TrackrouteUnvalidatedPublishParamsRoutePoint struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackrouteUnvalidatedPublishParamsRoutePoint) IsPresent() bool {
+func (f TrackRouteUnvalidatedPublishParamsRoutePoint) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r TrackrouteUnvalidatedPublishParamsRoutePoint) MarshalJSON() (data []byte, err error) {
-	type shadow TrackrouteUnvalidatedPublishParamsRoutePoint
+func (r TrackRouteUnvalidatedPublishParamsRoutePoint) MarshalJSON() (data []byte, err error) {
+	type shadow TrackRouteUnvalidatedPublishParamsRoutePoint
 	return param.MarshalObject(r, (*shadow)(&r))
 }

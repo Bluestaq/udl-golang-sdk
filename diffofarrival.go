@@ -18,30 +18,30 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
 )
 
-// DiffofarrivalService contains methods and other services that help with
+// DiffOfArrivalService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewDiffofarrivalService] method instead.
-type DiffofarrivalService struct {
+// the [NewDiffOfArrivalService] method instead.
+type DiffOfArrivalService struct {
 	Options []option.RequestOption
-	History DiffofarrivalHistoryService
+	History DiffOfArrivalHistoryService
 }
 
-// NewDiffofarrivalService generates a new service that applies the given options
+// NewDiffOfArrivalService generates a new service that applies the given options
 // to each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewDiffofarrivalService(opts ...option.RequestOption) (r DiffofarrivalService) {
-	r = DiffofarrivalService{}
+func NewDiffOfArrivalService(opts ...option.RequestOption) (r DiffOfArrivalService) {
+	r = DiffOfArrivalService{}
 	r.Options = opts
-	r.History = NewDiffofarrivalHistoryService(opts...)
+	r.History = NewDiffOfArrivalHistoryService(opts...)
 	return
 }
 
 // Service operation to get a single TDOA/FDOA record by its unique ID passed as a
 // path parameter.
-func (r *DiffofarrivalService) Get(ctx context.Context, id string, query DiffofarrivalGetParams, opts ...option.RequestOption) (res *DiffofarrivalFull, err error) {
+func (r *DiffOfArrivalService) Get(ctx context.Context, id string, query DiffOfArrivalGetParams, opts ...option.RequestOption) (res *DiffofarrivalFull, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -54,7 +54,7 @@ func (r *DiffofarrivalService) Get(ctx context.Context, id string, query Diffofa
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *DiffofarrivalService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *DiffOfArrivalService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/diffofarrival/queryhelp"
@@ -70,7 +70,7 @@ func (r *DiffofarrivalService) Queryhelp(ctx context.Context, opts ...option.Req
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *DiffofarrivalService) Tuple(ctx context.Context, query DiffofarrivalTupleParams, opts ...option.RequestOption) (res *[]DiffofarrivalFull, err error) {
+func (r *DiffOfArrivalService) Tuple(ctx context.Context, query DiffOfArrivalTupleParams, opts ...option.RequestOption) (res *[]DiffofarrivalFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/diffofarrival/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -81,7 +81,7 @@ func (r *DiffofarrivalService) Tuple(ctx context.Context, query DiffofarrivalTup
 // into the database. This operation is intended to be used for automated feeds
 // into UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
-func (r *DiffofarrivalService) UnvalidatedPublish(ctx context.Context, body DiffofarrivalUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+func (r *DiffOfArrivalService) UnvalidatedPublish(ctx context.Context, body DiffOfArrivalUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-diffofarrival"
@@ -89,7 +89,7 @@ func (r *DiffofarrivalService) UnvalidatedPublish(ctx context.Context, body Diff
 	return
 }
 
-type DiffofarrivalGetParams struct {
+type DiffOfArrivalGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -97,17 +97,17 @@ type DiffofarrivalGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiffofarrivalGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f DiffOfArrivalGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [DiffofarrivalGetParams]'s query parameters as `url.Values`.
-func (r DiffofarrivalGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [DiffOfArrivalGetParams]'s query parameters as `url.Values`.
+func (r DiffOfArrivalGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type DiffofarrivalTupleParams struct {
+type DiffOfArrivalTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -123,29 +123,29 @@ type DiffofarrivalTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiffofarrivalTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f DiffOfArrivalTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [DiffofarrivalTupleParams]'s query parameters as
+// URLQuery serializes [DiffOfArrivalTupleParams]'s query parameters as
 // `url.Values`.
-func (r DiffofarrivalTupleParams) URLQuery() (v url.Values, err error) {
+func (r DiffOfArrivalTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type DiffofarrivalUnvalidatedPublishParams struct {
-	Body []DiffofarrivalUnvalidatedPublishParamsBody
+type DiffOfArrivalUnvalidatedPublishParams struct {
+	Body []DiffOfArrivalUnvalidatedPublishParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiffofarrivalUnvalidatedPublishParams) IsPresent() bool {
+func (f DiffOfArrivalUnvalidatedPublishParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r DiffofarrivalUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+func (r DiffOfArrivalUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -154,7 +154,7 @@ func (r DiffofarrivalUnvalidatedPublishParams) MarshalJSON() (data []byte, err e
 // phenomenologies and sensor triangulation.
 //
 // The properties ClassificationMarking, DataMode, ObTime, Source are required.
-type DiffofarrivalUnvalidatedPublishParamsBody struct {
+type DiffOfArrivalUnvalidatedPublishParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -299,16 +299,16 @@ type DiffofarrivalUnvalidatedPublishParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiffofarrivalUnvalidatedPublishParamsBody) IsPresent() bool {
+func (f DiffOfArrivalUnvalidatedPublishParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r DiffofarrivalUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow DiffofarrivalUnvalidatedPublishParamsBody
+func (r DiffOfArrivalUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow DiffOfArrivalUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[DiffofarrivalUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[DiffOfArrivalUnvalidatedPublishParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

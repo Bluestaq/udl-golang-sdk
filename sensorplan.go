@@ -18,33 +18,34 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
-// SensorplanService contains methods and other services that help with interacting
+// SensorPlanService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewSensorplanService] method instead.
-type SensorplanService struct {
+// the [NewSensorPlanService] method instead.
+type SensorPlanService struct {
 	Options []option.RequestOption
-	History SensorplanHistoryService
+	History SensorPlanHistoryService
 }
 
-// NewSensorplanService generates a new service that applies the given options to
+// NewSensorPlanService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewSensorplanService(opts ...option.RequestOption) (r SensorplanService) {
-	r = SensorplanService{}
+func NewSensorPlanService(opts ...option.RequestOption) (r SensorPlanService) {
+	r = SensorPlanService{}
 	r.Options = opts
-	r.History = NewSensorplanHistoryService(opts...)
+	r.History = NewSensorPlanHistoryService(opts...)
 	return
 }
 
 // Service operation to take a single sensor plan as a POST body and ingest into
 // the database. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
-func (r *SensorplanService) New(ctx context.Context, body SensorplanNewParams, opts ...option.RequestOption) (err error) {
+func (r *SensorPlanService) New(ctx context.Context, body SensorPlanNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sensorplan"
@@ -54,7 +55,7 @@ func (r *SensorplanService) New(ctx context.Context, body SensorplanNewParams, o
 
 // Service operation to update a single SensorPlan. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
-func (r *SensorplanService) Update(ctx context.Context, id string, body SensorplanUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *SensorPlanService) Update(ctx context.Context, id string, body SensorPlanUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -70,7 +71,7 @@ func (r *SensorplanService) Update(ctx context.Context, id string, body Sensorpl
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SensorplanService) List(ctx context.Context, query SensorplanListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SensorplanListResponse], err error) {
+func (r *SensorPlanService) List(ctx context.Context, query SensorPlanListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SensorPlanListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -91,7 +92,7 @@ func (r *SensorplanService) List(ctx context.Context, query SensorplanListParams
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SensorplanService) ListAutoPaging(ctx context.Context, query SensorplanListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SensorplanListResponse] {
+func (r *SensorPlanService) ListAutoPaging(ctx context.Context, query SensorPlanListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SensorPlanListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -100,7 +101,7 @@ func (r *SensorplanService) ListAutoPaging(ctx context.Context, query Sensorplan
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *SensorplanService) Count(ctx context.Context, query SensorplanCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *SensorPlanService) Count(ctx context.Context, query SensorPlanCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sensorplan/count"
@@ -110,7 +111,7 @@ func (r *SensorplanService) Count(ctx context.Context, query SensorplanCountPara
 
 // Service operation to get a single SensorPlan by its unique ID passed as a path
 // parameter.
-func (r *SensorplanService) Get(ctx context.Context, id string, query SensorplanGetParams, opts ...option.RequestOption) (res *SensorplanFull, err error) {
+func (r *SensorPlanService) Get(ctx context.Context, id string, query SensorPlanGetParams, opts ...option.RequestOption) (res *SensorPlanGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -123,7 +124,7 @@ func (r *SensorplanService) Get(ctx context.Context, id string, query Sensorplan
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *SensorplanService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *SensorPlanService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sensorplan/queryhelp"
@@ -139,7 +140,7 @@ func (r *SensorplanService) Queryhelp(ctx context.Context, opts ...option.Reques
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *SensorplanService) Tuple(ctx context.Context, query SensorplanTupleParams, opts ...option.RequestOption) (res *[]SensorplanFull, err error) {
+func (r *SensorPlanService) Tuple(ctx context.Context, query SensorPlanTupleParams, opts ...option.RequestOption) (res *[]SensorPlanTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/sensorplan/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -150,7 +151,7 @@ func (r *SensorplanService) Tuple(ctx context.Context, query SensorplanTuplePara
 // ingest into the database. This operation is intended to be used for automated
 // feeds into UDL. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
-func (r *SensorplanService) UnvalidatedPublish(ctx context.Context, body SensorplanUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+func (r *SensorPlanService) UnvalidatedPublish(ctx context.Context, body SensorPlanUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-sensorplan"
@@ -161,7 +162,7 @@ func (r *SensorplanService) UnvalidatedPublish(ctx context.Context, body Sensorp
 // A Plan is used to aggregate two or more of the same type of record to a parent
 // entity, with the planId (UUID) being included in all of the subordinate records,
 // enabling resolution back to the parent.
-type SensorplanListResponse struct {
+type SensorPlanListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -180,7 +181,7 @@ type SensorplanListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SensorplanListResponseDataMode `json:"dataMode,required"`
+	DataMode SensorPlanListResponseDataMode `json:"dataMode,required"`
 	// The type of records that comprise this parent set (COLLECT, CONTACT).
 	RecType string `json:"recType,required"`
 	// Source of the data.
@@ -257,8 +258,8 @@ type SensorplanListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SensorplanListResponse) RawJSON() string { return r.JSON.raw }
-func (r *SensorplanListResponse) UnmarshalJSON(data []byte) error {
+func (r SensorPlanListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SensorPlanListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -276,16 +277,19 @@ func (r *SensorplanListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SensorplanListResponseDataMode string
+type SensorPlanListResponseDataMode string
 
 const (
-	SensorplanListResponseDataModeReal      SensorplanListResponseDataMode = "REAL"
-	SensorplanListResponseDataModeTest      SensorplanListResponseDataMode = "TEST"
-	SensorplanListResponseDataModeSimulated SensorplanListResponseDataMode = "SIMULATED"
-	SensorplanListResponseDataModeExercise  SensorplanListResponseDataMode = "EXERCISE"
+	SensorPlanListResponseDataModeReal      SensorPlanListResponseDataMode = "REAL"
+	SensorPlanListResponseDataModeTest      SensorPlanListResponseDataMode = "TEST"
+	SensorPlanListResponseDataModeSimulated SensorPlanListResponseDataMode = "SIMULATED"
+	SensorPlanListResponseDataModeExercise  SensorPlanListResponseDataMode = "EXERCISE"
 )
 
-type SensorplanNewParams struct {
+// A Plan is used to aggregate two or more of the same type of record to a parent
+// entity, with the planId (UUID) being included in all of the subordinate records,
+// enabling resolution back to the parent.
+type SensorPlanGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -304,7 +308,2756 @@ type SensorplanNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SensorplanNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SensorPlanGetResponseDataMode `json:"dataMode,required"`
+	// The type of records that comprise this parent set (COLLECT, CONTACT).
+	RecType string `json:"recType,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// The start time of the plan or schedule, in ISO 8601 UTC format.
+	StartTime time.Time `json:"startTime,required" format:"date-time"`
+	// The type of this sensor plan/schedule (PLAN, REQUEST, SCHEDULE).
+	Type string `json:"type,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// The list of collect requests belonging to the SensorPlan. Each collect request
+	// is associated with a parent SensorPlan via the IdPlan. If provided, the list
+	// must have the same size as reqTotal.
+	CollectRequests []SensorPlanGetResponseCollectRequest `json:"collectRequests"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The customer for this plan or schedule.
+	Customer string `json:"customer"`
+	// The end time of the plan or schedule, in ISO 8601 UTC format.
+	EndTime time.Time `json:"endTime" format:"date-time"`
+	// Unique identifier of the requested/schedule/planned sensor associated with this
+	// request.
+	IDSensor string `json:"idSensor"`
+	// Name associated with this plan or schedule.
+	Name string `json:"name"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Optional identifier provided by the source to indicate the sensor identifier
+	// requested/scheduled/planned for this request. This may be an internal identifier
+	// and not necessarily a valid sensor ID.
+	OrigSensorID string `json:"origSensorId"`
+	// The purpose/description of this plan or schedule.
+	Purpose string `json:"purpose"`
+	// The total number of requests contained in this plan or schedule. Value of this
+	// field must match the size of collectRequest list if the list is provided and can
+	// be null or any value otherwise.
+	ReqTotal int64 `json:"reqTotal"`
+	// The sensor or ground network associated with this plan or schedule.
+	SenNetwork string `json:"senNetwork"`
+	// The status of this plan or schedule (ACCEPTED, APPROVED, COMPLETED, PROPOSED,
+	// REJECTED, REQUESTED, SCHEDULED).
+	Status string `json:"status"`
+	// Optional array of provider/source specific tags for this data, where each
+	// element is no longer than 32 characters, used for implementing data owner
+	// conditional access controls to restrict access to the data. Should be left null
+	// by data providers unless conditional access controls are coordinated with the
+	// UDL team.
+	Tags []string `json:"tags"`
+	// Time the row was updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		RecType               resp.Field
+		Source                resp.Field
+		StartTime             resp.Field
+		Type                  resp.Field
+		ID                    resp.Field
+		CollectRequests       resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Customer              resp.Field
+		EndTime               resp.Field
+		IDSensor              resp.Field
+		Name                  resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		OrigSensorID          resp.Field
+		Purpose               resp.Field
+		ReqTotal              resp.Field
+		SenNetwork            resp.Field
+		Status                resp.Field
+		Tags                  resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorPlanGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *SensorPlanGetResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type SensorPlanGetResponseDataMode string
+
+const (
+	SensorPlanGetResponseDataModeReal      SensorPlanGetResponseDataMode = "REAL"
+	SensorPlanGetResponseDataModeTest      SensorPlanGetResponseDataMode = "TEST"
+	SensorPlanGetResponseDataModeSimulated SensorPlanGetResponseDataMode = "SIMULATED"
+	SensorPlanGetResponseDataModeExercise  SensorPlanGetResponseDataMode = "EXERCISE"
+)
+
+// Collect Requests support several types of individual requests, or
+// planned/scheduled tasks on sensors and/or orbital objects. Options are provided
+// to accomodate most common sensor contact and collection applications, including
+// single sensor-object tasking, search operations, and TT&C support. Multiple
+// requests originating from a plan or schedule may be associated to a sensor plan
+// if desired.
+type SensorPlanGetResponseCollectRequest struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// The start time or earliest time of the collect or contact request window, in ISO
+	// 8601 UTC format.
+	StartTime time.Time `json:"startTime,required" format:"date-time"`
+	// The type of this collect or contact request (DIRECTED SEARCH, DWELL, OBJECT,
+	// POL, RATE TRACK, SEARCH, SOI, STARE, TTC, VOLUME SEARCH, etc.).
+	Type string `json:"type,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Height above WGS-84 ellipsoid (HAE), in kilometers. If an accompanying stopAlt
+	// is provided, then alt value can be assumed to be the starting altitude of a
+	// volume definition.
+	Alt float64 `json:"alt"`
+	// The argument of perigee is the angle, in degrees, formed between the perigee and
+	// the ascending node.
+	ArgOfPerigee float64 `json:"argOfPerigee"`
+	// The expected or directed azimuth angle, in degrees, for search or target
+	// acquisition.
+	Az float64 `json:"az"`
+	// CollectResponses associated to request id. Read-only details (only used on
+	// detail queries, not to be provided on create/update operations).
+	CollectResponse []shared.CollectResponseFull `json:"collectResponse"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The customer for this request.
+	Customer string `json:"customer"`
+	// The expected or directed declination angle, in degrees, for search or target
+	// acquisition.
+	Dec float64 `json:"dec"`
+	// The duration of the collect request, in seconds. If both duration and endTime
+	// are provided, the endTime is assumed to take precedence.
+	Duration int64 `json:"duration"`
+	// The dwell ID associated with this request. A dwell ID is dwell point specific
+	// and a DWELL request consist of many dwell point requests.
+	DwellID string `json:"dwellId"`
+	// The orbital eccentricity of an astronomical object is a parameter that
+	// determines the amount by which its orbit around another body deviates from a
+	// perfect circle.
+	Eccentricity float64 `json:"eccentricity"`
+	// The expected or directed elevation angle, in degrees, for search or target
+	// acquisition.
+	El float64 `json:"el"`
+	// An element set is a collection of Keplerian orbital elements describing an orbit
+	// of a particular satellite. The data is used along with an orbit propagator in
+	// order to predict the motion of a satellite. The element set, or elset for short,
+	// consists of identification data, the classical elements and drag parameters.
+	Elset SensorPlanGetResponseCollectRequestElset `json:"elset"`
+	// The end time of the collect or contact request window, in ISO 8601 UTC format.
+	// If no endTime or duration is provided it is assumed the request is either
+	// ongoing or that the request is for a specified number of tracks (numTracks). If
+	// both duration and endTime are provided, the endTime is assumed to take
+	// precedence.
+	EndTime time.Time `json:"endTime" format:"date-time"`
+	// Epoch time, in ISO 8601 UTC format, of the orbital elements.
+	Epoch time.Time `json:"epoch" format:"date-time"`
+	// ID of the UDL Ephemeris Set of the object associated with this request.
+	EsID string `json:"esId"`
+	// The extent of the azimuth angle, in degrees, from center azimuth to define a
+	// spatial volume.
+	ExtentAz float64 `json:"extentAz"`
+	// The extent of the elevation angle, in degrees, from center elevation to define a
+	// spatial volume.
+	ExtentEl float64 `json:"extentEl"`
+	// The extent of the range, in km, from center range to define a spatial volume.
+	ExtentRange float64 `json:"extentRange"`
+	// Optional ID from external systems. This field has no meaning within UDL and is
+	// provided as a convenience for systems that require tracking of an internal
+	// system generated ID.
+	ExternalID string `json:"externalId"`
+	// For optical sensors, the frame rate of the camera, in Hz.
+	FrameRate float64 `json:"frameRate"`
+	// The estimated or expected emission frequency of the target, in MHz.
+	Freq float64 `json:"freq"`
+	// The maximum frequency of interest, in MHz.
+	FreqMax float64 `json:"freqMax"`
+	// The minimum frequency of interest, in MHz. If only minimum frequency is provided
+	// it is assumed to be minimum reportable frequency.
+	FreqMin float64 `json:"freqMin"`
+	// ID of the UDL Elset of the object associated with this request.
+	IDElset string `json:"idElset"`
+	// ID of the UDL Manifold Elset of the object associated with this request. A
+	// Manifold Elset provides theoretical Keplerian orbital elements belonging to an
+	// object of interest's manifold describing a possible/theoretical orbit for an
+	// object of interest for tasking purposes.
+	IDManifold string `json:"idManifold"`
+	// Unique identifier of the target on-orbit object for this request.
+	IDOnOrbit string `json:"idOnOrbit"`
+	// The unique ID of the collect request record from which this request originated.
+	// This may be used for cases of sensor-to-sensor tasking, such as tip/cue
+	// operations.
+	IDParentReq string `json:"idParentReq"`
+	// Unique identifier of the parent plan or schedule associated with this request.
+	// If null, this request is assumed not associated with a plan or schedule.
+	IDPlan string `json:"idPlan"`
+	// Unique identifier of the requested/scheduled/planned sensor associated with this
+	// request. If both idSensor and origSensorId are null then the request is assumed
+	// to be a general request for observations or contact on an object, if specified,
+	// or an area/volume. In this case, the requester may specify a desired obType.
+	IDSensor string `json:"idSensor"`
+	// ID of the UDL State Vector of the object or central vector associated with this
+	// request.
+	IDStateVector string `json:"idStateVector"`
+	// The angle, in degrees, between the equator and the orbit plane when looking from
+	// the center of the Earth. Inclination ranges from 0-180 degrees, with 0-90
+	// representing posigrade orbits and 90-180 representing retrograde orbits.
+	Inclination float64 `json:"inclination"`
+	// For optical sensors, the integration time per camera frame, in milliseconds.
+	IntegrationTime float64 `json:"integrationTime"`
+	// Inter-Range Operations Number. Four-digit identifier used to schedule and
+	// identify AFSCN contact support for booster, launch, and on-orbit operations.
+	Iron int64 `json:"iron"`
+	// The target object irradiance value.
+	Irradiance float64 `json:"irradiance"`
+	// WGS-84 latitude, in degrees. -90 to 90 degrees (negative values south of
+	// equator). If an accompanying stopLat is provided, then the lat value can be
+	// assumed to be the starting latitude of a volume definition.
+	Lat float64 `json:"lat"`
+	// WGS-84 longitude, in degrees. -180 to 180 degrees (negative values west of Prime
+	// Meridian). If an accompanying stopLon is provided, then lon value can be assumed
+	// to be the starting longitude of a volume definition.
+	Lon float64 `json:"lon"`
+	// The timestamp of the external message from which this request originated, if
+	// applicable, in ISO8601 UTC format with millisecond precision.
+	MsgCreateDate time.Time `json:"msgCreateDate" format:"date-time"`
+	// The type of external message from which this request originated.
+	MsgType string `json:"msgType"`
+	// Notes or comments associated with this request.
+	Notes string `json:"notes"`
+	// For optical sensors, the requested number of frames to capture at each sensor
+	// step.
+	NumFrames int64 `json:"numFrames"`
+	// The number of requested observations on the target.
+	NumObs int64 `json:"numObs"`
+	// The number of requested tracks on the target. If numTracks is not provided it is
+	// assumed to indicate all possible observations every pass over the request
+	// duration or within the request start/end window.
+	NumTracks int64 `json:"numTracks"`
+	// Optional type of observation (EO, IR, RADAR, RF-ACTIVE, RF-PASSIVE, OTHER)
+	// requested. This field may correspond to a request of a specific sensor, or to a
+	// general non sensor specific request.
+	ObType string `json:"obType"`
+	// The orbit regime of the target (GEO, HEO, LAUNCH, LEO, MEO, OTHER).
+	OrbitRegime string `json:"orbitRegime"`
+	// The magnitude of rotation, in degrees, between the xAngle direction and locally
+	// defined equinoctial plane. A positive value indicates clockwise rotation about
+	// the sensor boresight vector.
+	OrientAngle float64 `json:"orientAngle"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Optional identifier provided by the data source to indicate the target object of
+	// this request. This may be an internal identifier and not necessarily map to a
+	// valid satellite number.
+	OrigObjectID string `json:"origObjectId"`
+	// Optional identifier provided by the source to indicate the sensor identifier
+	// requested/scheduled/planned for this request. This may be an internal identifier
+	// and not necessarily a valid sensor ID. If both idSensor and origSensorId are
+	// null then the request is assumed to be a general request for observations or
+	// contact on an object, if specified, or an area/volume. In this case, the
+	// requester may specify a desired obType.
+	OrigSensorID string `json:"origSensorId"`
+	// Index number (integer) for records within a collection plan or schedule.
+	PlanIndex int64 `json:"planIndex"`
+	// The RF polarization (H, LHC, RHC, V).
+	Polarization string `json:"polarization"`
+	// The priority of the collect request (EMERGENCY, FLASH, IMMEDIATE, PRIORITY,
+	// ROUTINE).
+	Priority string `json:"priority"`
+	// The expected or directed right ascension angle, in degrees, for search or target
+	// acquisition.
+	Ra float64 `json:"ra"`
+	// Right ascension of the ascending node, or RAAN is the angle as measured in
+	// degrees eastwards (or, as seen from the north, counterclockwise) from the First
+	// Point of Aries to the ascending node.
+	Raan float64 `json:"raan"`
+	// The expected acquisition range or defined center range, in km.
+	Range float64 `json:"range"`
+	// The Radar Cross-Section of the target, in m^2.
+	Rcs float64 `json:"rcs"`
+	// The maximum Radar Cross-Section of the target, in m^2.
+	RcsMax float64 `json:"rcsMax"`
+	// The minimum Radar Cross-Section of the target, in m^2. If only minimum RCS is
+	// provided it is assumed to be minimum reportable RCS.
+	RcsMin float64 `json:"rcsMin"`
+	// The fraction of solar energy reflected from target.
+	Reflectance float64 `json:"reflectance"`
+	// Satellite/catalog number of the target on-orbit object for this request.
+	SatNo int64 `json:"satNo"`
+	// Pre-coordinated code, direction, or configuration to be executed by the sensor
+	// or site for this collect or contact.
+	Scenario string `json:"scenario"`
+	// The average of the periapsis and apoapsis distances, in kilometers. For circular
+	// orbits, the semimajor axis is the distance between the centers of the bodies.
+	SemiMajorAxis float64 `json:"semiMajorAxis"`
+	// The spectral model used for the irradiance calculation.
+	SpectralModel string `json:"spectralModel"`
+	// The maximum inclination, in degrees, to be used in search operations.
+	SrchInc float64 `json:"srchInc"`
+	// The search pattern to be executed for this request (e.g. PICKET-FENCE, SCAN,
+	// etc.).
+	SrchPattern string `json:"srchPattern"`
+	// This service provides operations for querying and manipulation of state vectors
+	// for OnOrbit objects. State vectors are cartesian vectors of position (r) and
+	// velocity (v) that, together with their time (epoch) (t), uniquely determine the
+	// trajectory of the orbiting body in space. J2000 is the preferred coordinate
+	// frame for all state vector positions/velocities in UDL, but in some cases data
+	// may be in another frame depending on the provider and/or datatype. Please see
+	// the 'Discover' tab in the storefront to confirm coordinate frames by data
+	// provider.
+	StateVector SensorPlanGetResponseCollectRequestStateVector `json:"stateVector"`
+	// The stopping HAE WGS-84 height above ellipsoid (HAE), of a volume definition, in
+	// kilometers. The stopAlt value is only meaningful if a (starting) alt value is
+	// provided.
+	StopAlt float64 `json:"stopAlt"`
+	// The stopping WGS-84 latitude of a volume definition, in degrees. -90 to 90
+	// degrees (negative values south of equator). The stopLat value is only meaningful
+	// if a (starting) lat value is provided.
+	StopLat float64 `json:"stopLat"`
+	// The stopping WGS-84 longitude of a volume definition, in degrees. -180 to 180
+	// degrees (negative values west of Prime Meridian). The stopLon value is only
+	// meaningful if a (starting) lon value is provided.
+	StopLon float64 `json:"stopLon"`
+	// The (SSN) tasking suffix (A-Z) associated with this request. The suffix defines
+	// the amount of observational data and the frequency of collection. Note that
+	// suffix definitions are sensor type specific.
+	Suffix string `json:"suffix"`
+	// Optional array of provider/source specific tags for this data, where each
+	// element is no longer than 32 characters, used for implementing data owner
+	// conditional access controls to restrict access to the data. Should be left null
+	// by data providers unless conditional access controls are coordinated with the
+	// UDL team.
+	Tags []string `json:"tags"`
+	// The minimum object (diameter) size, in meters, to be reported.
+	TargetSize float64 `json:"targetSize"`
+	// The (SSN) tasking category (1-5) associated with this request. The tasking
+	// category defines the priority of gathering and transmitting the requested
+	// observational data. Note that category definitions are sensor type specific.
+	TaskCategory int64 `json:"taskCategory"`
+	// The tasking group to which the target object is assigned.
+	TaskGroup string `json:"taskGroup"`
+	// Task ID associated with this request. A task ID may be associated with a single
+	// collect request or may be used to tie together the sub-requests of a full
+	// collect, for example a DWELL consisting of many dwell points.
+	TaskID string `json:"taskId"`
+	// Optional identifier to track a commercial or marketplace transaction executed to
+	// produce this data.
+	TransactionID string `json:"transactionId"`
+	// The true anomaly defines the angular position, in degrees, of the object on it's
+	// orbital path as measured from the orbit focal point at epoch. The true anomaly
+	// is referenced from perigee.
+	TrueAnomoly float64 `json:"trueAnomoly"`
+	// Boolean indicating that this collect request is UCT follow-up.
+	UctFollowUp bool `json:"uctFollowUp"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// The estimated or expected visual magnitude of the target, in Magnitudes (M).
+	VisMag float64 `json:"visMag"`
+	// The maximum estimated or expected visual magnitude of the target, in Magnitudes
+	// (M).
+	VisMagMax float64 `json:"visMagMax"`
+	// The minimum estimated or expected visual magnitude of the target, in Magnitudes
+	// (M). If only minimum vismag is provided it is assumed to be minimum reportable
+	// vismag.
+	VisMagMin float64 `json:"visMagMin"`
+	// The angular distance, in degrees, in the sensor-x direction from scan center
+	// defined by the central vector. The specification of xAngle and yAngle defines a
+	// rectangle of width 2*xAngle and height 2*yAngle centered about the central
+	// vector.
+	XAngle float64 `json:"xAngle"`
+	// The angular distance, in degrees, in the sensor-y direction from scan center
+	// defined by the central vector. The specification of xAngle and yAngle defines a
+	// rectangle of width 2*xAngle and height 2*yAngle centered about the central
+	// vector.
+	YAngle float64 `json:"yAngle"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		Source                resp.Field
+		StartTime             resp.Field
+		Type                  resp.Field
+		ID                    resp.Field
+		Alt                   resp.Field
+		ArgOfPerigee          resp.Field
+		Az                    resp.Field
+		CollectResponse       resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Customer              resp.Field
+		Dec                   resp.Field
+		Duration              resp.Field
+		DwellID               resp.Field
+		Eccentricity          resp.Field
+		El                    resp.Field
+		Elset                 resp.Field
+		EndTime               resp.Field
+		Epoch                 resp.Field
+		EsID                  resp.Field
+		ExtentAz              resp.Field
+		ExtentEl              resp.Field
+		ExtentRange           resp.Field
+		ExternalID            resp.Field
+		FrameRate             resp.Field
+		Freq                  resp.Field
+		FreqMax               resp.Field
+		FreqMin               resp.Field
+		IDElset               resp.Field
+		IDManifold            resp.Field
+		IDOnOrbit             resp.Field
+		IDParentReq           resp.Field
+		IDPlan                resp.Field
+		IDSensor              resp.Field
+		IDStateVector         resp.Field
+		Inclination           resp.Field
+		IntegrationTime       resp.Field
+		Iron                  resp.Field
+		Irradiance            resp.Field
+		Lat                   resp.Field
+		Lon                   resp.Field
+		MsgCreateDate         resp.Field
+		MsgType               resp.Field
+		Notes                 resp.Field
+		NumFrames             resp.Field
+		NumObs                resp.Field
+		NumTracks             resp.Field
+		ObType                resp.Field
+		OrbitRegime           resp.Field
+		OrientAngle           resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		OrigObjectID          resp.Field
+		OrigSensorID          resp.Field
+		PlanIndex             resp.Field
+		Polarization          resp.Field
+		Priority              resp.Field
+		Ra                    resp.Field
+		Raan                  resp.Field
+		Range                 resp.Field
+		Rcs                   resp.Field
+		RcsMax                resp.Field
+		RcsMin                resp.Field
+		Reflectance           resp.Field
+		SatNo                 resp.Field
+		Scenario              resp.Field
+		SemiMajorAxis         resp.Field
+		SpectralModel         resp.Field
+		SrchInc               resp.Field
+		SrchPattern           resp.Field
+		StateVector           resp.Field
+		StopAlt               resp.Field
+		StopLat               resp.Field
+		StopLon               resp.Field
+		Suffix                resp.Field
+		Tags                  resp.Field
+		TargetSize            resp.Field
+		TaskCategory          resp.Field
+		TaskGroup             resp.Field
+		TaskID                resp.Field
+		TransactionID         resp.Field
+		TrueAnomoly           resp.Field
+		UctFollowUp           resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		VisMag                resp.Field
+		VisMagMax             resp.Field
+		VisMagMin             resp.Field
+		XAngle                resp.Field
+		YAngle                resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorPlanGetResponseCollectRequest) RawJSON() string { return r.JSON.raw }
+func (r *SensorPlanGetResponseCollectRequest) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// An element set is a collection of Keplerian orbital elements describing an orbit
+// of a particular satellite. The data is used along with an orbit propagator in
+// order to predict the motion of a satellite. The element set, or elset for short,
+// consists of identification data, the classical elements and drag parameters.
+type SensorPlanGetResponseCollectRequestElset struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Elset epoch time in ISO 8601 UTC format, with microsecond precision.
+	Epoch time.Time `json:"epoch,required" format:"date-time"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// AGOM, expressed in m^2/kg, is the value of the (averaged) object Area times the
+	// solar radiation pressure coefficient(Gamma) over the object Mass. Applicable
+	// only with ephemType4.
+	Agom float64 `json:"agom"`
+	// Optional algorithm used to produce this record.
+	Algorithm string `json:"algorithm"`
+	// The orbit point furthest from the center of the earth in kilometers. If not
+	// provided, apogee will be computed from the TLE according to the following. Using
+	// mu, the standard gravitational parameter for the earth (398600.4418), semi-major
+	// axis A = (mu/(n _ 2 _ pi/(24*3600))^2)(1/3). Using semi-major axis A,
+	// eccentricity E, apogee = (A * (1 + E)) in km. Note that the calculations are for
+	// computing the apogee radius from the center of the earth, to compute apogee
+	// altitude the radius of the earth should be subtracted (6378.135 km).
+	Apogee float64 `json:"apogee"`
+	// The argument of perigee is the angle in degrees formed between the perigee and
+	// the ascending node. If the perigee would occur at the ascending node, the
+	// argument of perigee would be 0.
+	ArgOfPerigee float64 `json:"argOfPerigee"`
+	// Ballistic coefficient, in m^2/kg. Applicable only with ephemType4.
+	BallisticCoeff float64 `json:"ballisticCoeff"`
+	// The drag term for SGP4 orbital model, used for calculating decay constants for
+	// altitude, eccentricity etc, measured in inverse earth radii.
+	BStar float64 `json:"bStar"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Optional source-provided and searchable metadata or descriptor of the data.
+	Descriptor string `json:"descriptor"`
+	// The orbital eccentricity of an astronomical object is a parameter that
+	// determines the amount by which its orbit around another body deviates from a
+	// perfect circle. A value of 0 is a circular orbit, values between 0 and 1 form an
+	// elliptic orbit, 1 is a parabolic escape orbit, and greater than 1 is a
+	// hyperbolic escape orbit.
+	Eccentricity float64 `json:"eccentricity"`
+	// Read-only start time at which this elset was the 'current' elset for its
+	// satellite. This field and is set by the system automatically and ignored on
+	// create/edit operations.
+	EffectiveFrom time.Time `json:"effectiveFrom" format:"date-time"`
+	// Read-only end time at which this elset was no longer the 'current' elset for its
+	// satellite. This field and is set by the system automatically and ignored on
+	// create/edit operations.
+	EffectiveUntil time.Time `json:"effectiveUntil" format:"date-time"`
+	// The ephemeris type associated with this TLE:
+	//
+	// 0:&nbsp;SGP (or SGP4 with Kozai mean motion)
+	//
+	// 1:&nbsp;SGP (Kozai mean motion)
+	//
+	// 2:&nbsp;SGP4 (Brouver mean motion)
+	//
+	// 3:&nbsp;SDP4
+	//
+	// 4:&nbsp;SGP4-XP
+	//
+	// 5:&nbsp;SDP8
+	//
+	// 6:&nbsp;SP (osculating mean motion)
+	EphemType int64 `json:"ephemType"`
+	// Unique identifier of the record, auto-generated by the system.
+	IDElset string `json:"idElset"`
+	// Unique identifier of the satellite on-orbit object, if correlated. For the
+	// public catalog, the idOnOrbit is typically the satellite number as a string, but
+	// may be a UUID for analyst or other unknown or untracked satellites.
+	IDOnOrbit string `json:"idOnOrbit"`
+	// Unique identifier of the OD solution record that produced this elset. This ID
+	// can be used to obtain additional information on an OrbitDetermination object
+	// using the 'get by ID' operation (e.g. /udl/orbitdetermination/{id}). For
+	// example, the OrbitDetermination with idOrbitDetermination = abc would be queried
+	// as /udl/orbitdetermination/abc.
+	IDOrbitDetermination string `json:"idOrbitDetermination"`
+	// The angle between the equator and the orbit when looking from the center of the
+	// Earth. If the orbit went exactly around the equator from left to right, then the
+	// inclination would be 0. The inclination ranges from 0 to 180 degrees.
+	Inclination float64 `json:"inclination"`
+	// Read only derived/generated line1 of a legacy TLE (two line element set) format,
+	// ignored on create/edit operations.
+	Line1 string `json:"line1"`
+	// Read only derived/generated line2 of a legacy TLE (two line element set) format,
+	// ignored on create/edit operations.
+	Line2 string `json:"line2"`
+	// Where the satellite is in its orbital path. The mean anomaly ranges from 0 to
+	// 360 degrees. The mean anomaly is referenced to the perigee. If the satellite
+	// were at the perigee, the mean anomaly would be 0.
+	MeanAnomaly float64 `json:"meanAnomaly"`
+	// Mean motion is the angular speed required for a body to complete one orbit,
+	// assuming constant speed in a circular orbit which completes in the same time as
+	// the variable speed, elliptical orbit of the actual body. Measured in revolutions
+	// per day.
+	MeanMotion float64 `json:"meanMotion"`
+	// 2nd derivative of the mean motion with respect to time. Units are revolutions
+	// per day cubed.
+	MeanMotionDDot float64 `json:"meanMotionDDot"`
+	// 1st derivative of the mean motion with respect to time. Units are revolutions
+	// per day squared.
+	MeanMotionDot float64 `json:"meanMotionDot"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Optional identifier provided by elset source to indicate the target onorbit
+	// object of this elset. This may be an internal identifier and not necessarily map
+	// to a valid satellite number.
+	OrigObjectID string `json:"origObjectId"`
+	// The orbit point nearest to the center of the earth in kilometers. If not
+	// provided, perigee will be computed from the TLE according to the following.
+	// Using mu, the standard gravitational parameter for the earth (398600.4418),
+	// semi-major axis A = (mu/(n _ 2 _ pi/(24*3600))^2)(1/3). Using semi-major axis A,
+	// eccentricity E, perigee = (A * (1 - E)) in km. Note that the calculations are
+	// for computing the perigee radius from the center of the earth, to compute
+	// perigee altitude the radius of the earth should be subtracted (6378.135 km).
+	Perigee float64 `json:"perigee"`
+	// Period of the orbit equal to inverse of mean motion, in minutes.
+	Period float64 `json:"period"`
+	// Right ascension of the ascending node, or RAAN is the angle as measured in
+	// degrees eastwards (or, as seen from the north, counterclockwise) from the First
+	// Point of Aries to the ascending node, which is where the orbit crosses the
+	// equator when traveling north.
+	Raan float64 `json:"raan"`
+	// Optional URI location in the document repository of the raw file parsed by the
+	// system to produce this record. To download the raw file, prepend
+	// https://udl-hostname/scs/download?id= to this value.
+	RawFileUri string `json:"rawFileURI"`
+	// The current revolution number. The value is incremented when a satellite crosses
+	// the equator on an ascending pass.
+	RevNo int64 `json:"revNo"`
+	// Satellite/catalog number of the target on-orbit object.
+	SatNo int64 `json:"satNo"`
+	// The sum of the periapsis and apoapsis distances divided by two. For circular
+	// orbits, the semimajor axis is the distance between the centers of the bodies,
+	// not the distance of the bodies from the center of mass. Units are kilometers.
+	SemiMajorAxis float64 `json:"semiMajorAxis"`
+	// Optional array of UDL data (observation) UUIDs used to build this element set.
+	// See the associated sourcedDataTypes array for the specific types of observations
+	// for the positionally corresponding UUIDs in this array (the two arrays must
+	// match in size).
+	SourcedData []string `json:"sourcedData"`
+	// Optional array of UDL observation data types used to build this element set
+	// (e.g. EO, RADAR, RF, DOA). See the associated sourcedData array for the specific
+	// UUIDs of observations for the positionally corresponding data types in this
+	// array (the two arrays must match in size).
+	//
+	// Any of "EO", "RADAR", "RF", "DOA", "ELSET", "SV".
+	SourcedDataTypes []string `json:"sourcedDataTypes"`
+	// The source data library from which this record was received. This could be a
+	// remote or tactical UDL or another data library. If null, the record should be
+	// assumed to have originated from the primary Enterprise UDL.
+	SourceDl string `json:"sourceDL"`
+	// Optional array of provider/source specific tags for this data, where each
+	// element is no longer than 32 characters, used for implementing data owner
+	// conditional access controls to restrict access to the data. Should be left null
+	// by data providers unless conditional access controls are coordinated with the
+	// UDL team.
+	Tags []string `json:"tags"`
+	// Optional identifier to track a commercial or marketplace transaction executed to
+	// produce this data.
+	TransactionID string `json:"transactionId"`
+	// Boolean indicating this Elset was unable to be correlated to a known object.
+	// This flag should only be set to true by data providers after an attempt to
+	// correlate to an on-orbit object was made and failed. If unable to correlate, the
+	// 'origObjectId' field may be populated with an internal data provider specific
+	// identifier.
+	Uct bool `json:"uct"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		Epoch                 resp.Field
+		Source                resp.Field
+		Agom                  resp.Field
+		Algorithm             resp.Field
+		Apogee                resp.Field
+		ArgOfPerigee          resp.Field
+		BallisticCoeff        resp.Field
+		BStar                 resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Descriptor            resp.Field
+		Eccentricity          resp.Field
+		EffectiveFrom         resp.Field
+		EffectiveUntil        resp.Field
+		EphemType             resp.Field
+		IDElset               resp.Field
+		IDOnOrbit             resp.Field
+		IDOrbitDetermination  resp.Field
+		Inclination           resp.Field
+		Line1                 resp.Field
+		Line2                 resp.Field
+		MeanAnomaly           resp.Field
+		MeanMotion            resp.Field
+		MeanMotionDDot        resp.Field
+		MeanMotionDot         resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		OrigObjectID          resp.Field
+		Perigee               resp.Field
+		Period                resp.Field
+		Raan                  resp.Field
+		RawFileUri            resp.Field
+		RevNo                 resp.Field
+		SatNo                 resp.Field
+		SemiMajorAxis         resp.Field
+		SourcedData           resp.Field
+		SourcedDataTypes      resp.Field
+		SourceDl              resp.Field
+		Tags                  resp.Field
+		TransactionID         resp.Field
+		Uct                   resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorPlanGetResponseCollectRequestElset) RawJSON() string { return r.JSON.raw }
+func (r *SensorPlanGetResponseCollectRequestElset) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// This service provides operations for querying and manipulation of state vectors
+// for OnOrbit objects. State vectors are cartesian vectors of position (r) and
+// velocity (v) that, together with their time (epoch) (t), uniquely determine the
+// trajectory of the orbiting body in space. J2000 is the preferred coordinate
+// frame for all state vector positions/velocities in UDL, but in some cases data
+// may be in another frame depending on the provider and/or datatype. Please see
+// the 'Discover' tab in the storefront to confirm coordinate frames by data
+// provider.
+type SensorPlanGetResponseCollectRequestStateVector struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Time of validity for state vector in ISO 8601 UTC datetime format, with
+	// microsecond precision.
+	Epoch time.Time `json:"epoch,required" format:"date-time"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// The actual time span used for the OD of the object, expressed in days.
+	ActualOdSpan float64 `json:"actualODSpan"`
+	// Optional algorithm used to produce this record.
+	Algorithm string `json:"algorithm"`
+	// The reference frame of the alternate1 (Alt1) cartesian orbital state.
+	Alt1ReferenceFrame string `json:"alt1ReferenceFrame"`
+	// The reference frame of the alternate2 (Alt2) cartesian orbital state.
+	Alt2ReferenceFrame string `json:"alt2ReferenceFrame"`
+	// The actual area of the object at it's largest cross-section, expressed in
+	// meters^2.
+	Area float64 `json:"area"`
+	// First derivative of drag/ballistic coefficient (m2/kg-s).
+	BDot float64 `json:"bDot"`
+	// Model parameter value for center of mass offset (m).
+	CmOffset float64 `json:"cmOffset"`
+	// Covariance matrix, in kilometer and second based units, in the specified
+	// covReferenceFrame. If the covReferenceFrame is null it is assumed to be J2000.
+	// The array values (1-21) represent the lower triangular half of the
+	// position-velocity covariance matrix. The size of the covariance matrix is
+	// dynamic, depending on whether the covariance for position only or position &
+	// velocity. The covariance elements are position dependent within the array with
+	// values ordered as follows:
+	//
+	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR&nbsp;&nbsp;
+	//
+	// x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+	//
+	// y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;3
+	//
+	// z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;6
+	//
+	// x'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;10
+	//
+	// y'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+	//
+	// z'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;21&nbsp;
+	//
+	// The cov array should contain only the lower left triangle values from top left
+	// down to bottom right, in order.
+	//
+	// If additional covariance terms are included for DRAG, SRP, and/or THRUST, the
+	// matrix can be extended with the following order of elements:
+	//
+	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR
+	//
+	// DRG&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;23&nbsp;&nbsp;24&nbsp;&nbsp;25&nbsp;&nbsp;26&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;
+	//
+	// SRP&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;30&nbsp;&nbsp;31&nbsp;&nbsp;32&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36&nbsp;&nbsp;
+	//
+	// THR&nbsp;&nbsp;&nbsp;37&nbsp;&nbsp;38&nbsp;&nbsp;39&nbsp;&nbsp;40&nbsp;&nbsp;41&nbsp;&nbsp;&nbsp;42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45&nbsp;
+	Cov []float64 `json:"cov"`
+	// The method used to generate the covariance during the orbit determination (OD)
+	// that produced the state vector, or whether an arbitrary, non-calculated default
+	// value was used (CALCULATED, DEFAULT).
+	CovMethod string `json:"covMethod"`
+	// The reference frame of the covariance matrix elements. If the covReferenceFrame
+	// is null it is assumed to be J2000.
+	//
+	// Any of "J2000", "UVW".
+	CovReferenceFrame string `json:"covReferenceFrame"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Optional source-provided and searchable metadata or descriptor of the data.
+	Descriptor string `json:"descriptor"`
+	// The effective area of the object exposed to atmospheric drag, expressed in
+	// meters^2.
+	DragArea float64 `json:"dragArea"`
+	// Area-to-mass ratio coefficient for atmospheric ballistic drag (m2/kg).
+	DragCoeff float64 `json:"dragCoeff"`
+	// The Drag Model used for this vector (e.g. HARRIS-PRIESTER, JAC70, JBH09, MSIS90,
+	// NONE, etc.).
+	DragModel string `json:"dragModel"`
+	// Model parameter value for energy dissipation rate (EDR) (w/kg).
+	Edr float64 `json:"edr"`
+	// Start time at which this state vector was the 'current' state vector for its
+	// satellite.
+	EffectiveFrom time.Time `json:"effectiveFrom" format:"date-time"`
+	// End time at which this state vector was no longer the 'current' state vector for
+	// its satellite.
+	EffectiveUntil time.Time `json:"effectiveUntil" format:"date-time"`
+	// The covariance matrix values represent the lower triangular half of the
+	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
+	// covariance matrix is dynamic.&nbsp; The values are outputted in order across
+	// each row, i.e.:
+	//
+	// 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; 4&nbsp;&nbsp; 5
+	//
+	// 6&nbsp;&nbsp; 7&nbsp;&nbsp; 8&nbsp;&nbsp; 9&nbsp; 10
+	//
+	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	//
+	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	//
+	// 51&nbsp; 52&nbsp; 53&nbsp; 54&nbsp; 55
+	//
+	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	//
+	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	//
+	// The ordering of values is as follows:
+	//
+	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Af&nbsp;&nbsp;
+	// Ag&nbsp;&nbsp; L&nbsp;&nbsp;&nbsp; N&nbsp;&nbsp; Chi&nbsp; Psi&nbsp;&nbsp;
+	// B&nbsp;&nbsp; BDOT AGOM&nbsp; T&nbsp;&nbsp; C1&nbsp;&nbsp; C2&nbsp; ...
+	//
+	// Af&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+	//
+	// Ag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 3
+	//
+	// L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	// 4&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 6
+	//
+	// N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	// 7&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp; 10
+	//
+	// Chi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp; 12&nbsp;&nbsp;
+	// 13&nbsp;&nbsp; 14&nbsp;&nbsp; 15
+	//
+	// Psi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp; 17&nbsp;&nbsp;
+	// 18&nbsp;&nbsp; 19&nbsp;&nbsp; 20&nbsp;&nbsp; 21
+	//
+	// B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 22&nbsp;&nbsp;
+	// 23&nbsp;&nbsp; 24 &nbsp;&nbsp;25&nbsp;&nbsp; 26&nbsp;&nbsp; 27&nbsp;&nbsp; 28
+	//
+	// BDOT&nbsp;&nbsp; 29&nbsp;&nbsp; 30&nbsp;&nbsp; 31&nbsp;&nbsp; 32&nbsp;&nbsp;
+	// 33&nbsp;&nbsp; 34&nbsp;&nbsp; 35&nbsp;&nbsp; 36
+	//
+	// AGOM&nbsp; 37&nbsp;&nbsp; 38&nbsp;&nbsp; 39&nbsp;&nbsp; 40&nbsp;&nbsp;
+	// 41&nbsp;&nbsp; 42&nbsp;&nbsp; 43&nbsp;&nbsp; 44&nbsp;&nbsp; 45
+	//
+	// T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 46&nbsp;&nbsp;
+	// 47&nbsp;&nbsp; 48&nbsp;&nbsp; 49&nbsp;&nbsp; 50&nbsp;&nbsp; 51&nbsp;&nbsp;
+	// 52&nbsp;&nbsp; 53&nbsp;&nbsp; 54&nbsp;&nbsp; 55
+	//
+	// C1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 56&nbsp;&nbsp; 57&nbsp;&nbsp;
+	// 58&nbsp;&nbsp; 59&nbsp;&nbsp; 60&nbsp;&nbsp; 61&nbsp;&nbsp; 62&nbsp;&nbsp;
+	// 63&nbsp;&nbsp; 64&nbsp;&nbsp; 65&nbsp;&nbsp; 66
+	//
+	// C2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 67&nbsp;&nbsp; 68&nbsp;&nbsp;
+	// 69&nbsp;&nbsp; 70&nbsp;&nbsp; 71&nbsp; &nbsp;72&nbsp;&nbsp; 73&nbsp;&nbsp;
+	// 74&nbsp;&nbsp; 75&nbsp;&nbsp; 76&nbsp;&nbsp; 77&nbsp;&nbsp; 78
+	//
+	// :
+	//
+	// :
+	//
+	// where C1, C2, etc, are the "consider parameters" that may be added to the
+	// covariance matrix.&nbsp; The covariance matrix will be as large as the last
+	// element/model parameter needed.&nbsp; In other words, if the DC solved for all 6
+	// elements plus AGOM, the covariance matrix will be 9x9 (and the rows for B and
+	// BDOT will be all zeros).&nbsp; If the covariance matrix is unavailable, the size
+	// will be set to 0x0, and no data will follow.&nbsp; The cov field should contain
+	// only the lower left triangle values from top left down to bottom right, in
+	// order.
+	EqCov []float64 `json:"eqCov"`
+	// Integrator error control.
+	ErrorControl float64 `json:"errorControl"`
+	// Boolean indicating use of fixed step size for this vector.
+	FixedStep bool `json:"fixedStep"`
+	// Geopotential model used for this vector (e.g. EGM-96, WGS-84, WGS-72, JGM-2, or
+	// GEM-T3), including mm degree zonals, nn degree/order tesserals. E.g. EGM-96
+	// 24Z,24T.
+	GeopotentialModel string `json:"geopotentialModel"`
+	// Number of terms used in the IAU 1980 nutation model (4, 50, or 106).
+	Iau1980Terms int64 `json:"iau1980Terms"`
+	// Unique identifier of the satellite on-orbit object, if correlated. For the
+	// public catalog, the idOnOrbit is typically the satellite number as a string, but
+	// may be a UUID for analyst or other unknown or untracked satellites.
+	IDOnOrbit string `json:"idOnOrbit"`
+	// Unique identifier of the OD solution record that produced this state vector.
+	// This ID can be used to obtain additional information on an OrbitDetermination
+	// object using the 'get by ID' operation (e.g. /udl/orbitdetermination/{id}). For
+	// example, the OrbitDetermination with idOrbitDetermination = abc would be queries
+	// as /udl/orbitdetermination/abc.
+	IDOrbitDetermination string `json:"idOrbitDetermination"`
+	// Unique identifier of the record, auto-generated by the system.
+	IDStateVector string `json:"idStateVector"`
+	// Integrator Mode.
+	IntegratorMode string `json:"integratorMode"`
+	// Boolean indicating use of in-track thrust perturbations for this vector.
+	InTrackThrust bool `json:"inTrackThrust"`
+	// The end of the time interval containing the time of the last accepted
+	// observation, in ISO 8601 UTC format with microsecond precision. For an exact
+	// observation time, the firstObTime and lastObTime are the same.
+	LastObEnd time.Time `json:"lastObEnd" format:"date-time"`
+	// The start of the time interval containing the time of the last accepted
+	// observation, in ISO 8601 UTC format with microsecond precision. For an exact
+	// observation time, the firstObTime and lastObTime are the same.
+	LastObStart time.Time `json:"lastObStart" format:"date-time"`
+	// Time of the next leap second after epoch in ISO 8601 UTC time. If the next leap
+	// second is not known, the time of the previous leap second is used.
+	LeapSecondTime time.Time `json:"leapSecondTime" format:"date-time"`
+	// Boolean indicating use of lunar/solar perturbations for this vector.
+	LunarSolar bool `json:"lunarSolar"`
+	// The mass of the object, in kilograms.
+	Mass float64 `json:"mass"`
+	// The number of observations available for the OD of the object.
+	ObsAvailable int64 `json:"obsAvailable"`
+	// The number of observations accepted for the OD of the object.
+	ObsUsed int64 `json:"obsUsed"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Optional identifier provided by state vector source to indicate the target
+	// onorbit object of this state vector. This may be an internal identifier and not
+	// necessarily map to a valid satellite number.
+	OrigObjectID string `json:"origObjectId"`
+	// Type of partial derivatives used (ANALYTIC, FULL NUM, or FAST NUM).
+	Partials string `json:"partials"`
+	// The pedigree of state vector, or methods used for its generation to include
+	// state update/orbit determination, propagation from another state, or a state
+	// from a calibration satellite (e.g. ORBIT_UPDATE, PROPAGATION, CALIBRATION,
+	// CONJUNCTION, FLIGHT_PLAN).
+	Pedigree string `json:"pedigree"`
+	// Polar Wander Motion X (arc seconds).
+	PolarMotionX float64 `json:"polarMotionX"`
+	// Polar Wander Motion Y (arc seconds).
+	PolarMotionY float64 `json:"polarMotionY"`
+	// One sigma position uncertainty, in kilometers.
+	PosUnc float64 `json:"posUnc"`
+	// Optional URI location in the document repository of the raw file parsed by the
+	// system to produce this record. To download the raw file, prepend
+	// https://udl-hostname/scs/download?id= to this value.
+	RawFileUri string `json:"rawFileURI"`
+	// The recommended OD time span calculated for the object, expressed in days.
+	RecOdSpan float64 `json:"recODSpan"`
+	// The reference frame of the cartesian orbital states. If the referenceFrame is
+	// null it is assumed to be J2000.
+	//
+	// Any of "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF".
+	ReferenceFrame string `json:"referenceFrame"`
+	// The percentage of residuals accepted in the OD of the object.
+	ResidualsAcc float64 `json:"residualsAcc"`
+	// Epoch revolution number.
+	RevNo int64 `json:"revNo"`
+	// The Weighted Root Mean Squared (RMS) of the differential correction on the
+	// target object that produced this vector. WRMS is a quality indicator of the
+	// state vector update, with a value of 1.00 being optimal. WRMS applies to Batch
+	// Least Squares (BLS) processes.
+	Rms float64 `json:"rms"`
+	// Satellite/Catalog number of the target OnOrbit object.
+	SatNo int64 `json:"satNo"`
+	// Array containing the standard deviation of error in target object position, U, V
+	// and W direction respectively (km).
+	SigmaPosUvw []float64 `json:"sigmaPosUVW"`
+	// Array containing the standard deviation of error in target object velocity, U, V
+	// and W direction respectively (km/sec).
+	SigmaVelUvw []float64 `json:"sigmaVelUVW"`
+	// Average solar flux geomagnetic index.
+	SolarFluxApAvg float64 `json:"solarFluxAPAvg"`
+	// F10 (10.7 cm) solar flux value.
+	SolarFluxF10 float64 `json:"solarFluxF10"`
+	// F10 (10.7 cm) solar flux 81-day average value.
+	SolarFluxF10Avg float64 `json:"solarFluxF10Avg"`
+	// Boolean indicating use of solar radiation pressure perturbations for this
+	// vector.
+	SolarRadPress bool `json:"solarRadPress"`
+	// Area-to-mass ratio coefficient for solar radiation pressure.
+	SolarRadPressCoeff float64 `json:"solarRadPressCoeff"`
+	// Boolean indicating use of solid earth tide perturbations for this vector.
+	SolidEarthTides bool `json:"solidEarthTides"`
+	// Optional array of UDL data (observation) UUIDs used to build this state vector.
+	// See the associated sourcedDataTypes array for the specific types of observations
+	// for the positionally corresponding UUIDs in this array (the two arrays must
+	// match in size).
+	SourcedData []string `json:"sourcedData"`
+	// Optional array of UDL observation data types used to build this state vector
+	// (e.g. EO, RADAR, RF, DOA). See the associated sourcedData array for the specific
+	// UUIDs of observations for the positionally corresponding data types in this
+	// array (the two arrays must match in size).
+	//
+	// Any of "EO", "RADAR", "RF", "DOA", "ELSET", "SV".
+	SourcedDataTypes []string `json:"sourcedDataTypes"`
+	// The source data library from which this record was received. This could be a
+	// remote or tactical UDL or another data library. If null, the record should be
+	// assumed to have originated from the primary Enterprise UDL.
+	SourceDl string `json:"sourceDL"`
+	// The effective area of the object exposed to solar radiation pressure, expressed
+	// in meters^2.
+	SrpArea float64 `json:"srpArea"`
+	// Integrator step mode (AUTO, TIME, or S).
+	StepMode string `json:"stepMode"`
+	// Initial integration step size (seconds).
+	StepSize float64 `json:"stepSize"`
+	// Initial step size selection (AUTO or MANUAL).
+	StepSizeSelection string `json:"stepSizeSelection"`
+	// Optional array of provider/source specific tags for this data, where each
+	// element is no longer than 32 characters, used for implementing data owner
+	// conditional access controls to restrict access to the data. Should be left null
+	// by data providers unless conditional access controls are coordinated with the
+	// UDL team.
+	Tags []string `json:"tags"`
+	// TAI (Temps Atomique International) minus UTC (Universal Time Coordinates) offset
+	// in seconds.
+	TaiUtc float64 `json:"taiUtc"`
+	// Model parameter value for thrust acceleration (m/s2).
+	ThrustAccel float64 `json:"thrustAccel"`
+	// The number of sensor tracks available for the OD of the object.
+	TracksAvail int64 `json:"tracksAvail"`
+	// The number of sensor tracks accepted for the OD of the object.
+	TracksUsed int64 `json:"tracksUsed"`
+	// Optional identifier to track a commercial or marketplace transaction executed to
+	// produce this data.
+	TransactionID string `json:"transactionId"`
+	// Boolean indicating this state vector was unable to be correlated to a known
+	// object. This flag should only be set to true by data providers after an attempt
+	// to correlate to an OnOrbit object was made and failed. If unable to correlate,
+	// the 'origObjectId' field may be populated with an internal data provider
+	// specific identifier.
+	Uct bool `json:"uct"`
+	// Rate of change of UT1 (milliseconds/day) - first derivative of ut1Utc.
+	Ut1Rate float64 `json:"ut1Rate"`
+	// Universal Time-1 (UT1) minus UTC offset, in seconds.
+	Ut1Utc float64 `json:"ut1Utc"`
+	// One sigma velocity uncertainty, in kilometers/second.
+	VelUnc float64 `json:"velUnc"`
+	// Cartesian X acceleration of target, in kilometers/second^2, in the specified
+	// referenceFrame. If referenceFrame is null then J2K should be assumed.
+	Xaccel float64 `json:"xaccel"`
+	// Cartesian X position of the target, in kilometers, in the specified
+	// referenceFrame. If referenceFrame is null then J2K should be assumed.
+	Xpos float64 `json:"xpos"`
+	// Cartesian X position of the target, in kilometers, in the specified
+	// alt1ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	XposAlt1 float64 `json:"xposAlt1"`
+	// Cartesian X position of the target, in kilometers, in the specified
+	// alt2ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	XposAlt2 float64 `json:"xposAlt2"`
+	// Cartesian X velocity of target, in kilometers/second, in the specified
+	// referenceFrame. If referenceFrame is null then J2K should be assumed.
+	Xvel float64 `json:"xvel"`
+	// Cartesian X velocity of the target, in kilometers/second, in the specified
+	// alt1ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	XvelAlt1 float64 `json:"xvelAlt1"`
+	// Cartesian X velocity of the target, in kilometers/second, in the specified
+	// alt2ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	XvelAlt2 float64 `json:"xvelAlt2"`
+	// Cartesian Y acceleration of target, in kilometers/second^2, in the specified
+	// referenceFrame. If referenceFrame is null then J2K should be assumed.
+	Yaccel float64 `json:"yaccel"`
+	// Cartesian Y position of the target, in kilometers, in the specified
+	// referenceFrame. If referenceFrame is null then J2K should be assumed.
+	Ypos float64 `json:"ypos"`
+	// Cartesian Y position of the target, in kilometers, in the specified
+	// alt1ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	YposAlt1 float64 `json:"yposAlt1"`
+	// Cartesian Y position of the target, in kilometers, in the specified
+	// alt2ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	YposAlt2 float64 `json:"yposAlt2"`
+	// Cartesian Y velocity of target, in kilometers/second, in the specified
+	// referenceFrame. If referenceFrame is null then J2K should be assumed.
+	Yvel float64 `json:"yvel"`
+	// Cartesian Y velocity of the target, in kilometers/second, in the specified
+	// alt1ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	YvelAlt1 float64 `json:"yvelAlt1"`
+	// Cartesian Y velocity of the target, in kilometers/second, in the specified
+	// alt2ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	YvelAlt2 float64 `json:"yvelAlt2"`
+	// Cartesian Z acceleration of target, in kilometers/second^2, in the specified
+	// referenceFrame. If referenceFrame is null then J2K should be assumed.
+	Zaccel float64 `json:"zaccel"`
+	// Cartesian Z position of the target, in kilometers, in the specified
+	// referenceFrame. If referenceFrame is null then J2K should be assumed.
+	Zpos float64 `json:"zpos"`
+	// Cartesian Z position of the target, in kilometers, in the specified
+	// alt1ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	ZposAlt1 float64 `json:"zposAlt1"`
+	// Cartesian Z position of the target, in kilometers, in the specified
+	// alt2ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	ZposAlt2 float64 `json:"zposAlt2"`
+	// Cartesian Z velocity of target, in kilometers/second, in the specified
+	// referenceFrame. If referenceFrame is null then J2K should be assumed.
+	Zvel float64 `json:"zvel"`
+	// Cartesian Z velocity of the target, in kilometers/second, in the specified
+	// alt1ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	ZvelAlt1 float64 `json:"zvelAlt1"`
+	// Cartesian Z velocity of the target, in kilometers/second, in the specified
+	// alt2ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	ZvelAlt2 float64 `json:"zvelAlt2"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		Epoch                 resp.Field
+		Source                resp.Field
+		ActualOdSpan          resp.Field
+		Algorithm             resp.Field
+		Alt1ReferenceFrame    resp.Field
+		Alt2ReferenceFrame    resp.Field
+		Area                  resp.Field
+		BDot                  resp.Field
+		CmOffset              resp.Field
+		Cov                   resp.Field
+		CovMethod             resp.Field
+		CovReferenceFrame     resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Descriptor            resp.Field
+		DragArea              resp.Field
+		DragCoeff             resp.Field
+		DragModel             resp.Field
+		Edr                   resp.Field
+		EffectiveFrom         resp.Field
+		EffectiveUntil        resp.Field
+		EqCov                 resp.Field
+		ErrorControl          resp.Field
+		FixedStep             resp.Field
+		GeopotentialModel     resp.Field
+		Iau1980Terms          resp.Field
+		IDOnOrbit             resp.Field
+		IDOrbitDetermination  resp.Field
+		IDStateVector         resp.Field
+		IntegratorMode        resp.Field
+		InTrackThrust         resp.Field
+		LastObEnd             resp.Field
+		LastObStart           resp.Field
+		LeapSecondTime        resp.Field
+		LunarSolar            resp.Field
+		Mass                  resp.Field
+		ObsAvailable          resp.Field
+		ObsUsed               resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		OrigObjectID          resp.Field
+		Partials              resp.Field
+		Pedigree              resp.Field
+		PolarMotionX          resp.Field
+		PolarMotionY          resp.Field
+		PosUnc                resp.Field
+		RawFileUri            resp.Field
+		RecOdSpan             resp.Field
+		ReferenceFrame        resp.Field
+		ResidualsAcc          resp.Field
+		RevNo                 resp.Field
+		Rms                   resp.Field
+		SatNo                 resp.Field
+		SigmaPosUvw           resp.Field
+		SigmaVelUvw           resp.Field
+		SolarFluxApAvg        resp.Field
+		SolarFluxF10          resp.Field
+		SolarFluxF10Avg       resp.Field
+		SolarRadPress         resp.Field
+		SolarRadPressCoeff    resp.Field
+		SolidEarthTides       resp.Field
+		SourcedData           resp.Field
+		SourcedDataTypes      resp.Field
+		SourceDl              resp.Field
+		SrpArea               resp.Field
+		StepMode              resp.Field
+		StepSize              resp.Field
+		StepSizeSelection     resp.Field
+		Tags                  resp.Field
+		TaiUtc                resp.Field
+		ThrustAccel           resp.Field
+		TracksAvail           resp.Field
+		TracksUsed            resp.Field
+		TransactionID         resp.Field
+		Uct                   resp.Field
+		Ut1Rate               resp.Field
+		Ut1Utc                resp.Field
+		VelUnc                resp.Field
+		Xaccel                resp.Field
+		Xpos                  resp.Field
+		XposAlt1              resp.Field
+		XposAlt2              resp.Field
+		Xvel                  resp.Field
+		XvelAlt1              resp.Field
+		XvelAlt2              resp.Field
+		Yaccel                resp.Field
+		Ypos                  resp.Field
+		YposAlt1              resp.Field
+		YposAlt2              resp.Field
+		Yvel                  resp.Field
+		YvelAlt1              resp.Field
+		YvelAlt2              resp.Field
+		Zaccel                resp.Field
+		Zpos                  resp.Field
+		ZposAlt1              resp.Field
+		ZposAlt2              resp.Field
+		Zvel                  resp.Field
+		ZvelAlt1              resp.Field
+		ZvelAlt2              resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorPlanGetResponseCollectRequestStateVector) RawJSON() string { return r.JSON.raw }
+func (r *SensorPlanGetResponseCollectRequestStateVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// A Plan is used to aggregate two or more of the same type of record to a parent
+// entity, with the planId (UUID) being included in all of the subordinate records,
+// enabling resolution back to the parent.
+type SensorPlanTupleResponse struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode SensorPlanTupleResponseDataMode `json:"dataMode,required"`
+	// The type of records that comprise this parent set (COLLECT, CONTACT).
+	RecType string `json:"recType,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// The start time of the plan or schedule, in ISO 8601 UTC format.
+	StartTime time.Time `json:"startTime,required" format:"date-time"`
+	// The type of this sensor plan/schedule (PLAN, REQUEST, SCHEDULE).
+	Type string `json:"type,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// The list of collect requests belonging to the SensorPlan. Each collect request
+	// is associated with a parent SensorPlan via the IdPlan. If provided, the list
+	// must have the same size as reqTotal.
+	CollectRequests []SensorPlanTupleResponseCollectRequest `json:"collectRequests"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The customer for this plan or schedule.
+	Customer string `json:"customer"`
+	// The end time of the plan or schedule, in ISO 8601 UTC format.
+	EndTime time.Time `json:"endTime" format:"date-time"`
+	// Unique identifier of the requested/schedule/planned sensor associated with this
+	// request.
+	IDSensor string `json:"idSensor"`
+	// Name associated with this plan or schedule.
+	Name string `json:"name"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Optional identifier provided by the source to indicate the sensor identifier
+	// requested/scheduled/planned for this request. This may be an internal identifier
+	// and not necessarily a valid sensor ID.
+	OrigSensorID string `json:"origSensorId"`
+	// The purpose/description of this plan or schedule.
+	Purpose string `json:"purpose"`
+	// The total number of requests contained in this plan or schedule. Value of this
+	// field must match the size of collectRequest list if the list is provided and can
+	// be null or any value otherwise.
+	ReqTotal int64 `json:"reqTotal"`
+	// The sensor or ground network associated with this plan or schedule.
+	SenNetwork string `json:"senNetwork"`
+	// The status of this plan or schedule (ACCEPTED, APPROVED, COMPLETED, PROPOSED,
+	// REJECTED, REQUESTED, SCHEDULED).
+	Status string `json:"status"`
+	// Optional array of provider/source specific tags for this data, where each
+	// element is no longer than 32 characters, used for implementing data owner
+	// conditional access controls to restrict access to the data. Should be left null
+	// by data providers unless conditional access controls are coordinated with the
+	// UDL team.
+	Tags []string `json:"tags"`
+	// Time the row was updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		RecType               resp.Field
+		Source                resp.Field
+		StartTime             resp.Field
+		Type                  resp.Field
+		ID                    resp.Field
+		CollectRequests       resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Customer              resp.Field
+		EndTime               resp.Field
+		IDSensor              resp.Field
+		Name                  resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		OrigSensorID          resp.Field
+		Purpose               resp.Field
+		ReqTotal              resp.Field
+		SenNetwork            resp.Field
+		Status                resp.Field
+		Tags                  resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorPlanTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *SensorPlanTupleResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type SensorPlanTupleResponseDataMode string
+
+const (
+	SensorPlanTupleResponseDataModeReal      SensorPlanTupleResponseDataMode = "REAL"
+	SensorPlanTupleResponseDataModeTest      SensorPlanTupleResponseDataMode = "TEST"
+	SensorPlanTupleResponseDataModeSimulated SensorPlanTupleResponseDataMode = "SIMULATED"
+	SensorPlanTupleResponseDataModeExercise  SensorPlanTupleResponseDataMode = "EXERCISE"
+)
+
+// Collect Requests support several types of individual requests, or
+// planned/scheduled tasks on sensors and/or orbital objects. Options are provided
+// to accomodate most common sensor contact and collection applications, including
+// single sensor-object tasking, search operations, and TT&C support. Multiple
+// requests originating from a plan or schedule may be associated to a sensor plan
+// if desired.
+type SensorPlanTupleResponseCollectRequest struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// The start time or earliest time of the collect or contact request window, in ISO
+	// 8601 UTC format.
+	StartTime time.Time `json:"startTime,required" format:"date-time"`
+	// The type of this collect or contact request (DIRECTED SEARCH, DWELL, OBJECT,
+	// POL, RATE TRACK, SEARCH, SOI, STARE, TTC, VOLUME SEARCH, etc.).
+	Type string `json:"type,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID string `json:"id"`
+	// Height above WGS-84 ellipsoid (HAE), in kilometers. If an accompanying stopAlt
+	// is provided, then alt value can be assumed to be the starting altitude of a
+	// volume definition.
+	Alt float64 `json:"alt"`
+	// The argument of perigee is the angle, in degrees, formed between the perigee and
+	// the ascending node.
+	ArgOfPerigee float64 `json:"argOfPerigee"`
+	// The expected or directed azimuth angle, in degrees, for search or target
+	// acquisition.
+	Az float64 `json:"az"`
+	// CollectResponses associated to request id. Read-only details (only used on
+	// detail queries, not to be provided on create/update operations).
+	CollectResponse []shared.CollectResponseFull `json:"collectResponse"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// The customer for this request.
+	Customer string `json:"customer"`
+	// The expected or directed declination angle, in degrees, for search or target
+	// acquisition.
+	Dec float64 `json:"dec"`
+	// The duration of the collect request, in seconds. If both duration and endTime
+	// are provided, the endTime is assumed to take precedence.
+	Duration int64 `json:"duration"`
+	// The dwell ID associated with this request. A dwell ID is dwell point specific
+	// and a DWELL request consist of many dwell point requests.
+	DwellID string `json:"dwellId"`
+	// The orbital eccentricity of an astronomical object is a parameter that
+	// determines the amount by which its orbit around another body deviates from a
+	// perfect circle.
+	Eccentricity float64 `json:"eccentricity"`
+	// The expected or directed elevation angle, in degrees, for search or target
+	// acquisition.
+	El float64 `json:"el"`
+	// An element set is a collection of Keplerian orbital elements describing an orbit
+	// of a particular satellite. The data is used along with an orbit propagator in
+	// order to predict the motion of a satellite. The element set, or elset for short,
+	// consists of identification data, the classical elements and drag parameters.
+	Elset SensorPlanTupleResponseCollectRequestElset `json:"elset"`
+	// The end time of the collect or contact request window, in ISO 8601 UTC format.
+	// If no endTime or duration is provided it is assumed the request is either
+	// ongoing or that the request is for a specified number of tracks (numTracks). If
+	// both duration and endTime are provided, the endTime is assumed to take
+	// precedence.
+	EndTime time.Time `json:"endTime" format:"date-time"`
+	// Epoch time, in ISO 8601 UTC format, of the orbital elements.
+	Epoch time.Time `json:"epoch" format:"date-time"`
+	// ID of the UDL Ephemeris Set of the object associated with this request.
+	EsID string `json:"esId"`
+	// The extent of the azimuth angle, in degrees, from center azimuth to define a
+	// spatial volume.
+	ExtentAz float64 `json:"extentAz"`
+	// The extent of the elevation angle, in degrees, from center elevation to define a
+	// spatial volume.
+	ExtentEl float64 `json:"extentEl"`
+	// The extent of the range, in km, from center range to define a spatial volume.
+	ExtentRange float64 `json:"extentRange"`
+	// Optional ID from external systems. This field has no meaning within UDL and is
+	// provided as a convenience for systems that require tracking of an internal
+	// system generated ID.
+	ExternalID string `json:"externalId"`
+	// For optical sensors, the frame rate of the camera, in Hz.
+	FrameRate float64 `json:"frameRate"`
+	// The estimated or expected emission frequency of the target, in MHz.
+	Freq float64 `json:"freq"`
+	// The maximum frequency of interest, in MHz.
+	FreqMax float64 `json:"freqMax"`
+	// The minimum frequency of interest, in MHz. If only minimum frequency is provided
+	// it is assumed to be minimum reportable frequency.
+	FreqMin float64 `json:"freqMin"`
+	// ID of the UDL Elset of the object associated with this request.
+	IDElset string `json:"idElset"`
+	// ID of the UDL Manifold Elset of the object associated with this request. A
+	// Manifold Elset provides theoretical Keplerian orbital elements belonging to an
+	// object of interest's manifold describing a possible/theoretical orbit for an
+	// object of interest for tasking purposes.
+	IDManifold string `json:"idManifold"`
+	// Unique identifier of the target on-orbit object for this request.
+	IDOnOrbit string `json:"idOnOrbit"`
+	// The unique ID of the collect request record from which this request originated.
+	// This may be used for cases of sensor-to-sensor tasking, such as tip/cue
+	// operations.
+	IDParentReq string `json:"idParentReq"`
+	// Unique identifier of the parent plan or schedule associated with this request.
+	// If null, this request is assumed not associated with a plan or schedule.
+	IDPlan string `json:"idPlan"`
+	// Unique identifier of the requested/scheduled/planned sensor associated with this
+	// request. If both idSensor and origSensorId are null then the request is assumed
+	// to be a general request for observations or contact on an object, if specified,
+	// or an area/volume. In this case, the requester may specify a desired obType.
+	IDSensor string `json:"idSensor"`
+	// ID of the UDL State Vector of the object or central vector associated with this
+	// request.
+	IDStateVector string `json:"idStateVector"`
+	// The angle, in degrees, between the equator and the orbit plane when looking from
+	// the center of the Earth. Inclination ranges from 0-180 degrees, with 0-90
+	// representing posigrade orbits and 90-180 representing retrograde orbits.
+	Inclination float64 `json:"inclination"`
+	// For optical sensors, the integration time per camera frame, in milliseconds.
+	IntegrationTime float64 `json:"integrationTime"`
+	// Inter-Range Operations Number. Four-digit identifier used to schedule and
+	// identify AFSCN contact support for booster, launch, and on-orbit operations.
+	Iron int64 `json:"iron"`
+	// The target object irradiance value.
+	Irradiance float64 `json:"irradiance"`
+	// WGS-84 latitude, in degrees. -90 to 90 degrees (negative values south of
+	// equator). If an accompanying stopLat is provided, then the lat value can be
+	// assumed to be the starting latitude of a volume definition.
+	Lat float64 `json:"lat"`
+	// WGS-84 longitude, in degrees. -180 to 180 degrees (negative values west of Prime
+	// Meridian). If an accompanying stopLon is provided, then lon value can be assumed
+	// to be the starting longitude of a volume definition.
+	Lon float64 `json:"lon"`
+	// The timestamp of the external message from which this request originated, if
+	// applicable, in ISO8601 UTC format with millisecond precision.
+	MsgCreateDate time.Time `json:"msgCreateDate" format:"date-time"`
+	// The type of external message from which this request originated.
+	MsgType string `json:"msgType"`
+	// Notes or comments associated with this request.
+	Notes string `json:"notes"`
+	// For optical sensors, the requested number of frames to capture at each sensor
+	// step.
+	NumFrames int64 `json:"numFrames"`
+	// The number of requested observations on the target.
+	NumObs int64 `json:"numObs"`
+	// The number of requested tracks on the target. If numTracks is not provided it is
+	// assumed to indicate all possible observations every pass over the request
+	// duration or within the request start/end window.
+	NumTracks int64 `json:"numTracks"`
+	// Optional type of observation (EO, IR, RADAR, RF-ACTIVE, RF-PASSIVE, OTHER)
+	// requested. This field may correspond to a request of a specific sensor, or to a
+	// general non sensor specific request.
+	ObType string `json:"obType"`
+	// The orbit regime of the target (GEO, HEO, LAUNCH, LEO, MEO, OTHER).
+	OrbitRegime string `json:"orbitRegime"`
+	// The magnitude of rotation, in degrees, between the xAngle direction and locally
+	// defined equinoctial plane. A positive value indicates clockwise rotation about
+	// the sensor boresight vector.
+	OrientAngle float64 `json:"orientAngle"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Optional identifier provided by the data source to indicate the target object of
+	// this request. This may be an internal identifier and not necessarily map to a
+	// valid satellite number.
+	OrigObjectID string `json:"origObjectId"`
+	// Optional identifier provided by the source to indicate the sensor identifier
+	// requested/scheduled/planned for this request. This may be an internal identifier
+	// and not necessarily a valid sensor ID. If both idSensor and origSensorId are
+	// null then the request is assumed to be a general request for observations or
+	// contact on an object, if specified, or an area/volume. In this case, the
+	// requester may specify a desired obType.
+	OrigSensorID string `json:"origSensorId"`
+	// Index number (integer) for records within a collection plan or schedule.
+	PlanIndex int64 `json:"planIndex"`
+	// The RF polarization (H, LHC, RHC, V).
+	Polarization string `json:"polarization"`
+	// The priority of the collect request (EMERGENCY, FLASH, IMMEDIATE, PRIORITY,
+	// ROUTINE).
+	Priority string `json:"priority"`
+	// The expected or directed right ascension angle, in degrees, for search or target
+	// acquisition.
+	Ra float64 `json:"ra"`
+	// Right ascension of the ascending node, or RAAN is the angle as measured in
+	// degrees eastwards (or, as seen from the north, counterclockwise) from the First
+	// Point of Aries to the ascending node.
+	Raan float64 `json:"raan"`
+	// The expected acquisition range or defined center range, in km.
+	Range float64 `json:"range"`
+	// The Radar Cross-Section of the target, in m^2.
+	Rcs float64 `json:"rcs"`
+	// The maximum Radar Cross-Section of the target, in m^2.
+	RcsMax float64 `json:"rcsMax"`
+	// The minimum Radar Cross-Section of the target, in m^2. If only minimum RCS is
+	// provided it is assumed to be minimum reportable RCS.
+	RcsMin float64 `json:"rcsMin"`
+	// The fraction of solar energy reflected from target.
+	Reflectance float64 `json:"reflectance"`
+	// Satellite/catalog number of the target on-orbit object for this request.
+	SatNo int64 `json:"satNo"`
+	// Pre-coordinated code, direction, or configuration to be executed by the sensor
+	// or site for this collect or contact.
+	Scenario string `json:"scenario"`
+	// The average of the periapsis and apoapsis distances, in kilometers. For circular
+	// orbits, the semimajor axis is the distance between the centers of the bodies.
+	SemiMajorAxis float64 `json:"semiMajorAxis"`
+	// The spectral model used for the irradiance calculation.
+	SpectralModel string `json:"spectralModel"`
+	// The maximum inclination, in degrees, to be used in search operations.
+	SrchInc float64 `json:"srchInc"`
+	// The search pattern to be executed for this request (e.g. PICKET-FENCE, SCAN,
+	// etc.).
+	SrchPattern string `json:"srchPattern"`
+	// This service provides operations for querying and manipulation of state vectors
+	// for OnOrbit objects. State vectors are cartesian vectors of position (r) and
+	// velocity (v) that, together with their time (epoch) (t), uniquely determine the
+	// trajectory of the orbiting body in space. J2000 is the preferred coordinate
+	// frame for all state vector positions/velocities in UDL, but in some cases data
+	// may be in another frame depending on the provider and/or datatype. Please see
+	// the 'Discover' tab in the storefront to confirm coordinate frames by data
+	// provider.
+	StateVector SensorPlanTupleResponseCollectRequestStateVector `json:"stateVector"`
+	// The stopping HAE WGS-84 height above ellipsoid (HAE), of a volume definition, in
+	// kilometers. The stopAlt value is only meaningful if a (starting) alt value is
+	// provided.
+	StopAlt float64 `json:"stopAlt"`
+	// The stopping WGS-84 latitude of a volume definition, in degrees. -90 to 90
+	// degrees (negative values south of equator). The stopLat value is only meaningful
+	// if a (starting) lat value is provided.
+	StopLat float64 `json:"stopLat"`
+	// The stopping WGS-84 longitude of a volume definition, in degrees. -180 to 180
+	// degrees (negative values west of Prime Meridian). The stopLon value is only
+	// meaningful if a (starting) lon value is provided.
+	StopLon float64 `json:"stopLon"`
+	// The (SSN) tasking suffix (A-Z) associated with this request. The suffix defines
+	// the amount of observational data and the frequency of collection. Note that
+	// suffix definitions are sensor type specific.
+	Suffix string `json:"suffix"`
+	// Optional array of provider/source specific tags for this data, where each
+	// element is no longer than 32 characters, used for implementing data owner
+	// conditional access controls to restrict access to the data. Should be left null
+	// by data providers unless conditional access controls are coordinated with the
+	// UDL team.
+	Tags []string `json:"tags"`
+	// The minimum object (diameter) size, in meters, to be reported.
+	TargetSize float64 `json:"targetSize"`
+	// The (SSN) tasking category (1-5) associated with this request. The tasking
+	// category defines the priority of gathering and transmitting the requested
+	// observational data. Note that category definitions are sensor type specific.
+	TaskCategory int64 `json:"taskCategory"`
+	// The tasking group to which the target object is assigned.
+	TaskGroup string `json:"taskGroup"`
+	// Task ID associated with this request. A task ID may be associated with a single
+	// collect request or may be used to tie together the sub-requests of a full
+	// collect, for example a DWELL consisting of many dwell points.
+	TaskID string `json:"taskId"`
+	// Optional identifier to track a commercial or marketplace transaction executed to
+	// produce this data.
+	TransactionID string `json:"transactionId"`
+	// The true anomaly defines the angular position, in degrees, of the object on it's
+	// orbital path as measured from the orbit focal point at epoch. The true anomaly
+	// is referenced from perigee.
+	TrueAnomoly float64 `json:"trueAnomoly"`
+	// Boolean indicating that this collect request is UCT follow-up.
+	UctFollowUp bool `json:"uctFollowUp"`
+	// Time the row was last updated in the database, auto-populated by the system.
+	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy string `json:"updatedBy"`
+	// The estimated or expected visual magnitude of the target, in Magnitudes (M).
+	VisMag float64 `json:"visMag"`
+	// The maximum estimated or expected visual magnitude of the target, in Magnitudes
+	// (M).
+	VisMagMax float64 `json:"visMagMax"`
+	// The minimum estimated or expected visual magnitude of the target, in Magnitudes
+	// (M). If only minimum vismag is provided it is assumed to be minimum reportable
+	// vismag.
+	VisMagMin float64 `json:"visMagMin"`
+	// The angular distance, in degrees, in the sensor-x direction from scan center
+	// defined by the central vector. The specification of xAngle and yAngle defines a
+	// rectangle of width 2*xAngle and height 2*yAngle centered about the central
+	// vector.
+	XAngle float64 `json:"xAngle"`
+	// The angular distance, in degrees, in the sensor-y direction from scan center
+	// defined by the central vector. The specification of xAngle and yAngle defines a
+	// rectangle of width 2*xAngle and height 2*yAngle centered about the central
+	// vector.
+	YAngle float64 `json:"yAngle"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		Source                resp.Field
+		StartTime             resp.Field
+		Type                  resp.Field
+		ID                    resp.Field
+		Alt                   resp.Field
+		ArgOfPerigee          resp.Field
+		Az                    resp.Field
+		CollectResponse       resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Customer              resp.Field
+		Dec                   resp.Field
+		Duration              resp.Field
+		DwellID               resp.Field
+		Eccentricity          resp.Field
+		El                    resp.Field
+		Elset                 resp.Field
+		EndTime               resp.Field
+		Epoch                 resp.Field
+		EsID                  resp.Field
+		ExtentAz              resp.Field
+		ExtentEl              resp.Field
+		ExtentRange           resp.Field
+		ExternalID            resp.Field
+		FrameRate             resp.Field
+		Freq                  resp.Field
+		FreqMax               resp.Field
+		FreqMin               resp.Field
+		IDElset               resp.Field
+		IDManifold            resp.Field
+		IDOnOrbit             resp.Field
+		IDParentReq           resp.Field
+		IDPlan                resp.Field
+		IDSensor              resp.Field
+		IDStateVector         resp.Field
+		Inclination           resp.Field
+		IntegrationTime       resp.Field
+		Iron                  resp.Field
+		Irradiance            resp.Field
+		Lat                   resp.Field
+		Lon                   resp.Field
+		MsgCreateDate         resp.Field
+		MsgType               resp.Field
+		Notes                 resp.Field
+		NumFrames             resp.Field
+		NumObs                resp.Field
+		NumTracks             resp.Field
+		ObType                resp.Field
+		OrbitRegime           resp.Field
+		OrientAngle           resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		OrigObjectID          resp.Field
+		OrigSensorID          resp.Field
+		PlanIndex             resp.Field
+		Polarization          resp.Field
+		Priority              resp.Field
+		Ra                    resp.Field
+		Raan                  resp.Field
+		Range                 resp.Field
+		Rcs                   resp.Field
+		RcsMax                resp.Field
+		RcsMin                resp.Field
+		Reflectance           resp.Field
+		SatNo                 resp.Field
+		Scenario              resp.Field
+		SemiMajorAxis         resp.Field
+		SpectralModel         resp.Field
+		SrchInc               resp.Field
+		SrchPattern           resp.Field
+		StateVector           resp.Field
+		StopAlt               resp.Field
+		StopLat               resp.Field
+		StopLon               resp.Field
+		Suffix                resp.Field
+		Tags                  resp.Field
+		TargetSize            resp.Field
+		TaskCategory          resp.Field
+		TaskGroup             resp.Field
+		TaskID                resp.Field
+		TransactionID         resp.Field
+		TrueAnomoly           resp.Field
+		UctFollowUp           resp.Field
+		UpdatedAt             resp.Field
+		UpdatedBy             resp.Field
+		VisMag                resp.Field
+		VisMagMax             resp.Field
+		VisMagMin             resp.Field
+		XAngle                resp.Field
+		YAngle                resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorPlanTupleResponseCollectRequest) RawJSON() string { return r.JSON.raw }
+func (r *SensorPlanTupleResponseCollectRequest) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// An element set is a collection of Keplerian orbital elements describing an orbit
+// of a particular satellite. The data is used along with an orbit propagator in
+// order to predict the motion of a satellite. The element set, or elset for short,
+// consists of identification data, the classical elements and drag parameters.
+type SensorPlanTupleResponseCollectRequestElset struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Elset epoch time in ISO 8601 UTC format, with microsecond precision.
+	Epoch time.Time `json:"epoch,required" format:"date-time"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// AGOM, expressed in m^2/kg, is the value of the (averaged) object Area times the
+	// solar radiation pressure coefficient(Gamma) over the object Mass. Applicable
+	// only with ephemType4.
+	Agom float64 `json:"agom"`
+	// Optional algorithm used to produce this record.
+	Algorithm string `json:"algorithm"`
+	// The orbit point furthest from the center of the earth in kilometers. If not
+	// provided, apogee will be computed from the TLE according to the following. Using
+	// mu, the standard gravitational parameter for the earth (398600.4418), semi-major
+	// axis A = (mu/(n _ 2 _ pi/(24*3600))^2)(1/3). Using semi-major axis A,
+	// eccentricity E, apogee = (A * (1 + E)) in km. Note that the calculations are for
+	// computing the apogee radius from the center of the earth, to compute apogee
+	// altitude the radius of the earth should be subtracted (6378.135 km).
+	Apogee float64 `json:"apogee"`
+	// The argument of perigee is the angle in degrees formed between the perigee and
+	// the ascending node. If the perigee would occur at the ascending node, the
+	// argument of perigee would be 0.
+	ArgOfPerigee float64 `json:"argOfPerigee"`
+	// Ballistic coefficient, in m^2/kg. Applicable only with ephemType4.
+	BallisticCoeff float64 `json:"ballisticCoeff"`
+	// The drag term for SGP4 orbital model, used for calculating decay constants for
+	// altitude, eccentricity etc, measured in inverse earth radii.
+	BStar float64 `json:"bStar"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Optional source-provided and searchable metadata or descriptor of the data.
+	Descriptor string `json:"descriptor"`
+	// The orbital eccentricity of an astronomical object is a parameter that
+	// determines the amount by which its orbit around another body deviates from a
+	// perfect circle. A value of 0 is a circular orbit, values between 0 and 1 form an
+	// elliptic orbit, 1 is a parabolic escape orbit, and greater than 1 is a
+	// hyperbolic escape orbit.
+	Eccentricity float64 `json:"eccentricity"`
+	// Read-only start time at which this elset was the 'current' elset for its
+	// satellite. This field and is set by the system automatically and ignored on
+	// create/edit operations.
+	EffectiveFrom time.Time `json:"effectiveFrom" format:"date-time"`
+	// Read-only end time at which this elset was no longer the 'current' elset for its
+	// satellite. This field and is set by the system automatically and ignored on
+	// create/edit operations.
+	EffectiveUntil time.Time `json:"effectiveUntil" format:"date-time"`
+	// The ephemeris type associated with this TLE:
+	//
+	// 0:&nbsp;SGP (or SGP4 with Kozai mean motion)
+	//
+	// 1:&nbsp;SGP (Kozai mean motion)
+	//
+	// 2:&nbsp;SGP4 (Brouver mean motion)
+	//
+	// 3:&nbsp;SDP4
+	//
+	// 4:&nbsp;SGP4-XP
+	//
+	// 5:&nbsp;SDP8
+	//
+	// 6:&nbsp;SP (osculating mean motion)
+	EphemType int64 `json:"ephemType"`
+	// Unique identifier of the record, auto-generated by the system.
+	IDElset string `json:"idElset"`
+	// Unique identifier of the satellite on-orbit object, if correlated. For the
+	// public catalog, the idOnOrbit is typically the satellite number as a string, but
+	// may be a UUID for analyst or other unknown or untracked satellites.
+	IDOnOrbit string `json:"idOnOrbit"`
+	// Unique identifier of the OD solution record that produced this elset. This ID
+	// can be used to obtain additional information on an OrbitDetermination object
+	// using the 'get by ID' operation (e.g. /udl/orbitdetermination/{id}). For
+	// example, the OrbitDetermination with idOrbitDetermination = abc would be queried
+	// as /udl/orbitdetermination/abc.
+	IDOrbitDetermination string `json:"idOrbitDetermination"`
+	// The angle between the equator and the orbit when looking from the center of the
+	// Earth. If the orbit went exactly around the equator from left to right, then the
+	// inclination would be 0. The inclination ranges from 0 to 180 degrees.
+	Inclination float64 `json:"inclination"`
+	// Read only derived/generated line1 of a legacy TLE (two line element set) format,
+	// ignored on create/edit operations.
+	Line1 string `json:"line1"`
+	// Read only derived/generated line2 of a legacy TLE (two line element set) format,
+	// ignored on create/edit operations.
+	Line2 string `json:"line2"`
+	// Where the satellite is in its orbital path. The mean anomaly ranges from 0 to
+	// 360 degrees. The mean anomaly is referenced to the perigee. If the satellite
+	// were at the perigee, the mean anomaly would be 0.
+	MeanAnomaly float64 `json:"meanAnomaly"`
+	// Mean motion is the angular speed required for a body to complete one orbit,
+	// assuming constant speed in a circular orbit which completes in the same time as
+	// the variable speed, elliptical orbit of the actual body. Measured in revolutions
+	// per day.
+	MeanMotion float64 `json:"meanMotion"`
+	// 2nd derivative of the mean motion with respect to time. Units are revolutions
+	// per day cubed.
+	MeanMotionDDot float64 `json:"meanMotionDDot"`
+	// 1st derivative of the mean motion with respect to time. Units are revolutions
+	// per day squared.
+	MeanMotionDot float64 `json:"meanMotionDot"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Optional identifier provided by elset source to indicate the target onorbit
+	// object of this elset. This may be an internal identifier and not necessarily map
+	// to a valid satellite number.
+	OrigObjectID string `json:"origObjectId"`
+	// The orbit point nearest to the center of the earth in kilometers. If not
+	// provided, perigee will be computed from the TLE according to the following.
+	// Using mu, the standard gravitational parameter for the earth (398600.4418),
+	// semi-major axis A = (mu/(n _ 2 _ pi/(24*3600))^2)(1/3). Using semi-major axis A,
+	// eccentricity E, perigee = (A * (1 - E)) in km. Note that the calculations are
+	// for computing the perigee radius from the center of the earth, to compute
+	// perigee altitude the radius of the earth should be subtracted (6378.135 km).
+	Perigee float64 `json:"perigee"`
+	// Period of the orbit equal to inverse of mean motion, in minutes.
+	Period float64 `json:"period"`
+	// Right ascension of the ascending node, or RAAN is the angle as measured in
+	// degrees eastwards (or, as seen from the north, counterclockwise) from the First
+	// Point of Aries to the ascending node, which is where the orbit crosses the
+	// equator when traveling north.
+	Raan float64 `json:"raan"`
+	// Optional URI location in the document repository of the raw file parsed by the
+	// system to produce this record. To download the raw file, prepend
+	// https://udl-hostname/scs/download?id= to this value.
+	RawFileUri string `json:"rawFileURI"`
+	// The current revolution number. The value is incremented when a satellite crosses
+	// the equator on an ascending pass.
+	RevNo int64 `json:"revNo"`
+	// Satellite/catalog number of the target on-orbit object.
+	SatNo int64 `json:"satNo"`
+	// The sum of the periapsis and apoapsis distances divided by two. For circular
+	// orbits, the semimajor axis is the distance between the centers of the bodies,
+	// not the distance of the bodies from the center of mass. Units are kilometers.
+	SemiMajorAxis float64 `json:"semiMajorAxis"`
+	// Optional array of UDL data (observation) UUIDs used to build this element set.
+	// See the associated sourcedDataTypes array for the specific types of observations
+	// for the positionally corresponding UUIDs in this array (the two arrays must
+	// match in size).
+	SourcedData []string `json:"sourcedData"`
+	// Optional array of UDL observation data types used to build this element set
+	// (e.g. EO, RADAR, RF, DOA). See the associated sourcedData array for the specific
+	// UUIDs of observations for the positionally corresponding data types in this
+	// array (the two arrays must match in size).
+	//
+	// Any of "EO", "RADAR", "RF", "DOA", "ELSET", "SV".
+	SourcedDataTypes []string `json:"sourcedDataTypes"`
+	// The source data library from which this record was received. This could be a
+	// remote or tactical UDL or another data library. If null, the record should be
+	// assumed to have originated from the primary Enterprise UDL.
+	SourceDl string `json:"sourceDL"`
+	// Optional array of provider/source specific tags for this data, where each
+	// element is no longer than 32 characters, used for implementing data owner
+	// conditional access controls to restrict access to the data. Should be left null
+	// by data providers unless conditional access controls are coordinated with the
+	// UDL team.
+	Tags []string `json:"tags"`
+	// Optional identifier to track a commercial or marketplace transaction executed to
+	// produce this data.
+	TransactionID string `json:"transactionId"`
+	// Boolean indicating this Elset was unable to be correlated to a known object.
+	// This flag should only be set to true by data providers after an attempt to
+	// correlate to an on-orbit object was made and failed. If unable to correlate, the
+	// 'origObjectId' field may be populated with an internal data provider specific
+	// identifier.
+	Uct bool `json:"uct"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		Epoch                 resp.Field
+		Source                resp.Field
+		Agom                  resp.Field
+		Algorithm             resp.Field
+		Apogee                resp.Field
+		ArgOfPerigee          resp.Field
+		BallisticCoeff        resp.Field
+		BStar                 resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Descriptor            resp.Field
+		Eccentricity          resp.Field
+		EffectiveFrom         resp.Field
+		EffectiveUntil        resp.Field
+		EphemType             resp.Field
+		IDElset               resp.Field
+		IDOnOrbit             resp.Field
+		IDOrbitDetermination  resp.Field
+		Inclination           resp.Field
+		Line1                 resp.Field
+		Line2                 resp.Field
+		MeanAnomaly           resp.Field
+		MeanMotion            resp.Field
+		MeanMotionDDot        resp.Field
+		MeanMotionDot         resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		OrigObjectID          resp.Field
+		Perigee               resp.Field
+		Period                resp.Field
+		Raan                  resp.Field
+		RawFileUri            resp.Field
+		RevNo                 resp.Field
+		SatNo                 resp.Field
+		SemiMajorAxis         resp.Field
+		SourcedData           resp.Field
+		SourcedDataTypes      resp.Field
+		SourceDl              resp.Field
+		Tags                  resp.Field
+		TransactionID         resp.Field
+		Uct                   resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorPlanTupleResponseCollectRequestElset) RawJSON() string { return r.JSON.raw }
+func (r *SensorPlanTupleResponseCollectRequestElset) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// This service provides operations for querying and manipulation of state vectors
+// for OnOrbit objects. State vectors are cartesian vectors of position (r) and
+// velocity (v) that, together with their time (epoch) (t), uniquely determine the
+// trajectory of the orbiting body in space. J2000 is the preferred coordinate
+// frame for all state vector positions/velocities in UDL, but in some cases data
+// may be in another frame depending on the provider and/or datatype. Please see
+// the 'Discover' tab in the storefront to confirm coordinate frames by data
+// provider.
+type SensorPlanTupleResponseCollectRequestStateVector struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode string `json:"dataMode,required"`
+	// Time of validity for state vector in ISO 8601 UTC datetime format, with
+	// microsecond precision.
+	Epoch time.Time `json:"epoch,required" format:"date-time"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// The actual time span used for the OD of the object, expressed in days.
+	ActualOdSpan float64 `json:"actualODSpan"`
+	// Optional algorithm used to produce this record.
+	Algorithm string `json:"algorithm"`
+	// The reference frame of the alternate1 (Alt1) cartesian orbital state.
+	Alt1ReferenceFrame string `json:"alt1ReferenceFrame"`
+	// The reference frame of the alternate2 (Alt2) cartesian orbital state.
+	Alt2ReferenceFrame string `json:"alt2ReferenceFrame"`
+	// The actual area of the object at it's largest cross-section, expressed in
+	// meters^2.
+	Area float64 `json:"area"`
+	// First derivative of drag/ballistic coefficient (m2/kg-s).
+	BDot float64 `json:"bDot"`
+	// Model parameter value for center of mass offset (m).
+	CmOffset float64 `json:"cmOffset"`
+	// Covariance matrix, in kilometer and second based units, in the specified
+	// covReferenceFrame. If the covReferenceFrame is null it is assumed to be J2000.
+	// The array values (1-21) represent the lower triangular half of the
+	// position-velocity covariance matrix. The size of the covariance matrix is
+	// dynamic, depending on whether the covariance for position only or position &
+	// velocity. The covariance elements are position dependent within the array with
+	// values ordered as follows:
+	//
+	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR&nbsp;&nbsp;
+	//
+	// x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+	//
+	// y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;3
+	//
+	// z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;6
+	//
+	// x'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;10
+	//
+	// y'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+	//
+	// z'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;21&nbsp;
+	//
+	// The cov array should contain only the lower left triangle values from top left
+	// down to bottom right, in order.
+	//
+	// If additional covariance terms are included for DRAG, SRP, and/or THRUST, the
+	// matrix can be extended with the following order of elements:
+	//
+	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR
+	//
+	// DRG&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;23&nbsp;&nbsp;24&nbsp;&nbsp;25&nbsp;&nbsp;26&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;
+	//
+	// SRP&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;30&nbsp;&nbsp;31&nbsp;&nbsp;32&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36&nbsp;&nbsp;
+	//
+	// THR&nbsp;&nbsp;&nbsp;37&nbsp;&nbsp;38&nbsp;&nbsp;39&nbsp;&nbsp;40&nbsp;&nbsp;41&nbsp;&nbsp;&nbsp;42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45&nbsp;
+	Cov []float64 `json:"cov"`
+	// The method used to generate the covariance during the orbit determination (OD)
+	// that produced the state vector, or whether an arbitrary, non-calculated default
+	// value was used (CALCULATED, DEFAULT).
+	CovMethod string `json:"covMethod"`
+	// The reference frame of the covariance matrix elements. If the covReferenceFrame
+	// is null it is assumed to be J2000.
+	//
+	// Any of "J2000", "UVW".
+	CovReferenceFrame string `json:"covReferenceFrame"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt time.Time `json:"createdAt" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy string `json:"createdBy"`
+	// Optional source-provided and searchable metadata or descriptor of the data.
+	Descriptor string `json:"descriptor"`
+	// The effective area of the object exposed to atmospheric drag, expressed in
+	// meters^2.
+	DragArea float64 `json:"dragArea"`
+	// Area-to-mass ratio coefficient for atmospheric ballistic drag (m2/kg).
+	DragCoeff float64 `json:"dragCoeff"`
+	// The Drag Model used for this vector (e.g. HARRIS-PRIESTER, JAC70, JBH09, MSIS90,
+	// NONE, etc.).
+	DragModel string `json:"dragModel"`
+	// Model parameter value for energy dissipation rate (EDR) (w/kg).
+	Edr float64 `json:"edr"`
+	// Start time at which this state vector was the 'current' state vector for its
+	// satellite.
+	EffectiveFrom time.Time `json:"effectiveFrom" format:"date-time"`
+	// End time at which this state vector was no longer the 'current' state vector for
+	// its satellite.
+	EffectiveUntil time.Time `json:"effectiveUntil" format:"date-time"`
+	// The covariance matrix values represent the lower triangular half of the
+	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
+	// covariance matrix is dynamic.&nbsp; The values are outputted in order across
+	// each row, i.e.:
+	//
+	// 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; 4&nbsp;&nbsp; 5
+	//
+	// 6&nbsp;&nbsp; 7&nbsp;&nbsp; 8&nbsp;&nbsp; 9&nbsp; 10
+	//
+	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	//
+	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	//
+	// 51&nbsp; 52&nbsp; 53&nbsp; 54&nbsp; 55
+	//
+	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	//
+	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	//
+	// The ordering of values is as follows:
+	//
+	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Af&nbsp;&nbsp;
+	// Ag&nbsp;&nbsp; L&nbsp;&nbsp;&nbsp; N&nbsp;&nbsp; Chi&nbsp; Psi&nbsp;&nbsp;
+	// B&nbsp;&nbsp; BDOT AGOM&nbsp; T&nbsp;&nbsp; C1&nbsp;&nbsp; C2&nbsp; ...
+	//
+	// Af&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+	//
+	// Ag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 3
+	//
+	// L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	// 4&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 6
+	//
+	// N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	// 7&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp; 10
+	//
+	// Chi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp; 12&nbsp;&nbsp;
+	// 13&nbsp;&nbsp; 14&nbsp;&nbsp; 15
+	//
+	// Psi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp; 17&nbsp;&nbsp;
+	// 18&nbsp;&nbsp; 19&nbsp;&nbsp; 20&nbsp;&nbsp; 21
+	//
+	// B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 22&nbsp;&nbsp;
+	// 23&nbsp;&nbsp; 24 &nbsp;&nbsp;25&nbsp;&nbsp; 26&nbsp;&nbsp; 27&nbsp;&nbsp; 28
+	//
+	// BDOT&nbsp;&nbsp; 29&nbsp;&nbsp; 30&nbsp;&nbsp; 31&nbsp;&nbsp; 32&nbsp;&nbsp;
+	// 33&nbsp;&nbsp; 34&nbsp;&nbsp; 35&nbsp;&nbsp; 36
+	//
+	// AGOM&nbsp; 37&nbsp;&nbsp; 38&nbsp;&nbsp; 39&nbsp;&nbsp; 40&nbsp;&nbsp;
+	// 41&nbsp;&nbsp; 42&nbsp;&nbsp; 43&nbsp;&nbsp; 44&nbsp;&nbsp; 45
+	//
+	// T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 46&nbsp;&nbsp;
+	// 47&nbsp;&nbsp; 48&nbsp;&nbsp; 49&nbsp;&nbsp; 50&nbsp;&nbsp; 51&nbsp;&nbsp;
+	// 52&nbsp;&nbsp; 53&nbsp;&nbsp; 54&nbsp;&nbsp; 55
+	//
+	// C1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 56&nbsp;&nbsp; 57&nbsp;&nbsp;
+	// 58&nbsp;&nbsp; 59&nbsp;&nbsp; 60&nbsp;&nbsp; 61&nbsp;&nbsp; 62&nbsp;&nbsp;
+	// 63&nbsp;&nbsp; 64&nbsp;&nbsp; 65&nbsp;&nbsp; 66
+	//
+	// C2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 67&nbsp;&nbsp; 68&nbsp;&nbsp;
+	// 69&nbsp;&nbsp; 70&nbsp;&nbsp; 71&nbsp; &nbsp;72&nbsp;&nbsp; 73&nbsp;&nbsp;
+	// 74&nbsp;&nbsp; 75&nbsp;&nbsp; 76&nbsp;&nbsp; 77&nbsp;&nbsp; 78
+	//
+	// :
+	//
+	// :
+	//
+	// where C1, C2, etc, are the "consider parameters" that may be added to the
+	// covariance matrix.&nbsp; The covariance matrix will be as large as the last
+	// element/model parameter needed.&nbsp; In other words, if the DC solved for all 6
+	// elements plus AGOM, the covariance matrix will be 9x9 (and the rows for B and
+	// BDOT will be all zeros).&nbsp; If the covariance matrix is unavailable, the size
+	// will be set to 0x0, and no data will follow.&nbsp; The cov field should contain
+	// only the lower left triangle values from top left down to bottom right, in
+	// order.
+	EqCov []float64 `json:"eqCov"`
+	// Integrator error control.
+	ErrorControl float64 `json:"errorControl"`
+	// Boolean indicating use of fixed step size for this vector.
+	FixedStep bool `json:"fixedStep"`
+	// Geopotential model used for this vector (e.g. EGM-96, WGS-84, WGS-72, JGM-2, or
+	// GEM-T3), including mm degree zonals, nn degree/order tesserals. E.g. EGM-96
+	// 24Z,24T.
+	GeopotentialModel string `json:"geopotentialModel"`
+	// Number of terms used in the IAU 1980 nutation model (4, 50, or 106).
+	Iau1980Terms int64 `json:"iau1980Terms"`
+	// Unique identifier of the satellite on-orbit object, if correlated. For the
+	// public catalog, the idOnOrbit is typically the satellite number as a string, but
+	// may be a UUID for analyst or other unknown or untracked satellites.
+	IDOnOrbit string `json:"idOnOrbit"`
+	// Unique identifier of the OD solution record that produced this state vector.
+	// This ID can be used to obtain additional information on an OrbitDetermination
+	// object using the 'get by ID' operation (e.g. /udl/orbitdetermination/{id}). For
+	// example, the OrbitDetermination with idOrbitDetermination = abc would be queries
+	// as /udl/orbitdetermination/abc.
+	IDOrbitDetermination string `json:"idOrbitDetermination"`
+	// Unique identifier of the record, auto-generated by the system.
+	IDStateVector string `json:"idStateVector"`
+	// Integrator Mode.
+	IntegratorMode string `json:"integratorMode"`
+	// Boolean indicating use of in-track thrust perturbations for this vector.
+	InTrackThrust bool `json:"inTrackThrust"`
+	// The end of the time interval containing the time of the last accepted
+	// observation, in ISO 8601 UTC format with microsecond precision. For an exact
+	// observation time, the firstObTime and lastObTime are the same.
+	LastObEnd time.Time `json:"lastObEnd" format:"date-time"`
+	// The start of the time interval containing the time of the last accepted
+	// observation, in ISO 8601 UTC format with microsecond precision. For an exact
+	// observation time, the firstObTime and lastObTime are the same.
+	LastObStart time.Time `json:"lastObStart" format:"date-time"`
+	// Time of the next leap second after epoch in ISO 8601 UTC time. If the next leap
+	// second is not known, the time of the previous leap second is used.
+	LeapSecondTime time.Time `json:"leapSecondTime" format:"date-time"`
+	// Boolean indicating use of lunar/solar perturbations for this vector.
+	LunarSolar bool `json:"lunarSolar"`
+	// The mass of the object, in kilograms.
+	Mass float64 `json:"mass"`
+	// The number of observations available for the OD of the object.
+	ObsAvailable int64 `json:"obsAvailable"`
+	// The number of observations accepted for the OD of the object.
+	ObsUsed int64 `json:"obsUsed"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin string `json:"origin"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork string `json:"origNetwork"`
+	// Optional identifier provided by state vector source to indicate the target
+	// onorbit object of this state vector. This may be an internal identifier and not
+	// necessarily map to a valid satellite number.
+	OrigObjectID string `json:"origObjectId"`
+	// Type of partial derivatives used (ANALYTIC, FULL NUM, or FAST NUM).
+	Partials string `json:"partials"`
+	// The pedigree of state vector, or methods used for its generation to include
+	// state update/orbit determination, propagation from another state, or a state
+	// from a calibration satellite (e.g. ORBIT_UPDATE, PROPAGATION, CALIBRATION,
+	// CONJUNCTION, FLIGHT_PLAN).
+	Pedigree string `json:"pedigree"`
+	// Polar Wander Motion X (arc seconds).
+	PolarMotionX float64 `json:"polarMotionX"`
+	// Polar Wander Motion Y (arc seconds).
+	PolarMotionY float64 `json:"polarMotionY"`
+	// One sigma position uncertainty, in kilometers.
+	PosUnc float64 `json:"posUnc"`
+	// Optional URI location in the document repository of the raw file parsed by the
+	// system to produce this record. To download the raw file, prepend
+	// https://udl-hostname/scs/download?id= to this value.
+	RawFileUri string `json:"rawFileURI"`
+	// The recommended OD time span calculated for the object, expressed in days.
+	RecOdSpan float64 `json:"recODSpan"`
+	// The reference frame of the cartesian orbital states. If the referenceFrame is
+	// null it is assumed to be J2000.
+	//
+	// Any of "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF".
+	ReferenceFrame string `json:"referenceFrame"`
+	// The percentage of residuals accepted in the OD of the object.
+	ResidualsAcc float64 `json:"residualsAcc"`
+	// Epoch revolution number.
+	RevNo int64 `json:"revNo"`
+	// The Weighted Root Mean Squared (RMS) of the differential correction on the
+	// target object that produced this vector. WRMS is a quality indicator of the
+	// state vector update, with a value of 1.00 being optimal. WRMS applies to Batch
+	// Least Squares (BLS) processes.
+	Rms float64 `json:"rms"`
+	// Satellite/Catalog number of the target OnOrbit object.
+	SatNo int64 `json:"satNo"`
+	// Array containing the standard deviation of error in target object position, U, V
+	// and W direction respectively (km).
+	SigmaPosUvw []float64 `json:"sigmaPosUVW"`
+	// Array containing the standard deviation of error in target object velocity, U, V
+	// and W direction respectively (km/sec).
+	SigmaVelUvw []float64 `json:"sigmaVelUVW"`
+	// Average solar flux geomagnetic index.
+	SolarFluxApAvg float64 `json:"solarFluxAPAvg"`
+	// F10 (10.7 cm) solar flux value.
+	SolarFluxF10 float64 `json:"solarFluxF10"`
+	// F10 (10.7 cm) solar flux 81-day average value.
+	SolarFluxF10Avg float64 `json:"solarFluxF10Avg"`
+	// Boolean indicating use of solar radiation pressure perturbations for this
+	// vector.
+	SolarRadPress bool `json:"solarRadPress"`
+	// Area-to-mass ratio coefficient for solar radiation pressure.
+	SolarRadPressCoeff float64 `json:"solarRadPressCoeff"`
+	// Boolean indicating use of solid earth tide perturbations for this vector.
+	SolidEarthTides bool `json:"solidEarthTides"`
+	// Optional array of UDL data (observation) UUIDs used to build this state vector.
+	// See the associated sourcedDataTypes array for the specific types of observations
+	// for the positionally corresponding UUIDs in this array (the two arrays must
+	// match in size).
+	SourcedData []string `json:"sourcedData"`
+	// Optional array of UDL observation data types used to build this state vector
+	// (e.g. EO, RADAR, RF, DOA). See the associated sourcedData array for the specific
+	// UUIDs of observations for the positionally corresponding data types in this
+	// array (the two arrays must match in size).
+	//
+	// Any of "EO", "RADAR", "RF", "DOA", "ELSET", "SV".
+	SourcedDataTypes []string `json:"sourcedDataTypes"`
+	// The source data library from which this record was received. This could be a
+	// remote or tactical UDL or another data library. If null, the record should be
+	// assumed to have originated from the primary Enterprise UDL.
+	SourceDl string `json:"sourceDL"`
+	// The effective area of the object exposed to solar radiation pressure, expressed
+	// in meters^2.
+	SrpArea float64 `json:"srpArea"`
+	// Integrator step mode (AUTO, TIME, or S).
+	StepMode string `json:"stepMode"`
+	// Initial integration step size (seconds).
+	StepSize float64 `json:"stepSize"`
+	// Initial step size selection (AUTO or MANUAL).
+	StepSizeSelection string `json:"stepSizeSelection"`
+	// Optional array of provider/source specific tags for this data, where each
+	// element is no longer than 32 characters, used for implementing data owner
+	// conditional access controls to restrict access to the data. Should be left null
+	// by data providers unless conditional access controls are coordinated with the
+	// UDL team.
+	Tags []string `json:"tags"`
+	// TAI (Temps Atomique International) minus UTC (Universal Time Coordinates) offset
+	// in seconds.
+	TaiUtc float64 `json:"taiUtc"`
+	// Model parameter value for thrust acceleration (m/s2).
+	ThrustAccel float64 `json:"thrustAccel"`
+	// The number of sensor tracks available for the OD of the object.
+	TracksAvail int64 `json:"tracksAvail"`
+	// The number of sensor tracks accepted for the OD of the object.
+	TracksUsed int64 `json:"tracksUsed"`
+	// Optional identifier to track a commercial or marketplace transaction executed to
+	// produce this data.
+	TransactionID string `json:"transactionId"`
+	// Boolean indicating this state vector was unable to be correlated to a known
+	// object. This flag should only be set to true by data providers after an attempt
+	// to correlate to an OnOrbit object was made and failed. If unable to correlate,
+	// the 'origObjectId' field may be populated with an internal data provider
+	// specific identifier.
+	Uct bool `json:"uct"`
+	// Rate of change of UT1 (milliseconds/day) - first derivative of ut1Utc.
+	Ut1Rate float64 `json:"ut1Rate"`
+	// Universal Time-1 (UT1) minus UTC offset, in seconds.
+	Ut1Utc float64 `json:"ut1Utc"`
+	// One sigma velocity uncertainty, in kilometers/second.
+	VelUnc float64 `json:"velUnc"`
+	// Cartesian X acceleration of target, in kilometers/second^2, in the specified
+	// referenceFrame. If referenceFrame is null then J2K should be assumed.
+	Xaccel float64 `json:"xaccel"`
+	// Cartesian X position of the target, in kilometers, in the specified
+	// referenceFrame. If referenceFrame is null then J2K should be assumed.
+	Xpos float64 `json:"xpos"`
+	// Cartesian X position of the target, in kilometers, in the specified
+	// alt1ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	XposAlt1 float64 `json:"xposAlt1"`
+	// Cartesian X position of the target, in kilometers, in the specified
+	// alt2ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	XposAlt2 float64 `json:"xposAlt2"`
+	// Cartesian X velocity of target, in kilometers/second, in the specified
+	// referenceFrame. If referenceFrame is null then J2K should be assumed.
+	Xvel float64 `json:"xvel"`
+	// Cartesian X velocity of the target, in kilometers/second, in the specified
+	// alt1ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	XvelAlt1 float64 `json:"xvelAlt1"`
+	// Cartesian X velocity of the target, in kilometers/second, in the specified
+	// alt2ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	XvelAlt2 float64 `json:"xvelAlt2"`
+	// Cartesian Y acceleration of target, in kilometers/second^2, in the specified
+	// referenceFrame. If referenceFrame is null then J2K should be assumed.
+	Yaccel float64 `json:"yaccel"`
+	// Cartesian Y position of the target, in kilometers, in the specified
+	// referenceFrame. If referenceFrame is null then J2K should be assumed.
+	Ypos float64 `json:"ypos"`
+	// Cartesian Y position of the target, in kilometers, in the specified
+	// alt1ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	YposAlt1 float64 `json:"yposAlt1"`
+	// Cartesian Y position of the target, in kilometers, in the specified
+	// alt2ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	YposAlt2 float64 `json:"yposAlt2"`
+	// Cartesian Y velocity of target, in kilometers/second, in the specified
+	// referenceFrame. If referenceFrame is null then J2K should be assumed.
+	Yvel float64 `json:"yvel"`
+	// Cartesian Y velocity of the target, in kilometers/second, in the specified
+	// alt1ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	YvelAlt1 float64 `json:"yvelAlt1"`
+	// Cartesian Y velocity of the target, in kilometers/second, in the specified
+	// alt2ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	YvelAlt2 float64 `json:"yvelAlt2"`
+	// Cartesian Z acceleration of target, in kilometers/second^2, in the specified
+	// referenceFrame. If referenceFrame is null then J2K should be assumed.
+	Zaccel float64 `json:"zaccel"`
+	// Cartesian Z position of the target, in kilometers, in the specified
+	// referenceFrame. If referenceFrame is null then J2K should be assumed.
+	Zpos float64 `json:"zpos"`
+	// Cartesian Z position of the target, in kilometers, in the specified
+	// alt1ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	ZposAlt1 float64 `json:"zposAlt1"`
+	// Cartesian Z position of the target, in kilometers, in the specified
+	// alt2ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	ZposAlt2 float64 `json:"zposAlt2"`
+	// Cartesian Z velocity of target, in kilometers/second, in the specified
+	// referenceFrame. If referenceFrame is null then J2K should be assumed.
+	Zvel float64 `json:"zvel"`
+	// Cartesian Z velocity of the target, in kilometers/second, in the specified
+	// alt1ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	ZvelAlt1 float64 `json:"zvelAlt1"`
+	// Cartesian Z velocity of the target, in kilometers/second, in the specified
+	// alt2ReferenceFrame. Alternate reference frames are optional and are intended to
+	// allow a data source to provide an equivalent vector in a different cartesian
+	// frame than the primary vector.
+	ZvelAlt2 float64 `json:"zvelAlt2"`
+	// Metadata for the response, check the presence of optional fields with the
+	// [resp.Field.IsPresent] method.
+	JSON struct {
+		ClassificationMarking resp.Field
+		DataMode              resp.Field
+		Epoch                 resp.Field
+		Source                resp.Field
+		ActualOdSpan          resp.Field
+		Algorithm             resp.Field
+		Alt1ReferenceFrame    resp.Field
+		Alt2ReferenceFrame    resp.Field
+		Area                  resp.Field
+		BDot                  resp.Field
+		CmOffset              resp.Field
+		Cov                   resp.Field
+		CovMethod             resp.Field
+		CovReferenceFrame     resp.Field
+		CreatedAt             resp.Field
+		CreatedBy             resp.Field
+		Descriptor            resp.Field
+		DragArea              resp.Field
+		DragCoeff             resp.Field
+		DragModel             resp.Field
+		Edr                   resp.Field
+		EffectiveFrom         resp.Field
+		EffectiveUntil        resp.Field
+		EqCov                 resp.Field
+		ErrorControl          resp.Field
+		FixedStep             resp.Field
+		GeopotentialModel     resp.Field
+		Iau1980Terms          resp.Field
+		IDOnOrbit             resp.Field
+		IDOrbitDetermination  resp.Field
+		IDStateVector         resp.Field
+		IntegratorMode        resp.Field
+		InTrackThrust         resp.Field
+		LastObEnd             resp.Field
+		LastObStart           resp.Field
+		LeapSecondTime        resp.Field
+		LunarSolar            resp.Field
+		Mass                  resp.Field
+		ObsAvailable          resp.Field
+		ObsUsed               resp.Field
+		Origin                resp.Field
+		OrigNetwork           resp.Field
+		OrigObjectID          resp.Field
+		Partials              resp.Field
+		Pedigree              resp.Field
+		PolarMotionX          resp.Field
+		PolarMotionY          resp.Field
+		PosUnc                resp.Field
+		RawFileUri            resp.Field
+		RecOdSpan             resp.Field
+		ReferenceFrame        resp.Field
+		ResidualsAcc          resp.Field
+		RevNo                 resp.Field
+		Rms                   resp.Field
+		SatNo                 resp.Field
+		SigmaPosUvw           resp.Field
+		SigmaVelUvw           resp.Field
+		SolarFluxApAvg        resp.Field
+		SolarFluxF10          resp.Field
+		SolarFluxF10Avg       resp.Field
+		SolarRadPress         resp.Field
+		SolarRadPressCoeff    resp.Field
+		SolidEarthTides       resp.Field
+		SourcedData           resp.Field
+		SourcedDataTypes      resp.Field
+		SourceDl              resp.Field
+		SrpArea               resp.Field
+		StepMode              resp.Field
+		StepSize              resp.Field
+		StepSizeSelection     resp.Field
+		Tags                  resp.Field
+		TaiUtc                resp.Field
+		ThrustAccel           resp.Field
+		TracksAvail           resp.Field
+		TracksUsed            resp.Field
+		TransactionID         resp.Field
+		Uct                   resp.Field
+		Ut1Rate               resp.Field
+		Ut1Utc                resp.Field
+		VelUnc                resp.Field
+		Xaccel                resp.Field
+		Xpos                  resp.Field
+		XposAlt1              resp.Field
+		XposAlt2              resp.Field
+		Xvel                  resp.Field
+		XvelAlt1              resp.Field
+		XvelAlt2              resp.Field
+		Yaccel                resp.Field
+		Ypos                  resp.Field
+		YposAlt1              resp.Field
+		YposAlt2              resp.Field
+		Yvel                  resp.Field
+		YvelAlt1              resp.Field
+		YvelAlt2              resp.Field
+		Zaccel                resp.Field
+		Zpos                  resp.Field
+		ZposAlt1              resp.Field
+		ZposAlt2              resp.Field
+		Zvel                  resp.Field
+		ZvelAlt1              resp.Field
+		ZvelAlt2              resp.Field
+		ExtraFields           map[string]resp.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorPlanTupleResponseCollectRequestStateVector) RawJSON() string { return r.JSON.raw }
+func (r *SensorPlanTupleResponseCollectRequestStateVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SensorPlanNewParams struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode SensorPlanNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// The type of records that comprise this parent set (COLLECT, CONTACT).
 	RecType string `json:"recType,required"`
 	// Source of the data.
@@ -347,7 +3100,7 @@ type SensorplanNewParams struct {
 	// The list of collect requests belonging to the SensorPlan. Each collect request
 	// is associated with a parent SensorPlan via the IdPlan. If provided, the list
 	// must have the same size as reqTotal.
-	CollectRequests []SensorplanNewParamsCollectRequest `json:"collectRequests,omitzero"`
+	CollectRequests []SensorPlanNewParamsCollectRequest `json:"collectRequests,omitzero"`
 	// Optional array of provider/source specific tags for this data, where each
 	// element is no longer than 32 characters, used for implementing data owner
 	// conditional access controls to restrict access to the data. Should be left null
@@ -359,10 +3112,10 @@ type SensorplanNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorplanNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SensorPlanNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SensorplanNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow SensorplanNewParams
+func (r SensorPlanNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow SensorPlanNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -380,13 +3133,13 @@ func (r SensorplanNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SensorplanNewParamsDataMode string
+type SensorPlanNewParamsDataMode string
 
 const (
-	SensorplanNewParamsDataModeReal      SensorplanNewParamsDataMode = "REAL"
-	SensorplanNewParamsDataModeTest      SensorplanNewParamsDataMode = "TEST"
-	SensorplanNewParamsDataModeSimulated SensorplanNewParamsDataMode = "SIMULATED"
-	SensorplanNewParamsDataModeExercise  SensorplanNewParamsDataMode = "EXERCISE"
+	SensorPlanNewParamsDataModeReal      SensorPlanNewParamsDataMode = "REAL"
+	SensorPlanNewParamsDataModeTest      SensorPlanNewParamsDataMode = "TEST"
+	SensorPlanNewParamsDataModeSimulated SensorPlanNewParamsDataMode = "SIMULATED"
+	SensorPlanNewParamsDataModeExercise  SensorPlanNewParamsDataMode = "EXERCISE"
 )
 
 // Collect Requests support several types of individual requests, or
@@ -398,7 +3151,7 @@ const (
 //
 // The properties ClassificationMarking, DataMode, Source, StartTime, Type are
 // required.
-type SensorplanNewParamsCollectRequest struct {
+type SensorPlanNewParamsCollectRequest struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -680,7 +3433,7 @@ type SensorplanNewParamsCollectRequest struct {
 	// of a particular satellite. The data is used along with an orbit propagator in
 	// order to predict the motion of a satellite. The element set, or elset for short,
 	// consists of identification data, the classical elements and drag parameters.
-	Elset SensorplanNewParamsCollectRequestElset `json:"elset,omitzero"`
+	Elset SensorPlanNewParamsCollectRequestElset `json:"elset,omitzero"`
 	// This service provides operations for querying and manipulation of state vectors
 	// for OnOrbit objects. State vectors are cartesian vectors of position (r) and
 	// velocity (v) that, together with their time (epoch) (t), uniquely determine the
@@ -689,7 +3442,7 @@ type SensorplanNewParamsCollectRequest struct {
 	// may be in another frame depending on the provider and/or datatype. Please see
 	// the 'Discover' tab in the storefront to confirm coordinate frames by data
 	// provider.
-	StateVector SensorplanNewParamsCollectRequestStateVector `json:"stateVector,omitzero"`
+	StateVector SensorPlanNewParamsCollectRequestStateVector `json:"stateVector,omitzero"`
 	// Optional array of provider/source specific tags for this data, where each
 	// element is no longer than 32 characters, used for implementing data owner
 	// conditional access controls to restrict access to the data. Should be left null
@@ -701,16 +3454,16 @@ type SensorplanNewParamsCollectRequest struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorplanNewParamsCollectRequest) IsPresent() bool {
+func (f SensorPlanNewParamsCollectRequest) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SensorplanNewParamsCollectRequest) MarshalJSON() (data []byte, err error) {
-	type shadow SensorplanNewParamsCollectRequest
+func (r SensorPlanNewParamsCollectRequest) MarshalJSON() (data []byte, err error) {
+	type shadow SensorPlanNewParamsCollectRequest
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[SensorplanNewParamsCollectRequest](
+	apijson.RegisterFieldValidator[SensorPlanNewParamsCollectRequest](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
@@ -721,7 +3474,7 @@ func init() {
 // consists of identification data, the classical elements and drag parameters.
 //
 // The properties ClassificationMarking, DataMode, Epoch, Source are required.
-type SensorplanNewParamsCollectRequestElset struct {
+type SensorPlanNewParamsCollectRequestElset struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -910,16 +3663,16 @@ type SensorplanNewParamsCollectRequestElset struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorplanNewParamsCollectRequestElset) IsPresent() bool {
+func (f SensorPlanNewParamsCollectRequestElset) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SensorplanNewParamsCollectRequestElset) MarshalJSON() (data []byte, err error) {
-	type shadow SensorplanNewParamsCollectRequestElset
+func (r SensorPlanNewParamsCollectRequestElset) MarshalJSON() (data []byte, err error) {
+	type shadow SensorPlanNewParamsCollectRequestElset
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[SensorplanNewParamsCollectRequestElset](
+	apijson.RegisterFieldValidator[SensorPlanNewParamsCollectRequestElset](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
@@ -934,7 +3687,7 @@ func init() {
 // provider.
 //
 // The properties ClassificationMarking, DataMode, Epoch, Source are required.
-type SensorplanNewParamsCollectRequestStateVector struct {
+type SensorPlanNewParamsCollectRequestStateVector struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1369,27 +4122,27 @@ type SensorplanNewParamsCollectRequestStateVector struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorplanNewParamsCollectRequestStateVector) IsPresent() bool {
+func (f SensorPlanNewParamsCollectRequestStateVector) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SensorplanNewParamsCollectRequestStateVector) MarshalJSON() (data []byte, err error) {
-	type shadow SensorplanNewParamsCollectRequestStateVector
+func (r SensorPlanNewParamsCollectRequestStateVector) MarshalJSON() (data []byte, err error) {
+	type shadow SensorPlanNewParamsCollectRequestStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[SensorplanNewParamsCollectRequestStateVector](
+	apijson.RegisterFieldValidator[SensorPlanNewParamsCollectRequestStateVector](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
-	apijson.RegisterFieldValidator[SensorplanNewParamsCollectRequestStateVector](
+	apijson.RegisterFieldValidator[SensorPlanNewParamsCollectRequestStateVector](
 		"CovReferenceFrame", false, "J2000", "UVW",
 	)
-	apijson.RegisterFieldValidator[SensorplanNewParamsCollectRequestStateVector](
+	apijson.RegisterFieldValidator[SensorPlanNewParamsCollectRequestStateVector](
 		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
-type SensorplanUpdateParams struct {
+type SensorPlanUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1408,7 +4161,7 @@ type SensorplanUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SensorplanUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SensorPlanUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// The type of records that comprise this parent set (COLLECT, CONTACT).
 	RecType string `json:"recType,required"`
 	// Source of the data.
@@ -1451,7 +4204,7 @@ type SensorplanUpdateParams struct {
 	// The list of collect requests belonging to the SensorPlan. Each collect request
 	// is associated with a parent SensorPlan via the IdPlan. If provided, the list
 	// must have the same size as reqTotal.
-	CollectRequests []SensorplanUpdateParamsCollectRequest `json:"collectRequests,omitzero"`
+	CollectRequests []SensorPlanUpdateParamsCollectRequest `json:"collectRequests,omitzero"`
 	// Optional array of provider/source specific tags for this data, where each
 	// element is no longer than 32 characters, used for implementing data owner
 	// conditional access controls to restrict access to the data. Should be left null
@@ -1463,10 +4216,10 @@ type SensorplanUpdateParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorplanUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SensorPlanUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r SensorplanUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow SensorplanUpdateParams
+func (r SensorPlanUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow SensorPlanUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -1484,13 +4237,13 @@ func (r SensorplanUpdateParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SensorplanUpdateParamsDataMode string
+type SensorPlanUpdateParamsDataMode string
 
 const (
-	SensorplanUpdateParamsDataModeReal      SensorplanUpdateParamsDataMode = "REAL"
-	SensorplanUpdateParamsDataModeTest      SensorplanUpdateParamsDataMode = "TEST"
-	SensorplanUpdateParamsDataModeSimulated SensorplanUpdateParamsDataMode = "SIMULATED"
-	SensorplanUpdateParamsDataModeExercise  SensorplanUpdateParamsDataMode = "EXERCISE"
+	SensorPlanUpdateParamsDataModeReal      SensorPlanUpdateParamsDataMode = "REAL"
+	SensorPlanUpdateParamsDataModeTest      SensorPlanUpdateParamsDataMode = "TEST"
+	SensorPlanUpdateParamsDataModeSimulated SensorPlanUpdateParamsDataMode = "SIMULATED"
+	SensorPlanUpdateParamsDataModeExercise  SensorPlanUpdateParamsDataMode = "EXERCISE"
 )
 
 // Collect Requests support several types of individual requests, or
@@ -1502,7 +4255,7 @@ const (
 //
 // The properties ClassificationMarking, DataMode, Source, StartTime, Type are
 // required.
-type SensorplanUpdateParamsCollectRequest struct {
+type SensorPlanUpdateParamsCollectRequest struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1784,7 +4537,7 @@ type SensorplanUpdateParamsCollectRequest struct {
 	// of a particular satellite. The data is used along with an orbit propagator in
 	// order to predict the motion of a satellite. The element set, or elset for short,
 	// consists of identification data, the classical elements and drag parameters.
-	Elset SensorplanUpdateParamsCollectRequestElset `json:"elset,omitzero"`
+	Elset SensorPlanUpdateParamsCollectRequestElset `json:"elset,omitzero"`
 	// This service provides operations for querying and manipulation of state vectors
 	// for OnOrbit objects. State vectors are cartesian vectors of position (r) and
 	// velocity (v) that, together with their time (epoch) (t), uniquely determine the
@@ -1793,7 +4546,7 @@ type SensorplanUpdateParamsCollectRequest struct {
 	// may be in another frame depending on the provider and/or datatype. Please see
 	// the 'Discover' tab in the storefront to confirm coordinate frames by data
 	// provider.
-	StateVector SensorplanUpdateParamsCollectRequestStateVector `json:"stateVector,omitzero"`
+	StateVector SensorPlanUpdateParamsCollectRequestStateVector `json:"stateVector,omitzero"`
 	// Optional array of provider/source specific tags for this data, where each
 	// element is no longer than 32 characters, used for implementing data owner
 	// conditional access controls to restrict access to the data. Should be left null
@@ -1805,16 +4558,16 @@ type SensorplanUpdateParamsCollectRequest struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorplanUpdateParamsCollectRequest) IsPresent() bool {
+func (f SensorPlanUpdateParamsCollectRequest) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SensorplanUpdateParamsCollectRequest) MarshalJSON() (data []byte, err error) {
-	type shadow SensorplanUpdateParamsCollectRequest
+func (r SensorPlanUpdateParamsCollectRequest) MarshalJSON() (data []byte, err error) {
+	type shadow SensorPlanUpdateParamsCollectRequest
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[SensorplanUpdateParamsCollectRequest](
+	apijson.RegisterFieldValidator[SensorPlanUpdateParamsCollectRequest](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
@@ -1825,7 +4578,7 @@ func init() {
 // consists of identification data, the classical elements and drag parameters.
 //
 // The properties ClassificationMarking, DataMode, Epoch, Source are required.
-type SensorplanUpdateParamsCollectRequestElset struct {
+type SensorPlanUpdateParamsCollectRequestElset struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -2014,16 +4767,16 @@ type SensorplanUpdateParamsCollectRequestElset struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorplanUpdateParamsCollectRequestElset) IsPresent() bool {
+func (f SensorPlanUpdateParamsCollectRequestElset) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SensorplanUpdateParamsCollectRequestElset) MarshalJSON() (data []byte, err error) {
-	type shadow SensorplanUpdateParamsCollectRequestElset
+func (r SensorPlanUpdateParamsCollectRequestElset) MarshalJSON() (data []byte, err error) {
+	type shadow SensorPlanUpdateParamsCollectRequestElset
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[SensorplanUpdateParamsCollectRequestElset](
+	apijson.RegisterFieldValidator[SensorPlanUpdateParamsCollectRequestElset](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
@@ -2038,7 +4791,7 @@ func init() {
 // provider.
 //
 // The properties ClassificationMarking, DataMode, Epoch, Source are required.
-type SensorplanUpdateParamsCollectRequestStateVector struct {
+type SensorPlanUpdateParamsCollectRequestStateVector struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -2473,27 +5226,27 @@ type SensorplanUpdateParamsCollectRequestStateVector struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorplanUpdateParamsCollectRequestStateVector) IsPresent() bool {
+func (f SensorPlanUpdateParamsCollectRequestStateVector) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SensorplanUpdateParamsCollectRequestStateVector) MarshalJSON() (data []byte, err error) {
-	type shadow SensorplanUpdateParamsCollectRequestStateVector
+func (r SensorPlanUpdateParamsCollectRequestStateVector) MarshalJSON() (data []byte, err error) {
+	type shadow SensorPlanUpdateParamsCollectRequestStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[SensorplanUpdateParamsCollectRequestStateVector](
+	apijson.RegisterFieldValidator[SensorPlanUpdateParamsCollectRequestStateVector](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
-	apijson.RegisterFieldValidator[SensorplanUpdateParamsCollectRequestStateVector](
+	apijson.RegisterFieldValidator[SensorPlanUpdateParamsCollectRequestStateVector](
 		"CovReferenceFrame", false, "J2000", "UVW",
 	)
-	apijson.RegisterFieldValidator[SensorplanUpdateParamsCollectRequestStateVector](
+	apijson.RegisterFieldValidator[SensorPlanUpdateParamsCollectRequestStateVector](
 		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
-type SensorplanListParams struct {
+type SensorPlanListParams struct {
 	// The start time of the plan or schedule, in ISO 8601 UTC format.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
@@ -2504,17 +5257,17 @@ type SensorplanListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorplanListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SensorPlanListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SensorplanListParams]'s query parameters as `url.Values`.
-func (r SensorplanListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SensorPlanListParams]'s query parameters as `url.Values`.
+func (r SensorPlanListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SensorplanCountParams struct {
+type SensorPlanCountParams struct {
 	// The start time of the plan or schedule, in ISO 8601 UTC format.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
@@ -2525,17 +5278,17 @@ type SensorplanCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorplanCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SensorPlanCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SensorplanCountParams]'s query parameters as `url.Values`.
-func (r SensorplanCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SensorPlanCountParams]'s query parameters as `url.Values`.
+func (r SensorPlanCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SensorplanGetParams struct {
+type SensorPlanGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -2543,17 +5296,17 @@ type SensorplanGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorplanGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SensorPlanGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SensorplanGetParams]'s query parameters as `url.Values`.
-func (r SensorplanGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SensorPlanGetParams]'s query parameters as `url.Values`.
+func (r SensorPlanGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SensorplanTupleParams struct {
+type SensorPlanTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -2569,28 +5322,28 @@ type SensorplanTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorplanTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f SensorPlanTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [SensorplanTupleParams]'s query parameters as `url.Values`.
-func (r SensorplanTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SensorPlanTupleParams]'s query parameters as `url.Values`.
+func (r SensorPlanTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SensorplanUnvalidatedPublishParams struct {
-	Body []SensorplanUnvalidatedPublishParamsBody
+type SensorPlanUnvalidatedPublishParams struct {
+	Body []SensorPlanUnvalidatedPublishParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorplanUnvalidatedPublishParams) IsPresent() bool {
+func (f SensorPlanUnvalidatedPublishParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r SensorplanUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+func (r SensorPlanUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -2600,7 +5353,7 @@ func (r SensorplanUnvalidatedPublishParams) MarshalJSON() (data []byte, err erro
 //
 // The properties ClassificationMarking, DataMode, RecType, Source, StartTime, Type
 // are required.
-type SensorplanUnvalidatedPublishParamsBody struct {
+type SensorPlanUnvalidatedPublishParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -2670,7 +5423,7 @@ type SensorplanUnvalidatedPublishParamsBody struct {
 	// The list of collect requests belonging to the SensorPlan. Each collect request
 	// is associated with a parent SensorPlan via the IdPlan. If provided, the list
 	// must have the same size as reqTotal.
-	CollectRequests []SensorplanUnvalidatedPublishParamsBodyCollectRequest `json:"collectRequests,omitzero"`
+	CollectRequests []SensorPlanUnvalidatedPublishParamsBodyCollectRequest `json:"collectRequests,omitzero"`
 	// Optional array of provider/source specific tags for this data, where each
 	// element is no longer than 32 characters, used for implementing data owner
 	// conditional access controls to restrict access to the data. Should be left null
@@ -2682,16 +5435,16 @@ type SensorplanUnvalidatedPublishParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorplanUnvalidatedPublishParamsBody) IsPresent() bool {
+func (f SensorPlanUnvalidatedPublishParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SensorplanUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow SensorplanUnvalidatedPublishParamsBody
+func (r SensorPlanUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow SensorPlanUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[SensorplanUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[SensorPlanUnvalidatedPublishParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
@@ -2705,7 +5458,7 @@ func init() {
 //
 // The properties ClassificationMarking, DataMode, Source, StartTime, Type are
 // required.
-type SensorplanUnvalidatedPublishParamsBodyCollectRequest struct {
+type SensorPlanUnvalidatedPublishParamsBodyCollectRequest struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -2987,7 +5740,7 @@ type SensorplanUnvalidatedPublishParamsBodyCollectRequest struct {
 	// of a particular satellite. The data is used along with an orbit propagator in
 	// order to predict the motion of a satellite. The element set, or elset for short,
 	// consists of identification data, the classical elements and drag parameters.
-	Elset SensorplanUnvalidatedPublishParamsBodyCollectRequestElset `json:"elset,omitzero"`
+	Elset SensorPlanUnvalidatedPublishParamsBodyCollectRequestElset `json:"elset,omitzero"`
 	// This service provides operations for querying and manipulation of state vectors
 	// for OnOrbit objects. State vectors are cartesian vectors of position (r) and
 	// velocity (v) that, together with their time (epoch) (t), uniquely determine the
@@ -2996,7 +5749,7 @@ type SensorplanUnvalidatedPublishParamsBodyCollectRequest struct {
 	// may be in another frame depending on the provider and/or datatype. Please see
 	// the 'Discover' tab in the storefront to confirm coordinate frames by data
 	// provider.
-	StateVector SensorplanUnvalidatedPublishParamsBodyCollectRequestStateVector `json:"stateVector,omitzero"`
+	StateVector SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector `json:"stateVector,omitzero"`
 	// Optional array of provider/source specific tags for this data, where each
 	// element is no longer than 32 characters, used for implementing data owner
 	// conditional access controls to restrict access to the data. Should be left null
@@ -3008,16 +5761,16 @@ type SensorplanUnvalidatedPublishParamsBodyCollectRequest struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorplanUnvalidatedPublishParamsBodyCollectRequest) IsPresent() bool {
+func (f SensorPlanUnvalidatedPublishParamsBodyCollectRequest) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SensorplanUnvalidatedPublishParamsBodyCollectRequest) MarshalJSON() (data []byte, err error) {
-	type shadow SensorplanUnvalidatedPublishParamsBodyCollectRequest
+func (r SensorPlanUnvalidatedPublishParamsBodyCollectRequest) MarshalJSON() (data []byte, err error) {
+	type shadow SensorPlanUnvalidatedPublishParamsBodyCollectRequest
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[SensorplanUnvalidatedPublishParamsBodyCollectRequest](
+	apijson.RegisterFieldValidator[SensorPlanUnvalidatedPublishParamsBodyCollectRequest](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
@@ -3028,7 +5781,7 @@ func init() {
 // consists of identification data, the classical elements and drag parameters.
 //
 // The properties ClassificationMarking, DataMode, Epoch, Source are required.
-type SensorplanUnvalidatedPublishParamsBodyCollectRequestElset struct {
+type SensorPlanUnvalidatedPublishParamsBodyCollectRequestElset struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -3217,16 +5970,16 @@ type SensorplanUnvalidatedPublishParamsBodyCollectRequestElset struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorplanUnvalidatedPublishParamsBodyCollectRequestElset) IsPresent() bool {
+func (f SensorPlanUnvalidatedPublishParamsBodyCollectRequestElset) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SensorplanUnvalidatedPublishParamsBodyCollectRequestElset) MarshalJSON() (data []byte, err error) {
-	type shadow SensorplanUnvalidatedPublishParamsBodyCollectRequestElset
+func (r SensorPlanUnvalidatedPublishParamsBodyCollectRequestElset) MarshalJSON() (data []byte, err error) {
+	type shadow SensorPlanUnvalidatedPublishParamsBodyCollectRequestElset
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[SensorplanUnvalidatedPublishParamsBodyCollectRequestElset](
+	apijson.RegisterFieldValidator[SensorPlanUnvalidatedPublishParamsBodyCollectRequestElset](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
@@ -3241,7 +5994,7 @@ func init() {
 // provider.
 //
 // The properties ClassificationMarking, DataMode, Epoch, Source are required.
-type SensorplanUnvalidatedPublishParamsBodyCollectRequestStateVector struct {
+type SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -3676,22 +6429,22 @@ type SensorplanUnvalidatedPublishParamsBodyCollectRequestStateVector struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorplanUnvalidatedPublishParamsBodyCollectRequestStateVector) IsPresent() bool {
+func (f SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r SensorplanUnvalidatedPublishParamsBodyCollectRequestStateVector) MarshalJSON() (data []byte, err error) {
-	type shadow SensorplanUnvalidatedPublishParamsBodyCollectRequestStateVector
+func (r SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector) MarshalJSON() (data []byte, err error) {
+	type shadow SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[SensorplanUnvalidatedPublishParamsBodyCollectRequestStateVector](
+	apijson.RegisterFieldValidator[SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
-	apijson.RegisterFieldValidator[SensorplanUnvalidatedPublishParamsBodyCollectRequestStateVector](
+	apijson.RegisterFieldValidator[SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector](
 		"CovReferenceFrame", false, "J2000", "UVW",
 	)
-	apijson.RegisterFieldValidator[SensorplanUnvalidatedPublishParamsBodyCollectRequestStateVector](
+	apijson.RegisterFieldValidator[SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector](
 		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }

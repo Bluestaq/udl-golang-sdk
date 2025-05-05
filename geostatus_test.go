@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestGeostatusNewWithOptionalParams(t *testing.T) {
+func TestGeoStatusNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,9 +27,9 @@ func TestGeostatusNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Geostatus.New(context.TODO(), unifieddatalibrary.GeostatusNewParams{
+	err := client.GeoStatus.New(context.TODO(), unifieddatalibrary.GeoStatusNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.GeostatusNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.GeoStatusNewParamsDataModeTest,
 		Source:                "Bluestaq",
 		ID:                    unifieddatalibrary.String("GEOSTATUS-ID"),
 		ConfidenceLevel:       unifieddatalibrary.String("Low"),
@@ -58,7 +58,7 @@ func TestGeostatusNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestGeostatusListWithOptionalParams(t *testing.T) {
+func TestGeoStatusListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -71,7 +71,7 @@ func TestGeostatusListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Geostatus.List(context.TODO(), unifieddatalibrary.GeostatusListParams{
+	_, err := client.GeoStatus.List(context.TODO(), unifieddatalibrary.GeoStatusListParams{
 		CreatedAt:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -85,7 +85,7 @@ func TestGeostatusListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestGeostatusCountWithOptionalParams(t *testing.T) {
+func TestGeoStatusCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -98,7 +98,7 @@ func TestGeostatusCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Geostatus.Count(context.TODO(), unifieddatalibrary.GeostatusCountParams{
+	_, err := client.GeoStatus.Count(context.TODO(), unifieddatalibrary.GeoStatusCountParams{
 		CreatedAt:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -112,7 +112,7 @@ func TestGeostatusCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestGeostatusNewBulk(t *testing.T) {
+func TestGeoStatusNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -125,8 +125,8 @@ func TestGeostatusNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Geostatus.NewBulk(context.TODO(), unifieddatalibrary.GeostatusNewBulkParams{
-		Body: []unifieddatalibrary.GeostatusNewBulkParamsBody{{
+	err := client.GeoStatus.NewBulk(context.TODO(), unifieddatalibrary.GeoStatusNewBulkParams{
+		Body: []unifieddatalibrary.GeoStatusNewBulkParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",
 			Source:                "Bluestaq",
@@ -158,7 +158,7 @@ func TestGeostatusNewBulk(t *testing.T) {
 	}
 }
 
-func TestGeostatusGetWithOptionalParams(t *testing.T) {
+func TestGeoStatusGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -171,10 +171,10 @@ func TestGeostatusGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Geostatus.Get(
+	_, err := client.GeoStatus.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.GeostatusGetParams{
+		unifieddatalibrary.GeoStatusGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -188,7 +188,7 @@ func TestGeostatusGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestGeostatusQueryhelp(t *testing.T) {
+func TestGeoStatusQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -201,7 +201,7 @@ func TestGeostatusQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Geostatus.Queryhelp(context.TODO())
+	err := client.GeoStatus.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -211,7 +211,7 @@ func TestGeostatusQueryhelp(t *testing.T) {
 	}
 }
 
-func TestGeostatusTupleWithOptionalParams(t *testing.T) {
+func TestGeoStatusTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -224,7 +224,7 @@ func TestGeostatusTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Geostatus.Tuple(context.TODO(), unifieddatalibrary.GeostatusTupleParams{
+	_, err := client.GeoStatus.Tuple(context.TODO(), unifieddatalibrary.GeoStatusTupleParams{
 		Columns:     "columns",
 		CreatedAt:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),

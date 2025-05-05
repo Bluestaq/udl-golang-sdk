@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSeradatanavigationNewWithOptionalParams(t *testing.T) {
+func TestSeraDataNavigationNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -26,9 +26,9 @@ func TestSeradatanavigationNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradatanavigation.New(context.TODO(), unifieddatalibrary.SeradatanavigationNewParams{
+	err := client.SeraDataNavigation.New(context.TODO(), unifieddatalibrary.SeraDataNavigationNewParams{
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.SeradatanavigationNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.SeraDataNavigationNewParamsDataModeTest,
 		Source:                "Bluestaq",
 		SpacecraftID:          "spacecraftId",
 		ID:                    unifieddatalibrary.String("SERADATANAVIGATION-ID"),
@@ -55,7 +55,7 @@ func TestSeradatanavigationNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradatanavigationUpdateWithOptionalParams(t *testing.T) {
+func TestSeraDataNavigationUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -68,12 +68,12 @@ func TestSeradatanavigationUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradatanavigation.Update(
+	err := client.SeraDataNavigation.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SeradatanavigationUpdateParams{
+		unifieddatalibrary.SeraDataNavigationUpdateParams{
 			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.SeradatanavigationUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.SeraDataNavigationUpdateParamsDataModeTest,
 			Source:                "Bluestaq",
 			SpacecraftID:          "spacecraftId",
 			ID:                    unifieddatalibrary.String("SERADATANAVIGATION-ID"),
@@ -101,7 +101,7 @@ func TestSeradatanavigationUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradatanavigationListWithOptionalParams(t *testing.T) {
+func TestSeraDataNavigationListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -114,7 +114,7 @@ func TestSeradatanavigationListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradatanavigation.List(context.TODO(), unifieddatalibrary.SeradatanavigationListParams{
+	_, err := client.SeraDataNavigation.List(context.TODO(), unifieddatalibrary.SeraDataNavigationListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -127,7 +127,7 @@ func TestSeradatanavigationListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradatanavigationDelete(t *testing.T) {
+func TestSeraDataNavigationDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -140,7 +140,7 @@ func TestSeradatanavigationDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradatanavigation.Delete(context.TODO(), "id")
+	err := client.SeraDataNavigation.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -150,7 +150,7 @@ func TestSeradatanavigationDelete(t *testing.T) {
 	}
 }
 
-func TestSeradatanavigationCountWithOptionalParams(t *testing.T) {
+func TestSeraDataNavigationCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -163,7 +163,7 @@ func TestSeradatanavigationCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradatanavigation.Count(context.TODO(), unifieddatalibrary.SeradatanavigationCountParams{
+	_, err := client.SeraDataNavigation.Count(context.TODO(), unifieddatalibrary.SeraDataNavigationCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -176,7 +176,7 @@ func TestSeradatanavigationCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradatanavigationGetWithOptionalParams(t *testing.T) {
+func TestSeraDataNavigationGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -189,10 +189,10 @@ func TestSeradatanavigationGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradatanavigation.Get(
+	_, err := client.SeraDataNavigation.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SeradatanavigationGetParams{
+		unifieddatalibrary.SeraDataNavigationGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -206,7 +206,7 @@ func TestSeradatanavigationGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSeradatanavigationQueryhelp(t *testing.T) {
+func TestSeraDataNavigationQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -219,7 +219,7 @@ func TestSeradatanavigationQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Seradatanavigation.Queryhelp(context.TODO())
+	err := client.SeraDataNavigation.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -229,7 +229,7 @@ func TestSeradatanavigationQueryhelp(t *testing.T) {
 	}
 }
 
-func TestSeradatanavigationTupleWithOptionalParams(t *testing.T) {
+func TestSeraDataNavigationTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -242,7 +242,7 @@ func TestSeradatanavigationTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Seradatanavigation.Tuple(context.TODO(), unifieddatalibrary.SeradatanavigationTupleParams{
+	_, err := client.SeraDataNavigation.Tuple(context.TODO(), unifieddatalibrary.SeraDataNavigationTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

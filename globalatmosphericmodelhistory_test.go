@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestGlobalatmosphericmodelHistoryCountWithOptionalParams(t *testing.T) {
+func TestGlobalAtmosphericModelHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestGlobalatmosphericmodelHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Globalatmosphericmodel.History.Count(context.TODO(), unifieddatalibrary.GlobalatmosphericmodelHistoryCountParams{
+	_, err := client.GlobalAtmosphericModel.History.Count(context.TODO(), unifieddatalibrary.GlobalAtmosphericModelHistoryCountParams{
 		Ts:          time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -41,7 +41,7 @@ func TestGlobalatmosphericmodelHistoryCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestGlobalatmosphericmodelHistoryQueryWithOptionalParams(t *testing.T) {
+func TestGlobalAtmosphericModelHistoryQueryWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -54,7 +54,7 @@ func TestGlobalatmosphericmodelHistoryQueryWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Globalatmosphericmodel.History.Query(context.TODO(), unifieddatalibrary.GlobalatmosphericmodelHistoryQueryParams{
+	_, err := client.GlobalAtmosphericModel.History.Query(context.TODO(), unifieddatalibrary.GlobalAtmosphericModelHistoryQueryParams{
 		Ts:          time.Now(),
 		Columns:     unifieddatalibrary.String("columns"),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -69,7 +69,7 @@ func TestGlobalatmosphericmodelHistoryQueryWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestGlobalatmosphericmodelHistoryWriteAodrWithOptionalParams(t *testing.T) {
+func TestGlobalAtmosphericModelHistoryWriteAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -82,7 +82,7 @@ func TestGlobalatmosphericmodelHistoryWriteAodrWithOptionalParams(t *testing.T) 
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Globalatmosphericmodel.History.WriteAodr(context.TODO(), unifieddatalibrary.GlobalatmosphericmodelHistoryWriteAodrParams{
+	err := client.GlobalAtmosphericModel.History.WriteAodr(context.TODO(), unifieddatalibrary.GlobalAtmosphericModelHistoryWriteAodrParams{
 		Ts:              time.Now(),
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),

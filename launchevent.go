@@ -21,29 +21,31 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
-// LauncheventService contains methods and other services that help with
+// LaunchEventService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewLauncheventService] method instead.
-type LauncheventService struct {
+// the [NewLaunchEventService] method instead.
+type LaunchEventService struct {
 	Options []option.RequestOption
+	History LaunchEventHistoryService
 }
 
-// NewLauncheventService generates a new service that applies the given options to
+// NewLaunchEventService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewLauncheventService(opts ...option.RequestOption) (r LauncheventService) {
-	r = LauncheventService{}
+func NewLaunchEventService(opts ...option.RequestOption) (r LaunchEventService) {
+	r = LaunchEventService{}
 	r.Options = opts
+	r.History = NewLaunchEventHistoryService(opts...)
 	return
 }
 
 // Service operation to take a single LaunchEvent as a POST body and ingest into
 // the database. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
-func (r *LauncheventService) New(ctx context.Context, body LauncheventNewParams, opts ...option.RequestOption) (err error) {
+func (r *LaunchEventService) New(ctx context.Context, body LaunchEventNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/launchevent"
@@ -55,7 +57,7 @@ func (r *LauncheventService) New(ctx context.Context, body LauncheventNewParams,
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *LauncheventService) List(ctx context.Context, query LauncheventListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LauncheventListResponse], err error) {
+func (r *LaunchEventService) List(ctx context.Context, query LaunchEventListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LaunchEventListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -76,7 +78,7 @@ func (r *LauncheventService) List(ctx context.Context, query LauncheventListPara
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *LauncheventService) ListAutoPaging(ctx context.Context, query LauncheventListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[LauncheventListResponse] {
+func (r *LaunchEventService) ListAutoPaging(ctx context.Context, query LaunchEventListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[LaunchEventListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -85,7 +87,7 @@ func (r *LauncheventService) ListAutoPaging(ctx context.Context, query Launcheve
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *LauncheventService) Count(ctx context.Context, query LauncheventCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *LaunchEventService) Count(ctx context.Context, query LaunchEventCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/launchevent/count"
@@ -98,7 +100,7 @@ func (r *LauncheventService) Count(ctx context.Context, query LauncheventCountPa
 // intended to be used for automated feeds into UDL. Data providers should contact
 // the UDL team for specific role assignments and for instructions on setting up a
 // permanent feed through an alternate mechanism.
-func (r *LauncheventService) NewBulk(ctx context.Context, body LauncheventNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *LaunchEventService) NewBulk(ctx context.Context, body LaunchEventNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/launchevent/createBulk"
@@ -108,7 +110,7 @@ func (r *LauncheventService) NewBulk(ctx context.Context, body LauncheventNewBul
 
 // Service operation to get a single LaunchEvent record by its unique ID passed as
 // a path parameter.
-func (r *LauncheventService) Get(ctx context.Context, id string, query LauncheventGetParams, opts ...option.RequestOption) (res *LauncheventGetResponse, err error) {
+func (r *LaunchEventService) Get(ctx context.Context, id string, query LaunchEventGetParams, opts ...option.RequestOption) (res *LaunchEventGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -121,7 +123,7 @@ func (r *LauncheventService) Get(ctx context.Context, id string, query Launcheve
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *LauncheventService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *LaunchEventService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/launchevent/queryhelp"
@@ -137,7 +139,7 @@ func (r *LauncheventService) Queryhelp(ctx context.Context, opts ...option.Reque
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *LauncheventService) Tuple(ctx context.Context, query LauncheventTupleParams, opts ...option.RequestOption) (res *[]LauncheventTupleResponse, err error) {
+func (r *LaunchEventService) Tuple(ctx context.Context, query LaunchEventTupleParams, opts ...option.RequestOption) (res *[]LaunchEventTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/launchevent/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -148,7 +150,7 @@ func (r *LauncheventService) Tuple(ctx context.Context, query LauncheventTuplePa
 // database. This operation is intended to be used for automated feeds into UDL. A
 // specific role is required to perform this service operation. Please contact the
 // UDL team for assistance.
-func (r *LauncheventService) UnvalidatedPublish(ctx context.Context, body LauncheventUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+func (r *LaunchEventService) UnvalidatedPublish(ctx context.Context, body LaunchEventUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-launchevent"
@@ -157,7 +159,7 @@ func (r *LauncheventService) UnvalidatedPublish(ctx context.Context, body Launch
 }
 
 // Information on known launch events.
-type LauncheventListResponse struct {
+type LaunchEventListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -176,7 +178,7 @@ type LauncheventListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LauncheventListResponseDataMode `json:"dataMode,required"`
+	DataMode LaunchEventListResponseDataMode `json:"dataMode,required"`
 	// Timestamp of the originating message in ISO8601 UTC format.
 	MsgCreateDate time.Time `json:"msgCreateDate,required" format:"date-time"`
 	// Source of the data.
@@ -248,8 +250,8 @@ type LauncheventListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LauncheventListResponse) RawJSON() string { return r.JSON.raw }
-func (r *LauncheventListResponse) UnmarshalJSON(data []byte) error {
+func (r LaunchEventListResponse) RawJSON() string { return r.JSON.raw }
+func (r *LaunchEventListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -267,17 +269,17 @@ func (r *LauncheventListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LauncheventListResponseDataMode string
+type LaunchEventListResponseDataMode string
 
 const (
-	LauncheventListResponseDataModeReal      LauncheventListResponseDataMode = "REAL"
-	LauncheventListResponseDataModeTest      LauncheventListResponseDataMode = "TEST"
-	LauncheventListResponseDataModeSimulated LauncheventListResponseDataMode = "SIMULATED"
-	LauncheventListResponseDataModeExercise  LauncheventListResponseDataMode = "EXERCISE"
+	LaunchEventListResponseDataModeReal      LaunchEventListResponseDataMode = "REAL"
+	LaunchEventListResponseDataModeTest      LaunchEventListResponseDataMode = "TEST"
+	LaunchEventListResponseDataModeSimulated LaunchEventListResponseDataMode = "SIMULATED"
+	LaunchEventListResponseDataModeExercise  LaunchEventListResponseDataMode = "EXERCISE"
 )
 
 // Information on known launch events.
-type LauncheventGetResponse struct {
+type LaunchEventGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -296,7 +298,7 @@ type LauncheventGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LauncheventGetResponseDataMode `json:"dataMode,required"`
+	DataMode LaunchEventGetResponseDataMode `json:"dataMode,required"`
 	// Timestamp of the originating message in ISO8601 UTC format.
 	MsgCreateDate time.Time `json:"msgCreateDate,required" format:"date-time"`
 	// Source of the data.
@@ -371,8 +373,8 @@ type LauncheventGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LauncheventGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *LauncheventGetResponse) UnmarshalJSON(data []byte) error {
+func (r LaunchEventGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *LaunchEventGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -390,17 +392,17 @@ func (r *LauncheventGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LauncheventGetResponseDataMode string
+type LaunchEventGetResponseDataMode string
 
 const (
-	LauncheventGetResponseDataModeReal      LauncheventGetResponseDataMode = "REAL"
-	LauncheventGetResponseDataModeTest      LauncheventGetResponseDataMode = "TEST"
-	LauncheventGetResponseDataModeSimulated LauncheventGetResponseDataMode = "SIMULATED"
-	LauncheventGetResponseDataModeExercise  LauncheventGetResponseDataMode = "EXERCISE"
+	LaunchEventGetResponseDataModeReal      LaunchEventGetResponseDataMode = "REAL"
+	LaunchEventGetResponseDataModeTest      LaunchEventGetResponseDataMode = "TEST"
+	LaunchEventGetResponseDataModeSimulated LaunchEventGetResponseDataMode = "SIMULATED"
+	LaunchEventGetResponseDataModeExercise  LaunchEventGetResponseDataMode = "EXERCISE"
 )
 
 // Information on known launch events.
-type LauncheventTupleResponse struct {
+type LaunchEventTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -419,7 +421,7 @@ type LauncheventTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LauncheventTupleResponseDataMode `json:"dataMode,required"`
+	DataMode LaunchEventTupleResponseDataMode `json:"dataMode,required"`
 	// Timestamp of the originating message in ISO8601 UTC format.
 	MsgCreateDate time.Time `json:"msgCreateDate,required" format:"date-time"`
 	// Source of the data.
@@ -494,8 +496,8 @@ type LauncheventTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LauncheventTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *LauncheventTupleResponse) UnmarshalJSON(data []byte) error {
+func (r LaunchEventTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *LaunchEventTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -513,16 +515,16 @@ func (r *LauncheventTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LauncheventTupleResponseDataMode string
+type LaunchEventTupleResponseDataMode string
 
 const (
-	LauncheventTupleResponseDataModeReal      LauncheventTupleResponseDataMode = "REAL"
-	LauncheventTupleResponseDataModeTest      LauncheventTupleResponseDataMode = "TEST"
-	LauncheventTupleResponseDataModeSimulated LauncheventTupleResponseDataMode = "SIMULATED"
-	LauncheventTupleResponseDataModeExercise  LauncheventTupleResponseDataMode = "EXERCISE"
+	LaunchEventTupleResponseDataModeReal      LaunchEventTupleResponseDataMode = "REAL"
+	LaunchEventTupleResponseDataModeTest      LaunchEventTupleResponseDataMode = "TEST"
+	LaunchEventTupleResponseDataModeSimulated LaunchEventTupleResponseDataMode = "SIMULATED"
+	LaunchEventTupleResponseDataModeExercise  LaunchEventTupleResponseDataMode = "EXERCISE"
 )
 
-type LauncheventNewParams struct {
+type LaunchEventNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -541,7 +543,7 @@ type LauncheventNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LauncheventNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode LaunchEventNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// Timestamp of the originating message in ISO8601 UTC format.
 	MsgCreateDate time.Time `json:"msgCreateDate,required" format:"date-time"`
 	// Source of the data.
@@ -579,10 +581,10 @@ type LauncheventNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LauncheventNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchEventNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r LauncheventNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow LauncheventNewParams
+func (r LaunchEventNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow LaunchEventNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -600,16 +602,16 @@ func (r LauncheventNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LauncheventNewParamsDataMode string
+type LaunchEventNewParamsDataMode string
 
 const (
-	LauncheventNewParamsDataModeReal      LauncheventNewParamsDataMode = "REAL"
-	LauncheventNewParamsDataModeTest      LauncheventNewParamsDataMode = "TEST"
-	LauncheventNewParamsDataModeSimulated LauncheventNewParamsDataMode = "SIMULATED"
-	LauncheventNewParamsDataModeExercise  LauncheventNewParamsDataMode = "EXERCISE"
+	LaunchEventNewParamsDataModeReal      LaunchEventNewParamsDataMode = "REAL"
+	LaunchEventNewParamsDataModeTest      LaunchEventNewParamsDataMode = "TEST"
+	LaunchEventNewParamsDataModeSimulated LaunchEventNewParamsDataMode = "SIMULATED"
+	LaunchEventNewParamsDataModeExercise  LaunchEventNewParamsDataMode = "EXERCISE"
 )
 
-type LauncheventListParams struct {
+type LaunchEventListParams struct {
 	// Timestamp of the originating message in ISO8601 UTC format.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	MsgCreateDate time.Time        `query:"msgCreateDate,required" format:"date-time" json:"-"`
@@ -620,17 +622,17 @@ type LauncheventListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LauncheventListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchEventListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LauncheventListParams]'s query parameters as `url.Values`.
-func (r LauncheventListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [LaunchEventListParams]'s query parameters as `url.Values`.
+func (r LaunchEventListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type LauncheventCountParams struct {
+type LaunchEventCountParams struct {
 	// Timestamp of the originating message in ISO8601 UTC format.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	MsgCreateDate time.Time        `query:"msgCreateDate,required" format:"date-time" json:"-"`
@@ -641,26 +643,26 @@ type LauncheventCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LauncheventCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchEventCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LauncheventCountParams]'s query parameters as `url.Values`.
-func (r LauncheventCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [LaunchEventCountParams]'s query parameters as `url.Values`.
+func (r LaunchEventCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type LauncheventNewBulkParams struct {
-	Body []LauncheventNewBulkParamsBody
+type LaunchEventNewBulkParams struct {
+	Body []LaunchEventNewBulkParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LauncheventNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchEventNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r LauncheventNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r LaunchEventNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -668,7 +670,7 @@ func (r LauncheventNewBulkParams) MarshalJSON() (data []byte, err error) {
 //
 // The properties ClassificationMarking, DataMode, MsgCreateDate, Source are
 // required.
-type LauncheventNewBulkParamsBody struct {
+type LaunchEventNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -735,19 +737,19 @@ type LauncheventNewBulkParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LauncheventNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-func (r LauncheventNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow LauncheventNewBulkParamsBody
+func (f LaunchEventNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (r LaunchEventNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow LaunchEventNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[LauncheventNewBulkParamsBody](
+	apijson.RegisterFieldValidator[LaunchEventNewBulkParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
-type LauncheventGetParams struct {
+type LaunchEventGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -755,17 +757,17 @@ type LauncheventGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LauncheventGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchEventGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LauncheventGetParams]'s query parameters as `url.Values`.
-func (r LauncheventGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [LaunchEventGetParams]'s query parameters as `url.Values`.
+func (r LaunchEventGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type LauncheventTupleParams struct {
+type LaunchEventTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -781,28 +783,28 @@ type LauncheventTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LauncheventTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LaunchEventTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LauncheventTupleParams]'s query parameters as `url.Values`.
-func (r LauncheventTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [LaunchEventTupleParams]'s query parameters as `url.Values`.
+func (r LaunchEventTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type LauncheventUnvalidatedPublishParams struct {
-	Body []LauncheventUnvalidatedPublishParamsBody
+type LaunchEventUnvalidatedPublishParams struct {
+	Body []LaunchEventUnvalidatedPublishParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LauncheventUnvalidatedPublishParams) IsPresent() bool {
+func (f LaunchEventUnvalidatedPublishParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r LauncheventUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+func (r LaunchEventUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -810,7 +812,7 @@ func (r LauncheventUnvalidatedPublishParams) MarshalJSON() (data []byte, err err
 //
 // The properties ClassificationMarking, DataMode, MsgCreateDate, Source are
 // required.
-type LauncheventUnvalidatedPublishParamsBody struct {
+type LaunchEventUnvalidatedPublishParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -877,16 +879,16 @@ type LauncheventUnvalidatedPublishParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LauncheventUnvalidatedPublishParamsBody) IsPresent() bool {
+func (f LaunchEventUnvalidatedPublishParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LauncheventUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow LauncheventUnvalidatedPublishParamsBody
+func (r LaunchEventUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow LaunchEventUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[LauncheventUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[LaunchEventUnvalidatedPublishParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

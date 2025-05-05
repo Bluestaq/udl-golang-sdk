@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestStatevectorNewWithOptionalParams(t *testing.T) {
+func TestStateVectorNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestStatevectorNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Statevector.New(context.TODO(), unifieddatalibrary.StatevectorNewParams{
+	err := client.StateVector.New(context.TODO(), unifieddatalibrary.StateVectorNewParams{
 		StateVectorIngest: unifieddatalibrary.StateVectorIngestParam{
 			ClassificationMarking: "U",
 			DataMode:              unifieddatalibrary.StateVectorIngestDataModeTest,
@@ -134,7 +134,7 @@ func TestStatevectorNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestStatevectorListWithOptionalParams(t *testing.T) {
+func TestStateVectorListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -147,7 +147,7 @@ func TestStatevectorListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Statevector.List(context.TODO(), unifieddatalibrary.StatevectorListParams{
+	_, err := client.StateVector.List(context.TODO(), unifieddatalibrary.StateVectorListParams{
 		Epoch:       time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -161,7 +161,7 @@ func TestStatevectorListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestStatevectorCountWithOptionalParams(t *testing.T) {
+func TestStateVectorCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -174,7 +174,7 @@ func TestStatevectorCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Statevector.Count(context.TODO(), unifieddatalibrary.StatevectorCountParams{
+	_, err := client.StateVector.Count(context.TODO(), unifieddatalibrary.StateVectorCountParams{
 		Epoch:       time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -188,7 +188,7 @@ func TestStatevectorCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestStatevectorNewBulk(t *testing.T) {
+func TestStateVectorNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -201,7 +201,7 @@ func TestStatevectorNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Statevector.NewBulk(context.TODO(), unifieddatalibrary.StatevectorNewBulkParams{
+	err := client.StateVector.NewBulk(context.TODO(), unifieddatalibrary.StateVectorNewBulkParams{
 		Body: []unifieddatalibrary.StateVectorIngestParam{{
 			ClassificationMarking: "U",
 			DataMode:              unifieddatalibrary.StateVectorIngestDataModeTest,
@@ -308,7 +308,7 @@ func TestStatevectorNewBulk(t *testing.T) {
 	}
 }
 
-func TestStatevectorGetWithOptionalParams(t *testing.T) {
+func TestStateVectorGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -321,10 +321,10 @@ func TestStatevectorGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Statevector.Get(
+	_, err := client.StateVector.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.StatevectorGetParams{
+		unifieddatalibrary.StateVectorGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -338,7 +338,7 @@ func TestStatevectorGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestStatevectorQueryhelp(t *testing.T) {
+func TestStateVectorQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -351,7 +351,7 @@ func TestStatevectorQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Statevector.Queryhelp(context.TODO())
+	err := client.StateVector.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -361,7 +361,7 @@ func TestStatevectorQueryhelp(t *testing.T) {
 	}
 }
 
-func TestStatevectorTupleWithOptionalParams(t *testing.T) {
+func TestStateVectorTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -374,7 +374,7 @@ func TestStatevectorTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Statevector.Tuple(context.TODO(), unifieddatalibrary.StatevectorTupleParams{
+	_, err := client.StateVector.Tuple(context.TODO(), unifieddatalibrary.StateVectorTupleParams{
 		Columns:     "columns",
 		Epoch:       time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -389,7 +389,7 @@ func TestStatevectorTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestStatevectorUnvalidatedPublish(t *testing.T) {
+func TestStateVectorUnvalidatedPublish(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -402,7 +402,7 @@ func TestStatevectorUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Statevector.UnvalidatedPublish(context.TODO(), unifieddatalibrary.StatevectorUnvalidatedPublishParams{
+	err := client.StateVector.UnvalidatedPublish(context.TODO(), unifieddatalibrary.StateVectorUnvalidatedPublishParams{
 		Body: []unifieddatalibrary.StateVectorIngestParam{{
 			ClassificationMarking: "U",
 			DataMode:              unifieddatalibrary.StateVectorIngestDataModeTest,

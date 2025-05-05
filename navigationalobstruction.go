@@ -20,21 +20,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// NavigationalobstructionService contains methods and other services that help
+// NavigationalObstructionService contains methods and other services that help
 // with interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewNavigationalobstructionService] method instead.
-type NavigationalobstructionService struct {
+// the [NewNavigationalObstructionService] method instead.
+type NavigationalObstructionService struct {
 	Options []option.RequestOption
 }
 
-// NewNavigationalobstructionService generates a new service that applies the given
+// NewNavigationalObstructionService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewNavigationalobstructionService(opts ...option.RequestOption) (r NavigationalobstructionService) {
-	r = NavigationalobstructionService{}
+func NewNavigationalObstructionService(opts ...option.RequestOption) (r NavigationalObstructionService) {
+	r = NavigationalObstructionService{}
 	r.Options = opts
 	return
 }
@@ -42,7 +42,7 @@ func NewNavigationalobstructionService(opts ...option.RequestOption) (r Navigati
 // Service operation to take a single navigational obstruction record as a POST
 // body and ingest into the database. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
-func (r *NavigationalobstructionService) New(ctx context.Context, body NavigationalobstructionNewParams, opts ...option.RequestOption) (err error) {
+func (r *NavigationalObstructionService) New(ctx context.Context, body NavigationalObstructionNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/navigationalobstruction"
@@ -53,7 +53,7 @@ func (r *NavigationalobstructionService) New(ctx context.Context, body Navigatio
 // Service operation to update a single navigational obstruction record. A specific
 // role is required to perform this service operation. Please contact the UDL team
 // for assistance.
-func (r *NavigationalobstructionService) Update(ctx context.Context, id string, body NavigationalobstructionUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *NavigationalObstructionService) Update(ctx context.Context, id string, body NavigationalObstructionUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -69,7 +69,7 @@ func (r *NavigationalobstructionService) Update(ctx context.Context, id string, 
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *NavigationalobstructionService) List(ctx context.Context, query NavigationalobstructionListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[NavigationalobstructionListResponse], err error) {
+func (r *NavigationalObstructionService) List(ctx context.Context, query NavigationalObstructionListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[NavigationalObstructionListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -90,7 +90,7 @@ func (r *NavigationalobstructionService) List(ctx context.Context, query Navigat
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *NavigationalobstructionService) ListAutoPaging(ctx context.Context, query NavigationalobstructionListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[NavigationalobstructionListResponse] {
+func (r *NavigationalObstructionService) ListAutoPaging(ctx context.Context, query NavigationalObstructionListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[NavigationalObstructionListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -99,7 +99,7 @@ func (r *NavigationalobstructionService) ListAutoPaging(ctx context.Context, que
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *NavigationalobstructionService) Count(ctx context.Context, query NavigationalobstructionCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *NavigationalObstructionService) Count(ctx context.Context, query NavigationalObstructionCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/navigationalobstruction/count"
@@ -112,7 +112,7 @@ func (r *NavigationalobstructionService) Count(ctx context.Context, query Naviga
 // This operation is not intended to be used for automated feeds into UDL. Data
 // providers should contact the UDL team for specific role assignments and for
 // instructions on setting up a permanent feed through an alternate mechanism.
-func (r *NavigationalobstructionService) NewBulk(ctx context.Context, body NavigationalobstructionNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *NavigationalObstructionService) NewBulk(ctx context.Context, body NavigationalObstructionNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/navigationalobstruction/createBulk"
@@ -122,7 +122,7 @@ func (r *NavigationalobstructionService) NewBulk(ctx context.Context, body Navig
 
 // Service operation to get a single navigational obstruction record by its unique
 // ID passed as a path parameter.
-func (r *NavigationalobstructionService) Get(ctx context.Context, id string, query NavigationalobstructionGetParams, opts ...option.RequestOption) (res *NavigationalobstructionGetResponse, err error) {
+func (r *NavigationalObstructionService) Get(ctx context.Context, id string, query NavigationalObstructionGetParams, opts ...option.RequestOption) (res *NavigationalObstructionGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -135,7 +135,7 @@ func (r *NavigationalobstructionService) Get(ctx context.Context, id string, que
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *NavigationalobstructionService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *NavigationalObstructionService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/navigationalobstruction/queryhelp"
@@ -151,7 +151,7 @@ func (r *NavigationalobstructionService) Queryhelp(ctx context.Context, opts ...
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *NavigationalobstructionService) Tuple(ctx context.Context, query NavigationalobstructionTupleParams, opts ...option.RequestOption) (res *[]NavigationalobstructionTupleResponse, err error) {
+func (r *NavigationalObstructionService) Tuple(ctx context.Context, query NavigationalObstructionTupleParams, opts ...option.RequestOption) (res *[]NavigationalObstructionTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/navigationalobstruction/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -161,7 +161,7 @@ func (r *NavigationalobstructionService) Tuple(ctx context.Context, query Naviga
 // Beta Version Navigational Obstruction: Information describing navigational
 // obstructions, such as applicable boundaries, locations, heights, data ownership,
 // and currency.
-type NavigationalobstructionListResponse struct {
+type NavigationalObstructionListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Start date of this obstruction data set's currency, in ISO 8601 date-only
@@ -183,7 +183,7 @@ type NavigationalobstructionListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode NavigationalobstructionListResponseDataMode `json:"dataMode,required"`
+	DataMode NavigationalObstructionListResponseDataMode `json:"dataMode,required"`
 	// The ID of this obstacle.
 	ObstacleID string `json:"obstacleId,required"`
 	// Type of obstacle (e.g. P for point, V for vector, L for line).
@@ -484,8 +484,8 @@ type NavigationalobstructionListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r NavigationalobstructionListResponse) RawJSON() string { return r.JSON.raw }
-func (r *NavigationalobstructionListResponse) UnmarshalJSON(data []byte) error {
+func (r NavigationalObstructionListResponse) RawJSON() string { return r.JSON.raw }
+func (r *NavigationalObstructionListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -503,19 +503,19 @@ func (r *NavigationalobstructionListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type NavigationalobstructionListResponseDataMode string
+type NavigationalObstructionListResponseDataMode string
 
 const (
-	NavigationalobstructionListResponseDataModeReal      NavigationalobstructionListResponseDataMode = "REAL"
-	NavigationalobstructionListResponseDataModeTest      NavigationalobstructionListResponseDataMode = "TEST"
-	NavigationalobstructionListResponseDataModeSimulated NavigationalobstructionListResponseDataMode = "SIMULATED"
-	NavigationalobstructionListResponseDataModeExercise  NavigationalobstructionListResponseDataMode = "EXERCISE"
+	NavigationalObstructionListResponseDataModeReal      NavigationalObstructionListResponseDataMode = "REAL"
+	NavigationalObstructionListResponseDataModeTest      NavigationalObstructionListResponseDataMode = "TEST"
+	NavigationalObstructionListResponseDataModeSimulated NavigationalObstructionListResponseDataMode = "SIMULATED"
+	NavigationalObstructionListResponseDataModeExercise  NavigationalObstructionListResponseDataMode = "EXERCISE"
 )
 
 // Beta Version Navigational Obstruction: Information describing navigational
 // obstructions, such as applicable boundaries, locations, heights, data ownership,
 // and currency.
-type NavigationalobstructionGetResponse struct {
+type NavigationalObstructionGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Start date of this obstruction data set's currency, in ISO 8601 date-only
@@ -537,7 +537,7 @@ type NavigationalobstructionGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode NavigationalobstructionGetResponseDataMode `json:"dataMode,required"`
+	DataMode NavigationalObstructionGetResponseDataMode `json:"dataMode,required"`
 	// The ID of this obstacle.
 	ObstacleID string `json:"obstacleId,required"`
 	// Type of obstacle (e.g. P for point, V for vector, L for line).
@@ -845,8 +845,8 @@ type NavigationalobstructionGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r NavigationalobstructionGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *NavigationalobstructionGetResponse) UnmarshalJSON(data []byte) error {
+func (r NavigationalObstructionGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *NavigationalObstructionGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -864,19 +864,19 @@ func (r *NavigationalobstructionGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type NavigationalobstructionGetResponseDataMode string
+type NavigationalObstructionGetResponseDataMode string
 
 const (
-	NavigationalobstructionGetResponseDataModeReal      NavigationalobstructionGetResponseDataMode = "REAL"
-	NavigationalobstructionGetResponseDataModeTest      NavigationalobstructionGetResponseDataMode = "TEST"
-	NavigationalobstructionGetResponseDataModeSimulated NavigationalobstructionGetResponseDataMode = "SIMULATED"
-	NavigationalobstructionGetResponseDataModeExercise  NavigationalobstructionGetResponseDataMode = "EXERCISE"
+	NavigationalObstructionGetResponseDataModeReal      NavigationalObstructionGetResponseDataMode = "REAL"
+	NavigationalObstructionGetResponseDataModeTest      NavigationalObstructionGetResponseDataMode = "TEST"
+	NavigationalObstructionGetResponseDataModeSimulated NavigationalObstructionGetResponseDataMode = "SIMULATED"
+	NavigationalObstructionGetResponseDataModeExercise  NavigationalObstructionGetResponseDataMode = "EXERCISE"
 )
 
 // Beta Version Navigational Obstruction: Information describing navigational
 // obstructions, such as applicable boundaries, locations, heights, data ownership,
 // and currency.
-type NavigationalobstructionTupleResponse struct {
+type NavigationalObstructionTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Start date of this obstruction data set's currency, in ISO 8601 date-only
@@ -898,7 +898,7 @@ type NavigationalobstructionTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode NavigationalobstructionTupleResponseDataMode `json:"dataMode,required"`
+	DataMode NavigationalObstructionTupleResponseDataMode `json:"dataMode,required"`
 	// The ID of this obstacle.
 	ObstacleID string `json:"obstacleId,required"`
 	// Type of obstacle (e.g. P for point, V for vector, L for line).
@@ -1206,8 +1206,8 @@ type NavigationalobstructionTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r NavigationalobstructionTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *NavigationalobstructionTupleResponse) UnmarshalJSON(data []byte) error {
+func (r NavigationalObstructionTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *NavigationalObstructionTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -1225,16 +1225,16 @@ func (r *NavigationalobstructionTupleResponse) UnmarshalJSON(data []byte) error 
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type NavigationalobstructionTupleResponseDataMode string
+type NavigationalObstructionTupleResponseDataMode string
 
 const (
-	NavigationalobstructionTupleResponseDataModeReal      NavigationalobstructionTupleResponseDataMode = "REAL"
-	NavigationalobstructionTupleResponseDataModeTest      NavigationalobstructionTupleResponseDataMode = "TEST"
-	NavigationalobstructionTupleResponseDataModeSimulated NavigationalobstructionTupleResponseDataMode = "SIMULATED"
-	NavigationalobstructionTupleResponseDataModeExercise  NavigationalobstructionTupleResponseDataMode = "EXERCISE"
+	NavigationalObstructionTupleResponseDataModeReal      NavigationalObstructionTupleResponseDataMode = "REAL"
+	NavigationalObstructionTupleResponseDataModeTest      NavigationalObstructionTupleResponseDataMode = "TEST"
+	NavigationalObstructionTupleResponseDataModeSimulated NavigationalObstructionTupleResponseDataMode = "SIMULATED"
+	NavigationalObstructionTupleResponseDataModeExercise  NavigationalObstructionTupleResponseDataMode = "EXERCISE"
 )
 
-type NavigationalobstructionNewParams struct {
+type NavigationalObstructionNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Start date of this obstruction data set's currency, in ISO 8601 date-only
@@ -1256,7 +1256,7 @@ type NavigationalobstructionNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode NavigationalobstructionNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode NavigationalObstructionNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// The ID of this obstacle.
 	ObstacleID string `json:"obstacleId,required"`
 	// Type of obstacle (e.g. P for point, V for vector, L for line).
@@ -1460,10 +1460,10 @@ type NavigationalobstructionNewParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NavigationalobstructionNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f NavigationalObstructionNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r NavigationalobstructionNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow NavigationalobstructionNewParams
+func (r NavigationalObstructionNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow NavigationalObstructionNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -1481,16 +1481,16 @@ func (r NavigationalobstructionNewParams) MarshalJSON() (data []byte, err error)
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type NavigationalobstructionNewParamsDataMode string
+type NavigationalObstructionNewParamsDataMode string
 
 const (
-	NavigationalobstructionNewParamsDataModeReal      NavigationalobstructionNewParamsDataMode = "REAL"
-	NavigationalobstructionNewParamsDataModeTest      NavigationalobstructionNewParamsDataMode = "TEST"
-	NavigationalobstructionNewParamsDataModeSimulated NavigationalobstructionNewParamsDataMode = "SIMULATED"
-	NavigationalobstructionNewParamsDataModeExercise  NavigationalobstructionNewParamsDataMode = "EXERCISE"
+	NavigationalObstructionNewParamsDataModeReal      NavigationalObstructionNewParamsDataMode = "REAL"
+	NavigationalObstructionNewParamsDataModeTest      NavigationalObstructionNewParamsDataMode = "TEST"
+	NavigationalObstructionNewParamsDataModeSimulated NavigationalObstructionNewParamsDataMode = "SIMULATED"
+	NavigationalObstructionNewParamsDataModeExercise  NavigationalObstructionNewParamsDataMode = "EXERCISE"
 )
 
-type NavigationalobstructionUpdateParams struct {
+type NavigationalObstructionUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Start date of this obstruction data set's currency, in ISO 8601 date-only
@@ -1512,7 +1512,7 @@ type NavigationalobstructionUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode NavigationalobstructionUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode NavigationalObstructionUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// The ID of this obstacle.
 	ObstacleID string `json:"obstacleId,required"`
 	// Type of obstacle (e.g. P for point, V for vector, L for line).
@@ -1716,12 +1716,12 @@ type NavigationalobstructionUpdateParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NavigationalobstructionUpdateParams) IsPresent() bool {
+func (f NavigationalObstructionUpdateParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r NavigationalobstructionUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow NavigationalobstructionUpdateParams
+func (r NavigationalObstructionUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow NavigationalObstructionUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -1739,16 +1739,16 @@ func (r NavigationalobstructionUpdateParams) MarshalJSON() (data []byte, err err
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type NavigationalobstructionUpdateParamsDataMode string
+type NavigationalObstructionUpdateParamsDataMode string
 
 const (
-	NavigationalobstructionUpdateParamsDataModeReal      NavigationalobstructionUpdateParamsDataMode = "REAL"
-	NavigationalobstructionUpdateParamsDataModeTest      NavigationalobstructionUpdateParamsDataMode = "TEST"
-	NavigationalobstructionUpdateParamsDataModeSimulated NavigationalobstructionUpdateParamsDataMode = "SIMULATED"
-	NavigationalobstructionUpdateParamsDataModeExercise  NavigationalobstructionUpdateParamsDataMode = "EXERCISE"
+	NavigationalObstructionUpdateParamsDataModeReal      NavigationalObstructionUpdateParamsDataMode = "REAL"
+	NavigationalObstructionUpdateParamsDataModeTest      NavigationalObstructionUpdateParamsDataMode = "TEST"
+	NavigationalObstructionUpdateParamsDataModeSimulated NavigationalObstructionUpdateParamsDataMode = "SIMULATED"
+	NavigationalObstructionUpdateParamsDataModeExercise  NavigationalObstructionUpdateParamsDataMode = "EXERCISE"
 )
 
-type NavigationalobstructionListParams struct {
+type NavigationalObstructionListParams struct {
 	// (One or more of fields 'cycleDate, obstacleId' are required.) Start date of this
 	// obstruction data set's currency, in ISO 8601 date-only format. (YYYY-MM-DD)
 	CycleDate   param.Opt[time.Time] `query:"cycleDate,omitzero" format:"date" json:"-"`
@@ -1762,20 +1762,20 @@ type NavigationalobstructionListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NavigationalobstructionListParams) IsPresent() bool {
+func (f NavigationalObstructionListParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [NavigationalobstructionListParams]'s query parameters as
+// URLQuery serializes [NavigationalObstructionListParams]'s query parameters as
 // `url.Values`.
-func (r NavigationalobstructionListParams) URLQuery() (v url.Values, err error) {
+func (r NavigationalObstructionListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type NavigationalobstructionCountParams struct {
+type NavigationalObstructionCountParams struct {
 	// (One or more of fields 'cycleDate, obstacleId' are required.) Start date of this
 	// obstruction data set's currency, in ISO 8601 date-only format. (YYYY-MM-DD)
 	CycleDate   param.Opt[time.Time] `query:"cycleDate,omitzero" format:"date" json:"-"`
@@ -1789,31 +1789,31 @@ type NavigationalobstructionCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NavigationalobstructionCountParams) IsPresent() bool {
+func (f NavigationalObstructionCountParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [NavigationalobstructionCountParams]'s query parameters as
+// URLQuery serializes [NavigationalObstructionCountParams]'s query parameters as
 // `url.Values`.
-func (r NavigationalobstructionCountParams) URLQuery() (v url.Values, err error) {
+func (r NavigationalObstructionCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type NavigationalobstructionNewBulkParams struct {
-	Body []NavigationalobstructionNewBulkParamsBody
+type NavigationalObstructionNewBulkParams struct {
+	Body []NavigationalObstructionNewBulkParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NavigationalobstructionNewBulkParams) IsPresent() bool {
+func (f NavigationalObstructionNewBulkParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r NavigationalobstructionNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r NavigationalObstructionNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -1823,7 +1823,7 @@ func (r NavigationalobstructionNewBulkParams) MarshalJSON() (data []byte, err er
 //
 // The properties ClassificationMarking, CycleDate, DataMode, ObstacleID,
 // ObstacleType, Source are required.
-type NavigationalobstructionNewBulkParamsBody struct {
+type NavigationalObstructionNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Start date of this obstruction data set's currency, in ISO 8601 date-only
@@ -2065,21 +2065,21 @@ type NavigationalobstructionNewBulkParamsBody struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NavigationalobstructionNewBulkParamsBody) IsPresent() bool {
+func (f NavigationalObstructionNewBulkParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r NavigationalobstructionNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow NavigationalobstructionNewBulkParamsBody
+func (r NavigationalObstructionNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow NavigationalObstructionNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[NavigationalobstructionNewBulkParamsBody](
+	apijson.RegisterFieldValidator[NavigationalObstructionNewBulkParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
-type NavigationalobstructionGetParams struct {
+type NavigationalObstructionGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -2087,18 +2087,18 @@ type NavigationalobstructionGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NavigationalobstructionGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f NavigationalObstructionGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [NavigationalobstructionGetParams]'s query parameters as
+// URLQuery serializes [NavigationalObstructionGetParams]'s query parameters as
 // `url.Values`.
-func (r NavigationalobstructionGetParams) URLQuery() (v url.Values, err error) {
+func (r NavigationalObstructionGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type NavigationalobstructionTupleParams struct {
+type NavigationalObstructionTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -2117,13 +2117,13 @@ type NavigationalobstructionTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NavigationalobstructionTupleParams) IsPresent() bool {
+func (f NavigationalObstructionTupleParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [NavigationalobstructionTupleParams]'s query parameters as
+// URLQuery serializes [NavigationalObstructionTupleParams]'s query parameters as
 // `url.Values`.
-func (r NavigationalobstructionTupleParams) URLQuery() (v url.Values, err error) {
+func (r NavigationalObstructionTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestObjectofinterestNewWithOptionalParams(t *testing.T) {
+func TestObjectOfInterestNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,9 +27,9 @@ func TestObjectofinterestNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Objectofinterest.New(context.TODO(), unifieddatalibrary.ObjectofinterestNewParams{
+	err := client.ObjectOfInterest.New(context.TODO(), unifieddatalibrary.ObjectOfInterestNewParams{
 		ClassificationMarking:  "U",
-		DataMode:               unifieddatalibrary.ObjectofinterestNewParamsDataModeTest,
+		DataMode:               unifieddatalibrary.ObjectOfInterestNewParamsDataModeTest,
 		IDOnOrbit:              "REF-ONORBIT-ID",
 		SensorTaskingStartTime: time.Now(),
 		Source:                 "Bluestaq",
@@ -79,7 +79,7 @@ func TestObjectofinterestNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestObjectofinterestUpdateWithOptionalParams(t *testing.T) {
+func TestObjectOfInterestUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -92,12 +92,12 @@ func TestObjectofinterestUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Objectofinterest.Update(
+	err := client.ObjectOfInterest.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.ObjectofinterestUpdateParams{
+		unifieddatalibrary.ObjectOfInterestUpdateParams{
 			ClassificationMarking:  "U",
-			DataMode:               unifieddatalibrary.ObjectofinterestUpdateParamsDataModeTest,
+			DataMode:               unifieddatalibrary.ObjectOfInterestUpdateParamsDataModeTest,
 			IDOnOrbit:              "REF-ONORBIT-ID",
 			SensorTaskingStartTime: time.Now(),
 			Source:                 "Bluestaq",
@@ -148,7 +148,7 @@ func TestObjectofinterestUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestObjectofinterestListWithOptionalParams(t *testing.T) {
+func TestObjectOfInterestListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -161,7 +161,7 @@ func TestObjectofinterestListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Objectofinterest.List(context.TODO(), unifieddatalibrary.ObjectofinterestListParams{
+	_, err := client.ObjectOfInterest.List(context.TODO(), unifieddatalibrary.ObjectOfInterestListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -174,7 +174,7 @@ func TestObjectofinterestListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestObjectofinterestDelete(t *testing.T) {
+func TestObjectOfInterestDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -187,7 +187,7 @@ func TestObjectofinterestDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Objectofinterest.Delete(context.TODO(), "id")
+	err := client.ObjectOfInterest.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -197,7 +197,7 @@ func TestObjectofinterestDelete(t *testing.T) {
 	}
 }
 
-func TestObjectofinterestCountWithOptionalParams(t *testing.T) {
+func TestObjectOfInterestCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -210,7 +210,7 @@ func TestObjectofinterestCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Objectofinterest.Count(context.TODO(), unifieddatalibrary.ObjectofinterestCountParams{
+	_, err := client.ObjectOfInterest.Count(context.TODO(), unifieddatalibrary.ObjectOfInterestCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -223,7 +223,7 @@ func TestObjectofinterestCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestObjectofinterestGetWithOptionalParams(t *testing.T) {
+func TestObjectOfInterestGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -236,10 +236,10 @@ func TestObjectofinterestGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Objectofinterest.Get(
+	_, err := client.ObjectOfInterest.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.ObjectofinterestGetParams{
+		unifieddatalibrary.ObjectOfInterestGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -253,7 +253,7 @@ func TestObjectofinterestGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestObjectofinterestQueryhelp(t *testing.T) {
+func TestObjectOfInterestQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -266,7 +266,7 @@ func TestObjectofinterestQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Objectofinterest.Queryhelp(context.TODO())
+	err := client.ObjectOfInterest.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -276,7 +276,7 @@ func TestObjectofinterestQueryhelp(t *testing.T) {
 	}
 }
 
-func TestObjectofinterestTupleWithOptionalParams(t *testing.T) {
+func TestObjectOfInterestTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -289,7 +289,7 @@ func TestObjectofinterestTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Objectofinterest.Tuple(context.TODO(), unifieddatalibrary.ObjectofinterestTupleParams{
+	_, err := client.ObjectOfInterest.Tuple(context.TODO(), unifieddatalibrary.ObjectOfInterestTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

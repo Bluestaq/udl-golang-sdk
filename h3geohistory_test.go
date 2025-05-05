@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestH3geoHistoryAdorWithOptionalParams(t *testing.T) {
+func TestH3GeoHistoryAdorWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestH3geoHistoryAdorWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.H3geo.History.Ador(context.TODO(), unifieddatalibrary.H3geoHistoryAdorParams{
+	err := client.H3Geo.History.Ador(context.TODO(), unifieddatalibrary.H3GeoHistoryAdorParams{
 		StartTime:       time.Now(),
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -45,7 +45,7 @@ func TestH3geoHistoryAdorWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestH3geoHistoryCountWithOptionalParams(t *testing.T) {
+func TestH3GeoHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -58,7 +58,7 @@ func TestH3geoHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.H3geo.History.Count(context.TODO(), unifieddatalibrary.H3geoHistoryCountParams{
+	_, err := client.H3Geo.History.Count(context.TODO(), unifieddatalibrary.H3GeoHistoryCountParams{
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -72,7 +72,7 @@ func TestH3geoHistoryCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestH3geoHistoryQueryWithOptionalParams(t *testing.T) {
+func TestH3GeoHistoryQueryWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -85,7 +85,7 @@ func TestH3geoHistoryQueryWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.H3geo.History.Query(context.TODO(), unifieddatalibrary.H3geoHistoryQueryParams{
+	_, err := client.H3Geo.History.Query(context.TODO(), unifieddatalibrary.H3GeoHistoryQueryParams{
 		StartTime:   time.Now(),
 		Columns:     unifieddatalibrary.String("columns"),
 		FirstResult: unifieddatalibrary.Int(0),

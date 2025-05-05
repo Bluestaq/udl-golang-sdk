@@ -17,21 +17,21 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// SoiobservationsetHistoryService contains methods and other services that help
+// SoiObservationSetHistoryService contains methods and other services that help
 // with interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewSoiobservationsetHistoryService] method instead.
-type SoiobservationsetHistoryService struct {
+// the [NewSoiObservationSetHistoryService] method instead.
+type SoiObservationSetHistoryService struct {
 	Options []option.RequestOption
 }
 
-// NewSoiobservationsetHistoryService generates a new service that applies the
+// NewSoiObservationSetHistoryService generates a new service that applies the
 // given options to each request. These options are applied after the parent
 // client's options (if there is one), and before any request-specific options.
-func NewSoiobservationsetHistoryService(opts ...option.RequestOption) (r SoiobservationsetHistoryService) {
-	r = SoiobservationsetHistoryService{}
+func NewSoiObservationSetHistoryService(opts ...option.RequestOption) (r SoiObservationSetHistoryService) {
+	r = SoiObservationSetHistoryService{}
 	r.Options = opts
 	return
 }
@@ -40,7 +40,7 @@ func NewSoiobservationsetHistoryService(opts ...option.RequestOption) (r Soiobse
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SoiobservationsetHistoryService) List(ctx context.Context, query SoiobservationsetHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SoiObservationSetFull], err error) {
+func (r *SoiObservationSetHistoryService) List(ctx context.Context, query SoiObservationSetHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SoiObservationSetFull], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -61,7 +61,7 @@ func (r *SoiobservationsetHistoryService) List(ctx context.Context, query Soiobs
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SoiobservationsetHistoryService) ListAutoPaging(ctx context.Context, query SoiobservationsetHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SoiObservationSetFull] {
+func (r *SoiObservationSetHistoryService) ListAutoPaging(ctx context.Context, query SoiObservationSetHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SoiObservationSetFull] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -70,7 +70,7 @@ func (r *SoiobservationsetHistoryService) ListAutoPaging(ctx context.Context, qu
 // Secure Content Store. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SoiobservationsetHistoryService) Aodr(ctx context.Context, query SoiobservationsetHistoryAodrParams, opts ...option.RequestOption) (err error) {
+func (r *SoiObservationSetHistoryService) Aodr(ctx context.Context, query SoiObservationSetHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/soiobservationset/history/aodr"
@@ -83,7 +83,7 @@ func (r *SoiobservationsetHistoryService) Aodr(ctx context.Context, query Soiobs
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *SoiobservationsetHistoryService) Count(ctx context.Context, query SoiobservationsetHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *SoiObservationSetHistoryService) Count(ctx context.Context, query SoiObservationSetHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/soiobservationset/history/count"
@@ -829,7 +829,7 @@ const (
 	SoiObservationSetFullSenReferenceFrameGcrf    SoiObservationSetFullSenReferenceFrame = "GCRF"
 )
 
-type SoiobservationsetHistoryListParams struct {
+type SoiObservationSetHistoryListParams struct {
 	// Observation set detection start time in ISO 8601 UTC with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	StartTime time.Time `query:"startTime,required" format:"date-time" json:"-"`
@@ -844,20 +844,20 @@ type SoiobservationsetHistoryListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetHistoryListParams) IsPresent() bool {
+func (f SoiObservationSetHistoryListParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [SoiobservationsetHistoryListParams]'s query parameters as
+// URLQuery serializes [SoiObservationSetHistoryListParams]'s query parameters as
 // `url.Values`.
-func (r SoiobservationsetHistoryListParams) URLQuery() (v url.Values, err error) {
+func (r SoiObservationSetHistoryListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SoiobservationsetHistoryAodrParams struct {
+type SoiObservationSetHistoryAodrParams struct {
 	// Observation set detection start time in ISO 8601 UTC with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	StartTime time.Time `query:"startTime,required" format:"date-time" json:"-"`
@@ -883,20 +883,20 @@ type SoiobservationsetHistoryAodrParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetHistoryAodrParams) IsPresent() bool {
+func (f SoiObservationSetHistoryAodrParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [SoiobservationsetHistoryAodrParams]'s query parameters as
+// URLQuery serializes [SoiObservationSetHistoryAodrParams]'s query parameters as
 // `url.Values`.
-func (r SoiobservationsetHistoryAodrParams) URLQuery() (v url.Values, err error) {
+func (r SoiObservationSetHistoryAodrParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SoiobservationsetHistoryCountParams struct {
+type SoiObservationSetHistoryCountParams struct {
 	// Observation set detection start time in ISO 8601 UTC with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
@@ -907,13 +907,13 @@ type SoiobservationsetHistoryCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiobservationsetHistoryCountParams) IsPresent() bool {
+func (f SoiObservationSetHistoryCountParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-// URLQuery serializes [SoiobservationsetHistoryCountParams]'s query parameters as
+// URLQuery serializes [SoiObservationSetHistoryCountParams]'s query parameters as
 // `url.Values`.
-func (r SoiobservationsetHistoryCountParams) URLQuery() (v url.Values, err error) {
+func (r SoiObservationSetHistoryCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

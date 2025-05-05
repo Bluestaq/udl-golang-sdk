@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestMissionassignmentHistoryAodrWithOptionalParams(t *testing.T) {
+func TestMissionAssignmentHistoryAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestMissionassignmentHistoryAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Missionassignment.History.Aodr(context.TODO(), unifieddatalibrary.MissionassignmentHistoryAodrParams{
+	err := client.MissionAssignment.History.Aodr(context.TODO(), unifieddatalibrary.MissionAssignmentHistoryAodrParams{
 		Ts:              time.Now(),
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -45,7 +45,7 @@ func TestMissionassignmentHistoryAodrWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestMissionassignmentHistoryCountWithOptionalParams(t *testing.T) {
+func TestMissionAssignmentHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -58,7 +58,7 @@ func TestMissionassignmentHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Missionassignment.History.Count(context.TODO(), unifieddatalibrary.MissionassignmentHistoryCountParams{
+	_, err := client.MissionAssignment.History.Count(context.TODO(), unifieddatalibrary.MissionAssignmentHistoryCountParams{
 		Ts:          time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -72,7 +72,7 @@ func TestMissionassignmentHistoryCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestMissionassignmentHistoryQueryWithOptionalParams(t *testing.T) {
+func TestMissionAssignmentHistoryQueryWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -85,7 +85,7 @@ func TestMissionassignmentHistoryQueryWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Missionassignment.History.Query(context.TODO(), unifieddatalibrary.MissionassignmentHistoryQueryParams{
+	_, err := client.MissionAssignment.History.Query(context.TODO(), unifieddatalibrary.MissionAssignmentHistoryQueryParams{
 		Ts:          time.Now(),
 		Columns:     unifieddatalibrary.String("columns"),
 		FirstResult: unifieddatalibrary.Int(0),

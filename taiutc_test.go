@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestTaiutcNewWithOptionalParams(t *testing.T) {
+func TestTaiUtcNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,10 +27,10 @@ func TestTaiutcNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Taiutc.New(context.TODO(), unifieddatalibrary.TaiutcNewParams{
+	err := client.TaiUtc.New(context.TODO(), unifieddatalibrary.TaiUtcNewParams{
 		AdjustmentDate:        time.Now(),
 		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.TaiutcNewParamsDataModeTest,
+		DataMode:              unifieddatalibrary.TaiUtcNewParamsDataModeTest,
 		Source:                "Bluestaq",
 		ID:                    unifieddatalibrary.String("TAIUTC-ID"),
 		MultiplicationFactor:  unifieddatalibrary.Float(0.001296),
@@ -47,7 +47,7 @@ func TestTaiutcNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestTaiutcUpdateWithOptionalParams(t *testing.T) {
+func TestTaiUtcUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -60,13 +60,13 @@ func TestTaiutcUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Taiutc.Update(
+	err := client.TaiUtc.Update(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.TaiutcUpdateParams{
+		unifieddatalibrary.TaiUtcUpdateParams{
 			AdjustmentDate:        time.Now(),
 			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.TaiutcUpdateParamsDataModeTest,
+			DataMode:              unifieddatalibrary.TaiUtcUpdateParamsDataModeTest,
 			Source:                "Bluestaq",
 			ID:                    unifieddatalibrary.String("TAIUTC-ID"),
 			MultiplicationFactor:  unifieddatalibrary.Float(0.001296),
@@ -84,7 +84,7 @@ func TestTaiutcUpdateWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestTaiutcListWithOptionalParams(t *testing.T) {
+func TestTaiUtcListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -97,7 +97,7 @@ func TestTaiutcListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Taiutc.List(context.TODO(), unifieddatalibrary.TaiutcListParams{
+	_, err := client.TaiUtc.List(context.TODO(), unifieddatalibrary.TaiUtcListParams{
 		AdjustmentDate: time.Now(),
 		FirstResult:    unifieddatalibrary.Int(0),
 		MaxResults:     unifieddatalibrary.Int(0),
@@ -111,7 +111,7 @@ func TestTaiutcListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestTaiutcDelete(t *testing.T) {
+func TestTaiUtcDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -124,7 +124,7 @@ func TestTaiutcDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Taiutc.Delete(context.TODO(), "id")
+	err := client.TaiUtc.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -134,7 +134,7 @@ func TestTaiutcDelete(t *testing.T) {
 	}
 }
 
-func TestTaiutcCountWithOptionalParams(t *testing.T) {
+func TestTaiUtcCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -147,7 +147,7 @@ func TestTaiutcCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Taiutc.Count(context.TODO(), unifieddatalibrary.TaiutcCountParams{
+	_, err := client.TaiUtc.Count(context.TODO(), unifieddatalibrary.TaiUtcCountParams{
 		AdjustmentDate: time.Now(),
 		FirstResult:    unifieddatalibrary.Int(0),
 		MaxResults:     unifieddatalibrary.Int(0),
@@ -161,7 +161,7 @@ func TestTaiutcCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestTaiutcGetWithOptionalParams(t *testing.T) {
+func TestTaiUtcGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -174,10 +174,10 @@ func TestTaiutcGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Taiutc.Get(
+	_, err := client.TaiUtc.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.TaiutcGetParams{
+		unifieddatalibrary.TaiUtcGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -191,7 +191,7 @@ func TestTaiutcGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestTaiutcQueryhelp(t *testing.T) {
+func TestTaiUtcQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -204,7 +204,7 @@ func TestTaiutcQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Taiutc.Queryhelp(context.TODO())
+	err := client.TaiUtc.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -214,7 +214,7 @@ func TestTaiutcQueryhelp(t *testing.T) {
 	}
 }
 
-func TestTaiutcTupleWithOptionalParams(t *testing.T) {
+func TestTaiUtcTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -227,7 +227,7 @@ func TestTaiutcTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Taiutc.Tuple(context.TODO(), unifieddatalibrary.TaiutcTupleParams{
+	_, err := client.TaiUtc.Tuple(context.TODO(), unifieddatalibrary.TaiUtcTupleParams{
 		AdjustmentDate: time.Now(),
 		Columns:        "columns",
 		FirstResult:    unifieddatalibrary.Int(0),

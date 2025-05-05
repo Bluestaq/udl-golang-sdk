@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 )
 
-func TestSarobservationNewWithOptionalParams(t *testing.T) {
+func TestSarObservationNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,11 +27,11 @@ func TestSarobservationNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sarobservation.New(context.TODO(), unifieddatalibrary.SarobservationNewParams{
+	err := client.SarObservation.New(context.TODO(), unifieddatalibrary.SarObservationNewParams{
 		ClassificationMarking:      "U",
 		CollectionEnd:              time.Now(),
 		CollectionStart:            time.Now(),
-		DataMode:                   unifieddatalibrary.SarobservationNewParamsDataModeTest,
+		DataMode:                   unifieddatalibrary.SarObservationNewParamsDataModeTest,
 		SarMode:                    "SPOTLIGHT",
 		Source:                     "Bluestaq",
 		ID:                         unifieddatalibrary.String("SAROBSERVATION-ID"),
@@ -105,7 +105,7 @@ func TestSarobservationNewWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSarobservationListWithOptionalParams(t *testing.T) {
+func TestSarObservationListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -118,7 +118,7 @@ func TestSarobservationListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sarobservation.List(context.TODO(), unifieddatalibrary.SarobservationListParams{
+	_, err := client.SarObservation.List(context.TODO(), unifieddatalibrary.SarObservationListParams{
 		CollectionStart: time.Now(),
 		FirstResult:     unifieddatalibrary.Int(0),
 		MaxResults:      unifieddatalibrary.Int(0),
@@ -132,7 +132,7 @@ func TestSarobservationListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSarobservationCountWithOptionalParams(t *testing.T) {
+func TestSarObservationCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -145,7 +145,7 @@ func TestSarobservationCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sarobservation.Count(context.TODO(), unifieddatalibrary.SarobservationCountParams{
+	_, err := client.SarObservation.Count(context.TODO(), unifieddatalibrary.SarObservationCountParams{
 		CollectionStart: time.Now(),
 		FirstResult:     unifieddatalibrary.Int(0),
 		MaxResults:      unifieddatalibrary.Int(0),
@@ -159,7 +159,7 @@ func TestSarobservationCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSarobservationNewBulk(t *testing.T) {
+func TestSarObservationNewBulk(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -172,8 +172,8 @@ func TestSarobservationNewBulk(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sarobservation.NewBulk(context.TODO(), unifieddatalibrary.SarobservationNewBulkParams{
-		Body: []unifieddatalibrary.SarobservationNewBulkParamsBody{{
+	err := client.SarObservation.NewBulk(context.TODO(), unifieddatalibrary.SarObservationNewBulkParams{
+		Body: []unifieddatalibrary.SarObservationNewBulkParamsBody{{
 			ClassificationMarking:      "U",
 			CollectionEnd:              time.Now(),
 			CollectionStart:            time.Now(),
@@ -252,7 +252,7 @@ func TestSarobservationNewBulk(t *testing.T) {
 	}
 }
 
-func TestSarobservationGetWithOptionalParams(t *testing.T) {
+func TestSarObservationGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -265,10 +265,10 @@ func TestSarobservationGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sarobservation.Get(
+	_, err := client.SarObservation.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.SarobservationGetParams{
+		unifieddatalibrary.SarObservationGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -282,7 +282,7 @@ func TestSarobservationGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSarobservationQueryhelp(t *testing.T) {
+func TestSarObservationQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -295,7 +295,7 @@ func TestSarobservationQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sarobservation.Queryhelp(context.TODO())
+	err := client.SarObservation.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -305,7 +305,7 @@ func TestSarobservationQueryhelp(t *testing.T) {
 	}
 }
 
-func TestSarobservationTupleWithOptionalParams(t *testing.T) {
+func TestSarObservationTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -318,7 +318,7 @@ func TestSarobservationTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Sarobservation.Tuple(context.TODO(), unifieddatalibrary.SarobservationTupleParams{
+	_, err := client.SarObservation.Tuple(context.TODO(), unifieddatalibrary.SarObservationTupleParams{
 		CollectionStart: time.Now(),
 		Columns:         "columns",
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -333,7 +333,7 @@ func TestSarobservationTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSarobservationUnvalidatedPublish(t *testing.T) {
+func TestSarObservationUnvalidatedPublish(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -346,8 +346,8 @@ func TestSarobservationUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Sarobservation.UnvalidatedPublish(context.TODO(), unifieddatalibrary.SarobservationUnvalidatedPublishParams{
-		Body: []unifieddatalibrary.SarobservationUnvalidatedPublishParamsBody{{
+	err := client.SarObservation.UnvalidatedPublish(context.TODO(), unifieddatalibrary.SarObservationUnvalidatedPublishParams{
+		Body: []unifieddatalibrary.SarObservationUnvalidatedPublishParamsBody{{
 			ClassificationMarking:      "U",
 			CollectionEnd:              time.Now(),
 			CollectionStart:            time.Now(),

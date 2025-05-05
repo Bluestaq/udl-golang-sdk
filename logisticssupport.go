@@ -20,31 +20,31 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
 )
 
-// LogisticssupportService contains methods and other services that help with
+// LogisticsSupportService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewLogisticssupportService] method instead.
-type LogisticssupportService struct {
+// the [NewLogisticsSupportService] method instead.
+type LogisticsSupportService struct {
 	Options []option.RequestOption
-	History LogisticssupportHistoryService
+	History LogisticsSupportHistoryService
 }
 
-// NewLogisticssupportService generates a new service that applies the given
+// NewLogisticsSupportService generates a new service that applies the given
 // options to each request. These options are applied after the parent client's
 // options (if there is one), and before any request-specific options.
-func NewLogisticssupportService(opts ...option.RequestOption) (r LogisticssupportService) {
-	r = LogisticssupportService{}
+func NewLogisticsSupportService(opts ...option.RequestOption) (r LogisticsSupportService) {
+	r = LogisticsSupportService{}
 	r.Options = opts
-	r.History = NewLogisticssupportHistoryService(opts...)
+	r.History = NewLogisticsSupportHistoryService(opts...)
 	return
 }
 
 // Service operation to take a single LogisticsSupport record as a POST body and
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *LogisticssupportService) New(ctx context.Context, body LogisticssupportNewParams, opts ...option.RequestOption) (err error) {
+func (r *LogisticsSupportService) New(ctx context.Context, body LogisticsSupportNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/logisticssupport"
@@ -55,7 +55,7 @@ func (r *LogisticssupportService) New(ctx context.Context, body Logisticssupport
 // Service operation to update a single LogisticsSupport record. A specific role is
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
-func (r *LogisticssupportService) Update(ctx context.Context, id string, body LogisticssupportUpdateParams, opts ...option.RequestOption) (err error) {
+func (r *LogisticsSupportService) Update(ctx context.Context, id string, body LogisticsSupportUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
@@ -71,7 +71,7 @@ func (r *LogisticssupportService) Update(ctx context.Context, id string, body Lo
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *LogisticssupportService) List(ctx context.Context, query LogisticssupportListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LogisticssupportListResponse], err error) {
+func (r *LogisticsSupportService) List(ctx context.Context, query LogisticsSupportListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LogisticsSupportListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -92,7 +92,7 @@ func (r *LogisticssupportService) List(ctx context.Context, query Logisticssuppo
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *LogisticssupportService) ListAutoPaging(ctx context.Context, query LogisticssupportListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[LogisticssupportListResponse] {
+func (r *LogisticsSupportService) ListAutoPaging(ctx context.Context, query LogisticsSupportListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[LogisticsSupportListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -101,7 +101,7 @@ func (r *LogisticssupportService) ListAutoPaging(ctx context.Context, query Logi
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *LogisticssupportService) Count(ctx context.Context, query LogisticssupportCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *LogisticsSupportService) Count(ctx context.Context, query LogisticsSupportCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/logisticssupport/count"
@@ -114,7 +114,7 @@ func (r *LogisticssupportService) Count(ctx context.Context, query Logisticssupp
 // operation is not intended to be used for automated feeds into UDL. Data
 // providers should contact the UDL team for specific role assignments and for
 // instructions on setting up a permanent feed through an alternate mechanism.
-func (r *LogisticssupportService) NewBulk(ctx context.Context, body LogisticssupportNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *LogisticsSupportService) NewBulk(ctx context.Context, body LogisticsSupportNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/logisticssupport/createBulk"
@@ -124,7 +124,7 @@ func (r *LogisticssupportService) NewBulk(ctx context.Context, body Logisticssup
 
 // Service operation to get a single LogisticsSupport record by its unique ID
 // passed as a path parameter.
-func (r *LogisticssupportService) Get(ctx context.Context, id string, query LogisticssupportGetParams, opts ...option.RequestOption) (res *LogisticssupportGetResponse, err error) {
+func (r *LogisticsSupportService) Get(ctx context.Context, id string, query LogisticsSupportGetParams, opts ...option.RequestOption) (res *LogisticsSupportGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -137,7 +137,7 @@ func (r *LogisticssupportService) Get(ctx context.Context, id string, query Logi
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *LogisticssupportService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *LogisticsSupportService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/logisticssupport/queryhelp"
@@ -153,7 +153,7 @@ func (r *LogisticssupportService) Queryhelp(ctx context.Context, opts ...option.
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *LogisticssupportService) Tuple(ctx context.Context, query LogisticssupportTupleParams, opts ...option.RequestOption) (res *[]LogisticssupportTupleResponse, err error) {
+func (r *LogisticsSupportService) Tuple(ctx context.Context, query LogisticsSupportTupleParams, opts ...option.RequestOption) (res *[]LogisticsSupportTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/logisticssupport/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -164,7 +164,7 @@ func (r *LogisticssupportService) Tuple(ctx context.Context, query Logisticssupp
 // ingest into the database. This operation is intended to be used for automated
 // feeds into UDL. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
-func (r *LogisticssupportService) UnvalidatedPublish(ctx context.Context, body LogisticssupportUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+func (r *LogisticsSupportService) UnvalidatedPublish(ctx context.Context, body LogisticsSupportUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-logisticssupport"
@@ -201,7 +201,7 @@ func (r *LogisticsRemarksFull) UnmarshalJSON(data []byte) error {
 // Comprehensive logistical details concerning the planned support of maintenance
 // operations required by an aircraft, including transportation information,
 // supplies coordination, and service personnel.
-type LogisticssupportListResponse struct {
+type LogisticsSupportListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -220,7 +220,7 @@ type LogisticssupportListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LogisticssupportListResponseDataMode `json:"dataMode,required"`
+	DataMode LogisticsSupportListResponseDataMode `json:"dataMode,required"`
 	// The time this report was created, in ISO 8601 UTC format with millisecond
 	// precision.
 	RptCreatedTime time.Time `json:"rptCreatedTime,required" format:"date-time"`
@@ -257,16 +257,16 @@ type LogisticssupportListResponse struct {
 	// EQ+hhh.h (EQ=equipment), MRT+hhh.h (MRT=maintenance recovery team).
 	LogisticAction string `json:"logisticAction"`
 	// Discrepancy information associated with this LogisticsSupport record.
-	LogisticsDiscrepancyInfos []LogisticssupportListResponseLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos"`
+	LogisticsDiscrepancyInfos []LogisticsSupportListResponseLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos"`
 	// The identifier that represents a Logistics Master Record.
 	LogisticsRecordID string `json:"logisticsRecordId"`
 	// Remarks associated with this LogisticsSupport record.
-	LogisticsRemarks []LogisticssupportListResponseLogisticsRemark `json:"logisticsRemarks"`
+	LogisticsRemarks []LogisticsSupportListResponseLogisticsRemark `json:"logisticsRemarks"`
 	// Support items associated with this LogisticsSupport record.
-	LogisticsSupportItems []LogisticssupportListResponseLogisticsSupportItem `json:"logisticsSupportItems"`
+	LogisticsSupportItems []LogisticsSupportListResponseLogisticsSupportItem `json:"logisticsSupportItems"`
 	// Transportation plans associated with this LogisticsSupport record, used to
 	// coordinate maintenance efforts.
-	LogisticsTransportationPlans []LogisticssupportListResponseLogisticsTransportationPlan `json:"logisticsTransportationPlans"`
+	LogisticsTransportationPlans []LogisticsSupportListResponseLogisticsTransportationPlan `json:"logisticsTransportationPlans"`
 	// The maintenance status code of the aircraft which may be based on pilot
 	// descriptions or evaluation codes. Contact the source provider for details.
 	MaintStatusCode string `json:"maintStatusCode"`
@@ -342,8 +342,8 @@ type LogisticssupportListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportListResponse) RawJSON() string { return r.JSON.raw }
-func (r *LogisticssupportListResponse) UnmarshalJSON(data []byte) error {
+func (r LogisticsSupportListResponse) RawJSON() string { return r.JSON.raw }
+func (r *LogisticsSupportListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -361,17 +361,17 @@ func (r *LogisticssupportListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LogisticssupportListResponseDataMode string
+type LogisticsSupportListResponseDataMode string
 
 const (
-	LogisticssupportListResponseDataModeReal      LogisticssupportListResponseDataMode = "REAL"
-	LogisticssupportListResponseDataModeTest      LogisticssupportListResponseDataMode = "TEST"
-	LogisticssupportListResponseDataModeSimulated LogisticssupportListResponseDataMode = "SIMULATED"
-	LogisticssupportListResponseDataModeExercise  LogisticssupportListResponseDataMode = "EXERCISE"
+	LogisticsSupportListResponseDataModeReal      LogisticsSupportListResponseDataMode = "REAL"
+	LogisticsSupportListResponseDataModeTest      LogisticsSupportListResponseDataMode = "TEST"
+	LogisticsSupportListResponseDataModeSimulated LogisticsSupportListResponseDataMode = "SIMULATED"
+	LogisticsSupportListResponseDataModeExercise  LogisticsSupportListResponseDataMode = "EXERCISE"
 )
 
 // Discrepancy information associated with this LogisticsSupport record.
-type LogisticssupportListResponseLogisticsDiscrepancyInfo struct {
+type LogisticsSupportListResponseLogisticsDiscrepancyInfo struct {
 	// The discrepancy closure time, in ISO 8601 UTC format with millisecond precision.
 	ClosureTime time.Time `json:"closureTime" format:"date-time"`
 	// The aircraft discrepancy description.
@@ -393,13 +393,13 @@ type LogisticssupportListResponseLogisticsDiscrepancyInfo struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportListResponseLogisticsDiscrepancyInfo) RawJSON() string { return r.JSON.raw }
-func (r *LogisticssupportListResponseLogisticsDiscrepancyInfo) UnmarshalJSON(data []byte) error {
+func (r LogisticsSupportListResponseLogisticsDiscrepancyInfo) RawJSON() string { return r.JSON.raw }
+func (r *LogisticsSupportListResponseLogisticsDiscrepancyInfo) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportListResponseLogisticsRemark struct {
+type LogisticsSupportListResponseLogisticsRemark struct {
 	// Date the remark was published or updated, in ISO 8601 UTC format, with
 	// millisecond precision.
 	LastChanged time.Time `json:"lastChanged" format:"date-time"`
@@ -419,13 +419,13 @@ type LogisticssupportListResponseLogisticsRemark struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportListResponseLogisticsRemark) RawJSON() string { return r.JSON.raw }
-func (r *LogisticssupportListResponseLogisticsRemark) UnmarshalJSON(data []byte) error {
+func (r LogisticsSupportListResponseLogisticsRemark) RawJSON() string { return r.JSON.raw }
+func (r *LogisticsSupportListResponseLogisticsRemark) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Support items associated with this LogisticsSupport record.
-type LogisticssupportListResponseLogisticsSupportItem struct {
+type LogisticsSupportListResponseLogisticsSupportItem struct {
 	// This element indicates whether or not the supplied item is contained within
 	// another item.
 	Cannibalized bool `json:"cannibalized"`
@@ -447,11 +447,11 @@ type LogisticssupportListResponseLogisticsSupportItem struct {
 	// sequence numbers, and 10-12 are a three-digit supplemental number.
 	JobControlNumber string `json:"jobControlNumber"`
 	// The parts associated with this support item.
-	LogisticsParts []LogisticssupportListResponseLogisticsSupportItemLogisticsPart `json:"logisticsParts"`
+	LogisticsParts []LogisticsSupportListResponseLogisticsSupportItemLogisticsPart `json:"logisticsParts"`
 	// Remarks associated with this support item.
-	LogisticsRemarks []LogisticssupportListResponseLogisticsSupportItemLogisticsRemark `json:"logisticsRemarks"`
+	LogisticsRemarks []LogisticsSupportListResponseLogisticsSupportItemLogisticsRemark `json:"logisticsRemarks"`
 	// The specialties required to implement this support item.
-	LogisticsSpecialties []LogisticssupportListResponseLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties"`
+	LogisticsSpecialties []LogisticsSupportListResponseLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties"`
 	// Military aircraft discrepancy logistics requisition ordered quantity. The
 	// quantity of equipment ordered that is required to fix the aircraft.
 	Quantity int64 `json:"quantity"`
@@ -513,13 +513,13 @@ type LogisticssupportListResponseLogisticsSupportItem struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportListResponseLogisticsSupportItem) RawJSON() string { return r.JSON.raw }
-func (r *LogisticssupportListResponseLogisticsSupportItem) UnmarshalJSON(data []byte) error {
+func (r LogisticsSupportListResponseLogisticsSupportItem) RawJSON() string { return r.JSON.raw }
+func (r *LogisticsSupportListResponseLogisticsSupportItem) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // The parts associated with this support item.
-type LogisticssupportListResponseLogisticsSupportItemLogisticsPart struct {
+type LogisticsSupportListResponseLogisticsSupportItemLogisticsPart struct {
 	// Technical order manual figure number for the requested / supplied part.
 	FigureNumber string `json:"figureNumber"`
 	// Technical order manual index number for the requested part.
@@ -528,7 +528,7 @@ type LogisticssupportListResponseLogisticsSupportItemLogisticsPart struct {
 	// requested parts.
 	LocationVerifier string `json:"locationVerifier"`
 	// The supply stocks for this support item.
-	LogisticsStocks []LogisticssupportListResponseLogisticsSupportItemLogisticsPartLogisticsStock `json:"logisticsStocks"`
+	LogisticsStocks []LogisticsSupportListResponseLogisticsSupportItemLogisticsPartLogisticsStock `json:"logisticsStocks"`
 	// Code for a unit of measurement.
 	MeasurementUnitCode string `json:"measurementUnitCode"`
 	// The National Stock Number of the part being requested or supplied.
@@ -564,15 +564,15 @@ type LogisticssupportListResponseLogisticsSupportItemLogisticsPart struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportListResponseLogisticsSupportItemLogisticsPart) RawJSON() string {
+func (r LogisticsSupportListResponseLogisticsSupportItemLogisticsPart) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportListResponseLogisticsSupportItemLogisticsPart) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportListResponseLogisticsSupportItemLogisticsPart) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // The supply stocks for this support item.
-type LogisticssupportListResponseLogisticsSupportItemLogisticsPartLogisticsStock struct {
+type LogisticsSupportListResponseLogisticsSupportItemLogisticsPartLogisticsStock struct {
 	// The quantity of available parts needed from sourceICAO.
 	Quantity int64 `json:"quantity"`
 	// The ICAO code for the primary location with available parts.
@@ -595,15 +595,15 @@ type LogisticssupportListResponseLogisticsSupportItemLogisticsPartLogisticsStock
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportListResponseLogisticsSupportItemLogisticsPartLogisticsStock) RawJSON() string {
+func (r LogisticsSupportListResponseLogisticsSupportItemLogisticsPartLogisticsStock) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportListResponseLogisticsSupportItemLogisticsPartLogisticsStock) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportListResponseLogisticsSupportItemLogisticsPartLogisticsStock) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportListResponseLogisticsSupportItemLogisticsRemark struct {
+type LogisticsSupportListResponseLogisticsSupportItemLogisticsRemark struct {
 	// Date the remark was published or updated, in ISO 8601 UTC format, with
 	// millisecond precision.
 	LastChanged time.Time `json:"lastChanged" format:"date-time"`
@@ -623,15 +623,15 @@ type LogisticssupportListResponseLogisticsSupportItemLogisticsRemark struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportListResponseLogisticsSupportItemLogisticsRemark) RawJSON() string {
+func (r LogisticsSupportListResponseLogisticsSupportItemLogisticsRemark) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportListResponseLogisticsSupportItemLogisticsRemark) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportListResponseLogisticsSupportItemLogisticsRemark) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // The specialties required to implement this support item.
-type LogisticssupportListResponseLogisticsSupportItemLogisticsSpecialty struct {
+type LogisticsSupportListResponseLogisticsSupportItemLogisticsSpecialty struct {
 	// The first name of the specialist.
 	FirstName string `json:"firstName"`
 	// The last four digits of the specialist's social security number.
@@ -665,16 +665,16 @@ type LogisticssupportListResponseLogisticsSupportItemLogisticsSpecialty struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportListResponseLogisticsSupportItemLogisticsSpecialty) RawJSON() string {
+func (r LogisticsSupportListResponseLogisticsSupportItemLogisticsSpecialty) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportListResponseLogisticsSupportItemLogisticsSpecialty) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportListResponseLogisticsSupportItemLogisticsSpecialty) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Transportation plans associated with this LogisticsSupport record, used to
 // coordinate maintenance efforts.
-type LogisticssupportListResponseLogisticsTransportationPlan struct {
+type LogisticsSupportListResponseLogisticsTransportationPlan struct {
 	// Actual time of departure of first segment, in ISO 8601 UTC format with
 	// millisecond precision.
 	ActDepTime time.Time `json:"actDepTime" format:"date-time"`
@@ -710,9 +710,9 @@ type LogisticssupportListResponseLogisticsTransportationPlan struct {
 	// The identifier that represents a Logistics Master Record.
 	LogisticMasterRecordID string `json:"logisticMasterRecordId"`
 	// The transportation segments associated with this transportation plan.
-	LogisticsSegments []LogisticssupportListResponseLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments"`
+	LogisticsSegments []LogisticsSupportListResponseLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments"`
 	// Remarks associated with this transportation plan.
-	LogisticsTransportationPlansRemarks []LogisticssupportListResponseLogisticsTransportationPlanLogisticsTransportationPlansRemark `json:"logisticsTransportationPlansRemarks"`
+	LogisticsTransportationPlansRemarks []LogisticsSupportListResponseLogisticsTransportationPlanLogisticsTransportationPlansRemark `json:"logisticsTransportationPlansRemarks"`
 	// The major command for the current unit.
 	Majcom string `json:"majcom"`
 	// Indicates whether there have been changes to changes to ICAOs, estArrTime, or
@@ -776,13 +776,13 @@ type LogisticssupportListResponseLogisticsTransportationPlan struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportListResponseLogisticsTransportationPlan) RawJSON() string { return r.JSON.raw }
-func (r *LogisticssupportListResponseLogisticsTransportationPlan) UnmarshalJSON(data []byte) error {
+func (r LogisticsSupportListResponseLogisticsTransportationPlan) RawJSON() string { return r.JSON.raw }
+func (r *LogisticsSupportListResponseLogisticsTransportationPlan) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportListResponseLogisticsTransportationPlanLogisticsSegment struct {
+type LogisticsSupportListResponseLogisticsTransportationPlanLogisticsSegment struct {
 	// Airport ICAO arrival code.
 	ArrivalIcao string `json:"arrivalICAO"`
 	// Airport ICAO departure code.
@@ -848,15 +848,15 @@ type LogisticssupportListResponseLogisticsTransportationPlanLogisticsSegment str
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportListResponseLogisticsTransportationPlanLogisticsSegment) RawJSON() string {
+func (r LogisticsSupportListResponseLogisticsTransportationPlanLogisticsSegment) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportListResponseLogisticsTransportationPlanLogisticsSegment) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportListResponseLogisticsTransportationPlanLogisticsSegment) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportListResponseLogisticsTransportationPlanLogisticsTransportationPlansRemark struct {
+type LogisticsSupportListResponseLogisticsTransportationPlanLogisticsTransportationPlansRemark struct {
 	// Date the remark was published or updated, in ISO 8601 UTC format, with
 	// millisecond precision.
 	LastChanged time.Time `json:"lastChanged" format:"date-time"`
@@ -876,17 +876,17 @@ type LogisticssupportListResponseLogisticsTransportationPlanLogisticsTransportat
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportListResponseLogisticsTransportationPlanLogisticsTransportationPlansRemark) RawJSON() string {
+func (r LogisticsSupportListResponseLogisticsTransportationPlanLogisticsTransportationPlansRemark) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportListResponseLogisticsTransportationPlanLogisticsTransportationPlansRemark) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportListResponseLogisticsTransportationPlanLogisticsTransportationPlansRemark) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Comprehensive logistical details concerning the planned support of maintenance
 // operations required by an aircraft, including transportation information,
 // supplies coordination, and service personnel.
-type LogisticssupportGetResponse struct {
+type LogisticsSupportGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -905,7 +905,7 @@ type LogisticssupportGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LogisticssupportGetResponseDataMode `json:"dataMode,required"`
+	DataMode LogisticsSupportGetResponseDataMode `json:"dataMode,required"`
 	// The time this report was created, in ISO 8601 UTC format with millisecond
 	// precision.
 	RptCreatedTime time.Time `json:"rptCreatedTime,required" format:"date-time"`
@@ -942,16 +942,16 @@ type LogisticssupportGetResponse struct {
 	// EQ+hhh.h (EQ=equipment), MRT+hhh.h (MRT=maintenance recovery team).
 	LogisticAction string `json:"logisticAction"`
 	// Discrepancy information associated with this LogisticsSupport record.
-	LogisticsDiscrepancyInfos []LogisticssupportGetResponseLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos"`
+	LogisticsDiscrepancyInfos []LogisticsSupportGetResponseLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos"`
 	// The identifier that represents a Logistics Master Record.
 	LogisticsRecordID string `json:"logisticsRecordId"`
 	// Remarks associated with this LogisticsSupport record.
 	LogisticsRemarks []LogisticsRemarksFull `json:"logisticsRemarks"`
 	// Support items associated with this LogisticsSupport record.
-	LogisticsSupportItems []LogisticssupportGetResponseLogisticsSupportItem `json:"logisticsSupportItems"`
+	LogisticsSupportItems []LogisticsSupportGetResponseLogisticsSupportItem `json:"logisticsSupportItems"`
 	// Transportation plans associated with this LogisticsSupport record, used to
 	// coordinate maintenance efforts.
-	LogisticsTransportationPlans []LogisticssupportGetResponseLogisticsTransportationPlan `json:"logisticsTransportationPlans"`
+	LogisticsTransportationPlans []LogisticsSupportGetResponseLogisticsTransportationPlan `json:"logisticsTransportationPlans"`
 	// The maintenance status code of the aircraft which may be based on pilot
 	// descriptions or evaluation codes. Contact the source provider for details.
 	MaintStatusCode string `json:"maintStatusCode"`
@@ -1027,8 +1027,8 @@ type LogisticssupportGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *LogisticssupportGetResponse) UnmarshalJSON(data []byte) error {
+func (r LogisticsSupportGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *LogisticsSupportGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -1046,17 +1046,17 @@ func (r *LogisticssupportGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LogisticssupportGetResponseDataMode string
+type LogisticsSupportGetResponseDataMode string
 
 const (
-	LogisticssupportGetResponseDataModeReal      LogisticssupportGetResponseDataMode = "REAL"
-	LogisticssupportGetResponseDataModeTest      LogisticssupportGetResponseDataMode = "TEST"
-	LogisticssupportGetResponseDataModeSimulated LogisticssupportGetResponseDataMode = "SIMULATED"
-	LogisticssupportGetResponseDataModeExercise  LogisticssupportGetResponseDataMode = "EXERCISE"
+	LogisticsSupportGetResponseDataModeReal      LogisticsSupportGetResponseDataMode = "REAL"
+	LogisticsSupportGetResponseDataModeTest      LogisticsSupportGetResponseDataMode = "TEST"
+	LogisticsSupportGetResponseDataModeSimulated LogisticsSupportGetResponseDataMode = "SIMULATED"
+	LogisticsSupportGetResponseDataModeExercise  LogisticsSupportGetResponseDataMode = "EXERCISE"
 )
 
 // Discrepancy information associated with this LogisticsSupport record.
-type LogisticssupportGetResponseLogisticsDiscrepancyInfo struct {
+type LogisticsSupportGetResponseLogisticsDiscrepancyInfo struct {
 	// The discrepancy closure time, in ISO 8601 UTC format with millisecond precision.
 	ClosureTime time.Time `json:"closureTime" format:"date-time"`
 	// The aircraft discrepancy description.
@@ -1078,13 +1078,13 @@ type LogisticssupportGetResponseLogisticsDiscrepancyInfo struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportGetResponseLogisticsDiscrepancyInfo) RawJSON() string { return r.JSON.raw }
-func (r *LogisticssupportGetResponseLogisticsDiscrepancyInfo) UnmarshalJSON(data []byte) error {
+func (r LogisticsSupportGetResponseLogisticsDiscrepancyInfo) RawJSON() string { return r.JSON.raw }
+func (r *LogisticsSupportGetResponseLogisticsDiscrepancyInfo) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Support items associated with this LogisticsSupport record.
-type LogisticssupportGetResponseLogisticsSupportItem struct {
+type LogisticsSupportGetResponseLogisticsSupportItem struct {
 	// This element indicates whether or not the supplied item is contained within
 	// another item.
 	Cannibalized bool `json:"cannibalized"`
@@ -1106,11 +1106,11 @@ type LogisticssupportGetResponseLogisticsSupportItem struct {
 	// sequence numbers, and 10-12 are a three-digit supplemental number.
 	JobControlNumber string `json:"jobControlNumber"`
 	// The parts associated with this support item.
-	LogisticsParts []LogisticssupportGetResponseLogisticsSupportItemLogisticsPart `json:"logisticsParts"`
+	LogisticsParts []LogisticsSupportGetResponseLogisticsSupportItemLogisticsPart `json:"logisticsParts"`
 	// Remarks associated with this support item.
 	LogisticsRemarks []LogisticsRemarksFull `json:"logisticsRemarks"`
 	// The specialties required to implement this support item.
-	LogisticsSpecialties []LogisticssupportGetResponseLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties"`
+	LogisticsSpecialties []LogisticsSupportGetResponseLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties"`
 	// Military aircraft discrepancy logistics requisition ordered quantity. The
 	// quantity of equipment ordered that is required to fix the aircraft.
 	Quantity int64 `json:"quantity"`
@@ -1172,13 +1172,13 @@ type LogisticssupportGetResponseLogisticsSupportItem struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportGetResponseLogisticsSupportItem) RawJSON() string { return r.JSON.raw }
-func (r *LogisticssupportGetResponseLogisticsSupportItem) UnmarshalJSON(data []byte) error {
+func (r LogisticsSupportGetResponseLogisticsSupportItem) RawJSON() string { return r.JSON.raw }
+func (r *LogisticsSupportGetResponseLogisticsSupportItem) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // The parts associated with this support item.
-type LogisticssupportGetResponseLogisticsSupportItemLogisticsPart struct {
+type LogisticsSupportGetResponseLogisticsSupportItemLogisticsPart struct {
 	// Technical order manual figure number for the requested / supplied part.
 	FigureNumber string `json:"figureNumber"`
 	// Technical order manual index number for the requested part.
@@ -1187,7 +1187,7 @@ type LogisticssupportGetResponseLogisticsSupportItemLogisticsPart struct {
 	// requested parts.
 	LocationVerifier string `json:"locationVerifier"`
 	// The supply stocks for this support item.
-	LogisticsStocks []LogisticssupportGetResponseLogisticsSupportItemLogisticsPartLogisticsStock `json:"logisticsStocks"`
+	LogisticsStocks []LogisticsSupportGetResponseLogisticsSupportItemLogisticsPartLogisticsStock `json:"logisticsStocks"`
 	// Code for a unit of measurement.
 	MeasurementUnitCode string `json:"measurementUnitCode"`
 	// The National Stock Number of the part being requested or supplied.
@@ -1223,15 +1223,15 @@ type LogisticssupportGetResponseLogisticsSupportItemLogisticsPart struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportGetResponseLogisticsSupportItemLogisticsPart) RawJSON() string {
+func (r LogisticsSupportGetResponseLogisticsSupportItemLogisticsPart) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportGetResponseLogisticsSupportItemLogisticsPart) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportGetResponseLogisticsSupportItemLogisticsPart) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // The supply stocks for this support item.
-type LogisticssupportGetResponseLogisticsSupportItemLogisticsPartLogisticsStock struct {
+type LogisticsSupportGetResponseLogisticsSupportItemLogisticsPartLogisticsStock struct {
 	// The quantity of available parts needed from sourceICAO.
 	Quantity int64 `json:"quantity"`
 	// The ICAO code for the primary location with available parts.
@@ -1254,15 +1254,15 @@ type LogisticssupportGetResponseLogisticsSupportItemLogisticsPartLogisticsStock 
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportGetResponseLogisticsSupportItemLogisticsPartLogisticsStock) RawJSON() string {
+func (r LogisticsSupportGetResponseLogisticsSupportItemLogisticsPartLogisticsStock) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportGetResponseLogisticsSupportItemLogisticsPartLogisticsStock) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportGetResponseLogisticsSupportItemLogisticsPartLogisticsStock) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // The specialties required to implement this support item.
-type LogisticssupportGetResponseLogisticsSupportItemLogisticsSpecialty struct {
+type LogisticsSupportGetResponseLogisticsSupportItemLogisticsSpecialty struct {
 	// The first name of the specialist.
 	FirstName string `json:"firstName"`
 	// The last four digits of the specialist's social security number.
@@ -1296,16 +1296,16 @@ type LogisticssupportGetResponseLogisticsSupportItemLogisticsSpecialty struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportGetResponseLogisticsSupportItemLogisticsSpecialty) RawJSON() string {
+func (r LogisticsSupportGetResponseLogisticsSupportItemLogisticsSpecialty) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportGetResponseLogisticsSupportItemLogisticsSpecialty) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportGetResponseLogisticsSupportItemLogisticsSpecialty) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Transportation plans associated with this LogisticsSupport record, used to
 // coordinate maintenance efforts.
-type LogisticssupportGetResponseLogisticsTransportationPlan struct {
+type LogisticsSupportGetResponseLogisticsTransportationPlan struct {
 	// Actual time of departure of first segment, in ISO 8601 UTC format with
 	// millisecond precision.
 	ActDepTime time.Time `json:"actDepTime" format:"date-time"`
@@ -1341,7 +1341,7 @@ type LogisticssupportGetResponseLogisticsTransportationPlan struct {
 	// The identifier that represents a Logistics Master Record.
 	LogisticMasterRecordID string `json:"logisticMasterRecordId"`
 	// The transportation segments associated with this transportation plan.
-	LogisticsSegments []LogisticssupportGetResponseLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments"`
+	LogisticsSegments []LogisticsSupportGetResponseLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments"`
 	// Remarks associated with this transportation plan.
 	LogisticsTransportationPlansRemarks []LogisticsRemarksFull `json:"logisticsTransportationPlansRemarks"`
 	// The major command for the current unit.
@@ -1407,13 +1407,13 @@ type LogisticssupportGetResponseLogisticsTransportationPlan struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportGetResponseLogisticsTransportationPlan) RawJSON() string { return r.JSON.raw }
-func (r *LogisticssupportGetResponseLogisticsTransportationPlan) UnmarshalJSON(data []byte) error {
+func (r LogisticsSupportGetResponseLogisticsTransportationPlan) RawJSON() string { return r.JSON.raw }
+func (r *LogisticsSupportGetResponseLogisticsTransportationPlan) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportGetResponseLogisticsTransportationPlanLogisticsSegment struct {
+type LogisticsSupportGetResponseLogisticsTransportationPlanLogisticsSegment struct {
 	// Airport ICAO arrival code.
 	ArrivalIcao string `json:"arrivalICAO"`
 	// Airport ICAO departure code.
@@ -1479,17 +1479,17 @@ type LogisticssupportGetResponseLogisticsTransportationPlanLogisticsSegment stru
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportGetResponseLogisticsTransportationPlanLogisticsSegment) RawJSON() string {
+func (r LogisticsSupportGetResponseLogisticsTransportationPlanLogisticsSegment) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportGetResponseLogisticsTransportationPlanLogisticsSegment) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportGetResponseLogisticsTransportationPlanLogisticsSegment) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Comprehensive logistical details concerning the planned support of maintenance
 // operations required by an aircraft, including transportation information,
 // supplies coordination, and service personnel.
-type LogisticssupportTupleResponse struct {
+type LogisticsSupportTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1508,7 +1508,7 @@ type LogisticssupportTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LogisticssupportTupleResponseDataMode `json:"dataMode,required"`
+	DataMode LogisticsSupportTupleResponseDataMode `json:"dataMode,required"`
 	// The time this report was created, in ISO 8601 UTC format with millisecond
 	// precision.
 	RptCreatedTime time.Time `json:"rptCreatedTime,required" format:"date-time"`
@@ -1545,16 +1545,16 @@ type LogisticssupportTupleResponse struct {
 	// EQ+hhh.h (EQ=equipment), MRT+hhh.h (MRT=maintenance recovery team).
 	LogisticAction string `json:"logisticAction"`
 	// Discrepancy information associated with this LogisticsSupport record.
-	LogisticsDiscrepancyInfos []LogisticssupportTupleResponseLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos"`
+	LogisticsDiscrepancyInfos []LogisticsSupportTupleResponseLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos"`
 	// The identifier that represents a Logistics Master Record.
 	LogisticsRecordID string `json:"logisticsRecordId"`
 	// Remarks associated with this LogisticsSupport record.
 	LogisticsRemarks []LogisticsRemarksFull `json:"logisticsRemarks"`
 	// Support items associated with this LogisticsSupport record.
-	LogisticsSupportItems []LogisticssupportTupleResponseLogisticsSupportItem `json:"logisticsSupportItems"`
+	LogisticsSupportItems []LogisticsSupportTupleResponseLogisticsSupportItem `json:"logisticsSupportItems"`
 	// Transportation plans associated with this LogisticsSupport record, used to
 	// coordinate maintenance efforts.
-	LogisticsTransportationPlans []LogisticssupportTupleResponseLogisticsTransportationPlan `json:"logisticsTransportationPlans"`
+	LogisticsTransportationPlans []LogisticsSupportTupleResponseLogisticsTransportationPlan `json:"logisticsTransportationPlans"`
 	// The maintenance status code of the aircraft which may be based on pilot
 	// descriptions or evaluation codes. Contact the source provider for details.
 	MaintStatusCode string `json:"maintStatusCode"`
@@ -1630,8 +1630,8 @@ type LogisticssupportTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *LogisticssupportTupleResponse) UnmarshalJSON(data []byte) error {
+func (r LogisticsSupportTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *LogisticsSupportTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -1649,17 +1649,17 @@ func (r *LogisticssupportTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LogisticssupportTupleResponseDataMode string
+type LogisticsSupportTupleResponseDataMode string
 
 const (
-	LogisticssupportTupleResponseDataModeReal      LogisticssupportTupleResponseDataMode = "REAL"
-	LogisticssupportTupleResponseDataModeTest      LogisticssupportTupleResponseDataMode = "TEST"
-	LogisticssupportTupleResponseDataModeSimulated LogisticssupportTupleResponseDataMode = "SIMULATED"
-	LogisticssupportTupleResponseDataModeExercise  LogisticssupportTupleResponseDataMode = "EXERCISE"
+	LogisticsSupportTupleResponseDataModeReal      LogisticsSupportTupleResponseDataMode = "REAL"
+	LogisticsSupportTupleResponseDataModeTest      LogisticsSupportTupleResponseDataMode = "TEST"
+	LogisticsSupportTupleResponseDataModeSimulated LogisticsSupportTupleResponseDataMode = "SIMULATED"
+	LogisticsSupportTupleResponseDataModeExercise  LogisticsSupportTupleResponseDataMode = "EXERCISE"
 )
 
 // Discrepancy information associated with this LogisticsSupport record.
-type LogisticssupportTupleResponseLogisticsDiscrepancyInfo struct {
+type LogisticsSupportTupleResponseLogisticsDiscrepancyInfo struct {
 	// The discrepancy closure time, in ISO 8601 UTC format with millisecond precision.
 	ClosureTime time.Time `json:"closureTime" format:"date-time"`
 	// The aircraft discrepancy description.
@@ -1681,13 +1681,13 @@ type LogisticssupportTupleResponseLogisticsDiscrepancyInfo struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportTupleResponseLogisticsDiscrepancyInfo) RawJSON() string { return r.JSON.raw }
-func (r *LogisticssupportTupleResponseLogisticsDiscrepancyInfo) UnmarshalJSON(data []byte) error {
+func (r LogisticsSupportTupleResponseLogisticsDiscrepancyInfo) RawJSON() string { return r.JSON.raw }
+func (r *LogisticsSupportTupleResponseLogisticsDiscrepancyInfo) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Support items associated with this LogisticsSupport record.
-type LogisticssupportTupleResponseLogisticsSupportItem struct {
+type LogisticsSupportTupleResponseLogisticsSupportItem struct {
 	// This element indicates whether or not the supplied item is contained within
 	// another item.
 	Cannibalized bool `json:"cannibalized"`
@@ -1709,11 +1709,11 @@ type LogisticssupportTupleResponseLogisticsSupportItem struct {
 	// sequence numbers, and 10-12 are a three-digit supplemental number.
 	JobControlNumber string `json:"jobControlNumber"`
 	// The parts associated with this support item.
-	LogisticsParts []LogisticssupportTupleResponseLogisticsSupportItemLogisticsPart `json:"logisticsParts"`
+	LogisticsParts []LogisticsSupportTupleResponseLogisticsSupportItemLogisticsPart `json:"logisticsParts"`
 	// Remarks associated with this support item.
 	LogisticsRemarks []LogisticsRemarksFull `json:"logisticsRemarks"`
 	// The specialties required to implement this support item.
-	LogisticsSpecialties []LogisticssupportTupleResponseLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties"`
+	LogisticsSpecialties []LogisticsSupportTupleResponseLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties"`
 	// Military aircraft discrepancy logistics requisition ordered quantity. The
 	// quantity of equipment ordered that is required to fix the aircraft.
 	Quantity int64 `json:"quantity"`
@@ -1775,13 +1775,13 @@ type LogisticssupportTupleResponseLogisticsSupportItem struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportTupleResponseLogisticsSupportItem) RawJSON() string { return r.JSON.raw }
-func (r *LogisticssupportTupleResponseLogisticsSupportItem) UnmarshalJSON(data []byte) error {
+func (r LogisticsSupportTupleResponseLogisticsSupportItem) RawJSON() string { return r.JSON.raw }
+func (r *LogisticsSupportTupleResponseLogisticsSupportItem) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // The parts associated with this support item.
-type LogisticssupportTupleResponseLogisticsSupportItemLogisticsPart struct {
+type LogisticsSupportTupleResponseLogisticsSupportItemLogisticsPart struct {
 	// Technical order manual figure number for the requested / supplied part.
 	FigureNumber string `json:"figureNumber"`
 	// Technical order manual index number for the requested part.
@@ -1790,7 +1790,7 @@ type LogisticssupportTupleResponseLogisticsSupportItemLogisticsPart struct {
 	// requested parts.
 	LocationVerifier string `json:"locationVerifier"`
 	// The supply stocks for this support item.
-	LogisticsStocks []LogisticssupportTupleResponseLogisticsSupportItemLogisticsPartLogisticsStock `json:"logisticsStocks"`
+	LogisticsStocks []LogisticsSupportTupleResponseLogisticsSupportItemLogisticsPartLogisticsStock `json:"logisticsStocks"`
 	// Code for a unit of measurement.
 	MeasurementUnitCode string `json:"measurementUnitCode"`
 	// The National Stock Number of the part being requested or supplied.
@@ -1826,15 +1826,15 @@ type LogisticssupportTupleResponseLogisticsSupportItemLogisticsPart struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportTupleResponseLogisticsSupportItemLogisticsPart) RawJSON() string {
+func (r LogisticsSupportTupleResponseLogisticsSupportItemLogisticsPart) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportTupleResponseLogisticsSupportItemLogisticsPart) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportTupleResponseLogisticsSupportItemLogisticsPart) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // The supply stocks for this support item.
-type LogisticssupportTupleResponseLogisticsSupportItemLogisticsPartLogisticsStock struct {
+type LogisticsSupportTupleResponseLogisticsSupportItemLogisticsPartLogisticsStock struct {
 	// The quantity of available parts needed from sourceICAO.
 	Quantity int64 `json:"quantity"`
 	// The ICAO code for the primary location with available parts.
@@ -1857,15 +1857,15 @@ type LogisticssupportTupleResponseLogisticsSupportItemLogisticsPartLogisticsStoc
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportTupleResponseLogisticsSupportItemLogisticsPartLogisticsStock) RawJSON() string {
+func (r LogisticsSupportTupleResponseLogisticsSupportItemLogisticsPartLogisticsStock) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportTupleResponseLogisticsSupportItemLogisticsPartLogisticsStock) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportTupleResponseLogisticsSupportItemLogisticsPartLogisticsStock) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // The specialties required to implement this support item.
-type LogisticssupportTupleResponseLogisticsSupportItemLogisticsSpecialty struct {
+type LogisticsSupportTupleResponseLogisticsSupportItemLogisticsSpecialty struct {
 	// The first name of the specialist.
 	FirstName string `json:"firstName"`
 	// The last four digits of the specialist's social security number.
@@ -1899,16 +1899,16 @@ type LogisticssupportTupleResponseLogisticsSupportItemLogisticsSpecialty struct 
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportTupleResponseLogisticsSupportItemLogisticsSpecialty) RawJSON() string {
+func (r LogisticsSupportTupleResponseLogisticsSupportItemLogisticsSpecialty) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportTupleResponseLogisticsSupportItemLogisticsSpecialty) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportTupleResponseLogisticsSupportItemLogisticsSpecialty) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Transportation plans associated with this LogisticsSupport record, used to
 // coordinate maintenance efforts.
-type LogisticssupportTupleResponseLogisticsTransportationPlan struct {
+type LogisticsSupportTupleResponseLogisticsTransportationPlan struct {
 	// Actual time of departure of first segment, in ISO 8601 UTC format with
 	// millisecond precision.
 	ActDepTime time.Time `json:"actDepTime" format:"date-time"`
@@ -1944,7 +1944,7 @@ type LogisticssupportTupleResponseLogisticsTransportationPlan struct {
 	// The identifier that represents a Logistics Master Record.
 	LogisticMasterRecordID string `json:"logisticMasterRecordId"`
 	// The transportation segments associated with this transportation plan.
-	LogisticsSegments []LogisticssupportTupleResponseLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments"`
+	LogisticsSegments []LogisticsSupportTupleResponseLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments"`
 	// Remarks associated with this transportation plan.
 	LogisticsTransportationPlansRemarks []LogisticsRemarksFull `json:"logisticsTransportationPlansRemarks"`
 	// The major command for the current unit.
@@ -2010,13 +2010,13 @@ type LogisticssupportTupleResponseLogisticsTransportationPlan struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportTupleResponseLogisticsTransportationPlan) RawJSON() string { return r.JSON.raw }
-func (r *LogisticssupportTupleResponseLogisticsTransportationPlan) UnmarshalJSON(data []byte) error {
+func (r LogisticsSupportTupleResponseLogisticsTransportationPlan) RawJSON() string { return r.JSON.raw }
+func (r *LogisticsSupportTupleResponseLogisticsTransportationPlan) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportTupleResponseLogisticsTransportationPlanLogisticsSegment struct {
+type LogisticsSupportTupleResponseLogisticsTransportationPlanLogisticsSegment struct {
 	// Airport ICAO arrival code.
 	ArrivalIcao string `json:"arrivalICAO"`
 	// Airport ICAO departure code.
@@ -2082,14 +2082,14 @@ type LogisticssupportTupleResponseLogisticsTransportationPlanLogisticsSegment st
 }
 
 // Returns the unmodified JSON received from the API
-func (r LogisticssupportTupleResponseLogisticsTransportationPlanLogisticsSegment) RawJSON() string {
+func (r LogisticsSupportTupleResponseLogisticsTransportationPlanLogisticsSegment) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *LogisticssupportTupleResponseLogisticsTransportationPlanLogisticsSegment) UnmarshalJSON(data []byte) error {
+func (r *LogisticsSupportTupleResponseLogisticsTransportationPlanLogisticsSegment) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type LogisticssupportNewParams struct {
+type LogisticsSupportNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -2108,7 +2108,7 @@ type LogisticssupportNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LogisticssupportNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode LogisticsSupportNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// The time this report was created, in ISO 8601 UTC format with millisecond
 	// precision.
 	RptCreatedTime time.Time `json:"rptCreatedTime,required" format:"date-time"`
@@ -2171,23 +2171,23 @@ type LogisticssupportNewParams struct {
 	// LogisticsSupportDetails record.
 	TailNumber param.Opt[string] `json:"tailNumber,omitzero"`
 	// Discrepancy information associated with this LogisticsSupport record.
-	LogisticsDiscrepancyInfos []LogisticssupportNewParamsLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos,omitzero"`
+	LogisticsDiscrepancyInfos []LogisticsSupportNewParamsLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos,omitzero"`
 	// Remarks associated with this LogisticsSupport record.
-	LogisticsRemarks []LogisticssupportNewParamsLogisticsRemark `json:"logisticsRemarks,omitzero"`
+	LogisticsRemarks []LogisticsSupportNewParamsLogisticsRemark `json:"logisticsRemarks,omitzero"`
 	// Support items associated with this LogisticsSupport record.
-	LogisticsSupportItems []LogisticssupportNewParamsLogisticsSupportItem `json:"logisticsSupportItems,omitzero"`
+	LogisticsSupportItems []LogisticsSupportNewParamsLogisticsSupportItem `json:"logisticsSupportItems,omitzero"`
 	// Transportation plans associated with this LogisticsSupport record, used to
 	// coordinate maintenance efforts.
-	LogisticsTransportationPlans []LogisticssupportNewParamsLogisticsTransportationPlan `json:"logisticsTransportationPlans,omitzero"`
+	LogisticsTransportationPlans []LogisticsSupportNewParamsLogisticsTransportationPlan `json:"logisticsTransportationPlans,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LogisticsSupportNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r LogisticssupportNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewParams
+func (r LogisticsSupportNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -2205,17 +2205,17 @@ func (r LogisticssupportNewParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LogisticssupportNewParamsDataMode string
+type LogisticsSupportNewParamsDataMode string
 
 const (
-	LogisticssupportNewParamsDataModeReal      LogisticssupportNewParamsDataMode = "REAL"
-	LogisticssupportNewParamsDataModeTest      LogisticssupportNewParamsDataMode = "TEST"
-	LogisticssupportNewParamsDataModeSimulated LogisticssupportNewParamsDataMode = "SIMULATED"
-	LogisticssupportNewParamsDataModeExercise  LogisticssupportNewParamsDataMode = "EXERCISE"
+	LogisticsSupportNewParamsDataModeReal      LogisticsSupportNewParamsDataMode = "REAL"
+	LogisticsSupportNewParamsDataModeTest      LogisticsSupportNewParamsDataMode = "TEST"
+	LogisticsSupportNewParamsDataModeSimulated LogisticsSupportNewParamsDataMode = "SIMULATED"
+	LogisticsSupportNewParamsDataModeExercise  LogisticsSupportNewParamsDataMode = "EXERCISE"
 )
 
 // Discrepancy information associated with this LogisticsSupport record.
-type LogisticssupportNewParamsLogisticsDiscrepancyInfo struct {
+type LogisticsSupportNewParamsLogisticsDiscrepancyInfo struct {
 	// The discrepancy closure time, in ISO 8601 UTC format with millisecond precision.
 	ClosureTime param.Opt[time.Time] `json:"closureTime,omitzero" format:"date-time"`
 	// The aircraft discrepancy description.
@@ -2229,16 +2229,16 @@ type LogisticssupportNewParamsLogisticsDiscrepancyInfo struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewParamsLogisticsDiscrepancyInfo) IsPresent() bool {
+func (f LogisticsSupportNewParamsLogisticsDiscrepancyInfo) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewParamsLogisticsDiscrepancyInfo) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewParamsLogisticsDiscrepancyInfo
+func (r LogisticsSupportNewParamsLogisticsDiscrepancyInfo) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewParamsLogisticsDiscrepancyInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportNewParamsLogisticsRemark struct {
+type LogisticsSupportNewParamsLogisticsRemark struct {
 	// Date the remark was published or updated, in ISO 8601 UTC format, with
 	// millisecond precision.
 	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
@@ -2251,16 +2251,16 @@ type LogisticssupportNewParamsLogisticsRemark struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewParamsLogisticsRemark) IsPresent() bool {
+func (f LogisticsSupportNewParamsLogisticsRemark) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewParamsLogisticsRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewParamsLogisticsRemark
+func (r LogisticsSupportNewParamsLogisticsRemark) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewParamsLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Support items associated with this LogisticsSupport record.
-type LogisticssupportNewParamsLogisticsSupportItem struct {
+type LogisticsSupportNewParamsLogisticsSupportItem struct {
 	// This element indicates whether or not the supplied item is contained within
 	// another item.
 	Cannibalized param.Opt[bool] `json:"cannibalized,omitzero"`
@@ -2315,26 +2315,26 @@ type LogisticssupportNewParamsLogisticsSupportItem struct {
 	// designations of an airport.
 	SourceIcao param.Opt[string] `json:"sourceICAO,omitzero"`
 	// The parts associated with this support item.
-	LogisticsParts []LogisticssupportNewParamsLogisticsSupportItemLogisticsPart `json:"logisticsParts,omitzero"`
+	LogisticsParts []LogisticsSupportNewParamsLogisticsSupportItemLogisticsPart `json:"logisticsParts,omitzero"`
 	// Remarks associated with this support item.
-	LogisticsRemarks []LogisticssupportNewParamsLogisticsSupportItemLogisticsRemark `json:"logisticsRemarks,omitzero"`
+	LogisticsRemarks []LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark `json:"logisticsRemarks,omitzero"`
 	// The specialties required to implement this support item.
-	LogisticsSpecialties []LogisticssupportNewParamsLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties,omitzero"`
+	LogisticsSpecialties []LogisticsSupportNewParamsLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewParamsLogisticsSupportItem) IsPresent() bool {
+func (f LogisticsSupportNewParamsLogisticsSupportItem) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewParamsLogisticsSupportItem) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewParamsLogisticsSupportItem
+func (r LogisticsSupportNewParamsLogisticsSupportItem) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewParamsLogisticsSupportItem
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // The parts associated with this support item.
-type LogisticssupportNewParamsLogisticsSupportItemLogisticsPart struct {
+type LogisticsSupportNewParamsLogisticsSupportItemLogisticsPart struct {
 	// Technical order manual figure number for the requested / supplied part.
 	FigureNumber param.Opt[string] `json:"figureNumber,omitzero"`
 	// Technical order manual index number for the requested part.
@@ -2358,22 +2358,22 @@ type LogisticssupportNewParamsLogisticsSupportItemLogisticsPart struct {
 	// Work Unit Code (WUC), or for some aircraft types, the Reference Designator.
 	WorkUnitCode param.Opt[string] `json:"workUnitCode,omitzero"`
 	// The supply stocks for this support item.
-	LogisticsStocks []LogisticssupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock `json:"logisticsStocks,omitzero"`
+	LogisticsStocks []LogisticsSupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock `json:"logisticsStocks,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewParamsLogisticsSupportItemLogisticsPart) IsPresent() bool {
+func (f LogisticsSupportNewParamsLogisticsSupportItemLogisticsPart) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewParamsLogisticsSupportItemLogisticsPart) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewParamsLogisticsSupportItemLogisticsPart
+func (r LogisticsSupportNewParamsLogisticsSupportItemLogisticsPart) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewParamsLogisticsSupportItemLogisticsPart
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // The supply stocks for this support item.
-type LogisticssupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock struct {
+type LogisticsSupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock struct {
 	// The quantity of available parts needed from sourceICAO.
 	Quantity param.Opt[int64] `json:"quantity,omitzero"`
 	// The ICAO code for the primary location with available parts.
@@ -2388,16 +2388,16 @@ type LogisticssupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock st
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock) IsPresent() bool {
+func (f LogisticsSupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock
+func (r LogisticsSupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportNewParamsLogisticsSupportItemLogisticsRemark struct {
+type LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark struct {
 	// Date the remark was published or updated, in ISO 8601 UTC format, with
 	// millisecond precision.
 	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
@@ -2410,16 +2410,16 @@ type LogisticssupportNewParamsLogisticsSupportItemLogisticsRemark struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewParamsLogisticsSupportItemLogisticsRemark) IsPresent() bool {
+func (f LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewParamsLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewParamsLogisticsSupportItemLogisticsRemark
+func (r LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // The specialties required to implement this support item.
-type LogisticssupportNewParamsLogisticsSupportItemLogisticsSpecialty struct {
+type LogisticsSupportNewParamsLogisticsSupportItemLogisticsSpecialty struct {
 	// The first name of the specialist.
 	FirstName param.Opt[string] `json:"firstName,omitzero"`
 	// The last four digits of the specialist's social security number.
@@ -2442,17 +2442,17 @@ type LogisticssupportNewParamsLogisticsSupportItemLogisticsSpecialty struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewParamsLogisticsSupportItemLogisticsSpecialty) IsPresent() bool {
+func (f LogisticsSupportNewParamsLogisticsSupportItemLogisticsSpecialty) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewParamsLogisticsSupportItemLogisticsSpecialty) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewParamsLogisticsSupportItemLogisticsSpecialty
+func (r LogisticsSupportNewParamsLogisticsSupportItemLogisticsSpecialty) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewParamsLogisticsSupportItemLogisticsSpecialty
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Transportation plans associated with this LogisticsSupport record, used to
 // coordinate maintenance efforts.
-type LogisticssupportNewParamsLogisticsTransportationPlan struct {
+type LogisticsSupportNewParamsLogisticsTransportationPlan struct {
 	// Actual time of departure of first segment, in ISO 8601 UTC format with
 	// millisecond precision.
 	ActDepTime param.Opt[time.Time] `json:"actDepTime,omitzero" format:"date-time"`
@@ -2516,24 +2516,24 @@ type LogisticssupportNewParamsLogisticsTransportationPlan struct {
 	// Contains the tail number displayed by GDSS2.
 	TpTailNumber param.Opt[string] `json:"tpTailNumber,omitzero"`
 	// The transportation segments associated with this transportation plan.
-	LogisticsSegments []LogisticssupportNewParamsLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments,omitzero"`
+	LogisticsSegments []LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments,omitzero"`
 	// Remarks associated with this transportation plan.
-	LogisticsTransportationPlansRemarks []LogisticssupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark `json:"logisticsTransportationPlansRemarks,omitzero"`
+	LogisticsTransportationPlansRemarks []LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark `json:"logisticsTransportationPlansRemarks,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewParamsLogisticsTransportationPlan) IsPresent() bool {
+func (f LogisticsSupportNewParamsLogisticsTransportationPlan) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewParamsLogisticsTransportationPlan) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewParamsLogisticsTransportationPlan
+func (r LogisticsSupportNewParamsLogisticsTransportationPlan) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewParamsLogisticsTransportationPlan
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportNewParamsLogisticsTransportationPlanLogisticsSegment struct {
+type LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsSegment struct {
 	// Airport ICAO arrival code.
 	ArrivalIcao param.Opt[string] `json:"arrivalICAO,omitzero"`
 	// Airport ICAO departure code.
@@ -2580,16 +2580,16 @@ type LogisticssupportNewParamsLogisticsTransportationPlanLogisticsSegment struct
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewParamsLogisticsTransportationPlanLogisticsSegment) IsPresent() bool {
+func (f LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsSegment) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewParamsLogisticsTransportationPlanLogisticsSegment) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewParamsLogisticsTransportationPlanLogisticsSegment
+func (r LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsSegment) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsSegment
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark struct {
+type LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark struct {
 	// Date the remark was published or updated, in ISO 8601 UTC format, with
 	// millisecond precision.
 	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
@@ -2602,15 +2602,15 @@ type LogisticssupportNewParamsLogisticsTransportationPlanLogisticsTransportation
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) IsPresent() bool {
+func (f LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark
+func (r LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
-type LogisticssupportUpdateParams struct {
+type LogisticsSupportUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -2629,7 +2629,7 @@ type LogisticssupportUpdateParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LogisticssupportUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode LogisticsSupportUpdateParamsDataMode `json:"dataMode,omitzero,required"`
 	// The time this report was created, in ISO 8601 UTC format with millisecond
 	// precision.
 	RptCreatedTime time.Time `json:"rptCreatedTime,required" format:"date-time"`
@@ -2692,23 +2692,23 @@ type LogisticssupportUpdateParams struct {
 	// LogisticsSupportDetails record.
 	TailNumber param.Opt[string] `json:"tailNumber,omitzero"`
 	// Discrepancy information associated with this LogisticsSupport record.
-	LogisticsDiscrepancyInfos []LogisticssupportUpdateParamsLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos,omitzero"`
+	LogisticsDiscrepancyInfos []LogisticsSupportUpdateParamsLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos,omitzero"`
 	// Remarks associated with this LogisticsSupport record.
-	LogisticsRemarks []LogisticssupportUpdateParamsLogisticsRemark `json:"logisticsRemarks,omitzero"`
+	LogisticsRemarks []LogisticsSupportUpdateParamsLogisticsRemark `json:"logisticsRemarks,omitzero"`
 	// Support items associated with this LogisticsSupport record.
-	LogisticsSupportItems []LogisticssupportUpdateParamsLogisticsSupportItem `json:"logisticsSupportItems,omitzero"`
+	LogisticsSupportItems []LogisticsSupportUpdateParamsLogisticsSupportItem `json:"logisticsSupportItems,omitzero"`
 	// Transportation plans associated with this LogisticsSupport record, used to
 	// coordinate maintenance efforts.
-	LogisticsTransportationPlans []LogisticssupportUpdateParamsLogisticsTransportationPlan `json:"logisticsTransportationPlans,omitzero"`
+	LogisticsTransportationPlans []LogisticsSupportUpdateParamsLogisticsTransportationPlan `json:"logisticsTransportationPlans,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LogisticsSupportUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r LogisticssupportUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUpdateParams
+func (r LogisticsSupportUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
@@ -2726,17 +2726,17 @@ func (r LogisticssupportUpdateParams) MarshalJSON() (data []byte, err error) {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type LogisticssupportUpdateParamsDataMode string
+type LogisticsSupportUpdateParamsDataMode string
 
 const (
-	LogisticssupportUpdateParamsDataModeReal      LogisticssupportUpdateParamsDataMode = "REAL"
-	LogisticssupportUpdateParamsDataModeTest      LogisticssupportUpdateParamsDataMode = "TEST"
-	LogisticssupportUpdateParamsDataModeSimulated LogisticssupportUpdateParamsDataMode = "SIMULATED"
-	LogisticssupportUpdateParamsDataModeExercise  LogisticssupportUpdateParamsDataMode = "EXERCISE"
+	LogisticsSupportUpdateParamsDataModeReal      LogisticsSupportUpdateParamsDataMode = "REAL"
+	LogisticsSupportUpdateParamsDataModeTest      LogisticsSupportUpdateParamsDataMode = "TEST"
+	LogisticsSupportUpdateParamsDataModeSimulated LogisticsSupportUpdateParamsDataMode = "SIMULATED"
+	LogisticsSupportUpdateParamsDataModeExercise  LogisticsSupportUpdateParamsDataMode = "EXERCISE"
 )
 
 // Discrepancy information associated with this LogisticsSupport record.
-type LogisticssupportUpdateParamsLogisticsDiscrepancyInfo struct {
+type LogisticsSupportUpdateParamsLogisticsDiscrepancyInfo struct {
 	// The discrepancy closure time, in ISO 8601 UTC format with millisecond precision.
 	ClosureTime param.Opt[time.Time] `json:"closureTime,omitzero" format:"date-time"`
 	// The aircraft discrepancy description.
@@ -2750,16 +2750,16 @@ type LogisticssupportUpdateParamsLogisticsDiscrepancyInfo struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUpdateParamsLogisticsDiscrepancyInfo) IsPresent() bool {
+func (f LogisticsSupportUpdateParamsLogisticsDiscrepancyInfo) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUpdateParamsLogisticsDiscrepancyInfo) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUpdateParamsLogisticsDiscrepancyInfo
+func (r LogisticsSupportUpdateParamsLogisticsDiscrepancyInfo) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUpdateParamsLogisticsDiscrepancyInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportUpdateParamsLogisticsRemark struct {
+type LogisticsSupportUpdateParamsLogisticsRemark struct {
 	// Date the remark was published or updated, in ISO 8601 UTC format, with
 	// millisecond precision.
 	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
@@ -2772,16 +2772,16 @@ type LogisticssupportUpdateParamsLogisticsRemark struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUpdateParamsLogisticsRemark) IsPresent() bool {
+func (f LogisticsSupportUpdateParamsLogisticsRemark) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUpdateParamsLogisticsRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUpdateParamsLogisticsRemark
+func (r LogisticsSupportUpdateParamsLogisticsRemark) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUpdateParamsLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Support items associated with this LogisticsSupport record.
-type LogisticssupportUpdateParamsLogisticsSupportItem struct {
+type LogisticsSupportUpdateParamsLogisticsSupportItem struct {
 	// This element indicates whether or not the supplied item is contained within
 	// another item.
 	Cannibalized param.Opt[bool] `json:"cannibalized,omitzero"`
@@ -2836,26 +2836,26 @@ type LogisticssupportUpdateParamsLogisticsSupportItem struct {
 	// designations of an airport.
 	SourceIcao param.Opt[string] `json:"sourceICAO,omitzero"`
 	// The parts associated with this support item.
-	LogisticsParts []LogisticssupportUpdateParamsLogisticsSupportItemLogisticsPart `json:"logisticsParts,omitzero"`
+	LogisticsParts []LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPart `json:"logisticsParts,omitzero"`
 	// Remarks associated with this support item.
-	LogisticsRemarks []LogisticssupportUpdateParamsLogisticsSupportItemLogisticsRemark `json:"logisticsRemarks,omitzero"`
+	LogisticsRemarks []LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark `json:"logisticsRemarks,omitzero"`
 	// The specialties required to implement this support item.
-	LogisticsSpecialties []LogisticssupportUpdateParamsLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties,omitzero"`
+	LogisticsSpecialties []LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUpdateParamsLogisticsSupportItem) IsPresent() bool {
+func (f LogisticsSupportUpdateParamsLogisticsSupportItem) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUpdateParamsLogisticsSupportItem) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUpdateParamsLogisticsSupportItem
+func (r LogisticsSupportUpdateParamsLogisticsSupportItem) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUpdateParamsLogisticsSupportItem
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // The parts associated with this support item.
-type LogisticssupportUpdateParamsLogisticsSupportItemLogisticsPart struct {
+type LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPart struct {
 	// Technical order manual figure number for the requested / supplied part.
 	FigureNumber param.Opt[string] `json:"figureNumber,omitzero"`
 	// Technical order manual index number for the requested part.
@@ -2879,22 +2879,22 @@ type LogisticssupportUpdateParamsLogisticsSupportItemLogisticsPart struct {
 	// Work Unit Code (WUC), or for some aircraft types, the Reference Designator.
 	WorkUnitCode param.Opt[string] `json:"workUnitCode,omitzero"`
 	// The supply stocks for this support item.
-	LogisticsStocks []LogisticssupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock `json:"logisticsStocks,omitzero"`
+	LogisticsStocks []LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock `json:"logisticsStocks,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUpdateParamsLogisticsSupportItemLogisticsPart) IsPresent() bool {
+func (f LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPart) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUpdateParamsLogisticsSupportItemLogisticsPart) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUpdateParamsLogisticsSupportItemLogisticsPart
+func (r LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPart) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPart
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // The supply stocks for this support item.
-type LogisticssupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock struct {
+type LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock struct {
 	// The quantity of available parts needed from sourceICAO.
 	Quantity param.Opt[int64] `json:"quantity,omitzero"`
 	// The ICAO code for the primary location with available parts.
@@ -2909,16 +2909,16 @@ type LogisticssupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock) IsPresent() bool {
+func (f LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock
+func (r LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportUpdateParamsLogisticsSupportItemLogisticsRemark struct {
+type LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark struct {
 	// Date the remark was published or updated, in ISO 8601 UTC format, with
 	// millisecond precision.
 	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
@@ -2931,16 +2931,16 @@ type LogisticssupportUpdateParamsLogisticsSupportItemLogisticsRemark struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUpdateParamsLogisticsSupportItemLogisticsRemark) IsPresent() bool {
+func (f LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUpdateParamsLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUpdateParamsLogisticsSupportItemLogisticsRemark
+func (r LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // The specialties required to implement this support item.
-type LogisticssupportUpdateParamsLogisticsSupportItemLogisticsSpecialty struct {
+type LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsSpecialty struct {
 	// The first name of the specialist.
 	FirstName param.Opt[string] `json:"firstName,omitzero"`
 	// The last four digits of the specialist's social security number.
@@ -2963,17 +2963,17 @@ type LogisticssupportUpdateParamsLogisticsSupportItemLogisticsSpecialty struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUpdateParamsLogisticsSupportItemLogisticsSpecialty) IsPresent() bool {
+func (f LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsSpecialty) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUpdateParamsLogisticsSupportItemLogisticsSpecialty) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUpdateParamsLogisticsSupportItemLogisticsSpecialty
+func (r LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsSpecialty) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsSpecialty
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Transportation plans associated with this LogisticsSupport record, used to
 // coordinate maintenance efforts.
-type LogisticssupportUpdateParamsLogisticsTransportationPlan struct {
+type LogisticsSupportUpdateParamsLogisticsTransportationPlan struct {
 	// Actual time of departure of first segment, in ISO 8601 UTC format with
 	// millisecond precision.
 	ActDepTime param.Opt[time.Time] `json:"actDepTime,omitzero" format:"date-time"`
@@ -3037,24 +3037,24 @@ type LogisticssupportUpdateParamsLogisticsTransportationPlan struct {
 	// Contains the tail number displayed by GDSS2.
 	TpTailNumber param.Opt[string] `json:"tpTailNumber,omitzero"`
 	// The transportation segments associated with this transportation plan.
-	LogisticsSegments []LogisticssupportUpdateParamsLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments,omitzero"`
+	LogisticsSegments []LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments,omitzero"`
 	// Remarks associated with this transportation plan.
-	LogisticsTransportationPlansRemarks []LogisticssupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark `json:"logisticsTransportationPlansRemarks,omitzero"`
+	LogisticsTransportationPlansRemarks []LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark `json:"logisticsTransportationPlansRemarks,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUpdateParamsLogisticsTransportationPlan) IsPresent() bool {
+func (f LogisticsSupportUpdateParamsLogisticsTransportationPlan) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUpdateParamsLogisticsTransportationPlan) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUpdateParamsLogisticsTransportationPlan
+func (r LogisticsSupportUpdateParamsLogisticsTransportationPlan) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUpdateParamsLogisticsTransportationPlan
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportUpdateParamsLogisticsTransportationPlanLogisticsSegment struct {
+type LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsSegment struct {
 	// Airport ICAO arrival code.
 	ArrivalIcao param.Opt[string] `json:"arrivalICAO,omitzero"`
 	// Airport ICAO departure code.
@@ -3101,16 +3101,16 @@ type LogisticssupportUpdateParamsLogisticsTransportationPlanLogisticsSegment str
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUpdateParamsLogisticsTransportationPlanLogisticsSegment) IsPresent() bool {
+func (f LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsSegment) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUpdateParamsLogisticsTransportationPlanLogisticsSegment) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUpdateParamsLogisticsTransportationPlanLogisticsSegment
+func (r LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsSegment) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsSegment
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark struct {
+type LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark struct {
 	// Date the remark was published or updated, in ISO 8601 UTC format, with
 	// millisecond precision.
 	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
@@ -3123,15 +3123,15 @@ type LogisticssupportUpdateParamsLogisticsTransportationPlanLogisticsTransportat
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) IsPresent() bool {
+func (f LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark
+func (r LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
-type LogisticssupportListParams struct {
+type LogisticsSupportListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -3139,18 +3139,18 @@ type LogisticssupportListParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LogisticsSupportListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LogisticssupportListParams]'s query parameters as
+// URLQuery serializes [LogisticsSupportListParams]'s query parameters as
 // `url.Values`.
-func (r LogisticssupportListParams) URLQuery() (v url.Values, err error) {
+func (r LogisticsSupportListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type LogisticssupportCountParams struct {
+type LogisticsSupportCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -3158,27 +3158,27 @@ type LogisticssupportCountParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LogisticsSupportCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LogisticssupportCountParams]'s query parameters as
+// URLQuery serializes [LogisticsSupportCountParams]'s query parameters as
 // `url.Values`.
-func (r LogisticssupportCountParams) URLQuery() (v url.Values, err error) {
+func (r LogisticsSupportCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type LogisticssupportNewBulkParams struct {
-	Body []LogisticssupportNewBulkParamsBody
+type LogisticsSupportNewBulkParams struct {
+	Body []LogisticsSupportNewBulkParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LogisticsSupportNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-func (r LogisticssupportNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r LogisticsSupportNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -3188,7 +3188,7 @@ func (r LogisticssupportNewBulkParams) MarshalJSON() (data []byte, err error) {
 //
 // The properties ClassificationMarking, DataMode, RptCreatedTime, Source are
 // required.
-type LogisticssupportNewBulkParamsBody struct {
+type LogisticsSupportNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -3282,35 +3282,35 @@ type LogisticssupportNewBulkParamsBody struct {
 	// system.
 	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// Discrepancy information associated with this LogisticsSupport record.
-	LogisticsDiscrepancyInfos []LogisticssupportNewBulkParamsBodyLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos,omitzero"`
+	LogisticsDiscrepancyInfos []LogisticsSupportNewBulkParamsBodyLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos,omitzero"`
 	// Remarks associated with this LogisticsSupport record.
-	LogisticsRemarks []LogisticssupportNewBulkParamsBodyLogisticsRemark `json:"logisticsRemarks,omitzero"`
+	LogisticsRemarks []LogisticsSupportNewBulkParamsBodyLogisticsRemark `json:"logisticsRemarks,omitzero"`
 	// Support items associated with this LogisticsSupport record.
-	LogisticsSupportItems []LogisticssupportNewBulkParamsBodyLogisticsSupportItem `json:"logisticsSupportItems,omitzero"`
+	LogisticsSupportItems []LogisticsSupportNewBulkParamsBodyLogisticsSupportItem `json:"logisticsSupportItems,omitzero"`
 	// Transportation plans associated with this LogisticsSupport record, used to
 	// coordinate maintenance efforts.
-	LogisticsTransportationPlans []LogisticssupportNewBulkParamsBodyLogisticsTransportationPlan `json:"logisticsTransportationPlans,omitzero"`
+	LogisticsTransportationPlans []LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlan `json:"logisticsTransportationPlans,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewBulkParamsBody) IsPresent() bool {
+func (f LogisticsSupportNewBulkParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewBulkParamsBody
+func (r LogisticsSupportNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[LogisticssupportNewBulkParamsBody](
+	apijson.RegisterFieldValidator[LogisticsSupportNewBulkParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
 // Discrepancy information associated with this LogisticsSupport record.
-type LogisticssupportNewBulkParamsBodyLogisticsDiscrepancyInfo struct {
+type LogisticsSupportNewBulkParamsBodyLogisticsDiscrepancyInfo struct {
 	// The discrepancy closure time, in ISO 8601 UTC format with millisecond precision.
 	ClosureTime param.Opt[time.Time] `json:"closureTime,omitzero" format:"date-time"`
 	// The aircraft discrepancy description.
@@ -3324,16 +3324,16 @@ type LogisticssupportNewBulkParamsBodyLogisticsDiscrepancyInfo struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewBulkParamsBodyLogisticsDiscrepancyInfo) IsPresent() bool {
+func (f LogisticsSupportNewBulkParamsBodyLogisticsDiscrepancyInfo) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewBulkParamsBodyLogisticsDiscrepancyInfo) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewBulkParamsBodyLogisticsDiscrepancyInfo
+func (r LogisticsSupportNewBulkParamsBodyLogisticsDiscrepancyInfo) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewBulkParamsBodyLogisticsDiscrepancyInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportNewBulkParamsBodyLogisticsRemark struct {
+type LogisticsSupportNewBulkParamsBodyLogisticsRemark struct {
 	// Date the remark was published or updated, in ISO 8601 UTC format, with
 	// millisecond precision.
 	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
@@ -3346,16 +3346,16 @@ type LogisticssupportNewBulkParamsBodyLogisticsRemark struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewBulkParamsBodyLogisticsRemark) IsPresent() bool {
+func (f LogisticsSupportNewBulkParamsBodyLogisticsRemark) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewBulkParamsBodyLogisticsRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewBulkParamsBodyLogisticsRemark
+func (r LogisticsSupportNewBulkParamsBodyLogisticsRemark) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewBulkParamsBodyLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Support items associated with this LogisticsSupport record.
-type LogisticssupportNewBulkParamsBodyLogisticsSupportItem struct {
+type LogisticsSupportNewBulkParamsBodyLogisticsSupportItem struct {
 	// This element indicates whether or not the supplied item is contained within
 	// another item.
 	Cannibalized param.Opt[bool] `json:"cannibalized,omitzero"`
@@ -3410,26 +3410,26 @@ type LogisticssupportNewBulkParamsBodyLogisticsSupportItem struct {
 	// designations of an airport.
 	SourceIcao param.Opt[string] `json:"sourceICAO,omitzero"`
 	// The parts associated with this support item.
-	LogisticsParts []LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart `json:"logisticsParts,omitzero"`
+	LogisticsParts []LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart `json:"logisticsParts,omitzero"`
 	// Remarks associated with this support item.
-	LogisticsRemarks []LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark `json:"logisticsRemarks,omitzero"`
+	LogisticsRemarks []LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark `json:"logisticsRemarks,omitzero"`
 	// The specialties required to implement this support item.
-	LogisticsSpecialties []LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties,omitzero"`
+	LogisticsSpecialties []LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewBulkParamsBodyLogisticsSupportItem) IsPresent() bool {
+func (f LogisticsSupportNewBulkParamsBodyLogisticsSupportItem) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewBulkParamsBodyLogisticsSupportItem) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewBulkParamsBodyLogisticsSupportItem
+func (r LogisticsSupportNewBulkParamsBodyLogisticsSupportItem) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewBulkParamsBodyLogisticsSupportItem
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // The parts associated with this support item.
-type LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart struct {
+type LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart struct {
 	// Technical order manual figure number for the requested / supplied part.
 	FigureNumber param.Opt[string] `json:"figureNumber,omitzero"`
 	// Technical order manual index number for the requested part.
@@ -3453,22 +3453,22 @@ type LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart struct {
 	// Work Unit Code (WUC), or for some aircraft types, the Reference Designator.
 	WorkUnitCode param.Opt[string] `json:"workUnitCode,omitzero"`
 	// The supply stocks for this support item.
-	LogisticsStocks []LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock `json:"logisticsStocks,omitzero"`
+	LogisticsStocks []LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock `json:"logisticsStocks,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart) IsPresent() bool {
+func (f LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart
+func (r LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // The supply stocks for this support item.
-type LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock struct {
+type LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock struct {
 	// The quantity of available parts needed from sourceICAO.
 	Quantity param.Opt[int64] `json:"quantity,omitzero"`
 	// The ICAO code for the primary location with available parts.
@@ -3483,16 +3483,16 @@ type LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogistics
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock) IsPresent() bool {
+func (f LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock
+func (r LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark struct {
+type LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark struct {
 	// Date the remark was published or updated, in ISO 8601 UTC format, with
 	// millisecond precision.
 	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
@@ -3505,16 +3505,16 @@ type LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark struct
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark) IsPresent() bool {
+func (f LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark
+func (r LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // The specialties required to implement this support item.
-type LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty struct {
+type LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty struct {
 	// The first name of the specialist.
 	FirstName param.Opt[string] `json:"firstName,omitzero"`
 	// The last four digits of the specialist's social security number.
@@ -3537,17 +3537,17 @@ type LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty str
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty) IsPresent() bool {
+func (f LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty
+func (r LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Transportation plans associated with this LogisticsSupport record, used to
 // coordinate maintenance efforts.
-type LogisticssupportNewBulkParamsBodyLogisticsTransportationPlan struct {
+type LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlan struct {
 	// Actual time of departure of first segment, in ISO 8601 UTC format with
 	// millisecond precision.
 	ActDepTime param.Opt[time.Time] `json:"actDepTime,omitzero" format:"date-time"`
@@ -3611,24 +3611,24 @@ type LogisticssupportNewBulkParamsBodyLogisticsTransportationPlan struct {
 	// Contains the tail number displayed by GDSS2.
 	TpTailNumber param.Opt[string] `json:"tpTailNumber,omitzero"`
 	// The transportation segments associated with this transportation plan.
-	LogisticsSegments []LogisticssupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments,omitzero"`
+	LogisticsSegments []LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments,omitzero"`
 	// Remarks associated with this transportation plan.
-	LogisticsTransportationPlansRemarks []LogisticssupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark `json:"logisticsTransportationPlansRemarks,omitzero"`
+	LogisticsTransportationPlansRemarks []LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark `json:"logisticsTransportationPlansRemarks,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewBulkParamsBodyLogisticsTransportationPlan) IsPresent() bool {
+func (f LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlan) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewBulkParamsBodyLogisticsTransportationPlan) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewBulkParamsBodyLogisticsTransportationPlan
+func (r LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlan) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlan
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment struct {
+type LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment struct {
 	// Airport ICAO arrival code.
 	ArrivalIcao param.Opt[string] `json:"arrivalICAO,omitzero"`
 	// Airport ICAO departure code.
@@ -3675,16 +3675,16 @@ type LogisticssupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegmen
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment) IsPresent() bool {
+func (f LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment
+func (r LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark struct {
+type LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark struct {
 	// Date the remark was published or updated, in ISO 8601 UTC format, with
 	// millisecond precision.
 	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
@@ -3697,15 +3697,15 @@ type LogisticssupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransp
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) IsPresent() bool {
+func (f LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark
+func (r LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
-type LogisticssupportGetParams struct {
+type LogisticsSupportGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -3713,18 +3713,18 @@ type LogisticssupportGetParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LogisticsSupportGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LogisticssupportGetParams]'s query parameters as
+// URLQuery serializes [LogisticsSupportGetParams]'s query parameters as
 // `url.Values`.
-func (r LogisticssupportGetParams) URLQuery() (v url.Values, err error) {
+func (r LogisticsSupportGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type LogisticssupportTupleParams struct {
+type LogisticsSupportTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -3737,29 +3737,29 @@ type LogisticssupportTupleParams struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
+func (f LogisticsSupportTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
-// URLQuery serializes [LogisticssupportTupleParams]'s query parameters as
+// URLQuery serializes [LogisticsSupportTupleParams]'s query parameters as
 // `url.Values`.
-func (r LogisticssupportTupleParams) URLQuery() (v url.Values, err error) {
+func (r LogisticsSupportTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type LogisticssupportUnvalidatedPublishParams struct {
-	Body []LogisticssupportUnvalidatedPublishParamsBody
+type LogisticsSupportUnvalidatedPublishParams struct {
+	Body []LogisticsSupportUnvalidatedPublishParamsBody
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUnvalidatedPublishParams) IsPresent() bool {
+func (f LogisticsSupportUnvalidatedPublishParams) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
 
-func (r LogisticssupportUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+func (r LogisticsSupportUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 
@@ -3769,7 +3769,7 @@ func (r LogisticssupportUnvalidatedPublishParams) MarshalJSON() (data []byte, er
 //
 // The properties ClassificationMarking, DataMode, RptCreatedTime, Source are
 // required.
-type LogisticssupportUnvalidatedPublishParamsBody struct {
+type LogisticsSupportUnvalidatedPublishParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -3863,35 +3863,35 @@ type LogisticssupportUnvalidatedPublishParamsBody struct {
 	// system.
 	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// Discrepancy information associated with this LogisticsSupport record.
-	LogisticsDiscrepancyInfos []LogisticssupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos,omitzero"`
+	LogisticsDiscrepancyInfos []LogisticsSupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos,omitzero"`
 	// Remarks associated with this LogisticsSupport record.
-	LogisticsRemarks []LogisticssupportUnvalidatedPublishParamsBodyLogisticsRemark `json:"logisticsRemarks,omitzero"`
+	LogisticsRemarks []LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark `json:"logisticsRemarks,omitzero"`
 	// Support items associated with this LogisticsSupport record.
-	LogisticsSupportItems []LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItem `json:"logisticsSupportItems,omitzero"`
+	LogisticsSupportItems []LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItem `json:"logisticsSupportItems,omitzero"`
 	// Transportation plans associated with this LogisticsSupport record, used to
 	// coordinate maintenance efforts.
-	LogisticsTransportationPlans []LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan `json:"logisticsTransportationPlans,omitzero"`
+	LogisticsTransportationPlans []LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan `json:"logisticsTransportationPlans,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUnvalidatedPublishParamsBody) IsPresent() bool {
+func (f LogisticsSupportUnvalidatedPublishParamsBody) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUnvalidatedPublishParamsBody
+func (r LogisticsSupportUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 func init() {
-	apijson.RegisterFieldValidator[LogisticssupportUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[LogisticsSupportUnvalidatedPublishParamsBody](
 		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
 // Discrepancy information associated with this LogisticsSupport record.
-type LogisticssupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo struct {
+type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo struct {
 	// The discrepancy closure time, in ISO 8601 UTC format with millisecond precision.
 	ClosureTime param.Opt[time.Time] `json:"closureTime,omitzero" format:"date-time"`
 	// The aircraft discrepancy description.
@@ -3905,16 +3905,16 @@ type LogisticssupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo struct
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo) IsPresent() bool {
+func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo
+func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportUnvalidatedPublishParamsBodyLogisticsRemark struct {
+type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark struct {
 	// Date the remark was published or updated, in ISO 8601 UTC format, with
 	// millisecond precision.
 	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
@@ -3927,16 +3927,16 @@ type LogisticssupportUnvalidatedPublishParamsBodyLogisticsRemark struct {
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUnvalidatedPublishParamsBodyLogisticsRemark) IsPresent() bool {
+func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUnvalidatedPublishParamsBodyLogisticsRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUnvalidatedPublishParamsBodyLogisticsRemark
+func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Support items associated with this LogisticsSupport record.
-type LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItem struct {
+type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItem struct {
 	// This element indicates whether or not the supplied item is contained within
 	// another item.
 	Cannibalized param.Opt[bool] `json:"cannibalized,omitzero"`
@@ -3991,26 +3991,26 @@ type LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItem struct {
 	// designations of an airport.
 	SourceIcao param.Opt[string] `json:"sourceICAO,omitzero"`
 	// The parts associated with this support item.
-	LogisticsParts []LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPart `json:"logisticsParts,omitzero"`
+	LogisticsParts []LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPart `json:"logisticsParts,omitzero"`
 	// Remarks associated with this support item.
-	LogisticsRemarks []LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark `json:"logisticsRemarks,omitzero"`
+	LogisticsRemarks []LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark `json:"logisticsRemarks,omitzero"`
 	// The specialties required to implement this support item.
-	LogisticsSpecialties []LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties,omitzero"`
+	LogisticsSpecialties []LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItem) IsPresent() bool {
+func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItem) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItem) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItem
+func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItem) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItem
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // The parts associated with this support item.
-type LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPart struct {
+type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPart struct {
 	// Technical order manual figure number for the requested / supplied part.
 	FigureNumber param.Opt[string] `json:"figureNumber,omitzero"`
 	// Technical order manual index number for the requested part.
@@ -4034,22 +4034,22 @@ type LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPa
 	// Work Unit Code (WUC), or for some aircraft types, the Reference Designator.
 	WorkUnitCode param.Opt[string] `json:"workUnitCode,omitzero"`
 	// The supply stocks for this support item.
-	LogisticsStocks []LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock `json:"logisticsStocks,omitzero"`
+	LogisticsStocks []LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock `json:"logisticsStocks,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPart) IsPresent() bool {
+func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPart) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPart) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPart
+func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPart) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPart
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // The supply stocks for this support item.
-type LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock struct {
+type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock struct {
 	// The quantity of available parts needed from sourceICAO.
 	Quantity param.Opt[int64] `json:"quantity,omitzero"`
 	// The ICAO code for the primary location with available parts.
@@ -4064,16 +4064,16 @@ type LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPa
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock) IsPresent() bool {
+func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock
+func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark struct {
+type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark struct {
 	// Date the remark was published or updated, in ISO 8601 UTC format, with
 	// millisecond precision.
 	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
@@ -4086,16 +4086,16 @@ type LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRe
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark) IsPresent() bool {
+func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark
+func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // The specialties required to implement this support item.
-type LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSpecialty struct {
+type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSpecialty struct {
 	// The first name of the specialist.
 	FirstName param.Opt[string] `json:"firstName,omitzero"`
 	// The last four digits of the specialist's social security number.
@@ -4118,17 +4118,17 @@ type LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSp
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSpecialty) IsPresent() bool {
+func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSpecialty) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSpecialty) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSpecialty
+func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSpecialty) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSpecialty
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Transportation plans associated with this LogisticsSupport record, used to
 // coordinate maintenance efforts.
-type LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan struct {
+type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan struct {
 	// Actual time of departure of first segment, in ISO 8601 UTC format with
 	// millisecond precision.
 	ActDepTime param.Opt[time.Time] `json:"actDepTime,omitzero" format:"date-time"`
@@ -4192,24 +4192,24 @@ type LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan str
 	// Contains the tail number displayed by GDSS2.
 	TpTailNumber param.Opt[string] `json:"tpTailNumber,omitzero"`
 	// The transportation segments associated with this transportation plan.
-	LogisticsSegments []LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments,omitzero"`
+	LogisticsSegments []LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments,omitzero"`
 	// Remarks associated with this transportation plan.
-	LogisticsTransportationPlansRemarks []LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark `json:"logisticsTransportationPlansRemarks,omitzero"`
+	LogisticsTransportationPlansRemarks []LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark `json:"logisticsTransportationPlansRemarks,omitzero"`
 	paramObj
 }
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan) IsPresent() bool {
+func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan
+func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment struct {
+type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment struct {
 	// Airport ICAO arrival code.
 	ArrivalIcao param.Opt[string] `json:"arrivalICAO,omitzero"`
 	// Airport ICAO departure code.
@@ -4256,16 +4256,16 @@ type LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogi
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment) IsPresent() bool {
+func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment
+func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 
 // Remarks associated with this LogisticsSupport record.
-type LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark struct {
+type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark struct {
 	// Date the remark was published or updated, in ISO 8601 UTC format, with
 	// millisecond precision.
 	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
@@ -4278,10 +4278,10 @@ type LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogi
 
 // IsPresent returns true if the field's value is not omitted and not the JSON
 // "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) IsPresent() bool {
+func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) IsPresent() bool {
 	return !param.IsOmitted(f) && !f.IsNull()
 }
-func (r LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticssupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark
+func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark
 	return param.MarshalObject(r, (*shadow)(&r))
 }
