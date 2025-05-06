@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // ItemTrackingService contains methods and other services that help with
@@ -235,31 +235,31 @@ type ItemTrackingListResponse struct {
 	// entries in this array must correspond to the position index in the keys array.
 	// This array must be the same length as keys.
 	Values []string `json:"values"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		ScanCode              resp.Field
-		ScannerID             resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DvCode                resp.Field
-		IDItem                resp.Field
-		Keys                  resp.Field
-		Lat                   resp.Field
-		Lon                   resp.Field
-		Notes                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ScanType              resp.Field
-		ScGenTool             resp.Field
-		SourceDl              resp.Field
-		Type                  resp.Field
-		Values                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		ScanCode              respjson.Field
+		ScannerID             respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DvCode                respjson.Field
+		IDItem                respjson.Field
+		Keys                  respjson.Field
+		Lat                   respjson.Field
+		Lon                   respjson.Field
+		Notes                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ScanType              respjson.Field
+		ScGenTool             respjson.Field
+		SourceDl              respjson.Field
+		Type                  respjson.Field
+		Values                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -369,31 +369,31 @@ type ItemTrackingGetResponse struct {
 	// entries in this array must correspond to the position index in the keys array.
 	// This array must be the same length as keys.
 	Values []string `json:"values"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		ScanCode              resp.Field
-		ScannerID             resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DvCode                resp.Field
-		IDItem                resp.Field
-		Keys                  resp.Field
-		Lat                   resp.Field
-		Lon                   resp.Field
-		Notes                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ScanType              resp.Field
-		ScGenTool             resp.Field
-		SourceDl              resp.Field
-		Type                  resp.Field
-		Values                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		ScanCode              respjson.Field
+		ScannerID             respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DvCode                respjson.Field
+		IDItem                respjson.Field
+		Keys                  respjson.Field
+		Lat                   respjson.Field
+		Lon                   respjson.Field
+		Notes                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ScanType              respjson.Field
+		ScGenTool             respjson.Field
+		SourceDl              respjson.Field
+		Type                  respjson.Field
+		Values                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -503,31 +503,31 @@ type ItemTrackingTupleResponse struct {
 	// entries in this array must correspond to the position index in the keys array.
 	// This array must be the same length as keys.
 	Values []string `json:"values"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		ScanCode              resp.Field
-		ScannerID             resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DvCode                resp.Field
-		IDItem                resp.Field
-		Keys                  resp.Field
-		Lat                   resp.Field
-		Lon                   resp.Field
-		Notes                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ScanType              resp.Field
-		ScGenTool             resp.Field
-		SourceDl              resp.Field
-		Type                  resp.Field
-		Values                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		ScanCode              respjson.Field
+		ScannerID             respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DvCode                respjson.Field
+		IDItem                respjson.Field
+		Keys                  respjson.Field
+		Lat                   respjson.Field
+		Lon                   respjson.Field
+		Notes                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ScanType              respjson.Field
+		ScGenTool             respjson.Field
+		SourceDl              respjson.Field
+		Type                  respjson.Field
+		Values                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // GroundImageryHistoryService contains methods and other services that help with
@@ -165,39 +165,39 @@ type GroundImageryHistoryQueryResponse struct {
 	// Application user who last updated the row in the database, set by the system
 	// automatically and ignored on create/edit operations.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Filename              resp.Field
-		ImageTime             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		ChecksumValue         resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Filesize              resp.Field
-		Format                resp.Field
-		IDSensor              resp.Field
-		Keywords              resp.Field
-		Name                  resp.Field
-		Notes                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigSensorID          resp.Field
-		Region                resp.Field
-		RegionGeoJson         resp.Field
-		RegionNDims           resp.Field
-		RegionSRid            resp.Field
-		RegionText            resp.Field
-		RegionType            resp.Field
-		SourceDl              resp.Field
-		SubjectID             resp.Field
-		Tags                  resp.Field
-		TransactionID         resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Filename              respjson.Field
+		ImageTime             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		ChecksumValue         respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Filesize              respjson.Field
+		Format                respjson.Field
+		IDSensor              respjson.Field
+		Keywords              respjson.Field
+		Name                  respjson.Field
+		Notes                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigSensorID          respjson.Field
+		Region                respjson.Field
+		RegionGeoJson         respjson.Field
+		RegionNDims           respjson.Field
+		RegionSRid            respjson.Field
+		RegionText            respjson.Field
+		RegionType            respjson.Field
+		SourceDl              respjson.Field
+		SubjectID             respjson.Field
+		Tags                  respjson.Field
+		TransactionID         respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

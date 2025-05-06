@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // AirOperationAirTaskingOrderService contains methods and other services that help
@@ -219,31 +219,31 @@ type AirTaskingOrderFull struct {
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
 	SourceDl string `json:"sourceDL"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		BeginTs               resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		OpExerName            resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AckReqInd             resp.Field
-		AckUnitInstructions   resp.Field
-		AcMsnTasking          resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EndTs                 resp.Field
-		GenText               resp.Field
-		MsgMonth              resp.Field
-		MsgOriginator         resp.Field
-		MsgQualifier          resp.Field
-		MsgSn                 resp.Field
-		NavalFltOps           resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		RawFileUri            resp.Field
-		SourceDl              resp.Field
-		ExtraFields           map[string]resp.Field
+		BeginTs               respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		OpExerName            respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AckReqInd             respjson.Field
+		AckUnitInstructions   respjson.Field
+		AcMsnTasking          respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EndTs                 respjson.Field
+		GenText               respjson.Field
+		MsgMonth              respjson.Field
+		MsgOriginator         respjson.Field
+		MsgQualifier          respjson.Field
+		MsgSn                 respjson.Field
+		NavalFltOps           respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		RawFileUri            respjson.Field
+		SourceDl              respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -345,33 +345,33 @@ type AirTaskingOrderFullAcMsnTasking struct {
 	SecMsnType string `json:"secMsnType"`
 	// The tasked units location expressed as an ICAO or a place name.
 	UnitLocName string `json:"unitLocName"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CountryCode    resp.Field
-		TaskedService  resp.Field
-		UnitDesignator resp.Field
-		AcMsnLocSeg    resp.Field
-		AlertStatus    resp.Field
-		AmcMsnNum      resp.Field
-		DepLocLat      resp.Field
-		DepLocLon      resp.Field
-		DepLocName     resp.Field
-		DepLocUtm      resp.Field
-		DepTime        resp.Field
-		IndAcTasking   resp.Field
-		MsnCommander   resp.Field
-		MsnNum         resp.Field
-		PkgID          resp.Field
-		PriMsnType     resp.Field
-		RcvyLocLat     resp.Field
-		RcvyLocLon     resp.Field
-		RcvyLocName    resp.Field
-		RcvyLocUtm     resp.Field
-		RcvyTime       resp.Field
-		ResMsnInd      resp.Field
-		SecMsnType     resp.Field
-		UnitLocName    resp.Field
-		ExtraFields    map[string]resp.Field
+		CountryCode    respjson.Field
+		TaskedService  respjson.Field
+		UnitDesignator respjson.Field
+		AcMsnLocSeg    respjson.Field
+		AlertStatus    respjson.Field
+		AmcMsnNum      respjson.Field
+		DepLocLat      respjson.Field
+		DepLocLon      respjson.Field
+		DepLocName     respjson.Field
+		DepLocUtm      respjson.Field
+		DepTime        respjson.Field
+		IndAcTasking   respjson.Field
+		MsnCommander   respjson.Field
+		MsnNum         respjson.Field
+		PkgID          respjson.Field
+		PriMsnType     respjson.Field
+		RcvyLocLat     respjson.Field
+		RcvyLocLon     respjson.Field
+		RcvyLocName    respjson.Field
+		RcvyLocUtm     respjson.Field
+		RcvyTime       respjson.Field
+		ResMsnInd      respjson.Field
+		SecMsnType     respjson.Field
+		UnitLocName    respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }
@@ -410,19 +410,19 @@ type AirTaskingOrderFullAcMsnTaskingAcMsnLocSeg struct {
 	MsnLocPtLon float64 `json:"msnLocPtLon"`
 	// The location name for this mission.
 	MsnLocPtName string `json:"msnLocPtName"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		StartTime    resp.Field
-		AirMsnPri    resp.Field
-		Alt          resp.Field
-		AreaGeoRad   resp.Field
-		EndTime      resp.Field
-		MsnLocName   resp.Field
-		MsnLocPtBarT resp.Field
-		MsnLocPtLat  resp.Field
-		MsnLocPtLon  resp.Field
-		MsnLocPtName resp.Field
-		ExtraFields  map[string]resp.Field
+		StartTime    respjson.Field
+		AirMsnPri    respjson.Field
+		Alt          respjson.Field
+		AreaGeoRad   respjson.Field
+		EndTime      respjson.Field
+		MsnLocName   respjson.Field
+		MsnLocPtBarT respjson.Field
+		MsnLocPtLat  respjson.Field
+		MsnLocPtLon  respjson.Field
+		MsnLocPtName respjson.Field
+		ExtraFields  map[string]respjson.Field
 		raw          string
 	} `json:"-"`
 }
@@ -463,20 +463,20 @@ type AirTaskingOrderFullAcMsnTaskingIndAcTasking struct {
 	SecConfigCode string `json:"secConfigCode"`
 	// The TACAN channel assigned to this mission aircraft.
 	TacanChan int64 `json:"tacanChan"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AcftType        resp.Field
-		CallSign        resp.Field
-		IffSifMode1Code resp.Field
-		IffSifMode2Code resp.Field
-		IffSifMode3Code resp.Field
-		JuAddress       resp.Field
-		Link16CallSign  resp.Field
-		NumAcft         resp.Field
-		PriConfigCode   resp.Field
-		SecConfigCode   resp.Field
-		TacanChan       resp.Field
-		ExtraFields     map[string]resp.Field
+		AcftType        respjson.Field
+		CallSign        respjson.Field
+		IffSifMode1Code respjson.Field
+		IffSifMode2Code respjson.Field
+		IffSifMode3Code respjson.Field
+		JuAddress       respjson.Field
+		Link16CallSign  respjson.Field
+		NumAcft         respjson.Field
+		PriConfigCode   respjson.Field
+		SecConfigCode   respjson.Field
+		TacanChan       respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -495,11 +495,11 @@ type AirTaskingOrderFullGenText struct {
 	// The indicator for the general text block. Examples include "OPENING REMARKS" and
 	// "GENERAL SPINS INFORMATION".
 	TextInd string `json:"textInd"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Text        resp.Field
-		TextInd     resp.Field
-		ExtraFields map[string]resp.Field
+		Text        respjson.Field
+		TextInd     respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -523,13 +523,13 @@ type AirTaskingOrderFullNavalFltOp struct {
 	// An array of times at which an aircraft will be launched and/or recovered in
 	// ISO8601 UTC format with millisecond precision.
 	SchdLaunchRcvyTime []time.Time `json:"schdLaunchRcvyTime" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ShipName           resp.Field
-		FltOpStart         resp.Field
-		FltOpStop          resp.Field
-		SchdLaunchRcvyTime resp.Field
-		ExtraFields        map[string]resp.Field
+		ShipName           respjson.Field
+		FltOpStart         respjson.Field
+		FltOpStop          respjson.Field
+		SchdLaunchRcvyTime respjson.Field
+		ExtraFields        map[string]respjson.Field
 		raw                string
 	} `json:"-"`
 }
@@ -617,31 +617,31 @@ type AirOperationAirTaskingOrderListResponse struct {
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
 	SourceDl string `json:"sourceDL"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		BeginTs               resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		OpExerName            resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AckReqInd             resp.Field
-		AckUnitInstructions   resp.Field
-		AcMsnTasking          resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EndTs                 resp.Field
-		GenText               resp.Field
-		MsgMonth              resp.Field
-		MsgOriginator         resp.Field
-		MsgQualifier          resp.Field
-		MsgSn                 resp.Field
-		NavalFltOps           resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		RawFileUri            resp.Field
-		SourceDl              resp.Field
-		ExtraFields           map[string]resp.Field
+		BeginTs               respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		OpExerName            respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AckReqInd             respjson.Field
+		AckUnitInstructions   respjson.Field
+		AcMsnTasking          respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EndTs                 respjson.Field
+		GenText               respjson.Field
+		MsgMonth              respjson.Field
+		MsgOriginator         respjson.Field
+		MsgQualifier          respjson.Field
+		MsgSn                 respjson.Field
+		NavalFltOps           respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		RawFileUri            respjson.Field
+		SourceDl              respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -743,33 +743,33 @@ type AirOperationAirTaskingOrderListResponseAcMsnTasking struct {
 	SecMsnType string `json:"secMsnType"`
 	// The tasked units location expressed as an ICAO or a place name.
 	UnitLocName string `json:"unitLocName"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CountryCode    resp.Field
-		TaskedService  resp.Field
-		UnitDesignator resp.Field
-		AcMsnLocSeg    resp.Field
-		AlertStatus    resp.Field
-		AmcMsnNum      resp.Field
-		DepLocLat      resp.Field
-		DepLocLon      resp.Field
-		DepLocName     resp.Field
-		DepLocUtm      resp.Field
-		DepTime        resp.Field
-		IndAcTasking   resp.Field
-		MsnCommander   resp.Field
-		MsnNum         resp.Field
-		PkgID          resp.Field
-		PriMsnType     resp.Field
-		RcvyLocLat     resp.Field
-		RcvyLocLon     resp.Field
-		RcvyLocName    resp.Field
-		RcvyLocUtm     resp.Field
-		RcvyTime       resp.Field
-		ResMsnInd      resp.Field
-		SecMsnType     resp.Field
-		UnitLocName    resp.Field
-		ExtraFields    map[string]resp.Field
+		CountryCode    respjson.Field
+		TaskedService  respjson.Field
+		UnitDesignator respjson.Field
+		AcMsnLocSeg    respjson.Field
+		AlertStatus    respjson.Field
+		AmcMsnNum      respjson.Field
+		DepLocLat      respjson.Field
+		DepLocLon      respjson.Field
+		DepLocName     respjson.Field
+		DepLocUtm      respjson.Field
+		DepTime        respjson.Field
+		IndAcTasking   respjson.Field
+		MsnCommander   respjson.Field
+		MsnNum         respjson.Field
+		PkgID          respjson.Field
+		PriMsnType     respjson.Field
+		RcvyLocLat     respjson.Field
+		RcvyLocLon     respjson.Field
+		RcvyLocName    respjson.Field
+		RcvyLocUtm     respjson.Field
+		RcvyTime       respjson.Field
+		ResMsnInd      respjson.Field
+		SecMsnType     respjson.Field
+		UnitLocName    respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }
@@ -808,19 +808,19 @@ type AirOperationAirTaskingOrderListResponseAcMsnTaskingAcMsnLocSeg struct {
 	MsnLocPtLon float64 `json:"msnLocPtLon"`
 	// The location name for this mission.
 	MsnLocPtName string `json:"msnLocPtName"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		StartTime    resp.Field
-		AirMsnPri    resp.Field
-		Alt          resp.Field
-		AreaGeoRad   resp.Field
-		EndTime      resp.Field
-		MsnLocName   resp.Field
-		MsnLocPtBarT resp.Field
-		MsnLocPtLat  resp.Field
-		MsnLocPtLon  resp.Field
-		MsnLocPtName resp.Field
-		ExtraFields  map[string]resp.Field
+		StartTime    respjson.Field
+		AirMsnPri    respjson.Field
+		Alt          respjson.Field
+		AreaGeoRad   respjson.Field
+		EndTime      respjson.Field
+		MsnLocName   respjson.Field
+		MsnLocPtBarT respjson.Field
+		MsnLocPtLat  respjson.Field
+		MsnLocPtLon  respjson.Field
+		MsnLocPtName respjson.Field
+		ExtraFields  map[string]respjson.Field
 		raw          string
 	} `json:"-"`
 }
@@ -863,20 +863,20 @@ type AirOperationAirTaskingOrderListResponseAcMsnTaskingIndAcTasking struct {
 	SecConfigCode string `json:"secConfigCode"`
 	// The TACAN channel assigned to this mission aircraft.
 	TacanChan int64 `json:"tacanChan"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AcftType        resp.Field
-		CallSign        resp.Field
-		IffSifMode1Code resp.Field
-		IffSifMode2Code resp.Field
-		IffSifMode3Code resp.Field
-		JuAddress       resp.Field
-		Link16CallSign  resp.Field
-		NumAcft         resp.Field
-		PriConfigCode   resp.Field
-		SecConfigCode   resp.Field
-		TacanChan       resp.Field
-		ExtraFields     map[string]resp.Field
+		AcftType        respjson.Field
+		CallSign        respjson.Field
+		IffSifMode1Code respjson.Field
+		IffSifMode2Code respjson.Field
+		IffSifMode3Code respjson.Field
+		JuAddress       respjson.Field
+		Link16CallSign  respjson.Field
+		NumAcft         respjson.Field
+		PriConfigCode   respjson.Field
+		SecConfigCode   respjson.Field
+		TacanChan       respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -897,11 +897,11 @@ type AirOperationAirTaskingOrderListResponseGenText struct {
 	// The indicator for the general text block. Examples include "OPENING REMARKS" and
 	// "GENERAL SPINS INFORMATION".
 	TextInd string `json:"textInd"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Text        resp.Field
-		TextInd     resp.Field
-		ExtraFields map[string]resp.Field
+		Text        respjson.Field
+		TextInd     respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -925,13 +925,13 @@ type AirOperationAirTaskingOrderListResponseNavalFltOp struct {
 	// An array of times at which an aircraft will be launched and/or recovered in
 	// ISO8601 UTC format with millisecond precision.
 	SchdLaunchRcvyTime []time.Time `json:"schdLaunchRcvyTime" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ShipName           resp.Field
-		FltOpStart         resp.Field
-		FltOpStop          resp.Field
-		SchdLaunchRcvyTime resp.Field
-		ExtraFields        map[string]resp.Field
+		ShipName           respjson.Field
+		FltOpStart         respjson.Field
+		FltOpStop          respjson.Field
+		SchdLaunchRcvyTime respjson.Field
+		ExtraFields        map[string]respjson.Field
 		raw                string
 	} `json:"-"`
 }

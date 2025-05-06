@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // SeradataOpticalPayloadService contains methods and other services that help with
@@ -235,35 +235,35 @@ type SeradataOpticalPayloadListResponse struct {
 	SpectralFrequencyLimits string `json:"spectralFrequencyLimits"`
 	// Swath width in kilometers.
 	SwathWidth float64 `json:"swathWidth"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking       resp.Field
-		DataMode                    resp.Field
-		Source                      resp.Field
-		SpacecraftID                resp.Field
-		ID                          resp.Field
-		BestResolution              resp.Field
-		CreatedAt                   resp.Field
-		CreatedBy                   resp.Field
-		FieldOfRegard               resp.Field
-		FieldOfView                 resp.Field
-		GroundStationLocations      resp.Field
-		GroundStations              resp.Field
-		HostedForCompanyOrgID       resp.Field
-		IDSensor                    resp.Field
-		ImagingPayloadCategory      resp.Field
-		ManufacturerOrgID           resp.Field
-		Name                        resp.Field
-		Notes                       resp.Field
-		NumberOfFilmReturnCanisters resp.Field
-		Origin                      resp.Field
-		OrigNetwork                 resp.Field
-		PointingMethod              resp.Field
-		RecorderSize                resp.Field
-		SpectralBand                resp.Field
-		SpectralFrequencyLimits     resp.Field
-		SwathWidth                  resp.Field
-		ExtraFields                 map[string]resp.Field
+		ClassificationMarking       respjson.Field
+		DataMode                    respjson.Field
+		Source                      respjson.Field
+		SpacecraftID                respjson.Field
+		ID                          respjson.Field
+		BestResolution              respjson.Field
+		CreatedAt                   respjson.Field
+		CreatedBy                   respjson.Field
+		FieldOfRegard               respjson.Field
+		FieldOfView                 respjson.Field
+		GroundStationLocations      respjson.Field
+		GroundStations              respjson.Field
+		HostedForCompanyOrgID       respjson.Field
+		IDSensor                    respjson.Field
+		ImagingPayloadCategory      respjson.Field
+		ManufacturerOrgID           respjson.Field
+		Name                        respjson.Field
+		Notes                       respjson.Field
+		NumberOfFilmReturnCanisters respjson.Field
+		Origin                      respjson.Field
+		OrigNetwork                 respjson.Field
+		PointingMethod              respjson.Field
+		RecorderSize                respjson.Field
+		SpectralBand                respjson.Field
+		SpectralFrequencyLimits     respjson.Field
+		SwathWidth                  respjson.Field
+		ExtraFields                 map[string]respjson.Field
 		raw                         string
 	} `json:"-"`
 }
@@ -378,37 +378,37 @@ type SeradataOpticalPayloadGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking       resp.Field
-		DataMode                    resp.Field
-		Source                      resp.Field
-		SpacecraftID                resp.Field
-		ID                          resp.Field
-		BestResolution              resp.Field
-		CreatedAt                   resp.Field
-		CreatedBy                   resp.Field
-		FieldOfRegard               resp.Field
-		FieldOfView                 resp.Field
-		GroundStationLocations      resp.Field
-		GroundStations              resp.Field
-		HostedForCompanyOrgID       resp.Field
-		IDSensor                    resp.Field
-		ImagingPayloadCategory      resp.Field
-		ManufacturerOrgID           resp.Field
-		Name                        resp.Field
-		Notes                       resp.Field
-		NumberOfFilmReturnCanisters resp.Field
-		Origin                      resp.Field
-		OrigNetwork                 resp.Field
-		PointingMethod              resp.Field
-		RecorderSize                resp.Field
-		SpectralBand                resp.Field
-		SpectralFrequencyLimits     resp.Field
-		SwathWidth                  resp.Field
-		UpdatedAt                   resp.Field
-		UpdatedBy                   resp.Field
-		ExtraFields                 map[string]resp.Field
+		ClassificationMarking       respjson.Field
+		DataMode                    respjson.Field
+		Source                      respjson.Field
+		SpacecraftID                respjson.Field
+		ID                          respjson.Field
+		BestResolution              respjson.Field
+		CreatedAt                   respjson.Field
+		CreatedBy                   respjson.Field
+		FieldOfRegard               respjson.Field
+		FieldOfView                 respjson.Field
+		GroundStationLocations      respjson.Field
+		GroundStations              respjson.Field
+		HostedForCompanyOrgID       respjson.Field
+		IDSensor                    respjson.Field
+		ImagingPayloadCategory      respjson.Field
+		ManufacturerOrgID           respjson.Field
+		Name                        respjson.Field
+		Notes                       respjson.Field
+		NumberOfFilmReturnCanisters respjson.Field
+		Origin                      respjson.Field
+		OrigNetwork                 respjson.Field
+		PointingMethod              respjson.Field
+		RecorderSize                respjson.Field
+		SpectralBand                respjson.Field
+		SpectralFrequencyLimits     respjson.Field
+		SwathWidth                  respjson.Field
+		UpdatedAt                   respjson.Field
+		UpdatedBy                   respjson.Field
+		ExtraFields                 map[string]respjson.Field
 		raw                         string
 	} `json:"-"`
 }
@@ -523,37 +523,37 @@ type SeradataOpticalPayloadTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking       resp.Field
-		DataMode                    resp.Field
-		Source                      resp.Field
-		SpacecraftID                resp.Field
-		ID                          resp.Field
-		BestResolution              resp.Field
-		CreatedAt                   resp.Field
-		CreatedBy                   resp.Field
-		FieldOfRegard               resp.Field
-		FieldOfView                 resp.Field
-		GroundStationLocations      resp.Field
-		GroundStations              resp.Field
-		HostedForCompanyOrgID       resp.Field
-		IDSensor                    resp.Field
-		ImagingPayloadCategory      resp.Field
-		ManufacturerOrgID           resp.Field
-		Name                        resp.Field
-		Notes                       resp.Field
-		NumberOfFilmReturnCanisters resp.Field
-		Origin                      resp.Field
-		OrigNetwork                 resp.Field
-		PointingMethod              resp.Field
-		RecorderSize                resp.Field
-		SpectralBand                resp.Field
-		SpectralFrequencyLimits     resp.Field
-		SwathWidth                  resp.Field
-		UpdatedAt                   resp.Field
-		UpdatedBy                   resp.Field
-		ExtraFields                 map[string]resp.Field
+		ClassificationMarking       respjson.Field
+		DataMode                    respjson.Field
+		Source                      respjson.Field
+		SpacecraftID                respjson.Field
+		ID                          respjson.Field
+		BestResolution              respjson.Field
+		CreatedAt                   respjson.Field
+		CreatedBy                   respjson.Field
+		FieldOfRegard               respjson.Field
+		FieldOfView                 respjson.Field
+		GroundStationLocations      respjson.Field
+		GroundStations              respjson.Field
+		HostedForCompanyOrgID       respjson.Field
+		IDSensor                    respjson.Field
+		ImagingPayloadCategory      respjson.Field
+		ManufacturerOrgID           respjson.Field
+		Name                        respjson.Field
+		Notes                       respjson.Field
+		NumberOfFilmReturnCanisters respjson.Field
+		Origin                      respjson.Field
+		OrigNetwork                 respjson.Field
+		PointingMethod              respjson.Field
+		RecorderSize                respjson.Field
+		SpectralBand                respjson.Field
+		SpectralFrequencyLimits     respjson.Field
+		SwathWidth                  respjson.Field
+		UpdatedAt                   respjson.Field
+		UpdatedBy                   respjson.Field
+		ExtraFields                 map[string]respjson.Field
 		raw                         string
 	} `json:"-"`
 }

@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // TrackRouteService contains methods and other services that help with interacting
@@ -301,47 +301,47 @@ type TrackRouteListResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		LastUpdateDate        resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		AltitudeBlocks        resp.Field
-		ApnSetting            resp.Field
-		ApxBeaconCode         resp.Field
-		ArtccMessage          resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		CreatingOrg           resp.Field
-		Direction             resp.Field
-		EffectiveDate         resp.Field
-		ExternalID            resp.Field
-		LastUsedDate          resp.Field
-		LocationTrackID       resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Poc                   resp.Field
-		PriFreq               resp.Field
-		ReceiverTankerChCode  resp.Field
-		RegionCode            resp.Field
-		RegionName            resp.Field
-		ReviewDate            resp.Field
-		RoutePoints           resp.Field
-		SchedulerOrgName      resp.Field
-		SchedulerOrgUnit      resp.Field
-		SecFreq               resp.Field
-		ShortName             resp.Field
-		Sic                   resp.Field
-		SourceDl              resp.Field
-		TrackID               resp.Field
-		TrackName             resp.Field
-		TypeCode              resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		LastUpdateDate        respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		AltitudeBlocks        respjson.Field
+		ApnSetting            respjson.Field
+		ApxBeaconCode         respjson.Field
+		ArtccMessage          respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		CreatingOrg           respjson.Field
+		Direction             respjson.Field
+		EffectiveDate         respjson.Field
+		ExternalID            respjson.Field
+		LastUsedDate          respjson.Field
+		LocationTrackID       respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Poc                   respjson.Field
+		PriFreq               respjson.Field
+		ReceiverTankerChCode  respjson.Field
+		RegionCode            respjson.Field
+		RegionName            respjson.Field
+		ReviewDate            respjson.Field
+		RoutePoints           respjson.Field
+		SchedulerOrgName      respjson.Field
+		SchedulerOrgUnit      respjson.Field
+		SecFreq               respjson.Field
+		ShortName             respjson.Field
+		Sic                   respjson.Field
+		SourceDl              respjson.Field
+		TrackID               respjson.Field
+		TrackName             respjson.Field
+		TypeCode              respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -383,12 +383,12 @@ type TrackRouteListResponseAltitudeBlock struct {
 	LowerAltitude float64 `json:"lowerAltitude"`
 	// Highest altitude of the track route altitude block above mean sea level in feet.
 	UpperAltitude float64 `json:"upperAltitude"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AltitudeSequenceID resp.Field
-		LowerAltitude      resp.Field
-		UpperAltitude      resp.Field
-		ExtraFields        map[string]resp.Field
+		AltitudeSequenceID respjson.Field
+		LowerAltitude      respjson.Field
+		UpperAltitude      respjson.Field
+		ExtraFields        map[string]respjson.Field
 		raw                string
 	} `json:"-"`
 }
@@ -420,18 +420,18 @@ type TrackRouteListResponsePoc struct {
 	Remark string `json:"remark"`
 	// The username of the contact.
 	Username string `json:"username"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Office        resp.Field
-		Phone         resp.Field
-		PocName       resp.Field
-		PocOrg        resp.Field
-		PocSequenceID resp.Field
-		PocTypeName   resp.Field
-		Rank          resp.Field
-		Remark        resp.Field
-		Username      resp.Field
-		ExtraFields   map[string]resp.Field
+		Office        respjson.Field
+		Phone         respjson.Field
+		PocName       respjson.Field
+		PocOrg        respjson.Field
+		PocSequenceID respjson.Field
+		PocTypeName   respjson.Field
+		Rank          respjson.Field
+		Remark        respjson.Field
+		Username      respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -483,22 +483,22 @@ type TrackRouteListResponseRoutePoint struct {
 	PtTypeName string `json:"ptTypeName"`
 	// Name of a waypoint which identifies the location of the point.
 	WaypointName string `json:"waypointName"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AltCountryCode resp.Field
-		CountryCode    resp.Field
-		DafifPt        resp.Field
-		MagDec         resp.Field
-		Navaid         resp.Field
-		NavaidLength   resp.Field
-		NavaidType     resp.Field
-		PtLat          resp.Field
-		PtLon          resp.Field
-		PtSequenceID   resp.Field
-		PtTypeCode     resp.Field
-		PtTypeName     resp.Field
-		WaypointName   resp.Field
-		ExtraFields    map[string]resp.Field
+		AltCountryCode respjson.Field
+		CountryCode    respjson.Field
+		DafifPt        respjson.Field
+		MagDec         respjson.Field
+		Navaid         respjson.Field
+		NavaidLength   respjson.Field
+		NavaidType     respjson.Field
+		PtLat          respjson.Field
+		PtLon          respjson.Field
+		PtSequenceID   respjson.Field
+		PtTypeCode     respjson.Field
+		PtTypeName     respjson.Field
+		WaypointName   respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }

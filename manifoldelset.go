@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // ManifoldelsetService contains methods and other services that help with
@@ -282,36 +282,36 @@ type ManifoldelsetListResponse struct {
 	// orbits, the semimajor axis is the distance between the centers of the bodies,
 	// not the distance of the bodies from the center of mass.
 	SemiMajorAxis float64 `json:"semiMajorAxis"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Epoch                 resp.Field
-		IDManifold            resp.Field
-		Source                resp.Field
-		TmpSatNo              resp.Field
-		ID                    resp.Field
-		Apogee                resp.Field
-		ArgOfPerigee          resp.Field
-		BStar                 resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Eccentricity          resp.Field
-		Inclination           resp.Field
-		Line1                 resp.Field
-		Line2                 resp.Field
-		MeanAnomaly           resp.Field
-		MeanMotion            resp.Field
-		MeanMotionDDot        resp.Field
-		MeanMotionDot         resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Perigee               resp.Field
-		Period                resp.Field
-		Raan                  resp.Field
-		RevNo                 resp.Field
-		SemiMajorAxis         resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Epoch                 respjson.Field
+		IDManifold            respjson.Field
+		Source                respjson.Field
+		TmpSatNo              respjson.Field
+		ID                    respjson.Field
+		Apogee                respjson.Field
+		ArgOfPerigee          respjson.Field
+		BStar                 respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Eccentricity          respjson.Field
+		Inclination           respjson.Field
+		Line1                 respjson.Field
+		Line2                 respjson.Field
+		MeanAnomaly           respjson.Field
+		MeanMotion            respjson.Field
+		MeanMotionDDot        respjson.Field
+		MeanMotionDot         respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Perigee               respjson.Field
+		Period                respjson.Field
+		Raan                  respjson.Field
+		RevNo                 respjson.Field
+		SemiMajorAxis         respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -452,38 +452,38 @@ type ManifoldelsetGetResponse struct {
 	// Application user who last updated the row in the database, set by the system
 	// automatically and ignored on create/edit operations.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Epoch                 resp.Field
-		IDManifold            resp.Field
-		Source                resp.Field
-		TmpSatNo              resp.Field
-		ID                    resp.Field
-		Apogee                resp.Field
-		ArgOfPerigee          resp.Field
-		BStar                 resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Eccentricity          resp.Field
-		Inclination           resp.Field
-		Line1                 resp.Field
-		Line2                 resp.Field
-		MeanAnomaly           resp.Field
-		MeanMotion            resp.Field
-		MeanMotionDDot        resp.Field
-		MeanMotionDot         resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Perigee               resp.Field
-		Period                resp.Field
-		Raan                  resp.Field
-		RevNo                 resp.Field
-		SemiMajorAxis         resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Epoch                 respjson.Field
+		IDManifold            respjson.Field
+		Source                respjson.Field
+		TmpSatNo              respjson.Field
+		ID                    respjson.Field
+		Apogee                respjson.Field
+		ArgOfPerigee          respjson.Field
+		BStar                 respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Eccentricity          respjson.Field
+		Inclination           respjson.Field
+		Line1                 respjson.Field
+		Line2                 respjson.Field
+		MeanAnomaly           respjson.Field
+		MeanMotion            respjson.Field
+		MeanMotionDDot        respjson.Field
+		MeanMotionDot         respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Perigee               respjson.Field
+		Period                respjson.Field
+		Raan                  respjson.Field
+		RevNo                 respjson.Field
+		SemiMajorAxis         respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -624,38 +624,38 @@ type ManifoldelsetTupleResponse struct {
 	// Application user who last updated the row in the database, set by the system
 	// automatically and ignored on create/edit operations.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Epoch                 resp.Field
-		IDManifold            resp.Field
-		Source                resp.Field
-		TmpSatNo              resp.Field
-		ID                    resp.Field
-		Apogee                resp.Field
-		ArgOfPerigee          resp.Field
-		BStar                 resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Eccentricity          resp.Field
-		Inclination           resp.Field
-		Line1                 resp.Field
-		Line2                 resp.Field
-		MeanAnomaly           resp.Field
-		MeanMotion            resp.Field
-		MeanMotionDDot        resp.Field
-		MeanMotionDot         resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Perigee               resp.Field
-		Period                resp.Field
-		Raan                  resp.Field
-		RevNo                 resp.Field
-		SemiMajorAxis         resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Epoch                 respjson.Field
+		IDManifold            respjson.Field
+		Source                respjson.Field
+		TmpSatNo              respjson.Field
+		ID                    respjson.Field
+		Apogee                respjson.Field
+		ArgOfPerigee          respjson.Field
+		BStar                 respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Eccentricity          respjson.Field
+		Inclination           respjson.Field
+		Line1                 respjson.Field
+		Line2                 respjson.Field
+		MeanAnomaly           respjson.Field
+		MeanMotion            respjson.Field
+		MeanMotionDDot        respjson.Field
+		MeanMotionDot         respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Perigee               respjson.Field
+		Period                respjson.Field
+		Raan                  respjson.Field
+		RevNo                 respjson.Field
+		SemiMajorAxis         respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
@@ -279,36 +279,36 @@ type AttitudesetAbridged struct {
 	// Attitude ephemeris step size, in seconds. This applies to Attitude Ephemeris
 	// Messages (AEM) that employ a fixed step size.
 	StepSize int64 `json:"stepSize"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		EndTime               resp.Field
-		Frame1                resp.Field
-		Frame2                resp.Field
-		NumPoints             resp.Field
-		Source                resp.Field
-		StartTime             resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EsID                  resp.Field
-		EulerRotSeq           resp.Field
-		IDOnOrbit             resp.Field
-		IDSensor              resp.Field
-		Interpolator          resp.Field
-		InterpolatorDegree    resp.Field
-		Notes                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		OrigSensorID          resp.Field
-		PrecAngleInit         resp.Field
-		SatNo                 resp.Field
-		SpinAngleInit         resp.Field
-		StepSize              resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		EndTime               respjson.Field
+		Frame1                respjson.Field
+		Frame2                respjson.Field
+		NumPoints             respjson.Field
+		Source                respjson.Field
+		StartTime             respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EsID                  respjson.Field
+		EulerRotSeq           respjson.Field
+		IDOnOrbit             respjson.Field
+		IDSensor              respjson.Field
+		Interpolator          respjson.Field
+		InterpolatorDegree    respjson.Field
+		Notes                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		OrigSensorID          respjson.Field
+		PrecAngleInit         respjson.Field
+		SatNo                 respjson.Field
+		SpinAngleInit         respjson.Field
+		StepSize              respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

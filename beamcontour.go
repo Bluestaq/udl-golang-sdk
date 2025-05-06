@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // BeamContourService contains methods and other services that help with
@@ -248,27 +248,27 @@ type BeamcontourAbridged struct {
 	OrigNetwork string `json:"origNetwork"`
 	// The region name within the service area.
 	RegionName string `json:"regionName"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDBeam                resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		ContourIdx            resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Gain                  resp.Field
-		GeographyJson         resp.Field
-		GeographyNdims        resp.Field
-		GeographySrid         resp.Field
-		GeographyText         resp.Field
-		GeographyType         resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		RegionName            resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDBeam                respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		ContourIdx            respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Gain                  respjson.Field
+		GeographyJson         respjson.Field
+		GeographyNdims        respjson.Field
+		GeographySrid         respjson.Field
+		GeographyText         respjson.Field
+		GeographyType         respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		RegionName            respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -408,30 +408,30 @@ type BeamcontourFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDBeam                resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		ContourIdx            resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Gain                  resp.Field
-		Geography             resp.Field
-		GeographyJson         resp.Field
-		GeographyNdims        resp.Field
-		GeographySrid         resp.Field
-		GeographyText         resp.Field
-		GeographyType         resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		RegionName            resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDBeam                respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		ContourIdx            respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Gain                  respjson.Field
+		Geography             respjson.Field
+		GeographyJson         respjson.Field
+		GeographyNdims        respjson.Field
+		GeographySrid         respjson.Field
+		GeographyText         respjson.Field
+		GeographyType         respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		RegionName            respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // AirLoadPlanService contains methods and other services that help with
@@ -334,79 +334,79 @@ type AirloadplanAbridged struct {
 	// The operating weight of the aircraft including cargo, mail, baggage, and
 	// passengers, but without usable fuel, in kilograms.
 	ZeroFuelWeight float64 `json:"zeroFuelWeight"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking    resp.Field
-		DataMode                 resp.Field
-		EstDepTime               resp.Field
-		Source                   resp.Field
-		ID                       resp.Field
-		ACLOnboard               resp.Field
-		ACLReleased              resp.Field
-		AircraftMds              resp.Field
-		AirLoadPlanHazmatActuals resp.Field
-		AirLoadPlanHr            resp.Field
-		AirLoadPlanPalletDetails resp.Field
-		AirLoadPlanPaxCargo      resp.Field
-		AirLoadPlanUlnActuals    resp.Field
-		ArrAirfield              resp.Field
-		ArrIcao                  resp.Field
-		AvailableTime            resp.Field
-		BasicMoment              resp.Field
-		BasicWeight              resp.Field
-		BriefTime                resp.Field
-		CallSign                 resp.Field
-		CargoBayFsMax            resp.Field
-		CargoBayFsMin            resp.Field
-		CargoBayWidth            resp.Field
-		CargoConfig              resp.Field
-		CargoMoment              resp.Field
-		CargoVolume              resp.Field
-		CargoWeight              resp.Field
-		CreatedAt                resp.Field
-		CreatedBy                resp.Field
-		CrewSize                 resp.Field
-		DepAirfield              resp.Field
-		DepIcao                  resp.Field
-		EquipConfig              resp.Field
-		EstArrTime               resp.Field
-		EstLandingFuelMoment     resp.Field
-		EstLandingFuelWeight     resp.Field
-		ExternalID               resp.Field
-		FuelMoment               resp.Field
-		FuelWeight               resp.Field
-		GrossCg                  resp.Field
-		GrossMoment              resp.Field
-		GrossWeight              resp.Field
-		IDMission                resp.Field
-		IDSortie                 resp.Field
-		LandingCg                resp.Field
-		LandingMoment            resp.Field
-		LandingWeight            resp.Field
-		LegNum                   resp.Field
-		LoadmasterName           resp.Field
-		LoadmasterRank           resp.Field
-		LoadRemarks              resp.Field
-		MissionNumber            resp.Field
-		OperatingMoment          resp.Field
-		OperatingWeight          resp.Field
-		Origin                   resp.Field
-		OrigNetwork              resp.Field
-		PpOnboard                resp.Field
-		PpReleased               resp.Field
-		SchedTime                resp.Field
-		SeatsOnboard             resp.Field
-		SeatsReleased            resp.Field
-		SourceDl                 resp.Field
-		TailNumber               resp.Field
-		TankConfig               resp.Field
-		UpdatedAt                resp.Field
-		UpdatedBy                resp.Field
-		UtilCode                 resp.Field
-		ZeroFuelCg               resp.Field
-		ZeroFuelMoment           resp.Field
-		ZeroFuelWeight           resp.Field
-		ExtraFields              map[string]resp.Field
+		ClassificationMarking    respjson.Field
+		DataMode                 respjson.Field
+		EstDepTime               respjson.Field
+		Source                   respjson.Field
+		ID                       respjson.Field
+		ACLOnboard               respjson.Field
+		ACLReleased              respjson.Field
+		AircraftMds              respjson.Field
+		AirLoadPlanHazmatActuals respjson.Field
+		AirLoadPlanHr            respjson.Field
+		AirLoadPlanPalletDetails respjson.Field
+		AirLoadPlanPaxCargo      respjson.Field
+		AirLoadPlanUlnActuals    respjson.Field
+		ArrAirfield              respjson.Field
+		ArrIcao                  respjson.Field
+		AvailableTime            respjson.Field
+		BasicMoment              respjson.Field
+		BasicWeight              respjson.Field
+		BriefTime                respjson.Field
+		CallSign                 respjson.Field
+		CargoBayFsMax            respjson.Field
+		CargoBayFsMin            respjson.Field
+		CargoBayWidth            respjson.Field
+		CargoConfig              respjson.Field
+		CargoMoment              respjson.Field
+		CargoVolume              respjson.Field
+		CargoWeight              respjson.Field
+		CreatedAt                respjson.Field
+		CreatedBy                respjson.Field
+		CrewSize                 respjson.Field
+		DepAirfield              respjson.Field
+		DepIcao                  respjson.Field
+		EquipConfig              respjson.Field
+		EstArrTime               respjson.Field
+		EstLandingFuelMoment     respjson.Field
+		EstLandingFuelWeight     respjson.Field
+		ExternalID               respjson.Field
+		FuelMoment               respjson.Field
+		FuelWeight               respjson.Field
+		GrossCg                  respjson.Field
+		GrossMoment              respjson.Field
+		GrossWeight              respjson.Field
+		IDMission                respjson.Field
+		IDSortie                 respjson.Field
+		LandingCg                respjson.Field
+		LandingMoment            respjson.Field
+		LandingWeight            respjson.Field
+		LegNum                   respjson.Field
+		LoadmasterName           respjson.Field
+		LoadmasterRank           respjson.Field
+		LoadRemarks              respjson.Field
+		MissionNumber            respjson.Field
+		OperatingMoment          respjson.Field
+		OperatingWeight          respjson.Field
+		Origin                   respjson.Field
+		OrigNetwork              respjson.Field
+		PpOnboard                respjson.Field
+		PpReleased               respjson.Field
+		SchedTime                respjson.Field
+		SeatsOnboard             respjson.Field
+		SeatsReleased            respjson.Field
+		SourceDl                 respjson.Field
+		TailNumber               respjson.Field
+		TankConfig               respjson.Field
+		UpdatedAt                respjson.Field
+		UpdatedBy                respjson.Field
+		UtilCode                 respjson.Field
+		ZeroFuelCg               respjson.Field
+		ZeroFuelMoment           respjson.Field
+		ZeroFuelWeight           respjson.Field
+		ExtraFields              map[string]respjson.Field
 		raw                      string
 	} `json:"-"`
 }
@@ -486,26 +486,26 @@ type AirloadplanAbridgedAirLoadPlanHazmatActual struct {
 	LotNum string `json:"lotNum"`
 	// Net explosive weight of the hazardous material, in kilograms.
 	NetExpWt float64 `json:"netExpWt"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Ashc           resp.Field
-		Cgc            resp.Field
-		ClassDiv       resp.Field
-		HazDescription resp.Field
-		HazmatRemarks  resp.Field
-		HazNum         resp.Field
-		HazNumType     resp.Field
-		HazOffIcao     resp.Field
-		HazOffItin     resp.Field
-		HazOnIcao      resp.Field
-		HazOnItin      resp.Field
-		HazPieces      resp.Field
-		HazTcn         resp.Field
-		HazWeight      resp.Field
-		ItemName       resp.Field
-		LotNum         resp.Field
-		NetExpWt       resp.Field
-		ExtraFields    map[string]resp.Field
+		Ashc           respjson.Field
+		Cgc            respjson.Field
+		ClassDiv       respjson.Field
+		HazDescription respjson.Field
+		HazmatRemarks  respjson.Field
+		HazNum         respjson.Field
+		HazNumType     respjson.Field
+		HazOffIcao     respjson.Field
+		HazOffItin     respjson.Field
+		HazOnIcao      respjson.Field
+		HazOnItin      respjson.Field
+		HazPieces      respjson.Field
+		HazTcn         respjson.Field
+		HazWeight      respjson.Field
+		ItemName       respjson.Field
+		LotNum         respjson.Field
+		NetExpWt       respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }
@@ -549,22 +549,22 @@ type AirloadplanAbridgedAirLoadPlanHr struct {
 	Service string `json:"service"`
 	// Flag indicating if the remains are viewable.
 	Viewable bool `json:"viewable"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Container    resp.Field
-		Escort       resp.Field
-		HrEstArrTime resp.Field
-		HrOffIcao    resp.Field
-		HrOffItin    resp.Field
-		HrOnIcao     resp.Field
-		HrOnItin     resp.Field
-		HrRemarks    resp.Field
-		Name         resp.Field
-		Rank         resp.Field
-		RecAgency    resp.Field
-		Service      resp.Field
-		Viewable     resp.Field
-		ExtraFields  map[string]resp.Field
+		Container    respjson.Field
+		Escort       respjson.Field
+		HrEstArrTime respjson.Field
+		HrOffIcao    respjson.Field
+		HrOffItin    respjson.Field
+		HrOnIcao     respjson.Field
+		HrOnItin     respjson.Field
+		HrRemarks    respjson.Field
+		Name         respjson.Field
+		Rank         respjson.Field
+		RecAgency    respjson.Field
+		Service      respjson.Field
+		Viewable     respjson.Field
+		ExtraFields  map[string]respjson.Field
 		raw          string
 	} `json:"-"`
 }
@@ -597,18 +597,18 @@ type AirloadplanAbridgedAirLoadPlanPalletDetail struct {
 	PpWeight float64 `json:"ppWeight"`
 	// Flag indicating if this cargo is considered special interest.
 	SpecialInterest bool `json:"specialInterest"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Category        resp.Field
-		Pp              resp.Field
-		PpDescription   resp.Field
-		PpOffIcao       resp.Field
-		PpPieces        resp.Field
-		PpRemarks       resp.Field
-		PpTcn           resp.Field
-		PpWeight        resp.Field
-		SpecialInterest resp.Field
-		ExtraFields     map[string]resp.Field
+		Category        respjson.Field
+		Pp              respjson.Field
+		PpDescription   respjson.Field
+		PpOffIcao       respjson.Field
+		PpPieces        respjson.Field
+		PpRemarks       respjson.Field
+		PpTcn           respjson.Field
+		PpWeight        respjson.Field
+		SpecialInterest respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -653,24 +653,24 @@ type AirloadplanAbridgedAirLoadPlanPaxCargo struct {
 	PaxWeight float64 `json:"paxWeight"`
 	// Number of space required passengers in this group.
 	RequiredPax int64 `json:"requiredPax"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AmbPax           resp.Field
-		AttPax           resp.Field
-		AvailablePax     resp.Field
-		BagWeight        resp.Field
-		CivPax           resp.Field
-		DvPax            resp.Field
-		FnPax            resp.Field
-		GroupCargoWeight resp.Field
-		GroupType        resp.Field
-		LitPax           resp.Field
-		MailWeight       resp.Field
-		NumPallet        resp.Field
-		PalletWeight     resp.Field
-		PaxWeight        resp.Field
-		RequiredPax      resp.Field
-		ExtraFields      map[string]resp.Field
+		AmbPax           respjson.Field
+		AttPax           respjson.Field
+		AvailablePax     respjson.Field
+		BagWeight        respjson.Field
+		CivPax           respjson.Field
+		DvPax            respjson.Field
+		FnPax            respjson.Field
+		GroupCargoWeight respjson.Field
+		GroupType        respjson.Field
+		LitPax           respjson.Field
+		MailWeight       respjson.Field
+		NumPallet        respjson.Field
+		PalletWeight     respjson.Field
+		PaxWeight        respjson.Field
+		RequiredPax      respjson.Field
+		ExtraFields      map[string]respjson.Field
 		raw              string
 	} `json:"-"`
 }
@@ -710,22 +710,22 @@ type AirloadplanAbridgedAirLoadPlanUlnActual struct {
 	UlnCargoWeight float64 `json:"ulnCargoWeight"`
 	// Remarks concerning these unit line number actuals.
 	UlnRemarks string `json:"ulnRemarks"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		NumAmbulatory  resp.Field
-		NumAttendant   resp.Field
-		NumLitter      resp.Field
-		NumPax         resp.Field
-		OffloadID      resp.Field
-		OffloadLoCode  resp.Field
-		OnloadID       resp.Field
-		OnloadLoCode   resp.Field
-		Oplan          resp.Field
-		ProjName       resp.Field
-		Uln            resp.Field
-		UlnCargoWeight resp.Field
-		UlnRemarks     resp.Field
-		ExtraFields    map[string]resp.Field
+		NumAmbulatory  respjson.Field
+		NumAttendant   respjson.Field
+		NumLitter      respjson.Field
+		NumPax         respjson.Field
+		OffloadID      respjson.Field
+		OffloadLoCode  respjson.Field
+		OnloadID       respjson.Field
+		OnloadLoCode   respjson.Field
+		Oplan          respjson.Field
+		ProjName       respjson.Field
+		Uln            respjson.Field
+		UlnCargoWeight respjson.Field
+		UlnRemarks     respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }
@@ -941,79 +941,79 @@ type AirloadplanFull struct {
 	// The operating weight of the aircraft including cargo, mail, baggage, and
 	// passengers, but without usable fuel, in kilograms.
 	ZeroFuelWeight float64 `json:"zeroFuelWeight"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking    resp.Field
-		DataMode                 resp.Field
-		EstDepTime               resp.Field
-		Source                   resp.Field
-		ID                       resp.Field
-		ACLOnboard               resp.Field
-		ACLReleased              resp.Field
-		AircraftMds              resp.Field
-		AirLoadPlanHazmatActuals resp.Field
-		AirLoadPlanHr            resp.Field
-		AirLoadPlanPalletDetails resp.Field
-		AirLoadPlanPaxCargo      resp.Field
-		AirLoadPlanUlnActuals    resp.Field
-		ArrAirfield              resp.Field
-		ArrIcao                  resp.Field
-		AvailableTime            resp.Field
-		BasicMoment              resp.Field
-		BasicWeight              resp.Field
-		BriefTime                resp.Field
-		CallSign                 resp.Field
-		CargoBayFsMax            resp.Field
-		CargoBayFsMin            resp.Field
-		CargoBayWidth            resp.Field
-		CargoConfig              resp.Field
-		CargoMoment              resp.Field
-		CargoVolume              resp.Field
-		CargoWeight              resp.Field
-		CreatedAt                resp.Field
-		CreatedBy                resp.Field
-		CrewSize                 resp.Field
-		DepAirfield              resp.Field
-		DepIcao                  resp.Field
-		EquipConfig              resp.Field
-		EstArrTime               resp.Field
-		EstLandingFuelMoment     resp.Field
-		EstLandingFuelWeight     resp.Field
-		ExternalID               resp.Field
-		FuelMoment               resp.Field
-		FuelWeight               resp.Field
-		GrossCg                  resp.Field
-		GrossMoment              resp.Field
-		GrossWeight              resp.Field
-		IDMission                resp.Field
-		IDSortie                 resp.Field
-		LandingCg                resp.Field
-		LandingMoment            resp.Field
-		LandingWeight            resp.Field
-		LegNum                   resp.Field
-		LoadmasterName           resp.Field
-		LoadmasterRank           resp.Field
-		LoadRemarks              resp.Field
-		MissionNumber            resp.Field
-		OperatingMoment          resp.Field
-		OperatingWeight          resp.Field
-		Origin                   resp.Field
-		OrigNetwork              resp.Field
-		PpOnboard                resp.Field
-		PpReleased               resp.Field
-		SchedTime                resp.Field
-		SeatsOnboard             resp.Field
-		SeatsReleased            resp.Field
-		SourceDl                 resp.Field
-		TailNumber               resp.Field
-		TankConfig               resp.Field
-		UpdatedAt                resp.Field
-		UpdatedBy                resp.Field
-		UtilCode                 resp.Field
-		ZeroFuelCg               resp.Field
-		ZeroFuelMoment           resp.Field
-		ZeroFuelWeight           resp.Field
-		ExtraFields              map[string]resp.Field
+		ClassificationMarking    respjson.Field
+		DataMode                 respjson.Field
+		EstDepTime               respjson.Field
+		Source                   respjson.Field
+		ID                       respjson.Field
+		ACLOnboard               respjson.Field
+		ACLReleased              respjson.Field
+		AircraftMds              respjson.Field
+		AirLoadPlanHazmatActuals respjson.Field
+		AirLoadPlanHr            respjson.Field
+		AirLoadPlanPalletDetails respjson.Field
+		AirLoadPlanPaxCargo      respjson.Field
+		AirLoadPlanUlnActuals    respjson.Field
+		ArrAirfield              respjson.Field
+		ArrIcao                  respjson.Field
+		AvailableTime            respjson.Field
+		BasicMoment              respjson.Field
+		BasicWeight              respjson.Field
+		BriefTime                respjson.Field
+		CallSign                 respjson.Field
+		CargoBayFsMax            respjson.Field
+		CargoBayFsMin            respjson.Field
+		CargoBayWidth            respjson.Field
+		CargoConfig              respjson.Field
+		CargoMoment              respjson.Field
+		CargoVolume              respjson.Field
+		CargoWeight              respjson.Field
+		CreatedAt                respjson.Field
+		CreatedBy                respjson.Field
+		CrewSize                 respjson.Field
+		DepAirfield              respjson.Field
+		DepIcao                  respjson.Field
+		EquipConfig              respjson.Field
+		EstArrTime               respjson.Field
+		EstLandingFuelMoment     respjson.Field
+		EstLandingFuelWeight     respjson.Field
+		ExternalID               respjson.Field
+		FuelMoment               respjson.Field
+		FuelWeight               respjson.Field
+		GrossCg                  respjson.Field
+		GrossMoment              respjson.Field
+		GrossWeight              respjson.Field
+		IDMission                respjson.Field
+		IDSortie                 respjson.Field
+		LandingCg                respjson.Field
+		LandingMoment            respjson.Field
+		LandingWeight            respjson.Field
+		LegNum                   respjson.Field
+		LoadmasterName           respjson.Field
+		LoadmasterRank           respjson.Field
+		LoadRemarks              respjson.Field
+		MissionNumber            respjson.Field
+		OperatingMoment          respjson.Field
+		OperatingWeight          respjson.Field
+		Origin                   respjson.Field
+		OrigNetwork              respjson.Field
+		PpOnboard                respjson.Field
+		PpReleased               respjson.Field
+		SchedTime                respjson.Field
+		SeatsOnboard             respjson.Field
+		SeatsReleased            respjson.Field
+		SourceDl                 respjson.Field
+		TailNumber               respjson.Field
+		TankConfig               respjson.Field
+		UpdatedAt                respjson.Field
+		UpdatedBy                respjson.Field
+		UtilCode                 respjson.Field
+		ZeroFuelCg               respjson.Field
+		ZeroFuelMoment           respjson.Field
+		ZeroFuelWeight           respjson.Field
+		ExtraFields              map[string]respjson.Field
 		raw                      string
 	} `json:"-"`
 }
@@ -1093,26 +1093,26 @@ type AirloadplanFullAirLoadPlanHazmatActual struct {
 	LotNum string `json:"lotNum"`
 	// Net explosive weight of the hazardous material, in kilograms.
 	NetExpWt float64 `json:"netExpWt"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Ashc           resp.Field
-		Cgc            resp.Field
-		ClassDiv       resp.Field
-		HazDescription resp.Field
-		HazmatRemarks  resp.Field
-		HazNum         resp.Field
-		HazNumType     resp.Field
-		HazOffIcao     resp.Field
-		HazOffItin     resp.Field
-		HazOnIcao      resp.Field
-		HazOnItin      resp.Field
-		HazPieces      resp.Field
-		HazTcn         resp.Field
-		HazWeight      resp.Field
-		ItemName       resp.Field
-		LotNum         resp.Field
-		NetExpWt       resp.Field
-		ExtraFields    map[string]resp.Field
+		Ashc           respjson.Field
+		Cgc            respjson.Field
+		ClassDiv       respjson.Field
+		HazDescription respjson.Field
+		HazmatRemarks  respjson.Field
+		HazNum         respjson.Field
+		HazNumType     respjson.Field
+		HazOffIcao     respjson.Field
+		HazOffItin     respjson.Field
+		HazOnIcao      respjson.Field
+		HazOnItin      respjson.Field
+		HazPieces      respjson.Field
+		HazTcn         respjson.Field
+		HazWeight      respjson.Field
+		ItemName       respjson.Field
+		LotNum         respjson.Field
+		NetExpWt       respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }
@@ -1156,22 +1156,22 @@ type AirloadplanFullAirLoadPlanHr struct {
 	Service string `json:"service"`
 	// Flag indicating if the remains are viewable.
 	Viewable bool `json:"viewable"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Container    resp.Field
-		Escort       resp.Field
-		HrEstArrTime resp.Field
-		HrOffIcao    resp.Field
-		HrOffItin    resp.Field
-		HrOnIcao     resp.Field
-		HrOnItin     resp.Field
-		HrRemarks    resp.Field
-		Name         resp.Field
-		Rank         resp.Field
-		RecAgency    resp.Field
-		Service      resp.Field
-		Viewable     resp.Field
-		ExtraFields  map[string]resp.Field
+		Container    respjson.Field
+		Escort       respjson.Field
+		HrEstArrTime respjson.Field
+		HrOffIcao    respjson.Field
+		HrOffItin    respjson.Field
+		HrOnIcao     respjson.Field
+		HrOnItin     respjson.Field
+		HrRemarks    respjson.Field
+		Name         respjson.Field
+		Rank         respjson.Field
+		RecAgency    respjson.Field
+		Service      respjson.Field
+		Viewable     respjson.Field
+		ExtraFields  map[string]respjson.Field
 		raw          string
 	} `json:"-"`
 }
@@ -1204,18 +1204,18 @@ type AirloadplanFullAirLoadPlanPalletDetail struct {
 	PpWeight float64 `json:"ppWeight"`
 	// Flag indicating if this cargo is considered special interest.
 	SpecialInterest bool `json:"specialInterest"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Category        resp.Field
-		Pp              resp.Field
-		PpDescription   resp.Field
-		PpOffIcao       resp.Field
-		PpPieces        resp.Field
-		PpRemarks       resp.Field
-		PpTcn           resp.Field
-		PpWeight        resp.Field
-		SpecialInterest resp.Field
-		ExtraFields     map[string]resp.Field
+		Category        respjson.Field
+		Pp              respjson.Field
+		PpDescription   respjson.Field
+		PpOffIcao       respjson.Field
+		PpPieces        respjson.Field
+		PpRemarks       respjson.Field
+		PpTcn           respjson.Field
+		PpWeight        respjson.Field
+		SpecialInterest respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -1260,24 +1260,24 @@ type AirloadplanFullAirLoadPlanPaxCargo struct {
 	PaxWeight float64 `json:"paxWeight"`
 	// Number of space required passengers in this group.
 	RequiredPax int64 `json:"requiredPax"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AmbPax           resp.Field
-		AttPax           resp.Field
-		AvailablePax     resp.Field
-		BagWeight        resp.Field
-		CivPax           resp.Field
-		DvPax            resp.Field
-		FnPax            resp.Field
-		GroupCargoWeight resp.Field
-		GroupType        resp.Field
-		LitPax           resp.Field
-		MailWeight       resp.Field
-		NumPallet        resp.Field
-		PalletWeight     resp.Field
-		PaxWeight        resp.Field
-		RequiredPax      resp.Field
-		ExtraFields      map[string]resp.Field
+		AmbPax           respjson.Field
+		AttPax           respjson.Field
+		AvailablePax     respjson.Field
+		BagWeight        respjson.Field
+		CivPax           respjson.Field
+		DvPax            respjson.Field
+		FnPax            respjson.Field
+		GroupCargoWeight respjson.Field
+		GroupType        respjson.Field
+		LitPax           respjson.Field
+		MailWeight       respjson.Field
+		NumPallet        respjson.Field
+		PalletWeight     respjson.Field
+		PaxWeight        respjson.Field
+		RequiredPax      respjson.Field
+		ExtraFields      map[string]respjson.Field
 		raw              string
 	} `json:"-"`
 }
@@ -1317,22 +1317,22 @@ type AirloadplanFullAirLoadPlanUlnActual struct {
 	UlnCargoWeight float64 `json:"ulnCargoWeight"`
 	// Remarks concerning these unit line number actuals.
 	UlnRemarks string `json:"ulnRemarks"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		NumAmbulatory  resp.Field
-		NumAttendant   resp.Field
-		NumLitter      resp.Field
-		NumPax         resp.Field
-		OffloadID      resp.Field
-		OffloadLoCode  resp.Field
-		OnloadID       resp.Field
-		OnloadLoCode   resp.Field
-		Oplan          resp.Field
-		ProjName       resp.Field
-		Uln            resp.Field
-		UlnCargoWeight resp.Field
-		UlnRemarks     resp.Field
-		ExtraFields    map[string]resp.Field
+		NumAmbulatory  respjson.Field
+		NumAttendant   respjson.Field
+		NumLitter      respjson.Field
+		NumPax         respjson.Field
+		OffloadID      respjson.Field
+		OffloadLoCode  respjson.Field
+		OnloadID       respjson.Field
+		OnloadLoCode   respjson.Field
+		Oplan          respjson.Field
+		ProjName       respjson.Field
+		Uln            respjson.Field
+		UlnCargoWeight respjson.Field
+		UlnRemarks     respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }

@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // IonoObservationHistoryService contains methods and other services that help with
@@ -363,117 +363,117 @@ type IonoObservationHistoryListResponse struct {
 	ZhalfNm float64 `json:"zhalfNm"`
 	// Peak height of E-layer in km. URSI ID: 90.
 	ZmE float64 `json:"zmE"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                  resp.Field
-		DataMode                               resp.Field
-		Source                                 resp.Field
-		StartTimeUtc                           resp.Field
-		StationID                              resp.Field
-		System                                 resp.Field
-		SystemInfo                             resp.Field
-		ID                                     resp.Field
-		Amplitude                              resp.Field
-		AntennaElementPosition                 resp.Field
-		AntennaElementPositionCoordinateSystem resp.Field
-		ArtistFlags                            resp.Field
-		Azimuth                                resp.Field
-		B0                                     resp.Field
-		B1                                     resp.Field
-		CharAtts                               resp.Field
-		CreatedAt                              resp.Field
-		CreatedBy                              resp.Field
-		D                                      resp.Field
-		D1                                     resp.Field
-		Datum                                  resp.Field
-		DeltafoF2                              resp.Field
-		DensityProfile                         resp.Field
-		Doppler                                resp.Field
-		DownE                                  resp.Field
-		DownEs                                 resp.Field
-		DownF                                  resp.Field
-		ElectronDensity                        resp.Field
-		ElectronDensityUncertainty             resp.Field
-		Elevation                              resp.Field
-		FbEs                                   resp.Field
-		Fe                                     resp.Field
-		Ff                                     resp.Field
-		FhprimeF                               resp.Field
-		FhprimeF2                              resp.Field
-		Fmin                                   resp.Field
-		FminE                                  resp.Field
-		FminEs                                 resp.Field
-		FminF                                  resp.Field
-		Fmuf                                   resp.Field
-		FoE                                    resp.Field
-		FoEa                                   resp.Field
-		FoEp                                   resp.Field
-		FoEs                                   resp.Field
-		FoF1                                   resp.Field
-		FoF1p                                  resp.Field
-		FoF2                                   resp.Field
-		FoF2p                                  resp.Field
-		FoP                                    resp.Field
-		Frequency                              resp.Field
-		FxE                                    resp.Field
-		FxF1                                   resp.Field
-		FxF2                                   resp.Field
-		FxI                                    resp.Field
-		Height                                 resp.Field
-		HmE                                    resp.Field
-		HmF1                                   resp.Field
-		HmF2                                   resp.Field
-		HprimeE                                resp.Field
-		HprimeEa                               resp.Field
-		HprimeEs                               resp.Field
-		HprimeF                                resp.Field
-		HprimeF1                               resp.Field
-		HprimeF2                               resp.Field
-		HprimefMuf                             resp.Field
-		HprimeP                                resp.Field
-		IDSensor                               resp.Field
-		Luf                                    resp.Field
-		Md                                     resp.Field
-		Mufd                                   resp.Field
-		NeProfileName                          resp.Field
-		NeProfileVersion                       resp.Field
-		Origin                                 resp.Field
-		OrigNetwork                            resp.Field
-		OrigSensorID                           resp.Field
-		Phase                                  resp.Field
-		PlasmaFrequency                        resp.Field
-		PlasmaFrequencyUncertainty             resp.Field
-		PlatformName                           resp.Field
-		Polarization                           resp.Field
-		Power                                  resp.Field
-		Qe                                     resp.Field
-		Qf                                     resp.Field
-		Range                                  resp.Field
-		ReceiveCoordinates                     resp.Field
-		ReceiveSensorType                      resp.Field
-		RestrictedFrequency                    resp.Field
-		RestrictedFrequencyNotes               resp.Field
-		ScaleHeightF2Peak                      resp.Field
-		ScalerInfo                             resp.Field
-		Stokes                                 resp.Field
-		SystemNotes                            resp.Field
-		Tec                                    resp.Field
-		TidAzimuth                             resp.Field
-		TidPeriods                             resp.Field
-		TidPhaseSpeeds                         resp.Field
-		Time                                   resp.Field
-		TraceGeneric                           resp.Field
-		TransmitCoordinates                    resp.Field
-		TransmitSensorType                     resp.Field
-		TypeEs                                 resp.Field
-		UpdatedAt                              resp.Field
-		UpdatedBy                              resp.Field
-		YE                                     resp.Field
-		YF1                                    resp.Field
-		YF2                                    resp.Field
-		ZhalfNm                                resp.Field
-		ZmE                                    resp.Field
-		ExtraFields                            map[string]resp.Field
+		ClassificationMarking                  respjson.Field
+		DataMode                               respjson.Field
+		Source                                 respjson.Field
+		StartTimeUtc                           respjson.Field
+		StationID                              respjson.Field
+		System                                 respjson.Field
+		SystemInfo                             respjson.Field
+		ID                                     respjson.Field
+		Amplitude                              respjson.Field
+		AntennaElementPosition                 respjson.Field
+		AntennaElementPositionCoordinateSystem respjson.Field
+		ArtistFlags                            respjson.Field
+		Azimuth                                respjson.Field
+		B0                                     respjson.Field
+		B1                                     respjson.Field
+		CharAtts                               respjson.Field
+		CreatedAt                              respjson.Field
+		CreatedBy                              respjson.Field
+		D                                      respjson.Field
+		D1                                     respjson.Field
+		Datum                                  respjson.Field
+		DeltafoF2                              respjson.Field
+		DensityProfile                         respjson.Field
+		Doppler                                respjson.Field
+		DownE                                  respjson.Field
+		DownEs                                 respjson.Field
+		DownF                                  respjson.Field
+		ElectronDensity                        respjson.Field
+		ElectronDensityUncertainty             respjson.Field
+		Elevation                              respjson.Field
+		FbEs                                   respjson.Field
+		Fe                                     respjson.Field
+		Ff                                     respjson.Field
+		FhprimeF                               respjson.Field
+		FhprimeF2                              respjson.Field
+		Fmin                                   respjson.Field
+		FminE                                  respjson.Field
+		FminEs                                 respjson.Field
+		FminF                                  respjson.Field
+		Fmuf                                   respjson.Field
+		FoE                                    respjson.Field
+		FoEa                                   respjson.Field
+		FoEp                                   respjson.Field
+		FoEs                                   respjson.Field
+		FoF1                                   respjson.Field
+		FoF1p                                  respjson.Field
+		FoF2                                   respjson.Field
+		FoF2p                                  respjson.Field
+		FoP                                    respjson.Field
+		Frequency                              respjson.Field
+		FxE                                    respjson.Field
+		FxF1                                   respjson.Field
+		FxF2                                   respjson.Field
+		FxI                                    respjson.Field
+		Height                                 respjson.Field
+		HmE                                    respjson.Field
+		HmF1                                   respjson.Field
+		HmF2                                   respjson.Field
+		HprimeE                                respjson.Field
+		HprimeEa                               respjson.Field
+		HprimeEs                               respjson.Field
+		HprimeF                                respjson.Field
+		HprimeF1                               respjson.Field
+		HprimeF2                               respjson.Field
+		HprimefMuf                             respjson.Field
+		HprimeP                                respjson.Field
+		IDSensor                               respjson.Field
+		Luf                                    respjson.Field
+		Md                                     respjson.Field
+		Mufd                                   respjson.Field
+		NeProfileName                          respjson.Field
+		NeProfileVersion                       respjson.Field
+		Origin                                 respjson.Field
+		OrigNetwork                            respjson.Field
+		OrigSensorID                           respjson.Field
+		Phase                                  respjson.Field
+		PlasmaFrequency                        respjson.Field
+		PlasmaFrequencyUncertainty             respjson.Field
+		PlatformName                           respjson.Field
+		Polarization                           respjson.Field
+		Power                                  respjson.Field
+		Qe                                     respjson.Field
+		Qf                                     respjson.Field
+		Range                                  respjson.Field
+		ReceiveCoordinates                     respjson.Field
+		ReceiveSensorType                      respjson.Field
+		RestrictedFrequency                    respjson.Field
+		RestrictedFrequencyNotes               respjson.Field
+		ScaleHeightF2Peak                      respjson.Field
+		ScalerInfo                             respjson.Field
+		Stokes                                 respjson.Field
+		SystemNotes                            respjson.Field
+		Tec                                    respjson.Field
+		TidAzimuth                             respjson.Field
+		TidPeriods                             respjson.Field
+		TidPhaseSpeeds                         respjson.Field
+		Time                                   respjson.Field
+		TraceGeneric                           respjson.Field
+		TransmitCoordinates                    respjson.Field
+		TransmitSensorType                     respjson.Field
+		TypeEs                                 respjson.Field
+		UpdatedAt                              respjson.Field
+		UpdatedBy                              respjson.Field
+		YE                                     respjson.Field
+		YF1                                    respjson.Field
+		YF2                                    respjson.Field
+		ZhalfNm                                respjson.Field
+		ZmE                                    respjson.Field
+		ExtraFields                            map[string]respjson.Field
 		raw                                    string
 	} `json:"-"`
 }
@@ -516,13 +516,13 @@ type IonoObservationHistoryListResponseAmplitude struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the amplitude data.
 	Notes string `json:"notes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Data          resp.Field
-		DimensionName resp.Field
-		Dimensions    resp.Field
-		Notes         resp.Field
-		ExtraFields   map[string]resp.Field
+		Data          respjson.Field
+		DimensionName respjson.Field
+		Dimensions    respjson.Field
+		Notes         respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -540,12 +540,12 @@ type IonoObservationHistoryListResponseAntennaElementPosition struct {
 	DimensionName []string `json:"dimensionName"`
 	// Array of integers of the antenna_element dimensions.
 	Dimensions []int64 `json:"dimensions"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Data          resp.Field
-		DimensionName resp.Field
-		Dimensions    resp.Field
-		ExtraFields   map[string]resp.Field
+		Data          respjson.Field
+		DimensionName respjson.Field
+		Dimensions    respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -578,13 +578,13 @@ type IonoObservationHistoryListResponseAzimuth struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the azimuth data.
 	Notes string `json:"notes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Data          resp.Field
-		DimensionName resp.Field
-		Dimensions    resp.Field
-		Notes         resp.Field
-		ExtraFields   map[string]resp.Field
+		Data          respjson.Field
+		DimensionName respjson.Field
+		Dimensions    respjson.Field
+		Notes         respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -626,19 +626,19 @@ type IonoObservationHistoryListResponseCharAtt struct {
 	// Characteristic's URSI ID. See the characteristic's description for its
 	// corresponding URSI ID.
 	UrsiID string `json:"ursiID"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CharName                resp.Field
-		ClimateModelInputParams resp.Field
-		ClimateModelName        resp.Field
-		ClimateModelOptions     resp.Field
-		D                       resp.Field
-		LowerBound              resp.Field
-		Q                       resp.Field
-		UncertaintyBoundType    resp.Field
-		UpperBound              resp.Field
-		UrsiID                  resp.Field
-		ExtraFields             map[string]resp.Field
+		CharName                respjson.Field
+		ClimateModelInputParams respjson.Field
+		ClimateModelName        respjson.Field
+		ClimateModelOptions     respjson.Field
+		D                       respjson.Field
+		LowerBound              respjson.Field
+		Q                       respjson.Field
+		UncertaintyBoundType    respjson.Field
+		UpperBound              respjson.Field
+		UrsiID                  respjson.Field
+		ExtraFields             map[string]respjson.Field
 		raw                     string
 	} `json:"-"`
 }
@@ -654,11 +654,11 @@ type IonoObservationHistoryListResponseDatum struct {
 	Data []float64 `json:"data"`
 	// Notes for the datum with details of what the data is, units, etc.
 	Notes string `json:"notes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Data        resp.Field
-		Notes       resp.Field
-		ExtraFields map[string]resp.Field
+		Data        respjson.Field
+		Notes       respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -689,17 +689,17 @@ type IonoObservationHistoryListResponseDensityProfile struct {
 	ValleyModelCoeffs []float64 `json:"valleyModelCoeffs"`
 	// Description of the valley model and parameters.
 	ValleyModelDescription string `json:"valleyModelDescription"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Iri                          resp.Field
-		Parabolic                    resp.Field
-		QuasiParabolic               resp.Field
-		ShiftedChebyshev             resp.Field
-		TopsideExtensionChapmanConst resp.Field
-		TopsideExtensionVaryChap     resp.Field
-		ValleyModelCoeffs            resp.Field
-		ValleyModelDescription       resp.Field
-		ExtraFields                  map[string]resp.Field
+		Iri                          respjson.Field
+		Parabolic                    respjson.Field
+		QuasiParabolic               respjson.Field
+		ShiftedChebyshev             respjson.Field
+		TopsideExtensionChapmanConst respjson.Field
+		TopsideExtensionVaryChap     respjson.Field
+		ValleyModelCoeffs            respjson.Field
+		ValleyModelDescription       respjson.Field
+		ExtraFields                  map[string]respjson.Field
 		raw                          string
 	} `json:"-"`
 }
@@ -757,31 +757,31 @@ type IonoObservationHistoryListResponseDensityProfileIri struct {
 	NmF2 float64 `json:"nmF2"`
 	// The valley depth, in grams per cubic centimeter.
 	NValB float64 `json:"nValB"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		B0          resp.Field
-		B1          resp.Field
-		Chi         resp.Field
-		D1          resp.Field
-		Description resp.Field
-		Fp1         resp.Field
-		Fp2         resp.Field
-		Fp30        resp.Field
-		Fp3U        resp.Field
-		Ha          resp.Field
-		Hdx         resp.Field
-		HmD         resp.Field
-		HmE         resp.Field
-		HmF1        resp.Field
-		HmF2        resp.Field
-		HValTop     resp.Field
-		Hz          resp.Field
-		NmD         resp.Field
-		NmE         resp.Field
-		NmF1        resp.Field
-		NmF2        resp.Field
-		NValB       resp.Field
-		ExtraFields map[string]resp.Field
+		B0          respjson.Field
+		B1          respjson.Field
+		Chi         respjson.Field
+		D1          respjson.Field
+		Description respjson.Field
+		Fp1         respjson.Field
+		Fp2         respjson.Field
+		Fp30        respjson.Field
+		Fp3U        respjson.Field
+		Ha          respjson.Field
+		Hdx         respjson.Field
+		HmD         respjson.Field
+		HmE         respjson.Field
+		HmF1        respjson.Field
+		HmF2        respjson.Field
+		HValTop     respjson.Field
+		Hz          respjson.Field
+		NmD         respjson.Field
+		NmE         respjson.Field
+		NmF1        respjson.Field
+		NmF2        respjson.Field
+		NValB       respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -798,11 +798,11 @@ type IonoObservationHistoryListResponseDensityProfileParabolic struct {
 	Description string `json:"description"`
 	// Describes the E, F1, and F2 layers as parabolic-shape segments.
 	ParabolicItems []IonoObservationHistoryListResponseDensityProfileParabolicParabolicItem `json:"parabolicItems"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Description    resp.Field
-		ParabolicItems resp.Field
-		ExtraFields    map[string]resp.Field
+		Description    respjson.Field
+		ParabolicItems respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }
@@ -825,13 +825,13 @@ type IonoObservationHistoryListResponseDensityProfileParabolicParabolicItem stru
 	Y float64 `json:"y"`
 	// Height of the layer peak, in kilometers.
 	Z float64 `json:"z"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		F           resp.Field
-		Layer       resp.Field
-		Y           resp.Field
-		Z           resp.Field
-		ExtraFields map[string]resp.Field
+		F           respjson.Field
+		Layer       respjson.Field
+		Y           respjson.Field
+		Z           respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -855,12 +855,12 @@ type IonoObservationHistoryListResponseDensityProfileQuasiParabolic struct {
 	// groups for E, F1, and F2 layers, but additional segments may be used to improve
 	// accuracy.
 	QuasiParabolicSegments []IonoObservationHistoryListResponseDensityProfileQuasiParabolicQuasiParabolicSegment `json:"quasiParabolicSegments"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Description            resp.Field
-		EarthRadius            resp.Field
-		QuasiParabolicSegments resp.Field
-		ExtraFields            map[string]resp.Field
+		Description            respjson.Field
+		EarthRadius            respjson.Field
+		QuasiParabolicSegments respjson.Field
+		ExtraFields            map[string]respjson.Field
 		raw                    string
 	} `json:"-"`
 }
@@ -891,16 +891,16 @@ type IonoObservationHistoryListResponseDensityProfileQuasiParabolicQuasiParaboli
 	Rb float64 `json:"rb"`
 	// Ending range of the segment, in kilometers from the Earth's center.
 	Re float64 `json:"re"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		A           resp.Field
-		B           resp.Field
-		C           resp.Field
-		Error       resp.Field
-		Index       resp.Field
-		Rb          resp.Field
-		Re          resp.Field
-		ExtraFields map[string]resp.Field
+		A           respjson.Field
+		B           respjson.Field
+		C           respjson.Field
+		Error       respjson.Field
+		Index       respjson.Field
+		Rb          respjson.Field
+		Re          respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -922,11 +922,11 @@ type IonoObservationHistoryListResponseDensityProfileShiftedChebyshev struct {
 	// E, F1, and bottomside F2 profile shapes, or up to 6 groups of coefficients to
 	// describe height uncertainty boundaries (upper and lower).
 	ShiftedChebyshevs []IonoObservationHistoryListResponseDensityProfileShiftedChebyshevShiftedChebyshev `json:"shiftedChebyshevs"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Description       resp.Field
-		ShiftedChebyshevs resp.Field
-		ExtraFields       map[string]resp.Field
+		Description       respjson.Field
+		ShiftedChebyshevs respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -959,17 +959,17 @@ type IonoObservationHistoryListResponseDensityProfileShiftedChebyshevShiftedCheb
 	Peakheight float64 `json:"peakheight"`
 	// Height at which density is half of the peak Nm, in kilometers.
 	ZhalfNm float64 `json:"zhalfNm"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Coeffs      resp.Field
-		Error       resp.Field
-		Fstart      resp.Field
-		Fstop       resp.Field
-		Layer       resp.Field
-		N           resp.Field
-		Peakheight  resp.Field
-		ZhalfNm     resp.Field
-		ExtraFields map[string]resp.Field
+		Coeffs      respjson.Field
+		Error       respjson.Field
+		Fstart      respjson.Field
+		Fstop       respjson.Field
+		Layer       respjson.Field
+		N           respjson.Field
+		Peakheight  respjson.Field
+		ZhalfNm     respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -995,14 +995,14 @@ type IonoObservationHistoryListResponseDensityProfileTopsideExtensionChapmanCons
 	NmF2 float64 `json:"nmF2"`
 	// Scale height if F2 layer at the peak, in kilometers.
 	ScaleF2 float64 `json:"scaleF2"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Chi         resp.Field
-		Description resp.Field
-		HmF2        resp.Field
-		NmF2        resp.Field
-		ScaleF2     resp.Field
-		ExtraFields map[string]resp.Field
+		Chi         respjson.Field
+		Description respjson.Field
+		HmF2        respjson.Field
+		NmF2        respjson.Field
+		ScaleF2     respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -1034,17 +1034,17 @@ type IonoObservationHistoryListResponseDensityProfileTopsideExtensionVaryChap st
 	NmF2 float64 `json:"nmF2"`
 	// Scale height if F2 layer at the peak, in kilometers.
 	ScaleF2 float64 `json:"scaleF2"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Alpha       resp.Field
-		Beta        resp.Field
-		Chi         resp.Field
-		Description resp.Field
-		HmF2        resp.Field
-		Ht          resp.Field
-		NmF2        resp.Field
-		ScaleF2     resp.Field
-		ExtraFields map[string]resp.Field
+		Alpha       respjson.Field
+		Beta        respjson.Field
+		Chi         respjson.Field
+		Description respjson.Field
+		HmF2        respjson.Field
+		Ht          respjson.Field
+		NmF2        respjson.Field
+		ScaleF2     respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -1066,13 +1066,13 @@ type IonoObservationHistoryListResponseDoppler struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the doppler data.
 	Notes string `json:"notes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Data          resp.Field
-		DimensionName resp.Field
-		Dimensions    resp.Field
-		Notes         resp.Field
-		ExtraFields   map[string]resp.Field
+		Data          respjson.Field
+		DimensionName respjson.Field
+		Dimensions    respjson.Field
+		Notes         respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -1092,13 +1092,13 @@ type IonoObservationHistoryListResponseElevation struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the elevation data.
 	Notes string `json:"notes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Data          resp.Field
-		DimensionName resp.Field
-		Dimensions    resp.Field
-		Notes         resp.Field
-		ExtraFields   map[string]resp.Field
+		Data          respjson.Field
+		DimensionName respjson.Field
+		Dimensions    respjson.Field
+		Notes         respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -1118,13 +1118,13 @@ type IonoObservationHistoryListResponseFrequency struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the frequency data.
 	Notes string `json:"notes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Data          resp.Field
-		DimensionName resp.Field
-		Dimensions    resp.Field
-		Notes         resp.Field
-		ExtraFields   map[string]resp.Field
+		Data          respjson.Field
+		DimensionName respjson.Field
+		Dimensions    respjson.Field
+		Notes         respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -1145,13 +1145,13 @@ type IonoObservationHistoryListResponsePhase struct {
 	// Notes for the phase data. Orientation and position for each antenna element
 	// across the antenna_element dimension.
 	Notes string `json:"notes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Data          resp.Field
-		DimensionName resp.Field
-		Dimensions    resp.Field
-		Notes         resp.Field
-		ExtraFields   map[string]resp.Field
+		Data          respjson.Field
+		DimensionName respjson.Field
+		Dimensions    respjson.Field
+		Notes         respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -1171,13 +1171,13 @@ type IonoObservationHistoryListResponsePolarization struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the polarization data.
 	Notes string `json:"notes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Data          resp.Field
-		DimensionName resp.Field
-		Dimensions    resp.Field
-		Notes         resp.Field
-		ExtraFields   map[string]resp.Field
+		Data          respjson.Field
+		DimensionName respjson.Field
+		Dimensions    respjson.Field
+		Notes         respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -1197,13 +1197,13 @@ type IonoObservationHistoryListResponsePower struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the power data.
 	Notes string `json:"notes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Data          resp.Field
-		DimensionName resp.Field
-		Dimensions    resp.Field
-		Notes         resp.Field
-		ExtraFields   map[string]resp.Field
+		Data          respjson.Field
+		DimensionName respjson.Field
+		Dimensions    respjson.Field
+		Notes         respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -1223,13 +1223,13 @@ type IonoObservationHistoryListResponseRange struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the range data.
 	Notes string `json:"notes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Data          resp.Field
-		DimensionName resp.Field
-		Dimensions    resp.Field
-		Notes         resp.Field
-		ExtraFields   map[string]resp.Field
+		Data          respjson.Field
+		DimensionName respjson.Field
+		Dimensions    respjson.Field
+		Notes         respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -1263,15 +1263,15 @@ type IonoObservationHistoryListResponseScalerInfo struct {
 	Type string `json:"type"`
 	// Scaler version.
 	Version float64 `json:"version"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ConfidenceLevel resp.Field
-		ConfidenceScore resp.Field
-		Name            resp.Field
-		Organization    resp.Field
-		Type            resp.Field
-		Version         resp.Field
-		ExtraFields     map[string]resp.Field
+		ConfidenceLevel respjson.Field
+		ConfidenceScore respjson.Field
+		Name            respjson.Field
+		Organization    respjson.Field
+		Type            respjson.Field
+		Version         respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -1293,14 +1293,14 @@ type IonoObservationHistoryListResponseStokes struct {
 	Notes string `json:"notes"`
 	// S1, S2, and S3 (the normalized Stokes parameters 1, 2, and 3).
 	S []float64 `json:"s"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Data          resp.Field
-		DimensionName resp.Field
-		Dimensions    resp.Field
-		Notes         resp.Field
-		S             resp.Field
-		ExtraFields   map[string]resp.Field
+		Data          respjson.Field
+		DimensionName respjson.Field
+		Dimensions    respjson.Field
+		Notes         respjson.Field
+		S             respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -1321,13 +1321,13 @@ type IonoObservationHistoryListResponseTime struct {
 	Dimensions []int64 `json:"dimensions"`
 	// The notes indicate the scheme and accuracy.
 	Notes string `json:"notes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Data          resp.Field
-		DimensionName resp.Field
-		Dimensions    resp.Field
-		Notes         resp.Field
-		ExtraFields   map[string]resp.Field
+		Data          respjson.Field
+		DimensionName respjson.Field
+		Dimensions    respjson.Field
+		Notes         respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -1346,12 +1346,12 @@ type IonoObservationHistoryListResponseTraceGeneric struct {
 	DimensionName []string `json:"dimensionName"`
 	// Notes for the trace generic data.
 	Notes string `json:"notes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Data          resp.Field
-		DimensionName resp.Field
-		Notes         resp.Field
-		ExtraFields   map[string]resp.Field
+		Data          respjson.Field
+		DimensionName respjson.Field
+		Notes         respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }

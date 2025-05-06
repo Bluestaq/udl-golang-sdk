@@ -8,7 +8,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go"
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // aliased to make [param.APIUnion] private when embedding
@@ -162,55 +162,55 @@ type AirTransportMissionFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Abp                   resp.Field
-		AircraftSorties       resp.Field
-		Alias                 resp.Field
-		AllocatedUnit         resp.Field
-		AmcMissionID          resp.Field
-		ApacsID               resp.Field
-		AtoCallSign           resp.Field
-		AtoMissionID          resp.Field
-		CallSign              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Cw                    resp.Field
-		DipWorksheetName      resp.Field
-		FirstPickUp           resp.Field
-		GdssMissionID         resp.Field
-		HazMat                resp.Field
-		JcsPriority           resp.Field
-		LastDropOff           resp.Field
-		LoadCategoryType      resp.Field
-		M1                    resp.Field
-		M2                    resp.Field
-		M3a                   resp.Field
-		Naf                   resp.Field
-		NextAmcMissionID      resp.Field
-		NextMissionID         resp.Field
-		Node                  resp.Field
-		Objective             resp.Field
-		Operation             resp.Field
-		Origin                resp.Field
-		OrigMissionID         resp.Field
-		OrigNetwork           resp.Field
-		PrevAmcMissionID      resp.Field
-		PrevMissionID         resp.Field
-		Purpose               resp.Field
-		Remarks               resp.Field
-		Requirements          resp.Field
-		SourceDl              resp.Field
-		SourceSysDeviation    resp.Field
-		State                 resp.Field
-		Type                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Abp                   respjson.Field
+		AircraftSorties       respjson.Field
+		Alias                 respjson.Field
+		AllocatedUnit         respjson.Field
+		AmcMissionID          respjson.Field
+		ApacsID               respjson.Field
+		AtoCallSign           respjson.Field
+		AtoMissionID          respjson.Field
+		CallSign              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Cw                    respjson.Field
+		DipWorksheetName      respjson.Field
+		FirstPickUp           respjson.Field
+		GdssMissionID         respjson.Field
+		HazMat                respjson.Field
+		JcsPriority           respjson.Field
+		LastDropOff           respjson.Field
+		LoadCategoryType      respjson.Field
+		M1                    respjson.Field
+		M2                    respjson.Field
+		M3a                   respjson.Field
+		Naf                   respjson.Field
+		NextAmcMissionID      respjson.Field
+		NextMissionID         respjson.Field
+		Node                  respjson.Field
+		Objective             respjson.Field
+		Operation             respjson.Field
+		Origin                respjson.Field
+		OrigMissionID         respjson.Field
+		OrigNetwork           respjson.Field
+		PrevAmcMissionID      respjson.Field
+		PrevMissionID         respjson.Field
+		Purpose               respjson.Field
+		Remarks               respjson.Field
+		Requirements          respjson.Field
+		SourceDl              respjson.Field
+		SourceSysDeviation    respjson.Field
+		State                 respjson.Field
+		Type                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -289,24 +289,24 @@ type AirTransportMissionFullHazMat struct {
 	UnNum string `json:"unNum"`
 	// Total weight of hazardous cargo, including non-explosive parts, in kilograms.
 	Weight float64 `json:"weight"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ApplicableNotes resp.Field
-		Cgc             resp.Field
-		Cgn             resp.Field
-		ClassDiv        resp.Field
-		ExtHazMatID     resp.Field
-		ItemName        resp.Field
-		NetExpWt        resp.Field
-		OffIcao         resp.Field
-		OffItin         resp.Field
-		OnIcao          resp.Field
-		OnItin          resp.Field
-		Pieces          resp.Field
-		Planned         resp.Field
-		UnNum           resp.Field
-		Weight          resp.Field
-		ExtraFields     map[string]resp.Field
+		ApplicableNotes respjson.Field
+		Cgc             respjson.Field
+		Cgn             respjson.Field
+		ClassDiv        respjson.Field
+		ExtHazMatID     respjson.Field
+		ItemName        respjson.Field
+		NetExpWt        respjson.Field
+		OffIcao         respjson.Field
+		OffItin         respjson.Field
+		OnIcao          respjson.Field
+		OnItin          respjson.Field
+		Pieces          respjson.Field
+		Planned         respjson.Field
+		UnNum           respjson.Field
+		Weight          respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -333,15 +333,15 @@ type AirTransportMissionFullRemark struct {
 	Type string `json:"type"`
 	// User who published the remark.
 	User string `json:"user"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Date         resp.Field
-		GdssRemarkID resp.Field
-		ItineraryNum resp.Field
-		Text         resp.Field
-		Type         resp.Field
-		User         resp.Field
-		ExtraFields  map[string]resp.Field
+		Date         respjson.Field
+		GdssRemarkID respjson.Field
+		ItineraryNum respjson.Field
+		Text         respjson.Field
+		Type         respjson.Field
+		User         respjson.Field
+		ExtraFields  map[string]respjson.Field
 		raw          string
 	} `json:"-"`
 }
@@ -394,27 +394,27 @@ type AirTransportMissionFullRequirement struct {
 	TransReqNum string `json:"transReqNum"`
 	// Unit line number.
 	Uln string `json:"uln"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		BulkWeight     resp.Field
-		Ead            resp.Field
-		GdssReqID      resp.Field
-		Lad            resp.Field
-		NumAmbulatory  resp.Field
-		NumAttendant   resp.Field
-		NumLitter      resp.Field
-		NumPax         resp.Field
-		OffloadID      resp.Field
-		OffloadLoCode  resp.Field
-		OnloadID       resp.Field
-		OnloadLoCode   resp.Field
-		Oplan          resp.Field
-		OutsizeWeight  resp.Field
-		OversizeWeight resp.Field
-		ProjName       resp.Field
-		TransReqNum    resp.Field
-		Uln            resp.Field
-		ExtraFields    map[string]resp.Field
+		BulkWeight     respjson.Field
+		Ead            respjson.Field
+		GdssReqID      respjson.Field
+		Lad            respjson.Field
+		NumAmbulatory  respjson.Field
+		NumAttendant   respjson.Field
+		NumLitter      respjson.Field
+		NumPax         respjson.Field
+		OffloadID      respjson.Field
+		OffloadLoCode  respjson.Field
+		OnloadID       respjson.Field
+		OnloadLoCode   respjson.Field
+		Oplan          respjson.Field
+		OutsizeWeight  respjson.Field
+		OversizeWeight respjson.Field
+		ProjName       respjson.Field
+		TransReqNum    respjson.Field
+		Uln            respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }
@@ -596,63 +596,63 @@ type AircraftstatusFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDAircraft            resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AdditionalSys         resp.Field
-		AirToAirStatus        resp.Field
-		AirToGroundStatus     resp.Field
-		AlphaStatusCode       resp.Field
-		AltAircraftID         resp.Field
-		ContaminationStatus   resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		CurrentIcao           resp.Field
-		CurrentState          resp.Field
-		EarliestTaEndTime     resp.Field
-		Etic                  resp.Field
-		FlightPhase           resp.Field
-		Fuel                  resp.Field
-		FuelFunction          resp.Field
-		FuelStatus            resp.Field
-		GeoLoc                resp.Field
-		GroundStatus          resp.Field
-		GunCapable            resp.Field
-		GunRdsMax             resp.Field
-		GunRdsMin             resp.Field
-		GunRdsType            resp.Field
-		IDAirfield            resp.Field
-		IDPoi                 resp.Field
-		Inventory             resp.Field
-		InventoryMax          resp.Field
-		InventoryMin          resp.Field
-		LastInspectionDate    resp.Field
-		LastUpdatedBy         resp.Field
-		MaintPoc              resp.Field
-		MaintPriority         resp.Field
-		MaintStatus           resp.Field
-		MaintStatusDriver     resp.Field
-		MaintStatusUpdate     resp.Field
-		MissionReadiness      resp.Field
-		MxRemark              resp.Field
-		NextIcao              resp.Field
-		Notes                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ParkLocation          resp.Field
-		ParkLocationSystem    resp.Field
-		PreviousIcao          resp.Field
-		SourceDl              resp.Field
-		TaStartTime           resp.Field
-		TroubleshootEtic      resp.Field
-		UnavailableSys        resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDAircraft            respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AdditionalSys         respjson.Field
+		AirToAirStatus        respjson.Field
+		AirToGroundStatus     respjson.Field
+		AlphaStatusCode       respjson.Field
+		AltAircraftID         respjson.Field
+		ContaminationStatus   respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		CurrentIcao           respjson.Field
+		CurrentState          respjson.Field
+		EarliestTaEndTime     respjson.Field
+		Etic                  respjson.Field
+		FlightPhase           respjson.Field
+		Fuel                  respjson.Field
+		FuelFunction          respjson.Field
+		FuelStatus            respjson.Field
+		GeoLoc                respjson.Field
+		GroundStatus          respjson.Field
+		GunCapable            respjson.Field
+		GunRdsMax             respjson.Field
+		GunRdsMin             respjson.Field
+		GunRdsType            respjson.Field
+		IDAirfield            respjson.Field
+		IDPoi                 respjson.Field
+		Inventory             respjson.Field
+		InventoryMax          respjson.Field
+		InventoryMin          respjson.Field
+		LastInspectionDate    respjson.Field
+		LastUpdatedBy         respjson.Field
+		MaintPoc              respjson.Field
+		MaintPriority         respjson.Field
+		MaintStatus           respjson.Field
+		MaintStatusDriver     respjson.Field
+		MaintStatusUpdate     respjson.Field
+		MissionReadiness      respjson.Field
+		MxRemark              respjson.Field
+		NextIcao              respjson.Field
+		Notes                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ParkLocation          respjson.Field
+		ParkLocationSystem    respjson.Field
+		PreviousIcao          respjson.Field
+		SourceDl              respjson.Field
+		TaStartTime           respjson.Field
+		TroubleshootEtic      respjson.Field
+		UnavailableSys        respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -884,60 +884,60 @@ type AIsFull struct {
 	// The breadth of the vessel, in meters. A value of 63 indicates a vessel breadth
 	// of 63 meters or greater.
 	Width float64 `json:"width"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		ID                    resp.Field
-		AntennaRefDimensions  resp.Field
-		AvgSpeed              resp.Field
-		CallSign              resp.Field
-		CargoType             resp.Field
-		Course                resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		CurrentPortGuid       resp.Field
-		CurrentPortLocode     resp.Field
-		Destination           resp.Field
-		DestinationEta        resp.Field
-		DistanceToGo          resp.Field
-		DistanceTravelled     resp.Field
-		Draught               resp.Field
-		EngagedIn             resp.Field
-		EtaCalculated         resp.Field
-		EtaUpdated            resp.Field
-		IDTrack               resp.Field
-		IDVessel              resp.Field
-		Imon                  resp.Field
-		LastPortGuid          resp.Field
-		LastPortLocode        resp.Field
-		Lat                   resp.Field
-		Length                resp.Field
-		Lon                   resp.Field
-		MaxSpeed              resp.Field
-		Mmsi                  resp.Field
-		NavStatus             resp.Field
-		NextPortGuid          resp.Field
-		NextPortLocode        resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PosDeviceType         resp.Field
-		PosHiAccuracy         resp.Field
-		PosHiLatency          resp.Field
-		RateOfTurn            resp.Field
-		ShipDescription       resp.Field
-		ShipName              resp.Field
-		ShipType              resp.Field
-		SourceDl              resp.Field
-		SpecialCraft          resp.Field
-		SpecialManeuver       resp.Field
-		Speed                 resp.Field
-		TrueHeading           resp.Field
-		VesselFlag            resp.Field
-		Width                 resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		ID                    respjson.Field
+		AntennaRefDimensions  respjson.Field
+		AvgSpeed              respjson.Field
+		CallSign              respjson.Field
+		CargoType             respjson.Field
+		Course                respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		CurrentPortGuid       respjson.Field
+		CurrentPortLocode     respjson.Field
+		Destination           respjson.Field
+		DestinationEta        respjson.Field
+		DistanceToGo          respjson.Field
+		DistanceTravelled     respjson.Field
+		Draught               respjson.Field
+		EngagedIn             respjson.Field
+		EtaCalculated         respjson.Field
+		EtaUpdated            respjson.Field
+		IDTrack               respjson.Field
+		IDVessel              respjson.Field
+		Imon                  respjson.Field
+		LastPortGuid          respjson.Field
+		LastPortLocode        respjson.Field
+		Lat                   respjson.Field
+		Length                respjson.Field
+		Lon                   respjson.Field
+		MaxSpeed              respjson.Field
+		Mmsi                  respjson.Field
+		NavStatus             respjson.Field
+		NextPortGuid          respjson.Field
+		NextPortLocode        respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PosDeviceType         respjson.Field
+		PosHiAccuracy         respjson.Field
+		PosHiLatency          respjson.Field
+		RateOfTurn            respjson.Field
+		ShipDescription       respjson.Field
+		ShipName              respjson.Field
+		ShipType              respjson.Field
+		SourceDl              respjson.Field
+		SpecialCraft          respjson.Field
+		SpecialManeuver       respjson.Field
+		Speed                 respjson.Field
+		TrueHeading           respjson.Field
+		VesselFlag            respjson.Field
+		Width                 respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -1102,39 +1102,39 @@ type AttitudesetFull struct {
 	// Attitude ephemeris step size, in seconds. This applies to Attitude Ephemeris
 	// Messages (AEM) that employ a fixed step size.
 	StepSize int64 `json:"stepSize"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		EndTime               resp.Field
-		Frame1                resp.Field
-		Frame2                resp.Field
-		NumPoints             resp.Field
-		Source                resp.Field
-		StartTime             resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		AsRef                 resp.Field
-		AttitudeList          resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EsID                  resp.Field
-		EulerRotSeq           resp.Field
-		IDOnOrbit             resp.Field
-		IDSensor              resp.Field
-		Interpolator          resp.Field
-		InterpolatorDegree    resp.Field
-		Notes                 resp.Field
-		OnOrbit               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		OrigSensorID          resp.Field
-		PrecAngleInit         resp.Field
-		SatNo                 resp.Field
-		SpinAngleInit         resp.Field
-		StepSize              resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		EndTime               respjson.Field
+		Frame1                respjson.Field
+		Frame2                respjson.Field
+		NumPoints             respjson.Field
+		Source                respjson.Field
+		StartTime             respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		AsRef                 respjson.Field
+		AttitudeList          respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EsID                  respjson.Field
+		EulerRotSeq           respjson.Field
+		IDOnOrbit             respjson.Field
+		IDSensor              respjson.Field
+		Interpolator          respjson.Field
+		InterpolatorDegree    respjson.Field
+		Notes                 respjson.Field
+		OnOrbit               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		OrigSensorID          respjson.Field
+		PrecAngleInit         respjson.Field
+		SatNo                 respjson.Field
+		SpinAngleInit         respjson.Field
+		StepSize              respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -1482,102 +1482,102 @@ type CollectRequestFull struct {
 	// rectangle of width 2*xAngle and height 2*yAngle centered about the central
 	// vector.
 	YAngle float64 `json:"yAngle"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		StartTime             resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		Alt                   resp.Field
-		ArgOfPerigee          resp.Field
-		Az                    resp.Field
-		CollectResponse       resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Customer              resp.Field
-		Dec                   resp.Field
-		Duration              resp.Field
-		DwellID               resp.Field
-		Eccentricity          resp.Field
-		El                    resp.Field
-		Elset                 resp.Field
-		EndTime               resp.Field
-		Epoch                 resp.Field
-		EsID                  resp.Field
-		ExtentAz              resp.Field
-		ExtentEl              resp.Field
-		ExtentRange           resp.Field
-		ExternalID            resp.Field
-		FrameRate             resp.Field
-		Freq                  resp.Field
-		FreqMax               resp.Field
-		FreqMin               resp.Field
-		IDElset               resp.Field
-		IDManifold            resp.Field
-		IDOnOrbit             resp.Field
-		IDParentReq           resp.Field
-		IDPlan                resp.Field
-		IDSensor              resp.Field
-		IDStateVector         resp.Field
-		Inclination           resp.Field
-		IntegrationTime       resp.Field
-		Iron                  resp.Field
-		Irradiance            resp.Field
-		Lat                   resp.Field
-		Lon                   resp.Field
-		MsgCreateDate         resp.Field
-		MsgType               resp.Field
-		Notes                 resp.Field
-		NumFrames             resp.Field
-		NumObs                resp.Field
-		NumTracks             resp.Field
-		ObType                resp.Field
-		OnOrbit               resp.Field
-		OrbitRegime           resp.Field
-		OrientAngle           resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		OrigSensorID          resp.Field
-		PlanIndex             resp.Field
-		Polarization          resp.Field
-		Priority              resp.Field
-		Ra                    resp.Field
-		Raan                  resp.Field
-		Range                 resp.Field
-		Rcs                   resp.Field
-		RcsMax                resp.Field
-		RcsMin                resp.Field
-		Reflectance           resp.Field
-		SatNo                 resp.Field
-		Scenario              resp.Field
-		SemiMajorAxis         resp.Field
-		SpectralModel         resp.Field
-		SrchInc               resp.Field
-		SrchPattern           resp.Field
-		StateVector           resp.Field
-		StopAlt               resp.Field
-		StopLat               resp.Field
-		StopLon               resp.Field
-		Suffix                resp.Field
-		Tags                  resp.Field
-		TargetSize            resp.Field
-		TaskCategory          resp.Field
-		TaskGroup             resp.Field
-		TaskID                resp.Field
-		TransactionID         resp.Field
-		TrueAnomoly           resp.Field
-		UctFollowUp           resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		VisMag                resp.Field
-		VisMagMax             resp.Field
-		VisMagMin             resp.Field
-		XAngle                resp.Field
-		YAngle                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		StartTime             respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		Alt                   respjson.Field
+		ArgOfPerigee          respjson.Field
+		Az                    respjson.Field
+		CollectResponse       respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Customer              respjson.Field
+		Dec                   respjson.Field
+		Duration              respjson.Field
+		DwellID               respjson.Field
+		Eccentricity          respjson.Field
+		El                    respjson.Field
+		Elset                 respjson.Field
+		EndTime               respjson.Field
+		Epoch                 respjson.Field
+		EsID                  respjson.Field
+		ExtentAz              respjson.Field
+		ExtentEl              respjson.Field
+		ExtentRange           respjson.Field
+		ExternalID            respjson.Field
+		FrameRate             respjson.Field
+		Freq                  respjson.Field
+		FreqMax               respjson.Field
+		FreqMin               respjson.Field
+		IDElset               respjson.Field
+		IDManifold            respjson.Field
+		IDOnOrbit             respjson.Field
+		IDParentReq           respjson.Field
+		IDPlan                respjson.Field
+		IDSensor              respjson.Field
+		IDStateVector         respjson.Field
+		Inclination           respjson.Field
+		IntegrationTime       respjson.Field
+		Iron                  respjson.Field
+		Irradiance            respjson.Field
+		Lat                   respjson.Field
+		Lon                   respjson.Field
+		MsgCreateDate         respjson.Field
+		MsgType               respjson.Field
+		Notes                 respjson.Field
+		NumFrames             respjson.Field
+		NumObs                respjson.Field
+		NumTracks             respjson.Field
+		ObType                respjson.Field
+		OnOrbit               respjson.Field
+		OrbitRegime           respjson.Field
+		OrientAngle           respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		OrigSensorID          respjson.Field
+		PlanIndex             respjson.Field
+		Polarization          respjson.Field
+		Priority              respjson.Field
+		Ra                    respjson.Field
+		Raan                  respjson.Field
+		Range                 respjson.Field
+		Rcs                   respjson.Field
+		RcsMax                respjson.Field
+		RcsMin                respjson.Field
+		Reflectance           respjson.Field
+		SatNo                 respjson.Field
+		Scenario              respjson.Field
+		SemiMajorAxis         respjson.Field
+		SpectralModel         respjson.Field
+		SrchInc               respjson.Field
+		SrchPattern           respjson.Field
+		StateVector           respjson.Field
+		StopAlt               respjson.Field
+		StopLat               respjson.Field
+		StopLon               respjson.Field
+		Suffix                respjson.Field
+		Tags                  respjson.Field
+		TargetSize            respjson.Field
+		TaskCategory          respjson.Field
+		TaskGroup             respjson.Field
+		TaskID                respjson.Field
+		TransactionID         respjson.Field
+		TrueAnomoly           respjson.Field
+		UctFollowUp           respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		VisMag                respjson.Field
+		VisMagMax             respjson.Field
+		VisMagMin             respjson.Field
+		XAngle                respjson.Field
+		YAngle                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -1807,52 +1807,52 @@ type CollectRequestFullElset struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Epoch                 resp.Field
-		Source                resp.Field
-		Agom                  resp.Field
-		Algorithm             resp.Field
-		Apogee                resp.Field
-		ArgOfPerigee          resp.Field
-		BallisticCoeff        resp.Field
-		BStar                 resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Descriptor            resp.Field
-		Eccentricity          resp.Field
-		EffectiveFrom         resp.Field
-		EffectiveUntil        resp.Field
-		EphemType             resp.Field
-		IDElset               resp.Field
-		IDOnOrbit             resp.Field
-		IDOrbitDetermination  resp.Field
-		Inclination           resp.Field
-		Line1                 resp.Field
-		Line2                 resp.Field
-		MeanAnomaly           resp.Field
-		MeanMotion            resp.Field
-		MeanMotionDDot        resp.Field
-		MeanMotionDot         resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		Perigee               resp.Field
-		Period                resp.Field
-		Raan                  resp.Field
-		RawFileUri            resp.Field
-		RevNo                 resp.Field
-		SatNo                 resp.Field
-		SemiMajorAxis         resp.Field
-		SourcedData           resp.Field
-		SourcedDataTypes      resp.Field
-		SourceDl              resp.Field
-		Tags                  resp.Field
-		TransactionID         resp.Field
-		Uct                   resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Epoch                 respjson.Field
+		Source                respjson.Field
+		Agom                  respjson.Field
+		Algorithm             respjson.Field
+		Apogee                respjson.Field
+		ArgOfPerigee          respjson.Field
+		BallisticCoeff        respjson.Field
+		BStar                 respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Descriptor            respjson.Field
+		Eccentricity          respjson.Field
+		EffectiveFrom         respjson.Field
+		EffectiveUntil        respjson.Field
+		EphemType             respjson.Field
+		IDElset               respjson.Field
+		IDOnOrbit             respjson.Field
+		IDOrbitDetermination  respjson.Field
+		Inclination           respjson.Field
+		Line1                 respjson.Field
+		Line2                 respjson.Field
+		MeanAnomaly           respjson.Field
+		MeanMotion            respjson.Field
+		MeanMotionDDot        respjson.Field
+		MeanMotionDot         respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		Perigee               respjson.Field
+		Period                respjson.Field
+		Raan                  respjson.Field
+		RawFileUri            respjson.Field
+		RevNo                 respjson.Field
+		SatNo                 respjson.Field
+		SemiMajorAxis         respjson.Field
+		SourcedData           respjson.Field
+		SourcedDataTypes      respjson.Field
+		SourceDl              respjson.Field
+		Tags                  respjson.Field
+		TransactionID         respjson.Field
+		Uct                   respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -2307,110 +2307,110 @@ type CollectRequestFullStateVector struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Epoch                 resp.Field
-		Source                resp.Field
-		ActualOdSpan          resp.Field
-		Algorithm             resp.Field
-		Alt1ReferenceFrame    resp.Field
-		Alt2ReferenceFrame    resp.Field
-		Area                  resp.Field
-		BDot                  resp.Field
-		CmOffset              resp.Field
-		Cov                   resp.Field
-		CovMethod             resp.Field
-		CovReferenceFrame     resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Descriptor            resp.Field
-		DragArea              resp.Field
-		DragCoeff             resp.Field
-		DragModel             resp.Field
-		Edr                   resp.Field
-		EffectiveFrom         resp.Field
-		EffectiveUntil        resp.Field
-		EqCov                 resp.Field
-		ErrorControl          resp.Field
-		FixedStep             resp.Field
-		GeopotentialModel     resp.Field
-		Iau1980Terms          resp.Field
-		IDOnOrbit             resp.Field
-		IDOrbitDetermination  resp.Field
-		IDStateVector         resp.Field
-		IntegratorMode        resp.Field
-		InTrackThrust         resp.Field
-		LastObEnd             resp.Field
-		LastObStart           resp.Field
-		LeapSecondTime        resp.Field
-		LunarSolar            resp.Field
-		Mass                  resp.Field
-		ObsAvailable          resp.Field
-		ObsUsed               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		Partials              resp.Field
-		Pedigree              resp.Field
-		PolarMotionX          resp.Field
-		PolarMotionY          resp.Field
-		PosUnc                resp.Field
-		RawFileUri            resp.Field
-		RecOdSpan             resp.Field
-		ReferenceFrame        resp.Field
-		ResidualsAcc          resp.Field
-		RevNo                 resp.Field
-		Rms                   resp.Field
-		SatNo                 resp.Field
-		SigmaPosUvw           resp.Field
-		SigmaVelUvw           resp.Field
-		SolarFluxApAvg        resp.Field
-		SolarFluxF10          resp.Field
-		SolarFluxF10Avg       resp.Field
-		SolarRadPress         resp.Field
-		SolarRadPressCoeff    resp.Field
-		SolidEarthTides       resp.Field
-		SourcedData           resp.Field
-		SourcedDataTypes      resp.Field
-		SourceDl              resp.Field
-		SrpArea               resp.Field
-		StepMode              resp.Field
-		StepSize              resp.Field
-		StepSizeSelection     resp.Field
-		Tags                  resp.Field
-		TaiUtc                resp.Field
-		ThrustAccel           resp.Field
-		TracksAvail           resp.Field
-		TracksUsed            resp.Field
-		TransactionID         resp.Field
-		Uct                   resp.Field
-		Ut1Rate               resp.Field
-		Ut1Utc                resp.Field
-		VelUnc                resp.Field
-		Xaccel                resp.Field
-		Xpos                  resp.Field
-		XposAlt1              resp.Field
-		XposAlt2              resp.Field
-		Xvel                  resp.Field
-		XvelAlt1              resp.Field
-		XvelAlt2              resp.Field
-		Yaccel                resp.Field
-		Ypos                  resp.Field
-		YposAlt1              resp.Field
-		YposAlt2              resp.Field
-		Yvel                  resp.Field
-		YvelAlt1              resp.Field
-		YvelAlt2              resp.Field
-		Zaccel                resp.Field
-		Zpos                  resp.Field
-		ZposAlt1              resp.Field
-		ZposAlt2              resp.Field
-		Zvel                  resp.Field
-		ZvelAlt1              resp.Field
-		ZvelAlt2              resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Epoch                 respjson.Field
+		Source                respjson.Field
+		ActualOdSpan          respjson.Field
+		Algorithm             respjson.Field
+		Alt1ReferenceFrame    respjson.Field
+		Alt2ReferenceFrame    respjson.Field
+		Area                  respjson.Field
+		BDot                  respjson.Field
+		CmOffset              respjson.Field
+		Cov                   respjson.Field
+		CovMethod             respjson.Field
+		CovReferenceFrame     respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Descriptor            respjson.Field
+		DragArea              respjson.Field
+		DragCoeff             respjson.Field
+		DragModel             respjson.Field
+		Edr                   respjson.Field
+		EffectiveFrom         respjson.Field
+		EffectiveUntil        respjson.Field
+		EqCov                 respjson.Field
+		ErrorControl          respjson.Field
+		FixedStep             respjson.Field
+		GeopotentialModel     respjson.Field
+		Iau1980Terms          respjson.Field
+		IDOnOrbit             respjson.Field
+		IDOrbitDetermination  respjson.Field
+		IDStateVector         respjson.Field
+		IntegratorMode        respjson.Field
+		InTrackThrust         respjson.Field
+		LastObEnd             respjson.Field
+		LastObStart           respjson.Field
+		LeapSecondTime        respjson.Field
+		LunarSolar            respjson.Field
+		Mass                  respjson.Field
+		ObsAvailable          respjson.Field
+		ObsUsed               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		Partials              respjson.Field
+		Pedigree              respjson.Field
+		PolarMotionX          respjson.Field
+		PolarMotionY          respjson.Field
+		PosUnc                respjson.Field
+		RawFileUri            respjson.Field
+		RecOdSpan             respjson.Field
+		ReferenceFrame        respjson.Field
+		ResidualsAcc          respjson.Field
+		RevNo                 respjson.Field
+		Rms                   respjson.Field
+		SatNo                 respjson.Field
+		SigmaPosUvw           respjson.Field
+		SigmaVelUvw           respjson.Field
+		SolarFluxApAvg        respjson.Field
+		SolarFluxF10          respjson.Field
+		SolarFluxF10Avg       respjson.Field
+		SolarRadPress         respjson.Field
+		SolarRadPressCoeff    respjson.Field
+		SolidEarthTides       respjson.Field
+		SourcedData           respjson.Field
+		SourcedDataTypes      respjson.Field
+		SourceDl              respjson.Field
+		SrpArea               respjson.Field
+		StepMode              respjson.Field
+		StepSize              respjson.Field
+		StepSizeSelection     respjson.Field
+		Tags                  respjson.Field
+		TaiUtc                respjson.Field
+		ThrustAccel           respjson.Field
+		TracksAvail           respjson.Field
+		TracksUsed            respjson.Field
+		TransactionID         respjson.Field
+		Uct                   respjson.Field
+		Ut1Rate               respjson.Field
+		Ut1Utc                respjson.Field
+		VelUnc                respjson.Field
+		Xaccel                respjson.Field
+		Xpos                  respjson.Field
+		XposAlt1              respjson.Field
+		XposAlt2              respjson.Field
+		Xvel                  respjson.Field
+		XvelAlt1              respjson.Field
+		XvelAlt2              respjson.Field
+		Yaccel                respjson.Field
+		Ypos                  respjson.Field
+		YposAlt1              respjson.Field
+		YposAlt2              respjson.Field
+		Yvel                  respjson.Field
+		YvelAlt1              respjson.Field
+		YvelAlt2              respjson.Field
+		Zaccel                respjson.Field
+		Zpos                  respjson.Field
+		ZposAlt1              respjson.Field
+		ZposAlt2              respjson.Field
+		Zvel                  respjson.Field
+		ZvelAlt1              respjson.Field
+		ZvelAlt2              respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -2561,37 +2561,37 @@ type CollectResponseFull struct {
 	Tags []string `json:"tags"`
 	// Optional task ID associated with the request/response.
 	TaskID string `json:"taskId"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDRequest             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		ActualEndTime         resp.Field
-		ActualStartTime       resp.Field
-		AltEndTime            resp.Field
-		AltStartTime          resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		ErrCode               resp.Field
-		ExternalID            resp.Field
-		IDOnOrbit             resp.Field
-		IDPlan                resp.Field
-		IDSensor              resp.Field
-		Notes                 resp.Field
-		OnOrbit               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		OrigSensorID          resp.Field
-		SatNo                 resp.Field
-		SrcIDs                resp.Field
-		SrcTyps               resp.Field
-		Status                resp.Field
-		Tags                  resp.Field
-		TaskID                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDRequest             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		ActualEndTime         respjson.Field
+		ActualStartTime       respjson.Field
+		AltEndTime            respjson.Field
+		AltStartTime          respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		ErrCode               respjson.Field
+		ExternalID            respjson.Field
+		IDOnOrbit             respjson.Field
+		IDPlan                respjson.Field
+		IDSensor              respjson.Field
+		Notes                 respjson.Field
+		OnOrbit               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		OrigSensorID          respjson.Field
+		SatNo                 respjson.Field
+		SrcIDs                respjson.Field
+		SrcTyps               respjson.Field
+		Status                respjson.Field
+		Tags                  respjson.Field
+		TaskID                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -2666,18 +2666,18 @@ type DriftHistoryAbridged struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin string `json:"origin"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedBy             resp.Field
-		DriftRate             resp.Field
-		EffectiveUntil        resp.Field
-		IDOnOrbit             resp.Field
-		Origin                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedBy             respjson.Field
+		DriftRate             respjson.Field
+		EffectiveUntil        respjson.Field
+		IDOnOrbit             respjson.Field
+		Origin                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -2752,18 +2752,18 @@ type DriftHistoryFull struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin string `json:"origin"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedBy             resp.Field
-		DriftRate             resp.Field
-		EffectiveUntil        resp.Field
-		IDOnOrbit             resp.Field
-		Origin                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedBy             respjson.Field
+		DriftRate             respjson.Field
+		EffectiveUntil        respjson.Field
+		IDOnOrbit             respjson.Field
+		Origin                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -2984,48 +2984,48 @@ type EopFull struct {
 	Ut1UtcState EopFullUt1UtcState `json:"ut1UTCState"`
 	// The estimated uncertainty/error in the ut1UTC value in seconds.
 	Ut1UtcUnc float64 `json:"ut1UTCUnc"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		EopDate               resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DEpsilon              resp.Field
-		DEpsilonB             resp.Field
-		DEpsilonUnc           resp.Field
-		DPsi                  resp.Field
-		DPsib                 resp.Field
-		DPsiUnc               resp.Field
-		DX                    resp.Field
-		DXb                   resp.Field
-		DXUnc                 resp.Field
-		DY                    resp.Field
-		DYb                   resp.Field
-		DYUnc                 resp.Field
-		Lod                   resp.Field
-		LodUnc                resp.Field
-		NutationState         resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PolarMotionState      resp.Field
-		PolarMotionX          resp.Field
-		PolarMotionXb         resp.Field
-		PolarMotionXUnc       resp.Field
-		PolarMotionY          resp.Field
-		PolarMotionYb         resp.Field
-		PolarMotionYUnc       resp.Field
-		PrecessionNutationStd resp.Field
-		RawFileUri            resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		Ut1Utc                resp.Field
-		Ut1Utcb               resp.Field
-		Ut1UtcState           resp.Field
-		Ut1UtcUnc             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		EopDate               respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DEpsilon              respjson.Field
+		DEpsilonB             respjson.Field
+		DEpsilonUnc           respjson.Field
+		DPsi                  respjson.Field
+		DPsib                 respjson.Field
+		DPsiUnc               respjson.Field
+		DX                    respjson.Field
+		DXb                   respjson.Field
+		DXUnc                 respjson.Field
+		DY                    respjson.Field
+		DYb                   respjson.Field
+		DYUnc                 respjson.Field
+		Lod                   respjson.Field
+		LodUnc                respjson.Field
+		NutationState         respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PolarMotionState      respjson.Field
+		PolarMotionX          respjson.Field
+		PolarMotionXb         respjson.Field
+		PolarMotionXUnc       respjson.Field
+		PolarMotionY          respjson.Field
+		PolarMotionYb         respjson.Field
+		PolarMotionYUnc       respjson.Field
+		PrecessionNutationStd respjson.Field
+		RawFileUri            respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		Ut1Utc                respjson.Field
+		Ut1Utcb               respjson.Field
+		Ut1UtcState           respjson.Field
+		Ut1UtcUnc             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -3195,30 +3195,30 @@ type EphemerisFull struct {
 	// Cartesian Z acceleration of target, in km/sec^2, in the specified EphemerisSet
 	// referenceFrame. If referenceFrame is null then J2K should be assumed.
 	Zaccel float64 `json:"zaccel"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		Xpos                  resp.Field
-		Xvel                  resp.Field
-		Ypos                  resp.Field
-		Yvel                  resp.Field
-		Zpos                  resp.Field
-		Zvel                  resp.Field
-		ID                    resp.Field
-		Cov                   resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EsID                  resp.Field
-		IDOnOrbit             resp.Field
-		Origin                resp.Field
-		OrigObjectID          resp.Field
-		Xaccel                resp.Field
-		Yaccel                resp.Field
-		Zaccel                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		Xpos                  respjson.Field
+		Xvel                  respjson.Field
+		Ypos                  respjson.Field
+		Yvel                  respjson.Field
+		Zpos                  respjson.Field
+		Zvel                  respjson.Field
+		ID                    respjson.Field
+		Cov                   respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EsID                  respjson.Field
+		IDOnOrbit             respjson.Field
+		Origin                respjson.Field
+		OrigObjectID          respjson.Field
+		Xaccel                respjson.Field
+		Yaccel                respjson.Field
+		Zaccel                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -3374,50 +3374,50 @@ type EvacFull struct {
 	// The pickup site security (UNKNOWN ZONESECURITY, NO ENEMY, POSSIBLE ENEMY, ENEMY
 	// IN AREA USE CAUTION, ENEMY IN AREA ARMED ESCORT REQUIRED).
 	ZoneSecurity string `json:"zoneSecurity"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		PickupLat             resp.Field
-		PickupLon             resp.Field
-		ReqTime               resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		CasualtyInfo          resp.Field
-		Ce                    resp.Field
-		CntctFreq             resp.Field
-		Comments              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EnemyData             resp.Field
-		IDWeatherReport       resp.Field
-		Le                    resp.Field
-		MedevacID             resp.Field
-		MedicReq              resp.Field
-		MissionType           resp.Field
-		NumAmbulatory         resp.Field
-		NumCasualties         resp.Field
-		NumKia                resp.Field
-		NumLitter             resp.Field
-		NumWia                resp.Field
-		ObstaclesRemarks      resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PickupAlt             resp.Field
-		PickupTime            resp.Field
-		RelatedDocs           resp.Field
-		ReqCallSign           resp.Field
-		ReqNum                resp.Field
-		Terrain               resp.Field
-		TerrainRemarks        resp.Field
-		ZoneContrCallSign     resp.Field
-		ZoneHot               resp.Field
-		ZoneMarking           resp.Field
-		ZoneMarkingColor      resp.Field
-		ZoneName              resp.Field
-		ZoneSecurity          resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		PickupLat             respjson.Field
+		PickupLon             respjson.Field
+		ReqTime               respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		CasualtyInfo          respjson.Field
+		Ce                    respjson.Field
+		CntctFreq             respjson.Field
+		Comments              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EnemyData             respjson.Field
+		IDWeatherReport       respjson.Field
+		Le                    respjson.Field
+		MedevacID             respjson.Field
+		MedicReq              respjson.Field
+		MissionType           respjson.Field
+		NumAmbulatory         respjson.Field
+		NumCasualties         respjson.Field
+		NumKia                respjson.Field
+		NumLitter             respjson.Field
+		NumWia                respjson.Field
+		ObstaclesRemarks      respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PickupAlt             respjson.Field
+		PickupTime            respjson.Field
+		RelatedDocs           respjson.Field
+		ReqCallSign           respjson.Field
+		ReqNum                respjson.Field
+		Terrain               respjson.Field
+		TerrainRemarks        respjson.Field
+		ZoneContrCallSign     respjson.Field
+		ZoneHot               respjson.Field
+		ZoneMarking           respjson.Field
+		ZoneMarkingColor      respjson.Field
+		ZoneName              respjson.Field
+		ZoneSecurity          respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -3559,44 +3559,44 @@ type EvacFullCasualtyInfo struct {
 	Treatment []EvacFullCasualtyInfoTreatment `json:"treatment"`
 	// Information obtained for vital signs.
 	VitalSignData []EvacFullCasualtyInfoVitalSignData `json:"vitalSignData"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Age             resp.Field
-		Allergy         resp.Field
-		BloodType       resp.Field
-		BodyPart        resp.Field
-		BurialLocation  resp.Field
-		CallSign        resp.Field
-		CareProviderUrn resp.Field
-		CasualtyKey     resp.Field
-		CasualtyType    resp.Field
-		CollectionPoint resp.Field
-		Comments        resp.Field
-		Condition       resp.Field
-		ContamType      resp.Field
-		Disposition     resp.Field
-		DispositionType resp.Field
-		Etiology        resp.Field
-		EvacType        resp.Field
-		Gender          resp.Field
-		HealthState     resp.Field
-		Injury          resp.Field
-		Last4Ssn        resp.Field
-		Medication      resp.Field
-		Name            resp.Field
-		Nationality     resp.Field
-		OccSpeciality   resp.Field
-		PatientIdentity resp.Field
-		PatientStatus   resp.Field
-		PayGrade        resp.Field
-		Priority        resp.Field
-		ReportGen       resp.Field
-		ReportTime      resp.Field
-		Service         resp.Field
-		SpecMedEquip    resp.Field
-		Treatment       resp.Field
-		VitalSignData   resp.Field
-		ExtraFields     map[string]resp.Field
+		Age             respjson.Field
+		Allergy         respjson.Field
+		BloodType       respjson.Field
+		BodyPart        respjson.Field
+		BurialLocation  respjson.Field
+		CallSign        respjson.Field
+		CareProviderUrn respjson.Field
+		CasualtyKey     respjson.Field
+		CasualtyType    respjson.Field
+		CollectionPoint respjson.Field
+		Comments        respjson.Field
+		Condition       respjson.Field
+		ContamType      respjson.Field
+		Disposition     respjson.Field
+		DispositionType respjson.Field
+		Etiology        respjson.Field
+		EvacType        respjson.Field
+		Gender          respjson.Field
+		HealthState     respjson.Field
+		Injury          respjson.Field
+		Last4Ssn        respjson.Field
+		Medication      respjson.Field
+		Name            respjson.Field
+		Nationality     respjson.Field
+		OccSpeciality   respjson.Field
+		PatientIdentity respjson.Field
+		PatientStatus   respjson.Field
+		PayGrade        respjson.Field
+		Priority        respjson.Field
+		ReportGen       respjson.Field
+		ReportTime      respjson.Field
+		Service         respjson.Field
+		SpecMedEquip    respjson.Field
+		Treatment       respjson.Field
+		VitalSignData   respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -3612,11 +3612,11 @@ type EvacFullCasualtyInfoAllergy struct {
 	Comments string `json:"comments"`
 	// Type of patient allergy (e.g. PENICILLIN, SULFA, OTHER).
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Comments    resp.Field
-		Type        resp.Field
-		ExtraFields map[string]resp.Field
+		Comments    respjson.Field
+		Type        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -3642,13 +3642,13 @@ type EvacFullCasualtyInfoCondition struct {
 	// ACTIVITY NONE, AVPU ALERT, AVPU ALTERED MENTAL STATE, AVPU PAIN, AVPU
 	// UNRESPONSIVE, etc.).
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		BodyPart    resp.Field
-		Comments    resp.Field
-		Time        resp.Field
-		Type        resp.Field
-		ExtraFields map[string]resp.Field
+		BodyPart    respjson.Field
+		Comments    respjson.Field
+		Time        respjson.Field
+		Type        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -3674,13 +3674,13 @@ type EvacFullCasualtyInfoEtiology struct {
 	// BURN CHEMICAL, BURN ELECTRICAL, BURN, BURN HOT LIQUID, BURN RADIATION, BURN
 	// THERMAL, etc.).
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		BodyPart    resp.Field
-		Comments    resp.Field
-		Time        resp.Field
-		Type        resp.Field
-		ExtraFields map[string]resp.Field
+		BodyPart    respjson.Field
+		Comments    respjson.Field
+		Time        respjson.Field
+		Type        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -3702,13 +3702,13 @@ type EvacFullCasualtyInfoHealthState struct {
 	// Generalized state of health type (BIOLOGICAL, CHEMICAL, COGNITIVE, HYDRATION,
 	// LIFE SIGN, RADIATION, SHOCK, THERMAL).
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		HealthStateCode resp.Field
-		MedConfFactor   resp.Field
-		Time            resp.Field
-		Type            resp.Field
-		ExtraFields     map[string]resp.Field
+		HealthStateCode respjson.Field
+		MedConfFactor   respjson.Field
+		Time            respjson.Field
+		Type            respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -3739,13 +3739,13 @@ type EvacFullCasualtyInfoInjury struct {
 	// NON SYMMETRICAL, LACERATION, NEUROVASCULAR COMPROMISE, NEUROVASCULAR INTACT,
 	// PUNCTURE, SEAT BELT SIGN, STAB, TIC TIM).
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		BodyPart    resp.Field
-		Comments    resp.Field
-		Time        resp.Field
-		Type        resp.Field
-		ExtraFields map[string]resp.Field
+		BodyPart    respjson.Field
+		Comments    respjson.Field
+		Time        respjson.Field
+		Type        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -3777,15 +3777,15 @@ type EvacFullCasualtyInfoMedication struct {
 	// HEXTEND, LACTATED RINGERS, MOBIC, MORPHINE, NARCOTIC, NS, PENICILLIN, PLASMA,
 	// PLATELETS, PRBC, TYLENOL, WHOLE BLOOD MT).
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AdminRoute  resp.Field
-		BodyPart    resp.Field
-		Comments    resp.Field
-		Dose        resp.Field
-		Time        resp.Field
-		Type        resp.Field
-		ExtraFields map[string]resp.Field
+		AdminRoute  respjson.Field
+		BodyPart    respjson.Field
+		Comments    respjson.Field
+		Dose        respjson.Field
+		Time        respjson.Field
+		Type        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -3812,13 +3812,13 @@ type EvacFullCasualtyInfoTreatment struct {
 	// AIRWAY NPA OPA APPLIED, AIRWAY PATIENT, AIRWAY POSITIONAL, AIRWAY SURGICAL CRIC,
 	// BREATHING CHEST SEAL, BREATHING CHEST TUBE, etc.).
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		BodyPart    resp.Field
-		Comments    resp.Field
-		Time        resp.Field
-		Type        resp.Field
-		ExtraFields map[string]resp.Field
+		BodyPart    respjson.Field
+		Comments    respjson.Field
+		Time        respjson.Field
+		Type        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -3843,14 +3843,14 @@ type EvacFullCasualtyInfoVitalSignData struct {
 	// Vital sign value 2. The content of this field is dependent on the type of vital
 	// sign being measured (see the vitalSign field).
 	VitalSign2 float64 `json:"vitalSign2"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		MedConfFactor resp.Field
-		Time          resp.Field
-		VitalSign     resp.Field
-		VitalSign1    resp.Field
-		VitalSign2    resp.Field
-		ExtraFields   map[string]resp.Field
+		MedConfFactor respjson.Field
+		Time          respjson.Field
+		VitalSign     respjson.Field
+		VitalSign1    respjson.Field
+		VitalSign2    respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -3871,13 +3871,13 @@ type EvacFullEnemyData struct {
 	HlzRemarks string `json:"hlzRemarks"`
 	// The type of hostile fire received (SMALL ARMS, MORTAR, ARTILLERY, ROCKETS).
 	HostileFireType string `json:"hostileFireType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DirToEnemy        resp.Field
-		FriendliesRemarks resp.Field
-		HlzRemarks        resp.Field
-		HostileFireType   resp.Field
-		ExtraFields       map[string]resp.Field
+		DirToEnemy        respjson.Field
+		FriendliesRemarks respjson.Field
+		HlzRemarks        respjson.Field
+		HostileFireType   respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -3893,11 +3893,11 @@ type EvacFullRelatedDoc struct {
 	DataSourceRefs []EvacFullRelatedDocDataSourceRef `json:"dataSourceRefs"`
 	// The document id of the related document.
 	DocumentID string `json:"documentId"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DataSourceRefs resp.Field
-		DocumentID     resp.Field
-		ExtraFields    map[string]resp.Field
+		DataSourceRefs respjson.Field
+		DocumentID     respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }
@@ -3919,14 +3919,14 @@ type EvacFullRelatedDocDataSourceRef struct {
 	SentenceNumber string `json:"sentenceNumber"`
 	// start position.
 	StartPosition string `json:"startPosition"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DataSourceID    resp.Field
-		EndPosition     resp.Field
-		ParagraphNumber resp.Field
-		SentenceNumber  resp.Field
-		StartPosition   resp.Field
-		ExtraFields     map[string]resp.Field
+		DataSourceID    respjson.Field
+		EndPosition     respjson.Field
+		ParagraphNumber respjson.Field
+		SentenceNumber  respjson.Field
+		StartPosition   respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -4069,39 +4069,39 @@ type EventEvolutionFull struct {
 	Tags []string `json:"tags"`
 	// List of URLs to before/after images of this point of interest entity.
 	URL []string `json:"url"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		EventID               resp.Field
-		Source                resp.Field
-		StartTime             resp.Field
-		Summary               resp.Field
-		ID                    resp.Field
-		Agjson                resp.Field
-		Andims                resp.Field
-		Area                  resp.Field
-		Asrid                 resp.Field
-		Atext                 resp.Field
-		Atype                 resp.Field
-		Category              resp.Field
-		CountryCode           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DataDescription       resp.Field
-		EndTime               resp.Field
-		GeoAdminLevel1        resp.Field
-		GeoAdminLevel2        resp.Field
-		GeoAdminLevel3        resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Redact                resp.Field
-		SrcIDs                resp.Field
-		SrcTyps               resp.Field
-		Status                resp.Field
-		Tags                  resp.Field
-		URL                   resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		EventID               respjson.Field
+		Source                respjson.Field
+		StartTime             respjson.Field
+		Summary               respjson.Field
+		ID                    respjson.Field
+		Agjson                respjson.Field
+		Andims                respjson.Field
+		Area                  respjson.Field
+		Asrid                 respjson.Field
+		Atext                 respjson.Field
+		Atype                 respjson.Field
+		Category              respjson.Field
+		CountryCode           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DataDescription       respjson.Field
+		EndTime               respjson.Field
+		GeoAdminLevel1        respjson.Field
+		GeoAdminLevel2        respjson.Field
+		GeoAdminLevel3        respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Redact                respjson.Field
+		SrcIDs                respjson.Field
+		SrcTyps               respjson.Field
+		Status                respjson.Field
+		Tags                  respjson.Field
+		URL                   respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -4144,15 +4144,15 @@ type FileData struct {
 	TargetPath    string                `json:"targetPath"`
 	// Any of "file", "folder", "summary".
 	Type FileDataType `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID            resp.Field
-		Attributes    resp.Field
-		ContentAction resp.Field
-		TargetName    resp.Field
-		TargetPath    resp.Field
-		Type          resp.Field
-		ExtraFields   map[string]resp.Field
+		ID            respjson.Field
+		Attributes    respjson.Field
+		ContentAction respjson.Field
+		TargetName    respjson.Field
+		TargetPath    respjson.Field
+		Type          respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -4203,39 +4203,39 @@ type FileDataAttributes struct {
 	Size                  int64    `json:"size"`
 	Tags                  []string `json:"tags"`
 	Write                 string   `json:"write"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID                    resp.Field
-		Classification        resp.Field
-		ClassificationMarking resp.Field
-		CreatedBy             resp.Field
-		CreatedDate           resp.Field
-		Description           resp.Field
-		DocTitle              resp.Field
-		DocType               resp.Field
-		Doi                   resp.Field
-		EllipseLat            resp.Field
-		EllipseLon            resp.Field
-		FileName              resp.Field
-		IntrinsicTitle        resp.Field
-		Keywords              resp.Field
-		MediaTitle            resp.Field
-		MetaInfo              resp.Field
-		Milgrid               resp.Field
-		MilgridLat            resp.Field
-		MilgridLon            resp.Field
-		ModifiedBy            resp.Field
-		ModifiedDate          resp.Field
-		Name                  resp.Field
-		Path                  resp.Field
-		Read                  resp.Field
-		Searchable            resp.Field
-		SearchAfter           resp.Field
-		SerialNumber          resp.Field
-		Size                  resp.Field
-		Tags                  resp.Field
-		Write                 resp.Field
-		ExtraFields           map[string]resp.Field
+		ID                    respjson.Field
+		Classification        respjson.Field
+		ClassificationMarking respjson.Field
+		CreatedBy             respjson.Field
+		CreatedDate           respjson.Field
+		Description           respjson.Field
+		DocTitle              respjson.Field
+		DocType               respjson.Field
+		Doi                   respjson.Field
+		EllipseLat            respjson.Field
+		EllipseLon            respjson.Field
+		FileName              respjson.Field
+		IntrinsicTitle        respjson.Field
+		Keywords              respjson.Field
+		MediaTitle            respjson.Field
+		MetaInfo              respjson.Field
+		Milgrid               respjson.Field
+		MilgridLat            respjson.Field
+		MilgridLon            respjson.Field
+		ModifiedBy            respjson.Field
+		ModifiedDate          respjson.Field
+		Name                  respjson.Field
+		Path                  respjson.Field
+		Read                  respjson.Field
+		Searchable            respjson.Field
+		SearchAfter           respjson.Field
+		SerialNumber          respjson.Field
+		Size                  respjson.Field
+		Tags                  respjson.Field
+		Write                 respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -4595,108 +4595,108 @@ type FlightPlanFull struct {
 	// The date and time the weather valid period begins in ISO 8601 UTC format, with
 	// millisecond precision.
 	WxValidStart time.Time `json:"wxValidStart" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ArrAirfield           resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		DepAirfield           resp.Field
-		GenTs                 resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AircraftMds           resp.Field
-		AirRefuelEvents       resp.Field
-		AmcMissionID          resp.Field
-		AppLandingFuel        resp.Field
-		ArrAlternate1         resp.Field
-		ArrAlternate1Fuel     resp.Field
-		ArrAlternate2         resp.Field
-		ArrAlternate2Fuel     resp.Field
-		ArrIceFuel            resp.Field
-		ArrRunway             resp.Field
-		AtcAddresses          resp.Field
-		AvgTempDev            resp.Field
-		BurnedFuel            resp.Field
-		CallSign              resp.Field
-		CargoRemark           resp.Field
-		ClimbFuel             resp.Field
-		ClimbTime             resp.Field
-		ContingencyFuel       resp.Field
-		CountryCodes          resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DepAlternate          resp.Field
-		DepressFuel           resp.Field
-		DepRunway             resp.Field
-		DragIndex             resp.Field
-		EarlyDescentFuel      resp.Field
-		EnduranceTime         resp.Field
-		EnrouteFuel           resp.Field
-		EnrouteTime           resp.Field
-		Equipment             resp.Field
-		EstDepTime            resp.Field
-		EtopsAirfields        resp.Field
-		EtopsAltAirfields     resp.Field
-		EtopsRating           resp.Field
-		EtopsValWindow        resp.Field
-		ExternalID            resp.Field
-		FlightPlanMessages    resp.Field
-		FlightPlanPointGroups resp.Field
-		FlightPlanWaypoints   resp.Field
-		FlightRules           resp.Field
-		FlightType            resp.Field
-		FuelDegrade           resp.Field
-		GpsRaim               resp.Field
-		HoldDownFuel          resp.Field
-		HoldFuel              resp.Field
-		HoldTime              resp.Field
-		IDAircraft            resp.Field
-		IDArrAirfield         resp.Field
-		IDDepAirfield         resp.Field
-		IdentExtraFuel        resp.Field
-		IDSortie              resp.Field
-		InitialCruiseSpeed    resp.Field
-		InitialFlightLevel    resp.Field
-		LandingFuel           resp.Field
-		LegNum                resp.Field
-		MinDivertFuel         resp.Field
-		MsnIndex              resp.Field
-		Notes                 resp.Field
-		NumAircraft           resp.Field
-		OpConditionFuel       resp.Field
-		OpWeight              resp.Field
-		Origin                resp.Field
-		Originator            resp.Field
-		OrigNetwork           resp.Field
-		PlannerRemark         resp.Field
-		RampFuel              resp.Field
-		RemAlternate1Fuel     resp.Field
-		RemAlternate2Fuel     resp.Field
-		ReserveFuel           resp.Field
-		RouteString           resp.Field
-		Sid                   resp.Field
-		SourceDl              resp.Field
-		Star                  resp.Field
-		Status                resp.Field
-		TailNumber            resp.Field
-		TakeoffFuel           resp.Field
-		TaxiFuel              resp.Field
-		ThunderAvoidFuel      resp.Field
-		TocFuel               resp.Field
-		TocIceFuel            resp.Field
-		TodFuel               resp.Field
-		TodIceFuel            resp.Field
-		UnidentExtraFuel      resp.Field
-		UnusableFuel          resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		WakeTurbCat           resp.Field
-		WindFac1              resp.Field
-		WindFac2              resp.Field
-		WindFacAvg            resp.Field
-		WxValidEnd            resp.Field
-		WxValidStart          resp.Field
-		ExtraFields           map[string]resp.Field
+		ArrAirfield           respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		DepAirfield           respjson.Field
+		GenTs                 respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AircraftMds           respjson.Field
+		AirRefuelEvents       respjson.Field
+		AmcMissionID          respjson.Field
+		AppLandingFuel        respjson.Field
+		ArrAlternate1         respjson.Field
+		ArrAlternate1Fuel     respjson.Field
+		ArrAlternate2         respjson.Field
+		ArrAlternate2Fuel     respjson.Field
+		ArrIceFuel            respjson.Field
+		ArrRunway             respjson.Field
+		AtcAddresses          respjson.Field
+		AvgTempDev            respjson.Field
+		BurnedFuel            respjson.Field
+		CallSign              respjson.Field
+		CargoRemark           respjson.Field
+		ClimbFuel             respjson.Field
+		ClimbTime             respjson.Field
+		ContingencyFuel       respjson.Field
+		CountryCodes          respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DepAlternate          respjson.Field
+		DepressFuel           respjson.Field
+		DepRunway             respjson.Field
+		DragIndex             respjson.Field
+		EarlyDescentFuel      respjson.Field
+		EnduranceTime         respjson.Field
+		EnrouteFuel           respjson.Field
+		EnrouteTime           respjson.Field
+		Equipment             respjson.Field
+		EstDepTime            respjson.Field
+		EtopsAirfields        respjson.Field
+		EtopsAltAirfields     respjson.Field
+		EtopsRating           respjson.Field
+		EtopsValWindow        respjson.Field
+		ExternalID            respjson.Field
+		FlightPlanMessages    respjson.Field
+		FlightPlanPointGroups respjson.Field
+		FlightPlanWaypoints   respjson.Field
+		FlightRules           respjson.Field
+		FlightType            respjson.Field
+		FuelDegrade           respjson.Field
+		GpsRaim               respjson.Field
+		HoldDownFuel          respjson.Field
+		HoldFuel              respjson.Field
+		HoldTime              respjson.Field
+		IDAircraft            respjson.Field
+		IDArrAirfield         respjson.Field
+		IDDepAirfield         respjson.Field
+		IdentExtraFuel        respjson.Field
+		IDSortie              respjson.Field
+		InitialCruiseSpeed    respjson.Field
+		InitialFlightLevel    respjson.Field
+		LandingFuel           respjson.Field
+		LegNum                respjson.Field
+		MinDivertFuel         respjson.Field
+		MsnIndex              respjson.Field
+		Notes                 respjson.Field
+		NumAircraft           respjson.Field
+		OpConditionFuel       respjson.Field
+		OpWeight              respjson.Field
+		Origin                respjson.Field
+		Originator            respjson.Field
+		OrigNetwork           respjson.Field
+		PlannerRemark         respjson.Field
+		RampFuel              respjson.Field
+		RemAlternate1Fuel     respjson.Field
+		RemAlternate2Fuel     respjson.Field
+		ReserveFuel           respjson.Field
+		RouteString           respjson.Field
+		Sid                   respjson.Field
+		SourceDl              respjson.Field
+		Star                  respjson.Field
+		Status                respjson.Field
+		TailNumber            respjson.Field
+		TakeoffFuel           respjson.Field
+		TaxiFuel              respjson.Field
+		ThunderAvoidFuel      respjson.Field
+		TocFuel               respjson.Field
+		TocIceFuel            respjson.Field
+		TodFuel               respjson.Field
+		TodIceFuel            respjson.Field
+		UnidentExtraFuel      respjson.Field
+		UnusableFuel          respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		WakeTurbCat           respjson.Field
+		WindFac1              respjson.Field
+		WindFac2              respjson.Field
+		WindFacAvg            respjson.Field
+		WxValidEnd            respjson.Field
+		WxValidStart          respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -4744,14 +4744,14 @@ type FlightPlanFullAirRefuelEvent struct {
 	DivertFuel float64 `json:"divertFuel"`
 	// Fuel remaining at the air refueling exit in pounds.
 	ExitFuel float64 `json:"exitFuel"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ArDegrade       resp.Field
-		ArExchangedFuel resp.Field
-		ArNum           resp.Field
-		DivertFuel      resp.Field
-		ExitFuel        resp.Field
-		ExtraFields     map[string]resp.Field
+		ArDegrade       respjson.Field
+		ArExchangedFuel respjson.Field
+		ArNum           respjson.Field
+		DivertFuel      respjson.Field
+		ExitFuel        respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -4775,13 +4775,13 @@ type FlightPlanFullFlightPlanMessage struct {
 	// The waypoint number for which the message was generated, or enter "PLAN" for a
 	// message impacting the entire route.
 	WpNum string `json:"wpNum"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		MsgText     resp.Field
-		RoutePath   resp.Field
-		Severity    resp.Field
-		WpNum       resp.Field
-		ExtraFields map[string]resp.Field
+		MsgText     respjson.Field
+		RoutePath   respjson.Field
+		Severity    respjson.Field
+		WpNum       respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -4861,33 +4861,33 @@ type FlightPlanFullFlightPlanPointGroup struct {
 	PointGroupName string `json:"pointGroupName"`
 	// Specifies which Point Group case requires the most fuel.
 	WorstFuelCase string `json:"worstFuelCase"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AvgFuelFlow        resp.Field
-		EtopsAvgWindFactor resp.Field
-		EtopsDistance      resp.Field
-		EtopsReqFuel       resp.Field
-		EtopsTempDev       resp.Field
-		EtopsTime          resp.Field
-		FlightPlanPoints   resp.Field
-		FromTakeoffTime    resp.Field
-		FsafAvgWindFactor  resp.Field
-		FsafDistance       resp.Field
-		FsafReqFuel        resp.Field
-		FsafTempDev        resp.Field
-		FsafTime           resp.Field
-		FuelCalcAlt        resp.Field
-		FuelCalcSpd        resp.Field
-		LsafAvgWindFactor  resp.Field
-		LsafDistance       resp.Field
-		LsafName           resp.Field
-		LsafReqFuel        resp.Field
-		LsafTempDev        resp.Field
-		LsafTime           resp.Field
-		PlannedFuel        resp.Field
-		PointGroupName     resp.Field
-		WorstFuelCase      resp.Field
-		ExtraFields        map[string]resp.Field
+		AvgFuelFlow        respjson.Field
+		EtopsAvgWindFactor respjson.Field
+		EtopsDistance      respjson.Field
+		EtopsReqFuel       respjson.Field
+		EtopsTempDev       respjson.Field
+		EtopsTime          respjson.Field
+		FlightPlanPoints   respjson.Field
+		FromTakeoffTime    respjson.Field
+		FsafAvgWindFactor  respjson.Field
+		FsafDistance       respjson.Field
+		FsafReqFuel        respjson.Field
+		FsafTempDev        respjson.Field
+		FsafTime           respjson.Field
+		FuelCalcAlt        respjson.Field
+		FuelCalcSpd        respjson.Field
+		LsafAvgWindFactor  respjson.Field
+		LsafDistance       respjson.Field
+		LsafName           respjson.Field
+		LsafReqFuel        respjson.Field
+		LsafTempDev        respjson.Field
+		LsafTime           respjson.Field
+		PlannedFuel        respjson.Field
+		PointGroupName     respjson.Field
+		WorstFuelCase      respjson.Field
+		ExtraFields        map[string]respjson.Field
 		raw                string
 	} `json:"-"`
 }
@@ -4914,14 +4914,14 @@ type FlightPlanFullFlightPlanPointGroupFlightPlanPoint struct {
 	FppReqFuel float64 `json:"fppReqFuel"`
 	// Name of this point.
 	PointName string `json:"pointName"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		FppEta      resp.Field
-		FppLat      resp.Field
-		FppLon      resp.Field
-		FppReqFuel  resp.Field
-		PointName   resp.Field
-		ExtraFields map[string]resp.Field
+		FppEta      respjson.Field
+		FppLat      respjson.Field
+		FppLon      respjson.Field
+		FppReqFuel  respjson.Field
+		PointName   respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -5071,65 +5071,65 @@ type FlightPlanFullFlightPlanWaypoint struct {
 	ZoneFuel float64 `json:"zoneFuel"`
 	// The time to fly this zone/leg in minutes.
 	ZoneTime float64 `json:"zoneTime"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Type               resp.Field
-		WaypointName       resp.Field
-		AaTacanChannel     resp.Field
-		AirDistance        resp.Field
-		Airway             resp.Field
-		Alt                resp.Field
-		ArID               resp.Field
-		Arpt               resp.Field
-		Ata                resp.Field
-		AvgCalAirspeed     resp.Field
-		AvgDriftAng        resp.Field
-		AvgGroundSpeed     resp.Field
-		AvgTrueAirspeed    resp.Field
-		AvgWindDir         resp.Field
-		AvgWindSpeed       resp.Field
-		DayLowAlt          resp.Field
-		Eta                resp.Field
-		ExchangedFuel      resp.Field
-		FuelFlow           resp.Field
-		IceCat             resp.Field
-		Lat                resp.Field
-		LegAlternate       resp.Field
-		LegDragIndex       resp.Field
-		LegFuelDegrade     resp.Field
-		LegMach            resp.Field
-		LegMsnIndex        resp.Field
-		LegWindFac         resp.Field
-		Lon                resp.Field
-		MagCourse          resp.Field
-		MagHeading         resp.Field
-		MagVar             resp.Field
-		Navaid             resp.Field
-		NightLowAlt        resp.Field
-		NvgLowAlt          resp.Field
-		PointWindDir       resp.Field
-		PointWindSpeed     resp.Field
-		PriFreq            resp.Field
-		SecFreq            resp.Field
-		TacanChannel       resp.Field
-		TempDev            resp.Field
-		ThunderCat         resp.Field
-		TotalAirDistance   resp.Field
-		TotalFlownDistance resp.Field
-		TotalRemDistance   resp.Field
-		TotalRemFuel       resp.Field
-		TotalTime          resp.Field
-		TotalTimeRem       resp.Field
-		TotalUsedFuel      resp.Field
-		TotalWeight        resp.Field
-		TrueCourse         resp.Field
-		TurbCat            resp.Field
-		VorFreq            resp.Field
-		WaypointNum        resp.Field
-		ZoneDistance       resp.Field
-		ZoneFuel           resp.Field
-		ZoneTime           resp.Field
-		ExtraFields        map[string]resp.Field
+		Type               respjson.Field
+		WaypointName       respjson.Field
+		AaTacanChannel     respjson.Field
+		AirDistance        respjson.Field
+		Airway             respjson.Field
+		Alt                respjson.Field
+		ArID               respjson.Field
+		Arpt               respjson.Field
+		Ata                respjson.Field
+		AvgCalAirspeed     respjson.Field
+		AvgDriftAng        respjson.Field
+		AvgGroundSpeed     respjson.Field
+		AvgTrueAirspeed    respjson.Field
+		AvgWindDir         respjson.Field
+		AvgWindSpeed       respjson.Field
+		DayLowAlt          respjson.Field
+		Eta                respjson.Field
+		ExchangedFuel      respjson.Field
+		FuelFlow           respjson.Field
+		IceCat             respjson.Field
+		Lat                respjson.Field
+		LegAlternate       respjson.Field
+		LegDragIndex       respjson.Field
+		LegFuelDegrade     respjson.Field
+		LegMach            respjson.Field
+		LegMsnIndex        respjson.Field
+		LegWindFac         respjson.Field
+		Lon                respjson.Field
+		MagCourse          respjson.Field
+		MagHeading         respjson.Field
+		MagVar             respjson.Field
+		Navaid             respjson.Field
+		NightLowAlt        respjson.Field
+		NvgLowAlt          respjson.Field
+		PointWindDir       respjson.Field
+		PointWindSpeed     respjson.Field
+		PriFreq            respjson.Field
+		SecFreq            respjson.Field
+		TacanChannel       respjson.Field
+		TempDev            respjson.Field
+		ThunderCat         respjson.Field
+		TotalAirDistance   respjson.Field
+		TotalFlownDistance respjson.Field
+		TotalRemDistance   respjson.Field
+		TotalRemFuel       respjson.Field
+		TotalTime          respjson.Field
+		TotalTimeRem       respjson.Field
+		TotalUsedFuel      respjson.Field
+		TotalWeight        respjson.Field
+		TrueCourse         respjson.Field
+		TurbCat            respjson.Field
+		VorFreq            respjson.Field
+		WaypointNum        respjson.Field
+		ZoneDistance       respjson.Field
+		ZoneFuel           respjson.Field
+		ZoneTime           respjson.Field
+		ExtraFields        map[string]respjson.Field
 		raw                string
 	} `json:"-"`
 }
@@ -5239,38 +5239,38 @@ type OnorbitFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		SatNo                 resp.Field
-		Source                resp.Field
-		AltName               resp.Field
-		Antennas              resp.Field
-		Batteries             resp.Field
-		Category              resp.Field
-		CommonName            resp.Field
-		Constellation         resp.Field
-		CountryCode           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DecayDate             resp.Field
-		EntityCollection      resp.Field
-		IDOnOrbit             resp.Field
-		IntlDes               resp.Field
-		LaunchDate            resp.Field
-		LaunchSiteID          resp.Field
-		LifetimeYears         resp.Field
-		MissionNumber         resp.Field
-		ObjectType            resp.Field
-		OnorbitDetails        resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		SolarArrays           resp.Field
-		Thrusters             resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		SatNo                 respjson.Field
+		Source                respjson.Field
+		AltName               respjson.Field
+		Antennas              respjson.Field
+		Batteries             respjson.Field
+		Category              respjson.Field
+		CommonName            respjson.Field
+		Constellation         respjson.Field
+		CountryCode           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DecayDate             respjson.Field
+		EntityCollection      respjson.Field
+		IDOnOrbit             respjson.Field
+		IntlDes               respjson.Field
+		LaunchDate            respjson.Field
+		LaunchSiteID          respjson.Field
+		LifetimeYears         respjson.Field
+		MissionNumber         respjson.Field
+		ObjectType            respjson.Field
+		OnorbitDetails        respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		SolarArrays           respjson.Field
+		Thrusters             respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -5354,22 +5354,22 @@ type OnorbitFullAntenna struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDAntenna             resp.Field
-		IDOnOrbit             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Antenna               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDAntenna             respjson.Field
+		IDOnOrbit             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Antenna               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -5430,23 +5430,23 @@ type OnorbitFullBattery struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDBattery             resp.Field
-		IDOnOrbit             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Battery               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Quantity              resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDBattery             respjson.Field
+		IDOnOrbit             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Battery               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Quantity              respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -5569,33 +5569,33 @@ type OnorbitFullEntityCollection struct {
 	UpdatedBy string `json:"updatedBy"`
 	// List of URLs to additional details/documents for this entity.
 	URLs []string `json:"urls"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		CountryCode           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		IDEntity              resp.Field
-		IDLocation            resp.Field
-		IDOnOrbit             resp.Field
-		IDOperatingUnit       resp.Field
-		Location              resp.Field
-		OperatingUnit         resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OwnerType             resp.Field
-		RfBands               resp.Field
-		StatusCollection      resp.Field
-		Taskable              resp.Field
-		TerrestrialID         resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		URLs                  resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		CountryCode           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		IDEntity              respjson.Field
+		IDLocation            respjson.Field
+		IDOnOrbit             respjson.Field
+		IDOperatingUnit       respjson.Field
+		Location              respjson.Field
+		OperatingUnit         respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OwnerType             respjson.Field
+		RfBands               respjson.Field
+		StatusCollection      respjson.Field
+		Taskable              respjson.Field
+		TerrestrialID         respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		URLs                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -5937,74 +5937,74 @@ type OnorbitFullEntityCollectionOperatingUnit struct {
 	// World Aeronautical Chart identifier for the area in which a designated operating
 	// unit is located.
 	Wac string `json:"wac"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		AirDefArea            resp.Field
-		Allegiance            resp.Field
-		AltAllegiance         resp.Field
-		AltCountryCode        resp.Field
-		AltOperatingUnitID    resp.Field
-		ClassRating           resp.Field
-		Condition             resp.Field
-		ConditionAvail        resp.Field
-		Coord                 resp.Field
-		CoordDatum            resp.Field
-		CoordDerivAcc         resp.Field
-		CountryCode           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DeployStatus          resp.Field
-		Description           resp.Field
-		DivCat                resp.Field
-		Echelon               resp.Field
-		EchelonTier           resp.Field
-		ElevMsl               resp.Field
-		ElevMslConfLvl        resp.Field
-		ElevMslDerivAcc       resp.Field
-		Eval                  resp.Field
-		FlagFlown             resp.Field
-		FleetID               resp.Field
-		Force                 resp.Field
-		ForceName             resp.Field
-		Fpa                   resp.Field
-		FunctRole             resp.Field
-		GeoidalMslSep         resp.Field
-		IDContact             resp.Field
-		Ident                 resp.Field
-		IDLocation            resp.Field
-		IDOperatingUnit       resp.Field
-		IDOrganization        resp.Field
-		Lat                   resp.Field
-		Location              resp.Field
-		LocName               resp.Field
-		LocReason             resp.Field
-		Lon                   resp.Field
-		MasterUnit            resp.Field
-		MilGrid               resp.Field
-		MilGridSys            resp.Field
-		MsnPrimary            resp.Field
-		MsnPrimarySpecialty   resp.Field
-		OperatingUnitRemarks  resp.Field
-		OperStatus            resp.Field
-		Organization          resp.Field
-		Origin                resp.Field
-		PolSubdiv             resp.Field
-		RecStatus             resp.Field
-		ReferenceDoc          resp.Field
-		ResProd               resp.Field
-		ReviewDate            resp.Field
-		StylizedUnit          resp.Field
-		SymCode               resp.Field
-		UnitIdentifier        resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		Utm                   resp.Field
-		Wac                   resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		AirDefArea            respjson.Field
+		Allegiance            respjson.Field
+		AltAllegiance         respjson.Field
+		AltCountryCode        respjson.Field
+		AltOperatingUnitID    respjson.Field
+		ClassRating           respjson.Field
+		Condition             respjson.Field
+		ConditionAvail        respjson.Field
+		Coord                 respjson.Field
+		CoordDatum            respjson.Field
+		CoordDerivAcc         respjson.Field
+		CountryCode           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DeployStatus          respjson.Field
+		Description           respjson.Field
+		DivCat                respjson.Field
+		Echelon               respjson.Field
+		EchelonTier           respjson.Field
+		ElevMsl               respjson.Field
+		ElevMslConfLvl        respjson.Field
+		ElevMslDerivAcc       respjson.Field
+		Eval                  respjson.Field
+		FlagFlown             respjson.Field
+		FleetID               respjson.Field
+		Force                 respjson.Field
+		ForceName             respjson.Field
+		Fpa                   respjson.Field
+		FunctRole             respjson.Field
+		GeoidalMslSep         respjson.Field
+		IDContact             respjson.Field
+		Ident                 respjson.Field
+		IDLocation            respjson.Field
+		IDOperatingUnit       respjson.Field
+		IDOrganization        respjson.Field
+		Lat                   respjson.Field
+		Location              respjson.Field
+		LocName               respjson.Field
+		LocReason             respjson.Field
+		Lon                   respjson.Field
+		MasterUnit            respjson.Field
+		MilGrid               respjson.Field
+		MilGridSys            respjson.Field
+		MsnPrimary            respjson.Field
+		MsnPrimarySpecialty   respjson.Field
+		OperatingUnitRemarks  respjson.Field
+		OperStatus            respjson.Field
+		Organization          respjson.Field
+		Origin                respjson.Field
+		PolSubdiv             respjson.Field
+		RecStatus             respjson.Field
+		ReferenceDoc          respjson.Field
+		ResProd               respjson.Field
+		ReviewDate            respjson.Field
+		StylizedUnit          respjson.Field
+		SymCode               respjson.Field
+		UnitIdentifier        respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		Utm                   respjson.Field
+		Wac                   respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -6069,24 +6069,24 @@ type OnorbitFullEntityCollectionOperatingUnitOperatingUnitRemark struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDOperatingUnit       resp.Field
-		Source                resp.Field
-		Text                  resp.Field
-		ID                    resp.Field
-		AltRmkID              resp.Field
-		Code                  resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Name                  resp.Field
-		Origin                resp.Field
-		Type                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDOperatingUnit       respjson.Field
+		Source                respjson.Field
+		Text                  respjson.Field
+		ID                    respjson.Field
+		AltRmkID              respjson.Field
+		Code                  respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Name                  respjson.Field
+		Origin                respjson.Field
+		Type                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -6201,34 +6201,34 @@ type OnorbitFullEntityCollectionRfBand struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDEntity              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Band                  resp.Field
-		Bandwidth             resp.Field
-		Beamwidth             resp.Field
-		CenterFreq            resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EdgeGain              resp.Field
-		Eirp                  resp.Field
-		Erp                   resp.Field
-		FreqMax               resp.Field
-		FreqMin               resp.Field
-		Mode                  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PeakGain              resp.Field
-		Polarization          resp.Field
-		Purpose               resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDEntity              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Band                  respjson.Field
+		Bandwidth             respjson.Field
+		Beamwidth             respjson.Field
+		CenterFreq            respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EdgeGain              respjson.Field
+		Eirp                  respjson.Field
+		Erp                   respjson.Field
+		FreqMax               respjson.Field
+		FreqMin               respjson.Field
+		Mode                  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PeakGain              respjson.Field
+		Polarization          respjson.Field
+		Purpose               respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -6308,28 +6308,28 @@ type OnorbitFullEntityCollectionStatusCollection struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking  resp.Field
-		DataMode               resp.Field
-		IDEntity               resp.Field
-		Source                 resp.Field
-		ID                     resp.Field
-		CreatedAt              resp.Field
-		CreatedBy              resp.Field
-		DeclassificationDate   resp.Field
-		DeclassificationString resp.Field
-		DerivedFrom            resp.Field
-		Notes                  resp.Field
-		OpsCap                 resp.Field
-		Origin                 resp.Field
-		OrigNetwork            resp.Field
-		State                  resp.Field
-		SubStatusCollection    resp.Field
-		SysCap                 resp.Field
-		UpdatedAt              resp.Field
-		UpdatedBy              resp.Field
-		ExtraFields            map[string]resp.Field
+		ClassificationMarking  respjson.Field
+		DataMode               respjson.Field
+		IDEntity               respjson.Field
+		Source                 respjson.Field
+		ID                     respjson.Field
+		CreatedAt              respjson.Field
+		CreatedBy              respjson.Field
+		DeclassificationDate   respjson.Field
+		DeclassificationString respjson.Field
+		DerivedFrom            respjson.Field
+		Notes                  respjson.Field
+		OpsCap                 respjson.Field
+		Origin                 respjson.Field
+		OrigNetwork            respjson.Field
+		State                  respjson.Field
+		SubStatusCollection    respjson.Field
+		SysCap                 respjson.Field
+		UpdatedAt              respjson.Field
+		UpdatedBy              respjson.Field
+		ExtraFields            map[string]respjson.Field
 		raw                    string
 	} `json:"-"`
 }
@@ -6395,23 +6395,23 @@ type OnorbitFullEntityCollectionStatusCollectionSubStatusCollection struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Notes                 resp.Field
-		Source                resp.Field
-		Status                resp.Field
-		StatusID              resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Notes                 respjson.Field
+		Source                respjson.Field
+		Status                respjson.Field
+		StatusID              respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -6576,60 +6576,60 @@ type OnorbitFullOnorbitDetail struct {
 	VismagMean float64 `json:"vismagMean"`
 	// Minimum visual magnitude in M.
 	VismagMin float64 `json:"vismagMin"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDOnOrbit             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AdditionalMass        resp.Field
-		AdeptRadius           resp.Field
-		BolDeltaV             resp.Field
-		BolFuelMass           resp.Field
-		BusCrossSection       resp.Field
-		BusType               resp.Field
-		ColaRadius            resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		CrossSection          resp.Field
-		CurrentMass           resp.Field
-		DeltaVUnc             resp.Field
-		DepEstMasses          resp.Field
-		DepMassUncs           resp.Field
-		DepNames              resp.Field
-		DriftRate             resp.Field
-		DryMass               resp.Field
-		EstDeltaVDuration     resp.Field
-		FuelRemaining         resp.Field
-		GeoSlot               resp.Field
-		LastObSource          resp.Field
-		LastObTime            resp.Field
-		LaunchMass            resp.Field
-		LaunchMassMax         resp.Field
-		LaunchMassMin         resp.Field
-		Maneuverable          resp.Field
-		MaxDeltaV             resp.Field
-		MaxRadius             resp.Field
-		MissionTypes          resp.Field
-		NumDeployable         resp.Field
-		NumMission            resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Rcs                   resp.Field
-		RcsMax                resp.Field
-		RcsMean               resp.Field
-		RcsMin                resp.Field
-		RefSource             resp.Field
-		SolarArrayArea        resp.Field
-		TotalMassUnc          resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		Vismag                resp.Field
-		VismagMax             resp.Field
-		VismagMean            resp.Field
-		VismagMin             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDOnOrbit             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AdditionalMass        respjson.Field
+		AdeptRadius           respjson.Field
+		BolDeltaV             respjson.Field
+		BolFuelMass           respjson.Field
+		BusCrossSection       respjson.Field
+		BusType               respjson.Field
+		ColaRadius            respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		CrossSection          respjson.Field
+		CurrentMass           respjson.Field
+		DeltaVUnc             respjson.Field
+		DepEstMasses          respjson.Field
+		DepMassUncs           respjson.Field
+		DepNames              respjson.Field
+		DriftRate             respjson.Field
+		DryMass               respjson.Field
+		EstDeltaVDuration     respjson.Field
+		FuelRemaining         respjson.Field
+		GeoSlot               respjson.Field
+		LastObSource          respjson.Field
+		LastObTime            respjson.Field
+		LaunchMass            respjson.Field
+		LaunchMassMax         respjson.Field
+		LaunchMassMin         respjson.Field
+		Maneuverable          respjson.Field
+		MaxDeltaV             respjson.Field
+		MaxRadius             respjson.Field
+		MissionTypes          respjson.Field
+		NumDeployable         respjson.Field
+		NumMission            respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Rcs                   respjson.Field
+		RcsMax                respjson.Field
+		RcsMean               respjson.Field
+		RcsMin                respjson.Field
+		RefSource             respjson.Field
+		SolarArrayArea        respjson.Field
+		TotalMassUnc          respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		Vismag                respjson.Field
+		VismagMax             respjson.Field
+		VismagMean            respjson.Field
+		VismagMin             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -6693,23 +6693,23 @@ type OnorbitFullSolarArray struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDOnOrbit             resp.Field
-		IDSolarArray          resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Quantity              resp.Field
-		SolarArray            resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDOnOrbit             respjson.Field
+		IDSolarArray          respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Quantity              respjson.Field
+		SolarArray            respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -6769,20 +6769,20 @@ type OnorbitFullSolarArraySolarArray struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DataMode          resp.Field
-		Name              resp.Field
-		Source            resp.Field
-		ID                resp.Field
-		CreatedAt         resp.Field
-		CreatedBy         resp.Field
-		Origin            resp.Field
-		OrigNetwork       resp.Field
-		SolarArrayDetails resp.Field
-		UpdatedAt         resp.Field
-		UpdatedBy         resp.Field
-		ExtraFields       map[string]resp.Field
+		DataMode          respjson.Field
+		Name              respjson.Field
+		Source            respjson.Field
+		ID                respjson.Field
+		CreatedAt         respjson.Field
+		CreatedBy         respjson.Field
+		Origin            respjson.Field
+		OrigNetwork       respjson.Field
+		SolarArrayDetails respjson.Field
+		UpdatedAt         respjson.Field
+		UpdatedBy         respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -6848,24 +6848,24 @@ type OnorbitFullThruster struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDEngine              resp.Field
-		IDOnOrbit             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Engine                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Quantity              resp.Field
-		Type                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDEngine              respjson.Field
+		IDOnOrbit             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Engine                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Quantity              respjson.Field
+		Type                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

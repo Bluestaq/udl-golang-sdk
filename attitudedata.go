@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // AttitudeDataService contains methods and other services that help with
@@ -171,42 +171,42 @@ type AttitudedataFull struct {
 	// rotations, the array elements should be placed in the order that the rates apply
 	// in the sequence Attitude rates are expressed in frame1 with respect to frame2.
 	ZRate []float64 `json:"zRate"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		ID                    resp.Field
-		AsID                  resp.Field
-		ConingAngle           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Declination           resp.Field
-		IDOnOrbit             resp.Field
-		MotionType            resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		PrecPeriod            resp.Field
-		Q1                    resp.Field
-		Q1Dot                 resp.Field
-		Q2                    resp.Field
-		Q2Dot                 resp.Field
-		Q3                    resp.Field
-		Q3Dot                 resp.Field
-		Qc                    resp.Field
-		QcDot                 resp.Field
-		Ra                    resp.Field
-		SatNo                 resp.Field
-		SpinPeriod            resp.Field
-		XAngle                resp.Field
-		XRate                 resp.Field
-		YAngle                resp.Field
-		YRate                 resp.Field
-		ZAngle                resp.Field
-		ZRate                 resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		ID                    respjson.Field
+		AsID                  respjson.Field
+		ConingAngle           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Declination           respjson.Field
+		IDOnOrbit             respjson.Field
+		MotionType            respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		PrecPeriod            respjson.Field
+		Q1                    respjson.Field
+		Q1Dot                 respjson.Field
+		Q2                    respjson.Field
+		Q2Dot                 respjson.Field
+		Q3                    respjson.Field
+		Q3Dot                 respjson.Field
+		Qc                    respjson.Field
+		QcDot                 respjson.Field
+		Ra                    respjson.Field
+		SatNo                 respjson.Field
+		SpinPeriod            respjson.Field
+		XAngle                respjson.Field
+		XRate                 respjson.Field
+		YAngle                respjson.Field
+		YRate                 respjson.Field
+		ZAngle                respjson.Field
+		ZRate                 respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

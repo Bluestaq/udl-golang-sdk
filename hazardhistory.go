@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // HazardHistoryService contains methods and other services that help with
@@ -235,49 +235,49 @@ type HazardHistoryQueryResponse struct {
 	ReadingValues []float64 `json:"readingValues"`
 	// The Atomic Number of the material associated with this detection.
 	Z int64 `json:"z"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Alarms                resp.Field
-		AlarmValues           resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		DetectTime            resp.Field
-		DetectType            resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		A                     resp.Field
-		Activity              resp.Field
-		BottleID              resp.Field
-		CasRn                 resp.Field
-		Channel               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		CtrnTime              resp.Field
-		Density               resp.Field
-		Dep                   resp.Field
-		DepCtrn               resp.Field
-		Dose                  resp.Field
-		DoseRate              resp.Field
-		Duration              resp.Field
-		GBar                  resp.Field
-		Harmful               resp.Field
-		HBar                  resp.Field
-		IDPoi                 resp.Field
-		IDTrack               resp.Field
-		MassFrac              resp.Field
-		MatCat                resp.Field
-		MatClass              resp.Field
-		MatName               resp.Field
-		MatType               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Ppm                   resp.Field
-		RadCtrn               resp.Field
-		Readings              resp.Field
-		ReadingUnits          resp.Field
-		ReadingValues         resp.Field
-		Z                     resp.Field
-		ExtraFields           map[string]resp.Field
+		Alarms                respjson.Field
+		AlarmValues           respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		DetectTime            respjson.Field
+		DetectType            respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		A                     respjson.Field
+		Activity              respjson.Field
+		BottleID              respjson.Field
+		CasRn                 respjson.Field
+		Channel               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		CtrnTime              respjson.Field
+		Density               respjson.Field
+		Dep                   respjson.Field
+		DepCtrn               respjson.Field
+		Dose                  respjson.Field
+		DoseRate              respjson.Field
+		Duration              respjson.Field
+		GBar                  respjson.Field
+		Harmful               respjson.Field
+		HBar                  respjson.Field
+		IDPoi                 respjson.Field
+		IDTrack               respjson.Field
+		MassFrac              respjson.Field
+		MatCat                respjson.Field
+		MatClass              respjson.Field
+		MatName               respjson.Field
+		MatType               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Ppm                   respjson.Field
+		RadCtrn               respjson.Field
+		Readings              respjson.Field
+		ReadingUnits          respjson.Field
+		ReadingValues         respjson.Field
+		Z                     respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

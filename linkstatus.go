@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // LinkStatusService contains methods and other services that help with interacting
@@ -229,40 +229,40 @@ type LinkStatusListResponse struct {
 	SatNo2 int64 `json:"satNo2"`
 	// The SYSCAP mission status of the system(s) forming the link.
 	SysCap string `json:"sysCap"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		EndPoint1Lat          resp.Field
-		EndPoint1Lon          resp.Field
-		EndPoint1Name         resp.Field
-		EndPoint2Lat          resp.Field
-		EndPoint2Lon          resp.Field
-		EndPoint2Name         resp.Field
-		LinkName              resp.Field
-		LinkStartTime         resp.Field
-		LinkStopTime          resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Band                  resp.Field
-		Constellation         resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DataRate1To2          resp.Field
-		DataRate2To1          resp.Field
-		IDBeam1               resp.Field
-		IDBeam2               resp.Field
-		IDOnOrbit1            resp.Field
-		IDOnOrbit2            resp.Field
-		LinkState             resp.Field
-		LinkType              resp.Field
-		OpsCap                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		SatNo1                resp.Field
-		SatNo2                resp.Field
-		SysCap                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		EndPoint1Lat          respjson.Field
+		EndPoint1Lon          respjson.Field
+		EndPoint1Name         respjson.Field
+		EndPoint2Lat          respjson.Field
+		EndPoint2Lon          respjson.Field
+		EndPoint2Name         respjson.Field
+		LinkName              respjson.Field
+		LinkStartTime         respjson.Field
+		LinkStopTime          respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Band                  respjson.Field
+		Constellation         respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DataRate1To2          respjson.Field
+		DataRate2To1          respjson.Field
+		IDBeam1               respjson.Field
+		IDBeam2               respjson.Field
+		IDOnOrbit1            respjson.Field
+		IDOnOrbit2            respjson.Field
+		LinkState             respjson.Field
+		LinkType              respjson.Field
+		OpsCap                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		SatNo1                respjson.Field
+		SatNo2                respjson.Field
+		SysCap                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -392,40 +392,40 @@ type LinkStatusGetResponse struct {
 	SatNo2 int64 `json:"satNo2"`
 	// The SYSCAP mission status of the system(s) forming the link.
 	SysCap string `json:"sysCap"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		EndPoint1Lat          resp.Field
-		EndPoint1Lon          resp.Field
-		EndPoint1Name         resp.Field
-		EndPoint2Lat          resp.Field
-		EndPoint2Lon          resp.Field
-		EndPoint2Name         resp.Field
-		LinkName              resp.Field
-		LinkStartTime         resp.Field
-		LinkStopTime          resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Band                  resp.Field
-		Constellation         resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DataRate1To2          resp.Field
-		DataRate2To1          resp.Field
-		IDBeam1               resp.Field
-		IDBeam2               resp.Field
-		IDOnOrbit1            resp.Field
-		IDOnOrbit2            resp.Field
-		LinkState             resp.Field
-		LinkType              resp.Field
-		OpsCap                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		SatNo1                resp.Field
-		SatNo2                resp.Field
-		SysCap                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		EndPoint1Lat          respjson.Field
+		EndPoint1Lon          respjson.Field
+		EndPoint1Name         respjson.Field
+		EndPoint2Lat          respjson.Field
+		EndPoint2Lon          respjson.Field
+		EndPoint2Name         respjson.Field
+		LinkName              respjson.Field
+		LinkStartTime         respjson.Field
+		LinkStopTime          respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Band                  respjson.Field
+		Constellation         respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DataRate1To2          respjson.Field
+		DataRate2To1          respjson.Field
+		IDBeam1               respjson.Field
+		IDBeam2               respjson.Field
+		IDOnOrbit1            respjson.Field
+		IDOnOrbit2            respjson.Field
+		LinkState             respjson.Field
+		LinkType              respjson.Field
+		OpsCap                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		SatNo1                respjson.Field
+		SatNo2                respjson.Field
+		SysCap                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -555,40 +555,40 @@ type LinkStatusTupleResponse struct {
 	SatNo2 int64 `json:"satNo2"`
 	// The SYSCAP mission status of the system(s) forming the link.
 	SysCap string `json:"sysCap"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		EndPoint1Lat          resp.Field
-		EndPoint1Lon          resp.Field
-		EndPoint1Name         resp.Field
-		EndPoint2Lat          resp.Field
-		EndPoint2Lon          resp.Field
-		EndPoint2Name         resp.Field
-		LinkName              resp.Field
-		LinkStartTime         resp.Field
-		LinkStopTime          resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Band                  resp.Field
-		Constellation         resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DataRate1To2          resp.Field
-		DataRate2To1          resp.Field
-		IDBeam1               resp.Field
-		IDBeam2               resp.Field
-		IDOnOrbit1            resp.Field
-		IDOnOrbit2            resp.Field
-		LinkState             resp.Field
-		LinkType              resp.Field
-		OpsCap                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		SatNo1                resp.Field
-		SatNo2                resp.Field
-		SysCap                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		EndPoint1Lat          respjson.Field
+		EndPoint1Lon          respjson.Field
+		EndPoint1Name         respjson.Field
+		EndPoint2Lat          respjson.Field
+		EndPoint2Lon          respjson.Field
+		EndPoint2Name         respjson.Field
+		LinkName              respjson.Field
+		LinkStartTime         respjson.Field
+		LinkStopTime          respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Band                  respjson.Field
+		Constellation         respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DataRate1To2          respjson.Field
+		DataRate2To1          respjson.Field
+		IDBeam1               respjson.Field
+		IDBeam2               respjson.Field
+		IDOnOrbit1            respjson.Field
+		IDOnOrbit2            respjson.Field
+		LinkState             respjson.Field
+		LinkType              respjson.Field
+		OpsCap                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		SatNo1                respjson.Field
+		SatNo2                respjson.Field
+		SysCap                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

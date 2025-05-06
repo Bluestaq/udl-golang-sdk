@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // SeraDataCommDetailService contains methods and other services that help with
@@ -256,46 +256,46 @@ type SeraDataCommDetailListResponse struct {
 	UserUplinkFrom float64 `json:"userUplinkFrom"`
 	// Comm userUplinkTo in Ghz.
 	UserUplinkTo float64 `json:"userUplinkTo"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                   resp.Field
-		DataMode                                resp.Field
-		Source                                  resp.Field
-		ID                                      resp.Field
-		Band                                    resp.Field
-		Bandwidth                               resp.Field
-		CreatedAt                               resp.Field
-		CreatedBy                               resp.Field
-		Eirp                                    resp.Field
-		EstHtsTotalCapacity                     resp.Field
-		EstHtsTotalUserDownlinkBandwidthPerBeam resp.Field
-		EstHtsTotalUserUplinkBandwidthPerBeam   resp.Field
-		GatewayDownlinkFrom                     resp.Field
-		GatewayDownlinkTo                       resp.Field
-		GatewayUplinkFrom                       resp.Field
-		GatewayUplinkTo                         resp.Field
-		HostedForCompanyOrgID                   resp.Field
-		HtsNumUserSpotBeams                     resp.Field
-		HtsUserDownlinkBandwidthPerBeam         resp.Field
-		HtsUserUplinkBandwidthPerBeam           resp.Field
-		IDComm                                  resp.Field
-		ManufacturerOrgID                       resp.Field
-		Num36MhzEquivalentTransponders          resp.Field
-		NumOperationalTransponders              resp.Field
-		NumSpareTransponders                    resp.Field
-		Origin                                  resp.Field
-		OrigNetwork                             resp.Field
-		PayloadNotes                            resp.Field
-		Polarization                            resp.Field
-		SolidStatePowerAmp                      resp.Field
-		SpacecraftID                            resp.Field
-		TradeLeaseOrgID                         resp.Field
-		TravelingWaveTubeAmplifier              resp.Field
-		UserDownlinkFrom                        resp.Field
-		UserDownlinkTo                          resp.Field
-		UserUplinkFrom                          resp.Field
-		UserUplinkTo                            resp.Field
-		ExtraFields                             map[string]resp.Field
+		ClassificationMarking                   respjson.Field
+		DataMode                                respjson.Field
+		Source                                  respjson.Field
+		ID                                      respjson.Field
+		Band                                    respjson.Field
+		Bandwidth                               respjson.Field
+		CreatedAt                               respjson.Field
+		CreatedBy                               respjson.Field
+		Eirp                                    respjson.Field
+		EstHtsTotalCapacity                     respjson.Field
+		EstHtsTotalUserDownlinkBandwidthPerBeam respjson.Field
+		EstHtsTotalUserUplinkBandwidthPerBeam   respjson.Field
+		GatewayDownlinkFrom                     respjson.Field
+		GatewayDownlinkTo                       respjson.Field
+		GatewayUplinkFrom                       respjson.Field
+		GatewayUplinkTo                         respjson.Field
+		HostedForCompanyOrgID                   respjson.Field
+		HtsNumUserSpotBeams                     respjson.Field
+		HtsUserDownlinkBandwidthPerBeam         respjson.Field
+		HtsUserUplinkBandwidthPerBeam           respjson.Field
+		IDComm                                  respjson.Field
+		ManufacturerOrgID                       respjson.Field
+		Num36MhzEquivalentTransponders          respjson.Field
+		NumOperationalTransponders              respjson.Field
+		NumSpareTransponders                    respjson.Field
+		Origin                                  respjson.Field
+		OrigNetwork                             respjson.Field
+		PayloadNotes                            respjson.Field
+		Polarization                            respjson.Field
+		SolidStatePowerAmp                      respjson.Field
+		SpacecraftID                            respjson.Field
+		TradeLeaseOrgID                         respjson.Field
+		TravelingWaveTubeAmplifier              respjson.Field
+		UserDownlinkFrom                        respjson.Field
+		UserDownlinkTo                          respjson.Field
+		UserUplinkFrom                          respjson.Field
+		UserUplinkTo                            respjson.Field
+		ExtraFields                             map[string]respjson.Field
 		raw                                     string
 	} `json:"-"`
 }
@@ -432,48 +432,48 @@ type SeraDataCommDetailGetResponse struct {
 	UserUplinkFrom float64 `json:"userUplinkFrom"`
 	// Comm userUplinkTo in Ghz.
 	UserUplinkTo float64 `json:"userUplinkTo"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                   resp.Field
-		DataMode                                resp.Field
-		Source                                  resp.Field
-		ID                                      resp.Field
-		Band                                    resp.Field
-		Bandwidth                               resp.Field
-		CreatedAt                               resp.Field
-		CreatedBy                               resp.Field
-		Eirp                                    resp.Field
-		EstHtsTotalCapacity                     resp.Field
-		EstHtsTotalUserDownlinkBandwidthPerBeam resp.Field
-		EstHtsTotalUserUplinkBandwidthPerBeam   resp.Field
-		GatewayDownlinkFrom                     resp.Field
-		GatewayDownlinkTo                       resp.Field
-		GatewayUplinkFrom                       resp.Field
-		GatewayUplinkTo                         resp.Field
-		HostedForCompanyOrgID                   resp.Field
-		HtsNumUserSpotBeams                     resp.Field
-		HtsUserDownlinkBandwidthPerBeam         resp.Field
-		HtsUserUplinkBandwidthPerBeam           resp.Field
-		IDComm                                  resp.Field
-		ManufacturerOrgID                       resp.Field
-		Num36MhzEquivalentTransponders          resp.Field
-		NumOperationalTransponders              resp.Field
-		NumSpareTransponders                    resp.Field
-		Origin                                  resp.Field
-		OrigNetwork                             resp.Field
-		PayloadNotes                            resp.Field
-		Polarization                            resp.Field
-		SolidStatePowerAmp                      resp.Field
-		SpacecraftID                            resp.Field
-		TradeLeaseOrgID                         resp.Field
-		TravelingWaveTubeAmplifier              resp.Field
-		UpdatedAt                               resp.Field
-		UpdatedBy                               resp.Field
-		UserDownlinkFrom                        resp.Field
-		UserDownlinkTo                          resp.Field
-		UserUplinkFrom                          resp.Field
-		UserUplinkTo                            resp.Field
-		ExtraFields                             map[string]resp.Field
+		ClassificationMarking                   respjson.Field
+		DataMode                                respjson.Field
+		Source                                  respjson.Field
+		ID                                      respjson.Field
+		Band                                    respjson.Field
+		Bandwidth                               respjson.Field
+		CreatedAt                               respjson.Field
+		CreatedBy                               respjson.Field
+		Eirp                                    respjson.Field
+		EstHtsTotalCapacity                     respjson.Field
+		EstHtsTotalUserDownlinkBandwidthPerBeam respjson.Field
+		EstHtsTotalUserUplinkBandwidthPerBeam   respjson.Field
+		GatewayDownlinkFrom                     respjson.Field
+		GatewayDownlinkTo                       respjson.Field
+		GatewayUplinkFrom                       respjson.Field
+		GatewayUplinkTo                         respjson.Field
+		HostedForCompanyOrgID                   respjson.Field
+		HtsNumUserSpotBeams                     respjson.Field
+		HtsUserDownlinkBandwidthPerBeam         respjson.Field
+		HtsUserUplinkBandwidthPerBeam           respjson.Field
+		IDComm                                  respjson.Field
+		ManufacturerOrgID                       respjson.Field
+		Num36MhzEquivalentTransponders          respjson.Field
+		NumOperationalTransponders              respjson.Field
+		NumSpareTransponders                    respjson.Field
+		Origin                                  respjson.Field
+		OrigNetwork                             respjson.Field
+		PayloadNotes                            respjson.Field
+		Polarization                            respjson.Field
+		SolidStatePowerAmp                      respjson.Field
+		SpacecraftID                            respjson.Field
+		TradeLeaseOrgID                         respjson.Field
+		TravelingWaveTubeAmplifier              respjson.Field
+		UpdatedAt                               respjson.Field
+		UpdatedBy                               respjson.Field
+		UserDownlinkFrom                        respjson.Field
+		UserDownlinkTo                          respjson.Field
+		UserUplinkFrom                          respjson.Field
+		UserUplinkTo                            respjson.Field
+		ExtraFields                             map[string]respjson.Field
 		raw                                     string
 	} `json:"-"`
 }
@@ -610,48 +610,48 @@ type SeraDataCommDetailTupleResponse struct {
 	UserUplinkFrom float64 `json:"userUplinkFrom"`
 	// Comm userUplinkTo in Ghz.
 	UserUplinkTo float64 `json:"userUplinkTo"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                   resp.Field
-		DataMode                                resp.Field
-		Source                                  resp.Field
-		ID                                      resp.Field
-		Band                                    resp.Field
-		Bandwidth                               resp.Field
-		CreatedAt                               resp.Field
-		CreatedBy                               resp.Field
-		Eirp                                    resp.Field
-		EstHtsTotalCapacity                     resp.Field
-		EstHtsTotalUserDownlinkBandwidthPerBeam resp.Field
-		EstHtsTotalUserUplinkBandwidthPerBeam   resp.Field
-		GatewayDownlinkFrom                     resp.Field
-		GatewayDownlinkTo                       resp.Field
-		GatewayUplinkFrom                       resp.Field
-		GatewayUplinkTo                         resp.Field
-		HostedForCompanyOrgID                   resp.Field
-		HtsNumUserSpotBeams                     resp.Field
-		HtsUserDownlinkBandwidthPerBeam         resp.Field
-		HtsUserUplinkBandwidthPerBeam           resp.Field
-		IDComm                                  resp.Field
-		ManufacturerOrgID                       resp.Field
-		Num36MhzEquivalentTransponders          resp.Field
-		NumOperationalTransponders              resp.Field
-		NumSpareTransponders                    resp.Field
-		Origin                                  resp.Field
-		OrigNetwork                             resp.Field
-		PayloadNotes                            resp.Field
-		Polarization                            resp.Field
-		SolidStatePowerAmp                      resp.Field
-		SpacecraftID                            resp.Field
-		TradeLeaseOrgID                         resp.Field
-		TravelingWaveTubeAmplifier              resp.Field
-		UpdatedAt                               resp.Field
-		UpdatedBy                               resp.Field
-		UserDownlinkFrom                        resp.Field
-		UserDownlinkTo                          resp.Field
-		UserUplinkFrom                          resp.Field
-		UserUplinkTo                            resp.Field
-		ExtraFields                             map[string]resp.Field
+		ClassificationMarking                   respjson.Field
+		DataMode                                respjson.Field
+		Source                                  respjson.Field
+		ID                                      respjson.Field
+		Band                                    respjson.Field
+		Bandwidth                               respjson.Field
+		CreatedAt                               respjson.Field
+		CreatedBy                               respjson.Field
+		Eirp                                    respjson.Field
+		EstHtsTotalCapacity                     respjson.Field
+		EstHtsTotalUserDownlinkBandwidthPerBeam respjson.Field
+		EstHtsTotalUserUplinkBandwidthPerBeam   respjson.Field
+		GatewayDownlinkFrom                     respjson.Field
+		GatewayDownlinkTo                       respjson.Field
+		GatewayUplinkFrom                       respjson.Field
+		GatewayUplinkTo                         respjson.Field
+		HostedForCompanyOrgID                   respjson.Field
+		HtsNumUserSpotBeams                     respjson.Field
+		HtsUserDownlinkBandwidthPerBeam         respjson.Field
+		HtsUserUplinkBandwidthPerBeam           respjson.Field
+		IDComm                                  respjson.Field
+		ManufacturerOrgID                       respjson.Field
+		Num36MhzEquivalentTransponders          respjson.Field
+		NumOperationalTransponders              respjson.Field
+		NumSpareTransponders                    respjson.Field
+		Origin                                  respjson.Field
+		OrigNetwork                             respjson.Field
+		PayloadNotes                            respjson.Field
+		Polarization                            respjson.Field
+		SolidStatePowerAmp                      respjson.Field
+		SpacecraftID                            respjson.Field
+		TradeLeaseOrgID                         respjson.Field
+		TravelingWaveTubeAmplifier              respjson.Field
+		UpdatedAt                               respjson.Field
+		UpdatedBy                               respjson.Field
+		UserDownlinkFrom                        respjson.Field
+		UserDownlinkTo                          respjson.Field
+		UserUplinkFrom                          respjson.Field
+		UserUplinkTo                            respjson.Field
+		ExtraFields                             map[string]respjson.Field
 		raw                                     string
 	} `json:"-"`
 }

@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // EffectResponseService contains methods and other services that help with
@@ -238,34 +238,34 @@ type EffectResponseGetResponse struct {
 	RedTimeToOverhead time.Time `json:"redTimeToOverhead" format:"date-time"`
 	// The number of shots required to destroy target.
 	ShotsRequired int64 `json:"shotsRequired"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		ActionsList           resp.Field
-		ActorSrcID            resp.Field
-		ActorSrcType          resp.Field
-		CoaMetrics            resp.Field
-		CollateralDamageEst   resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DecisionDeadline      resp.Field
-		ExternalActions       resp.Field
-		ExternalRequestID     resp.Field
-		IDEffectRequest       resp.Field
-		MunitionID            resp.Field
-		MunitionType          resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ProbabilityOfKill     resp.Field
-		RedTargetSrcID        resp.Field
-		RedTargetSrcType      resp.Field
-		RedTimeToOverhead     resp.Field
-		ShotsRequired         resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		ActionsList           respjson.Field
+		ActorSrcID            respjson.Field
+		ActorSrcType          respjson.Field
+		CoaMetrics            respjson.Field
+		CollateralDamageEst   respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DecisionDeadline      respjson.Field
+		ExternalActions       respjson.Field
+		ExternalRequestID     respjson.Field
+		IDEffectRequest       respjson.Field
+		MunitionID            respjson.Field
+		MunitionType          respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ProbabilityOfKill     respjson.Field
+		RedTargetSrcID        respjson.Field
+		RedTargetSrcType      respjson.Field
+		RedTimeToOverhead     respjson.Field
+		ShotsRequired         respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -344,27 +344,27 @@ type EffectResponseGetResponseActionsList struct {
 	// The WGS-84 longitude of the weapon destination location, in degrees. -180 to 180
 	// degrees (negative values west of Prime Meridian).
 	WeaponInterceptLon float64 `json:"weaponInterceptLon"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ActionActorSrcID   resp.Field
-		ActionActorSrcType resp.Field
-		ActionEndTime      resp.Field
-		ActionID           resp.Field
-		ActionMetrics      resp.Field
-		ActionStartTime    resp.Field
-		ActorInterceptAlt  resp.Field
-		ActorInterceptLat  resp.Field
-		ActorInterceptLon  resp.Field
-		Effector           resp.Field
-		Summary            resp.Field
-		TargetSrcID        resp.Field
-		TargetSrcType      resp.Field
-		TotEndTime         resp.Field
-		TotStartTime       resp.Field
-		WeaponInterceptAlt resp.Field
-		WeaponInterceptLat resp.Field
-		WeaponInterceptLon resp.Field
-		ExtraFields        map[string]resp.Field
+		ActionActorSrcID   respjson.Field
+		ActionActorSrcType respjson.Field
+		ActionEndTime      respjson.Field
+		ActionID           respjson.Field
+		ActionMetrics      respjson.Field
+		ActionStartTime    respjson.Field
+		ActorInterceptAlt  respjson.Field
+		ActorInterceptLat  respjson.Field
+		ActorInterceptLon  respjson.Field
+		Effector           respjson.Field
+		Summary            respjson.Field
+		TargetSrcID        respjson.Field
+		TargetSrcType      respjson.Field
+		TotEndTime         respjson.Field
+		TotStartTime       respjson.Field
+		WeaponInterceptAlt respjson.Field
+		WeaponInterceptLat respjson.Field
+		WeaponInterceptLon respjson.Field
+		ExtraFields        map[string]respjson.Field
 		raw                string
 	} `json:"-"`
 }
@@ -385,13 +385,13 @@ type EffectResponseGetResponseActionsListActionMetric struct {
 	Provenance string `json:"provenance"`
 	// The metric score adjusted to be relative and comparable to other domains.
 	RelativeValue float64 `json:"relativeValue"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DomainValue   resp.Field
-		MetricType    resp.Field
-		Provenance    resp.Field
-		RelativeValue resp.Field
-		ExtraFields   map[string]resp.Field
+		DomainValue   respjson.Field
+		MetricType    respjson.Field
+		Provenance    respjson.Field
+		RelativeValue respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -412,13 +412,13 @@ type EffectResponseGetResponseCoaMetric struct {
 	Provenance string `json:"provenance"`
 	// The metric score adjusted to be relative and comparable to other domains.
 	RelativeValue float64 `json:"relativeValue"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DomainValue   resp.Field
-		MetricType    resp.Field
-		Provenance    resp.Field
-		RelativeValue resp.Field
-		ExtraFields   map[string]resp.Field
+		DomainValue   respjson.Field
+		MetricType    respjson.Field
+		Provenance    respjson.Field
+		RelativeValue respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -508,34 +508,34 @@ type EffectResponseListResponse struct {
 	RedTimeToOverhead time.Time `json:"redTimeToOverhead" format:"date-time"`
 	// The number of shots required to destroy target.
 	ShotsRequired int64 `json:"shotsRequired"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		ActionsList           resp.Field
-		ActorSrcID            resp.Field
-		ActorSrcType          resp.Field
-		CoaMetrics            resp.Field
-		CollateralDamageEst   resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DecisionDeadline      resp.Field
-		ExternalActions       resp.Field
-		ExternalRequestID     resp.Field
-		IDEffectRequest       resp.Field
-		MunitionID            resp.Field
-		MunitionType          resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ProbabilityOfKill     resp.Field
-		RedTargetSrcID        resp.Field
-		RedTargetSrcType      resp.Field
-		RedTimeToOverhead     resp.Field
-		ShotsRequired         resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		ActionsList           respjson.Field
+		ActorSrcID            respjson.Field
+		ActorSrcType          respjson.Field
+		CoaMetrics            respjson.Field
+		CollateralDamageEst   respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DecisionDeadline      respjson.Field
+		ExternalActions       respjson.Field
+		ExternalRequestID     respjson.Field
+		IDEffectRequest       respjson.Field
+		MunitionID            respjson.Field
+		MunitionType          respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ProbabilityOfKill     respjson.Field
+		RedTargetSrcID        respjson.Field
+		RedTargetSrcType      respjson.Field
+		RedTimeToOverhead     respjson.Field
+		ShotsRequired         respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -614,27 +614,27 @@ type EffectResponseListResponseActionsList struct {
 	// The WGS-84 longitude of the weapon destination location, in degrees. -180 to 180
 	// degrees (negative values west of Prime Meridian).
 	WeaponInterceptLon float64 `json:"weaponInterceptLon"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ActionActorSrcID   resp.Field
-		ActionActorSrcType resp.Field
-		ActionEndTime      resp.Field
-		ActionID           resp.Field
-		ActionMetrics      resp.Field
-		ActionStartTime    resp.Field
-		ActorInterceptAlt  resp.Field
-		ActorInterceptLat  resp.Field
-		ActorInterceptLon  resp.Field
-		Effector           resp.Field
-		Summary            resp.Field
-		TargetSrcID        resp.Field
-		TargetSrcType      resp.Field
-		TotEndTime         resp.Field
-		TotStartTime       resp.Field
-		WeaponInterceptAlt resp.Field
-		WeaponInterceptLat resp.Field
-		WeaponInterceptLon resp.Field
-		ExtraFields        map[string]resp.Field
+		ActionActorSrcID   respjson.Field
+		ActionActorSrcType respjson.Field
+		ActionEndTime      respjson.Field
+		ActionID           respjson.Field
+		ActionMetrics      respjson.Field
+		ActionStartTime    respjson.Field
+		ActorInterceptAlt  respjson.Field
+		ActorInterceptLat  respjson.Field
+		ActorInterceptLon  respjson.Field
+		Effector           respjson.Field
+		Summary            respjson.Field
+		TargetSrcID        respjson.Field
+		TargetSrcType      respjson.Field
+		TotEndTime         respjson.Field
+		TotStartTime       respjson.Field
+		WeaponInterceptAlt respjson.Field
+		WeaponInterceptLat respjson.Field
+		WeaponInterceptLon respjson.Field
+		ExtraFields        map[string]respjson.Field
 		raw                string
 	} `json:"-"`
 }
@@ -655,13 +655,13 @@ type EffectResponseListResponseActionsListActionMetric struct {
 	Provenance string `json:"provenance"`
 	// The metric score adjusted to be relative and comparable to other domains.
 	RelativeValue float64 `json:"relativeValue"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DomainValue   resp.Field
-		MetricType    resp.Field
-		Provenance    resp.Field
-		RelativeValue resp.Field
-		ExtraFields   map[string]resp.Field
+		DomainValue   respjson.Field
+		MetricType    respjson.Field
+		Provenance    respjson.Field
+		RelativeValue respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -682,13 +682,13 @@ type EffectResponseListResponseCoaMetric struct {
 	Provenance string `json:"provenance"`
 	// The metric score adjusted to be relative and comparable to other domains.
 	RelativeValue float64 `json:"relativeValue"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DomainValue   resp.Field
-		MetricType    resp.Field
-		Provenance    resp.Field
-		RelativeValue resp.Field
-		ExtraFields   map[string]resp.Field
+		DomainValue   respjson.Field
+		MetricType    respjson.Field
+		Provenance    respjson.Field
+		RelativeValue respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -778,34 +778,34 @@ type EffectResponseTupleResponse struct {
 	RedTimeToOverhead time.Time `json:"redTimeToOverhead" format:"date-time"`
 	// The number of shots required to destroy target.
 	ShotsRequired int64 `json:"shotsRequired"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		ActionsList           resp.Field
-		ActorSrcID            resp.Field
-		ActorSrcType          resp.Field
-		CoaMetrics            resp.Field
-		CollateralDamageEst   resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DecisionDeadline      resp.Field
-		ExternalActions       resp.Field
-		ExternalRequestID     resp.Field
-		IDEffectRequest       resp.Field
-		MunitionID            resp.Field
-		MunitionType          resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ProbabilityOfKill     resp.Field
-		RedTargetSrcID        resp.Field
-		RedTargetSrcType      resp.Field
-		RedTimeToOverhead     resp.Field
-		ShotsRequired         resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		ActionsList           respjson.Field
+		ActorSrcID            respjson.Field
+		ActorSrcType          respjson.Field
+		CoaMetrics            respjson.Field
+		CollateralDamageEst   respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DecisionDeadline      respjson.Field
+		ExternalActions       respjson.Field
+		ExternalRequestID     respjson.Field
+		IDEffectRequest       respjson.Field
+		MunitionID            respjson.Field
+		MunitionType          respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ProbabilityOfKill     respjson.Field
+		RedTargetSrcID        respjson.Field
+		RedTargetSrcType      respjson.Field
+		RedTimeToOverhead     respjson.Field
+		ShotsRequired         respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -884,27 +884,27 @@ type EffectResponseTupleResponseActionsList struct {
 	// The WGS-84 longitude of the weapon destination location, in degrees. -180 to 180
 	// degrees (negative values west of Prime Meridian).
 	WeaponInterceptLon float64 `json:"weaponInterceptLon"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ActionActorSrcID   resp.Field
-		ActionActorSrcType resp.Field
-		ActionEndTime      resp.Field
-		ActionID           resp.Field
-		ActionMetrics      resp.Field
-		ActionStartTime    resp.Field
-		ActorInterceptAlt  resp.Field
-		ActorInterceptLat  resp.Field
-		ActorInterceptLon  resp.Field
-		Effector           resp.Field
-		Summary            resp.Field
-		TargetSrcID        resp.Field
-		TargetSrcType      resp.Field
-		TotEndTime         resp.Field
-		TotStartTime       resp.Field
-		WeaponInterceptAlt resp.Field
-		WeaponInterceptLat resp.Field
-		WeaponInterceptLon resp.Field
-		ExtraFields        map[string]resp.Field
+		ActionActorSrcID   respjson.Field
+		ActionActorSrcType respjson.Field
+		ActionEndTime      respjson.Field
+		ActionID           respjson.Field
+		ActionMetrics      respjson.Field
+		ActionStartTime    respjson.Field
+		ActorInterceptAlt  respjson.Field
+		ActorInterceptLat  respjson.Field
+		ActorInterceptLon  respjson.Field
+		Effector           respjson.Field
+		Summary            respjson.Field
+		TargetSrcID        respjson.Field
+		TargetSrcType      respjson.Field
+		TotEndTime         respjson.Field
+		TotStartTime       respjson.Field
+		WeaponInterceptAlt respjson.Field
+		WeaponInterceptLat respjson.Field
+		WeaponInterceptLon respjson.Field
+		ExtraFields        map[string]respjson.Field
 		raw                string
 	} `json:"-"`
 }
@@ -925,13 +925,13 @@ type EffectResponseTupleResponseActionsListActionMetric struct {
 	Provenance string `json:"provenance"`
 	// The metric score adjusted to be relative and comparable to other domains.
 	RelativeValue float64 `json:"relativeValue"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DomainValue   resp.Field
-		MetricType    resp.Field
-		Provenance    resp.Field
-		RelativeValue resp.Field
-		ExtraFields   map[string]resp.Field
+		DomainValue   respjson.Field
+		MetricType    respjson.Field
+		Provenance    respjson.Field
+		RelativeValue respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -952,13 +952,13 @@ type EffectResponseTupleResponseCoaMetric struct {
 	Provenance string `json:"provenance"`
 	// The metric score adjusted to be relative and comparable to other domains.
 	RelativeValue float64 `json:"relativeValue"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DomainValue   resp.Field
-		MetricType    resp.Field
-		Provenance    resp.Field
-		RelativeValue resp.Field
-		ExtraFields   map[string]resp.Field
+		DomainValue   respjson.Field
+		MetricType    respjson.Field
+		Provenance    respjson.Field
+		RelativeValue respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }

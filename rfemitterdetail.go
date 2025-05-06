@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // RfEmitterDetailService contains methods and other services that help with
@@ -257,44 +257,44 @@ type RfEmitterDetailListResponse struct {
 	TransmitterFrequency float64 `json:"transmitterFrequency"`
 	// Array of URLs containing additional information on this RF Emitter.
 	URLs []string `json:"urls"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking        resp.Field
-		DataMode                     resp.Field
-		IDRfEmitter                  resp.Field
-		Source                       resp.Field
-		ID                           resp.Field
-		AlternateFacilityName        resp.Field
-		AltName                      resp.Field
-		AntennaDiameter              resp.Field
-		AntennaSize                  resp.Field
-		BarrageNoiseBandwidth        resp.Field
-		CreatedAt                    resp.Field
-		CreatedBy                    resp.Field
-		Description                  resp.Field
-		Designator                   resp.Field
-		DopplerNoise                 resp.Field
-		DrfmInstantaneousBandwidth   resp.Field
-		Family                       resp.Field
-		ManufacturerOrgID            resp.Field
-		Notes                        resp.Field
-		NumBits                      resp.Field
-		NumChannels                  resp.Field
-		Origin                       resp.Field
-		OrigNetwork                  resp.Field
-		ProductionFacilityLocationID resp.Field
-		ProductionFacilityName       resp.Field
-		ReceiverBandwidth            resp.Field
-		ReceiverSensitivity          resp.Field
-		ReceiverType                 resp.Field
-		SecondaryNotes               resp.Field
-		SystemSensitivityEnd         resp.Field
-		SystemSensitivityStart       resp.Field
-		TransmitPower                resp.Field
-		TransmitterBandwidth         resp.Field
-		TransmitterFrequency         resp.Field
-		URLs                         resp.Field
-		ExtraFields                  map[string]resp.Field
+		ClassificationMarking        respjson.Field
+		DataMode                     respjson.Field
+		IDRfEmitter                  respjson.Field
+		Source                       respjson.Field
+		ID                           respjson.Field
+		AlternateFacilityName        respjson.Field
+		AltName                      respjson.Field
+		AntennaDiameter              respjson.Field
+		AntennaSize                  respjson.Field
+		BarrageNoiseBandwidth        respjson.Field
+		CreatedAt                    respjson.Field
+		CreatedBy                    respjson.Field
+		Description                  respjson.Field
+		Designator                   respjson.Field
+		DopplerNoise                 respjson.Field
+		DrfmInstantaneousBandwidth   respjson.Field
+		Family                       respjson.Field
+		ManufacturerOrgID            respjson.Field
+		Notes                        respjson.Field
+		NumBits                      respjson.Field
+		NumChannels                  respjson.Field
+		Origin                       respjson.Field
+		OrigNetwork                  respjson.Field
+		ProductionFacilityLocationID respjson.Field
+		ProductionFacilityName       respjson.Field
+		ReceiverBandwidth            respjson.Field
+		ReceiverSensitivity          respjson.Field
+		ReceiverType                 respjson.Field
+		SecondaryNotes               respjson.Field
+		SystemSensitivityEnd         respjson.Field
+		SystemSensitivityStart       respjson.Field
+		TransmitPower                respjson.Field
+		TransmitterBandwidth         respjson.Field
+		TransmitterFrequency         respjson.Field
+		URLs                         respjson.Field
+		ExtraFields                  map[string]respjson.Field
 		raw                          string
 	} `json:"-"`
 }
@@ -439,48 +439,48 @@ type RfEmitterDetailGetResponse struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Array of URLs containing additional information on this RF Emitter.
 	URLs []string `json:"urls"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking        resp.Field
-		DataMode                     resp.Field
-		IDRfEmitter                  resp.Field
-		Source                       resp.Field
-		ID                           resp.Field
-		AlternateFacilityName        resp.Field
-		AltName                      resp.Field
-		AntennaDiameter              resp.Field
-		AntennaSize                  resp.Field
-		BarrageNoiseBandwidth        resp.Field
-		CreatedAt                    resp.Field
-		CreatedBy                    resp.Field
-		Description                  resp.Field
-		Designator                   resp.Field
-		DopplerNoise                 resp.Field
-		DrfmInstantaneousBandwidth   resp.Field
-		Family                       resp.Field
-		ManufacturerOrg              resp.Field
-		ManufacturerOrgID            resp.Field
-		Notes                        resp.Field
-		NumBits                      resp.Field
-		NumChannels                  resp.Field
-		Origin                       resp.Field
-		OrigNetwork                  resp.Field
-		ProductionFacilityLocation   resp.Field
-		ProductionFacilityLocationID resp.Field
-		ProductionFacilityName       resp.Field
-		ReceiverBandwidth            resp.Field
-		ReceiverSensitivity          resp.Field
-		ReceiverType                 resp.Field
-		SecondaryNotes               resp.Field
-		SystemSensitivityEnd         resp.Field
-		SystemSensitivityStart       resp.Field
-		TransmitPower                resp.Field
-		TransmitterBandwidth         resp.Field
-		TransmitterFrequency         resp.Field
-		UpdatedAt                    resp.Field
-		UpdatedBy                    resp.Field
-		URLs                         resp.Field
-		ExtraFields                  map[string]resp.Field
+		ClassificationMarking        respjson.Field
+		DataMode                     respjson.Field
+		IDRfEmitter                  respjson.Field
+		Source                       respjson.Field
+		ID                           respjson.Field
+		AlternateFacilityName        respjson.Field
+		AltName                      respjson.Field
+		AntennaDiameter              respjson.Field
+		AntennaSize                  respjson.Field
+		BarrageNoiseBandwidth        respjson.Field
+		CreatedAt                    respjson.Field
+		CreatedBy                    respjson.Field
+		Description                  respjson.Field
+		Designator                   respjson.Field
+		DopplerNoise                 respjson.Field
+		DrfmInstantaneousBandwidth   respjson.Field
+		Family                       respjson.Field
+		ManufacturerOrg              respjson.Field
+		ManufacturerOrgID            respjson.Field
+		Notes                        respjson.Field
+		NumBits                      respjson.Field
+		NumChannels                  respjson.Field
+		Origin                       respjson.Field
+		OrigNetwork                  respjson.Field
+		ProductionFacilityLocation   respjson.Field
+		ProductionFacilityLocationID respjson.Field
+		ProductionFacilityName       respjson.Field
+		ReceiverBandwidth            respjson.Field
+		ReceiverSensitivity          respjson.Field
+		ReceiverType                 respjson.Field
+		SecondaryNotes               respjson.Field
+		SystemSensitivityEnd         respjson.Field
+		SystemSensitivityStart       respjson.Field
+		TransmitPower                respjson.Field
+		TransmitterBandwidth         respjson.Field
+		TransmitterFrequency         respjson.Field
+		UpdatedAt                    respjson.Field
+		UpdatedBy                    respjson.Field
+		URLs                         respjson.Field
+		ExtraFields                  map[string]respjson.Field
 		raw                          string
 	} `json:"-"`
 }
@@ -625,48 +625,48 @@ type RfEmitterDetailTupleResponse struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Array of URLs containing additional information on this RF Emitter.
 	URLs []string `json:"urls"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking        resp.Field
-		DataMode                     resp.Field
-		IDRfEmitter                  resp.Field
-		Source                       resp.Field
-		ID                           resp.Field
-		AlternateFacilityName        resp.Field
-		AltName                      resp.Field
-		AntennaDiameter              resp.Field
-		AntennaSize                  resp.Field
-		BarrageNoiseBandwidth        resp.Field
-		CreatedAt                    resp.Field
-		CreatedBy                    resp.Field
-		Description                  resp.Field
-		Designator                   resp.Field
-		DopplerNoise                 resp.Field
-		DrfmInstantaneousBandwidth   resp.Field
-		Family                       resp.Field
-		ManufacturerOrg              resp.Field
-		ManufacturerOrgID            resp.Field
-		Notes                        resp.Field
-		NumBits                      resp.Field
-		NumChannels                  resp.Field
-		Origin                       resp.Field
-		OrigNetwork                  resp.Field
-		ProductionFacilityLocation   resp.Field
-		ProductionFacilityLocationID resp.Field
-		ProductionFacilityName       resp.Field
-		ReceiverBandwidth            resp.Field
-		ReceiverSensitivity          resp.Field
-		ReceiverType                 resp.Field
-		SecondaryNotes               resp.Field
-		SystemSensitivityEnd         resp.Field
-		SystemSensitivityStart       resp.Field
-		TransmitPower                resp.Field
-		TransmitterBandwidth         resp.Field
-		TransmitterFrequency         resp.Field
-		UpdatedAt                    resp.Field
-		UpdatedBy                    resp.Field
-		URLs                         resp.Field
-		ExtraFields                  map[string]resp.Field
+		ClassificationMarking        respjson.Field
+		DataMode                     respjson.Field
+		IDRfEmitter                  respjson.Field
+		Source                       respjson.Field
+		ID                           respjson.Field
+		AlternateFacilityName        respjson.Field
+		AltName                      respjson.Field
+		AntennaDiameter              respjson.Field
+		AntennaSize                  respjson.Field
+		BarrageNoiseBandwidth        respjson.Field
+		CreatedAt                    respjson.Field
+		CreatedBy                    respjson.Field
+		Description                  respjson.Field
+		Designator                   respjson.Field
+		DopplerNoise                 respjson.Field
+		DrfmInstantaneousBandwidth   respjson.Field
+		Family                       respjson.Field
+		ManufacturerOrg              respjson.Field
+		ManufacturerOrgID            respjson.Field
+		Notes                        respjson.Field
+		NumBits                      respjson.Field
+		NumChannels                  respjson.Field
+		Origin                       respjson.Field
+		OrigNetwork                  respjson.Field
+		ProductionFacilityLocation   respjson.Field
+		ProductionFacilityLocationID respjson.Field
+		ProductionFacilityName       respjson.Field
+		ReceiverBandwidth            respjson.Field
+		ReceiverSensitivity          respjson.Field
+		ReceiverType                 respjson.Field
+		SecondaryNotes               respjson.Field
+		SystemSensitivityEnd         respjson.Field
+		SystemSensitivityStart       respjson.Field
+		TransmitPower                respjson.Field
+		TransmitterBandwidth         respjson.Field
+		TransmitterFrequency         respjson.Field
+		UpdatedAt                    respjson.Field
+		UpdatedBy                    respjson.Field
+		URLs                         respjson.Field
+		ExtraFields                  map[string]respjson.Field
 		raw                          string
 	} `json:"-"`
 }

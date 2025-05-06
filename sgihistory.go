@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // SgiHistoryService contains methods and other services that help with interacting
@@ -316,69 +316,69 @@ type SgiHistoryListResponse struct {
 	// 54 day Y10.7 index for 85-90 km heating of N2, O2, H2O, NO by solar coronal.
 	// 0.1-0.8 nm and Lya 121 nm emissions in x10-22 Watts per meter squared per Hertz.
 	Y54 float64 `json:"y54"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		EffectiveDate         resp.Field
-		SgiDate               resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AnalyzerAttenuation   resp.Field
-		Ap                    resp.Field
-		ApDuration            resp.Field
-		CoeffDegree           resp.Field
-		CoeffOrder            resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Ctce                  resp.Field
-		Ctci                  resp.Field
-		Dst                   resp.Field
-		Dtc                   resp.Field
-		E10                   resp.Field
-		E54                   resp.Field
-		F10                   resp.Field
-		F10High               resp.Field
-		F10Low                resp.Field
-		F54                   resp.Field
-		F81                   resp.Field
-		Frequencies           resp.Field
-		Gamma                 resp.Field
-		IDSensor              resp.Field
-		KIndex                resp.Field
-		Kp                    resp.Field
-		KpDuration            resp.Field
-		M10                   resp.Field
-		M54                   resp.Field
-		Mode                  resp.Field
-		NormFactor            resp.Field
-		ObservedBaseline      resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigSensorID          resp.Field
-		Powers                resp.Field
-		Precedence            resp.Field
-		RawFileUri            resp.Field
-		RbDuration            resp.Field
-		RbIndex               resp.Field
-		RbRegionCode          resp.Field
-		S10                   resp.Field
-		S54                   resp.Field
-		State                 resp.Field
-		StationName           resp.Field
-		Stce                  resp.Field
-		Stci                  resp.Field
-		SunspotNum            resp.Field
-		SunspotNumHigh        resp.Field
-		SunspotNumLow         resp.Field
-		Tags                  resp.Field
-		TransactionID         resp.Field
-		Type                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		Y10                   resp.Field
-		Y54                   resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		EffectiveDate         respjson.Field
+		SgiDate               respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AnalyzerAttenuation   respjson.Field
+		Ap                    respjson.Field
+		ApDuration            respjson.Field
+		CoeffDegree           respjson.Field
+		CoeffOrder            respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Ctce                  respjson.Field
+		Ctci                  respjson.Field
+		Dst                   respjson.Field
+		Dtc                   respjson.Field
+		E10                   respjson.Field
+		E54                   respjson.Field
+		F10                   respjson.Field
+		F10High               respjson.Field
+		F10Low                respjson.Field
+		F54                   respjson.Field
+		F81                   respjson.Field
+		Frequencies           respjson.Field
+		Gamma                 respjson.Field
+		IDSensor              respjson.Field
+		KIndex                respjson.Field
+		Kp                    respjson.Field
+		KpDuration            respjson.Field
+		M10                   respjson.Field
+		M54                   respjson.Field
+		Mode                  respjson.Field
+		NormFactor            respjson.Field
+		ObservedBaseline      respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigSensorID          respjson.Field
+		Powers                respjson.Field
+		Precedence            respjson.Field
+		RawFileUri            respjson.Field
+		RbDuration            respjson.Field
+		RbIndex               respjson.Field
+		RbRegionCode          respjson.Field
+		S10                   respjson.Field
+		S54                   respjson.Field
+		State                 respjson.Field
+		StationName           respjson.Field
+		Stce                  respjson.Field
+		Stci                  respjson.Field
+		SunspotNum            respjson.Field
+		SunspotNumHigh        respjson.Field
+		SunspotNumLow         respjson.Field
+		Tags                  respjson.Field
+		TransactionID         respjson.Field
+		Type                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		Y10                   respjson.Field
+		Y54                   respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

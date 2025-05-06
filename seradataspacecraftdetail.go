@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // SeradataSpacecraftDetailService contains methods and other services that help
@@ -374,104 +374,104 @@ type SeradataSpacecraftDetailListResponse struct {
 	TotalPayloadPower float64 `json:"totalPayloadPower"`
 	// Youtube link of launch.
 	YoutubeLaunchLink string `json:"youtubeLaunchLink"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                    resp.Field
-		DataMode                                 resp.Field
-		Name                                     resp.Field
-		Source                                   resp.Field
-		ID                                       resp.Field
-		AdditionalMissionsGroups                 resp.Field
-		Altitude                                 resp.Field
-		AnnualInsuredDepreciationFactor          resp.Field
-		AnnualInsuredDepreciationFactorEstimated resp.Field
-		Apogee                                   resp.Field
-		BusID                                    resp.Field
-		CapabilityLost                           resp.Field
-		CapacityLost                             resp.Field
-		CatalogNumber                            resp.Field
-		CollisionRiskCm                          resp.Field
-		CollisionRiskMm                          resp.Field
-		CombinedCostEstimated                    resp.Field
-		CombinedNewCost                          resp.Field
-		CommercialLaunch                         resp.Field
-		Constellation                            resp.Field
-		CostEstimated                            resp.Field
-		CreatedAt                                resp.Field
-		CreatedBy                                resp.Field
-		CubesatDispenserType                     resp.Field
-		CurrentAge                               resp.Field
-		DateOfObservation                        resp.Field
-		Description                              resp.Field
-		DesignLife                               resp.Field
-		DryMass                                  resp.Field
-		ExpectedLife                             resp.Field
-		GeoPosition                              resp.Field
-		IDOnOrbit                                resp.Field
-		Inclination                              resp.Field
-		InsuranceLossesTotal                     resp.Field
-		InsuranceNotes                           resp.Field
-		InsurancePremiumAtLaunch                 resp.Field
-		InsurancePremiumAtLaunchEstimated        resp.Field
-		InsuredAtLaunch                          resp.Field
-		InsuredValueAtLaunch                     resp.Field
-		InsuredValueLaunchEstimated              resp.Field
-		IntlNumber                               resp.Field
-		Lat                                      resp.Field
-		LaunchArranger                           resp.Field
-		LaunchArrangerCountry                    resp.Field
-		LaunchCharacteristic                     resp.Field
-		LaunchCost                               resp.Field
-		LaunchCostEstimated                      resp.Field
-		LaunchCountry                            resp.Field
-		LaunchDate                               resp.Field
-		LaunchDateRemarks                        resp.Field
-		LaunchID                                 resp.Field
-		LaunchMass                               resp.Field
-		LaunchNotes                              resp.Field
-		LaunchNumber                             resp.Field
-		LaunchProvider                           resp.Field
-		LaunchProviderCountry                    resp.Field
-		LaunchProviderFlightNumber               resp.Field
-		LaunchSiteID                             resp.Field
-		LaunchSiteName                           resp.Field
-		LaunchType                               resp.Field
-		LaunchVehicleID                          resp.Field
-		Leased                                   resp.Field
-		LifeLost                                 resp.Field
-		Lon                                      resp.Field
-		MassCategory                             resp.Field
-		NameAtLaunch                             resp.Field
-		NewCost                                  resp.Field
-		Notes                                    resp.Field
-		NumHumans                                resp.Field
-		Operator                                 resp.Field
-		OperatorCountry                          resp.Field
-		OrbitCategory                            resp.Field
-		OrbitSubCategory                         resp.Field
-		OrderDate                                resp.Field
-		Origin                                   resp.Field
-		OrigNetwork                              resp.Field
-		Owner                                    resp.Field
-		OwnerCountry                             resp.Field
-		Perigee                                  resp.Field
-		Period                                   resp.Field
-		PrimaryMissionGroup                      resp.Field
-		PrimeManufacturerOrgID                   resp.Field
-		ProgramName                              resp.Field
-		Quantity                                 resp.Field
-		ReusableFlights                          resp.Field
-		ReusedHullName                           resp.Field
-		Sector                                   resp.Field
-		SerialNumber                             resp.Field
-		Stabilizer                               resp.Field
-		Status                                   resp.Field
-		TotalClaims                              resp.Field
-		TotalFatalities                          resp.Field
-		TotalInjuries                            resp.Field
-		TotalPayloadPower                        resp.Field
-		YoutubeLaunchLink                        resp.Field
-		ExtraFields                              map[string]resp.Field
+		ClassificationMarking                    respjson.Field
+		DataMode                                 respjson.Field
+		Name                                     respjson.Field
+		Source                                   respjson.Field
+		ID                                       respjson.Field
+		AdditionalMissionsGroups                 respjson.Field
+		Altitude                                 respjson.Field
+		AnnualInsuredDepreciationFactor          respjson.Field
+		AnnualInsuredDepreciationFactorEstimated respjson.Field
+		Apogee                                   respjson.Field
+		BusID                                    respjson.Field
+		CapabilityLost                           respjson.Field
+		CapacityLost                             respjson.Field
+		CatalogNumber                            respjson.Field
+		CollisionRiskCm                          respjson.Field
+		CollisionRiskMm                          respjson.Field
+		CombinedCostEstimated                    respjson.Field
+		CombinedNewCost                          respjson.Field
+		CommercialLaunch                         respjson.Field
+		Constellation                            respjson.Field
+		CostEstimated                            respjson.Field
+		CreatedAt                                respjson.Field
+		CreatedBy                                respjson.Field
+		CubesatDispenserType                     respjson.Field
+		CurrentAge                               respjson.Field
+		DateOfObservation                        respjson.Field
+		Description                              respjson.Field
+		DesignLife                               respjson.Field
+		DryMass                                  respjson.Field
+		ExpectedLife                             respjson.Field
+		GeoPosition                              respjson.Field
+		IDOnOrbit                                respjson.Field
+		Inclination                              respjson.Field
+		InsuranceLossesTotal                     respjson.Field
+		InsuranceNotes                           respjson.Field
+		InsurancePremiumAtLaunch                 respjson.Field
+		InsurancePremiumAtLaunchEstimated        respjson.Field
+		InsuredAtLaunch                          respjson.Field
+		InsuredValueAtLaunch                     respjson.Field
+		InsuredValueLaunchEstimated              respjson.Field
+		IntlNumber                               respjson.Field
+		Lat                                      respjson.Field
+		LaunchArranger                           respjson.Field
+		LaunchArrangerCountry                    respjson.Field
+		LaunchCharacteristic                     respjson.Field
+		LaunchCost                               respjson.Field
+		LaunchCostEstimated                      respjson.Field
+		LaunchCountry                            respjson.Field
+		LaunchDate                               respjson.Field
+		LaunchDateRemarks                        respjson.Field
+		LaunchID                                 respjson.Field
+		LaunchMass                               respjson.Field
+		LaunchNotes                              respjson.Field
+		LaunchNumber                             respjson.Field
+		LaunchProvider                           respjson.Field
+		LaunchProviderCountry                    respjson.Field
+		LaunchProviderFlightNumber               respjson.Field
+		LaunchSiteID                             respjson.Field
+		LaunchSiteName                           respjson.Field
+		LaunchType                               respjson.Field
+		LaunchVehicleID                          respjson.Field
+		Leased                                   respjson.Field
+		LifeLost                                 respjson.Field
+		Lon                                      respjson.Field
+		MassCategory                             respjson.Field
+		NameAtLaunch                             respjson.Field
+		NewCost                                  respjson.Field
+		Notes                                    respjson.Field
+		NumHumans                                respjson.Field
+		Operator                                 respjson.Field
+		OperatorCountry                          respjson.Field
+		OrbitCategory                            respjson.Field
+		OrbitSubCategory                         respjson.Field
+		OrderDate                                respjson.Field
+		Origin                                   respjson.Field
+		OrigNetwork                              respjson.Field
+		Owner                                    respjson.Field
+		OwnerCountry                             respjson.Field
+		Perigee                                  respjson.Field
+		Period                                   respjson.Field
+		PrimaryMissionGroup                      respjson.Field
+		PrimeManufacturerOrgID                   respjson.Field
+		ProgramName                              respjson.Field
+		Quantity                                 respjson.Field
+		ReusableFlights                          respjson.Field
+		ReusedHullName                           respjson.Field
+		Sector                                   respjson.Field
+		SerialNumber                             respjson.Field
+		Stabilizer                               respjson.Field
+		Status                                   respjson.Field
+		TotalClaims                              respjson.Field
+		TotalFatalities                          respjson.Field
+		TotalInjuries                            respjson.Field
+		TotalPayloadPower                        respjson.Field
+		YoutubeLaunchLink                        respjson.Field
+		ExtraFields                              map[string]respjson.Field
 		raw                                      string
 	} `json:"-"`
 }
@@ -748,114 +748,114 @@ type SeradataSpacecraftDetailGetResponse struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Youtube link of launch.
 	YoutubeLaunchLink string `json:"youtubeLaunchLink"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                    resp.Field
-		DataMode                                 resp.Field
-		Name                                     resp.Field
-		Source                                   resp.Field
-		ID                                       resp.Field
-		AdditionalMissionsGroups                 resp.Field
-		Altitude                                 resp.Field
-		AnnualInsuredDepreciationFactor          resp.Field
-		AnnualInsuredDepreciationFactorEstimated resp.Field
-		Apogee                                   resp.Field
-		BusID                                    resp.Field
-		CapabilityLost                           resp.Field
-		CapacityLost                             resp.Field
-		CatalogNumber                            resp.Field
-		CollisionRiskCm                          resp.Field
-		CollisionRiskMm                          resp.Field
-		CombinedCostEstimated                    resp.Field
-		CombinedNewCost                          resp.Field
-		CommercialLaunch                         resp.Field
-		Constellation                            resp.Field
-		CostEstimated                            resp.Field
-		CreatedAt                                resp.Field
-		CreatedBy                                resp.Field
-		CubesatDispenserType                     resp.Field
-		CurrentAge                               resp.Field
-		DateOfObservation                        resp.Field
-		Description                              resp.Field
-		DesignLife                               resp.Field
-		DryMass                                  resp.Field
-		ExpectedLife                             resp.Field
-		GeoPosition                              resp.Field
-		IDOnOrbit                                resp.Field
-		Inclination                              resp.Field
-		InsuranceLossesTotal                     resp.Field
-		InsuranceNotes                           resp.Field
-		InsurancePremiumAtLaunch                 resp.Field
-		InsurancePremiumAtLaunchEstimated        resp.Field
-		InsuredAtLaunch                          resp.Field
-		InsuredValueAtLaunch                     resp.Field
-		InsuredValueLaunchEstimated              resp.Field
-		IntlNumber                               resp.Field
-		Lat                                      resp.Field
-		LaunchArranger                           resp.Field
-		LaunchArrangerCountry                    resp.Field
-		LaunchCharacteristic                     resp.Field
-		LaunchCost                               resp.Field
-		LaunchCostEstimated                      resp.Field
-		LaunchCountry                            resp.Field
-		LaunchDate                               resp.Field
-		LaunchDateRemarks                        resp.Field
-		LaunchID                                 resp.Field
-		LaunchMass                               resp.Field
-		LaunchNotes                              resp.Field
-		LaunchNumber                             resp.Field
-		LaunchProvider                           resp.Field
-		LaunchProviderCountry                    resp.Field
-		LaunchProviderFlightNumber               resp.Field
-		LaunchSiteID                             resp.Field
-		LaunchSiteName                           resp.Field
-		LaunchType                               resp.Field
-		LaunchVehicleID                          resp.Field
-		Leased                                   resp.Field
-		LifeLost                                 resp.Field
-		Lon                                      resp.Field
-		MassCategory                             resp.Field
-		NameAtLaunch                             resp.Field
-		NewCost                                  resp.Field
-		Notes                                    resp.Field
-		NumHumans                                resp.Field
-		OnOrbit                                  resp.Field
-		Operator                                 resp.Field
-		OperatorCountry                          resp.Field
-		OrbitCategory                            resp.Field
-		OrbitSubCategory                         resp.Field
-		OrderDate                                resp.Field
-		Origin                                   resp.Field
-		OrigNetwork                              resp.Field
-		Owner                                    resp.Field
-		OwnerCountry                             resp.Field
-		Perigee                                  resp.Field
-		Period                                   resp.Field
-		PrimaryMissionGroup                      resp.Field
-		PrimeManufacturerOrgID                   resp.Field
-		ProgramName                              resp.Field
-		Quantity                                 resp.Field
-		ReusableFlights                          resp.Field
-		ReusedHullName                           resp.Field
-		Scientific                               resp.Field
-		Sector                                   resp.Field
-		SeradataCommDetails                      resp.Field
-		SeradataEarlyWarning                     resp.Field
-		SeradataNavigation                       resp.Field
-		SeradataOpticalPayload                   resp.Field
-		SeradataRadarPayload                     resp.Field
-		SeradataSigIntPayload                    resp.Field
-		SerialNumber                             resp.Field
-		Stabilizer                               resp.Field
-		Status                                   resp.Field
-		TotalClaims                              resp.Field
-		TotalFatalities                          resp.Field
-		TotalInjuries                            resp.Field
-		TotalPayloadPower                        resp.Field
-		UpdatedAt                                resp.Field
-		UpdatedBy                                resp.Field
-		YoutubeLaunchLink                        resp.Field
-		ExtraFields                              map[string]resp.Field
+		ClassificationMarking                    respjson.Field
+		DataMode                                 respjson.Field
+		Name                                     respjson.Field
+		Source                                   respjson.Field
+		ID                                       respjson.Field
+		AdditionalMissionsGroups                 respjson.Field
+		Altitude                                 respjson.Field
+		AnnualInsuredDepreciationFactor          respjson.Field
+		AnnualInsuredDepreciationFactorEstimated respjson.Field
+		Apogee                                   respjson.Field
+		BusID                                    respjson.Field
+		CapabilityLost                           respjson.Field
+		CapacityLost                             respjson.Field
+		CatalogNumber                            respjson.Field
+		CollisionRiskCm                          respjson.Field
+		CollisionRiskMm                          respjson.Field
+		CombinedCostEstimated                    respjson.Field
+		CombinedNewCost                          respjson.Field
+		CommercialLaunch                         respjson.Field
+		Constellation                            respjson.Field
+		CostEstimated                            respjson.Field
+		CreatedAt                                respjson.Field
+		CreatedBy                                respjson.Field
+		CubesatDispenserType                     respjson.Field
+		CurrentAge                               respjson.Field
+		DateOfObservation                        respjson.Field
+		Description                              respjson.Field
+		DesignLife                               respjson.Field
+		DryMass                                  respjson.Field
+		ExpectedLife                             respjson.Field
+		GeoPosition                              respjson.Field
+		IDOnOrbit                                respjson.Field
+		Inclination                              respjson.Field
+		InsuranceLossesTotal                     respjson.Field
+		InsuranceNotes                           respjson.Field
+		InsurancePremiumAtLaunch                 respjson.Field
+		InsurancePremiumAtLaunchEstimated        respjson.Field
+		InsuredAtLaunch                          respjson.Field
+		InsuredValueAtLaunch                     respjson.Field
+		InsuredValueLaunchEstimated              respjson.Field
+		IntlNumber                               respjson.Field
+		Lat                                      respjson.Field
+		LaunchArranger                           respjson.Field
+		LaunchArrangerCountry                    respjson.Field
+		LaunchCharacteristic                     respjson.Field
+		LaunchCost                               respjson.Field
+		LaunchCostEstimated                      respjson.Field
+		LaunchCountry                            respjson.Field
+		LaunchDate                               respjson.Field
+		LaunchDateRemarks                        respjson.Field
+		LaunchID                                 respjson.Field
+		LaunchMass                               respjson.Field
+		LaunchNotes                              respjson.Field
+		LaunchNumber                             respjson.Field
+		LaunchProvider                           respjson.Field
+		LaunchProviderCountry                    respjson.Field
+		LaunchProviderFlightNumber               respjson.Field
+		LaunchSiteID                             respjson.Field
+		LaunchSiteName                           respjson.Field
+		LaunchType                               respjson.Field
+		LaunchVehicleID                          respjson.Field
+		Leased                                   respjson.Field
+		LifeLost                                 respjson.Field
+		Lon                                      respjson.Field
+		MassCategory                             respjson.Field
+		NameAtLaunch                             respjson.Field
+		NewCost                                  respjson.Field
+		Notes                                    respjson.Field
+		NumHumans                                respjson.Field
+		OnOrbit                                  respjson.Field
+		Operator                                 respjson.Field
+		OperatorCountry                          respjson.Field
+		OrbitCategory                            respjson.Field
+		OrbitSubCategory                         respjson.Field
+		OrderDate                                respjson.Field
+		Origin                                   respjson.Field
+		OrigNetwork                              respjson.Field
+		Owner                                    respjson.Field
+		OwnerCountry                             respjson.Field
+		Perigee                                  respjson.Field
+		Period                                   respjson.Field
+		PrimaryMissionGroup                      respjson.Field
+		PrimeManufacturerOrgID                   respjson.Field
+		ProgramName                              respjson.Field
+		Quantity                                 respjson.Field
+		ReusableFlights                          respjson.Field
+		ReusedHullName                           respjson.Field
+		Scientific                               respjson.Field
+		Sector                                   respjson.Field
+		SeradataCommDetails                      respjson.Field
+		SeradataEarlyWarning                     respjson.Field
+		SeradataNavigation                       respjson.Field
+		SeradataOpticalPayload                   respjson.Field
+		SeradataRadarPayload                     respjson.Field
+		SeradataSigIntPayload                    respjson.Field
+		SerialNumber                             respjson.Field
+		Stabilizer                               respjson.Field
+		Status                                   respjson.Field
+		TotalClaims                              respjson.Field
+		TotalFatalities                          respjson.Field
+		TotalInjuries                            respjson.Field
+		TotalPayloadPower                        respjson.Field
+		UpdatedAt                                respjson.Field
+		UpdatedBy                                respjson.Field
+		YoutubeLaunchLink                        respjson.Field
+		ExtraFields                              map[string]respjson.Field
 		raw                                      string
 	} `json:"-"`
 }
@@ -986,37 +986,37 @@ type SeradataSpacecraftDetailGetResponseOnOrbit struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		SatNo                 resp.Field
-		Source                resp.Field
-		AltName               resp.Field
-		Antennas              resp.Field
-		Batteries             resp.Field
-		Category              resp.Field
-		CommonName            resp.Field
-		Constellation         resp.Field
-		CountryCode           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DecayDate             resp.Field
-		IDOnOrbit             resp.Field
-		IntlDes               resp.Field
-		LaunchDate            resp.Field
-		LaunchSiteID          resp.Field
-		LifetimeYears         resp.Field
-		MissionNumber         resp.Field
-		ObjectType            resp.Field
-		OnorbitDetails        resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		SolarArrays           resp.Field
-		Thrusters             resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		SatNo                 respjson.Field
+		Source                respjson.Field
+		AltName               respjson.Field
+		Antennas              respjson.Field
+		Batteries             respjson.Field
+		Category              respjson.Field
+		CommonName            respjson.Field
+		Constellation         respjson.Field
+		CountryCode           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DecayDate             respjson.Field
+		IDOnOrbit             respjson.Field
+		IntlDes               respjson.Field
+		LaunchDate            respjson.Field
+		LaunchSiteID          respjson.Field
+		LifetimeYears         respjson.Field
+		MissionNumber         respjson.Field
+		ObjectType            respjson.Field
+		OnorbitDetails        respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		SolarArrays           respjson.Field
+		Thrusters             respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -1077,22 +1077,22 @@ type SeradataSpacecraftDetailGetResponseOnOrbitAntenna struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDAntenna             resp.Field
-		IDOnOrbit             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Antenna               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDAntenna             respjson.Field
+		IDOnOrbit             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Antenna               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -1153,23 +1153,23 @@ type SeradataSpacecraftDetailGetResponseOnOrbitBattery struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDBattery             resp.Field
-		IDOnOrbit             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Battery               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Quantity              resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDBattery             respjson.Field
+		IDOnOrbit             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Battery               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Quantity              respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -1319,60 +1319,60 @@ type SeradataSpacecraftDetailGetResponseOnOrbitOnorbitDetail struct {
 	VismagMean float64 `json:"vismagMean"`
 	// Minimum visual magnitude in M.
 	VismagMin float64 `json:"vismagMin"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDOnOrbit             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AdditionalMass        resp.Field
-		AdeptRadius           resp.Field
-		BolDeltaV             resp.Field
-		BolFuelMass           resp.Field
-		BusCrossSection       resp.Field
-		BusType               resp.Field
-		ColaRadius            resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		CrossSection          resp.Field
-		CurrentMass           resp.Field
-		DeltaVUnc             resp.Field
-		DepEstMasses          resp.Field
-		DepMassUncs           resp.Field
-		DepNames              resp.Field
-		DriftRate             resp.Field
-		DryMass               resp.Field
-		EstDeltaVDuration     resp.Field
-		FuelRemaining         resp.Field
-		GeoSlot               resp.Field
-		LastObSource          resp.Field
-		LastObTime            resp.Field
-		LaunchMass            resp.Field
-		LaunchMassMax         resp.Field
-		LaunchMassMin         resp.Field
-		Maneuverable          resp.Field
-		MaxDeltaV             resp.Field
-		MaxRadius             resp.Field
-		MissionTypes          resp.Field
-		NumDeployable         resp.Field
-		NumMission            resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Rcs                   resp.Field
-		RcsMax                resp.Field
-		RcsMean               resp.Field
-		RcsMin                resp.Field
-		RefSource             resp.Field
-		SolarArrayArea        resp.Field
-		TotalMassUnc          resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		Vismag                resp.Field
-		VismagMax             resp.Field
-		VismagMean            resp.Field
-		VismagMin             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDOnOrbit             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AdditionalMass        respjson.Field
+		AdeptRadius           respjson.Field
+		BolDeltaV             respjson.Field
+		BolFuelMass           respjson.Field
+		BusCrossSection       respjson.Field
+		BusType               respjson.Field
+		ColaRadius            respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		CrossSection          respjson.Field
+		CurrentMass           respjson.Field
+		DeltaVUnc             respjson.Field
+		DepEstMasses          respjson.Field
+		DepMassUncs           respjson.Field
+		DepNames              respjson.Field
+		DriftRate             respjson.Field
+		DryMass               respjson.Field
+		EstDeltaVDuration     respjson.Field
+		FuelRemaining         respjson.Field
+		GeoSlot               respjson.Field
+		LastObSource          respjson.Field
+		LastObTime            respjson.Field
+		LaunchMass            respjson.Field
+		LaunchMassMax         respjson.Field
+		LaunchMassMin         respjson.Field
+		Maneuverable          respjson.Field
+		MaxDeltaV             respjson.Field
+		MaxRadius             respjson.Field
+		MissionTypes          respjson.Field
+		NumDeployable         respjson.Field
+		NumMission            respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Rcs                   respjson.Field
+		RcsMax                respjson.Field
+		RcsMean               respjson.Field
+		RcsMin                respjson.Field
+		RefSource             respjson.Field
+		SolarArrayArea        respjson.Field
+		TotalMassUnc          respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		Vismag                respjson.Field
+		VismagMax             respjson.Field
+		VismagMean            respjson.Field
+		VismagMin             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -1436,23 +1436,23 @@ type SeradataSpacecraftDetailGetResponseOnOrbitSolarArray struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDOnOrbit             resp.Field
-		IDSolarArray          resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Quantity              resp.Field
-		SolarArray            resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDOnOrbit             respjson.Field
+		IDSolarArray          respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Quantity              respjson.Field
+		SolarArray            respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -1512,20 +1512,20 @@ type SeradataSpacecraftDetailGetResponseOnOrbitSolarArraySolarArray struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DataMode          resp.Field
-		Name              resp.Field
-		Source            resp.Field
-		ID                resp.Field
-		CreatedAt         resp.Field
-		CreatedBy         resp.Field
-		Origin            resp.Field
-		OrigNetwork       resp.Field
-		SolarArrayDetails resp.Field
-		UpdatedAt         resp.Field
-		UpdatedBy         resp.Field
-		ExtraFields       map[string]resp.Field
+		DataMode          respjson.Field
+		Name              respjson.Field
+		Source            respjson.Field
+		ID                respjson.Field
+		CreatedAt         respjson.Field
+		CreatedBy         respjson.Field
+		Origin            respjson.Field
+		OrigNetwork       respjson.Field
+		SolarArrayDetails respjson.Field
+		UpdatedAt         respjson.Field
+		UpdatedBy         respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -1593,24 +1593,24 @@ type SeradataSpacecraftDetailGetResponseOnOrbitThruster struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDEngine              resp.Field
-		IDOnOrbit             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Engine                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Quantity              resp.Field
-		Type                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDEngine              respjson.Field
+		IDOnOrbit             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Engine                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Quantity              respjson.Field
+		Type                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -1684,28 +1684,28 @@ type SeradataSpacecraftDetailGetResponseScientific struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		SpacecraftID          resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Entity                resp.Field
-		FrequencyBand         resp.Field
-		HostedForCompanyOrgID resp.Field
-		IDEntity              resp.Field
-		ManufacturerOrgID     resp.Field
-		Notes                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PayloadCategory       resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		SpacecraftID          respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Entity                respjson.Field
+		FrequencyBand         respjson.Field
+		HostedForCompanyOrgID respjson.Field
+		IDEntity              respjson.Field
+		ManufacturerOrgID     respjson.Field
+		Notes                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PayloadCategory       respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -1819,48 +1819,48 @@ type SeradataSpacecraftDetailGetResponseSeradataCommDetail struct {
 	UserUplinkFrom float64 `json:"userUplinkFrom"`
 	// Comm userUplinkTo in Ghz.
 	UserUplinkTo float64 `json:"userUplinkTo"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                   resp.Field
-		DataMode                                resp.Field
-		Source                                  resp.Field
-		ID                                      resp.Field
-		Band                                    resp.Field
-		Bandwidth                               resp.Field
-		CreatedAt                               resp.Field
-		CreatedBy                               resp.Field
-		Eirp                                    resp.Field
-		EstHtsTotalCapacity                     resp.Field
-		EstHtsTotalUserDownlinkBandwidthPerBeam resp.Field
-		EstHtsTotalUserUplinkBandwidthPerBeam   resp.Field
-		GatewayDownlinkFrom                     resp.Field
-		GatewayDownlinkTo                       resp.Field
-		GatewayUplinkFrom                       resp.Field
-		GatewayUplinkTo                         resp.Field
-		HostedForCompanyOrgID                   resp.Field
-		HtsNumUserSpotBeams                     resp.Field
-		HtsUserDownlinkBandwidthPerBeam         resp.Field
-		HtsUserUplinkBandwidthPerBeam           resp.Field
-		IDComm                                  resp.Field
-		ManufacturerOrgID                       resp.Field
-		Num36MhzEquivalentTransponders          resp.Field
-		NumOperationalTransponders              resp.Field
-		NumSpareTransponders                    resp.Field
-		Origin                                  resp.Field
-		OrigNetwork                             resp.Field
-		PayloadNotes                            resp.Field
-		Polarization                            resp.Field
-		SolidStatePowerAmp                      resp.Field
-		SpacecraftID                            resp.Field
-		TradeLeaseOrgID                         resp.Field
-		TravelingWaveTubeAmplifier              resp.Field
-		UpdatedAt                               resp.Field
-		UpdatedBy                               resp.Field
-		UserDownlinkFrom                        resp.Field
-		UserDownlinkTo                          resp.Field
-		UserUplinkFrom                          resp.Field
-		UserUplinkTo                            resp.Field
-		ExtraFields                             map[string]resp.Field
+		ClassificationMarking                   respjson.Field
+		DataMode                                respjson.Field
+		Source                                  respjson.Field
+		ID                                      respjson.Field
+		Band                                    respjson.Field
+		Bandwidth                               respjson.Field
+		CreatedAt                               respjson.Field
+		CreatedBy                               respjson.Field
+		Eirp                                    respjson.Field
+		EstHtsTotalCapacity                     respjson.Field
+		EstHtsTotalUserDownlinkBandwidthPerBeam respjson.Field
+		EstHtsTotalUserUplinkBandwidthPerBeam   respjson.Field
+		GatewayDownlinkFrom                     respjson.Field
+		GatewayDownlinkTo                       respjson.Field
+		GatewayUplinkFrom                       respjson.Field
+		GatewayUplinkTo                         respjson.Field
+		HostedForCompanyOrgID                   respjson.Field
+		HtsNumUserSpotBeams                     respjson.Field
+		HtsUserDownlinkBandwidthPerBeam         respjson.Field
+		HtsUserUplinkBandwidthPerBeam           respjson.Field
+		IDComm                                  respjson.Field
+		ManufacturerOrgID                       respjson.Field
+		Num36MhzEquivalentTransponders          respjson.Field
+		NumOperationalTransponders              respjson.Field
+		NumSpareTransponders                    respjson.Field
+		Origin                                  respjson.Field
+		OrigNetwork                             respjson.Field
+		PayloadNotes                            respjson.Field
+		Polarization                            respjson.Field
+		SolidStatePowerAmp                      respjson.Field
+		SpacecraftID                            respjson.Field
+		TradeLeaseOrgID                         respjson.Field
+		TravelingWaveTubeAmplifier              respjson.Field
+		UpdatedAt                               respjson.Field
+		UpdatedBy                               respjson.Field
+		UserDownlinkFrom                        respjson.Field
+		UserDownlinkTo                          respjson.Field
+		UserUplinkFrom                          respjson.Field
+		UserUplinkTo                            respjson.Field
+		ExtraFields                             map[string]respjson.Field
 		raw                                     string
 	} `json:"-"`
 }
@@ -1942,33 +1942,33 @@ type SeradataSpacecraftDetailGetResponseSeradataEarlyWarning struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking              resp.Field
-		DataMode                           resp.Field
-		Source                             resp.Field
-		SpacecraftID                       resp.Field
-		ID                                 resp.Field
-		BestResolution                     resp.Field
-		CreatedAt                          resp.Field
-		CreatedBy                          resp.Field
-		EarthPointing                      resp.Field
-		FrequencyLimits                    resp.Field
-		GroundStationLocations             resp.Field
-		GroundStations                     resp.Field
-		HostedForCompanyOrgID              resp.Field
-		IDIr                               resp.Field
-		ManufacturerOrgID                  resp.Field
-		MissileLaunchPhaseDetectionAbility resp.Field
-		Name                               resp.Field
-		Origin                             resp.Field
-		OrigNetwork                        resp.Field
-		PartnerSpacecraftID                resp.Field
-		PayloadNotes                       resp.Field
-		SpectralBands                      resp.Field
-		UpdatedAt                          resp.Field
-		UpdatedBy                          resp.Field
-		ExtraFields                        map[string]resp.Field
+		ClassificationMarking              respjson.Field
+		DataMode                           respjson.Field
+		Source                             respjson.Field
+		SpacecraftID                       respjson.Field
+		ID                                 respjson.Field
+		BestResolution                     respjson.Field
+		CreatedAt                          respjson.Field
+		CreatedBy                          respjson.Field
+		EarthPointing                      respjson.Field
+		FrequencyLimits                    respjson.Field
+		GroundStationLocations             respjson.Field
+		GroundStations                     respjson.Field
+		HostedForCompanyOrgID              respjson.Field
+		IDIr                               respjson.Field
+		ManufacturerOrgID                  respjson.Field
+		MissileLaunchPhaseDetectionAbility respjson.Field
+		Name                               respjson.Field
+		Origin                             respjson.Field
+		OrigNetwork                        respjson.Field
+		PartnerSpacecraftID                respjson.Field
+		PayloadNotes                       respjson.Field
+		SpectralBands                      respjson.Field
+		UpdatedAt                          respjson.Field
+		UpdatedBy                          respjson.Field
+		ExtraFields                        map[string]respjson.Field
 		raw                                string
 	} `json:"-"`
 }
@@ -2048,32 +2048,32 @@ type SeradataSpacecraftDetailGetResponseSeradataNavigation struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		SpacecraftID          resp.Field
-		ID                    resp.Field
-		AreaCoverage          resp.Field
-		ClockType             resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		HostedForCompanyOrgID resp.Field
-		IDNavigation          resp.Field
-		LocationAccuracy      resp.Field
-		ManufacturerOrgID     resp.Field
-		ModeFrequency         resp.Field
-		Modes                 resp.Field
-		Name                  resp.Field
-		Notes                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PartnerSpacecraftID   resp.Field
-		PayloadType           resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		SpacecraftID          respjson.Field
+		ID                    respjson.Field
+		AreaCoverage          respjson.Field
+		ClockType             respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		HostedForCompanyOrgID respjson.Field
+		IDNavigation          respjson.Field
+		LocationAccuracy      respjson.Field
+		ManufacturerOrgID     respjson.Field
+		ModeFrequency         respjson.Field
+		Modes                 respjson.Field
+		Name                  respjson.Field
+		Notes                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PartnerSpacecraftID   respjson.Field
+		PayloadType           respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -2165,37 +2165,37 @@ type SeradataSpacecraftDetailGetResponseSeradataOpticalPayload struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking       resp.Field
-		DataMode                    resp.Field
-		Source                      resp.Field
-		SpacecraftID                resp.Field
-		ID                          resp.Field
-		BestResolution              resp.Field
-		CreatedAt                   resp.Field
-		CreatedBy                   resp.Field
-		FieldOfRegard               resp.Field
-		FieldOfView                 resp.Field
-		GroundStationLocations      resp.Field
-		GroundStations              resp.Field
-		HostedForCompanyOrgID       resp.Field
-		IDSensor                    resp.Field
-		ImagingPayloadCategory      resp.Field
-		ManufacturerOrgID           resp.Field
-		Name                        resp.Field
-		Notes                       resp.Field
-		NumberOfFilmReturnCanisters resp.Field
-		Origin                      resp.Field
-		OrigNetwork                 resp.Field
-		PointingMethod              resp.Field
-		RecorderSize                resp.Field
-		SpectralBand                resp.Field
-		SpectralFrequencyLimits     resp.Field
-		SwathWidth                  resp.Field
-		UpdatedAt                   resp.Field
-		UpdatedBy                   resp.Field
-		ExtraFields                 map[string]resp.Field
+		ClassificationMarking       respjson.Field
+		DataMode                    respjson.Field
+		Source                      respjson.Field
+		SpacecraftID                respjson.Field
+		ID                          respjson.Field
+		BestResolution              respjson.Field
+		CreatedAt                   respjson.Field
+		CreatedBy                   respjson.Field
+		FieldOfRegard               respjson.Field
+		FieldOfView                 respjson.Field
+		GroundStationLocations      respjson.Field
+		GroundStations              respjson.Field
+		HostedForCompanyOrgID       respjson.Field
+		IDSensor                    respjson.Field
+		ImagingPayloadCategory      respjson.Field
+		ManufacturerOrgID           respjson.Field
+		Name                        respjson.Field
+		Notes                       respjson.Field
+		NumberOfFilmReturnCanisters respjson.Field
+		Origin                      respjson.Field
+		OrigNetwork                 respjson.Field
+		PointingMethod              respjson.Field
+		RecorderSize                respjson.Field
+		SpectralBand                respjson.Field
+		SpectralFrequencyLimits     respjson.Field
+		SwathWidth                  respjson.Field
+		UpdatedAt                   respjson.Field
+		UpdatedBy                   respjson.Field
+		ExtraFields                 map[string]respjson.Field
 		raw                         string
 	} `json:"-"`
 }
@@ -2302,43 +2302,43 @@ type SeradataSpacecraftDetailGetResponseSeradataRadarPayload struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Wave length in meters.
 	WaveLength float64 `json:"waveLength"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                  resp.Field
-		DataMode                               resp.Field
-		Source                                 resp.Field
-		SpacecraftID                           resp.Field
-		ID                                     resp.Field
-		Bandwidth                              resp.Field
-		BestResolution                         resp.Field
-		Category                               resp.Field
-		ConstellationInterferometricCapability resp.Field
-		CreatedAt                              resp.Field
-		CreatedBy                              resp.Field
-		DutyCycle                              resp.Field
-		FieldOfRegard                          resp.Field
-		FieldOfView                            resp.Field
-		Frequency                              resp.Field
-		FrequencyBand                          resp.Field
-		GroundStationLocations                 resp.Field
-		GroundStations                         resp.Field
-		HostedForCompanyOrgID                  resp.Field
-		IDSensor                               resp.Field
-		ManufacturerOrgID                      resp.Field
-		Name                                   resp.Field
-		Notes                                  resp.Field
-		Origin                                 resp.Field
-		OrigNetwork                            resp.Field
-		PartnerSpacecraft                      resp.Field
-		PointingMethod                         resp.Field
-		ReceivePolarization                    resp.Field
-		RecorderSize                           resp.Field
-		SwathWidth                             resp.Field
-		TransmitPolarization                   resp.Field
-		UpdatedAt                              resp.Field
-		UpdatedBy                              resp.Field
-		WaveLength                             resp.Field
-		ExtraFields                            map[string]resp.Field
+		ClassificationMarking                  respjson.Field
+		DataMode                               respjson.Field
+		Source                                 respjson.Field
+		SpacecraftID                           respjson.Field
+		ID                                     respjson.Field
+		Bandwidth                              respjson.Field
+		BestResolution                         respjson.Field
+		Category                               respjson.Field
+		ConstellationInterferometricCapability respjson.Field
+		CreatedAt                              respjson.Field
+		CreatedBy                              respjson.Field
+		DutyCycle                              respjson.Field
+		FieldOfRegard                          respjson.Field
+		FieldOfView                            respjson.Field
+		Frequency                              respjson.Field
+		FrequencyBand                          respjson.Field
+		GroundStationLocations                 respjson.Field
+		GroundStations                         respjson.Field
+		HostedForCompanyOrgID                  respjson.Field
+		IDSensor                               respjson.Field
+		ManufacturerOrgID                      respjson.Field
+		Name                                   respjson.Field
+		Notes                                  respjson.Field
+		Origin                                 respjson.Field
+		OrigNetwork                            respjson.Field
+		PartnerSpacecraft                      respjson.Field
+		PointingMethod                         respjson.Field
+		ReceivePolarization                    respjson.Field
+		RecorderSize                           respjson.Field
+		SwathWidth                             respjson.Field
+		TransmitPolarization                   respjson.Field
+		UpdatedAt                              respjson.Field
+		UpdatedBy                              respjson.Field
+		WaveLength                             respjson.Field
+		ExtraFields                            map[string]respjson.Field
 		raw                                    string
 	} `json:"-"`
 }
@@ -2418,32 +2418,32 @@ type SeradataSpacecraftDetailGetResponseSeradataSigIntPayload struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking  resp.Field
-		DataMode               resp.Field
-		Source                 resp.Field
-		SpacecraftID           resp.Field
-		ID                     resp.Field
-		CreatedAt              resp.Field
-		CreatedBy              resp.Field
-		FrequencyCoverage      resp.Field
-		GroundStationLocations resp.Field
-		GroundStations         resp.Field
-		HostedForCompanyOrgID  resp.Field
-		IDSensor               resp.Field
-		InterceptParameters    resp.Field
-		ManufacturerOrgID      resp.Field
-		Name                   resp.Field
-		Notes                  resp.Field
-		Origin                 resp.Field
-		OrigNetwork            resp.Field
-		PositionalAccuracy     resp.Field
-		SwathWidth             resp.Field
-		Type                   resp.Field
-		UpdatedAt              resp.Field
-		UpdatedBy              resp.Field
-		ExtraFields            map[string]resp.Field
+		ClassificationMarking  respjson.Field
+		DataMode               respjson.Field
+		Source                 respjson.Field
+		SpacecraftID           respjson.Field
+		ID                     respjson.Field
+		CreatedAt              respjson.Field
+		CreatedBy              respjson.Field
+		FrequencyCoverage      respjson.Field
+		GroundStationLocations respjson.Field
+		GroundStations         respjson.Field
+		HostedForCompanyOrgID  respjson.Field
+		IDSensor               respjson.Field
+		InterceptParameters    respjson.Field
+		ManufacturerOrgID      respjson.Field
+		Name                   respjson.Field
+		Notes                  respjson.Field
+		Origin                 respjson.Field
+		OrigNetwork            respjson.Field
+		PositionalAccuracy     respjson.Field
+		SwathWidth             respjson.Field
+		Type                   respjson.Field
+		UpdatedAt              respjson.Field
+		UpdatedBy              respjson.Field
+		ExtraFields            map[string]respjson.Field
 		raw                    string
 	} `json:"-"`
 }
@@ -2697,114 +2697,114 @@ type SeradataSpacecraftDetailTupleResponse struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Youtube link of launch.
 	YoutubeLaunchLink string `json:"youtubeLaunchLink"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                    resp.Field
-		DataMode                                 resp.Field
-		Name                                     resp.Field
-		Source                                   resp.Field
-		ID                                       resp.Field
-		AdditionalMissionsGroups                 resp.Field
-		Altitude                                 resp.Field
-		AnnualInsuredDepreciationFactor          resp.Field
-		AnnualInsuredDepreciationFactorEstimated resp.Field
-		Apogee                                   resp.Field
-		BusID                                    resp.Field
-		CapabilityLost                           resp.Field
-		CapacityLost                             resp.Field
-		CatalogNumber                            resp.Field
-		CollisionRiskCm                          resp.Field
-		CollisionRiskMm                          resp.Field
-		CombinedCostEstimated                    resp.Field
-		CombinedNewCost                          resp.Field
-		CommercialLaunch                         resp.Field
-		Constellation                            resp.Field
-		CostEstimated                            resp.Field
-		CreatedAt                                resp.Field
-		CreatedBy                                resp.Field
-		CubesatDispenserType                     resp.Field
-		CurrentAge                               resp.Field
-		DateOfObservation                        resp.Field
-		Description                              resp.Field
-		DesignLife                               resp.Field
-		DryMass                                  resp.Field
-		ExpectedLife                             resp.Field
-		GeoPosition                              resp.Field
-		IDOnOrbit                                resp.Field
-		Inclination                              resp.Field
-		InsuranceLossesTotal                     resp.Field
-		InsuranceNotes                           resp.Field
-		InsurancePremiumAtLaunch                 resp.Field
-		InsurancePremiumAtLaunchEstimated        resp.Field
-		InsuredAtLaunch                          resp.Field
-		InsuredValueAtLaunch                     resp.Field
-		InsuredValueLaunchEstimated              resp.Field
-		IntlNumber                               resp.Field
-		Lat                                      resp.Field
-		LaunchArranger                           resp.Field
-		LaunchArrangerCountry                    resp.Field
-		LaunchCharacteristic                     resp.Field
-		LaunchCost                               resp.Field
-		LaunchCostEstimated                      resp.Field
-		LaunchCountry                            resp.Field
-		LaunchDate                               resp.Field
-		LaunchDateRemarks                        resp.Field
-		LaunchID                                 resp.Field
-		LaunchMass                               resp.Field
-		LaunchNotes                              resp.Field
-		LaunchNumber                             resp.Field
-		LaunchProvider                           resp.Field
-		LaunchProviderCountry                    resp.Field
-		LaunchProviderFlightNumber               resp.Field
-		LaunchSiteID                             resp.Field
-		LaunchSiteName                           resp.Field
-		LaunchType                               resp.Field
-		LaunchVehicleID                          resp.Field
-		Leased                                   resp.Field
-		LifeLost                                 resp.Field
-		Lon                                      resp.Field
-		MassCategory                             resp.Field
-		NameAtLaunch                             resp.Field
-		NewCost                                  resp.Field
-		Notes                                    resp.Field
-		NumHumans                                resp.Field
-		OnOrbit                                  resp.Field
-		Operator                                 resp.Field
-		OperatorCountry                          resp.Field
-		OrbitCategory                            resp.Field
-		OrbitSubCategory                         resp.Field
-		OrderDate                                resp.Field
-		Origin                                   resp.Field
-		OrigNetwork                              resp.Field
-		Owner                                    resp.Field
-		OwnerCountry                             resp.Field
-		Perigee                                  resp.Field
-		Period                                   resp.Field
-		PrimaryMissionGroup                      resp.Field
-		PrimeManufacturerOrgID                   resp.Field
-		ProgramName                              resp.Field
-		Quantity                                 resp.Field
-		ReusableFlights                          resp.Field
-		ReusedHullName                           resp.Field
-		Scientific                               resp.Field
-		Sector                                   resp.Field
-		SeradataCommDetails                      resp.Field
-		SeradataEarlyWarning                     resp.Field
-		SeradataNavigation                       resp.Field
-		SeradataOpticalPayload                   resp.Field
-		SeradataRadarPayload                     resp.Field
-		SeradataSigIntPayload                    resp.Field
-		SerialNumber                             resp.Field
-		Stabilizer                               resp.Field
-		Status                                   resp.Field
-		TotalClaims                              resp.Field
-		TotalFatalities                          resp.Field
-		TotalInjuries                            resp.Field
-		TotalPayloadPower                        resp.Field
-		UpdatedAt                                resp.Field
-		UpdatedBy                                resp.Field
-		YoutubeLaunchLink                        resp.Field
-		ExtraFields                              map[string]resp.Field
+		ClassificationMarking                    respjson.Field
+		DataMode                                 respjson.Field
+		Name                                     respjson.Field
+		Source                                   respjson.Field
+		ID                                       respjson.Field
+		AdditionalMissionsGroups                 respjson.Field
+		Altitude                                 respjson.Field
+		AnnualInsuredDepreciationFactor          respjson.Field
+		AnnualInsuredDepreciationFactorEstimated respjson.Field
+		Apogee                                   respjson.Field
+		BusID                                    respjson.Field
+		CapabilityLost                           respjson.Field
+		CapacityLost                             respjson.Field
+		CatalogNumber                            respjson.Field
+		CollisionRiskCm                          respjson.Field
+		CollisionRiskMm                          respjson.Field
+		CombinedCostEstimated                    respjson.Field
+		CombinedNewCost                          respjson.Field
+		CommercialLaunch                         respjson.Field
+		Constellation                            respjson.Field
+		CostEstimated                            respjson.Field
+		CreatedAt                                respjson.Field
+		CreatedBy                                respjson.Field
+		CubesatDispenserType                     respjson.Field
+		CurrentAge                               respjson.Field
+		DateOfObservation                        respjson.Field
+		Description                              respjson.Field
+		DesignLife                               respjson.Field
+		DryMass                                  respjson.Field
+		ExpectedLife                             respjson.Field
+		GeoPosition                              respjson.Field
+		IDOnOrbit                                respjson.Field
+		Inclination                              respjson.Field
+		InsuranceLossesTotal                     respjson.Field
+		InsuranceNotes                           respjson.Field
+		InsurancePremiumAtLaunch                 respjson.Field
+		InsurancePremiumAtLaunchEstimated        respjson.Field
+		InsuredAtLaunch                          respjson.Field
+		InsuredValueAtLaunch                     respjson.Field
+		InsuredValueLaunchEstimated              respjson.Field
+		IntlNumber                               respjson.Field
+		Lat                                      respjson.Field
+		LaunchArranger                           respjson.Field
+		LaunchArrangerCountry                    respjson.Field
+		LaunchCharacteristic                     respjson.Field
+		LaunchCost                               respjson.Field
+		LaunchCostEstimated                      respjson.Field
+		LaunchCountry                            respjson.Field
+		LaunchDate                               respjson.Field
+		LaunchDateRemarks                        respjson.Field
+		LaunchID                                 respjson.Field
+		LaunchMass                               respjson.Field
+		LaunchNotes                              respjson.Field
+		LaunchNumber                             respjson.Field
+		LaunchProvider                           respjson.Field
+		LaunchProviderCountry                    respjson.Field
+		LaunchProviderFlightNumber               respjson.Field
+		LaunchSiteID                             respjson.Field
+		LaunchSiteName                           respjson.Field
+		LaunchType                               respjson.Field
+		LaunchVehicleID                          respjson.Field
+		Leased                                   respjson.Field
+		LifeLost                                 respjson.Field
+		Lon                                      respjson.Field
+		MassCategory                             respjson.Field
+		NameAtLaunch                             respjson.Field
+		NewCost                                  respjson.Field
+		Notes                                    respjson.Field
+		NumHumans                                respjson.Field
+		OnOrbit                                  respjson.Field
+		Operator                                 respjson.Field
+		OperatorCountry                          respjson.Field
+		OrbitCategory                            respjson.Field
+		OrbitSubCategory                         respjson.Field
+		OrderDate                                respjson.Field
+		Origin                                   respjson.Field
+		OrigNetwork                              respjson.Field
+		Owner                                    respjson.Field
+		OwnerCountry                             respjson.Field
+		Perigee                                  respjson.Field
+		Period                                   respjson.Field
+		PrimaryMissionGroup                      respjson.Field
+		PrimeManufacturerOrgID                   respjson.Field
+		ProgramName                              respjson.Field
+		Quantity                                 respjson.Field
+		ReusableFlights                          respjson.Field
+		ReusedHullName                           respjson.Field
+		Scientific                               respjson.Field
+		Sector                                   respjson.Field
+		SeradataCommDetails                      respjson.Field
+		SeradataEarlyWarning                     respjson.Field
+		SeradataNavigation                       respjson.Field
+		SeradataOpticalPayload                   respjson.Field
+		SeradataRadarPayload                     respjson.Field
+		SeradataSigIntPayload                    respjson.Field
+		SerialNumber                             respjson.Field
+		Stabilizer                               respjson.Field
+		Status                                   respjson.Field
+		TotalClaims                              respjson.Field
+		TotalFatalities                          respjson.Field
+		TotalInjuries                            respjson.Field
+		TotalPayloadPower                        respjson.Field
+		UpdatedAt                                respjson.Field
+		UpdatedBy                                respjson.Field
+		YoutubeLaunchLink                        respjson.Field
+		ExtraFields                              map[string]respjson.Field
 		raw                                      string
 	} `json:"-"`
 }
@@ -2935,37 +2935,37 @@ type SeradataSpacecraftDetailTupleResponseOnOrbit struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		SatNo                 resp.Field
-		Source                resp.Field
-		AltName               resp.Field
-		Antennas              resp.Field
-		Batteries             resp.Field
-		Category              resp.Field
-		CommonName            resp.Field
-		Constellation         resp.Field
-		CountryCode           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DecayDate             resp.Field
-		IDOnOrbit             resp.Field
-		IntlDes               resp.Field
-		LaunchDate            resp.Field
-		LaunchSiteID          resp.Field
-		LifetimeYears         resp.Field
-		MissionNumber         resp.Field
-		ObjectType            resp.Field
-		OnorbitDetails        resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		SolarArrays           resp.Field
-		Thrusters             resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		SatNo                 respjson.Field
+		Source                respjson.Field
+		AltName               respjson.Field
+		Antennas              respjson.Field
+		Batteries             respjson.Field
+		Category              respjson.Field
+		CommonName            respjson.Field
+		Constellation         respjson.Field
+		CountryCode           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DecayDate             respjson.Field
+		IDOnOrbit             respjson.Field
+		IntlDes               respjson.Field
+		LaunchDate            respjson.Field
+		LaunchSiteID          respjson.Field
+		LifetimeYears         respjson.Field
+		MissionNumber         respjson.Field
+		ObjectType            respjson.Field
+		OnorbitDetails        respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		SolarArrays           respjson.Field
+		Thrusters             respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -3026,22 +3026,22 @@ type SeradataSpacecraftDetailTupleResponseOnOrbitAntenna struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDAntenna             resp.Field
-		IDOnOrbit             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Antenna               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDAntenna             respjson.Field
+		IDOnOrbit             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Antenna               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -3102,23 +3102,23 @@ type SeradataSpacecraftDetailTupleResponseOnOrbitBattery struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDBattery             resp.Field
-		IDOnOrbit             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Battery               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Quantity              resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDBattery             respjson.Field
+		IDOnOrbit             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Battery               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Quantity              respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -3268,60 +3268,60 @@ type SeradataSpacecraftDetailTupleResponseOnOrbitOnorbitDetail struct {
 	VismagMean float64 `json:"vismagMean"`
 	// Minimum visual magnitude in M.
 	VismagMin float64 `json:"vismagMin"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDOnOrbit             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AdditionalMass        resp.Field
-		AdeptRadius           resp.Field
-		BolDeltaV             resp.Field
-		BolFuelMass           resp.Field
-		BusCrossSection       resp.Field
-		BusType               resp.Field
-		ColaRadius            resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		CrossSection          resp.Field
-		CurrentMass           resp.Field
-		DeltaVUnc             resp.Field
-		DepEstMasses          resp.Field
-		DepMassUncs           resp.Field
-		DepNames              resp.Field
-		DriftRate             resp.Field
-		DryMass               resp.Field
-		EstDeltaVDuration     resp.Field
-		FuelRemaining         resp.Field
-		GeoSlot               resp.Field
-		LastObSource          resp.Field
-		LastObTime            resp.Field
-		LaunchMass            resp.Field
-		LaunchMassMax         resp.Field
-		LaunchMassMin         resp.Field
-		Maneuverable          resp.Field
-		MaxDeltaV             resp.Field
-		MaxRadius             resp.Field
-		MissionTypes          resp.Field
-		NumDeployable         resp.Field
-		NumMission            resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Rcs                   resp.Field
-		RcsMax                resp.Field
-		RcsMean               resp.Field
-		RcsMin                resp.Field
-		RefSource             resp.Field
-		SolarArrayArea        resp.Field
-		TotalMassUnc          resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		Vismag                resp.Field
-		VismagMax             resp.Field
-		VismagMean            resp.Field
-		VismagMin             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDOnOrbit             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AdditionalMass        respjson.Field
+		AdeptRadius           respjson.Field
+		BolDeltaV             respjson.Field
+		BolFuelMass           respjson.Field
+		BusCrossSection       respjson.Field
+		BusType               respjson.Field
+		ColaRadius            respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		CrossSection          respjson.Field
+		CurrentMass           respjson.Field
+		DeltaVUnc             respjson.Field
+		DepEstMasses          respjson.Field
+		DepMassUncs           respjson.Field
+		DepNames              respjson.Field
+		DriftRate             respjson.Field
+		DryMass               respjson.Field
+		EstDeltaVDuration     respjson.Field
+		FuelRemaining         respjson.Field
+		GeoSlot               respjson.Field
+		LastObSource          respjson.Field
+		LastObTime            respjson.Field
+		LaunchMass            respjson.Field
+		LaunchMassMax         respjson.Field
+		LaunchMassMin         respjson.Field
+		Maneuverable          respjson.Field
+		MaxDeltaV             respjson.Field
+		MaxRadius             respjson.Field
+		MissionTypes          respjson.Field
+		NumDeployable         respjson.Field
+		NumMission            respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Rcs                   respjson.Field
+		RcsMax                respjson.Field
+		RcsMean               respjson.Field
+		RcsMin                respjson.Field
+		RefSource             respjson.Field
+		SolarArrayArea        respjson.Field
+		TotalMassUnc          respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		Vismag                respjson.Field
+		VismagMax             respjson.Field
+		VismagMean            respjson.Field
+		VismagMin             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -3387,23 +3387,23 @@ type SeradataSpacecraftDetailTupleResponseOnOrbitSolarArray struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDOnOrbit             resp.Field
-		IDSolarArray          resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Quantity              resp.Field
-		SolarArray            resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDOnOrbit             respjson.Field
+		IDSolarArray          respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Quantity              respjson.Field
+		SolarArray            respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -3463,20 +3463,20 @@ type SeradataSpacecraftDetailTupleResponseOnOrbitSolarArraySolarArray struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DataMode          resp.Field
-		Name              resp.Field
-		Source            resp.Field
-		ID                resp.Field
-		CreatedAt         resp.Field
-		CreatedBy         resp.Field
-		Origin            resp.Field
-		OrigNetwork       resp.Field
-		SolarArrayDetails resp.Field
-		UpdatedAt         resp.Field
-		UpdatedBy         resp.Field
-		ExtraFields       map[string]resp.Field
+		DataMode          respjson.Field
+		Name              respjson.Field
+		Source            respjson.Field
+		ID                respjson.Field
+		CreatedAt         respjson.Field
+		CreatedBy         respjson.Field
+		Origin            respjson.Field
+		OrigNetwork       respjson.Field
+		SolarArrayDetails respjson.Field
+		UpdatedAt         respjson.Field
+		UpdatedBy         respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -3544,24 +3544,24 @@ type SeradataSpacecraftDetailTupleResponseOnOrbitThruster struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDEngine              resp.Field
-		IDOnOrbit             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Engine                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Quantity              resp.Field
-		Type                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDEngine              respjson.Field
+		IDOnOrbit             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Engine                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Quantity              respjson.Field
+		Type                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -3635,28 +3635,28 @@ type SeradataSpacecraftDetailTupleResponseScientific struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		SpacecraftID          resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Entity                resp.Field
-		FrequencyBand         resp.Field
-		HostedForCompanyOrgID resp.Field
-		IDEntity              resp.Field
-		ManufacturerOrgID     resp.Field
-		Notes                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PayloadCategory       resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		SpacecraftID          respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Entity                respjson.Field
+		FrequencyBand         respjson.Field
+		HostedForCompanyOrgID respjson.Field
+		IDEntity              respjson.Field
+		ManufacturerOrgID     respjson.Field
+		Notes                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PayloadCategory       respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -3770,48 +3770,48 @@ type SeradataSpacecraftDetailTupleResponseSeradataCommDetail struct {
 	UserUplinkFrom float64 `json:"userUplinkFrom"`
 	// Comm userUplinkTo in Ghz.
 	UserUplinkTo float64 `json:"userUplinkTo"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                   resp.Field
-		DataMode                                resp.Field
-		Source                                  resp.Field
-		ID                                      resp.Field
-		Band                                    resp.Field
-		Bandwidth                               resp.Field
-		CreatedAt                               resp.Field
-		CreatedBy                               resp.Field
-		Eirp                                    resp.Field
-		EstHtsTotalCapacity                     resp.Field
-		EstHtsTotalUserDownlinkBandwidthPerBeam resp.Field
-		EstHtsTotalUserUplinkBandwidthPerBeam   resp.Field
-		GatewayDownlinkFrom                     resp.Field
-		GatewayDownlinkTo                       resp.Field
-		GatewayUplinkFrom                       resp.Field
-		GatewayUplinkTo                         resp.Field
-		HostedForCompanyOrgID                   resp.Field
-		HtsNumUserSpotBeams                     resp.Field
-		HtsUserDownlinkBandwidthPerBeam         resp.Field
-		HtsUserUplinkBandwidthPerBeam           resp.Field
-		IDComm                                  resp.Field
-		ManufacturerOrgID                       resp.Field
-		Num36MhzEquivalentTransponders          resp.Field
-		NumOperationalTransponders              resp.Field
-		NumSpareTransponders                    resp.Field
-		Origin                                  resp.Field
-		OrigNetwork                             resp.Field
-		PayloadNotes                            resp.Field
-		Polarization                            resp.Field
-		SolidStatePowerAmp                      resp.Field
-		SpacecraftID                            resp.Field
-		TradeLeaseOrgID                         resp.Field
-		TravelingWaveTubeAmplifier              resp.Field
-		UpdatedAt                               resp.Field
-		UpdatedBy                               resp.Field
-		UserDownlinkFrom                        resp.Field
-		UserDownlinkTo                          resp.Field
-		UserUplinkFrom                          resp.Field
-		UserUplinkTo                            resp.Field
-		ExtraFields                             map[string]resp.Field
+		ClassificationMarking                   respjson.Field
+		DataMode                                respjson.Field
+		Source                                  respjson.Field
+		ID                                      respjson.Field
+		Band                                    respjson.Field
+		Bandwidth                               respjson.Field
+		CreatedAt                               respjson.Field
+		CreatedBy                               respjson.Field
+		Eirp                                    respjson.Field
+		EstHtsTotalCapacity                     respjson.Field
+		EstHtsTotalUserDownlinkBandwidthPerBeam respjson.Field
+		EstHtsTotalUserUplinkBandwidthPerBeam   respjson.Field
+		GatewayDownlinkFrom                     respjson.Field
+		GatewayDownlinkTo                       respjson.Field
+		GatewayUplinkFrom                       respjson.Field
+		GatewayUplinkTo                         respjson.Field
+		HostedForCompanyOrgID                   respjson.Field
+		HtsNumUserSpotBeams                     respjson.Field
+		HtsUserDownlinkBandwidthPerBeam         respjson.Field
+		HtsUserUplinkBandwidthPerBeam           respjson.Field
+		IDComm                                  respjson.Field
+		ManufacturerOrgID                       respjson.Field
+		Num36MhzEquivalentTransponders          respjson.Field
+		NumOperationalTransponders              respjson.Field
+		NumSpareTransponders                    respjson.Field
+		Origin                                  respjson.Field
+		OrigNetwork                             respjson.Field
+		PayloadNotes                            respjson.Field
+		Polarization                            respjson.Field
+		SolidStatePowerAmp                      respjson.Field
+		SpacecraftID                            respjson.Field
+		TradeLeaseOrgID                         respjson.Field
+		TravelingWaveTubeAmplifier              respjson.Field
+		UpdatedAt                               respjson.Field
+		UpdatedBy                               respjson.Field
+		UserDownlinkFrom                        respjson.Field
+		UserDownlinkTo                          respjson.Field
+		UserUplinkFrom                          respjson.Field
+		UserUplinkTo                            respjson.Field
+		ExtraFields                             map[string]respjson.Field
 		raw                                     string
 	} `json:"-"`
 }
@@ -3893,33 +3893,33 @@ type SeradataSpacecraftDetailTupleResponseSeradataEarlyWarning struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking              resp.Field
-		DataMode                           resp.Field
-		Source                             resp.Field
-		SpacecraftID                       resp.Field
-		ID                                 resp.Field
-		BestResolution                     resp.Field
-		CreatedAt                          resp.Field
-		CreatedBy                          resp.Field
-		EarthPointing                      resp.Field
-		FrequencyLimits                    resp.Field
-		GroundStationLocations             resp.Field
-		GroundStations                     resp.Field
-		HostedForCompanyOrgID              resp.Field
-		IDIr                               resp.Field
-		ManufacturerOrgID                  resp.Field
-		MissileLaunchPhaseDetectionAbility resp.Field
-		Name                               resp.Field
-		Origin                             resp.Field
-		OrigNetwork                        resp.Field
-		PartnerSpacecraftID                resp.Field
-		PayloadNotes                       resp.Field
-		SpectralBands                      resp.Field
-		UpdatedAt                          resp.Field
-		UpdatedBy                          resp.Field
-		ExtraFields                        map[string]resp.Field
+		ClassificationMarking              respjson.Field
+		DataMode                           respjson.Field
+		Source                             respjson.Field
+		SpacecraftID                       respjson.Field
+		ID                                 respjson.Field
+		BestResolution                     respjson.Field
+		CreatedAt                          respjson.Field
+		CreatedBy                          respjson.Field
+		EarthPointing                      respjson.Field
+		FrequencyLimits                    respjson.Field
+		GroundStationLocations             respjson.Field
+		GroundStations                     respjson.Field
+		HostedForCompanyOrgID              respjson.Field
+		IDIr                               respjson.Field
+		ManufacturerOrgID                  respjson.Field
+		MissileLaunchPhaseDetectionAbility respjson.Field
+		Name                               respjson.Field
+		Origin                             respjson.Field
+		OrigNetwork                        respjson.Field
+		PartnerSpacecraftID                respjson.Field
+		PayloadNotes                       respjson.Field
+		SpectralBands                      respjson.Field
+		UpdatedAt                          respjson.Field
+		UpdatedBy                          respjson.Field
+		ExtraFields                        map[string]respjson.Field
 		raw                                string
 	} `json:"-"`
 }
@@ -4001,32 +4001,32 @@ type SeradataSpacecraftDetailTupleResponseSeradataNavigation struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		SpacecraftID          resp.Field
-		ID                    resp.Field
-		AreaCoverage          resp.Field
-		ClockType             resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		HostedForCompanyOrgID resp.Field
-		IDNavigation          resp.Field
-		LocationAccuracy      resp.Field
-		ManufacturerOrgID     resp.Field
-		ModeFrequency         resp.Field
-		Modes                 resp.Field
-		Name                  resp.Field
-		Notes                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PartnerSpacecraftID   resp.Field
-		PayloadType           resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		SpacecraftID          respjson.Field
+		ID                    respjson.Field
+		AreaCoverage          respjson.Field
+		ClockType             respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		HostedForCompanyOrgID respjson.Field
+		IDNavigation          respjson.Field
+		LocationAccuracy      respjson.Field
+		ManufacturerOrgID     respjson.Field
+		ModeFrequency         respjson.Field
+		Modes                 respjson.Field
+		Name                  respjson.Field
+		Notes                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PartnerSpacecraftID   respjson.Field
+		PayloadType           respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -4118,37 +4118,37 @@ type SeradataSpacecraftDetailTupleResponseSeradataOpticalPayload struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking       resp.Field
-		DataMode                    resp.Field
-		Source                      resp.Field
-		SpacecraftID                resp.Field
-		ID                          resp.Field
-		BestResolution              resp.Field
-		CreatedAt                   resp.Field
-		CreatedBy                   resp.Field
-		FieldOfRegard               resp.Field
-		FieldOfView                 resp.Field
-		GroundStationLocations      resp.Field
-		GroundStations              resp.Field
-		HostedForCompanyOrgID       resp.Field
-		IDSensor                    resp.Field
-		ImagingPayloadCategory      resp.Field
-		ManufacturerOrgID           resp.Field
-		Name                        resp.Field
-		Notes                       resp.Field
-		NumberOfFilmReturnCanisters resp.Field
-		Origin                      resp.Field
-		OrigNetwork                 resp.Field
-		PointingMethod              resp.Field
-		RecorderSize                resp.Field
-		SpectralBand                resp.Field
-		SpectralFrequencyLimits     resp.Field
-		SwathWidth                  resp.Field
-		UpdatedAt                   resp.Field
-		UpdatedBy                   resp.Field
-		ExtraFields                 map[string]resp.Field
+		ClassificationMarking       respjson.Field
+		DataMode                    respjson.Field
+		Source                      respjson.Field
+		SpacecraftID                respjson.Field
+		ID                          respjson.Field
+		BestResolution              respjson.Field
+		CreatedAt                   respjson.Field
+		CreatedBy                   respjson.Field
+		FieldOfRegard               respjson.Field
+		FieldOfView                 respjson.Field
+		GroundStationLocations      respjson.Field
+		GroundStations              respjson.Field
+		HostedForCompanyOrgID       respjson.Field
+		IDSensor                    respjson.Field
+		ImagingPayloadCategory      respjson.Field
+		ManufacturerOrgID           respjson.Field
+		Name                        respjson.Field
+		Notes                       respjson.Field
+		NumberOfFilmReturnCanisters respjson.Field
+		Origin                      respjson.Field
+		OrigNetwork                 respjson.Field
+		PointingMethod              respjson.Field
+		RecorderSize                respjson.Field
+		SpectralBand                respjson.Field
+		SpectralFrequencyLimits     respjson.Field
+		SwathWidth                  respjson.Field
+		UpdatedAt                   respjson.Field
+		UpdatedBy                   respjson.Field
+		ExtraFields                 map[string]respjson.Field
 		raw                         string
 	} `json:"-"`
 }
@@ -4255,43 +4255,43 @@ type SeradataSpacecraftDetailTupleResponseSeradataRadarPayload struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Wave length in meters.
 	WaveLength float64 `json:"waveLength"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                  resp.Field
-		DataMode                               resp.Field
-		Source                                 resp.Field
-		SpacecraftID                           resp.Field
-		ID                                     resp.Field
-		Bandwidth                              resp.Field
-		BestResolution                         resp.Field
-		Category                               resp.Field
-		ConstellationInterferometricCapability resp.Field
-		CreatedAt                              resp.Field
-		CreatedBy                              resp.Field
-		DutyCycle                              resp.Field
-		FieldOfRegard                          resp.Field
-		FieldOfView                            resp.Field
-		Frequency                              resp.Field
-		FrequencyBand                          resp.Field
-		GroundStationLocations                 resp.Field
-		GroundStations                         resp.Field
-		HostedForCompanyOrgID                  resp.Field
-		IDSensor                               resp.Field
-		ManufacturerOrgID                      resp.Field
-		Name                                   resp.Field
-		Notes                                  resp.Field
-		Origin                                 resp.Field
-		OrigNetwork                            resp.Field
-		PartnerSpacecraft                      resp.Field
-		PointingMethod                         resp.Field
-		ReceivePolarization                    resp.Field
-		RecorderSize                           resp.Field
-		SwathWidth                             resp.Field
-		TransmitPolarization                   resp.Field
-		UpdatedAt                              resp.Field
-		UpdatedBy                              resp.Field
-		WaveLength                             resp.Field
-		ExtraFields                            map[string]resp.Field
+		ClassificationMarking                  respjson.Field
+		DataMode                               respjson.Field
+		Source                                 respjson.Field
+		SpacecraftID                           respjson.Field
+		ID                                     respjson.Field
+		Bandwidth                              respjson.Field
+		BestResolution                         respjson.Field
+		Category                               respjson.Field
+		ConstellationInterferometricCapability respjson.Field
+		CreatedAt                              respjson.Field
+		CreatedBy                              respjson.Field
+		DutyCycle                              respjson.Field
+		FieldOfRegard                          respjson.Field
+		FieldOfView                            respjson.Field
+		Frequency                              respjson.Field
+		FrequencyBand                          respjson.Field
+		GroundStationLocations                 respjson.Field
+		GroundStations                         respjson.Field
+		HostedForCompanyOrgID                  respjson.Field
+		IDSensor                               respjson.Field
+		ManufacturerOrgID                      respjson.Field
+		Name                                   respjson.Field
+		Notes                                  respjson.Field
+		Origin                                 respjson.Field
+		OrigNetwork                            respjson.Field
+		PartnerSpacecraft                      respjson.Field
+		PointingMethod                         respjson.Field
+		ReceivePolarization                    respjson.Field
+		RecorderSize                           respjson.Field
+		SwathWidth                             respjson.Field
+		TransmitPolarization                   respjson.Field
+		UpdatedAt                              respjson.Field
+		UpdatedBy                              respjson.Field
+		WaveLength                             respjson.Field
+		ExtraFields                            map[string]respjson.Field
 		raw                                    string
 	} `json:"-"`
 }
@@ -4373,32 +4373,32 @@ type SeradataSpacecraftDetailTupleResponseSeradataSigIntPayload struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking  resp.Field
-		DataMode               resp.Field
-		Source                 resp.Field
-		SpacecraftID           resp.Field
-		ID                     resp.Field
-		CreatedAt              resp.Field
-		CreatedBy              resp.Field
-		FrequencyCoverage      resp.Field
-		GroundStationLocations resp.Field
-		GroundStations         resp.Field
-		HostedForCompanyOrgID  resp.Field
-		IDSensor               resp.Field
-		InterceptParameters    resp.Field
-		ManufacturerOrgID      resp.Field
-		Name                   resp.Field
-		Notes                  resp.Field
-		Origin                 resp.Field
-		OrigNetwork            resp.Field
-		PositionalAccuracy     resp.Field
-		SwathWidth             resp.Field
-		Type                   resp.Field
-		UpdatedAt              resp.Field
-		UpdatedBy              resp.Field
-		ExtraFields            map[string]resp.Field
+		ClassificationMarking  respjson.Field
+		DataMode               respjson.Field
+		Source                 respjson.Field
+		SpacecraftID           respjson.Field
+		ID                     respjson.Field
+		CreatedAt              respjson.Field
+		CreatedBy              respjson.Field
+		FrequencyCoverage      respjson.Field
+		GroundStationLocations respjson.Field
+		GroundStations         respjson.Field
+		HostedForCompanyOrgID  respjson.Field
+		IDSensor               respjson.Field
+		InterceptParameters    respjson.Field
+		ManufacturerOrgID      respjson.Field
+		Name                   respjson.Field
+		Notes                  respjson.Field
+		Origin                 respjson.Field
+		OrigNetwork            respjson.Field
+		PositionalAccuracy     respjson.Field
+		SwathWidth             respjson.Field
+		Type                   respjson.Field
+		UpdatedAt              respjson.Field
+		UpdatedBy              respjson.Field
+		ExtraFields            map[string]respjson.Field
 		raw                    string
 	} `json:"-"`
 }

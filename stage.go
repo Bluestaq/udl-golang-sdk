@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // StageService contains methods and other services that help with interacting with
@@ -267,48 +267,48 @@ type StageListResponse struct {
 	VernierThrustSeaLevel float64 `json:"vernierThrustSeaLevel"`
 	// Total thrust of one of the vernier or additional engines in a vacuum in kN.
 	VernierThrustVacuum float64 `json:"vernierThrustVacuum"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking    resp.Field
-		DataMode                 resp.Field
-		IDEngine                 resp.Field
-		IDLaunchVehicle          resp.Field
-		Source                   resp.Field
-		ID                       resp.Field
-		AvionicsNotes            resp.Field
-		BurnTime                 resp.Field
-		ControlThruster1         resp.Field
-		ControlThruster2         resp.Field
-		CreatedAt                resp.Field
-		CreatedBy                resp.Field
-		Diameter                 resp.Field
-		Length                   resp.Field
-		MainEngineThrustSeaLevel resp.Field
-		MainEngineThrustVacuum   resp.Field
-		ManufacturerOrgID        resp.Field
-		Mass                     resp.Field
-		Notes                    resp.Field
-		NumBurns                 resp.Field
-		NumControlThruster1      resp.Field
-		NumControlThruster2      resp.Field
-		NumEngines               resp.Field
-		NumStageElements         resp.Field
-		NumVernier               resp.Field
-		Origin                   resp.Field
-		OrigNetwork              resp.Field
-		PhotoURLs                resp.Field
-		Restartable              resp.Field
-		Reusable                 resp.Field
-		StageNumber              resp.Field
-		ThrustSeaLevel           resp.Field
-		ThrustVacuum             resp.Field
-		Type                     resp.Field
-		Vernier                  resp.Field
-		VernierBurnTime          resp.Field
-		VernierNumBurns          resp.Field
-		VernierThrustSeaLevel    resp.Field
-		VernierThrustVacuum      resp.Field
-		ExtraFields              map[string]resp.Field
+		ClassificationMarking    respjson.Field
+		DataMode                 respjson.Field
+		IDEngine                 respjson.Field
+		IDLaunchVehicle          respjson.Field
+		Source                   respjson.Field
+		ID                       respjson.Field
+		AvionicsNotes            respjson.Field
+		BurnTime                 respjson.Field
+		ControlThruster1         respjson.Field
+		ControlThruster2         respjson.Field
+		CreatedAt                respjson.Field
+		CreatedBy                respjson.Field
+		Diameter                 respjson.Field
+		Length                   respjson.Field
+		MainEngineThrustSeaLevel respjson.Field
+		MainEngineThrustVacuum   respjson.Field
+		ManufacturerOrgID        respjson.Field
+		Mass                     respjson.Field
+		Notes                    respjson.Field
+		NumBurns                 respjson.Field
+		NumControlThruster1      respjson.Field
+		NumControlThruster2      respjson.Field
+		NumEngines               respjson.Field
+		NumStageElements         respjson.Field
+		NumVernier               respjson.Field
+		Origin                   respjson.Field
+		OrigNetwork              respjson.Field
+		PhotoURLs                respjson.Field
+		Restartable              respjson.Field
+		Reusable                 respjson.Field
+		StageNumber              respjson.Field
+		ThrustSeaLevel           respjson.Field
+		ThrustVacuum             respjson.Field
+		Type                     respjson.Field
+		Vernier                  respjson.Field
+		VernierBurnTime          respjson.Field
+		VernierNumBurns          respjson.Field
+		VernierThrustSeaLevel    respjson.Field
+		VernierThrustVacuum      respjson.Field
+		ExtraFields              map[string]respjson.Field
 		raw                      string
 	} `json:"-"`
 }
@@ -458,52 +458,52 @@ type StageGetResponse struct {
 	VernierThrustSeaLevel float64 `json:"vernierThrustSeaLevel"`
 	// Total thrust of one of the vernier or additional engines in a vacuum in kN.
 	VernierThrustVacuum float64 `json:"vernierThrustVacuum"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking    resp.Field
-		DataMode                 resp.Field
-		IDEngine                 resp.Field
-		IDLaunchVehicle          resp.Field
-		Source                   resp.Field
-		ID                       resp.Field
-		AvionicsNotes            resp.Field
-		BurnTime                 resp.Field
-		ControlThruster1         resp.Field
-		ControlThruster2         resp.Field
-		CreatedAt                resp.Field
-		CreatedBy                resp.Field
-		Diameter                 resp.Field
-		Engine                   resp.Field
-		Length                   resp.Field
-		MainEngineThrustSeaLevel resp.Field
-		MainEngineThrustVacuum   resp.Field
-		ManufacturerOrgID        resp.Field
-		Mass                     resp.Field
-		Notes                    resp.Field
-		NumBurns                 resp.Field
-		NumControlThruster1      resp.Field
-		NumControlThruster2      resp.Field
-		NumEngines               resp.Field
-		NumStageElements         resp.Field
-		NumVernier               resp.Field
-		Origin                   resp.Field
-		OrigNetwork              resp.Field
-		PhotoURLs                resp.Field
-		Restartable              resp.Field
-		Reusable                 resp.Field
-		StageNumber              resp.Field
-		Tags                     resp.Field
-		ThrustSeaLevel           resp.Field
-		ThrustVacuum             resp.Field
-		Type                     resp.Field
-		UpdatedAt                resp.Field
-		UpdatedBy                resp.Field
-		Vernier                  resp.Field
-		VernierBurnTime          resp.Field
-		VernierNumBurns          resp.Field
-		VernierThrustSeaLevel    resp.Field
-		VernierThrustVacuum      resp.Field
-		ExtraFields              map[string]resp.Field
+		ClassificationMarking    respjson.Field
+		DataMode                 respjson.Field
+		IDEngine                 respjson.Field
+		IDLaunchVehicle          respjson.Field
+		Source                   respjson.Field
+		ID                       respjson.Field
+		AvionicsNotes            respjson.Field
+		BurnTime                 respjson.Field
+		ControlThruster1         respjson.Field
+		ControlThruster2         respjson.Field
+		CreatedAt                respjson.Field
+		CreatedBy                respjson.Field
+		Diameter                 respjson.Field
+		Engine                   respjson.Field
+		Length                   respjson.Field
+		MainEngineThrustSeaLevel respjson.Field
+		MainEngineThrustVacuum   respjson.Field
+		ManufacturerOrgID        respjson.Field
+		Mass                     respjson.Field
+		Notes                    respjson.Field
+		NumBurns                 respjson.Field
+		NumControlThruster1      respjson.Field
+		NumControlThruster2      respjson.Field
+		NumEngines               respjson.Field
+		NumStageElements         respjson.Field
+		NumVernier               respjson.Field
+		Origin                   respjson.Field
+		OrigNetwork              respjson.Field
+		PhotoURLs                respjson.Field
+		Restartable              respjson.Field
+		Reusable                 respjson.Field
+		StageNumber              respjson.Field
+		Tags                     respjson.Field
+		ThrustSeaLevel           respjson.Field
+		ThrustVacuum             respjson.Field
+		Type                     respjson.Field
+		UpdatedAt                respjson.Field
+		UpdatedBy                respjson.Field
+		Vernier                  respjson.Field
+		VernierBurnTime          respjson.Field
+		VernierNumBurns          respjson.Field
+		VernierThrustSeaLevel    respjson.Field
+		VernierThrustVacuum      respjson.Field
+		ExtraFields              map[string]respjson.Field
 		raw                      string
 	} `json:"-"`
 }
@@ -653,52 +653,52 @@ type StageTupleResponse struct {
 	VernierThrustSeaLevel float64 `json:"vernierThrustSeaLevel"`
 	// Total thrust of one of the vernier or additional engines in a vacuum in kN.
 	VernierThrustVacuum float64 `json:"vernierThrustVacuum"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking    resp.Field
-		DataMode                 resp.Field
-		IDEngine                 resp.Field
-		IDLaunchVehicle          resp.Field
-		Source                   resp.Field
-		ID                       resp.Field
-		AvionicsNotes            resp.Field
-		BurnTime                 resp.Field
-		ControlThruster1         resp.Field
-		ControlThruster2         resp.Field
-		CreatedAt                resp.Field
-		CreatedBy                resp.Field
-		Diameter                 resp.Field
-		Engine                   resp.Field
-		Length                   resp.Field
-		MainEngineThrustSeaLevel resp.Field
-		MainEngineThrustVacuum   resp.Field
-		ManufacturerOrgID        resp.Field
-		Mass                     resp.Field
-		Notes                    resp.Field
-		NumBurns                 resp.Field
-		NumControlThruster1      resp.Field
-		NumControlThruster2      resp.Field
-		NumEngines               resp.Field
-		NumStageElements         resp.Field
-		NumVernier               resp.Field
-		Origin                   resp.Field
-		OrigNetwork              resp.Field
-		PhotoURLs                resp.Field
-		Restartable              resp.Field
-		Reusable                 resp.Field
-		StageNumber              resp.Field
-		Tags                     resp.Field
-		ThrustSeaLevel           resp.Field
-		ThrustVacuum             resp.Field
-		Type                     resp.Field
-		UpdatedAt                resp.Field
-		UpdatedBy                resp.Field
-		Vernier                  resp.Field
-		VernierBurnTime          resp.Field
-		VernierNumBurns          resp.Field
-		VernierThrustSeaLevel    resp.Field
-		VernierThrustVacuum      resp.Field
-		ExtraFields              map[string]resp.Field
+		ClassificationMarking    respjson.Field
+		DataMode                 respjson.Field
+		IDEngine                 respjson.Field
+		IDLaunchVehicle          respjson.Field
+		Source                   respjson.Field
+		ID                       respjson.Field
+		AvionicsNotes            respjson.Field
+		BurnTime                 respjson.Field
+		ControlThruster1         respjson.Field
+		ControlThruster2         respjson.Field
+		CreatedAt                respjson.Field
+		CreatedBy                respjson.Field
+		Diameter                 respjson.Field
+		Engine                   respjson.Field
+		Length                   respjson.Field
+		MainEngineThrustSeaLevel respjson.Field
+		MainEngineThrustVacuum   respjson.Field
+		ManufacturerOrgID        respjson.Field
+		Mass                     respjson.Field
+		Notes                    respjson.Field
+		NumBurns                 respjson.Field
+		NumControlThruster1      respjson.Field
+		NumControlThruster2      respjson.Field
+		NumEngines               respjson.Field
+		NumStageElements         respjson.Field
+		NumVernier               respjson.Field
+		Origin                   respjson.Field
+		OrigNetwork              respjson.Field
+		PhotoURLs                respjson.Field
+		Restartable              respjson.Field
+		Reusable                 respjson.Field
+		StageNumber              respjson.Field
+		Tags                     respjson.Field
+		ThrustSeaLevel           respjson.Field
+		ThrustVacuum             respjson.Field
+		Type                     respjson.Field
+		UpdatedAt                respjson.Field
+		UpdatedBy                respjson.Field
+		Vernier                  respjson.Field
+		VernierBurnTime          respjson.Field
+		VernierNumBurns          respjson.Field
+		VernierThrustSeaLevel    respjson.Field
+		VernierThrustVacuum      respjson.Field
+		ExtraFields              map[string]respjson.Field
 		raw                      string
 	} `json:"-"`
 }

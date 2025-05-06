@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // LaunchDetectionService contains methods and other services that help with
@@ -238,35 +238,35 @@ type LaunchDetectionListResponse struct {
 	// Application user who last updated the row in the database, set by the system
 	// automatically and ignored on create/edit operations.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		MessageType           resp.Field
-		ObservationLatitude   resp.Field
-		ObservationLongitude  resp.Field
-		ObservationTime       resp.Field
-		SequenceNumber        resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Descriptor            resp.Field
-		EventID               resp.Field
-		HighZenithAzimuth     resp.Field
-		Inclination           resp.Field
-		LaunchAzimuth         resp.Field
-		LaunchLatitude        resp.Field
-		LaunchLongitude       resp.Field
-		LaunchTime            resp.Field
-		ObservationAltitude   resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Raan                  resp.Field
-		StereoFlag            resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		MessageType           respjson.Field
+		ObservationLatitude   respjson.Field
+		ObservationLongitude  respjson.Field
+		ObservationTime       respjson.Field
+		SequenceNumber        respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Descriptor            respjson.Field
+		EventID               respjson.Field
+		HighZenithAzimuth     respjson.Field
+		Inclination           respjson.Field
+		LaunchAzimuth         respjson.Field
+		LaunchLatitude        respjson.Field
+		LaunchLongitude       respjson.Field
+		LaunchTime            respjson.Field
+		ObservationAltitude   respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Raan                  respjson.Field
+		StereoFlag            respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -385,36 +385,36 @@ type LaunchDetectionGetResponse struct {
 	// Application user who last updated the row in the database, set by the system
 	// automatically and ignored on create/edit operations.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		MessageType           resp.Field
-		ObservationLatitude   resp.Field
-		ObservationLongitude  resp.Field
-		ObservationTime       resp.Field
-		SequenceNumber        resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Descriptor            resp.Field
-		EventID               resp.Field
-		HighZenithAzimuth     resp.Field
-		Inclination           resp.Field
-		LaunchAzimuth         resp.Field
-		LaunchLatitude        resp.Field
-		LaunchLongitude       resp.Field
-		LaunchTime            resp.Field
-		ObservationAltitude   resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Raan                  resp.Field
-		StereoFlag            resp.Field
-		Tags                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		MessageType           respjson.Field
+		ObservationLatitude   respjson.Field
+		ObservationLongitude  respjson.Field
+		ObservationTime       respjson.Field
+		SequenceNumber        respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Descriptor            respjson.Field
+		EventID               respjson.Field
+		HighZenithAzimuth     respjson.Field
+		Inclination           respjson.Field
+		LaunchAzimuth         respjson.Field
+		LaunchLatitude        respjson.Field
+		LaunchLongitude       respjson.Field
+		LaunchTime            respjson.Field
+		ObservationAltitude   respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Raan                  respjson.Field
+		StereoFlag            respjson.Field
+		Tags                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -533,36 +533,36 @@ type LaunchDetectionTupleResponse struct {
 	// Application user who last updated the row in the database, set by the system
 	// automatically and ignored on create/edit operations.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		MessageType           resp.Field
-		ObservationLatitude   resp.Field
-		ObservationLongitude  resp.Field
-		ObservationTime       resp.Field
-		SequenceNumber        resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Descriptor            resp.Field
-		EventID               resp.Field
-		HighZenithAzimuth     resp.Field
-		Inclination           resp.Field
-		LaunchAzimuth         resp.Field
-		LaunchLatitude        resp.Field
-		LaunchLongitude       resp.Field
-		LaunchTime            resp.Field
-		ObservationAltitude   resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Raan                  resp.Field
-		StereoFlag            resp.Field
-		Tags                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		MessageType           respjson.Field
+		ObservationLatitude   respjson.Field
+		ObservationLongitude  respjson.Field
+		ObservationTime       respjson.Field
+		SequenceNumber        respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Descriptor            respjson.Field
+		EventID               respjson.Field
+		HighZenithAzimuth     respjson.Field
+		Inclination           respjson.Field
+		LaunchAzimuth         respjson.Field
+		LaunchLatitude        respjson.Field
+		LaunchLongitude       respjson.Field
+		LaunchTime            respjson.Field
+		ObservationAltitude   respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Raan                  respjson.Field
+		StereoFlag            respjson.Field
+		Tags                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

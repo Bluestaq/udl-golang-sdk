@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // LaunchSiteDetailService contains methods and other services that help with
@@ -196,23 +196,23 @@ type LaunchSiteDetailListResponse struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDLaunchSite          resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AvailableInclinations resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Description           resp.Field
-		IDLocation            resp.Field
-		LaunchGroup           resp.Field
-		Location              resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDLaunchSite          respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AvailableInclinations respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Description           respjson.Field
+		IDLocation            respjson.Field
+		LaunchGroup           respjson.Field
+		Location              respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -302,22 +302,22 @@ type LaunchSiteDetailListResponseLocation struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		Altitude              resp.Field
-		CountryCode           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		IDLocation            resp.Field
-		Lat                   resp.Field
-		Lon                   resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		Altitude              respjson.Field
+		CountryCode           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		IDLocation            respjson.Field
+		Lat                   respjson.Field
+		Lon                   respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -385,23 +385,23 @@ type LaunchSiteDetailFindBySourceResponse struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDLaunchSite          resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AvailableInclinations resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Description           resp.Field
-		IDLocation            resp.Field
-		LaunchGroup           resp.Field
-		Location              resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDLaunchSite          respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AvailableInclinations respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Description           respjson.Field
+		IDLocation            respjson.Field
+		LaunchGroup           respjson.Field
+		Location              respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -491,22 +491,22 @@ type LaunchSiteDetailFindBySourceResponseLocation struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		Altitude              resp.Field
-		CountryCode           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		IDLocation            resp.Field
-		Lat                   resp.Field
-		Lon                   resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		Altitude              respjson.Field
+		CountryCode           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		IDLocation            respjson.Field
+		Lat                   respjson.Field
+		Lon                   respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -585,26 +585,26 @@ type LaunchSiteDetailGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDLaunchSite          resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AvailableInclinations resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Description           resp.Field
-		IDLocation            resp.Field
-		LaunchGroup           resp.Field
-		Location              resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Tags                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDLaunchSite          respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AvailableInclinations respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Description           respjson.Field
+		IDLocation            respjson.Field
+		LaunchGroup           respjson.Field
+		Location              respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Tags                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

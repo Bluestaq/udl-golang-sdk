@@ -20,7 +20,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // GnssRawifService contains methods and other services that help with interacting
@@ -328,50 +328,50 @@ type GnssRawifListResponse struct {
 	// by data providers unless conditional access controls are coordinated with the
 	// UDL team.
 	Tags []string `json:"tags"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CenterFreq            resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		EndTime               resp.Field
-		FileName              resp.Field
-		Source                resp.Field
-		StartTime             resp.Field
-		ID                    resp.Field
-		BitDepth              resp.Field
-		Boresight             resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DataRate              resp.Field
-		DiffCodeBias          resp.Field
-		EndAlt                resp.Field
-		EndLat                resp.Field
-		EndLon                resp.Field
-		EsID                  resp.Field
-		EventID               resp.Field
-		FileSize              resp.Field
-		IDOnOrbit             resp.Field
-		IfFreq                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		PostFourier           resp.Field
-		Quat                  resp.Field
-		Receiver              resp.Field
-		SampleRate            resp.Field
-		SampleType            resp.Field
-		SatNo                 resp.Field
-		SequenceID            resp.Field
-		SetID                 resp.Field
-		SetLength             resp.Field
-		SrcIDs                resp.Field
-		SrcTyps               resp.Field
-		StartAlt              resp.Field
-		StartIndex            resp.Field
-		StartLat              resp.Field
-		StartLon              resp.Field
-		Tags                  resp.Field
-		ExtraFields           map[string]resp.Field
+		CenterFreq            respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		EndTime               respjson.Field
+		FileName              respjson.Field
+		Source                respjson.Field
+		StartTime             respjson.Field
+		ID                    respjson.Field
+		BitDepth              respjson.Field
+		Boresight             respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DataRate              respjson.Field
+		DiffCodeBias          respjson.Field
+		EndAlt                respjson.Field
+		EndLat                respjson.Field
+		EndLon                respjson.Field
+		EsID                  respjson.Field
+		EventID               respjson.Field
+		FileSize              respjson.Field
+		IDOnOrbit             respjson.Field
+		IfFreq                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		PostFourier           respjson.Field
+		Quat                  respjson.Field
+		Receiver              respjson.Field
+		SampleRate            respjson.Field
+		SampleType            respjson.Field
+		SatNo                 respjson.Field
+		SequenceID            respjson.Field
+		SetID                 respjson.Field
+		SetLength             respjson.Field
+		SrcIDs                respjson.Field
+		SrcTyps               respjson.Field
+		StartAlt              respjson.Field
+		StartIndex            respjson.Field
+		StartLat              respjson.Field
+		StartLon              respjson.Field
+		Tags                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -572,50 +572,50 @@ type GnssRawifGetResponse struct {
 	// by data providers unless conditional access controls are coordinated with the
 	// UDL team.
 	Tags []string `json:"tags"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CenterFreq            resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		EndTime               resp.Field
-		FileName              resp.Field
-		Source                resp.Field
-		StartTime             resp.Field
-		ID                    resp.Field
-		BitDepth              resp.Field
-		Boresight             resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DataRate              resp.Field
-		DiffCodeBias          resp.Field
-		EndAlt                resp.Field
-		EndLat                resp.Field
-		EndLon                resp.Field
-		EsID                  resp.Field
-		EventID               resp.Field
-		FileSize              resp.Field
-		IDOnOrbit             resp.Field
-		IfFreq                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		PostFourier           resp.Field
-		Quat                  resp.Field
-		Receiver              resp.Field
-		SampleRate            resp.Field
-		SampleType            resp.Field
-		SatNo                 resp.Field
-		SequenceID            resp.Field
-		SetID                 resp.Field
-		SetLength             resp.Field
-		SrcIDs                resp.Field
-		SrcTyps               resp.Field
-		StartAlt              resp.Field
-		StartIndex            resp.Field
-		StartLat              resp.Field
-		StartLon              resp.Field
-		Tags                  resp.Field
-		ExtraFields           map[string]resp.Field
+		CenterFreq            respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		EndTime               respjson.Field
+		FileName              respjson.Field
+		Source                respjson.Field
+		StartTime             respjson.Field
+		ID                    respjson.Field
+		BitDepth              respjson.Field
+		Boresight             respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DataRate              respjson.Field
+		DiffCodeBias          respjson.Field
+		EndAlt                respjson.Field
+		EndLat                respjson.Field
+		EndLon                respjson.Field
+		EsID                  respjson.Field
+		EventID               respjson.Field
+		FileSize              respjson.Field
+		IDOnOrbit             respjson.Field
+		IfFreq                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		PostFourier           respjson.Field
+		Quat                  respjson.Field
+		Receiver              respjson.Field
+		SampleRate            respjson.Field
+		SampleType            respjson.Field
+		SatNo                 respjson.Field
+		SequenceID            respjson.Field
+		SetID                 respjson.Field
+		SetLength             respjson.Field
+		SrcIDs                respjson.Field
+		SrcTyps               respjson.Field
+		StartAlt              respjson.Field
+		StartIndex            respjson.Field
+		StartLat              respjson.Field
+		StartLon              respjson.Field
+		Tags                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -816,50 +816,50 @@ type GnssRawifTupleResponse struct {
 	// by data providers unless conditional access controls are coordinated with the
 	// UDL team.
 	Tags []string `json:"tags"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CenterFreq            resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		EndTime               resp.Field
-		FileName              resp.Field
-		Source                resp.Field
-		StartTime             resp.Field
-		ID                    resp.Field
-		BitDepth              resp.Field
-		Boresight             resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DataRate              resp.Field
-		DiffCodeBias          resp.Field
-		EndAlt                resp.Field
-		EndLat                resp.Field
-		EndLon                resp.Field
-		EsID                  resp.Field
-		EventID               resp.Field
-		FileSize              resp.Field
-		IDOnOrbit             resp.Field
-		IfFreq                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		PostFourier           resp.Field
-		Quat                  resp.Field
-		Receiver              resp.Field
-		SampleRate            resp.Field
-		SampleType            resp.Field
-		SatNo                 resp.Field
-		SequenceID            resp.Field
-		SetID                 resp.Field
-		SetLength             resp.Field
-		SrcIDs                resp.Field
-		SrcTyps               resp.Field
-		StartAlt              resp.Field
-		StartIndex            resp.Field
-		StartLat              resp.Field
-		StartLon              resp.Field
-		Tags                  resp.Field
-		ExtraFields           map[string]resp.Field
+		CenterFreq            respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		EndTime               respjson.Field
+		FileName              respjson.Field
+		Source                respjson.Field
+		StartTime             respjson.Field
+		ID                    respjson.Field
+		BitDepth              respjson.Field
+		Boresight             respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DataRate              respjson.Field
+		DiffCodeBias          respjson.Field
+		EndAlt                respjson.Field
+		EndLat                respjson.Field
+		EndLon                respjson.Field
+		EsID                  respjson.Field
+		EventID               respjson.Field
+		FileSize              respjson.Field
+		IDOnOrbit             respjson.Field
+		IfFreq                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		PostFourier           respjson.Field
+		Quat                  respjson.Field
+		Receiver              respjson.Field
+		SampleRate            respjson.Field
+		SampleType            respjson.Field
+		SatNo                 respjson.Field
+		SequenceID            respjson.Field
+		SetID                 respjson.Field
+		SetLength             respjson.Field
+		SrcIDs                respjson.Field
+		SrcTyps               respjson.Field
+		StartAlt              respjson.Field
+		StartIndex            respjson.Field
+		StartLat              respjson.Field
+		StartLon              respjson.Field
+		Tags                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

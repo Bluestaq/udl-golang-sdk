@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // VesselService contains methods and other services that help with interacting
@@ -263,43 +263,43 @@ type VesselListResponse struct {
 	Width float64 `json:"width"`
 	// Year the vessel went into service.
 	YearBuilt string `json:"yearBuilt"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AltVesselID           resp.Field
-		Callsign              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		FirstSeen             resp.Field
-		HullNum               resp.Field
-		IDEntity              resp.Field
-		IDOrganization        resp.Field
-		Imon                  resp.Field
-		Length                resp.Field
-		MaxDraught            resp.Field
-		MaxSpeed              resp.Field
-		Mmsi                  resp.Field
-		NumBlades             resp.Field
-		NumShafts             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PropType              resp.Field
-		Sconum                resp.Field
-		Status                resp.Field
-		SternType             resp.Field
-		VesselBuilder         resp.Field
-		VesselClass           resp.Field
-		VesselDescription     resp.Field
-		VesselFlag            resp.Field
-		VesselName            resp.Field
-		VesselType            resp.Field
-		VslWt                 resp.Field
-		Width                 resp.Field
-		YearBuilt             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AltVesselID           respjson.Field
+		Callsign              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		FirstSeen             respjson.Field
+		HullNum               respjson.Field
+		IDEntity              respjson.Field
+		IDOrganization        respjson.Field
+		Imon                  respjson.Field
+		Length                respjson.Field
+		MaxDraught            respjson.Field
+		MaxSpeed              respjson.Field
+		Mmsi                  respjson.Field
+		NumBlades             respjson.Field
+		NumShafts             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PropType              respjson.Field
+		Sconum                respjson.Field
+		Status                respjson.Field
+		SternType             respjson.Field
+		VesselBuilder         respjson.Field
+		VesselClass           respjson.Field
+		VesselDescription     respjson.Field
+		VesselFlag            respjson.Field
+		VesselName            respjson.Field
+		VesselType            respjson.Field
+		VslWt                 respjson.Field
+		Width                 respjson.Field
+		YearBuilt             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -452,47 +452,47 @@ type VesselGetResponse struct {
 	Width float64 `json:"width"`
 	// Year the vessel went into service.
 	YearBuilt string `json:"yearBuilt"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AltVesselID           resp.Field
-		Callsign              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Entity                resp.Field
-		FirstSeen             resp.Field
-		HullNum               resp.Field
-		IDEntity              resp.Field
-		IDOrganization        resp.Field
-		Imon                  resp.Field
-		Length                resp.Field
-		MaxDraught            resp.Field
-		MaxSpeed              resp.Field
-		Mmsi                  resp.Field
-		NumBlades             resp.Field
-		NumShafts             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PropType              resp.Field
-		Sconum                resp.Field
-		SourceDl              resp.Field
-		Status                resp.Field
-		SternType             resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		VesselBuilder         resp.Field
-		VesselClass           resp.Field
-		VesselDescription     resp.Field
-		VesselFlag            resp.Field
-		VesselName            resp.Field
-		VesselType            resp.Field
-		VslWt                 resp.Field
-		Width                 resp.Field
-		YearBuilt             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AltVesselID           respjson.Field
+		Callsign              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Entity                respjson.Field
+		FirstSeen             respjson.Field
+		HullNum               respjson.Field
+		IDEntity              respjson.Field
+		IDOrganization        respjson.Field
+		Imon                  respjson.Field
+		Length                respjson.Field
+		MaxDraught            respjson.Field
+		MaxSpeed              respjson.Field
+		Mmsi                  respjson.Field
+		NumBlades             respjson.Field
+		NumShafts             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PropType              respjson.Field
+		Sconum                respjson.Field
+		SourceDl              respjson.Field
+		Status                respjson.Field
+		SternType             respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		VesselBuilder         respjson.Field
+		VesselClass           respjson.Field
+		VesselDescription     respjson.Field
+		VesselFlag            respjson.Field
+		VesselName            respjson.Field
+		VesselType            respjson.Field
+		VslWt                 respjson.Field
+		Width                 respjson.Field
+		YearBuilt             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -645,47 +645,47 @@ type VesselTupleResponse struct {
 	Width float64 `json:"width"`
 	// Year the vessel went into service.
 	YearBuilt string `json:"yearBuilt"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AltVesselID           resp.Field
-		Callsign              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Entity                resp.Field
-		FirstSeen             resp.Field
-		HullNum               resp.Field
-		IDEntity              resp.Field
-		IDOrganization        resp.Field
-		Imon                  resp.Field
-		Length                resp.Field
-		MaxDraught            resp.Field
-		MaxSpeed              resp.Field
-		Mmsi                  resp.Field
-		NumBlades             resp.Field
-		NumShafts             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PropType              resp.Field
-		Sconum                resp.Field
-		SourceDl              resp.Field
-		Status                resp.Field
-		SternType             resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		VesselBuilder         resp.Field
-		VesselClass           resp.Field
-		VesselDescription     resp.Field
-		VesselFlag            resp.Field
-		VesselName            resp.Field
-		VesselType            resp.Field
-		VslWt                 resp.Field
-		Width                 resp.Field
-		YearBuilt             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AltVesselID           respjson.Field
+		Callsign              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Entity                respjson.Field
+		FirstSeen             respjson.Field
+		HullNum               respjson.Field
+		IDEntity              respjson.Field
+		IDOrganization        respjson.Field
+		Imon                  respjson.Field
+		Length                respjson.Field
+		MaxDraught            respjson.Field
+		MaxSpeed              respjson.Field
+		Mmsi                  respjson.Field
+		NumBlades             respjson.Field
+		NumShafts             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PropType              respjson.Field
+		Sconum                respjson.Field
+		SourceDl              respjson.Field
+		Status                respjson.Field
+		SternType             respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		VesselBuilder         respjson.Field
+		VesselClass           respjson.Field
+		VesselDescription     respjson.Field
+		VesselFlag            respjson.Field
+		VesselName            respjson.Field
+		VesselType            respjson.Field
+		VslWt                 respjson.Field
+		Width                 respjson.Field
+		YearBuilt             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

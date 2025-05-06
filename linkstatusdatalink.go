@@ -15,7 +15,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // LinkStatusDatalinkService contains methods and other services that help with
@@ -827,83 +827,83 @@ type LinkStatusDatalinkListResponse struct {
 	// Required if sysDefaultCode field is "MAN". Allowable entries are 0.5 to 3.0 in
 	// increments of 0.1.
 	WinSizeMult float64 `json:"winSizeMult"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		OpExName              resp.Field
-		Originator            resp.Field
-		Source                resp.Field
-		StartTime             resp.Field
-		ID                    resp.Field
-		AckInstUnits          resp.Field
-		AckReq                resp.Field
-		AltDiff               resp.Field
-		CanxID                resp.Field
-		CanxOriginator        resp.Field
-		CanxSerialNum         resp.Field
-		CanxSiCs              resp.Field
-		CanxSpecialNotation   resp.Field
-		CanxTs                resp.Field
-		ClassReasons          resp.Field
-		ClassSource           resp.Field
-		ConsecDecorr          resp.Field
-		CourseDiff            resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DecExemptCodes        resp.Field
-		DecInstDates          resp.Field
-		DecorrWinMult         resp.Field
-		GeoDatum              resp.Field
-		JreCallSign           resp.Field
-		JreDetails            resp.Field
-		JrePriAdd             resp.Field
-		JreSecAdd             resp.Field
-		JreUnitDes            resp.Field
-		MaxGeoPosQual         resp.Field
-		MaxTrackQual          resp.Field
-		MgmtCode              resp.Field
-		MgmtCodeMeaning       resp.Field
-		MinGeoPosQual         resp.Field
-		MinTrackQual          resp.Field
-		Month                 resp.Field
-		MultiDuty             resp.Field
-		NonLinkUnitDes        resp.Field
-		OpExInfo              resp.Field
-		OpExInfoAlt           resp.Field
-		Ops                   resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PlanOrigNum           resp.Field
-		PocCallSign           resp.Field
-		PocLat                resp.Field
-		PocLocName            resp.Field
-		PocLon                resp.Field
-		PocName               resp.Field
-		PocNums               resp.Field
-		PocRank               resp.Field
-		Qualifier             resp.Field
-		QualSn                resp.Field
-		RawFileUri            resp.Field
-		References            resp.Field
-		RefPoints             resp.Field
-		Remarks               resp.Field
-		ResTrackQual          resp.Field
-		SerialNum             resp.Field
-		SourceDl              resp.Field
-		SpecTracks            resp.Field
-		SpeedDiff             resp.Field
-		StopTime              resp.Field
-		StopTimeMod           resp.Field
-		SysDefaultCode        resp.Field
-		TrackNumBlockLLs      resp.Field
-		TrackNumBlocks        resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		VoiceCoord            resp.Field
-		WinSizeMin            resp.Field
-		WinSizeMult           resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		OpExName              respjson.Field
+		Originator            respjson.Field
+		Source                respjson.Field
+		StartTime             respjson.Field
+		ID                    respjson.Field
+		AckInstUnits          respjson.Field
+		AckReq                respjson.Field
+		AltDiff               respjson.Field
+		CanxID                respjson.Field
+		CanxOriginator        respjson.Field
+		CanxSerialNum         respjson.Field
+		CanxSiCs              respjson.Field
+		CanxSpecialNotation   respjson.Field
+		CanxTs                respjson.Field
+		ClassReasons          respjson.Field
+		ClassSource           respjson.Field
+		ConsecDecorr          respjson.Field
+		CourseDiff            respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DecExemptCodes        respjson.Field
+		DecInstDates          respjson.Field
+		DecorrWinMult         respjson.Field
+		GeoDatum              respjson.Field
+		JreCallSign           respjson.Field
+		JreDetails            respjson.Field
+		JrePriAdd             respjson.Field
+		JreSecAdd             respjson.Field
+		JreUnitDes            respjson.Field
+		MaxGeoPosQual         respjson.Field
+		MaxTrackQual          respjson.Field
+		MgmtCode              respjson.Field
+		MgmtCodeMeaning       respjson.Field
+		MinGeoPosQual         respjson.Field
+		MinTrackQual          respjson.Field
+		Month                 respjson.Field
+		MultiDuty             respjson.Field
+		NonLinkUnitDes        respjson.Field
+		OpExInfo              respjson.Field
+		OpExInfoAlt           respjson.Field
+		Ops                   respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PlanOrigNum           respjson.Field
+		PocCallSign           respjson.Field
+		PocLat                respjson.Field
+		PocLocName            respjson.Field
+		PocLon                respjson.Field
+		PocName               respjson.Field
+		PocNums               respjson.Field
+		PocRank               respjson.Field
+		Qualifier             respjson.Field
+		QualSn                respjson.Field
+		RawFileUri            respjson.Field
+		References            respjson.Field
+		RefPoints             respjson.Field
+		Remarks               respjson.Field
+		ResTrackQual          respjson.Field
+		SerialNum             respjson.Field
+		SourceDl              respjson.Field
+		SpecTracks            respjson.Field
+		SpeedDiff             respjson.Field
+		StopTime              respjson.Field
+		StopTimeMod           respjson.Field
+		SysDefaultCode        respjson.Field
+		TrackNumBlockLLs      respjson.Field
+		TrackNumBlocks        respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		VoiceCoord            respjson.Field
+		WinSizeMin            respjson.Field
+		WinSizeMult           respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -958,15 +958,15 @@ type LinkStatusDatalinkListResponseMultiDuty struct {
 	// Designated force of unit specified by ship name, unit call sign, or unit
 	// designator.
 	UnitDes string `json:"unitDes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Duty                resp.Field
-		DutyTeleFreqNums    resp.Field
-		MultiDutyVoiceCoord resp.Field
-		Name                resp.Field
-		Rank                resp.Field
-		UnitDes             resp.Field
-		ExtraFields         map[string]resp.Field
+		Duty                respjson.Field
+		DutyTeleFreqNums    respjson.Field
+		MultiDutyVoiceCoord respjson.Field
+		Name                respjson.Field
+		Rank                respjson.Field
+		UnitDes             respjson.Field
+		ExtraFields         map[string]respjson.Field
 		raw                 string
 	} `json:"-"`
 }
@@ -994,13 +994,13 @@ type LinkStatusDatalinkListResponseMultiDutyMultiDutyVoiceCoord struct {
 	// Designator assigned to a voice interface control and coordination net for
 	// multilink coordination (e.g. ADCCN, DCN, VPN, etc.).
 	MultiVoiceNetDes string `json:"multiVoiceNetDes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		MultiCommPri      resp.Field
-		MultiFreqDes      resp.Field
-		MultiTeleFreqNums resp.Field
-		MultiVoiceNetDes  resp.Field
-		ExtraFields       map[string]resp.Field
+		MultiCommPri      respjson.Field
+		MultiFreqDes      respjson.Field
+		MultiTeleFreqNums respjson.Field
+		MultiVoiceNetDes  respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -1031,14 +1031,14 @@ type LinkStatusDatalinkListResponseOp struct {
 	// AFTER, ASOF, NLT, etc. Used with field linkStopTimeMod to indicate a relative
 	// time.
 	LinkStopTimeMod string `json:"linkStopTimeMod"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		LinkDetails     resp.Field
-		LinkName        resp.Field
-		LinkStartTime   resp.Field
-		LinkStopTime    resp.Field
-		LinkStopTimeMod resp.Field
-		ExtraFields     map[string]resp.Field
+		LinkDetails     respjson.Field
+		LinkName        respjson.Field
+		LinkStartTime   respjson.Field
+		LinkStopTime    respjson.Field
+		LinkStopTimeMod respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -1070,16 +1070,16 @@ type LinkStatusDatalinkListResponseReference struct {
 	RefTs time.Time `json:"refTs" format:"date-time"`
 	// Specifies the type of document referenced.
 	RefType string `json:"refType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		RefOriginator      resp.Field
-		RefSerialID        resp.Field
-		RefSerialNum       resp.Field
-		RefSiCs            resp.Field
-		RefSpecialNotation resp.Field
-		RefTs              resp.Field
-		RefType            resp.Field
-		ExtraFields        map[string]resp.Field
+		RefOriginator      respjson.Field
+		RefSerialID        respjson.Field
+		RefSerialNum       respjson.Field
+		RefSiCs            respjson.Field
+		RefSpecialNotation respjson.Field
+		RefTs              respjson.Field
+		RefType            respjson.Field
+		ExtraFields        map[string]respjson.Field
 		raw                string
 	} `json:"-"`
 }
@@ -1109,15 +1109,15 @@ type LinkStatusDatalinkListResponseRefPoint struct {
 	RefLon float64 `json:"refLon"`
 	// Type of data link reference point or grid origin.
 	RefPointType string `json:"refPointType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		EffEventTime resp.Field
-		RefDes       resp.Field
-		RefLat       resp.Field
-		RefLocName   resp.Field
-		RefLon       resp.Field
-		RefPointType resp.Field
-		ExtraFields  map[string]resp.Field
+		EffEventTime respjson.Field
+		RefDes       respjson.Field
+		RefLat       respjson.Field
+		RefLocName   respjson.Field
+		RefLon       respjson.Field
+		RefPointType respjson.Field
+		ExtraFields  map[string]respjson.Field
 		raw          string
 	} `json:"-"`
 }
@@ -1134,11 +1134,11 @@ type LinkStatusDatalinkListResponseRemark struct {
 	Text string `json:"text"`
 	// Indicates the subject matter of the remark.
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Text        resp.Field
-		Type        resp.Field
-		ExtraFields map[string]resp.Field
+		Text        respjson.Field
+		Type        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -1159,11 +1159,11 @@ type LinkStatusDatalinkListResponseSpecTrack struct {
 	SpecTrackNum string `json:"specTrackNum"`
 	// Description of the special track number.
 	SpecTrackNumDesc string `json:"specTrackNumDesc"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		SpecTrackNum     resp.Field
-		SpecTrackNumDesc resp.Field
-		ExtraFields      map[string]resp.Field
+		SpecTrackNum     respjson.Field
+		SpecTrackNumDesc respjson.Field
+		ExtraFields      map[string]respjson.Field
 		raw              string
 	} `json:"-"`
 }
@@ -1190,13 +1190,13 @@ type LinkStatusDatalinkListResponseVoiceCoord struct {
 	// Designator assigned to a voice interface control and coordination net for this
 	// data link message (e.g. ADCCN, DCN, VPN, etc.).
 	VoiceNetDes string `json:"voiceNetDes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CommPri      resp.Field
-		FreqDes      resp.Field
-		TeleFreqNums resp.Field
-		VoiceNetDes  resp.Field
-		ExtraFields  map[string]resp.Field
+		CommPri      respjson.Field
+		FreqDes      respjson.Field
+		TeleFreqNums respjson.Field
+		VoiceNetDes  respjson.Field
+		ExtraFields  map[string]respjson.Field
 		raw          string
 	} `json:"-"`
 }
@@ -1444,83 +1444,83 @@ type LinkStatusDatalinkTupleResponse struct {
 	// Required if sysDefaultCode field is "MAN". Allowable entries are 0.5 to 3.0 in
 	// increments of 0.1.
 	WinSizeMult float64 `json:"winSizeMult"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		OpExName              resp.Field
-		Originator            resp.Field
-		Source                resp.Field
-		StartTime             resp.Field
-		ID                    resp.Field
-		AckInstUnits          resp.Field
-		AckReq                resp.Field
-		AltDiff               resp.Field
-		CanxID                resp.Field
-		CanxOriginator        resp.Field
-		CanxSerialNum         resp.Field
-		CanxSiCs              resp.Field
-		CanxSpecialNotation   resp.Field
-		CanxTs                resp.Field
-		ClassReasons          resp.Field
-		ClassSource           resp.Field
-		ConsecDecorr          resp.Field
-		CourseDiff            resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DecExemptCodes        resp.Field
-		DecInstDates          resp.Field
-		DecorrWinMult         resp.Field
-		GeoDatum              resp.Field
-		JreCallSign           resp.Field
-		JreDetails            resp.Field
-		JrePriAdd             resp.Field
-		JreSecAdd             resp.Field
-		JreUnitDes            resp.Field
-		MaxGeoPosQual         resp.Field
-		MaxTrackQual          resp.Field
-		MgmtCode              resp.Field
-		MgmtCodeMeaning       resp.Field
-		MinGeoPosQual         resp.Field
-		MinTrackQual          resp.Field
-		Month                 resp.Field
-		MultiDuty             resp.Field
-		NonLinkUnitDes        resp.Field
-		OpExInfo              resp.Field
-		OpExInfoAlt           resp.Field
-		Ops                   resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PlanOrigNum           resp.Field
-		PocCallSign           resp.Field
-		PocLat                resp.Field
-		PocLocName            resp.Field
-		PocLon                resp.Field
-		PocName               resp.Field
-		PocNums               resp.Field
-		PocRank               resp.Field
-		Qualifier             resp.Field
-		QualSn                resp.Field
-		RawFileUri            resp.Field
-		References            resp.Field
-		RefPoints             resp.Field
-		Remarks               resp.Field
-		ResTrackQual          resp.Field
-		SerialNum             resp.Field
-		SourceDl              resp.Field
-		SpecTracks            resp.Field
-		SpeedDiff             resp.Field
-		StopTime              resp.Field
-		StopTimeMod           resp.Field
-		SysDefaultCode        resp.Field
-		TrackNumBlockLLs      resp.Field
-		TrackNumBlocks        resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		VoiceCoord            resp.Field
-		WinSizeMin            resp.Field
-		WinSizeMult           resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		OpExName              respjson.Field
+		Originator            respjson.Field
+		Source                respjson.Field
+		StartTime             respjson.Field
+		ID                    respjson.Field
+		AckInstUnits          respjson.Field
+		AckReq                respjson.Field
+		AltDiff               respjson.Field
+		CanxID                respjson.Field
+		CanxOriginator        respjson.Field
+		CanxSerialNum         respjson.Field
+		CanxSiCs              respjson.Field
+		CanxSpecialNotation   respjson.Field
+		CanxTs                respjson.Field
+		ClassReasons          respjson.Field
+		ClassSource           respjson.Field
+		ConsecDecorr          respjson.Field
+		CourseDiff            respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DecExemptCodes        respjson.Field
+		DecInstDates          respjson.Field
+		DecorrWinMult         respjson.Field
+		GeoDatum              respjson.Field
+		JreCallSign           respjson.Field
+		JreDetails            respjson.Field
+		JrePriAdd             respjson.Field
+		JreSecAdd             respjson.Field
+		JreUnitDes            respjson.Field
+		MaxGeoPosQual         respjson.Field
+		MaxTrackQual          respjson.Field
+		MgmtCode              respjson.Field
+		MgmtCodeMeaning       respjson.Field
+		MinGeoPosQual         respjson.Field
+		MinTrackQual          respjson.Field
+		Month                 respjson.Field
+		MultiDuty             respjson.Field
+		NonLinkUnitDes        respjson.Field
+		OpExInfo              respjson.Field
+		OpExInfoAlt           respjson.Field
+		Ops                   respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PlanOrigNum           respjson.Field
+		PocCallSign           respjson.Field
+		PocLat                respjson.Field
+		PocLocName            respjson.Field
+		PocLon                respjson.Field
+		PocName               respjson.Field
+		PocNums               respjson.Field
+		PocRank               respjson.Field
+		Qualifier             respjson.Field
+		QualSn                respjson.Field
+		RawFileUri            respjson.Field
+		References            respjson.Field
+		RefPoints             respjson.Field
+		Remarks               respjson.Field
+		ResTrackQual          respjson.Field
+		SerialNum             respjson.Field
+		SourceDl              respjson.Field
+		SpecTracks            respjson.Field
+		SpeedDiff             respjson.Field
+		StopTime              respjson.Field
+		StopTimeMod           respjson.Field
+		SysDefaultCode        respjson.Field
+		TrackNumBlockLLs      respjson.Field
+		TrackNumBlocks        respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		VoiceCoord            respjson.Field
+		WinSizeMin            respjson.Field
+		WinSizeMult           respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -1575,15 +1575,15 @@ type LinkStatusDatalinkTupleResponseMultiDuty struct {
 	// Designated force of unit specified by ship name, unit call sign, or unit
 	// designator.
 	UnitDes string `json:"unitDes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Duty                resp.Field
-		DutyTeleFreqNums    resp.Field
-		MultiDutyVoiceCoord resp.Field
-		Name                resp.Field
-		Rank                resp.Field
-		UnitDes             resp.Field
-		ExtraFields         map[string]resp.Field
+		Duty                respjson.Field
+		DutyTeleFreqNums    respjson.Field
+		MultiDutyVoiceCoord respjson.Field
+		Name                respjson.Field
+		Rank                respjson.Field
+		UnitDes             respjson.Field
+		ExtraFields         map[string]respjson.Field
 		raw                 string
 	} `json:"-"`
 }
@@ -1611,13 +1611,13 @@ type LinkStatusDatalinkTupleResponseMultiDutyMultiDutyVoiceCoord struct {
 	// Designator assigned to a voice interface control and coordination net for
 	// multilink coordination (e.g. ADCCN, DCN, VPN, etc.).
 	MultiVoiceNetDes string `json:"multiVoiceNetDes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		MultiCommPri      resp.Field
-		MultiFreqDes      resp.Field
-		MultiTeleFreqNums resp.Field
-		MultiVoiceNetDes  resp.Field
-		ExtraFields       map[string]resp.Field
+		MultiCommPri      respjson.Field
+		MultiFreqDes      respjson.Field
+		MultiTeleFreqNums respjson.Field
+		MultiVoiceNetDes  respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -1648,14 +1648,14 @@ type LinkStatusDatalinkTupleResponseOp struct {
 	// AFTER, ASOF, NLT, etc. Used with field linkStopTimeMod to indicate a relative
 	// time.
 	LinkStopTimeMod string `json:"linkStopTimeMod"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		LinkDetails     resp.Field
-		LinkName        resp.Field
-		LinkStartTime   resp.Field
-		LinkStopTime    resp.Field
-		LinkStopTimeMod resp.Field
-		ExtraFields     map[string]resp.Field
+		LinkDetails     respjson.Field
+		LinkName        respjson.Field
+		LinkStartTime   respjson.Field
+		LinkStopTime    respjson.Field
+		LinkStopTimeMod respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -1687,16 +1687,16 @@ type LinkStatusDatalinkTupleResponseReference struct {
 	RefTs time.Time `json:"refTs" format:"date-time"`
 	// Specifies the type of document referenced.
 	RefType string `json:"refType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		RefOriginator      resp.Field
-		RefSerialID        resp.Field
-		RefSerialNum       resp.Field
-		RefSiCs            resp.Field
-		RefSpecialNotation resp.Field
-		RefTs              resp.Field
-		RefType            resp.Field
-		ExtraFields        map[string]resp.Field
+		RefOriginator      respjson.Field
+		RefSerialID        respjson.Field
+		RefSerialNum       respjson.Field
+		RefSiCs            respjson.Field
+		RefSpecialNotation respjson.Field
+		RefTs              respjson.Field
+		RefType            respjson.Field
+		ExtraFields        map[string]respjson.Field
 		raw                string
 	} `json:"-"`
 }
@@ -1726,15 +1726,15 @@ type LinkStatusDatalinkTupleResponseRefPoint struct {
 	RefLon float64 `json:"refLon"`
 	// Type of data link reference point or grid origin.
 	RefPointType string `json:"refPointType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		EffEventTime resp.Field
-		RefDes       resp.Field
-		RefLat       resp.Field
-		RefLocName   resp.Field
-		RefLon       resp.Field
-		RefPointType resp.Field
-		ExtraFields  map[string]resp.Field
+		EffEventTime respjson.Field
+		RefDes       respjson.Field
+		RefLat       respjson.Field
+		RefLocName   respjson.Field
+		RefLon       respjson.Field
+		RefPointType respjson.Field
+		ExtraFields  map[string]respjson.Field
 		raw          string
 	} `json:"-"`
 }
@@ -1751,11 +1751,11 @@ type LinkStatusDatalinkTupleResponseRemark struct {
 	Text string `json:"text"`
 	// Indicates the subject matter of the remark.
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Text        resp.Field
-		Type        resp.Field
-		ExtraFields map[string]resp.Field
+		Text        respjson.Field
+		Type        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -1776,11 +1776,11 @@ type LinkStatusDatalinkTupleResponseSpecTrack struct {
 	SpecTrackNum string `json:"specTrackNum"`
 	// Description of the special track number.
 	SpecTrackNumDesc string `json:"specTrackNumDesc"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		SpecTrackNum     resp.Field
-		SpecTrackNumDesc resp.Field
-		ExtraFields      map[string]resp.Field
+		SpecTrackNum     respjson.Field
+		SpecTrackNumDesc respjson.Field
+		ExtraFields      map[string]respjson.Field
 		raw              string
 	} `json:"-"`
 }
@@ -1807,13 +1807,13 @@ type LinkStatusDatalinkTupleResponseVoiceCoord struct {
 	// Designator assigned to a voice interface control and coordination net for this
 	// data link message (e.g. ADCCN, DCN, VPN, etc.).
 	VoiceNetDes string `json:"voiceNetDes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CommPri      resp.Field
-		FreqDes      resp.Field
-		TeleFreqNums resp.Field
-		VoiceNetDes  resp.Field
-		ExtraFields  map[string]resp.Field
+		CommPri      respjson.Field
+		FreqDes      respjson.Field
+		TeleFreqNums respjson.Field
+		VoiceNetDes  respjson.Field
+		ExtraFields  map[string]respjson.Field
 		raw          string
 	} `json:"-"`
 }

@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // AirfieldStatusService contains methods and other services that help with
@@ -303,50 +303,50 @@ type AirfieldstatusAbridged struct {
 	// it pertains to specific aircraft type may be available in an associated
 	// SiteOperations record.
 	WideWorkingMog int64 `json:"wideWorkingMOG"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDAirfield            resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AltAirfieldID         resp.Field
-		ApprovedBy            resp.Field
-		ApprovedDate          resp.Field
-		ArffCat               resp.Field
-		CargoMog              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		FleetServiceMog       resp.Field
-		FuelMog               resp.Field
-		FuelQtys              resp.Field
-		FuelTypes             resp.Field
-		GseTime               resp.Field
-		MedCap                resp.Field
-		Message               resp.Field
-		MheQtys               resp.Field
-		MheTypes              resp.Field
-		MxMog                 resp.Field
-		NarrowParkingMog      resp.Field
-		NarrowWorkingMog      resp.Field
-		NumCog                resp.Field
-		OperatingMog          resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PassengerServiceMog   resp.Field
-		PriFreq               resp.Field
-		PriRwyNum             resp.Field
-		ReviewedBy            resp.Field
-		ReviewedDate          resp.Field
-		RwyCondReading        resp.Field
-		RwyFrictionFactor     resp.Field
-		RwyMarkings           resp.Field
-		SlotTypesReq          resp.Field
-		SourceDl              resp.Field
-		SurveyDate            resp.Field
-		WideParkingMog        resp.Field
-		WideWorkingMog        resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDAirfield            respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AltAirfieldID         respjson.Field
+		ApprovedBy            respjson.Field
+		ApprovedDate          respjson.Field
+		ArffCat               respjson.Field
+		CargoMog              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		FleetServiceMog       respjson.Field
+		FuelMog               respjson.Field
+		FuelQtys              respjson.Field
+		FuelTypes             respjson.Field
+		GseTime               respjson.Field
+		MedCap                respjson.Field
+		Message               respjson.Field
+		MheQtys               respjson.Field
+		MheTypes              respjson.Field
+		MxMog                 respjson.Field
+		NarrowParkingMog      respjson.Field
+		NarrowWorkingMog      respjson.Field
+		NumCog                respjson.Field
+		OperatingMog          respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PassengerServiceMog   respjson.Field
+		PriFreq               respjson.Field
+		PriRwyNum             respjson.Field
+		ReviewedBy            respjson.Field
+		ReviewedDate          respjson.Field
+		RwyCondReading        respjson.Field
+		RwyFrictionFactor     respjson.Field
+		RwyMarkings           respjson.Field
+		SlotTypesReq          respjson.Field
+		SourceDl              respjson.Field
+		SurveyDate            respjson.Field
+		WideParkingMog        respjson.Field
+		WideWorkingMog        respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -525,52 +525,52 @@ type AirfieldstatusFull struct {
 	// it pertains to specific aircraft type may be available in an associated
 	// SiteOperations record.
 	WideWorkingMog int64 `json:"wideWorkingMOG"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDAirfield            resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AltAirfieldID         resp.Field
-		ApprovedBy            resp.Field
-		ApprovedDate          resp.Field
-		ArffCat               resp.Field
-		CargoMog              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		FleetServiceMog       resp.Field
-		FuelMog               resp.Field
-		FuelQtys              resp.Field
-		FuelTypes             resp.Field
-		GseTime               resp.Field
-		MedCap                resp.Field
-		Message               resp.Field
-		MheQtys               resp.Field
-		MheTypes              resp.Field
-		MxMog                 resp.Field
-		NarrowParkingMog      resp.Field
-		NarrowWorkingMog      resp.Field
-		NumCog                resp.Field
-		OperatingMog          resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PassengerServiceMog   resp.Field
-		PriFreq               resp.Field
-		PriRwyNum             resp.Field
-		ReviewedBy            resp.Field
-		ReviewedDate          resp.Field
-		RwyCondReading        resp.Field
-		RwyFrictionFactor     resp.Field
-		RwyMarkings           resp.Field
-		SlotTypesReq          resp.Field
-		SourceDl              resp.Field
-		SurveyDate            resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		WideParkingMog        resp.Field
-		WideWorkingMog        resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDAirfield            respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AltAirfieldID         respjson.Field
+		ApprovedBy            respjson.Field
+		ApprovedDate          respjson.Field
+		ArffCat               respjson.Field
+		CargoMog              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		FleetServiceMog       respjson.Field
+		FuelMog               respjson.Field
+		FuelQtys              respjson.Field
+		FuelTypes             respjson.Field
+		GseTime               respjson.Field
+		MedCap                respjson.Field
+		Message               respjson.Field
+		MheQtys               respjson.Field
+		MheTypes              respjson.Field
+		MxMog                 respjson.Field
+		NarrowParkingMog      respjson.Field
+		NarrowWorkingMog      respjson.Field
+		NumCog                respjson.Field
+		OperatingMog          respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PassengerServiceMog   respjson.Field
+		PriFreq               respjson.Field
+		PriRwyNum             respjson.Field
+		ReviewedBy            respjson.Field
+		ReviewedDate          respjson.Field
+		RwyCondReading        respjson.Field
+		RwyFrictionFactor     respjson.Field
+		RwyMarkings           respjson.Field
+		SlotTypesReq          respjson.Field
+		SourceDl              respjson.Field
+		SurveyDate            respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		WideParkingMog        respjson.Field
+		WideWorkingMog        respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

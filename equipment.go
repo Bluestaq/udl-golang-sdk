@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // EquipmentService contains methods and other services that help with interacting
@@ -489,62 +489,62 @@ type EquipmentAbridged struct {
 	// World Aeronautical Chart identifier for the area in which a designated place is
 	// located.
 	Wac string `json:"wac"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		CountryCode           resp.Field
-		DataMode              resp.Field
-		Lat                   resp.Field
-		Lon                   resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AirDefArea            resp.Field
-		Allegiance            resp.Field
-		AltAllegiance         resp.Field
-		AltCountryCode        resp.Field
-		AltEqpID              resp.Field
-		ClassRating           resp.Field
-		Condition             resp.Field
-		ConditionAvail        resp.Field
-		Coord                 resp.Field
-		CoordDatum            resp.Field
-		CoordDerivAcc         resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		ElevMsl               resp.Field
-		ElevMslConfLvl        resp.Field
-		ElevMslDerivAcc       resp.Field
-		EqpCode               resp.Field
-		EqpIDNum              resp.Field
-		Eval                  resp.Field
-		Fpa                   resp.Field
-		Function              resp.Field
-		FunctPrimary          resp.Field
-		GeoidalMslSep         resp.Field
-		Ident                 resp.Field
-		IDOperatingUnit       resp.Field
-		IDParentEquipment     resp.Field
-		IDSite                resp.Field
-		LocReason             resp.Field
-		MilGrid               resp.Field
-		MilGridSys            resp.Field
-		Nomen                 resp.Field
-		OperAreaPrimary       resp.Field
-		OperStatus            resp.Field
-		Origin                resp.Field
-		PolSubdiv             resp.Field
-		QtyOh                 resp.Field
-		RecStatus             resp.Field
-		ReferenceDoc          resp.Field
-		ResProd               resp.Field
-		ReviewDate            resp.Field
-		SeqNum                resp.Field
-		SrcIDs                resp.Field
-		SrcTyps               resp.Field
-		SymCode               resp.Field
-		Utm                   resp.Field
-		Wac                   resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		CountryCode           respjson.Field
+		DataMode              respjson.Field
+		Lat                   respjson.Field
+		Lon                   respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AirDefArea            respjson.Field
+		Allegiance            respjson.Field
+		AltAllegiance         respjson.Field
+		AltCountryCode        respjson.Field
+		AltEqpID              respjson.Field
+		ClassRating           respjson.Field
+		Condition             respjson.Field
+		ConditionAvail        respjson.Field
+		Coord                 respjson.Field
+		CoordDatum            respjson.Field
+		CoordDerivAcc         respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		ElevMsl               respjson.Field
+		ElevMslConfLvl        respjson.Field
+		ElevMslDerivAcc       respjson.Field
+		EqpCode               respjson.Field
+		EqpIDNum              respjson.Field
+		Eval                  respjson.Field
+		Fpa                   respjson.Field
+		Function              respjson.Field
+		FunctPrimary          respjson.Field
+		GeoidalMslSep         respjson.Field
+		Ident                 respjson.Field
+		IDOperatingUnit       respjson.Field
+		IDParentEquipment     respjson.Field
+		IDSite                respjson.Field
+		LocReason             respjson.Field
+		MilGrid               respjson.Field
+		MilGridSys            respjson.Field
+		Nomen                 respjson.Field
+		OperAreaPrimary       respjson.Field
+		OperStatus            respjson.Field
+		Origin                respjson.Field
+		PolSubdiv             respjson.Field
+		QtyOh                 respjson.Field
+		RecStatus             respjson.Field
+		ReferenceDoc          respjson.Field
+		ResProd               respjson.Field
+		ReviewDate            respjson.Field
+		SeqNum                respjson.Field
+		SrcIDs                respjson.Field
+		SrcTyps               respjson.Field
+		SymCode               respjson.Field
+		Utm                   respjson.Field
+		Wac                   respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -902,65 +902,65 @@ type EquipmentFull struct {
 	// World Aeronautical Chart identifier for the area in which a designated place is
 	// located.
 	Wac string `json:"wac"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		CountryCode           resp.Field
-		DataMode              resp.Field
-		Lat                   resp.Field
-		Lon                   resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AirDefArea            resp.Field
-		Allegiance            resp.Field
-		AltAllegiance         resp.Field
-		AltCountryCode        resp.Field
-		AltEqpID              resp.Field
-		ClassRating           resp.Field
-		Condition             resp.Field
-		ConditionAvail        resp.Field
-		Coord                 resp.Field
-		CoordDatum            resp.Field
-		CoordDerivAcc         resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		ElevMsl               resp.Field
-		ElevMslConfLvl        resp.Field
-		ElevMslDerivAcc       resp.Field
-		EqpCode               resp.Field
-		EqpIDNum              resp.Field
-		EquipmentRemarks      resp.Field
-		Eval                  resp.Field
-		Fpa                   resp.Field
-		Function              resp.Field
-		FunctPrimary          resp.Field
-		GeoidalMslSep         resp.Field
-		Ident                 resp.Field
-		IDOperatingUnit       resp.Field
-		IDParentEquipment     resp.Field
-		IDSite                resp.Field
-		LocReason             resp.Field
-		MilGrid               resp.Field
-		MilGridSys            resp.Field
-		Nomen                 resp.Field
-		OperAreaPrimary       resp.Field
-		OperStatus            resp.Field
-		Origin                resp.Field
-		PolSubdiv             resp.Field
-		QtyOh                 resp.Field
-		RecStatus             resp.Field
-		ReferenceDoc          resp.Field
-		ResProd               resp.Field
-		ReviewDate            resp.Field
-		SeqNum                resp.Field
-		SrcIDs                resp.Field
-		SrcTyps               resp.Field
-		SymCode               resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		Utm                   resp.Field
-		Wac                   resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		CountryCode           respjson.Field
+		DataMode              respjson.Field
+		Lat                   respjson.Field
+		Lon                   respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AirDefArea            respjson.Field
+		Allegiance            respjson.Field
+		AltAllegiance         respjson.Field
+		AltCountryCode        respjson.Field
+		AltEqpID              respjson.Field
+		ClassRating           respjson.Field
+		Condition             respjson.Field
+		ConditionAvail        respjson.Field
+		Coord                 respjson.Field
+		CoordDatum            respjson.Field
+		CoordDerivAcc         respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		ElevMsl               respjson.Field
+		ElevMslConfLvl        respjson.Field
+		ElevMslDerivAcc       respjson.Field
+		EqpCode               respjson.Field
+		EqpIDNum              respjson.Field
+		EquipmentRemarks      respjson.Field
+		Eval                  respjson.Field
+		Fpa                   respjson.Field
+		Function              respjson.Field
+		FunctPrimary          respjson.Field
+		GeoidalMslSep         respjson.Field
+		Ident                 respjson.Field
+		IDOperatingUnit       respjson.Field
+		IDParentEquipment     respjson.Field
+		IDSite                respjson.Field
+		LocReason             respjson.Field
+		MilGrid               respjson.Field
+		MilGridSys            respjson.Field
+		Nomen                 respjson.Field
+		OperAreaPrimary       respjson.Field
+		OperStatus            respjson.Field
+		Origin                respjson.Field
+		PolSubdiv             respjson.Field
+		QtyOh                 respjson.Field
+		RecStatus             respjson.Field
+		ReferenceDoc          respjson.Field
+		ResProd               respjson.Field
+		ReviewDate            respjson.Field
+		SeqNum                respjson.Field
+		SrcIDs                respjson.Field
+		SrcTyps               respjson.Field
+		SymCode               respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		Utm                   respjson.Field
+		Wac                   respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // RouteStatService contains methods and other services that help with interacting
@@ -278,44 +278,44 @@ type RouteStatGetResponse struct {
 	// The vehicle type that is the subject of this calculation (e.g., C-17, F-15,
 	// etc.).
 	VehicleType string `json:"vehicleType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		LocationEnd           resp.Field
-		LocationStart         resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AvgDuration           resp.Field
-		AvgSpeed              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DataPtsUsed           resp.Field
-		Distance              resp.Field
-		DistUnit              resp.Field
-		FirstPt               resp.Field
-		IdealDesc             resp.Field
-		IdealDuration         resp.Field
-		IDSiteEnd             resp.Field
-		IDSiteStart           resp.Field
-		LastPt                resp.Field
-		LocationType          resp.Field
-		MaxDuration           resp.Field
-		MaxSpeed              resp.Field
-		MinDuration           resp.Field
-		MinSpeed              resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PartialDesc           resp.Field
-		PartialDuration       resp.Field
-		SourceDl              resp.Field
-		SpeedUnit             resp.Field
-		TimePeriod            resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		VehicleCategory       resp.Field
-		VehicleType           resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		LocationEnd           respjson.Field
+		LocationStart         respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AvgDuration           respjson.Field
+		AvgSpeed              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DataPtsUsed           respjson.Field
+		Distance              respjson.Field
+		DistUnit              respjson.Field
+		FirstPt               respjson.Field
+		IdealDesc             respjson.Field
+		IdealDuration         respjson.Field
+		IDSiteEnd             respjson.Field
+		IDSiteStart           respjson.Field
+		LastPt                respjson.Field
+		LocationType          respjson.Field
+		MaxDuration           respjson.Field
+		MaxSpeed              respjson.Field
+		MinDuration           respjson.Field
+		MinSpeed              respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PartialDesc           respjson.Field
+		PartialDuration       respjson.Field
+		SourceDl              respjson.Field
+		SpeedUnit             respjson.Field
+		TimePeriod            respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		VehicleCategory       respjson.Field
+		VehicleType           respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -457,42 +457,42 @@ type RouteStatQueryResponse struct {
 	// The vehicle type that is the subject of this calculation (e.g., C-17, F-15,
 	// etc.).
 	VehicleType string `json:"vehicleType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		LocationEnd           resp.Field
-		LocationStart         resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AvgDuration           resp.Field
-		AvgSpeed              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DataPtsUsed           resp.Field
-		Distance              resp.Field
-		DistUnit              resp.Field
-		FirstPt               resp.Field
-		IdealDesc             resp.Field
-		IdealDuration         resp.Field
-		IDSiteEnd             resp.Field
-		IDSiteStart           resp.Field
-		LastPt                resp.Field
-		LocationType          resp.Field
-		MaxDuration           resp.Field
-		MaxSpeed              resp.Field
-		MinDuration           resp.Field
-		MinSpeed              resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PartialDesc           resp.Field
-		PartialDuration       resp.Field
-		SourceDl              resp.Field
-		SpeedUnit             resp.Field
-		TimePeriod            resp.Field
-		VehicleCategory       resp.Field
-		VehicleType           resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		LocationEnd           respjson.Field
+		LocationStart         respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AvgDuration           respjson.Field
+		AvgSpeed              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DataPtsUsed           respjson.Field
+		Distance              respjson.Field
+		DistUnit              respjson.Field
+		FirstPt               respjson.Field
+		IdealDesc             respjson.Field
+		IdealDuration         respjson.Field
+		IDSiteEnd             respjson.Field
+		IDSiteStart           respjson.Field
+		LastPt                respjson.Field
+		LocationType          respjson.Field
+		MaxDuration           respjson.Field
+		MaxSpeed              respjson.Field
+		MinDuration           respjson.Field
+		MinSpeed              respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PartialDesc           respjson.Field
+		PartialDuration       respjson.Field
+		SourceDl              respjson.Field
+		SpeedUnit             respjson.Field
+		TimePeriod            respjson.Field
+		VehicleCategory       respjson.Field
+		VehicleType           respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -639,44 +639,44 @@ type RouteStatTupleResponse struct {
 	// The vehicle type that is the subject of this calculation (e.g., C-17, F-15,
 	// etc.).
 	VehicleType string `json:"vehicleType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		LocationEnd           resp.Field
-		LocationStart         resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AvgDuration           resp.Field
-		AvgSpeed              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DataPtsUsed           resp.Field
-		Distance              resp.Field
-		DistUnit              resp.Field
-		FirstPt               resp.Field
-		IdealDesc             resp.Field
-		IdealDuration         resp.Field
-		IDSiteEnd             resp.Field
-		IDSiteStart           resp.Field
-		LastPt                resp.Field
-		LocationType          resp.Field
-		MaxDuration           resp.Field
-		MaxSpeed              resp.Field
-		MinDuration           resp.Field
-		MinSpeed              resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PartialDesc           resp.Field
-		PartialDuration       resp.Field
-		SourceDl              resp.Field
-		SpeedUnit             resp.Field
-		TimePeriod            resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		VehicleCategory       resp.Field
-		VehicleType           resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		LocationEnd           respjson.Field
+		LocationStart         respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AvgDuration           respjson.Field
+		AvgSpeed              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DataPtsUsed           respjson.Field
+		Distance              respjson.Field
+		DistUnit              respjson.Field
+		FirstPt               respjson.Field
+		IdealDesc             respjson.Field
+		IdealDuration         respjson.Field
+		IDSiteEnd             respjson.Field
+		IDSiteStart           respjson.Field
+		LastPt                respjson.Field
+		LocationType          respjson.Field
+		MaxDuration           respjson.Field
+		MaxSpeed              respjson.Field
+		MinDuration           respjson.Field
+		MinSpeed              respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PartialDesc           respjson.Field
+		PartialDuration       respjson.Field
+		SourceDl              respjson.Field
+		SpeedUnit             respjson.Field
+		TimePeriod            respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		VehicleCategory       respjson.Field
+		VehicleType           respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

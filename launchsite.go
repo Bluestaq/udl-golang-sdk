@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // LaunchSiteService contains methods and other services that help with interacting
@@ -206,22 +206,22 @@ type LaunchSiteListResponse struct {
 	OrigNetwork string `json:"origNetwork"`
 	// Abbreviated short name for the launch site.
 	ShortCode string `json:"shortCode"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		Code                  resp.Field
-		DataMode              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AltCode               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		IDSite                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ShortCode             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		Code                  respjson.Field
+		DataMode              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AltCode               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		IDSite                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ShortCode             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -312,25 +312,25 @@ type LaunchSiteGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		Code                  resp.Field
-		DataMode              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AltCode               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		IDSite                resp.Field
-		LaunchSiteDetails     resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ShortCode             resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		Code                  respjson.Field
+		DataMode              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AltCode               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		IDSite                respjson.Field
+		LaunchSiteDetails     respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ShortCode             respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -432,26 +432,26 @@ type LaunchSiteGetResponseLaunchSiteDetail struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDLaunchSite          resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AvailableInclinations resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Description           resp.Field
-		IDLocation            resp.Field
-		LaunchGroup           resp.Field
-		Location              resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Tags                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDLaunchSite          respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AvailableInclinations respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Description           respjson.Field
+		IDLocation            respjson.Field
+		LaunchGroup           respjson.Field
+		Location              respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Tags                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -519,25 +519,25 @@ type LaunchSiteTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		Code                  resp.Field
-		DataMode              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AltCode               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		IDSite                resp.Field
-		LaunchSiteDetails     resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ShortCode             resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		Code                  respjson.Field
+		DataMode              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AltCode               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		IDSite                respjson.Field
+		LaunchSiteDetails     respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ShortCode             respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -639,26 +639,26 @@ type LaunchSiteTupleResponseLaunchSiteDetail struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDLaunchSite          resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AvailableInclinations resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Description           resp.Field
-		IDLocation            resp.Field
-		LaunchGroup           resp.Field
-		Location              resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Tags                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDLaunchSite          respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AvailableInclinations respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Description           respjson.Field
+		IDLocation            respjson.Field
+		LaunchGroup           respjson.Field
+		Location              respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Tags                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

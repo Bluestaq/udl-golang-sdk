@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
@@ -305,64 +305,64 @@ type Ecpsdr struct {
 	// Reference voltage (volts/bit). Conversion factor used to convert analog V
 	// monitor data from bytes to volts.
 	VRef int64 `json:"vRef"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		MsgTime               resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		Asl5VCurrMon          resp.Field
-		CdsPlateVMon          resp.Field
-		CdsRefVMon            resp.Field
-		CdsThreshold          resp.Field
-		CdsThrottle           resp.Field
-		Checksum              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DosBias               resp.Field
-		Dsl5VCurrMon          resp.Field
-		EsdTrigCountH         resp.Field
-		EsdTrigCountL         resp.Field
-		HiLetL                resp.Field
-		HiLetM                resp.Field
-		IDOnOrbit             resp.Field
-		IDSensor              resp.Field
-		LowLetL               resp.Field
-		LowLetM               resp.Field
-		MedLet1L              resp.Field
-		MedLet1M              resp.Field
-		MedLet2L              resp.Field
-		MedLet2M              resp.Field
-		MedLet3L              resp.Field
-		MedLet3M              resp.Field
-		MedLet4L              resp.Field
-		MedLet4M              resp.Field
-		MpTemp                resp.Field
-		ObTime                resp.Field
-		OnOrbit               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		OrigSensorID          resp.Field
-		Pd1SigLev             resp.Field
-		Pd2SigLev             resp.Field
-		PsTempMon             resp.Field
-		Retransmit            resp.Field
-		SatNo                 resp.Field
-		SenMode               resp.Field
-		SurfDosChargeH        resp.Field
-		SurfDosChargeL        resp.Field
-		SurfDosH              resp.Field
-		SurfDosL              resp.Field
-		SurfDosM              resp.Field
-		SurfDosStat           resp.Field
-		TransientData         resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		VRef                  resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		MsgTime               respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		Asl5VCurrMon          respjson.Field
+		CdsPlateVMon          respjson.Field
+		CdsRefVMon            respjson.Field
+		CdsThreshold          respjson.Field
+		CdsThrottle           respjson.Field
+		Checksum              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DosBias               respjson.Field
+		Dsl5VCurrMon          respjson.Field
+		EsdTrigCountH         respjson.Field
+		EsdTrigCountL         respjson.Field
+		HiLetL                respjson.Field
+		HiLetM                respjson.Field
+		IDOnOrbit             respjson.Field
+		IDSensor              respjson.Field
+		LowLetL               respjson.Field
+		LowLetM               respjson.Field
+		MedLet1L              respjson.Field
+		MedLet1M              respjson.Field
+		MedLet2L              respjson.Field
+		MedLet2M              respjson.Field
+		MedLet3L              respjson.Field
+		MedLet3M              respjson.Field
+		MedLet4L              respjson.Field
+		MedLet4M              respjson.Field
+		MpTemp                respjson.Field
+		ObTime                respjson.Field
+		OnOrbit               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		OrigSensorID          respjson.Field
+		Pd1SigLev             respjson.Field
+		Pd2SigLev             respjson.Field
+		PsTempMon             respjson.Field
+		Retransmit            respjson.Field
+		SatNo                 respjson.Field
+		SenMode               respjson.Field
+		SurfDosChargeH        respjson.Field
+		SurfDosChargeL        respjson.Field
+		SurfDosH              respjson.Field
+		SurfDosL              respjson.Field
+		SurfDosM              respjson.Field
+		SurfDosStat           respjson.Field
+		TransientData         respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		VRef                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -550,61 +550,61 @@ type EcpsdrAbridged struct {
 	// Reference voltage (volts/bit). Conversion factor used to convert analog V
 	// monitor data from bytes to volts.
 	VRef int64 `json:"vRef"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		MsgTime               resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		Asl5VCurrMon          resp.Field
-		CdsPlateVMon          resp.Field
-		CdsRefVMon            resp.Field
-		CdsThreshold          resp.Field
-		CdsThrottle           resp.Field
-		Checksum              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DosBias               resp.Field
-		Dsl5VCurrMon          resp.Field
-		EsdTrigCountH         resp.Field
-		EsdTrigCountL         resp.Field
-		HiLetL                resp.Field
-		HiLetM                resp.Field
-		IDOnOrbit             resp.Field
-		IDSensor              resp.Field
-		LowLetL               resp.Field
-		LowLetM               resp.Field
-		MedLet1L              resp.Field
-		MedLet1M              resp.Field
-		MedLet2L              resp.Field
-		MedLet2M              resp.Field
-		MedLet3L              resp.Field
-		MedLet3M              resp.Field
-		MedLet4L              resp.Field
-		MedLet4M              resp.Field
-		MpTemp                resp.Field
-		ObTime                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		OrigSensorID          resp.Field
-		Pd1SigLev             resp.Field
-		Pd2SigLev             resp.Field
-		PsTempMon             resp.Field
-		Retransmit            resp.Field
-		SatNo                 resp.Field
-		SenMode               resp.Field
-		SurfDosChargeH        resp.Field
-		SurfDosChargeL        resp.Field
-		SurfDosH              resp.Field
-		SurfDosL              resp.Field
-		SurfDosM              resp.Field
-		SurfDosStat           resp.Field
-		TransientData         resp.Field
-		VRef                  resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		MsgTime               respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		Asl5VCurrMon          respjson.Field
+		CdsPlateVMon          respjson.Field
+		CdsRefVMon            respjson.Field
+		CdsThreshold          respjson.Field
+		CdsThrottle           respjson.Field
+		Checksum              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DosBias               respjson.Field
+		Dsl5VCurrMon          respjson.Field
+		EsdTrigCountH         respjson.Field
+		EsdTrigCountL         respjson.Field
+		HiLetL                respjson.Field
+		HiLetM                respjson.Field
+		IDOnOrbit             respjson.Field
+		IDSensor              respjson.Field
+		LowLetL               respjson.Field
+		LowLetM               respjson.Field
+		MedLet1L              respjson.Field
+		MedLet1M              respjson.Field
+		MedLet2L              respjson.Field
+		MedLet2M              respjson.Field
+		MedLet3L              respjson.Field
+		MedLet3M              respjson.Field
+		MedLet4L              respjson.Field
+		MedLet4M              respjson.Field
+		MpTemp                respjson.Field
+		ObTime                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		OrigSensorID          respjson.Field
+		Pd1SigLev             respjson.Field
+		Pd2SigLev             respjson.Field
+		PsTempMon             respjson.Field
+		Retransmit            respjson.Field
+		SatNo                 respjson.Field
+		SenMode               respjson.Field
+		SurfDosChargeH        respjson.Field
+		SurfDosChargeL        respjson.Field
+		SurfDosH              respjson.Field
+		SurfDosL              respjson.Field
+		SurfDosM              respjson.Field
+		SurfDosStat           respjson.Field
+		TransientData         respjson.Field
+		VRef                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

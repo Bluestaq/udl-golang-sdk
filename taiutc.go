@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // TaiUtcService contains methods and other services that help with interacting
@@ -225,21 +225,21 @@ type TaiUtcListResponse struct {
 	// Total/cumulative offset between TAI and UTC time as of adjustmentDate, in
 	// seconds.
 	TaiUtc float64 `json:"taiUTC"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AdjustmentDate        resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		MultiplicationFactor  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		RawFileUri            resp.Field
-		TaiUtc                resp.Field
-		ExtraFields           map[string]resp.Field
+		AdjustmentDate        respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		MultiplicationFactor  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		RawFileUri            respjson.Field
+		TaiUtc                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

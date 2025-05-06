@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // BatterydetailService contains methods and other services that help with
@@ -177,24 +177,24 @@ type BatterydetailsAbridged struct {
 	OrigNetwork string `json:"origNetwork"`
 	// Type of battery technology (e.g. Ni-Cd, Ni-H2, Li-ion, etc.).
 	Technology string `json:"technology"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDBattery             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Capacity              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Description           resp.Field
-		DischargeDepth        resp.Field
-		ManufacturerOrgID     resp.Field
-		Model                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Technology            resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDBattery             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Capacity              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Description           respjson.Field
+		DischargeDepth        respjson.Field
+		ManufacturerOrgID     respjson.Field
+		Model                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Technology            respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -296,28 +296,28 @@ type BatterydetailsFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDBattery             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Capacity              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Description           resp.Field
-		DischargeDepth        resp.Field
-		ManufacturerOrg       resp.Field
-		ManufacturerOrgID     resp.Field
-		Model                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Tags                  resp.Field
-		Technology            resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDBattery             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Capacity              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Description           respjson.Field
+		DischargeDepth        respjson.Field
+		ManufacturerOrg       respjson.Field
+		ManufacturerOrgID     respjson.Field
+		Model                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Tags                  respjson.Field
+		Technology            respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

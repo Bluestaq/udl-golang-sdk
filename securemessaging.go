@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // SecureMessagingService contains methods and other services that help with
@@ -94,14 +94,14 @@ type TopicDetails struct {
 	Topic string `json:"topic"`
 	// The UDL schema that the objects in this topic apply to.
 	UdlOpenAPISchema string `json:"udlOpenAPISchema"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Description      resp.Field
-		MaxPos           resp.Field
-		MinPos           resp.Field
-		Topic            resp.Field
-		UdlOpenAPISchema resp.Field
-		ExtraFields      map[string]resp.Field
+		Description      respjson.Field
+		MaxPos           respjson.Field
+		MinPos           respjson.Field
+		Topic            respjson.Field
+		UdlOpenAPISchema respjson.Field
+		ExtraFields      map[string]respjson.Field
 		raw              string
 	} `json:"-"`
 }

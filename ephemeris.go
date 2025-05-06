@@ -15,7 +15,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
@@ -258,30 +258,30 @@ type EphemerisAbridged struct {
 	// Cartesian Z acceleration of target, in km/sec^2, in the specified EphemerisSet
 	// referenceFrame. If referenceFrame is null then J2K should be assumed.
 	Zaccel float64 `json:"zaccel"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		Xpos                  resp.Field
-		Xvel                  resp.Field
-		Ypos                  resp.Field
-		Yvel                  resp.Field
-		Zpos                  resp.Field
-		Zvel                  resp.Field
-		ID                    resp.Field
-		Cov                   resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EsID                  resp.Field
-		IDOnOrbit             resp.Field
-		Origin                resp.Field
-		OrigObjectID          resp.Field
-		Xaccel                resp.Field
-		Yaccel                resp.Field
-		Zaccel                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		Xpos                  respjson.Field
+		Xvel                  respjson.Field
+		Ypos                  respjson.Field
+		Yvel                  respjson.Field
+		Zpos                  respjson.Field
+		Zvel                  respjson.Field
+		ID                    respjson.Field
+		Cov                   respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EsID                  respjson.Field
+		IDOnOrbit             respjson.Field
+		Origin                respjson.Field
+		OrigObjectID          respjson.Field
+		Xaccel                respjson.Field
+		Yaccel                respjson.Field
+		Zaccel                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

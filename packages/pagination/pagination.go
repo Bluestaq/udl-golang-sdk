@@ -10,7 +10,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // aliased to make [param.APIUnion] private when embedding
@@ -21,10 +21,10 @@ type paramObj = param.APIObject
 
 type OffsetPage[T any] struct {
 	Items []T `json:",inline"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Items       resp.Field
-		ExtraFields map[string]resp.Field
+		Items       respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 	cfg *requestconfig.RequestConfig

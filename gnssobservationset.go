@@ -15,7 +15,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // GnssObservationsetService contains methods and other services that help with
@@ -277,47 +277,47 @@ type GnssObservationsetListResponse struct {
 	TransactionID string `json:"transactionId"`
 	// Vertical Dilution of Precision.
 	VDop float64 `json:"vDop"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		ID                    resp.Field
-		AgcState              resp.Field
-		Alt                   resp.Field
-		Boresight             resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EsID                  resp.Field
-		EventID               resp.Field
-		GDop                  resp.Field
-		GnssObservationList   resp.Field
-		HDop                  resp.Field
-		IDOnOrbit             resp.Field
-		Lat                   resp.Field
-		Lon                   resp.Field
-		MarkerType            resp.Field
-		NavigationStatus      resp.Field
-		ObsCodes              resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		Outage                resp.Field
-		PDop                  resp.Field
-		Quat                  resp.Field
-		Receiver              resp.Field
-		SatNo                 resp.Field
-		SatPosition           resp.Field
-		SatVelocity           resp.Field
-		SrcIDs                resp.Field
-		SrcTyps               resp.Field
-		Tags                  resp.Field
-		TDop                  resp.Field
-		TrackingStatus        resp.Field
-		TransactionID         resp.Field
-		VDop                  resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		ID                    respjson.Field
+		AgcState              respjson.Field
+		Alt                   respjson.Field
+		Boresight             respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EsID                  respjson.Field
+		EventID               respjson.Field
+		GDop                  respjson.Field
+		GnssObservationList   respjson.Field
+		HDop                  respjson.Field
+		IDOnOrbit             respjson.Field
+		Lat                   respjson.Field
+		Lon                   respjson.Field
+		MarkerType            respjson.Field
+		NavigationStatus      respjson.Field
+		ObsCodes              respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		Outage                respjson.Field
+		PDop                  respjson.Field
+		Quat                  respjson.Field
+		Receiver              respjson.Field
+		SatNo                 respjson.Field
+		SatPosition           respjson.Field
+		SatVelocity           respjson.Field
+		SrcIDs                respjson.Field
+		SrcTyps               respjson.Field
+		Tags                  respjson.Field
+		TDop                  respjson.Field
+		TrackingStatus        respjson.Field
+		TransactionID         respjson.Field
+		VDop                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -391,14 +391,14 @@ type GnssObservationsetListResponseGnssObservationList struct {
 	// Status of the GNSS receiver signal. Status options are 0, 1 or 2 (0 being the
 	// best).
 	TrackingStatus int64 `json:"trackingStatus"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AgcState       resp.Field
-		GnssSatID      resp.Field
-		Ob             resp.Field
-		ObsCodeSet     resp.Field
-		TrackingStatus resp.Field
-		ExtraFields    map[string]resp.Field
+		AgcState       respjson.Field
+		GnssSatID      respjson.Field
+		Ob             respjson.Field
+		ObsCodeSet     respjson.Field
+		TrackingStatus respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }

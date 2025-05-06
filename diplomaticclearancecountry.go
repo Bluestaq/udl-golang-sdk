@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // DiplomaticClearanceCountryService contains methods and other services that help
@@ -313,48 +313,48 @@ type DiplomaticClearanceCountryGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                     resp.Field
-		CountryCode                               resp.Field
-		DataMode                                  resp.Field
-		LastChangedDate                           resp.Field
-		Source                                    resp.Field
-		ID                                        resp.Field
-		AcceptsDms                                resp.Field
-		AcceptsEmail                              resp.Field
-		AcceptsFax                                resp.Field
-		AcceptsSiprNet                            resp.Field
-		Agency                                    resp.Field
-		AltCountryCode                            resp.Field
-		CloseTime                                 resp.Field
-		CountryID                                 resp.Field
-		CountryName                               resp.Field
-		CountryRemark                             resp.Field
-		CreatedAt                                 resp.Field
-		CreatedBy                                 resp.Field
-		DiplomaticClearanceCountryContacts        resp.Field
-		DiplomaticClearanceCountryEntryExitPoints resp.Field
-		DiplomaticClearanceCountryProfiles        resp.Field
-		ExistingProfile                           resp.Field
-		GmtOffset                                 resp.Field
-		OfficeName                                resp.Field
-		OfficePoc                                 resp.Field
-		OfficeRemark                              resp.Field
-		OpenFri                                   resp.Field
-		OpenMon                                   resp.Field
-		OpenSat                                   resp.Field
-		OpenSun                                   resp.Field
-		OpenThu                                   resp.Field
-		OpenTime                                  resp.Field
-		OpenTue                                   resp.Field
-		OpenWed                                   resp.Field
-		Origin                                    resp.Field
-		OrigNetwork                               resp.Field
-		SourceDl                                  resp.Field
-		UpdatedAt                                 resp.Field
-		UpdatedBy                                 resp.Field
-		ExtraFields                               map[string]resp.Field
+		ClassificationMarking                     respjson.Field
+		CountryCode                               respjson.Field
+		DataMode                                  respjson.Field
+		LastChangedDate                           respjson.Field
+		Source                                    respjson.Field
+		ID                                        respjson.Field
+		AcceptsDms                                respjson.Field
+		AcceptsEmail                              respjson.Field
+		AcceptsFax                                respjson.Field
+		AcceptsSiprNet                            respjson.Field
+		Agency                                    respjson.Field
+		AltCountryCode                            respjson.Field
+		CloseTime                                 respjson.Field
+		CountryID                                 respjson.Field
+		CountryName                               respjson.Field
+		CountryRemark                             respjson.Field
+		CreatedAt                                 respjson.Field
+		CreatedBy                                 respjson.Field
+		DiplomaticClearanceCountryContacts        respjson.Field
+		DiplomaticClearanceCountryEntryExitPoints respjson.Field
+		DiplomaticClearanceCountryProfiles        respjson.Field
+		ExistingProfile                           respjson.Field
+		GmtOffset                                 respjson.Field
+		OfficeName                                respjson.Field
+		OfficePoc                                 respjson.Field
+		OfficeRemark                              respjson.Field
+		OpenFri                                   respjson.Field
+		OpenMon                                   respjson.Field
+		OpenSat                                   respjson.Field
+		OpenSun                                   respjson.Field
+		OpenThu                                   respjson.Field
+		OpenTime                                  respjson.Field
+		OpenTue                                   respjson.Field
+		OpenWed                                   respjson.Field
+		Origin                                    respjson.Field
+		OrigNetwork                               respjson.Field
+		SourceDl                                  respjson.Field
+		UpdatedAt                                 respjson.Field
+		UpdatedBy                                 respjson.Field
+		ExtraFields                               map[string]respjson.Field
 		raw                                       string
 	} `json:"-"`
 }
@@ -416,21 +416,21 @@ type DiplomaticClearanceCountryGetResponseDiplomaticClearanceCountryContact stru
 	// Phone number to contact the Diplomatic Attache Office (DAO) for this country
 	// over a secure SIPR line.
 	SiprNum string `json:"siprNum"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AhNum           resp.Field
-		AhSpdDialCode   resp.Field
-		CommNum         resp.Field
-		CommSpdDialCode resp.Field
-		ContactID       resp.Field
-		ContactName     resp.Field
-		ContactRemark   resp.Field
-		DsnNum          resp.Field
-		DsnSpdDialCode  resp.Field
-		FaxNum          resp.Field
-		NiprNum         resp.Field
-		SiprNum         resp.Field
-		ExtraFields     map[string]resp.Field
+		AhNum           respjson.Field
+		AhSpdDialCode   respjson.Field
+		CommNum         respjson.Field
+		CommSpdDialCode respjson.Field
+		ContactID       respjson.Field
+		ContactName     respjson.Field
+		ContactRemark   respjson.Field
+		DsnNum          respjson.Field
+		DsnSpdDialCode  respjson.Field
+		FaxNum          respjson.Field
+		NiprNum         respjson.Field
+		SiprNum         respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -451,12 +451,12 @@ type DiplomaticClearanceCountryGetResponseDiplomaticClearanceCountryEntryExitPoi
 	IsExit bool `json:"isExit"`
 	// Name of this entry/exit point.
 	PointName string `json:"pointName"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		IsEntry     resp.Field
-		IsExit      resp.Field
-		PointName   resp.Field
-		ExtraFields map[string]resp.Field
+		IsEntry     respjson.Field
+		IsExit      respjson.Field
+		PointName   respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -620,63 +620,63 @@ type DiplomaticClearanceCountryGetResponseDiplomaticClearanceCountryProfile stru
 	// Flag indicating whether crew reporting is undefined for the country using this
 	// diplomatic clearance profile.
 	UndefinedCrewReporting bool `json:"undefinedCrewReporting"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CargoPaxRemark           resp.Field
-		ClearanceID              resp.Field
-		CrewInfoRemark           resp.Field
-		DefClearanceStatus       resp.Field
-		DefEntryRemark           resp.Field
-		DefEntryTime             resp.Field
-		DefExitRemark            resp.Field
-		DefExitTime              resp.Field
-		FltInfoRemark            resp.Field
-		HazInfoRemark            resp.Field
-		LandDefProf              resp.Field
-		LandLeadTime             resp.Field
-		LandLeadTimeRemark       resp.Field
-		LandLeadTimeUnit         resp.Field
-		LandValidPeriodMinus     resp.Field
-		LandValidPeriodPlus      resp.Field
-		LandValidPeriodRemark    resp.Field
-		LandValidPeriodUnit      resp.Field
-		OverflyDefProf           resp.Field
-		OverflyLeadTime          resp.Field
-		OverflyLeadTimeRemark    resp.Field
-		OverflyLeadTimeUnit      resp.Field
-		OverflyValidPeriodMinus  resp.Field
-		OverflyValidPeriodPlus   resp.Field
-		OverflyValidPeriodRemark resp.Field
-		OverflyValidPeriodUnit   resp.Field
-		Profile                  resp.Field
-		ProfileAgency            resp.Field
-		ProfileID                resp.Field
-		ProfileRemark            resp.Field
-		ReqAcAltName             resp.Field
-		ReqAllHazInfo            resp.Field
-		ReqAmcStdInfo            resp.Field
-		ReqCargoList             resp.Field
-		ReqCargoPax              resp.Field
-		ReqClass1Info            resp.Field
-		ReqClass9Info            resp.Field
-		ReqCrewComp              resp.Field
-		ReqCrewDetail            resp.Field
-		ReqCrewInfo              resp.Field
-		ReqDiv1Info              resp.Field
-		ReqDv                    resp.Field
-		ReqEntryExitCoord        resp.Field
-		ReqFltInfo               resp.Field
-		ReqFltPlanRoute          resp.Field
-		ReqFundSource            resp.Field
-		ReqHazInfo               resp.Field
-		ReqIcao                  resp.Field
-		ReqPassportInfo          resp.Field
-		ReqRaven                 resp.Field
-		ReqRepChange             resp.Field
-		ReqTailNum               resp.Field
-		ReqWeaponsInfo           resp.Field
-		UndefinedCrewReporting   resp.Field
-		ExtraFields              map[string]resp.Field
+		CargoPaxRemark           respjson.Field
+		ClearanceID              respjson.Field
+		CrewInfoRemark           respjson.Field
+		DefClearanceStatus       respjson.Field
+		DefEntryRemark           respjson.Field
+		DefEntryTime             respjson.Field
+		DefExitRemark            respjson.Field
+		DefExitTime              respjson.Field
+		FltInfoRemark            respjson.Field
+		HazInfoRemark            respjson.Field
+		LandDefProf              respjson.Field
+		LandLeadTime             respjson.Field
+		LandLeadTimeRemark       respjson.Field
+		LandLeadTimeUnit         respjson.Field
+		LandValidPeriodMinus     respjson.Field
+		LandValidPeriodPlus      respjson.Field
+		LandValidPeriodRemark    respjson.Field
+		LandValidPeriodUnit      respjson.Field
+		OverflyDefProf           respjson.Field
+		OverflyLeadTime          respjson.Field
+		OverflyLeadTimeRemark    respjson.Field
+		OverflyLeadTimeUnit      respjson.Field
+		OverflyValidPeriodMinus  respjson.Field
+		OverflyValidPeriodPlus   respjson.Field
+		OverflyValidPeriodRemark respjson.Field
+		OverflyValidPeriodUnit   respjson.Field
+		Profile                  respjson.Field
+		ProfileAgency            respjson.Field
+		ProfileID                respjson.Field
+		ProfileRemark            respjson.Field
+		ReqAcAltName             respjson.Field
+		ReqAllHazInfo            respjson.Field
+		ReqAmcStdInfo            respjson.Field
+		ReqCargoList             respjson.Field
+		ReqCargoPax              respjson.Field
+		ReqClass1Info            respjson.Field
+		ReqClass9Info            respjson.Field
+		ReqCrewComp              respjson.Field
+		ReqCrewDetail            respjson.Field
+		ReqCrewInfo              respjson.Field
+		ReqDiv1Info              respjson.Field
+		ReqDv                    respjson.Field
+		ReqEntryExitCoord        respjson.Field
+		ReqFltInfo               respjson.Field
+		ReqFltPlanRoute          respjson.Field
+		ReqFundSource            respjson.Field
+		ReqHazInfo               respjson.Field
+		ReqIcao                  respjson.Field
+		ReqPassportInfo          respjson.Field
+		ReqRaven                 respjson.Field
+		ReqRepChange             respjson.Field
+		ReqTailNum               respjson.Field
+		ReqWeaponsInfo           respjson.Field
+		UndefinedCrewReporting   respjson.Field
+		ExtraFields              map[string]respjson.Field
 		raw                      string
 	} `json:"-"`
 }
@@ -817,48 +817,48 @@ type DiplomaticClearanceCountryListResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                     resp.Field
-		CountryCode                               resp.Field
-		DataMode                                  resp.Field
-		LastChangedDate                           resp.Field
-		Source                                    resp.Field
-		ID                                        resp.Field
-		AcceptsDms                                resp.Field
-		AcceptsEmail                              resp.Field
-		AcceptsFax                                resp.Field
-		AcceptsSiprNet                            resp.Field
-		Agency                                    resp.Field
-		AltCountryCode                            resp.Field
-		CloseTime                                 resp.Field
-		CountryID                                 resp.Field
-		CountryName                               resp.Field
-		CountryRemark                             resp.Field
-		CreatedAt                                 resp.Field
-		CreatedBy                                 resp.Field
-		DiplomaticClearanceCountryContacts        resp.Field
-		DiplomaticClearanceCountryEntryExitPoints resp.Field
-		DiplomaticClearanceCountryProfiles        resp.Field
-		ExistingProfile                           resp.Field
-		GmtOffset                                 resp.Field
-		OfficeName                                resp.Field
-		OfficePoc                                 resp.Field
-		OfficeRemark                              resp.Field
-		OpenFri                                   resp.Field
-		OpenMon                                   resp.Field
-		OpenSat                                   resp.Field
-		OpenSun                                   resp.Field
-		OpenThu                                   resp.Field
-		OpenTime                                  resp.Field
-		OpenTue                                   resp.Field
-		OpenWed                                   resp.Field
-		Origin                                    resp.Field
-		OrigNetwork                               resp.Field
-		SourceDl                                  resp.Field
-		UpdatedAt                                 resp.Field
-		UpdatedBy                                 resp.Field
-		ExtraFields                               map[string]resp.Field
+		ClassificationMarking                     respjson.Field
+		CountryCode                               respjson.Field
+		DataMode                                  respjson.Field
+		LastChangedDate                           respjson.Field
+		Source                                    respjson.Field
+		ID                                        respjson.Field
+		AcceptsDms                                respjson.Field
+		AcceptsEmail                              respjson.Field
+		AcceptsFax                                respjson.Field
+		AcceptsSiprNet                            respjson.Field
+		Agency                                    respjson.Field
+		AltCountryCode                            respjson.Field
+		CloseTime                                 respjson.Field
+		CountryID                                 respjson.Field
+		CountryName                               respjson.Field
+		CountryRemark                             respjson.Field
+		CreatedAt                                 respjson.Field
+		CreatedBy                                 respjson.Field
+		DiplomaticClearanceCountryContacts        respjson.Field
+		DiplomaticClearanceCountryEntryExitPoints respjson.Field
+		DiplomaticClearanceCountryProfiles        respjson.Field
+		ExistingProfile                           respjson.Field
+		GmtOffset                                 respjson.Field
+		OfficeName                                respjson.Field
+		OfficePoc                                 respjson.Field
+		OfficeRemark                              respjson.Field
+		OpenFri                                   respjson.Field
+		OpenMon                                   respjson.Field
+		OpenSat                                   respjson.Field
+		OpenSun                                   respjson.Field
+		OpenThu                                   respjson.Field
+		OpenTime                                  respjson.Field
+		OpenTue                                   respjson.Field
+		OpenWed                                   respjson.Field
+		Origin                                    respjson.Field
+		OrigNetwork                               respjson.Field
+		SourceDl                                  respjson.Field
+		UpdatedAt                                 respjson.Field
+		UpdatedBy                                 respjson.Field
+		ExtraFields                               map[string]respjson.Field
 		raw                                       string
 	} `json:"-"`
 }
@@ -920,21 +920,21 @@ type DiplomaticClearanceCountryListResponseDiplomaticClearanceCountryContact str
 	// Phone number to contact the Diplomatic Attache Office (DAO) for this country
 	// over a secure SIPR line.
 	SiprNum string `json:"siprNum"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AhNum           resp.Field
-		AhSpdDialCode   resp.Field
-		CommNum         resp.Field
-		CommSpdDialCode resp.Field
-		ContactID       resp.Field
-		ContactName     resp.Field
-		ContactRemark   resp.Field
-		DsnNum          resp.Field
-		DsnSpdDialCode  resp.Field
-		FaxNum          resp.Field
-		NiprNum         resp.Field
-		SiprNum         resp.Field
-		ExtraFields     map[string]resp.Field
+		AhNum           respjson.Field
+		AhSpdDialCode   respjson.Field
+		CommNum         respjson.Field
+		CommSpdDialCode respjson.Field
+		ContactID       respjson.Field
+		ContactName     respjson.Field
+		ContactRemark   respjson.Field
+		DsnNum          respjson.Field
+		DsnSpdDialCode  respjson.Field
+		FaxNum          respjson.Field
+		NiprNum         respjson.Field
+		SiprNum         respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -955,12 +955,12 @@ type DiplomaticClearanceCountryListResponseDiplomaticClearanceCountryEntryExitPo
 	IsExit bool `json:"isExit"`
 	// Name of this entry/exit point.
 	PointName string `json:"pointName"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		IsEntry     resp.Field
-		IsExit      resp.Field
-		PointName   resp.Field
-		ExtraFields map[string]resp.Field
+		IsEntry     respjson.Field
+		IsExit      respjson.Field
+		PointName   respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -1124,63 +1124,63 @@ type DiplomaticClearanceCountryListResponseDiplomaticClearanceCountryProfile str
 	// Flag indicating whether crew reporting is undefined for the country using this
 	// diplomatic clearance profile.
 	UndefinedCrewReporting bool `json:"undefinedCrewReporting"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CargoPaxRemark           resp.Field
-		ClearanceID              resp.Field
-		CrewInfoRemark           resp.Field
-		DefClearanceStatus       resp.Field
-		DefEntryRemark           resp.Field
-		DefEntryTime             resp.Field
-		DefExitRemark            resp.Field
-		DefExitTime              resp.Field
-		FltInfoRemark            resp.Field
-		HazInfoRemark            resp.Field
-		LandDefProf              resp.Field
-		LandLeadTime             resp.Field
-		LandLeadTimeRemark       resp.Field
-		LandLeadTimeUnit         resp.Field
-		LandValidPeriodMinus     resp.Field
-		LandValidPeriodPlus      resp.Field
-		LandValidPeriodRemark    resp.Field
-		LandValidPeriodUnit      resp.Field
-		OverflyDefProf           resp.Field
-		OverflyLeadTime          resp.Field
-		OverflyLeadTimeRemark    resp.Field
-		OverflyLeadTimeUnit      resp.Field
-		OverflyValidPeriodMinus  resp.Field
-		OverflyValidPeriodPlus   resp.Field
-		OverflyValidPeriodRemark resp.Field
-		OverflyValidPeriodUnit   resp.Field
-		Profile                  resp.Field
-		ProfileAgency            resp.Field
-		ProfileID                resp.Field
-		ProfileRemark            resp.Field
-		ReqAcAltName             resp.Field
-		ReqAllHazInfo            resp.Field
-		ReqAmcStdInfo            resp.Field
-		ReqCargoList             resp.Field
-		ReqCargoPax              resp.Field
-		ReqClass1Info            resp.Field
-		ReqClass9Info            resp.Field
-		ReqCrewComp              resp.Field
-		ReqCrewDetail            resp.Field
-		ReqCrewInfo              resp.Field
-		ReqDiv1Info              resp.Field
-		ReqDv                    resp.Field
-		ReqEntryExitCoord        resp.Field
-		ReqFltInfo               resp.Field
-		ReqFltPlanRoute          resp.Field
-		ReqFundSource            resp.Field
-		ReqHazInfo               resp.Field
-		ReqIcao                  resp.Field
-		ReqPassportInfo          resp.Field
-		ReqRaven                 resp.Field
-		ReqRepChange             resp.Field
-		ReqTailNum               resp.Field
-		ReqWeaponsInfo           resp.Field
-		UndefinedCrewReporting   resp.Field
-		ExtraFields              map[string]resp.Field
+		CargoPaxRemark           respjson.Field
+		ClearanceID              respjson.Field
+		CrewInfoRemark           respjson.Field
+		DefClearanceStatus       respjson.Field
+		DefEntryRemark           respjson.Field
+		DefEntryTime             respjson.Field
+		DefExitRemark            respjson.Field
+		DefExitTime              respjson.Field
+		FltInfoRemark            respjson.Field
+		HazInfoRemark            respjson.Field
+		LandDefProf              respjson.Field
+		LandLeadTime             respjson.Field
+		LandLeadTimeRemark       respjson.Field
+		LandLeadTimeUnit         respjson.Field
+		LandValidPeriodMinus     respjson.Field
+		LandValidPeriodPlus      respjson.Field
+		LandValidPeriodRemark    respjson.Field
+		LandValidPeriodUnit      respjson.Field
+		OverflyDefProf           respjson.Field
+		OverflyLeadTime          respjson.Field
+		OverflyLeadTimeRemark    respjson.Field
+		OverflyLeadTimeUnit      respjson.Field
+		OverflyValidPeriodMinus  respjson.Field
+		OverflyValidPeriodPlus   respjson.Field
+		OverflyValidPeriodRemark respjson.Field
+		OverflyValidPeriodUnit   respjson.Field
+		Profile                  respjson.Field
+		ProfileAgency            respjson.Field
+		ProfileID                respjson.Field
+		ProfileRemark            respjson.Field
+		ReqAcAltName             respjson.Field
+		ReqAllHazInfo            respjson.Field
+		ReqAmcStdInfo            respjson.Field
+		ReqCargoList             respjson.Field
+		ReqCargoPax              respjson.Field
+		ReqClass1Info            respjson.Field
+		ReqClass9Info            respjson.Field
+		ReqCrewComp              respjson.Field
+		ReqCrewDetail            respjson.Field
+		ReqCrewInfo              respjson.Field
+		ReqDiv1Info              respjson.Field
+		ReqDv                    respjson.Field
+		ReqEntryExitCoord        respjson.Field
+		ReqFltInfo               respjson.Field
+		ReqFltPlanRoute          respjson.Field
+		ReqFundSource            respjson.Field
+		ReqHazInfo               respjson.Field
+		ReqIcao                  respjson.Field
+		ReqPassportInfo          respjson.Field
+		ReqRaven                 respjson.Field
+		ReqRepChange             respjson.Field
+		ReqTailNum               respjson.Field
+		ReqWeaponsInfo           respjson.Field
+		UndefinedCrewReporting   respjson.Field
+		ExtraFields              map[string]respjson.Field
 		raw                      string
 	} `json:"-"`
 }
@@ -1321,48 +1321,48 @@ type DiplomaticClearanceCountryTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                     resp.Field
-		CountryCode                               resp.Field
-		DataMode                                  resp.Field
-		LastChangedDate                           resp.Field
-		Source                                    resp.Field
-		ID                                        resp.Field
-		AcceptsDms                                resp.Field
-		AcceptsEmail                              resp.Field
-		AcceptsFax                                resp.Field
-		AcceptsSiprNet                            resp.Field
-		Agency                                    resp.Field
-		AltCountryCode                            resp.Field
-		CloseTime                                 resp.Field
-		CountryID                                 resp.Field
-		CountryName                               resp.Field
-		CountryRemark                             resp.Field
-		CreatedAt                                 resp.Field
-		CreatedBy                                 resp.Field
-		DiplomaticClearanceCountryContacts        resp.Field
-		DiplomaticClearanceCountryEntryExitPoints resp.Field
-		DiplomaticClearanceCountryProfiles        resp.Field
-		ExistingProfile                           resp.Field
-		GmtOffset                                 resp.Field
-		OfficeName                                resp.Field
-		OfficePoc                                 resp.Field
-		OfficeRemark                              resp.Field
-		OpenFri                                   resp.Field
-		OpenMon                                   resp.Field
-		OpenSat                                   resp.Field
-		OpenSun                                   resp.Field
-		OpenThu                                   resp.Field
-		OpenTime                                  resp.Field
-		OpenTue                                   resp.Field
-		OpenWed                                   resp.Field
-		Origin                                    resp.Field
-		OrigNetwork                               resp.Field
-		SourceDl                                  resp.Field
-		UpdatedAt                                 resp.Field
-		UpdatedBy                                 resp.Field
-		ExtraFields                               map[string]resp.Field
+		ClassificationMarking                     respjson.Field
+		CountryCode                               respjson.Field
+		DataMode                                  respjson.Field
+		LastChangedDate                           respjson.Field
+		Source                                    respjson.Field
+		ID                                        respjson.Field
+		AcceptsDms                                respjson.Field
+		AcceptsEmail                              respjson.Field
+		AcceptsFax                                respjson.Field
+		AcceptsSiprNet                            respjson.Field
+		Agency                                    respjson.Field
+		AltCountryCode                            respjson.Field
+		CloseTime                                 respjson.Field
+		CountryID                                 respjson.Field
+		CountryName                               respjson.Field
+		CountryRemark                             respjson.Field
+		CreatedAt                                 respjson.Field
+		CreatedBy                                 respjson.Field
+		DiplomaticClearanceCountryContacts        respjson.Field
+		DiplomaticClearanceCountryEntryExitPoints respjson.Field
+		DiplomaticClearanceCountryProfiles        respjson.Field
+		ExistingProfile                           respjson.Field
+		GmtOffset                                 respjson.Field
+		OfficeName                                respjson.Field
+		OfficePoc                                 respjson.Field
+		OfficeRemark                              respjson.Field
+		OpenFri                                   respjson.Field
+		OpenMon                                   respjson.Field
+		OpenSat                                   respjson.Field
+		OpenSun                                   respjson.Field
+		OpenThu                                   respjson.Field
+		OpenTime                                  respjson.Field
+		OpenTue                                   respjson.Field
+		OpenWed                                   respjson.Field
+		Origin                                    respjson.Field
+		OrigNetwork                               respjson.Field
+		SourceDl                                  respjson.Field
+		UpdatedAt                                 respjson.Field
+		UpdatedBy                                 respjson.Field
+		ExtraFields                               map[string]respjson.Field
 		raw                                       string
 	} `json:"-"`
 }
@@ -1424,21 +1424,21 @@ type DiplomaticClearanceCountryTupleResponseDiplomaticClearanceCountryContact st
 	// Phone number to contact the Diplomatic Attache Office (DAO) for this country
 	// over a secure SIPR line.
 	SiprNum string `json:"siprNum"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AhNum           resp.Field
-		AhSpdDialCode   resp.Field
-		CommNum         resp.Field
-		CommSpdDialCode resp.Field
-		ContactID       resp.Field
-		ContactName     resp.Field
-		ContactRemark   resp.Field
-		DsnNum          resp.Field
-		DsnSpdDialCode  resp.Field
-		FaxNum          resp.Field
-		NiprNum         resp.Field
-		SiprNum         resp.Field
-		ExtraFields     map[string]resp.Field
+		AhNum           respjson.Field
+		AhSpdDialCode   respjson.Field
+		CommNum         respjson.Field
+		CommSpdDialCode respjson.Field
+		ContactID       respjson.Field
+		ContactName     respjson.Field
+		ContactRemark   respjson.Field
+		DsnNum          respjson.Field
+		DsnSpdDialCode  respjson.Field
+		FaxNum          respjson.Field
+		NiprNum         respjson.Field
+		SiprNum         respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -1459,12 +1459,12 @@ type DiplomaticClearanceCountryTupleResponseDiplomaticClearanceCountryEntryExitP
 	IsExit bool `json:"isExit"`
 	// Name of this entry/exit point.
 	PointName string `json:"pointName"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		IsEntry     resp.Field
-		IsExit      resp.Field
-		PointName   resp.Field
-		ExtraFields map[string]resp.Field
+		IsEntry     respjson.Field
+		IsExit      respjson.Field
+		PointName   respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -1628,63 +1628,63 @@ type DiplomaticClearanceCountryTupleResponseDiplomaticClearanceCountryProfile st
 	// Flag indicating whether crew reporting is undefined for the country using this
 	// diplomatic clearance profile.
 	UndefinedCrewReporting bool `json:"undefinedCrewReporting"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CargoPaxRemark           resp.Field
-		ClearanceID              resp.Field
-		CrewInfoRemark           resp.Field
-		DefClearanceStatus       resp.Field
-		DefEntryRemark           resp.Field
-		DefEntryTime             resp.Field
-		DefExitRemark            resp.Field
-		DefExitTime              resp.Field
-		FltInfoRemark            resp.Field
-		HazInfoRemark            resp.Field
-		LandDefProf              resp.Field
-		LandLeadTime             resp.Field
-		LandLeadTimeRemark       resp.Field
-		LandLeadTimeUnit         resp.Field
-		LandValidPeriodMinus     resp.Field
-		LandValidPeriodPlus      resp.Field
-		LandValidPeriodRemark    resp.Field
-		LandValidPeriodUnit      resp.Field
-		OverflyDefProf           resp.Field
-		OverflyLeadTime          resp.Field
-		OverflyLeadTimeRemark    resp.Field
-		OverflyLeadTimeUnit      resp.Field
-		OverflyValidPeriodMinus  resp.Field
-		OverflyValidPeriodPlus   resp.Field
-		OverflyValidPeriodRemark resp.Field
-		OverflyValidPeriodUnit   resp.Field
-		Profile                  resp.Field
-		ProfileAgency            resp.Field
-		ProfileID                resp.Field
-		ProfileRemark            resp.Field
-		ReqAcAltName             resp.Field
-		ReqAllHazInfo            resp.Field
-		ReqAmcStdInfo            resp.Field
-		ReqCargoList             resp.Field
-		ReqCargoPax              resp.Field
-		ReqClass1Info            resp.Field
-		ReqClass9Info            resp.Field
-		ReqCrewComp              resp.Field
-		ReqCrewDetail            resp.Field
-		ReqCrewInfo              resp.Field
-		ReqDiv1Info              resp.Field
-		ReqDv                    resp.Field
-		ReqEntryExitCoord        resp.Field
-		ReqFltInfo               resp.Field
-		ReqFltPlanRoute          resp.Field
-		ReqFundSource            resp.Field
-		ReqHazInfo               resp.Field
-		ReqIcao                  resp.Field
-		ReqPassportInfo          resp.Field
-		ReqRaven                 resp.Field
-		ReqRepChange             resp.Field
-		ReqTailNum               resp.Field
-		ReqWeaponsInfo           resp.Field
-		UndefinedCrewReporting   resp.Field
-		ExtraFields              map[string]resp.Field
+		CargoPaxRemark           respjson.Field
+		ClearanceID              respjson.Field
+		CrewInfoRemark           respjson.Field
+		DefClearanceStatus       respjson.Field
+		DefEntryRemark           respjson.Field
+		DefEntryTime             respjson.Field
+		DefExitRemark            respjson.Field
+		DefExitTime              respjson.Field
+		FltInfoRemark            respjson.Field
+		HazInfoRemark            respjson.Field
+		LandDefProf              respjson.Field
+		LandLeadTime             respjson.Field
+		LandLeadTimeRemark       respjson.Field
+		LandLeadTimeUnit         respjson.Field
+		LandValidPeriodMinus     respjson.Field
+		LandValidPeriodPlus      respjson.Field
+		LandValidPeriodRemark    respjson.Field
+		LandValidPeriodUnit      respjson.Field
+		OverflyDefProf           respjson.Field
+		OverflyLeadTime          respjson.Field
+		OverflyLeadTimeRemark    respjson.Field
+		OverflyLeadTimeUnit      respjson.Field
+		OverflyValidPeriodMinus  respjson.Field
+		OverflyValidPeriodPlus   respjson.Field
+		OverflyValidPeriodRemark respjson.Field
+		OverflyValidPeriodUnit   respjson.Field
+		Profile                  respjson.Field
+		ProfileAgency            respjson.Field
+		ProfileID                respjson.Field
+		ProfileRemark            respjson.Field
+		ReqAcAltName             respjson.Field
+		ReqAllHazInfo            respjson.Field
+		ReqAmcStdInfo            respjson.Field
+		ReqCargoList             respjson.Field
+		ReqCargoPax              respjson.Field
+		ReqClass1Info            respjson.Field
+		ReqClass9Info            respjson.Field
+		ReqCrewComp              respjson.Field
+		ReqCrewDetail            respjson.Field
+		ReqCrewInfo              respjson.Field
+		ReqDiv1Info              respjson.Field
+		ReqDv                    respjson.Field
+		ReqEntryExitCoord        respjson.Field
+		ReqFltInfo               respjson.Field
+		ReqFltPlanRoute          respjson.Field
+		ReqFundSource            respjson.Field
+		ReqHazInfo               respjson.Field
+		ReqIcao                  respjson.Field
+		ReqPassportInfo          respjson.Field
+		ReqRaven                 respjson.Field
+		ReqRepChange             respjson.Field
+		ReqTailNum               respjson.Field
+		ReqWeaponsInfo           respjson.Field
+		UndefinedCrewReporting   respjson.Field
+		ExtraFields              map[string]respjson.Field
 		raw                      string
 	} `json:"-"`
 }

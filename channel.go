@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // ChannelService contains methods and other services that help with interacting
@@ -230,31 +230,31 @@ type ChannelAbridged struct {
 	Type string `json:"type"`
 	// Channel vPid.
 	Vpid string `json:"vpid"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDTransponder         resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Apid                  resp.Field
-		BeamName              resp.Field
-		Compression           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Encryption            resp.Field
-		IDBeam                resp.Field
-		IDRfBand              resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Owner                 resp.Field
-		Pkg                   resp.Field
-		Res                   resp.Field
-		Sid                   resp.Field
-		Type                  resp.Field
-		Vpid                  resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDTransponder         respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Apid                  respjson.Field
+		BeamName              respjson.Field
+		Compression           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Encryption            respjson.Field
+		IDBeam                respjson.Field
+		IDRfBand              respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Owner                 respjson.Field
+		Pkg                   respjson.Field
+		Res                   respjson.Field
+		Sid                   respjson.Field
+		Type                  respjson.Field
+		Vpid                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -360,33 +360,33 @@ type ChannelFull struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Channel vPid.
 	Vpid string `json:"vpid"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDTransponder         resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Apid                  resp.Field
-		BeamName              resp.Field
-		Compression           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Encryption            resp.Field
-		IDBeam                resp.Field
-		IDRfBand              resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Owner                 resp.Field
-		Pkg                   resp.Field
-		Res                   resp.Field
-		Sid                   resp.Field
-		Type                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		Vpid                  resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDTransponder         respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Apid                  respjson.Field
+		BeamName              respjson.Field
+		Compression           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Encryption            respjson.Field
+		IDBeam                respjson.Field
+		IDRfBand              respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Owner                 respjson.Field
+		Pkg                   respjson.Field
+		Res                   respjson.Field
+		Sid                   respjson.Field
+		Type                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		Vpid                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

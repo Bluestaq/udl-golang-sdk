@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
@@ -344,46 +344,46 @@ type EopAbridged struct {
 	Ut1UtcState EopAbridgedUt1UtcState `json:"ut1UTCState"`
 	// The estimated uncertainty/error in the ut1UTC value in seconds.
 	Ut1UtcUnc float64 `json:"ut1UTCUnc"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		EopDate               resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DEpsilon              resp.Field
-		DEpsilonB             resp.Field
-		DEpsilonUnc           resp.Field
-		DPsi                  resp.Field
-		DPsib                 resp.Field
-		DPsiUnc               resp.Field
-		DX                    resp.Field
-		DXb                   resp.Field
-		DXUnc                 resp.Field
-		DY                    resp.Field
-		DYb                   resp.Field
-		DYUnc                 resp.Field
-		Lod                   resp.Field
-		LodUnc                resp.Field
-		NutationState         resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PolarMotionState      resp.Field
-		PolarMotionX          resp.Field
-		PolarMotionXb         resp.Field
-		PolarMotionXUnc       resp.Field
-		PolarMotionY          resp.Field
-		PolarMotionYb         resp.Field
-		PolarMotionYUnc       resp.Field
-		PrecessionNutationStd resp.Field
-		RawFileUri            resp.Field
-		Ut1Utc                resp.Field
-		Ut1Utcb               resp.Field
-		Ut1UtcState           resp.Field
-		Ut1UtcUnc             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		EopDate               respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DEpsilon              respjson.Field
+		DEpsilonB             respjson.Field
+		DEpsilonUnc           respjson.Field
+		DPsi                  respjson.Field
+		DPsib                 respjson.Field
+		DPsiUnc               respjson.Field
+		DX                    respjson.Field
+		DXb                   respjson.Field
+		DXUnc                 respjson.Field
+		DY                    respjson.Field
+		DYb                   respjson.Field
+		DYUnc                 respjson.Field
+		Lod                   respjson.Field
+		LodUnc                respjson.Field
+		NutationState         respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PolarMotionState      respjson.Field
+		PolarMotionX          respjson.Field
+		PolarMotionXb         respjson.Field
+		PolarMotionXUnc       respjson.Field
+		PolarMotionY          respjson.Field
+		PolarMotionYb         respjson.Field
+		PolarMotionYUnc       respjson.Field
+		PrecessionNutationStd respjson.Field
+		RawFileUri            respjson.Field
+		Ut1Utc                respjson.Field
+		Ut1Utcb               respjson.Field
+		Ut1UtcState           respjson.Field
+		Ut1UtcUnc             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

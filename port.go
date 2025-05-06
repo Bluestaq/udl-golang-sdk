@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // PortService contains methods and other services that help with interacting with
@@ -258,31 +258,31 @@ type PortListResponse struct {
 	Shelter string `json:"shelter"`
 	// The tide range of this port in meters.
 	TideRange float64 `json:"tideRange"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AvgDuration           resp.Field
-		CountryCode           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		ExternalID            resp.Field
-		HarborSize            resp.Field
-		HarborType            resp.Field
-		IDSite                resp.Field
-		Lat                   resp.Field
-		Locode                resp.Field
-		Lon                   resp.Field
-		MaxDraught            resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PilotReqd             resp.Field
-		PortName              resp.Field
-		Shelter               resp.Field
-		TideRange             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AvgDuration           respjson.Field
+		CountryCode           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		ExternalID            respjson.Field
+		HarborSize            respjson.Field
+		HarborType            respjson.Field
+		IDSite                respjson.Field
+		Lat                   respjson.Field
+		Locode                respjson.Field
+		Lon                   respjson.Field
+		MaxDraught            respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PilotReqd             respjson.Field
+		PortName              respjson.Field
+		Shelter               respjson.Field
+		TideRange             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -426,34 +426,34 @@ type PortGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AvgDuration           resp.Field
-		CountryCode           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		ExternalID            resp.Field
-		HarborSize            resp.Field
-		HarborType            resp.Field
-		IDSite                resp.Field
-		Lat                   resp.Field
-		Locode                resp.Field
-		Lon                   resp.Field
-		MaxDraught            resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PilotReqd             resp.Field
-		PortName              resp.Field
-		Shelter               resp.Field
-		SourceDl              resp.Field
-		TideRange             resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AvgDuration           respjson.Field
+		CountryCode           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		ExternalID            respjson.Field
+		HarborSize            respjson.Field
+		HarborType            respjson.Field
+		IDSite                respjson.Field
+		Lat                   respjson.Field
+		Locode                respjson.Field
+		Lon                   respjson.Field
+		MaxDraught            respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PilotReqd             respjson.Field
+		PortName              respjson.Field
+		Shelter               respjson.Field
+		SourceDl              respjson.Field
+		TideRange             respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -597,34 +597,34 @@ type PortTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AvgDuration           resp.Field
-		CountryCode           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		ExternalID            resp.Field
-		HarborSize            resp.Field
-		HarborType            resp.Field
-		IDSite                resp.Field
-		Lat                   resp.Field
-		Locode                resp.Field
-		Lon                   resp.Field
-		MaxDraught            resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PilotReqd             resp.Field
-		PortName              resp.Field
-		Shelter               resp.Field
-		SourceDl              resp.Field
-		TideRange             resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AvgDuration           respjson.Field
+		CountryCode           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		ExternalID            respjson.Field
+		HarborSize            respjson.Field
+		HarborType            respjson.Field
+		IDSite                respjson.Field
+		Lat                   respjson.Field
+		Locode                respjson.Field
+		Lon                   respjson.Field
+		MaxDraught            respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PilotReqd             respjson.Field
+		PortName              respjson.Field
+		Shelter               respjson.Field
+		SourceDl              respjson.Field
+		TideRange             respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

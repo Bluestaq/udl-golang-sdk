@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // SiteStatusHistoryService contains methods and other services that help with
@@ -270,48 +270,48 @@ type SiteStatusHistoryListResponse struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Description of the current weather conditions over a site.
 	WeatherMessage string `json:"weatherMessage"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDSite                resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Cat                   resp.Field
-		ColdInventory         resp.Field
-		CommImpairment        resp.Field
-		Cpcon                 resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Eoc                   resp.Field
-		Fpcon                 resp.Field
-		HotInventory          resp.Field
-		Hpcon                 resp.Field
-		InstStatus            resp.Field
-		Link                  resp.Field
-		LinkStatus            resp.Field
-		Missile               resp.Field
-		MissileInventory      resp.Field
-		MobileAltID           resp.Field
-		OpsCapability         resp.Field
-		OpsImpairment         resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Pes                   resp.Field
-		Poiid                 resp.Field
-		RadarStatus           resp.Field
-		RadarSystem           resp.Field
-		RadiateMode           resp.Field
-		ReportTime            resp.Field
-		SamMode               resp.Field
-		SiteType              resp.Field
-		TimeFunction          resp.Field
-		TrackID               resp.Field
-		TrackRefL16           resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		WeatherMessage        resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDSite                respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Cat                   respjson.Field
+		ColdInventory         respjson.Field
+		CommImpairment        respjson.Field
+		Cpcon                 respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Eoc                   respjson.Field
+		Fpcon                 respjson.Field
+		HotInventory          respjson.Field
+		Hpcon                 respjson.Field
+		InstStatus            respjson.Field
+		Link                  respjson.Field
+		LinkStatus            respjson.Field
+		Missile               respjson.Field
+		MissileInventory      respjson.Field
+		MobileAltID           respjson.Field
+		OpsCapability         respjson.Field
+		OpsImpairment         respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Pes                   respjson.Field
+		Poiid                 respjson.Field
+		RadarStatus           respjson.Field
+		RadarSystem           respjson.Field
+		RadiateMode           respjson.Field
+		ReportTime            respjson.Field
+		SamMode               respjson.Field
+		SiteType              respjson.Field
+		TimeFunction          respjson.Field
+		TrackID               respjson.Field
+		TrackRefL16           respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		WeatherMessage        respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

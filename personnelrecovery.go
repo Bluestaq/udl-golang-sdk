@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // PersonnelrecoveryService contains methods and other services that help with
@@ -304,47 +304,47 @@ type PersonnelRecoveryFullL struct {
 	TextMsg string `json:"textMsg"`
 	// Transmit voice frequency in 5Hz increments.
 	TxFreq float64 `json:"txFreq"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		MsgTime               resp.Field
-		PickupLat             resp.Field
-		PickupLon             resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		AuthMethod            resp.Field
-		AuthStatus            resp.Field
-		BeaconInd             resp.Field
-		CallSign              resp.Field
-		CommEq1               resp.Field
-		CommEq2               resp.Field
-		CommEq3               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		ExecutionInfo         resp.Field
-		Identity              resp.Field
-		IDWeatherReport       resp.Field
-		MilClass              resp.Field
-		NatAlliance           resp.Field
-		NatAlliance1          resp.Field
-		NumAmbulatory         resp.Field
-		NumAmbulatoryInjured  resp.Field
-		NumNonAmbulatory      resp.Field
-		NumPersons            resp.Field
-		ObjectiveAreaInfo     resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PickupAlt             resp.Field
-		RecovID               resp.Field
-		RxFreq                resp.Field
-		SurvivorMessages      resp.Field
-		SurvivorRadio         resp.Field
-		TermInd               resp.Field
-		TextMsg               resp.Field
-		TxFreq                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		MsgTime               respjson.Field
+		PickupLat             respjson.Field
+		PickupLon             respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		AuthMethod            respjson.Field
+		AuthStatus            respjson.Field
+		BeaconInd             respjson.Field
+		CallSign              respjson.Field
+		CommEq1               respjson.Field
+		CommEq2               respjson.Field
+		CommEq3               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		ExecutionInfo         respjson.Field
+		Identity              respjson.Field
+		IDWeatherReport       respjson.Field
+		MilClass              respjson.Field
+		NatAlliance           respjson.Field
+		NatAlliance1          respjson.Field
+		NumAmbulatory         respjson.Field
+		NumAmbulatoryInjured  respjson.Field
+		NumNonAmbulatory      respjson.Field
+		NumPersons            respjson.Field
+		ObjectiveAreaInfo     respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PickupAlt             respjson.Field
+		RecovID               respjson.Field
+		RxFreq                respjson.Field
+		SurvivorMessages      respjson.Field
+		SurvivorRadio         respjson.Field
+		TermInd               respjson.Field
+		TextMsg               respjson.Field
+		TxFreq                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -399,16 +399,16 @@ type PersonnelRecoveryFullLExecutionInfo struct {
 	// Description of the objective strategy plan.
 	ObjStrategy     string                                             `json:"objStrategy"`
 	RecoveryVehicle PersonnelRecoveryFullLExecutionInfoRecoveryVehicle `json:"recoveryVehicle"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Egress          resp.Field
-		EgressPoint     resp.Field
-		EscortVehicle   resp.Field
-		Ingress         resp.Field
-		InitialPoint    resp.Field
-		ObjStrategy     resp.Field
-		RecoveryVehicle resp.Field
-		ExtraFields     map[string]resp.Field
+		Egress          respjson.Field
+		EgressPoint     respjson.Field
+		EscortVehicle   respjson.Field
+		Ingress         respjson.Field
+		InitialPoint    respjson.Field
+		ObjStrategy     respjson.Field
+		RecoveryVehicle respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -433,13 +433,13 @@ type PersonnelRecoveryFullLExecutionInfoEscortVehicle struct {
 	Strength int64 `json:"strength"`
 	// The particular type of recovery vehicle to be used.
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CallSign    resp.Field
-		PrimaryFreq resp.Field
-		Strength    resp.Field
-		Type        resp.Field
-		ExtraFields map[string]resp.Field
+		CallSign    respjson.Field
+		PrimaryFreq respjson.Field
+		Strength    respjson.Field
+		Type        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -464,13 +464,13 @@ type PersonnelRecoveryFullLExecutionInfoRecoveryVehicle struct {
 	Strength int64 `json:"strength"`
 	// The particular type of recovery vehicle to be used.
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CallSign    resp.Field
-		PrimaryFreq resp.Field
-		Strength    resp.Field
-		Type        resp.Field
-		ExtraFields map[string]resp.Field
+		CallSign    respjson.Field
+		PrimaryFreq respjson.Field
+		Strength    respjson.Field
+		Type        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -496,14 +496,14 @@ type PersonnelRecoveryFullLObjectiveAreaInfo struct {
 	// minimum of 2 elements (latitude and longitude), and may contain an optional 3rd
 	// element (altitude).
 	PzLocation []float64 `json:"pzLocation"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		EnemyData   resp.Field
-		OscCallSign resp.Field
-		OscFreq     resp.Field
-		PzDesc      resp.Field
-		PzLocation  resp.Field
-		ExtraFields map[string]resp.Field
+		EnemyData   respjson.Field
+		OscCallSign respjson.Field
+		OscFreq     respjson.Field
+		PzDesc      respjson.Field
+		PzLocation  respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -524,13 +524,13 @@ type PersonnelRecoveryFullLObjectiveAreaInfoEnemyData struct {
 	HlzRemarks string `json:"hlzRemarks"`
 	// The type of hostile fire received (SMALL ARMS, MORTAR, ARTILLERY, ROCKETS).
 	HostileFireType string `json:"hostileFireType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DirToEnemy        resp.Field
-		FriendliesRemarks resp.Field
-		HlzRemarks        resp.Field
-		HostileFireType   resp.Field
-		ExtraFields       map[string]resp.Field
+		DirToEnemy        respjson.Field
+		FriendliesRemarks respjson.Field
+		HlzRemarks        respjson.Field
+		HostileFireType   respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -687,47 +687,47 @@ type PersonnelrecoveryListResponse struct {
 	TextMsg string `json:"textMsg"`
 	// Transmit voice frequency in 5Hz increments.
 	TxFreq float64 `json:"txFreq"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		MsgTime               resp.Field
-		PickupLat             resp.Field
-		PickupLon             resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		AuthMethod            resp.Field
-		AuthStatus            resp.Field
-		BeaconInd             resp.Field
-		CallSign              resp.Field
-		CommEq1               resp.Field
-		CommEq2               resp.Field
-		CommEq3               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		ExecutionInfo         resp.Field
-		Identity              resp.Field
-		IDWeatherReport       resp.Field
-		MilClass              resp.Field
-		NatAlliance           resp.Field
-		NatAlliance1          resp.Field
-		NumAmbulatory         resp.Field
-		NumAmbulatoryInjured  resp.Field
-		NumNonAmbulatory      resp.Field
-		NumPersons            resp.Field
-		ObjectiveAreaInfo     resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PickupAlt             resp.Field
-		RecovID               resp.Field
-		RxFreq                resp.Field
-		SurvivorMessages      resp.Field
-		SurvivorRadio         resp.Field
-		TermInd               resp.Field
-		TextMsg               resp.Field
-		TxFreq                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		MsgTime               respjson.Field
+		PickupLat             respjson.Field
+		PickupLon             respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		AuthMethod            respjson.Field
+		AuthStatus            respjson.Field
+		BeaconInd             respjson.Field
+		CallSign              respjson.Field
+		CommEq1               respjson.Field
+		CommEq2               respjson.Field
+		CommEq3               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		ExecutionInfo         respjson.Field
+		Identity              respjson.Field
+		IDWeatherReport       respjson.Field
+		MilClass              respjson.Field
+		NatAlliance           respjson.Field
+		NatAlliance1          respjson.Field
+		NumAmbulatory         respjson.Field
+		NumAmbulatoryInjured  respjson.Field
+		NumNonAmbulatory      respjson.Field
+		NumPersons            respjson.Field
+		ObjectiveAreaInfo     respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PickupAlt             respjson.Field
+		RecovID               respjson.Field
+		RxFreq                respjson.Field
+		SurvivorMessages      respjson.Field
+		SurvivorRadio         respjson.Field
+		TermInd               respjson.Field
+		TextMsg               respjson.Field
+		TxFreq                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -782,16 +782,16 @@ type PersonnelrecoveryListResponseExecutionInfo struct {
 	// Description of the objective strategy plan.
 	ObjStrategy     string                                                    `json:"objStrategy"`
 	RecoveryVehicle PersonnelrecoveryListResponseExecutionInfoRecoveryVehicle `json:"recoveryVehicle"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Egress          resp.Field
-		EgressPoint     resp.Field
-		EscortVehicle   resp.Field
-		Ingress         resp.Field
-		InitialPoint    resp.Field
-		ObjStrategy     resp.Field
-		RecoveryVehicle resp.Field
-		ExtraFields     map[string]resp.Field
+		Egress          respjson.Field
+		EgressPoint     respjson.Field
+		EscortVehicle   respjson.Field
+		Ingress         respjson.Field
+		InitialPoint    respjson.Field
+		ObjStrategy     respjson.Field
+		RecoveryVehicle respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -816,13 +816,13 @@ type PersonnelrecoveryListResponseExecutionInfoEscortVehicle struct {
 	Strength int64 `json:"strength"`
 	// The particular type of recovery vehicle to be used.
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CallSign    resp.Field
-		PrimaryFreq resp.Field
-		Strength    resp.Field
-		Type        resp.Field
-		ExtraFields map[string]resp.Field
+		CallSign    respjson.Field
+		PrimaryFreq respjson.Field
+		Strength    respjson.Field
+		Type        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -847,13 +847,13 @@ type PersonnelrecoveryListResponseExecutionInfoRecoveryVehicle struct {
 	Strength int64 `json:"strength"`
 	// The particular type of recovery vehicle to be used.
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CallSign    resp.Field
-		PrimaryFreq resp.Field
-		Strength    resp.Field
-		Type        resp.Field
-		ExtraFields map[string]resp.Field
+		CallSign    respjson.Field
+		PrimaryFreq respjson.Field
+		Strength    respjson.Field
+		Type        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -881,14 +881,14 @@ type PersonnelrecoveryListResponseObjectiveAreaInfo struct {
 	// minimum of 2 elements (latitude and longitude), and may contain an optional 3rd
 	// element (altitude).
 	PzLocation []float64 `json:"pzLocation"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		EnemyData   resp.Field
-		OscCallSign resp.Field
-		OscFreq     resp.Field
-		PzDesc      resp.Field
-		PzLocation  resp.Field
-		ExtraFields map[string]resp.Field
+		EnemyData   respjson.Field
+		OscCallSign respjson.Field
+		OscFreq     respjson.Field
+		PzDesc      respjson.Field
+		PzLocation  respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -909,13 +909,13 @@ type PersonnelrecoveryListResponseObjectiveAreaInfoEnemyData struct {
 	HlzRemarks string `json:"hlzRemarks"`
 	// The type of hostile fire received (SMALL ARMS, MORTAR, ARTILLERY, ROCKETS).
 	HostileFireType string `json:"hostileFireType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DirToEnemy        resp.Field
-		FriendliesRemarks resp.Field
-		HlzRemarks        resp.Field
-		HostileFireType   resp.Field
-		ExtraFields       map[string]resp.Field
+		DirToEnemy        respjson.Field
+		FriendliesRemarks respjson.Field
+		HlzRemarks        respjson.Field
+		HostileFireType   respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }

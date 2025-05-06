@@ -19,7 +19,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // SigactService contains methods and other services that help with interacting
@@ -417,91 +417,91 @@ type SigactListResponse struct {
 	Theater string `json:"theater"`
 	// The mode of this attack or event (e.g. Direct Fire, IED Explosion, etc.).
 	TypeOfAttack string `json:"typeOfAttack"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		ReportDate            resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Accuracy              resp.Field
-		Actors                resp.Field
-		Agjson                resp.Field
-		Andims                resp.Field
-		Asrid                 resp.Field
-		Atext                 resp.Field
-		Atype                 resp.Field
-		AvgTone               resp.Field
-		CameoBaseCode         resp.Field
-		CameoCode             resp.Field
-		CameoRootCode         resp.Field
-		ChecksumValue         resp.Field
-		City                  resp.Field
-		CivAbd                resp.Field
-		CivDet                resp.Field
-		CivKia                resp.Field
-		CivWound              resp.Field
-		Clarity               resp.Field
-		CoalAbd               resp.Field
-		CoalDet               resp.Field
-		CoalKia               resp.Field
-		CoalWound             resp.Field
-		ComplexAttack         resp.Field
-		Confidence            resp.Field
-		CountryCode           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		District              resp.Field
-		DocumentFilename      resp.Field
-		DocumentSource        resp.Field
-		EnemyAbd              resp.Field
-		EnemyDet              resp.Field
-		EnemyKia              resp.Field
-		EventDescription      resp.Field
-		EventEnd              resp.Field
-		EventStart            resp.Field
-		EventType             resp.Field
-		Filesize              resp.Field
-		FriendlyAbd           resp.Field
-		FriendlyDet           resp.Field
-		FriendlyKia           resp.Field
-		FriendlyWound         resp.Field
-		Goldstein             resp.Field
-		HasAttachment         resp.Field
-		HostNatAbd            resp.Field
-		HostNatDet            resp.Field
-		HostNatKia            resp.Field
-		HostNatWound          resp.Field
-		IDNumber              resp.Field
-		Lat                   resp.Field
-		Lon                   resp.Field
-		Milgrid               resp.Field
-		Notes                 resp.Field
-		NumArticles           resp.Field
-		NumMentions           resp.Field
-		NumSources            resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Province              resp.Field
-		RelatedDocs           resp.Field
-		RepUnit               resp.Field
-		RepUnitActivity       resp.Field
-		RepUnitType           resp.Field
-		SideAAbd              resp.Field
-		SideADet              resp.Field
-		SideAkia              resp.Field
-		SideAWound            resp.Field
-		SideBAbd              resp.Field
-		SideBDet              resp.Field
-		SideBkia              resp.Field
-		SideBWound            resp.Field
-		SourceLanguage        resp.Field
-		SourceURL             resp.Field
-		Summary               resp.Field
-		Target                resp.Field
-		Theater               resp.Field
-		TypeOfAttack          resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		ReportDate            respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Accuracy              respjson.Field
+		Actors                respjson.Field
+		Agjson                respjson.Field
+		Andims                respjson.Field
+		Asrid                 respjson.Field
+		Atext                 respjson.Field
+		Atype                 respjson.Field
+		AvgTone               respjson.Field
+		CameoBaseCode         respjson.Field
+		CameoCode             respjson.Field
+		CameoRootCode         respjson.Field
+		ChecksumValue         respjson.Field
+		City                  respjson.Field
+		CivAbd                respjson.Field
+		CivDet                respjson.Field
+		CivKia                respjson.Field
+		CivWound              respjson.Field
+		Clarity               respjson.Field
+		CoalAbd               respjson.Field
+		CoalDet               respjson.Field
+		CoalKia               respjson.Field
+		CoalWound             respjson.Field
+		ComplexAttack         respjson.Field
+		Confidence            respjson.Field
+		CountryCode           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		District              respjson.Field
+		DocumentFilename      respjson.Field
+		DocumentSource        respjson.Field
+		EnemyAbd              respjson.Field
+		EnemyDet              respjson.Field
+		EnemyKia              respjson.Field
+		EventDescription      respjson.Field
+		EventEnd              respjson.Field
+		EventStart            respjson.Field
+		EventType             respjson.Field
+		Filesize              respjson.Field
+		FriendlyAbd           respjson.Field
+		FriendlyDet           respjson.Field
+		FriendlyKia           respjson.Field
+		FriendlyWound         respjson.Field
+		Goldstein             respjson.Field
+		HasAttachment         respjson.Field
+		HostNatAbd            respjson.Field
+		HostNatDet            respjson.Field
+		HostNatKia            respjson.Field
+		HostNatWound          respjson.Field
+		IDNumber              respjson.Field
+		Lat                   respjson.Field
+		Lon                   respjson.Field
+		Milgrid               respjson.Field
+		Notes                 respjson.Field
+		NumArticles           respjson.Field
+		NumMentions           respjson.Field
+		NumSources            respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Province              respjson.Field
+		RelatedDocs           respjson.Field
+		RepUnit               respjson.Field
+		RepUnitActivity       respjson.Field
+		RepUnitType           respjson.Field
+		SideAAbd              respjson.Field
+		SideADet              respjson.Field
+		SideAkia              respjson.Field
+		SideAWound            respjson.Field
+		SideBAbd              respjson.Field
+		SideBDet              respjson.Field
+		SideBkia              respjson.Field
+		SideBWound            respjson.Field
+		SourceLanguage        respjson.Field
+		SourceURL             respjson.Field
+		Summary               respjson.Field
+		Target                respjson.Field
+		Theater               respjson.Field
+		TypeOfAttack          respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -540,11 +540,11 @@ type SigactListResponseRelatedDoc struct {
 	DataSourceRefs []SigactListResponseRelatedDocDataSourceRef `json:"dataSourceRefs"`
 	// The document id of the related document.
 	DocumentID string `json:"documentId"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DataSourceRefs resp.Field
-		DocumentID     resp.Field
-		ExtraFields    map[string]resp.Field
+		DataSourceRefs respjson.Field
+		DocumentID     respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }
@@ -566,14 +566,14 @@ type SigactListResponseRelatedDocDataSourceRef struct {
 	SentenceNumber string `json:"sentenceNumber"`
 	// start position.
 	StartPosition string `json:"startPosition"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DataSourceID    resp.Field
-		EndPosition     resp.Field
-		ParagraphNumber resp.Field
-		SentenceNumber  resp.Field
-		StartPosition   resp.Field
-		ExtraFields     map[string]resp.Field
+		DataSourceID    respjson.Field
+		EndPosition     respjson.Field
+		ParagraphNumber respjson.Field
+		SentenceNumber  respjson.Field
+		StartPosition   respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -854,92 +854,92 @@ type SigactTupleResponse struct {
 	Theater string `json:"theater"`
 	// The mode of this attack or event (e.g. Direct Fire, IED Explosion, etc.).
 	TypeOfAttack string `json:"typeOfAttack"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		ReportDate            resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Accuracy              resp.Field
-		Actors                resp.Field
-		Agjson                resp.Field
-		Andims                resp.Field
-		Area                  resp.Field
-		Asrid                 resp.Field
-		Atext                 resp.Field
-		Atype                 resp.Field
-		AvgTone               resp.Field
-		CameoBaseCode         resp.Field
-		CameoCode             resp.Field
-		CameoRootCode         resp.Field
-		ChecksumValue         resp.Field
-		City                  resp.Field
-		CivAbd                resp.Field
-		CivDet                resp.Field
-		CivKia                resp.Field
-		CivWound              resp.Field
-		Clarity               resp.Field
-		CoalAbd               resp.Field
-		CoalDet               resp.Field
-		CoalKia               resp.Field
-		CoalWound             resp.Field
-		ComplexAttack         resp.Field
-		Confidence            resp.Field
-		CountryCode           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		District              resp.Field
-		DocumentFilename      resp.Field
-		DocumentSource        resp.Field
-		EnemyAbd              resp.Field
-		EnemyDet              resp.Field
-		EnemyKia              resp.Field
-		EventDescription      resp.Field
-		EventEnd              resp.Field
-		EventStart            resp.Field
-		EventType             resp.Field
-		Filesize              resp.Field
-		FriendlyAbd           resp.Field
-		FriendlyDet           resp.Field
-		FriendlyKia           resp.Field
-		FriendlyWound         resp.Field
-		Goldstein             resp.Field
-		HasAttachment         resp.Field
-		HostNatAbd            resp.Field
-		HostNatDet            resp.Field
-		HostNatKia            resp.Field
-		HostNatWound          resp.Field
-		IDNumber              resp.Field
-		Lat                   resp.Field
-		Lon                   resp.Field
-		Milgrid               resp.Field
-		Notes                 resp.Field
-		NumArticles           resp.Field
-		NumMentions           resp.Field
-		NumSources            resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Province              resp.Field
-		RelatedDocs           resp.Field
-		RepUnit               resp.Field
-		RepUnitActivity       resp.Field
-		RepUnitType           resp.Field
-		SideAAbd              resp.Field
-		SideADet              resp.Field
-		SideAkia              resp.Field
-		SideAWound            resp.Field
-		SideBAbd              resp.Field
-		SideBDet              resp.Field
-		SideBkia              resp.Field
-		SideBWound            resp.Field
-		SourceLanguage        resp.Field
-		SourceURL             resp.Field
-		Summary               resp.Field
-		Target                resp.Field
-		Theater               resp.Field
-		TypeOfAttack          resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		ReportDate            respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Accuracy              respjson.Field
+		Actors                respjson.Field
+		Agjson                respjson.Field
+		Andims                respjson.Field
+		Area                  respjson.Field
+		Asrid                 respjson.Field
+		Atext                 respjson.Field
+		Atype                 respjson.Field
+		AvgTone               respjson.Field
+		CameoBaseCode         respjson.Field
+		CameoCode             respjson.Field
+		CameoRootCode         respjson.Field
+		ChecksumValue         respjson.Field
+		City                  respjson.Field
+		CivAbd                respjson.Field
+		CivDet                respjson.Field
+		CivKia                respjson.Field
+		CivWound              respjson.Field
+		Clarity               respjson.Field
+		CoalAbd               respjson.Field
+		CoalDet               respjson.Field
+		CoalKia               respjson.Field
+		CoalWound             respjson.Field
+		ComplexAttack         respjson.Field
+		Confidence            respjson.Field
+		CountryCode           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		District              respjson.Field
+		DocumentFilename      respjson.Field
+		DocumentSource        respjson.Field
+		EnemyAbd              respjson.Field
+		EnemyDet              respjson.Field
+		EnemyKia              respjson.Field
+		EventDescription      respjson.Field
+		EventEnd              respjson.Field
+		EventStart            respjson.Field
+		EventType             respjson.Field
+		Filesize              respjson.Field
+		FriendlyAbd           respjson.Field
+		FriendlyDet           respjson.Field
+		FriendlyKia           respjson.Field
+		FriendlyWound         respjson.Field
+		Goldstein             respjson.Field
+		HasAttachment         respjson.Field
+		HostNatAbd            respjson.Field
+		HostNatDet            respjson.Field
+		HostNatKia            respjson.Field
+		HostNatWound          respjson.Field
+		IDNumber              respjson.Field
+		Lat                   respjson.Field
+		Lon                   respjson.Field
+		Milgrid               respjson.Field
+		Notes                 respjson.Field
+		NumArticles           respjson.Field
+		NumMentions           respjson.Field
+		NumSources            respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Province              respjson.Field
+		RelatedDocs           respjson.Field
+		RepUnit               respjson.Field
+		RepUnitActivity       respjson.Field
+		RepUnitType           respjson.Field
+		SideAAbd              respjson.Field
+		SideADet              respjson.Field
+		SideAkia              respjson.Field
+		SideAWound            respjson.Field
+		SideBAbd              respjson.Field
+		SideBDet              respjson.Field
+		SideBkia              respjson.Field
+		SideBWound            respjson.Field
+		SourceLanguage        respjson.Field
+		SourceURL             respjson.Field
+		Summary               respjson.Field
+		Target                respjson.Field
+		Theater               respjson.Field
+		TypeOfAttack          respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -978,11 +978,11 @@ type SigactTupleResponseRelatedDoc struct {
 	DataSourceRefs []SigactTupleResponseRelatedDocDataSourceRef `json:"dataSourceRefs"`
 	// The document id of the related document.
 	DocumentID string `json:"documentId"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DataSourceRefs resp.Field
-		DocumentID     resp.Field
-		ExtraFields    map[string]resp.Field
+		DataSourceRefs respjson.Field
+		DocumentID     respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }
@@ -1004,14 +1004,14 @@ type SigactTupleResponseRelatedDocDataSourceRef struct {
 	SentenceNumber string `json:"sentenceNumber"`
 	// start position.
 	StartPosition string `json:"startPosition"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DataSourceID    resp.Field
-		EndPosition     resp.Field
-		ParagraphNumber resp.Field
-		SentenceNumber  resp.Field
-		StartPosition   resp.Field
-		ExtraFields     map[string]resp.Field
+		DataSourceID    respjson.Field
+		EndPosition     respjson.Field
+		ParagraphNumber respjson.Field
+		SentenceNumber  respjson.Field
+		StartPosition   respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }

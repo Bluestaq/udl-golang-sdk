@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // SurfaceObstructionService contains methods and other services that help with
@@ -224,28 +224,28 @@ type SurfaceObstructionListResponse struct {
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
 	SourceDl string `json:"sourceDL"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking     resp.Field
-		DataMode                  resp.Field
-		IDSurface                 resp.Field
-		Source                    resp.Field
-		ID                        resp.Field
-		AdvisoryRequired          resp.Field
-		ApprovalRequired          resp.Field
-		CreatedAt                 resp.Field
-		CreatedBy                 resp.Field
-		DistanceFromCenterLine    resp.Field
-		DistanceFromEdge          resp.Field
-		DistanceFromThreshold     resp.Field
-		IDNavigationalObstruction resp.Field
-		ObstructionDesc           resp.Field
-		ObstructionHeight         resp.Field
-		ObstructionSideCode       resp.Field
-		Origin                    resp.Field
-		OrigNetwork               resp.Field
-		SourceDl                  resp.Field
-		ExtraFields               map[string]resp.Field
+		ClassificationMarking     respjson.Field
+		DataMode                  respjson.Field
+		IDSurface                 respjson.Field
+		Source                    respjson.Field
+		ID                        respjson.Field
+		AdvisoryRequired          respjson.Field
+		ApprovalRequired          respjson.Field
+		CreatedAt                 respjson.Field
+		CreatedBy                 respjson.Field
+		DistanceFromCenterLine    respjson.Field
+		DistanceFromEdge          respjson.Field
+		DistanceFromThreshold     respjson.Field
+		IDNavigationalObstruction respjson.Field
+		ObstructionDesc           respjson.Field
+		ObstructionHeight         respjson.Field
+		ObstructionSideCode       respjson.Field
+		Origin                    respjson.Field
+		OrigNetwork               respjson.Field
+		SourceDl                  respjson.Field
+		ExtraFields               map[string]respjson.Field
 		raw                       string
 	} `json:"-"`
 }
@@ -323,30 +323,30 @@ type SurfaceObstructionGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking     resp.Field
-		DataMode                  resp.Field
-		IDSurface                 resp.Field
-		Source                    resp.Field
-		ID                        resp.Field
-		AdvisoryRequired          resp.Field
-		ApprovalRequired          resp.Field
-		CreatedAt                 resp.Field
-		CreatedBy                 resp.Field
-		DistanceFromCenterLine    resp.Field
-		DistanceFromEdge          resp.Field
-		DistanceFromThreshold     resp.Field
-		IDNavigationalObstruction resp.Field
-		ObstructionDesc           resp.Field
-		ObstructionHeight         resp.Field
-		ObstructionSideCode       resp.Field
-		Origin                    resp.Field
-		OrigNetwork               resp.Field
-		SourceDl                  resp.Field
-		UpdatedAt                 resp.Field
-		UpdatedBy                 resp.Field
-		ExtraFields               map[string]resp.Field
+		ClassificationMarking     respjson.Field
+		DataMode                  respjson.Field
+		IDSurface                 respjson.Field
+		Source                    respjson.Field
+		ID                        respjson.Field
+		AdvisoryRequired          respjson.Field
+		ApprovalRequired          respjson.Field
+		CreatedAt                 respjson.Field
+		CreatedBy                 respjson.Field
+		DistanceFromCenterLine    respjson.Field
+		DistanceFromEdge          respjson.Field
+		DistanceFromThreshold     respjson.Field
+		IDNavigationalObstruction respjson.Field
+		ObstructionDesc           respjson.Field
+		ObstructionHeight         respjson.Field
+		ObstructionSideCode       respjson.Field
+		Origin                    respjson.Field
+		OrigNetwork               respjson.Field
+		SourceDl                  respjson.Field
+		UpdatedAt                 respjson.Field
+		UpdatedBy                 respjson.Field
+		ExtraFields               map[string]respjson.Field
 		raw                       string
 	} `json:"-"`
 }
@@ -424,30 +424,30 @@ type SurfaceObstructionTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking     resp.Field
-		DataMode                  resp.Field
-		IDSurface                 resp.Field
-		Source                    resp.Field
-		ID                        resp.Field
-		AdvisoryRequired          resp.Field
-		ApprovalRequired          resp.Field
-		CreatedAt                 resp.Field
-		CreatedBy                 resp.Field
-		DistanceFromCenterLine    resp.Field
-		DistanceFromEdge          resp.Field
-		DistanceFromThreshold     resp.Field
-		IDNavigationalObstruction resp.Field
-		ObstructionDesc           resp.Field
-		ObstructionHeight         resp.Field
-		ObstructionSideCode       resp.Field
-		Origin                    resp.Field
-		OrigNetwork               resp.Field
-		SourceDl                  resp.Field
-		UpdatedAt                 resp.Field
-		UpdatedBy                 resp.Field
-		ExtraFields               map[string]resp.Field
+		ClassificationMarking     respjson.Field
+		DataMode                  respjson.Field
+		IDSurface                 respjson.Field
+		Source                    respjson.Field
+		ID                        respjson.Field
+		AdvisoryRequired          respjson.Field
+		ApprovalRequired          respjson.Field
+		CreatedAt                 respjson.Field
+		CreatedBy                 respjson.Field
+		DistanceFromCenterLine    respjson.Field
+		DistanceFromEdge          respjson.Field
+		DistanceFromThreshold     respjson.Field
+		IDNavigationalObstruction respjson.Field
+		ObstructionDesc           respjson.Field
+		ObstructionHeight         respjson.Field
+		ObstructionSideCode       respjson.Field
+		Origin                    respjson.Field
+		OrigNetwork               respjson.Field
+		SourceDl                  respjson.Field
+		UpdatedAt                 respjson.Field
+		UpdatedBy                 respjson.Field
+		ExtraFields               map[string]respjson.Field
 		raw                       string
 	} `json:"-"`
 }

@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
@@ -288,54 +288,54 @@ type AirTransportMissionAbridged struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Abp                   resp.Field
-		Alias                 resp.Field
-		AllocatedUnit         resp.Field
-		AmcMissionID          resp.Field
-		ApacsID               resp.Field
-		AtoCallSign           resp.Field
-		AtoMissionID          resp.Field
-		CallSign              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Cw                    resp.Field
-		DipWorksheetName      resp.Field
-		FirstPickUp           resp.Field
-		GdssMissionID         resp.Field
-		HazMat                resp.Field
-		JcsPriority           resp.Field
-		LastDropOff           resp.Field
-		LoadCategoryType      resp.Field
-		M1                    resp.Field
-		M2                    resp.Field
-		M3a                   resp.Field
-		Naf                   resp.Field
-		NextAmcMissionID      resp.Field
-		NextMissionID         resp.Field
-		Node                  resp.Field
-		Objective             resp.Field
-		Operation             resp.Field
-		Origin                resp.Field
-		OrigMissionID         resp.Field
-		OrigNetwork           resp.Field
-		PrevAmcMissionID      resp.Field
-		PrevMissionID         resp.Field
-		Purpose               resp.Field
-		Remarks               resp.Field
-		Requirements          resp.Field
-		SourceDl              resp.Field
-		SourceSysDeviation    resp.Field
-		State                 resp.Field
-		Type                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Abp                   respjson.Field
+		Alias                 respjson.Field
+		AllocatedUnit         respjson.Field
+		AmcMissionID          respjson.Field
+		ApacsID               respjson.Field
+		AtoCallSign           respjson.Field
+		AtoMissionID          respjson.Field
+		CallSign              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Cw                    respjson.Field
+		DipWorksheetName      respjson.Field
+		FirstPickUp           respjson.Field
+		GdssMissionID         respjson.Field
+		HazMat                respjson.Field
+		JcsPriority           respjson.Field
+		LastDropOff           respjson.Field
+		LoadCategoryType      respjson.Field
+		M1                    respjson.Field
+		M2                    respjson.Field
+		M3a                   respjson.Field
+		Naf                   respjson.Field
+		NextAmcMissionID      respjson.Field
+		NextMissionID         respjson.Field
+		Node                  respjson.Field
+		Objective             respjson.Field
+		Operation             respjson.Field
+		Origin                respjson.Field
+		OrigMissionID         respjson.Field
+		OrigNetwork           respjson.Field
+		PrevAmcMissionID      respjson.Field
+		PrevMissionID         respjson.Field
+		Purpose               respjson.Field
+		Remarks               respjson.Field
+		Requirements          respjson.Field
+		SourceDl              respjson.Field
+		SourceSysDeviation    respjson.Field
+		State                 respjson.Field
+		Type                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -414,24 +414,24 @@ type AirTransportMissionAbridgedHazMat struct {
 	UnNum string `json:"unNum"`
 	// Total weight of hazardous cargo, including non-explosive parts, in kilograms.
 	Weight float64 `json:"weight"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ApplicableNotes resp.Field
-		Cgc             resp.Field
-		Cgn             resp.Field
-		ClassDiv        resp.Field
-		ExtHazMatID     resp.Field
-		ItemName        resp.Field
-		NetExpWt        resp.Field
-		OffIcao         resp.Field
-		OffItin         resp.Field
-		OnIcao          resp.Field
-		OnItin          resp.Field
-		Pieces          resp.Field
-		Planned         resp.Field
-		UnNum           resp.Field
-		Weight          resp.Field
-		ExtraFields     map[string]resp.Field
+		ApplicableNotes respjson.Field
+		Cgc             respjson.Field
+		Cgn             respjson.Field
+		ClassDiv        respjson.Field
+		ExtHazMatID     respjson.Field
+		ItemName        respjson.Field
+		NetExpWt        respjson.Field
+		OffIcao         respjson.Field
+		OffItin         respjson.Field
+		OnIcao          respjson.Field
+		OnItin          respjson.Field
+		Pieces          respjson.Field
+		Planned         respjson.Field
+		UnNum           respjson.Field
+		Weight          respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -458,15 +458,15 @@ type AirTransportMissionAbridgedRemark struct {
 	Type string `json:"type"`
 	// User who published the remark.
 	User string `json:"user"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Date         resp.Field
-		GdssRemarkID resp.Field
-		ItineraryNum resp.Field
-		Text         resp.Field
-		Type         resp.Field
-		User         resp.Field
-		ExtraFields  map[string]resp.Field
+		Date         respjson.Field
+		GdssRemarkID respjson.Field
+		ItineraryNum respjson.Field
+		Text         respjson.Field
+		Type         respjson.Field
+		User         respjson.Field
+		ExtraFields  map[string]respjson.Field
 		raw          string
 	} `json:"-"`
 }
@@ -519,27 +519,27 @@ type AirTransportMissionAbridgedRequirement struct {
 	TransReqNum string `json:"transReqNum"`
 	// Unit line number.
 	Uln string `json:"uln"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		BulkWeight     resp.Field
-		Ead            resp.Field
-		GdssReqID      resp.Field
-		Lad            resp.Field
-		NumAmbulatory  resp.Field
-		NumAttendant   resp.Field
-		NumLitter      resp.Field
-		NumPax         resp.Field
-		OffloadID      resp.Field
-		OffloadLoCode  resp.Field
-		OnloadID       resp.Field
-		OnloadLoCode   resp.Field
-		Oplan          resp.Field
-		OutsizeWeight  resp.Field
-		OversizeWeight resp.Field
-		ProjName       resp.Field
-		TransReqNum    resp.Field
-		Uln            resp.Field
-		ExtraFields    map[string]resp.Field
+		BulkWeight     respjson.Field
+		Ead            respjson.Field
+		GdssReqID      respjson.Field
+		Lad            respjson.Field
+		NumAmbulatory  respjson.Field
+		NumAttendant   respjson.Field
+		NumLitter      respjson.Field
+		NumPax         respjson.Field
+		OffloadID      respjson.Field
+		OffloadLoCode  respjson.Field
+		OnloadID       respjson.Field
+		OnloadLoCode   respjson.Field
+		Oplan          respjson.Field
+		OutsizeWeight  respjson.Field
+		OversizeWeight respjson.Field
+		ProjName       respjson.Field
+		TransReqNum    respjson.Field
+		Uln            respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }

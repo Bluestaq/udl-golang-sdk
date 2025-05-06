@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
@@ -277,35 +277,35 @@ type CollectResponseAbridged struct {
 	Status string `json:"status"`
 	// Optional task ID associated with the request/response.
 	TaskID string `json:"taskId"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDRequest             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		ActualEndTime         resp.Field
-		ActualStartTime       resp.Field
-		AltEndTime            resp.Field
-		AltStartTime          resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		ErrCode               resp.Field
-		ExternalID            resp.Field
-		IDOnOrbit             resp.Field
-		IDPlan                resp.Field
-		IDSensor              resp.Field
-		Notes                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		OrigSensorID          resp.Field
-		SatNo                 resp.Field
-		SrcIDs                resp.Field
-		SrcTyps               resp.Field
-		Status                resp.Field
-		TaskID                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDRequest             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		ActualEndTime         respjson.Field
+		ActualStartTime       respjson.Field
+		AltEndTime            respjson.Field
+		AltStartTime          respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		ErrCode               respjson.Field
+		ExternalID            respjson.Field
+		IDOnOrbit             respjson.Field
+		IDPlan                respjson.Field
+		IDSensor              respjson.Field
+		Notes                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		OrigSensorID          respjson.Field
+		SatNo                 respjson.Field
+		SrcIDs                respjson.Field
+		SrcTyps               respjson.Field
+		Status                respjson.Field
+		TaskID                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

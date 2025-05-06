@@ -15,7 +15,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // TrackService contains methods and other services that help with interacting with
@@ -462,77 +462,77 @@ type TrackListResponse struct {
 	TrkQual int64 `json:"trkQual"`
 	// Status of the track (e.g., INITIATING, MAINTAINING, DROPPING, TERMINATED, etc.).
 	TrkStat string `json:"trkStat"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		ID                    resp.Field
-		Alt                   resp.Field
-		Asset                 resp.Field
-		AssetNat              resp.Field
-		CallSign              resp.Field
-		Cntct                 resp.Field
-		Course                resp.Field
-		Cov                   resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EcefAcc               resp.Field
-		EcefPos               resp.Field
-		EcefVel               resp.Field
-		ENuPos                resp.Field
-		ENuVel                resp.Field
-		Env                   resp.Field
-		EnvConf               resp.Field
-		ErrEllp               resp.Field
-		Hdng                  resp.Field
-		IdentAmp              resp.Field
-		IdentCred             resp.Field
-		IdentRel              resp.Field
-		JSeries               resp.Field
-		Lat                   resp.Field
-		LcAcc                 resp.Field
-		Lco                   resp.Field
-		LcPos                 resp.Field
-		Lcs                   resp.Field
-		LcVel                 resp.Field
-		Lon                   resp.Field
-		M1                    resp.Field
-		M1v                   resp.Field
-		M2                    resp.Field
-		M2v                   resp.Field
-		M3a                   resp.Field
-		M3av                  resp.Field
-		ModType               resp.Field
-		MsgTs                 resp.Field
-		MsnID                 resp.Field
-		MultiSource           resp.Field
-		ObjAct                resp.Field
-		ObjID                 resp.Field
-		ObjIdent              resp.Field
-		ObjNat                resp.Field
-		ObjPlat               resp.Field
-		ObjSpec               resp.Field
-		ObjType               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Sen                   resp.Field
-		SenQual               resp.Field
-		SourceDl              resp.Field
-		Spd                   resp.Field
-		SrcIDs                resp.Field
-		SrcTyps               resp.Field
-		Strength              resp.Field
-		Tags                  resp.Field
-		TrkConf               resp.Field
-		TrkID                 resp.Field
-		TrkItmID              resp.Field
-		TrkNum                resp.Field
-		TrkPtType             resp.Field
-		TrkQual               resp.Field
-		TrkStat               resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		ID                    respjson.Field
+		Alt                   respjson.Field
+		Asset                 respjson.Field
+		AssetNat              respjson.Field
+		CallSign              respjson.Field
+		Cntct                 respjson.Field
+		Course                respjson.Field
+		Cov                   respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EcefAcc               respjson.Field
+		EcefPos               respjson.Field
+		EcefVel               respjson.Field
+		ENuPos                respjson.Field
+		ENuVel                respjson.Field
+		Env                   respjson.Field
+		EnvConf               respjson.Field
+		ErrEllp               respjson.Field
+		Hdng                  respjson.Field
+		IdentAmp              respjson.Field
+		IdentCred             respjson.Field
+		IdentRel              respjson.Field
+		JSeries               respjson.Field
+		Lat                   respjson.Field
+		LcAcc                 respjson.Field
+		Lco                   respjson.Field
+		LcPos                 respjson.Field
+		Lcs                   respjson.Field
+		LcVel                 respjson.Field
+		Lon                   respjson.Field
+		M1                    respjson.Field
+		M1v                   respjson.Field
+		M2                    respjson.Field
+		M2v                   respjson.Field
+		M3a                   respjson.Field
+		M3av                  respjson.Field
+		ModType               respjson.Field
+		MsgTs                 respjson.Field
+		MsnID                 respjson.Field
+		MultiSource           respjson.Field
+		ObjAct                respjson.Field
+		ObjID                 respjson.Field
+		ObjIdent              respjson.Field
+		ObjNat                respjson.Field
+		ObjPlat               respjson.Field
+		ObjSpec               respjson.Field
+		ObjType               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Sen                   respjson.Field
+		SenQual               respjson.Field
+		SourceDl              respjson.Field
+		Spd                   respjson.Field
+		SrcIDs                respjson.Field
+		SrcTyps               respjson.Field
+		Strength              respjson.Field
+		Tags                  respjson.Field
+		TrkConf               respjson.Field
+		TrkID                 respjson.Field
+		TrkItmID              respjson.Field
+		TrkNum                respjson.Field
+		TrkPtType             respjson.Field
+		TrkQual               respjson.Field
+		TrkStat               respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

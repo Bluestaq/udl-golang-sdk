@@ -15,7 +15,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // OnboardnavigationService contains methods and other services that help with
@@ -217,32 +217,32 @@ type OnboardnavigationListResponse struct {
 	// assumed to correspond to all sensor data in this record. If sensors do not share
 	// a common epoch then separate records should be generated.
 	Ts []time.Time `json:"ts" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		StartTime             resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DeltaPos              resp.Field
-		EndTime               resp.Field
-		EsID                  resp.Field
-		IDOnOrbit             resp.Field
-		IDStateVector         resp.Field
-		Mag                   resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		ReferenceFrame        resp.Field
-		SatNo                 resp.Field
-		StarCatLoadTime       resp.Field
-		StarCatName           resp.Field
-		StarTracker           resp.Field
-		SunSensor             resp.Field
-		Ts                    resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		StartTime             respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DeltaPos              respjson.Field
+		EndTime               respjson.Field
+		EsID                  respjson.Field
+		IDOnOrbit             respjson.Field
+		IDStateVector         respjson.Field
+		Mag                   respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		ReferenceFrame        respjson.Field
+		SatNo                 respjson.Field
+		StarCatLoadTime       respjson.Field
+		StarCatName           respjson.Field
+		StarTracker           respjson.Field
+		SunSensor             respjson.Field
+		Ts                    respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

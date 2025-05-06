@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // VideoService contains methods and other services that help with interacting with
@@ -204,23 +204,23 @@ type VideoListResponse struct {
 	StopTime time.Time `json:"stopTime" format:"date-time"`
 	// Video Streaming Support URLs.
 	VideoURLs []string `json:"videoUrls"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Description           resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		TokenValue            resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		StartTime             resp.Field
-		StopTime              resp.Field
-		VideoURLs             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Description           respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		TokenValue            respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		StartTime             respjson.Field
+		StopTime              respjson.Field
+		VideoURLs             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -300,23 +300,23 @@ type VideoGetPlayerStreamingInfoResponse struct {
 	StopTime time.Time `json:"stopTime" format:"date-time"`
 	// Video Streaming Support URLs.
 	VideoURLs []string `json:"videoUrls"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Description           resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		TokenValue            resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		StartTime             resp.Field
-		StopTime              resp.Field
-		VideoURLs             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Description           respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		TokenValue            respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		StartTime             respjson.Field
+		StopTime              respjson.Field
+		VideoURLs             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -396,23 +396,23 @@ type VideoGetPublisherStreamingInfoResponse struct {
 	StopTime time.Time `json:"stopTime" format:"date-time"`
 	// Video Streaming Support URLs.
 	VideoURLs []string `json:"videoUrls"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Description           resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		TokenValue            resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		StartTime             resp.Field
-		StopTime              resp.Field
-		VideoURLs             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Description           respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		TokenValue            respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		StartTime             respjson.Field
+		StopTime              respjson.Field
+		VideoURLs             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -492,23 +492,23 @@ type VideoGetStreamFileResponse struct {
 	StopTime time.Time `json:"stopTime" format:"date-time"`
 	// Video Streaming Support URLs.
 	VideoURLs []string `json:"videoUrls"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Description           resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		TokenValue            resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		StartTime             resp.Field
-		StopTime              resp.Field
-		VideoURLs             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Description           respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		TokenValue            respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		StartTime             respjson.Field
+		StopTime              respjson.Field
+		VideoURLs             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

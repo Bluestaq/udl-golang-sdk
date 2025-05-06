@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // SoiObservationSetHistoryService contains methods and other services that help
@@ -333,82 +333,82 @@ type SoiObservationSetFull struct {
 	// then the provided calibration data will be used when generating the EOSSA file
 	// (e.g. PRE, POST, BOTH, NONE).
 	ValidCalibrations string `json:"validCalibrations"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                   resp.Field
-		DataMode                                resp.Field
-		NumObs                                  resp.Field
-		Source                                  resp.Field
-		StartTime                               resp.Field
-		Type                                    resp.Field
-		ID                                      resp.Field
-		BinningHoriz                            resp.Field
-		BinningVert                             resp.Field
-		BrightnessVarianceChangeDetected        resp.Field
-		Calibrations                            resp.Field
-		CalibrationType                         resp.Field
-		ChangeConf                              resp.Field
-		ChangeDetected                          resp.Field
-		CollectionDensityConf                   resp.Field
-		CollectionID                            resp.Field
-		CollectionMode                          resp.Field
-		CorrQuality                             resp.Field
-		CreatedAt                               resp.Field
-		CreatedBy                               resp.Field
-		EndTime                                 resp.Field
-		Gain                                    resp.Field
-		IDElset                                 resp.Field
-		IDOnOrbit                               resp.Field
-		IDSensor                                resp.Field
-		LosDeclinationEnd                       resp.Field
-		LosDeclinationStart                     resp.Field
-		MsgCreateDate                           resp.Field
-		NumSpectralFilters                      resp.Field
-		OpticalSoiObservationList               resp.Field
-		Origin                                  resp.Field
-		OrigNetwork                             resp.Field
-		OrigObjectID                            resp.Field
-		OrigSensorID                            resp.Field
-		PercentSatThreshold                     resp.Field
-		PeriodicityChangeDetected               resp.Field
-		PeriodicityDetectionConf                resp.Field
-		PeriodicitySamplingConf                 resp.Field
-		PixelArrayHeight                        resp.Field
-		PixelArrayWidth                         resp.Field
-		PixelMax                                resp.Field
-		PixelMin                                resp.Field
-		PointingAngleAzEnd                      resp.Field
-		PointingAngleAzStart                    resp.Field
-		PointingAngleElEnd                      resp.Field
-		PointingAngleElStart                    resp.Field
-		PolarAngleEnd                           resp.Field
-		PolarAngleStart                         resp.Field
-		RadarSoiObservationList                 resp.Field
-		ReferenceFrame                          resp.Field
-		SatelliteName                           resp.Field
-		SatNo                                   resp.Field
-		Senalt                                  resp.Field
-		Senlat                                  resp.Field
-		Senlon                                  resp.Field
-		SenReferenceFrame                       resp.Field
-		SensorAsID                              resp.Field
-		Senvelx                                 resp.Field
-		Senvely                                 resp.Field
-		Senvelz                                 resp.Field
-		Senx                                    resp.Field
-		Seny                                    resp.Field
-		Senz                                    resp.Field
-		SoftwareVersion                         resp.Field
-		SolarMag                                resp.Field
-		SolarPhaseAngleBrightnessChangeDetected resp.Field
-		SourceDl                                resp.Field
-		SpectralFilters                         resp.Field
-		StarCatName                             resp.Field
-		Tags                                    resp.Field
-		TransactionID                           resp.Field
-		Uct                                     resp.Field
-		ValidCalibrations                       resp.Field
-		ExtraFields                             map[string]resp.Field
+		ClassificationMarking                   respjson.Field
+		DataMode                                respjson.Field
+		NumObs                                  respjson.Field
+		Source                                  respjson.Field
+		StartTime                               respjson.Field
+		Type                                    respjson.Field
+		ID                                      respjson.Field
+		BinningHoriz                            respjson.Field
+		BinningVert                             respjson.Field
+		BrightnessVarianceChangeDetected        respjson.Field
+		Calibrations                            respjson.Field
+		CalibrationType                         respjson.Field
+		ChangeConf                              respjson.Field
+		ChangeDetected                          respjson.Field
+		CollectionDensityConf                   respjson.Field
+		CollectionID                            respjson.Field
+		CollectionMode                          respjson.Field
+		CorrQuality                             respjson.Field
+		CreatedAt                               respjson.Field
+		CreatedBy                               respjson.Field
+		EndTime                                 respjson.Field
+		Gain                                    respjson.Field
+		IDElset                                 respjson.Field
+		IDOnOrbit                               respjson.Field
+		IDSensor                                respjson.Field
+		LosDeclinationEnd                       respjson.Field
+		LosDeclinationStart                     respjson.Field
+		MsgCreateDate                           respjson.Field
+		NumSpectralFilters                      respjson.Field
+		OpticalSoiObservationList               respjson.Field
+		Origin                                  respjson.Field
+		OrigNetwork                             respjson.Field
+		OrigObjectID                            respjson.Field
+		OrigSensorID                            respjson.Field
+		PercentSatThreshold                     respjson.Field
+		PeriodicityChangeDetected               respjson.Field
+		PeriodicityDetectionConf                respjson.Field
+		PeriodicitySamplingConf                 respjson.Field
+		PixelArrayHeight                        respjson.Field
+		PixelArrayWidth                         respjson.Field
+		PixelMax                                respjson.Field
+		PixelMin                                respjson.Field
+		PointingAngleAzEnd                      respjson.Field
+		PointingAngleAzStart                    respjson.Field
+		PointingAngleElEnd                      respjson.Field
+		PointingAngleElStart                    respjson.Field
+		PolarAngleEnd                           respjson.Field
+		PolarAngleStart                         respjson.Field
+		RadarSoiObservationList                 respjson.Field
+		ReferenceFrame                          respjson.Field
+		SatelliteName                           respjson.Field
+		SatNo                                   respjson.Field
+		Senalt                                  respjson.Field
+		Senlat                                  respjson.Field
+		Senlon                                  respjson.Field
+		SenReferenceFrame                       respjson.Field
+		SensorAsID                              respjson.Field
+		Senvelx                                 respjson.Field
+		Senvely                                 respjson.Field
+		Senvelz                                 respjson.Field
+		Senx                                    respjson.Field
+		Seny                                    respjson.Field
+		Senz                                    respjson.Field
+		SoftwareVersion                         respjson.Field
+		SolarMag                                respjson.Field
+		SolarPhaseAngleBrightnessChangeDetected respjson.Field
+		SourceDl                                respjson.Field
+		SpectralFilters                         respjson.Field
+		StarCatName                             respjson.Field
+		Tags                                    respjson.Field
+		TransactionID                           respjson.Field
+		Uct                                     respjson.Field
+		ValidCalibrations                       respjson.Field
+		ExtraFields                             map[string]respjson.Field
 		raw                                     string
 	} `json:"-"`
 }
@@ -484,20 +484,20 @@ type SoiObservationSetFullCalibration struct {
 	// Value representing the difference between the catalog magnitude and instrumental
 	// magnitude for a set of standard stars, at calibration (e.g. -5.0 to 30.0).
 	CalZeroPoint float64 `json:"calZeroPoint"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CalBgIntensity            resp.Field
-		CalExtinctionCoeff        resp.Field
-		CalExtinctionCoeffMaxUnc  resp.Field
-		CalExtinctionCoeffUnc     resp.Field
-		CalNumCorrelatedStars     resp.Field
-		CalNumDetectedStars       resp.Field
-		CalSkyBg                  resp.Field
-		CalSpectralFilterSolarMag resp.Field
-		CalTime                   resp.Field
-		CalType                   resp.Field
-		CalZeroPoint              resp.Field
-		ExtraFields               map[string]resp.Field
+		CalBgIntensity            respjson.Field
+		CalExtinctionCoeff        respjson.Field
+		CalExtinctionCoeffMaxUnc  respjson.Field
+		CalExtinctionCoeffUnc     respjson.Field
+		CalNumCorrelatedStars     respjson.Field
+		CalNumDetectedStars       respjson.Field
+		CalSkyBg                  respjson.Field
+		CalSpectralFilterSolarMag respjson.Field
+		CalTime                   respjson.Field
+		CalType                   respjson.Field
+		CalZeroPoint              respjson.Field
+		ExtraFields               map[string]respjson.Field
 		raw                       string
 	} `json:"-"`
 }
@@ -571,26 +571,26 @@ type SoiObservationSetFullOpticalSoiObservationList struct {
 	// intensity measurement. It is the difference between the catalog mag and
 	// instrumental mag for a set of standard stars (e.g. -5.0 to 30.0).
 	ZeroPoints []float64 `json:"zeroPoints"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ObStartTime              resp.Field
-		CurrentSpectralFilterNum resp.Field
-		Declinations             resp.Field
-		ExpDuration              resp.Field
-		ExtinctionCoeffs         resp.Field
-		ExtinctionCoeffsUnc      resp.Field
-		Intensities              resp.Field
-		IntensityTimes           resp.Field
-		LocalSkyBgs              resp.Field
-		LocalSkyBgsUnc           resp.Field
-		NumCorrelatedStars       resp.Field
-		NumDetectedStars         resp.Field
-		PercentSats              resp.Field
-		RaRates                  resp.Field
-		Ras                      resp.Field
-		SkyBgs                   resp.Field
-		ZeroPoints               resp.Field
-		ExtraFields              map[string]resp.Field
+		ObStartTime              respjson.Field
+		CurrentSpectralFilterNum respjson.Field
+		Declinations             respjson.Field
+		ExpDuration              respjson.Field
+		ExtinctionCoeffs         respjson.Field
+		ExtinctionCoeffsUnc      respjson.Field
+		Intensities              respjson.Field
+		IntensityTimes           respjson.Field
+		LocalSkyBgs              respjson.Field
+		LocalSkyBgsUnc           respjson.Field
+		NumCorrelatedStars       respjson.Field
+		NumDetectedStars         respjson.Field
+		PercentSats              respjson.Field
+		RaRates                  respjson.Field
+		Ras                      respjson.Field
+		SkyBgs                   respjson.Field
+		ZeroPoints               respjson.Field
+		ExtraFields              map[string]respjson.Field
 		raw                      string
 	} `json:"-"`
 }
@@ -746,49 +746,49 @@ type SoiObservationSetFullRadarSoiObservationList struct {
 	// specified referenceFrame. If referenceFrame is null then J2K should be assumed.
 	// The 'tovs' and 'zvel' arrays must match in size, if 'zvel' is provided.
 	Zvel []float64 `json:"zvel"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ObStartTime       resp.Field
-		AspectAngles      resp.Field
-		AzimuthBiases     resp.Field
-		AzimuthRates      resp.Field
-		Azimuths          resp.Field
-		Beta              resp.Field
-		CenterFrequency   resp.Field
-		CrossRangeRes     resp.Field
-		DeltaTimes        resp.Field
-		Doppler2XRs       resp.Field
-		ElevationBiases   resp.Field
-		ElevationRates    resp.Field
-		Elevations        resp.Field
-		IDAttitudeSet     resp.Field
-		IDStateVector     resp.Field
-		IntegrationAngles resp.Field
-		Kappa             resp.Field
-		PeakAmplitudes    resp.Field
-		Polarizations     resp.Field
-		ProjAngVels       resp.Field
-		PulseBandwidth    resp.Field
-		RangeAccels       resp.Field
-		RangeBiases       resp.Field
-		RangeRates        resp.Field
-		Ranges            resp.Field
-		RcsErrorEsts      resp.Field
-		RcsValues         resp.Field
-		Rspaces           resp.Field
-		SpectralWidths    resp.Field
-		Tovs              resp.Field
-		Xaccel            resp.Field
-		Xpos              resp.Field
-		Xspaces           resp.Field
-		Xvel              resp.Field
-		Yaccel            resp.Field
-		Ypos              resp.Field
-		Yvel              resp.Field
-		Zaccel            resp.Field
-		Zpos              resp.Field
-		Zvel              resp.Field
-		ExtraFields       map[string]resp.Field
+		ObStartTime       respjson.Field
+		AspectAngles      respjson.Field
+		AzimuthBiases     respjson.Field
+		AzimuthRates      respjson.Field
+		Azimuths          respjson.Field
+		Beta              respjson.Field
+		CenterFrequency   respjson.Field
+		CrossRangeRes     respjson.Field
+		DeltaTimes        respjson.Field
+		Doppler2XRs       respjson.Field
+		ElevationBiases   respjson.Field
+		ElevationRates    respjson.Field
+		Elevations        respjson.Field
+		IDAttitudeSet     respjson.Field
+		IDStateVector     respjson.Field
+		IntegrationAngles respjson.Field
+		Kappa             respjson.Field
+		PeakAmplitudes    respjson.Field
+		Polarizations     respjson.Field
+		ProjAngVels       respjson.Field
+		PulseBandwidth    respjson.Field
+		RangeAccels       respjson.Field
+		RangeBiases       respjson.Field
+		RangeRates        respjson.Field
+		Ranges            respjson.Field
+		RcsErrorEsts      respjson.Field
+		RcsValues         respjson.Field
+		Rspaces           respjson.Field
+		SpectralWidths    respjson.Field
+		Tovs              respjson.Field
+		Xaccel            respjson.Field
+		Xpos              respjson.Field
+		Xspaces           respjson.Field
+		Xvel              respjson.Field
+		Yaccel            respjson.Field
+		Ypos              respjson.Field
+		Yvel              respjson.Field
+		Zaccel            respjson.Field
+		Zpos              respjson.Field
+		Zvel              respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }

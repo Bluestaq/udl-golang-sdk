@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
@@ -327,61 +327,61 @@ type AircraftstatusAbridged struct {
 	TroubleshootEtic time.Time `json:"troubleshootEtic" format:"date-time"`
 	// List of unavailable systems that would normally be on this aircraft.
 	UnavailableSys []string `json:"unavailableSys"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDAircraft            resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AdditionalSys         resp.Field
-		AirToAirStatus        resp.Field
-		AirToGroundStatus     resp.Field
-		AlphaStatusCode       resp.Field
-		AltAircraftID         resp.Field
-		ContaminationStatus   resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		CurrentIcao           resp.Field
-		CurrentState          resp.Field
-		EarliestTaEndTime     resp.Field
-		Etic                  resp.Field
-		FlightPhase           resp.Field
-		Fuel                  resp.Field
-		FuelFunction          resp.Field
-		FuelStatus            resp.Field
-		GeoLoc                resp.Field
-		GroundStatus          resp.Field
-		GunCapable            resp.Field
-		GunRdsMax             resp.Field
-		GunRdsMin             resp.Field
-		GunRdsType            resp.Field
-		IDAirfield            resp.Field
-		IDPoi                 resp.Field
-		Inventory             resp.Field
-		InventoryMax          resp.Field
-		InventoryMin          resp.Field
-		LastInspectionDate    resp.Field
-		LastUpdatedBy         resp.Field
-		MaintPoc              resp.Field
-		MaintPriority         resp.Field
-		MaintStatus           resp.Field
-		MaintStatusDriver     resp.Field
-		MaintStatusUpdate     resp.Field
-		MissionReadiness      resp.Field
-		MxRemark              resp.Field
-		NextIcao              resp.Field
-		Notes                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ParkLocation          resp.Field
-		ParkLocationSystem    resp.Field
-		PreviousIcao          resp.Field
-		SourceDl              resp.Field
-		TaStartTime           resp.Field
-		TroubleshootEtic      resp.Field
-		UnavailableSys        resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDAircraft            respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AdditionalSys         respjson.Field
+		AirToAirStatus        respjson.Field
+		AirToGroundStatus     respjson.Field
+		AlphaStatusCode       respjson.Field
+		AltAircraftID         respjson.Field
+		ContaminationStatus   respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		CurrentIcao           respjson.Field
+		CurrentState          respjson.Field
+		EarliestTaEndTime     respjson.Field
+		Etic                  respjson.Field
+		FlightPhase           respjson.Field
+		Fuel                  respjson.Field
+		FuelFunction          respjson.Field
+		FuelStatus            respjson.Field
+		GeoLoc                respjson.Field
+		GroundStatus          respjson.Field
+		GunCapable            respjson.Field
+		GunRdsMax             respjson.Field
+		GunRdsMin             respjson.Field
+		GunRdsType            respjson.Field
+		IDAirfield            respjson.Field
+		IDPoi                 respjson.Field
+		Inventory             respjson.Field
+		InventoryMax          respjson.Field
+		InventoryMin          respjson.Field
+		LastInspectionDate    respjson.Field
+		LastUpdatedBy         respjson.Field
+		MaintPoc              respjson.Field
+		MaintPriority         respjson.Field
+		MaintStatus           respjson.Field
+		MaintStatusDriver     respjson.Field
+		MaintStatusUpdate     respjson.Field
+		MissionReadiness      respjson.Field
+		MxRemark              respjson.Field
+		NextIcao              respjson.Field
+		Notes                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ParkLocation          respjson.Field
+		ParkLocationSystem    respjson.Field
+		PreviousIcao          respjson.Field
+		SourceDl              respjson.Field
+		TaStartTime           respjson.Field
+		TroubleshootEtic      respjson.Field
+		UnavailableSys        respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

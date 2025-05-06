@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // OnorbitthrusterstatusHistoryService contains methods and other services that
@@ -154,33 +154,33 @@ type OnorbitthrusterstatusFull struct {
 	ThrustMax float64 `json:"thrustMax"`
 	// Total delta-velocity available for this thruster's type, in meters per second.
 	TotalDeltaV float64 `json:"totalDeltaV"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDOnorbitThruster     resp.Field
-		Source                resp.Field
-		StatusTime            resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EstDeltaV             resp.Field
-		FuelMass              resp.Field
-		FuelMassUnc           resp.Field
-		Isp                   resp.Field
-		MaxDeltaV             resp.Field
-		MinDeltaV             resp.Field
-		Name                  resp.Field
-		Operational           resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PropMassAvg           resp.Field
-		PropMassMax           resp.Field
-		PropMassMedian        resp.Field
-		PropMassMin           resp.Field
-		ThrustMax             resp.Field
-		TotalDeltaV           resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDOnorbitThruster     respjson.Field
+		Source                respjson.Field
+		StatusTime            respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EstDeltaV             respjson.Field
+		FuelMass              respjson.Field
+		FuelMassUnc           respjson.Field
+		Isp                   respjson.Field
+		MaxDeltaV             respjson.Field
+		MinDeltaV             respjson.Field
+		Name                  respjson.Field
+		Operational           respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PropMassAvg           respjson.Field
+		PropMassMax           respjson.Field
+		PropMassMedian        respjson.Field
+		PropMassMin           respjson.Field
+		ThrustMax             respjson.Field
+		TotalDeltaV           respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

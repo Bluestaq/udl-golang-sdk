@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // SortiePprHistoryService contains methods and other services that help with
@@ -165,29 +165,29 @@ type SortiePprFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDSortie              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EndTime               resp.Field
-		ExternalID            resp.Field
-		Grantor               resp.Field
-		Number                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Remarks               resp.Field
-		Requestor             resp.Field
-		SourceDl              resp.Field
-		StartTime             resp.Field
-		Type                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDSortie              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EndTime               respjson.Field
+		ExternalID            respjson.Field
+		Grantor               respjson.Field
+		Number                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Remarks               respjson.Field
+		Requestor             respjson.Field
+		SourceDl              respjson.Field
+		StartTime             respjson.Field
+		Type                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

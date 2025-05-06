@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // SeraDataEarlyWarningService contains methods and other services that help with
@@ -224,31 +224,31 @@ type SeraDataEarlyWarningListResponse struct {
 	PayloadNotes string `json:"payloadNotes"`
 	// Spectral Bands, e.g. Infra-Red.
 	SpectralBands string `json:"spectralBands"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking              resp.Field
-		DataMode                           resp.Field
-		Source                             resp.Field
-		SpacecraftID                       resp.Field
-		ID                                 resp.Field
-		BestResolution                     resp.Field
-		CreatedAt                          resp.Field
-		CreatedBy                          resp.Field
-		EarthPointing                      resp.Field
-		FrequencyLimits                    resp.Field
-		GroundStationLocations             resp.Field
-		GroundStations                     resp.Field
-		HostedForCompanyOrgID              resp.Field
-		IDIr                               resp.Field
-		ManufacturerOrgID                  resp.Field
-		MissileLaunchPhaseDetectionAbility resp.Field
-		Name                               resp.Field
-		Origin                             resp.Field
-		OrigNetwork                        resp.Field
-		PartnerSpacecraftID                resp.Field
-		PayloadNotes                       resp.Field
-		SpectralBands                      resp.Field
-		ExtraFields                        map[string]resp.Field
+		ClassificationMarking              respjson.Field
+		DataMode                           respjson.Field
+		Source                             respjson.Field
+		SpacecraftID                       respjson.Field
+		ID                                 respjson.Field
+		BestResolution                     respjson.Field
+		CreatedAt                          respjson.Field
+		CreatedBy                          respjson.Field
+		EarthPointing                      respjson.Field
+		FrequencyLimits                    respjson.Field
+		GroundStationLocations             respjson.Field
+		GroundStations                     respjson.Field
+		HostedForCompanyOrgID              respjson.Field
+		IDIr                               respjson.Field
+		ManufacturerOrgID                  respjson.Field
+		MissileLaunchPhaseDetectionAbility respjson.Field
+		Name                               respjson.Field
+		Origin                             respjson.Field
+		OrigNetwork                        respjson.Field
+		PartnerSpacecraftID                respjson.Field
+		PayloadNotes                       respjson.Field
+		SpectralBands                      respjson.Field
+		ExtraFields                        map[string]respjson.Field
 		raw                                string
 	} `json:"-"`
 }
@@ -353,33 +353,33 @@ type SeraDataEarlyWarningGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking              resp.Field
-		DataMode                           resp.Field
-		Source                             resp.Field
-		SpacecraftID                       resp.Field
-		ID                                 resp.Field
-		BestResolution                     resp.Field
-		CreatedAt                          resp.Field
-		CreatedBy                          resp.Field
-		EarthPointing                      resp.Field
-		FrequencyLimits                    resp.Field
-		GroundStationLocations             resp.Field
-		GroundStations                     resp.Field
-		HostedForCompanyOrgID              resp.Field
-		IDIr                               resp.Field
-		ManufacturerOrgID                  resp.Field
-		MissileLaunchPhaseDetectionAbility resp.Field
-		Name                               resp.Field
-		Origin                             resp.Field
-		OrigNetwork                        resp.Field
-		PartnerSpacecraftID                resp.Field
-		PayloadNotes                       resp.Field
-		SpectralBands                      resp.Field
-		UpdatedAt                          resp.Field
-		UpdatedBy                          resp.Field
-		ExtraFields                        map[string]resp.Field
+		ClassificationMarking              respjson.Field
+		DataMode                           respjson.Field
+		Source                             respjson.Field
+		SpacecraftID                       respjson.Field
+		ID                                 respjson.Field
+		BestResolution                     respjson.Field
+		CreatedAt                          respjson.Field
+		CreatedBy                          respjson.Field
+		EarthPointing                      respjson.Field
+		FrequencyLimits                    respjson.Field
+		GroundStationLocations             respjson.Field
+		GroundStations                     respjson.Field
+		HostedForCompanyOrgID              respjson.Field
+		IDIr                               respjson.Field
+		ManufacturerOrgID                  respjson.Field
+		MissileLaunchPhaseDetectionAbility respjson.Field
+		Name                               respjson.Field
+		Origin                             respjson.Field
+		OrigNetwork                        respjson.Field
+		PartnerSpacecraftID                respjson.Field
+		PayloadNotes                       respjson.Field
+		SpectralBands                      respjson.Field
+		UpdatedAt                          respjson.Field
+		UpdatedBy                          respjson.Field
+		ExtraFields                        map[string]respjson.Field
 		raw                                string
 	} `json:"-"`
 }
@@ -484,33 +484,33 @@ type SeraDataEarlyWarningTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking              resp.Field
-		DataMode                           resp.Field
-		Source                             resp.Field
-		SpacecraftID                       resp.Field
-		ID                                 resp.Field
-		BestResolution                     resp.Field
-		CreatedAt                          resp.Field
-		CreatedBy                          resp.Field
-		EarthPointing                      resp.Field
-		FrequencyLimits                    resp.Field
-		GroundStationLocations             resp.Field
-		GroundStations                     resp.Field
-		HostedForCompanyOrgID              resp.Field
-		IDIr                               resp.Field
-		ManufacturerOrgID                  resp.Field
-		MissileLaunchPhaseDetectionAbility resp.Field
-		Name                               resp.Field
-		Origin                             resp.Field
-		OrigNetwork                        resp.Field
-		PartnerSpacecraftID                resp.Field
-		PayloadNotes                       resp.Field
-		SpectralBands                      resp.Field
-		UpdatedAt                          resp.Field
-		UpdatedBy                          resp.Field
-		ExtraFields                        map[string]resp.Field
+		ClassificationMarking              respjson.Field
+		DataMode                           respjson.Field
+		Source                             respjson.Field
+		SpacecraftID                       respjson.Field
+		ID                                 respjson.Field
+		BestResolution                     respjson.Field
+		CreatedAt                          respjson.Field
+		CreatedBy                          respjson.Field
+		EarthPointing                      respjson.Field
+		FrequencyLimits                    respjson.Field
+		GroundStationLocations             respjson.Field
+		GroundStations                     respjson.Field
+		HostedForCompanyOrgID              respjson.Field
+		IDIr                               respjson.Field
+		ManufacturerOrgID                  respjson.Field
+		MissileLaunchPhaseDetectionAbility respjson.Field
+		Name                               respjson.Field
+		Origin                             respjson.Field
+		OrigNetwork                        respjson.Field
+		PartnerSpacecraftID                respjson.Field
+		PayloadNotes                       respjson.Field
+		SpectralBands                      respjson.Field
+		UpdatedAt                          respjson.Field
+		UpdatedBy                          respjson.Field
+		ExtraFields                        map[string]respjson.Field
 		raw                                string
 	} `json:"-"`
 }

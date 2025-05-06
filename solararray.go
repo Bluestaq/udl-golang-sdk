@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // SolarArrayService contains methods and other services that help with interacting
@@ -198,17 +198,17 @@ type SolarArrayListResponse struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DataMode    resp.Field
-		Name        resp.Field
-		Source      resp.Field
-		ID          resp.Field
-		CreatedAt   resp.Field
-		CreatedBy   resp.Field
-		Origin      resp.Field
-		OrigNetwork resp.Field
-		ExtraFields map[string]resp.Field
+		DataMode    respjson.Field
+		Name        respjson.Field
+		Source      respjson.Field
+		ID          respjson.Field
+		CreatedAt   respjson.Field
+		CreatedBy   respjson.Field
+		Origin      respjson.Field
+		OrigNetwork respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -291,20 +291,20 @@ type SolarArrayGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DataMode          resp.Field
-		Name              resp.Field
-		Source            resp.Field
-		ID                resp.Field
-		CreatedAt         resp.Field
-		CreatedBy         resp.Field
-		Origin            resp.Field
-		OrigNetwork       resp.Field
-		SolarArrayDetails resp.Field
-		UpdatedAt         resp.Field
-		UpdatedBy         resp.Field
-		ExtraFields       map[string]resp.Field
+		DataMode          respjson.Field
+		Name              respjson.Field
+		Source            respjson.Field
+		ID                respjson.Field
+		CreatedAt         respjson.Field
+		CreatedBy         respjson.Field
+		Origin            respjson.Field
+		OrigNetwork       respjson.Field
+		SolarArrayDetails respjson.Field
+		UpdatedAt         respjson.Field
+		UpdatedBy         respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -387,20 +387,20 @@ type SolarArrayTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DataMode          resp.Field
-		Name              resp.Field
-		Source            resp.Field
-		ID                resp.Field
-		CreatedAt         resp.Field
-		CreatedBy         resp.Field
-		Origin            resp.Field
-		OrigNetwork       resp.Field
-		SolarArrayDetails resp.Field
-		UpdatedAt         resp.Field
-		UpdatedBy         resp.Field
-		ExtraFields       map[string]resp.Field
+		DataMode          respjson.Field
+		Name              respjson.Field
+		Source            respjson.Field
+		ID                respjson.Field
+		CreatedAt         respjson.Field
+		CreatedBy         respjson.Field
+		Origin            respjson.Field
+		OrigNetwork       respjson.Field
+		SolarArrayDetails respjson.Field
+		UpdatedAt         respjson.Field
+		UpdatedBy         respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
