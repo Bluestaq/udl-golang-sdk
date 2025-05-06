@@ -230,8 +230,7 @@ type TransponderListResponse struct {
 	// uplink received by a satellite, and the downlink transmitted back. It varies
 	// satellite to satellite dependent on the mission.
 	Ttf float64 `json:"ttf"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -359,8 +358,7 @@ type TransponderGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -491,8 +489,7 @@ type TransponderTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -606,10 +603,6 @@ type TransponderNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TransponderNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r TransponderNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow TransponderNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -695,10 +688,6 @@ type TransponderUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TransponderUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r TransponderUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow TransponderUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -733,10 +722,6 @@ type TransponderListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TransponderListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [TransponderListParams]'s query parameters as `url.Values`.
 func (r TransponderListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -751,10 +736,6 @@ type TransponderCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TransponderCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [TransponderCountParams]'s query parameters as `url.Values`.
 func (r TransponderCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -768,10 +749,6 @@ type TransponderGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TransponderGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [TransponderGetParams]'s query parameters as `url.Values`.
 func (r TransponderGetParams) URLQuery() (v url.Values, err error) {
@@ -791,10 +768,6 @@ type TransponderTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TransponderTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [TransponderTupleParams]'s query parameters as `url.Values`.
 func (r TransponderTupleParams) URLQuery() (v url.Values, err error) {

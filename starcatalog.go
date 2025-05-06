@@ -324,8 +324,7 @@ type StarCatalogListResponse struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Flag indicating that the source exhibits variable magnitude.
 	VarFlag bool `json:"varFlag"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AstrometryOrigin      resp.Field
 		ClassificationMarking resp.Field
@@ -556,8 +555,7 @@ type StarCatalogGetResponse struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Flag indicating that the source exhibits variable magnitude.
 	VarFlag bool `json:"varFlag"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AstrometryOrigin      resp.Field
 		ClassificationMarking resp.Field
@@ -788,8 +786,7 @@ type StarCatalogTupleResponse struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Flag indicating that the source exhibits variable magnitude.
 	VarFlag bool `json:"varFlag"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AstrometryOrigin      resp.Field
 		ClassificationMarking resp.Field
@@ -1009,10 +1006,6 @@ type StarCatalogNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarCatalogNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r StarCatalogNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow StarCatalogNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1177,10 +1170,6 @@ type StarCatalogUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarCatalogUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r StarCatalogUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow StarCatalogUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1233,10 +1222,6 @@ type StarCatalogListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarCatalogListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [StarCatalogListParams]'s query parameters as `url.Values`.
 func (r StarCatalogListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1259,10 +1244,6 @@ type StarCatalogCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarCatalogCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [StarCatalogCountParams]'s query parameters as `url.Values`.
 func (r StarCatalogCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1275,10 +1256,6 @@ type StarCatalogNewBulkParams struct {
 	Body []StarCatalogNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarCatalogNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r StarCatalogNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1427,9 +1404,6 @@ type StarCatalogNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarCatalogNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r StarCatalogNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow StarCatalogNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1449,10 +1423,6 @@ type StarCatalogGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarCatalogGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [StarCatalogGetParams]'s query parameters as `url.Values`.
 func (r StarCatalogGetParams) URLQuery() (v url.Values, err error) {
@@ -1481,10 +1451,6 @@ type StarCatalogTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarCatalogTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [StarCatalogTupleParams]'s query parameters as `url.Values`.
 func (r StarCatalogTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1496,12 +1462,6 @@ func (r StarCatalogTupleParams) URLQuery() (v url.Values, err error) {
 type StarCatalogUnvalidatedPublishParams struct {
 	Body []StarCatalogUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarCatalogUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r StarCatalogUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -1651,11 +1611,6 @@ type StarCatalogUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarCatalogUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r StarCatalogUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow StarCatalogUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

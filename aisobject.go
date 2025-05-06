@@ -50,12 +50,6 @@ type AIsObjectUnvalidatedPublishParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AIsObjectUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 func (r AIsObjectUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
@@ -243,11 +237,6 @@ type AIsObjectUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AIsObjectUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AIsObjectUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow AIsObjectUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

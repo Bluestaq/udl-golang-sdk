@@ -333,8 +333,7 @@ type SoiObservationSetFull struct {
 	// then the provided calibration data will be used when generating the EOSSA file
 	// (e.g. PRE, POST, BOTH, NONE).
 	ValidCalibrations string `json:"validCalibrations"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                   resp.Field
 		DataMode                                resp.Field
@@ -485,8 +484,7 @@ type SoiObservationSetFullCalibration struct {
 	// Value representing the difference between the catalog magnitude and instrumental
 	// magnitude for a set of standard stars, at calibration (e.g. -5.0 to 30.0).
 	CalZeroPoint float64 `json:"calZeroPoint"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CalBgIntensity            resp.Field
 		CalExtinctionCoeff        resp.Field
@@ -573,8 +571,7 @@ type SoiObservationSetFullOpticalSoiObservationList struct {
 	// intensity measurement. It is the difference between the catalog mag and
 	// instrumental mag for a set of standard stars (e.g. -5.0 to 30.0).
 	ZeroPoints []float64 `json:"zeroPoints"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ObStartTime              resp.Field
 		CurrentSpectralFilterNum resp.Field
@@ -749,8 +746,7 @@ type SoiObservationSetFullRadarSoiObservationList struct {
 	// specified referenceFrame. If referenceFrame is null then J2K should be assumed.
 	// The 'tovs' and 'zvel' arrays must match in size, if 'zvel' is provided.
 	Zvel []float64 `json:"zvel"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ObStartTime       resp.Field
 		AspectAngles      resp.Field
@@ -842,12 +838,6 @@ type SoiObservationSetHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetHistoryListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [SoiObservationSetHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r SoiObservationSetHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -881,12 +871,6 @@ type SoiObservationSetHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetHistoryAodrParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [SoiObservationSetHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r SoiObservationSetHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -903,12 +887,6 @@ type SoiObservationSetHistoryCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetHistoryCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [SoiObservationSetHistoryCountParams]'s query parameters as

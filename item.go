@@ -326,8 +326,7 @@ type ItemListResponse struct {
 	WeightTs time.Time `json:"weightTS" format:"date-time"`
 	// Width of the cargo in meters. Applicable for cargo item types only.
 	Width float64 `json:"width"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -573,8 +572,7 @@ type ItemGetResponse struct {
 	WeightTs time.Time `json:"weightTS" format:"date-time"`
 	// Width of the cargo in meters. Applicable for cargo item types only.
 	Width float64 `json:"width"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -822,8 +820,7 @@ type ItemTupleResponse struct {
 	WeightTs time.Time `json:"weightTS" format:"date-time"`
 	// Width of the cargo in meters. Applicable for cargo item types only.
 	Width float64 `json:"width"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1057,10 +1054,6 @@ type ItemNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ItemNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r ItemNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow ItemNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1234,10 +1227,6 @@ type ItemUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ItemUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r ItemUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow ItemUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1272,10 +1261,6 @@ type ItemListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ItemListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ItemListParams]'s query parameters as `url.Values`.
 func (r ItemListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1290,10 +1275,6 @@ type ItemCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ItemCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ItemCountParams]'s query parameters as `url.Values`.
 func (r ItemCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1307,10 +1288,6 @@ type ItemGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ItemGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ItemGetParams]'s query parameters as `url.Values`.
 func (r ItemGetParams) URLQuery() (v url.Values, err error) {
@@ -1331,10 +1308,6 @@ type ItemTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ItemTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ItemTupleParams]'s query parameters as `url.Values`.
 func (r ItemTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1347,10 +1320,6 @@ type ItemUnvalidatedPublishParams struct {
 	Body []ItemUnvalidatedPublishParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ItemUnvalidatedPublishParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r ItemUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1515,9 +1484,6 @@ type ItemUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ItemUnvalidatedPublishParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r ItemUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow ItemUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

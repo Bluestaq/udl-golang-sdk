@@ -373,8 +373,7 @@ type SarObservationListResponse struct {
 	// Circularly Polarized) Rotating left relative to the earth's surface, R - (Right
 	// Hand Circularly Polarized) Rotating right relative to the earth's surface.
 	TxPolarization string `json:"txPolarization"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking      resp.Field
 		CollectionEnd              resp.Field
@@ -704,8 +703,7 @@ type SarObservationGetResponse struct {
 	// Circularly Polarized) Rotating left relative to the earth's surface, R - (Right
 	// Hand Circularly Polarized) Rotating right relative to the earth's surface.
 	TxPolarization string `json:"txPolarization"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking      resp.Field
 		CollectionEnd              resp.Field
@@ -1038,8 +1036,7 @@ type SarObservationTupleResponse struct {
 	// Circularly Polarized) Rotating left relative to the earth's surface, R - (Right
 	// Hand Circularly Polarized) Rotating right relative to the earth's surface.
 	TxPolarization string `json:"txPolarization"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking      resp.Field
 		CollectionEnd              resp.Field
@@ -1354,10 +1351,6 @@ type SarObservationNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SarObservationNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SarObservationNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SarObservationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1395,10 +1388,6 @@ type SarObservationListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SarObservationListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SarObservationListParams]'s query parameters as
 // `url.Values`.
 func (r SarObservationListParams) URLQuery() (v url.Values, err error) {
@@ -1417,10 +1406,6 @@ type SarObservationCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SarObservationCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SarObservationCountParams]'s query parameters as
 // `url.Values`.
 func (r SarObservationCountParams) URLQuery() (v url.Values, err error) {
@@ -1434,10 +1419,6 @@ type SarObservationNewBulkParams struct {
 	Body []SarObservationNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SarObservationNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r SarObservationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1671,9 +1652,6 @@ type SarObservationNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SarObservationNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r SarObservationNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SarObservationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1690,10 +1668,6 @@ type SarObservationGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SarObservationGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SarObservationGetParams]'s query parameters as
 // `url.Values`.
@@ -1718,10 +1692,6 @@ type SarObservationTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SarObservationTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SarObservationTupleParams]'s query parameters as
 // `url.Values`.
 func (r SarObservationTupleParams) URLQuery() (v url.Values, err error) {
@@ -1734,12 +1704,6 @@ func (r SarObservationTupleParams) URLQuery() (v url.Values, err error) {
 type SarObservationUnvalidatedPublishParams struct {
 	Body []SarObservationUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SarObservationUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r SarObservationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -1974,11 +1938,6 @@ type SarObservationUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SarObservationUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SarObservationUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SarObservationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

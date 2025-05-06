@@ -301,8 +301,7 @@ type ObjectOfInterestListResponse struct {
 	Z float64 `json:"z"`
 	// Last reported z velocity of the object in km/sec, in J2000 coordinates.
 	Zvel float64 `json:"zvel"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -532,8 +531,7 @@ type ObjectOfInterestGetResponse struct {
 	Z float64 `json:"z"`
 	// Last reported z velocity of the object in km/sec, in J2000 coordinates.
 	Zvel float64 `json:"zvel"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -675,8 +673,7 @@ type ObjectOfInterestGetResponseManifold struct {
 	// Weight or probability of this manifold for prioritization purposes, between 0
 	// and 1.
 	Weight float64 `json:"weight"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -855,8 +852,7 @@ type ObjectOfInterestTupleResponse struct {
 	Z float64 `json:"z"`
 	// Last reported z velocity of the object in km/sec, in J2000 coordinates.
 	Zvel float64 `json:"zvel"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -998,8 +994,7 @@ type ObjectOfInterestTupleResponseManifold struct {
 	// Weight or probability of this manifold for prioritization purposes, between 0
 	// and 1.
 	Weight float64 `json:"weight"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1161,10 +1156,6 @@ type ObjectOfInterestNewParams struct {
 	DeltaVs []float64 `json:"deltaVs,omitzero"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObjectOfInterestNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r ObjectOfInterestNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow ObjectOfInterestNewParams
@@ -1329,10 +1320,6 @@ type ObjectOfInterestUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObjectOfInterestUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r ObjectOfInterestUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow ObjectOfInterestUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1367,10 +1354,6 @@ type ObjectOfInterestListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObjectOfInterestListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ObjectOfInterestListParams]'s query parameters as
 // `url.Values`.
 func (r ObjectOfInterestListParams) URLQuery() (v url.Values, err error) {
@@ -1386,10 +1369,6 @@ type ObjectOfInterestCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObjectOfInterestCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ObjectOfInterestCountParams]'s query parameters as
 // `url.Values`.
 func (r ObjectOfInterestCountParams) URLQuery() (v url.Values, err error) {
@@ -1404,10 +1383,6 @@ type ObjectOfInterestGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObjectOfInterestGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ObjectOfInterestGetParams]'s query parameters as
 // `url.Values`.
@@ -1428,10 +1403,6 @@ type ObjectOfInterestTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObjectOfInterestTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ObjectOfInterestTupleParams]'s query parameters as
 // `url.Values`.

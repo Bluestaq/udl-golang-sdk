@@ -326,8 +326,7 @@ type OrbitdeterminationListResponse struct {
 	// update, with a value of 1.00 being optimal. WRMS applies to batch least squares
 	// (BLS) processes.
 	Wrms float64 `json:"wrms"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -573,8 +572,7 @@ type OrbitdeterminationListResponseAprioriElset struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1040,8 +1038,7 @@ type OrbitdeterminationListResponseAprioriStateVector struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1319,8 +1316,7 @@ type OrbitdeterminationGetResponse struct {
 	// update, with a value of 1.00 being optimal. WRMS applies to batch least squares
 	// (BLS) processes.
 	Wrms float64 `json:"wrms"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -1597,8 +1593,7 @@ type OrbitdeterminationGetResponseAprioriElset struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2098,8 +2093,7 @@ type OrbitdeterminationGetResponseAprioriStateVector struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2383,8 +2377,7 @@ type OrbitdeterminationTupleResponse struct {
 	// update, with a value of 1.00 being optimal. WRMS applies to batch least squares
 	// (BLS) processes.
 	Wrms float64 `json:"wrms"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -2661,8 +2654,7 @@ type OrbitdeterminationTupleResponseAprioriElset struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -3162,8 +3154,7 @@ type OrbitdeterminationTupleResponseAprioriStateVector struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -3429,10 +3420,6 @@ type OrbitdeterminationNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbitdeterminationNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r OrbitdeterminationNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow OrbitdeterminationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3654,11 +3641,6 @@ type OrbitdeterminationNewParamsAprioriElset struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbitdeterminationNewParamsAprioriElset) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r OrbitdeterminationNewParamsAprioriElset) MarshalJSON() (data []byte, err error) {
 	type shadow OrbitdeterminationNewParamsAprioriElset
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4113,11 +4095,6 @@ type OrbitdeterminationNewParamsAprioriStateVector struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbitdeterminationNewParamsAprioriStateVector) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r OrbitdeterminationNewParamsAprioriStateVector) MarshalJSON() (data []byte, err error) {
 	type shadow OrbitdeterminationNewParamsAprioriStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4151,10 +4128,6 @@ type OrbitdeterminationListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbitdeterminationListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OrbitdeterminationListParams]'s query parameters as
 // `url.Values`.
 func (r OrbitdeterminationListParams) URLQuery() (v url.Values, err error) {
@@ -4180,10 +4153,6 @@ type OrbitdeterminationCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbitdeterminationCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OrbitdeterminationCountParams]'s query parameters as
 // `url.Values`.
 func (r OrbitdeterminationCountParams) URLQuery() (v url.Values, err error) {
@@ -4197,10 +4166,6 @@ type OrbitdeterminationNewBulkParams struct {
 	Body []OrbitdeterminationNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbitdeterminationNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r OrbitdeterminationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -4380,11 +4345,6 @@ type OrbitdeterminationNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbitdeterminationNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r OrbitdeterminationNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow OrbitdeterminationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4589,11 +4549,6 @@ type OrbitdeterminationNewBulkParamsBodyAprioriElset struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbitdeterminationNewBulkParamsBodyAprioriElset) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r OrbitdeterminationNewBulkParamsBodyAprioriElset) MarshalJSON() (data []byte, err error) {
 	type shadow OrbitdeterminationNewBulkParamsBodyAprioriElset
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -5048,11 +5003,6 @@ type OrbitdeterminationNewBulkParamsBodyAprioriStateVector struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbitdeterminationNewBulkParamsBodyAprioriStateVector) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r OrbitdeterminationNewBulkParamsBodyAprioriStateVector) MarshalJSON() (data []byte, err error) {
 	type shadow OrbitdeterminationNewBulkParamsBodyAprioriStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -5075,10 +5025,6 @@ type OrbitdeterminationGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbitdeterminationGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [OrbitdeterminationGetParams]'s query parameters as
 // `url.Values`.
@@ -5110,10 +5056,6 @@ type OrbitdeterminationTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbitdeterminationTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OrbitdeterminationTupleParams]'s query parameters as
 // `url.Values`.
 func (r OrbitdeterminationTupleParams) URLQuery() (v url.Values, err error) {
@@ -5126,12 +5068,6 @@ func (r OrbitdeterminationTupleParams) URLQuery() (v url.Values, err error) {
 type OrbitdeterminationUnvalidatedPublishParams struct {
 	Body []OrbitdeterminationUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbitdeterminationUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r OrbitdeterminationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -5312,11 +5248,6 @@ type OrbitdeterminationUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbitdeterminationUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r OrbitdeterminationUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow OrbitdeterminationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -5521,11 +5452,6 @@ type OrbitdeterminationUnvalidatedPublishParamsBodyAprioriElset struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbitdeterminationUnvalidatedPublishParamsBodyAprioriElset) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r OrbitdeterminationUnvalidatedPublishParamsBodyAprioriElset) MarshalJSON() (data []byte, err error) {
 	type shadow OrbitdeterminationUnvalidatedPublishParamsBodyAprioriElset
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -5980,11 +5906,6 @@ type OrbitdeterminationUnvalidatedPublishParamsBodyAprioriStateVector struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbitdeterminationUnvalidatedPublishParamsBodyAprioriStateVector) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r OrbitdeterminationUnvalidatedPublishParamsBodyAprioriStateVector) MarshalJSON() (data []byte, err error) {
 	type shadow OrbitdeterminationUnvalidatedPublishParamsBodyAprioriStateVector
 	return param.MarshalObject(r, (*shadow)(&r))

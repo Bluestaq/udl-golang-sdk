@@ -271,8 +271,7 @@ type SiteOperationGetResponse struct {
 	// Collection documenting operational waivers that have been issued for the Site
 	// associated with this record.
 	Waivers []SiteOperationGetResponseWaiver `json:"waivers"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -352,8 +351,7 @@ type SiteOperationGetResponseDailyOperation struct {
 	// The datetime of the most recent change made to this DailyOperation data, in ISO
 	// 8601 UTC format with millisecond precision.
 	OphrsLastChangedDate time.Time `json:"ophrsLastChangedDate" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DayOfWeek            resp.Field
 		OperatingHours       resp.Field
@@ -378,8 +376,7 @@ type SiteOperationGetResponseDailyOperationOperatingHour struct {
 	OpStartTime string `json:"opStartTime"`
 	// The Zulu (UTC) operational stop time, expressed in ISO 8601 format as HH:MM.
 	OpStopTime string `json:"opStopTime"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		OpStartTime resp.Field
 		OpStopTime  resp.Field
@@ -415,8 +412,7 @@ type SiteOperationGetResponseMaximumOnGround struct {
 	// Maximum on ground (MOG) number of working wide-body aircraft based on spacing
 	// and manpower, for the aircraft type specified.
 	WideWorkingMog int64 `json:"wideWorkingMOG"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AircraftMds        resp.Field
 		ContingencyMog     resp.Field
@@ -456,8 +452,7 @@ type SiteOperationGetResponseOperationalDeviation struct {
 	OdLastChangedDate time.Time `json:"odLastChangedDate" format:"date-time"`
 	// Text remark regarding this operational deviation.
 	OdRemark string `json:"odRemark"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AffectedAircraftMds  resp.Field
 		AffectedMog          resp.Field
@@ -497,8 +492,7 @@ type SiteOperationGetResponseOperationalPlanning struct {
 	OpStartDate time.Time `json:"opStartDate" format:"date-time"`
 	// The status of this operational planning.
 	OpStatus string `json:"opStatus"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		OpEndDate         resp.Field
 		OpLastChangedBy   resp.Field
@@ -532,8 +526,7 @@ type SiteOperationGetResponsePathway struct {
 	PwType string `json:"pwType"`
 	// The intended use of this pathway.
 	PwUsage string `json:"pwUsage"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		PwDefinition      resp.Field
 		PwLastChangedBy   resp.Field
@@ -578,8 +571,7 @@ type SiteOperationGetResponseWaiver struct {
 	// The datetime of the most recent change made to this waiver data, in ISO8601 UTC
 	// format with millisecond precision.
 	WaiverLastChangedDate time.Time `json:"waiverLastChangedDate" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ExpirationDate        resp.Field
 		HasExpired            resp.Field
@@ -689,8 +681,7 @@ type SiteOperationListResponse struct {
 	// Collection documenting operational waivers that have been issued for the Site
 	// associated with this record.
 	Waivers []SiteOperationListResponseWaiver `json:"waivers"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -770,8 +761,7 @@ type SiteOperationListResponseDailyOperation struct {
 	// The datetime of the most recent change made to this DailyOperation data, in ISO
 	// 8601 UTC format with millisecond precision.
 	OphrsLastChangedDate time.Time `json:"ophrsLastChangedDate" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DayOfWeek            resp.Field
 		OperatingHours       resp.Field
@@ -796,8 +786,7 @@ type SiteOperationListResponseDailyOperationOperatingHour struct {
 	OpStartTime string `json:"opStartTime"`
 	// The Zulu (UTC) operational stop time, expressed in ISO 8601 format as HH:MM.
 	OpStopTime string `json:"opStopTime"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		OpStartTime resp.Field
 		OpStopTime  resp.Field
@@ -833,8 +822,7 @@ type SiteOperationListResponseMaximumOnGround struct {
 	// Maximum on ground (MOG) number of working wide-body aircraft based on spacing
 	// and manpower, for the aircraft type specified.
 	WideWorkingMog int64 `json:"wideWorkingMOG"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AircraftMds        resp.Field
 		ContingencyMog     resp.Field
@@ -874,8 +862,7 @@ type SiteOperationListResponseOperationalDeviation struct {
 	OdLastChangedDate time.Time `json:"odLastChangedDate" format:"date-time"`
 	// Text remark regarding this operational deviation.
 	OdRemark string `json:"odRemark"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AffectedAircraftMds  resp.Field
 		AffectedMog          resp.Field
@@ -915,8 +902,7 @@ type SiteOperationListResponseOperationalPlanning struct {
 	OpStartDate time.Time `json:"opStartDate" format:"date-time"`
 	// The status of this operational planning.
 	OpStatus string `json:"opStatus"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		OpEndDate         resp.Field
 		OpLastChangedBy   resp.Field
@@ -950,8 +936,7 @@ type SiteOperationListResponsePathway struct {
 	PwType string `json:"pwType"`
 	// The intended use of this pathway.
 	PwUsage string `json:"pwUsage"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		PwDefinition      resp.Field
 		PwLastChangedBy   resp.Field
@@ -996,8 +981,7 @@ type SiteOperationListResponseWaiver struct {
 	// The datetime of the most recent change made to this waiver data, in ISO8601 UTC
 	// format with millisecond precision.
 	WaiverLastChangedDate time.Time `json:"waiverLastChangedDate" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ExpirationDate        resp.Field
 		HasExpired            resp.Field
@@ -1107,8 +1091,7 @@ type SiteOperationTupleResponse struct {
 	// Collection documenting operational waivers that have been issued for the Site
 	// associated with this record.
 	Waivers []SiteOperationTupleResponseWaiver `json:"waivers"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1188,8 +1171,7 @@ type SiteOperationTupleResponseDailyOperation struct {
 	// The datetime of the most recent change made to this DailyOperation data, in ISO
 	// 8601 UTC format with millisecond precision.
 	OphrsLastChangedDate time.Time `json:"ophrsLastChangedDate" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DayOfWeek            resp.Field
 		OperatingHours       resp.Field
@@ -1214,8 +1196,7 @@ type SiteOperationTupleResponseDailyOperationOperatingHour struct {
 	OpStartTime string `json:"opStartTime"`
 	// The Zulu (UTC) operational stop time, expressed in ISO 8601 format as HH:MM.
 	OpStopTime string `json:"opStopTime"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		OpStartTime resp.Field
 		OpStopTime  resp.Field
@@ -1251,8 +1232,7 @@ type SiteOperationTupleResponseMaximumOnGround struct {
 	// Maximum on ground (MOG) number of working wide-body aircraft based on spacing
 	// and manpower, for the aircraft type specified.
 	WideWorkingMog int64 `json:"wideWorkingMOG"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AircraftMds        resp.Field
 		ContingencyMog     resp.Field
@@ -1292,8 +1272,7 @@ type SiteOperationTupleResponseOperationalDeviation struct {
 	OdLastChangedDate time.Time `json:"odLastChangedDate" format:"date-time"`
 	// Text remark regarding this operational deviation.
 	OdRemark string `json:"odRemark"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AffectedAircraftMds  resp.Field
 		AffectedMog          resp.Field
@@ -1333,8 +1312,7 @@ type SiteOperationTupleResponseOperationalPlanning struct {
 	OpStartDate time.Time `json:"opStartDate" format:"date-time"`
 	// The status of this operational planning.
 	OpStatus string `json:"opStatus"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		OpEndDate         resp.Field
 		OpLastChangedBy   resp.Field
@@ -1368,8 +1346,7 @@ type SiteOperationTupleResponsePathway struct {
 	PwType string `json:"pwType"`
 	// The intended use of this pathway.
 	PwUsage string `json:"pwUsage"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		PwDefinition      resp.Field
 		PwLastChangedBy   resp.Field
@@ -1414,8 +1391,7 @@ type SiteOperationTupleResponseWaiver struct {
 	// The datetime of the most recent change made to this waiver data, in ISO8601 UTC
 	// format with millisecond precision.
 	WaiverLastChangedDate time.Time `json:"waiverLastChangedDate" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ExpirationDate        resp.Field
 		HasExpired            resp.Field
@@ -1509,10 +1485,6 @@ type SiteOperationNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SiteOperationNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1563,11 +1535,6 @@ type SiteOperationNewParamsDailyOperation struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationNewParamsDailyOperation) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationNewParamsDailyOperation) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewParamsDailyOperation
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1589,11 +1556,6 @@ type SiteOperationNewParamsDailyOperationOperatingHour struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationNewParamsDailyOperationOperatingHour) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationNewParamsDailyOperationOperatingHour) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewParamsDailyOperationOperatingHour
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1623,11 +1585,6 @@ type SiteOperationNewParamsMaximumOnGround struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationNewParamsMaximumOnGround) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationNewParamsMaximumOnGround) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewParamsMaximumOnGround
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1657,11 +1614,6 @@ type SiteOperationNewParamsOperationalDeviation struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationNewParamsOperationalDeviation) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationNewParamsOperationalDeviation) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewParamsOperationalDeviation
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1690,11 +1642,6 @@ type SiteOperationNewParamsOperationalPlanning struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationNewParamsOperationalPlanning) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationNewParamsOperationalPlanning) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewParamsOperationalPlanning
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1717,9 +1664,6 @@ type SiteOperationNewParamsPathway struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationNewParamsPathway) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r SiteOperationNewParamsPathway) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewParamsPathway
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1755,9 +1699,6 @@ type SiteOperationNewParamsWaiver struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationNewParamsWaiver) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r SiteOperationNewParamsWaiver) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewParamsWaiver
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1768,10 +1709,6 @@ type SiteOperationGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SiteOperationGetParams]'s query parameters as `url.Values`.
 func (r SiteOperationGetParams) URLQuery() (v url.Values, err error) {
@@ -1851,10 +1788,6 @@ type SiteOperationUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SiteOperationUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1905,11 +1838,6 @@ type SiteOperationUpdateParamsDailyOperation struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationUpdateParamsDailyOperation) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationUpdateParamsDailyOperation) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUpdateParamsDailyOperation
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1931,11 +1859,6 @@ type SiteOperationUpdateParamsDailyOperationOperatingHour struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationUpdateParamsDailyOperationOperatingHour) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationUpdateParamsDailyOperationOperatingHour) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUpdateParamsDailyOperationOperatingHour
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1965,11 +1888,6 @@ type SiteOperationUpdateParamsMaximumOnGround struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationUpdateParamsMaximumOnGround) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationUpdateParamsMaximumOnGround) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUpdateParamsMaximumOnGround
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1999,11 +1917,6 @@ type SiteOperationUpdateParamsOperationalDeviation struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationUpdateParamsOperationalDeviation) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationUpdateParamsOperationalDeviation) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUpdateParamsOperationalDeviation
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2032,11 +1945,6 @@ type SiteOperationUpdateParamsOperationalPlanning struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationUpdateParamsOperationalPlanning) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationUpdateParamsOperationalPlanning) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUpdateParamsOperationalPlanning
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2059,9 +1967,6 @@ type SiteOperationUpdateParamsPathway struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationUpdateParamsPathway) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r SiteOperationUpdateParamsPathway) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUpdateParamsPathway
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2097,9 +2002,6 @@ type SiteOperationUpdateParamsWaiver struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationUpdateParamsWaiver) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r SiteOperationUpdateParamsWaiver) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUpdateParamsWaiver
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2112,10 +2014,6 @@ type SiteOperationListParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SiteOperationListParams]'s query parameters as
 // `url.Values`.
@@ -2134,10 +2032,6 @@ type SiteOperationCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SiteOperationCountParams]'s query parameters as
 // `url.Values`.
 func (r SiteOperationCountParams) URLQuery() (v url.Values, err error) {
@@ -2151,10 +2045,6 @@ type SiteOperationNewBulkParams struct {
 	Body []SiteOperationNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r SiteOperationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -2251,9 +2141,6 @@ type SiteOperationNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r SiteOperationNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2287,11 +2174,6 @@ type SiteOperationNewBulkParamsBodyDailyOperation struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationNewBulkParamsBodyDailyOperation) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationNewBulkParamsBodyDailyOperation) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewBulkParamsBodyDailyOperation
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2313,11 +2195,6 @@ type SiteOperationNewBulkParamsBodyDailyOperationOperatingHour struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationNewBulkParamsBodyDailyOperationOperatingHour) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationNewBulkParamsBodyDailyOperationOperatingHour) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewBulkParamsBodyDailyOperationOperatingHour
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2347,11 +2224,6 @@ type SiteOperationNewBulkParamsBodyMaximumOnGround struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationNewBulkParamsBodyMaximumOnGround) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationNewBulkParamsBodyMaximumOnGround) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewBulkParamsBodyMaximumOnGround
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2381,11 +2253,6 @@ type SiteOperationNewBulkParamsBodyOperationalDeviation struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationNewBulkParamsBodyOperationalDeviation) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationNewBulkParamsBodyOperationalDeviation) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewBulkParamsBodyOperationalDeviation
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2414,11 +2281,6 @@ type SiteOperationNewBulkParamsBodyOperationalPlanning struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationNewBulkParamsBodyOperationalPlanning) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationNewBulkParamsBodyOperationalPlanning) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewBulkParamsBodyOperationalPlanning
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2441,11 +2303,6 @@ type SiteOperationNewBulkParamsBodyPathway struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationNewBulkParamsBodyPathway) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationNewBulkParamsBodyPathway) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewBulkParamsBodyPathway
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2481,11 +2338,6 @@ type SiteOperationNewBulkParamsBodyWaiver struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationNewBulkParamsBodyWaiver) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationNewBulkParamsBodyWaiver) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewBulkParamsBodyWaiver
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2504,10 +2356,6 @@ type SiteOperationTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SiteOperationTupleParams]'s query parameters as
 // `url.Values`.
 func (r SiteOperationTupleParams) URLQuery() (v url.Values, err error) {
@@ -2520,12 +2368,6 @@ func (r SiteOperationTupleParams) URLQuery() (v url.Values, err error) {
 type SiteOperationUnvalidatedPublishParams struct {
 	Body []SiteOperationUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r SiteOperationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -2623,11 +2465,6 @@ type SiteOperationUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2661,11 +2498,6 @@ type SiteOperationUnvalidatedPublishParamsBodyDailyOperation struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationUnvalidatedPublishParamsBodyDailyOperation) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationUnvalidatedPublishParamsBodyDailyOperation) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUnvalidatedPublishParamsBodyDailyOperation
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2687,11 +2519,6 @@ type SiteOperationUnvalidatedPublishParamsBodyDailyOperationOperatingHour struct
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationUnvalidatedPublishParamsBodyDailyOperationOperatingHour) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationUnvalidatedPublishParamsBodyDailyOperationOperatingHour) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUnvalidatedPublishParamsBodyDailyOperationOperatingHour
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2721,11 +2548,6 @@ type SiteOperationUnvalidatedPublishParamsBodyMaximumOnGround struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationUnvalidatedPublishParamsBodyMaximumOnGround) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationUnvalidatedPublishParamsBodyMaximumOnGround) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUnvalidatedPublishParamsBodyMaximumOnGround
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2755,11 +2577,6 @@ type SiteOperationUnvalidatedPublishParamsBodyOperationalDeviation struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationUnvalidatedPublishParamsBodyOperationalDeviation) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationUnvalidatedPublishParamsBodyOperationalDeviation) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUnvalidatedPublishParamsBodyOperationalDeviation
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2788,11 +2605,6 @@ type SiteOperationUnvalidatedPublishParamsBodyOperationalPlanning struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationUnvalidatedPublishParamsBodyOperationalPlanning) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationUnvalidatedPublishParamsBodyOperationalPlanning) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUnvalidatedPublishParamsBodyOperationalPlanning
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2815,11 +2627,6 @@ type SiteOperationUnvalidatedPublishParamsBodyPathway struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationUnvalidatedPublishParamsBodyPathway) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationUnvalidatedPublishParamsBodyPathway) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUnvalidatedPublishParamsBodyPathway
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2855,11 +2662,6 @@ type SiteOperationUnvalidatedPublishParamsBodyWaiver struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteOperationUnvalidatedPublishParamsBodyWaiver) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SiteOperationUnvalidatedPublishParamsBodyWaiver) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUnvalidatedPublishParamsBodyWaiver
 	return param.MarshalObject(r, (*shadow)(&r))

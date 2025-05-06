@@ -103,10 +103,6 @@ type EphemerisHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EphemerisHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r EphemerisHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -141,10 +137,6 @@ type EphemerisHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EphemerisHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r EphemerisHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -163,10 +155,6 @@ type EphemerisHistoryCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EphemerisHistoryCountParams]'s query parameters as
 // `url.Values`.

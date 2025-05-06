@@ -232,10 +232,6 @@ type DiplomaticClearanceNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r DiplomaticClearanceNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -335,11 +331,6 @@ type DiplomaticClearanceNewParamsDiplomaticClearanceDetail struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceNewParamsDiplomaticClearanceDetail) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceNewParamsDiplomaticClearanceDetail) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceNewParamsDiplomaticClearanceDetail
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -359,11 +350,6 @@ type DiplomaticClearanceNewParamsDiplomaticClearanceRemark struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceNewParamsDiplomaticClearanceRemark) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceNewParamsDiplomaticClearanceRemark) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceNewParamsDiplomaticClearanceRemark
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -374,10 +360,6 @@ type DiplomaticClearanceGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [DiplomaticClearanceGetParams]'s query parameters as
 // `url.Values`.
@@ -443,10 +425,6 @@ type DiplomaticClearanceUpdateParams struct {
 	DiplomaticClearanceRemarks []DiplomaticClearanceUpdateParamsDiplomaticClearanceRemark `json:"diplomaticClearanceRemarks,omitzero"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r DiplomaticClearanceUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceUpdateParams
@@ -547,11 +525,6 @@ type DiplomaticClearanceUpdateParamsDiplomaticClearanceDetail struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceUpdateParamsDiplomaticClearanceDetail) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceUpdateParamsDiplomaticClearanceDetail) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceUpdateParamsDiplomaticClearanceDetail
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -571,11 +544,6 @@ type DiplomaticClearanceUpdateParamsDiplomaticClearanceRemark struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceUpdateParamsDiplomaticClearanceRemark) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceUpdateParamsDiplomaticClearanceRemark) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceUpdateParamsDiplomaticClearanceRemark
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -589,10 +557,6 @@ type DiplomaticClearanceListParams struct {
 	MaxResults   param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [DiplomaticClearanceListParams]'s query parameters as
 // `url.Values`.
@@ -612,10 +576,6 @@ type DiplomaticClearanceCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [DiplomaticClearanceCountParams]'s query parameters as
 // `url.Values`.
 func (r DiplomaticClearanceCountParams) URLQuery() (v url.Values, err error) {
@@ -629,10 +589,6 @@ type DiplomaticClearanceNewBulkParams struct {
 	Body []DiplomaticClearanceNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r DiplomaticClearanceNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -716,11 +672,6 @@ type DiplomaticClearanceNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -803,11 +754,6 @@ type DiplomaticClearanceNewBulkParamsBodyDiplomaticClearanceDetail struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceNewBulkParamsBodyDiplomaticClearanceDetail) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceNewBulkParamsBodyDiplomaticClearanceDetail) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceNewBulkParamsBodyDiplomaticClearanceDetail
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -827,11 +773,6 @@ type DiplomaticClearanceNewBulkParamsBodyDiplomaticClearanceRemark struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceNewBulkParamsBodyDiplomaticClearanceRemark) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceNewBulkParamsBodyDiplomaticClearanceRemark) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceNewBulkParamsBodyDiplomaticClearanceRemark
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -850,10 +791,6 @@ type DiplomaticClearanceTupleParams struct {
 	MaxResults   param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [DiplomaticClearanceTupleParams]'s query parameters as
 // `url.Values`.

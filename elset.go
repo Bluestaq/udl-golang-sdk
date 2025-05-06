@@ -383,8 +383,7 @@ type Elset struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -657,9 +656,6 @@ type ElsetIngestParam struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ElsetIngestParam) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r ElsetIngestParam) MarshalJSON() (data []byte, err error) {
 	type shadow ElsetIngestParam
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -854,8 +850,7 @@ type ElsetAbridged struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -937,10 +932,6 @@ type ElsetNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ElsetNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r ElsetNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.ElsetIngest)
 }
@@ -950,10 +941,6 @@ type ElsetGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ElsetGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ElsetGetParams]'s query parameters as `url.Values`.
 func (r ElsetGetParams) URLQuery() (v url.Values, err error) {
@@ -972,10 +959,6 @@ type ElsetListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ElsetListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ElsetListParams]'s query parameters as `url.Values`.
 func (r ElsetListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -993,10 +976,6 @@ type ElsetCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ElsetCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ElsetCountParams]'s query parameters as `url.Values`.
 func (r ElsetCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1012,10 +991,6 @@ type ElsetNewBulkParams struct {
 	DupeCheck param.Opt[bool] `query:"dupeCheck,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ElsetNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r ElsetNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1055,10 +1030,6 @@ type ElsetNewBulkFromTleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ElsetNewBulkFromTleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r ElsetNewBulkFromTleParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
@@ -1086,10 +1057,6 @@ type ElsetTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ElsetTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ElsetTupleParams]'s query parameters as `url.Values`.
 func (r ElsetTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1102,10 +1069,6 @@ type ElsetUnvalidatedPublishParams struct {
 	Body []ElsetIngestParam
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ElsetUnvalidatedPublishParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r ElsetUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)

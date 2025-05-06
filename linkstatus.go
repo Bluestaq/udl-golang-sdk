@@ -229,8 +229,7 @@ type LinkStatusListResponse struct {
 	SatNo2 int64 `json:"satNo2"`
 	// The SYSCAP mission status of the system(s) forming the link.
 	SysCap string `json:"sysCap"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -393,8 +392,7 @@ type LinkStatusGetResponse struct {
 	SatNo2 int64 `json:"satNo2"`
 	// The SYSCAP mission status of the system(s) forming the link.
 	SysCap string `json:"sysCap"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -557,8 +555,7 @@ type LinkStatusTupleResponse struct {
 	SatNo2 int64 `json:"satNo2"`
 	// The SYSCAP mission status of the system(s) forming the link.
 	SysCap string `json:"sysCap"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -708,10 +705,6 @@ type LinkStatusNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LinkStatusNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r LinkStatusNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow LinkStatusNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -758,10 +751,6 @@ type LinkStatusListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LinkStatusListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [LinkStatusListParams]'s query parameters as `url.Values`.
 func (r LinkStatusListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -788,10 +777,6 @@ type LinkStatusCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LinkStatusCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [LinkStatusCountParams]'s query parameters as `url.Values`.
 func (r LinkStatusCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -805,10 +790,6 @@ type LinkStatusGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LinkStatusGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [LinkStatusGetParams]'s query parameters as `url.Values`.
 func (r LinkStatusGetParams) URLQuery() (v url.Values, err error) {
@@ -840,10 +821,6 @@ type LinkStatusTupleParams struct {
 	MaxResults   param.Opt[int64]     `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LinkStatusTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [LinkStatusTupleParams]'s query parameters as `url.Values`.
 func (r LinkStatusTupleParams) URLQuery() (v url.Values, err error) {

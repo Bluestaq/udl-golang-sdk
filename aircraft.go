@@ -223,8 +223,7 @@ type AircraftAbridged struct {
 	SourceDl string `json:"sourceDL"`
 	// The tail number of this aircraft.
 	TailNumber string `json:"tailNumber"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AircraftMds           resp.Field
 		ClassificationMarking resp.Field
@@ -372,8 +371,7 @@ type AircraftFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AircraftMds           resp.Field
 		ClassificationMarking resp.Field
@@ -507,10 +505,6 @@ type AircraftNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AircraftNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r AircraftNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow AircraftNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -544,10 +538,6 @@ type AircraftGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AircraftGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AircraftGetParams]'s query parameters as `url.Values`.
 func (r AircraftGetParams) URLQuery() (v url.Values, err error) {
@@ -629,10 +619,6 @@ type AircraftUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AircraftUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r AircraftUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow AircraftUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -667,10 +653,6 @@ type AircraftListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AircraftListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [AircraftListParams]'s query parameters as `url.Values`.
 func (r AircraftListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -684,10 +666,6 @@ type AircraftCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AircraftCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AircraftCountParams]'s query parameters as `url.Values`.
 func (r AircraftCountParams) URLQuery() (v url.Values, err error) {
@@ -707,10 +685,6 @@ type AircraftTupleQueryParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AircraftTupleQueryParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AircraftTupleQueryParams]'s query parameters as
 // `url.Values`.

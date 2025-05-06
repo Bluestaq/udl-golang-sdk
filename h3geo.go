@@ -193,8 +193,7 @@ type H3GeoListResponse struct {
 	// An optional field containing the type of data that is represented by this H3 Geo
 	// data set.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -313,8 +312,7 @@ type H3GeoGetResponse struct {
 	// An optional field containing the type of data that is represented by this H3 Geo
 	// data set.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Cells                 resp.Field
 		ClassificationMarking resp.Field
@@ -424,8 +422,7 @@ type H3GeoGetResponseCell struct {
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
 	SourceDl string `json:"sourceDL"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CellID                resp.Field
 		ClassificationMarking resp.Field
@@ -551,8 +548,7 @@ type H3GeoTupleResponse struct {
 	// An optional field containing the type of data that is represented by this H3 Geo
 	// data set.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Cells                 resp.Field
 		ClassificationMarking resp.Field
@@ -662,8 +658,7 @@ type H3GeoTupleResponseCell struct {
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
 	SourceDl string `json:"sourceDL"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CellID                resp.Field
 		ClassificationMarking resp.Field
@@ -777,10 +772,6 @@ type H3GeoNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f H3GeoNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r H3GeoNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow H3GeoNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -871,9 +862,6 @@ type H3GeoNewParamsCell struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f H3GeoNewParamsCell) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r H3GeoNewParamsCell) MarshalJSON() (data []byte, err error) {
 	type shadow H3GeoNewParamsCell
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -917,10 +905,6 @@ type H3GeoListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f H3GeoListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [H3GeoListParams]'s query parameters as `url.Values`.
 func (r H3GeoListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -938,10 +922,6 @@ type H3GeoCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f H3GeoCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [H3GeoCountParams]'s query parameters as `url.Values`.
 func (r H3GeoCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -955,10 +935,6 @@ type H3GeoGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f H3GeoGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [H3GeoGetParams]'s query parameters as `url.Values`.
 func (r H3GeoGetParams) URLQuery() (v url.Values, err error) {
@@ -981,10 +957,6 @@ type H3GeoTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f H3GeoTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [H3GeoTupleParams]'s query parameters as `url.Values`.
 func (r H3GeoTupleParams) URLQuery() (v url.Values, err error) {

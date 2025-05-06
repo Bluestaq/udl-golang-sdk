@@ -229,8 +229,7 @@ type SensorPlanListResponse struct {
 	// The status of this plan or schedule (ACCEPTED, APPROVED, COMPLETED, PROPOSED,
 	// REJECTED, REQUESTED, SCHEDULED).
 	Status string `json:"status"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -371,8 +370,7 @@ type SensorPlanGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -744,8 +742,7 @@ type SensorPlanGetResponseCollectRequest struct {
 	// rectangle of width 2*xAngle and height 2*yAngle centered about the central
 	// vector.
 	YAngle float64 `json:"yAngle"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1046,8 +1043,7 @@ type SensorPlanGetResponseCollectRequestElset struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1547,8 +1543,7 @@ type SensorPlanGetResponseCollectRequestStateVector struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1747,8 +1742,7 @@ type SensorPlanTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2120,8 +2114,7 @@ type SensorPlanTupleResponseCollectRequest struct {
 	// rectangle of width 2*xAngle and height 2*yAngle centered about the central
 	// vector.
 	YAngle float64 `json:"yAngle"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2422,8 +2415,7 @@ type SensorPlanTupleResponseCollectRequestElset struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2923,8 +2915,7 @@ type SensorPlanTupleResponseCollectRequestStateVector struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -3109,10 +3100,6 @@ type SensorPlanNewParams struct {
 	Tags []string `json:"tags,omitzero"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorPlanNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r SensorPlanNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SensorPlanNewParams
@@ -3452,11 +3439,6 @@ type SensorPlanNewParamsCollectRequest struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorPlanNewParamsCollectRequest) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SensorPlanNewParamsCollectRequest) MarshalJSON() (data []byte, err error) {
 	type shadow SensorPlanNewParamsCollectRequest
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3661,11 +3643,6 @@ type SensorPlanNewParamsCollectRequestElset struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorPlanNewParamsCollectRequestElset) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SensorPlanNewParamsCollectRequestElset) MarshalJSON() (data []byte, err error) {
 	type shadow SensorPlanNewParamsCollectRequestElset
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4120,11 +4097,6 @@ type SensorPlanNewParamsCollectRequestStateVector struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorPlanNewParamsCollectRequestStateVector) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SensorPlanNewParamsCollectRequestStateVector) MarshalJSON() (data []byte, err error) {
 	type shadow SensorPlanNewParamsCollectRequestStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4213,10 +4185,6 @@ type SensorPlanUpdateParams struct {
 	Tags []string `json:"tags,omitzero"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorPlanUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r SensorPlanUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SensorPlanUpdateParams
@@ -4556,11 +4524,6 @@ type SensorPlanUpdateParamsCollectRequest struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorPlanUpdateParamsCollectRequest) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SensorPlanUpdateParamsCollectRequest) MarshalJSON() (data []byte, err error) {
 	type shadow SensorPlanUpdateParamsCollectRequest
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4765,11 +4728,6 @@ type SensorPlanUpdateParamsCollectRequestElset struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorPlanUpdateParamsCollectRequestElset) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SensorPlanUpdateParamsCollectRequestElset) MarshalJSON() (data []byte, err error) {
 	type shadow SensorPlanUpdateParamsCollectRequestElset
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -5224,11 +5182,6 @@ type SensorPlanUpdateParamsCollectRequestStateVector struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorPlanUpdateParamsCollectRequestStateVector) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SensorPlanUpdateParamsCollectRequestStateVector) MarshalJSON() (data []byte, err error) {
 	type shadow SensorPlanUpdateParamsCollectRequestStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -5255,10 +5208,6 @@ type SensorPlanListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorPlanListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SensorPlanListParams]'s query parameters as `url.Values`.
 func (r SensorPlanListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -5276,10 +5225,6 @@ type SensorPlanCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorPlanCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SensorPlanCountParams]'s query parameters as `url.Values`.
 func (r SensorPlanCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -5293,10 +5238,6 @@ type SensorPlanGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorPlanGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SensorPlanGetParams]'s query parameters as `url.Values`.
 func (r SensorPlanGetParams) URLQuery() (v url.Values, err error) {
@@ -5320,10 +5261,6 @@ type SensorPlanTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorPlanTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SensorPlanTupleParams]'s query parameters as `url.Values`.
 func (r SensorPlanTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -5335,12 +5272,6 @@ func (r SensorPlanTupleParams) URLQuery() (v url.Values, err error) {
 type SensorPlanUnvalidatedPublishParams struct {
 	Body []SensorPlanUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorPlanUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r SensorPlanUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -5433,11 +5364,6 @@ type SensorPlanUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorPlanUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SensorPlanUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SensorPlanUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -5759,11 +5685,6 @@ type SensorPlanUnvalidatedPublishParamsBodyCollectRequest struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorPlanUnvalidatedPublishParamsBodyCollectRequest) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SensorPlanUnvalidatedPublishParamsBodyCollectRequest) MarshalJSON() (data []byte, err error) {
 	type shadow SensorPlanUnvalidatedPublishParamsBodyCollectRequest
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -5968,11 +5889,6 @@ type SensorPlanUnvalidatedPublishParamsBodyCollectRequestElset struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorPlanUnvalidatedPublishParamsBodyCollectRequestElset) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SensorPlanUnvalidatedPublishParamsBodyCollectRequestElset) MarshalJSON() (data []byte, err error) {
 	type shadow SensorPlanUnvalidatedPublishParamsBodyCollectRequestElset
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -6427,11 +6343,6 @@ type SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector) MarshalJSON() (data []byte, err error) {
 	type shadow SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector
 	return param.MarshalObject(r, (*shadow)(&r))

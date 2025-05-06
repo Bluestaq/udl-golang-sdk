@@ -187,8 +187,7 @@ type IsrCollectionHistoryListResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking           resp.Field
 		DataMode                        resp.Field
@@ -304,8 +303,7 @@ type IsrCollectionHistoryListResponseCollectionRequirement struct {
 	TargetList []string `json:"targetList"`
 	// Type collection this requirement applies to.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID                      resp.Field
 		Country                 resp.Field
@@ -345,8 +343,7 @@ type IsrCollectionHistoryListResponseCollectionRequirementCriticalTimes struct {
 	EarliestImagingTime time.Time `json:"earliestImagingTime,required" format:"date-time"`
 	// Critical stop time to collect an image for this requirement.
 	LatestImagingTime time.Time `json:"latestImagingTime,required" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		EarliestImagingTime resp.Field
 		LatestImagingTime   resp.Field
@@ -375,8 +372,7 @@ type IsrCollectionHistoryListResponseCollectionRequirementExploitationRequiremen
 	Poc IsrCollectionHistoryListResponseCollectionRequirementExploitationRequirementPoc `json:"poc"`
 	// The reporting criteria of the collection requirement.
 	ReportingCriteria string `json:"reportingCriteria"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID                resp.Field
 		Amplification     resp.Field
@@ -418,8 +414,7 @@ type IsrCollectionHistoryListResponseCollectionRequirementExploitationRequiremen
 	RadioFrequency float64 `json:"radioFrequency"`
 	// Unit the POC belongs to.
 	Unit string `json:"unit"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID             resp.Field
 		Callsign       resp.Field
@@ -508,8 +503,7 @@ type IsrCollectionHistoryListResponseTasking struct {
 	//
 	// Any of "Deliberate", "Dynamic", "Training", "Transit".
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID                              resp.Field
 		CollectionPeriods               resp.Field
@@ -553,8 +547,7 @@ type IsrCollectionHistoryListResponseTaskingCollectionPeriods struct {
 	// Actual start and stop for the collection.
 	Actual  []IsrCollectionHistoryListResponseTaskingCollectionPeriodsActual `json:"actual"`
 	Planned IsrCollectionHistoryListResponseTaskingCollectionPeriodsPlanned  `json:"planned"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Actual      resp.Field
 		Planned     resp.Field
@@ -576,8 +569,7 @@ type IsrCollectionHistoryListResponseTaskingCollectionPeriodsActual struct {
 	Start time.Time `json:"start" format:"date-time"`
 	// Stop time the collection actually occurred, in ISO 8601 UTC format.
 	Stop time.Time `json:"stop" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID          resp.Field
 		Start       resp.Field
@@ -602,8 +594,7 @@ type IsrCollectionHistoryListResponseTaskingCollectionPeriodsPlanned struct {
 	Start time.Time `json:"start" format:"date-time"`
 	// Stop time of collection, in ISO 8601 UTC format.
 	Stop time.Time `json:"stop" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Additional  resp.Field
 		Start       resp.Field
@@ -628,8 +619,7 @@ type IsrCollectionHistoryListResponseTaskingCollectionPeriodsPlannedAdditional s
 	Start time.Time `json:"start" format:"date-time"`
 	// Stop time of collection, in ISO 8601 UTC format.
 	Stop time.Time `json:"stop" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID          resp.Field
 		Start       resp.Field
@@ -693,8 +683,7 @@ type IsrCollectionHistoryListResponseTaskingTaskingCollectionRequirement struct 
 	TargetList []string `json:"targetList"`
 	// Type collection this requirement applies to.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID                      resp.Field
 		Country                 resp.Field
@@ -736,8 +725,7 @@ type IsrCollectionHistoryListResponseTaskingTaskingCollectionRequirementCritical
 	EarliestImagingTime time.Time `json:"earliestImagingTime,required" format:"date-time"`
 	// Critical stop time to collect an image for this requirement.
 	LatestImagingTime time.Time `json:"latestImagingTime,required" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		EarliestImagingTime resp.Field
 		LatestImagingTime   resp.Field
@@ -766,8 +754,7 @@ type IsrCollectionHistoryListResponseTaskingTaskingCollectionRequirementExploita
 	Poc IsrCollectionHistoryListResponseTaskingTaskingCollectionRequirementExploitationRequirementPoc `json:"poc"`
 	// The reporting criteria of the collection requirement.
 	ReportingCriteria string `json:"reportingCriteria"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID                resp.Field
 		Amplification     resp.Field
@@ -809,8 +796,7 @@ type IsrCollectionHistoryListResponseTaskingTaskingCollectionRequirementExploita
 	RadioFrequency float64 `json:"radioFrequency"`
 	// Unit the POC belongs to.
 	Unit string `json:"unit"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID             resp.Field
 		Callsign       resp.Field
@@ -842,8 +828,7 @@ type IsrCollectionHistoryListResponseTransit struct {
 	Base string `json:"base"`
 	// Length of mission in milliseconds.
 	Duration float64 `json:"duration"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID          resp.Field
 		Base        resp.Field
@@ -871,10 +856,6 @@ type IsrCollectionHistoryListParams struct {
 	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [IsrCollectionHistoryListParams]'s query parameters as
 // `url.Values`.
@@ -909,10 +890,6 @@ type IsrCollectionHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [IsrCollectionHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r IsrCollectionHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -930,10 +907,6 @@ type IsrCollectionHistoryCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [IsrCollectionHistoryCountParams]'s query parameters as
 // `url.Values`.

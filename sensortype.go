@@ -98,8 +98,7 @@ type SensorTypeListResponse struct {
 	OrigNetwork string `json:"origNetwork"`
 	// The specific sensor type and/or surveillance capability of this sensor.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID          resp.Field
 		CreatedAt   resp.Field
@@ -154,8 +153,7 @@ type SensorTypeGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataMode    resp.Field
 		Source      resp.Field
@@ -206,10 +204,6 @@ type SensorTypeListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorTypeListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SensorTypeListParams]'s query parameters as `url.Values`.
 func (r SensorTypeListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -223,10 +217,6 @@ type SensorTypeGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorTypeGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SensorTypeGetParams]'s query parameters as `url.Values`.
 func (r SensorTypeGetParams) URLQuery() (v url.Values, err error) {

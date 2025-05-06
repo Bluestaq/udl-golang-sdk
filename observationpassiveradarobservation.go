@@ -365,8 +365,7 @@ type ObservationPassiveRadarObservationListResponse struct {
 	Yvel float64 `json:"yvel"`
 	// Z velocity of target in kilometers/sec in J2000 coordinate frame.
 	Zvel float64 `json:"zvel"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -682,8 +681,7 @@ type ObservationPassiveRadarObservationGetResponse struct {
 	Yvel float64 `json:"yvel"`
 	// Z velocity of target in kilometers/sec in J2000 coordinate frame.
 	Zvel float64 `json:"zvel"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1001,8 +999,7 @@ type ObservationPassiveRadarObservationTupleResponse struct {
 	Yvel float64 `json:"yvel"`
 	// Z velocity of target in kilometers/sec in J2000 coordinate frame.
 	Zvel float64 `json:"zvel"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1288,12 +1285,6 @@ type ObservationPassiveRadarObservationNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationPassiveRadarObservationNewParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 func (r ObservationPassiveRadarObservationNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow ObservationPassiveRadarObservationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1331,12 +1322,6 @@ type ObservationPassiveRadarObservationListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationPassiveRadarObservationListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [ObservationPassiveRadarObservationListParams]'s query
 // parameters as `url.Values`.
 func (r ObservationPassiveRadarObservationListParams) URLQuery() (v url.Values, err error) {
@@ -1355,12 +1340,6 @@ type ObservationPassiveRadarObservationCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationPassiveRadarObservationCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [ObservationPassiveRadarObservationCountParams]'s query
 // parameters as `url.Values`.
 func (r ObservationPassiveRadarObservationCountParams) URLQuery() (v url.Values, err error) {
@@ -1373,12 +1352,6 @@ func (r ObservationPassiveRadarObservationCountParams) URLQuery() (v url.Values,
 type ObservationPassiveRadarObservationNewBulkParams struct {
 	Body []ObservationPassiveRadarObservationNewBulkParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationPassiveRadarObservationNewBulkParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r ObservationPassiveRadarObservationNewBulkParams) MarshalJSON() (data []byte, err error) {
@@ -1602,11 +1575,6 @@ type ObservationPassiveRadarObservationNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationPassiveRadarObservationNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ObservationPassiveRadarObservationNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow ObservationPassiveRadarObservationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1621,12 +1589,6 @@ func init() {
 type ObservationPassiveRadarObservationFileNewParams struct {
 	Body []ObservationPassiveRadarObservationFileNewParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationPassiveRadarObservationFileNewParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r ObservationPassiveRadarObservationFileNewParams) MarshalJSON() (data []byte, err error) {
@@ -1850,11 +1812,6 @@ type ObservationPassiveRadarObservationFileNewParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationPassiveRadarObservationFileNewParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ObservationPassiveRadarObservationFileNewParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow ObservationPassiveRadarObservationFileNewParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1870,12 +1827,6 @@ type ObservationPassiveRadarObservationGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationPassiveRadarObservationGetParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [ObservationPassiveRadarObservationGetParams]'s query
@@ -1899,12 +1850,6 @@ type ObservationPassiveRadarObservationTupleParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationPassiveRadarObservationTupleParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [ObservationPassiveRadarObservationTupleParams]'s query

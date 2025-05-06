@@ -395,8 +395,7 @@ type SoiObservationSetListResponse struct {
 	// then the provided calibration data will be used when generating the EOSSA file
 	// (e.g. PRE, POST, BOTH, NONE).
 	ValidCalibrations string `json:"validCalibrations"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                   resp.Field
 		DataMode                                resp.Field
@@ -545,8 +544,7 @@ type SoiObservationSetListResponseCalibration struct {
 	// Value representing the difference between the catalog magnitude and instrumental
 	// magnitude for a set of standard stars, at calibration (e.g. -5.0 to 30.0).
 	CalZeroPoint float64 `json:"calZeroPoint"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CalBgIntensity            resp.Field
 		CalExtinctionCoeff        resp.Field
@@ -825,10 +823,6 @@ type SoiObservationSetNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SoiObservationSetNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SoiObservationSetNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -902,11 +896,6 @@ type SoiObservationSetNewParamsCalibration struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetNewParamsCalibration) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SoiObservationSetNewParamsCalibration) MarshalJSON() (data []byte, err error) {
 	type shadow SoiObservationSetNewParamsCalibration
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -980,11 +969,6 @@ type SoiObservationSetNewParamsOpticalSoiObservationList struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetNewParamsOpticalSoiObservationList) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SoiObservationSetNewParamsOpticalSoiObservationList) MarshalJSON() (data []byte, err error) {
 	type shadow SoiObservationSetNewParamsOpticalSoiObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1140,11 +1124,6 @@ type SoiObservationSetNewParamsRadarSoiObservationList struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetNewParamsRadarSoiObservationList) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SoiObservationSetNewParamsRadarSoiObservationList) MarshalJSON() (data []byte, err error) {
 	type shadow SoiObservationSetNewParamsRadarSoiObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1185,10 +1164,6 @@ type SoiObservationSetListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SoiObservationSetListParams]'s query parameters as
 // `url.Values`.
 func (r SoiObservationSetListParams) URLQuery() (v url.Values, err error) {
@@ -1207,10 +1182,6 @@ type SoiObservationSetCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SoiObservationSetCountParams]'s query parameters as
 // `url.Values`.
 func (r SoiObservationSetCountParams) URLQuery() (v url.Values, err error) {
@@ -1224,10 +1195,6 @@ type SoiObservationSetNewBulkParams struct {
 	Body []SoiObservationSetNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r SoiObservationSetNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1481,11 +1448,6 @@ type SoiObservationSetNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SoiObservationSetNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SoiObservationSetNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1543,11 +1505,6 @@ type SoiObservationSetNewBulkParamsBodyCalibration struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetNewBulkParamsBodyCalibration) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SoiObservationSetNewBulkParamsBodyCalibration) MarshalJSON() (data []byte, err error) {
 	type shadow SoiObservationSetNewBulkParamsBodyCalibration
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1621,11 +1578,6 @@ type SoiObservationSetNewBulkParamsBodyOpticalSoiObservationList struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetNewBulkParamsBodyOpticalSoiObservationList) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SoiObservationSetNewBulkParamsBodyOpticalSoiObservationList) MarshalJSON() (data []byte, err error) {
 	type shadow SoiObservationSetNewBulkParamsBodyOpticalSoiObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1781,11 +1733,6 @@ type SoiObservationSetNewBulkParamsBodyRadarSoiObservationList struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetNewBulkParamsBodyRadarSoiObservationList) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SoiObservationSetNewBulkParamsBodyRadarSoiObservationList) MarshalJSON() (data []byte, err error) {
 	type shadow SoiObservationSetNewBulkParamsBodyRadarSoiObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1796,10 +1743,6 @@ type SoiObservationSetGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SoiObservationSetGetParams]'s query parameters as
 // `url.Values`.
@@ -1824,10 +1767,6 @@ type SoiObservationSetTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SoiObservationSetTupleParams]'s query parameters as
 // `url.Values`.
 func (r SoiObservationSetTupleParams) URLQuery() (v url.Values, err error) {
@@ -1840,12 +1779,6 @@ func (r SoiObservationSetTupleParams) URLQuery() (v url.Values, err error) {
 type SoiObservationSetUnvalidatedPublishParams struct {
 	Body []SoiObservationSetUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r SoiObservationSetUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -2100,11 +2033,6 @@ type SoiObservationSetUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SoiObservationSetUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SoiObservationSetUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2162,11 +2090,6 @@ type SoiObservationSetUnvalidatedPublishParamsBodyCalibration struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetUnvalidatedPublishParamsBodyCalibration) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SoiObservationSetUnvalidatedPublishParamsBodyCalibration) MarshalJSON() (data []byte, err error) {
 	type shadow SoiObservationSetUnvalidatedPublishParamsBodyCalibration
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2240,11 +2163,6 @@ type SoiObservationSetUnvalidatedPublishParamsBodyOpticalSoiObservationList stru
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetUnvalidatedPublishParamsBodyOpticalSoiObservationList) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SoiObservationSetUnvalidatedPublishParamsBodyOpticalSoiObservationList) MarshalJSON() (data []byte, err error) {
 	type shadow SoiObservationSetUnvalidatedPublishParamsBodyOpticalSoiObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2400,11 +2318,6 @@ type SoiObservationSetUnvalidatedPublishParamsBodyRadarSoiObservationList struct
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SoiObservationSetUnvalidatedPublishParamsBodyRadarSoiObservationList) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SoiObservationSetUnvalidatedPublishParamsBodyRadarSoiObservationList) MarshalJSON() (data []byte, err error) {
 	type shadow SoiObservationSetUnvalidatedPublishParamsBodyRadarSoiObservationList
 	return param.MarshalObject(r, (*shadow)(&r))

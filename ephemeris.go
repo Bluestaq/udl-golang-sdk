@@ -258,8 +258,7 @@ type EphemerisAbridged struct {
 	// Cartesian Z acceleration of target, in km/sec^2, in the specified EphemerisSet
 	// referenceFrame. If referenceFrame is null then J2K should be assumed.
 	Zaccel float64 `json:"zaccel"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -326,10 +325,6 @@ type EphemerisListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EphemerisListParams]'s query parameters as `url.Values`.
 func (r EphemerisListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -347,10 +342,6 @@ type EphemerisCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EphemerisCountParams]'s query parameters as `url.Values`.
 func (r EphemerisCountParams) URLQuery() (v url.Values, err error) {
@@ -392,10 +383,6 @@ type EphemerisFileUploadParams struct {
 	Tags param.Opt[string] `query:"tags,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisFileUploadParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r EphemerisFileUploadParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -445,10 +432,6 @@ type EphemerisTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EphemerisTupleParams]'s query parameters as `url.Values`.
 func (r EphemerisTupleParams) URLQuery() (v url.Values, err error) {
@@ -584,12 +567,6 @@ type EphemerisUnvalidatedPublishParams struct {
 	// UDL team.
 	Tags []string `json:"tags,omitzero"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r EphemerisUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -744,11 +721,6 @@ type EphemerisUnvalidatedPublishParamsEphemerisList struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisUnvalidatedPublishParamsEphemerisList) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EphemerisUnvalidatedPublishParamsEphemerisList) MarshalJSON() (data []byte, err error) {
 	type shadow EphemerisUnvalidatedPublishParamsEphemerisList
 	return param.MarshalObject(r, (*shadow)(&r))

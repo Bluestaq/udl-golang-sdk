@@ -183,8 +183,7 @@ type H3GeoHexCellListResponse struct {
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
 	SourceDl string `json:"sourceDL"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CellID                resp.Field
 		ClassificationMarking resp.Field
@@ -322,8 +321,7 @@ type H3GeoHexCellTupleResponse struct {
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
 	SourceDl string `json:"sourceDL"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CellID                resp.Field
 		ClassificationMarking resp.Field
@@ -389,10 +387,6 @@ type H3GeoHexCellListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f H3GeoHexCellListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [H3GeoHexCellListParams]'s query parameters as `url.Values`.
 func (r H3GeoHexCellListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -408,10 +402,6 @@ type H3GeoHexCellCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f H3GeoHexCellCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [H3GeoHexCellCountParams]'s query parameters as
 // `url.Values`.
@@ -434,10 +424,6 @@ type H3GeoHexCellTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f H3GeoHexCellTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [H3GeoHexCellTupleParams]'s query parameters as
 // `url.Values`.

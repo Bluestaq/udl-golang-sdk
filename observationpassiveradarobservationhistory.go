@@ -307,8 +307,7 @@ type ObservationPassiveRadarObservationHistoryListResponse struct {
 	Yvel float64 `json:"yvel"`
 	// Z velocity of target in kilometers/sec in J2000 coordinate frame.
 	Zvel float64 `json:"zvel"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -425,12 +424,6 @@ type ObservationPassiveRadarObservationHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationPassiveRadarObservationHistoryListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [ObservationPassiveRadarObservationHistoryListParams]'s
 // query parameters as `url.Values`.
 func (r ObservationPassiveRadarObservationHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -464,12 +457,6 @@ type ObservationPassiveRadarObservationHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationPassiveRadarObservationHistoryAodrParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [ObservationPassiveRadarObservationHistoryAodrParams]'s
 // query parameters as `url.Values`.
 func (r ObservationPassiveRadarObservationHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -486,12 +473,6 @@ type ObservationPassiveRadarObservationHistoryCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationPassiveRadarObservationHistoryCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [ObservationPassiveRadarObservationHistoryCountParams]'s

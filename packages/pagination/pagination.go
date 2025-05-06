@@ -21,8 +21,7 @@ type paramObj = param.APIObject
 
 type OffsetPage[T any] struct {
 	Items []T `json:",inline"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Items       resp.Field
 		ExtraFields map[string]resp.Field

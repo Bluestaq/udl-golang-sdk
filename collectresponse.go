@@ -277,8 +277,7 @@ type CollectResponseAbridged struct {
 	Status string `json:"status"`
 	// Optional task ID associated with the request/response.
 	TaskID string `json:"taskId"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -465,10 +464,6 @@ type CollectResponseNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectResponseNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r CollectResponseNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow CollectResponseNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -503,10 +498,6 @@ type CollectResponseGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectResponseGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [CollectResponseGetParams]'s query parameters as
 // `url.Values`.
 func (r CollectResponseGetParams) URLQuery() (v url.Values, err error) {
@@ -524,10 +515,6 @@ type CollectResponseListParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectResponseListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [CollectResponseListParams]'s query parameters as
 // `url.Values`.
@@ -547,10 +534,6 @@ type CollectResponseCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectResponseCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [CollectResponseCountParams]'s query parameters as
 // `url.Values`.
 func (r CollectResponseCountParams) URLQuery() (v url.Values, err error) {
@@ -564,10 +547,6 @@ type CollectResponseNewBulkParams struct {
 	Body []CollectResponseNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectResponseNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r CollectResponseNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -716,9 +695,6 @@ type CollectResponseNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectResponseNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r CollectResponseNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow CollectResponseNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -733,12 +709,6 @@ func init() {
 type CollectResponseUnvalidatedPublishParams struct {
 	Body []CollectResponseUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectResponseUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r CollectResponseUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -888,11 +858,6 @@ type CollectResponseUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectResponseUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r CollectResponseUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow CollectResponseUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

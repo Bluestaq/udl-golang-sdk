@@ -219,8 +219,7 @@ type AirTaskingOrderFull struct {
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
 	SourceDl string `json:"sourceDL"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		BeginTs               resp.Field
 		ClassificationMarking resp.Field
@@ -346,8 +345,7 @@ type AirTaskingOrderFullAcMsnTasking struct {
 	SecMsnType string `json:"secMsnType"`
 	// The tasked units location expressed as an ICAO or a place name.
 	UnitLocName string `json:"unitLocName"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CountryCode    resp.Field
 		TaskedService  resp.Field
@@ -412,8 +410,7 @@ type AirTaskingOrderFullAcMsnTaskingAcMsnLocSeg struct {
 	MsnLocPtLon float64 `json:"msnLocPtLon"`
 	// The location name for this mission.
 	MsnLocPtName string `json:"msnLocPtName"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		StartTime    resp.Field
 		AirMsnPri    resp.Field
@@ -466,8 +463,7 @@ type AirTaskingOrderFullAcMsnTaskingIndAcTasking struct {
 	SecConfigCode string `json:"secConfigCode"`
 	// The TACAN channel assigned to this mission aircraft.
 	TacanChan int64 `json:"tacanChan"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AcftType        resp.Field
 		CallSign        resp.Field
@@ -499,8 +495,7 @@ type AirTaskingOrderFullGenText struct {
 	// The indicator for the general text block. Examples include "OPENING REMARKS" and
 	// "GENERAL SPINS INFORMATION".
 	TextInd string `json:"textInd"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Text        resp.Field
 		TextInd     resp.Field
@@ -528,8 +523,7 @@ type AirTaskingOrderFullNavalFltOp struct {
 	// An array of times at which an aircraft will be launched and/or recovered in
 	// ISO8601 UTC format with millisecond precision.
 	SchdLaunchRcvyTime []time.Time `json:"schdLaunchRcvyTime" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ShipName           resp.Field
 		FltOpStart         resp.Field
@@ -623,8 +617,7 @@ type AirOperationAirTaskingOrderListResponse struct {
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
 	SourceDl string `json:"sourceDL"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		BeginTs               resp.Field
 		ClassificationMarking resp.Field
@@ -750,8 +743,7 @@ type AirOperationAirTaskingOrderListResponseAcMsnTasking struct {
 	SecMsnType string `json:"secMsnType"`
 	// The tasked units location expressed as an ICAO or a place name.
 	UnitLocName string `json:"unitLocName"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CountryCode    resp.Field
 		TaskedService  resp.Field
@@ -816,8 +808,7 @@ type AirOperationAirTaskingOrderListResponseAcMsnTaskingAcMsnLocSeg struct {
 	MsnLocPtLon float64 `json:"msnLocPtLon"`
 	// The location name for this mission.
 	MsnLocPtName string `json:"msnLocPtName"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		StartTime    resp.Field
 		AirMsnPri    resp.Field
@@ -872,8 +863,7 @@ type AirOperationAirTaskingOrderListResponseAcMsnTaskingIndAcTasking struct {
 	SecConfigCode string `json:"secConfigCode"`
 	// The TACAN channel assigned to this mission aircraft.
 	TacanChan int64 `json:"tacanChan"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AcftType        resp.Field
 		CallSign        resp.Field
@@ -907,8 +897,7 @@ type AirOperationAirTaskingOrderListResponseGenText struct {
 	// The indicator for the general text block. Examples include "OPENING REMARKS" and
 	// "GENERAL SPINS INFORMATION".
 	TextInd string `json:"textInd"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Text        resp.Field
 		TextInd     resp.Field
@@ -936,8 +925,7 @@ type AirOperationAirTaskingOrderListResponseNavalFltOp struct {
 	// An array of times at which an aircraft will be launched and/or recovered in
 	// ISO8601 UTC format with millisecond precision.
 	SchdLaunchRcvyTime []time.Time `json:"schdLaunchRcvyTime" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ShipName           resp.Field
 		FltOpStart         resp.Field
@@ -1015,12 +1003,6 @@ type AirOperationAirTaskingOrderNewParams struct {
 	// A collection that specifies the naval flight operations for this ATO.
 	NavalFltOps []AirOperationAirTaskingOrderNewParamsNavalFltOp `json:"navalFltOps,omitzero"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirTaskingOrderNewParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r AirOperationAirTaskingOrderNewParams) MarshalJSON() (data []byte, err error) {
@@ -1124,11 +1106,6 @@ type AirOperationAirTaskingOrderNewParamsAcMsnTasking struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirTaskingOrderNewParamsAcMsnTasking) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationAirTaskingOrderNewParamsAcMsnTasking) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirTaskingOrderNewParamsAcMsnTasking
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1167,11 +1144,6 @@ type AirOperationAirTaskingOrderNewParamsAcMsnTaskingAcMsnLocSeg struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirTaskingOrderNewParamsAcMsnTaskingAcMsnLocSeg) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationAirTaskingOrderNewParamsAcMsnTaskingAcMsnLocSeg) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirTaskingOrderNewParamsAcMsnTaskingAcMsnLocSeg
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1212,11 +1184,6 @@ type AirOperationAirTaskingOrderNewParamsAcMsnTaskingIndAcTasking struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirTaskingOrderNewParamsAcMsnTaskingIndAcTasking) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationAirTaskingOrderNewParamsAcMsnTaskingIndAcTasking) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirTaskingOrderNewParamsAcMsnTaskingIndAcTasking
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1233,11 +1200,6 @@ type AirOperationAirTaskingOrderNewParamsGenText struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirTaskingOrderNewParamsGenText) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationAirTaskingOrderNewParamsGenText) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirTaskingOrderNewParamsGenText
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1261,11 +1223,6 @@ type AirOperationAirTaskingOrderNewParamsNavalFltOp struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirTaskingOrderNewParamsNavalFltOp) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationAirTaskingOrderNewParamsNavalFltOp) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirTaskingOrderNewParamsNavalFltOp
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1275,12 +1232,6 @@ type AirOperationAirTaskingOrderGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirTaskingOrderGetParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [AirOperationAirTaskingOrderGetParams]'s query parameters as
@@ -1298,12 +1249,6 @@ type AirOperationAirTaskingOrderListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirTaskingOrderListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [AirOperationAirTaskingOrderListParams]'s query parameters
 // as `url.Values`.
 func (r AirOperationAirTaskingOrderListParams) URLQuery() (v url.Values, err error) {
@@ -1317,12 +1262,6 @@ type AirOperationAirTaskingOrderCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirTaskingOrderCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [AirOperationAirTaskingOrderCountParams]'s query parameters
@@ -1345,12 +1284,6 @@ type AirOperationAirTaskingOrderTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirTaskingOrderTupleParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [AirOperationAirTaskingOrderTupleParams]'s query parameters
 // as `url.Values`.
 func (r AirOperationAirTaskingOrderTupleParams) URLQuery() (v url.Values, err error) {
@@ -1363,12 +1296,6 @@ func (r AirOperationAirTaskingOrderTupleParams) URLQuery() (v url.Values, err er
 type AirOperationAirTaskingOrderUnvalidatedPublishParams struct {
 	Body []AirOperationAirTaskingOrderUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirTaskingOrderUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r AirOperationAirTaskingOrderUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -1458,11 +1385,6 @@ type AirOperationAirTaskingOrderUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirTaskingOrderUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationAirTaskingOrderUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirTaskingOrderUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1547,11 +1469,6 @@ type AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTasking struct 
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTasking) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTasking) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTasking
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1590,11 +1507,6 @@ type AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTaskingAcMsnLoc
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTaskingAcMsnLocSeg) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTaskingAcMsnLocSeg) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTaskingAcMsnLocSeg
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1635,11 +1547,6 @@ type AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTaskingIndAcTas
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTaskingIndAcTasking) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTaskingIndAcTasking) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTaskingIndAcTasking
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1656,11 +1563,6 @@ type AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyGenText struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyGenText) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyGenText) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyGenText
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1684,11 +1586,6 @@ type AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyNavalFltOp struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyNavalFltOp) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyNavalFltOp) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyNavalFltOp
 	return param.MarshalObject(r, (*shadow)(&r))

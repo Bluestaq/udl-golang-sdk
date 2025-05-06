@@ -198,8 +198,7 @@ type AntennaAbridged struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataMode    resp.Field
 		Name        resp.Field
@@ -292,8 +291,7 @@ type AntennaFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataMode       resp.Field
 		Name           resp.Field
@@ -372,10 +370,6 @@ type AntennaNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AntennaNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r AntennaNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow AntennaNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -409,10 +403,6 @@ type AntennaGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AntennaGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AntennaGetParams]'s query parameters as `url.Values`.
 func (r AntennaGetParams) URLQuery() (v url.Values, err error) {
@@ -454,10 +444,6 @@ type AntennaUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AntennaUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r AntennaUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow AntennaUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -492,10 +478,6 @@ type AntennaListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AntennaListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [AntennaListParams]'s query parameters as `url.Values`.
 func (r AntennaListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -509,10 +491,6 @@ type AntennaCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AntennaCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AntennaCountParams]'s query parameters as `url.Values`.
 func (r AntennaCountParams) URLQuery() (v url.Values, err error) {
@@ -532,10 +510,6 @@ type AntennaTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AntennaTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AntennaTupleParams]'s query parameters as `url.Values`.
 func (r AntennaTupleParams) URLQuery() (v url.Values, err error) {

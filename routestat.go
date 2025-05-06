@@ -278,8 +278,7 @@ type RouteStatGetResponse struct {
 	// The vehicle type that is the subject of this calculation (e.g., C-17, F-15,
 	// etc.).
 	VehicleType string `json:"vehicleType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -458,8 +457,7 @@ type RouteStatQueryResponse struct {
 	// The vehicle type that is the subject of this calculation (e.g., C-17, F-15,
 	// etc.).
 	VehicleType string `json:"vehicleType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -641,8 +639,7 @@ type RouteStatTupleResponse struct {
 	// The vehicle type that is the subject of this calculation (e.g., C-17, F-15,
 	// etc.).
 	VehicleType string `json:"vehicleType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -810,10 +807,6 @@ type RouteStatNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RouteStatNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r RouteStatNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow RouteStatNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -847,10 +840,6 @@ type RouteStatGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RouteStatGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [RouteStatGetParams]'s query parameters as `url.Values`.
 func (r RouteStatGetParams) URLQuery() (v url.Values, err error) {
@@ -957,10 +946,6 @@ type RouteStatUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RouteStatUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r RouteStatUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow RouteStatUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -995,10 +980,6 @@ type RouteStatCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RouteStatCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [RouteStatCountParams]'s query parameters as `url.Values`.
 func (r RouteStatCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1011,10 +992,6 @@ type RouteStatNewBulkParams struct {
 	Body []RouteStatNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RouteStatNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r RouteStatNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1134,9 +1111,6 @@ type RouteStatNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RouteStatNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r RouteStatNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow RouteStatNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1153,10 +1127,6 @@ type RouteStatQueryParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RouteStatQueryParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [RouteStatQueryParams]'s query parameters as `url.Values`.
 func (r RouteStatQueryParams) URLQuery() (v url.Values, err error) {
@@ -1177,10 +1147,6 @@ type RouteStatTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RouteStatTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [RouteStatTupleParams]'s query parameters as `url.Values`.
 func (r RouteStatTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1192,12 +1158,6 @@ func (r RouteStatTupleParams) URLQuery() (v url.Values, err error) {
 type RouteStatUnvalidatedPublishParams struct {
 	Body []RouteStatUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RouteStatUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r RouteStatUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -1318,11 +1278,6 @@ type RouteStatUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RouteStatUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r RouteStatUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow RouteStatUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

@@ -343,8 +343,7 @@ type OrbittrackListResponse struct {
 	VehType string `json:"vehType"`
 	// Source cross-reference code for the command that originated the track report.
 	Xref string `json:"xref"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -496,8 +495,7 @@ type OrbittrackListResponseTrackSensor struct {
 	// scheme, these numbers sometimes collide across sensors (especially commercial
 	// sensors). It is therefore not a unique identifier.
 	SensorNumber int64 `json:"sensorNumber"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Az            resp.Field
 		Range         resp.Field
@@ -730,8 +728,7 @@ type OrbittrackTupleResponse struct {
 	VehType string `json:"vehType"`
 	// Source cross-reference code for the command that originated the track report.
 	Xref string `json:"xref"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -884,8 +881,7 @@ type OrbittrackTupleResponseTrackSensor struct {
 	// scheme, these numbers sometimes collide across sensors (especially commercial
 	// sensors). It is therefore not a unique identifier.
 	SensorNumber int64 `json:"sensorNumber"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Az            resp.Field
 		Range         resp.Field
@@ -914,10 +910,6 @@ type OrbittrackListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbittrackListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OrbittrackListParams]'s query parameters as `url.Values`.
 func (r OrbittrackListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -935,10 +927,6 @@ type OrbittrackCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbittrackCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OrbittrackCountParams]'s query parameters as `url.Values`.
 func (r OrbittrackCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -951,10 +939,6 @@ type OrbittrackNewBulkParams struct {
 	Body []OrbittrackNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbittrackNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r OrbittrackNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1177,9 +1161,6 @@ type OrbittrackNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbittrackNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r OrbittrackNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow OrbittrackNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1224,11 +1205,6 @@ type OrbittrackNewBulkParamsBodyTrackSensor struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbittrackNewBulkParamsBodyTrackSensor) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r OrbittrackNewBulkParamsBodyTrackSensor) MarshalJSON() (data []byte, err error) {
 	type shadow OrbittrackNewBulkParamsBodyTrackSensor
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1254,10 +1230,6 @@ type OrbittrackTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbittrackTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OrbittrackTupleParams]'s query parameters as `url.Values`.
 func (r OrbittrackTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1269,12 +1241,6 @@ func (r OrbittrackTupleParams) URLQuery() (v url.Values, err error) {
 type OrbittrackUnvalidatedPublishParams struct {
 	Body []OrbittrackUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbittrackUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r OrbittrackUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -1498,11 +1464,6 @@ type OrbittrackUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbittrackUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r OrbittrackUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow OrbittrackUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1547,11 +1508,6 @@ type OrbittrackUnvalidatedPublishParamsBodyTrackSensor struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbittrackUnvalidatedPublishParamsBodyTrackSensor) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r OrbittrackUnvalidatedPublishParamsBodyTrackSensor) MarshalJSON() (data []byte, err error) {
 	type shadow OrbittrackUnvalidatedPublishParamsBodyTrackSensor
 	return param.MarshalObject(r, (*shadow)(&r))

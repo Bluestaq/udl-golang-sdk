@@ -578,8 +578,7 @@ type StateVectorAbridged struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1178,8 +1177,7 @@ type StateVectorFull struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1782,9 +1780,6 @@ type StateVectorIngestParam struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StateVectorIngestParam) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r StateVectorIngestParam) MarshalJSON() (data []byte, err error) {
 	type shadow StateVectorIngestParam
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1848,10 +1843,6 @@ type StateVectorNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StateVectorNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r StateVectorNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.StateVectorIngest)
 }
@@ -1864,10 +1855,6 @@ type StateVectorListParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StateVectorListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [StateVectorListParams]'s query parameters as `url.Values`.
 func (r StateVectorListParams) URLQuery() (v url.Values, err error) {
@@ -1886,10 +1873,6 @@ type StateVectorCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StateVectorCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [StateVectorCountParams]'s query parameters as `url.Values`.
 func (r StateVectorCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1903,10 +1886,6 @@ type StateVectorNewBulkParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StateVectorNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r StateVectorNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
@@ -1916,10 +1895,6 @@ type StateVectorGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StateVectorGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [StateVectorGetParams]'s query parameters as `url.Values`.
 func (r StateVectorGetParams) URLQuery() (v url.Values, err error) {
@@ -1943,10 +1918,6 @@ type StateVectorTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StateVectorTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [StateVectorTupleParams]'s query parameters as `url.Values`.
 func (r StateVectorTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1958,12 +1929,6 @@ func (r StateVectorTupleParams) URLQuery() (v url.Values, err error) {
 type StateVectorUnvalidatedPublishParams struct {
 	Body []StateVectorIngestParam
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StateVectorUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r StateVectorUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {

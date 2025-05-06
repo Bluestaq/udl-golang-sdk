@@ -233,8 +233,7 @@ type SpaceEnvObservationFull struct {
 	// 'srcIds' array for the record UUIDs, positionally corresponding to the record
 	// types in this array. The 'srcTyps' and 'srcIds' arrays must match in size.
 	SrcTyps []string `json:"srcTyps"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -362,8 +361,7 @@ type SpaceEnvObservationFullSeoList struct {
 	// (obString), a Boolean observation value (obBool), an array of numeric
 	// observation values (obArray), or any combination of these.
 	ObValue float64 `json:"obValue"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ObType        resp.Field
 		ObUoM         resp.Field
@@ -395,12 +393,6 @@ type SpaceEnvObservationHistoryListParams struct {
 	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceEnvObservationHistoryListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [SpaceEnvObservationHistoryListParams]'s query parameters as
@@ -436,12 +428,6 @@ type SpaceEnvObservationHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceEnvObservationHistoryAodrParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [SpaceEnvObservationHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r SpaceEnvObservationHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -458,12 +444,6 @@ type SpaceEnvObservationHistoryCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceEnvObservationHistoryCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [SpaceEnvObservationHistoryCountParams]'s query parameters

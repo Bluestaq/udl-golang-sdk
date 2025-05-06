@@ -227,8 +227,7 @@ type IsrCollectionListResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking           resp.Field
 		DataMode                        resp.Field
@@ -344,8 +343,7 @@ type IsrCollectionListResponseCollectionRequirement struct {
 	TargetList []string `json:"targetList"`
 	// Type collection this requirement applies to.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID                      resp.Field
 		Country                 resp.Field
@@ -385,8 +383,7 @@ type IsrCollectionListResponseCollectionRequirementCriticalTimes struct {
 	EarliestImagingTime time.Time `json:"earliestImagingTime,required" format:"date-time"`
 	// Critical stop time to collect an image for this requirement.
 	LatestImagingTime time.Time `json:"latestImagingTime,required" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		EarliestImagingTime resp.Field
 		LatestImagingTime   resp.Field
@@ -415,8 +412,7 @@ type IsrCollectionListResponseCollectionRequirementExploitationRequirement struc
 	Poc IsrCollectionListResponseCollectionRequirementExploitationRequirementPoc `json:"poc"`
 	// The reporting criteria of the collection requirement.
 	ReportingCriteria string `json:"reportingCriteria"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID                resp.Field
 		Amplification     resp.Field
@@ -458,8 +454,7 @@ type IsrCollectionListResponseCollectionRequirementExploitationRequirementPoc st
 	RadioFrequency float64 `json:"radioFrequency"`
 	// Unit the POC belongs to.
 	Unit string `json:"unit"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID             resp.Field
 		Callsign       resp.Field
@@ -548,8 +543,7 @@ type IsrCollectionListResponseTasking struct {
 	//
 	// Any of "Deliberate", "Dynamic", "Training", "Transit".
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID                              resp.Field
 		CollectionPeriods               resp.Field
@@ -593,8 +587,7 @@ type IsrCollectionListResponseTaskingCollectionPeriods struct {
 	// Actual start and stop for the collection.
 	Actual  []IsrCollectionListResponseTaskingCollectionPeriodsActual `json:"actual"`
 	Planned IsrCollectionListResponseTaskingCollectionPeriodsPlanned  `json:"planned"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Actual      resp.Field
 		Planned     resp.Field
@@ -616,8 +609,7 @@ type IsrCollectionListResponseTaskingCollectionPeriodsActual struct {
 	Start time.Time `json:"start" format:"date-time"`
 	// Stop time the collection actually occurred, in ISO 8601 UTC format.
 	Stop time.Time `json:"stop" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID          resp.Field
 		Start       resp.Field
@@ -640,8 +632,7 @@ type IsrCollectionListResponseTaskingCollectionPeriodsPlanned struct {
 	Start time.Time `json:"start" format:"date-time"`
 	// Stop time of collection, in ISO 8601 UTC format.
 	Stop time.Time `json:"stop" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Additional  resp.Field
 		Start       resp.Field
@@ -664,8 +655,7 @@ type IsrCollectionListResponseTaskingCollectionPeriodsPlannedAdditional struct {
 	Start time.Time `json:"start" format:"date-time"`
 	// Stop time of collection, in ISO 8601 UTC format.
 	Stop time.Time `json:"stop" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID          resp.Field
 		Start       resp.Field
@@ -729,8 +719,7 @@ type IsrCollectionListResponseTaskingTaskingCollectionRequirement struct {
 	TargetList []string `json:"targetList"`
 	// Type collection this requirement applies to.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID                      resp.Field
 		Country                 resp.Field
@@ -772,8 +761,7 @@ type IsrCollectionListResponseTaskingTaskingCollectionRequirementCriticalTimes s
 	EarliestImagingTime time.Time `json:"earliestImagingTime,required" format:"date-time"`
 	// Critical stop time to collect an image for this requirement.
 	LatestImagingTime time.Time `json:"latestImagingTime,required" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		EarliestImagingTime resp.Field
 		LatestImagingTime   resp.Field
@@ -802,8 +790,7 @@ type IsrCollectionListResponseTaskingTaskingCollectionRequirementExploitationReq
 	Poc IsrCollectionListResponseTaskingTaskingCollectionRequirementExploitationRequirementPoc `json:"poc"`
 	// The reporting criteria of the collection requirement.
 	ReportingCriteria string `json:"reportingCriteria"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID                resp.Field
 		Amplification     resp.Field
@@ -845,8 +832,7 @@ type IsrCollectionListResponseTaskingTaskingCollectionRequirementExploitationReq
 	RadioFrequency float64 `json:"radioFrequency"`
 	// Unit the POC belongs to.
 	Unit string `json:"unit"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID             resp.Field
 		Callsign       resp.Field
@@ -878,8 +864,7 @@ type IsrCollectionListResponseTransit struct {
 	Base string `json:"base"`
 	// Length of mission in milliseconds.
 	Duration float64 `json:"duration"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID          resp.Field
 		Base        resp.Field
@@ -991,8 +976,7 @@ type IsrCollectionTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking           resp.Field
 		DataMode                        resp.Field
@@ -1108,8 +1092,7 @@ type IsrCollectionTupleResponseCollectionRequirement struct {
 	TargetList []string `json:"targetList"`
 	// Type collection this requirement applies to.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID                      resp.Field
 		Country                 resp.Field
@@ -1149,8 +1132,7 @@ type IsrCollectionTupleResponseCollectionRequirementCriticalTimes struct {
 	EarliestImagingTime time.Time `json:"earliestImagingTime,required" format:"date-time"`
 	// Critical stop time to collect an image for this requirement.
 	LatestImagingTime time.Time `json:"latestImagingTime,required" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		EarliestImagingTime resp.Field
 		LatestImagingTime   resp.Field
@@ -1179,8 +1161,7 @@ type IsrCollectionTupleResponseCollectionRequirementExploitationRequirement stru
 	Poc IsrCollectionTupleResponseCollectionRequirementExploitationRequirementPoc `json:"poc"`
 	// The reporting criteria of the collection requirement.
 	ReportingCriteria string `json:"reportingCriteria"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID                resp.Field
 		Amplification     resp.Field
@@ -1222,8 +1203,7 @@ type IsrCollectionTupleResponseCollectionRequirementExploitationRequirementPoc s
 	RadioFrequency float64 `json:"radioFrequency"`
 	// Unit the POC belongs to.
 	Unit string `json:"unit"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID             resp.Field
 		Callsign       resp.Field
@@ -1312,8 +1292,7 @@ type IsrCollectionTupleResponseTasking struct {
 	//
 	// Any of "Deliberate", "Dynamic", "Training", "Transit".
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID                              resp.Field
 		CollectionPeriods               resp.Field
@@ -1357,8 +1336,7 @@ type IsrCollectionTupleResponseTaskingCollectionPeriods struct {
 	// Actual start and stop for the collection.
 	Actual  []IsrCollectionTupleResponseTaskingCollectionPeriodsActual `json:"actual"`
 	Planned IsrCollectionTupleResponseTaskingCollectionPeriodsPlanned  `json:"planned"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Actual      resp.Field
 		Planned     resp.Field
@@ -1380,8 +1358,7 @@ type IsrCollectionTupleResponseTaskingCollectionPeriodsActual struct {
 	Start time.Time `json:"start" format:"date-time"`
 	// Stop time the collection actually occurred, in ISO 8601 UTC format.
 	Stop time.Time `json:"stop" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID          resp.Field
 		Start       resp.Field
@@ -1404,8 +1381,7 @@ type IsrCollectionTupleResponseTaskingCollectionPeriodsPlanned struct {
 	Start time.Time `json:"start" format:"date-time"`
 	// Stop time of collection, in ISO 8601 UTC format.
 	Stop time.Time `json:"stop" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Additional  resp.Field
 		Start       resp.Field
@@ -1430,8 +1406,7 @@ type IsrCollectionTupleResponseTaskingCollectionPeriodsPlannedAdditional struct 
 	Start time.Time `json:"start" format:"date-time"`
 	// Stop time of collection, in ISO 8601 UTC format.
 	Stop time.Time `json:"stop" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID          resp.Field
 		Start       resp.Field
@@ -1495,8 +1470,7 @@ type IsrCollectionTupleResponseTaskingTaskingCollectionRequirement struct {
 	TargetList []string `json:"targetList"`
 	// Type collection this requirement applies to.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID                      resp.Field
 		Country                 resp.Field
@@ -1538,8 +1512,7 @@ type IsrCollectionTupleResponseTaskingTaskingCollectionRequirementCriticalTimes 
 	EarliestImagingTime time.Time `json:"earliestImagingTime,required" format:"date-time"`
 	// Critical stop time to collect an image for this requirement.
 	LatestImagingTime time.Time `json:"latestImagingTime,required" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		EarliestImagingTime resp.Field
 		LatestImagingTime   resp.Field
@@ -1568,8 +1541,7 @@ type IsrCollectionTupleResponseTaskingTaskingCollectionRequirementExploitationRe
 	Poc IsrCollectionTupleResponseTaskingTaskingCollectionRequirementExploitationRequirementPoc `json:"poc"`
 	// The reporting criteria of the collection requirement.
 	ReportingCriteria string `json:"reportingCriteria"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID                resp.Field
 		Amplification     resp.Field
@@ -1611,8 +1583,7 @@ type IsrCollectionTupleResponseTaskingTaskingCollectionRequirementExploitationRe
 	RadioFrequency float64 `json:"radioFrequency"`
 	// Unit the POC belongs to.
 	Unit string `json:"unit"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID             resp.Field
 		Callsign       resp.Field
@@ -1644,8 +1615,7 @@ type IsrCollectionTupleResponseTransit struct {
 	Base string `json:"base"`
 	// Length of mission in milliseconds.
 	Duration float64 `json:"duration"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID          resp.Field
 		Base        resp.Field
@@ -1670,10 +1640,6 @@ type IsrCollectionListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [IsrCollectionListParams]'s query parameters as
 // `url.Values`.
 func (r IsrCollectionListParams) URLQuery() (v url.Values, err error) {
@@ -1692,10 +1658,6 @@ type IsrCollectionCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [IsrCollectionCountParams]'s query parameters as
 // `url.Values`.
 func (r IsrCollectionCountParams) URLQuery() (v url.Values, err error) {
@@ -1709,10 +1671,6 @@ type IsrCollectionNewBulkParams struct {
 	Body []IsrCollectionNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r IsrCollectionNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1819,9 +1777,6 @@ type IsrCollectionNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r IsrCollectionNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1882,11 +1837,6 @@ type IsrCollectionNewBulkParamsBodyCollectionRequirement struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionNewBulkParamsBodyCollectionRequirement) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionNewBulkParamsBodyCollectionRequirement) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyCollectionRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1901,11 +1851,6 @@ type IsrCollectionNewBulkParamsBodyCollectionRequirementCriticalTimes struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionNewBulkParamsBodyCollectionRequirementCriticalTimes) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionNewBulkParamsBodyCollectionRequirementCriticalTimes) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyCollectionRequirementCriticalTimes
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1926,11 +1871,6 @@ type IsrCollectionNewBulkParamsBodyCollectionRequirementExploitationRequirement 
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionNewBulkParamsBodyCollectionRequirementExploitationRequirement) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionNewBulkParamsBodyCollectionRequirementExploitationRequirement) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyCollectionRequirementExploitationRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1960,11 +1900,6 @@ type IsrCollectionNewBulkParamsBodyCollectionRequirementExploitationRequirementP
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionNewBulkParamsBodyCollectionRequirementExploitationRequirementPoc) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionNewBulkParamsBodyCollectionRequirementExploitationRequirementPoc) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyCollectionRequirementExploitationRequirementPoc
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2037,11 +1972,6 @@ type IsrCollectionNewBulkParamsBodyTasking struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionNewBulkParamsBodyTasking) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionNewBulkParamsBodyTasking) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyTasking
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2063,11 +1993,6 @@ type IsrCollectionNewBulkParamsBodyTaskingCollectionPeriods struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionNewBulkParamsBodyTaskingCollectionPeriods) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionNewBulkParamsBodyTaskingCollectionPeriods) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyTaskingCollectionPeriods
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2083,11 +2008,6 @@ type IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsActual struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsActual) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsActual) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsActual
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2103,11 +2023,6 @@ type IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsPlanned struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsPlanned) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsPlanned) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsPlanned
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2123,11 +2038,6 @@ type IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsPlannedAdditional str
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsPlannedAdditional) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsPlannedAdditional) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsPlannedAdditional
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2182,11 +2092,6 @@ type IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirement struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirement) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirement) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2201,11 +2106,6 @@ type IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementCriticalTi
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementCriticalTimes) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementCriticalTimes) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementCriticalTimes
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2226,11 +2126,6 @@ type IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementExploitati
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementExploitationRequirement) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementExploitationRequirement) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementExploitationRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2260,11 +2155,6 @@ type IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementExploitati
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementExploitationRequirementPoc) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementExploitationRequirementPoc) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementExploitationRequirementPoc
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2280,11 +2170,6 @@ type IsrCollectionNewBulkParamsBodyTransit struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionNewBulkParamsBodyTransit) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionNewBulkParamsBodyTransit) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyTransit
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2304,10 +2189,6 @@ type IsrCollectionTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [IsrCollectionTupleParams]'s query parameters as
 // `url.Values`.
 func (r IsrCollectionTupleParams) URLQuery() (v url.Values, err error) {
@@ -2320,12 +2201,6 @@ func (r IsrCollectionTupleParams) URLQuery() (v url.Values, err error) {
 type IsrCollectionUnvalidatedPublishParams struct {
 	Body []IsrCollectionUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r IsrCollectionUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -2433,11 +2308,6 @@ type IsrCollectionUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2498,11 +2368,6 @@ type IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirement struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirement) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirement) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2517,11 +2382,6 @@ type IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementCriticalTimes
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementCriticalTimes) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementCriticalTimes) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementCriticalTimes
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2542,11 +2402,6 @@ type IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementExploitationR
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementExploitationRequirement) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementExploitationRequirement) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementExploitationRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2576,11 +2431,6 @@ type IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementExploitationR
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementExploitationRequirementPoc) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementExploitationRequirementPoc) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementExploitationRequirementPoc
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2653,11 +2503,6 @@ type IsrCollectionUnvalidatedPublishParamsBodyTasking struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionUnvalidatedPublishParamsBodyTasking) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionUnvalidatedPublishParamsBodyTasking) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTasking
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2679,11 +2524,6 @@ type IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriods struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriods) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriods) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriods
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2699,11 +2539,6 @@ type IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsActual str
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsActual) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsActual) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsActual
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2719,11 +2554,6 @@ type IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsPlanned st
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsPlanned) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsPlanned) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsPlanned
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2739,11 +2569,6 @@ type IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsPlannedAdd
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsPlannedAdditional) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsPlannedAdditional) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsPlannedAdditional
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2798,11 +2623,6 @@ type IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequiremen
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirement) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirement) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2817,11 +2637,6 @@ type IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequiremen
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementCriticalTimes) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementCriticalTimes) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementCriticalTimes
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2842,11 +2657,6 @@ type IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequiremen
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementExploitationRequirement) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementExploitationRequirement) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementExploitationRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2876,11 +2686,6 @@ type IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequiremen
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementExploitationRequirementPoc) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementExploitationRequirementPoc) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementExploitationRequirementPoc
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2896,11 +2701,6 @@ type IsrCollectionUnvalidatedPublishParamsBodyTransit struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IsrCollectionUnvalidatedPublishParamsBodyTransit) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IsrCollectionUnvalidatedPublishParamsBodyTransit) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTransit
 	return param.MarshalObject(r, (*shadow)(&r))

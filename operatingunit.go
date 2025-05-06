@@ -479,8 +479,7 @@ type OperatingunitListResponse struct {
 	// World Aeronautical Chart identifier for the area in which a designated operating
 	// unit is located.
 	Wac string `json:"wac"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -907,8 +906,7 @@ type OperatingunitGetResponse struct {
 	// World Aeronautical Chart identifier for the area in which a designated operating
 	// unit is located.
 	Wac string `json:"wac"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1063,8 +1061,7 @@ type OperatingunitGetResponseOperatingUnitRemark struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1423,8 +1420,7 @@ type OperatingunitTupleResponse struct {
 	// World Aeronautical Chart identifier for the area in which a designated operating
 	// unit is located.
 	Wac string `json:"wac"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1579,8 +1575,7 @@ type OperatingunitTupleResponseOperatingUnitRemark struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1918,10 +1913,6 @@ type OperatingunitNewParams struct {
 	Wac param.Opt[string] `json:"wac,omitzero"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OperatingunitNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r OperatingunitNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow OperatingunitNewParams
@@ -2262,10 +2253,6 @@ type OperatingunitUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OperatingunitUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r OperatingunitUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow OperatingunitUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2300,10 +2287,6 @@ type OperatingunitListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OperatingunitListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OperatingunitListParams]'s query parameters as
 // `url.Values`.
 func (r OperatingunitListParams) URLQuery() (v url.Values, err error) {
@@ -2319,10 +2302,6 @@ type OperatingunitCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OperatingunitCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OperatingunitCountParams]'s query parameters as
 // `url.Values`.
 func (r OperatingunitCountParams) URLQuery() (v url.Values, err error) {
@@ -2337,10 +2316,6 @@ type OperatingunitGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OperatingunitGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [OperatingunitGetParams]'s query parameters as `url.Values`.
 func (r OperatingunitGetParams) URLQuery() (v url.Values, err error) {
@@ -2360,10 +2335,6 @@ type OperatingunitTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OperatingunitTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [OperatingunitTupleParams]'s query parameters as
 // `url.Values`.

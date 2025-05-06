@@ -233,8 +233,7 @@ type GlobalAtmosphericModelGetResponse struct {
 	StepLat float64 `json:"stepLat"`
 	// Separation in longitude between subsequent model outputs, in degrees.
 	StepLon float64 `json:"stepLon"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -389,8 +388,7 @@ type GlobalAtmosphericModelQueryResponse struct {
 	StepLat float64 `json:"stepLat"`
 	// Separation in longitude between subsequent model outputs, in degrees.
 	StepLon float64 `json:"stepLon"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -545,8 +543,7 @@ type GlobalAtmosphericModelTupleResponse struct {
 	StepLat float64 `json:"stepLat"`
 	// Separation in longitude between subsequent model outputs, in degrees.
 	StepLon float64 `json:"stepLon"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -616,10 +613,6 @@ type GlobalAtmosphericModelGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GlobalAtmosphericModelGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [GlobalAtmosphericModelGetParams]'s query parameters as
 // `url.Values`.
 func (r GlobalAtmosphericModelGetParams) URLQuery() (v url.Values, err error) {
@@ -638,12 +631,6 @@ type GlobalAtmosphericModelCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GlobalAtmosphericModelCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [GlobalAtmosphericModelCountParams]'s query parameters as
 // `url.Values`.
 func (r GlobalAtmosphericModelCountParams) URLQuery() (v url.Values, err error) {
@@ -657,12 +644,6 @@ type GlobalAtmosphericModelGetFileParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GlobalAtmosphericModelGetFileParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [GlobalAtmosphericModelGetFileParams]'s query parameters as
@@ -681,12 +662,6 @@ type GlobalAtmosphericModelQueryParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GlobalAtmosphericModelQueryParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [GlobalAtmosphericModelQueryParams]'s query parameters as
@@ -710,12 +685,6 @@ type GlobalAtmosphericModelTupleParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GlobalAtmosphericModelTupleParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [GlobalAtmosphericModelTupleParams]'s query parameters as
@@ -801,12 +770,6 @@ type GlobalAtmosphericModelUnvalidatedPublishParams struct {
 	// Separation in longitude between subsequent model outputs, in degrees.
 	StepLon param.Opt[float64] `json:"stepLon,omitzero"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GlobalAtmosphericModelUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r GlobalAtmosphericModelUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {

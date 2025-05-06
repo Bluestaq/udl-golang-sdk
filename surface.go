@@ -435,8 +435,7 @@ type SurfaceListResponse struct {
 	WidthFt float64 `json:"widthFt"`
 	// The width of the surface type, in meters.
 	WidthM float64 `json:"widthM"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -823,8 +822,7 @@ type SurfaceGetResponse struct {
 	WidthFt float64 `json:"widthFt"`
 	// The width of the surface type, in meters.
 	WidthM float64 `json:"widthM"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -984,8 +982,7 @@ type SurfaceGetResponseSurfaceObstruction struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking     resp.Field
 		DataMode                  resp.Field
@@ -1306,8 +1303,7 @@ type SurfaceTupleResponse struct {
 	WidthFt float64 `json:"widthFt"`
 	// The width of the surface type, in meters.
 	WidthM float64 `json:"widthM"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1467,8 +1463,7 @@ type SurfaceTupleResponseSurfaceObstruction struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking     resp.Field
 		DataMode                  resp.Field
@@ -1771,10 +1766,6 @@ type SurfaceNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SurfaceNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SurfaceNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SurfaceNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2059,10 +2050,6 @@ type SurfaceUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SurfaceUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SurfaceUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SurfaceUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2084,10 +2071,6 @@ type SurfaceListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SurfaceListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SurfaceListParams]'s query parameters as `url.Values`.
 func (r SurfaceListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -2102,10 +2085,6 @@ type SurfaceCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SurfaceCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SurfaceCountParams]'s query parameters as `url.Values`.
 func (r SurfaceCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -2119,10 +2098,6 @@ type SurfaceGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SurfaceGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SurfaceGetParams]'s query parameters as `url.Values`.
 func (r SurfaceGetParams) URLQuery() (v url.Values, err error) {
@@ -2142,10 +2117,6 @@ type SurfaceTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SurfaceTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SurfaceTupleParams]'s query parameters as `url.Values`.
 func (r SurfaceTupleParams) URLQuery() (v url.Values, err error) {

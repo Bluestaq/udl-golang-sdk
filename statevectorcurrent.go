@@ -97,10 +97,6 @@ type StateVectorCurrentListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StateVectorCurrentListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [StateVectorCurrentListParams]'s query parameters as
 // `url.Values`.
 func (r StateVectorCurrentListParams) URLQuery() (v url.Values, err error) {
@@ -120,10 +116,6 @@ type StateVectorCurrentTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StateVectorCurrentTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [StateVectorCurrentTupleParams]'s query parameters as
 // `url.Values`.

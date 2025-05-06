@@ -398,8 +398,7 @@ type NavigationalObstructionListResponse struct {
 	Wac string `json:"wac"`
 	// This obstacle's World Area Code installation number (WAC-INNR).
 	WacInnr string `json:"wacINNR"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		CycleDate             resp.Field
@@ -757,8 +756,7 @@ type NavigationalObstructionGetResponse struct {
 	Wac string `json:"wac"`
 	// This obstacle's World Area Code installation number (WAC-INNR).
 	WacInnr string `json:"wacINNR"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		CycleDate             resp.Field
@@ -1118,8 +1116,7 @@ type NavigationalObstructionTupleResponse struct {
 	Wac string `json:"wac"`
 	// This obstacle's World Area Code installation number (WAC-INNR).
 	WacInnr string `json:"wacINNR"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		CycleDate             resp.Field
@@ -1458,10 +1455,6 @@ type NavigationalObstructionNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NavigationalObstructionNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r NavigationalObstructionNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow NavigationalObstructionNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1714,12 +1707,6 @@ type NavigationalObstructionUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NavigationalObstructionUpdateParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 func (r NavigationalObstructionUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow NavigationalObstructionUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1760,12 +1747,6 @@ type NavigationalObstructionListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NavigationalObstructionListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [NavigationalObstructionListParams]'s query parameters as
 // `url.Values`.
 func (r NavigationalObstructionListParams) URLQuery() (v url.Values, err error) {
@@ -1787,12 +1768,6 @@ type NavigationalObstructionCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NavigationalObstructionCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [NavigationalObstructionCountParams]'s query parameters as
 // `url.Values`.
 func (r NavigationalObstructionCountParams) URLQuery() (v url.Values, err error) {
@@ -1805,12 +1780,6 @@ func (r NavigationalObstructionCountParams) URLQuery() (v url.Values, err error)
 type NavigationalObstructionNewBulkParams struct {
 	Body []NavigationalObstructionNewBulkParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NavigationalObstructionNewBulkParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r NavigationalObstructionNewBulkParams) MarshalJSON() (data []byte, err error) {
@@ -2063,11 +2032,6 @@ type NavigationalObstructionNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NavigationalObstructionNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r NavigationalObstructionNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow NavigationalObstructionNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2084,10 +2048,6 @@ type NavigationalObstructionGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NavigationalObstructionGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [NavigationalObstructionGetParams]'s query parameters as
 // `url.Values`.
@@ -2113,12 +2073,6 @@ type NavigationalObstructionTupleParams struct {
 	// obstacle.
 	ObstacleID param.Opt[string] `query:"obstacleId,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NavigationalObstructionTupleParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [NavigationalObstructionTupleParams]'s query parameters as

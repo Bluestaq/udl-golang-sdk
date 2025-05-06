@@ -340,8 +340,7 @@ type AnalyticImageryAbridged struct {
 	// Optional field indicating the units that apply to the z-axis of the attached
 	// image, when applicable.
 	ZUnits string `json:"zUnits"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		Content               resp.Field
@@ -549,8 +548,7 @@ type AnalyticImageryFull struct {
 	// Optional field indicating the units that apply to the z-axis of the attached
 	// image, when applicable.
 	ZUnits string `json:"zUnits"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		Content               resp.Field
@@ -622,10 +620,6 @@ type AnalyticImageryGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AnalyticImageryGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [AnalyticImageryGetParams]'s query parameters as
 // `url.Values`.
 func (r AnalyticImageryGetParams) URLQuery() (v url.Values, err error) {
@@ -643,10 +637,6 @@ type AnalyticImageryListParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AnalyticImageryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AnalyticImageryListParams]'s query parameters as
 // `url.Values`.
@@ -666,10 +656,6 @@ type AnalyticImageryCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AnalyticImageryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [AnalyticImageryCountParams]'s query parameters as
 // `url.Values`.
 func (r AnalyticImageryCountParams) URLQuery() (v url.Values, err error) {
@@ -684,10 +670,6 @@ type AnalyticImageryFileGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AnalyticImageryFileGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AnalyticImageryFileGetParams]'s query parameters as
 // `url.Values`.
@@ -710,10 +692,6 @@ type AnalyticImageryHistoryParams struct {
 	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AnalyticImageryHistoryParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AnalyticImageryHistoryParams]'s query parameters as
 // `url.Values`.
@@ -748,10 +726,6 @@ type AnalyticImageryHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AnalyticImageryHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [AnalyticImageryHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r AnalyticImageryHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -768,12 +742,6 @@ type AnalyticImageryHistoryCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AnalyticImageryHistoryCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [AnalyticImageryHistoryCountParams]'s query parameters as
@@ -799,10 +767,6 @@ type AnalyticImageryTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AnalyticImageryTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [AnalyticImageryTupleParams]'s query parameters as
 // `url.Values`.
 func (r AnalyticImageryTupleParams) URLQuery() (v url.Values, err error) {
@@ -816,12 +780,6 @@ type AnalyticImageryUnvalidatedPublishParams struct {
 	// Zip file containing files described in the specification
 	File io.Reader `json:"file,omitzero,required" format:"binary"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AnalyticImageryUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r AnalyticImageryUnvalidatedPublishParams) MarshalMultipart() (data []byte, contentType string, err error) {

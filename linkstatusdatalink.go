@@ -370,9 +370,6 @@ type DatalinkIngestParam struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DatalinkIngestParam) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r DatalinkIngestParam) MarshalJSON() (data []byte, err error) {
 	type shadow DatalinkIngestParam
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -425,9 +422,6 @@ type DatalinkIngestMultiDutyParam struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DatalinkIngestMultiDutyParam) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r DatalinkIngestMultiDutyParam) MarshalJSON() (data []byte, err error) {
 	type shadow DatalinkIngestMultiDutyParam
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -453,11 +447,6 @@ type DatalinkIngestMultiDutyMultiDutyVoiceCoordParam struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DatalinkIngestMultiDutyMultiDutyVoiceCoordParam) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DatalinkIngestMultiDutyMultiDutyVoiceCoordParam) MarshalJSON() (data []byte, err error) {
 	type shadow DatalinkIngestMultiDutyMultiDutyVoiceCoordParam
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -484,9 +473,6 @@ type DatalinkIngestOpParam struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DatalinkIngestOpParam) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r DatalinkIngestOpParam) MarshalJSON() (data []byte, err error) {
 	type shadow DatalinkIngestOpParam
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -516,9 +502,6 @@ type DatalinkIngestReferenceParam struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DatalinkIngestReferenceParam) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r DatalinkIngestReferenceParam) MarshalJSON() (data []byte, err error) {
 	type shadow DatalinkIngestReferenceParam
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -546,9 +529,6 @@ type DatalinkIngestRefPointParam struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DatalinkIngestRefPointParam) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r DatalinkIngestRefPointParam) MarshalJSON() (data []byte, err error) {
 	type shadow DatalinkIngestRefPointParam
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -563,9 +543,6 @@ type DatalinkIngestRemarkParam struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DatalinkIngestRemarkParam) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r DatalinkIngestRemarkParam) MarshalJSON() (data []byte, err error) {
 	type shadow DatalinkIngestRemarkParam
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -584,9 +561,6 @@ type DatalinkIngestSpecTrackParam struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DatalinkIngestSpecTrackParam) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r DatalinkIngestSpecTrackParam) MarshalJSON() (data []byte, err error) {
 	type shadow DatalinkIngestSpecTrackParam
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -611,9 +585,6 @@ type DatalinkIngestVoiceCoordParam struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DatalinkIngestVoiceCoordParam) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r DatalinkIngestVoiceCoordParam) MarshalJSON() (data []byte, err error) {
 	type shadow DatalinkIngestVoiceCoordParam
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -856,8 +827,7 @@ type LinkStatusDatalinkListResponse struct {
 	// Required if sysDefaultCode field is "MAN". Allowable entries are 0.5 to 3.0 in
 	// increments of 0.1.
 	WinSizeMult float64 `json:"winSizeMult"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -988,8 +958,7 @@ type LinkStatusDatalinkListResponseMultiDuty struct {
 	// Designated force of unit specified by ship name, unit call sign, or unit
 	// designator.
 	UnitDes string `json:"unitDes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Duty                resp.Field
 		DutyTeleFreqNums    resp.Field
@@ -1025,8 +994,7 @@ type LinkStatusDatalinkListResponseMultiDutyMultiDutyVoiceCoord struct {
 	// Designator assigned to a voice interface control and coordination net for
 	// multilink coordination (e.g. ADCCN, DCN, VPN, etc.).
 	MultiVoiceNetDes string `json:"multiVoiceNetDes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		MultiCommPri      resp.Field
 		MultiFreqDes      resp.Field
@@ -1063,8 +1031,7 @@ type LinkStatusDatalinkListResponseOp struct {
 	// AFTER, ASOF, NLT, etc. Used with field linkStopTimeMod to indicate a relative
 	// time.
 	LinkStopTimeMod string `json:"linkStopTimeMod"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		LinkDetails     resp.Field
 		LinkName        resp.Field
@@ -1103,8 +1070,7 @@ type LinkStatusDatalinkListResponseReference struct {
 	RefTs time.Time `json:"refTs" format:"date-time"`
 	// Specifies the type of document referenced.
 	RefType string `json:"refType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		RefOriginator      resp.Field
 		RefSerialID        resp.Field
@@ -1143,8 +1109,7 @@ type LinkStatusDatalinkListResponseRefPoint struct {
 	RefLon float64 `json:"refLon"`
 	// Type of data link reference point or grid origin.
 	RefPointType string `json:"refPointType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		EffEventTime resp.Field
 		RefDes       resp.Field
@@ -1169,8 +1134,7 @@ type LinkStatusDatalinkListResponseRemark struct {
 	Text string `json:"text"`
 	// Indicates the subject matter of the remark.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Text        resp.Field
 		Type        resp.Field
@@ -1195,8 +1159,7 @@ type LinkStatusDatalinkListResponseSpecTrack struct {
 	SpecTrackNum string `json:"specTrackNum"`
 	// Description of the special track number.
 	SpecTrackNumDesc string `json:"specTrackNumDesc"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		SpecTrackNum     resp.Field
 		SpecTrackNumDesc resp.Field
@@ -1227,8 +1190,7 @@ type LinkStatusDatalinkListResponseVoiceCoord struct {
 	// Designator assigned to a voice interface control and coordination net for this
 	// data link message (e.g. ADCCN, DCN, VPN, etc.).
 	VoiceNetDes string `json:"voiceNetDes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CommPri      resp.Field
 		FreqDes      resp.Field
@@ -1482,8 +1444,7 @@ type LinkStatusDatalinkTupleResponse struct {
 	// Required if sysDefaultCode field is "MAN". Allowable entries are 0.5 to 3.0 in
 	// increments of 0.1.
 	WinSizeMult float64 `json:"winSizeMult"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1614,8 +1575,7 @@ type LinkStatusDatalinkTupleResponseMultiDuty struct {
 	// Designated force of unit specified by ship name, unit call sign, or unit
 	// designator.
 	UnitDes string `json:"unitDes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Duty                resp.Field
 		DutyTeleFreqNums    resp.Field
@@ -1651,8 +1611,7 @@ type LinkStatusDatalinkTupleResponseMultiDutyMultiDutyVoiceCoord struct {
 	// Designator assigned to a voice interface control and coordination net for
 	// multilink coordination (e.g. ADCCN, DCN, VPN, etc.).
 	MultiVoiceNetDes string `json:"multiVoiceNetDes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		MultiCommPri      resp.Field
 		MultiFreqDes      resp.Field
@@ -1689,8 +1648,7 @@ type LinkStatusDatalinkTupleResponseOp struct {
 	// AFTER, ASOF, NLT, etc. Used with field linkStopTimeMod to indicate a relative
 	// time.
 	LinkStopTimeMod string `json:"linkStopTimeMod"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		LinkDetails     resp.Field
 		LinkName        resp.Field
@@ -1729,8 +1687,7 @@ type LinkStatusDatalinkTupleResponseReference struct {
 	RefTs time.Time `json:"refTs" format:"date-time"`
 	// Specifies the type of document referenced.
 	RefType string `json:"refType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		RefOriginator      resp.Field
 		RefSerialID        resp.Field
@@ -1769,8 +1726,7 @@ type LinkStatusDatalinkTupleResponseRefPoint struct {
 	RefLon float64 `json:"refLon"`
 	// Type of data link reference point or grid origin.
 	RefPointType string `json:"refPointType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		EffEventTime resp.Field
 		RefDes       resp.Field
@@ -1795,8 +1751,7 @@ type LinkStatusDatalinkTupleResponseRemark struct {
 	Text string `json:"text"`
 	// Indicates the subject matter of the remark.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Text        resp.Field
 		Type        resp.Field
@@ -1821,8 +1776,7 @@ type LinkStatusDatalinkTupleResponseSpecTrack struct {
 	SpecTrackNum string `json:"specTrackNum"`
 	// Description of the special track number.
 	SpecTrackNumDesc string `json:"specTrackNumDesc"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		SpecTrackNum     resp.Field
 		SpecTrackNumDesc resp.Field
@@ -1853,8 +1807,7 @@ type LinkStatusDatalinkTupleResponseVoiceCoord struct {
 	// Designator assigned to a voice interface control and coordination net for this
 	// data link message (e.g. ADCCN, DCN, VPN, etc.).
 	VoiceNetDes string `json:"voiceNetDes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CommPri      resp.Field
 		FreqDes      resp.Field
@@ -1878,10 +1831,6 @@ type LinkStatusDatalinkNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LinkStatusDatalinkNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r LinkStatusDatalinkNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.DatalinkIngest)
 }
@@ -1894,10 +1843,6 @@ type LinkStatusDatalinkListParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LinkStatusDatalinkListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [LinkStatusDatalinkListParams]'s query parameters as
 // `url.Values`.
@@ -1916,10 +1861,6 @@ type LinkStatusDatalinkCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LinkStatusDatalinkCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [LinkStatusDatalinkCountParams]'s query parameters as
 // `url.Values`.
@@ -1944,10 +1885,6 @@ type LinkStatusDatalinkTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LinkStatusDatalinkTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [LinkStatusDatalinkTupleParams]'s query parameters as
 // `url.Values`.
 func (r LinkStatusDatalinkTupleParams) URLQuery() (v url.Values, err error) {
@@ -1960,12 +1897,6 @@ func (r LinkStatusDatalinkTupleParams) URLQuery() (v url.Values, err error) {
 type LinkStatusDatalinkUnvalidatedPublishParams struct {
 	Body []DatalinkIngestParam
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LinkStatusDatalinkUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r LinkStatusDatalinkUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {

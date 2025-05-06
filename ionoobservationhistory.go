@@ -363,8 +363,7 @@ type IonoObservationHistoryListResponse struct {
 	ZhalfNm float64 `json:"zhalfNm"`
 	// Peak height of E-layer in km. URSI ID: 90.
 	ZmE float64 `json:"zmE"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                  resp.Field
 		DataMode                               resp.Field
@@ -517,8 +516,7 @@ type IonoObservationHistoryListResponseAmplitude struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the amplitude data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -542,8 +540,7 @@ type IonoObservationHistoryListResponseAntennaElementPosition struct {
 	DimensionName []string `json:"dimensionName"`
 	// Array of integers of the antenna_element dimensions.
 	Dimensions []int64 `json:"dimensions"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -581,8 +578,7 @@ type IonoObservationHistoryListResponseAzimuth struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the azimuth data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -630,8 +626,7 @@ type IonoObservationHistoryListResponseCharAtt struct {
 	// Characteristic's URSI ID. See the characteristic's description for its
 	// corresponding URSI ID.
 	UrsiID string `json:"ursiID"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CharName                resp.Field
 		ClimateModelInputParams resp.Field
@@ -659,8 +654,7 @@ type IonoObservationHistoryListResponseDatum struct {
 	Data []float64 `json:"data"`
 	// Notes for the datum with details of what the data is, units, etc.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data        resp.Field
 		Notes       resp.Field
@@ -695,8 +689,7 @@ type IonoObservationHistoryListResponseDensityProfile struct {
 	ValleyModelCoeffs []float64 `json:"valleyModelCoeffs"`
 	// Description of the valley model and parameters.
 	ValleyModelDescription string `json:"valleyModelDescription"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Iri                          resp.Field
 		Parabolic                    resp.Field
@@ -764,8 +757,7 @@ type IonoObservationHistoryListResponseDensityProfileIri struct {
 	NmF2 float64 `json:"nmF2"`
 	// The valley depth, in grams per cubic centimeter.
 	NValB float64 `json:"nValB"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		B0          resp.Field
 		B1          resp.Field
@@ -806,8 +798,7 @@ type IonoObservationHistoryListResponseDensityProfileParabolic struct {
 	Description string `json:"description"`
 	// Describes the E, F1, and F2 layers as parabolic-shape segments.
 	ParabolicItems []IonoObservationHistoryListResponseDensityProfileParabolicParabolicItem `json:"parabolicItems"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Description    resp.Field
 		ParabolicItems resp.Field
@@ -834,8 +825,7 @@ type IonoObservationHistoryListResponseDensityProfileParabolicParabolicItem stru
 	Y float64 `json:"y"`
 	// Height of the layer peak, in kilometers.
 	Z float64 `json:"z"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		F           resp.Field
 		Layer       resp.Field
@@ -865,8 +855,7 @@ type IonoObservationHistoryListResponseDensityProfileQuasiParabolic struct {
 	// groups for E, F1, and F2 layers, but additional segments may be used to improve
 	// accuracy.
 	QuasiParabolicSegments []IonoObservationHistoryListResponseDensityProfileQuasiParabolicQuasiParabolicSegment `json:"quasiParabolicSegments"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Description            resp.Field
 		EarthRadius            resp.Field
@@ -902,8 +891,7 @@ type IonoObservationHistoryListResponseDensityProfileQuasiParabolicQuasiParaboli
 	Rb float64 `json:"rb"`
 	// Ending range of the segment, in kilometers from the Earth's center.
 	Re float64 `json:"re"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		A           resp.Field
 		B           resp.Field
@@ -934,8 +922,7 @@ type IonoObservationHistoryListResponseDensityProfileShiftedChebyshev struct {
 	// E, F1, and bottomside F2 profile shapes, or up to 6 groups of coefficients to
 	// describe height uncertainty boundaries (upper and lower).
 	ShiftedChebyshevs []IonoObservationHistoryListResponseDensityProfileShiftedChebyshevShiftedChebyshev `json:"shiftedChebyshevs"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Description       resp.Field
 		ShiftedChebyshevs resp.Field
@@ -972,8 +959,7 @@ type IonoObservationHistoryListResponseDensityProfileShiftedChebyshevShiftedCheb
 	Peakheight float64 `json:"peakheight"`
 	// Height at which density is half of the peak Nm, in kilometers.
 	ZhalfNm float64 `json:"zhalfNm"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Coeffs      resp.Field
 		Error       resp.Field
@@ -1009,8 +995,7 @@ type IonoObservationHistoryListResponseDensityProfileTopsideExtensionChapmanCons
 	NmF2 float64 `json:"nmF2"`
 	// Scale height if F2 layer at the peak, in kilometers.
 	ScaleF2 float64 `json:"scaleF2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Chi         resp.Field
 		Description resp.Field
@@ -1049,8 +1034,7 @@ type IonoObservationHistoryListResponseDensityProfileTopsideExtensionVaryChap st
 	NmF2 float64 `json:"nmF2"`
 	// Scale height if F2 layer at the peak, in kilometers.
 	ScaleF2 float64 `json:"scaleF2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Alpha       resp.Field
 		Beta        resp.Field
@@ -1082,8 +1066,7 @@ type IonoObservationHistoryListResponseDoppler struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the doppler data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1109,8 +1092,7 @@ type IonoObservationHistoryListResponseElevation struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the elevation data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1136,8 +1118,7 @@ type IonoObservationHistoryListResponseFrequency struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the frequency data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1164,8 +1145,7 @@ type IonoObservationHistoryListResponsePhase struct {
 	// Notes for the phase data. Orientation and position for each antenna element
 	// across the antenna_element dimension.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1191,8 +1171,7 @@ type IonoObservationHistoryListResponsePolarization struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the polarization data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1218,8 +1197,7 @@ type IonoObservationHistoryListResponsePower struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the power data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1245,8 +1223,7 @@ type IonoObservationHistoryListResponseRange struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the range data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1286,8 +1263,7 @@ type IonoObservationHistoryListResponseScalerInfo struct {
 	Type string `json:"type"`
 	// Scaler version.
 	Version float64 `json:"version"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ConfidenceLevel resp.Field
 		ConfidenceScore resp.Field
@@ -1317,8 +1293,7 @@ type IonoObservationHistoryListResponseStokes struct {
 	Notes string `json:"notes"`
 	// S1, S2, and S3 (the normalized Stokes parameters 1, 2, and 3).
 	S []float64 `json:"s"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1346,8 +1321,7 @@ type IonoObservationHistoryListResponseTime struct {
 	Dimensions []int64 `json:"dimensions"`
 	// The notes indicate the scheme and accuracy.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1372,8 +1346,7 @@ type IonoObservationHistoryListResponseTraceGeneric struct {
 	DimensionName []string `json:"dimensionName"`
 	// Notes for the trace generic data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1409,10 +1382,6 @@ type IonoObservationHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonoObservationHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [IonoObservationHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r IonoObservationHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -1445,10 +1414,6 @@ type IonoObservationHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonoObservationHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [IonoObservationHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r IonoObservationHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -1464,12 +1429,6 @@ type IonoObservationHistoryCountParams struct {
 	FirstResult  param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults   param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonoObservationHistoryCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [IonoObservationHistoryCountParams]'s query parameters as

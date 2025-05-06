@@ -838,8 +838,7 @@ type TrackDetailsFull struct {
 	// The breadth of the vessel, in meters. A value of 63 indicates a vessel breadth
 	// of 63 meters or greater.
 	Width float64 `json:"width"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1108,10 +1107,6 @@ type TrackDetailHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackDetailHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [TrackDetailHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r TrackDetailHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -1145,10 +1140,6 @@ type TrackDetailHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackDetailHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [TrackDetailHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r TrackDetailHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -1166,10 +1157,6 @@ type TrackDetailHistoryCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackDetailHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [TrackDetailHistoryCountParams]'s query parameters as
 // `url.Values`.

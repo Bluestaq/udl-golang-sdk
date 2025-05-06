@@ -192,8 +192,7 @@ type EquipmentRemarkAbridged struct {
 	Origin string `json:"origin"`
 	// The remark type (e.g. Caution, Information, Misc, Restriction, etc.).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -296,8 +295,7 @@ type EquipmentRemarkFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -393,10 +391,6 @@ type EquipmentRemarkNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EquipmentRemarkNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r EquipmentRemarkNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow EquipmentRemarkNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -431,10 +425,6 @@ type EquipmentRemarkGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EquipmentRemarkGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EquipmentRemarkGetParams]'s query parameters as
 // `url.Values`.
 func (r EquipmentRemarkGetParams) URLQuery() (v url.Values, err error) {
@@ -449,10 +439,6 @@ type EquipmentRemarkListParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EquipmentRemarkListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EquipmentRemarkListParams]'s query parameters as
 // `url.Values`.
@@ -469,10 +455,6 @@ type EquipmentRemarkCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EquipmentRemarkCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EquipmentRemarkCountParams]'s query parameters as
 // `url.Values`.
 func (r EquipmentRemarkCountParams) URLQuery() (v url.Values, err error) {
@@ -486,10 +468,6 @@ type EquipmentRemarkNewBulkParams struct {
 	Body []EquipmentRemarkNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EquipmentRemarkNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r EquipmentRemarkNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -550,9 +528,6 @@ type EquipmentRemarkNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EquipmentRemarkNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r EquipmentRemarkNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow EquipmentRemarkNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -574,10 +549,6 @@ type EquipmentRemarkTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EquipmentRemarkTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EquipmentRemarkTupleParams]'s query parameters as
 // `url.Values`.

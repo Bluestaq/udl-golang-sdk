@@ -162,8 +162,7 @@ type AirTransportMissionFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -290,8 +289,7 @@ type AirTransportMissionFullHazMat struct {
 	UnNum string `json:"unNum"`
 	// Total weight of hazardous cargo, including non-explosive parts, in kilograms.
 	Weight float64 `json:"weight"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ApplicableNotes resp.Field
 		Cgc             resp.Field
@@ -335,8 +333,7 @@ type AirTransportMissionFullRemark struct {
 	Type string `json:"type"`
 	// User who published the remark.
 	User string `json:"user"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Date         resp.Field
 		GdssRemarkID resp.Field
@@ -397,8 +394,7 @@ type AirTransportMissionFullRequirement struct {
 	TransReqNum string `json:"transReqNum"`
 	// Unit line number.
 	Uln string `json:"uln"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		BulkWeight     resp.Field
 		Ead            resp.Field
@@ -600,8 +596,7 @@ type AircraftstatusFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -889,8 +884,7 @@ type AIsFull struct {
 	// The breadth of the vessel, in meters. A value of 63 indicates a vessel breadth
 	// of 63 meters or greater.
 	Width float64 `json:"width"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1108,8 +1102,7 @@ type AttitudesetFull struct {
 	// Attitude ephemeris step size, in seconds. This applies to Attitude Ephemeris
 	// Messages (AEM) that employ a fixed step size.
 	StepSize int64 `json:"stepSize"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1489,8 +1482,7 @@ type CollectRequestFull struct {
 	// rectangle of width 2*xAngle and height 2*yAngle centered about the central
 	// vector.
 	YAngle float64 `json:"yAngle"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1815,8 +1807,7 @@ type CollectRequestFullElset struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2316,8 +2307,7 @@ type CollectRequestFullStateVector struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2571,8 +2561,7 @@ type CollectResponseFull struct {
 	Tags []string `json:"tags"`
 	// Optional task ID associated with the request/response.
 	TaskID string `json:"taskId"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2677,8 +2666,7 @@ type DriftHistoryAbridged struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin string `json:"origin"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2764,8 +2752,7 @@ type DriftHistoryFull struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin string `json:"origin"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2997,8 +2984,7 @@ type EopFull struct {
 	Ut1UtcState EopFullUt1UtcState `json:"ut1UTCState"`
 	// The estimated uncertainty/error in the ut1UTC value in seconds.
 	Ut1UtcUnc float64 `json:"ut1UTCUnc"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -3209,8 +3195,7 @@ type EphemerisFull struct {
 	// Cartesian Z acceleration of target, in km/sec^2, in the specified EphemerisSet
 	// referenceFrame. If referenceFrame is null then J2K should be assumed.
 	Zaccel float64 `json:"zaccel"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -3389,8 +3374,7 @@ type EvacFull struct {
 	// The pickup site security (UNKNOWN ZONESECURITY, NO ENEMY, POSSIBLE ENEMY, ENEMY
 	// IN AREA USE CAUTION, ENEMY IN AREA ARMED ESCORT REQUIRED).
 	ZoneSecurity string `json:"zoneSecurity"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -3575,8 +3559,7 @@ type EvacFullCasualtyInfo struct {
 	Treatment []EvacFullCasualtyInfoTreatment `json:"treatment"`
 	// Information obtained for vital signs.
 	VitalSignData []EvacFullCasualtyInfoVitalSignData `json:"vitalSignData"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Age             resp.Field
 		Allergy         resp.Field
@@ -3629,8 +3612,7 @@ type EvacFullCasualtyInfoAllergy struct {
 	Comments string `json:"comments"`
 	// Type of patient allergy (e.g. PENICILLIN, SULFA, OTHER).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Comments    resp.Field
 		Type        resp.Field
@@ -3660,8 +3642,7 @@ type EvacFullCasualtyInfoCondition struct {
 	// ACTIVITY NONE, AVPU ALERT, AVPU ALTERED MENTAL STATE, AVPU PAIN, AVPU
 	// UNRESPONSIVE, etc.).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		BodyPart    resp.Field
 		Comments    resp.Field
@@ -3693,8 +3674,7 @@ type EvacFullCasualtyInfoEtiology struct {
 	// BURN CHEMICAL, BURN ELECTRICAL, BURN, BURN HOT LIQUID, BURN RADIATION, BURN
 	// THERMAL, etc.).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		BodyPart    resp.Field
 		Comments    resp.Field
@@ -3722,8 +3702,7 @@ type EvacFullCasualtyInfoHealthState struct {
 	// Generalized state of health type (BIOLOGICAL, CHEMICAL, COGNITIVE, HYDRATION,
 	// LIFE SIGN, RADIATION, SHOCK, THERMAL).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		HealthStateCode resp.Field
 		MedConfFactor   resp.Field
@@ -3760,8 +3739,7 @@ type EvacFullCasualtyInfoInjury struct {
 	// NON SYMMETRICAL, LACERATION, NEUROVASCULAR COMPROMISE, NEUROVASCULAR INTACT,
 	// PUNCTURE, SEAT BELT SIGN, STAB, TIC TIM).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		BodyPart    resp.Field
 		Comments    resp.Field
@@ -3799,8 +3777,7 @@ type EvacFullCasualtyInfoMedication struct {
 	// HEXTEND, LACTATED RINGERS, MOBIC, MORPHINE, NARCOTIC, NS, PENICILLIN, PLASMA,
 	// PLATELETS, PRBC, TYLENOL, WHOLE BLOOD MT).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AdminRoute  resp.Field
 		BodyPart    resp.Field
@@ -3835,8 +3812,7 @@ type EvacFullCasualtyInfoTreatment struct {
 	// AIRWAY NPA OPA APPLIED, AIRWAY PATIENT, AIRWAY POSITIONAL, AIRWAY SURGICAL CRIC,
 	// BREATHING CHEST SEAL, BREATHING CHEST TUBE, etc.).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		BodyPart    resp.Field
 		Comments    resp.Field
@@ -3867,8 +3843,7 @@ type EvacFullCasualtyInfoVitalSignData struct {
 	// Vital sign value 2. The content of this field is dependent on the type of vital
 	// sign being measured (see the vitalSign field).
 	VitalSign2 float64 `json:"vitalSign2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		MedConfFactor resp.Field
 		Time          resp.Field
@@ -3896,8 +3871,7 @@ type EvacFullEnemyData struct {
 	HlzRemarks string `json:"hlzRemarks"`
 	// The type of hostile fire received (SMALL ARMS, MORTAR, ARTILLERY, ROCKETS).
 	HostileFireType string `json:"hostileFireType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DirToEnemy        resp.Field
 		FriendliesRemarks resp.Field
@@ -3919,8 +3893,7 @@ type EvacFullRelatedDoc struct {
 	DataSourceRefs []EvacFullRelatedDocDataSourceRef `json:"dataSourceRefs"`
 	// The document id of the related document.
 	DocumentID string `json:"documentId"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataSourceRefs resp.Field
 		DocumentID     resp.Field
@@ -3946,8 +3919,7 @@ type EvacFullRelatedDocDataSourceRef struct {
 	SentenceNumber string `json:"sentenceNumber"`
 	// start position.
 	StartPosition string `json:"startPosition"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataSourceID    resp.Field
 		EndPosition     resp.Field
@@ -4097,8 +4069,7 @@ type EventEvolutionFull struct {
 	Tags []string `json:"tags"`
 	// List of URLs to before/after images of this point of interest entity.
 	URL []string `json:"url"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -4173,8 +4144,7 @@ type FileData struct {
 	TargetPath    string                `json:"targetPath"`
 	// Any of "file", "folder", "summary".
 	Type FileDataType `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID            resp.Field
 		Attributes    resp.Field
@@ -4197,9 +4167,9 @@ func (r *FileData) UnmarshalJSON(data []byte) error {
 //
 // Warning: the fields of the param type will not be present. ToParam should only
 // be used at the last possible moment before sending a request. Test for this with
-// FileDataParam.IsOverridden()
+// FileDataParam.Overrides()
 func (r FileData) ToParam() FileDataParam {
-	return param.OverrideObj[FileDataParam](r.RawJSON())
+	return param.Override[FileDataParam](r.RawJSON())
 }
 
 type FileDataAttributes struct {
@@ -4233,8 +4203,7 @@ type FileDataAttributes struct {
 	Size                  int64    `json:"size"`
 	Tags                  []string `json:"tags"`
 	Write                 string   `json:"write"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID                    resp.Field
 		Classification        resp.Field
@@ -4305,9 +4274,6 @@ type FileDataParam struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FileDataParam) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r FileDataParam) MarshalJSON() (data []byte, err error) {
 	type shadow FileDataParam
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4347,9 +4313,6 @@ type FileDataAttributesParam struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FileDataAttributesParam) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r FileDataAttributesParam) MarshalJSON() (data []byte, err error) {
 	type shadow FileDataAttributesParam
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4632,8 +4595,7 @@ type FlightPlanFull struct {
 	// The date and time the weather valid period begins in ISO 8601 UTC format, with
 	// millisecond precision.
 	WxValidStart time.Time `json:"wxValidStart" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ArrAirfield           resp.Field
 		ClassificationMarking resp.Field
@@ -4782,8 +4744,7 @@ type FlightPlanFullAirRefuelEvent struct {
 	DivertFuel float64 `json:"divertFuel"`
 	// Fuel remaining at the air refueling exit in pounds.
 	ExitFuel float64 `json:"exitFuel"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ArDegrade       resp.Field
 		ArExchangedFuel resp.Field
@@ -4814,8 +4775,7 @@ type FlightPlanFullFlightPlanMessage struct {
 	// The waypoint number for which the message was generated, or enter "PLAN" for a
 	// message impacting the entire route.
 	WpNum string `json:"wpNum"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		MsgText     resp.Field
 		RoutePath   resp.Field
@@ -4901,8 +4861,7 @@ type FlightPlanFullFlightPlanPointGroup struct {
 	PointGroupName string `json:"pointGroupName"`
 	// Specifies which Point Group case requires the most fuel.
 	WorstFuelCase string `json:"worstFuelCase"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AvgFuelFlow        resp.Field
 		EtopsAvgWindFactor resp.Field
@@ -4955,8 +4914,7 @@ type FlightPlanFullFlightPlanPointGroupFlightPlanPoint struct {
 	FppReqFuel float64 `json:"fppReqFuel"`
 	// Name of this point.
 	PointName string `json:"pointName"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		FppEta      resp.Field
 		FppLat      resp.Field
@@ -5113,8 +5071,7 @@ type FlightPlanFullFlightPlanWaypoint struct {
 	ZoneFuel float64 `json:"zoneFuel"`
 	// The time to fly this zone/leg in minutes.
 	ZoneTime float64 `json:"zoneTime"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Type               resp.Field
 		WaypointName       resp.Field
@@ -5282,8 +5239,7 @@ type OnorbitFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -5398,8 +5354,7 @@ type OnorbitFullAntenna struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -5475,8 +5430,7 @@ type OnorbitFullBattery struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -5615,8 +5569,7 @@ type OnorbitFullEntityCollection struct {
 	UpdatedBy string `json:"updatedBy"`
 	// List of URLs to additional details/documents for this entity.
 	URLs []string `json:"urls"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -5984,8 +5937,7 @@ type OnorbitFullEntityCollectionOperatingUnit struct {
 	// World Aeronautical Chart identifier for the area in which a designated operating
 	// unit is located.
 	Wac string `json:"wac"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -6117,8 +6069,7 @@ type OnorbitFullEntityCollectionOperatingUnitOperatingUnitRemark struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -6250,8 +6201,7 @@ type OnorbitFullEntityCollectionRfBand struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -6358,8 +6308,7 @@ type OnorbitFullEntityCollectionStatusCollection struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -6446,8 +6395,7 @@ type OnorbitFullEntityCollectionStatusCollectionSubStatusCollection struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -6628,8 +6576,7 @@ type OnorbitFullOnorbitDetail struct {
 	VismagMean float64 `json:"vismagMean"`
 	// Minimum visual magnitude in M.
 	VismagMin float64 `json:"vismagMin"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -6746,8 +6693,7 @@ type OnorbitFullSolarArray struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -6823,8 +6769,7 @@ type OnorbitFullSolarArraySolarArray struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataMode          resp.Field
 		Name              resp.Field
@@ -6903,8 +6848,7 @@ type OnorbitFullThruster struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field

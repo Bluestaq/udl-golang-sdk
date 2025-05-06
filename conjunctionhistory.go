@@ -82,10 +82,6 @@ type ConjunctionHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ConjunctionHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ConjunctionHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r ConjunctionHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -102,10 +98,6 @@ type ConjunctionHistoryCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ConjunctionHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ConjunctionHistoryCountParams]'s query parameters as
 // `url.Values`.

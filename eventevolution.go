@@ -288,8 +288,7 @@ type EventEvolutionListResponse struct {
 	Tags []string `json:"tags"`
 	// List of URLs to before/after images of this point of interest entity.
 	URL []string `json:"url"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -477,10 +476,6 @@ type EventEvolutionNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EventEvolutionNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r EventEvolutionNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow EventEvolutionNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -515,10 +510,6 @@ type EventEvolutionGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EventEvolutionGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EventEvolutionGetParams]'s query parameters as
 // `url.Values`.
 func (r EventEvolutionGetParams) URLQuery() (v url.Values, err error) {
@@ -542,10 +533,6 @@ type EventEvolutionListParams struct {
 	StartTime param.Opt[time.Time] `query:"startTime,omitzero" format:"date-time" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EventEvolutionListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EventEvolutionListParams]'s query parameters as
 // `url.Values`.
@@ -571,10 +558,6 @@ type EventEvolutionCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EventEvolutionCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EventEvolutionCountParams]'s query parameters as
 // `url.Values`.
 func (r EventEvolutionCountParams) URLQuery() (v url.Values, err error) {
@@ -588,10 +571,6 @@ type EventEvolutionNewBulkParams struct {
 	Body []EventEvolutionNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EventEvolutionNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r EventEvolutionNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -735,9 +714,6 @@ type EventEvolutionNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EventEvolutionNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r EventEvolutionNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow EventEvolutionNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -769,10 +745,6 @@ type EventEvolutionTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EventEvolutionTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EventEvolutionTupleParams]'s query parameters as
 // `url.Values`.
 func (r EventEvolutionTupleParams) URLQuery() (v url.Values, err error) {
@@ -785,12 +757,6 @@ func (r EventEvolutionTupleParams) URLQuery() (v url.Values, err error) {
 type EventEvolutionUnvalidatedPublishParams struct {
 	Body []EventEvolutionUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EventEvolutionUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r EventEvolutionUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -935,11 +901,6 @@ type EventEvolutionUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EventEvolutionUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EventEvolutionUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow EventEvolutionUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

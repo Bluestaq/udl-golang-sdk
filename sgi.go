@@ -398,8 +398,7 @@ type SgiListResponse struct {
 	// 54 day Y10.7 index for 85-90 km heating of N2, O2, H2O, NO by solar coronal.
 	// 0.1-0.8 nm and Lya 121 nm emissions in x10-22 Watts per meter squared per Hertz.
 	Y54 float64 `json:"y54"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -736,8 +735,7 @@ type SgiGetResponse struct {
 	// 54 day Y10.7 index for 85-90 km heating of N2, O2, H2O, NO by solar coronal.
 	// 0.1-0.8 nm and Lya 121 nm emissions in x10-22 Watts per meter squared per Hertz.
 	Y54 float64 `json:"y54"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1080,8 +1078,7 @@ type SgiGetDataByEffectiveAsOfDateResponse struct {
 	// 54 day Y10.7 index for 85-90 km heating of N2, O2, H2O, NO by solar coronal.
 	// 0.1-0.8 nm and Lya 121 nm emissions in x10-22 Watts per meter squared per Hertz.
 	Y54 float64 `json:"y54"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1424,8 +1421,7 @@ type SgiTupleResponse struct {
 	// 54 day Y10.7 index for 85-90 km heating of N2, O2, H2O, NO by solar coronal.
 	// 0.1-0.8 nm and Lya 121 nm emissions in x10-22 Watts per meter squared per Hertz.
 	Y54 float64 `json:"y54"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1756,10 +1752,6 @@ type SgiNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SgiNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SgiNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SgiNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2023,10 +2015,6 @@ type SgiUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SgiUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SgiUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SgiUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2093,10 +2081,6 @@ type SgiListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SgiListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SgiListParams]'s query parameters as `url.Values`.
 func (r SgiListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -2121,10 +2105,6 @@ type SgiCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SgiCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SgiCountParams]'s query parameters as `url.Values`.
 func (r SgiCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -2137,10 +2117,6 @@ type SgiNewBulkParams struct {
 	Body []SgiNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SgiNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r SgiNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -2372,9 +2348,6 @@ type SgiNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SgiNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r SgiNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SgiNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2398,10 +2371,6 @@ type SgiGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SgiGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SgiGetParams]'s query parameters as `url.Values`.
 func (r SgiGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -2424,12 +2393,6 @@ type SgiGetDataByEffectiveAsOfDateParams struct {
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	SgiDate param.Opt[time.Time] `query:"sgiDate,omitzero" format:"date-time" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SgiGetDataByEffectiveAsOfDateParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [SgiGetDataByEffectiveAsOfDateParams]'s query parameters as
@@ -2462,10 +2425,6 @@ type SgiTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SgiTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SgiTupleParams]'s query parameters as `url.Values`.
 func (r SgiTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -2478,10 +2437,6 @@ type SgiUnvalidatedPublishParams struct {
 	Body []SgiUnvalidatedPublishParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SgiUnvalidatedPublishParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r SgiUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -2713,9 +2668,6 @@ type SgiUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SgiUnvalidatedPublishParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r SgiUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SgiUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

@@ -170,8 +170,7 @@ type EffectResponseHistoryListResponse struct {
 	RedTimeToOverhead time.Time `json:"redTimeToOverhead" format:"date-time"`
 	// The number of shots required to destroy target.
 	ShotsRequired int64 `json:"shotsRequired"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -277,8 +276,7 @@ type EffectResponseHistoryListResponseActionsList struct {
 	// The WGS-84 longitude of the weapon destination location, in degrees. -180 to 180
 	// degrees (negative values west of Prime Meridian).
 	WeaponInterceptLon float64 `json:"weaponInterceptLon"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ActionActorSrcID   resp.Field
 		ActionActorSrcType resp.Field
@@ -319,8 +317,7 @@ type EffectResponseHistoryListResponseActionsListActionMetric struct {
 	Provenance string `json:"provenance"`
 	// The metric score adjusted to be relative and comparable to other domains.
 	RelativeValue float64 `json:"relativeValue"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DomainValue   resp.Field
 		MetricType    resp.Field
@@ -347,8 +344,7 @@ type EffectResponseHistoryListResponseCoaMetric struct {
 	Provenance string `json:"provenance"`
 	// The metric score adjusted to be relative and comparable to other domains.
 	RelativeValue float64 `json:"relativeValue"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DomainValue   resp.Field
 		MetricType    resp.Field
@@ -377,10 +373,6 @@ type EffectResponseHistoryListParams struct {
 	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EffectResponseHistoryListParams]'s query parameters as
 // `url.Values`.
@@ -415,10 +407,6 @@ type EffectResponseHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EffectResponseHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r EffectResponseHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -436,10 +424,6 @@ type EffectResponseHistoryCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EffectResponseHistoryCountParams]'s query parameters as
 // `url.Values`.

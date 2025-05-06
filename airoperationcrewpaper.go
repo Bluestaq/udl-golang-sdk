@@ -14,7 +14,6 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
 )
 
 // AirOperationCrewpaperService contains methods and other services that help with
@@ -64,12 +63,6 @@ type AirOperationCrewpaperUnpublishParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationCrewpaperUnpublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [AirOperationCrewpaperUnpublishParams]'s query parameters as
 // `url.Values`.
 func (r AirOperationCrewpaperUnpublishParams) URLQuery() (v url.Values, err error) {
@@ -92,12 +85,6 @@ type AirOperationCrewpaperUploadPdfParams struct {
 	PapersVersion string `query:"papersVersion,required" json:"-"`
 	Body          io.Reader
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationCrewpaperUploadPdfParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r AirOperationCrewpaperUploadPdfParams) MarshalMultipart() (data []byte, contentType string, err error) {

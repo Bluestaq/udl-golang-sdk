@@ -143,8 +143,7 @@ type NotificationFull struct {
 	// implementing data owner conditional access controls to restrict access to the
 	// data.
 	Tags []string `json:"tags"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -204,10 +203,6 @@ type NotificationHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NotificationHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [NotificationHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r NotificationHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -240,10 +235,6 @@ type NotificationHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NotificationHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [NotificationHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r NotificationHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -260,10 +251,6 @@ type NotificationHistoryCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NotificationHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [NotificationHistoryCountParams]'s query parameters as
 // `url.Values`.

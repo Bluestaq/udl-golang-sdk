@@ -263,8 +263,7 @@ type ReportAndActivityPoiHistoryListResponse struct {
 	Type string `json:"type"`
 	// List of URLs to before/after images of this Point of Interest entity.
 	URLs []string `json:"urls"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -364,12 +363,6 @@ type ReportAndActivityPoiHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ReportAndActivityPoiHistoryListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [ReportAndActivityPoiHistoryListParams]'s query parameters
 // as `url.Values`.
 func (r ReportAndActivityPoiHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -402,12 +395,6 @@ type ReportAndActivityPoiHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ReportAndActivityPoiHistoryAodrParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [ReportAndActivityPoiHistoryAodrParams]'s query parameters
 // as `url.Values`.
 func (r ReportAndActivityPoiHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -423,12 +410,6 @@ type ReportAndActivityPoiHistoryCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ReportAndActivityPoiHistoryCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [ReportAndActivityPoiHistoryCountParams]'s query parameters

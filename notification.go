@@ -208,8 +208,7 @@ type NotificationListResponse struct {
 	// implementing data owner conditional access controls to restrict access to the
 	// data.
 	Tags []string `json:"tags"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -299,10 +298,6 @@ type NotificationNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NotificationNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r NotificationNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow NotificationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -339,10 +334,6 @@ type NotificationListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NotificationListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [NotificationListParams]'s query parameters as `url.Values`.
 func (r NotificationListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -358,10 +349,6 @@ type NotificationCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NotificationCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [NotificationCountParams]'s query parameters as
 // `url.Values`.
@@ -404,10 +391,6 @@ type NotificationNewRawParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NotificationNewRawParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r NotificationNewRawParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
@@ -426,10 +409,6 @@ type NotificationGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NotificationGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [NotificationGetParams]'s query parameters as `url.Values`.
 func (r NotificationGetParams) URLQuery() (v url.Values, err error) {
@@ -451,10 +430,6 @@ type NotificationTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f NotificationTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [NotificationTupleParams]'s query parameters as
 // `url.Values`.

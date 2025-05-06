@@ -450,8 +450,7 @@ type FlightPlanAbridged struct {
 	// The date and time the weather valid period begins in ISO 8601 UTC format, with
 	// millisecond precision.
 	WxValidStart time.Time `json:"wxValidStart" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ArrAirfield           resp.Field
 		ClassificationMarking resp.Field
@@ -600,8 +599,7 @@ type FlightPlanAbridgedAirRefuelEvent struct {
 	DivertFuel float64 `json:"divertFuel"`
 	// Fuel remaining at the air refueling exit in pounds.
 	ExitFuel float64 `json:"exitFuel"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ArDegrade       resp.Field
 		ArExchangedFuel resp.Field
@@ -632,8 +630,7 @@ type FlightPlanAbridgedFlightPlanMessage struct {
 	// The waypoint number for which the message was generated, or enter "PLAN" for a
 	// message impacting the entire route.
 	WpNum string `json:"wpNum"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		MsgText     resp.Field
 		RoutePath   resp.Field
@@ -719,8 +716,7 @@ type FlightPlanAbridgedFlightPlanPointGroup struct {
 	PointGroupName string `json:"pointGroupName"`
 	// Specifies which Point Group case requires the most fuel.
 	WorstFuelCase string `json:"worstFuelCase"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AvgFuelFlow        resp.Field
 		EtopsAvgWindFactor resp.Field
@@ -773,8 +769,7 @@ type FlightPlanAbridgedFlightPlanPointGroupFlightPlanPoint struct {
 	FppReqFuel float64 `json:"fppReqFuel"`
 	// Name of this point.
 	PointName string `json:"pointName"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		FppEta      resp.Field
 		FppLat      resp.Field
@@ -931,8 +926,7 @@ type FlightPlanAbridgedFlightPlanWaypoint struct {
 	ZoneFuel float64 `json:"zoneFuel"`
 	// The time to fly this zone/leg in minutes.
 	ZoneTime float64 `json:"zoneTime"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Type               resp.Field
 		WaypointName       resp.Field
@@ -1262,10 +1256,6 @@ type FlightplanNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r FlightplanNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1311,11 +1301,6 @@ type FlightplanNewParamsAirRefuelEvent struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanNewParamsAirRefuelEvent) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r FlightplanNewParamsAirRefuelEvent) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanNewParamsAirRefuelEvent
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1337,11 +1322,6 @@ type FlightplanNewParamsFlightPlanMessage struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanNewParamsFlightPlanMessage) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r FlightplanNewParamsFlightPlanMessage) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanNewParamsFlightPlanMessage
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1419,11 +1399,6 @@ type FlightplanNewParamsFlightPlanPointGroup struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanNewParamsFlightPlanPointGroup) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r FlightplanNewParamsFlightPlanPointGroup) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanNewParamsFlightPlanPointGroup
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1448,11 +1423,6 @@ type FlightplanNewParamsFlightPlanPointGroupFlightPlanPoint struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanNewParamsFlightPlanPointGroupFlightPlanPoint) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r FlightplanNewParamsFlightPlanPointGroupFlightPlanPoint) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanNewParamsFlightPlanPointGroupFlightPlanPoint
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1602,11 +1572,6 @@ type FlightplanNewParamsFlightPlanWaypoint struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanNewParamsFlightPlanWaypoint) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r FlightplanNewParamsFlightPlanWaypoint) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanNewParamsFlightPlanWaypoint
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1617,10 +1582,6 @@ type FlightplanGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [FlightplanGetParams]'s query parameters as `url.Values`.
 func (r FlightplanGetParams) URLQuery() (v url.Values, err error) {
@@ -1891,10 +1852,6 @@ type FlightplanUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r FlightplanUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1940,11 +1897,6 @@ type FlightplanUpdateParamsAirRefuelEvent struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanUpdateParamsAirRefuelEvent) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r FlightplanUpdateParamsAirRefuelEvent) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanUpdateParamsAirRefuelEvent
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1966,11 +1918,6 @@ type FlightplanUpdateParamsFlightPlanMessage struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanUpdateParamsFlightPlanMessage) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r FlightplanUpdateParamsFlightPlanMessage) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanUpdateParamsFlightPlanMessage
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2048,11 +1995,6 @@ type FlightplanUpdateParamsFlightPlanPointGroup struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanUpdateParamsFlightPlanPointGroup) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r FlightplanUpdateParamsFlightPlanPointGroup) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanUpdateParamsFlightPlanPointGroup
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2077,11 +2019,6 @@ type FlightplanUpdateParamsFlightPlanPointGroupFlightPlanPoint struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanUpdateParamsFlightPlanPointGroupFlightPlanPoint) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r FlightplanUpdateParamsFlightPlanPointGroupFlightPlanPoint) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanUpdateParamsFlightPlanPointGroupFlightPlanPoint
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2231,11 +2168,6 @@ type FlightplanUpdateParamsFlightPlanWaypoint struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanUpdateParamsFlightPlanWaypoint) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r FlightplanUpdateParamsFlightPlanWaypoint) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanUpdateParamsFlightPlanWaypoint
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2246,10 +2178,6 @@ type FlightplanListParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [FlightplanListParams]'s query parameters as `url.Values`.
 func (r FlightplanListParams) URLQuery() (v url.Values, err error) {
@@ -2264,10 +2192,6 @@ type FlightplanCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [FlightplanCountParams]'s query parameters as `url.Values`.
 func (r FlightplanCountParams) URLQuery() (v url.Values, err error) {
@@ -2288,10 +2212,6 @@ type FlightplanTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [FlightplanTupleParams]'s query parameters as `url.Values`.
 func (r FlightplanTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -2303,12 +2223,6 @@ func (r FlightplanTupleParams) URLQuery() (v url.Values, err error) {
 type FlightplanUnvalidatedPublishParams struct {
 	Body []FlightplanUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r FlightplanUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -2598,11 +2512,6 @@ type FlightplanUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r FlightplanUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2631,11 +2540,6 @@ type FlightplanUnvalidatedPublishParamsBodyAirRefuelEvent struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanUnvalidatedPublishParamsBodyAirRefuelEvent) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r FlightplanUnvalidatedPublishParamsBodyAirRefuelEvent) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanUnvalidatedPublishParamsBodyAirRefuelEvent
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2657,11 +2561,6 @@ type FlightplanUnvalidatedPublishParamsBodyFlightPlanMessage struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanUnvalidatedPublishParamsBodyFlightPlanMessage) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r FlightplanUnvalidatedPublishParamsBodyFlightPlanMessage) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanUnvalidatedPublishParamsBodyFlightPlanMessage
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2739,11 +2638,6 @@ type FlightplanUnvalidatedPublishParamsBodyFlightPlanPointGroup struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanUnvalidatedPublishParamsBodyFlightPlanPointGroup) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r FlightplanUnvalidatedPublishParamsBodyFlightPlanPointGroup) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanUnvalidatedPublishParamsBodyFlightPlanPointGroup
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2768,11 +2662,6 @@ type FlightplanUnvalidatedPublishParamsBodyFlightPlanPointGroupFlightPlanPoint s
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanUnvalidatedPublishParamsBodyFlightPlanPointGroupFlightPlanPoint) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r FlightplanUnvalidatedPublishParamsBodyFlightPlanPointGroupFlightPlanPoint) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanUnvalidatedPublishParamsBodyFlightPlanPointGroupFlightPlanPoint
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2922,11 +2811,6 @@ type FlightplanUnvalidatedPublishParamsBodyFlightPlanWaypoint struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FlightplanUnvalidatedPublishParamsBodyFlightPlanWaypoint) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r FlightplanUnvalidatedPublishParamsBodyFlightPlanWaypoint) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanUnvalidatedPublishParamsBodyFlightPlanWaypoint
 	return param.MarshalObject(r, (*shadow)(&r))

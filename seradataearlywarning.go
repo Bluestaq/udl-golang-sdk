@@ -224,8 +224,7 @@ type SeraDataEarlyWarningListResponse struct {
 	PayloadNotes string `json:"payloadNotes"`
 	// Spectral Bands, e.g. Infra-Red.
 	SpectralBands string `json:"spectralBands"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking              resp.Field
 		DataMode                           resp.Field
@@ -354,8 +353,7 @@ type SeraDataEarlyWarningGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking              resp.Field
 		DataMode                           resp.Field
@@ -486,8 +484,7 @@ type SeraDataEarlyWarningTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking              resp.Field
 		DataMode                           resp.Field
@@ -607,10 +604,6 @@ type SeraDataEarlyWarningNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeraDataEarlyWarningNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SeraDataEarlyWarningNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SeraDataEarlyWarningNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -699,10 +692,6 @@ type SeraDataEarlyWarningUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeraDataEarlyWarningUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SeraDataEarlyWarningUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SeraDataEarlyWarningUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -737,10 +726,6 @@ type SeraDataEarlyWarningListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeraDataEarlyWarningListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SeraDataEarlyWarningListParams]'s query parameters as
 // `url.Values`.
 func (r SeraDataEarlyWarningListParams) URLQuery() (v url.Values, err error) {
@@ -756,10 +741,6 @@ type SeraDataEarlyWarningCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeraDataEarlyWarningCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SeraDataEarlyWarningCountParams]'s query parameters as
 // `url.Values`.
 func (r SeraDataEarlyWarningCountParams) URLQuery() (v url.Values, err error) {
@@ -774,10 +755,6 @@ type SeraDataEarlyWarningGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeraDataEarlyWarningGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SeraDataEarlyWarningGetParams]'s query parameters as
 // `url.Values`.
@@ -798,10 +775,6 @@ type SeraDataEarlyWarningTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeraDataEarlyWarningTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SeraDataEarlyWarningTupleParams]'s query parameters as
 // `url.Values`.

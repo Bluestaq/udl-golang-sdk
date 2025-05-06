@@ -205,8 +205,7 @@ type TrackRouteFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -288,8 +287,7 @@ type TrackRouteFullAltitudeBlock struct {
 	LowerAltitude float64 `json:"lowerAltitude"`
 	// Highest altitude of the track route altitude block above mean sea level in feet.
 	UpperAltitude float64 `json:"upperAltitude"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AltitudeSequenceID resp.Field
 		LowerAltitude      resp.Field
@@ -326,8 +324,7 @@ type TrackRouteFullPoc struct {
 	Remark string `json:"remark"`
 	// The username of the contact.
 	Username string `json:"username"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Office        resp.Field
 		Phone         resp.Field
@@ -390,8 +387,7 @@ type TrackRouteFullRoutePoint struct {
 	PtTypeName string `json:"ptTypeName"`
 	// Name of a waypoint which identifies the location of the point.
 	WaypointName string `json:"waypointName"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AltCountryCode resp.Field
 		CountryCode    resp.Field
@@ -430,10 +426,6 @@ type TrackRouteHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [TrackRouteHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r TrackRouteHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -467,10 +459,6 @@ type TrackRouteHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [TrackRouteHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r TrackRouteHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -488,10 +476,6 @@ type TrackRouteHistoryCountParams struct {
 	MaxResults     param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [TrackRouteHistoryCountParams]'s query parameters as
 // `url.Values`.

@@ -256,8 +256,7 @@ type SortiePprListResponse struct {
 	//
 	// Any of "M", "C".
 	Type SortiePprListResponseType `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -378,10 +377,6 @@ type SortiePprNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiePprNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SortiePprNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SortiePprNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -477,10 +472,6 @@ type SortiePprUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiePprUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SortiePprUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SortiePprUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -527,10 +518,6 @@ type SortiePprListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiePprListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SortiePprListParams]'s query parameters as `url.Values`.
 func (r SortiePprListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -548,10 +535,6 @@ type SortiePprCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiePprCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SortiePprCountParams]'s query parameters as `url.Values`.
 func (r SortiePprCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -564,10 +547,6 @@ type SortiePprNewBulkParams struct {
 	Body []SortiePprNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiePprNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r SortiePprNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -647,9 +626,6 @@ type SortiePprNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiePprNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r SortiePprNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SortiePprNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -669,10 +645,6 @@ type SortiePprGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiePprGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SortiePprGetParams]'s query parameters as `url.Values`.
 func (r SortiePprGetParams) URLQuery() (v url.Values, err error) {
@@ -696,10 +668,6 @@ type SortiePprTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiePprTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SortiePprTupleParams]'s query parameters as `url.Values`.
 func (r SortiePprTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -711,12 +679,6 @@ func (r SortiePprTupleParams) URLQuery() (v url.Values, err error) {
 type SortiePprUnvalidatedPublishParams struct {
 	Body []SortiePprUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiePprUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r SortiePprUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -797,11 +759,6 @@ type SortiePprUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SortiePprUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SortiePprUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SortiePprUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

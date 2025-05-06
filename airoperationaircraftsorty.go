@@ -50,12 +50,6 @@ type AirOperationAircraftSortyUnvalidatedPublishParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAircraftSortyUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 func (r AirOperationAircraftSortyUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
@@ -284,11 +278,6 @@ type AirOperationAircraftSortyUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAircraftSortyUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationAircraftSortyUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAircraftSortyUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

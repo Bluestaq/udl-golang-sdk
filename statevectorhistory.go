@@ -102,10 +102,6 @@ type StateVectorHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StateVectorHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [StateVectorHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r StateVectorHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -139,10 +135,6 @@ type StateVectorHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StateVectorHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [StateVectorHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r StateVectorHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -160,10 +152,6 @@ type StateVectorHistoryCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StateVectorHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [StateVectorHistoryCountParams]'s query parameters as
 // `url.Values`.

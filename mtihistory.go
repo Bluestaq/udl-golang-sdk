@@ -174,8 +174,7 @@ type MtiFull struct {
 	// pertains to all Dwell, HRR, and Range-Doppler segments in the packet. Job ID is
 	// unique within a mission.
 	PlatformLocs []MtiFullPlatformLoc `json:"platformLocs"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -325,8 +324,7 @@ type MtiFullDwell struct {
 	D9 int64 `json:"d9"`
 	// Dwell timestamp in ISO8601 UTC format.
 	Dwellts time.Time `json:"dwellts" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		D10         resp.Field
 		D11         resp.Field
@@ -428,8 +426,7 @@ type MtiFullDwellD32 struct {
 	D32_8 int64 `json:"d32_8"`
 	// Estimated signal-to-noise ratio (SNR) of the target return, in decibels.
 	D32_9 int64 `json:"d32_9"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		D32_1       resp.Field
 		D32_10      resp.Field
@@ -467,8 +464,7 @@ type MtiFullFreeText struct {
 	F2 string `json:"f2"`
 	// Free text data message.
 	F3 string `json:"f3"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		F1          resp.Field
 		F2          resp.Field
@@ -556,8 +552,7 @@ type MtiFullHrr struct {
 	// The Peak Scatter returns the maximum power level (e.g. in milliwatts, or dBm)
 	// registered by the sensor.
 	H9 int64 `json:"h9"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		H10         resp.Field
 		H11         resp.Field
@@ -612,8 +607,7 @@ type MtiFullHrrH32 struct {
 	// Scatterer’s Doppler index relative to Range-Doppler chip, where increasing index
 	// equates to increasing Doppler.
 	H32_4 int64 `json:"h32_4"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		H32_1       resp.Field
 		H32_2       resp.Field
@@ -722,8 +716,7 @@ type MtiFullJobDef struct {
 	// service, expressed as degrees East (positive, 0 to 180) or West (negative, 0 to
 	// -180) of the Prime Meridian.
 	J9 float64 `json:"j9"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		J1          resp.Field
 		J10         resp.Field
@@ -830,8 +823,7 @@ type MtiFullJobRequest struct {
 	// service, expressed as degrees East (positive, 0 to 180) or West (negative, 0 to
 	// -180) of the Prime Meridian.
 	R9 float64 `json:"r9"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		JobReqEst   resp.Field
 		R1          resp.Field
@@ -876,8 +868,7 @@ type MtiFullMission struct {
 	M4 string `json:"m4"`
 	// Mission origination date.
 	MsnRefTs time.Time `json:"msnRefTs" format:"date"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		M1          resp.Field
 		M2          resp.Field
@@ -920,8 +911,7 @@ type MtiFullPlatformLoc struct {
 	L7 int64 `json:"l7"`
 	// Platform location timestamp in ISO8601 UTC format.
 	Platlocts time.Time `json:"platlocts" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		L1          resp.Field
 		L2          resp.Field
@@ -954,10 +944,6 @@ type MtiHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [MtiHistoryListParams]'s query parameters as `url.Values`.
 func (r MtiHistoryListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -989,10 +975,6 @@ type MtiHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [MtiHistoryAodrParams]'s query parameters as `url.Values`.
 func (r MtiHistoryAodrParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1008,10 +990,6 @@ type MtiHistoryCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [MtiHistoryCountParams]'s query parameters as `url.Values`.
 func (r MtiHistoryCountParams) URLQuery() (v url.Values, err error) {

@@ -378,8 +378,7 @@ type ObservationRfObservationHistoryListResponse struct {
 	URL string `json:"url"`
 	// Video bandwidth in Hz.
 	VideoBandwidth float64 `json:"videoBandwidth"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -544,12 +543,6 @@ type ObservationRfObservationHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationRfObservationHistoryListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [ObservationRfObservationHistoryListParams]'s query
 // parameters as `url.Values`.
 func (r ObservationRfObservationHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -583,12 +576,6 @@ type ObservationRfObservationHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationRfObservationHistoryAodrParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [ObservationRfObservationHistoryAodrParams]'s query
 // parameters as `url.Values`.
 func (r ObservationRfObservationHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -605,12 +592,6 @@ type ObservationRfObservationHistoryCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationRfObservationHistoryCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [ObservationRfObservationHistoryCountParams]'s query

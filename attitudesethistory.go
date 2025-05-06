@@ -105,10 +105,6 @@ type AttitudeSetHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AttitudeSetHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [AttitudeSetHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r AttitudeSetHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -144,10 +140,6 @@ type AttitudeSetHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AttitudeSetHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [AttitudeSetHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r AttitudeSetHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -167,10 +159,6 @@ type AttitudeSetHistoryCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AttitudeSetHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AttitudeSetHistoryCountParams]'s query parameters as
 // `url.Values`.

@@ -88,10 +88,6 @@ type ScFileGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScFileGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ScFileGetParams]'s query parameters as `url.Values`.
 func (r ScFileGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -104,10 +100,6 @@ type ScFileUpdateParams struct {
 	FileDataList []shared.FileDataParam `json:"fileDataList,omitzero"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScFileUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r ScFileUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow ScFileUpdateParams
@@ -125,10 +117,6 @@ type ScFileListParams struct {
 	Offset param.Opt[int64] `query:"offset,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScFileListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ScFileListParams]'s query parameters as `url.Values`.
 func (r ScFileListParams) URLQuery() (v url.Values, err error) {

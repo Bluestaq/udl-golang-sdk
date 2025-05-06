@@ -181,8 +181,7 @@ type SiteRemarkListResponse struct {
 	OrigRmkID string `json:"origRmkId"`
 	// The remark type (e.g. Caution, Information, Misc, Restriction, etc.).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -284,8 +283,7 @@ type SiteRemarkGetResponse struct {
 	OrigRmkID string `json:"origRmkId"`
 	// The remark type (e.g. Caution, Information, Misc, Restriction, etc.).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -387,8 +385,7 @@ type SiteRemarkTupleResponse struct {
 	OrigRmkID string `json:"origRmkId"`
 	// The remark type (e.g. Caution, Information, Misc, Restriction, etc.).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -483,10 +480,6 @@ type SiteRemarkNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteRemarkNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SiteRemarkNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SiteRemarkNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -521,10 +514,6 @@ type SiteRemarkListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteRemarkListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SiteRemarkListParams]'s query parameters as `url.Values`.
 func (r SiteRemarkListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -539,10 +528,6 @@ type SiteRemarkCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteRemarkCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SiteRemarkCountParams]'s query parameters as `url.Values`.
 func (r SiteRemarkCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -556,10 +541,6 @@ type SiteRemarkGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteRemarkGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SiteRemarkGetParams]'s query parameters as `url.Values`.
 func (r SiteRemarkGetParams) URLQuery() (v url.Values, err error) {
@@ -579,10 +560,6 @@ type SiteRemarkTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteRemarkTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SiteRemarkTupleParams]'s query parameters as `url.Values`.
 func (r SiteRemarkTupleParams) URLQuery() (v url.Values, err error) {

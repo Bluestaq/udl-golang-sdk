@@ -173,8 +173,7 @@ type EffectRequestHistoryListResponse struct {
 	TargetSrcID string `json:"targetSrcId"`
 	// The source type of the targetId identifier (POI, TRACK).
 	TargetSrcType string `json:"targetSrcType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -244,10 +243,6 @@ type EffectRequestHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectRequestHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EffectRequestHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r EffectRequestHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -281,10 +276,6 @@ type EffectRequestHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectRequestHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EffectRequestHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r EffectRequestHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -302,10 +293,6 @@ type EffectRequestHistoryCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectRequestHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EffectRequestHistoryCountParams]'s query parameters as
 // `url.Values`.

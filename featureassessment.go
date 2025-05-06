@@ -315,8 +315,7 @@ type FeatureAssessmentGetResponse struct {
 	Type string `json:"type"`
 	// Estimated physical width of the feature, in meters.
 	Width float64 `json:"width"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -560,8 +559,7 @@ type FeatureAssessmentQueryResponse struct {
 	Type string `json:"type"`
 	// Estimated physical width of the feature, in meters.
 	Width float64 `json:"width"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -812,8 +810,7 @@ type FeatureAssessmentTupleResponse struct {
 	Type string `json:"type"`
 	// Estimated physical width of the feature, in meters.
 	Width float64 `json:"width"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1052,10 +1049,6 @@ type FeatureAssessmentNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureAssessmentNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r FeatureAssessmentNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow FeatureAssessmentNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1090,10 +1083,6 @@ type FeatureAssessmentGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureAssessmentGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [FeatureAssessmentGetParams]'s query parameters as
 // `url.Values`.
 func (r FeatureAssessmentGetParams) URLQuery() (v url.Values, err error) {
@@ -1112,10 +1101,6 @@ type FeatureAssessmentCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureAssessmentCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [FeatureAssessmentCountParams]'s query parameters as
 // `url.Values`.
 func (r FeatureAssessmentCountParams) URLQuery() (v url.Values, err error) {
@@ -1129,10 +1114,6 @@ type FeatureAssessmentNewBulkParams struct {
 	Body []FeatureAssessmentNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureAssessmentNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r FeatureAssessmentNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1321,11 +1302,6 @@ type FeatureAssessmentNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureAssessmentNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r FeatureAssessmentNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow FeatureAssessmentNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1345,10 +1321,6 @@ type FeatureAssessmentQueryParams struct {
 	MaxResults        param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureAssessmentQueryParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [FeatureAssessmentQueryParams]'s query parameters as
 // `url.Values`.
@@ -1373,10 +1345,6 @@ type FeatureAssessmentTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureAssessmentTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [FeatureAssessmentTupleParams]'s query parameters as
 // `url.Values`.
 func (r FeatureAssessmentTupleParams) URLQuery() (v url.Values, err error) {
@@ -1389,12 +1357,6 @@ func (r FeatureAssessmentTupleParams) URLQuery() (v url.Values, err error) {
 type FeatureAssessmentUnvalidatedPublishParams struct {
 	Body []FeatureAssessmentUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureAssessmentUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r FeatureAssessmentUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -1584,11 +1546,6 @@ type FeatureAssessmentUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureAssessmentUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r FeatureAssessmentUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow FeatureAssessmentUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

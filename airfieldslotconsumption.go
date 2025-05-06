@@ -273,8 +273,7 @@ type AirfieldslotconsumptionAbridged struct {
 	// The desired time for aircraft action such as landing, take off, parking, etc.,
 	// in ISO 8601 UTC format.
 	TargetTime time.Time `json:"targetTime" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -477,8 +476,7 @@ type AirfieldslotconsumptionFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -667,10 +665,6 @@ type AirfieldSlotConsumptionNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldSlotConsumptionNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r AirfieldSlotConsumptionNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow AirfieldSlotConsumptionNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -715,10 +709,6 @@ type AirfieldSlotConsumptionGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldSlotConsumptionGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AirfieldSlotConsumptionGetParams]'s query parameters as
 // `url.Values`.
@@ -832,12 +822,6 @@ type AirfieldSlotConsumptionUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldSlotConsumptionUpdateParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 func (r AirfieldSlotConsumptionUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow AirfieldSlotConsumptionUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -885,12 +869,6 @@ type AirfieldSlotConsumptionListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldSlotConsumptionListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [AirfieldSlotConsumptionListParams]'s query parameters as
 // `url.Values`.
 func (r AirfieldSlotConsumptionListParams) URLQuery() (v url.Values, err error) {
@@ -906,12 +884,6 @@ type AirfieldSlotConsumptionCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldSlotConsumptionCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [AirfieldSlotConsumptionCountParams]'s query parameters as
@@ -934,12 +906,6 @@ type AirfieldSlotConsumptionTupleParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldSlotConsumptionTupleParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [AirfieldSlotConsumptionTupleParams]'s query parameters as

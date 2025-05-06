@@ -348,8 +348,7 @@ type SigactHistoryListResponse struct {
 	Theater string `json:"theater"`
 	// The mode of this attack or event (e.g. Direct Fire, IED Explosion, etc.).
 	TypeOfAttack string `json:"typeOfAttack"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -473,8 +472,7 @@ type SigactHistoryListResponseRelatedDoc struct {
 	DataSourceRefs []SigactHistoryListResponseRelatedDocDataSourceRef `json:"dataSourceRefs"`
 	// The document id of the related document.
 	DocumentID string `json:"documentId"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataSourceRefs resp.Field
 		DocumentID     resp.Field
@@ -500,8 +498,7 @@ type SigactHistoryListResponseRelatedDocDataSourceRef struct {
 	SentenceNumber string `json:"sentenceNumber"`
 	// start position.
 	StartPosition string `json:"startPosition"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataSourceID    resp.Field
 		EndPosition     resp.Field
@@ -531,10 +528,6 @@ type SigactHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SigactHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SigactHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r SigactHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -551,10 +544,6 @@ type SigactHistoryCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SigactHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SigactHistoryCountParams]'s query parameters as
 // `url.Values`.

@@ -302,8 +302,7 @@ type BusAbridged struct {
 	TelemetryTrackingManufacturerOrgID string `json:"telemetryTrackingManufacturerOrgId"`
 	// Type of this bus.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking              resp.Field
 		DataMode                           resp.Field
@@ -550,8 +549,7 @@ type BusFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking              resp.Field
 		DataMode                           resp.Field
@@ -790,10 +788,6 @@ type BusNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BusNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r BusNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow BusNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -827,10 +821,6 @@ type BusGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BusGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [BusGetParams]'s query parameters as `url.Values`.
 func (r BusGetParams) URLQuery() (v url.Values, err error) {
@@ -984,10 +974,6 @@ type BusUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BusUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r BusUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow BusUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1022,10 +1008,6 @@ type BusListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BusListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [BusListParams]'s query parameters as `url.Values`.
 func (r BusListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1039,10 +1021,6 @@ type BusCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BusCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [BusCountParams]'s query parameters as `url.Values`.
 func (r BusCountParams) URLQuery() (v url.Values, err error) {
@@ -1062,10 +1040,6 @@ type BusTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BusTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [BusTupleParams]'s query parameters as `url.Values`.
 func (r BusTupleParams) URLQuery() (v url.Values, err error) {

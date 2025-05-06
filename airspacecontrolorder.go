@@ -253,8 +253,7 @@ type AirspacecontrolorderAbridged struct {
 	// Array of unique link 16 identifiers that will be assigned to a future airspace
 	// control means.
 	UndLnkTrks []string `json:"undLnkTrks"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking          resp.Field
 		DataMode                       resp.Field
@@ -334,8 +333,7 @@ type AirspacecontrolorderAbridgedAirspaceControlMeansStatus struct {
 	// Airspace control means name or designator. Mandatory if acmStat equals "DELETE,"
 	// otherwise this field is prohibited.
 	CmStatID []string `json:"cmStatId"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AirspaceControlMeans resp.Field
 		CmStat               resp.Field
@@ -464,8 +462,7 @@ type AirspacecontrolorderAbridgedAirspaceControlMeansStatusAirspaceControlMean s
 	// Specifies the unit of length for which widths are given. Use M for meters, KM
 	// for kilometers, or NM for nautical miles.
 	WidthUnit string `json:"widthUnit"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AirspaceControlPoint resp.Field
 		AirspaceTimePeriod   resp.Field
@@ -521,8 +518,7 @@ type AirspacecontrolorderAbridgedAirspaceControlMeansStatusAirspaceControlMeanAi
 	CtrlPtName string `json:"ctrlPtName"`
 	// One of possible control point type codes, such as CP, ER, OT, etc.
 	CtrlPtType string `json:"ctrlPtType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CtrlPtAltitude resp.Field
 		CtrlPtLocation resp.Field
@@ -560,8 +556,7 @@ type AirspacecontrolorderAbridgedAirspaceControlMeansStatusAirspaceControlMeanAi
 	TimeMode string `json:"timeMode"`
 	// The start time designating that the airspace control order is active.
 	TimeStart string `json:"timeStart"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		IntDur      resp.Field
 		IntFreq     resp.Field
@@ -602,8 +597,7 @@ type AirspacecontrolorderAbridgedAirspaceControlOrderReference struct {
 	RefTs time.Time `json:"refTs" format:"date-time"`
 	// Specifies the type for this reference.
 	RefType string `json:"refType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		RefOriginator      resp.Field
 		RefSerialNum       resp.Field
@@ -735,8 +729,7 @@ type AirspacecontrolorderFull struct {
 	// Array of unique link 16 identifiers that will be assigned to a future airspace
 	// control means.
 	UndLnkTrks []string `json:"undLnkTrks"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking          resp.Field
 		DataMode                       resp.Field
@@ -816,8 +809,7 @@ type AirspacecontrolorderFullAirspaceControlMeansStatus struct {
 	// Airspace control means name or designator. Mandatory if acmStat equals "DELETE,"
 	// otherwise this field is prohibited.
 	CmStatID []string `json:"cmStatId"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AirspaceControlMeans resp.Field
 		CmStat               resp.Field
@@ -946,8 +938,7 @@ type AirspacecontrolorderFullAirspaceControlMeansStatusAirspaceControlMean struc
 	// Specifies the unit of length for which widths are given. Use M for meters, KM
 	// for kilometers, or NM for nautical miles.
 	WidthUnit string `json:"widthUnit"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AirspaceControlPoint resp.Field
 		AirspaceTimePeriod   resp.Field
@@ -1003,8 +994,7 @@ type AirspacecontrolorderFullAirspaceControlMeansStatusAirspaceControlMeanAirspa
 	CtrlPtName string `json:"ctrlPtName"`
 	// One of possible control point type codes, such as CP, ER, OT, etc.
 	CtrlPtType string `json:"ctrlPtType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CtrlPtAltitude resp.Field
 		CtrlPtLocation resp.Field
@@ -1042,8 +1032,7 @@ type AirspacecontrolorderFullAirspaceControlMeansStatusAirspaceControlMeanAirspa
 	TimeMode string `json:"timeMode"`
 	// The start time designating that the airspace control order is active.
 	TimeStart string `json:"timeStart"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		IntDur      resp.Field
 		IntFreq     resp.Field
@@ -1084,8 +1073,7 @@ type AirspacecontrolorderFullAirspaceControlOrderReference struct {
 	RefTs time.Time `json:"refTs" format:"date-time"`
 	// Specifies the type for this reference.
 	RefType string `json:"refType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		RefOriginator      resp.Field
 		RefSerialNum       resp.Field
@@ -1200,10 +1188,6 @@ type AirspaceControlOrderNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirspaceControlOrderNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r AirspaceControlOrderNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow AirspaceControlOrderNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1246,11 +1230,6 @@ type AirspaceControlOrderNewParamsAirspaceControlMeansStatus struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirspaceControlOrderNewParamsAirspaceControlMeansStatus) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirspaceControlOrderNewParamsAirspaceControlMeansStatus) MarshalJSON() (data []byte, err error) {
 	type shadow AirspaceControlOrderNewParamsAirspaceControlMeansStatus
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1372,11 +1351,6 @@ type AirspaceControlOrderNewParamsAirspaceControlMeansStatusAirspaceControlMean 
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirspaceControlOrderNewParamsAirspaceControlMeansStatusAirspaceControlMean) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirspaceControlOrderNewParamsAirspaceControlMeansStatusAirspaceControlMean) MarshalJSON() (data []byte, err error) {
 	type shadow AirspaceControlOrderNewParamsAirspaceControlMeansStatusAirspaceControlMean
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1403,11 +1377,6 @@ type AirspaceControlOrderNewParamsAirspaceControlMeansStatusAirspaceControlMeanA
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirspaceControlOrderNewParamsAirspaceControlMeansStatusAirspaceControlMeanAirspaceControlPoint) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirspaceControlOrderNewParamsAirspaceControlMeansStatusAirspaceControlMeanAirspaceControlPoint) MarshalJSON() (data []byte, err error) {
 	type shadow AirspaceControlOrderNewParamsAirspaceControlMeansStatusAirspaceControlMeanAirspaceControlPoint
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1435,11 +1404,6 @@ type AirspaceControlOrderNewParamsAirspaceControlMeansStatusAirspaceControlMeanA
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirspaceControlOrderNewParamsAirspaceControlMeansStatusAirspaceControlMeanAirspaceTimePeriod) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirspaceControlOrderNewParamsAirspaceControlMeansStatusAirspaceControlMeanAirspaceTimePeriod) MarshalJSON() (data []byte, err error) {
 	type shadow AirspaceControlOrderNewParamsAirspaceControlMeansStatusAirspaceControlMeanAirspaceTimePeriod
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1469,11 +1433,6 @@ type AirspaceControlOrderNewParamsAirspaceControlOrderReference struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirspaceControlOrderNewParamsAirspaceControlOrderReference) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirspaceControlOrderNewParamsAirspaceControlOrderReference) MarshalJSON() (data []byte, err error) {
 	type shadow AirspaceControlOrderNewParamsAirspaceControlOrderReference
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1484,10 +1443,6 @@ type AirspaceControlOrderGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirspaceControlOrderGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AirspaceControlOrderGetParams]'s query parameters as
 // `url.Values`.
@@ -1504,10 +1459,6 @@ type AirspaceControlOrderListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirspaceControlOrderListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [AirspaceControlOrderListParams]'s query parameters as
 // `url.Values`.
 func (r AirspaceControlOrderListParams) URLQuery() (v url.Values, err error) {
@@ -1523,10 +1474,6 @@ type AirspaceControlOrderCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirspaceControlOrderCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [AirspaceControlOrderCountParams]'s query parameters as
 // `url.Values`.
 func (r AirspaceControlOrderCountParams) URLQuery() (v url.Values, err error) {
@@ -1539,12 +1486,6 @@ func (r AirspaceControlOrderCountParams) URLQuery() (v url.Values, err error) {
 type AirspaceControlOrderNewBulkParams struct {
 	Body []AirspaceControlOrderNewBulkParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirspaceControlOrderNewBulkParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r AirspaceControlOrderNewBulkParams) MarshalJSON() (data []byte, err error) {
@@ -1667,11 +1608,6 @@ type AirspaceControlOrderNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirspaceControlOrderNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirspaceControlOrderNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow AirspaceControlOrderNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1697,11 +1633,6 @@ type AirspaceControlOrderNewBulkParamsBodyAirspaceControlMeansStatus struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirspaceControlOrderNewBulkParamsBodyAirspaceControlMeansStatus) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirspaceControlOrderNewBulkParamsBodyAirspaceControlMeansStatus) MarshalJSON() (data []byte, err error) {
 	type shadow AirspaceControlOrderNewBulkParamsBodyAirspaceControlMeansStatus
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1823,11 +1754,6 @@ type AirspaceControlOrderNewBulkParamsBodyAirspaceControlMeansStatusAirspaceCont
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirspaceControlOrderNewBulkParamsBodyAirspaceControlMeansStatusAirspaceControlMean) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirspaceControlOrderNewBulkParamsBodyAirspaceControlMeansStatusAirspaceControlMean) MarshalJSON() (data []byte, err error) {
 	type shadow AirspaceControlOrderNewBulkParamsBodyAirspaceControlMeansStatusAirspaceControlMean
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1854,11 +1780,6 @@ type AirspaceControlOrderNewBulkParamsBodyAirspaceControlMeansStatusAirspaceCont
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirspaceControlOrderNewBulkParamsBodyAirspaceControlMeansStatusAirspaceControlMeanAirspaceControlPoint) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirspaceControlOrderNewBulkParamsBodyAirspaceControlMeansStatusAirspaceControlMeanAirspaceControlPoint) MarshalJSON() (data []byte, err error) {
 	type shadow AirspaceControlOrderNewBulkParamsBodyAirspaceControlMeansStatusAirspaceControlMeanAirspaceControlPoint
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1886,11 +1807,6 @@ type AirspaceControlOrderNewBulkParamsBodyAirspaceControlMeansStatusAirspaceCont
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirspaceControlOrderNewBulkParamsBodyAirspaceControlMeansStatusAirspaceControlMeanAirspaceTimePeriod) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirspaceControlOrderNewBulkParamsBodyAirspaceControlMeansStatusAirspaceControlMeanAirspaceTimePeriod) MarshalJSON() (data []byte, err error) {
 	type shadow AirspaceControlOrderNewBulkParamsBodyAirspaceControlMeansStatusAirspaceControlMeanAirspaceTimePeriod
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1920,11 +1836,6 @@ type AirspaceControlOrderNewBulkParamsBodyAirspaceControlOrderReference struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirspaceControlOrderNewBulkParamsBodyAirspaceControlOrderReference) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirspaceControlOrderNewBulkParamsBodyAirspaceControlOrderReference) MarshalJSON() (data []byte, err error) {
 	type shadow AirspaceControlOrderNewBulkParamsBodyAirspaceControlOrderReference
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1940,10 +1851,6 @@ type AirspaceControlOrderTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirspaceControlOrderTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AirspaceControlOrderTupleParams]'s query parameters as
 // `url.Values`.

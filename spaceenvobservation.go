@@ -273,8 +273,7 @@ type SpaceEnvObservationListResponse struct {
 	// 'srcIds' array for the record UUIDs, positionally corresponding to the record
 	// types in this array. The 'srcTyps' and 'srcIds' arrays must match in size.
 	SrcTyps []string `json:"srcTyps"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -402,8 +401,7 @@ type SpaceEnvObservationListResponseSeoList struct {
 	// (obString), a Boolean observation value (obBool), an array of numeric
 	// observation values (obArray), or any combination of these.
 	ObValue float64 `json:"obValue"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ObType        resp.Field
 		ObUoM         resp.Field
@@ -433,10 +431,6 @@ type SpaceEnvObservationListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceEnvObservationListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SpaceEnvObservationListParams]'s query parameters as
 // `url.Values`.
 func (r SpaceEnvObservationListParams) URLQuery() (v url.Values, err error) {
@@ -455,10 +449,6 @@ type SpaceEnvObservationCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceEnvObservationCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SpaceEnvObservationCountParams]'s query parameters as
 // `url.Values`.
 func (r SpaceEnvObservationCountParams) URLQuery() (v url.Values, err error) {
@@ -472,10 +462,6 @@ type SpaceEnvObservationNewBulkParams struct {
 	Body []SpaceEnvObservationNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceEnvObservationNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r SpaceEnvObservationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -628,11 +614,6 @@ type SpaceEnvObservationNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceEnvObservationNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SpaceEnvObservationNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SpaceEnvObservationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -690,11 +671,6 @@ type SpaceEnvObservationNewBulkParamsBodySeoList struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceEnvObservationNewBulkParamsBodySeoList) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SpaceEnvObservationNewBulkParamsBodySeoList) MarshalJSON() (data []byte, err error) {
 	type shadow SpaceEnvObservationNewBulkParamsBodySeoList
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -714,10 +690,6 @@ type SpaceEnvObservationTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceEnvObservationTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SpaceEnvObservationTupleParams]'s query parameters as
 // `url.Values`.
 func (r SpaceEnvObservationTupleParams) URLQuery() (v url.Values, err error) {
@@ -730,12 +702,6 @@ func (r SpaceEnvObservationTupleParams) URLQuery() (v url.Values, err error) {
 type SpaceEnvObservationUnvalidatedPublishParams struct {
 	Body []SpaceEnvObservationUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceEnvObservationUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r SpaceEnvObservationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -889,11 +855,6 @@ type SpaceEnvObservationUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceEnvObservationUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SpaceEnvObservationUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SpaceEnvObservationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -951,11 +912,6 @@ type SpaceEnvObservationUnvalidatedPublishParamsBodySeoList struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SpaceEnvObservationUnvalidatedPublishParamsBodySeoList) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SpaceEnvObservationUnvalidatedPublishParamsBodySeoList) MarshalJSON() (data []byte, err error) {
 	type shadow SpaceEnvObservationUnvalidatedPublishParamsBodySeoList
 	return param.MarshalObject(r, (*shadow)(&r))

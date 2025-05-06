@@ -217,8 +217,7 @@ type OnboardnavigationListResponse struct {
 	// assumed to correspond to all sensor data in this record. If sensors do not share
 	// a common epoch then separate records should be generated.
 	Ts []time.Time `json:"ts" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -302,10 +301,6 @@ type OnboardnavigationListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnboardnavigationListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OnboardnavigationListParams]'s query parameters as
 // `url.Values`.
 func (r OnboardnavigationListParams) URLQuery() (v url.Values, err error) {
@@ -324,10 +319,6 @@ type OnboardnavigationCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnboardnavigationCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OnboardnavigationCountParams]'s query parameters as
 // `url.Values`.
 func (r OnboardnavigationCountParams) URLQuery() (v url.Values, err error) {
@@ -341,10 +332,6 @@ type OnboardnavigationNewBulkParams struct {
 	Body []OnboardnavigationNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnboardnavigationNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r OnboardnavigationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -441,11 +428,6 @@ type OnboardnavigationNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnboardnavigationNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r OnboardnavigationNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow OnboardnavigationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -474,10 +456,6 @@ type OnboardnavigationTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnboardnavigationTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OnboardnavigationTupleParams]'s query parameters as
 // `url.Values`.
 func (r OnboardnavigationTupleParams) URLQuery() (v url.Values, err error) {
@@ -490,12 +468,6 @@ func (r OnboardnavigationTupleParams) URLQuery() (v url.Values, err error) {
 type OnboardnavigationUnvalidatedPublishParams struct {
 	Body []OnboardnavigationUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnboardnavigationUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r OnboardnavigationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -593,11 +565,6 @@ type OnboardnavigationUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnboardnavigationUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r OnboardnavigationUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow OnboardnavigationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

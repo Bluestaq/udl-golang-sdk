@@ -267,8 +267,7 @@ type StageListResponse struct {
 	VernierThrustSeaLevel float64 `json:"vernierThrustSeaLevel"`
 	// Total thrust of one of the vernier or additional engines in a vacuum in kN.
 	VernierThrustVacuum float64 `json:"vernierThrustVacuum"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking    resp.Field
 		DataMode                 resp.Field
@@ -459,8 +458,7 @@ type StageGetResponse struct {
 	VernierThrustSeaLevel float64 `json:"vernierThrustSeaLevel"`
 	// Total thrust of one of the vernier or additional engines in a vacuum in kN.
 	VernierThrustVacuum float64 `json:"vernierThrustVacuum"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking    resp.Field
 		DataMode                 resp.Field
@@ -655,8 +653,7 @@ type StageTupleResponse struct {
 	VernierThrustSeaLevel float64 `json:"vernierThrustSeaLevel"`
 	// Total thrust of one of the vernier or additional engines in a vacuum in kN.
 	VernierThrustVacuum float64 `json:"vernierThrustVacuum"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking    resp.Field
 		DataMode                 resp.Field
@@ -836,10 +833,6 @@ type StageNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StageNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r StageNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow StageNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -969,10 +962,6 @@ type StageUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StageUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r StageUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow StageUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1007,10 +996,6 @@ type StageListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StageListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [StageListParams]'s query parameters as `url.Values`.
 func (r StageListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1025,10 +1010,6 @@ type StageCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StageCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [StageCountParams]'s query parameters as `url.Values`.
 func (r StageCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1042,10 +1023,6 @@ type StageGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StageGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [StageGetParams]'s query parameters as `url.Values`.
 func (r StageGetParams) URLQuery() (v url.Values, err error) {
@@ -1065,10 +1042,6 @@ type StageTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StageTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [StageTupleParams]'s query parameters as `url.Values`.
 func (r StageTupleParams) URLQuery() (v url.Values, err error) {

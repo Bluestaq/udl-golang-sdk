@@ -277,8 +277,7 @@ type GnssObservationsetListResponse struct {
 	TransactionID string `json:"transactionId"`
 	// Vertical Dilution of Precision.
 	VDop float64 `json:"vDop"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -392,8 +391,7 @@ type GnssObservationsetListResponseGnssObservationList struct {
 	// Status of the GNSS receiver signal. Status options are 0, 1 or 2 (0 being the
 	// best).
 	TrackingStatus int64 `json:"trackingStatus"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AgcState       resp.Field
 		GnssSatID      resp.Field
@@ -421,10 +419,6 @@ type GnssObservationsetListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssObservationsetListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [GnssObservationsetListParams]'s query parameters as
 // `url.Values`.
 func (r GnssObservationsetListParams) URLQuery() (v url.Values, err error) {
@@ -444,10 +438,6 @@ type GnssObservationsetCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssObservationsetCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [GnssObservationsetCountParams]'s query parameters as
 // `url.Values`.
 func (r GnssObservationsetCountParams) URLQuery() (v url.Values, err error) {
@@ -461,10 +451,6 @@ type GnssObservationsetNewBulkParams struct {
 	Body []GnssObservationsetNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssObservationsetNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r GnssObservationsetNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -621,11 +607,6 @@ type GnssObservationsetNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssObservationsetNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r GnssObservationsetNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow GnssObservationsetNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -680,11 +661,6 @@ type GnssObservationsetNewBulkParamsBodyGnssObservationList struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssObservationsetNewBulkParamsBodyGnssObservationList) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r GnssObservationsetNewBulkParamsBodyGnssObservationList) MarshalJSON() (data []byte, err error) {
 	type shadow GnssObservationsetNewBulkParamsBodyGnssObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -705,10 +681,6 @@ type GnssObservationsetTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssObservationsetTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [GnssObservationsetTupleParams]'s query parameters as
 // `url.Values`.
 func (r GnssObservationsetTupleParams) URLQuery() (v url.Values, err error) {
@@ -721,12 +693,6 @@ func (r GnssObservationsetTupleParams) URLQuery() (v url.Values, err error) {
 type GnssObservationsetUnvalidatedPublishParams struct {
 	Body []GnssObservationsetUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssObservationsetUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r GnssObservationsetUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -884,11 +850,6 @@ type GnssObservationsetUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssObservationsetUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r GnssObservationsetUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow GnssObservationsetUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -943,11 +904,6 @@ type GnssObservationsetUnvalidatedPublishParamsBodyGnssObservationList struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssObservationsetUnvalidatedPublishParamsBodyGnssObservationList) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r GnssObservationsetUnvalidatedPublishParamsBodyGnssObservationList) MarshalJSON() (data []byte, err error) {
 	type shadow GnssObservationsetUnvalidatedPublishParamsBodyGnssObservationList
 	return param.MarshalObject(r, (*shadow)(&r))

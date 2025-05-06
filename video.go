@@ -204,8 +204,7 @@ type VideoListResponse struct {
 	StopTime time.Time `json:"stopTime" format:"date-time"`
 	// Video Streaming Support URLs.
 	VideoURLs []string `json:"videoUrls"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -301,8 +300,7 @@ type VideoGetPlayerStreamingInfoResponse struct {
 	StopTime time.Time `json:"stopTime" format:"date-time"`
 	// Video Streaming Support URLs.
 	VideoURLs []string `json:"videoUrls"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -398,8 +396,7 @@ type VideoGetPublisherStreamingInfoResponse struct {
 	StopTime time.Time `json:"stopTime" format:"date-time"`
 	// Video Streaming Support URLs.
 	VideoURLs []string `json:"videoUrls"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -495,8 +492,7 @@ type VideoGetStreamFileResponse struct {
 	StopTime time.Time `json:"stopTime" format:"date-time"`
 	// Video Streaming Support URLs.
 	VideoURLs []string `json:"videoUrls"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -582,10 +578,6 @@ type VideoNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f VideoNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r VideoNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow VideoNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -620,10 +612,6 @@ type VideoListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f VideoListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [VideoListParams]'s query parameters as `url.Values`.
 func (r VideoListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -638,10 +626,6 @@ type VideoCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f VideoCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [VideoCountParams]'s query parameters as `url.Values`.
 func (r VideoCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -655,10 +639,6 @@ type VideoGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f VideoGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [VideoGetParams]'s query parameters as `url.Values`.
 func (r VideoGetParams) URLQuery() (v url.Values, err error) {
@@ -676,12 +656,6 @@ type VideoGetPlayerStreamingInfoParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f VideoGetPlayerStreamingInfoParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [VideoGetPlayerStreamingInfoParams]'s query parameters as
@@ -703,12 +677,6 @@ type VideoGetPublisherStreamingInfoParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f VideoGetPublisherStreamingInfoParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [VideoGetPublisherStreamingInfoParams]'s query parameters as
 // `url.Values`.
 func (r VideoGetPublisherStreamingInfoParams) URLQuery() (v url.Values, err error) {
@@ -727,10 +695,6 @@ type VideoGetStreamFileParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f VideoGetStreamFileParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [VideoGetStreamFileParams]'s query parameters as
 // `url.Values`.
@@ -751,10 +715,6 @@ type VideoTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f VideoTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [VideoTupleParams]'s query parameters as `url.Values`.
 func (r VideoTupleParams) URLQuery() (v url.Values, err error) {

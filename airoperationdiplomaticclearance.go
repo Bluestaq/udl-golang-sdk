@@ -118,8 +118,7 @@ type DiplomaticclearanceAbridged struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking      resp.Field
 		DataMode                   resp.Field
@@ -242,8 +241,7 @@ type DiplomaticclearanceAbridgedDiplomaticClearanceDetail struct {
 	ValidStartTime time.Time `json:"validStartTime" format:"date-time"`
 	// Remarks concerning the valid diplomatic clearance window.
 	WindowRemark string `json:"windowRemark"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Action              resp.Field
 		AltCountryCode      resp.Field
@@ -291,8 +289,7 @@ type DiplomaticclearanceAbridgedDiplomaticClearanceRemark struct {
 	Text string `json:"text"`
 	// User who published the remark.
 	User string `json:"user"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Date         resp.Field
 		GdssRemarkID resp.Field
@@ -381,8 +378,7 @@ type DiplomaticclearanceFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking      resp.Field
 		DataMode                   resp.Field
@@ -505,8 +501,7 @@ type DiplomaticclearanceFullDiplomaticClearanceDetail struct {
 	ValidStartTime time.Time `json:"validStartTime" format:"date-time"`
 	// Remarks concerning the valid diplomatic clearance window.
 	WindowRemark string `json:"windowRemark"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Action              resp.Field
 		AltCountryCode      resp.Field
@@ -554,8 +549,7 @@ type DiplomaticclearanceFullDiplomaticClearanceRemark struct {
 	Text string `json:"text"`
 	// User who published the remark.
 	User string `json:"user"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Date         resp.Field
 		GdssRemarkID resp.Field
@@ -575,12 +569,6 @@ func (r *DiplomaticclearanceFullDiplomaticClearanceRemark) UnmarshalJSON(data []
 type AirOperationDiplomaticClearanceUnvalidatedPublishParams struct {
 	Body []AirOperationDiplomaticClearanceUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationDiplomaticClearanceUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r AirOperationDiplomaticClearanceUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -665,11 +653,6 @@ type AirOperationDiplomaticClearanceUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationDiplomaticClearanceUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationDiplomaticClearanceUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationDiplomaticClearanceUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -752,11 +735,6 @@ type AirOperationDiplomaticClearanceUnvalidatedPublishParamsBodyDiplomaticCleara
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationDiplomaticClearanceUnvalidatedPublishParamsBodyDiplomaticClearanceDetail) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationDiplomaticClearanceUnvalidatedPublishParamsBodyDiplomaticClearanceDetail) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationDiplomaticClearanceUnvalidatedPublishParamsBodyDiplomaticClearanceDetail
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -776,11 +754,6 @@ type AirOperationDiplomaticClearanceUnvalidatedPublishParamsBodyDiplomaticCleara
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationDiplomaticClearanceUnvalidatedPublishParamsBodyDiplomaticClearanceRemark) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationDiplomaticClearanceUnvalidatedPublishParamsBodyDiplomaticClearanceRemark) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationDiplomaticClearanceUnvalidatedPublishParamsBodyDiplomaticClearanceRemark
 	return param.MarshalObject(r, (*shadow)(&r))

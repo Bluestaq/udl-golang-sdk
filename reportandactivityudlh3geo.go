@@ -100,12 +100,6 @@ type ReportAndActivityUdlH3geoUnvalidatedPublishParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ReportAndActivityUdlH3geoUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 func (r ReportAndActivityUdlH3geoUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	type shadow ReportAndActivityUdlH3geoUnvalidatedPublishParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -196,11 +190,6 @@ type ReportAndActivityUdlH3geoUnvalidatedPublishParamsCell struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ReportAndActivityUdlH3geoUnvalidatedPublishParamsCell) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ReportAndActivityUdlH3geoUnvalidatedPublishParamsCell) MarshalJSON() (data []byte, err error) {
 	type shadow ReportAndActivityUdlH3geoUnvalidatedPublishParamsCell
 	return param.MarshalObject(r, (*shadow)(&r))

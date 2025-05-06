@@ -282,8 +282,7 @@ type ManifoldelsetListResponse struct {
 	// orbits, the semimajor axis is the distance between the centers of the bodies,
 	// not the distance of the bodies from the center of mass.
 	SemiMajorAxis float64 `json:"semiMajorAxis"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -453,8 +452,7 @@ type ManifoldelsetGetResponse struct {
 	// Application user who last updated the row in the database, set by the system
 	// automatically and ignored on create/edit operations.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -626,8 +624,7 @@ type ManifoldelsetTupleResponse struct {
 	// Application user who last updated the row in the database, set by the system
 	// automatically and ignored on create/edit operations.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -779,10 +776,6 @@ type ManifoldelsetNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManifoldelsetNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r ManifoldelsetNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow ManifoldelsetNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -898,10 +891,6 @@ type ManifoldelsetUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManifoldelsetUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r ManifoldelsetUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow ManifoldelsetUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -939,10 +928,6 @@ type ManifoldelsetListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManifoldelsetListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ManifoldelsetListParams]'s query parameters as
 // `url.Values`.
 func (r ManifoldelsetListParams) URLQuery() (v url.Values, err error) {
@@ -961,10 +946,6 @@ type ManifoldelsetCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManifoldelsetCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ManifoldelsetCountParams]'s query parameters as
 // `url.Values`.
 func (r ManifoldelsetCountParams) URLQuery() (v url.Values, err error) {
@@ -978,10 +959,6 @@ type ManifoldelsetNewBulkParams struct {
 	Body []ManifoldelsetNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManifoldelsetNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r ManifoldelsetNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1094,9 +1071,6 @@ type ManifoldelsetNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManifoldelsetNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r ManifoldelsetNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow ManifoldelsetNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1113,10 +1087,6 @@ type ManifoldelsetGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManifoldelsetGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ManifoldelsetGetParams]'s query parameters as `url.Values`.
 func (r ManifoldelsetGetParams) URLQuery() (v url.Values, err error) {
@@ -1139,10 +1109,6 @@ type ManifoldelsetTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManifoldelsetTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ManifoldelsetTupleParams]'s query parameters as
 // `url.Values`.

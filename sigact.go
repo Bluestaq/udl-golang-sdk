@@ -417,8 +417,7 @@ type SigactListResponse struct {
 	Theater string `json:"theater"`
 	// The mode of this attack or event (e.g. Direct Fire, IED Explosion, etc.).
 	TypeOfAttack string `json:"typeOfAttack"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -541,8 +540,7 @@ type SigactListResponseRelatedDoc struct {
 	DataSourceRefs []SigactListResponseRelatedDocDataSourceRef `json:"dataSourceRefs"`
 	// The document id of the related document.
 	DocumentID string `json:"documentId"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataSourceRefs resp.Field
 		DocumentID     resp.Field
@@ -568,8 +566,7 @@ type SigactListResponseRelatedDocDataSourceRef struct {
 	SentenceNumber string `json:"sentenceNumber"`
 	// start position.
 	StartPosition string `json:"startPosition"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataSourceID    resp.Field
 		EndPosition     resp.Field
@@ -857,8 +854,7 @@ type SigactTupleResponse struct {
 	Theater string `json:"theater"`
 	// The mode of this attack or event (e.g. Direct Fire, IED Explosion, etc.).
 	TypeOfAttack string `json:"typeOfAttack"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -982,8 +978,7 @@ type SigactTupleResponseRelatedDoc struct {
 	DataSourceRefs []SigactTupleResponseRelatedDocDataSourceRef `json:"dataSourceRefs"`
 	// The document id of the related document.
 	DocumentID string `json:"documentId"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataSourceRefs resp.Field
 		DocumentID     resp.Field
@@ -1009,8 +1004,7 @@ type SigactTupleResponseRelatedDocDataSourceRef struct {
 	SentenceNumber string `json:"sentenceNumber"`
 	// start position.
 	StartPosition string `json:"startPosition"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataSourceID    resp.Field
 		EndPosition     resp.Field
@@ -1036,10 +1030,6 @@ type SigactListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SigactListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SigactListParams]'s query parameters as `url.Values`.
 func (r SigactListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1056,10 +1046,6 @@ type SigactCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SigactCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SigactCountParams]'s query parameters as `url.Values`.
 func (r SigactCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1072,10 +1058,6 @@ type SigactNewBulkParams struct {
 	Body []SigactNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SigactNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r SigactNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1356,9 +1338,6 @@ type SigactNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SigactNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r SigactNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SigactNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1378,11 +1357,6 @@ type SigactNewBulkParamsBodyRelatedDoc struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SigactNewBulkParamsBodyRelatedDoc) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SigactNewBulkParamsBodyRelatedDoc) MarshalJSON() (data []byte, err error) {
 	type shadow SigactNewBulkParamsBodyRelatedDoc
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1402,11 +1376,6 @@ type SigactNewBulkParamsBodyRelatedDocDataSourceRef struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SigactNewBulkParamsBodyRelatedDocDataSourceRef) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SigactNewBulkParamsBodyRelatedDocDataSourceRef) MarshalJSON() (data []byte, err error) {
 	type shadow SigactNewBulkParamsBodyRelatedDocDataSourceRef
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1425,10 +1394,6 @@ type SigactTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SigactTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SigactTupleParams]'s query parameters as `url.Values`.
 func (r SigactTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1442,10 +1407,6 @@ type SigactUploadZipParams struct {
 	File io.Reader `json:"file,omitzero,required" format:"binary"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SigactUploadZipParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r SigactUploadZipParams) MarshalMultipart() (data []byte, contentType string, err error) {
 	buf := bytes.NewBuffer(nil)

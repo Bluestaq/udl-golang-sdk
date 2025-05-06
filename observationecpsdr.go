@@ -305,8 +305,7 @@ type Ecpsdr struct {
 	// Reference voltage (volts/bit). Conversion factor used to convert analog V
 	// monitor data from bytes to volts.
 	VRef int64 `json:"vRef"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -551,8 +550,7 @@ type EcpsdrAbridged struct {
 	// Reference voltage (volts/bit). Conversion factor used to convert analog V
 	// monitor data from bytes to volts.
 	VRef int64 `json:"vRef"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -784,10 +782,6 @@ type ObservationEcpsdrNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationEcpsdrNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r ObservationEcpsdrNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow ObservationEcpsdrNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -822,10 +816,6 @@ type ObservationEcpsdrGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationEcpsdrGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ObservationEcpsdrGetParams]'s query parameters as
 // `url.Values`.
 func (r ObservationEcpsdrGetParams) URLQuery() (v url.Values, err error) {
@@ -843,10 +833,6 @@ type ObservationEcpsdrListParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationEcpsdrListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ObservationEcpsdrListParams]'s query parameters as
 // `url.Values`.
@@ -866,10 +852,6 @@ type ObservationEcpsdrCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationEcpsdrCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ObservationEcpsdrCountParams]'s query parameters as
 // `url.Values`.
 func (r ObservationEcpsdrCountParams) URLQuery() (v url.Values, err error) {
@@ -883,10 +865,6 @@ type ObservationEcpsdrNewBulkParams struct {
 	Body []ObservationEcpsdrNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationEcpsdrNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r ObservationEcpsdrNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1052,11 +1030,6 @@ type ObservationEcpsdrNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationEcpsdrNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ObservationEcpsdrNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow ObservationEcpsdrNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1081,10 +1054,6 @@ type ObservationEcpsdrTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationEcpsdrTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ObservationEcpsdrTupleParams]'s query parameters as
 // `url.Values`.

@@ -87,8 +87,7 @@ type DataownerAbridged struct {
 	OwnerType string `json:"ownerType"`
 	// Organization name for the data provider.
 	Provider string `json:"provider"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		Description           resp.Field
@@ -119,10 +118,6 @@ type SupportingDataDataownerGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SupportingDataDataownerGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SupportingDataDataownerGetParams]'s query parameters as
 // `url.Values`.
 func (r SupportingDataDataownerGetParams) URLQuery() (v url.Values, err error) {
@@ -136,12 +131,6 @@ type SupportingDataDataownerCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SupportingDataDataownerCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [SupportingDataDataownerCountParams]'s query parameters as

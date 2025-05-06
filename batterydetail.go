@@ -177,8 +177,7 @@ type BatterydetailsAbridged struct {
 	OrigNetwork string `json:"origNetwork"`
 	// Type of battery technology (e.g. Ni-Cd, Ni-H2, Li-ion, etc.).
 	Technology string `json:"technology"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -297,8 +296,7 @@ type BatterydetailsFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -405,10 +403,6 @@ type BatterydetailNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BatterydetailNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r BatterydetailNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow BatterydetailNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -442,10 +436,6 @@ type BatterydetailGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BatterydetailGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [BatterydetailGetParams]'s query parameters as `url.Values`.
 func (r BatterydetailGetParams) URLQuery() (v url.Values, err error) {
@@ -507,10 +497,6 @@ type BatterydetailUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BatterydetailUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r BatterydetailUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow BatterydetailUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -544,10 +530,6 @@ type BatterydetailListParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BatterydetailListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [BatterydetailListParams]'s query parameters as
 // `url.Values`.

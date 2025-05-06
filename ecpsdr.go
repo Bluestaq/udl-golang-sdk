@@ -50,10 +50,6 @@ type EcpSdrUnvalidatedPublishParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EcpSdrUnvalidatedPublishParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r EcpSdrUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
@@ -218,11 +214,6 @@ type EcpSdrUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EcpSdrUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EcpSdrUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow EcpSdrUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

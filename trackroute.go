@@ -301,8 +301,7 @@ type TrackRouteListResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -384,8 +383,7 @@ type TrackRouteListResponseAltitudeBlock struct {
 	LowerAltitude float64 `json:"lowerAltitude"`
 	// Highest altitude of the track route altitude block above mean sea level in feet.
 	UpperAltitude float64 `json:"upperAltitude"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AltitudeSequenceID resp.Field
 		LowerAltitude      resp.Field
@@ -422,8 +420,7 @@ type TrackRouteListResponsePoc struct {
 	Remark string `json:"remark"`
 	// The username of the contact.
 	Username string `json:"username"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Office        resp.Field
 		Phone         resp.Field
@@ -486,8 +483,7 @@ type TrackRouteListResponseRoutePoint struct {
 	PtTypeName string `json:"ptTypeName"`
 	// Name of a waypoint which identifies the location of the point.
 	WaypointName string `json:"waypointName"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AltCountryCode resp.Field
 		CountryCode    resp.Field
@@ -611,10 +607,6 @@ type TrackRouteNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r TrackRouteNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -654,9 +646,6 @@ type TrackRouteNewParamsAltitudeBlock struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteNewParamsAltitudeBlock) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r TrackRouteNewParamsAltitudeBlock) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteNewParamsAltitudeBlock
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -686,9 +675,6 @@ type TrackRouteNewParamsPoc struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteNewParamsPoc) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r TrackRouteNewParamsPoc) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteNewParamsPoc
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -738,9 +724,6 @@ type TrackRouteNewParamsRoutePoint struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteNewParamsRoutePoint) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r TrackRouteNewParamsRoutePoint) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteNewParamsRoutePoint
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -844,10 +827,6 @@ type TrackRouteUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r TrackRouteUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -887,11 +866,6 @@ type TrackRouteUpdateParamsAltitudeBlock struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteUpdateParamsAltitudeBlock) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r TrackRouteUpdateParamsAltitudeBlock) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteUpdateParamsAltitudeBlock
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -921,9 +895,6 @@ type TrackRouteUpdateParamsPoc struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteUpdateParamsPoc) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r TrackRouteUpdateParamsPoc) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteUpdateParamsPoc
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -973,9 +944,6 @@ type TrackRouteUpdateParamsRoutePoint struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteUpdateParamsRoutePoint) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r TrackRouteUpdateParamsRoutePoint) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteUpdateParamsRoutePoint
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -989,10 +957,6 @@ type TrackRouteListParams struct {
 	MaxResults     param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [TrackRouteListParams]'s query parameters as `url.Values`.
 func (r TrackRouteListParams) URLQuery() (v url.Values, err error) {
@@ -1011,10 +975,6 @@ type TrackRouteCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [TrackRouteCountParams]'s query parameters as `url.Values`.
 func (r TrackRouteCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1027,10 +987,6 @@ type TrackRouteNewBulkParams struct {
 	Body []TrackRouteNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r TrackRouteNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1156,9 +1112,6 @@ type TrackRouteNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r TrackRouteNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1181,11 +1134,6 @@ type TrackRouteNewBulkParamsBodyAltitudeBlock struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteNewBulkParamsBodyAltitudeBlock) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r TrackRouteNewBulkParamsBodyAltitudeBlock) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteNewBulkParamsBodyAltitudeBlock
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1215,9 +1163,6 @@ type TrackRouteNewBulkParamsBodyPoc struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteNewBulkParamsBodyPoc) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r TrackRouteNewBulkParamsBodyPoc) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteNewBulkParamsBodyPoc
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1267,11 +1212,6 @@ type TrackRouteNewBulkParamsBodyRoutePoint struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteNewBulkParamsBodyRoutePoint) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r TrackRouteNewBulkParamsBodyRoutePoint) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteNewBulkParamsBodyRoutePoint
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1282,10 +1222,6 @@ type TrackRouteGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [TrackRouteGetParams]'s query parameters as `url.Values`.
 func (r TrackRouteGetParams) URLQuery() (v url.Values, err error) {
@@ -1308,10 +1244,6 @@ type TrackRouteTupleParams struct {
 	MaxResults     param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [TrackRouteTupleParams]'s query parameters as `url.Values`.
 func (r TrackRouteTupleParams) URLQuery() (v url.Values, err error) {
@@ -1419,12 +1351,6 @@ type TrackRouteUnvalidatedPublishParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 func (r TrackRouteUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteUnvalidatedPublishParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1464,11 +1390,6 @@ type TrackRouteUnvalidatedPublishParamsAltitudeBlock struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteUnvalidatedPublishParamsAltitudeBlock) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r TrackRouteUnvalidatedPublishParamsAltitudeBlock) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteUnvalidatedPublishParamsAltitudeBlock
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1498,11 +1419,6 @@ type TrackRouteUnvalidatedPublishParamsPoc struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteUnvalidatedPublishParamsPoc) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r TrackRouteUnvalidatedPublishParamsPoc) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteUnvalidatedPublishParamsPoc
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1552,11 +1468,6 @@ type TrackRouteUnvalidatedPublishParamsRoutePoint struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackRouteUnvalidatedPublishParamsRoutePoint) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r TrackRouteUnvalidatedPublishParamsRoutePoint) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteUnvalidatedPublishParamsRoutePoint
 	return param.MarshalObject(r, (*shadow)(&r))

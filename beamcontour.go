@@ -248,8 +248,7 @@ type BeamcontourAbridged struct {
 	OrigNetwork string `json:"origNetwork"`
 	// The region name within the service area.
 	RegionName string `json:"regionName"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -409,8 +408,7 @@ type BeamcontourFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -558,10 +556,6 @@ type BeamContourNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BeamContourNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r BeamContourNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow BeamContourNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -609,10 +603,6 @@ type BeamContourGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BeamContourGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [BeamContourGetParams]'s query parameters as `url.Values`.
 func (r BeamContourGetParams) URLQuery() (v url.Values, err error) {
@@ -699,10 +689,6 @@ type BeamContourUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BeamContourUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r BeamContourUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow BeamContourUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -753,10 +739,6 @@ type BeamContourListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BeamContourListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [BeamContourListParams]'s query parameters as `url.Values`.
 func (r BeamContourListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -773,10 +755,6 @@ type BeamContourCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BeamContourCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [BeamContourCountParams]'s query parameters as `url.Values`.
 func (r BeamContourCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -789,10 +767,6 @@ type BeamContourNewBulkParams struct {
 	Body []BeamContourNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BeamContourNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r BeamContourNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -890,9 +864,6 @@ type BeamContourNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BeamContourNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r BeamContourNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow BeamContourNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -919,10 +890,6 @@ type BeamContourTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BeamContourTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [BeamContourTupleParams]'s query parameters as `url.Values`.
 func (r BeamContourTupleParams) URLQuery() (v url.Values, err error) {

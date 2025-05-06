@@ -107,10 +107,6 @@ type EphemerisSetHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisSetHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EphemerisSetHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r EphemerisSetHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -149,10 +145,6 @@ type EphemerisSetHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisSetHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EphemerisSetHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r EphemerisSetHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -175,10 +167,6 @@ type EphemerisSetHistoryCountParams struct {
 	PointStartTime param.Opt[time.Time] `query:"pointStartTime,omitzero" format:"date-time" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisSetHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EphemerisSetHistoryCountParams]'s query parameters as
 // `url.Values`.

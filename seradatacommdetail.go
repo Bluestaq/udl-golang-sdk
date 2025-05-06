@@ -256,8 +256,7 @@ type SeraDataCommDetailListResponse struct {
 	UserUplinkFrom float64 `json:"userUplinkFrom"`
 	// Comm userUplinkTo in Ghz.
 	UserUplinkTo float64 `json:"userUplinkTo"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                   resp.Field
 		DataMode                                resp.Field
@@ -433,8 +432,7 @@ type SeraDataCommDetailGetResponse struct {
 	UserUplinkFrom float64 `json:"userUplinkFrom"`
 	// Comm userUplinkTo in Ghz.
 	UserUplinkTo float64 `json:"userUplinkTo"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                   resp.Field
 		DataMode                                resp.Field
@@ -612,8 +610,7 @@ type SeraDataCommDetailTupleResponse struct {
 	UserUplinkFrom float64 `json:"userUplinkFrom"`
 	// Comm userUplinkTo in Ghz.
 	UserUplinkTo float64 `json:"userUplinkTo"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                   resp.Field
 		DataMode                                resp.Field
@@ -780,10 +777,6 @@ type SeraDataCommDetailNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeraDataCommDetailNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SeraDataCommDetailNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SeraDataCommDetailNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -904,10 +897,6 @@ type SeraDataCommDetailUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeraDataCommDetailUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SeraDataCommDetailUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SeraDataCommDetailUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -942,10 +931,6 @@ type SeraDataCommDetailListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeraDataCommDetailListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SeraDataCommDetailListParams]'s query parameters as
 // `url.Values`.
 func (r SeraDataCommDetailListParams) URLQuery() (v url.Values, err error) {
@@ -961,10 +946,6 @@ type SeraDataCommDetailCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeraDataCommDetailCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SeraDataCommDetailCountParams]'s query parameters as
 // `url.Values`.
 func (r SeraDataCommDetailCountParams) URLQuery() (v url.Values, err error) {
@@ -979,10 +960,6 @@ type SeraDataCommDetailGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeraDataCommDetailGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SeraDataCommDetailGetParams]'s query parameters as
 // `url.Values`.
@@ -1003,10 +980,6 @@ type SeraDataCommDetailTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeraDataCommDetailTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SeraDataCommDetailTupleParams]'s query parameters as
 // `url.Values`.

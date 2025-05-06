@@ -244,8 +244,7 @@ type SensorCalibrationHistoryQueryResponse struct {
 	TimeBias float64 `json:"timeBias"`
 	// Standard deviation time, in seconds, for the duration span.
 	TimeBiasSigma float64 `json:"timeBiasSigma"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -348,12 +347,6 @@ type SensorCalibrationHistoryCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorCalibrationHistoryCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [SensorCalibrationHistoryCountParams]'s query parameters as
 // `url.Values`.
 func (r SensorCalibrationHistoryCountParams) URLQuery() (v url.Values, err error) {
@@ -374,12 +367,6 @@ type SensorCalibrationHistoryQueryParams struct {
 	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorCalibrationHistoryQueryParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [SensorCalibrationHistoryQueryParams]'s query parameters as
@@ -413,12 +400,6 @@ type SensorCalibrationHistoryWriteAodrParams struct {
 	// valid values are: JSON and CSV.
 	OutputFormat param.Opt[string] `query:"outputFormat,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorCalibrationHistoryWriteAodrParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [SensorCalibrationHistoryWriteAodrParams]'s query parameters

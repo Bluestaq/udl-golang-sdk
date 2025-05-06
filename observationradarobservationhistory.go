@@ -319,8 +319,7 @@ type ObservationRadarobservationHistoryListResponse struct {
 	Z float64 `json:"z"`
 	// Z velocity of target in km/sec in J2000 coordinate frame.
 	Zvel float64 `json:"zvel"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -450,12 +449,6 @@ type ObservationRadarobservationHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationRadarobservationHistoryListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [ObservationRadarobservationHistoryListParams]'s query
 // parameters as `url.Values`.
 func (r ObservationRadarobservationHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -489,12 +482,6 @@ type ObservationRadarobservationHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationRadarobservationHistoryAodrParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [ObservationRadarobservationHistoryAodrParams]'s query
 // parameters as `url.Values`.
 func (r ObservationRadarobservationHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -511,12 +498,6 @@ type ObservationRadarobservationHistoryCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationRadarobservationHistoryCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [ObservationRadarobservationHistoryCountParams]'s query

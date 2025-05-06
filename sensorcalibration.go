@@ -312,8 +312,7 @@ type SensorCalibrationGetResponse struct {
 	TimeBias float64 `json:"timeBias"`
 	// Standard deviation time, in seconds, for the duration span.
 	TimeBiasSigma float64 `json:"timeBiasSigma"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -579,8 +578,7 @@ type SensorCalibrationQueryResponse struct {
 	TimeBias float64 `json:"timeBias"`
 	// Standard deviation time, in seconds, for the duration span.
 	TimeBiasSigma float64 `json:"timeBiasSigma"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -846,8 +844,7 @@ type SensorCalibrationTupleResponse struct {
 	TimeBias float64 `json:"timeBias"`
 	// Standard deviation time, in seconds, for the duration span.
 	TimeBiasSigma float64 `json:"timeBiasSigma"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1100,10 +1097,6 @@ type SensorCalibrationNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorCalibrationNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SensorCalibrationNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SensorCalibrationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1138,10 +1131,6 @@ type SensorCalibrationGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorCalibrationGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SensorCalibrationGetParams]'s query parameters as
 // `url.Values`.
 func (r SensorCalibrationGetParams) URLQuery() (v url.Values, err error) {
@@ -1160,10 +1149,6 @@ type SensorCalibrationCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorCalibrationCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SensorCalibrationCountParams]'s query parameters as
 // `url.Values`.
 func (r SensorCalibrationCountParams) URLQuery() (v url.Values, err error) {
@@ -1177,10 +1162,6 @@ type SensorCalibrationNewBulkParams struct {
 	Body []SensorCalibrationNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorCalibrationNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r SensorCalibrationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1364,11 +1345,6 @@ type SensorCalibrationNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorCalibrationNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SensorCalibrationNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SensorCalibrationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1388,10 +1364,6 @@ type SensorCalibrationQueryParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorCalibrationQueryParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SensorCalibrationQueryParams]'s query parameters as
 // `url.Values`.
@@ -1416,10 +1388,6 @@ type SensorCalibrationTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorCalibrationTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SensorCalibrationTupleParams]'s query parameters as
 // `url.Values`.
 func (r SensorCalibrationTupleParams) URLQuery() (v url.Values, err error) {
@@ -1432,12 +1400,6 @@ func (r SensorCalibrationTupleParams) URLQuery() (v url.Values, err error) {
 type SensorCalibrationUnvalidatedPublishParams struct {
 	Body []SensorCalibrationUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorCalibrationUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r SensorCalibrationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -1622,11 +1584,6 @@ type SensorCalibrationUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorCalibrationUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SensorCalibrationUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SensorCalibrationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

@@ -259,8 +259,7 @@ type OrganizationDetailsFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -443,8 +442,7 @@ type OrganizationdetailListResponse struct {
 	RiskManager string `json:"riskManager"`
 	// Notes on the services provided by the organization.
 	ServicesNotes string `json:"servicesNotes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -624,8 +622,7 @@ type OrganizationdetailFindBySourceResponse struct {
 	RiskManager string `json:"riskManager"`
 	// Notes on the services provided by the organization.
 	ServicesNotes string `json:"servicesNotes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -804,10 +801,6 @@ type OrganizationdetailNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrganizationdetailNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r OrganizationdetailNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow OrganizationdetailNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -943,10 +936,6 @@ type OrganizationdetailUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrganizationdetailUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r OrganizationdetailUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow OrganizationdetailUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -983,10 +972,6 @@ type OrganizationdetailListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrganizationdetailListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OrganizationdetailListParams]'s query parameters as
 // `url.Values`.
 func (r OrganizationdetailListParams) URLQuery() (v url.Values, err error) {
@@ -1006,12 +991,6 @@ type OrganizationdetailFindBySourceParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrganizationdetailFindBySourceParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [OrganizationdetailFindBySourceParams]'s query parameters as
 // `url.Values`.
 func (r OrganizationdetailFindBySourceParams) URLQuery() (v url.Values, err error) {
@@ -1026,10 +1005,6 @@ type OrganizationdetailGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrganizationdetailGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [OrganizationdetailGetParams]'s query parameters as
 // `url.Values`.

@@ -196,8 +196,7 @@ type LogisticsSupportHistoryListResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking        resp.Field
 		DataMode                     resp.Field
@@ -273,8 +272,7 @@ type LogisticsSupportHistoryListResponseLogisticsDiscrepancyInfo struct {
 	Jcn string `json:"jcn"`
 	// The job start time, in ISO 8601 UTC format with millisecond precision.
 	JobStTime time.Time `json:"jobStTime" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClosureTime     resp.Field
 		DiscrepancyInfo resp.Field
@@ -354,8 +352,7 @@ type LogisticsSupportHistoryListResponseLogisticsSupportItem struct {
 	// The code that represents the International Civil Aviation Organization (ICAO)
 	// designations of an airport.
 	SourceIcao string `json:"sourceICAO"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Cannibalized            resp.Field
 		DeployPlanNumber        resp.Field
@@ -413,8 +410,7 @@ type LogisticsSupportHistoryListResponseLogisticsSupportItemLogisticsPart struct
 	TechnicalOrderText string `json:"technicalOrderText"`
 	// Work Unit Code (WUC), or for some aircraft types, the Reference Designator.
 	WorkUnitCode string `json:"workUnitCode"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		FigureNumber         resp.Field
 		IndexNumber          resp.Field
@@ -451,8 +447,7 @@ type LogisticsSupportHistoryListResponseLogisticsSupportItemLogisticsPartLogisti
 	StockCheckTime time.Time `json:"stockCheckTime" format:"date-time"`
 	// The point of contact at the sourced location.
 	StockPoc string `json:"stockPOC"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Quantity       resp.Field
 		SourceIcao     resp.Field
@@ -490,8 +485,7 @@ type LogisticsSupportHistoryListResponseLogisticsSupportItemLogisticsSpecialty s
 	// assigned responsibility for correcting the discrepancy. Shop specialties are
 	// normally listed in abbreviated format.
 	Specialty string `json:"specialty"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		FirstName    resp.Field
 		Last4Ssn     resp.Field
@@ -582,8 +576,7 @@ type LogisticsSupportHistoryListResponseLogisticsTransportationPlan struct {
 	TpAircraftMds string `json:"tpAircraftMDS"`
 	// Contains the tail number displayed by GDSS2.
 	TpTailNumber string `json:"tpTailNumber"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ActDepTime                          resp.Field
 		AircraftStatus                      resp.Field
@@ -667,8 +660,7 @@ type LogisticsSupportHistoryListResponseLogisticsTransportationPlanLogisticsSegm
 	SegmentNumber int64 `json:"segmentNumber"`
 	// The identifier that represents a specific aircraft within an aircraft type.
 	SegTailNumber string `json:"segTailNumber"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ArrivalIcao    resp.Field
 		DepartureIcao  resp.Field
@@ -708,12 +700,6 @@ type LogisticsSupportHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportHistoryListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [LogisticsSupportHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r LogisticsSupportHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -744,12 +730,6 @@ type LogisticsSupportHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportHistoryAodrParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [LogisticsSupportHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r LogisticsSupportHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -763,12 +743,6 @@ type LogisticsSupportHistoryCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportHistoryCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [LogisticsSupportHistoryCountParams]'s query parameters as

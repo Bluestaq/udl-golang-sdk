@@ -312,8 +312,7 @@ type EmitterGeolocationGetResponse struct {
 	// by data providers unless conditional access controls are coordinated with the
 	// UDL team.
 	Tags []string `json:"tags"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -546,8 +545,7 @@ type EmitterGeolocationQueryResponse struct {
 	// by data providers unless conditional access controls are coordinated with the
 	// UDL team.
 	Tags []string `json:"tags"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -783,8 +781,7 @@ type EmitterGeolocationTupleResponse struct {
 	// by data providers unless conditional access controls are coordinated with the
 	// UDL team.
 	Tags []string `json:"tags"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1004,10 +1001,6 @@ type EmitterGeolocationNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EmitterGeolocationNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r EmitterGeolocationNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow EmitterGeolocationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1042,10 +1035,6 @@ type EmitterGeolocationGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EmitterGeolocationGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EmitterGeolocationGetParams]'s query parameters as
 // `url.Values`.
 func (r EmitterGeolocationGetParams) URLQuery() (v url.Values, err error) {
@@ -1064,10 +1053,6 @@ type EmitterGeolocationCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EmitterGeolocationCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EmitterGeolocationCountParams]'s query parameters as
 // `url.Values`.
 func (r EmitterGeolocationCountParams) URLQuery() (v url.Values, err error) {
@@ -1081,10 +1066,6 @@ type EmitterGeolocationNewBulkParams struct {
 	Body []EmitterGeolocationNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EmitterGeolocationNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r EmitterGeolocationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1251,11 +1232,6 @@ type EmitterGeolocationNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EmitterGeolocationNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EmitterGeolocationNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow EmitterGeolocationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1275,10 +1251,6 @@ type EmitterGeolocationQueryParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EmitterGeolocationQueryParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EmitterGeolocationQueryParams]'s query parameters as
 // `url.Values`.
@@ -1303,10 +1275,6 @@ type EmitterGeolocationTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EmitterGeolocationTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EmitterGeolocationTupleParams]'s query parameters as
 // `url.Values`.
 func (r EmitterGeolocationTupleParams) URLQuery() (v url.Values, err error) {
@@ -1319,12 +1287,6 @@ func (r EmitterGeolocationTupleParams) URLQuery() (v url.Values, err error) {
 type EmitterGeolocationUnvalidatedPublishParams struct {
 	Body []EmitterGeolocationUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EmitterGeolocationUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r EmitterGeolocationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -1492,11 +1454,6 @@ type EmitterGeolocationUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EmitterGeolocationUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EmitterGeolocationUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow EmitterGeolocationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

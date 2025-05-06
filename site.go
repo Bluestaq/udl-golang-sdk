@@ -532,8 +532,7 @@ type SiteListResponse struct {
 	// World Aeronautical Chart identifier for the area in which a designated place is
 	// located.
 	Wac string `json:"wac"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1034,8 +1033,7 @@ type SiteGetResponse struct {
 	// World Aeronautical Chart identifier for the area in which a designated place is
 	// located.
 	Wac string `json:"wac"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1227,8 +1225,7 @@ type SiteGetResponseSiteOperation struct {
 	// Collection documenting operational waivers that have been issued for the Site
 	// associated with this record.
 	Waivers []SiteGetResponseSiteOperationWaiver `json:"waivers"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1285,8 +1282,7 @@ type SiteGetResponseSiteOperationDailyOperation struct {
 	// The datetime of the most recent change made to this DailyOperation data, in ISO
 	// 8601 UTC format with millisecond precision.
 	OphrsLastChangedDate time.Time `json:"ophrsLastChangedDate" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DayOfWeek            resp.Field
 		OperatingHours       resp.Field
@@ -1311,8 +1307,7 @@ type SiteGetResponseSiteOperationDailyOperationOperatingHour struct {
 	OpStartTime string `json:"opStartTime"`
 	// The Zulu (UTC) operational stop time, expressed in ISO 8601 format as HH:MM.
 	OpStopTime string `json:"opStopTime"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		OpStartTime resp.Field
 		OpStopTime  resp.Field
@@ -1348,8 +1343,7 @@ type SiteGetResponseSiteOperationMaximumOnGround struct {
 	// Maximum on ground (MOG) number of working wide-body aircraft based on spacing
 	// and manpower, for the aircraft type specified.
 	WideWorkingMog int64 `json:"wideWorkingMOG"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AircraftMds        resp.Field
 		ContingencyMog     resp.Field
@@ -1389,8 +1383,7 @@ type SiteGetResponseSiteOperationOperationalDeviation struct {
 	OdLastChangedDate time.Time `json:"odLastChangedDate" format:"date-time"`
 	// Text remark regarding this operational deviation.
 	OdRemark string `json:"odRemark"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AffectedAircraftMds  resp.Field
 		AffectedMog          resp.Field
@@ -1430,8 +1423,7 @@ type SiteGetResponseSiteOperationOperationalPlanning struct {
 	OpStartDate time.Time `json:"opStartDate" format:"date-time"`
 	// The status of this operational planning.
 	OpStatus string `json:"opStatus"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		OpEndDate         resp.Field
 		OpLastChangedBy   resp.Field
@@ -1465,8 +1457,7 @@ type SiteGetResponseSiteOperationPathway struct {
 	PwType string `json:"pwType"`
 	// The intended use of this pathway.
 	PwUsage string `json:"pwUsage"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		PwDefinition      resp.Field
 		PwLastChangedBy   resp.Field
@@ -1511,8 +1502,7 @@ type SiteGetResponseSiteOperationWaiver struct {
 	// The datetime of the most recent change made to this waiver data, in ISO8601 UTC
 	// format with millisecond precision.
 	WaiverLastChangedDate time.Time `json:"waiverLastChangedDate" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ExpirationDate        resp.Field
 		HasExpired            resp.Field
@@ -1588,8 +1578,7 @@ type SiteGetResponseSiteRemark struct {
 	OrigRmkID string `json:"origRmkId"`
 	// The remark type (e.g. Caution, Information, Misc, Restriction, etc.).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2016,8 +2005,7 @@ type SiteTupleResponse struct {
 	// World Aeronautical Chart identifier for the area in which a designated place is
 	// located.
 	Wac string `json:"wac"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2209,8 +2197,7 @@ type SiteTupleResponseSiteOperation struct {
 	// Collection documenting operational waivers that have been issued for the Site
 	// associated with this record.
 	Waivers []SiteTupleResponseSiteOperationWaiver `json:"waivers"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2267,8 +2254,7 @@ type SiteTupleResponseSiteOperationDailyOperation struct {
 	// The datetime of the most recent change made to this DailyOperation data, in ISO
 	// 8601 UTC format with millisecond precision.
 	OphrsLastChangedDate time.Time `json:"ophrsLastChangedDate" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DayOfWeek            resp.Field
 		OperatingHours       resp.Field
@@ -2293,8 +2279,7 @@ type SiteTupleResponseSiteOperationDailyOperationOperatingHour struct {
 	OpStartTime string `json:"opStartTime"`
 	// The Zulu (UTC) operational stop time, expressed in ISO 8601 format as HH:MM.
 	OpStopTime string `json:"opStopTime"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		OpStartTime resp.Field
 		OpStopTime  resp.Field
@@ -2332,8 +2317,7 @@ type SiteTupleResponseSiteOperationMaximumOnGround struct {
 	// Maximum on ground (MOG) number of working wide-body aircraft based on spacing
 	// and manpower, for the aircraft type specified.
 	WideWorkingMog int64 `json:"wideWorkingMOG"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AircraftMds        resp.Field
 		ContingencyMog     resp.Field
@@ -2373,8 +2357,7 @@ type SiteTupleResponseSiteOperationOperationalDeviation struct {
 	OdLastChangedDate time.Time `json:"odLastChangedDate" format:"date-time"`
 	// Text remark regarding this operational deviation.
 	OdRemark string `json:"odRemark"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AffectedAircraftMds  resp.Field
 		AffectedMog          resp.Field
@@ -2414,8 +2397,7 @@ type SiteTupleResponseSiteOperationOperationalPlanning struct {
 	OpStartDate time.Time `json:"opStartDate" format:"date-time"`
 	// The status of this operational planning.
 	OpStatus string `json:"opStatus"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		OpEndDate         resp.Field
 		OpLastChangedBy   resp.Field
@@ -2449,8 +2431,7 @@ type SiteTupleResponseSiteOperationPathway struct {
 	PwType string `json:"pwType"`
 	// The intended use of this pathway.
 	PwUsage string `json:"pwUsage"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		PwDefinition      resp.Field
 		PwLastChangedBy   resp.Field
@@ -2495,8 +2476,7 @@ type SiteTupleResponseSiteOperationWaiver struct {
 	// The datetime of the most recent change made to this waiver data, in ISO8601 UTC
 	// format with millisecond precision.
 	WaiverLastChangedDate time.Time `json:"waiverLastChangedDate" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ExpirationDate        resp.Field
 		HasExpired            resp.Field
@@ -2572,8 +2552,7 @@ type SiteTupleResponseSiteRemark struct {
 	OrigRmkID string `json:"origRmkId"`
 	// The remark type (e.g. Caution, Information, Misc, Restriction, etc.).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2983,10 +2962,6 @@ type SiteNewParams struct {
 	Entity EntityIngestParam `json:"entity,omitzero"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r SiteNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SiteNewParams
@@ -3400,10 +3375,6 @@ type SiteUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SiteUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SiteUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3438,10 +3409,6 @@ type SiteListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SiteListParams]'s query parameters as `url.Values`.
 func (r SiteListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -3456,10 +3423,6 @@ type SiteCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SiteCountParams]'s query parameters as `url.Values`.
 func (r SiteCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -3473,10 +3436,6 @@ type SiteGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SiteGetParams]'s query parameters as `url.Values`.
 func (r SiteGetParams) URLQuery() (v url.Values, err error) {
@@ -3496,10 +3455,6 @@ type SiteTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SiteTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SiteTupleParams]'s query parameters as `url.Values`.
 func (r SiteTupleParams) URLQuery() (v url.Values, err error) {

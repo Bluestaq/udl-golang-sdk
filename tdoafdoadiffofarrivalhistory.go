@@ -89,12 +89,6 @@ type TdoaFdoaDiffofarrivalHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TdoaFdoaDiffofarrivalHistoryListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [TdoaFdoaDiffofarrivalHistoryListParams]'s query parameters
 // as `url.Values`.
 func (r TdoaFdoaDiffofarrivalHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -126,12 +120,6 @@ type TdoaFdoaDiffofarrivalHistoryAodrParams struct {
 	// valid values are: JSON and CSV.
 	OutputFormat param.Opt[string] `query:"outputFormat,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TdoaFdoaDiffofarrivalHistoryAodrParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [TdoaFdoaDiffofarrivalHistoryAodrParams]'s query parameters

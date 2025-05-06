@@ -344,8 +344,7 @@ type EopAbridged struct {
 	Ut1UtcState EopAbridgedUt1UtcState `json:"ut1UTCState"`
 	// The estimated uncertainty/error in the ut1UTC value in seconds.
 	Ut1UtcUnc float64 `json:"ut1UTCUnc"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -589,10 +588,6 @@ type EopNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EopNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r EopNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow EopNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -653,10 +648,6 @@ type EopGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EopGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EopGetParams]'s query parameters as `url.Values`.
 func (r EopGetParams) URLQuery() (v url.Values, err error) {
@@ -810,10 +801,6 @@ type EopUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EopUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r EopUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow EopUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -878,10 +865,6 @@ type EopListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EopListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EopListParams]'s query parameters as `url.Values`.
 func (r EopListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -898,10 +881,6 @@ type EopCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EopCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EopCountParams]'s query parameters as `url.Values`.
 func (r EopCountParams) URLQuery() (v url.Values, err error) {
@@ -924,10 +903,6 @@ type EopListTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EopListTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EopListTupleParams]'s query parameters as `url.Values`.
 func (r EopListTupleParams) URLQuery() (v url.Values, err error) {

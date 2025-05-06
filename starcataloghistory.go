@@ -74,10 +74,6 @@ type StarCatalogHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StarCatalogHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [StarCatalogHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r StarCatalogHistoryAodrParams) URLQuery() (v url.Values, err error) {

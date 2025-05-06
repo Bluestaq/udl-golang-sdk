@@ -241,8 +241,7 @@ type EffectRequestGetResponse struct {
 	TargetSrcID string `json:"targetSrcId"`
 	// The source type of the targetId identifier (POI, TRACK).
 	TargetSrcType string `json:"targetSrcType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -381,8 +380,7 @@ type EffectRequestListResponse struct {
 	TargetSrcID string `json:"targetSrcId"`
 	// The source type of the targetId identifier (POI, TRACK).
 	TargetSrcType string `json:"targetSrcType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -521,8 +519,7 @@ type EffectRequestTupleResponse struct {
 	TargetSrcID string `json:"targetSrcId"`
 	// The source type of the targetId identifier (POI, TRACK).
 	TargetSrcType string `json:"targetSrcType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -655,10 +652,6 @@ type EffectRequestNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectRequestNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r EffectRequestNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow EffectRequestNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -693,10 +686,6 @@ type EffectRequestGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectRequestGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EffectRequestGetParams]'s query parameters as `url.Values`.
 func (r EffectRequestGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -713,10 +702,6 @@ type EffectRequestListParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectRequestListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EffectRequestListParams]'s query parameters as
 // `url.Values`.
@@ -736,10 +721,6 @@ type EffectRequestCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectRequestCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EffectRequestCountParams]'s query parameters as
 // `url.Values`.
 func (r EffectRequestCountParams) URLQuery() (v url.Values, err error) {
@@ -753,10 +734,6 @@ type EffectRequestNewBulkParams struct {
 	Body []EffectRequestNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectRequestNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r EffectRequestNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -849,9 +826,6 @@ type EffectRequestNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectRequestNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r EffectRequestNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow EffectRequestNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -877,10 +851,6 @@ type EffectRequestTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectRequestTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EffectRequestTupleParams]'s query parameters as
 // `url.Values`.
 func (r EffectRequestTupleParams) URLQuery() (v url.Values, err error) {
@@ -893,12 +863,6 @@ func (r EffectRequestTupleParams) URLQuery() (v url.Values, err error) {
 type EffectRequestUnvalidatedPublishParams struct {
 	Body []EffectRequestUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectRequestUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r EffectRequestUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -992,11 +956,6 @@ type EffectRequestUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectRequestUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EffectRequestUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow EffectRequestUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
