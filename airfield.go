@@ -279,8 +279,7 @@ type AirfieldAbridged struct {
 	WacInnr string `json:"wacINNR"`
 	// Air Mobility Command (AMC) Zone availability Report identifier.
 	ZarID string `json:"zarId"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -497,8 +496,7 @@ type AirfieldFull struct {
 	WacInnr string `json:"wacINNR"`
 	// Air Mobility Command (AMC) Zone availability Report identifier.
 	ZarID string `json:"zarId"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -701,10 +699,6 @@ type AirfieldNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r AirfieldNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow AirfieldNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -738,10 +732,6 @@ type AirfieldGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AirfieldGetParams]'s query parameters as `url.Values`.
 func (r AirfieldGetParams) URLQuery() (v url.Values, err error) {
@@ -874,10 +864,6 @@ type AirfieldUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r AirfieldUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow AirfieldUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -912,10 +898,6 @@ type AirfieldListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [AirfieldListParams]'s query parameters as `url.Values`.
 func (r AirfieldListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -929,10 +911,6 @@ type AirfieldCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AirfieldCountParams]'s query parameters as `url.Values`.
 func (r AirfieldCountParams) URLQuery() (v url.Values, err error) {
@@ -952,10 +930,6 @@ type AirfieldTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirfieldTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AirfieldTupleParams]'s query parameters as `url.Values`.
 func (r AirfieldTupleParams) URLQuery() (v url.Values, err error) {

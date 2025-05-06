@@ -412,8 +412,7 @@ type MissileTrackHistoryQueryResponse struct {
 	// coordinate frame but in some cases data may be in another frame as specified by
 	// 'referenceFrame', depending on the provider.
 	Vectors []MissileTrackHistoryQueryResponseVector `json:"vectors"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -658,8 +657,7 @@ type MissileTrackHistoryQueryResponseVector struct {
 	// object, in kilometers/second, in the specified referenceFrame. If referenceFrame
 	// is null then ECEF should be assumed. The array element order is [x', y', z'].
 	Vel []float64 `json:"vel"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Epoch             resp.Field
 		Accel             resp.Field
@@ -717,10 +715,6 @@ type MissileTrackHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissileTrackHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [MissileTrackHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r MissileTrackHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -738,10 +732,6 @@ type MissileTrackHistoryCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissileTrackHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [MissileTrackHistoryCountParams]'s query parameters as
 // `url.Values`.
@@ -764,10 +754,6 @@ type MissileTrackHistoryQueryParams struct {
 	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissileTrackHistoryQueryParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [MissileTrackHistoryQueryParams]'s query parameters as
 // `url.Values`.

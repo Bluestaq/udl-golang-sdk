@@ -95,10 +95,6 @@ type DiffOfArrivalGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiffOfArrivalGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [DiffOfArrivalGetParams]'s query parameters as `url.Values`.
 func (r DiffOfArrivalGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -121,10 +117,6 @@ type DiffOfArrivalTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiffOfArrivalTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [DiffOfArrivalTupleParams]'s query parameters as
 // `url.Values`.
 func (r DiffOfArrivalTupleParams) URLQuery() (v url.Values, err error) {
@@ -137,12 +129,6 @@ func (r DiffOfArrivalTupleParams) URLQuery() (v url.Values, err error) {
 type DiffOfArrivalUnvalidatedPublishParams struct {
 	Body []DiffOfArrivalUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiffOfArrivalUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r DiffOfArrivalUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -297,11 +283,6 @@ type DiffOfArrivalUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiffOfArrivalUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiffOfArrivalUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow DiffOfArrivalUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

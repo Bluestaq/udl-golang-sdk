@@ -260,8 +260,7 @@ type ObservationMonoradarHistoryQueryResponse struct {
 	Tti string `json:"tti"`
 	// Warning/Error Conditions and Target Classification.
 	Wectc []string `json:"wectc"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -394,12 +393,6 @@ type ObservationMonoradarHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationMonoradarHistoryAodrParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [ObservationMonoradarHistoryAodrParams]'s query parameters
 // as `url.Values`.
 func (r ObservationMonoradarHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -416,12 +409,6 @@ type ObservationMonoradarHistoryCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationMonoradarHistoryCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [ObservationMonoradarHistoryCountParams]'s query parameters
@@ -444,12 +431,6 @@ type ObservationMonoradarHistoryQueryParams struct {
 	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationMonoradarHistoryQueryParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [ObservationMonoradarHistoryQueryParams]'s query parameters

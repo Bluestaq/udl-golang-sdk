@@ -235,8 +235,7 @@ type GeoStatusListResponse struct {
 	// West - Drifting westward; large relative energy and a period greater than 1436.2
 	// minutes.
 	TroughType string `json:"troughType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -375,10 +374,6 @@ type GeoStatusNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GeoStatusNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r GeoStatusNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow GeoStatusNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -416,10 +411,6 @@ type GeoStatusListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GeoStatusListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [GeoStatusListParams]'s query parameters as `url.Values`.
 func (r GeoStatusListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -437,10 +428,6 @@ type GeoStatusCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GeoStatusCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [GeoStatusCountParams]'s query parameters as `url.Values`.
 func (r GeoStatusCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -453,10 +440,6 @@ type GeoStatusNewBulkParams struct {
 	Body []GeoStatusNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GeoStatusNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r GeoStatusNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -555,9 +538,6 @@ type GeoStatusNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GeoStatusNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r GeoStatusNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow GeoStatusNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -574,10 +554,6 @@ type GeoStatusGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GeoStatusGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [GeoStatusGetParams]'s query parameters as `url.Values`.
 func (r GeoStatusGetParams) URLQuery() (v url.Values, err error) {
@@ -600,10 +576,6 @@ type GeoStatusTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GeoStatusTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [GeoStatusTupleParams]'s query parameters as `url.Values`.
 func (r GeoStatusTupleParams) URLQuery() (v url.Values, err error) {

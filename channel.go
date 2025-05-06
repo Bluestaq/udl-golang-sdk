@@ -230,8 +230,7 @@ type ChannelAbridged struct {
 	Type string `json:"type"`
 	// Channel vPid.
 	Vpid string `json:"vpid"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -361,8 +360,7 @@ type ChannelFull struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Channel vPid.
 	Vpid string `json:"vpid"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -483,10 +481,6 @@ type ChannelNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ChannelNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r ChannelNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow ChannelNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -520,10 +514,6 @@ type ChannelGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ChannelGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ChannelGetParams]'s query parameters as `url.Values`.
 func (r ChannelGetParams) URLQuery() (v url.Values, err error) {
@@ -594,10 +584,6 @@ type ChannelUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ChannelUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r ChannelUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow ChannelUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -632,10 +618,6 @@ type ChannelListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ChannelListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ChannelListParams]'s query parameters as `url.Values`.
 func (r ChannelListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -649,10 +631,6 @@ type ChannelCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ChannelCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ChannelCountParams]'s query parameters as `url.Values`.
 func (r ChannelCountParams) URLQuery() (v url.Values, err error) {
@@ -672,10 +650,6 @@ type ChannelTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ChannelTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ChannelTupleParams]'s query parameters as `url.Values`.
 func (r ChannelTupleParams) URLQuery() (v url.Values, err error) {

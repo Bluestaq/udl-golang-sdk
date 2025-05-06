@@ -334,8 +334,7 @@ type AirloadplanAbridged struct {
 	// The operating weight of the aircraft including cargo, mail, baggage, and
 	// passengers, but without usable fuel, in kilograms.
 	ZeroFuelWeight float64 `json:"zeroFuelWeight"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking    resp.Field
 		DataMode                 resp.Field
@@ -487,8 +486,7 @@ type AirloadplanAbridgedAirLoadPlanHazmatActual struct {
 	LotNum string `json:"lotNum"`
 	// Net explosive weight of the hazardous material, in kilograms.
 	NetExpWt float64 `json:"netExpWt"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Ashc           resp.Field
 		Cgc            resp.Field
@@ -551,8 +549,7 @@ type AirloadplanAbridgedAirLoadPlanHr struct {
 	Service string `json:"service"`
 	// Flag indicating if the remains are viewable.
 	Viewable bool `json:"viewable"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Container    resp.Field
 		Escort       resp.Field
@@ -600,8 +597,7 @@ type AirloadplanAbridgedAirLoadPlanPalletDetail struct {
 	PpWeight float64 `json:"ppWeight"`
 	// Flag indicating if this cargo is considered special interest.
 	SpecialInterest bool `json:"specialInterest"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Category        resp.Field
 		Pp              resp.Field
@@ -657,8 +653,7 @@ type AirloadplanAbridgedAirLoadPlanPaxCargo struct {
 	PaxWeight float64 `json:"paxWeight"`
 	// Number of space required passengers in this group.
 	RequiredPax int64 `json:"requiredPax"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AmbPax           resp.Field
 		AttPax           resp.Field
@@ -715,8 +710,7 @@ type AirloadplanAbridgedAirLoadPlanUlnActual struct {
 	UlnCargoWeight float64 `json:"ulnCargoWeight"`
 	// Remarks concerning these unit line number actuals.
 	UlnRemarks string `json:"ulnRemarks"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		NumAmbulatory  resp.Field
 		NumAttendant   resp.Field
@@ -947,8 +941,7 @@ type AirloadplanFull struct {
 	// The operating weight of the aircraft including cargo, mail, baggage, and
 	// passengers, but without usable fuel, in kilograms.
 	ZeroFuelWeight float64 `json:"zeroFuelWeight"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking    resp.Field
 		DataMode                 resp.Field
@@ -1100,8 +1093,7 @@ type AirloadplanFullAirLoadPlanHazmatActual struct {
 	LotNum string `json:"lotNum"`
 	// Net explosive weight of the hazardous material, in kilograms.
 	NetExpWt float64 `json:"netExpWt"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Ashc           resp.Field
 		Cgc            resp.Field
@@ -1164,8 +1156,7 @@ type AirloadplanFullAirLoadPlanHr struct {
 	Service string `json:"service"`
 	// Flag indicating if the remains are viewable.
 	Viewable bool `json:"viewable"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Container    resp.Field
 		Escort       resp.Field
@@ -1213,8 +1204,7 @@ type AirloadplanFullAirLoadPlanPalletDetail struct {
 	PpWeight float64 `json:"ppWeight"`
 	// Flag indicating if this cargo is considered special interest.
 	SpecialInterest bool `json:"specialInterest"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Category        resp.Field
 		Pp              resp.Field
@@ -1270,8 +1260,7 @@ type AirloadplanFullAirLoadPlanPaxCargo struct {
 	PaxWeight float64 `json:"paxWeight"`
 	// Number of space required passengers in this group.
 	RequiredPax int64 `json:"requiredPax"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AmbPax           resp.Field
 		AttPax           resp.Field
@@ -1328,8 +1317,7 @@ type AirloadplanFullAirLoadPlanUlnActual struct {
 	UlnCargoWeight float64 `json:"ulnCargoWeight"`
 	// Remarks concerning these unit line number actuals.
 	UlnRemarks string `json:"ulnRemarks"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		NumAmbulatory  resp.Field
 		NumAttendant   resp.Field
@@ -1544,10 +1532,6 @@ type AirLoadPlanNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirLoadPlanNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r AirLoadPlanNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow AirLoadPlanNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1625,11 +1609,6 @@ type AirLoadPlanNewParamsAirLoadPlanHazmatActual struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirLoadPlanNewParamsAirLoadPlanHazmatActual) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirLoadPlanNewParamsAirLoadPlanHazmatActual) MarshalJSON() (data []byte, err error) {
 	type shadow AirLoadPlanNewParamsAirLoadPlanHazmatActual
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1671,11 +1650,6 @@ type AirLoadPlanNewParamsAirLoadPlanHr struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirLoadPlanNewParamsAirLoadPlanHr) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirLoadPlanNewParamsAirLoadPlanHr) MarshalJSON() (data []byte, err error) {
 	type shadow AirLoadPlanNewParamsAirLoadPlanHr
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1706,11 +1680,6 @@ type AirLoadPlanNewParamsAirLoadPlanPalletDetail struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirLoadPlanNewParamsAirLoadPlanPalletDetail) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirLoadPlanNewParamsAirLoadPlanPalletDetail) MarshalJSON() (data []byte, err error) {
 	type shadow AirLoadPlanNewParamsAirLoadPlanPalletDetail
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1753,11 +1722,6 @@ type AirLoadPlanNewParamsAirLoadPlanPaxCargo struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirLoadPlanNewParamsAirLoadPlanPaxCargo) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirLoadPlanNewParamsAirLoadPlanPaxCargo) MarshalJSON() (data []byte, err error) {
 	type shadow AirLoadPlanNewParamsAirLoadPlanPaxCargo
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1795,11 +1759,6 @@ type AirLoadPlanNewParamsAirLoadPlanUlnActual struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirLoadPlanNewParamsAirLoadPlanUlnActual) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirLoadPlanNewParamsAirLoadPlanUlnActual) MarshalJSON() (data []byte, err error) {
 	type shadow AirLoadPlanNewParamsAirLoadPlanUlnActual
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1810,10 +1769,6 @@ type AirLoadPlanGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirLoadPlanGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AirLoadPlanGetParams]'s query parameters as `url.Values`.
 func (r AirLoadPlanGetParams) URLQuery() (v url.Values, err error) {
@@ -1832,10 +1787,6 @@ type AirLoadPlanListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirLoadPlanListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [AirLoadPlanListParams]'s query parameters as `url.Values`.
 func (r AirLoadPlanListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1852,10 +1803,6 @@ type AirLoadPlanCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirLoadPlanCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AirLoadPlanCountParams]'s query parameters as `url.Values`.
 func (r AirLoadPlanCountParams) URLQuery() (v url.Values, err error) {
@@ -1878,10 +1825,6 @@ type AirLoadPlanTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirLoadPlanTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AirLoadPlanTupleParams]'s query parameters as `url.Values`.
 func (r AirLoadPlanTupleParams) URLQuery() (v url.Values, err error) {

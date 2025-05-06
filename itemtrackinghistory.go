@@ -154,8 +154,7 @@ type ItemTrackingHistoryListResponse struct {
 	// entries in this array must correspond to the position index in the keys array.
 	// This array must be the same length as keys.
 	Values []string `json:"values"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -226,10 +225,6 @@ type ItemTrackingHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ItemTrackingHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ItemTrackingHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r ItemTrackingHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -247,10 +242,6 @@ type ItemTrackingHistoryCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ItemTrackingHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ItemTrackingHistoryCountParams]'s query parameters as
 // `url.Values`.

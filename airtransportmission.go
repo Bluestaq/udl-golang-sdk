@@ -288,8 +288,7 @@ type AirTransportMissionAbridged struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -415,8 +414,7 @@ type AirTransportMissionAbridgedHazMat struct {
 	UnNum string `json:"unNum"`
 	// Total weight of hazardous cargo, including non-explosive parts, in kilograms.
 	Weight float64 `json:"weight"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ApplicableNotes resp.Field
 		Cgc             resp.Field
@@ -460,8 +458,7 @@ type AirTransportMissionAbridgedRemark struct {
 	Type string `json:"type"`
 	// User who published the remark.
 	User string `json:"user"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Date         resp.Field
 		GdssRemarkID resp.Field
@@ -522,8 +519,7 @@ type AirTransportMissionAbridgedRequirement struct {
 	TransReqNum string `json:"transReqNum"`
 	// Unit line number.
 	Uln string `json:"uln"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		BulkWeight     resp.Field
 		Ead            resp.Field
@@ -677,10 +673,6 @@ type AirTransportMissionNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirTransportMissionNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r AirTransportMissionNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow AirTransportMissionNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -757,11 +749,6 @@ type AirTransportMissionNewParamsHazMat struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirTransportMissionNewParamsHazMat) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirTransportMissionNewParamsHazMat) MarshalJSON() (data []byte, err error) {
 	type shadow AirTransportMissionNewParamsHazMat
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -786,11 +773,6 @@ type AirTransportMissionNewParamsRemark struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirTransportMissionNewParamsRemark) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirTransportMissionNewParamsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow AirTransportMissionNewParamsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -841,11 +823,6 @@ type AirTransportMissionNewParamsRequirement struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirTransportMissionNewParamsRequirement) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirTransportMissionNewParamsRequirement) MarshalJSON() (data []byte, err error) {
 	type shadow AirTransportMissionNewParamsRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -856,10 +833,6 @@ type AirTransportMissionGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirTransportMissionGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AirTransportMissionGetParams]'s query parameters as
 // `url.Values`.
@@ -993,10 +966,6 @@ type AirTransportMissionUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirTransportMissionUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r AirTransportMissionUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow AirTransportMissionUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1073,11 +1042,6 @@ type AirTransportMissionUpdateParamsHazMat struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirTransportMissionUpdateParamsHazMat) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirTransportMissionUpdateParamsHazMat) MarshalJSON() (data []byte, err error) {
 	type shadow AirTransportMissionUpdateParamsHazMat
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1102,11 +1066,6 @@ type AirTransportMissionUpdateParamsRemark struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirTransportMissionUpdateParamsRemark) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirTransportMissionUpdateParamsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow AirTransportMissionUpdateParamsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1157,11 +1116,6 @@ type AirTransportMissionUpdateParamsRequirement struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirTransportMissionUpdateParamsRequirement) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirTransportMissionUpdateParamsRequirement) MarshalJSON() (data []byte, err error) {
 	type shadow AirTransportMissionUpdateParamsRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1175,10 +1129,6 @@ type AirTransportMissionListParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirTransportMissionListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AirTransportMissionListParams]'s query parameters as
 // `url.Values`.
@@ -1197,10 +1147,6 @@ type AirTransportMissionCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirTransportMissionCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AirTransportMissionCountParams]'s query parameters as
 // `url.Values`.
@@ -1224,10 +1170,6 @@ type AirTransportMissionTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirTransportMissionTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AirTransportMissionTupleParams]'s query parameters as
 // `url.Values`.

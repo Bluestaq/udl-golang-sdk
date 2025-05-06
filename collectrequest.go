@@ -456,8 +456,7 @@ type CollectRequestAbridged struct {
 	// rectangle of width 2*xAngle and height 2*yAngle centered about the central
 	// vector.
 	YAngle float64 `json:"yAngle"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -747,8 +746,7 @@ type CollectRequestAbridgedElset struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1214,8 +1212,7 @@ type CollectRequestAbridgedStateVector struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1614,10 +1611,6 @@ type CollectRequestNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectRequestNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r CollectRequestNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow CollectRequestNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1839,9 +1832,6 @@ type CollectRequestNewParamsElset struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectRequestNewParamsElset) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r CollectRequestNewParamsElset) MarshalJSON() (data []byte, err error) {
 	type shadow CollectRequestNewParamsElset
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2296,11 +2286,6 @@ type CollectRequestNewParamsStateVector struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectRequestNewParamsStateVector) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r CollectRequestNewParamsStateVector) MarshalJSON() (data []byte, err error) {
 	type shadow CollectRequestNewParamsStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2324,10 +2309,6 @@ type CollectRequestGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectRequestGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [CollectRequestGetParams]'s query parameters as
 // `url.Values`.
 func (r CollectRequestGetParams) URLQuery() (v url.Values, err error) {
@@ -2345,10 +2326,6 @@ type CollectRequestListParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectRequestListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [CollectRequestListParams]'s query parameters as
 // `url.Values`.
@@ -2368,10 +2345,6 @@ type CollectRequestCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectRequestCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [CollectRequestCountParams]'s query parameters as
 // `url.Values`.
 func (r CollectRequestCountParams) URLQuery() (v url.Values, err error) {
@@ -2385,10 +2358,6 @@ type CollectRequestNewBulkParams struct {
 	Body []CollectRequestNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectRequestNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r CollectRequestNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -2704,9 +2673,6 @@ type CollectRequestNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectRequestNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r CollectRequestNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow CollectRequestNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2911,11 +2877,6 @@ type CollectRequestNewBulkParamsBodyElset struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectRequestNewBulkParamsBodyElset) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r CollectRequestNewBulkParamsBodyElset) MarshalJSON() (data []byte, err error) {
 	type shadow CollectRequestNewBulkParamsBodyElset
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3370,11 +3331,6 @@ type CollectRequestNewBulkParamsBodyStateVector struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectRequestNewBulkParamsBodyStateVector) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r CollectRequestNewBulkParamsBodyStateVector) MarshalJSON() (data []byte, err error) {
 	type shadow CollectRequestNewBulkParamsBodyStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3406,10 +3362,6 @@ type CollectRequestTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectRequestTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [CollectRequestTupleParams]'s query parameters as
 // `url.Values`.
 func (r CollectRequestTupleParams) URLQuery() (v url.Values, err error) {
@@ -3422,12 +3374,6 @@ func (r CollectRequestTupleParams) URLQuery() (v url.Values, err error) {
 type CollectRequestUnvalidatedPublishParams struct {
 	Body []CollectRequestUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectRequestUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r CollectRequestUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -3744,11 +3690,6 @@ type CollectRequestUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectRequestUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r CollectRequestUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow CollectRequestUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3953,11 +3894,6 @@ type CollectRequestUnvalidatedPublishParamsBodyElset struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectRequestUnvalidatedPublishParamsBodyElset) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r CollectRequestUnvalidatedPublishParamsBodyElset) MarshalJSON() (data []byte, err error) {
 	type shadow CollectRequestUnvalidatedPublishParamsBodyElset
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4412,11 +4348,6 @@ type CollectRequestUnvalidatedPublishParamsBodyStateVector struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CollectRequestUnvalidatedPublishParamsBodyStateVector) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r CollectRequestUnvalidatedPublishParamsBodyStateVector) MarshalJSON() (data []byte, err error) {
 	type shadow CollectRequestUnvalidatedPublishParamsBodyStateVector
 	return param.MarshalObject(r, (*shadow)(&r))

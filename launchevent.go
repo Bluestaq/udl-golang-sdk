@@ -221,8 +221,7 @@ type LaunchEventListResponse struct {
 	OSuffix string `json:"oSuffix"`
 	// Satellite/catalog number of the target on-orbit object.
 	SatNo int64 `json:"satNo"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -343,8 +342,7 @@ type LaunchEventGetResponse struct {
 	OSuffix string `json:"oSuffix"`
 	// Satellite/catalog number of the target on-orbit object.
 	SatNo int64 `json:"satNo"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -466,8 +464,7 @@ type LaunchEventTupleResponse struct {
 	OSuffix string `json:"oSuffix"`
 	// Satellite/catalog number of the target on-orbit object.
 	SatNo int64 `json:"satNo"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -579,10 +576,6 @@ type LaunchEventNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchEventNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r LaunchEventNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow LaunchEventNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -620,10 +613,6 @@ type LaunchEventListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchEventListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [LaunchEventListParams]'s query parameters as `url.Values`.
 func (r LaunchEventListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -641,10 +630,6 @@ type LaunchEventCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchEventCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [LaunchEventCountParams]'s query parameters as `url.Values`.
 func (r LaunchEventCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -657,10 +642,6 @@ type LaunchEventNewBulkParams struct {
 	Body []LaunchEventNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchEventNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r LaunchEventNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -735,9 +716,6 @@ type LaunchEventNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchEventNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r LaunchEventNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow LaunchEventNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -754,10 +732,6 @@ type LaunchEventGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchEventGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [LaunchEventGetParams]'s query parameters as `url.Values`.
 func (r LaunchEventGetParams) URLQuery() (v url.Values, err error) {
@@ -781,10 +755,6 @@ type LaunchEventTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchEventTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [LaunchEventTupleParams]'s query parameters as `url.Values`.
 func (r LaunchEventTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -796,12 +766,6 @@ func (r LaunchEventTupleParams) URLQuery() (v url.Values, err error) {
 type LaunchEventUnvalidatedPublishParams struct {
 	Body []LaunchEventUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchEventUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r LaunchEventUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -877,11 +841,6 @@ type LaunchEventUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchEventUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LaunchEventUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow LaunchEventUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

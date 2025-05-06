@@ -201,8 +201,7 @@ type BeamAbridged struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		BeamName              resp.Field
 		ClassificationMarking resp.Field
@@ -299,8 +298,7 @@ type BeamFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		BeamName              resp.Field
 		ClassificationMarking resp.Field
@@ -386,10 +384,6 @@ type BeamNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BeamNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r BeamNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow BeamNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -423,10 +417,6 @@ type BeamGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BeamGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [BeamGetParams]'s query parameters as `url.Values`.
 func (r BeamGetParams) URLQuery() (v url.Values, err error) {
@@ -473,10 +463,6 @@ type BeamUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BeamUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r BeamUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow BeamUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -511,10 +497,6 @@ type BeamListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BeamListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [BeamListParams]'s query parameters as `url.Values`.
 func (r BeamListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -528,10 +510,6 @@ type BeamCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BeamCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [BeamCountParams]'s query parameters as `url.Values`.
 func (r BeamCountParams) URLQuery() (v url.Values, err error) {
@@ -551,10 +529,6 @@ type BeamTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BeamTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [BeamTupleParams]'s query parameters as `url.Values`.
 func (r BeamTupleParams) URLQuery() (v url.Values, err error) {

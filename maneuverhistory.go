@@ -420,8 +420,7 @@ type ManeuverHistoryListResponse struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking   resp.Field
 		DataMode                resp.Field
@@ -752,8 +751,7 @@ type ManeuverHistoryListResponsePostEventElset struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1253,8 +1251,7 @@ type ManeuverHistoryListResponsePostEventStateVector struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1564,8 +1561,7 @@ type ManeuverHistoryListResponsePreEventElset struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2065,8 +2061,7 @@ type ManeuverHistoryListResponsePreEventStateVector struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2194,10 +2189,6 @@ type ManeuverHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ManeuverHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r ManeuverHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -2232,10 +2223,6 @@ type ManeuverHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ManeuverHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r ManeuverHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -2254,10 +2241,6 @@ type ManeuverHistoryCountParams struct {
 	MaxResults     param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ManeuverHistoryCountParams]'s query parameters as
 // `url.Values`.

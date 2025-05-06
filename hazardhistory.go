@@ -235,8 +235,7 @@ type HazardHistoryQueryResponse struct {
 	ReadingValues []float64 `json:"readingValues"`
 	// The Atomic Number of the material associated with this detection.
 	Z int64 `json:"z"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Alarms                resp.Field
 		AlarmValues           resp.Field
@@ -336,10 +335,6 @@ type HazardHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f HazardHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [HazardHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r HazardHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -357,10 +352,6 @@ type HazardHistoryCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f HazardHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [HazardHistoryCountParams]'s query parameters as
 // `url.Values`.
@@ -383,10 +374,6 @@ type HazardHistoryQueryParams struct {
 	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f HazardHistoryQueryParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [HazardHistoryQueryParams]'s query parameters as
 // `url.Values`.

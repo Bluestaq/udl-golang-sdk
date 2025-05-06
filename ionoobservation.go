@@ -402,8 +402,7 @@ type IonOobservationListResponse struct {
 	ZhalfNm float64 `json:"zhalfNm"`
 	// Peak height of E-layer in km. URSI ID: 90.
 	ZmE float64 `json:"zmE"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                  resp.Field
 		DataMode                               resp.Field
@@ -556,8 +555,7 @@ type IonOobservationListResponseAmplitude struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the amplitude data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -581,8 +579,7 @@ type IonOobservationListResponseAntennaElementPosition struct {
 	DimensionName []string `json:"dimensionName"`
 	// Array of integers of the antenna_element dimensions.
 	Dimensions []int64 `json:"dimensions"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -620,8 +617,7 @@ type IonOobservationListResponseAzimuth struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the azimuth data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -669,8 +665,7 @@ type IonOobservationListResponseCharAtt struct {
 	// Characteristic's URSI ID. See the characteristic's description for its
 	// corresponding URSI ID.
 	UrsiID string `json:"ursiID"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CharName                resp.Field
 		ClimateModelInputParams resp.Field
@@ -698,8 +693,7 @@ type IonOobservationListResponseDatum struct {
 	Data []float64 `json:"data"`
 	// Notes for the datum with details of what the data is, units, etc.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data        resp.Field
 		Notes       resp.Field
@@ -734,8 +728,7 @@ type IonOobservationListResponseDensityProfile struct {
 	ValleyModelCoeffs []float64 `json:"valleyModelCoeffs"`
 	// Description of the valley model and parameters.
 	ValleyModelDescription string `json:"valleyModelDescription"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Iri                          resp.Field
 		Parabolic                    resp.Field
@@ -803,8 +796,7 @@ type IonOobservationListResponseDensityProfileIri struct {
 	NmF2 float64 `json:"nmF2"`
 	// The valley depth, in grams per cubic centimeter.
 	NValB float64 `json:"nValB"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		B0          resp.Field
 		B1          resp.Field
@@ -845,8 +837,7 @@ type IonOobservationListResponseDensityProfileParabolic struct {
 	Description string `json:"description"`
 	// Describes the E, F1, and F2 layers as parabolic-shape segments.
 	ParabolicItems []IonOobservationListResponseDensityProfileParabolicParabolicItem `json:"parabolicItems"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Description    resp.Field
 		ParabolicItems resp.Field
@@ -871,8 +862,7 @@ type IonOobservationListResponseDensityProfileParabolicParabolicItem struct {
 	Y float64 `json:"y"`
 	// Height of the layer peak, in kilometers.
 	Z float64 `json:"z"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		F           resp.Field
 		Layer       resp.Field
@@ -902,8 +892,7 @@ type IonOobservationListResponseDensityProfileQuasiParabolic struct {
 	// groups for E, F1, and F2 layers, but additional segments may be used to improve
 	// accuracy.
 	QuasiParabolicSegments []IonOobservationListResponseDensityProfileQuasiParabolicQuasiParabolicSegment `json:"quasiParabolicSegments"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Description            resp.Field
 		EarthRadius            resp.Field
@@ -937,8 +926,7 @@ type IonOobservationListResponseDensityProfileQuasiParabolicQuasiParabolicSegmen
 	Rb float64 `json:"rb"`
 	// Ending range of the segment, in kilometers from the Earth's center.
 	Re float64 `json:"re"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		A           resp.Field
 		B           resp.Field
@@ -969,8 +957,7 @@ type IonOobservationListResponseDensityProfileShiftedChebyshev struct {
 	// E, F1, and bottomside F2 profile shapes, or up to 6 groups of coefficients to
 	// describe height uncertainty boundaries (upper and lower).
 	ShiftedChebyshevs []IonOobservationListResponseDensityProfileShiftedChebyshevShiftedChebyshev `json:"shiftedChebyshevs"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Description       resp.Field
 		ShiftedChebyshevs resp.Field
@@ -1007,8 +994,7 @@ type IonOobservationListResponseDensityProfileShiftedChebyshevShiftedChebyshev s
 	Peakheight float64 `json:"peakheight"`
 	// Height at which density is half of the peak Nm, in kilometers.
 	ZhalfNm float64 `json:"zhalfNm"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Coeffs      resp.Field
 		Error       resp.Field
@@ -1044,8 +1030,7 @@ type IonOobservationListResponseDensityProfileTopsideExtensionChapmanConst struc
 	NmF2 float64 `json:"nmF2"`
 	// Scale height if F2 layer at the peak, in kilometers.
 	ScaleF2 float64 `json:"scaleF2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Chi         resp.Field
 		Description resp.Field
@@ -1084,8 +1069,7 @@ type IonOobservationListResponseDensityProfileTopsideExtensionVaryChap struct {
 	NmF2 float64 `json:"nmF2"`
 	// Scale height if F2 layer at the peak, in kilometers.
 	ScaleF2 float64 `json:"scaleF2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Alpha       resp.Field
 		Beta        resp.Field
@@ -1117,8 +1101,7 @@ type IonOobservationListResponseDoppler struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the doppler data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1144,8 +1127,7 @@ type IonOobservationListResponseElevation struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the elevation data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1171,8 +1153,7 @@ type IonOobservationListResponseFrequency struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the frequency data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1199,8 +1180,7 @@ type IonOobservationListResponsePhase struct {
 	// Notes for the phase data. Orientation and position for each antenna element
 	// across the antenna_element dimension.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1226,8 +1206,7 @@ type IonOobservationListResponsePolarization struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the polarization data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1253,8 +1232,7 @@ type IonOobservationListResponsePower struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the power data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1280,8 +1258,7 @@ type IonOobservationListResponseRange struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the range data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1321,8 +1298,7 @@ type IonOobservationListResponseScalerInfo struct {
 	Type string `json:"type"`
 	// Scaler version.
 	Version float64 `json:"version"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ConfidenceLevel resp.Field
 		ConfidenceScore resp.Field
@@ -1352,8 +1328,7 @@ type IonOobservationListResponseStokes struct {
 	Notes string `json:"notes"`
 	// S1, S2, and S3 (the normalized Stokes parameters 1, 2, and 3).
 	S []float64 `json:"s"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1381,8 +1356,7 @@ type IonOobservationListResponseTime struct {
 	Dimensions []int64 `json:"dimensions"`
 	// The notes indicate the scheme and accuracy.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1407,8 +1381,7 @@ type IonOobservationListResponseTraceGeneric struct {
 	DimensionName []string `json:"dimensionName"`
 	// Notes for the trace generic data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1704,8 +1677,7 @@ type IonOobservationTupleResponse struct {
 	ZhalfNm float64 `json:"zhalfNm"`
 	// Peak height of E-layer in km. URSI ID: 90.
 	ZmE float64 `json:"zmE"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                  resp.Field
 		DataMode                               resp.Field
@@ -1858,8 +1830,7 @@ type IonOobservationTupleResponseAmplitude struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the amplitude data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1883,8 +1854,7 @@ type IonOobservationTupleResponseAntennaElementPosition struct {
 	DimensionName []string `json:"dimensionName"`
 	// Array of integers of the antenna_element dimensions.
 	Dimensions []int64 `json:"dimensions"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1922,8 +1892,7 @@ type IonOobservationTupleResponseAzimuth struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the azimuth data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -1971,8 +1940,7 @@ type IonOobservationTupleResponseCharAtt struct {
 	// Characteristic's URSI ID. See the characteristic's description for its
 	// corresponding URSI ID.
 	UrsiID string `json:"ursiID"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CharName                resp.Field
 		ClimateModelInputParams resp.Field
@@ -2000,8 +1968,7 @@ type IonOobservationTupleResponseDatum struct {
 	Data []float64 `json:"data"`
 	// Notes for the datum with details of what the data is, units, etc.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data        resp.Field
 		Notes       resp.Field
@@ -2036,8 +2003,7 @@ type IonOobservationTupleResponseDensityProfile struct {
 	ValleyModelCoeffs []float64 `json:"valleyModelCoeffs"`
 	// Description of the valley model and parameters.
 	ValleyModelDescription string `json:"valleyModelDescription"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Iri                          resp.Field
 		Parabolic                    resp.Field
@@ -2105,8 +2071,7 @@ type IonOobservationTupleResponseDensityProfileIri struct {
 	NmF2 float64 `json:"nmF2"`
 	// The valley depth, in grams per cubic centimeter.
 	NValB float64 `json:"nValB"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		B0          resp.Field
 		B1          resp.Field
@@ -2147,8 +2112,7 @@ type IonOobservationTupleResponseDensityProfileParabolic struct {
 	Description string `json:"description"`
 	// Describes the E, F1, and F2 layers as parabolic-shape segments.
 	ParabolicItems []IonOobservationTupleResponseDensityProfileParabolicParabolicItem `json:"parabolicItems"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Description    resp.Field
 		ParabolicItems resp.Field
@@ -2173,8 +2137,7 @@ type IonOobservationTupleResponseDensityProfileParabolicParabolicItem struct {
 	Y float64 `json:"y"`
 	// Height of the layer peak, in kilometers.
 	Z float64 `json:"z"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		F           resp.Field
 		Layer       resp.Field
@@ -2204,8 +2167,7 @@ type IonOobservationTupleResponseDensityProfileQuasiParabolic struct {
 	// groups for E, F1, and F2 layers, but additional segments may be used to improve
 	// accuracy.
 	QuasiParabolicSegments []IonOobservationTupleResponseDensityProfileQuasiParabolicQuasiParabolicSegment `json:"quasiParabolicSegments"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Description            resp.Field
 		EarthRadius            resp.Field
@@ -2239,8 +2201,7 @@ type IonOobservationTupleResponseDensityProfileQuasiParabolicQuasiParabolicSegme
 	Rb float64 `json:"rb"`
 	// Ending range of the segment, in kilometers from the Earth's center.
 	Re float64 `json:"re"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		A           resp.Field
 		B           resp.Field
@@ -2271,8 +2232,7 @@ type IonOobservationTupleResponseDensityProfileShiftedChebyshev struct {
 	// E, F1, and bottomside F2 profile shapes, or up to 6 groups of coefficients to
 	// describe height uncertainty boundaries (upper and lower).
 	ShiftedChebyshevs []IonOobservationTupleResponseDensityProfileShiftedChebyshevShiftedChebyshev `json:"shiftedChebyshevs"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Description       resp.Field
 		ShiftedChebyshevs resp.Field
@@ -2309,8 +2269,7 @@ type IonOobservationTupleResponseDensityProfileShiftedChebyshevShiftedChebyshev 
 	Peakheight float64 `json:"peakheight"`
 	// Height at which density is half of the peak Nm, in kilometers.
 	ZhalfNm float64 `json:"zhalfNm"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Coeffs      resp.Field
 		Error       resp.Field
@@ -2346,8 +2305,7 @@ type IonOobservationTupleResponseDensityProfileTopsideExtensionChapmanConst stru
 	NmF2 float64 `json:"nmF2"`
 	// Scale height if F2 layer at the peak, in kilometers.
 	ScaleF2 float64 `json:"scaleF2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Chi         resp.Field
 		Description resp.Field
@@ -2386,8 +2344,7 @@ type IonOobservationTupleResponseDensityProfileTopsideExtensionVaryChap struct {
 	NmF2 float64 `json:"nmF2"`
 	// Scale height if F2 layer at the peak, in kilometers.
 	ScaleF2 float64 `json:"scaleF2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Alpha       resp.Field
 		Beta        resp.Field
@@ -2419,8 +2376,7 @@ type IonOobservationTupleResponseDoppler struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the doppler data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -2446,8 +2402,7 @@ type IonOobservationTupleResponseElevation struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the elevation data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -2473,8 +2428,7 @@ type IonOobservationTupleResponseFrequency struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the frequency data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -2501,8 +2455,7 @@ type IonOobservationTupleResponsePhase struct {
 	// Notes for the phase data. Orientation and position for each antenna element
 	// across the antenna_element dimension.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -2528,8 +2481,7 @@ type IonOobservationTupleResponsePolarization struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the polarization data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -2555,8 +2507,7 @@ type IonOobservationTupleResponsePower struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the power data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -2582,8 +2533,7 @@ type IonOobservationTupleResponseRange struct {
 	Dimensions []int64 `json:"dimensions"`
 	// Notes for the range data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -2623,8 +2573,7 @@ type IonOobservationTupleResponseScalerInfo struct {
 	Type string `json:"type"`
 	// Scaler version.
 	Version float64 `json:"version"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ConfidenceLevel resp.Field
 		ConfidenceScore resp.Field
@@ -2654,8 +2603,7 @@ type IonOobservationTupleResponseStokes struct {
 	Notes string `json:"notes"`
 	// S1, S2, and S3 (the normalized Stokes parameters 1, 2, and 3).
 	S []float64 `json:"s"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -2683,8 +2631,7 @@ type IonOobservationTupleResponseTime struct {
 	Dimensions []int64 `json:"dimensions"`
 	// The notes indicate the scheme and accuracy.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -2709,8 +2656,7 @@ type IonOobservationTupleResponseTraceGeneric struct {
 	DimensionName []string `json:"dimensionName"`
 	// Notes for the trace generic data.
 	Notes string `json:"notes"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Data          resp.Field
 		DimensionName resp.Field
@@ -2742,10 +2688,6 @@ type IonOobservationListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [IonOobservationListParams]'s query parameters as
 // `url.Values`.
 func (r IonOobservationListParams) URLQuery() (v url.Values, err error) {
@@ -2763,10 +2705,6 @@ type IonOobservationCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [IonOobservationCountParams]'s query parameters as
 // `url.Values`.
 func (r IonOobservationCountParams) URLQuery() (v url.Values, err error) {
@@ -2780,10 +2718,6 @@ type IonOobservationNewBulkParams struct {
 	Body []IonOobservationNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r IonOobservationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -3067,9 +3001,6 @@ type IonOobservationNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r IonOobservationNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3102,11 +3033,6 @@ type IonOobservationNewBulkParamsBodyAmplitude struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyAmplitude) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyAmplitude) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyAmplitude
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3122,11 +3048,6 @@ type IonOobservationNewBulkParamsBodyAntennaElementPosition struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyAntennaElementPosition) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyAntennaElementPosition) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyAntennaElementPosition
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3144,11 +3065,6 @@ type IonOobservationNewBulkParamsBodyAzimuth struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyAzimuth) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyAzimuth) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyAzimuth
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3188,11 +3104,6 @@ type IonOobservationNewBulkParamsBodyCharAtt struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyCharAtt) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyCharAtt) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyCharAtt
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3206,11 +3117,6 @@ type IonOobservationNewBulkParamsBodyDatum struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyDatum) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyDatum) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyDatum
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3239,11 +3145,6 @@ type IonOobservationNewBulkParamsBodyDensityProfile struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyDensityProfile) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyDensityProfile) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyDensityProfile
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3299,11 +3200,6 @@ type IonOobservationNewBulkParamsBodyDensityProfileIri struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyDensityProfileIri) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyDensityProfileIri) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyDensityProfileIri
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3318,11 +3214,6 @@ type IonOobservationNewBulkParamsBodyDensityProfileParabolic struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyDensityProfileParabolic) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyDensityProfileParabolic) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyDensityProfileParabolic
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3341,11 +3232,6 @@ type IonOobservationNewBulkParamsBodyDensityProfileParabolicParabolicItem struct
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyDensityProfileParabolicParabolicItem) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyDensityProfileParabolicParabolicItem) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyDensityProfileParabolicParabolicItem
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3365,11 +3251,6 @@ type IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolic struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolic) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolic) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolic
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3396,11 +3277,6 @@ type IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabolicS
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3418,11 +3294,6 @@ type IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshev struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshev) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshev) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshev
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3451,11 +3322,6 @@ type IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChebys
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3477,11 +3343,6 @@ type IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst 
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3509,11 +3370,6 @@ type IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap stru
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3531,11 +3387,6 @@ type IonOobservationNewBulkParamsBodyDoppler struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyDoppler) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyDoppler) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyDoppler
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3553,11 +3404,6 @@ type IonOobservationNewBulkParamsBodyElevation struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyElevation) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyElevation) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyElevation
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3575,11 +3421,6 @@ type IonOobservationNewBulkParamsBodyFrequency struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyFrequency) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyFrequency) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyFrequency
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3598,11 +3439,6 @@ type IonOobservationNewBulkParamsBodyPhase struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyPhase) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyPhase) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyPhase
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3620,11 +3456,6 @@ type IonOobservationNewBulkParamsBodyPolarization struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyPolarization) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyPolarization) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyPolarization
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3642,11 +3473,6 @@ type IonOobservationNewBulkParamsBodyPower struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyPower) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyPower) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyPower
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3664,11 +3490,6 @@ type IonOobservationNewBulkParamsBodyRange struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyRange) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyRange) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyRange
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3692,11 +3513,6 @@ type IonOobservationNewBulkParamsBodyScalerInfo struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyScalerInfo) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyScalerInfo) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyScalerInfo
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3716,11 +3532,6 @@ type IonOobservationNewBulkParamsBodyStokes struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyStokes) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyStokes) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyStokes
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3739,11 +3550,6 @@ type IonOobservationNewBulkParamsBodyTime struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyTime) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyTime) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyTime
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3760,11 +3566,6 @@ type IonOobservationNewBulkParamsBodyTraceGeneric struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationNewBulkParamsBodyTraceGeneric) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationNewBulkParamsBodyTraceGeneric) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyTraceGeneric
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3783,10 +3584,6 @@ type IonOobservationTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [IonOobservationTupleParams]'s query parameters as
 // `url.Values`.
 func (r IonOobservationTupleParams) URLQuery() (v url.Values, err error) {
@@ -3799,12 +3596,6 @@ func (r IonOobservationTupleParams) URLQuery() (v url.Values, err error) {
 type IonOobservationUnvalidatedPublishParams struct {
 	Body []IonOobservationUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r IonOobservationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -4089,11 +3880,6 @@ type IonOobservationUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4126,11 +3912,6 @@ type IonOobservationUnvalidatedPublishParamsBodyAmplitude struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyAmplitude) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyAmplitude) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyAmplitude
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4146,11 +3927,6 @@ type IonOobservationUnvalidatedPublishParamsBodyAntennaElementPosition struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyAntennaElementPosition) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyAntennaElementPosition) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyAntennaElementPosition
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4168,11 +3944,6 @@ type IonOobservationUnvalidatedPublishParamsBodyAzimuth struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyAzimuth) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyAzimuth) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyAzimuth
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4212,11 +3983,6 @@ type IonOobservationUnvalidatedPublishParamsBodyCharAtt struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyCharAtt) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyCharAtt) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyCharAtt
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4230,11 +3996,6 @@ type IonOobservationUnvalidatedPublishParamsBodyDatum struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyDatum) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyDatum) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDatum
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4263,11 +4024,6 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfile struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyDensityProfile) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfile) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfile
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4323,11 +4079,6 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileIri struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyDensityProfileIri) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileIri) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileIri
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4342,11 +4093,6 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolic struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolic) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolic) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolic
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4365,11 +4111,6 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabolic
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabolicItem) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabolicItem) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabolicItem
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4389,11 +4130,6 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic str
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4420,11 +4156,6 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQuas
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4442,11 +4173,6 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev s
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4475,11 +4201,6 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshevSh
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4501,11 +4222,6 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionCh
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionChapmanConst) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionChapmanConst) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionChapmanConst
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4533,11 +4249,6 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionVa
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionVaryChap) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionVaryChap) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionVaryChap
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4555,11 +4266,6 @@ type IonOobservationUnvalidatedPublishParamsBodyDoppler struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyDoppler) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyDoppler) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDoppler
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4577,11 +4283,6 @@ type IonOobservationUnvalidatedPublishParamsBodyElevation struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyElevation) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyElevation) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyElevation
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4599,11 +4300,6 @@ type IonOobservationUnvalidatedPublishParamsBodyFrequency struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyFrequency) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyFrequency) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyFrequency
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4622,11 +4318,6 @@ type IonOobservationUnvalidatedPublishParamsBodyPhase struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyPhase) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyPhase) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyPhase
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4644,11 +4335,6 @@ type IonOobservationUnvalidatedPublishParamsBodyPolarization struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyPolarization) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyPolarization) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyPolarization
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4666,11 +4352,6 @@ type IonOobservationUnvalidatedPublishParamsBodyPower struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyPower) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyPower) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyPower
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4688,11 +4369,6 @@ type IonOobservationUnvalidatedPublishParamsBodyRange struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyRange) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyRange) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyRange
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4716,11 +4392,6 @@ type IonOobservationUnvalidatedPublishParamsBodyScalerInfo struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyScalerInfo) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyScalerInfo) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyScalerInfo
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4740,11 +4411,6 @@ type IonOobservationUnvalidatedPublishParamsBodyStokes struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyStokes) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyStokes) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyStokes
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4763,11 +4429,6 @@ type IonOobservationUnvalidatedPublishParamsBodyTime struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyTime) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyTime) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyTime
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4784,11 +4445,6 @@ type IonOobservationUnvalidatedPublishParamsBodyTraceGeneric struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f IonOobservationUnvalidatedPublishParamsBodyTraceGeneric) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r IonOobservationUnvalidatedPublishParamsBodyTraceGeneric) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyTraceGeneric
 	return param.MarshalObject(r, (*shadow)(&r))

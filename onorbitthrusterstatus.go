@@ -237,8 +237,7 @@ type OnorbitthrusterstatusListResponse struct {
 	ThrustMax float64 `json:"thrustMax"`
 	// Total delta-velocity available for this thruster's type, in meters per second.
 	TotalDeltaV float64 `json:"totalDeltaV"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -368,10 +367,6 @@ type OnorbitthrusterstatusNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitthrusterstatusNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r OnorbitthrusterstatusNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitthrusterstatusNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -416,10 +411,6 @@ type OnorbitthrusterstatusListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitthrusterstatusListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OnorbitthrusterstatusListParams]'s query parameters as
 // `url.Values`.
 func (r OnorbitthrusterstatusListParams) URLQuery() (v url.Values, err error) {
@@ -445,10 +436,6 @@ type OnorbitthrusterstatusCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitthrusterstatusCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OnorbitthrusterstatusCountParams]'s query parameters as
 // `url.Values`.
 func (r OnorbitthrusterstatusCountParams) URLQuery() (v url.Values, err error) {
@@ -461,12 +448,6 @@ func (r OnorbitthrusterstatusCountParams) URLQuery() (v url.Values, err error) {
 type OnorbitthrusterstatusNewBulkParams struct {
 	Body []OnorbitthrusterstatusNewBulkParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitthrusterstatusNewBulkParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r OnorbitthrusterstatusNewBulkParams) MarshalJSON() (data []byte, err error) {
@@ -555,11 +536,6 @@ type OnorbitthrusterstatusNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitthrusterstatusNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r OnorbitthrusterstatusNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitthrusterstatusNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -576,10 +552,6 @@ type OnorbitthrusterstatusGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitthrusterstatusGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [OnorbitthrusterstatusGetParams]'s query parameters as
 // `url.Values`.
@@ -610,10 +582,6 @@ type OnorbitthrusterstatusTupleParams struct {
 	StatusTime param.Opt[time.Time] `query:"statusTime,omitzero" format:"date-time" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitthrusterstatusTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [OnorbitthrusterstatusTupleParams]'s query parameters as
 // `url.Values`.

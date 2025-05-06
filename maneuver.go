@@ -468,8 +468,7 @@ type ManeuverListResponse struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking   resp.Field
 		DataMode                resp.Field
@@ -766,8 +765,7 @@ type ManeuverListResponsePostEventElset struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1233,8 +1231,7 @@ type ManeuverListResponsePostEventStateVector struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1508,8 +1505,7 @@ type ManeuverListResponsePreEventElset struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1975,8 +1971,7 @@ type ManeuverListResponsePreEventStateVector struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2412,8 +2407,7 @@ type ManeuverGetResponse struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking   resp.Field
 		DataMode                resp.Field
@@ -2744,8 +2738,7 @@ type ManeuverGetResponsePostEventElset struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -3245,8 +3238,7 @@ type ManeuverGetResponsePostEventStateVector struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -3556,8 +3548,7 @@ type ManeuverGetResponsePreEventElset struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -4057,8 +4048,7 @@ type ManeuverGetResponsePreEventStateVector struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -4500,8 +4490,7 @@ type ManeuverTupleResponse struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking   resp.Field
 		DataMode                resp.Field
@@ -4832,8 +4821,7 @@ type ManeuverTupleResponsePostEventElset struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -5333,8 +5321,7 @@ type ManeuverTupleResponsePostEventStateVector struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -5644,8 +5631,7 @@ type ManeuverTupleResponsePreEventElset struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -6145,8 +6131,7 @@ type ManeuverTupleResponsePreEventStateVector struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -6575,10 +6560,6 @@ type ManeuverNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r ManeuverNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow ManeuverNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -6800,9 +6781,6 @@ type ManeuverNewParamsPostEventElset struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverNewParamsPostEventElset) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r ManeuverNewParamsPostEventElset) MarshalJSON() (data []byte, err error) {
 	type shadow ManeuverNewParamsPostEventElset
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -7257,11 +7235,6 @@ type ManeuverNewParamsPostEventStateVector struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverNewParamsPostEventStateVector) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ManeuverNewParamsPostEventStateVector) MarshalJSON() (data []byte, err error) {
 	type shadow ManeuverNewParamsPostEventStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -7472,9 +7445,6 @@ type ManeuverNewParamsPreEventElset struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverNewParamsPreEventElset) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r ManeuverNewParamsPreEventElset) MarshalJSON() (data []byte, err error) {
 	type shadow ManeuverNewParamsPreEventElset
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -7929,11 +7899,6 @@ type ManeuverNewParamsPreEventStateVector struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverNewParamsPreEventStateVector) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ManeuverNewParamsPreEventStateVector) MarshalJSON() (data []byte, err error) {
 	type shadow ManeuverNewParamsPreEventStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -7961,10 +7926,6 @@ type ManeuverListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ManeuverListParams]'s query parameters as `url.Values`.
 func (r ManeuverListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -7983,10 +7944,6 @@ type ManeuverCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ManeuverCountParams]'s query parameters as `url.Values`.
 func (r ManeuverCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -7999,10 +7956,6 @@ type ManeuverNewBulkParams struct {
 	Body []ManeuverNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r ManeuverNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -8340,9 +8293,6 @@ type ManeuverNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r ManeuverNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow ManeuverNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -8547,11 +8497,6 @@ type ManeuverNewBulkParamsBodyPostEventElset struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverNewBulkParamsBodyPostEventElset) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ManeuverNewBulkParamsBodyPostEventElset) MarshalJSON() (data []byte, err error) {
 	type shadow ManeuverNewBulkParamsBodyPostEventElset
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -9006,11 +8951,6 @@ type ManeuverNewBulkParamsBodyPostEventStateVector struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverNewBulkParamsBodyPostEventStateVector) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ManeuverNewBulkParamsBodyPostEventStateVector) MarshalJSON() (data []byte, err error) {
 	type shadow ManeuverNewBulkParamsBodyPostEventStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -9221,11 +9161,6 @@ type ManeuverNewBulkParamsBodyPreEventElset struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverNewBulkParamsBodyPreEventElset) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ManeuverNewBulkParamsBodyPreEventElset) MarshalJSON() (data []byte, err error) {
 	type shadow ManeuverNewBulkParamsBodyPreEventElset
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -9680,11 +9615,6 @@ type ManeuverNewBulkParamsBodyPreEventStateVector struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverNewBulkParamsBodyPreEventStateVector) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ManeuverNewBulkParamsBodyPreEventStateVector) MarshalJSON() (data []byte, err error) {
 	type shadow ManeuverNewBulkParamsBodyPreEventStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -9707,10 +9637,6 @@ type ManeuverGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ManeuverGetParams]'s query parameters as `url.Values`.
 func (r ManeuverGetParams) URLQuery() (v url.Values, err error) {
@@ -9735,10 +9661,6 @@ type ManeuverTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ManeuverTupleParams]'s query parameters as `url.Values`.
 func (r ManeuverTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -9751,10 +9673,6 @@ type ManeuverUnvalidatedPublishParams struct {
 	Body []ManeuverUnvalidatedPublishParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverUnvalidatedPublishParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r ManeuverUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -10092,11 +10010,6 @@ type ManeuverUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ManeuverUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow ManeuverUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -10301,11 +10214,6 @@ type ManeuverUnvalidatedPublishParamsBodyPostEventElset struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverUnvalidatedPublishParamsBodyPostEventElset) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ManeuverUnvalidatedPublishParamsBodyPostEventElset) MarshalJSON() (data []byte, err error) {
 	type shadow ManeuverUnvalidatedPublishParamsBodyPostEventElset
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -10760,11 +10668,6 @@ type ManeuverUnvalidatedPublishParamsBodyPostEventStateVector struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverUnvalidatedPublishParamsBodyPostEventStateVector) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ManeuverUnvalidatedPublishParamsBodyPostEventStateVector) MarshalJSON() (data []byte, err error) {
 	type shadow ManeuverUnvalidatedPublishParamsBodyPostEventStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -10975,11 +10878,6 @@ type ManeuverUnvalidatedPublishParamsBodyPreEventElset struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverUnvalidatedPublishParamsBodyPreEventElset) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ManeuverUnvalidatedPublishParamsBodyPreEventElset) MarshalJSON() (data []byte, err error) {
 	type shadow ManeuverUnvalidatedPublishParamsBodyPreEventElset
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -11434,11 +11332,6 @@ type ManeuverUnvalidatedPublishParamsBodyPreEventStateVector struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ManeuverUnvalidatedPublishParamsBodyPreEventStateVector) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ManeuverUnvalidatedPublishParamsBodyPreEventStateVector) MarshalJSON() (data []byte, err error) {
 	type shadow ManeuverUnvalidatedPublishParamsBodyPreEventStateVector
 	return param.MarshalObject(r, (*shadow)(&r))

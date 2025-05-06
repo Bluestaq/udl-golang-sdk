@@ -167,10 +167,6 @@ type ScDeleteParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScDeleteParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ScDeleteParams]'s query parameters as `url.Values`.
 func (r ScDeleteParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -187,10 +183,6 @@ type ScCopyParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScCopyParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ScCopyParams]'s query parameters as `url.Values`.
 func (r ScCopyParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -204,10 +196,6 @@ type ScDownloadParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScDownloadParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r ScDownloadParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
@@ -219,10 +207,6 @@ type ScFileDownloadParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScFileDownloadParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ScFileDownloadParams]'s query parameters as `url.Values`.
 func (r ScFileDownloadParams) URLQuery() (v url.Values, err error) {
@@ -248,10 +232,6 @@ type ScFileUploadParams struct {
 	Tags param.Opt[string] `query:"tags,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScFileUploadParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r ScFileUploadParams) MarshalMultipart() (data []byte, contentType string, err error) {
 	buf := bytes.NewBuffer(nil)
@@ -284,10 +264,6 @@ type ScMoveParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScMoveParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ScMoveParams]'s query parameters as `url.Values`.
 func (r ScMoveParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -303,10 +279,6 @@ type ScRenameParams struct {
 	NewName string `query:"newName,required" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScRenameParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ScRenameParams]'s query parameters as `url.Values`.
 func (r ScRenameParams) URLQuery() (v url.Values, err error) {
@@ -331,10 +303,6 @@ type ScSearchParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScSearchParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r ScSearchParams) MarshalJSON() (data []byte, err error) {
 	type shadow ScSearchParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -355,10 +323,6 @@ type ScUpdateTagsParams struct {
 	Tags string `query:"tags,required" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScUpdateTagsParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ScUpdateTagsParams]'s query parameters as `url.Values`.
 func (r ScUpdateTagsParams) URLQuery() (v url.Values, err error) {

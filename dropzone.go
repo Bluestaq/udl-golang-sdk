@@ -283,8 +283,7 @@ type DropzoneGetResponse struct {
 	Width float64 `json:"width"`
 	// The identifier of the Zone Availability Report (ZAR) for the drop zone.
 	ZarID string `json:"zarId"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking   resp.Field
 		DataMode                resp.Field
@@ -469,8 +468,7 @@ type DropzoneQueryResponse struct {
 	Width float64 `json:"width"`
 	// The identifier of the Zone Availability Report (ZAR) for the drop zone.
 	ZarID string `json:"zarId"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking   resp.Field
 		DataMode                resp.Field
@@ -658,8 +656,7 @@ type DropzoneTupleResponse struct {
 	Width float64 `json:"width"`
 	// The identifier of the Zone Availability Report (ZAR) for the drop zone.
 	ZarID string `json:"zarId"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking   resp.Field
 		DataMode                resp.Field
@@ -833,10 +830,6 @@ type DropzoneNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DropzoneNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r DropzoneNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow DropzoneNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -870,10 +863,6 @@ type DropzoneGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DropzoneGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [DropzoneGetParams]'s query parameters as `url.Values`.
 func (r DropzoneGetParams) URLQuery() (v url.Values, err error) {
@@ -984,10 +973,6 @@ type DropzoneUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DropzoneUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r DropzoneUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow DropzoneUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1022,10 +1007,6 @@ type DropzoneCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DropzoneCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [DropzoneCountParams]'s query parameters as `url.Values`.
 func (r DropzoneCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1038,10 +1019,6 @@ type DropzoneNewBulkParams struct {
 	Body []DropzoneNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DropzoneNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r DropzoneNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1165,9 +1142,6 @@ type DropzoneNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DropzoneNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r DropzoneNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow DropzoneNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1184,10 +1158,6 @@ type DropzoneQueryParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DropzoneQueryParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [DropzoneQueryParams]'s query parameters as `url.Values`.
 func (r DropzoneQueryParams) URLQuery() (v url.Values, err error) {
@@ -1208,10 +1178,6 @@ type DropzoneTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DropzoneTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [DropzoneTupleParams]'s query parameters as `url.Values`.
 func (r DropzoneTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1224,10 +1190,6 @@ type DropzoneUnvalidatedPublishParams struct {
 	Body []DropzoneUnvalidatedPublishParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DropzoneUnvalidatedPublishParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r DropzoneUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1351,11 +1313,6 @@ type DropzoneUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DropzoneUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DropzoneUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow DropzoneUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

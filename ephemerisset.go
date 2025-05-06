@@ -310,8 +310,7 @@ type EphemerisSet struct {
 	// Optional start time of the usable time span for the ephemeris data, in ISO 8601
 	// UTC format with microsecond precision.
 	UsableStartTime time.Time `json:"usableStartTime" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Category              resp.Field
 		ClassificationMarking resp.Field
@@ -543,8 +542,7 @@ type EphemerisSetAbridged struct {
 	// Optional start time of the usable time span for the ephemeris data, in ISO 8601
 	// UTC format with microsecond precision.
 	UsableStartTime time.Time `json:"usableStartTime" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Category              resp.Field
 		ClassificationMarking resp.Field
@@ -772,10 +770,6 @@ type EphemerisSetNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisSetNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r EphemerisSetNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow EphemerisSetNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -928,11 +922,6 @@ type EphemerisSetNewParamsEphemerisList struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisSetNewParamsEphemerisList) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EphemerisSetNewParamsEphemerisList) MarshalJSON() (data []byte, err error) {
 	type shadow EphemerisSetNewParamsEphemerisList
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -963,10 +952,6 @@ type EphemerisSetGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisSetGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EphemerisSetGetParams]'s query parameters as `url.Values`.
 func (r EphemerisSetGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -988,10 +973,6 @@ type EphemerisSetListParams struct {
 	PointStartTime param.Opt[time.Time] `query:"pointStartTime,omitzero" format:"date-time" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisSetListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EphemerisSetListParams]'s query parameters as `url.Values`.
 func (r EphemerisSetListParams) URLQuery() (v url.Values, err error) {
@@ -1015,10 +996,6 @@ type EphemerisSetCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisSetCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EphemerisSetCountParams]'s query parameters as
 // `url.Values`.
 func (r EphemerisSetCountParams) URLQuery() (v url.Values, err error) {
@@ -1033,10 +1010,6 @@ type EphemerisSetFileGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisSetFileGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EphemerisSetFileGetParams]'s query parameters as
 // `url.Values`.
@@ -1065,10 +1038,6 @@ type EphemerisSetTupleParams struct {
 	PointStartTime param.Opt[time.Time] `query:"pointStartTime,omitzero" format:"date-time" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisSetTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EphemerisSetTupleParams]'s query parameters as
 // `url.Values`.

@@ -298,8 +298,7 @@ type WeatherDataListResponse struct {
 	TdAvgSampleNums []int64 `json:"tdAvgSampleNums"`
 	// Last altitude with recorded measurements in this record, in meters.
 	TermAlt float64 `json:"termAlt"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -510,10 +509,6 @@ type WeatherDataNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherDataNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r WeatherDataNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow WeatherDataNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -551,10 +546,6 @@ type WeatherDataListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherDataListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [WeatherDataListParams]'s query parameters as `url.Values`.
 func (r WeatherDataListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -572,10 +563,6 @@ type WeatherDataCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherDataCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [WeatherDataCountParams]'s query parameters as `url.Values`.
 func (r WeatherDataCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -588,10 +575,6 @@ type WeatherDataNewBulkParams struct {
 	Body []WeatherDataNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherDataNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r WeatherDataNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -745,9 +728,6 @@ type WeatherDataNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherDataNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r WeatherDataNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow WeatherDataNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -764,10 +744,6 @@ type WeatherDataGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherDataGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [WeatherDataGetParams]'s query parameters as `url.Values`.
 func (r WeatherDataGetParams) URLQuery() (v url.Values, err error) {
@@ -791,10 +767,6 @@ type WeatherDataTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherDataTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [WeatherDataTupleParams]'s query parameters as `url.Values`.
 func (r WeatherDataTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -806,12 +778,6 @@ func (r WeatherDataTupleParams) URLQuery() (v url.Values, err error) {
 type WeatherDataUnvalidatedPublishParams struct {
 	Body []WeatherDataUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherDataUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r WeatherDataUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -966,11 +932,6 @@ type WeatherDataUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherDataUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r WeatherDataUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow WeatherDataUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

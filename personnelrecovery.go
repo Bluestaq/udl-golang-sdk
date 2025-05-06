@@ -304,8 +304,7 @@ type PersonnelRecoveryFullL struct {
 	TextMsg string `json:"textMsg"`
 	// Transmit voice frequency in 5Hz increments.
 	TxFreq float64 `json:"txFreq"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -400,8 +399,7 @@ type PersonnelRecoveryFullLExecutionInfo struct {
 	// Description of the objective strategy plan.
 	ObjStrategy     string                                             `json:"objStrategy"`
 	RecoveryVehicle PersonnelRecoveryFullLExecutionInfoRecoveryVehicle `json:"recoveryVehicle"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Egress          resp.Field
 		EgressPoint     resp.Field
@@ -435,8 +433,7 @@ type PersonnelRecoveryFullLExecutionInfoEscortVehicle struct {
 	Strength int64 `json:"strength"`
 	// The particular type of recovery vehicle to be used.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CallSign    resp.Field
 		PrimaryFreq resp.Field
@@ -467,8 +464,7 @@ type PersonnelRecoveryFullLExecutionInfoRecoveryVehicle struct {
 	Strength int64 `json:"strength"`
 	// The particular type of recovery vehicle to be used.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CallSign    resp.Field
 		PrimaryFreq resp.Field
@@ -500,8 +496,7 @@ type PersonnelRecoveryFullLObjectiveAreaInfo struct {
 	// minimum of 2 elements (latitude and longitude), and may contain an optional 3rd
 	// element (altitude).
 	PzLocation []float64 `json:"pzLocation"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		EnemyData   resp.Field
 		OscCallSign resp.Field
@@ -529,8 +524,7 @@ type PersonnelRecoveryFullLObjectiveAreaInfoEnemyData struct {
 	HlzRemarks string `json:"hlzRemarks"`
 	// The type of hostile fire received (SMALL ARMS, MORTAR, ARTILLERY, ROCKETS).
 	HostileFireType string `json:"hostileFireType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DirToEnemy        resp.Field
 		FriendliesRemarks resp.Field
@@ -693,8 +687,7 @@ type PersonnelrecoveryListResponse struct {
 	TextMsg string `json:"textMsg"`
 	// Transmit voice frequency in 5Hz increments.
 	TxFreq float64 `json:"txFreq"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -789,8 +782,7 @@ type PersonnelrecoveryListResponseExecutionInfo struct {
 	// Description of the objective strategy plan.
 	ObjStrategy     string                                                    `json:"objStrategy"`
 	RecoveryVehicle PersonnelrecoveryListResponseExecutionInfoRecoveryVehicle `json:"recoveryVehicle"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Egress          resp.Field
 		EgressPoint     resp.Field
@@ -824,8 +816,7 @@ type PersonnelrecoveryListResponseExecutionInfoEscortVehicle struct {
 	Strength int64 `json:"strength"`
 	// The particular type of recovery vehicle to be used.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CallSign    resp.Field
 		PrimaryFreq resp.Field
@@ -856,8 +847,7 @@ type PersonnelrecoveryListResponseExecutionInfoRecoveryVehicle struct {
 	Strength int64 `json:"strength"`
 	// The particular type of recovery vehicle to be used.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CallSign    resp.Field
 		PrimaryFreq resp.Field
@@ -891,8 +881,7 @@ type PersonnelrecoveryListResponseObjectiveAreaInfo struct {
 	// minimum of 2 elements (latitude and longitude), and may contain an optional 3rd
 	// element (altitude).
 	PzLocation []float64 `json:"pzLocation"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		EnemyData   resp.Field
 		OscCallSign resp.Field
@@ -920,8 +909,7 @@ type PersonnelrecoveryListResponseObjectiveAreaInfoEnemyData struct {
 	HlzRemarks string `json:"hlzRemarks"`
 	// The type of hostile fire received (SMALL ARMS, MORTAR, ARTILLERY, ROCKETS).
 	HostileFireType string `json:"hostileFireType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DirToEnemy        resp.Field
 		FriendliesRemarks resp.Field
@@ -1077,10 +1065,6 @@ type PersonnelrecoveryNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r PersonnelrecoveryNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1133,11 +1117,6 @@ type PersonnelrecoveryNewParamsExecutionInfo struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryNewParamsExecutionInfo) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r PersonnelrecoveryNewParamsExecutionInfo) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryNewParamsExecutionInfo
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1160,11 +1139,6 @@ type PersonnelrecoveryNewParamsExecutionInfoEscortVehicle struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryNewParamsExecutionInfoEscortVehicle) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r PersonnelrecoveryNewParamsExecutionInfoEscortVehicle) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryNewParamsExecutionInfoEscortVehicle
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1187,11 +1161,6 @@ type PersonnelrecoveryNewParamsExecutionInfoRecoveryVehicle struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryNewParamsExecutionInfoRecoveryVehicle) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r PersonnelrecoveryNewParamsExecutionInfoRecoveryVehicle) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryNewParamsExecutionInfoRecoveryVehicle
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1215,11 +1184,6 @@ type PersonnelrecoveryNewParamsObjectiveAreaInfo struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryNewParamsObjectiveAreaInfo) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r PersonnelrecoveryNewParamsObjectiveAreaInfo) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryNewParamsObjectiveAreaInfo
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1238,11 +1202,6 @@ type PersonnelrecoveryNewParamsObjectiveAreaInfoEnemyData struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryNewParamsObjectiveAreaInfoEnemyData) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r PersonnelrecoveryNewParamsObjectiveAreaInfoEnemyData) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryNewParamsObjectiveAreaInfoEnemyData
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1256,10 +1215,6 @@ type PersonnelrecoveryListParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [PersonnelrecoveryListParams]'s query parameters as
 // `url.Values`.
@@ -1279,10 +1234,6 @@ type PersonnelrecoveryCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [PersonnelrecoveryCountParams]'s query parameters as
 // `url.Values`.
 func (r PersonnelrecoveryCountParams) URLQuery() (v url.Values, err error) {
@@ -1296,10 +1247,6 @@ type PersonnelrecoveryNewBulkParams struct {
 	Body []PersonnelrecoveryNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r PersonnelrecoveryNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1457,11 +1404,6 @@ type PersonnelrecoveryNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r PersonnelrecoveryNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1497,11 +1439,6 @@ type PersonnelrecoveryNewBulkParamsBodyExecutionInfo struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryNewBulkParamsBodyExecutionInfo) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r PersonnelrecoveryNewBulkParamsBodyExecutionInfo) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryNewBulkParamsBodyExecutionInfo
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1524,11 +1461,6 @@ type PersonnelrecoveryNewBulkParamsBodyExecutionInfoEscortVehicle struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryNewBulkParamsBodyExecutionInfoEscortVehicle) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r PersonnelrecoveryNewBulkParamsBodyExecutionInfoEscortVehicle) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryNewBulkParamsBodyExecutionInfoEscortVehicle
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1551,11 +1483,6 @@ type PersonnelrecoveryNewBulkParamsBodyExecutionInfoRecoveryVehicle struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryNewBulkParamsBodyExecutionInfoRecoveryVehicle) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r PersonnelrecoveryNewBulkParamsBodyExecutionInfoRecoveryVehicle) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryNewBulkParamsBodyExecutionInfoRecoveryVehicle
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1579,11 +1506,6 @@ type PersonnelrecoveryNewBulkParamsBodyObjectiveAreaInfo struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryNewBulkParamsBodyObjectiveAreaInfo) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r PersonnelrecoveryNewBulkParamsBodyObjectiveAreaInfo) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryNewBulkParamsBodyObjectiveAreaInfo
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1602,11 +1524,6 @@ type PersonnelrecoveryNewBulkParamsBodyObjectiveAreaInfoEnemyData struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryNewBulkParamsBodyObjectiveAreaInfoEnemyData) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r PersonnelrecoveryNewBulkParamsBodyObjectiveAreaInfoEnemyData) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryNewBulkParamsBodyObjectiveAreaInfoEnemyData
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1616,10 +1533,6 @@ type PersonnelrecoveryFileNewParams struct {
 	Body []PersonnelrecoveryFileNewParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryFileNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r PersonnelrecoveryFileNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1777,11 +1690,6 @@ type PersonnelrecoveryFileNewParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryFileNewParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r PersonnelrecoveryFileNewParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryFileNewParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1817,11 +1725,6 @@ type PersonnelrecoveryFileNewParamsBodyExecutionInfo struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryFileNewParamsBodyExecutionInfo) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r PersonnelrecoveryFileNewParamsBodyExecutionInfo) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryFileNewParamsBodyExecutionInfo
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1844,11 +1747,6 @@ type PersonnelrecoveryFileNewParamsBodyExecutionInfoEscortVehicle struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryFileNewParamsBodyExecutionInfoEscortVehicle) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r PersonnelrecoveryFileNewParamsBodyExecutionInfoEscortVehicle) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryFileNewParamsBodyExecutionInfoEscortVehicle
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1871,11 +1769,6 @@ type PersonnelrecoveryFileNewParamsBodyExecutionInfoRecoveryVehicle struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryFileNewParamsBodyExecutionInfoRecoveryVehicle) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r PersonnelrecoveryFileNewParamsBodyExecutionInfoRecoveryVehicle) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryFileNewParamsBodyExecutionInfoRecoveryVehicle
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1899,11 +1792,6 @@ type PersonnelrecoveryFileNewParamsBodyObjectiveAreaInfo struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryFileNewParamsBodyObjectiveAreaInfo) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r PersonnelrecoveryFileNewParamsBodyObjectiveAreaInfo) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryFileNewParamsBodyObjectiveAreaInfo
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1922,11 +1810,6 @@ type PersonnelrecoveryFileNewParamsBodyObjectiveAreaInfoEnemyData struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryFileNewParamsBodyObjectiveAreaInfoEnemyData) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r PersonnelrecoveryFileNewParamsBodyObjectiveAreaInfoEnemyData) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryFileNewParamsBodyObjectiveAreaInfoEnemyData
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1937,10 +1820,6 @@ type PersonnelrecoveryGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [PersonnelrecoveryGetParams]'s query parameters as
 // `url.Values`.
@@ -1964,10 +1843,6 @@ type PersonnelrecoveryTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PersonnelrecoveryTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [PersonnelrecoveryTupleParams]'s query parameters as
 // `url.Values`.

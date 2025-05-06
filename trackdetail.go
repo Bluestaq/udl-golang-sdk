@@ -866,8 +866,7 @@ type TrackDetailListResponse struct {
 	// The breadth of the vessel, in meters. A value of 63 indicates a vessel breadth
 	// of 63 meters or greater.
 	Width float64 `json:"width"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1132,10 +1131,6 @@ type TrackDetailListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackDetailListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [TrackDetailListParams]'s query parameters as `url.Values`.
 func (r TrackDetailListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1153,10 +1148,6 @@ type TrackDetailCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackDetailCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [TrackDetailCountParams]'s query parameters as `url.Values`.
 func (r TrackDetailCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1169,10 +1160,6 @@ type TrackDetailNewBulkParams struct {
 	Body []TrackDetailNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackDetailNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r TrackDetailNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1931,9 +1918,6 @@ type TrackDetailNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackDetailNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r TrackDetailNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow TrackDetailNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1964,10 +1948,6 @@ type TrackDetailTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TrackDetailTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [TrackDetailTupleParams]'s query parameters as `url.Values`.
 func (r TrackDetailTupleParams) URLQuery() (v url.Values, err error) {

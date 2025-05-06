@@ -160,8 +160,7 @@ type TaiutcFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AdjustmentDate        resp.Field
 		ClassificationMarking resp.Field
@@ -224,10 +223,6 @@ type TaiUtcHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TaiUtcHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [TaiUtcHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r TaiUtcHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -261,10 +256,6 @@ type TaiUtcHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TaiUtcHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [TaiUtcHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r TaiUtcHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -282,10 +273,6 @@ type TaiUtcHistoryCountParams struct {
 	MaxResults     param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TaiUtcHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [TaiUtcHistoryCountParams]'s query parameters as
 // `url.Values`.

@@ -154,8 +154,7 @@ type OnorbitthrusterstatusFull struct {
 	ThrustMax float64 `json:"thrustMax"`
 	// Total delta-velocity available for this thruster's type, in meters per second.
 	TotalDeltaV float64 `json:"totalDeltaV"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -235,12 +234,6 @@ type OnorbitthrusterstatusHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitthrusterstatusHistoryListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [OnorbitthrusterstatusHistoryListParams]'s query parameters
 // as `url.Values`.
 func (r OnorbitthrusterstatusHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -264,12 +257,6 @@ type OnorbitthrusterstatusHistoryCountParams struct {
 	// millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	StatusTime param.Opt[time.Time] `query:"statusTime,omitzero" format:"date-time" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitthrusterstatusHistoryCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [OnorbitthrusterstatusHistoryCountParams]'s query parameters

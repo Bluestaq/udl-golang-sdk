@@ -215,8 +215,7 @@ type MtiListResponse struct {
 	// pertains to all Dwell, HRR, and Range-Doppler segments in the packet. Job ID is
 	// unique within a mission.
 	PlatformLocs []MtiListResponsePlatformLoc `json:"platformLocs"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -366,8 +365,7 @@ type MtiListResponseDwell struct {
 	D9 int64 `json:"d9"`
 	// Dwell timestamp in ISO8601 UTC format.
 	Dwellts time.Time `json:"dwellts" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		D10         resp.Field
 		D11         resp.Field
@@ -469,8 +467,7 @@ type MtiListResponseDwellD32 struct {
 	D32_8 int64 `json:"d32_8"`
 	// Estimated signal-to-noise ratio (SNR) of the target return, in decibels.
 	D32_9 int64 `json:"d32_9"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		D32_1       resp.Field
 		D32_10      resp.Field
@@ -508,8 +505,7 @@ type MtiListResponseFreeText struct {
 	F2 string `json:"f2"`
 	// Free text data message.
 	F3 string `json:"f3"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		F1          resp.Field
 		F2          resp.Field
@@ -597,8 +593,7 @@ type MtiListResponseHrr struct {
 	// The Peak Scatter returns the maximum power level (e.g. in milliwatts, or dBm)
 	// registered by the sensor.
 	H9 int64 `json:"h9"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		H10         resp.Field
 		H11         resp.Field
@@ -653,8 +648,7 @@ type MtiListResponseHrrH32 struct {
 	// Scatterer’s Doppler index relative to Range-Doppler chip, where increasing index
 	// equates to increasing Doppler.
 	H32_4 int64 `json:"h32_4"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		H32_1       resp.Field
 		H32_2       resp.Field
@@ -760,8 +754,7 @@ type MtiListResponseJobDef struct {
 	// service, expressed as degrees East (positive, 0 to 180) or West (negative, 0 to
 	// -180) of the Prime Meridian.
 	J9 float64 `json:"j9"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		J10         resp.Field
 		J11         resp.Field
@@ -867,8 +860,7 @@ type MtiListResponseJobRequest struct {
 	// service, expressed as degrees East (positive, 0 to 180) or West (negative, 0 to
 	// -180) of the Prime Meridian.
 	R9 float64 `json:"r9"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		JobReqEst   resp.Field
 		R1          resp.Field
@@ -913,8 +905,7 @@ type MtiListResponseMission struct {
 	M4 string `json:"m4"`
 	// Mission origination date.
 	MsnRefTs time.Time `json:"msnRefTs" format:"date"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		M1          resp.Field
 		M2          resp.Field
@@ -957,8 +948,7 @@ type MtiListResponsePlatformLoc struct {
 	L7 int64 `json:"l7"`
 	// Platform location timestamp in ISO8601 UTC format.
 	Platlocts time.Time `json:"platlocts" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		L1          resp.Field
 		L2          resp.Field
@@ -987,10 +977,6 @@ type MtiListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [MtiListParams]'s query parameters as `url.Values`.
 func (r MtiListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1007,10 +993,6 @@ type MtiCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [MtiCountParams]'s query parameters as `url.Values`.
 func (r MtiCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1023,10 +1005,6 @@ type MtiNewBulkParams struct {
 	Body []MtiNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r MtiNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1120,9 +1098,6 @@ type MtiNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r MtiNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow MtiNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1230,9 +1205,6 @@ type MtiNewBulkParamsBodyDwell struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiNewBulkParamsBodyDwell) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r MtiNewBulkParamsBodyDwell) MarshalJSON() (data []byte, err error) {
 	type shadow MtiNewBulkParamsBodyDwell
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1298,9 +1270,6 @@ type MtiNewBulkParamsBodyDwellD32 struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiNewBulkParamsBodyDwellD32) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r MtiNewBulkParamsBodyDwellD32) MarshalJSON() (data []byte, err error) {
 	type shadow MtiNewBulkParamsBodyDwellD32
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1316,9 +1285,6 @@ type MtiNewBulkParamsBodyFreeText struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiNewBulkParamsBodyFreeText) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r MtiNewBulkParamsBodyFreeText) MarshalJSON() (data []byte, err error) {
 	type shadow MtiNewBulkParamsBodyFreeText
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1399,9 +1365,6 @@ type MtiNewBulkParamsBodyHrr struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiNewBulkParamsBodyHrr) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r MtiNewBulkParamsBodyHrr) MarshalJSON() (data []byte, err error) {
 	type shadow MtiNewBulkParamsBodyHrr
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1423,9 +1386,6 @@ type MtiNewBulkParamsBodyHrrH32 struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiNewBulkParamsBodyHrrH32) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r MtiNewBulkParamsBodyHrrH32) MarshalJSON() (data []byte, err error) {
 	type shadow MtiNewBulkParamsBodyHrrH32
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1526,9 +1486,6 @@ type MtiNewBulkParamsBodyJobDef struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiNewBulkParamsBodyJobDef) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r MtiNewBulkParamsBodyJobDef) MarshalJSON() (data []byte, err error) {
 	type shadow MtiNewBulkParamsBodyJobDef
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1603,9 +1560,6 @@ type MtiNewBulkParamsBodyJobRequest struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiNewBulkParamsBodyJobRequest) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r MtiNewBulkParamsBodyJobRequest) MarshalJSON() (data []byte, err error) {
 	type shadow MtiNewBulkParamsBodyJobRequest
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1625,9 +1579,6 @@ type MtiNewBulkParamsBodyMission struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiNewBulkParamsBodyMission) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r MtiNewBulkParamsBodyMission) MarshalJSON() (data []byte, err error) {
 	type shadow MtiNewBulkParamsBodyMission
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1661,9 +1612,6 @@ type MtiNewBulkParamsBodyPlatformLoc struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiNewBulkParamsBodyPlatformLoc) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r MtiNewBulkParamsBodyPlatformLoc) MarshalJSON() (data []byte, err error) {
 	type shadow MtiNewBulkParamsBodyPlatformLoc
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1682,10 +1630,6 @@ type MtiTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [MtiTupleParams]'s query parameters as `url.Values`.
 func (r MtiTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1698,10 +1642,6 @@ type MtiUnvalidatedPublishParams struct {
 	Body []MtiUnvalidatedPublishParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiUnvalidatedPublishParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r MtiUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1795,9 +1735,6 @@ type MtiUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiUnvalidatedPublishParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r MtiUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow MtiUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1905,11 +1842,6 @@ type MtiUnvalidatedPublishParamsBodyDwell struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiUnvalidatedPublishParamsBodyDwell) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r MtiUnvalidatedPublishParamsBodyDwell) MarshalJSON() (data []byte, err error) {
 	type shadow MtiUnvalidatedPublishParamsBodyDwell
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1975,11 +1907,6 @@ type MtiUnvalidatedPublishParamsBodyDwellD32 struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiUnvalidatedPublishParamsBodyDwellD32) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r MtiUnvalidatedPublishParamsBodyDwellD32) MarshalJSON() (data []byte, err error) {
 	type shadow MtiUnvalidatedPublishParamsBodyDwellD32
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1995,11 +1922,6 @@ type MtiUnvalidatedPublishParamsBodyFreeText struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiUnvalidatedPublishParamsBodyFreeText) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r MtiUnvalidatedPublishParamsBodyFreeText) MarshalJSON() (data []byte, err error) {
 	type shadow MtiUnvalidatedPublishParamsBodyFreeText
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2080,11 +2002,6 @@ type MtiUnvalidatedPublishParamsBodyHrr struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiUnvalidatedPublishParamsBodyHrr) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r MtiUnvalidatedPublishParamsBodyHrr) MarshalJSON() (data []byte, err error) {
 	type shadow MtiUnvalidatedPublishParamsBodyHrr
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2106,11 +2023,6 @@ type MtiUnvalidatedPublishParamsBodyHrrH32 struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiUnvalidatedPublishParamsBodyHrrH32) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r MtiUnvalidatedPublishParamsBodyHrrH32) MarshalJSON() (data []byte, err error) {
 	type shadow MtiUnvalidatedPublishParamsBodyHrrH32
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2211,11 +2123,6 @@ type MtiUnvalidatedPublishParamsBodyJobDef struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiUnvalidatedPublishParamsBodyJobDef) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r MtiUnvalidatedPublishParamsBodyJobDef) MarshalJSON() (data []byte, err error) {
 	type shadow MtiUnvalidatedPublishParamsBodyJobDef
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2290,11 +2197,6 @@ type MtiUnvalidatedPublishParamsBodyJobRequest struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiUnvalidatedPublishParamsBodyJobRequest) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r MtiUnvalidatedPublishParamsBodyJobRequest) MarshalJSON() (data []byte, err error) {
 	type shadow MtiUnvalidatedPublishParamsBodyJobRequest
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2314,11 +2216,6 @@ type MtiUnvalidatedPublishParamsBodyMission struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiUnvalidatedPublishParamsBodyMission) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r MtiUnvalidatedPublishParamsBodyMission) MarshalJSON() (data []byte, err error) {
 	type shadow MtiUnvalidatedPublishParamsBodyMission
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2352,11 +2249,6 @@ type MtiUnvalidatedPublishParamsBodyPlatformLoc struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MtiUnvalidatedPublishParamsBodyPlatformLoc) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r MtiUnvalidatedPublishParamsBodyPlatformLoc) MarshalJSON() (data []byte, err error) {
 	type shadow MtiUnvalidatedPublishParamsBodyPlatformLoc
 	return param.MarshalObject(r, (*shadow)(&r))

@@ -179,8 +179,7 @@ type OnorbitsolararrayListResponse struct {
 	// spacecraft may have multiple solar arrays and each solar array can have multiple
 	// 'details' records compiled by different sources.
 	SolarArray OnorbitsolararrayListResponseSolarArray `json:"solarArray"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -268,8 +267,7 @@ type OnorbitsolararrayListResponseSolarArray struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataMode    resp.Field
 		Name        resp.Field
@@ -343,8 +341,7 @@ type OnorbitsolararrayGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -443,8 +440,7 @@ type OnorbitsolararrayGetResponseSolarArray struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataMode          resp.Field
 		Name              resp.Field
@@ -510,10 +506,6 @@ type OnorbitsolararrayNewParams struct {
 	SolarArray OnorbitsolararrayNewParamsSolarArray `json:"solarArray,omitzero"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitsolararrayNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r OnorbitsolararrayNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitsolararrayNewParams
@@ -588,11 +580,6 @@ type OnorbitsolararrayNewParamsSolarArray struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitsolararrayNewParamsSolarArray) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r OnorbitsolararrayNewParamsSolarArray) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitsolararrayNewParamsSolarArray
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -646,10 +633,6 @@ type OnorbitsolararrayUpdateParams struct {
 	SolarArray OnorbitsolararrayUpdateParamsSolarArray `json:"solarArray,omitzero"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitsolararrayUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r OnorbitsolararrayUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitsolararrayUpdateParams
@@ -724,11 +707,6 @@ type OnorbitsolararrayUpdateParamsSolarArray struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitsolararrayUpdateParamsSolarArray) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r OnorbitsolararrayUpdateParamsSolarArray) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitsolararrayUpdateParamsSolarArray
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -746,10 +724,6 @@ type OnorbitsolararrayListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitsolararrayListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OnorbitsolararrayListParams]'s query parameters as
 // `url.Values`.
 func (r OnorbitsolararrayListParams) URLQuery() (v url.Values, err error) {
@@ -764,10 +738,6 @@ type OnorbitsolararrayGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitsolararrayGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [OnorbitsolararrayGetParams]'s query parameters as
 // `url.Values`.

@@ -235,8 +235,7 @@ type SeradataOpticalPayloadListResponse struct {
 	SpectralFrequencyLimits string `json:"spectralFrequencyLimits"`
 	// Swath width in kilometers.
 	SwathWidth float64 `json:"swathWidth"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking       resp.Field
 		DataMode                    resp.Field
@@ -379,8 +378,7 @@ type SeradataOpticalPayloadGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking       resp.Field
 		DataMode                    resp.Field
@@ -525,8 +523,7 @@ type SeradataOpticalPayloadTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking       resp.Field
 		DataMode                    resp.Field
@@ -660,10 +657,6 @@ type SeradataOpticalPayloadNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataOpticalPayloadNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SeradataOpticalPayloadNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SeradataOpticalPayloadNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -762,12 +755,6 @@ type SeradataOpticalPayloadUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataOpticalPayloadUpdateParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 func (r SeradataOpticalPayloadUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SeradataOpticalPayloadUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -802,10 +789,6 @@ type SeradataOpticalPayloadListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataOpticalPayloadListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SeradataOpticalPayloadListParams]'s query parameters as
 // `url.Values`.
 func (r SeradataOpticalPayloadListParams) URLQuery() (v url.Values, err error) {
@@ -819,12 +802,6 @@ type SeradataOpticalPayloadCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataOpticalPayloadCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [SeradataOpticalPayloadCountParams]'s query parameters as
@@ -841,10 +818,6 @@ type SeradataOpticalPayloadGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataOpticalPayloadGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SeradataOpticalPayloadGetParams]'s query parameters as
 // `url.Values`.
@@ -864,12 +837,6 @@ type SeradataOpticalPayloadTupleParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataOpticalPayloadTupleParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [SeradataOpticalPayloadTupleParams]'s query parameters as

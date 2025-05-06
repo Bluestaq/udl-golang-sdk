@@ -202,8 +202,7 @@ type LaunchVehicleListResponse struct {
 	OrigNetwork string `json:"origNetwork"`
 	// Vehicle type.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -305,8 +304,7 @@ type LaunchVehicleGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -503,8 +501,7 @@ type LaunchVehicleGetResponseLaunchVehicleDetail struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Vehicle variant.
 	Variant string `json:"variant"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking               resp.Field
 		DataMode                            resp.Field
@@ -691,8 +688,7 @@ type LaunchVehicleGetResponseStage struct {
 	VernierThrustSeaLevel float64 `json:"vernierThrustSeaLevel"`
 	// Total thrust of one of the vernier or additional engines in a vacuum in kN.
 	VernierThrustVacuum float64 `json:"vernierThrustVacuum"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking    resp.Field
 		DataMode                 resp.Field
@@ -804,8 +800,7 @@ type LaunchVehicleTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1002,8 +997,7 @@ type LaunchVehicleTupleResponseLaunchVehicleDetail struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Vehicle variant.
 	Variant string `json:"variant"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking               resp.Field
 		DataMode                            resp.Field
@@ -1190,8 +1184,7 @@ type LaunchVehicleTupleResponseStage struct {
 	VernierThrustSeaLevel float64 `json:"vernierThrustSeaLevel"`
 	// Total thrust of one of the vernier or additional engines in a vacuum in kN.
 	VernierThrustVacuum float64 `json:"vernierThrustVacuum"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking    resp.Field
 		DataMode                 resp.Field
@@ -1283,10 +1276,6 @@ type LaunchVehicleNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchVehicleNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r LaunchVehicleNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow LaunchVehicleNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1351,10 +1340,6 @@ type LaunchVehicleUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchVehicleUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r LaunchVehicleUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow LaunchVehicleUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1389,10 +1374,6 @@ type LaunchVehicleListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchVehicleListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [LaunchVehicleListParams]'s query parameters as
 // `url.Values`.
 func (r LaunchVehicleListParams) URLQuery() (v url.Values, err error) {
@@ -1408,10 +1389,6 @@ type LaunchVehicleCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchVehicleCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [LaunchVehicleCountParams]'s query parameters as
 // `url.Values`.
 func (r LaunchVehicleCountParams) URLQuery() (v url.Values, err error) {
@@ -1426,10 +1403,6 @@ type LaunchVehicleGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchVehicleGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [LaunchVehicleGetParams]'s query parameters as `url.Values`.
 func (r LaunchVehicleGetParams) URLQuery() (v url.Values, err error) {
@@ -1449,10 +1422,6 @@ type LaunchVehicleTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchVehicleTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [LaunchVehicleTupleParams]'s query parameters as
 // `url.Values`.

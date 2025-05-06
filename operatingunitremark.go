@@ -192,8 +192,7 @@ type OperatingunitremarkListResponse struct {
 	Origin string `json:"origin"`
 	// The remark type (e.g. Caution, Information, Misc, Restriction, etc.).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -296,8 +295,7 @@ type OperatingunitremarkGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -402,8 +400,7 @@ type OperatingunitremarkTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -499,10 +496,6 @@ type OperatingunitremarkNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OperatingunitremarkNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r OperatingunitremarkNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow OperatingunitremarkNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -537,10 +530,6 @@ type OperatingunitremarkListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OperatingunitremarkListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OperatingunitremarkListParams]'s query parameters as
 // `url.Values`.
 func (r OperatingunitremarkListParams) URLQuery() (v url.Values, err error) {
@@ -556,10 +545,6 @@ type OperatingunitremarkCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OperatingunitremarkCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OperatingunitremarkCountParams]'s query parameters as
 // `url.Values`.
 func (r OperatingunitremarkCountParams) URLQuery() (v url.Values, err error) {
@@ -573,10 +558,6 @@ type OperatingunitremarkNewBulkParams struct {
 	Body []OperatingunitremarkNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OperatingunitremarkNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r OperatingunitremarkNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -637,11 +618,6 @@ type OperatingunitremarkNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OperatingunitremarkNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r OperatingunitremarkNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow OperatingunitremarkNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -658,10 +634,6 @@ type OperatingunitremarkGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OperatingunitremarkGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [OperatingunitremarkGetParams]'s query parameters as
 // `url.Values`.
@@ -682,10 +654,6 @@ type OperatingunitremarkTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OperatingunitremarkTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [OperatingunitremarkTupleParams]'s query parameters as
 // `url.Values`.

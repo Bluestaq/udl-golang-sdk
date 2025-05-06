@@ -196,8 +196,7 @@ type LaunchSiteDetailListResponse struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -303,8 +302,7 @@ type LaunchSiteDetailListResponseLocation struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -387,8 +385,7 @@ type LaunchSiteDetailFindBySourceResponse struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -494,8 +491,7 @@ type LaunchSiteDetailFindBySourceResponseLocation struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -589,8 +585,7 @@ type LaunchSiteDetailGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -693,10 +688,6 @@ type LaunchSiteDetailNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchSiteDetailNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r LaunchSiteDetailNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow LaunchSiteDetailNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -775,10 +766,6 @@ type LaunchSiteDetailUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchSiteDetailUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r LaunchSiteDetailUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow LaunchSiteDetailUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -813,10 +800,6 @@ type LaunchSiteDetailListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchSiteDetailListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [LaunchSiteDetailListParams]'s query parameters as
 // `url.Values`.
 func (r LaunchSiteDetailListParams) URLQuery() (v url.Values, err error) {
@@ -834,12 +817,6 @@ type LaunchSiteDetailFindBySourceParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchSiteDetailFindBySourceParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [LaunchSiteDetailFindBySourceParams]'s query parameters as
 // `url.Values`.
 func (r LaunchSiteDetailFindBySourceParams) URLQuery() (v url.Values, err error) {
@@ -854,10 +831,6 @@ type LaunchSiteDetailGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchSiteDetailGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [LaunchSiteDetailGetParams]'s query parameters as
 // `url.Values`.

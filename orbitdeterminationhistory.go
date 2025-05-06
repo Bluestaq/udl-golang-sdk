@@ -262,8 +262,7 @@ type OrbitdeterminationHistoryListResponse struct {
 	// update, with a value of 1.00 being optimal. WRMS applies to batch least squares
 	// (BLS) processes.
 	Wrms float64 `json:"wrms"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -540,8 +539,7 @@ type OrbitdeterminationHistoryListResponseAprioriElset struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1041,8 +1039,7 @@ type OrbitdeterminationHistoryListResponseAprioriStateVector struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1176,12 +1173,6 @@ type OrbitdeterminationHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbitdeterminationHistoryListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [OrbitdeterminationHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r OrbitdeterminationHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -1222,12 +1213,6 @@ type OrbitdeterminationHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbitdeterminationHistoryAodrParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [OrbitdeterminationHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r OrbitdeterminationHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -1251,12 +1236,6 @@ type OrbitdeterminationHistoryCountParams struct {
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	StartTime param.Opt[time.Time] `query:"startTime,omitzero" format:"date-time" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbitdeterminationHistoryCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [OrbitdeterminationHistoryCountParams]'s query parameters as

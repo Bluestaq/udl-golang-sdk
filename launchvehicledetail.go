@@ -261,8 +261,7 @@ type LaunchVehicleDetailListResponse struct {
 	SSOPayloadMass float64 `json:"ssoPayloadMass"`
 	// Vehicle variant.
 	Variant string `json:"variant"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking               resp.Field
 		DataMode                            resp.Field
@@ -499,8 +498,7 @@ type LaunchVehicleDetailGetResponse struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Vehicle variant.
 	Variant string `json:"variant"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking               resp.Field
 		DataMode                            resp.Field
@@ -724,10 +722,6 @@ type LaunchVehicleDetailNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchVehicleDetailNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r LaunchVehicleDetailNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow LaunchVehicleDetailNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -886,10 +880,6 @@ type LaunchVehicleDetailUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchVehicleDetailUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r LaunchVehicleDetailUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow LaunchVehicleDetailUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -924,10 +914,6 @@ type LaunchVehicleDetailListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchVehicleDetailListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [LaunchVehicleDetailListParams]'s query parameters as
 // `url.Values`.
 func (r LaunchVehicleDetailListParams) URLQuery() (v url.Values, err error) {
@@ -942,10 +928,6 @@ type LaunchVehicleDetailGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchVehicleDetailGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [LaunchVehicleDetailGetParams]'s query parameters as
 // `url.Values`.

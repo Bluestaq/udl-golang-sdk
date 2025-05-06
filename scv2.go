@@ -140,8 +140,7 @@ type Attachment struct {
 	Keywords      string `json:"keywords"`
 	Language      string `json:"language"`
 	Title         string `json:"title"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Author        resp.Field
 		Content       resp.Field
@@ -190,8 +189,7 @@ type ScsEntity struct {
 	// For folders only. Comma separated list of user and group ids that should have
 	// write access on this folder and the items nested in it.
 	WriteACL string `json:"writeAcl"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID                    resp.Field
 		Attachment            resp.Field
@@ -241,10 +239,6 @@ type ScV2UpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScV2UpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r ScV2UpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow ScV2UpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -266,10 +260,6 @@ type ScV2ListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScV2ListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ScV2ListParams]'s query parameters as `url.Values`.
 func (r ScV2ListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -283,10 +273,6 @@ type ScV2DeleteParams struct {
 	Path string `query:"path,required" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScV2DeleteParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ScV2DeleteParams]'s query parameters as `url.Values`.
 func (r ScV2DeleteParams) URLQuery() (v url.Values, err error) {
@@ -303,10 +289,6 @@ type ScV2CopyParams struct {
 	ToPath string `query:"toPath,required" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScV2CopyParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ScV2CopyParams]'s query parameters as `url.Values`.
 func (r ScV2CopyParams) URLQuery() (v url.Values, err error) {
@@ -334,10 +316,6 @@ type ScV2FileUploadParams struct {
 	Tags param.Opt[string] `query:"tags,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScV2FileUploadParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r ScV2FileUploadParams) MarshalMultipart() (data []byte, contentType string, err error) {
 	buf := bytes.NewBuffer(nil)
@@ -382,10 +360,6 @@ type ScV2FolderNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScV2FolderNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r ScV2FolderNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow ScV2FolderNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -407,10 +381,6 @@ type ScV2MoveParams struct {
 	ToPath string `query:"toPath,required" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScV2MoveParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ScV2MoveParams]'s query parameters as `url.Values`.
 func (r ScV2MoveParams) URLQuery() (v url.Values, err error) {

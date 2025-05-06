@@ -203,8 +203,7 @@ type RfEmitterListResponse struct {
 	OrigNetwork string `json:"origNetwork"`
 	// Type of this RF Emitter.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -307,8 +306,7 @@ type RfEmitterGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -470,8 +468,7 @@ type RfEmitterGetResponseRfEmitterDetail struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Array of URLs containing additional information on this RF Emitter.
 	URLs []string `json:"urls"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking        resp.Field
 		DataMode                     resp.Field
@@ -579,8 +576,7 @@ type RfEmitterTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -742,8 +738,7 @@ type RfEmitterTupleResponseRfEmitterDetail struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Array of URLs containing additional information on this RF Emitter.
 	URLs []string `json:"urls"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking        resp.Field
 		DataMode                     resp.Field
@@ -837,10 +832,6 @@ type RfEmitterNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfEmitterNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r RfEmitterNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow RfEmitterNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -911,10 +902,6 @@ type RfEmitterUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfEmitterUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r RfEmitterUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow RfEmitterUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -949,10 +936,6 @@ type RfEmitterListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfEmitterListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [RfEmitterListParams]'s query parameters as `url.Values`.
 func (r RfEmitterListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -967,10 +950,6 @@ type RfEmitterCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfEmitterCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [RfEmitterCountParams]'s query parameters as `url.Values`.
 func (r RfEmitterCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -984,10 +963,6 @@ type RfEmitterGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfEmitterGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [RfEmitterGetParams]'s query parameters as `url.Values`.
 func (r RfEmitterGetParams) URLQuery() (v url.Values, err error) {
@@ -1007,10 +982,6 @@ type RfEmitterTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfEmitterTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [RfEmitterTupleParams]'s query parameters as `url.Values`.
 func (r RfEmitterTupleParams) URLQuery() (v url.Values, err error) {

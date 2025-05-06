@@ -471,8 +471,7 @@ type MissileTrackListResponse struct {
 	// coordinate frame but in some cases data may be in another frame as specified by
 	// 'referenceFrame', depending on the provider.
 	Vectors []MissileTrackListResponseVector `json:"vectors"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -717,8 +716,7 @@ type MissileTrackListResponseVector struct {
 	// object, in kilometers/second, in the specified referenceFrame. If referenceFrame
 	// is null then ECEF should be assumed. The array element order is [x', y', z'].
 	Vel []float64 `json:"vel"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Epoch             resp.Field
 		Accel             resp.Field
@@ -1092,8 +1090,7 @@ type MissileTrackTupleResponse struct {
 	// coordinate frame but in some cases data may be in another frame as specified by
 	// 'referenceFrame', depending on the provider.
 	Vectors []MissileTrackTupleResponseVector `json:"vectors"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1338,8 +1335,7 @@ type MissileTrackTupleResponseVector struct {
 	// object, in kilometers/second, in the specified referenceFrame. If referenceFrame
 	// is null then ECEF should be assumed. The array element order is [x', y', z'].
 	Vel []float64 `json:"vel"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Epoch             resp.Field
 		Accel             resp.Field
@@ -1382,10 +1378,6 @@ type MissileTrackListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissileTrackListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [MissileTrackListParams]'s query parameters as `url.Values`.
 func (r MissileTrackListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1403,10 +1395,6 @@ type MissileTrackCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissileTrackCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [MissileTrackCountParams]'s query parameters as
 // `url.Values`.
 func (r MissileTrackCountParams) URLQuery() (v url.Values, err error) {
@@ -1420,10 +1408,6 @@ type MissileTrackNewBulkParams struct {
 	Body []MissileTrackNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissileTrackNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r MissileTrackNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1774,9 +1758,6 @@ type MissileTrackNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissileTrackNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r MissileTrackNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow MissileTrackNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1889,11 +1870,6 @@ type MissileTrackNewBulkParamsBodyVector struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissileTrackNewBulkParamsBodyVector) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r MissileTrackNewBulkParamsBodyVector) MarshalJSON() (data []byte, err error) {
 	type shadow MissileTrackNewBulkParamsBodyVector
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1913,10 +1889,6 @@ type MissileTrackTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissileTrackTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [MissileTrackTupleParams]'s query parameters as
 // `url.Values`.
 func (r MissileTrackTupleParams) URLQuery() (v url.Values, err error) {
@@ -1929,12 +1901,6 @@ func (r MissileTrackTupleParams) URLQuery() (v url.Values, err error) {
 type MissileTrackUnvalidatedPublishParams struct {
 	Body []MissileTrackUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissileTrackUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r MissileTrackUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -2286,11 +2252,6 @@ type MissileTrackUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissileTrackUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r MissileTrackUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow MissileTrackUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2403,11 +2364,6 @@ type MissileTrackUnvalidatedPublishParamsBodyVector struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissileTrackUnvalidatedPublishParamsBodyVector) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r MissileTrackUnvalidatedPublishParamsBodyVector) MarshalJSON() (data []byte, err error) {
 	type shadow MissileTrackUnvalidatedPublishParamsBodyVector
 	return param.MarshalObject(r, (*shadow)(&r))

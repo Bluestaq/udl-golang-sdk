@@ -344,8 +344,7 @@ type CrewAbridged struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -614,8 +613,7 @@ type CrewAbridgedCrewMember struct {
 	Username string `json:"username"`
 	// The wing the crew member serves.
 	Wing string `json:"wing"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Alerted                     resp.Field
 		AllSortie                   resp.Field
@@ -879,8 +877,7 @@ type CrewFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1149,8 +1146,7 @@ type CrewFullCrewMember struct {
 	Username string `json:"username"`
 	// The wing the crew member serves.
 	Wing string `json:"wing"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Alerted                     resp.Field
 		AllSortie                   resp.Field
@@ -1399,10 +1395,6 @@ type CrewNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CrewNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r CrewNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow CrewNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1601,9 +1593,6 @@ type CrewNewParamsCrewMember struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CrewNewParamsCrewMember) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r CrewNewParamsCrewMember) MarshalJSON() (data []byte, err error) {
 	type shadow CrewNewParamsCrewMember
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1614,10 +1603,6 @@ type CrewGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CrewGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [CrewGetParams]'s query parameters as `url.Values`.
 func (r CrewGetParams) URLQuery() (v url.Values, err error) {
@@ -1799,10 +1784,6 @@ type CrewUpdateParams struct {
 	ReqQualCode []string `json:"reqQualCode,omitzero"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CrewUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r CrewUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow CrewUpdateParams
@@ -2002,9 +1983,6 @@ type CrewUpdateParamsCrewMember struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CrewUpdateParamsCrewMember) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r CrewUpdateParamsCrewMember) MarshalJSON() (data []byte, err error) {
 	type shadow CrewUpdateParamsCrewMember
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2015,10 +1993,6 @@ type CrewListParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CrewListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [CrewListParams]'s query parameters as `url.Values`.
 func (r CrewListParams) URLQuery() (v url.Values, err error) {
@@ -2033,10 +2007,6 @@ type CrewCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CrewCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [CrewCountParams]'s query parameters as `url.Values`.
 func (r CrewCountParams) URLQuery() (v url.Values, err error) {
@@ -2057,10 +2027,6 @@ type CrewTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CrewTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [CrewTupleParams]'s query parameters as `url.Values`.
 func (r CrewTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -2073,10 +2039,6 @@ type CrewUnvalidatedPublishParams struct {
 	Body []CrewUnvalidatedPublishParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CrewUnvalidatedPublishParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r CrewUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -2275,9 +2237,6 @@ type CrewUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CrewUnvalidatedPublishParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r CrewUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow CrewUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2459,11 +2418,6 @@ type CrewUnvalidatedPublishParamsBodyCrewMember struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CrewUnvalidatedPublishParamsBodyCrewMember) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r CrewUnvalidatedPublishParamsBodyCrewMember) MarshalJSON() (data []byte, err error) {
 	type shadow CrewUnvalidatedPublishParamsBodyCrewMember
 	return param.MarshalObject(r, (*shadow)(&r))

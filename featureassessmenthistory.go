@@ -249,8 +249,7 @@ type FeatureAssessmentHistoryQueryResponse struct {
 	Type string `json:"type"`
 	// Estimated physical width of the feature, in meters.
 	Width float64 `json:"width"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -335,12 +334,6 @@ type FeatureAssessmentHistoryCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureAssessmentHistoryCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [FeatureAssessmentHistoryCountParams]'s query parameters as
 // `url.Values`.
 func (r FeatureAssessmentHistoryCountParams) URLQuery() (v url.Values, err error) {
@@ -361,12 +354,6 @@ type FeatureAssessmentHistoryQueryParams struct {
 	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureAssessmentHistoryQueryParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [FeatureAssessmentHistoryQueryParams]'s query parameters as
@@ -400,12 +387,6 @@ type FeatureAssessmentHistoryWriteAodrParams struct {
 	// valid values are: JSON and CSV.
 	OutputFormat param.Opt[string] `query:"outputFormat,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f FeatureAssessmentHistoryWriteAodrParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [FeatureAssessmentHistoryWriteAodrParams]'s query parameters

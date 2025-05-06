@@ -231,8 +231,7 @@ type AviationRiskManagementGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                 resp.Field
 		DataMode                              resp.Field
@@ -331,8 +330,7 @@ type AviationRiskManagementGetResponseAviationRiskManagementWorksheetRecord stru
 	TotalScore int64 `json:"totalScore"`
 	// User identifier associated to the worksheet record.
 	UserID string `json:"userId"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		MissionDate                          resp.Field
 		AircraftMds                          resp.Field
@@ -393,8 +391,7 @@ type AviationRiskManagementGetResponseAviationRiskManagementWorksheetRecordAviat
 	Score int64 `json:"score"`
 	// Remarks and/or comments regarding the worksheet score.
 	ScoreRemark string `json:"scoreRemark"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ApprovalDate                 resp.Field
 		ApprovedBy                   resp.Field
@@ -435,8 +432,7 @@ type AviationRiskManagementGetResponseAviationRiskManagementWorksheetRecordAviat
 	// ranges from 0 to 3, where a value of 0 indicates a low and a value of 3
 	// indicates severe. A value of -1 indicates no score.
 	SortieScore int64 `json:"sortieScore"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ExtSortieID resp.Field
 		IDSortie    resp.Field
@@ -520,8 +516,7 @@ type AviationRiskManagementQueryResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                 resp.Field
 		DataMode                              resp.Field
@@ -620,8 +615,7 @@ type AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecord st
 	TotalScore int64 `json:"totalScore"`
 	// User identifier associated to the worksheet record.
 	UserID string `json:"userId"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		MissionDate                          resp.Field
 		AircraftMds                          resp.Field
@@ -682,8 +676,7 @@ type AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAvi
 	Score int64 `json:"score"`
 	// Remarks and/or comments regarding the worksheet score.
 	ScoreRemark string `json:"scoreRemark"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ApprovalDate                 resp.Field
 		ApprovedBy                   resp.Field
@@ -724,8 +717,7 @@ type AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAvi
 	// ranges from 0 to 3, where a value of 0 indicates a low and a value of 3
 	// indicates severe. A value of -1 indicates no score.
 	SortieScore int64 `json:"sortieScore"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ExtSortieID resp.Field
 		IDSortie    resp.Field
@@ -809,8 +801,7 @@ type AviationRiskManagementTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                 resp.Field
 		DataMode                              resp.Field
@@ -909,8 +900,7 @@ type AviationRiskManagementTupleResponseAviationRiskManagementWorksheetRecord st
 	TotalScore int64 `json:"totalScore"`
 	// User identifier associated to the worksheet record.
 	UserID string `json:"userId"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		MissionDate                          resp.Field
 		AircraftMds                          resp.Field
@@ -971,8 +961,7 @@ type AviationRiskManagementTupleResponseAviationRiskManagementWorksheetRecordAvi
 	Score int64 `json:"score"`
 	// Remarks and/or comments regarding the worksheet score.
 	ScoreRemark string `json:"scoreRemark"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ApprovalDate                 resp.Field
 		ApprovedBy                   resp.Field
@@ -1013,8 +1002,7 @@ type AviationRiskManagementTupleResponseAviationRiskManagementWorksheetRecordAvi
 	// ranges from 0 to 3, where a value of 0 indicates a low and a value of 3
 	// indicates severe. A value of -1 indicates no score.
 	SortieScore int64 `json:"sortieScore"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ExtSortieID resp.Field
 		IDSortie    resp.Field
@@ -1080,10 +1068,6 @@ type AviationRiskManagementNewParams struct {
 	AviationRiskManagementWorksheetRecord []AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecord `json:"aviationRiskManagementWorksheetRecord,omitzero"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r AviationRiskManagementNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementNewParams
@@ -1164,11 +1148,6 @@ type AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecord struct
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecord) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecord) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecord
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1208,11 +1187,6 @@ type AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviatio
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1236,11 +1210,6 @@ type AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviatio
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1251,10 +1220,6 @@ type AviationRiskManagementGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AviationRiskManagementGetParams]'s query parameters as
 // `url.Values`.
@@ -1311,12 +1276,6 @@ type AviationRiskManagementUpdateParams struct {
 	// Collection of Aviation Risk Management Worksheet Records.
 	AviationRiskManagementWorksheetRecord []AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecord `json:"aviationRiskManagementWorksheetRecord,omitzero"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementUpdateParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r AviationRiskManagementUpdateParams) MarshalJSON() (data []byte, err error) {
@@ -1398,11 +1357,6 @@ type AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecord str
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecord) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecord) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecord
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1442,11 +1396,6 @@ type AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAvia
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1470,11 +1419,6 @@ type AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAvia
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1489,12 +1433,6 @@ type AviationRiskManagementCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [AviationRiskManagementCountParams]'s query parameters as
 // `url.Values`.
 func (r AviationRiskManagementCountParams) URLQuery() (v url.Values, err error) {
@@ -1507,12 +1445,6 @@ func (r AviationRiskManagementCountParams) URLQuery() (v url.Values, err error) 
 type AviationRiskManagementNewBulkParams struct {
 	Body []AviationRiskManagementNewBulkParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementNewBulkParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r AviationRiskManagementNewBulkParams) MarshalJSON() (data []byte, err error) {
@@ -1589,11 +1521,6 @@ type AviationRiskManagementNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AviationRiskManagementNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1656,11 +1583,6 @@ type AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecor
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecord) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecord) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecord
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1700,11 +1622,6 @@ type AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecor
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1728,11 +1645,6 @@ type AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecor
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1745,12 +1657,6 @@ type AviationRiskManagementQueryParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementQueryParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [AviationRiskManagementQueryParams]'s query parameters as
@@ -1776,12 +1682,6 @@ type AviationRiskManagementTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementTupleParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [AviationRiskManagementTupleParams]'s query parameters as
 // `url.Values`.
 func (r AviationRiskManagementTupleParams) URLQuery() (v url.Values, err error) {
@@ -1794,12 +1694,6 @@ func (r AviationRiskManagementTupleParams) URLQuery() (v url.Values, err error) 
 type AviationRiskManagementUnvalidatedPublishParams struct {
 	Body []AviationRiskManagementUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r AviationRiskManagementUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -1876,11 +1770,6 @@ type AviationRiskManagementUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AviationRiskManagementUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1943,11 +1832,6 @@ type AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWor
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecord) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecord) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecord
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1987,11 +1871,6 @@ type AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWor
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2015,11 +1894,6 @@ type AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWor
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie
 	return param.MarshalObject(r, (*shadow)(&r))

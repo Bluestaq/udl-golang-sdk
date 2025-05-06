@@ -374,8 +374,7 @@ type SeradataSpacecraftDetailListResponse struct {
 	TotalPayloadPower float64 `json:"totalPayloadPower"`
 	// Youtube link of launch.
 	YoutubeLaunchLink string `json:"youtubeLaunchLink"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                    resp.Field
 		DataMode                                 resp.Field
@@ -749,8 +748,7 @@ type SeradataSpacecraftDetailGetResponse struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Youtube link of launch.
 	YoutubeLaunchLink string `json:"youtubeLaunchLink"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                    resp.Field
 		DataMode                                 resp.Field
@@ -988,8 +986,7 @@ type SeradataSpacecraftDetailGetResponseOnOrbit struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1080,8 +1077,7 @@ type SeradataSpacecraftDetailGetResponseOnOrbitAntenna struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1157,8 +1153,7 @@ type SeradataSpacecraftDetailGetResponseOnOrbitBattery struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1324,8 +1319,7 @@ type SeradataSpacecraftDetailGetResponseOnOrbitOnorbitDetail struct {
 	VismagMean float64 `json:"vismagMean"`
 	// Minimum visual magnitude in M.
 	VismagMin float64 `json:"vismagMin"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1442,8 +1436,7 @@ type SeradataSpacecraftDetailGetResponseOnOrbitSolarArray struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1519,8 +1512,7 @@ type SeradataSpacecraftDetailGetResponseOnOrbitSolarArraySolarArray struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataMode          resp.Field
 		Name              resp.Field
@@ -1601,8 +1593,7 @@ type SeradataSpacecraftDetailGetResponseOnOrbitThruster struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1693,8 +1684,7 @@ type SeradataSpacecraftDetailGetResponseScientific struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1829,8 +1819,7 @@ type SeradataSpacecraftDetailGetResponseSeradataCommDetail struct {
 	UserUplinkFrom float64 `json:"userUplinkFrom"`
 	// Comm userUplinkTo in Ghz.
 	UserUplinkTo float64 `json:"userUplinkTo"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                   resp.Field
 		DataMode                                resp.Field
@@ -1953,8 +1942,7 @@ type SeradataSpacecraftDetailGetResponseSeradataEarlyWarning struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking              resp.Field
 		DataMode                           resp.Field
@@ -2060,8 +2048,7 @@ type SeradataSpacecraftDetailGetResponseSeradataNavigation struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2178,8 +2165,7 @@ type SeradataSpacecraftDetailGetResponseSeradataOpticalPayload struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking       resp.Field
 		DataMode                    resp.Field
@@ -2316,8 +2302,7 @@ type SeradataSpacecraftDetailGetResponseSeradataRadarPayload struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Wave length in meters.
 	WaveLength float64 `json:"waveLength"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                  resp.Field
 		DataMode                               resp.Field
@@ -2433,8 +2418,7 @@ type SeradataSpacecraftDetailGetResponseSeradataSigIntPayload struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -2713,8 +2697,7 @@ type SeradataSpacecraftDetailTupleResponse struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Youtube link of launch.
 	YoutubeLaunchLink string `json:"youtubeLaunchLink"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                    resp.Field
 		DataMode                                 resp.Field
@@ -2952,8 +2935,7 @@ type SeradataSpacecraftDetailTupleResponseOnOrbit struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -3044,8 +3026,7 @@ type SeradataSpacecraftDetailTupleResponseOnOrbitAntenna struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -3121,8 +3102,7 @@ type SeradataSpacecraftDetailTupleResponseOnOrbitBattery struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -3288,8 +3268,7 @@ type SeradataSpacecraftDetailTupleResponseOnOrbitOnorbitDetail struct {
 	VismagMean float64 `json:"vismagMean"`
 	// Minimum visual magnitude in M.
 	VismagMin float64 `json:"vismagMin"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -3408,8 +3387,7 @@ type SeradataSpacecraftDetailTupleResponseOnOrbitSolarArray struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -3485,8 +3463,7 @@ type SeradataSpacecraftDetailTupleResponseOnOrbitSolarArraySolarArray struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataMode          resp.Field
 		Name              resp.Field
@@ -3567,8 +3544,7 @@ type SeradataSpacecraftDetailTupleResponseOnOrbitThruster struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -3659,8 +3635,7 @@ type SeradataSpacecraftDetailTupleResponseScientific struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -3795,8 +3770,7 @@ type SeradataSpacecraftDetailTupleResponseSeradataCommDetail struct {
 	UserUplinkFrom float64 `json:"userUplinkFrom"`
 	// Comm userUplinkTo in Ghz.
 	UserUplinkTo float64 `json:"userUplinkTo"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                   resp.Field
 		DataMode                                resp.Field
@@ -3919,8 +3893,7 @@ type SeradataSpacecraftDetailTupleResponseSeradataEarlyWarning struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking              resp.Field
 		DataMode                           resp.Field
@@ -4028,8 +4001,7 @@ type SeradataSpacecraftDetailTupleResponseSeradataNavigation struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -4146,8 +4118,7 @@ type SeradataSpacecraftDetailTupleResponseSeradataOpticalPayload struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking       resp.Field
 		DataMode                    resp.Field
@@ -4284,8 +4255,7 @@ type SeradataSpacecraftDetailTupleResponseSeradataRadarPayload struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Wave length in meters.
 	WaveLength float64 `json:"waveLength"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                  resp.Field
 		DataMode                               resp.Field
@@ -4403,8 +4373,7 @@ type SeradataSpacecraftDetailTupleResponseSeradataSigIntPayload struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -4651,12 +4620,6 @@ type SeradataSpacecraftDetailNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataSpacecraftDetailNewParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 func (r SeradataSpacecraftDetailNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SeradataSpacecraftDetailNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4894,12 +4857,6 @@ type SeradataSpacecraftDetailUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataSpacecraftDetailUpdateParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 func (r SeradataSpacecraftDetailUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SeradataSpacecraftDetailUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4934,12 +4891,6 @@ type SeradataSpacecraftDetailListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataSpacecraftDetailListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [SeradataSpacecraftDetailListParams]'s query parameters as
 // `url.Values`.
 func (r SeradataSpacecraftDetailListParams) URLQuery() (v url.Values, err error) {
@@ -4955,12 +4906,6 @@ type SeradataSpacecraftDetailCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataSpacecraftDetailCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [SeradataSpacecraftDetailCountParams]'s query parameters as
 // `url.Values`.
 func (r SeradataSpacecraftDetailCountParams) URLQuery() (v url.Values, err error) {
@@ -4974,12 +4919,6 @@ type SeradataSpacecraftDetailGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataSpacecraftDetailGetParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [SeradataSpacecraftDetailGetParams]'s query parameters as
@@ -5000,12 +4939,6 @@ type SeradataSpacecraftDetailTupleParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataSpacecraftDetailTupleParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [SeradataSpacecraftDetailTupleParams]'s query parameters as

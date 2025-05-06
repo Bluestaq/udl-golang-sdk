@@ -252,10 +252,6 @@ type AirloadPlanUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirloadPlanUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r AirloadPlanUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow AirloadPlanUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -333,11 +329,6 @@ type AirloadPlanUpdateParamsAirLoadPlanHazmatActual struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirloadPlanUpdateParamsAirLoadPlanHazmatActual) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirloadPlanUpdateParamsAirLoadPlanHazmatActual) MarshalJSON() (data []byte, err error) {
 	type shadow AirloadPlanUpdateParamsAirLoadPlanHazmatActual
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -379,11 +370,6 @@ type AirloadPlanUpdateParamsAirLoadPlanHr struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirloadPlanUpdateParamsAirLoadPlanHr) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirloadPlanUpdateParamsAirLoadPlanHr) MarshalJSON() (data []byte, err error) {
 	type shadow AirloadPlanUpdateParamsAirLoadPlanHr
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -414,11 +400,6 @@ type AirloadPlanUpdateParamsAirLoadPlanPalletDetail struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirloadPlanUpdateParamsAirLoadPlanPalletDetail) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirloadPlanUpdateParamsAirLoadPlanPalletDetail) MarshalJSON() (data []byte, err error) {
 	type shadow AirloadPlanUpdateParamsAirLoadPlanPalletDetail
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -461,11 +442,6 @@ type AirloadPlanUpdateParamsAirLoadPlanPaxCargo struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirloadPlanUpdateParamsAirLoadPlanPaxCargo) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirloadPlanUpdateParamsAirLoadPlanPaxCargo) MarshalJSON() (data []byte, err error) {
 	type shadow AirloadPlanUpdateParamsAirLoadPlanPaxCargo
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -503,11 +479,6 @@ type AirloadPlanUpdateParamsAirLoadPlanUlnActual struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirloadPlanUpdateParamsAirLoadPlanUlnActual) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirloadPlanUpdateParamsAirLoadPlanUlnActual) MarshalJSON() (data []byte, err error) {
 	type shadow AirloadPlanUpdateParamsAirLoadPlanUlnActual
 	return param.MarshalObject(r, (*shadow)(&r))

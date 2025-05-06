@@ -215,8 +215,7 @@ type EngineDetailsFull struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Engine maximum thrust in a vacuum in Kilo-Newtons.
 	VacuumThrust float64 `json:"vacuumThrust"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -351,8 +350,7 @@ type EngineDetailsAbridged struct {
 	SpecificImpulse float64 `json:"specificImpulse"`
 	// Engine maximum thrust in a vacuum in Kilo-Newtons.
 	VacuumThrust float64 `json:"vacuumThrust"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -482,10 +480,6 @@ type EngineDetailNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EngineDetailNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r EngineDetailNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow EngineDetailNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -519,10 +513,6 @@ type EngineDetailGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EngineDetailGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EngineDetailGetParams]'s query parameters as `url.Values`.
 func (r EngineDetailGetParams) URLQuery() (v url.Values, err error) {
@@ -603,10 +593,6 @@ type EngineDetailUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EngineDetailUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r EngineDetailUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow EngineDetailUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -640,10 +626,6 @@ type EngineDetailListParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EngineDetailListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EngineDetailListParams]'s query parameters as `url.Values`.
 func (r EngineDetailListParams) URLQuery() (v url.Values, err error) {

@@ -241,8 +241,7 @@ type DiffofarrivalAbridged struct {
 	// and failed. If unable to correlate, the 'origObjectId' field may be populated
 	// with an internal data provider specific identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -464,8 +463,7 @@ type DiffofarrivalFull struct {
 	// and failed. If unable to correlate, the 'origObjectId' field may be populated
 	// with an internal data provider specific identifier.
 	Uct bool `json:"uct"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -674,10 +672,6 @@ type TdoaFdoaDiffofarrivalNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TdoaFdoaDiffofarrivalNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r TdoaFdoaDiffofarrivalNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow TdoaFdoaDiffofarrivalNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -715,10 +709,6 @@ type TdoaFdoaDiffofarrivalListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TdoaFdoaDiffofarrivalListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [TdoaFdoaDiffofarrivalListParams]'s query parameters as
 // `url.Values`.
 func (r TdoaFdoaDiffofarrivalListParams) URLQuery() (v url.Values, err error) {
@@ -737,10 +727,6 @@ type TdoaFdoaDiffofarrivalCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TdoaFdoaDiffofarrivalCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [TdoaFdoaDiffofarrivalCountParams]'s query parameters as
 // `url.Values`.
 func (r TdoaFdoaDiffofarrivalCountParams) URLQuery() (v url.Values, err error) {
@@ -753,12 +739,6 @@ func (r TdoaFdoaDiffofarrivalCountParams) URLQuery() (v url.Values, err error) {
 type TdoaFdoaDiffofarrivalNewBulkParams struct {
 	Body []TdoaFdoaDiffofarrivalNewBulkParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TdoaFdoaDiffofarrivalNewBulkParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r TdoaFdoaDiffofarrivalNewBulkParams) MarshalJSON() (data []byte, err error) {
@@ -913,11 +893,6 @@ type TdoaFdoaDiffofarrivalNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TdoaFdoaDiffofarrivalNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r TdoaFdoaDiffofarrivalNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow TdoaFdoaDiffofarrivalNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

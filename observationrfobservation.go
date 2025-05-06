@@ -402,8 +402,7 @@ type ObservationRfObservationListResponse struct {
 	URL string `json:"url"`
 	// Video bandwidth in Hz.
 	VideoBandwidth float64 `json:"videoBandwidth"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -824,8 +823,7 @@ type ObservationRfObservationGetResponse struct {
 	URL string `json:"url"`
 	// Video bandwidth in Hz.
 	VideoBandwidth float64 `json:"videoBandwidth"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1227,8 +1225,7 @@ type ObservationRfObservationTupleResponse struct {
 	URL string `json:"url"`
 	// Video bandwidth in Hz.
 	VideoBandwidth float64 `json:"videoBandwidth"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1628,12 +1625,6 @@ type ObservationRfObservationNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationRfObservationNewParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 func (r ObservationRfObservationNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow ObservationRfObservationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1685,12 +1676,6 @@ type ObservationRfObservationListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationRfObservationListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [ObservationRfObservationListParams]'s query parameters as
 // `url.Values`.
 func (r ObservationRfObservationListParams) URLQuery() (v url.Values, err error) {
@@ -1709,12 +1694,6 @@ type ObservationRfObservationCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationRfObservationCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [ObservationRfObservationCountParams]'s query parameters as
 // `url.Values`.
 func (r ObservationRfObservationCountParams) URLQuery() (v url.Values, err error) {
@@ -1727,12 +1706,6 @@ func (r ObservationRfObservationCountParams) URLQuery() (v url.Values, err error
 type ObservationRfObservationNewBulkParams struct {
 	Body []ObservationRfObservationNewBulkParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationRfObservationNewBulkParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r ObservationRfObservationNewBulkParams) MarshalJSON() (data []byte, err error) {
@@ -2029,11 +2002,6 @@ type ObservationRfObservationNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationRfObservationNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ObservationRfObservationNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow ObservationRfObservationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2052,12 +2020,6 @@ type ObservationRfObservationGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationRfObservationGetParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [ObservationRfObservationGetParams]'s query parameters as
@@ -2083,12 +2045,6 @@ type ObservationRfObservationTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationRfObservationTupleParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [ObservationRfObservationTupleParams]'s query parameters as
 // `url.Values`.
 func (r ObservationRfObservationTupleParams) URLQuery() (v url.Values, err error) {
@@ -2101,12 +2057,6 @@ func (r ObservationRfObservationTupleParams) URLQuery() (v url.Values, err error
 type ObservationRfObservationUnvalidatedPublishParams struct {
 	Body []ObservationRfObservationUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationRfObservationUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r ObservationRfObservationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -2403,11 +2353,6 @@ type ObservationRfObservationUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationRfObservationUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ObservationRfObservationUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow ObservationRfObservationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

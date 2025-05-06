@@ -238,8 +238,7 @@ type LaunchDetectionListResponse struct {
 	// Application user who last updated the row in the database, set by the system
 	// automatically and ignored on create/edit operations.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -386,8 +385,7 @@ type LaunchDetectionGetResponse struct {
 	// Application user who last updated the row in the database, set by the system
 	// automatically and ignored on create/edit operations.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -535,8 +533,7 @@ type LaunchDetectionTupleResponse struct {
 	// Application user who last updated the row in the database, set by the system
 	// automatically and ignored on create/edit operations.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -673,10 +670,6 @@ type LaunchDetectionNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchDetectionNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r LaunchDetectionNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow LaunchDetectionNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -779,10 +772,6 @@ type LaunchDetectionUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchDetectionUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r LaunchDetectionUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow LaunchDetectionUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -817,10 +806,6 @@ type LaunchDetectionListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchDetectionListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [LaunchDetectionListParams]'s query parameters as
 // `url.Values`.
 func (r LaunchDetectionListParams) URLQuery() (v url.Values, err error) {
@@ -836,10 +821,6 @@ type LaunchDetectionCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchDetectionCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [LaunchDetectionCountParams]'s query parameters as
 // `url.Values`.
 func (r LaunchDetectionCountParams) URLQuery() (v url.Values, err error) {
@@ -854,10 +835,6 @@ type LaunchDetectionGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchDetectionGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [LaunchDetectionGetParams]'s query parameters as
 // `url.Values`.
@@ -878,10 +855,6 @@ type LaunchDetectionTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LaunchDetectionTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [LaunchDetectionTupleParams]'s query parameters as
 // `url.Values`.

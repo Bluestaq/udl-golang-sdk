@@ -234,8 +234,7 @@ type SensorListResponse struct {
 	SensorType  SensorListResponseSensorType   `json:"sensorType"`
 	// Optional short name for the sensor.
 	ShortName string `json:"shortName"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -370,8 +369,7 @@ type SensorListResponseEntity struct {
 	Taskable bool `json:"taskable"`
 	// Terrestrial identifier of this entity, if applicable.
 	TerrestrialID string `json:"terrestrialId"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -459,8 +457,7 @@ type SensorListResponseEntityLocation struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -568,8 +565,7 @@ type SensorListResponseEntityOnOrbit struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -829,8 +825,7 @@ type SensorListResponseSensorcharacteristic struct {
 	// Peformance zone-2 minimum range, in kilometers. Note that the zones apply only
 	// to the PSR/Search radars.
 	Z2MinRange float64 `json:"z2MinRange"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -996,8 +991,7 @@ type SensorListResponseSensorlimitsCollection struct {
 	// observation pattern or star. If the limit rectangle is parallel to the horizon,
 	// the left and right upper elevation limits would be equal. (Degrees).
 	UpperRightElevationLimit float64 `json:"upperRightElevationLimit"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking    resp.Field
 		DataMode                 resp.Field
@@ -1039,8 +1033,7 @@ type SensorListResponseSensorObservationType struct {
 	OrigNetwork string `json:"origNetwork"`
 	// The observation measurement type produced by a sensor.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID          resp.Field
 		CreatedAt   resp.Field
@@ -1099,8 +1092,7 @@ type SensorListResponseSensorStat struct {
 	// Application user who last updated the row in the database, set by the system
 	// automatically and ignored on create/edit operations.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1136,8 +1128,7 @@ type SensorListResponseSensorType struct {
 	OrigNetwork string `json:"origNetwork"`
 	// The specific sensor type and/or surveillance capability of this sensor.
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ID          resp.Field
 		CreatedAt   resp.Field
@@ -1234,8 +1225,7 @@ type SensorGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -1388,8 +1378,7 @@ type SensorGetResponseEntity struct {
 	UpdatedBy string `json:"updatedBy"`
 	// List of URLs to additional details/documents for this entity.
 	URLs []string `json:"urls"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1524,8 +1513,7 @@ type SensorGetResponseEntityOnOrbit struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1616,8 +1604,7 @@ type SensorGetResponseEntityOnOrbitAntenna struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1693,8 +1680,7 @@ type SensorGetResponseEntityOnOrbitBattery struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1860,8 +1846,7 @@ type SensorGetResponseEntityOnOrbitOnorbitDetail struct {
 	VismagMean float64 `json:"vismagMean"`
 	// Minimum visual magnitude in M.
 	VismagMin float64 `json:"vismagMin"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1978,8 +1963,7 @@ type SensorGetResponseEntityOnOrbitSolarArray struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2055,8 +2039,7 @@ type SensorGetResponseEntityOnOrbitSolarArraySolarArray struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataMode          resp.Field
 		Name              resp.Field
@@ -2135,8 +2118,7 @@ type SensorGetResponseEntityOnOrbitThruster struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2495,8 +2477,7 @@ type SensorGetResponseEntityOperatingUnit struct {
 	// World Aeronautical Chart identifier for the area in which a designated operating
 	// unit is located.
 	Wac string `json:"wac"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2628,8 +2609,7 @@ type SensorGetResponseEntityOperatingUnitOperatingUnitRemark struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2759,8 +2739,7 @@ type SensorGetResponseEntityRfBand struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2867,8 +2846,7 @@ type SensorGetResponseEntityStatusCollection struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -2955,8 +2933,7 @@ type SensorGetResponseEntityStatusCollectionSubStatusCollection struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -3216,8 +3193,7 @@ type SensorGetResponseSensorcharacteristic struct {
 	// Peformance zone-2 minimum range, in kilometers. Note that the zones apply only
 	// to the PSR/Search radars.
 	Z2MinRange float64 `json:"z2MinRange"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -3390,8 +3366,7 @@ type SensorGetResponseSensorlimitsCollection struct {
 	// observation pattern or star. If the limit rectangle is parallel to the horizon,
 	// the left and right upper elevation limits would be equal. (Degrees).
 	UpperRightElevationLimit float64 `json:"upperRightElevationLimit"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking    resp.Field
 		DataMode                 resp.Field
@@ -3459,8 +3434,7 @@ type SensorGetResponseSensorObservationType struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataMode    resp.Field
 		Source      resp.Field
@@ -3523,8 +3497,7 @@ type SensorGetResponseSensorStat struct {
 	// Application user who last updated the row in the database, set by the system
 	// automatically and ignored on create/edit operations.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -3584,8 +3557,7 @@ type SensorGetResponseSensorType struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataMode    resp.Field
 		Source      resp.Field
@@ -3686,8 +3658,7 @@ type SensorTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -3840,8 +3811,7 @@ type SensorTupleResponseEntity struct {
 	UpdatedBy string `json:"updatedBy"`
 	// List of URLs to additional details/documents for this entity.
 	URLs []string `json:"urls"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -3976,8 +3946,7 @@ type SensorTupleResponseEntityOnOrbit struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -4068,8 +4037,7 @@ type SensorTupleResponseEntityOnOrbitAntenna struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -4145,8 +4113,7 @@ type SensorTupleResponseEntityOnOrbitBattery struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -4312,8 +4279,7 @@ type SensorTupleResponseEntityOnOrbitOnorbitDetail struct {
 	VismagMean float64 `json:"vismagMean"`
 	// Minimum visual magnitude in M.
 	VismagMin float64 `json:"vismagMin"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -4430,8 +4396,7 @@ type SensorTupleResponseEntityOnOrbitSolarArray struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -4507,8 +4472,7 @@ type SensorTupleResponseEntityOnOrbitSolarArraySolarArray struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataMode          resp.Field
 		Name              resp.Field
@@ -4587,8 +4551,7 @@ type SensorTupleResponseEntityOnOrbitThruster struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -4947,8 +4910,7 @@ type SensorTupleResponseEntityOperatingUnit struct {
 	// World Aeronautical Chart identifier for the area in which a designated operating
 	// unit is located.
 	Wac string `json:"wac"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -5080,8 +5042,7 @@ type SensorTupleResponseEntityOperatingUnitOperatingUnitRemark struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -5213,8 +5174,7 @@ type SensorTupleResponseEntityRfBand struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -5321,8 +5281,7 @@ type SensorTupleResponseEntityStatusCollection struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -5409,8 +5368,7 @@ type SensorTupleResponseEntityStatusCollectionSubStatusCollection struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -5670,8 +5628,7 @@ type SensorTupleResponseSensorcharacteristic struct {
 	// Peformance zone-2 minimum range, in kilometers. Note that the zones apply only
 	// to the PSR/Search radars.
 	Z2MinRange float64 `json:"z2MinRange"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -5844,8 +5801,7 @@ type SensorTupleResponseSensorlimitsCollection struct {
 	// observation pattern or star. If the limit rectangle is parallel to the horizon,
 	// the left and right upper elevation limits would be equal. (Degrees).
 	UpperRightElevationLimit float64 `json:"upperRightElevationLimit"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking    resp.Field
 		DataMode                 resp.Field
@@ -5913,8 +5869,7 @@ type SensorTupleResponseSensorObservationType struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataMode    resp.Field
 		Source      resp.Field
@@ -5977,8 +5932,7 @@ type SensorTupleResponseSensorStat struct {
 	// Application user who last updated the row in the database, set by the system
 	// automatically and ignored on create/edit operations.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -6038,8 +5992,7 @@ type SensorTupleResponseSensorType struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataMode    resp.Field
 		Source      resp.Field
@@ -6127,10 +6080,6 @@ type SensorNewParams struct {
 	SensorType  SensorNewParamsSensorType   `json:"sensorType,omitzero"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r SensorNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SensorNewParams
@@ -6244,9 +6193,6 @@ type SensorNewParamsEntity struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorNewParamsEntity) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r SensorNewParamsEntity) MarshalJSON() (data []byte, err error) {
 	type shadow SensorNewParamsEntity
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -6351,9 +6297,6 @@ type SensorNewParamsEntityOnOrbit struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorNewParamsEntityOnOrbit) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r SensorNewParamsEntityOnOrbit) MarshalJSON() (data []byte, err error) {
 	type shadow SensorNewParamsEntityOnOrbit
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -6602,11 +6545,6 @@ type SensorNewParamsSensorcharacteristic struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorNewParamsSensorcharacteristic) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SensorNewParamsSensorcharacteristic) MarshalJSON() (data []byte, err error) {
 	type shadow SensorNewParamsSensorcharacteristic
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -6697,11 +6635,6 @@ type SensorNewParamsSensorlimitsCollection struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorNewParamsSensorlimitsCollection) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SensorNewParamsSensorlimitsCollection) MarshalJSON() (data []byte, err error) {
 	type shadow SensorNewParamsSensorlimitsCollection
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -6729,11 +6662,6 @@ type SensorNewParamsSensorObservationType struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorNewParamsSensorObservationType) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SensorNewParamsSensorObservationType) MarshalJSON() (data []byte, err error) {
 	type shadow SensorNewParamsSensorObservationType
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -6785,9 +6713,6 @@ type SensorNewParamsSensorStat struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorNewParamsSensorStat) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r SensorNewParamsSensorStat) MarshalJSON() (data []byte, err error) {
 	type shadow SensorNewParamsSensorStat
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -6815,9 +6740,6 @@ type SensorNewParamsSensorType struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorNewParamsSensorType) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r SensorNewParamsSensorType) MarshalJSON() (data []byte, err error) {
 	type shadow SensorNewParamsSensorType
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -6889,10 +6811,6 @@ type SensorUpdateParams struct {
 	SensorType  SensorUpdateParamsSensorType   `json:"sensorType,omitzero"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r SensorUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SensorUpdateParams
@@ -7006,9 +6924,6 @@ type SensorUpdateParamsEntity struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorUpdateParamsEntity) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r SensorUpdateParamsEntity) MarshalJSON() (data []byte, err error) {
 	type shadow SensorUpdateParamsEntity
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -7113,9 +7028,6 @@ type SensorUpdateParamsEntityOnOrbit struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorUpdateParamsEntityOnOrbit) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r SensorUpdateParamsEntityOnOrbit) MarshalJSON() (data []byte, err error) {
 	type shadow SensorUpdateParamsEntityOnOrbit
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -7364,11 +7276,6 @@ type SensorUpdateParamsSensorcharacteristic struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorUpdateParamsSensorcharacteristic) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SensorUpdateParamsSensorcharacteristic) MarshalJSON() (data []byte, err error) {
 	type shadow SensorUpdateParamsSensorcharacteristic
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -7459,11 +7366,6 @@ type SensorUpdateParamsSensorlimitsCollection struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorUpdateParamsSensorlimitsCollection) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SensorUpdateParamsSensorlimitsCollection) MarshalJSON() (data []byte, err error) {
 	type shadow SensorUpdateParamsSensorlimitsCollection
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -7491,11 +7393,6 @@ type SensorUpdateParamsSensorObservationType struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorUpdateParamsSensorObservationType) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SensorUpdateParamsSensorObservationType) MarshalJSON() (data []byte, err error) {
 	type shadow SensorUpdateParamsSensorObservationType
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -7547,9 +7444,6 @@ type SensorUpdateParamsSensorStat struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorUpdateParamsSensorStat) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r SensorUpdateParamsSensorStat) MarshalJSON() (data []byte, err error) {
 	type shadow SensorUpdateParamsSensorStat
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -7577,9 +7471,6 @@ type SensorUpdateParamsSensorType struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorUpdateParamsSensorType) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r SensorUpdateParamsSensorType) MarshalJSON() (data []byte, err error) {
 	type shadow SensorUpdateParamsSensorType
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -7590,10 +7481,6 @@ type SensorListParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SensorListParams]'s query parameters as `url.Values`.
 func (r SensorListParams) URLQuery() (v url.Values, err error) {
@@ -7609,10 +7496,6 @@ type SensorCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SensorCountParams]'s query parameters as `url.Values`.
 func (r SensorCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -7626,10 +7509,6 @@ type SensorGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SensorGetParams]'s query parameters as `url.Values`.
 func (r SensorGetParams) URLQuery() (v url.Values, err error) {
@@ -7649,10 +7528,6 @@ type SensorTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SensorTupleParams]'s query parameters as `url.Values`.
 func (r SensorTupleParams) URLQuery() (v url.Values, err error) {

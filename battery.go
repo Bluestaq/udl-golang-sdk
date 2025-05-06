@@ -196,8 +196,7 @@ type BatteryAbridged struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataMode    resp.Field
 		Name        resp.Field
@@ -288,8 +287,7 @@ type BatteryFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DataMode       resp.Field
 		Name           resp.Field
@@ -368,10 +366,6 @@ type BatteryNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BatteryNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r BatteryNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow BatteryNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -405,10 +399,6 @@ type BatteryGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BatteryGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [BatteryGetParams]'s query parameters as `url.Values`.
 func (r BatteryGetParams) URLQuery() (v url.Values, err error) {
@@ -450,10 +440,6 @@ type BatteryUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BatteryUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r BatteryUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow BatteryUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -488,10 +474,6 @@ type BatteryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BatteryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [BatteryListParams]'s query parameters as `url.Values`.
 func (r BatteryListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -505,10 +487,6 @@ type BatteryCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BatteryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [BatteryCountParams]'s query parameters as `url.Values`.
 func (r BatteryCountParams) URLQuery() (v url.Values, err error) {
@@ -528,10 +506,6 @@ type BatteryTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f BatteryTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [BatteryTupleParams]'s query parameters as `url.Values`.
 func (r BatteryTupleParams) URLQuery() (v url.Values, err error) {

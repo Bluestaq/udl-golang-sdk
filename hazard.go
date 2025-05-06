@@ -310,8 +310,7 @@ type HazardListResponse struct {
 	ReadingValues []float64 `json:"readingValues"`
 	// The Atomic Number of the material associated with this detection.
 	Z int64 `json:"z"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Alarms                resp.Field
 		AlarmValues           resp.Field
@@ -550,8 +549,7 @@ type HazardGetResponse struct {
 	ReadingValues []float64 `json:"readingValues"`
 	// The Atomic Number of the material associated with this detection.
 	Z int64 `json:"z"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Alarms                resp.Field
 		AlarmValues           resp.Field
@@ -790,8 +788,7 @@ type HazardTupleResponse struct {
 	ReadingValues []float64 `json:"readingValues"`
 	// The Atomic Number of the material associated with this detection.
 	Z int64 `json:"z"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Alarms                resp.Field
 		AlarmValues           resp.Field
@@ -1020,10 +1017,6 @@ type HazardNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f HazardNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r HazardNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow HazardNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1061,10 +1054,6 @@ type HazardListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f HazardListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [HazardListParams]'s query parameters as `url.Values`.
 func (r HazardListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1082,10 +1071,6 @@ type HazardCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f HazardCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [HazardCountParams]'s query parameters as `url.Values`.
 func (r HazardCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1098,10 +1083,6 @@ type HazardNewBulkParams struct {
 	Body []HazardNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f HazardNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r HazardNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1276,9 +1257,6 @@ type HazardNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f HazardNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r HazardNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow HazardNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1295,10 +1273,6 @@ type HazardGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f HazardGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [HazardGetParams]'s query parameters as `url.Values`.
 func (r HazardGetParams) URLQuery() (v url.Values, err error) {
@@ -1321,10 +1295,6 @@ type HazardTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f HazardTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [HazardTupleParams]'s query parameters as `url.Values`.
 func (r HazardTupleParams) URLQuery() (v url.Values, err error) {

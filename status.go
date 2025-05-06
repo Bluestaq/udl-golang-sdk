@@ -246,8 +246,7 @@ type StatusListResponse struct {
 	//
 	// Any of "FMC", "NMC", "PMC", "UNK".
 	SysCap StatusListResponseSysCap `json:"sysCap"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -372,8 +371,7 @@ type StatusListResponseSubStatusCollection struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -477,8 +475,7 @@ type StatusGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -610,8 +607,7 @@ type StatusGetResponseSubStatusCollection struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -717,8 +713,7 @@ type StatusGetByEntityIDResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -850,8 +845,7 @@ type StatusGetByEntityIDResponseSubStatusCollection struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -957,8 +951,7 @@ type StatusGetByEntityTypeResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -1090,8 +1083,7 @@ type StatusGetByEntityTypeResponseSubStatusCollection struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1197,8 +1189,7 @@ type StatusTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking  resp.Field
 		DataMode               resp.Field
@@ -1330,8 +1321,7 @@ type StatusTupleResponseSubStatusCollection struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1424,10 +1414,6 @@ type StatusNewParams struct {
 	SysCap StatusNewParamsSysCap `json:"sysCap,omitzero"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatusNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r StatusNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow StatusNewParams
@@ -1535,11 +1521,6 @@ type StatusNewParamsSubStatusCollection struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatusNewParamsSubStatusCollection) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r StatusNewParamsSubStatusCollection) MarshalJSON() (data []byte, err error) {
 	type shadow StatusNewParamsSubStatusCollection
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1623,10 +1604,6 @@ type StatusUpdateParams struct {
 	SysCap StatusUpdateParamsSysCap `json:"sysCap,omitzero"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatusUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r StatusUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow StatusUpdateParams
@@ -1734,11 +1711,6 @@ type StatusUpdateParamsSubStatusCollection struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatusUpdateParamsSubStatusCollection) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r StatusUpdateParamsSubStatusCollection) MarshalJSON() (data []byte, err error) {
 	type shadow StatusUpdateParamsSubStatusCollection
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1772,10 +1744,6 @@ type StatusListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatusListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [StatusListParams]'s query parameters as `url.Values`.
 func (r StatusListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1789,10 +1757,6 @@ type StatusCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatusCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [StatusCountParams]'s query parameters as `url.Values`.
 func (r StatusCountParams) URLQuery() (v url.Values, err error) {
@@ -1808,10 +1772,6 @@ type StatusGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatusGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [StatusGetParams]'s query parameters as `url.Values`.
 func (r StatusGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1825,10 +1785,6 @@ type StatusGetByEntityIDParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatusGetByEntityIDParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [StatusGetByEntityIDParams]'s query parameters as
 // `url.Values`.
@@ -1844,10 +1800,6 @@ type StatusGetByEntityTypeParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatusGetByEntityTypeParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [StatusGetByEntityTypeParams]'s query parameters as
 // `url.Values`.
@@ -1868,10 +1820,6 @@ type StatusTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f StatusTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [StatusTupleParams]'s query parameters as `url.Values`.
 func (r StatusTupleParams) URLQuery() (v url.Values, err error) {

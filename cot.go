@@ -80,10 +80,6 @@ type CotNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CotNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r CotNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow CotNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -100,9 +96,6 @@ type CotNewParamsCotChatData struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CotNewParamsCotChatData) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r CotNewParamsCotChatData) MarshalJSON() (data []byte, err error) {
 	type shadow CotNewParamsCotChatData
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -122,9 +115,6 @@ type CotNewParamsCotPositionData struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CotNewParamsCotPositionData) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r CotNewParamsCotPositionData) MarshalJSON() (data []byte, err error) {
 	type shadow CotNewParamsCotPositionData
 	return param.MarshalObject(r, (*shadow)(&r))

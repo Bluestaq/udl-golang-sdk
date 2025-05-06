@@ -255,8 +255,7 @@ type RfBandListResponse struct {
 	//
 	// Any of "COMM", "TTC", "OPS", "OTHER".
 	Purpose RfBandListResponsePurpose `json:"purpose"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -450,8 +449,7 @@ type RfBandGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -647,8 +645,7 @@ type RfBandTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -832,10 +829,6 @@ type RfBandNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfBandNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r RfBandNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow RfBandNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -987,10 +980,6 @@ type RfBandUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfBandUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r RfBandUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow RfBandUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1058,10 +1047,6 @@ type RfBandListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfBandListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [RfBandListParams]'s query parameters as `url.Values`.
 func (r RfBandListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1076,10 +1061,6 @@ type RfBandCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfBandCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [RfBandCountParams]'s query parameters as `url.Values`.
 func (r RfBandCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1093,10 +1074,6 @@ type RfBandGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfBandGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [RfBandGetParams]'s query parameters as `url.Values`.
 func (r RfBandGetParams) URLQuery() (v url.Values, err error) {
@@ -1116,10 +1093,6 @@ type RfBandTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f RfBandTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [RfBandTupleParams]'s query parameters as `url.Values`.
 func (r RfBandTupleParams) URLQuery() (v url.Values, err error) {

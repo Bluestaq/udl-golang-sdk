@@ -247,8 +247,7 @@ type SeradataRadarPayloadListResponse struct {
 	TransmitPolarization string `json:"transmitPolarization"`
 	// Wave length in meters.
 	WaveLength float64 `json:"waveLength"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                  resp.Field
 		DataMode                               resp.Field
@@ -410,8 +409,7 @@ type SeradataRadarPayloadGetResponse struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Wave length in meters.
 	WaveLength float64 `json:"waveLength"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                  resp.Field
 		DataMode                               resp.Field
@@ -575,8 +573,7 @@ type SeradataRadarPayloadTupleResponse struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Wave length in meters.
 	WaveLength float64 `json:"waveLength"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                  resp.Field
 		DataMode                               resp.Field
@@ -729,10 +726,6 @@ type SeradataRadarPayloadNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataRadarPayloadNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SeradataRadarPayloadNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SeradataRadarPayloadNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -844,10 +837,6 @@ type SeradataRadarPayloadUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataRadarPayloadUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SeradataRadarPayloadUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SeradataRadarPayloadUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -882,10 +871,6 @@ type SeradataRadarPayloadListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataRadarPayloadListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SeradataRadarPayloadListParams]'s query parameters as
 // `url.Values`.
 func (r SeradataRadarPayloadListParams) URLQuery() (v url.Values, err error) {
@@ -901,10 +886,6 @@ type SeradataRadarPayloadCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataRadarPayloadCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SeradataRadarPayloadCountParams]'s query parameters as
 // `url.Values`.
 func (r SeradataRadarPayloadCountParams) URLQuery() (v url.Values, err error) {
@@ -919,10 +900,6 @@ type SeradataRadarPayloadGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataRadarPayloadGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SeradataRadarPayloadGetParams]'s query parameters as
 // `url.Values`.
@@ -943,10 +920,6 @@ type SeradataRadarPayloadTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeradataRadarPayloadTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SeradataRadarPayloadTupleParams]'s query parameters as
 // `url.Values`.

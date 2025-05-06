@@ -316,8 +316,7 @@ type SgiHistoryListResponse struct {
 	// 54 day Y10.7 index for 85-90 km heating of N2, O2, H2O, NO by solar coronal.
 	// 0.1-0.8 nm and Lya 121 nm emissions in x10-22 Watts per meter squared per Hertz.
 	Y54 float64 `json:"y54"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -455,10 +454,6 @@ type SgiHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SgiHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SgiHistoryListParams]'s query parameters as `url.Values`.
 func (r SgiHistoryListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -498,10 +493,6 @@ type SgiHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SgiHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SgiHistoryAodrParams]'s query parameters as `url.Values`.
 func (r SgiHistoryAodrParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -525,10 +516,6 @@ type SgiHistoryCountParams struct {
 	SgiDate param.Opt[time.Time] `query:"sgiDate,omitzero" format:"date-time" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SgiHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SgiHistoryCountParams]'s query parameters as `url.Values`.
 func (r SgiHistoryCountParams) URLQuery() (v url.Values, err error) {

@@ -163,8 +163,7 @@ type GlobalAtmosphericModelHistoryQueryResponse struct {
 	StepLat float64 `json:"stepLat"`
 	// Separation in longitude between subsequent model outputs, in degrees.
 	StepLon float64 `json:"stepLon"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -237,12 +236,6 @@ type GlobalAtmosphericModelHistoryCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GlobalAtmosphericModelHistoryCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [GlobalAtmosphericModelHistoryCountParams]'s query
 // parameters as `url.Values`.
 func (r GlobalAtmosphericModelHistoryCountParams) URLQuery() (v url.Values, err error) {
@@ -263,12 +256,6 @@ type GlobalAtmosphericModelHistoryQueryParams struct {
 	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GlobalAtmosphericModelHistoryQueryParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [GlobalAtmosphericModelHistoryQueryParams]'s query
@@ -302,12 +289,6 @@ type GlobalAtmosphericModelHistoryWriteAodrParams struct {
 	// valid values are: JSON and CSV.
 	OutputFormat param.Opt[string] `query:"outputFormat,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GlobalAtmosphericModelHistoryWriteAodrParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [GlobalAtmosphericModelHistoryWriteAodrParams]'s query

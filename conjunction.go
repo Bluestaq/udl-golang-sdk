@@ -405,8 +405,7 @@ type ConjunctionAbridged struct {
 	VolExitTime time.Time `json:"volExitTime" format:"date-time"`
 	// The shape (BOX, ELLIPSOID) of the screening volume.
 	VolShape string `json:"volShape"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -926,8 +925,7 @@ type ConjunctionAbridgedStateVector1 struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1451,8 +1449,7 @@ type ConjunctionAbridgedStateVector2 struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1781,8 +1778,7 @@ type ConjunctionFull struct {
 	VolExitTime time.Time `json:"volExitTime" format:"date-time"`
 	// The shape (BOX, ELLIPSOID) of the screening volume.
 	VolShape string `json:"volShape"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2333,8 +2329,7 @@ type ConjunctionFullStateVector1 struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -2892,8 +2887,7 @@ type ConjunctionFullStateVector2 struct {
 	// allow a data source to provide an equivalent vector in a different cartesian
 	// frame than the primary vector.
 	ZvelAlt2 float64 `json:"zvelAlt2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -3013,10 +3007,6 @@ type ConjunctionGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ConjunctionGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ConjunctionGetParams]'s query parameters as `url.Values`.
 func (r ConjunctionGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -3033,10 +3023,6 @@ type ConjunctionListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ConjunctionListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ConjunctionListParams]'s query parameters as `url.Values`.
 func (r ConjunctionListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -3052,10 +3038,6 @@ type ConjunctionCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ConjunctionCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ConjunctionCountParams]'s query parameters as `url.Values`.
 func (r ConjunctionCountParams) URLQuery() (v url.Values, err error) {
@@ -3274,10 +3256,6 @@ type ConjunctionNewUdlParams struct {
 	Tags []string `json:"tags,omitzero"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ConjunctionNewUdlParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r ConjunctionNewUdlParams) MarshalJSON() (data []byte, err error) {
 	type shadow ConjunctionNewUdlParams
@@ -3759,11 +3737,6 @@ type ConjunctionNewUdlParamsStateVector1 struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ConjunctionNewUdlParamsStateVector1) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ConjunctionNewUdlParamsStateVector1) MarshalJSON() (data []byte, err error) {
 	type shadow ConjunctionNewUdlParamsStateVector1
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4224,11 +4197,6 @@ type ConjunctionNewUdlParamsStateVector2 struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ConjunctionNewUdlParamsStateVector2) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ConjunctionNewUdlParamsStateVector2) MarshalJSON() (data []byte, err error) {
 	type shadow ConjunctionNewUdlParamsStateVector2
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4250,10 +4218,6 @@ type ConjunctionNewBulkParams struct {
 	Body []ConjunctionNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ConjunctionNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r ConjunctionNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -4481,9 +4445,6 @@ type ConjunctionNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ConjunctionNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r ConjunctionNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow ConjunctionNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4938,11 +4899,6 @@ type ConjunctionNewBulkParamsBodyStateVector1 struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ConjunctionNewBulkParamsBodyStateVector1) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ConjunctionNewBulkParamsBodyStateVector1) MarshalJSON() (data []byte, err error) {
 	type shadow ConjunctionNewBulkParamsBodyStateVector1
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -5403,11 +5359,6 @@ type ConjunctionNewBulkParamsBodyStateVector2 struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ConjunctionNewBulkParamsBodyStateVector2) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ConjunctionNewBulkParamsBodyStateVector2) MarshalJSON() (data []byte, err error) {
 	type shadow ConjunctionNewBulkParamsBodyStateVector2
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -5437,10 +5388,6 @@ type ConjunctionGetHistoryParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ConjunctionGetHistoryParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ConjunctionGetHistoryParams]'s query parameters as
 // `url.Values`.
 func (r ConjunctionGetHistoryParams) URLQuery() (v url.Values, err error) {
@@ -5463,10 +5410,6 @@ type ConjunctionTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ConjunctionTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ConjunctionTupleParams]'s query parameters as `url.Values`.
 func (r ConjunctionTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -5478,12 +5421,6 @@ func (r ConjunctionTupleParams) URLQuery() (v url.Values, err error) {
 type ConjunctionUnvalidatedPublishParams struct {
 	Body []ConjunctionUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ConjunctionUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r ConjunctionUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -5712,11 +5649,6 @@ type ConjunctionUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ConjunctionUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ConjunctionUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow ConjunctionUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -6171,11 +6103,6 @@ type ConjunctionUnvalidatedPublishParamsBodyStateVector1 struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ConjunctionUnvalidatedPublishParamsBodyStateVector1) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ConjunctionUnvalidatedPublishParamsBodyStateVector1) MarshalJSON() (data []byte, err error) {
 	type shadow ConjunctionUnvalidatedPublishParamsBodyStateVector1
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -6636,11 +6563,6 @@ type ConjunctionUnvalidatedPublishParamsBodyStateVector2 struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ConjunctionUnvalidatedPublishParamsBodyStateVector2) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ConjunctionUnvalidatedPublishParamsBodyStateVector2) MarshalJSON() (data []byte, err error) {
 	type shadow ConjunctionUnvalidatedPublishParamsBodyStateVector2
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -6677,12 +6599,6 @@ type ConjunctionUploadConjunctionDataMessageParams struct {
 	// UDL team.
 	Tags param.Opt[string] `query:"tags,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ConjunctionUploadConjunctionDataMessageParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r ConjunctionUploadConjunctionDataMessageParams) MarshalMultipart() (data []byte, contentType string, err error) {

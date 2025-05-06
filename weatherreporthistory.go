@@ -398,8 +398,7 @@ type WeatherReportFull struct {
 	WindSpdAvg float64 `json:"windSpdAvg"`
 	// Boolean describing whether or not the wind direction and/or speed is variable.
 	WindVar bool `json:"windVar"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -534,10 +533,6 @@ type WeatherReportHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherReportHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [WeatherReportHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r WeatherReportHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -571,10 +566,6 @@ type WeatherReportHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherReportHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [WeatherReportHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r WeatherReportHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -592,10 +583,6 @@ type WeatherReportHistoryCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherReportHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [WeatherReportHistoryCountParams]'s query parameters as
 // `url.Values`.

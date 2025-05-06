@@ -319,8 +319,7 @@ type ObservationMonoradarListResponse struct {
 	Tti string `json:"tti"`
 	// Warning/Error Conditions and Target Classification.
 	Wectc []string `json:"wectc"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -617,8 +616,7 @@ type ObservationMonoradarTupleResponse struct {
 	Tti string `json:"tti"`
 	// Warning/Error Conditions and Target Classification.
 	Wectc []string `json:"wectc"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -736,10 +734,6 @@ type ObservationMonoradarListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationMonoradarListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ObservationMonoradarListParams]'s query parameters as
 // `url.Values`.
 func (r ObservationMonoradarListParams) URLQuery() (v url.Values, err error) {
@@ -758,10 +752,6 @@ type ObservationMonoradarCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationMonoradarCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ObservationMonoradarCountParams]'s query parameters as
 // `url.Values`.
 func (r ObservationMonoradarCountParams) URLQuery() (v url.Values, err error) {
@@ -774,12 +764,6 @@ func (r ObservationMonoradarCountParams) URLQuery() (v url.Values, err error) {
 type ObservationMonoradarNewBulkParams struct {
 	Body []ObservationMonoradarNewBulkParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationMonoradarNewBulkParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r ObservationMonoradarNewBulkParams) MarshalJSON() (data []byte, err error) {
@@ -980,11 +964,6 @@ type ObservationMonoradarNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationMonoradarNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ObservationMonoradarNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow ObservationMonoradarNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1010,10 +989,6 @@ type ObservationMonoradarTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationMonoradarTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ObservationMonoradarTupleParams]'s query parameters as
 // `url.Values`.
 func (r ObservationMonoradarTupleParams) URLQuery() (v url.Values, err error) {
@@ -1026,12 +1001,6 @@ func (r ObservationMonoradarTupleParams) URLQuery() (v url.Values, err error) {
 type ObservationMonoradarUnvalidatedPublishParams struct {
 	Body []ObservationMonoradarUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationMonoradarUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r ObservationMonoradarUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -1232,11 +1201,6 @@ type ObservationMonoradarUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationMonoradarUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ObservationMonoradarUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow ObservationMonoradarUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

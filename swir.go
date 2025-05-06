@@ -204,8 +204,7 @@ type SwirListResponse struct {
 	// The angle, in degrees, between the target-to-observer vector and the
 	// target-to-sun vector.
 	SolarPhaseAngle float64 `json:"solarPhaseAngle"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -321,10 +320,6 @@ type SwirNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SwirNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SwirNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SwirNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -361,10 +356,6 @@ type SwirListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SwirListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SwirListParams]'s query parameters as `url.Values`.
 func (r SwirListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -381,10 +372,6 @@ type SwirCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SwirCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SwirCountParams]'s query parameters as `url.Values`.
 func (r SwirCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -397,10 +384,6 @@ type SwirNewBulkParams struct {
 	Body []SwirNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SwirNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r SwirNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -482,9 +465,6 @@ type SwirNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SwirNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r SwirNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SwirNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -501,10 +481,6 @@ type SwirGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SwirGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SwirGetParams]'s query parameters as `url.Values`.
 func (r SwirGetParams) URLQuery() (v url.Values, err error) {
@@ -526,10 +502,6 @@ type SwirTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SwirTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SwirTupleParams]'s query parameters as `url.Values`.
 func (r SwirTupleParams) URLQuery() (v url.Values, err error) {

@@ -181,8 +181,7 @@ type LogisticsRemarksFull struct {
 	Remark string `json:"remark"`
 	// User who published the remark.
 	Username string `json:"username"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		LastChanged resp.Field
 		Remark      resp.Field
@@ -303,8 +302,7 @@ type LogisticsSupportListResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking        resp.Field
 		DataMode                     resp.Field
@@ -380,8 +378,7 @@ type LogisticsSupportListResponseLogisticsDiscrepancyInfo struct {
 	Jcn string `json:"jcn"`
 	// The job start time, in ISO 8601 UTC format with millisecond precision.
 	JobStTime time.Time `json:"jobStTime" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClosureTime     resp.Field
 		DiscrepancyInfo resp.Field
@@ -407,8 +404,7 @@ type LogisticsSupportListResponseLogisticsRemark struct {
 	Remark string `json:"remark"`
 	// User who published the remark.
 	Username string `json:"username"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		LastChanged resp.Field
 		Remark      resp.Field
@@ -485,8 +481,7 @@ type LogisticsSupportListResponseLogisticsSupportItem struct {
 	// The code that represents the International Civil Aviation Organization (ICAO)
 	// designations of an airport.
 	SourceIcao string `json:"sourceICAO"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Cannibalized            resp.Field
 		DeployPlanNumber        resp.Field
@@ -544,8 +539,7 @@ type LogisticsSupportListResponseLogisticsSupportItemLogisticsPart struct {
 	TechnicalOrderText string `json:"technicalOrderText"`
 	// Work Unit Code (WUC), or for some aircraft types, the Reference Designator.
 	WorkUnitCode string `json:"workUnitCode"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		FigureNumber         resp.Field
 		IndexNumber          resp.Field
@@ -582,8 +576,7 @@ type LogisticsSupportListResponseLogisticsSupportItemLogisticsPartLogisticsStock
 	StockCheckTime time.Time `json:"stockCheckTime" format:"date-time"`
 	// The point of contact at the sourced location.
 	StockPoc string `json:"stockPOC"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Quantity       resp.Field
 		SourceIcao     resp.Field
@@ -611,8 +604,7 @@ type LogisticsSupportListResponseLogisticsSupportItemLogisticsRemark struct {
 	Remark string `json:"remark"`
 	// User who published the remark.
 	Username string `json:"username"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		LastChanged resp.Field
 		Remark      resp.Field
@@ -649,8 +641,7 @@ type LogisticsSupportListResponseLogisticsSupportItemLogisticsSpecialty struct {
 	// assigned responsibility for correcting the discrepancy. Shop specialties are
 	// normally listed in abbreviated format.
 	Specialty string `json:"specialty"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		FirstName    resp.Field
 		Last4Ssn     resp.Field
@@ -741,8 +732,7 @@ type LogisticsSupportListResponseLogisticsTransportationPlan struct {
 	TpAircraftMds string `json:"tpAircraftMDS"`
 	// Contains the tail number displayed by GDSS2.
 	TpTailNumber string `json:"tpTailNumber"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ActDepTime                          resp.Field
 		AircraftStatus                      resp.Field
@@ -824,8 +814,7 @@ type LogisticsSupportListResponseLogisticsTransportationPlanLogisticsSegment str
 	SegmentNumber int64 `json:"segmentNumber"`
 	// The identifier that represents a specific aircraft within an aircraft type.
 	SegTailNumber string `json:"segTailNumber"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ArrivalIcao    resp.Field
 		DepartureIcao  resp.Field
@@ -864,8 +853,7 @@ type LogisticsSupportListResponseLogisticsTransportationPlanLogisticsTransportat
 	Remark string `json:"remark"`
 	// User who published the remark.
 	Username string `json:"username"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		LastChanged resp.Field
 		Remark      resp.Field
@@ -988,8 +976,7 @@ type LogisticsSupportGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking        resp.Field
 		DataMode                     resp.Field
@@ -1065,8 +1052,7 @@ type LogisticsSupportGetResponseLogisticsDiscrepancyInfo struct {
 	Jcn string `json:"jcn"`
 	// The job start time, in ISO 8601 UTC format with millisecond precision.
 	JobStTime time.Time `json:"jobStTime" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClosureTime     resp.Field
 		DiscrepancyInfo resp.Field
@@ -1144,8 +1130,7 @@ type LogisticsSupportGetResponseLogisticsSupportItem struct {
 	// The code that represents the International Civil Aviation Organization (ICAO)
 	// designations of an airport.
 	SourceIcao string `json:"sourceICAO"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Cannibalized            resp.Field
 		DeployPlanNumber        resp.Field
@@ -1203,8 +1188,7 @@ type LogisticsSupportGetResponseLogisticsSupportItemLogisticsPart struct {
 	TechnicalOrderText string `json:"technicalOrderText"`
 	// Work Unit Code (WUC), or for some aircraft types, the Reference Designator.
 	WorkUnitCode string `json:"workUnitCode"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		FigureNumber         resp.Field
 		IndexNumber          resp.Field
@@ -1241,8 +1225,7 @@ type LogisticsSupportGetResponseLogisticsSupportItemLogisticsPartLogisticsStock 
 	StockCheckTime time.Time `json:"stockCheckTime" format:"date-time"`
 	// The point of contact at the sourced location.
 	StockPoc string `json:"stockPOC"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Quantity       resp.Field
 		SourceIcao     resp.Field
@@ -1280,8 +1263,7 @@ type LogisticsSupportGetResponseLogisticsSupportItemLogisticsSpecialty struct {
 	// assigned responsibility for correcting the discrepancy. Shop specialties are
 	// normally listed in abbreviated format.
 	Specialty string `json:"specialty"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		FirstName    resp.Field
 		Last4Ssn     resp.Field
@@ -1372,8 +1354,7 @@ type LogisticsSupportGetResponseLogisticsTransportationPlan struct {
 	TpAircraftMds string `json:"tpAircraftMDS"`
 	// Contains the tail number displayed by GDSS2.
 	TpTailNumber string `json:"tpTailNumber"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ActDepTime                          resp.Field
 		AircraftStatus                      resp.Field
@@ -1455,8 +1436,7 @@ type LogisticsSupportGetResponseLogisticsTransportationPlanLogisticsSegment stru
 	SegmentNumber int64 `json:"segmentNumber"`
 	// The identifier that represents a specific aircraft within an aircraft type.
 	SegTailNumber string `json:"segTailNumber"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ArrivalIcao    resp.Field
 		DepartureIcao  resp.Field
@@ -1591,8 +1571,7 @@ type LogisticsSupportTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking        resp.Field
 		DataMode                     resp.Field
@@ -1668,8 +1647,7 @@ type LogisticsSupportTupleResponseLogisticsDiscrepancyInfo struct {
 	Jcn string `json:"jcn"`
 	// The job start time, in ISO 8601 UTC format with millisecond precision.
 	JobStTime time.Time `json:"jobStTime" format:"date-time"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClosureTime     resp.Field
 		DiscrepancyInfo resp.Field
@@ -1747,8 +1725,7 @@ type LogisticsSupportTupleResponseLogisticsSupportItem struct {
 	// The code that represents the International Civil Aviation Organization (ICAO)
 	// designations of an airport.
 	SourceIcao string `json:"sourceICAO"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Cannibalized            resp.Field
 		DeployPlanNumber        resp.Field
@@ -1806,8 +1783,7 @@ type LogisticsSupportTupleResponseLogisticsSupportItemLogisticsPart struct {
 	TechnicalOrderText string `json:"technicalOrderText"`
 	// Work Unit Code (WUC), or for some aircraft types, the Reference Designator.
 	WorkUnitCode string `json:"workUnitCode"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		FigureNumber         resp.Field
 		IndexNumber          resp.Field
@@ -1844,8 +1820,7 @@ type LogisticsSupportTupleResponseLogisticsSupportItemLogisticsPartLogisticsStoc
 	StockCheckTime time.Time `json:"stockCheckTime" format:"date-time"`
 	// The point of contact at the sourced location.
 	StockPoc string `json:"stockPOC"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Quantity       resp.Field
 		SourceIcao     resp.Field
@@ -1883,8 +1858,7 @@ type LogisticsSupportTupleResponseLogisticsSupportItemLogisticsSpecialty struct 
 	// assigned responsibility for correcting the discrepancy. Shop specialties are
 	// normally listed in abbreviated format.
 	Specialty string `json:"specialty"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		FirstName    resp.Field
 		Last4Ssn     resp.Field
@@ -1975,8 +1949,7 @@ type LogisticsSupportTupleResponseLogisticsTransportationPlan struct {
 	TpAircraftMds string `json:"tpAircraftMDS"`
 	// Contains the tail number displayed by GDSS2.
 	TpTailNumber string `json:"tpTailNumber"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ActDepTime                          resp.Field
 		AircraftStatus                      resp.Field
@@ -2058,8 +2031,7 @@ type LogisticsSupportTupleResponseLogisticsTransportationPlanLogisticsSegment st
 	SegmentNumber int64 `json:"segmentNumber"`
 	// The identifier that represents a specific aircraft within an aircraft type.
 	SegTailNumber string `json:"segTailNumber"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ArrivalIcao    resp.Field
 		DepartureIcao  resp.Field
@@ -2182,10 +2154,6 @@ type LogisticsSupportNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r LogisticsSupportNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2227,11 +2195,6 @@ type LogisticsSupportNewParamsLogisticsDiscrepancyInfo struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewParamsLogisticsDiscrepancyInfo) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewParamsLogisticsDiscrepancyInfo) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewParamsLogisticsDiscrepancyInfo
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2249,11 +2212,6 @@ type LogisticsSupportNewParamsLogisticsRemark struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewParamsLogisticsRemark) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewParamsLogisticsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewParamsLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2323,11 +2281,6 @@ type LogisticsSupportNewParamsLogisticsSupportItem struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewParamsLogisticsSupportItem) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewParamsLogisticsSupportItem) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewParamsLogisticsSupportItem
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2362,11 +2315,6 @@ type LogisticsSupportNewParamsLogisticsSupportItemLogisticsPart struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewParamsLogisticsSupportItemLogisticsPart) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewParamsLogisticsSupportItemLogisticsPart) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewParamsLogisticsSupportItemLogisticsPart
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2386,11 +2334,6 @@ type LogisticsSupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock st
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2408,11 +2351,6 @@ type LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2440,11 +2378,6 @@ type LogisticsSupportNewParamsLogisticsSupportItemLogisticsSpecialty struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewParamsLogisticsSupportItemLogisticsSpecialty) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewParamsLogisticsSupportItemLogisticsSpecialty) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewParamsLogisticsSupportItemLogisticsSpecialty
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2522,11 +2455,6 @@ type LogisticsSupportNewParamsLogisticsTransportationPlan struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewParamsLogisticsTransportationPlan) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewParamsLogisticsTransportationPlan) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewParamsLogisticsTransportationPlan
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2578,11 +2506,6 @@ type LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsSegment struct
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsSegment) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsSegment) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsSegment
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2600,11 +2523,6 @@ type LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportation
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2703,10 +2621,6 @@ type LogisticsSupportUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r LogisticsSupportUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2748,11 +2662,6 @@ type LogisticsSupportUpdateParamsLogisticsDiscrepancyInfo struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUpdateParamsLogisticsDiscrepancyInfo) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUpdateParamsLogisticsDiscrepancyInfo) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUpdateParamsLogisticsDiscrepancyInfo
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2770,11 +2679,6 @@ type LogisticsSupportUpdateParamsLogisticsRemark struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUpdateParamsLogisticsRemark) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUpdateParamsLogisticsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUpdateParamsLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2844,11 +2748,6 @@ type LogisticsSupportUpdateParamsLogisticsSupportItem struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUpdateParamsLogisticsSupportItem) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUpdateParamsLogisticsSupportItem) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUpdateParamsLogisticsSupportItem
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2883,11 +2782,6 @@ type LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPart struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPart) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPart) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPart
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2907,11 +2801,6 @@ type LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2929,11 +2818,6 @@ type LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2961,11 +2845,6 @@ type LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsSpecialty struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsSpecialty) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsSpecialty) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsSpecialty
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3043,11 +2922,6 @@ type LogisticsSupportUpdateParamsLogisticsTransportationPlan struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUpdateParamsLogisticsTransportationPlan) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUpdateParamsLogisticsTransportationPlan) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUpdateParamsLogisticsTransportationPlan
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3099,11 +2973,6 @@ type LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsSegment str
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsSegment) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsSegment) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsSegment
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3121,11 +2990,6 @@ type LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportat
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3136,10 +3000,6 @@ type LogisticsSupportListParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [LogisticsSupportListParams]'s query parameters as
 // `url.Values`.
@@ -3156,10 +3016,6 @@ type LogisticsSupportCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [LogisticsSupportCountParams]'s query parameters as
 // `url.Values`.
 func (r LogisticsSupportCountParams) URLQuery() (v url.Values, err error) {
@@ -3173,10 +3029,6 @@ type LogisticsSupportNewBulkParams struct {
 	Body []LogisticsSupportNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r LogisticsSupportNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -3293,11 +3145,6 @@ type LogisticsSupportNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3322,11 +3169,6 @@ type LogisticsSupportNewBulkParamsBodyLogisticsDiscrepancyInfo struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewBulkParamsBodyLogisticsDiscrepancyInfo) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewBulkParamsBodyLogisticsDiscrepancyInfo) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsDiscrepancyInfo
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3344,11 +3186,6 @@ type LogisticsSupportNewBulkParamsBodyLogisticsRemark struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewBulkParamsBodyLogisticsRemark) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewBulkParamsBodyLogisticsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3418,11 +3255,6 @@ type LogisticsSupportNewBulkParamsBodyLogisticsSupportItem struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewBulkParamsBodyLogisticsSupportItem) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewBulkParamsBodyLogisticsSupportItem) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsSupportItem
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3457,11 +3289,6 @@ type LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3481,11 +3308,6 @@ type LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogistics
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3503,11 +3325,6 @@ type LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark struct
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3535,11 +3352,6 @@ type LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty str
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3617,11 +3429,6 @@ type LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlan struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlan) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlan) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlan
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3673,11 +3480,6 @@ type LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegmen
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3695,11 +3497,6 @@ type LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransp
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3710,10 +3507,6 @@ type LogisticsSupportGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [LogisticsSupportGetParams]'s query parameters as
 // `url.Values`.
@@ -3735,10 +3528,6 @@ type LogisticsSupportTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [LogisticsSupportTupleParams]'s query parameters as
 // `url.Values`.
 func (r LogisticsSupportTupleParams) URLQuery() (v url.Values, err error) {
@@ -3751,12 +3540,6 @@ func (r LogisticsSupportTupleParams) URLQuery() (v url.Values, err error) {
 type LogisticsSupportUnvalidatedPublishParams struct {
 	Body []LogisticsSupportUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r LogisticsSupportUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -3874,11 +3657,6 @@ type LogisticsSupportUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3903,11 +3681,6 @@ type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo struct
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3925,11 +3698,6 @@ type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3999,11 +3767,6 @@ type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItem struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItem) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItem) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItem
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4038,11 +3801,6 @@ type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPa
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPart) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPart) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPart
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4062,11 +3820,6 @@ type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPa
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4084,11 +3837,6 @@ type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRe
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4116,11 +3864,6 @@ type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSp
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSpecialty) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSpecialty) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSpecialty
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4198,11 +3941,6 @@ type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan str
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4254,11 +3992,6 @@ type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogi
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -4276,11 +4009,6 @@ type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogi
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark
 	return param.MarshalObject(r, (*shadow)(&r))

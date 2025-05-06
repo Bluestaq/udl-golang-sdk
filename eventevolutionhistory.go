@@ -109,10 +109,6 @@ type EventEvolutionHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EventEvolutionHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EventEvolutionHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r EventEvolutionHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -152,10 +148,6 @@ type EventEvolutionHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EventEvolutionHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EventEvolutionHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r EventEvolutionHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -179,10 +171,6 @@ type EventEvolutionHistoryCountParams struct {
 	StartTime param.Opt[time.Time] `query:"startTime,omitzero" format:"date-time" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EventEvolutionHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EventEvolutionHistoryCountParams]'s query parameters as
 // `url.Values`.

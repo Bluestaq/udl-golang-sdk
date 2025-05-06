@@ -238,8 +238,7 @@ type EffectResponseGetResponse struct {
 	RedTimeToOverhead time.Time `json:"redTimeToOverhead" format:"date-time"`
 	// The number of shots required to destroy target.
 	ShotsRequired int64 `json:"shotsRequired"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -345,8 +344,7 @@ type EffectResponseGetResponseActionsList struct {
 	// The WGS-84 longitude of the weapon destination location, in degrees. -180 to 180
 	// degrees (negative values west of Prime Meridian).
 	WeaponInterceptLon float64 `json:"weaponInterceptLon"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ActionActorSrcID   resp.Field
 		ActionActorSrcType resp.Field
@@ -387,8 +385,7 @@ type EffectResponseGetResponseActionsListActionMetric struct {
 	Provenance string `json:"provenance"`
 	// The metric score adjusted to be relative and comparable to other domains.
 	RelativeValue float64 `json:"relativeValue"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DomainValue   resp.Field
 		MetricType    resp.Field
@@ -415,8 +412,7 @@ type EffectResponseGetResponseCoaMetric struct {
 	Provenance string `json:"provenance"`
 	// The metric score adjusted to be relative and comparable to other domains.
 	RelativeValue float64 `json:"relativeValue"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DomainValue   resp.Field
 		MetricType    resp.Field
@@ -512,8 +508,7 @@ type EffectResponseListResponse struct {
 	RedTimeToOverhead time.Time `json:"redTimeToOverhead" format:"date-time"`
 	// The number of shots required to destroy target.
 	ShotsRequired int64 `json:"shotsRequired"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -619,8 +614,7 @@ type EffectResponseListResponseActionsList struct {
 	// The WGS-84 longitude of the weapon destination location, in degrees. -180 to 180
 	// degrees (negative values west of Prime Meridian).
 	WeaponInterceptLon float64 `json:"weaponInterceptLon"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ActionActorSrcID   resp.Field
 		ActionActorSrcType resp.Field
@@ -661,8 +655,7 @@ type EffectResponseListResponseActionsListActionMetric struct {
 	Provenance string `json:"provenance"`
 	// The metric score adjusted to be relative and comparable to other domains.
 	RelativeValue float64 `json:"relativeValue"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DomainValue   resp.Field
 		MetricType    resp.Field
@@ -689,8 +682,7 @@ type EffectResponseListResponseCoaMetric struct {
 	Provenance string `json:"provenance"`
 	// The metric score adjusted to be relative and comparable to other domains.
 	RelativeValue float64 `json:"relativeValue"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DomainValue   resp.Field
 		MetricType    resp.Field
@@ -786,8 +778,7 @@ type EffectResponseTupleResponse struct {
 	RedTimeToOverhead time.Time `json:"redTimeToOverhead" format:"date-time"`
 	// The number of shots required to destroy target.
 	ShotsRequired int64 `json:"shotsRequired"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -893,8 +884,7 @@ type EffectResponseTupleResponseActionsList struct {
 	// The WGS-84 longitude of the weapon destination location, in degrees. -180 to 180
 	// degrees (negative values west of Prime Meridian).
 	WeaponInterceptLon float64 `json:"weaponInterceptLon"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ActionActorSrcID   resp.Field
 		ActionActorSrcType resp.Field
@@ -935,8 +925,7 @@ type EffectResponseTupleResponseActionsListActionMetric struct {
 	Provenance string `json:"provenance"`
 	// The metric score adjusted to be relative and comparable to other domains.
 	RelativeValue float64 `json:"relativeValue"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DomainValue   resp.Field
 		MetricType    resp.Field
@@ -963,8 +952,7 @@ type EffectResponseTupleResponseCoaMetric struct {
 	Provenance string `json:"provenance"`
 	// The metric score adjusted to be relative and comparable to other domains.
 	RelativeValue float64 `json:"relativeValue"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DomainValue   resp.Field
 		MetricType    resp.Field
@@ -1054,10 +1042,6 @@ type EffectResponseNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r EffectResponseNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow EffectResponseNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1134,11 +1118,6 @@ type EffectResponseNewParamsActionsList struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseNewParamsActionsList) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EffectResponseNewParamsActionsList) MarshalJSON() (data []byte, err error) {
 	type shadow EffectResponseNewParamsActionsList
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1157,11 +1136,6 @@ type EffectResponseNewParamsActionsListActionMetric struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseNewParamsActionsListActionMetric) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EffectResponseNewParamsActionsListActionMetric) MarshalJSON() (data []byte, err error) {
 	type shadow EffectResponseNewParamsActionsListActionMetric
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1180,9 +1154,6 @@ type EffectResponseNewParamsCoaMetric struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseNewParamsCoaMetric) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r EffectResponseNewParamsCoaMetric) MarshalJSON() (data []byte, err error) {
 	type shadow EffectResponseNewParamsCoaMetric
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1193,10 +1164,6 @@ type EffectResponseGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EffectResponseGetParams]'s query parameters as
 // `url.Values`.
@@ -1216,10 +1183,6 @@ type EffectResponseListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EffectResponseListParams]'s query parameters as
 // `url.Values`.
 func (r EffectResponseListParams) URLQuery() (v url.Values, err error) {
@@ -1238,10 +1201,6 @@ type EffectResponseCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EffectResponseCountParams]'s query parameters as
 // `url.Values`.
 func (r EffectResponseCountParams) URLQuery() (v url.Values, err error) {
@@ -1255,10 +1214,6 @@ type EffectResponseNewBulkParams struct {
 	Body []EffectResponseNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r EffectResponseNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1348,9 +1303,6 @@ type EffectResponseNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r EffectResponseNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow EffectResponseNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1410,11 +1362,6 @@ type EffectResponseNewBulkParamsBodyActionsList struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseNewBulkParamsBodyActionsList) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EffectResponseNewBulkParamsBodyActionsList) MarshalJSON() (data []byte, err error) {
 	type shadow EffectResponseNewBulkParamsBodyActionsList
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1433,11 +1380,6 @@ type EffectResponseNewBulkParamsBodyActionsListActionMetric struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseNewBulkParamsBodyActionsListActionMetric) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EffectResponseNewBulkParamsBodyActionsListActionMetric) MarshalJSON() (data []byte, err error) {
 	type shadow EffectResponseNewBulkParamsBodyActionsListActionMetric
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1456,11 +1398,6 @@ type EffectResponseNewBulkParamsBodyCoaMetric struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseNewBulkParamsBodyCoaMetric) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EffectResponseNewBulkParamsBodyCoaMetric) MarshalJSON() (data []byte, err error) {
 	type shadow EffectResponseNewBulkParamsBodyCoaMetric
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1480,10 +1417,6 @@ type EffectResponseTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EffectResponseTupleParams]'s query parameters as
 // `url.Values`.
 func (r EffectResponseTupleParams) URLQuery() (v url.Values, err error) {
@@ -1496,12 +1429,6 @@ func (r EffectResponseTupleParams) URLQuery() (v url.Values, err error) {
 type EffectResponseUnvalidatedPublishParams struct {
 	Body []EffectResponseUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r EffectResponseUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -1592,11 +1519,6 @@ type EffectResponseUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EffectResponseUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow EffectResponseUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1656,11 +1578,6 @@ type EffectResponseUnvalidatedPublishParamsBodyActionsList struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseUnvalidatedPublishParamsBodyActionsList) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EffectResponseUnvalidatedPublishParamsBodyActionsList) MarshalJSON() (data []byte, err error) {
 	type shadow EffectResponseUnvalidatedPublishParamsBodyActionsList
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1679,11 +1596,6 @@ type EffectResponseUnvalidatedPublishParamsBodyActionsListActionMetric struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseUnvalidatedPublishParamsBodyActionsListActionMetric) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EffectResponseUnvalidatedPublishParamsBodyActionsListActionMetric) MarshalJSON() (data []byte, err error) {
 	type shadow EffectResponseUnvalidatedPublishParamsBodyActionsListActionMetric
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1702,11 +1614,6 @@ type EffectResponseUnvalidatedPublishParamsBodyCoaMetric struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EffectResponseUnvalidatedPublishParamsBodyCoaMetric) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EffectResponseUnvalidatedPublishParamsBodyCoaMetric) MarshalJSON() (data []byte, err error) {
 	type shadow EffectResponseUnvalidatedPublishParamsBodyCoaMetric
 	return param.MarshalObject(r, (*shadow)(&r))

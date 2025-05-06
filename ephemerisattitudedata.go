@@ -191,8 +191,7 @@ type AttitudeDataAbridged struct {
 	// rotations, the array elements should be placed in the order that the rates apply
 	// in the sequence Attitude rates are expressed in frame1 with respect to frame2.
 	ZRate []float64 `json:"zRate"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -269,10 +268,6 @@ type EphemerisAttitudeDataListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisAttitudeDataListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EphemerisAttitudeDataListParams]'s query parameters as
 // `url.Values`.
 func (r EphemerisAttitudeDataListParams) URLQuery() (v url.Values, err error) {
@@ -289,10 +284,6 @@ type EphemerisAttitudeDataCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EphemerisAttitudeDataCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EphemerisAttitudeDataCountParams]'s query parameters as
 // `url.Values`.

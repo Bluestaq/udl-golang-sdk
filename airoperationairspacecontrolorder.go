@@ -50,12 +50,6 @@ type AirOperationAirspaceControlOrderUnvalidatedPublishParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirspaceControlOrderUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 func (r AirOperationAirspaceControlOrderUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
@@ -176,11 +170,6 @@ type AirOperationAirspaceControlOrderUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirspaceControlOrderUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationAirspaceControlOrderUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirspaceControlOrderUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -206,11 +195,6 @@ type AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControl
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatus) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatus) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatus
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -332,11 +316,6 @@ type AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControl
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatusAirspaceControlMean) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatusAirspaceControlMean) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatusAirspaceControlMean
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -363,11 +342,6 @@ type AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControl
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatusAirspaceControlMeanAirspaceControlPoint) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatusAirspaceControlMeanAirspaceControlPoint) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatusAirspaceControlMeanAirspaceControlPoint
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -395,11 +369,6 @@ type AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControl
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatusAirspaceControlMeanAirspaceTimePeriod) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatusAirspaceControlMeanAirspaceTimePeriod) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatusAirspaceControlMeanAirspaceTimePeriod
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -429,11 +398,6 @@ type AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControl
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlOrderReference) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlOrderReference) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlOrderReference
 	return param.MarshalObject(r, (*shadow)(&r))

@@ -235,8 +235,7 @@ type ItemTrackingListResponse struct {
 	// entries in this array must correspond to the position index in the keys array.
 	// This array must be the same length as keys.
 	Values []string `json:"values"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -370,8 +369,7 @@ type ItemTrackingGetResponse struct {
 	// entries in this array must correspond to the position index in the keys array.
 	// This array must be the same length as keys.
 	Values []string `json:"values"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -505,8 +503,7 @@ type ItemTrackingTupleResponse struct {
 	// entries in this array must correspond to the position index in the keys array.
 	// This array must be the same length as keys.
 	Values []string `json:"values"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -631,10 +628,6 @@ type ItemTrackingNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ItemTrackingNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r ItemTrackingNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow ItemTrackingNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -672,10 +665,6 @@ type ItemTrackingListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ItemTrackingListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ItemTrackingListParams]'s query parameters as `url.Values`.
 func (r ItemTrackingListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -693,10 +682,6 @@ type ItemTrackingCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ItemTrackingCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ItemTrackingCountParams]'s query parameters as
 // `url.Values`.
 func (r ItemTrackingCountParams) URLQuery() (v url.Values, err error) {
@@ -711,10 +696,6 @@ type ItemTrackingGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ItemTrackingGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ItemTrackingGetParams]'s query parameters as `url.Values`.
 func (r ItemTrackingGetParams) URLQuery() (v url.Values, err error) {
@@ -738,10 +719,6 @@ type ItemTrackingTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ItemTrackingTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ItemTrackingTupleParams]'s query parameters as
 // `url.Values`.
 func (r ItemTrackingTupleParams) URLQuery() (v url.Values, err error) {
@@ -754,12 +731,6 @@ func (r ItemTrackingTupleParams) URLQuery() (v url.Values, err error) {
 type ItemTrackingUnvalidatedPublishParams struct {
 	Body []ItemTrackingUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ItemTrackingUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r ItemTrackingUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -847,11 +818,6 @@ type ItemTrackingUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ItemTrackingUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ItemTrackingUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow ItemTrackingUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

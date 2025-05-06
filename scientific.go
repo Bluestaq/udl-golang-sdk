@@ -212,8 +212,7 @@ type ScientificListResponse struct {
 	OrigNetwork string `json:"origNetwork"`
 	// Payload category, e.g. Magnetometer, Radiometer, Sensor, etc.
 	PayloadCategory string `json:"payloadCategory"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -328,8 +327,7 @@ type ScientificGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -447,8 +445,7 @@ type ScientificTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -555,10 +552,6 @@ type ScientificNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScientificNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r ScientificNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow ScientificNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -639,10 +632,6 @@ type ScientificUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScientificUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r ScientificUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow ScientificUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -677,10 +666,6 @@ type ScientificListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScientificListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ScientificListParams]'s query parameters as `url.Values`.
 func (r ScientificListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -695,10 +680,6 @@ type ScientificCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScientificCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [ScientificCountParams]'s query parameters as `url.Values`.
 func (r ScientificCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -712,10 +693,6 @@ type ScientificGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScientificGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ScientificGetParams]'s query parameters as `url.Values`.
 func (r ScientificGetParams) URLQuery() (v url.Values, err error) {
@@ -735,10 +712,6 @@ type ScientificTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ScientificTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [ScientificTupleParams]'s query parameters as `url.Values`.
 func (r ScientificTupleParams) URLQuery() (v url.Values, err error) {

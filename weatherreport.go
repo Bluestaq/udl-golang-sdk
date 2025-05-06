@@ -448,8 +448,7 @@ type WeatherReportListResponse struct {
 	WindSpdAvg float64 `json:"windSpdAvg"`
 	// Boolean describing whether or not the wind direction and/or speed is variable.
 	WindVar bool `json:"windVar"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -869,10 +868,6 @@ type WeatherReportNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherReportNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r WeatherReportNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow WeatherReportNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -910,10 +905,6 @@ type WeatherReportListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherReportListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [WeatherReportListParams]'s query parameters as
 // `url.Values`.
 func (r WeatherReportListParams) URLQuery() (v url.Values, err error) {
@@ -932,10 +923,6 @@ type WeatherReportCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherReportCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [WeatherReportCountParams]'s query parameters as
 // `url.Values`.
 func (r WeatherReportCountParams) URLQuery() (v url.Values, err error) {
@@ -950,10 +937,6 @@ type WeatherReportGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherReportGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [WeatherReportGetParams]'s query parameters as `url.Values`.
 func (r WeatherReportGetParams) URLQuery() (v url.Values, err error) {
@@ -977,10 +960,6 @@ type WeatherReportTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherReportTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [WeatherReportTupleParams]'s query parameters as
 // `url.Values`.
 func (r WeatherReportTupleParams) URLQuery() (v url.Values, err error) {
@@ -993,12 +972,6 @@ func (r WeatherReportTupleParams) URLQuery() (v url.Values, err error) {
 type WeatherReportUnvalidatedPublishParams struct {
 	Body []WeatherReportUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherReportUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r WeatherReportUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -1318,11 +1291,6 @@ type WeatherReportUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f WeatherReportUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r WeatherReportUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow WeatherReportUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

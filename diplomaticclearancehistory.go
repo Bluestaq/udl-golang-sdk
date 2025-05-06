@@ -102,12 +102,6 @@ type DiplomaticClearanceHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceHistoryListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [DiplomaticClearanceHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r DiplomaticClearanceHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -141,12 +135,6 @@ type DiplomaticClearanceHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceHistoryAodrParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [DiplomaticClearanceHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r DiplomaticClearanceHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -163,12 +151,6 @@ type DiplomaticClearanceHistoryCountParams struct {
 	FirstResult  param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults   param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceHistoryCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [DiplomaticClearanceHistoryCountParams]'s query parameters

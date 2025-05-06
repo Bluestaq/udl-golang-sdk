@@ -205,8 +205,7 @@ type CountryAbridged struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Code        resp.Field
 		DataMode    resp.Field
@@ -304,8 +303,7 @@ type CountryFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Code        resp.Field
 		DataMode    resp.Field
@@ -393,10 +391,6 @@ type CountryNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CountryNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r CountryNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow CountryNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -430,10 +424,6 @@ type CountryGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CountryGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [CountryGetParams]'s query parameters as `url.Values`.
 func (r CountryGetParams) URLQuery() (v url.Values, err error) {
@@ -483,10 +473,6 @@ type CountryUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CountryUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r CountryUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow CountryUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -521,10 +507,6 @@ type CountryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CountryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [CountryListParams]'s query parameters as `url.Values`.
 func (r CountryListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -538,10 +520,6 @@ type CountryCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CountryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [CountryCountParams]'s query parameters as `url.Values`.
 func (r CountryCountParams) URLQuery() (v url.Values, err error) {
@@ -561,10 +539,6 @@ type CountryTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CountryTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [CountryTupleParams]'s query parameters as `url.Values`.
 func (r CountryTupleParams) URLQuery() (v url.Values, err error) {

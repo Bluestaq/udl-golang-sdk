@@ -270,8 +270,7 @@ type SensorMaintenanceListResponse struct {
 	// The Space Surveillance operational capability of this maintenance item. Typical
 	// values are G, Y, R, and - for non-applicable sites.
 	SSOpsCap string `json:"ssOpsCap"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -431,8 +430,7 @@ type SensorMaintenanceCurrentResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -594,8 +592,7 @@ type SensorMaintenanceGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -757,8 +754,7 @@ type SensorMaintenanceTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -907,10 +903,6 @@ type SensorMaintenanceNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorMaintenanceNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SensorMaintenanceNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SensorMaintenanceNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1019,10 +1011,6 @@ type SensorMaintenanceUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorMaintenanceUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SensorMaintenanceUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SensorMaintenanceUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1063,10 +1051,6 @@ type SensorMaintenanceListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorMaintenanceListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SensorMaintenanceListParams]'s query parameters as
 // `url.Values`.
 func (r SensorMaintenanceListParams) URLQuery() (v url.Values, err error) {
@@ -1088,10 +1072,6 @@ type SensorMaintenanceCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorMaintenanceCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SensorMaintenanceCountParams]'s query parameters as
 // `url.Values`.
 func (r SensorMaintenanceCountParams) URLQuery() (v url.Values, err error) {
@@ -1109,10 +1089,6 @@ type SensorMaintenanceNewBulkParams struct {
 	Source param.Opt[string] `query:"source,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorMaintenanceNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r SensorMaintenanceNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1221,11 +1197,6 @@ type SensorMaintenanceNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorMaintenanceNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SensorMaintenanceNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SensorMaintenanceNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1243,10 +1214,6 @@ type SensorMaintenanceCurrentParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorMaintenanceCurrentParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SensorMaintenanceCurrentParams]'s query parameters as
 // `url.Values`.
 func (r SensorMaintenanceCurrentParams) URLQuery() (v url.Values, err error) {
@@ -1261,10 +1228,6 @@ type SensorMaintenanceGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorMaintenanceGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SensorMaintenanceGetParams]'s query parameters as
 // `url.Values`.
@@ -1291,10 +1254,6 @@ type SensorMaintenanceTupleParams struct {
 	StartTime param.Opt[time.Time] `query:"startTime,omitzero" format:"date-time" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SensorMaintenanceTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SensorMaintenanceTupleParams]'s query parameters as
 // `url.Values`.

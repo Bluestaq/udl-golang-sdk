@@ -222,8 +222,7 @@ type SeraDataNavigationListResponse struct {
 	PartnerSpacecraftID string `json:"partnerSpacecraftId"`
 	// Navigation payload type, e.g. WAAS, GAGAN, etc.
 	PayloadType string `json:"payloadType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -349,8 +348,7 @@ type SeraDataNavigationGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -478,8 +476,7 @@ type SeraDataNavigationTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -596,10 +593,6 @@ type SeraDataNavigationNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeraDataNavigationNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SeraDataNavigationNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SeraDataNavigationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -686,10 +679,6 @@ type SeraDataNavigationUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeraDataNavigationUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SeraDataNavigationUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SeraDataNavigationUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -724,10 +713,6 @@ type SeraDataNavigationListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeraDataNavigationListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SeraDataNavigationListParams]'s query parameters as
 // `url.Values`.
 func (r SeraDataNavigationListParams) URLQuery() (v url.Values, err error) {
@@ -743,10 +728,6 @@ type SeraDataNavigationCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeraDataNavigationCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SeraDataNavigationCountParams]'s query parameters as
 // `url.Values`.
 func (r SeraDataNavigationCountParams) URLQuery() (v url.Values, err error) {
@@ -761,10 +742,6 @@ type SeraDataNavigationGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeraDataNavigationGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SeraDataNavigationGetParams]'s query parameters as
 // `url.Values`.
@@ -785,10 +762,6 @@ type SeraDataNavigationTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SeraDataNavigationTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SeraDataNavigationTupleParams]'s query parameters as
 // `url.Values`.

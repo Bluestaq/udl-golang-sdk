@@ -251,8 +251,7 @@ type SkyImageryHistoryListResponse struct {
 	// Optional identifier to track a commercial or marketplace transaction executed to
 	// produce this data.
 	TransactionID string `json:"transactionId"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -353,10 +352,6 @@ type SkyImageryHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SkyImageryHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SkyImageryHistoryListParams]'s query parameters as
 // `url.Values`.
 func (r SkyImageryHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -390,10 +385,6 @@ type SkyImageryHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SkyImageryHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SkyImageryHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r SkyImageryHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -411,10 +402,6 @@ type SkyImageryHistoryCountParams struct {
 	MaxResults   param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SkyImageryHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SkyImageryHistoryCountParams]'s query parameters as
 // `url.Values`.

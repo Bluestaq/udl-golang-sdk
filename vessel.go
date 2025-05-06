@@ -263,8 +263,7 @@ type VesselListResponse struct {
 	Width float64 `json:"width"`
 	// Year the vessel went into service.
 	YearBuilt string `json:"yearBuilt"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -453,8 +452,7 @@ type VesselGetResponse struct {
 	Width float64 `json:"width"`
 	// Year the vessel went into service.
 	YearBuilt string `json:"yearBuilt"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -647,8 +645,7 @@ type VesselTupleResponse struct {
 	Width float64 `json:"width"`
 	// Year the vessel went into service.
 	YearBuilt string `json:"yearBuilt"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -824,10 +821,6 @@ type VesselNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f VesselNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r VesselNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow VesselNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -958,10 +951,6 @@ type VesselUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f VesselUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r VesselUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow VesselUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -996,10 +985,6 @@ type VesselListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f VesselListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [VesselListParams]'s query parameters as `url.Values`.
 func (r VesselListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1014,10 +999,6 @@ type VesselCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f VesselCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [VesselCountParams]'s query parameters as `url.Values`.
 func (r VesselCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1030,10 +1011,6 @@ type VesselNewBulkParams struct {
 	Body []VesselNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f VesselNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r VesselNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1154,9 +1131,6 @@ type VesselNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f VesselNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r VesselNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow VesselNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1173,10 +1147,6 @@ type VesselGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f VesselGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [VesselGetParams]'s query parameters as `url.Values`.
 func (r VesselGetParams) URLQuery() (v url.Values, err error) {
@@ -1196,10 +1166,6 @@ type VesselTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f VesselTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [VesselTupleParams]'s query parameters as `url.Values`.
 func (r VesselTupleParams) URLQuery() (v url.Values, err error) {

@@ -69,12 +69,6 @@ type ReportAndActivityUdlSigactFileGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ReportAndActivityUdlSigactFileGetParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [ReportAndActivityUdlSigactFileGetParams]'s query parameters
 // as `url.Values`.
 func (r ReportAndActivityUdlSigactFileGetParams) URLQuery() (v url.Values, err error) {
@@ -87,12 +81,6 @@ func (r ReportAndActivityUdlSigactFileGetParams) URLQuery() (v url.Values, err e
 type ReportAndActivityUdlSigactUnvalidatedPublishParams struct {
 	Body []ReportAndActivityUdlSigactUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ReportAndActivityUdlSigactUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r ReportAndActivityUdlSigactUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -374,11 +362,6 @@ type ReportAndActivityUdlSigactUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ReportAndActivityUdlSigactUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ReportAndActivityUdlSigactUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow ReportAndActivityUdlSigactUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -398,11 +381,6 @@ type ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDoc struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDoc) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDoc) MarshalJSON() (data []byte, err error) {
 	type shadow ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDoc
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -422,11 +400,6 @@ type ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDocDataSourceR
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDocDataSourceRef) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDocDataSourceRef) MarshalJSON() (data []byte, err error) {
 	type shadow ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDocDataSourceRef
 	return param.MarshalObject(r, (*shadow)(&r))

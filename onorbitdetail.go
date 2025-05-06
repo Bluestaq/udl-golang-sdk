@@ -259,8 +259,7 @@ type OnorbitdetailListResponse struct {
 	VismagMean float64 `json:"vismagMean"`
 	// Minimum visual magnitude in M.
 	VismagMin float64 `json:"vismagMin"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -484,8 +483,7 @@ type OnorbitdetailGetResponse struct {
 	VismagMean float64 `json:"vismagMean"`
 	// Minimum visual magnitude in M.
 	VismagMin float64 `json:"vismagMin"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -700,10 +698,6 @@ type OnorbitdetailNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitdetailNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r OnorbitdetailNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitdetailNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -860,10 +854,6 @@ type OnorbitdetailUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitdetailUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r OnorbitdetailUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitdetailUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -898,10 +888,6 @@ type OnorbitdetailListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitdetailListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OnorbitdetailListParams]'s query parameters as
 // `url.Values`.
 func (r OnorbitdetailListParams) URLQuery() (v url.Values, err error) {
@@ -916,10 +902,6 @@ type OnorbitdetailGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitdetailGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [OnorbitdetailGetParams]'s query parameters as `url.Values`.
 func (r OnorbitdetailGetParams) URLQuery() (v url.Values, err error) {

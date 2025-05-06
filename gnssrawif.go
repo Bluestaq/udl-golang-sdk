@@ -328,8 +328,7 @@ type GnssRawifListResponse struct {
 	// by data providers unless conditional access controls are coordinated with the
 	// UDL team.
 	Tags []string `json:"tags"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CenterFreq            resp.Field
 		ClassificationMarking resp.Field
@@ -573,8 +572,7 @@ type GnssRawifGetResponse struct {
 	// by data providers unless conditional access controls are coordinated with the
 	// UDL team.
 	Tags []string `json:"tags"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CenterFreq            resp.Field
 		ClassificationMarking resp.Field
@@ -818,8 +816,7 @@ type GnssRawifTupleResponse struct {
 	// by data providers unless conditional access controls are coordinated with the
 	// UDL team.
 	Tags []string `json:"tags"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CenterFreq            resp.Field
 		ClassificationMarking resp.Field
@@ -905,10 +902,6 @@ type GnssRawifListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssRawifListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [GnssRawifListParams]'s query parameters as `url.Values`.
 func (r GnssRawifListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -926,10 +919,6 @@ type GnssRawifCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssRawifCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [GnssRawifCountParams]'s query parameters as `url.Values`.
 func (r GnssRawifCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -944,10 +933,6 @@ type GnssRawifFileGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssRawifFileGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [GnssRawifFileGetParams]'s query parameters as `url.Values`.
 func (r GnssRawifFileGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -961,10 +946,6 @@ type GnssRawifGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssRawifGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [GnssRawifGetParams]'s query parameters as `url.Values`.
 func (r GnssRawifGetParams) URLQuery() (v url.Values, err error) {
@@ -988,10 +969,6 @@ type GnssRawifTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssRawifTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [GnssRawifTupleParams]'s query parameters as `url.Values`.
 func (r GnssRawifTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1005,10 +982,6 @@ type GnssRawifUploadZipParams struct {
 	File io.Reader `json:"file,omitzero,required" format:"binary"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssRawifUploadZipParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r GnssRawifUploadZipParams) MarshalMultipart() (data []byte, contentType string, err error) {
 	buf := bytes.NewBuffer(nil)

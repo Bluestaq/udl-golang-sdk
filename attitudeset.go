@@ -279,8 +279,7 @@ type AttitudesetAbridged struct {
 	// Attitude ephemeris step size, in seconds. This applies to Attitude Ephemeris
 	// Messages (AEM) that employ a fixed step size.
 	StepSize int64 `json:"stepSize"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -460,10 +459,6 @@ type AttitudeSetNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AttitudeSetNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r AttitudeSetNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow AttitudeSetNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -608,9 +603,6 @@ type AttitudeSetNewParamsAttitudeList struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AttitudeSetNewParamsAttitudeList) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r AttitudeSetNewParamsAttitudeList) MarshalJSON() (data []byte, err error) {
 	type shadow AttitudeSetNewParamsAttitudeList
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -633,10 +625,6 @@ type AttitudeSetListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AttitudeSetListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [AttitudeSetListParams]'s query parameters as `url.Values`.
 func (r AttitudeSetListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -655,10 +643,6 @@ type AttitudeSetCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AttitudeSetCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AttitudeSetCountParams]'s query parameters as `url.Values`.
 func (r AttitudeSetCountParams) URLQuery() (v url.Values, err error) {
@@ -683,10 +667,6 @@ type AttitudeSetTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AttitudeSetTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AttitudeSetTupleParams]'s query parameters as `url.Values`.
 func (r AttitudeSetTupleParams) URLQuery() (v url.Values, err error) {
@@ -811,12 +791,6 @@ type AttitudeSetUnvalidatedPublishParams struct {
 	// Collection of attitude data associated with this Attitude Set.
 	AttitudeList []AttitudeSetUnvalidatedPublishParamsAttitudeList `json:"attitudeList,omitzero"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AttitudeSetUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r AttitudeSetUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -963,11 +937,6 @@ type AttitudeSetUnvalidatedPublishParamsAttitudeList struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AttitudeSetUnvalidatedPublishParamsAttitudeList) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r AttitudeSetUnvalidatedPublishParamsAttitudeList) MarshalJSON() (data []byte, err error) {
 	type shadow AttitudeSetUnvalidatedPublishParamsAttitudeList
 	return param.MarshalObject(r, (*shadow)(&r))

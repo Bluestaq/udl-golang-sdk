@@ -90,10 +90,6 @@ type AIHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AIHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [AIHistoryListParams]'s query parameters as `url.Values`.
 func (r AIHistoryListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -125,10 +121,6 @@ type AIHistoryAodrParams struct {
 	OutputFormat param.Opt[string] `query:"outputFormat,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f AIHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [AIHistoryAodrParams]'s query parameters as `url.Values`.
 func (r AIHistoryAodrParams) URLQuery() (v url.Values, err error) {

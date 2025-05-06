@@ -329,8 +329,7 @@ type MissionAssignmentListResponse struct {
 	TrkID string `json:"trkId"`
 	// Threat warning environment.
 	Twenv string `json:"twenv"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking      resp.Field
 		DataMode                   resp.Field
@@ -593,8 +592,7 @@ type MissionAssignmentGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking      resp.Field
 		DataMode                   resp.Field
@@ -859,8 +857,7 @@ type MissionAssignmentTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking      resp.Field
 		DataMode                   resp.Field
@@ -1114,10 +1111,6 @@ type MissionAssignmentNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissionAssignmentNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r MissionAssignmentNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow MissionAssignmentNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1296,10 +1289,6 @@ type MissionAssignmentUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissionAssignmentUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r MissionAssignmentUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow MissionAssignmentUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1337,10 +1326,6 @@ type MissionAssignmentListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissionAssignmentListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [MissionAssignmentListParams]'s query parameters as
 // `url.Values`.
 func (r MissionAssignmentListParams) URLQuery() (v url.Values, err error) {
@@ -1359,10 +1344,6 @@ type MissionAssignmentCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissionAssignmentCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [MissionAssignmentCountParams]'s query parameters as
 // `url.Values`.
 func (r MissionAssignmentCountParams) URLQuery() (v url.Values, err error) {
@@ -1376,10 +1357,6 @@ type MissionAssignmentNewBulkParams struct {
 	Body []MissionAssignmentNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissionAssignmentNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r MissionAssignmentNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1546,11 +1523,6 @@ type MissionAssignmentNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissionAssignmentNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r MissionAssignmentNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow MissionAssignmentNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1567,10 +1539,6 @@ type MissionAssignmentGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissionAssignmentGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [MissionAssignmentGetParams]'s query parameters as
 // `url.Values`.
@@ -1594,10 +1562,6 @@ type MissionAssignmentTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f MissionAssignmentTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [MissionAssignmentTupleParams]'s query parameters as
 // `url.Values`.

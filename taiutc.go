@@ -225,8 +225,7 @@ type TaiUtcListResponse struct {
 	// Total/cumulative offset between TAI and UTC time as of adjustmentDate, in
 	// seconds.
 	TaiUtc float64 `json:"taiUTC"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AdjustmentDate        resp.Field
 		ClassificationMarking resp.Field
@@ -317,10 +316,6 @@ type TaiUtcNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TaiUtcNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r TaiUtcNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow TaiUtcNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -392,10 +387,6 @@ type TaiUtcUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TaiUtcUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r TaiUtcUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow TaiUtcUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -433,10 +424,6 @@ type TaiUtcListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TaiUtcListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [TaiUtcListParams]'s query parameters as `url.Values`.
 func (r TaiUtcListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -454,10 +441,6 @@ type TaiUtcCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TaiUtcCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [TaiUtcCountParams]'s query parameters as `url.Values`.
 func (r TaiUtcCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -471,10 +454,6 @@ type TaiUtcGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TaiUtcGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [TaiUtcGetParams]'s query parameters as `url.Values`.
 func (r TaiUtcGetParams) URLQuery() (v url.Values, err error) {
@@ -497,10 +476,6 @@ type TaiUtcTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f TaiUtcTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [TaiUtcTupleParams]'s query parameters as `url.Values`.
 func (r TaiUtcTupleParams) URLQuery() (v url.Values, err error) {

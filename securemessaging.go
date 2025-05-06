@@ -94,8 +94,7 @@ type TopicDetails struct {
 	Topic string `json:"topic"`
 	// The UDL schema that the objects in this topic apply to.
 	UdlOpenAPISchema string `json:"udlOpenAPISchema"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Description      resp.Field
 		MaxPos           resp.Field
@@ -119,12 +118,6 @@ type SecureMessagingDescribeTopicParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SecureMessagingDescribeTopicParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [SecureMessagingDescribeTopicParams]'s query parameters as
 // `url.Values`.
 func (r SecureMessagingDescribeTopicParams) URLQuery() (v url.Values, err error) {
@@ -138,12 +131,6 @@ type SecureMessagingGetLatestOffsetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SecureMessagingGetLatestOffsetParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [SecureMessagingGetLatestOffsetParams]'s query parameters as
@@ -161,10 +148,6 @@ type SecureMessagingGetMessagesParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SecureMessagingGetMessagesParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SecureMessagingGetMessagesParams]'s query parameters as
 // `url.Values`.

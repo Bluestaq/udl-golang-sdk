@@ -257,9 +257,6 @@ type OnorbitIngestParam struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitIngestParam) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r OnorbitIngestParam) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitIngestParam
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -404,8 +401,7 @@ type OnorbitListResponse struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -520,8 +516,7 @@ type OnorbitGetSignatureResponse struct {
 	// have consistent indexing across arrays (e.g. powers[0] is the measured power at
 	// frequencies[0]).
 	RfObservation OnorbitGetSignatureResponseRfObservation `json:"rfObservation"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		EoObservation    resp.Field
 		RadarObservation resp.Field
@@ -755,8 +750,7 @@ type OnorbitGetSignatureResponseRadarObservation struct {
 	Z float64 `json:"z"`
 	// Z velocity of target in km/sec in J2000 coordinate frame.
 	Zvel float64 `json:"zvel"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1077,8 +1071,7 @@ type OnorbitGetSignatureResponseRfObservation struct {
 	URL string `json:"url"`
 	// Video bandwidth in Hz.
 	VideoBandwidth float64 `json:"videoBandwidth"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1182,10 +1175,6 @@ type OnorbitNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r OnorbitNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.OnorbitIngest)
 }
@@ -1196,10 +1185,6 @@ type OnorbitUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r OnorbitUpdateParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.OnorbitIngest)
 }
@@ -1209,10 +1194,6 @@ type OnorbitListParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [OnorbitListParams]'s query parameters as `url.Values`.
 func (r OnorbitListParams) URLQuery() (v url.Values, err error) {
@@ -1228,10 +1209,6 @@ type OnorbitCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OnorbitCountParams]'s query parameters as `url.Values`.
 func (r OnorbitCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1245,10 +1222,6 @@ type OnorbitGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [OnorbitGetParams]'s query parameters as `url.Values`.
 func (r OnorbitGetParams) URLQuery() (v url.Values, err error) {
@@ -1265,10 +1238,6 @@ type OnorbitGetSignatureParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitGetSignatureParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [OnorbitGetSignatureParams]'s query parameters as
 // `url.Values`.
@@ -1289,10 +1258,6 @@ type OnorbitTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [OnorbitTupleParams]'s query parameters as `url.Values`.
 func (r OnorbitTupleParams) URLQuery() (v url.Values, err error) {

@@ -174,8 +174,7 @@ type OnorbitbatteryListResponse struct {
 	OrigNetwork string `json:"origNetwork"`
 	// The number of batteries on the spacecraft of the type identified by idBattery.
 	Quantity int64 `json:"quantity"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -273,8 +272,7 @@ type OnorbitbatteryGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -364,10 +362,6 @@ type OnorbitbatteryNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitbatteryNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r OnorbitbatteryNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitbatteryNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -439,9 +433,6 @@ type OnorbitbatteryNewParamsBattery struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitbatteryNewParamsBattery) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r OnorbitbatteryNewParamsBattery) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitbatteryNewParamsBattery
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -492,10 +483,6 @@ type OnorbitbatteryUpdateParams struct {
 	Battery OnorbitbatteryUpdateParamsBattery `json:"battery,omitzero"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitbatteryUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r OnorbitbatteryUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitbatteryUpdateParams
@@ -568,11 +555,6 @@ type OnorbitbatteryUpdateParamsBattery struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitbatteryUpdateParamsBattery) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r OnorbitbatteryUpdateParamsBattery) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitbatteryUpdateParamsBattery
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -590,10 +572,6 @@ type OnorbitbatteryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitbatteryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OnorbitbatteryListParams]'s query parameters as
 // `url.Values`.
 func (r OnorbitbatteryListParams) URLQuery() (v url.Values, err error) {
@@ -608,10 +586,6 @@ type OnorbitbatteryGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitbatteryGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [OnorbitbatteryGetParams]'s query parameters as
 // `url.Values`.

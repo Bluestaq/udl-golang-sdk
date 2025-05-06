@@ -209,8 +209,7 @@ type CommAbridged struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -238,9 +237,9 @@ func (r *CommAbridged) UnmarshalJSON(data []byte) error {
 //
 // Warning: the fields of the param type will not be present. ToParam should only
 // be used at the last possible moment before sending a request. Test for this with
-// CommAbridgedParam.IsOverridden()
+// CommAbridgedParam.Overrides()
 func (r CommAbridged) ToParam() CommAbridgedParam {
-	return param.OverrideObj[CommAbridgedParam](r.RawJSON())
+	return param.Override[CommAbridgedParam](r.RawJSON())
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -316,9 +315,6 @@ type CommAbridgedParam struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CommAbridgedParam) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r CommAbridgedParam) MarshalJSON() (data []byte, err error) {
 	type shadow CommAbridgedParam
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -380,8 +376,7 @@ type CommFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -506,8 +501,7 @@ type CommFullTransponder struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -583,10 +577,6 @@ type CommNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CommNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r CommNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow CommNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -621,10 +611,6 @@ type CommGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CommGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [CommGetParams]'s query parameters as `url.Values`.
 func (r CommGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -640,10 +626,6 @@ type CommUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CommUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r CommUpdateParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.CommAbridged)
 }
@@ -653,10 +635,6 @@ type CommListParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CommListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [CommListParams]'s query parameters as `url.Values`.
 func (r CommListParams) URLQuery() (v url.Values, err error) {
@@ -671,10 +649,6 @@ type CommCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CommCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [CommCountParams]'s query parameters as `url.Values`.
 func (r CommCountParams) URLQuery() (v url.Values, err error) {
@@ -694,10 +668,6 @@ type CommTupleParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f CommTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [CommTupleParams]'s query parameters as `url.Values`.
 func (r CommTupleParams) URLQuery() (v url.Values, err error) {

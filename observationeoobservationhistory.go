@@ -428,8 +428,7 @@ type EoObservationFull struct {
 	// This is the uncertainty in the zero point for the filter used for this
 	// observation/row in units of mag. For use with differential photometry.
 	ZeroPtdUnc float64 `json:"zeroPtdUnc"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -846,8 +845,7 @@ type EoObservationFullEoobservationDetails struct {
 	// n=1 to numSpectralFilters, in incrementing order of n, and for no other values
 	// of n.
 	ZeroPointsUnc []float64 `json:"zeroPointsUnc"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AcalCrPixX                           resp.Field
 		AcalCrPixY                           resp.Field
@@ -981,12 +979,6 @@ type ObservationEoObservationHistoryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationEoObservationHistoryListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [ObservationEoObservationHistoryListParams]'s query
 // parameters as `url.Values`.
 func (r ObservationEoObservationHistoryListParams) URLQuery() (v url.Values, err error) {
@@ -1021,12 +1013,6 @@ type ObservationEoObservationHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationEoObservationHistoryAodrParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [ObservationEoObservationHistoryAodrParams]'s query
 // parameters as `url.Values`.
 func (r ObservationEoObservationHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -1044,12 +1030,6 @@ type ObservationEoObservationHistoryCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f ObservationEoObservationHistoryCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [ObservationEoObservationHistoryCountParams]'s query

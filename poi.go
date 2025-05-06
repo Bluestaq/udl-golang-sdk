@@ -306,8 +306,7 @@ type PoiListResponse struct {
 	Type string `json:"type"`
 	// List of URLs to before/after images of this Point of Interest entity.
 	URLs []string `json:"urls"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -563,8 +562,7 @@ type PoiGetResponse struct {
 	Type string `json:"type"`
 	// List of URLs to before/after images of this Point of Interest entity.
 	URLs []string `json:"urls"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -824,8 +822,7 @@ type PoiTupleResponse struct {
 	Type string `json:"type"`
 	// List of URLs to before/after images of this Point of Interest entity.
 	URLs []string `json:"urls"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -1073,10 +1070,6 @@ type PoiNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PoiNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r PoiNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow PoiNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1113,10 +1106,6 @@ type PoiListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PoiListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [PoiListParams]'s query parameters as `url.Values`.
 func (r PoiListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1133,10 +1122,6 @@ type PoiCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PoiCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [PoiCountParams]'s query parameters as `url.Values`.
 func (r PoiCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1149,10 +1134,6 @@ type PoiNewBulkParams struct {
 	Body []PoiNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PoiNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r PoiNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1336,9 +1317,6 @@ type PoiNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PoiNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r PoiNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow PoiNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1355,10 +1333,6 @@ type PoiGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PoiGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [PoiGetParams]'s query parameters as `url.Values`.
 func (r PoiGetParams) URLQuery() (v url.Values, err error) {
@@ -1381,10 +1355,6 @@ type PoiTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PoiTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [PoiTupleParams]'s query parameters as `url.Values`.
 func (r PoiTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1397,10 +1367,6 @@ type PoiUnvalidatedPublishParams struct {
 	Body []PoiUnvalidatedPublishParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PoiUnvalidatedPublishParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r PoiUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1584,9 +1550,6 @@ type PoiUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f PoiUnvalidatedPublishParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r PoiUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow PoiUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

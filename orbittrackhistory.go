@@ -305,8 +305,7 @@ type OrbittrackHistoryListResponse struct {
 	VehType string `json:"vehType"`
 	// Source cross-reference code for the command that originated the track report.
 	Xref string `json:"xref"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -459,8 +458,7 @@ type OrbittrackHistoryListResponseTrackSensor struct {
 	// scheme, these numbers sometimes collide across sensors (especially commercial
 	// sensors). It is therefore not a unique identifier.
 	SensorNumber int64 `json:"sensorNumber"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Az            resp.Field
 		Range         resp.Field
@@ -492,10 +490,6 @@ type OrbittrackHistoryListParams struct {
 	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbittrackHistoryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [OrbittrackHistoryListParams]'s query parameters as
 // `url.Values`.
@@ -530,10 +524,6 @@ type OrbittrackHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbittrackHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OrbittrackHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r OrbittrackHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -551,10 +541,6 @@ type OrbittrackHistoryCountParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OrbittrackHistoryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [OrbittrackHistoryCountParams]'s query parameters as
 // `url.Values`.

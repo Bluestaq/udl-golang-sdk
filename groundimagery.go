@@ -274,8 +274,7 @@ type GroundImageryListResponse struct {
 	// Optional identifier to track a commercial or marketplace transaction executed to
 	// produce this data.
 	TransactionID string `json:"transactionId"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -442,8 +441,7 @@ type GroundImageryGetResponse struct {
 	// Application user who last updated the row in the database, set by the system
 	// automatically and ignored on create/edit operations.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -615,8 +613,7 @@ type GroundImageryTupleResponse struct {
 	// Application user who last updated the row in the database, set by the system
 	// automatically and ignored on create/edit operations.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -772,10 +769,6 @@ type GroundImageryNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GroundImageryNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r GroundImageryNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow GroundImageryNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -812,10 +805,6 @@ type GroundImageryListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GroundImageryListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [GroundImageryListParams]'s query parameters as
 // `url.Values`.
 func (r GroundImageryListParams) URLQuery() (v url.Values, err error) {
@@ -833,10 +822,6 @@ type GroundImageryCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GroundImageryCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [GroundImageryCountParams]'s query parameters as
 // `url.Values`.
 func (r GroundImageryCountParams) URLQuery() (v url.Values, err error) {
@@ -852,10 +837,6 @@ type GroundImageryGetParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GroundImageryGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [GroundImageryGetParams]'s query parameters as `url.Values`.
 func (r GroundImageryGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -869,10 +850,6 @@ type GroundImageryGetFileParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GroundImageryGetFileParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [GroundImageryGetFileParams]'s query parameters as
 // `url.Values`.
@@ -906,10 +883,6 @@ type GroundImageryHistoryAodrParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GroundImageryHistoryAodrParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [GroundImageryHistoryAodrParams]'s query parameters as
 // `url.Values`.
 func (r GroundImageryHistoryAodrParams) URLQuery() (v url.Values, err error) {
@@ -932,10 +905,6 @@ type GroundImageryTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GroundImageryTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [GroundImageryTupleParams]'s query parameters as
 // `url.Values`.
 func (r GroundImageryTupleParams) URLQuery() (v url.Values, err error) {
@@ -950,10 +919,6 @@ type GroundImageryUploadZipParams struct {
 	File io.Reader `json:"file,omitzero,required" format:"binary"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GroundImageryUploadZipParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r GroundImageryUploadZipParams) MarshalMultipart() (data []byte, contentType string, err error) {
 	buf := bytes.NewBuffer(nil)

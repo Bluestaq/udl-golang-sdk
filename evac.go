@@ -264,8 +264,7 @@ type EvacAbridged struct {
 	// The pickup site security (UNKNOWN ZONESECURITY, NO ENEMY, POSSIBLE ENEMY, ENEMY
 	// IN AREA USE CAUTION, ENEMY IN AREA ARMED ESCORT REQUIRED).
 	ZoneSecurity string `json:"zoneSecurity"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -449,8 +448,7 @@ type EvacAbridgedCasualtyInfo struct {
 	Treatment []EvacAbridgedCasualtyInfoTreatment `json:"treatment"`
 	// Information obtained for vital signs.
 	VitalSignData []EvacAbridgedCasualtyInfoVitalSignData `json:"vitalSignData"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Age             resp.Field
 		Allergy         resp.Field
@@ -503,8 +501,7 @@ type EvacAbridgedCasualtyInfoAllergy struct {
 	Comments string `json:"comments"`
 	// Type of patient allergy (e.g. PENICILLIN, SULFA, OTHER).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		Comments    resp.Field
 		Type        resp.Field
@@ -534,8 +531,7 @@ type EvacAbridgedCasualtyInfoCondition struct {
 	// ACTIVITY NONE, AVPU ALERT, AVPU ALTERED MENTAL STATE, AVPU PAIN, AVPU
 	// UNRESPONSIVE, etc.).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		BodyPart    resp.Field
 		Comments    resp.Field
@@ -567,8 +563,7 @@ type EvacAbridgedCasualtyInfoEtiology struct {
 	// BURN CHEMICAL, BURN ELECTRICAL, BURN, BURN HOT LIQUID, BURN RADIATION, BURN
 	// THERMAL, etc.).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		BodyPart    resp.Field
 		Comments    resp.Field
@@ -596,8 +591,7 @@ type EvacAbridgedCasualtyInfoHealthState struct {
 	// Generalized state of health type (BIOLOGICAL, CHEMICAL, COGNITIVE, HYDRATION,
 	// LIFE SIGN, RADIATION, SHOCK, THERMAL).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		HealthStateCode resp.Field
 		MedConfFactor   resp.Field
@@ -634,8 +628,7 @@ type EvacAbridgedCasualtyInfoInjury struct {
 	// NON SYMMETRICAL, LACERATION, NEUROVASCULAR COMPROMISE, NEUROVASCULAR INTACT,
 	// PUNCTURE, SEAT BELT SIGN, STAB, TIC TIM).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		BodyPart    resp.Field
 		Comments    resp.Field
@@ -673,8 +666,7 @@ type EvacAbridgedCasualtyInfoMedication struct {
 	// HEXTEND, LACTATED RINGERS, MOBIC, MORPHINE, NARCOTIC, NS, PENICILLIN, PLASMA,
 	// PLATELETS, PRBC, TYLENOL, WHOLE BLOOD MT).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AdminRoute  resp.Field
 		BodyPart    resp.Field
@@ -709,8 +701,7 @@ type EvacAbridgedCasualtyInfoTreatment struct {
 	// AIRWAY NPA OPA APPLIED, AIRWAY PATIENT, AIRWAY POSITIONAL, AIRWAY SURGICAL CRIC,
 	// BREATHING CHEST SEAL, BREATHING CHEST TUBE, etc.).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		BodyPart    resp.Field
 		Comments    resp.Field
@@ -741,8 +732,7 @@ type EvacAbridgedCasualtyInfoVitalSignData struct {
 	// Vital sign value 2. The content of this field is dependent on the type of vital
 	// sign being measured (see the vitalSign field).
 	VitalSign2 float64 `json:"vitalSign2"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		MedConfFactor resp.Field
 		Time          resp.Field
@@ -770,8 +760,7 @@ type EvacAbridgedEnemyData struct {
 	HlzRemarks string `json:"hlzRemarks"`
 	// The type of hostile fire received (SMALL ARMS, MORTAR, ARTILLERY, ROCKETS).
 	HostileFireType string `json:"hostileFireType"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		DirToEnemy        resp.Field
 		FriendliesRemarks resp.Field
@@ -900,10 +889,6 @@ type EvacNewParams struct {
 	EnemyData []EvacNewParamsEnemyData `json:"enemyData,omitzero"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r EvacNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewParams
@@ -1044,9 +1029,6 @@ type EvacNewParamsCasualtyInfo struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewParamsCasualtyInfo) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r EvacNewParamsCasualtyInfo) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewParamsCasualtyInfo
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1060,9 +1042,6 @@ type EvacNewParamsCasualtyInfoAllergy struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewParamsCasualtyInfoAllergy) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r EvacNewParamsCasualtyInfoAllergy) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewParamsCasualtyInfoAllergy
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1086,11 +1065,6 @@ type EvacNewParamsCasualtyInfoCondition struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewParamsCasualtyInfoCondition) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacNewParamsCasualtyInfoCondition) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewParamsCasualtyInfoCondition
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1114,11 +1088,6 @@ type EvacNewParamsCasualtyInfoEtiology struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewParamsCasualtyInfoEtiology) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacNewParamsCasualtyInfoEtiology) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewParamsCasualtyInfoEtiology
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1138,11 +1107,6 @@ type EvacNewParamsCasualtyInfoHealthState struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewParamsCasualtyInfoHealthState) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacNewParamsCasualtyInfoHealthState) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewParamsCasualtyInfoHealthState
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1171,9 +1135,6 @@ type EvacNewParamsCasualtyInfoInjury struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewParamsCasualtyInfoInjury) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r EvacNewParamsCasualtyInfoInjury) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewParamsCasualtyInfoInjury
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1203,11 +1164,6 @@ type EvacNewParamsCasualtyInfoMedication struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewParamsCasualtyInfoMedication) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacNewParamsCasualtyInfoMedication) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewParamsCasualtyInfoMedication
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1232,11 +1188,6 @@ type EvacNewParamsCasualtyInfoTreatment struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewParamsCasualtyInfoTreatment) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacNewParamsCasualtyInfoTreatment) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewParamsCasualtyInfoTreatment
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1259,11 +1210,6 @@ type EvacNewParamsCasualtyInfoVitalSignData struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewParamsCasualtyInfoVitalSignData) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacNewParamsCasualtyInfoVitalSignData) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewParamsCasualtyInfoVitalSignData
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1282,9 +1228,6 @@ type EvacNewParamsEnemyData struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewParamsEnemyData) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r EvacNewParamsEnemyData) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewParamsEnemyData
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1295,10 +1238,6 @@ type EvacGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [EvacGetParams]'s query parameters as `url.Values`.
 func (r EvacGetParams) URLQuery() (v url.Values, err error) {
@@ -1316,10 +1255,6 @@ type EvacListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EvacListParams]'s query parameters as `url.Values`.
 func (r EvacListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1336,10 +1271,6 @@ type EvacCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [EvacCountParams]'s query parameters as `url.Values`.
 func (r EvacCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
@@ -1352,10 +1283,6 @@ type EvacNewBulkParams struct {
 	Body []EvacNewBulkParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewBulkParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r EvacNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1487,9 +1414,6 @@ type EvacNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewBulkParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r EvacNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1607,11 +1531,6 @@ type EvacNewBulkParamsBodyCasualtyInfo struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewBulkParamsBodyCasualtyInfo) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacNewBulkParamsBodyCasualtyInfo) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewBulkParamsBodyCasualtyInfo
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1625,11 +1544,6 @@ type EvacNewBulkParamsBodyCasualtyInfoAllergy struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewBulkParamsBodyCasualtyInfoAllergy) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacNewBulkParamsBodyCasualtyInfoAllergy) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewBulkParamsBodyCasualtyInfoAllergy
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1653,11 +1567,6 @@ type EvacNewBulkParamsBodyCasualtyInfoCondition struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewBulkParamsBodyCasualtyInfoCondition) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacNewBulkParamsBodyCasualtyInfoCondition) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewBulkParamsBodyCasualtyInfoCondition
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1681,11 +1590,6 @@ type EvacNewBulkParamsBodyCasualtyInfoEtiology struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewBulkParamsBodyCasualtyInfoEtiology) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacNewBulkParamsBodyCasualtyInfoEtiology) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewBulkParamsBodyCasualtyInfoEtiology
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1705,11 +1609,6 @@ type EvacNewBulkParamsBodyCasualtyInfoHealthState struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewBulkParamsBodyCasualtyInfoHealthState) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacNewBulkParamsBodyCasualtyInfoHealthState) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewBulkParamsBodyCasualtyInfoHealthState
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1738,11 +1637,6 @@ type EvacNewBulkParamsBodyCasualtyInfoInjury struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewBulkParamsBodyCasualtyInfoInjury) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacNewBulkParamsBodyCasualtyInfoInjury) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewBulkParamsBodyCasualtyInfoInjury
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1772,11 +1666,6 @@ type EvacNewBulkParamsBodyCasualtyInfoMedication struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewBulkParamsBodyCasualtyInfoMedication) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacNewBulkParamsBodyCasualtyInfoMedication) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewBulkParamsBodyCasualtyInfoMedication
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1801,11 +1690,6 @@ type EvacNewBulkParamsBodyCasualtyInfoTreatment struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewBulkParamsBodyCasualtyInfoTreatment) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacNewBulkParamsBodyCasualtyInfoTreatment) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewBulkParamsBodyCasualtyInfoTreatment
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1828,11 +1712,6 @@ type EvacNewBulkParamsBodyCasualtyInfoVitalSignData struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewBulkParamsBodyCasualtyInfoVitalSignData) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacNewBulkParamsBodyCasualtyInfoVitalSignData) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewBulkParamsBodyCasualtyInfoVitalSignData
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1851,9 +1730,6 @@ type EvacNewBulkParamsBodyEnemyData struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacNewBulkParamsBodyEnemyData) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r EvacNewBulkParamsBodyEnemyData) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewBulkParamsBodyEnemyData
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1863,10 +1739,6 @@ type EvacUnvalidatedPublishParams struct {
 	Body []EvacUnvalidatedPublishParamsBody
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacUnvalidatedPublishParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r EvacUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
@@ -1998,9 +1870,6 @@ type EvacUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacUnvalidatedPublishParamsBody) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r EvacUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow EvacUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2118,11 +1987,6 @@ type EvacUnvalidatedPublishParamsBodyCasualtyInfo struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacUnvalidatedPublishParamsBodyCasualtyInfo) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacUnvalidatedPublishParamsBodyCasualtyInfo) MarshalJSON() (data []byte, err error) {
 	type shadow EvacUnvalidatedPublishParamsBodyCasualtyInfo
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2136,11 +2000,6 @@ type EvacUnvalidatedPublishParamsBodyCasualtyInfoAllergy struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacUnvalidatedPublishParamsBodyCasualtyInfoAllergy) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacUnvalidatedPublishParamsBodyCasualtyInfoAllergy) MarshalJSON() (data []byte, err error) {
 	type shadow EvacUnvalidatedPublishParamsBodyCasualtyInfoAllergy
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2164,11 +2023,6 @@ type EvacUnvalidatedPublishParamsBodyCasualtyInfoCondition struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacUnvalidatedPublishParamsBodyCasualtyInfoCondition) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacUnvalidatedPublishParamsBodyCasualtyInfoCondition) MarshalJSON() (data []byte, err error) {
 	type shadow EvacUnvalidatedPublishParamsBodyCasualtyInfoCondition
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2192,11 +2046,6 @@ type EvacUnvalidatedPublishParamsBodyCasualtyInfoEtiology struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacUnvalidatedPublishParamsBodyCasualtyInfoEtiology) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacUnvalidatedPublishParamsBodyCasualtyInfoEtiology) MarshalJSON() (data []byte, err error) {
 	type shadow EvacUnvalidatedPublishParamsBodyCasualtyInfoEtiology
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2216,11 +2065,6 @@ type EvacUnvalidatedPublishParamsBodyCasualtyInfoHealthState struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacUnvalidatedPublishParamsBodyCasualtyInfoHealthState) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacUnvalidatedPublishParamsBodyCasualtyInfoHealthState) MarshalJSON() (data []byte, err error) {
 	type shadow EvacUnvalidatedPublishParamsBodyCasualtyInfoHealthState
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2249,11 +2093,6 @@ type EvacUnvalidatedPublishParamsBodyCasualtyInfoInjury struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacUnvalidatedPublishParamsBodyCasualtyInfoInjury) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacUnvalidatedPublishParamsBodyCasualtyInfoInjury) MarshalJSON() (data []byte, err error) {
 	type shadow EvacUnvalidatedPublishParamsBodyCasualtyInfoInjury
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2283,11 +2122,6 @@ type EvacUnvalidatedPublishParamsBodyCasualtyInfoMedication struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacUnvalidatedPublishParamsBodyCasualtyInfoMedication) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacUnvalidatedPublishParamsBodyCasualtyInfoMedication) MarshalJSON() (data []byte, err error) {
 	type shadow EvacUnvalidatedPublishParamsBodyCasualtyInfoMedication
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2312,11 +2146,6 @@ type EvacUnvalidatedPublishParamsBodyCasualtyInfoTreatment struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacUnvalidatedPublishParamsBodyCasualtyInfoTreatment) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacUnvalidatedPublishParamsBodyCasualtyInfoTreatment) MarshalJSON() (data []byte, err error) {
 	type shadow EvacUnvalidatedPublishParamsBodyCasualtyInfoTreatment
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2339,11 +2168,6 @@ type EvacUnvalidatedPublishParamsBodyCasualtyInfoVitalSignData struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacUnvalidatedPublishParamsBodyCasualtyInfoVitalSignData) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacUnvalidatedPublishParamsBodyCasualtyInfoVitalSignData) MarshalJSON() (data []byte, err error) {
 	type shadow EvacUnvalidatedPublishParamsBodyCasualtyInfoVitalSignData
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2362,11 +2186,6 @@ type EvacUnvalidatedPublishParamsBodyEnemyData struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f EvacUnvalidatedPublishParamsBodyEnemyData) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r EvacUnvalidatedPublishParamsBodyEnemyData) MarshalJSON() (data []byte, err error) {
 	type shadow EvacUnvalidatedPublishParamsBodyEnemyData
 	return param.MarshalObject(r, (*shadow)(&r))

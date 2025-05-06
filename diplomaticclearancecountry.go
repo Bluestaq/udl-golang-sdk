@@ -313,8 +313,7 @@ type DiplomaticClearanceCountryGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                     resp.Field
 		CountryCode                               resp.Field
@@ -417,8 +416,7 @@ type DiplomaticClearanceCountryGetResponseDiplomaticClearanceCountryContact stru
 	// Phone number to contact the Diplomatic Attache Office (DAO) for this country
 	// over a secure SIPR line.
 	SiprNum string `json:"siprNum"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AhNum           resp.Field
 		AhSpdDialCode   resp.Field
@@ -453,8 +451,7 @@ type DiplomaticClearanceCountryGetResponseDiplomaticClearanceCountryEntryExitPoi
 	IsExit bool `json:"isExit"`
 	// Name of this entry/exit point.
 	PointName string `json:"pointName"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		IsEntry     resp.Field
 		IsExit      resp.Field
@@ -623,8 +620,7 @@ type DiplomaticClearanceCountryGetResponseDiplomaticClearanceCountryProfile stru
 	// Flag indicating whether crew reporting is undefined for the country using this
 	// diplomatic clearance profile.
 	UndefinedCrewReporting bool `json:"undefinedCrewReporting"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CargoPaxRemark           resp.Field
 		ClearanceID              resp.Field
@@ -821,8 +817,7 @@ type DiplomaticClearanceCountryListResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                     resp.Field
 		CountryCode                               resp.Field
@@ -925,8 +920,7 @@ type DiplomaticClearanceCountryListResponseDiplomaticClearanceCountryContact str
 	// Phone number to contact the Diplomatic Attache Office (DAO) for this country
 	// over a secure SIPR line.
 	SiprNum string `json:"siprNum"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AhNum           resp.Field
 		AhSpdDialCode   resp.Field
@@ -961,8 +955,7 @@ type DiplomaticClearanceCountryListResponseDiplomaticClearanceCountryEntryExitPo
 	IsExit bool `json:"isExit"`
 	// Name of this entry/exit point.
 	PointName string `json:"pointName"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		IsEntry     resp.Field
 		IsExit      resp.Field
@@ -1131,8 +1124,7 @@ type DiplomaticClearanceCountryListResponseDiplomaticClearanceCountryProfile str
 	// Flag indicating whether crew reporting is undefined for the country using this
 	// diplomatic clearance profile.
 	UndefinedCrewReporting bool `json:"undefinedCrewReporting"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CargoPaxRemark           resp.Field
 		ClearanceID              resp.Field
@@ -1329,8 +1321,7 @@ type DiplomaticClearanceCountryTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking                     resp.Field
 		CountryCode                               resp.Field
@@ -1433,8 +1424,7 @@ type DiplomaticClearanceCountryTupleResponseDiplomaticClearanceCountryContact st
 	// Phone number to contact the Diplomatic Attache Office (DAO) for this country
 	// over a secure SIPR line.
 	SiprNum string `json:"siprNum"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AhNum           resp.Field
 		AhSpdDialCode   resp.Field
@@ -1469,8 +1459,7 @@ type DiplomaticClearanceCountryTupleResponseDiplomaticClearanceCountryEntryExitP
 	IsExit bool `json:"isExit"`
 	// Name of this entry/exit point.
 	PointName string `json:"pointName"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		IsEntry     resp.Field
 		IsExit      resp.Field
@@ -1639,8 +1628,7 @@ type DiplomaticClearanceCountryTupleResponseDiplomaticClearanceCountryProfile st
 	// Flag indicating whether crew reporting is undefined for the country using this
 	// diplomatic clearance profile.
 	UndefinedCrewReporting bool `json:"undefinedCrewReporting"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		CargoPaxRemark           resp.Field
 		ClearanceID              resp.Field
@@ -1820,12 +1808,6 @@ type DiplomaticClearanceCountryNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryNewParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 func (r DiplomaticClearanceCountryNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1885,11 +1867,6 @@ type DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryContact struct
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryContact) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryContact) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryContact
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -1906,11 +1883,6 @@ type DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryEntryExitPoint
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryEntryExitPoint) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryEntryExitPoint) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryEntryExitPoint
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2070,11 +2042,6 @@ type DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryProfile struct
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryProfile) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryProfile) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryProfile
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2084,12 +2051,6 @@ type DiplomaticClearanceCountryGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryGetParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [DiplomaticClearanceCountryGetParams]'s query parameters as
@@ -2212,12 +2173,6 @@ type DiplomaticClearanceCountryUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryUpdateParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 func (r DiplomaticClearanceCountryUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2277,11 +2232,6 @@ type DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryContact str
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryContact) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryContact) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryContact
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2298,11 +2248,6 @@ type DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryEntryExitPo
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryEntryExitPoint) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryEntryExitPoint) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryEntryExitPoint
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2462,11 +2407,6 @@ type DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryProfile str
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryProfile) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryProfile) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryProfile
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2476,12 +2416,6 @@ type DiplomaticClearanceCountryListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [DiplomaticClearanceCountryListParams]'s query parameters as
@@ -2499,12 +2433,6 @@ type DiplomaticClearanceCountryCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryCountParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [DiplomaticClearanceCountryCountParams]'s query parameters
 // as `url.Values`.
 func (r DiplomaticClearanceCountryCountParams) URLQuery() (v url.Values, err error) {
@@ -2517,12 +2445,6 @@ func (r DiplomaticClearanceCountryCountParams) URLQuery() (v url.Values, err err
 type DiplomaticClearanceCountryNewBulkParams struct {
 	Body []DiplomaticClearanceCountryNewBulkParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryNewBulkParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r DiplomaticClearanceCountryNewBulkParams) MarshalJSON() (data []byte, err error) {
@@ -2663,11 +2585,6 @@ type DiplomaticClearanceCountryNewBulkParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryNewBulkParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceCountryNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2710,11 +2627,6 @@ type DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryContac
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryContact) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryContact) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryContact
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2731,11 +2643,6 @@ type DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryEntryE
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryEntryExitPoint) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryEntryExitPoint) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryEntryExitPoint
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2895,11 +2802,6 @@ type DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryProfil
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryProfile) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryProfile) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryProfile
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -2916,12 +2818,6 @@ type DiplomaticClearanceCountryTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryTupleParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
-
 // URLQuery serializes [DiplomaticClearanceCountryTupleParams]'s query parameters
 // as `url.Values`.
 func (r DiplomaticClearanceCountryTupleParams) URLQuery() (v url.Values, err error) {
@@ -2934,12 +2830,6 @@ func (r DiplomaticClearanceCountryTupleParams) URLQuery() (v url.Values, err err
 type DiplomaticClearanceCountryUnvalidatedPublishParams struct {
 	Body []DiplomaticClearanceCountryUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r DiplomaticClearanceCountryUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -3080,11 +2970,6 @@ type DiplomaticClearanceCountryUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceCountryUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3127,11 +3012,6 @@ type DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCo
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCountryContact) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCountryContact) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCountryContact
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3148,11 +3028,6 @@ type DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCo
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCountryEntryExitPoint) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCountryEntryExitPoint) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCountryEntryExitPoint
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -3312,11 +3187,6 @@ type DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCo
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCountryProfile) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCountryProfile) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCountryProfile
 	return param.MarshalObject(r, (*shadow)(&r))

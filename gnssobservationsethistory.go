@@ -224,8 +224,7 @@ type GnssObservationSetFull struct {
 	TransactionID string `json:"transactionId"`
 	// Vertical Dilution of Precision.
 	VDop float64 `json:"vDop"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -339,8 +338,7 @@ type GnssObservationSetFullGnssObservationList struct {
 	// Status of the GNSS receiver signal. Status options are 0, 1 or 2 (0 being the
 	// best).
 	TrackingStatus int64 `json:"trackingStatus"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		AgcState       resp.Field
 		GnssSatID      resp.Field
@@ -370,12 +368,6 @@ type GnssObservationsetHistoryListParams struct {
 	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssObservationsetHistoryListParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [GnssObservationsetHistoryListParams]'s query parameters as
@@ -410,12 +402,6 @@ type GnssObservationsetHistoryAodrParams struct {
 	// valid values are: JSON and CSV.
 	OutputFormat param.Opt[string] `query:"outputFormat,omitzero" json:"-"`
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f GnssObservationsetHistoryAodrParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 // URLQuery serializes [GnssObservationsetHistoryAodrParams]'s query parameters as

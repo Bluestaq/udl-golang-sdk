@@ -224,8 +224,7 @@ type SurfaceObstructionListResponse struct {
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
 	SourceDl string `json:"sourceDL"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking     resp.Field
 		DataMode                  resp.Field
@@ -324,8 +323,7 @@ type SurfaceObstructionGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking     resp.Field
 		DataMode                  resp.Field
@@ -426,8 +424,7 @@ type SurfaceObstructionTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking     resp.Field
 		DataMode                  resp.Field
@@ -514,10 +511,6 @@ type SurfaceObstructionNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SurfaceObstructionNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SurfaceObstructionNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SurfaceObstructionNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -576,10 +569,6 @@ type SurfaceObstructionUpdateParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SurfaceObstructionUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r SurfaceObstructionUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SurfaceObstructionUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -601,10 +590,6 @@ type SurfaceObstructionListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SurfaceObstructionListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SurfaceObstructionListParams]'s query parameters as
 // `url.Values`.
 func (r SurfaceObstructionListParams) URLQuery() (v url.Values, err error) {
@@ -620,10 +605,6 @@ type SurfaceObstructionCountParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SurfaceObstructionCountParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SurfaceObstructionCountParams]'s query parameters as
 // `url.Values`.
 func (r SurfaceObstructionCountParams) URLQuery() (v url.Values, err error) {
@@ -638,10 +619,6 @@ type SurfaceObstructionGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SurfaceObstructionGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [SurfaceObstructionGetParams]'s query parameters as
 // `url.Values`.
@@ -663,10 +640,6 @@ type SurfaceObstructionTupleParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SurfaceObstructionTupleParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [SurfaceObstructionTupleParams]'s query parameters as
 // `url.Values`.
 func (r SurfaceObstructionTupleParams) URLQuery() (v url.Values, err error) {
@@ -679,12 +652,6 @@ func (r SurfaceObstructionTupleParams) URLQuery() (v url.Values, err error) {
 type SurfaceObstructionUnvalidatedPublishParams struct {
 	Body []SurfaceObstructionUnvalidatedPublishParamsBody
 	paramObj
-}
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SurfaceObstructionUnvalidatedPublishParams) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
 }
 
 func (r SurfaceObstructionUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
@@ -747,11 +714,6 @@ type SurfaceObstructionUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f SurfaceObstructionUnvalidatedPublishParamsBody) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r SurfaceObstructionUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SurfaceObstructionUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))

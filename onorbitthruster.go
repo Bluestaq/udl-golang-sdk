@@ -179,8 +179,7 @@ type OnorbitthrusterListResponse struct {
 	// The type of thruster associated with this record (e.g. LAE, Hydrazine REA,
 	// etc.).
 	Type string `json:"type"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -284,8 +283,7 @@ type OnorbitthrusterGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// Metadata for the response, check the presence of optional fields with the
-	// [resp.Field.IsPresent] method.
+	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
 	JSON struct {
 		ClassificationMarking resp.Field
 		DataMode              resp.Field
@@ -381,10 +379,6 @@ type OnorbitthrusterNewParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitthrusterNewParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 func (r OnorbitthrusterNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitthrusterNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -459,9 +453,6 @@ type OnorbitthrusterNewParamsEngine struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitthrusterNewParamsEngine) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 func (r OnorbitthrusterNewParamsEngine) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitthrusterNewParamsEngine
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -517,10 +508,6 @@ type OnorbitthrusterUpdateParams struct {
 	Engine OnorbitthrusterUpdateParamsEngine `json:"engine,omitzero"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitthrusterUpdateParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 func (r OnorbitthrusterUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitthrusterUpdateParams
@@ -596,11 +583,6 @@ type OnorbitthrusterUpdateParamsEngine struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitthrusterUpdateParamsEngine) IsPresent() bool {
-	return !param.IsOmitted(f) && !f.IsNull()
-}
 func (r OnorbitthrusterUpdateParamsEngine) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitthrusterUpdateParamsEngine
 	return param.MarshalObject(r, (*shadow)(&r))
@@ -618,10 +600,6 @@ type OnorbitthrusterListParams struct {
 	paramObj
 }
 
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitthrusterListParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
-
 // URLQuery serializes [OnorbitthrusterListParams]'s query parameters as
 // `url.Values`.
 func (r OnorbitthrusterListParams) URLQuery() (v url.Values, err error) {
@@ -636,10 +614,6 @@ type OnorbitthrusterGetParams struct {
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
-
-// IsPresent returns true if the field's value is not omitted and not the JSON
-// "null". To check if this field is omitted, use [param.IsOmitted].
-func (f OnorbitthrusterGetParams) IsPresent() bool { return !param.IsOmitted(f) && !f.IsNull() }
 
 // URLQuery serializes [OnorbitthrusterGetParams]'s query parameters as
 // `url.Values`.
