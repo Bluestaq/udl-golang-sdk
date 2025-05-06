@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // WeatherDataService contains methods and other services that help with
@@ -298,48 +298,48 @@ type WeatherDataListResponse struct {
 	TdAvgSampleNums []int64 `json:"tdAvgSampleNums"`
 	// Last altitude with recorded measurements in this record, in meters.
 	TermAlt float64 `json:"termAlt"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		ObTime                resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AngleOrientation      resp.Field
-		AvgRefPwr             resp.Field
-		AvgTxPwr              resp.Field
-		Checksum              resp.Field
-		CoIntegs              resp.Field
-		ConsRecs              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DoppVels              resp.Field
-		FileCreation          resp.Field
-		FirstGuessAvgs        resp.Field
-		IDSensor              resp.Field
-		InterpulsePeriods     resp.Field
-		LightDetSensors       resp.Field
-		LightEventNum         resp.Field
-		NoiseLvls             resp.Field
-		NumElements           resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigSensorID          resp.Field
-		PosConfidence         resp.Field
-		QcValue               resp.Field
-		SectorNum             resp.Field
-		SemiMajorAxis         resp.Field
-		SemiMinorAxis         resp.Field
-		SigPwrs               resp.Field
-		SigStrength           resp.Field
-		Snrs                  resp.Field
-		SpecAvgs              resp.Field
-		SpecWidths            resp.Field
-		SrcIDs                resp.Field
-		SrcTyps               resp.Field
-		TdAvgSampleNums       resp.Field
-		TermAlt               resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		ObTime                respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AngleOrientation      respjson.Field
+		AvgRefPwr             respjson.Field
+		AvgTxPwr              respjson.Field
+		Checksum              respjson.Field
+		CoIntegs              respjson.Field
+		ConsRecs              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DoppVels              respjson.Field
+		FileCreation          respjson.Field
+		FirstGuessAvgs        respjson.Field
+		IDSensor              respjson.Field
+		InterpulsePeriods     respjson.Field
+		LightDetSensors       respjson.Field
+		LightEventNum         respjson.Field
+		NoiseLvls             respjson.Field
+		NumElements           respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigSensorID          respjson.Field
+		PosConfidence         respjson.Field
+		QcValue               respjson.Field
+		SectorNum             respjson.Field
+		SemiMajorAxis         respjson.Field
+		SemiMinorAxis         respjson.Field
+		SigPwrs               respjson.Field
+		SigStrength           respjson.Field
+		Snrs                  respjson.Field
+		SpecAvgs              respjson.Field
+		SpecWidths            respjson.Field
+		SrcIDs                respjson.Field
+		SrcTyps               respjson.Field
+		TdAvgSampleNums       respjson.Field
+		TermAlt               respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // AirspaceControlOrderService contains methods and other services that help with
@@ -253,42 +253,42 @@ type AirspacecontrolorderAbridged struct {
 	// Array of unique link 16 identifiers that will be assigned to a future airspace
 	// control means.
 	UndLnkTrks []string `json:"undLnkTrks"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking          resp.Field
-		DataMode                       resp.Field
-		OpExName                       resp.Field
-		Originator                     resp.Field
-		Source                         resp.Field
-		StartTime                      resp.Field
-		ID                             resp.Field
-		AcoComments                    resp.Field
-		AcoSerialNum                   resp.Field
-		AirspaceControlMeansStatus     resp.Field
-		AirspaceControlOrderReferences resp.Field
-		AreaOfValidity                 resp.Field
-		ClassReasons                   resp.Field
-		ClassSource                    resp.Field
-		CreatedAt                      resp.Field
-		CreatedBy                      resp.Field
-		DeclassExemptionCodes          resp.Field
-		DowngradeInsDates              resp.Field
-		GeoDatum                       resp.Field
-		Month                          resp.Field
-		OpExInfo                       resp.Field
-		OpExInfoAlt                    resp.Field
-		Origin                         resp.Field
-		OrigNetwork                    resp.Field
-		PlanOrigNum                    resp.Field
-		Qualifier                      resp.Field
-		QualSn                         resp.Field
-		RawFileUri                     resp.Field
-		SerialNum                      resp.Field
-		SourceDl                       resp.Field
-		StopQualifier                  resp.Field
-		StopTime                       resp.Field
-		UndLnkTrks                     resp.Field
-		ExtraFields                    map[string]resp.Field
+		ClassificationMarking          respjson.Field
+		DataMode                       respjson.Field
+		OpExName                       respjson.Field
+		Originator                     respjson.Field
+		Source                         respjson.Field
+		StartTime                      respjson.Field
+		ID                             respjson.Field
+		AcoComments                    respjson.Field
+		AcoSerialNum                   respjson.Field
+		AirspaceControlMeansStatus     respjson.Field
+		AirspaceControlOrderReferences respjson.Field
+		AreaOfValidity                 respjson.Field
+		ClassReasons                   respjson.Field
+		ClassSource                    respjson.Field
+		CreatedAt                      respjson.Field
+		CreatedBy                      respjson.Field
+		DeclassExemptionCodes          respjson.Field
+		DowngradeInsDates              respjson.Field
+		GeoDatum                       respjson.Field
+		Month                          respjson.Field
+		OpExInfo                       respjson.Field
+		OpExInfoAlt                    respjson.Field
+		Origin                         respjson.Field
+		OrigNetwork                    respjson.Field
+		PlanOrigNum                    respjson.Field
+		Qualifier                      respjson.Field
+		QualSn                         respjson.Field
+		RawFileUri                     respjson.Field
+		SerialNum                      respjson.Field
+		SourceDl                       respjson.Field
+		StopQualifier                  respjson.Field
+		StopTime                       respjson.Field
+		UndLnkTrks                     respjson.Field
+		ExtraFields                    map[string]respjson.Field
 		raw                            string
 	} `json:"-"`
 }
@@ -333,12 +333,12 @@ type AirspacecontrolorderAbridgedAirspaceControlMeansStatus struct {
 	// Airspace control means name or designator. Mandatory if acmStat equals "DELETE,"
 	// otherwise this field is prohibited.
 	CmStatID []string `json:"cmStatId"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AirspaceControlMeans resp.Field
-		CmStat               resp.Field
-		CmStatID             resp.Field
-		ExtraFields          map[string]resp.Field
+		AirspaceControlMeans respjson.Field
+		CmStat               respjson.Field
+		CmStatID             respjson.Field
+		ExtraFields          map[string]respjson.Field
 		raw                  string
 	} `json:"-"`
 }
@@ -462,38 +462,38 @@ type AirspacecontrolorderAbridgedAirspaceControlMeansStatusAirspaceControlMean s
 	// Specifies the unit of length for which widths are given. Use M for meters, KM
 	// for kilometers, or NM for nautical miles.
 	WidthUnit string `json:"widthUnit"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AirspaceControlPoint resp.Field
-		AirspaceTimePeriod   resp.Field
-		Bearing0             resp.Field
-		Bearing1             resp.Field
-		CmID                 resp.Field
-		CmShape              resp.Field
-		CmType               resp.Field
-		CntrlAuth            resp.Field
-		CntrlAuthFreqs       resp.Field
-		Coord0               resp.Field
-		Coord1               resp.Field
-		CorrWayPoints        resp.Field
-		EffVDim              resp.Field
-		FreeText             resp.Field
-		GenTextInd           resp.Field
-		GeoDatumAlt          resp.Field
-		Link16ID             resp.Field
-		OrbitAlignment       resp.Field
-		PolyCoord            resp.Field
-		RadMag0              resp.Field
-		RadMag1              resp.Field
-		RadMagUnit           resp.Field
-		TrackLeg             resp.Field
-		TransAltitude        resp.Field
-		Usage                resp.Field
-		Width                resp.Field
-		WidthLeft            resp.Field
-		WidthRight           resp.Field
-		WidthUnit            resp.Field
-		ExtraFields          map[string]resp.Field
+		AirspaceControlPoint respjson.Field
+		AirspaceTimePeriod   respjson.Field
+		Bearing0             respjson.Field
+		Bearing1             respjson.Field
+		CmID                 respjson.Field
+		CmShape              respjson.Field
+		CmType               respjson.Field
+		CntrlAuth            respjson.Field
+		CntrlAuthFreqs       respjson.Field
+		Coord0               respjson.Field
+		Coord1               respjson.Field
+		CorrWayPoints        respjson.Field
+		EffVDim              respjson.Field
+		FreeText             respjson.Field
+		GenTextInd           respjson.Field
+		GeoDatumAlt          respjson.Field
+		Link16ID             respjson.Field
+		OrbitAlignment       respjson.Field
+		PolyCoord            respjson.Field
+		RadMag0              respjson.Field
+		RadMag1              respjson.Field
+		RadMagUnit           respjson.Field
+		TrackLeg             respjson.Field
+		TransAltitude        respjson.Field
+		Usage                respjson.Field
+		Width                respjson.Field
+		WidthLeft            respjson.Field
+		WidthRight           respjson.Field
+		WidthUnit            respjson.Field
+		ExtraFields          map[string]respjson.Field
 		raw                  string
 	} `json:"-"`
 }
@@ -518,13 +518,13 @@ type AirspacecontrolorderAbridgedAirspaceControlMeansStatusAirspaceControlMeanAi
 	CtrlPtName string `json:"ctrlPtName"`
 	// One of possible control point type codes, such as CP, ER, OT, etc.
 	CtrlPtType string `json:"ctrlPtType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CtrlPtAltitude resp.Field
-		CtrlPtLocation resp.Field
-		CtrlPtName     resp.Field
-		CtrlPtType     resp.Field
-		ExtraFields    map[string]resp.Field
+		CtrlPtAltitude respjson.Field
+		CtrlPtLocation respjson.Field
+		CtrlPtName     respjson.Field
+		CtrlPtType     respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }
@@ -556,14 +556,14 @@ type AirspacecontrolorderAbridgedAirspaceControlMeansStatusAirspaceControlMeanAi
 	TimeMode string `json:"timeMode"`
 	// The start time designating that the airspace control order is active.
 	TimeStart string `json:"timeStart"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		IntDur      resp.Field
-		IntFreq     resp.Field
-		TimeEnd     resp.Field
-		TimeMode    resp.Field
-		TimeStart   resp.Field
-		ExtraFields map[string]resp.Field
+		IntDur      respjson.Field
+		IntFreq     respjson.Field
+		TimeEnd     respjson.Field
+		TimeMode    respjson.Field
+		TimeStart   respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -597,16 +597,16 @@ type AirspacecontrolorderAbridgedAirspaceControlOrderReference struct {
 	RefTs time.Time `json:"refTs" format:"date-time"`
 	// Specifies the type for this reference.
 	RefType string `json:"refType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		RefOriginator      resp.Field
-		RefSerialNum       resp.Field
-		RefSiCs            resp.Field
-		RefSID             resp.Field
-		RefSpecialNotation resp.Field
-		RefTs              resp.Field
-		RefType            resp.Field
-		ExtraFields        map[string]resp.Field
+		RefOriginator      respjson.Field
+		RefSerialNum       respjson.Field
+		RefSiCs            respjson.Field
+		RefSID             respjson.Field
+		RefSpecialNotation respjson.Field
+		RefTs              respjson.Field
+		RefType            respjson.Field
+		ExtraFields        map[string]respjson.Field
 		raw                string
 	} `json:"-"`
 }
@@ -729,42 +729,42 @@ type AirspacecontrolorderFull struct {
 	// Array of unique link 16 identifiers that will be assigned to a future airspace
 	// control means.
 	UndLnkTrks []string `json:"undLnkTrks"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking          resp.Field
-		DataMode                       resp.Field
-		OpExName                       resp.Field
-		Originator                     resp.Field
-		Source                         resp.Field
-		StartTime                      resp.Field
-		ID                             resp.Field
-		AcoComments                    resp.Field
-		AcoSerialNum                   resp.Field
-		AirspaceControlMeansStatus     resp.Field
-		AirspaceControlOrderReferences resp.Field
-		AreaOfValidity                 resp.Field
-		ClassReasons                   resp.Field
-		ClassSource                    resp.Field
-		CreatedAt                      resp.Field
-		CreatedBy                      resp.Field
-		DeclassExemptionCodes          resp.Field
-		DowngradeInsDates              resp.Field
-		GeoDatum                       resp.Field
-		Month                          resp.Field
-		OpExInfo                       resp.Field
-		OpExInfoAlt                    resp.Field
-		Origin                         resp.Field
-		OrigNetwork                    resp.Field
-		PlanOrigNum                    resp.Field
-		Qualifier                      resp.Field
-		QualSn                         resp.Field
-		RawFileUri                     resp.Field
-		SerialNum                      resp.Field
-		SourceDl                       resp.Field
-		StopQualifier                  resp.Field
-		StopTime                       resp.Field
-		UndLnkTrks                     resp.Field
-		ExtraFields                    map[string]resp.Field
+		ClassificationMarking          respjson.Field
+		DataMode                       respjson.Field
+		OpExName                       respjson.Field
+		Originator                     respjson.Field
+		Source                         respjson.Field
+		StartTime                      respjson.Field
+		ID                             respjson.Field
+		AcoComments                    respjson.Field
+		AcoSerialNum                   respjson.Field
+		AirspaceControlMeansStatus     respjson.Field
+		AirspaceControlOrderReferences respjson.Field
+		AreaOfValidity                 respjson.Field
+		ClassReasons                   respjson.Field
+		ClassSource                    respjson.Field
+		CreatedAt                      respjson.Field
+		CreatedBy                      respjson.Field
+		DeclassExemptionCodes          respjson.Field
+		DowngradeInsDates              respjson.Field
+		GeoDatum                       respjson.Field
+		Month                          respjson.Field
+		OpExInfo                       respjson.Field
+		OpExInfoAlt                    respjson.Field
+		Origin                         respjson.Field
+		OrigNetwork                    respjson.Field
+		PlanOrigNum                    respjson.Field
+		Qualifier                      respjson.Field
+		QualSn                         respjson.Field
+		RawFileUri                     respjson.Field
+		SerialNum                      respjson.Field
+		SourceDl                       respjson.Field
+		StopQualifier                  respjson.Field
+		StopTime                       respjson.Field
+		UndLnkTrks                     respjson.Field
+		ExtraFields                    map[string]respjson.Field
 		raw                            string
 	} `json:"-"`
 }
@@ -809,12 +809,12 @@ type AirspacecontrolorderFullAirspaceControlMeansStatus struct {
 	// Airspace control means name or designator. Mandatory if acmStat equals "DELETE,"
 	// otherwise this field is prohibited.
 	CmStatID []string `json:"cmStatId"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AirspaceControlMeans resp.Field
-		CmStat               resp.Field
-		CmStatID             resp.Field
-		ExtraFields          map[string]resp.Field
+		AirspaceControlMeans respjson.Field
+		CmStat               respjson.Field
+		CmStatID             respjson.Field
+		ExtraFields          map[string]respjson.Field
 		raw                  string
 	} `json:"-"`
 }
@@ -938,38 +938,38 @@ type AirspacecontrolorderFullAirspaceControlMeansStatusAirspaceControlMean struc
 	// Specifies the unit of length for which widths are given. Use M for meters, KM
 	// for kilometers, or NM for nautical miles.
 	WidthUnit string `json:"widthUnit"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AirspaceControlPoint resp.Field
-		AirspaceTimePeriod   resp.Field
-		Bearing0             resp.Field
-		Bearing1             resp.Field
-		CmID                 resp.Field
-		CmShape              resp.Field
-		CmType               resp.Field
-		CntrlAuth            resp.Field
-		CntrlAuthFreqs       resp.Field
-		Coord0               resp.Field
-		Coord1               resp.Field
-		CorrWayPoints        resp.Field
-		EffVDim              resp.Field
-		FreeText             resp.Field
-		GenTextInd           resp.Field
-		GeoDatumAlt          resp.Field
-		Link16ID             resp.Field
-		OrbitAlignment       resp.Field
-		PolyCoord            resp.Field
-		RadMag0              resp.Field
-		RadMag1              resp.Field
-		RadMagUnit           resp.Field
-		TrackLeg             resp.Field
-		TransAltitude        resp.Field
-		Usage                resp.Field
-		Width                resp.Field
-		WidthLeft            resp.Field
-		WidthRight           resp.Field
-		WidthUnit            resp.Field
-		ExtraFields          map[string]resp.Field
+		AirspaceControlPoint respjson.Field
+		AirspaceTimePeriod   respjson.Field
+		Bearing0             respjson.Field
+		Bearing1             respjson.Field
+		CmID                 respjson.Field
+		CmShape              respjson.Field
+		CmType               respjson.Field
+		CntrlAuth            respjson.Field
+		CntrlAuthFreqs       respjson.Field
+		Coord0               respjson.Field
+		Coord1               respjson.Field
+		CorrWayPoints        respjson.Field
+		EffVDim              respjson.Field
+		FreeText             respjson.Field
+		GenTextInd           respjson.Field
+		GeoDatumAlt          respjson.Field
+		Link16ID             respjson.Field
+		OrbitAlignment       respjson.Field
+		PolyCoord            respjson.Field
+		RadMag0              respjson.Field
+		RadMag1              respjson.Field
+		RadMagUnit           respjson.Field
+		TrackLeg             respjson.Field
+		TransAltitude        respjson.Field
+		Usage                respjson.Field
+		Width                respjson.Field
+		WidthLeft            respjson.Field
+		WidthRight           respjson.Field
+		WidthUnit            respjson.Field
+		ExtraFields          map[string]respjson.Field
 		raw                  string
 	} `json:"-"`
 }
@@ -994,13 +994,13 @@ type AirspacecontrolorderFullAirspaceControlMeansStatusAirspaceControlMeanAirspa
 	CtrlPtName string `json:"ctrlPtName"`
 	// One of possible control point type codes, such as CP, ER, OT, etc.
 	CtrlPtType string `json:"ctrlPtType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CtrlPtAltitude resp.Field
-		CtrlPtLocation resp.Field
-		CtrlPtName     resp.Field
-		CtrlPtType     resp.Field
-		ExtraFields    map[string]resp.Field
+		CtrlPtAltitude respjson.Field
+		CtrlPtLocation respjson.Field
+		CtrlPtName     respjson.Field
+		CtrlPtType     respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }
@@ -1032,14 +1032,14 @@ type AirspacecontrolorderFullAirspaceControlMeansStatusAirspaceControlMeanAirspa
 	TimeMode string `json:"timeMode"`
 	// The start time designating that the airspace control order is active.
 	TimeStart string `json:"timeStart"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		IntDur      resp.Field
-		IntFreq     resp.Field
-		TimeEnd     resp.Field
-		TimeMode    resp.Field
-		TimeStart   resp.Field
-		ExtraFields map[string]resp.Field
+		IntDur      respjson.Field
+		IntFreq     respjson.Field
+		TimeEnd     respjson.Field
+		TimeMode    respjson.Field
+		TimeStart   respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -1073,16 +1073,16 @@ type AirspacecontrolorderFullAirspaceControlOrderReference struct {
 	RefTs time.Time `json:"refTs" format:"date-time"`
 	// Specifies the type for this reference.
 	RefType string `json:"refType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		RefOriginator      resp.Field
-		RefSerialNum       resp.Field
-		RefSiCs            resp.Field
-		RefSID             resp.Field
-		RefSpecialNotation resp.Field
-		RefTs              resp.Field
-		RefType            resp.Field
-		ExtraFields        map[string]resp.Field
+		RefOriginator      respjson.Field
+		RefSerialNum       respjson.Field
+		RefSiCs            respjson.Field
+		RefSID             respjson.Field
+		RefSpecialNotation respjson.Field
+		RefTs              respjson.Field
+		RefType            respjson.Field
+		ExtraFields        map[string]respjson.Field
 		raw                string
 	} `json:"-"`
 }

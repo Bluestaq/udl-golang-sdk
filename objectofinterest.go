@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
@@ -301,52 +301,52 @@ type ObjectOfInterestListResponse struct {
 	Z float64 `json:"z"`
 	// Last reported z velocity of the object in km/sec, in J2000 coordinates.
 	Zvel float64 `json:"zvel"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking  resp.Field
-		DataMode               resp.Field
-		IDOnOrbit              resp.Field
-		SensorTaskingStartTime resp.Field
-		Source                 resp.Field
-		StatusDate             resp.Field
-		ID                     resp.Field
-		Apogee                 resp.Field
-		ArgOfPerigee           resp.Field
-		BStar                  resp.Field
-		CreatedAt              resp.Field
-		CreatedBy              resp.Field
-		DeltaTs                resp.Field
-		DeltaVs                resp.Field
-		Description            resp.Field
-		Eccentricity           resp.Field
-		ElsetEpoch             resp.Field
-		Inclination            resp.Field
-		LastObTime             resp.Field
-		MeanAnomaly            resp.Field
-		MeanMotion             resp.Field
-		MeanMotionDDot         resp.Field
-		MeanMotionDot          resp.Field
-		MissedObTime           resp.Field
-		Name                   resp.Field
-		Origin                 resp.Field
-		OrigNetwork            resp.Field
-		Perigee                resp.Field
-		Period                 resp.Field
-		Priority               resp.Field
-		Raan                   resp.Field
-		RevNo                  resp.Field
-		SatNo                  resp.Field
-		SemiMajorAxis          resp.Field
-		SensorTaskingStopTime  resp.Field
-		Status                 resp.Field
-		SvEpoch                resp.Field
-		X                      resp.Field
-		Xvel                   resp.Field
-		Y                      resp.Field
-		Yvel                   resp.Field
-		Z                      resp.Field
-		Zvel                   resp.Field
-		ExtraFields            map[string]resp.Field
+		ClassificationMarking  respjson.Field
+		DataMode               respjson.Field
+		IDOnOrbit              respjson.Field
+		SensorTaskingStartTime respjson.Field
+		Source                 respjson.Field
+		StatusDate             respjson.Field
+		ID                     respjson.Field
+		Apogee                 respjson.Field
+		ArgOfPerigee           respjson.Field
+		BStar                  respjson.Field
+		CreatedAt              respjson.Field
+		CreatedBy              respjson.Field
+		DeltaTs                respjson.Field
+		DeltaVs                respjson.Field
+		Description            respjson.Field
+		Eccentricity           respjson.Field
+		ElsetEpoch             respjson.Field
+		Inclination            respjson.Field
+		LastObTime             respjson.Field
+		MeanAnomaly            respjson.Field
+		MeanMotion             respjson.Field
+		MeanMotionDDot         respjson.Field
+		MeanMotionDot          respjson.Field
+		MissedObTime           respjson.Field
+		Name                   respjson.Field
+		Origin                 respjson.Field
+		OrigNetwork            respjson.Field
+		Perigee                respjson.Field
+		Period                 respjson.Field
+		Priority               respjson.Field
+		Raan                   respjson.Field
+		RevNo                  respjson.Field
+		SatNo                  respjson.Field
+		SemiMajorAxis          respjson.Field
+		SensorTaskingStopTime  respjson.Field
+		Status                 respjson.Field
+		SvEpoch                respjson.Field
+		X                      respjson.Field
+		Xvel                   respjson.Field
+		Y                      respjson.Field
+		Yvel                   respjson.Field
+		Z                      respjson.Field
+		Zvel                   respjson.Field
+		ExtraFields            map[string]respjson.Field
 		raw                    string
 	} `json:"-"`
 }
@@ -531,57 +531,57 @@ type ObjectOfInterestGetResponse struct {
 	Z float64 `json:"z"`
 	// Last reported z velocity of the object in km/sec, in J2000 coordinates.
 	Zvel float64 `json:"zvel"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking  resp.Field
-		DataMode               resp.Field
-		IDOnOrbit              resp.Field
-		SensorTaskingStartTime resp.Field
-		Source                 resp.Field
-		StatusDate             resp.Field
-		ID                     resp.Field
-		AffectedObjects        resp.Field
-		Apogee                 resp.Field
-		ArgOfPerigee           resp.Field
-		BStar                  resp.Field
-		CreatedAt              resp.Field
-		CreatedBy              resp.Field
-		DeltaTs                resp.Field
-		DeltaVs                resp.Field
-		Description            resp.Field
-		Eccentricity           resp.Field
-		ElsetEpoch             resp.Field
-		Inclination            resp.Field
-		LastObTime             resp.Field
-		Manifolds              resp.Field
-		MeanAnomaly            resp.Field
-		MeanMotion             resp.Field
-		MeanMotionDDot         resp.Field
-		MeanMotionDot          resp.Field
-		MissedObTime           resp.Field
-		Name                   resp.Field
-		OnOrbit                resp.Field
-		Origin                 resp.Field
-		OrigNetwork            resp.Field
-		Perigee                resp.Field
-		Period                 resp.Field
-		Priority               resp.Field
-		Raan                   resp.Field
-		RevNo                  resp.Field
-		SatNo                  resp.Field
-		SemiMajorAxis          resp.Field
-		SensorTaskingStopTime  resp.Field
-		Status                 resp.Field
-		SvEpoch                resp.Field
-		UpdatedAt              resp.Field
-		UpdatedBy              resp.Field
-		X                      resp.Field
-		Xvel                   resp.Field
-		Y                      resp.Field
-		Yvel                   resp.Field
-		Z                      resp.Field
-		Zvel                   resp.Field
-		ExtraFields            map[string]resp.Field
+		ClassificationMarking  respjson.Field
+		DataMode               respjson.Field
+		IDOnOrbit              respjson.Field
+		SensorTaskingStartTime respjson.Field
+		Source                 respjson.Field
+		StatusDate             respjson.Field
+		ID                     respjson.Field
+		AffectedObjects        respjson.Field
+		Apogee                 respjson.Field
+		ArgOfPerigee           respjson.Field
+		BStar                  respjson.Field
+		CreatedAt              respjson.Field
+		CreatedBy              respjson.Field
+		DeltaTs                respjson.Field
+		DeltaVs                respjson.Field
+		Description            respjson.Field
+		Eccentricity           respjson.Field
+		ElsetEpoch             respjson.Field
+		Inclination            respjson.Field
+		LastObTime             respjson.Field
+		Manifolds              respjson.Field
+		MeanAnomaly            respjson.Field
+		MeanMotion             respjson.Field
+		MeanMotionDDot         respjson.Field
+		MeanMotionDot          respjson.Field
+		MissedObTime           respjson.Field
+		Name                   respjson.Field
+		OnOrbit                respjson.Field
+		Origin                 respjson.Field
+		OrigNetwork            respjson.Field
+		Perigee                respjson.Field
+		Period                 respjson.Field
+		Priority               respjson.Field
+		Raan                   respjson.Field
+		RevNo                  respjson.Field
+		SatNo                  respjson.Field
+		SemiMajorAxis          respjson.Field
+		SensorTaskingStopTime  respjson.Field
+		Status                 respjson.Field
+		SvEpoch                respjson.Field
+		UpdatedAt              respjson.Field
+		UpdatedBy              respjson.Field
+		X                      respjson.Field
+		Xvel                   respjson.Field
+		Y                      respjson.Field
+		Yvel                   respjson.Field
+		Z                      respjson.Field
+		Zvel                   respjson.Field
+		ExtraFields            map[string]respjson.Field
 		raw                    string
 	} `json:"-"`
 }
@@ -673,24 +673,24 @@ type ObjectOfInterestGetResponseManifold struct {
 	// Weight or probability of this manifold for prioritization purposes, between 0
 	// and 1.
 	Weight float64 `json:"weight"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDObjectOfInterest    resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DeltaT                resp.Field
-		DeltaV                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Status                resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		Weight                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDObjectOfInterest    respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DeltaT                respjson.Field
+		DeltaV                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Status                respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		Weight                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -852,57 +852,57 @@ type ObjectOfInterestTupleResponse struct {
 	Z float64 `json:"z"`
 	// Last reported z velocity of the object in km/sec, in J2000 coordinates.
 	Zvel float64 `json:"zvel"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking  resp.Field
-		DataMode               resp.Field
-		IDOnOrbit              resp.Field
-		SensorTaskingStartTime resp.Field
-		Source                 resp.Field
-		StatusDate             resp.Field
-		ID                     resp.Field
-		AffectedObjects        resp.Field
-		Apogee                 resp.Field
-		ArgOfPerigee           resp.Field
-		BStar                  resp.Field
-		CreatedAt              resp.Field
-		CreatedBy              resp.Field
-		DeltaTs                resp.Field
-		DeltaVs                resp.Field
-		Description            resp.Field
-		Eccentricity           resp.Field
-		ElsetEpoch             resp.Field
-		Inclination            resp.Field
-		LastObTime             resp.Field
-		Manifolds              resp.Field
-		MeanAnomaly            resp.Field
-		MeanMotion             resp.Field
-		MeanMotionDDot         resp.Field
-		MeanMotionDot          resp.Field
-		MissedObTime           resp.Field
-		Name                   resp.Field
-		OnOrbit                resp.Field
-		Origin                 resp.Field
-		OrigNetwork            resp.Field
-		Perigee                resp.Field
-		Period                 resp.Field
-		Priority               resp.Field
-		Raan                   resp.Field
-		RevNo                  resp.Field
-		SatNo                  resp.Field
-		SemiMajorAxis          resp.Field
-		SensorTaskingStopTime  resp.Field
-		Status                 resp.Field
-		SvEpoch                resp.Field
-		UpdatedAt              resp.Field
-		UpdatedBy              resp.Field
-		X                      resp.Field
-		Xvel                   resp.Field
-		Y                      resp.Field
-		Yvel                   resp.Field
-		Z                      resp.Field
-		Zvel                   resp.Field
-		ExtraFields            map[string]resp.Field
+		ClassificationMarking  respjson.Field
+		DataMode               respjson.Field
+		IDOnOrbit              respjson.Field
+		SensorTaskingStartTime respjson.Field
+		Source                 respjson.Field
+		StatusDate             respjson.Field
+		ID                     respjson.Field
+		AffectedObjects        respjson.Field
+		Apogee                 respjson.Field
+		ArgOfPerigee           respjson.Field
+		BStar                  respjson.Field
+		CreatedAt              respjson.Field
+		CreatedBy              respjson.Field
+		DeltaTs                respjson.Field
+		DeltaVs                respjson.Field
+		Description            respjson.Field
+		Eccentricity           respjson.Field
+		ElsetEpoch             respjson.Field
+		Inclination            respjson.Field
+		LastObTime             respjson.Field
+		Manifolds              respjson.Field
+		MeanAnomaly            respjson.Field
+		MeanMotion             respjson.Field
+		MeanMotionDDot         respjson.Field
+		MeanMotionDot          respjson.Field
+		MissedObTime           respjson.Field
+		Name                   respjson.Field
+		OnOrbit                respjson.Field
+		Origin                 respjson.Field
+		OrigNetwork            respjson.Field
+		Perigee                respjson.Field
+		Period                 respjson.Field
+		Priority               respjson.Field
+		Raan                   respjson.Field
+		RevNo                  respjson.Field
+		SatNo                  respjson.Field
+		SemiMajorAxis          respjson.Field
+		SensorTaskingStopTime  respjson.Field
+		Status                 respjson.Field
+		SvEpoch                respjson.Field
+		UpdatedAt              respjson.Field
+		UpdatedBy              respjson.Field
+		X                      respjson.Field
+		Xvel                   respjson.Field
+		Y                      respjson.Field
+		Yvel                   respjson.Field
+		Z                      respjson.Field
+		Zvel                   respjson.Field
+		ExtraFields            map[string]respjson.Field
 		raw                    string
 	} `json:"-"`
 }
@@ -994,24 +994,24 @@ type ObjectOfInterestTupleResponseManifold struct {
 	// Weight or probability of this manifold for prioritization purposes, between 0
 	// and 1.
 	Weight float64 `json:"weight"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDObjectOfInterest    resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DeltaT                resp.Field
-		DeltaV                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Status                resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		Weight                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDObjectOfInterest    respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DeltaT                respjson.Field
+		DeltaV                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Status                respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		Weight                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

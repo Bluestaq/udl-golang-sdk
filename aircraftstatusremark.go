@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // AircraftStatusRemarkService contains methods and other services that help with
@@ -221,25 +221,25 @@ type AircraftstatusremarkAbridged struct {
 	// Time the remark was created in the originating system in ISO 8601 UTC format
 	// with millisecond precision.
 	Timestamp time.Time `json:"timestamp" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDAircraftStatus      resp.Field
-		Source                resp.Field
-		Text                  resp.Field
-		ID                    resp.Field
-		AltRmkID              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		LastUpdatedAt         resp.Field
-		LastUpdatedBy         resp.Field
-		Name                  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		SourceDl              resp.Field
-		Timestamp             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDAircraftStatus      respjson.Field
+		Source                respjson.Field
+		Text                  respjson.Field
+		ID                    respjson.Field
+		AltRmkID              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		LastUpdatedAt         respjson.Field
+		LastUpdatedBy         respjson.Field
+		Name                  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		SourceDl              respjson.Field
+		Timestamp             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -340,27 +340,27 @@ type AircraftstatusremarkFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDAircraftStatus      resp.Field
-		Source                resp.Field
-		Text                  resp.Field
-		ID                    resp.Field
-		AltRmkID              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		LastUpdatedAt         resp.Field
-		LastUpdatedBy         resp.Field
-		Name                  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		SourceDl              resp.Field
-		Timestamp             resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDAircraftStatus      respjson.Field
+		Source                respjson.Field
+		Text                  respjson.Field
+		ID                    respjson.Field
+		AltRmkID              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		LastUpdatedAt         respjson.Field
+		LastUpdatedBy         respjson.Field
+		Name                  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		SourceDl              respjson.Field
+		Timestamp             respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // AirEventService contains methods and other services that help with interacting
@@ -334,53 +334,53 @@ type AirEventListResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		ActualArrTime         resp.Field
-		ActualDepTime         resp.Field
-		Arct                  resp.Field
-		ArEventType           resp.Field
-		ArrPurpose            resp.Field
-		ArTrackID             resp.Field
-		ArTrackName           resp.Field
-		BaseAlt               resp.Field
-		Cancelled             resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DepPurpose            resp.Field
-		EstArrTime            resp.Field
-		EstDepTime            resp.Field
-		ExternalAirEventID    resp.Field
-		ExternalArTrackID     resp.Field
-		IDMission             resp.Field
-		IDSortie              resp.Field
-		LegNum                resp.Field
-		Location              resp.Field
-		NumTankers            resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PlannedArrTime        resp.Field
-		PlannedDepTime        resp.Field
-		Priority              resp.Field
-		Receivers             resp.Field
-		Remarks               resp.Field
-		RevTrack              resp.Field
-		Rzct                  resp.Field
-		RzPoint               resp.Field
-		RzType                resp.Field
-		ShortTrack            resp.Field
-		SourceDl              resp.Field
-		StatusCode            resp.Field
-		Tankers               resp.Field
-		TrackTime             resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		ActualArrTime         respjson.Field
+		ActualDepTime         respjson.Field
+		Arct                  respjson.Field
+		ArEventType           respjson.Field
+		ArrPurpose            respjson.Field
+		ArTrackID             respjson.Field
+		ArTrackName           respjson.Field
+		BaseAlt               respjson.Field
+		Cancelled             respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DepPurpose            respjson.Field
+		EstArrTime            respjson.Field
+		EstDepTime            respjson.Field
+		ExternalAirEventID    respjson.Field
+		ExternalArTrackID     respjson.Field
+		IDMission             respjson.Field
+		IDSortie              respjson.Field
+		LegNum                respjson.Field
+		Location              respjson.Field
+		NumTankers            respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PlannedArrTime        respjson.Field
+		PlannedDepTime        respjson.Field
+		Priority              respjson.Field
+		Receivers             respjson.Field
+		Remarks               respjson.Field
+		RevTrack              respjson.Field
+		Rzct                  respjson.Field
+		RzPoint               respjson.Field
+		RzType                respjson.Field
+		ShortTrack            respjson.Field
+		SourceDl              respjson.Field
+		StatusCode            respjson.Field
+		Tankers               respjson.Field
+		TrackTime             respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -468,31 +468,31 @@ type AirEventListResponseReceiver struct {
 	RecOrg string `json:"recOrg"`
 	// Indicates the unique number by Unit ID, which identifies an air refueling event.
 	SequenceNum string `json:"sequenceNum"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AltReceiverMissionID   resp.Field
-		AmcReceiverMissionID   resp.Field
-		ExternalReceiverID     resp.Field
-		FuelOn                 resp.Field
-		IDReceiverAirfield     resp.Field
-		IDReceiverMission      resp.Field
-		IDReceiverSortie       resp.Field
-		NumRecAircraft         resp.Field
-		PackageID              resp.Field
-		ReceiverCallSign       resp.Field
-		ReceiverCellPosition   resp.Field
-		ReceiverCoord          resp.Field
-		ReceiverDeliveryMethod resp.Field
-		ReceiverDeployedIcao   resp.Field
-		ReceiverExercise       resp.Field
-		ReceiverFuelType       resp.Field
-		ReceiverLegNum         resp.Field
-		ReceiverMds            resp.Field
-		ReceiverOwner          resp.Field
-		ReceiverPoc            resp.Field
-		RecOrg                 resp.Field
-		SequenceNum            resp.Field
-		ExtraFields            map[string]resp.Field
+		AltReceiverMissionID   respjson.Field
+		AmcReceiverMissionID   respjson.Field
+		ExternalReceiverID     respjson.Field
+		FuelOn                 respjson.Field
+		IDReceiverAirfield     respjson.Field
+		IDReceiverMission      respjson.Field
+		IDReceiverSortie       respjson.Field
+		NumRecAircraft         respjson.Field
+		PackageID              respjson.Field
+		ReceiverCallSign       respjson.Field
+		ReceiverCellPosition   respjson.Field
+		ReceiverCoord          respjson.Field
+		ReceiverDeliveryMethod respjson.Field
+		ReceiverDeployedIcao   respjson.Field
+		ReceiverExercise       respjson.Field
+		ReceiverFuelType       respjson.Field
+		ReceiverLegNum         respjson.Field
+		ReceiverMds            respjson.Field
+		ReceiverOwner          respjson.Field
+		ReceiverPoc            respjson.Field
+		RecOrg                 respjson.Field
+		SequenceNum            respjson.Field
+		ExtraFields            map[string]respjson.Field
 		raw                    string
 	} `json:"-"`
 }
@@ -516,13 +516,13 @@ type AirEventListResponseRemark struct {
 	Text string `json:"text"`
 	// User who published the remark.
 	User string `json:"user"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Date             resp.Field
-		ExternalRemarkID resp.Field
-		Text             resp.Field
-		User             resp.Field
-		ExtraFields      map[string]resp.Field
+		Date             respjson.Field
+		ExternalRemarkID respjson.Field
+		Text             respjson.Field
+		User             respjson.Field
+		ExtraFields      map[string]respjson.Field
 		raw              string
 	} `json:"-"`
 }
@@ -577,27 +577,27 @@ type AirEventListResponseTanker struct {
 	TankerOwner string `json:"tankerOwner"`
 	// The name and/or number of the point of contact for this tanker.
 	TankerPoc string `json:"tankerPOC"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AltTankerMissionID   resp.Field
-		AmcTankerMissionID   resp.Field
-		DualRole             resp.Field
-		ExternalTankerID     resp.Field
-		FuelOff              resp.Field
-		IDTankerAirfield     resp.Field
-		IDTankerMission      resp.Field
-		IDTankerSortie       resp.Field
-		TankerCallSign       resp.Field
-		TankerCellPosition   resp.Field
-		TankerCoord          resp.Field
-		TankerDeliveryMethod resp.Field
-		TankerDeployedIcao   resp.Field
-		TankerFuelType       resp.Field
-		TankerLegNum         resp.Field
-		TankerMds            resp.Field
-		TankerOwner          resp.Field
-		TankerPoc            resp.Field
-		ExtraFields          map[string]resp.Field
+		AltTankerMissionID   respjson.Field
+		AmcTankerMissionID   respjson.Field
+		DualRole             respjson.Field
+		ExternalTankerID     respjson.Field
+		FuelOff              respjson.Field
+		IDTankerAirfield     respjson.Field
+		IDTankerMission      respjson.Field
+		IDTankerSortie       respjson.Field
+		TankerCallSign       respjson.Field
+		TankerCellPosition   respjson.Field
+		TankerCoord          respjson.Field
+		TankerDeliveryMethod respjson.Field
+		TankerDeployedIcao   respjson.Field
+		TankerFuelType       respjson.Field
+		TankerLegNum         respjson.Field
+		TankerMds            respjson.Field
+		TankerOwner          respjson.Field
+		TankerPoc            respjson.Field
+		ExtraFields          map[string]respjson.Field
 		raw                  string
 	} `json:"-"`
 }
@@ -756,53 +756,53 @@ type AirEventGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		ActualArrTime         resp.Field
-		ActualDepTime         resp.Field
-		Arct                  resp.Field
-		ArEventType           resp.Field
-		ArrPurpose            resp.Field
-		ArTrackID             resp.Field
-		ArTrackName           resp.Field
-		BaseAlt               resp.Field
-		Cancelled             resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DepPurpose            resp.Field
-		EstArrTime            resp.Field
-		EstDepTime            resp.Field
-		ExternalAirEventID    resp.Field
-		ExternalArTrackID     resp.Field
-		IDMission             resp.Field
-		IDSortie              resp.Field
-		LegNum                resp.Field
-		Location              resp.Field
-		NumTankers            resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PlannedArrTime        resp.Field
-		PlannedDepTime        resp.Field
-		Priority              resp.Field
-		Receivers             resp.Field
-		Remarks               resp.Field
-		RevTrack              resp.Field
-		Rzct                  resp.Field
-		RzPoint               resp.Field
-		RzType                resp.Field
-		ShortTrack            resp.Field
-		SourceDl              resp.Field
-		StatusCode            resp.Field
-		Tankers               resp.Field
-		TrackTime             resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		ActualArrTime         respjson.Field
+		ActualDepTime         respjson.Field
+		Arct                  respjson.Field
+		ArEventType           respjson.Field
+		ArrPurpose            respjson.Field
+		ArTrackID             respjson.Field
+		ArTrackName           respjson.Field
+		BaseAlt               respjson.Field
+		Cancelled             respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DepPurpose            respjson.Field
+		EstArrTime            respjson.Field
+		EstDepTime            respjson.Field
+		ExternalAirEventID    respjson.Field
+		ExternalArTrackID     respjson.Field
+		IDMission             respjson.Field
+		IDSortie              respjson.Field
+		LegNum                respjson.Field
+		Location              respjson.Field
+		NumTankers            respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PlannedArrTime        respjson.Field
+		PlannedDepTime        respjson.Field
+		Priority              respjson.Field
+		Receivers             respjson.Field
+		Remarks               respjson.Field
+		RevTrack              respjson.Field
+		Rzct                  respjson.Field
+		RzPoint               respjson.Field
+		RzType                respjson.Field
+		ShortTrack            respjson.Field
+		SourceDl              respjson.Field
+		StatusCode            respjson.Field
+		Tankers               respjson.Field
+		TrackTime             respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -890,31 +890,31 @@ type AirEventGetResponseReceiver struct {
 	RecOrg string `json:"recOrg"`
 	// Indicates the unique number by Unit ID, which identifies an air refueling event.
 	SequenceNum string `json:"sequenceNum"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AltReceiverMissionID   resp.Field
-		AmcReceiverMissionID   resp.Field
-		ExternalReceiverID     resp.Field
-		FuelOn                 resp.Field
-		IDReceiverAirfield     resp.Field
-		IDReceiverMission      resp.Field
-		IDReceiverSortie       resp.Field
-		NumRecAircraft         resp.Field
-		PackageID              resp.Field
-		ReceiverCallSign       resp.Field
-		ReceiverCellPosition   resp.Field
-		ReceiverCoord          resp.Field
-		ReceiverDeliveryMethod resp.Field
-		ReceiverDeployedIcao   resp.Field
-		ReceiverExercise       resp.Field
-		ReceiverFuelType       resp.Field
-		ReceiverLegNum         resp.Field
-		ReceiverMds            resp.Field
-		ReceiverOwner          resp.Field
-		ReceiverPoc            resp.Field
-		RecOrg                 resp.Field
-		SequenceNum            resp.Field
-		ExtraFields            map[string]resp.Field
+		AltReceiverMissionID   respjson.Field
+		AmcReceiverMissionID   respjson.Field
+		ExternalReceiverID     respjson.Field
+		FuelOn                 respjson.Field
+		IDReceiverAirfield     respjson.Field
+		IDReceiverMission      respjson.Field
+		IDReceiverSortie       respjson.Field
+		NumRecAircraft         respjson.Field
+		PackageID              respjson.Field
+		ReceiverCallSign       respjson.Field
+		ReceiverCellPosition   respjson.Field
+		ReceiverCoord          respjson.Field
+		ReceiverDeliveryMethod respjson.Field
+		ReceiverDeployedIcao   respjson.Field
+		ReceiverExercise       respjson.Field
+		ReceiverFuelType       respjson.Field
+		ReceiverLegNum         respjson.Field
+		ReceiverMds            respjson.Field
+		ReceiverOwner          respjson.Field
+		ReceiverPoc            respjson.Field
+		RecOrg                 respjson.Field
+		SequenceNum            respjson.Field
+		ExtraFields            map[string]respjson.Field
 		raw                    string
 	} `json:"-"`
 }
@@ -938,13 +938,13 @@ type AirEventGetResponseRemark struct {
 	Text string `json:"text"`
 	// User who published the remark.
 	User string `json:"user"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Date             resp.Field
-		ExternalRemarkID resp.Field
-		Text             resp.Field
-		User             resp.Field
-		ExtraFields      map[string]resp.Field
+		Date             respjson.Field
+		ExternalRemarkID respjson.Field
+		Text             respjson.Field
+		User             respjson.Field
+		ExtraFields      map[string]respjson.Field
 		raw              string
 	} `json:"-"`
 }
@@ -999,27 +999,27 @@ type AirEventGetResponseTanker struct {
 	TankerOwner string `json:"tankerOwner"`
 	// The name and/or number of the point of contact for this tanker.
 	TankerPoc string `json:"tankerPOC"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AltTankerMissionID   resp.Field
-		AmcTankerMissionID   resp.Field
-		DualRole             resp.Field
-		ExternalTankerID     resp.Field
-		FuelOff              resp.Field
-		IDTankerAirfield     resp.Field
-		IDTankerMission      resp.Field
-		IDTankerSortie       resp.Field
-		TankerCallSign       resp.Field
-		TankerCellPosition   resp.Field
-		TankerCoord          resp.Field
-		TankerDeliveryMethod resp.Field
-		TankerDeployedIcao   resp.Field
-		TankerFuelType       resp.Field
-		TankerLegNum         resp.Field
-		TankerMds            resp.Field
-		TankerOwner          resp.Field
-		TankerPoc            resp.Field
-		ExtraFields          map[string]resp.Field
+		AltTankerMissionID   respjson.Field
+		AmcTankerMissionID   respjson.Field
+		DualRole             respjson.Field
+		ExternalTankerID     respjson.Field
+		FuelOff              respjson.Field
+		IDTankerAirfield     respjson.Field
+		IDTankerMission      respjson.Field
+		IDTankerSortie       respjson.Field
+		TankerCallSign       respjson.Field
+		TankerCellPosition   respjson.Field
+		TankerCoord          respjson.Field
+		TankerDeliveryMethod respjson.Field
+		TankerDeployedIcao   respjson.Field
+		TankerFuelType       respjson.Field
+		TankerLegNum         respjson.Field
+		TankerMds            respjson.Field
+		TankerOwner          respjson.Field
+		TankerPoc            respjson.Field
+		ExtraFields          map[string]respjson.Field
 		raw                  string
 	} `json:"-"`
 }
@@ -1178,53 +1178,53 @@ type AirEventTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		ActualArrTime         resp.Field
-		ActualDepTime         resp.Field
-		Arct                  resp.Field
-		ArEventType           resp.Field
-		ArrPurpose            resp.Field
-		ArTrackID             resp.Field
-		ArTrackName           resp.Field
-		BaseAlt               resp.Field
-		Cancelled             resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DepPurpose            resp.Field
-		EstArrTime            resp.Field
-		EstDepTime            resp.Field
-		ExternalAirEventID    resp.Field
-		ExternalArTrackID     resp.Field
-		IDMission             resp.Field
-		IDSortie              resp.Field
-		LegNum                resp.Field
-		Location              resp.Field
-		NumTankers            resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PlannedArrTime        resp.Field
-		PlannedDepTime        resp.Field
-		Priority              resp.Field
-		Receivers             resp.Field
-		Remarks               resp.Field
-		RevTrack              resp.Field
-		Rzct                  resp.Field
-		RzPoint               resp.Field
-		RzType                resp.Field
-		ShortTrack            resp.Field
-		SourceDl              resp.Field
-		StatusCode            resp.Field
-		Tankers               resp.Field
-		TrackTime             resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		ActualArrTime         respjson.Field
+		ActualDepTime         respjson.Field
+		Arct                  respjson.Field
+		ArEventType           respjson.Field
+		ArrPurpose            respjson.Field
+		ArTrackID             respjson.Field
+		ArTrackName           respjson.Field
+		BaseAlt               respjson.Field
+		Cancelled             respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DepPurpose            respjson.Field
+		EstArrTime            respjson.Field
+		EstDepTime            respjson.Field
+		ExternalAirEventID    respjson.Field
+		ExternalArTrackID     respjson.Field
+		IDMission             respjson.Field
+		IDSortie              respjson.Field
+		LegNum                respjson.Field
+		Location              respjson.Field
+		NumTankers            respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PlannedArrTime        respjson.Field
+		PlannedDepTime        respjson.Field
+		Priority              respjson.Field
+		Receivers             respjson.Field
+		Remarks               respjson.Field
+		RevTrack              respjson.Field
+		Rzct                  respjson.Field
+		RzPoint               respjson.Field
+		RzType                respjson.Field
+		ShortTrack            respjson.Field
+		SourceDl              respjson.Field
+		StatusCode            respjson.Field
+		Tankers               respjson.Field
+		TrackTime             respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -1312,31 +1312,31 @@ type AirEventTupleResponseReceiver struct {
 	RecOrg string `json:"recOrg"`
 	// Indicates the unique number by Unit ID, which identifies an air refueling event.
 	SequenceNum string `json:"sequenceNum"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AltReceiverMissionID   resp.Field
-		AmcReceiverMissionID   resp.Field
-		ExternalReceiverID     resp.Field
-		FuelOn                 resp.Field
-		IDReceiverAirfield     resp.Field
-		IDReceiverMission      resp.Field
-		IDReceiverSortie       resp.Field
-		NumRecAircraft         resp.Field
-		PackageID              resp.Field
-		ReceiverCallSign       resp.Field
-		ReceiverCellPosition   resp.Field
-		ReceiverCoord          resp.Field
-		ReceiverDeliveryMethod resp.Field
-		ReceiverDeployedIcao   resp.Field
-		ReceiverExercise       resp.Field
-		ReceiverFuelType       resp.Field
-		ReceiverLegNum         resp.Field
-		ReceiverMds            resp.Field
-		ReceiverOwner          resp.Field
-		ReceiverPoc            resp.Field
-		RecOrg                 resp.Field
-		SequenceNum            resp.Field
-		ExtraFields            map[string]resp.Field
+		AltReceiverMissionID   respjson.Field
+		AmcReceiverMissionID   respjson.Field
+		ExternalReceiverID     respjson.Field
+		FuelOn                 respjson.Field
+		IDReceiverAirfield     respjson.Field
+		IDReceiverMission      respjson.Field
+		IDReceiverSortie       respjson.Field
+		NumRecAircraft         respjson.Field
+		PackageID              respjson.Field
+		ReceiverCallSign       respjson.Field
+		ReceiverCellPosition   respjson.Field
+		ReceiverCoord          respjson.Field
+		ReceiverDeliveryMethod respjson.Field
+		ReceiverDeployedIcao   respjson.Field
+		ReceiverExercise       respjson.Field
+		ReceiverFuelType       respjson.Field
+		ReceiverLegNum         respjson.Field
+		ReceiverMds            respjson.Field
+		ReceiverOwner          respjson.Field
+		ReceiverPoc            respjson.Field
+		RecOrg                 respjson.Field
+		SequenceNum            respjson.Field
+		ExtraFields            map[string]respjson.Field
 		raw                    string
 	} `json:"-"`
 }
@@ -1360,13 +1360,13 @@ type AirEventTupleResponseRemark struct {
 	Text string `json:"text"`
 	// User who published the remark.
 	User string `json:"user"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Date             resp.Field
-		ExternalRemarkID resp.Field
-		Text             resp.Field
-		User             resp.Field
-		ExtraFields      map[string]resp.Field
+		Date             respjson.Field
+		ExternalRemarkID respjson.Field
+		Text             respjson.Field
+		User             respjson.Field
+		ExtraFields      map[string]respjson.Field
 		raw              string
 	} `json:"-"`
 }
@@ -1421,27 +1421,27 @@ type AirEventTupleResponseTanker struct {
 	TankerOwner string `json:"tankerOwner"`
 	// The name and/or number of the point of contact for this tanker.
 	TankerPoc string `json:"tankerPOC"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AltTankerMissionID   resp.Field
-		AmcTankerMissionID   resp.Field
-		DualRole             resp.Field
-		ExternalTankerID     resp.Field
-		FuelOff              resp.Field
-		IDTankerAirfield     resp.Field
-		IDTankerMission      resp.Field
-		IDTankerSortie       resp.Field
-		TankerCallSign       resp.Field
-		TankerCellPosition   resp.Field
-		TankerCoord          resp.Field
-		TankerDeliveryMethod resp.Field
-		TankerDeployedIcao   resp.Field
-		TankerFuelType       resp.Field
-		TankerLegNum         resp.Field
-		TankerMds            resp.Field
-		TankerOwner          resp.Field
-		TankerPoc            resp.Field
-		ExtraFields          map[string]resp.Field
+		AltTankerMissionID   respjson.Field
+		AmcTankerMissionID   respjson.Field
+		DualRole             respjson.Field
+		ExternalTankerID     respjson.Field
+		FuelOff              respjson.Field
+		IDTankerAirfield     respjson.Field
+		IDTankerMission      respjson.Field
+		IDTankerSortie       respjson.Field
+		TankerCallSign       respjson.Field
+		TankerCellPosition   respjson.Field
+		TankerCoord          respjson.Field
+		TankerDeliveryMethod respjson.Field
+		TankerDeployedIcao   respjson.Field
+		TankerFuelType       respjson.Field
+		TankerLegNum         respjson.Field
+		TankerMds            respjson.Field
+		TankerOwner          respjson.Field
+		TankerPoc            respjson.Field
+		ExtraFields          map[string]respjson.Field
 		raw                  string
 	} `json:"-"`
 }

@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
@@ -157,30 +157,30 @@ type LaunchEventHistoryListResponse struct {
 	OSuffix string `json:"oSuffix"`
 	// Satellite/catalog number of the target on-orbit object.
 	SatNo int64 `json:"satNo"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking  resp.Field
-		DataMode               resp.Field
-		MsgCreateDate          resp.Field
-		Source                 resp.Field
-		ID                     resp.Field
-		BeNumber               resp.Field
-		CreatedAt              resp.Field
-		CreatedBy              resp.Field
-		DeclassificationDate   resp.Field
-		DeclassificationString resp.Field
-		DerivedFrom            resp.Field
-		IDOnOrbit              resp.Field
-		LaunchDate             resp.Field
-		LaunchFacilityName     resp.Field
-		LaunchFailureCode      resp.Field
-		OnOrbit                resp.Field
-		Origin                 resp.Field
-		OrigNetwork            resp.Field
-		OrigObjectID           resp.Field
-		OSuffix                resp.Field
-		SatNo                  resp.Field
-		ExtraFields            map[string]resp.Field
+		ClassificationMarking  respjson.Field
+		DataMode               respjson.Field
+		MsgCreateDate          respjson.Field
+		Source                 respjson.Field
+		ID                     respjson.Field
+		BeNumber               respjson.Field
+		CreatedAt              respjson.Field
+		CreatedBy              respjson.Field
+		DeclassificationDate   respjson.Field
+		DeclassificationString respjson.Field
+		DerivedFrom            respjson.Field
+		IDOnOrbit              respjson.Field
+		LaunchDate             respjson.Field
+		LaunchFacilityName     respjson.Field
+		LaunchFailureCode      respjson.Field
+		OnOrbit                respjson.Field
+		Origin                 respjson.Field
+		OrigNetwork            respjson.Field
+		OrigObjectID           respjson.Field
+		OSuffix                respjson.Field
+		SatNo                  respjson.Field
+		ExtraFields            map[string]respjson.Field
 		raw                    string
 	} `json:"-"`
 }

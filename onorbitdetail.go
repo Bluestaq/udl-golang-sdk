@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // OnorbitdetailService contains methods and other services that help with
@@ -259,58 +259,58 @@ type OnorbitdetailListResponse struct {
 	VismagMean float64 `json:"vismagMean"`
 	// Minimum visual magnitude in M.
 	VismagMin float64 `json:"vismagMin"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDOnOrbit             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AdditionalMass        resp.Field
-		AdeptRadius           resp.Field
-		BolDeltaV             resp.Field
-		BolFuelMass           resp.Field
-		BusCrossSection       resp.Field
-		BusType               resp.Field
-		ColaRadius            resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		CrossSection          resp.Field
-		CurrentMass           resp.Field
-		DeltaVUnc             resp.Field
-		DepEstMasses          resp.Field
-		DepMassUncs           resp.Field
-		DepNames              resp.Field
-		DriftRate             resp.Field
-		DryMass               resp.Field
-		EstDeltaVDuration     resp.Field
-		FuelRemaining         resp.Field
-		GeoSlot               resp.Field
-		LastObSource          resp.Field
-		LastObTime            resp.Field
-		LaunchMass            resp.Field
-		LaunchMassMax         resp.Field
-		LaunchMassMin         resp.Field
-		Maneuverable          resp.Field
-		MaxDeltaV             resp.Field
-		MaxRadius             resp.Field
-		MissionTypes          resp.Field
-		NumDeployable         resp.Field
-		NumMission            resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Rcs                   resp.Field
-		RcsMax                resp.Field
-		RcsMean               resp.Field
-		RcsMin                resp.Field
-		RefSource             resp.Field
-		SolarArrayArea        resp.Field
-		TotalMassUnc          resp.Field
-		Vismag                resp.Field
-		VismagMax             resp.Field
-		VismagMean            resp.Field
-		VismagMin             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDOnOrbit             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AdditionalMass        respjson.Field
+		AdeptRadius           respjson.Field
+		BolDeltaV             respjson.Field
+		BolFuelMass           respjson.Field
+		BusCrossSection       respjson.Field
+		BusType               respjson.Field
+		ColaRadius            respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		CrossSection          respjson.Field
+		CurrentMass           respjson.Field
+		DeltaVUnc             respjson.Field
+		DepEstMasses          respjson.Field
+		DepMassUncs           respjson.Field
+		DepNames              respjson.Field
+		DriftRate             respjson.Field
+		DryMass               respjson.Field
+		EstDeltaVDuration     respjson.Field
+		FuelRemaining         respjson.Field
+		GeoSlot               respjson.Field
+		LastObSource          respjson.Field
+		LastObTime            respjson.Field
+		LaunchMass            respjson.Field
+		LaunchMassMax         respjson.Field
+		LaunchMassMin         respjson.Field
+		Maneuverable          respjson.Field
+		MaxDeltaV             respjson.Field
+		MaxRadius             respjson.Field
+		MissionTypes          respjson.Field
+		NumDeployable         respjson.Field
+		NumMission            respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Rcs                   respjson.Field
+		RcsMax                respjson.Field
+		RcsMean               respjson.Field
+		RcsMin                respjson.Field
+		RefSource             respjson.Field
+		SolarArrayArea        respjson.Field
+		TotalMassUnc          respjson.Field
+		Vismag                respjson.Field
+		VismagMax             respjson.Field
+		VismagMean            respjson.Field
+		VismagMin             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -483,60 +483,60 @@ type OnorbitdetailGetResponse struct {
 	VismagMean float64 `json:"vismagMean"`
 	// Minimum visual magnitude in M.
 	VismagMin float64 `json:"vismagMin"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDOnOrbit             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AdditionalMass        resp.Field
-		AdeptRadius           resp.Field
-		BolDeltaV             resp.Field
-		BolFuelMass           resp.Field
-		BusCrossSection       resp.Field
-		BusType               resp.Field
-		ColaRadius            resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		CrossSection          resp.Field
-		CurrentMass           resp.Field
-		DeltaVUnc             resp.Field
-		DepEstMasses          resp.Field
-		DepMassUncs           resp.Field
-		DepNames              resp.Field
-		DriftRate             resp.Field
-		DryMass               resp.Field
-		EstDeltaVDuration     resp.Field
-		FuelRemaining         resp.Field
-		GeoSlot               resp.Field
-		LastObSource          resp.Field
-		LastObTime            resp.Field
-		LaunchMass            resp.Field
-		LaunchMassMax         resp.Field
-		LaunchMassMin         resp.Field
-		Maneuverable          resp.Field
-		MaxDeltaV             resp.Field
-		MaxRadius             resp.Field
-		MissionTypes          resp.Field
-		NumDeployable         resp.Field
-		NumMission            resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Rcs                   resp.Field
-		RcsMax                resp.Field
-		RcsMean               resp.Field
-		RcsMin                resp.Field
-		RefSource             resp.Field
-		SolarArrayArea        resp.Field
-		TotalMassUnc          resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		Vismag                resp.Field
-		VismagMax             resp.Field
-		VismagMean            resp.Field
-		VismagMin             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDOnOrbit             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AdditionalMass        respjson.Field
+		AdeptRadius           respjson.Field
+		BolDeltaV             respjson.Field
+		BolFuelMass           respjson.Field
+		BusCrossSection       respjson.Field
+		BusType               respjson.Field
+		ColaRadius            respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		CrossSection          respjson.Field
+		CurrentMass           respjson.Field
+		DeltaVUnc             respjson.Field
+		DepEstMasses          respjson.Field
+		DepMassUncs           respjson.Field
+		DepNames              respjson.Field
+		DriftRate             respjson.Field
+		DryMass               respjson.Field
+		EstDeltaVDuration     respjson.Field
+		FuelRemaining         respjson.Field
+		GeoSlot               respjson.Field
+		LastObSource          respjson.Field
+		LastObTime            respjson.Field
+		LaunchMass            respjson.Field
+		LaunchMassMax         respjson.Field
+		LaunchMassMin         respjson.Field
+		Maneuverable          respjson.Field
+		MaxDeltaV             respjson.Field
+		MaxRadius             respjson.Field
+		MissionTypes          respjson.Field
+		NumDeployable         respjson.Field
+		NumMission            respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Rcs                   respjson.Field
+		RcsMax                respjson.Field
+		RcsMean               respjson.Field
+		RcsMin                respjson.Field
+		RefSource             respjson.Field
+		SolarArrayArea        respjson.Field
+		TotalMassUnc          respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		Vismag                respjson.Field
+		VismagMax             respjson.Field
+		VismagMean            respjson.Field
+		VismagMin             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

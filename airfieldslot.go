@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // AirfieldSlotService contains methods and other services that help with
@@ -238,30 +238,30 @@ type AirfieldslotAbridged struct {
 	//
 	// Any of "WORKING", "PARKING", "TAKEOFF", "LANDING", "OTHER".
 	Type AirfieldslotAbridgedType `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AirfieldName          resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AcSlotCat             resp.Field
-		AltAirfieldID         resp.Field
-		Capacity              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EndTime               resp.Field
-		Icao                  resp.Field
-		IDAirfield            resp.Field
-		MinSeparation         resp.Field
-		Notes                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		SourceDl              resp.Field
-		StartTime             resp.Field
-		Type                  resp.Field
-		ExtraFields           map[string]resp.Field
+		AirfieldName          respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AcSlotCat             respjson.Field
+		AltAirfieldID         respjson.Field
+		Capacity              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EndTime               respjson.Field
+		Icao                  respjson.Field
+		IDAirfield            respjson.Field
+		MinSeparation         respjson.Field
+		Notes                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		SourceDl              respjson.Field
+		StartTime             respjson.Field
+		Type                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -403,32 +403,32 @@ type AirfieldslotFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AirfieldName          resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AcSlotCat             resp.Field
-		AltAirfieldID         resp.Field
-		Capacity              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EndTime               resp.Field
-		Icao                  resp.Field
-		IDAirfield            resp.Field
-		MinSeparation         resp.Field
-		Notes                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		SourceDl              resp.Field
-		StartTime             resp.Field
-		Type                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		AirfieldName          respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AcSlotCat             respjson.Field
+		AltAirfieldID         respjson.Field
+		Capacity              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EndTime               respjson.Field
+		Icao                  respjson.Field
+		IDAirfield            respjson.Field
+		MinSeparation         respjson.Field
+		Notes                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		SourceDl              respjson.Field
+		StartTime             respjson.Field
+		Type                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

@@ -15,7 +15,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
@@ -241,50 +241,50 @@ type DiffofarrivalAbridged struct {
 	// and failed. If unable to correlate, the 'origObjectId' field may be populated
 	// with an internal data provider specific identifier.
 	Uct bool `json:"uct"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		ObTime                resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Bandwidth             resp.Field
-		CollectionMode        resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DeltaRange            resp.Field
-		DeltaRangeRate        resp.Field
-		DeltaRangeRateUnc     resp.Field
-		DeltaRangeUnc         resp.Field
-		Descriptor            resp.Field
-		Fdoa                  resp.Field
-		FdoaUnc               resp.Field
-		Frequency             resp.Field
-		IDOnOrbit             resp.Field
-		IDSensor1             resp.Field
-		IDSensor2             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		OrigSensorId1         resp.Field
-		OrigSensorId2         resp.Field
-		SatNo                 resp.Field
-		Sen2alt               resp.Field
-		Sen2lat               resp.Field
-		Sen2lon               resp.Field
-		Senalt                resp.Field
-		Senlat                resp.Field
-		Senlon                resp.Field
-		Sensor1Delay          resp.Field
-		Sensor2Delay          resp.Field
-		Snr                   resp.Field
-		SourceDl              resp.Field
-		TaskID                resp.Field
-		Tdoa                  resp.Field
-		TdoaUnc               resp.Field
-		TransactionID         resp.Field
-		Uct                   resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		ObTime                respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Bandwidth             respjson.Field
+		CollectionMode        respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DeltaRange            respjson.Field
+		DeltaRangeRate        respjson.Field
+		DeltaRangeRateUnc     respjson.Field
+		DeltaRangeUnc         respjson.Field
+		Descriptor            respjson.Field
+		Fdoa                  respjson.Field
+		FdoaUnc               respjson.Field
+		Frequency             respjson.Field
+		IDOnOrbit             respjson.Field
+		IDSensor1             respjson.Field
+		IDSensor2             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		OrigSensorId1         respjson.Field
+		OrigSensorId2         respjson.Field
+		SatNo                 respjson.Field
+		Sen2alt               respjson.Field
+		Sen2lat               respjson.Field
+		Sen2lon               respjson.Field
+		Senalt                respjson.Field
+		Senlat                respjson.Field
+		Senlon                respjson.Field
+		Sensor1Delay          respjson.Field
+		Sensor2Delay          respjson.Field
+		Snr                   respjson.Field
+		SourceDl              respjson.Field
+		TaskID                respjson.Field
+		Tdoa                  respjson.Field
+		TdoaUnc               respjson.Field
+		TransactionID         respjson.Field
+		Uct                   respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -463,53 +463,53 @@ type DiffofarrivalFull struct {
 	// and failed. If unable to correlate, the 'origObjectId' field may be populated
 	// with an internal data provider specific identifier.
 	Uct bool `json:"uct"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		ObTime                resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Bandwidth             resp.Field
-		CollectionMode        resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DeltaRange            resp.Field
-		DeltaRangeRate        resp.Field
-		DeltaRangeRateUnc     resp.Field
-		DeltaRangeUnc         resp.Field
-		Descriptor            resp.Field
-		Fdoa                  resp.Field
-		FdoaUnc               resp.Field
-		Frequency             resp.Field
-		IDOnOrbit             resp.Field
-		IDSensor1             resp.Field
-		IDSensor2             resp.Field
-		OnOrbit               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		OrigSensorId1         resp.Field
-		OrigSensorId2         resp.Field
-		RawFileUri            resp.Field
-		SatNo                 resp.Field
-		Sen2alt               resp.Field
-		Sen2lat               resp.Field
-		Sen2lon               resp.Field
-		Senalt                resp.Field
-		Senlat                resp.Field
-		Senlon                resp.Field
-		Sensor1Delay          resp.Field
-		Sensor2Delay          resp.Field
-		Snr                   resp.Field
-		SourceDl              resp.Field
-		Tags                  resp.Field
-		TaskID                resp.Field
-		Tdoa                  resp.Field
-		TdoaUnc               resp.Field
-		TransactionID         resp.Field
-		Uct                   resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		ObTime                respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Bandwidth             respjson.Field
+		CollectionMode        respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DeltaRange            respjson.Field
+		DeltaRangeRate        respjson.Field
+		DeltaRangeRateUnc     respjson.Field
+		DeltaRangeUnc         respjson.Field
+		Descriptor            respjson.Field
+		Fdoa                  respjson.Field
+		FdoaUnc               respjson.Field
+		Frequency             respjson.Field
+		IDOnOrbit             respjson.Field
+		IDSensor1             respjson.Field
+		IDSensor2             respjson.Field
+		OnOrbit               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		OrigSensorId1         respjson.Field
+		OrigSensorId2         respjson.Field
+		RawFileUri            respjson.Field
+		SatNo                 respjson.Field
+		Sen2alt               respjson.Field
+		Sen2lat               respjson.Field
+		Sen2lon               respjson.Field
+		Senalt                respjson.Field
+		Senlat                respjson.Field
+		Senlon                respjson.Field
+		Sensor1Delay          respjson.Field
+		Sensor2Delay          respjson.Field
+		Snr                   respjson.Field
+		SourceDl              respjson.Field
+		Tags                  respjson.Field
+		TaskID                respjson.Field
+		Tdoa                  respjson.Field
+		TdoaUnc               respjson.Field
+		TransactionID         respjson.Field
+		Uct                   respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

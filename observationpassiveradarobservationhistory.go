@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
@@ -307,77 +307,77 @@ type ObservationPassiveRadarObservationHistoryListResponse struct {
 	Yvel float64 `json:"yvel"`
 	// Z velocity of target in kilometers/sec in J2000 coordinate frame.
 	Zvel float64 `json:"zvel"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		ObTime                resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Accel                 resp.Field
-		AccelUnc              resp.Field
-		Alt                   resp.Field
-		Azimuth               resp.Field
-		AzimuthBias           resp.Field
-		AzimuthRate           resp.Field
-		AzimuthUnc            resp.Field
-		BistaticRange         resp.Field
-		BistaticRangeAccel    resp.Field
-		BistaticRangeAccelUnc resp.Field
-		BistaticRangeBias     resp.Field
-		BistaticRangeRate     resp.Field
-		BistaticRangeRateUnc  resp.Field
-		BistaticRangeUnc      resp.Field
-		Coning                resp.Field
-		ConingUnc             resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Declination           resp.Field
-		Delay                 resp.Field
-		DelayBias             resp.Field
-		DelayUnc              resp.Field
-		Descriptor            resp.Field
-		Doppler               resp.Field
-		DopplerUnc            resp.Field
-		Elevation             resp.Field
-		ElevationBias         resp.Field
-		ElevationRate         resp.Field
-		ElevationUnc          resp.Field
-		ExtObservationID      resp.Field
-		IDOnOrbit             resp.Field
-		IDRfEmitter           resp.Field
-		IDSensor              resp.Field
-		IDSensorRefReceiver   resp.Field
-		Lat                   resp.Field
-		Lon                   resp.Field
-		ObPosition            resp.Field
-		OnOrbit               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		OrigSensorID          resp.Field
-		OrthogonalRcs         resp.Field
-		OrthogonalRcsUnc      resp.Field
-		Ra                    resp.Field
-		Rcs                   resp.Field
-		RcsUnc                resp.Field
-		SatNo                 resp.Field
-		Snr                   resp.Field
-		SourceDl              resp.Field
-		Tags                  resp.Field
-		TaskID                resp.Field
-		TimingBias            resp.Field
-		Tof                   resp.Field
-		TofBias               resp.Field
-		TofUnc                resp.Field
-		TrackID               resp.Field
-		TransactionID         resp.Field
-		Type                  resp.Field
-		Uct                   resp.Field
-		Xvel                  resp.Field
-		Yvel                  resp.Field
-		Zvel                  resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		ObTime                respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Accel                 respjson.Field
+		AccelUnc              respjson.Field
+		Alt                   respjson.Field
+		Azimuth               respjson.Field
+		AzimuthBias           respjson.Field
+		AzimuthRate           respjson.Field
+		AzimuthUnc            respjson.Field
+		BistaticRange         respjson.Field
+		BistaticRangeAccel    respjson.Field
+		BistaticRangeAccelUnc respjson.Field
+		BistaticRangeBias     respjson.Field
+		BistaticRangeRate     respjson.Field
+		BistaticRangeRateUnc  respjson.Field
+		BistaticRangeUnc      respjson.Field
+		Coning                respjson.Field
+		ConingUnc             respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Declination           respjson.Field
+		Delay                 respjson.Field
+		DelayBias             respjson.Field
+		DelayUnc              respjson.Field
+		Descriptor            respjson.Field
+		Doppler               respjson.Field
+		DopplerUnc            respjson.Field
+		Elevation             respjson.Field
+		ElevationBias         respjson.Field
+		ElevationRate         respjson.Field
+		ElevationUnc          respjson.Field
+		ExtObservationID      respjson.Field
+		IDOnOrbit             respjson.Field
+		IDRfEmitter           respjson.Field
+		IDSensor              respjson.Field
+		IDSensorRefReceiver   respjson.Field
+		Lat                   respjson.Field
+		Lon                   respjson.Field
+		ObPosition            respjson.Field
+		OnOrbit               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		OrigSensorID          respjson.Field
+		OrthogonalRcs         respjson.Field
+		OrthogonalRcsUnc      respjson.Field
+		Ra                    respjson.Field
+		Rcs                   respjson.Field
+		RcsUnc                respjson.Field
+		SatNo                 respjson.Field
+		Snr                   respjson.Field
+		SourceDl              respjson.Field
+		Tags                  respjson.Field
+		TaskID                respjson.Field
+		TimingBias            respjson.Field
+		Tof                   respjson.Field
+		TofBias               respjson.Field
+		TofUnc                respjson.Field
+		TrackID               respjson.Field
+		TransactionID         respjson.Field
+		Type                  respjson.Field
+		Uct                   respjson.Field
+		Xvel                  respjson.Field
+		Yvel                  respjson.Field
+		Zvel                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

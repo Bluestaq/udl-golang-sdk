@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
@@ -264,49 +264,49 @@ type EvacAbridged struct {
 	// The pickup site security (UNKNOWN ZONESECURITY, NO ENEMY, POSSIBLE ENEMY, ENEMY
 	// IN AREA USE CAUTION, ENEMY IN AREA ARMED ESCORT REQUIRED).
 	ZoneSecurity string `json:"zoneSecurity"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		PickupLat             resp.Field
-		PickupLon             resp.Field
-		ReqTime               resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		CasualtyInfo          resp.Field
-		Ce                    resp.Field
-		CntctFreq             resp.Field
-		Comments              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EnemyData             resp.Field
-		IDWeatherReport       resp.Field
-		Le                    resp.Field
-		MedevacID             resp.Field
-		MedicReq              resp.Field
-		MissionType           resp.Field
-		NumAmbulatory         resp.Field
-		NumCasualties         resp.Field
-		NumKia                resp.Field
-		NumLitter             resp.Field
-		NumWia                resp.Field
-		ObstaclesRemarks      resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PickupAlt             resp.Field
-		PickupTime            resp.Field
-		ReqCallSign           resp.Field
-		ReqNum                resp.Field
-		Terrain               resp.Field
-		TerrainRemarks        resp.Field
-		ZoneContrCallSign     resp.Field
-		ZoneHot               resp.Field
-		ZoneMarking           resp.Field
-		ZoneMarkingColor      resp.Field
-		ZoneName              resp.Field
-		ZoneSecurity          resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		PickupLat             respjson.Field
+		PickupLon             respjson.Field
+		ReqTime               respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		CasualtyInfo          respjson.Field
+		Ce                    respjson.Field
+		CntctFreq             respjson.Field
+		Comments              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EnemyData             respjson.Field
+		IDWeatherReport       respjson.Field
+		Le                    respjson.Field
+		MedevacID             respjson.Field
+		MedicReq              respjson.Field
+		MissionType           respjson.Field
+		NumAmbulatory         respjson.Field
+		NumCasualties         respjson.Field
+		NumKia                respjson.Field
+		NumLitter             respjson.Field
+		NumWia                respjson.Field
+		ObstaclesRemarks      respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PickupAlt             respjson.Field
+		PickupTime            respjson.Field
+		ReqCallSign           respjson.Field
+		ReqNum                respjson.Field
+		Terrain               respjson.Field
+		TerrainRemarks        respjson.Field
+		ZoneContrCallSign     respjson.Field
+		ZoneHot               respjson.Field
+		ZoneMarking           respjson.Field
+		ZoneMarkingColor      respjson.Field
+		ZoneName              respjson.Field
+		ZoneSecurity          respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -448,44 +448,44 @@ type EvacAbridgedCasualtyInfo struct {
 	Treatment []EvacAbridgedCasualtyInfoTreatment `json:"treatment"`
 	// Information obtained for vital signs.
 	VitalSignData []EvacAbridgedCasualtyInfoVitalSignData `json:"vitalSignData"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Age             resp.Field
-		Allergy         resp.Field
-		BloodType       resp.Field
-		BodyPart        resp.Field
-		BurialLocation  resp.Field
-		CallSign        resp.Field
-		CareProviderUrn resp.Field
-		CasualtyKey     resp.Field
-		CasualtyType    resp.Field
-		CollectionPoint resp.Field
-		Comments        resp.Field
-		Condition       resp.Field
-		ContamType      resp.Field
-		Disposition     resp.Field
-		DispositionType resp.Field
-		Etiology        resp.Field
-		EvacType        resp.Field
-		Gender          resp.Field
-		HealthState     resp.Field
-		Injury          resp.Field
-		Last4Ssn        resp.Field
-		Medication      resp.Field
-		Name            resp.Field
-		Nationality     resp.Field
-		OccSpeciality   resp.Field
-		PatientIdentity resp.Field
-		PatientStatus   resp.Field
-		PayGrade        resp.Field
-		Priority        resp.Field
-		ReportGen       resp.Field
-		ReportTime      resp.Field
-		Service         resp.Field
-		SpecMedEquip    resp.Field
-		Treatment       resp.Field
-		VitalSignData   resp.Field
-		ExtraFields     map[string]resp.Field
+		Age             respjson.Field
+		Allergy         respjson.Field
+		BloodType       respjson.Field
+		BodyPart        respjson.Field
+		BurialLocation  respjson.Field
+		CallSign        respjson.Field
+		CareProviderUrn respjson.Field
+		CasualtyKey     respjson.Field
+		CasualtyType    respjson.Field
+		CollectionPoint respjson.Field
+		Comments        respjson.Field
+		Condition       respjson.Field
+		ContamType      respjson.Field
+		Disposition     respjson.Field
+		DispositionType respjson.Field
+		Etiology        respjson.Field
+		EvacType        respjson.Field
+		Gender          respjson.Field
+		HealthState     respjson.Field
+		Injury          respjson.Field
+		Last4Ssn        respjson.Field
+		Medication      respjson.Field
+		Name            respjson.Field
+		Nationality     respjson.Field
+		OccSpeciality   respjson.Field
+		PatientIdentity respjson.Field
+		PatientStatus   respjson.Field
+		PayGrade        respjson.Field
+		Priority        respjson.Field
+		ReportGen       respjson.Field
+		ReportTime      respjson.Field
+		Service         respjson.Field
+		SpecMedEquip    respjson.Field
+		Treatment       respjson.Field
+		VitalSignData   respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -501,11 +501,11 @@ type EvacAbridgedCasualtyInfoAllergy struct {
 	Comments string `json:"comments"`
 	// Type of patient allergy (e.g. PENICILLIN, SULFA, OTHER).
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Comments    resp.Field
-		Type        resp.Field
-		ExtraFields map[string]resp.Field
+		Comments    respjson.Field
+		Type        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -531,13 +531,13 @@ type EvacAbridgedCasualtyInfoCondition struct {
 	// ACTIVITY NONE, AVPU ALERT, AVPU ALTERED MENTAL STATE, AVPU PAIN, AVPU
 	// UNRESPONSIVE, etc.).
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		BodyPart    resp.Field
-		Comments    resp.Field
-		Time        resp.Field
-		Type        resp.Field
-		ExtraFields map[string]resp.Field
+		BodyPart    respjson.Field
+		Comments    respjson.Field
+		Time        respjson.Field
+		Type        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -563,13 +563,13 @@ type EvacAbridgedCasualtyInfoEtiology struct {
 	// BURN CHEMICAL, BURN ELECTRICAL, BURN, BURN HOT LIQUID, BURN RADIATION, BURN
 	// THERMAL, etc.).
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		BodyPart    resp.Field
-		Comments    resp.Field
-		Time        resp.Field
-		Type        resp.Field
-		ExtraFields map[string]resp.Field
+		BodyPart    respjson.Field
+		Comments    respjson.Field
+		Time        respjson.Field
+		Type        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -591,13 +591,13 @@ type EvacAbridgedCasualtyInfoHealthState struct {
 	// Generalized state of health type (BIOLOGICAL, CHEMICAL, COGNITIVE, HYDRATION,
 	// LIFE SIGN, RADIATION, SHOCK, THERMAL).
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		HealthStateCode resp.Field
-		MedConfFactor   resp.Field
-		Time            resp.Field
-		Type            resp.Field
-		ExtraFields     map[string]resp.Field
+		HealthStateCode respjson.Field
+		MedConfFactor   respjson.Field
+		Time            respjson.Field
+		Type            respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -628,13 +628,13 @@ type EvacAbridgedCasualtyInfoInjury struct {
 	// NON SYMMETRICAL, LACERATION, NEUROVASCULAR COMPROMISE, NEUROVASCULAR INTACT,
 	// PUNCTURE, SEAT BELT SIGN, STAB, TIC TIM).
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		BodyPart    resp.Field
-		Comments    resp.Field
-		Time        resp.Field
-		Type        resp.Field
-		ExtraFields map[string]resp.Field
+		BodyPart    respjson.Field
+		Comments    respjson.Field
+		Time        respjson.Field
+		Type        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -666,15 +666,15 @@ type EvacAbridgedCasualtyInfoMedication struct {
 	// HEXTEND, LACTATED RINGERS, MOBIC, MORPHINE, NARCOTIC, NS, PENICILLIN, PLASMA,
 	// PLATELETS, PRBC, TYLENOL, WHOLE BLOOD MT).
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AdminRoute  resp.Field
-		BodyPart    resp.Field
-		Comments    resp.Field
-		Dose        resp.Field
-		Time        resp.Field
-		Type        resp.Field
-		ExtraFields map[string]resp.Field
+		AdminRoute  respjson.Field
+		BodyPart    respjson.Field
+		Comments    respjson.Field
+		Dose        respjson.Field
+		Time        respjson.Field
+		Type        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -701,13 +701,13 @@ type EvacAbridgedCasualtyInfoTreatment struct {
 	// AIRWAY NPA OPA APPLIED, AIRWAY PATIENT, AIRWAY POSITIONAL, AIRWAY SURGICAL CRIC,
 	// BREATHING CHEST SEAL, BREATHING CHEST TUBE, etc.).
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		BodyPart    resp.Field
-		Comments    resp.Field
-		Time        resp.Field
-		Type        resp.Field
-		ExtraFields map[string]resp.Field
+		BodyPart    respjson.Field
+		Comments    respjson.Field
+		Time        respjson.Field
+		Type        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -732,14 +732,14 @@ type EvacAbridgedCasualtyInfoVitalSignData struct {
 	// Vital sign value 2. The content of this field is dependent on the type of vital
 	// sign being measured (see the vitalSign field).
 	VitalSign2 float64 `json:"vitalSign2"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		MedConfFactor resp.Field
-		Time          resp.Field
-		VitalSign     resp.Field
-		VitalSign1    resp.Field
-		VitalSign2    resp.Field
-		ExtraFields   map[string]resp.Field
+		MedConfFactor respjson.Field
+		Time          respjson.Field
+		VitalSign     respjson.Field
+		VitalSign1    respjson.Field
+		VitalSign2    respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -760,13 +760,13 @@ type EvacAbridgedEnemyData struct {
 	HlzRemarks string `json:"hlzRemarks"`
 	// The type of hostile fire received (SMALL ARMS, MORTAR, ARTILLERY, ROCKETS).
 	HostileFireType string `json:"hostileFireType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DirToEnemy        resp.Field
-		FriendliesRemarks resp.Field
-		HlzRemarks        resp.Field
-		HostileFireType   resp.Field
-		ExtraFields       map[string]resp.Field
+		DirToEnemy        respjson.Field
+		FriendliesRemarks respjson.Field
+		HlzRemarks        respjson.Field
+		HostileFireType   respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }

@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // H3GeoHexCellService contains methods and other services that help with
@@ -183,31 +183,31 @@ type H3GeoHexCellListResponse struct {
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
 	SourceDl string `json:"sourceDL"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CellID                resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AltMean               resp.Field
-		AltSigma              resp.Field
-		AnomScoreInterference resp.Field
-		AnomScoreSpoofing     resp.Field
-		ChangeScore           resp.Field
-		Coverage              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		IDH3Geo               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		RpmMax                resp.Field
-		RpmMean               resp.Field
-		RpmMedian             resp.Field
-		RpmMin                resp.Field
-		RpmSigma              resp.Field
-		SourceDl              resp.Field
-		ExtraFields           map[string]resp.Field
+		CellID                respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AltMean               respjson.Field
+		AltSigma              respjson.Field
+		AnomScoreInterference respjson.Field
+		AnomScoreSpoofing     respjson.Field
+		ChangeScore           respjson.Field
+		Coverage              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		IDH3Geo               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		RpmMax                respjson.Field
+		RpmMean               respjson.Field
+		RpmMedian             respjson.Field
+		RpmMin                respjson.Field
+		RpmSigma              respjson.Field
+		SourceDl              respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -321,31 +321,31 @@ type H3GeoHexCellTupleResponse struct {
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
 	SourceDl string `json:"sourceDL"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CellID                resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AltMean               resp.Field
-		AltSigma              resp.Field
-		AnomScoreInterference resp.Field
-		AnomScoreSpoofing     resp.Field
-		ChangeScore           resp.Field
-		Coverage              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		IDH3Geo               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		RpmMax                resp.Field
-		RpmMean               resp.Field
-		RpmMedian             resp.Field
-		RpmMin                resp.Field
-		RpmSigma              resp.Field
-		SourceDl              resp.Field
-		ExtraFields           map[string]resp.Field
+		CellID                respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AltMean               respjson.Field
+		AltSigma              respjson.Field
+		AnomScoreInterference respjson.Field
+		AnomScoreSpoofing     respjson.Field
+		ChangeScore           respjson.Field
+		Coverage              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		IDH3Geo               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		RpmMax                respjson.Field
+		RpmMean               respjson.Field
+		RpmMedian             respjson.Field
+		RpmMin                respjson.Field
+		RpmSigma              respjson.Field
+		SourceDl              respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

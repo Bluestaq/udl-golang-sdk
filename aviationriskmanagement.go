@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // AviationRiskManagementService contains methods and other services that help with
@@ -231,26 +231,26 @@ type AviationRiskManagementGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                 resp.Field
-		DataMode                              resp.Field
-		IDMission                             resp.Field
-		Source                                resp.Field
-		ID                                    resp.Field
-		AviationRiskManagementWorksheetRecord resp.Field
-		CreatedAt                             resp.Field
-		CreatedBy                             resp.Field
-		ExtMissionID                          resp.Field
-		MissionNumber                         resp.Field
-		OrgID                                 resp.Field
-		Origin                                resp.Field
-		OrigNetwork                           resp.Field
-		SourceDl                              resp.Field
-		UnitID                                resp.Field
-		UpdatedAt                             resp.Field
-		UpdatedBy                             resp.Field
-		ExtraFields                           map[string]resp.Field
+		ClassificationMarking                 respjson.Field
+		DataMode                              respjson.Field
+		IDMission                             respjson.Field
+		Source                                respjson.Field
+		ID                                    respjson.Field
+		AviationRiskManagementWorksheetRecord respjson.Field
+		CreatedAt                             respjson.Field
+		CreatedBy                             respjson.Field
+		ExtMissionID                          respjson.Field
+		MissionNumber                         respjson.Field
+		OrgID                                 respjson.Field
+		Origin                                respjson.Field
+		OrigNetwork                           respjson.Field
+		SourceDl                              respjson.Field
+		UnitID                                respjson.Field
+		UpdatedAt                             respjson.Field
+		UpdatedBy                             respjson.Field
+		ExtraFields                           map[string]respjson.Field
 		raw                                   string
 	} `json:"-"`
 }
@@ -330,24 +330,24 @@ type AviationRiskManagementGetResponseAviationRiskManagementWorksheetRecord stru
 	TotalScore int64 `json:"totalScore"`
 	// User identifier associated to the worksheet record.
 	UserID string `json:"userId"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		MissionDate                          resp.Field
-		AircraftMds                          resp.Field
-		ApprovalPending                      resp.Field
-		Approved                             resp.Field
-		AviationRiskManagementWorksheetScore resp.Field
-		DispositionComments                  resp.Field
-		ExtRecordID                          resp.Field
-		Itinerary                            resp.Field
-		LastUpdatedAt                        resp.Field
-		Remarks                              resp.Field
-		SeverityLevel                        resp.Field
-		SubmissionDate                       resp.Field
-		TierNumber                           resp.Field
-		TotalScore                           resp.Field
-		UserID                               resp.Field
-		ExtraFields                          map[string]resp.Field
+		MissionDate                          respjson.Field
+		AircraftMds                          respjson.Field
+		ApprovalPending                      respjson.Field
+		Approved                             respjson.Field
+		AviationRiskManagementWorksheetScore respjson.Field
+		DispositionComments                  respjson.Field
+		ExtRecordID                          respjson.Field
+		Itinerary                            respjson.Field
+		LastUpdatedAt                        respjson.Field
+		Remarks                              respjson.Field
+		SeverityLevel                        respjson.Field
+		SubmissionDate                       respjson.Field
+		TierNumber                           respjson.Field
+		TotalScore                           respjson.Field
+		UserID                               respjson.Field
+		ExtraFields                          map[string]respjson.Field
 		raw                                  string
 	} `json:"-"`
 }
@@ -391,20 +391,20 @@ type AviationRiskManagementGetResponseAviationRiskManagementWorksheetRecordAviat
 	Score int64 `json:"score"`
 	// Remarks and/or comments regarding the worksheet score.
 	ScoreRemark string `json:"scoreRemark"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ApprovalDate                 resp.Field
-		ApprovedBy                   resp.Field
-		ApprovedCode                 resp.Field
-		AviationRiskManagementSortie resp.Field
-		ExtScoreID                   resp.Field
-		RiskCategory                 resp.Field
-		RiskDescription              resp.Field
-		RiskKey                      resp.Field
-		RiskName                     resp.Field
-		Score                        resp.Field
-		ScoreRemark                  resp.Field
-		ExtraFields                  map[string]resp.Field
+		ApprovalDate                 respjson.Field
+		ApprovedBy                   respjson.Field
+		ApprovedCode                 respjson.Field
+		AviationRiskManagementSortie respjson.Field
+		ExtScoreID                   respjson.Field
+		RiskCategory                 respjson.Field
+		RiskDescription              respjson.Field
+		RiskKey                      respjson.Field
+		RiskName                     respjson.Field
+		Score                        respjson.Field
+		ScoreRemark                  respjson.Field
+		ExtraFields                  map[string]respjson.Field
 		raw                          string
 	} `json:"-"`
 }
@@ -432,13 +432,13 @@ type AviationRiskManagementGetResponseAviationRiskManagementWorksheetRecordAviat
 	// ranges from 0 to 3, where a value of 0 indicates a low and a value of 3
 	// indicates severe. A value of -1 indicates no score.
 	SortieScore int64 `json:"sortieScore"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ExtSortieID resp.Field
-		IDSortie    resp.Field
-		LegNum      resp.Field
-		SortieScore resp.Field
-		ExtraFields map[string]resp.Field
+		ExtSortieID respjson.Field
+		IDSortie    respjson.Field
+		LegNum      respjson.Field
+		SortieScore respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -516,26 +516,26 @@ type AviationRiskManagementQueryResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                 resp.Field
-		DataMode                              resp.Field
-		IDMission                             resp.Field
-		Source                                resp.Field
-		ID                                    resp.Field
-		AviationRiskManagementWorksheetRecord resp.Field
-		CreatedAt                             resp.Field
-		CreatedBy                             resp.Field
-		ExtMissionID                          resp.Field
-		MissionNumber                         resp.Field
-		OrgID                                 resp.Field
-		Origin                                resp.Field
-		OrigNetwork                           resp.Field
-		SourceDl                              resp.Field
-		UnitID                                resp.Field
-		UpdatedAt                             resp.Field
-		UpdatedBy                             resp.Field
-		ExtraFields                           map[string]resp.Field
+		ClassificationMarking                 respjson.Field
+		DataMode                              respjson.Field
+		IDMission                             respjson.Field
+		Source                                respjson.Field
+		ID                                    respjson.Field
+		AviationRiskManagementWorksheetRecord respjson.Field
+		CreatedAt                             respjson.Field
+		CreatedBy                             respjson.Field
+		ExtMissionID                          respjson.Field
+		MissionNumber                         respjson.Field
+		OrgID                                 respjson.Field
+		Origin                                respjson.Field
+		OrigNetwork                           respjson.Field
+		SourceDl                              respjson.Field
+		UnitID                                respjson.Field
+		UpdatedAt                             respjson.Field
+		UpdatedBy                             respjson.Field
+		ExtraFields                           map[string]respjson.Field
 		raw                                   string
 	} `json:"-"`
 }
@@ -615,24 +615,24 @@ type AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecord st
 	TotalScore int64 `json:"totalScore"`
 	// User identifier associated to the worksheet record.
 	UserID string `json:"userId"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		MissionDate                          resp.Field
-		AircraftMds                          resp.Field
-		ApprovalPending                      resp.Field
-		Approved                             resp.Field
-		AviationRiskManagementWorksheetScore resp.Field
-		DispositionComments                  resp.Field
-		ExtRecordID                          resp.Field
-		Itinerary                            resp.Field
-		LastUpdatedAt                        resp.Field
-		Remarks                              resp.Field
-		SeverityLevel                        resp.Field
-		SubmissionDate                       resp.Field
-		TierNumber                           resp.Field
-		TotalScore                           resp.Field
-		UserID                               resp.Field
-		ExtraFields                          map[string]resp.Field
+		MissionDate                          respjson.Field
+		AircraftMds                          respjson.Field
+		ApprovalPending                      respjson.Field
+		Approved                             respjson.Field
+		AviationRiskManagementWorksheetScore respjson.Field
+		DispositionComments                  respjson.Field
+		ExtRecordID                          respjson.Field
+		Itinerary                            respjson.Field
+		LastUpdatedAt                        respjson.Field
+		Remarks                              respjson.Field
+		SeverityLevel                        respjson.Field
+		SubmissionDate                       respjson.Field
+		TierNumber                           respjson.Field
+		TotalScore                           respjson.Field
+		UserID                               respjson.Field
+		ExtraFields                          map[string]respjson.Field
 		raw                                  string
 	} `json:"-"`
 }
@@ -676,20 +676,20 @@ type AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAvi
 	Score int64 `json:"score"`
 	// Remarks and/or comments regarding the worksheet score.
 	ScoreRemark string `json:"scoreRemark"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ApprovalDate                 resp.Field
-		ApprovedBy                   resp.Field
-		ApprovedCode                 resp.Field
-		AviationRiskManagementSortie resp.Field
-		ExtScoreID                   resp.Field
-		RiskCategory                 resp.Field
-		RiskDescription              resp.Field
-		RiskKey                      resp.Field
-		RiskName                     resp.Field
-		Score                        resp.Field
-		ScoreRemark                  resp.Field
-		ExtraFields                  map[string]resp.Field
+		ApprovalDate                 respjson.Field
+		ApprovedBy                   respjson.Field
+		ApprovedCode                 respjson.Field
+		AviationRiskManagementSortie respjson.Field
+		ExtScoreID                   respjson.Field
+		RiskCategory                 respjson.Field
+		RiskDescription              respjson.Field
+		RiskKey                      respjson.Field
+		RiskName                     respjson.Field
+		Score                        respjson.Field
+		ScoreRemark                  respjson.Field
+		ExtraFields                  map[string]respjson.Field
 		raw                          string
 	} `json:"-"`
 }
@@ -717,13 +717,13 @@ type AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAvi
 	// ranges from 0 to 3, where a value of 0 indicates a low and a value of 3
 	// indicates severe. A value of -1 indicates no score.
 	SortieScore int64 `json:"sortieScore"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ExtSortieID resp.Field
-		IDSortie    resp.Field
-		LegNum      resp.Field
-		SortieScore resp.Field
-		ExtraFields map[string]resp.Field
+		ExtSortieID respjson.Field
+		IDSortie    respjson.Field
+		LegNum      respjson.Field
+		SortieScore respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -801,26 +801,26 @@ type AviationRiskManagementTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                 resp.Field
-		DataMode                              resp.Field
-		IDMission                             resp.Field
-		Source                                resp.Field
-		ID                                    resp.Field
-		AviationRiskManagementWorksheetRecord resp.Field
-		CreatedAt                             resp.Field
-		CreatedBy                             resp.Field
-		ExtMissionID                          resp.Field
-		MissionNumber                         resp.Field
-		OrgID                                 resp.Field
-		Origin                                resp.Field
-		OrigNetwork                           resp.Field
-		SourceDl                              resp.Field
-		UnitID                                resp.Field
-		UpdatedAt                             resp.Field
-		UpdatedBy                             resp.Field
-		ExtraFields                           map[string]resp.Field
+		ClassificationMarking                 respjson.Field
+		DataMode                              respjson.Field
+		IDMission                             respjson.Field
+		Source                                respjson.Field
+		ID                                    respjson.Field
+		AviationRiskManagementWorksheetRecord respjson.Field
+		CreatedAt                             respjson.Field
+		CreatedBy                             respjson.Field
+		ExtMissionID                          respjson.Field
+		MissionNumber                         respjson.Field
+		OrgID                                 respjson.Field
+		Origin                                respjson.Field
+		OrigNetwork                           respjson.Field
+		SourceDl                              respjson.Field
+		UnitID                                respjson.Field
+		UpdatedAt                             respjson.Field
+		UpdatedBy                             respjson.Field
+		ExtraFields                           map[string]respjson.Field
 		raw                                   string
 	} `json:"-"`
 }
@@ -900,24 +900,24 @@ type AviationRiskManagementTupleResponseAviationRiskManagementWorksheetRecord st
 	TotalScore int64 `json:"totalScore"`
 	// User identifier associated to the worksheet record.
 	UserID string `json:"userId"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		MissionDate                          resp.Field
-		AircraftMds                          resp.Field
-		ApprovalPending                      resp.Field
-		Approved                             resp.Field
-		AviationRiskManagementWorksheetScore resp.Field
-		DispositionComments                  resp.Field
-		ExtRecordID                          resp.Field
-		Itinerary                            resp.Field
-		LastUpdatedAt                        resp.Field
-		Remarks                              resp.Field
-		SeverityLevel                        resp.Field
-		SubmissionDate                       resp.Field
-		TierNumber                           resp.Field
-		TotalScore                           resp.Field
-		UserID                               resp.Field
-		ExtraFields                          map[string]resp.Field
+		MissionDate                          respjson.Field
+		AircraftMds                          respjson.Field
+		ApprovalPending                      respjson.Field
+		Approved                             respjson.Field
+		AviationRiskManagementWorksheetScore respjson.Field
+		DispositionComments                  respjson.Field
+		ExtRecordID                          respjson.Field
+		Itinerary                            respjson.Field
+		LastUpdatedAt                        respjson.Field
+		Remarks                              respjson.Field
+		SeverityLevel                        respjson.Field
+		SubmissionDate                       respjson.Field
+		TierNumber                           respjson.Field
+		TotalScore                           respjson.Field
+		UserID                               respjson.Field
+		ExtraFields                          map[string]respjson.Field
 		raw                                  string
 	} `json:"-"`
 }
@@ -961,20 +961,20 @@ type AviationRiskManagementTupleResponseAviationRiskManagementWorksheetRecordAvi
 	Score int64 `json:"score"`
 	// Remarks and/or comments regarding the worksheet score.
 	ScoreRemark string `json:"scoreRemark"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ApprovalDate                 resp.Field
-		ApprovedBy                   resp.Field
-		ApprovedCode                 resp.Field
-		AviationRiskManagementSortie resp.Field
-		ExtScoreID                   resp.Field
-		RiskCategory                 resp.Field
-		RiskDescription              resp.Field
-		RiskKey                      resp.Field
-		RiskName                     resp.Field
-		Score                        resp.Field
-		ScoreRemark                  resp.Field
-		ExtraFields                  map[string]resp.Field
+		ApprovalDate                 respjson.Field
+		ApprovedBy                   respjson.Field
+		ApprovedCode                 respjson.Field
+		AviationRiskManagementSortie respjson.Field
+		ExtScoreID                   respjson.Field
+		RiskCategory                 respjson.Field
+		RiskDescription              respjson.Field
+		RiskKey                      respjson.Field
+		RiskName                     respjson.Field
+		Score                        respjson.Field
+		ScoreRemark                  respjson.Field
+		ExtraFields                  map[string]respjson.Field
 		raw                          string
 	} `json:"-"`
 }
@@ -1002,13 +1002,13 @@ type AviationRiskManagementTupleResponseAviationRiskManagementWorksheetRecordAvi
 	// ranges from 0 to 3, where a value of 0 indicates a low and a value of 3
 	// indicates severe. A value of -1 indicates no score.
 	SortieScore int64 `json:"sortieScore"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ExtSortieID resp.Field
-		IDSortie    resp.Field
-		LegNum      resp.Field
-		SortieScore resp.Field
-		ExtraFields map[string]resp.Field
+		ExtSortieID respjson.Field
+		IDSortie    respjson.Field
+		LegNum      respjson.Field
+		SortieScore respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }

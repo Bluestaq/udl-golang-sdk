@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // OrganizationService contains methods and other services that help with
@@ -250,28 +250,28 @@ type OrganizationFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		Active                resp.Field
-		Category              resp.Field
-		CountryCode           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Description           resp.Field
-		ExternalID            resp.Field
-		Nationality           resp.Field
-		OrganizationDetails   resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		Active                respjson.Field
+		Category              respjson.Field
+		CountryCode           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Description           respjson.Field
+		ExternalID            respjson.Field
+		Nationality           respjson.Field
+		OrganizationDetails   respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -372,25 +372,25 @@ type OrganizationListResponse struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		Active                resp.Field
-		Category              resp.Field
-		CountryCode           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Description           resp.Field
-		ExternalID            resp.Field
-		Nationality           resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		Active                respjson.Field
+		Category              respjson.Field
+		CountryCode           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Description           respjson.Field
+		ExternalID            respjson.Field
+		Nationality           respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

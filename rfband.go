@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // RfBandService contains methods and other services that help with interacting
@@ -255,32 +255,32 @@ type RfBandListResponse struct {
 	//
 	// Any of "COMM", "TTC", "OPS", "OTHER".
 	Purpose RfBandListResponsePurpose `json:"purpose"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDEntity              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Band                  resp.Field
-		Bandwidth             resp.Field
-		Beamwidth             resp.Field
-		CenterFreq            resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EdgeGain              resp.Field
-		Eirp                  resp.Field
-		Erp                   resp.Field
-		FreqMax               resp.Field
-		FreqMin               resp.Field
-		Mode                  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PeakGain              resp.Field
-		Polarization          resp.Field
-		Purpose               resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDEntity              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Band                  respjson.Field
+		Bandwidth             respjson.Field
+		Beamwidth             respjson.Field
+		CenterFreq            respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EdgeGain              respjson.Field
+		Eirp                  respjson.Field
+		Erp                   respjson.Field
+		FreqMax               respjson.Field
+		FreqMin               respjson.Field
+		Mode                  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PeakGain              respjson.Field
+		Polarization          respjson.Field
+		Purpose               respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -449,34 +449,34 @@ type RfBandGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDEntity              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Band                  resp.Field
-		Bandwidth             resp.Field
-		Beamwidth             resp.Field
-		CenterFreq            resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EdgeGain              resp.Field
-		Eirp                  resp.Field
-		Erp                   resp.Field
-		FreqMax               resp.Field
-		FreqMin               resp.Field
-		Mode                  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PeakGain              resp.Field
-		Polarization          resp.Field
-		Purpose               resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDEntity              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Band                  respjson.Field
+		Bandwidth             respjson.Field
+		Beamwidth             respjson.Field
+		CenterFreq            respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EdgeGain              respjson.Field
+		Eirp                  respjson.Field
+		Erp                   respjson.Field
+		FreqMax               respjson.Field
+		FreqMin               respjson.Field
+		Mode                  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PeakGain              respjson.Field
+		Polarization          respjson.Field
+		Purpose               respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -645,34 +645,34 @@ type RfBandTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDEntity              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Band                  resp.Field
-		Bandwidth             resp.Field
-		Beamwidth             resp.Field
-		CenterFreq            resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EdgeGain              resp.Field
-		Eirp                  resp.Field
-		Erp                   resp.Field
-		FreqMax               resp.Field
-		FreqMin               resp.Field
-		Mode                  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PeakGain              resp.Field
-		Polarization          resp.Field
-		Purpose               resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDEntity              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Band                  respjson.Field
+		Bandwidth             respjson.Field
+		Beamwidth             respjson.Field
+		CenterFreq            respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EdgeGain              respjson.Field
+		Eirp                  respjson.Field
+		Erp                   respjson.Field
+		FreqMax               respjson.Field
+		FreqMin               respjson.Field
+		Mode                  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PeakGain              respjson.Field
+		Polarization          respjson.Field
+		Purpose               respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

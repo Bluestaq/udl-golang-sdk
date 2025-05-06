@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // SeraDataNavigationService contains methods and other services that help with
@@ -222,30 +222,30 @@ type SeraDataNavigationListResponse struct {
 	PartnerSpacecraftID string `json:"partnerSpacecraftId"`
 	// Navigation payload type, e.g. WAAS, GAGAN, etc.
 	PayloadType string `json:"payloadType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		SpacecraftID          resp.Field
-		ID                    resp.Field
-		AreaCoverage          resp.Field
-		ClockType             resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		HostedForCompanyOrgID resp.Field
-		IDNavigation          resp.Field
-		LocationAccuracy      resp.Field
-		ManufacturerOrgID     resp.Field
-		ModeFrequency         resp.Field
-		Modes                 resp.Field
-		Name                  resp.Field
-		Notes                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PartnerSpacecraftID   resp.Field
-		PayloadType           resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		SpacecraftID          respjson.Field
+		ID                    respjson.Field
+		AreaCoverage          respjson.Field
+		ClockType             respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		HostedForCompanyOrgID respjson.Field
+		IDNavigation          respjson.Field
+		LocationAccuracy      respjson.Field
+		ManufacturerOrgID     respjson.Field
+		ModeFrequency         respjson.Field
+		Modes                 respjson.Field
+		Name                  respjson.Field
+		Notes                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PartnerSpacecraftID   respjson.Field
+		PayloadType           respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -348,32 +348,32 @@ type SeraDataNavigationGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		SpacecraftID          resp.Field
-		ID                    resp.Field
-		AreaCoverage          resp.Field
-		ClockType             resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		HostedForCompanyOrgID resp.Field
-		IDNavigation          resp.Field
-		LocationAccuracy      resp.Field
-		ManufacturerOrgID     resp.Field
-		ModeFrequency         resp.Field
-		Modes                 resp.Field
-		Name                  resp.Field
-		Notes                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PartnerSpacecraftID   resp.Field
-		PayloadType           resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		SpacecraftID          respjson.Field
+		ID                    respjson.Field
+		AreaCoverage          respjson.Field
+		ClockType             respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		HostedForCompanyOrgID respjson.Field
+		IDNavigation          respjson.Field
+		LocationAccuracy      respjson.Field
+		ManufacturerOrgID     respjson.Field
+		ModeFrequency         respjson.Field
+		Modes                 respjson.Field
+		Name                  respjson.Field
+		Notes                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PartnerSpacecraftID   respjson.Field
+		PayloadType           respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -476,32 +476,32 @@ type SeraDataNavigationTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		SpacecraftID          resp.Field
-		ID                    resp.Field
-		AreaCoverage          resp.Field
-		ClockType             resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		HostedForCompanyOrgID resp.Field
-		IDNavigation          resp.Field
-		LocationAccuracy      resp.Field
-		ManufacturerOrgID     resp.Field
-		ModeFrequency         resp.Field
-		Modes                 resp.Field
-		Name                  resp.Field
-		Notes                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PartnerSpacecraftID   resp.Field
-		PayloadType           resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		SpacecraftID          respjson.Field
+		ID                    respjson.Field
+		AreaCoverage          respjson.Field
+		ClockType             respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		HostedForCompanyOrgID respjson.Field
+		IDNavigation          respjson.Field
+		LocationAccuracy      respjson.Field
+		ManufacturerOrgID     respjson.Field
+		ModeFrequency         respjson.Field
+		Modes                 respjson.Field
+		Name                  respjson.Field
+		Notes                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PartnerSpacecraftID   respjson.Field
+		PayloadType           respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

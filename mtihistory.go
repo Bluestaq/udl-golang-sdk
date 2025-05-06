@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // MtiHistoryService contains methods and other services that help with interacting
@@ -174,30 +174,30 @@ type MtiFull struct {
 	// pertains to all Dwell, HRR, and Range-Doppler segments in the packet. Job ID is
 	// unique within a mission.
 	PlatformLocs []MtiFullPlatformLoc `json:"platformLocs"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Dwells                resp.Field
-		FreeTexts             resp.Field
-		Hrrs                  resp.Field
-		JobDefs               resp.Field
-		JobRequests           resp.Field
-		Missions              resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		P10                   resp.Field
-		P3                    resp.Field
-		P6                    resp.Field
-		P7                    resp.Field
-		P8                    resp.Field
-		P9                    resp.Field
-		PlatformLocs          resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Dwells                respjson.Field
+		FreeTexts             respjson.Field
+		Hrrs                  respjson.Field
+		JobDefs               respjson.Field
+		JobRequests           respjson.Field
+		Missions              respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		P10                   respjson.Field
+		P3                    respjson.Field
+		P6                    respjson.Field
+		P7                    respjson.Field
+		P8                    respjson.Field
+		P9                    respjson.Field
+		PlatformLocs          respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -324,41 +324,41 @@ type MtiFullDwell struct {
 	D9 int64 `json:"d9"`
 	// Dwell timestamp in ISO8601 UTC format.
 	Dwellts time.Time `json:"dwellts" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		D10         resp.Field
-		D11         resp.Field
-		D12         resp.Field
-		D13         resp.Field
-		D14         resp.Field
-		D15         resp.Field
-		D16         resp.Field
-		D17         resp.Field
-		D18         resp.Field
-		D19         resp.Field
-		D2          resp.Field
-		D20         resp.Field
-		D21         resp.Field
-		D22         resp.Field
-		D23         resp.Field
-		D24         resp.Field
-		D25         resp.Field
-		D26         resp.Field
-		D27         resp.Field
-		D28         resp.Field
-		D29         resp.Field
-		D3          resp.Field
-		D30         resp.Field
-		D31         resp.Field
-		D32         resp.Field
-		D4          resp.Field
-		D5          resp.Field
-		D6          resp.Field
-		D7          resp.Field
-		D8          resp.Field
-		D9          resp.Field
-		Dwellts     resp.Field
-		ExtraFields map[string]resp.Field
+		D10         respjson.Field
+		D11         respjson.Field
+		D12         respjson.Field
+		D13         respjson.Field
+		D14         respjson.Field
+		D15         respjson.Field
+		D16         respjson.Field
+		D17         respjson.Field
+		D18         respjson.Field
+		D19         respjson.Field
+		D2          respjson.Field
+		D20         respjson.Field
+		D21         respjson.Field
+		D22         respjson.Field
+		D23         respjson.Field
+		D24         respjson.Field
+		D25         respjson.Field
+		D26         respjson.Field
+		D27         respjson.Field
+		D28         respjson.Field
+		D29         respjson.Field
+		D3          respjson.Field
+		D30         respjson.Field
+		D31         respjson.Field
+		D32         respjson.Field
+		D4          respjson.Field
+		D5          respjson.Field
+		D6          respjson.Field
+		D7          respjson.Field
+		D8          respjson.Field
+		D9          respjson.Field
+		Dwellts     respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -426,27 +426,27 @@ type MtiFullDwellD32 struct {
 	D32_8 int64 `json:"d32_8"`
 	// Estimated signal-to-noise ratio (SNR) of the target return, in decibels.
 	D32_9 int64 `json:"d32_9"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		D32_1       resp.Field
-		D32_10      resp.Field
-		D32_11      resp.Field
-		D32_12      resp.Field
-		D32_13      resp.Field
-		D32_14      resp.Field
-		D32_15      resp.Field
-		D32_16      resp.Field
-		D32_17      resp.Field
-		D32_18      resp.Field
-		D32_2       resp.Field
-		D32_3       resp.Field
-		D32_4       resp.Field
-		D32_5       resp.Field
-		D32_6       resp.Field
-		D32_7       resp.Field
-		D32_8       resp.Field
-		D32_9       resp.Field
-		ExtraFields map[string]resp.Field
+		D32_1       respjson.Field
+		D32_10      respjson.Field
+		D32_11      respjson.Field
+		D32_12      respjson.Field
+		D32_13      respjson.Field
+		D32_14      respjson.Field
+		D32_15      respjson.Field
+		D32_16      respjson.Field
+		D32_17      respjson.Field
+		D32_18      respjson.Field
+		D32_2       respjson.Field
+		D32_3       respjson.Field
+		D32_4       respjson.Field
+		D32_5       respjson.Field
+		D32_6       respjson.Field
+		D32_7       respjson.Field
+		D32_8       respjson.Field
+		D32_9       respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -464,12 +464,12 @@ type MtiFullFreeText struct {
 	F2 string `json:"f2"`
 	// Free text data message.
 	F3 string `json:"f3"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		F1          resp.Field
-		F2          resp.Field
-		F3          resp.Field
-		ExtraFields map[string]resp.Field
+		F1          respjson.Field
+		F2          respjson.Field
+		F3          respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -552,38 +552,38 @@ type MtiFullHrr struct {
 	// The Peak Scatter returns the maximum power level (e.g. in milliwatts, or dBm)
 	// registered by the sensor.
 	H9 int64 `json:"h9"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		H10         resp.Field
-		H11         resp.Field
-		H12         resp.Field
-		H13         resp.Field
-		H14         resp.Field
-		H15         resp.Field
-		H16         resp.Field
-		H17         resp.Field
-		H18         resp.Field
-		H19         resp.Field
-		H2          resp.Field
-		H20         resp.Field
-		H21         resp.Field
-		H22         resp.Field
-		H23         resp.Field
-		H24         resp.Field
-		H27         resp.Field
-		H28         resp.Field
-		H29         resp.Field
-		H3          resp.Field
-		H30         resp.Field
-		H31         resp.Field
-		H32         resp.Field
-		H4          resp.Field
-		H5          resp.Field
-		H6          resp.Field
-		H7          resp.Field
-		H8          resp.Field
-		H9          resp.Field
-		ExtraFields map[string]resp.Field
+		H10         respjson.Field
+		H11         respjson.Field
+		H12         respjson.Field
+		H13         respjson.Field
+		H14         respjson.Field
+		H15         respjson.Field
+		H16         respjson.Field
+		H17         respjson.Field
+		H18         respjson.Field
+		H19         respjson.Field
+		H2          respjson.Field
+		H20         respjson.Field
+		H21         respjson.Field
+		H22         respjson.Field
+		H23         respjson.Field
+		H24         respjson.Field
+		H27         respjson.Field
+		H28         respjson.Field
+		H29         respjson.Field
+		H3          respjson.Field
+		H30         respjson.Field
+		H31         respjson.Field
+		H32         respjson.Field
+		H4          respjson.Field
+		H5          respjson.Field
+		H6          respjson.Field
+		H7          respjson.Field
+		H8          respjson.Field
+		H9          respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -607,13 +607,13 @@ type MtiFullHrrH32 struct {
 	// Scatterer’s Doppler index relative to Range-Doppler chip, where increasing index
 	// equates to increasing Doppler.
 	H32_4 int64 `json:"h32_4"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		H32_1       resp.Field
-		H32_2       resp.Field
-		H32_3       resp.Field
-		H32_4       resp.Field
-		ExtraFields map[string]resp.Field
+		H32_1       respjson.Field
+		H32_2       respjson.Field
+		H32_3       respjson.Field
+		H32_4       respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -716,37 +716,37 @@ type MtiFullJobDef struct {
 	// service, expressed as degrees East (positive, 0 to 180) or West (negative, 0 to
 	// -180) of the Prime Meridian.
 	J9 float64 `json:"j9"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		J1          resp.Field
-		J10         resp.Field
-		J11         resp.Field
-		J12         resp.Field
-		J13         resp.Field
-		J14         resp.Field
-		J15         resp.Field
-		J16         resp.Field
-		J17         resp.Field
-		J18         resp.Field
-		J19         resp.Field
-		J2          resp.Field
-		J20         resp.Field
-		J21         resp.Field
-		J22         resp.Field
-		J23         resp.Field
-		J24         resp.Field
-		J25         resp.Field
-		J26         resp.Field
-		J27         resp.Field
-		J28         resp.Field
-		J3          resp.Field
-		J4          resp.Field
-		J5          resp.Field
-		J6          resp.Field
-		J7          resp.Field
-		J8          resp.Field
-		J9          resp.Field
-		ExtraFields map[string]resp.Field
+		J1          respjson.Field
+		J10         respjson.Field
+		J11         respjson.Field
+		J12         respjson.Field
+		J13         respjson.Field
+		J14         respjson.Field
+		J15         respjson.Field
+		J16         respjson.Field
+		J17         respjson.Field
+		J18         respjson.Field
+		J19         respjson.Field
+		J2          respjson.Field
+		J20         respjson.Field
+		J21         respjson.Field
+		J22         respjson.Field
+		J23         respjson.Field
+		J24         respjson.Field
+		J25         respjson.Field
+		J26         respjson.Field
+		J27         respjson.Field
+		J28         respjson.Field
+		J3          respjson.Field
+		J4          respjson.Field
+		J5          respjson.Field
+		J6          respjson.Field
+		J7          respjson.Field
+		J8          respjson.Field
+		J9          respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -823,30 +823,30 @@ type MtiFullJobRequest struct {
 	// service, expressed as degrees East (positive, 0 to 180) or West (negative, 0 to
 	// -180) of the Prime Meridian.
 	R9 float64 `json:"r9"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		JobReqEst   resp.Field
-		R1          resp.Field
-		R10         resp.Field
-		R11         resp.Field
-		R12         resp.Field
-		R13         resp.Field
-		R14         resp.Field
-		R2          resp.Field
-		R21         resp.Field
-		R22         resp.Field
-		R23         resp.Field
-		R24         resp.Field
-		R25         resp.Field
-		R26         resp.Field
-		R3          resp.Field
-		R4          resp.Field
-		R5          resp.Field
-		R6          resp.Field
-		R7          resp.Field
-		R8          resp.Field
-		R9          resp.Field
-		ExtraFields map[string]resp.Field
+		JobReqEst   respjson.Field
+		R1          respjson.Field
+		R10         respjson.Field
+		R11         respjson.Field
+		R12         respjson.Field
+		R13         respjson.Field
+		R14         respjson.Field
+		R2          respjson.Field
+		R21         respjson.Field
+		R22         respjson.Field
+		R23         respjson.Field
+		R24         respjson.Field
+		R25         respjson.Field
+		R26         respjson.Field
+		R3          respjson.Field
+		R4          respjson.Field
+		R5          respjson.Field
+		R6          respjson.Field
+		R7          respjson.Field
+		R8          respjson.Field
+		R9          respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -868,14 +868,14 @@ type MtiFullMission struct {
 	M4 string `json:"m4"`
 	// Mission origination date.
 	MsnRefTs time.Time `json:"msnRefTs" format:"date"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		M1          resp.Field
-		M2          resp.Field
-		M3          resp.Field
-		M4          resp.Field
-		MsnRefTs    resp.Field
-		ExtraFields map[string]resp.Field
+		M1          respjson.Field
+		M2          respjson.Field
+		M3          respjson.Field
+		M4          respjson.Field
+		MsnRefTs    respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -911,17 +911,17 @@ type MtiFullPlatformLoc struct {
 	L7 int64 `json:"l7"`
 	// Platform location timestamp in ISO8601 UTC format.
 	Platlocts time.Time `json:"platlocts" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		L1          resp.Field
-		L2          resp.Field
-		L3          resp.Field
-		L4          resp.Field
-		L5          resp.Field
-		L6          resp.Field
-		L7          resp.Field
-		Platlocts   resp.Field
-		ExtraFields map[string]resp.Field
+		L1          respjson.Field
+		L2          respjson.Field
+		L3          respjson.Field
+		L4          respjson.Field
+		L5          respjson.Field
+		L6          respjson.Field
+		L7          respjson.Field
+		Platlocts   respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }

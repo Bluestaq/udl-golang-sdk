@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // SpaceEnvObservationHistoryService contains methods and other services that help
@@ -233,50 +233,50 @@ type SpaceEnvObservationFull struct {
 	// 'srcIds' array for the record UUIDs, positionally corresponding to the record
 	// types in this array. The 'srcTyps' and 'srcIds' arrays must match in size.
 	SrcTyps []string `json:"srcTyps"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		ObTime                resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Alt                   resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DataType              resp.Field
-		Derived               resp.Field
-		Description           resp.Field
-		Descriptor            resp.Field
-		ExternalID            resp.Field
-		Forecast              resp.Field
-		GenSystem             resp.Field
-		GenTime               resp.Field
-		IDOnOrbit             resp.Field
-		IDSensor              resp.Field
-		InstrumentType        resp.Field
-		Lat                   resp.Field
-		Lon                   resp.Field
-		MeasType              resp.Field
-		MsgType               resp.Field
-		ObservatoryName       resp.Field
-		ObservatoryNotes      resp.Field
-		ObservatoryType       resp.Field
-		ObSetID               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		OrigSensorID          resp.Field
-		ParticleType          resp.Field
-		Quality               resp.Field
-		SatNo                 resp.Field
-		SenEnergyLevel        resp.Field
-		SenPos                resp.Field
-		SenReferenceFrame     resp.Field
-		SenVel                resp.Field
-		SeoList               resp.Field
-		SrcIDs                resp.Field
-		SrcTyps               resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		ObTime                respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Alt                   respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DataType              respjson.Field
+		Derived               respjson.Field
+		Description           respjson.Field
+		Descriptor            respjson.Field
+		ExternalID            respjson.Field
+		Forecast              respjson.Field
+		GenSystem             respjson.Field
+		GenTime               respjson.Field
+		IDOnOrbit             respjson.Field
+		IDSensor              respjson.Field
+		InstrumentType        respjson.Field
+		Lat                   respjson.Field
+		Lon                   respjson.Field
+		MeasType              respjson.Field
+		MsgType               respjson.Field
+		ObservatoryName       respjson.Field
+		ObservatoryNotes      respjson.Field
+		ObservatoryType       respjson.Field
+		ObSetID               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		OrigSensorID          respjson.Field
+		ParticleType          respjson.Field
+		Quality               respjson.Field
+		SatNo                 respjson.Field
+		SenEnergyLevel        respjson.Field
+		SenPos                respjson.Field
+		SenReferenceFrame     respjson.Field
+		SenVel                respjson.Field
+		SeoList               respjson.Field
+		SrcIDs                respjson.Field
+		SrcTyps               respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -361,17 +361,17 @@ type SpaceEnvObservationFullSeoList struct {
 	// (obString), a Boolean observation value (obBool), an array of numeric
 	// observation values (obArray), or any combination of these.
 	ObValue float64 `json:"obValue"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ObType        resp.Field
-		ObUoM         resp.Field
-		ObArray       resp.Field
-		ObBool        resp.Field
-		ObDescription resp.Field
-		ObQuality     resp.Field
-		ObString      resp.Field
-		ObValue       resp.Field
-		ExtraFields   map[string]resp.Field
+		ObType        respjson.Field
+		ObUoM         respjson.Field
+		ObArray       respjson.Field
+		ObBool        respjson.Field
+		ObDescription respjson.Field
+		ObQuality     respjson.Field
+		ObString      respjson.Field
+		ObValue       respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }

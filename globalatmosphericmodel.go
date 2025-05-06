@@ -15,7 +15,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // GlobalAtmosphericModelService contains methods and other services that help with
@@ -233,37 +233,37 @@ type GlobalAtmosphericModelGetResponse struct {
 	StepLat float64 `json:"stepLat"`
 	// Separation in longitude between subsequent model outputs, in degrees.
 	StepLon float64 `json:"stepLon"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		Cadence               resp.Field
-		ChecksumValue         resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EndAlt                resp.Field
-		EndLat                resp.Field
-		EndLon                resp.Field
-		Filename              resp.Field
-		Filesize              resp.Field
-		NumAlt                resp.Field
-		NumLat                resp.Field
-		NumLon                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ReportTime            resp.Field
-		SourceDl              resp.Field
-		StartAlt              resp.Field
-		StartLat              resp.Field
-		StartLon              resp.Field
-		State                 resp.Field
-		StepLat               resp.Field
-		StepLon               resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		Cadence               respjson.Field
+		ChecksumValue         respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EndAlt                respjson.Field
+		EndLat                respjson.Field
+		EndLon                respjson.Field
+		Filename              respjson.Field
+		Filesize              respjson.Field
+		NumAlt                respjson.Field
+		NumLat                respjson.Field
+		NumLon                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ReportTime            respjson.Field
+		SourceDl              respjson.Field
+		StartAlt              respjson.Field
+		StartLat              respjson.Field
+		StartLon              respjson.Field
+		State                 respjson.Field
+		StepLat               respjson.Field
+		StepLon               respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -388,37 +388,37 @@ type GlobalAtmosphericModelQueryResponse struct {
 	StepLat float64 `json:"stepLat"`
 	// Separation in longitude between subsequent model outputs, in degrees.
 	StepLon float64 `json:"stepLon"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		Cadence               resp.Field
-		ChecksumValue         resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EndAlt                resp.Field
-		EndLat                resp.Field
-		EndLon                resp.Field
-		Filename              resp.Field
-		Filesize              resp.Field
-		NumAlt                resp.Field
-		NumLat                resp.Field
-		NumLon                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ReportTime            resp.Field
-		SourceDl              resp.Field
-		StartAlt              resp.Field
-		StartLat              resp.Field
-		StartLon              resp.Field
-		State                 resp.Field
-		StepLat               resp.Field
-		StepLon               resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		Cadence               respjson.Field
+		ChecksumValue         respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EndAlt                respjson.Field
+		EndLat                respjson.Field
+		EndLon                respjson.Field
+		Filename              respjson.Field
+		Filesize              respjson.Field
+		NumAlt                respjson.Field
+		NumLat                respjson.Field
+		NumLon                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ReportTime            respjson.Field
+		SourceDl              respjson.Field
+		StartAlt              respjson.Field
+		StartLat              respjson.Field
+		StartLon              respjson.Field
+		State                 respjson.Field
+		StepLat               respjson.Field
+		StepLon               respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -543,37 +543,37 @@ type GlobalAtmosphericModelTupleResponse struct {
 	StepLat float64 `json:"stepLat"`
 	// Separation in longitude between subsequent model outputs, in degrees.
 	StepLon float64 `json:"stepLon"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		Cadence               resp.Field
-		ChecksumValue         resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EndAlt                resp.Field
-		EndLat                resp.Field
-		EndLon                resp.Field
-		Filename              resp.Field
-		Filesize              resp.Field
-		NumAlt                resp.Field
-		NumLat                resp.Field
-		NumLon                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ReportTime            resp.Field
-		SourceDl              resp.Field
-		StartAlt              resp.Field
-		StartLat              resp.Field
-		StartLon              resp.Field
-		State                 resp.Field
-		StepLat               resp.Field
-		StepLon               resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		Cadence               respjson.Field
+		ChecksumValue         respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EndAlt                respjson.Field
+		EndLat                respjson.Field
+		EndLon                respjson.Field
+		Filename              respjson.Field
+		Filesize              respjson.Field
+		NumAlt                respjson.Field
+		NumLat                respjson.Field
+		NumLon                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ReportTime            respjson.Field
+		SourceDl              respjson.Field
+		StartAlt              respjson.Field
+		StartLat              respjson.Field
+		StartLon              respjson.Field
+		State                 respjson.Field
+		StepLat               respjson.Field
+		StepLon               respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

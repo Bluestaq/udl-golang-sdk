@@ -20,7 +20,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // AnalyticImageryService contains methods and other services that help with
@@ -340,51 +340,51 @@ type AnalyticImageryAbridged struct {
 	// Optional field indicating the units that apply to the z-axis of the attached
 	// image, when applicable.
 	ZUnits string `json:"zUnits"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		Content               resp.Field
-		DataMode              resp.Field
-		Description           resp.Field
-		Filename              resp.Field
-		Filesize              resp.Field
-		ImageType             resp.Field
-		MsgTime               resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Agjson                resp.Field
-		Andims                resp.Field
-		AnnLims               resp.Field
-		AnnText               resp.Field
-		Asrid                 resp.Field
-		Atext                 resp.Field
-		Atype                 resp.Field
-		ChecksumValue         resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DataStart             resp.Field
-		DataStop              resp.Field
-		IDSensor              resp.Field
-		ImageSetID            resp.Field
-		ImageSetLength        resp.Field
-		ImgHeight             resp.Field
-		ImgWidth              resp.Field
-		Keywords              resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigSensorID          resp.Field
-		SatID                 resp.Field
-		SatIDConf             resp.Field
-		SequenceID            resp.Field
-		SourceDl              resp.Field
-		SrcIDs                resp.Field
-		SrcTyps               resp.Field
-		Tags                  resp.Field
-		TransactionID         resp.Field
-		XUnits                resp.Field
-		YUnits                resp.Field
-		ZUnits                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		Content               respjson.Field
+		DataMode              respjson.Field
+		Description           respjson.Field
+		Filename              respjson.Field
+		Filesize              respjson.Field
+		ImageType             respjson.Field
+		MsgTime               respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Agjson                respjson.Field
+		Andims                respjson.Field
+		AnnLims               respjson.Field
+		AnnText               respjson.Field
+		Asrid                 respjson.Field
+		Atext                 respjson.Field
+		Atype                 respjson.Field
+		ChecksumValue         respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DataStart             respjson.Field
+		DataStop              respjson.Field
+		IDSensor              respjson.Field
+		ImageSetID            respjson.Field
+		ImageSetLength        respjson.Field
+		ImgHeight             respjson.Field
+		ImgWidth              respjson.Field
+		Keywords              respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigSensorID          respjson.Field
+		SatID                 respjson.Field
+		SatIDConf             respjson.Field
+		SequenceID            respjson.Field
+		SourceDl              respjson.Field
+		SrcIDs                respjson.Field
+		SrcTyps               respjson.Field
+		Tags                  respjson.Field
+		TransactionID         respjson.Field
+		XUnits                respjson.Field
+		YUnits                respjson.Field
+		ZUnits                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -548,52 +548,52 @@ type AnalyticImageryFull struct {
 	// Optional field indicating the units that apply to the z-axis of the attached
 	// image, when applicable.
 	ZUnits string `json:"zUnits"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		Content               resp.Field
-		DataMode              resp.Field
-		Description           resp.Field
-		Filename              resp.Field
-		Filesize              resp.Field
-		ImageType             resp.Field
-		MsgTime               resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Agjson                resp.Field
-		Andims                resp.Field
-		AnnLims               resp.Field
-		AnnText               resp.Field
-		Area                  resp.Field
-		Asrid                 resp.Field
-		Atext                 resp.Field
-		Atype                 resp.Field
-		ChecksumValue         resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DataStart             resp.Field
-		DataStop              resp.Field
-		IDSensor              resp.Field
-		ImageSetID            resp.Field
-		ImageSetLength        resp.Field
-		ImgHeight             resp.Field
-		ImgWidth              resp.Field
-		Keywords              resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigSensorID          resp.Field
-		SatID                 resp.Field
-		SatIDConf             resp.Field
-		SequenceID            resp.Field
-		SourceDl              resp.Field
-		SrcIDs                resp.Field
-		SrcTyps               resp.Field
-		Tags                  resp.Field
-		TransactionID         resp.Field
-		XUnits                resp.Field
-		YUnits                resp.Field
-		ZUnits                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		Content               respjson.Field
+		DataMode              respjson.Field
+		Description           respjson.Field
+		Filename              respjson.Field
+		Filesize              respjson.Field
+		ImageType             respjson.Field
+		MsgTime               respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Agjson                respjson.Field
+		Andims                respjson.Field
+		AnnLims               respjson.Field
+		AnnText               respjson.Field
+		Area                  respjson.Field
+		Asrid                 respjson.Field
+		Atext                 respjson.Field
+		Atype                 respjson.Field
+		ChecksumValue         respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DataStart             respjson.Field
+		DataStop              respjson.Field
+		IDSensor              respjson.Field
+		ImageSetID            respjson.Field
+		ImageSetLength        respjson.Field
+		ImgHeight             respjson.Field
+		ImgWidth              respjson.Field
+		Keywords              respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigSensorID          respjson.Field
+		SatID                 respjson.Field
+		SatIDConf             respjson.Field
+		SequenceID            respjson.Field
+		SourceDl              respjson.Field
+		SrcIDs                respjson.Field
+		SrcTyps               respjson.Field
+		Tags                  respjson.Field
+		TransactionID         respjson.Field
+		XUnits                respjson.Field
+		YUnits                respjson.Field
+		ZUnits                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

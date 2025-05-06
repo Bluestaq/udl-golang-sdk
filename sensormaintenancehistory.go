@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // SensorMaintenanceHistoryService contains methods and other services that help
@@ -165,42 +165,42 @@ type SensorMaintenanceHistoryGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		EndTime               resp.Field
-		SiteCode              resp.Field
-		Source                resp.Field
-		StartTime             resp.Field
-		ID                    resp.Field
-		Activity              resp.Field
-		Approver              resp.Field
-		Changer               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Duration              resp.Field
-		EowID                 resp.Field
-		EquipStatus           resp.Field
-		IDSensor              resp.Field
-		ImpactedFaces         resp.Field
-		InactiveDate          resp.Field
-		LineNumber            resp.Field
-		MdOpsCap              resp.Field
-		MwOpsCap              resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Priority              resp.Field
-		Recall                resp.Field
-		Rel                   resp.Field
-		Remark                resp.Field
-		Requestor             resp.Field
-		Resource              resp.Field
-		Rev                   resp.Field
-		SSOpsCap              resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		EndTime               respjson.Field
+		SiteCode              respjson.Field
+		Source                respjson.Field
+		StartTime             respjson.Field
+		ID                    respjson.Field
+		Activity              respjson.Field
+		Approver              respjson.Field
+		Changer               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Duration              respjson.Field
+		EowID                 respjson.Field
+		EquipStatus           respjson.Field
+		IDSensor              respjson.Field
+		ImpactedFaces         respjson.Field
+		InactiveDate          respjson.Field
+		LineNumber            respjson.Field
+		MdOpsCap              respjson.Field
+		MwOpsCap              respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Priority              respjson.Field
+		Recall                respjson.Field
+		Rel                   respjson.Field
+		Remark                respjson.Field
+		Requestor             respjson.Field
+		Resource              respjson.Field
+		Rev                   respjson.Field
+		SSOpsCap              respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

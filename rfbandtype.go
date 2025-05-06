@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // RfBandTypeService contains methods and other services that help with interacting
@@ -199,19 +199,19 @@ type RfBandTypeListResponse struct {
 	Origin string `json:"origin"`
 	// Approximate start of the band frequency range, in Ghz.
 	StartFreq float64 `json:"startFreq"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID                    resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Description           resp.Field
-		Source                resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EndFreq               resp.Field
-		Origin                resp.Field
-		StartFreq             resp.Field
-		ExtraFields           map[string]resp.Field
+		ID                    respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Description           respjson.Field
+		Source                respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EndFreq               respjson.Field
+		Origin                respjson.Field
+		StartFreq             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -291,21 +291,21 @@ type RfBandTypeGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID                    resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Description           resp.Field
-		Source                resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EndFreq               resp.Field
-		Origin                resp.Field
-		StartFreq             resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ID                    respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Description           respjson.Field
+		Source                respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EndFreq               respjson.Field
+		Origin                respjson.Field
+		StartFreq             respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -385,21 +385,21 @@ type RfBandTypeTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID                    resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Description           resp.Field
-		Source                resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EndFreq               resp.Field
-		Origin                resp.Field
-		StartFreq             resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ID                    respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Description           respjson.Field
+		Source                respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EndFreq               respjson.Field
+		Origin                respjson.Field
+		StartFreq             respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

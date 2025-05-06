@@ -12,7 +12,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // SupportingDataDataownerService contains methods and other services that help
@@ -87,21 +87,21 @@ type DataownerAbridged struct {
 	OwnerType string `json:"ownerType"`
 	// Organization name for the data provider.
 	Provider string `json:"provider"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		Description           resp.Field
-		DoName                resp.Field
-		IDContact             resp.Field
-		Source                resp.Field
-		ComingSoon            resp.Field
-		Control               resp.Field
-		CountryCode           resp.Field
-		DataType              resp.Field
-		Enabled               resp.Field
-		OwnerType             resp.Field
-		Provider              resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		Description           respjson.Field
+		DoName                respjson.Field
+		IDContact             respjson.Field
+		Source                respjson.Field
+		ComingSoon            respjson.Field
+		Control               respjson.Field
+		CountryCode           respjson.Field
+		DataType              respjson.Field
+		Enabled               respjson.Field
+		OwnerType             respjson.Field
+		Provider              respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

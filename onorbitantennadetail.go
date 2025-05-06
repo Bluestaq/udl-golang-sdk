@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // OnorbitAntennaDetailService contains methods and other services that help with
@@ -201,33 +201,33 @@ type AntennaDetailsAbridged struct {
 	// Type of antenna (e.g. Reflector, Double Reflector, Shaped Reflector, Horn,
 	// Parabolic, etc.).
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDAntenna             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		BeamForming           resp.Field
-		Beamwidth             resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Description           resp.Field
-		Diameter              resp.Field
-		EndFrequency          resp.Field
-		Gain                  resp.Field
-		GainTolerance         resp.Field
-		ManufacturerOrgID     resp.Field
-		Mode                  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Polarization          resp.Field
-		Position              resp.Field
-		Size                  resp.Field
-		StartFrequency        resp.Field
-		Steerable             resp.Field
-		Type                  resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDAntenna             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		BeamForming           respjson.Field
+		Beamwidth             respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Description           respjson.Field
+		Diameter              respjson.Field
+		EndFrequency          respjson.Field
+		Gain                  respjson.Field
+		GainTolerance         respjson.Field
+		ManufacturerOrgID     respjson.Field
+		Mode                  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Polarization          respjson.Field
+		Position              respjson.Field
+		Size                  respjson.Field
+		StartFrequency        respjson.Field
+		Steerable             respjson.Field
+		Type                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -360,37 +360,37 @@ type AntennaDetailsFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDAntenna             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		BeamForming           resp.Field
-		Beamwidth             resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Description           resp.Field
-		Diameter              resp.Field
-		EndFrequency          resp.Field
-		Gain                  resp.Field
-		GainTolerance         resp.Field
-		ManufacturerOrg       resp.Field
-		ManufacturerOrgID     resp.Field
-		Mode                  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Polarization          resp.Field
-		Position              resp.Field
-		Size                  resp.Field
-		StartFrequency        resp.Field
-		Steerable             resp.Field
-		Tags                  resp.Field
-		Type                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDAntenna             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		BeamForming           respjson.Field
+		Beamwidth             respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Description           respjson.Field
+		Diameter              respjson.Field
+		EndFrequency          respjson.Field
+		Gain                  respjson.Field
+		GainTolerance         respjson.Field
+		ManufacturerOrg       respjson.Field
+		ManufacturerOrgID     respjson.Field
+		Mode                  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Polarization          respjson.Field
+		Position              respjson.Field
+		Size                  respjson.Field
+		StartFrequency        respjson.Field
+		Steerable             respjson.Field
+		Tags                  respjson.Field
+		Type                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // SiteRemarkService contains methods and other services that help with interacting
@@ -181,23 +181,23 @@ type SiteRemarkListResponse struct {
 	OrigRmkID string `json:"origRmkId"`
 	// The remark type (e.g. Caution, Information, Misc, Restriction, etc.).
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDSite                resp.Field
-		Source                resp.Field
-		Text                  resp.Field
-		ID                    resp.Field
-		Code                  resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Name                  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigRmkID             resp.Field
-		Type                  resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDSite                respjson.Field
+		Source                respjson.Field
+		Text                  respjson.Field
+		ID                    respjson.Field
+		Code                  respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Name                  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigRmkID             respjson.Field
+		Type                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -283,23 +283,23 @@ type SiteRemarkGetResponse struct {
 	OrigRmkID string `json:"origRmkId"`
 	// The remark type (e.g. Caution, Information, Misc, Restriction, etc.).
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDSite                resp.Field
-		Source                resp.Field
-		Text                  resp.Field
-		ID                    resp.Field
-		Code                  resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Name                  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigRmkID             resp.Field
-		Type                  resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDSite                respjson.Field
+		Source                respjson.Field
+		Text                  respjson.Field
+		ID                    respjson.Field
+		Code                  respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Name                  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigRmkID             respjson.Field
+		Type                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -385,23 +385,23 @@ type SiteRemarkTupleResponse struct {
 	OrigRmkID string `json:"origRmkId"`
 	// The remark type (e.g. Caution, Information, Misc, Restriction, etc.).
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDSite                resp.Field
-		Source                resp.Field
-		Text                  resp.Field
-		ID                    resp.Field
-		Code                  resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Name                  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigRmkID             resp.Field
-		Type                  resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDSite                respjson.Field
+		Source                respjson.Field
+		Text                  respjson.Field
+		ID                    respjson.Field
+		Code                  respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Name                  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigRmkID             respjson.Field
+		Type                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

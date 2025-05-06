@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
@@ -383,53 +383,53 @@ type Elset struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Epoch                 resp.Field
-		Source                resp.Field
-		Agom                  resp.Field
-		Algorithm             resp.Field
-		Apogee                resp.Field
-		ArgOfPerigee          resp.Field
-		BallisticCoeff        resp.Field
-		BStar                 resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Descriptor            resp.Field
-		Eccentricity          resp.Field
-		EffectiveFrom         resp.Field
-		EffectiveUntil        resp.Field
-		EphemType             resp.Field
-		IDElset               resp.Field
-		IDOnOrbit             resp.Field
-		IDOrbitDetermination  resp.Field
-		Inclination           resp.Field
-		Line1                 resp.Field
-		Line2                 resp.Field
-		MeanAnomaly           resp.Field
-		MeanMotion            resp.Field
-		MeanMotionDDot        resp.Field
-		MeanMotionDot         resp.Field
-		OnOrbit               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		Perigee               resp.Field
-		Period                resp.Field
-		Raan                  resp.Field
-		RawFileUri            resp.Field
-		RevNo                 resp.Field
-		SatNo                 resp.Field
-		SemiMajorAxis         resp.Field
-		SourcedData           resp.Field
-		SourcedDataTypes      resp.Field
-		SourceDl              resp.Field
-		Tags                  resp.Field
-		TransactionID         resp.Field
-		Uct                   resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Epoch                 respjson.Field
+		Source                respjson.Field
+		Agom                  respjson.Field
+		Algorithm             respjson.Field
+		Apogee                respjson.Field
+		ArgOfPerigee          respjson.Field
+		BallisticCoeff        respjson.Field
+		BStar                 respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Descriptor            respjson.Field
+		Eccentricity          respjson.Field
+		EffectiveFrom         respjson.Field
+		EffectiveUntil        respjson.Field
+		EphemType             respjson.Field
+		IDElset               respjson.Field
+		IDOnOrbit             respjson.Field
+		IDOrbitDetermination  respjson.Field
+		Inclination           respjson.Field
+		Line1                 respjson.Field
+		Line2                 respjson.Field
+		MeanAnomaly           respjson.Field
+		MeanMotion            respjson.Field
+		MeanMotionDDot        respjson.Field
+		MeanMotionDot         respjson.Field
+		OnOrbit               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		Perigee               respjson.Field
+		Period                respjson.Field
+		Raan                  respjson.Field
+		RawFileUri            respjson.Field
+		RevNo                 respjson.Field
+		SatNo                 respjson.Field
+		SemiMajorAxis         respjson.Field
+		SourcedData           respjson.Field
+		SourcedDataTypes      respjson.Field
+		SourceDl              respjson.Field
+		Tags                  respjson.Field
+		TransactionID         respjson.Field
+		Uct                   respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -850,46 +850,46 @@ type ElsetAbridged struct {
 	// 'origObjectId' field may be populated with an internal data provider specific
 	// identifier.
 	Uct bool `json:"uct"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Epoch                 resp.Field
-		Source                resp.Field
-		Agom                  resp.Field
-		Algorithm             resp.Field
-		Apogee                resp.Field
-		ArgOfPerigee          resp.Field
-		BallisticCoeff        resp.Field
-		BStar                 resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Descriptor            resp.Field
-		Eccentricity          resp.Field
-		EphemType             resp.Field
-		IDElset               resp.Field
-		IDOnOrbit             resp.Field
-		IDOrbitDetermination  resp.Field
-		Inclination           resp.Field
-		Line1                 resp.Field
-		Line2                 resp.Field
-		MeanAnomaly           resp.Field
-		MeanMotion            resp.Field
-		MeanMotionDDot        resp.Field
-		MeanMotionDot         resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		Perigee               resp.Field
-		Period                resp.Field
-		Raan                  resp.Field
-		RevNo                 resp.Field
-		SatNo                 resp.Field
-		SemiMajorAxis         resp.Field
-		SourceDl              resp.Field
-		TransactionID         resp.Field
-		Uct                   resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Epoch                 respjson.Field
+		Source                respjson.Field
+		Agom                  respjson.Field
+		Algorithm             respjson.Field
+		Apogee                respjson.Field
+		ArgOfPerigee          respjson.Field
+		BallisticCoeff        respjson.Field
+		BStar                 respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Descriptor            respjson.Field
+		Eccentricity          respjson.Field
+		EphemType             respjson.Field
+		IDElset               respjson.Field
+		IDOnOrbit             respjson.Field
+		IDOrbitDetermination  respjson.Field
+		Inclination           respjson.Field
+		Line1                 respjson.Field
+		Line2                 respjson.Field
+		MeanAnomaly           respjson.Field
+		MeanMotion            respjson.Field
+		MeanMotionDDot        respjson.Field
+		MeanMotionDot         respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		Perigee               respjson.Field
+		Period                respjson.Field
+		Raan                  respjson.Field
+		RevNo                 respjson.Field
+		SatNo                 respjson.Field
+		SemiMajorAxis         respjson.Field
+		SourceDl              respjson.Field
+		TransactionID         respjson.Field
+		Uct                   respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

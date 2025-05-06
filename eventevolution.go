@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
@@ -288,38 +288,38 @@ type EventEvolutionListResponse struct {
 	Tags []string `json:"tags"`
 	// List of URLs to before/after images of this point of interest entity.
 	URL []string `json:"url"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		EventID               resp.Field
-		Source                resp.Field
-		StartTime             resp.Field
-		Summary               resp.Field
-		ID                    resp.Field
-		Agjson                resp.Field
-		Andims                resp.Field
-		Asrid                 resp.Field
-		Atext                 resp.Field
-		Atype                 resp.Field
-		Category              resp.Field
-		CountryCode           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DataDescription       resp.Field
-		EndTime               resp.Field
-		GeoAdminLevel1        resp.Field
-		GeoAdminLevel2        resp.Field
-		GeoAdminLevel3        resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Redact                resp.Field
-		SrcIDs                resp.Field
-		SrcTyps               resp.Field
-		Status                resp.Field
-		Tags                  resp.Field
-		URL                   resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		EventID               respjson.Field
+		Source                respjson.Field
+		StartTime             respjson.Field
+		Summary               respjson.Field
+		ID                    respjson.Field
+		Agjson                respjson.Field
+		Andims                respjson.Field
+		Asrid                 respjson.Field
+		Atext                 respjson.Field
+		Atype                 respjson.Field
+		Category              respjson.Field
+		CountryCode           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DataDescription       respjson.Field
+		EndTime               respjson.Field
+		GeoAdminLevel1        respjson.Field
+		GeoAdminLevel2        respjson.Field
+		GeoAdminLevel3        respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Redact                respjson.Field
+		SrcIDs                respjson.Field
+		SrcTyps               respjson.Field
+		Status                respjson.Field
+		Tags                  respjson.Field
+		URL                   respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

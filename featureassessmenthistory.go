@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // FeatureAssessmentHistoryService contains methods and other services that help
@@ -249,49 +249,49 @@ type FeatureAssessmentHistoryQueryResponse struct {
 	Type string `json:"type"`
 	// Estimated physical width of the feature, in meters.
 	Width float64 `json:"width"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		FeatureTs             resp.Field
-		FeatureUoM            resp.Field
-		IDAnalyticImagery     resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Agjson                resp.Field
-		Andims                resp.Field
-		AnnLims               resp.Field
-		AnnText               resp.Field
-		Area                  resp.Field
-		Asrid                 resp.Field
-		Assessment            resp.Field
-		Atext                 resp.Field
-		Atype                 resp.Field
-		Confidence            resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		ExternalID            resp.Field
-		FeatureArray          resp.Field
-		FeatureBool           resp.Field
-		FeatureString         resp.Field
-		FeatureStringArray    resp.Field
-		FeatureValue          resp.Field
-		Heading               resp.Field
-		Height                resp.Field
-		Length                resp.Field
-		Name                  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		SourceDl              resp.Field
-		Speed                 resp.Field
-		SrcIDs                resp.Field
-		SrcTs                 resp.Field
-		SrcTyps               resp.Field
-		Tags                  resp.Field
-		TransactionID         resp.Field
-		Type                  resp.Field
-		Width                 resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		FeatureTs             respjson.Field
+		FeatureUoM            respjson.Field
+		IDAnalyticImagery     respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Agjson                respjson.Field
+		Andims                respjson.Field
+		AnnLims               respjson.Field
+		AnnText               respjson.Field
+		Area                  respjson.Field
+		Asrid                 respjson.Field
+		Assessment            respjson.Field
+		Atext                 respjson.Field
+		Atype                 respjson.Field
+		Confidence            respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		ExternalID            respjson.Field
+		FeatureArray          respjson.Field
+		FeatureBool           respjson.Field
+		FeatureString         respjson.Field
+		FeatureStringArray    respjson.Field
+		FeatureValue          respjson.Field
+		Heading               respjson.Field
+		Height                respjson.Field
+		Length                respjson.Field
+		Name                  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		SourceDl              respjson.Field
+		Speed                 respjson.Field
+		SrcIDs                respjson.Field
+		SrcTs                 respjson.Field
+		SrcTyps               respjson.Field
+		Tags                  respjson.Field
+		TransactionID         respjson.Field
+		Type                  respjson.Field
+		Width                 respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

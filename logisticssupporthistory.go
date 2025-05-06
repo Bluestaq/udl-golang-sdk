@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // LogisticsSupportHistoryService contains methods and other services that help
@@ -196,39 +196,39 @@ type LogisticsSupportHistoryListResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking        resp.Field
-		DataMode                     resp.Field
-		RptCreatedTime               resp.Field
-		Source                       resp.Field
-		ID                           resp.Field
-		AircraftMds                  resp.Field
-		CreatedAt                    resp.Field
-		CreatedBy                    resp.Field
-		CurrIcao                     resp.Field
-		Etic                         resp.Field
-		Etmc                         resp.Field
-		ExtSystemID                  resp.Field
-		LogisticAction               resp.Field
-		LogisticsDiscrepancyInfos    resp.Field
-		LogisticsRecordID            resp.Field
-		LogisticsRemarks             resp.Field
-		LogisticsSupportItems        resp.Field
-		LogisticsTransportationPlans resp.Field
-		MaintStatusCode              resp.Field
-		McTime                       resp.Field
-		MeTime                       resp.Field
-		Origin                       resp.Field
-		OrigNetwork                  resp.Field
-		Owner                        resp.Field
-		ReopenFlag                   resp.Field
-		RptClosedTime                resp.Field
-		SuppIcao                     resp.Field
-		TailNumber                   resp.Field
-		UpdatedAt                    resp.Field
-		UpdatedBy                    resp.Field
-		ExtraFields                  map[string]resp.Field
+		ClassificationMarking        respjson.Field
+		DataMode                     respjson.Field
+		RptCreatedTime               respjson.Field
+		Source                       respjson.Field
+		ID                           respjson.Field
+		AircraftMds                  respjson.Field
+		CreatedAt                    respjson.Field
+		CreatedBy                    respjson.Field
+		CurrIcao                     respjson.Field
+		Etic                         respjson.Field
+		Etmc                         respjson.Field
+		ExtSystemID                  respjson.Field
+		LogisticAction               respjson.Field
+		LogisticsDiscrepancyInfos    respjson.Field
+		LogisticsRecordID            respjson.Field
+		LogisticsRemarks             respjson.Field
+		LogisticsSupportItems        respjson.Field
+		LogisticsTransportationPlans respjson.Field
+		MaintStatusCode              respjson.Field
+		McTime                       respjson.Field
+		MeTime                       respjson.Field
+		Origin                       respjson.Field
+		OrigNetwork                  respjson.Field
+		Owner                        respjson.Field
+		ReopenFlag                   respjson.Field
+		RptClosedTime                respjson.Field
+		SuppIcao                     respjson.Field
+		TailNumber                   respjson.Field
+		UpdatedAt                    respjson.Field
+		UpdatedBy                    respjson.Field
+		ExtraFields                  map[string]respjson.Field
 		raw                          string
 	} `json:"-"`
 }
@@ -272,13 +272,13 @@ type LogisticsSupportHistoryListResponseLogisticsDiscrepancyInfo struct {
 	Jcn string `json:"jcn"`
 	// The job start time, in ISO 8601 UTC format with millisecond precision.
 	JobStTime time.Time `json:"jobStTime" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClosureTime     resp.Field
-		DiscrepancyInfo resp.Field
-		Jcn             resp.Field
-		JobStTime       resp.Field
-		ExtraFields     map[string]resp.Field
+		ClosureTime     respjson.Field
+		DiscrepancyInfo respjson.Field
+		Jcn             respjson.Field
+		JobStTime       respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -352,28 +352,28 @@ type LogisticsSupportHistoryListResponseLogisticsSupportItem struct {
 	// The code that represents the International Civil Aviation Organization (ICAO)
 	// designations of an airport.
 	SourceIcao string `json:"sourceICAO"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Cannibalized            resp.Field
-		DeployPlanNumber        resp.Field
-		Description             resp.Field
-		ItemLastChangedDate     resp.Field
-		JobControlNumber        resp.Field
-		LogisticsParts          resp.Field
-		LogisticsRemarks        resp.Field
-		LogisticsSpecialties    resp.Field
-		Quantity                resp.Field
-		ReadyTime               resp.Field
-		ReceivedTime            resp.Field
-		RecoveryRequestTypeCode resp.Field
-		RedeployPlanNumber      resp.Field
-		RedeployShipmentUnitID  resp.Field
-		RequestNumber           resp.Field
-		ResupportFlag           resp.Field
-		ShipmentUnitID          resp.Field
-		SiPoc                   resp.Field
-		SourceIcao              resp.Field
-		ExtraFields             map[string]resp.Field
+		Cannibalized            respjson.Field
+		DeployPlanNumber        respjson.Field
+		Description             respjson.Field
+		ItemLastChangedDate     respjson.Field
+		JobControlNumber        respjson.Field
+		LogisticsParts          respjson.Field
+		LogisticsRemarks        respjson.Field
+		LogisticsSpecialties    respjson.Field
+		Quantity                respjson.Field
+		ReadyTime               respjson.Field
+		ReceivedTime            respjson.Field
+		RecoveryRequestTypeCode respjson.Field
+		RedeployPlanNumber      respjson.Field
+		RedeployShipmentUnitID  respjson.Field
+		RequestNumber           respjson.Field
+		ResupportFlag           respjson.Field
+		ShipmentUnitID          respjson.Field
+		SiPoc                   respjson.Field
+		SourceIcao              respjson.Field
+		ExtraFields             map[string]respjson.Field
 		raw                     string
 	} `json:"-"`
 }
@@ -410,20 +410,20 @@ type LogisticsSupportHistoryListResponseLogisticsSupportItemLogisticsPart struct
 	TechnicalOrderText string `json:"technicalOrderText"`
 	// Work Unit Code (WUC), or for some aircraft types, the Reference Designator.
 	WorkUnitCode string `json:"workUnitCode"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		FigureNumber         resp.Field
-		IndexNumber          resp.Field
-		LocationVerifier     resp.Field
-		LogisticsStocks      resp.Field
-		MeasurementUnitCode  resp.Field
-		NationalStockNumber  resp.Field
-		PartNumber           resp.Field
-		RequestVerifier      resp.Field
-		SupplyDocumentNumber resp.Field
-		TechnicalOrderText   resp.Field
-		WorkUnitCode         resp.Field
-		ExtraFields          map[string]resp.Field
+		FigureNumber         respjson.Field
+		IndexNumber          respjson.Field
+		LocationVerifier     respjson.Field
+		LogisticsStocks      respjson.Field
+		MeasurementUnitCode  respjson.Field
+		NationalStockNumber  respjson.Field
+		PartNumber           respjson.Field
+		RequestVerifier      respjson.Field
+		SupplyDocumentNumber respjson.Field
+		TechnicalOrderText   respjson.Field
+		WorkUnitCode         respjson.Field
+		ExtraFields          map[string]respjson.Field
 		raw                  string
 	} `json:"-"`
 }
@@ -447,13 +447,13 @@ type LogisticsSupportHistoryListResponseLogisticsSupportItemLogisticsPartLogisti
 	StockCheckTime time.Time `json:"stockCheckTime" format:"date-time"`
 	// The point of contact at the sourced location.
 	StockPoc string `json:"stockPOC"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Quantity       resp.Field
-		SourceIcao     resp.Field
-		StockCheckTime resp.Field
-		StockPoc       resp.Field
-		ExtraFields    map[string]resp.Field
+		Quantity       respjson.Field
+		SourceIcao     respjson.Field
+		StockCheckTime respjson.Field
+		StockPoc       respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }
@@ -485,16 +485,16 @@ type LogisticsSupportHistoryListResponseLogisticsSupportItemLogisticsSpecialty s
 	// assigned responsibility for correcting the discrepancy. Shop specialties are
 	// normally listed in abbreviated format.
 	Specialty string `json:"specialty"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		FirstName    resp.Field
-		Last4Ssn     resp.Field
-		LastName     resp.Field
-		RankCode     resp.Field
-		RoleTypeCode resp.Field
-		SkillLevel   resp.Field
-		Specialty    resp.Field
-		ExtraFields  map[string]resp.Field
+		FirstName    respjson.Field
+		Last4Ssn     respjson.Field
+		LastName     respjson.Field
+		RankCode     respjson.Field
+		RoleTypeCode respjson.Field
+		SkillLevel   respjson.Field
+		Specialty    respjson.Field
+		ExtraFields  map[string]respjson.Field
 		raw          string
 	} `json:"-"`
 }
@@ -576,35 +576,35 @@ type LogisticsSupportHistoryListResponseLogisticsTransportationPlan struct {
 	TpAircraftMds string `json:"tpAircraftMDS"`
 	// Contains the tail number displayed by GDSS2.
 	TpTailNumber string `json:"tpTailNumber"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ActDepTime                          resp.Field
-		AircraftStatus                      resp.Field
-		ApproxArrTime                       resp.Field
-		CancelledDate                       resp.Field
-		ClosedDate                          resp.Field
-		Coordinator                         resp.Field
-		CoordinatorUnit                     resp.Field
-		DestinationIcao                     resp.Field
-		Duration                            resp.Field
-		EstArrTime                          resp.Field
-		EstDepTime                          resp.Field
-		LastChangedDate                     resp.Field
-		LogisticMasterRecordID              resp.Field
-		LogisticsSegments                   resp.Field
-		LogisticsTransportationPlansRemarks resp.Field
-		Majcom                              resp.Field
-		MissionChange                       resp.Field
-		NumEnrouteStops                     resp.Field
-		NumTransLoads                       resp.Field
-		OriginIcao                          resp.Field
-		PlanDefinition                      resp.Field
-		PlansNumber                         resp.Field
-		SerialNumber                        resp.Field
-		StatusCode                          resp.Field
-		TpAircraftMds                       resp.Field
-		TpTailNumber                        resp.Field
-		ExtraFields                         map[string]resp.Field
+		ActDepTime                          respjson.Field
+		AircraftStatus                      respjson.Field
+		ApproxArrTime                       respjson.Field
+		CancelledDate                       respjson.Field
+		ClosedDate                          respjson.Field
+		Coordinator                         respjson.Field
+		CoordinatorUnit                     respjson.Field
+		DestinationIcao                     respjson.Field
+		Duration                            respjson.Field
+		EstArrTime                          respjson.Field
+		EstDepTime                          respjson.Field
+		LastChangedDate                     respjson.Field
+		LogisticMasterRecordID              respjson.Field
+		LogisticsSegments                   respjson.Field
+		LogisticsTransportationPlansRemarks respjson.Field
+		Majcom                              respjson.Field
+		MissionChange                       respjson.Field
+		NumEnrouteStops                     respjson.Field
+		NumTransLoads                       respjson.Field
+		OriginIcao                          respjson.Field
+		PlanDefinition                      respjson.Field
+		PlansNumber                         respjson.Field
+		SerialNumber                        respjson.Field
+		StatusCode                          respjson.Field
+		TpAircraftMds                       respjson.Field
+		TpTailNumber                        respjson.Field
+		ExtraFields                         map[string]respjson.Field
 		raw                                 string
 	} `json:"-"`
 }
@@ -660,24 +660,24 @@ type LogisticsSupportHistoryListResponseLogisticsTransportationPlanLogisticsSegm
 	SegmentNumber int64 `json:"segmentNumber"`
 	// The identifier that represents a specific aircraft within an aircraft type.
 	SegTailNumber string `json:"segTailNumber"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ArrivalIcao    resp.Field
-		DepartureIcao  resp.Field
-		ExtMissionID   resp.Field
-		IDMission      resp.Field
-		Itin           resp.Field
-		MissionNumber  resp.Field
-		MissionType    resp.Field
-		ModeCode       resp.Field
-		SegActArrTime  resp.Field
-		SegActDepTime  resp.Field
-		SegAircraftMds resp.Field
-		SegEstArrTime  resp.Field
-		SegEstDepTime  resp.Field
-		SegmentNumber  resp.Field
-		SegTailNumber  resp.Field
-		ExtraFields    map[string]resp.Field
+		ArrivalIcao    respjson.Field
+		DepartureIcao  respjson.Field
+		ExtMissionID   respjson.Field
+		IDMission      respjson.Field
+		Itin           respjson.Field
+		MissionNumber  respjson.Field
+		MissionType    respjson.Field
+		ModeCode       respjson.Field
+		SegActArrTime  respjson.Field
+		SegActDepTime  respjson.Field
+		SegAircraftMds respjson.Field
+		SegEstArrTime  respjson.Field
+		SegEstDepTime  respjson.Field
+		SegmentNumber  respjson.Field
+		SegTailNumber  respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }

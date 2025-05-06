@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // OnorbitbatteryService contains methods and other services that help with
@@ -174,21 +174,21 @@ type OnorbitbatteryListResponse struct {
 	OrigNetwork string `json:"origNetwork"`
 	// The number of batteries on the spacecraft of the type identified by idBattery.
 	Quantity int64 `json:"quantity"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDBattery             resp.Field
-		IDOnOrbit             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Battery               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Quantity              resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDBattery             respjson.Field
+		IDOnOrbit             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Battery               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Quantity              respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -272,23 +272,23 @@ type OnorbitbatteryGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDBattery             resp.Field
-		IDOnOrbit             resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Battery               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Quantity              resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDBattery             respjson.Field
+		IDOnOrbit             respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Battery               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Quantity              respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

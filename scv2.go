@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // ScV2Service contains methods and other services that help with interacting with
@@ -140,17 +140,17 @@ type Attachment struct {
 	Keywords      string `json:"keywords"`
 	Language      string `json:"language"`
 	Title         string `json:"title"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Author        resp.Field
-		Content       resp.Field
-		ContentLength resp.Field
-		ContentType   resp.Field
-		Date          resp.Field
-		Keywords      resp.Field
-		Language      resp.Field
-		Title         resp.Field
-		ExtraFields   map[string]resp.Field
+		Author        respjson.Field
+		Content       respjson.Field
+		ContentLength respjson.Field
+		ContentType   respjson.Field
+		Date          respjson.Field
+		Keywords      respjson.Field
+		Language      respjson.Field
+		Title         respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -189,27 +189,27 @@ type ScsEntity struct {
 	// For folders only. Comma separated list of user and group ids that should have
 	// write access on this folder and the items nested in it.
 	WriteACL string `json:"writeAcl"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID                    resp.Field
-		Attachment            resp.Field
-		ClassificationMarking resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Data                  resp.Field
-		Description           resp.Field
-		FileName              resp.Field
-		FilePath              resp.Field
-		Keywords              resp.Field
-		ParentPath            resp.Field
-		PathType              resp.Field
-		ReadACL               resp.Field
-		Size                  resp.Field
-		Tags                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		WriteACL              resp.Field
-		ExtraFields           map[string]resp.Field
+		ID                    respjson.Field
+		Attachment            respjson.Field
+		ClassificationMarking respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Data                  respjson.Field
+		Description           respjson.Field
+		FileName              respjson.Field
+		FilePath              respjson.Field
+		Keywords              respjson.Field
+		ParentPath            respjson.Field
+		PathType              respjson.Field
+		ReadACL               respjson.Field
+		Size                  respjson.Field
+		Tags                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		WriteACL              respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

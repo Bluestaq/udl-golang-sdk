@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // H3GeoService contains methods and other services that help with interacting with
@@ -193,24 +193,24 @@ type H3GeoListResponse struct {
 	// An optional field containing the type of data that is represented by this H3 Geo
 	// data set.
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		NumCells              resp.Field
-		Source                resp.Field
-		StartTime             resp.Field
-		ID                    resp.Field
-		CenterFreq            resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EndTime               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Resolution            resp.Field
-		SourceDl              resp.Field
-		Type                  resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		NumCells              respjson.Field
+		Source                respjson.Field
+		StartTime             respjson.Field
+		ID                    respjson.Field
+		CenterFreq            respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EndTime               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Resolution            respjson.Field
+		SourceDl              respjson.Field
+		Type                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -312,26 +312,26 @@ type H3GeoGetResponse struct {
 	// An optional field containing the type of data that is represented by this H3 Geo
 	// data set.
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Cells                 resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		NumCells              resp.Field
-		Source                resp.Field
-		StartTime             resp.Field
-		ID                    resp.Field
-		CenterFreq            resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EndTime               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Resolution            resp.Field
-		SourceDl              resp.Field
-		Tags                  resp.Field
-		Type                  resp.Field
-		ExtraFields           map[string]resp.Field
+		Cells                 respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		NumCells              respjson.Field
+		Source                respjson.Field
+		StartTime             respjson.Field
+		ID                    respjson.Field
+		CenterFreq            respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EndTime               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Resolution            respjson.Field
+		SourceDl              respjson.Field
+		Tags                  respjson.Field
+		Type                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -422,31 +422,31 @@ type H3GeoGetResponseCell struct {
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
 	SourceDl string `json:"sourceDL"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CellID                resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AltMean               resp.Field
-		AltSigma              resp.Field
-		AnomScoreInterference resp.Field
-		AnomScoreSpoofing     resp.Field
-		ChangeScore           resp.Field
-		Coverage              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		IDH3Geo               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		RpmMax                resp.Field
-		RpmMean               resp.Field
-		RpmMedian             resp.Field
-		RpmMin                resp.Field
-		RpmSigma              resp.Field
-		SourceDl              resp.Field
-		ExtraFields           map[string]resp.Field
+		CellID                respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AltMean               respjson.Field
+		AltSigma              respjson.Field
+		AnomScoreInterference respjson.Field
+		AnomScoreSpoofing     respjson.Field
+		ChangeScore           respjson.Field
+		Coverage              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		IDH3Geo               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		RpmMax                respjson.Field
+		RpmMean               respjson.Field
+		RpmMedian             respjson.Field
+		RpmMin                respjson.Field
+		RpmSigma              respjson.Field
+		SourceDl              respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -548,26 +548,26 @@ type H3GeoTupleResponse struct {
 	// An optional field containing the type of data that is represented by this H3 Geo
 	// data set.
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Cells                 resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		NumCells              resp.Field
-		Source                resp.Field
-		StartTime             resp.Field
-		ID                    resp.Field
-		CenterFreq            resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EndTime               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Resolution            resp.Field
-		SourceDl              resp.Field
-		Tags                  resp.Field
-		Type                  resp.Field
-		ExtraFields           map[string]resp.Field
+		Cells                 respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		NumCells              respjson.Field
+		Source                respjson.Field
+		StartTime             respjson.Field
+		ID                    respjson.Field
+		CenterFreq            respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EndTime               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Resolution            respjson.Field
+		SourceDl              respjson.Field
+		Tags                  respjson.Field
+		Type                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -658,31 +658,31 @@ type H3GeoTupleResponseCell struct {
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
 	SourceDl string `json:"sourceDL"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		CellID                resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AltMean               resp.Field
-		AltSigma              resp.Field
-		AnomScoreInterference resp.Field
-		AnomScoreSpoofing     resp.Field
-		ChangeScore           resp.Field
-		Coverage              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		IDH3Geo               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		RpmMax                resp.Field
-		RpmMean               resp.Field
-		RpmMedian             resp.Field
-		RpmMin                resp.Field
-		RpmSigma              resp.Field
-		SourceDl              resp.Field
-		ExtraFields           map[string]resp.Field
+		CellID                respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AltMean               respjson.Field
+		AltSigma              respjson.Field
+		AnomScoreInterference respjson.Field
+		AnomScoreSpoofing     respjson.Field
+		ChangeScore           respjson.Field
+		Coverage              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		IDH3Geo               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		RpmMax                respjson.Field
+		RpmMean               respjson.Field
+		RpmMedian             respjson.Field
+		RpmMin                respjson.Field
+		RpmSigma              respjson.Field
+		SourceDl              respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

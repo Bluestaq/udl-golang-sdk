@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
@@ -310,55 +310,55 @@ type EphemerisSet struct {
 	// Optional start time of the usable time span for the ephemeris data, in ISO 8601
 	// UTC format with microsecond precision.
 	UsableStartTime time.Time `json:"usableStartTime" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Category              resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		NumPoints             resp.Field
-		PointEndTime          resp.Field
-		PointStartTime        resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		BDot                  resp.Field
-		CentBody              resp.Field
-		Comments              resp.Field
-		CovReferenceFrame     resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Description           resp.Field
-		Descriptor            resp.Field
-		DragModel             resp.Field
-		Edr                   resp.Field
-		EphemerisList         resp.Field
-		Filename              resp.Field
-		GeopotentialModel     resp.Field
-		HasAccel              resp.Field
-		HasCov                resp.Field
-		HasMnvr               resp.Field
-		IDManeuvers           resp.Field
-		IDOnOrbit             resp.Field
-		IDStateVector         resp.Field
-		Integrator            resp.Field
-		Interpolation         resp.Field
-		InterpolationDegree   resp.Field
-		LunarSolar            resp.Field
-		OnOrbit               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		Pedigree              resp.Field
-		ReferenceFrame        resp.Field
-		SatNo                 resp.Field
-		SolidEarthTides       resp.Field
-		StateVector           resp.Field
-		StepSize              resp.Field
-		Tags                  resp.Field
-		TransactionID         resp.Field
-		UsableEndTime         resp.Field
-		UsableStartTime       resp.Field
-		ExtraFields           map[string]resp.Field
+		Category              respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		NumPoints             respjson.Field
+		PointEndTime          respjson.Field
+		PointStartTime        respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		BDot                  respjson.Field
+		CentBody              respjson.Field
+		Comments              respjson.Field
+		CovReferenceFrame     respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Description           respjson.Field
+		Descriptor            respjson.Field
+		DragModel             respjson.Field
+		Edr                   respjson.Field
+		EphemerisList         respjson.Field
+		Filename              respjson.Field
+		GeopotentialModel     respjson.Field
+		HasAccel              respjson.Field
+		HasCov                respjson.Field
+		HasMnvr               respjson.Field
+		IDManeuvers           respjson.Field
+		IDOnOrbit             respjson.Field
+		IDStateVector         respjson.Field
+		Integrator            respjson.Field
+		Interpolation         respjson.Field
+		InterpolationDegree   respjson.Field
+		LunarSolar            respjson.Field
+		OnOrbit               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		Pedigree              respjson.Field
+		ReferenceFrame        respjson.Field
+		SatNo                 respjson.Field
+		SolidEarthTides       respjson.Field
+		StateVector           respjson.Field
+		StepSize              respjson.Field
+		Tags                  respjson.Field
+		TransactionID         respjson.Field
+		UsableEndTime         respjson.Field
+		UsableStartTime       respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -542,51 +542,51 @@ type EphemerisSetAbridged struct {
 	// Optional start time of the usable time span for the ephemeris data, in ISO 8601
 	// UTC format with microsecond precision.
 	UsableStartTime time.Time `json:"usableStartTime" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Category              resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		NumPoints             resp.Field
-		PointEndTime          resp.Field
-		PointStartTime        resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		BDot                  resp.Field
-		CentBody              resp.Field
-		Comments              resp.Field
-		CovReferenceFrame     resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Description           resp.Field
-		Descriptor            resp.Field
-		DragModel             resp.Field
-		Edr                   resp.Field
-		Filename              resp.Field
-		GeopotentialModel     resp.Field
-		HasAccel              resp.Field
-		HasCov                resp.Field
-		HasMnvr               resp.Field
-		IDManeuvers           resp.Field
-		IDOnOrbit             resp.Field
-		IDStateVector         resp.Field
-		Integrator            resp.Field
-		Interpolation         resp.Field
-		InterpolationDegree   resp.Field
-		LunarSolar            resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		Pedigree              resp.Field
-		ReferenceFrame        resp.Field
-		SatNo                 resp.Field
-		SolidEarthTides       resp.Field
-		StepSize              resp.Field
-		TransactionID         resp.Field
-		UsableEndTime         resp.Field
-		UsableStartTime       resp.Field
-		ExtraFields           map[string]resp.Field
+		Category              respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		NumPoints             respjson.Field
+		PointEndTime          respjson.Field
+		PointStartTime        respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		BDot                  respjson.Field
+		CentBody              respjson.Field
+		Comments              respjson.Field
+		CovReferenceFrame     respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Description           respjson.Field
+		Descriptor            respjson.Field
+		DragModel             respjson.Field
+		Edr                   respjson.Field
+		Filename              respjson.Field
+		GeopotentialModel     respjson.Field
+		HasAccel              respjson.Field
+		HasCov                respjson.Field
+		HasMnvr               respjson.Field
+		IDManeuvers           respjson.Field
+		IDOnOrbit             respjson.Field
+		IDStateVector         respjson.Field
+		Integrator            respjson.Field
+		Interpolation         respjson.Field
+		InterpolationDegree   respjson.Field
+		LunarSolar            respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		Pedigree              respjson.Field
+		ReferenceFrame        respjson.Field
+		SatNo                 respjson.Field
+		SolidEarthTides       respjson.Field
+		StepSize              respjson.Field
+		TransactionID         respjson.Field
+		UsableEndTime         respjson.Field
+		UsableStartTime       respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

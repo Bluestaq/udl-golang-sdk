@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // SiteOperationService contains methods and other services that help with
@@ -271,34 +271,34 @@ type SiteOperationGetResponse struct {
 	// Collection documenting operational waivers that have been issued for the Site
 	// associated with this record.
 	Waivers []SiteOperationGetResponseWaiver `json:"waivers"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDSite                resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DailyOperations       resp.Field
-		DopsLastChangedBy     resp.Field
-		DopsLastChangedDate   resp.Field
-		DopsLastChangedReason resp.Field
-		IDLaunchSite          resp.Field
-		MaximumOnGrounds      resp.Field
-		MogsLastChangedBy     resp.Field
-		MogsLastChangedDate   resp.Field
-		MogsLastChangedReason resp.Field
-		OperationalDeviations resp.Field
-		OperationalPlannings  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Pathways              resp.Field
-		SourceDl              resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		Waivers               resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDSite                respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DailyOperations       respjson.Field
+		DopsLastChangedBy     respjson.Field
+		DopsLastChangedDate   respjson.Field
+		DopsLastChangedReason respjson.Field
+		IDLaunchSite          respjson.Field
+		MaximumOnGrounds      respjson.Field
+		MogsLastChangedBy     respjson.Field
+		MogsLastChangedDate   respjson.Field
+		MogsLastChangedReason respjson.Field
+		OperationalDeviations respjson.Field
+		OperationalPlannings  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Pathways              respjson.Field
+		SourceDl              respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		Waivers               respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -351,14 +351,14 @@ type SiteOperationGetResponseDailyOperation struct {
 	// The datetime of the most recent change made to this DailyOperation data, in ISO
 	// 8601 UTC format with millisecond precision.
 	OphrsLastChangedDate time.Time `json:"ophrsLastChangedDate" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DayOfWeek            resp.Field
-		OperatingHours       resp.Field
-		OperationName        resp.Field
-		OphrsLastChangedBy   resp.Field
-		OphrsLastChangedDate resp.Field
-		ExtraFields          map[string]resp.Field
+		DayOfWeek            respjson.Field
+		OperatingHours       respjson.Field
+		OperationName        respjson.Field
+		OphrsLastChangedBy   respjson.Field
+		OphrsLastChangedDate respjson.Field
+		ExtraFields          map[string]respjson.Field
 		raw                  string
 	} `json:"-"`
 }
@@ -376,11 +376,11 @@ type SiteOperationGetResponseDailyOperationOperatingHour struct {
 	OpStartTime string `json:"opStartTime"`
 	// The Zulu (UTC) operational stop time, expressed in ISO 8601 format as HH:MM.
 	OpStopTime string `json:"opStopTime"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		OpStartTime resp.Field
-		OpStopTime  resp.Field
-		ExtraFields map[string]resp.Field
+		OpStartTime respjson.Field
+		OpStopTime  respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -412,15 +412,15 @@ type SiteOperationGetResponseMaximumOnGround struct {
 	// Maximum on ground (MOG) number of working wide-body aircraft based on spacing
 	// and manpower, for the aircraft type specified.
 	WideWorkingMog int64 `json:"wideWorkingMOG"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AircraftMds        resp.Field
-		ContingencyMog     resp.Field
-		MogLastChangedBy   resp.Field
-		MogLastChangedDate resp.Field
-		WideParkingMog     resp.Field
-		WideWorkingMog     resp.Field
-		ExtraFields        map[string]resp.Field
+		AircraftMds        respjson.Field
+		ContingencyMog     respjson.Field
+		MogLastChangedBy   respjson.Field
+		MogLastChangedDate respjson.Field
+		WideParkingMog     respjson.Field
+		WideWorkingMog     respjson.Field
+		ExtraFields        map[string]respjson.Field
 		raw                string
 	} `json:"-"`
 }
@@ -452,16 +452,16 @@ type SiteOperationGetResponseOperationalDeviation struct {
 	OdLastChangedDate time.Time `json:"odLastChangedDate" format:"date-time"`
 	// Text remark regarding this operational deviation.
 	OdRemark string `json:"odRemark"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AffectedAircraftMds  resp.Field
-		AffectedMog          resp.Field
-		AircraftOnGroundTime resp.Field
-		CrewRestTime         resp.Field
-		OdLastChangedBy      resp.Field
-		OdLastChangedDate    resp.Field
-		OdRemark             resp.Field
-		ExtraFields          map[string]resp.Field
+		AffectedAircraftMds  respjson.Field
+		AffectedMog          respjson.Field
+		AircraftOnGroundTime respjson.Field
+		CrewRestTime         respjson.Field
+		OdLastChangedBy      respjson.Field
+		OdLastChangedDate    respjson.Field
+		OdRemark             respjson.Field
+		ExtraFields          map[string]respjson.Field
 		raw                  string
 	} `json:"-"`
 }
@@ -492,16 +492,16 @@ type SiteOperationGetResponseOperationalPlanning struct {
 	OpStartDate time.Time `json:"opStartDate" format:"date-time"`
 	// The status of this operational planning.
 	OpStatus string `json:"opStatus"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		OpEndDate         resp.Field
-		OpLastChangedBy   resp.Field
-		OpLastChangedDate resp.Field
-		OpRemark          resp.Field
-		OpSource          resp.Field
-		OpStartDate       resp.Field
-		OpStatus          resp.Field
-		ExtraFields       map[string]resp.Field
+		OpEndDate         respjson.Field
+		OpLastChangedBy   respjson.Field
+		OpLastChangedDate respjson.Field
+		OpRemark          respjson.Field
+		OpSource          respjson.Field
+		OpStartDate       respjson.Field
+		OpStatus          respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -526,14 +526,14 @@ type SiteOperationGetResponsePathway struct {
 	PwType string `json:"pwType"`
 	// The intended use of this pathway.
 	PwUsage string `json:"pwUsage"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		PwDefinition      resp.Field
-		PwLastChangedBy   resp.Field
-		PwLastChangedDate resp.Field
-		PwType            resp.Field
-		PwUsage           resp.Field
-		ExtraFields       map[string]resp.Field
+		PwDefinition      respjson.Field
+		PwLastChangedBy   respjson.Field
+		PwLastChangedDate respjson.Field
+		PwType            respjson.Field
+		PwUsage           respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -571,20 +571,20 @@ type SiteOperationGetResponseWaiver struct {
 	// The datetime of the most recent change made to this waiver data, in ISO8601 UTC
 	// format with millisecond precision.
 	WaiverLastChangedDate time.Time `json:"waiverLastChangedDate" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ExpirationDate        resp.Field
-		HasExpired            resp.Field
-		IssueDate             resp.Field
-		IssuerName            resp.Field
-		RequesterName         resp.Field
-		RequesterPhoneNumber  resp.Field
-		RequestingUnit        resp.Field
-		WaiverAppliesTo       resp.Field
-		WaiverDescription     resp.Field
-		WaiverLastChangedBy   resp.Field
-		WaiverLastChangedDate resp.Field
-		ExtraFields           map[string]resp.Field
+		ExpirationDate        respjson.Field
+		HasExpired            respjson.Field
+		IssueDate             respjson.Field
+		IssuerName            respjson.Field
+		RequesterName         respjson.Field
+		RequesterPhoneNumber  respjson.Field
+		RequestingUnit        respjson.Field
+		WaiverAppliesTo       respjson.Field
+		WaiverDescription     respjson.Field
+		WaiverLastChangedBy   respjson.Field
+		WaiverLastChangedDate respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -681,34 +681,34 @@ type SiteOperationListResponse struct {
 	// Collection documenting operational waivers that have been issued for the Site
 	// associated with this record.
 	Waivers []SiteOperationListResponseWaiver `json:"waivers"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDSite                resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DailyOperations       resp.Field
-		DopsLastChangedBy     resp.Field
-		DopsLastChangedDate   resp.Field
-		DopsLastChangedReason resp.Field
-		IDLaunchSite          resp.Field
-		MaximumOnGrounds      resp.Field
-		MogsLastChangedBy     resp.Field
-		MogsLastChangedDate   resp.Field
-		MogsLastChangedReason resp.Field
-		OperationalDeviations resp.Field
-		OperationalPlannings  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Pathways              resp.Field
-		SourceDl              resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		Waivers               resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDSite                respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DailyOperations       respjson.Field
+		DopsLastChangedBy     respjson.Field
+		DopsLastChangedDate   respjson.Field
+		DopsLastChangedReason respjson.Field
+		IDLaunchSite          respjson.Field
+		MaximumOnGrounds      respjson.Field
+		MogsLastChangedBy     respjson.Field
+		MogsLastChangedDate   respjson.Field
+		MogsLastChangedReason respjson.Field
+		OperationalDeviations respjson.Field
+		OperationalPlannings  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Pathways              respjson.Field
+		SourceDl              respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		Waivers               respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -761,14 +761,14 @@ type SiteOperationListResponseDailyOperation struct {
 	// The datetime of the most recent change made to this DailyOperation data, in ISO
 	// 8601 UTC format with millisecond precision.
 	OphrsLastChangedDate time.Time `json:"ophrsLastChangedDate" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DayOfWeek            resp.Field
-		OperatingHours       resp.Field
-		OperationName        resp.Field
-		OphrsLastChangedBy   resp.Field
-		OphrsLastChangedDate resp.Field
-		ExtraFields          map[string]resp.Field
+		DayOfWeek            respjson.Field
+		OperatingHours       respjson.Field
+		OperationName        respjson.Field
+		OphrsLastChangedBy   respjson.Field
+		OphrsLastChangedDate respjson.Field
+		ExtraFields          map[string]respjson.Field
 		raw                  string
 	} `json:"-"`
 }
@@ -786,11 +786,11 @@ type SiteOperationListResponseDailyOperationOperatingHour struct {
 	OpStartTime string `json:"opStartTime"`
 	// The Zulu (UTC) operational stop time, expressed in ISO 8601 format as HH:MM.
 	OpStopTime string `json:"opStopTime"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		OpStartTime resp.Field
-		OpStopTime  resp.Field
-		ExtraFields map[string]resp.Field
+		OpStartTime respjson.Field
+		OpStopTime  respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -822,15 +822,15 @@ type SiteOperationListResponseMaximumOnGround struct {
 	// Maximum on ground (MOG) number of working wide-body aircraft based on spacing
 	// and manpower, for the aircraft type specified.
 	WideWorkingMog int64 `json:"wideWorkingMOG"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AircraftMds        resp.Field
-		ContingencyMog     resp.Field
-		MogLastChangedBy   resp.Field
-		MogLastChangedDate resp.Field
-		WideParkingMog     resp.Field
-		WideWorkingMog     resp.Field
-		ExtraFields        map[string]resp.Field
+		AircraftMds        respjson.Field
+		ContingencyMog     respjson.Field
+		MogLastChangedBy   respjson.Field
+		MogLastChangedDate respjson.Field
+		WideParkingMog     respjson.Field
+		WideWorkingMog     respjson.Field
+		ExtraFields        map[string]respjson.Field
 		raw                string
 	} `json:"-"`
 }
@@ -862,16 +862,16 @@ type SiteOperationListResponseOperationalDeviation struct {
 	OdLastChangedDate time.Time `json:"odLastChangedDate" format:"date-time"`
 	// Text remark regarding this operational deviation.
 	OdRemark string `json:"odRemark"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AffectedAircraftMds  resp.Field
-		AffectedMog          resp.Field
-		AircraftOnGroundTime resp.Field
-		CrewRestTime         resp.Field
-		OdLastChangedBy      resp.Field
-		OdLastChangedDate    resp.Field
-		OdRemark             resp.Field
-		ExtraFields          map[string]resp.Field
+		AffectedAircraftMds  respjson.Field
+		AffectedMog          respjson.Field
+		AircraftOnGroundTime respjson.Field
+		CrewRestTime         respjson.Field
+		OdLastChangedBy      respjson.Field
+		OdLastChangedDate    respjson.Field
+		OdRemark             respjson.Field
+		ExtraFields          map[string]respjson.Field
 		raw                  string
 	} `json:"-"`
 }
@@ -902,16 +902,16 @@ type SiteOperationListResponseOperationalPlanning struct {
 	OpStartDate time.Time `json:"opStartDate" format:"date-time"`
 	// The status of this operational planning.
 	OpStatus string `json:"opStatus"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		OpEndDate         resp.Field
-		OpLastChangedBy   resp.Field
-		OpLastChangedDate resp.Field
-		OpRemark          resp.Field
-		OpSource          resp.Field
-		OpStartDate       resp.Field
-		OpStatus          resp.Field
-		ExtraFields       map[string]resp.Field
+		OpEndDate         respjson.Field
+		OpLastChangedBy   respjson.Field
+		OpLastChangedDate respjson.Field
+		OpRemark          respjson.Field
+		OpSource          respjson.Field
+		OpStartDate       respjson.Field
+		OpStatus          respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -936,14 +936,14 @@ type SiteOperationListResponsePathway struct {
 	PwType string `json:"pwType"`
 	// The intended use of this pathway.
 	PwUsage string `json:"pwUsage"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		PwDefinition      resp.Field
-		PwLastChangedBy   resp.Field
-		PwLastChangedDate resp.Field
-		PwType            resp.Field
-		PwUsage           resp.Field
-		ExtraFields       map[string]resp.Field
+		PwDefinition      respjson.Field
+		PwLastChangedBy   respjson.Field
+		PwLastChangedDate respjson.Field
+		PwType            respjson.Field
+		PwUsage           respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -981,20 +981,20 @@ type SiteOperationListResponseWaiver struct {
 	// The datetime of the most recent change made to this waiver data, in ISO8601 UTC
 	// format with millisecond precision.
 	WaiverLastChangedDate time.Time `json:"waiverLastChangedDate" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ExpirationDate        resp.Field
-		HasExpired            resp.Field
-		IssueDate             resp.Field
-		IssuerName            resp.Field
-		RequesterName         resp.Field
-		RequesterPhoneNumber  resp.Field
-		RequestingUnit        resp.Field
-		WaiverAppliesTo       resp.Field
-		WaiverDescription     resp.Field
-		WaiverLastChangedBy   resp.Field
-		WaiverLastChangedDate resp.Field
-		ExtraFields           map[string]resp.Field
+		ExpirationDate        respjson.Field
+		HasExpired            respjson.Field
+		IssueDate             respjson.Field
+		IssuerName            respjson.Field
+		RequesterName         respjson.Field
+		RequesterPhoneNumber  respjson.Field
+		RequestingUnit        respjson.Field
+		WaiverAppliesTo       respjson.Field
+		WaiverDescription     respjson.Field
+		WaiverLastChangedBy   respjson.Field
+		WaiverLastChangedDate respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -1091,34 +1091,34 @@ type SiteOperationTupleResponse struct {
 	// Collection documenting operational waivers that have been issued for the Site
 	// associated with this record.
 	Waivers []SiteOperationTupleResponseWaiver `json:"waivers"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDSite                resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DailyOperations       resp.Field
-		DopsLastChangedBy     resp.Field
-		DopsLastChangedDate   resp.Field
-		DopsLastChangedReason resp.Field
-		IDLaunchSite          resp.Field
-		MaximumOnGrounds      resp.Field
-		MogsLastChangedBy     resp.Field
-		MogsLastChangedDate   resp.Field
-		MogsLastChangedReason resp.Field
-		OperationalDeviations resp.Field
-		OperationalPlannings  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Pathways              resp.Field
-		SourceDl              resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		Waivers               resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDSite                respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DailyOperations       respjson.Field
+		DopsLastChangedBy     respjson.Field
+		DopsLastChangedDate   respjson.Field
+		DopsLastChangedReason respjson.Field
+		IDLaunchSite          respjson.Field
+		MaximumOnGrounds      respjson.Field
+		MogsLastChangedBy     respjson.Field
+		MogsLastChangedDate   respjson.Field
+		MogsLastChangedReason respjson.Field
+		OperationalDeviations respjson.Field
+		OperationalPlannings  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Pathways              respjson.Field
+		SourceDl              respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		Waivers               respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -1171,14 +1171,14 @@ type SiteOperationTupleResponseDailyOperation struct {
 	// The datetime of the most recent change made to this DailyOperation data, in ISO
 	// 8601 UTC format with millisecond precision.
 	OphrsLastChangedDate time.Time `json:"ophrsLastChangedDate" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		DayOfWeek            resp.Field
-		OperatingHours       resp.Field
-		OperationName        resp.Field
-		OphrsLastChangedBy   resp.Field
-		OphrsLastChangedDate resp.Field
-		ExtraFields          map[string]resp.Field
+		DayOfWeek            respjson.Field
+		OperatingHours       respjson.Field
+		OperationName        respjson.Field
+		OphrsLastChangedBy   respjson.Field
+		OphrsLastChangedDate respjson.Field
+		ExtraFields          map[string]respjson.Field
 		raw                  string
 	} `json:"-"`
 }
@@ -1196,11 +1196,11 @@ type SiteOperationTupleResponseDailyOperationOperatingHour struct {
 	OpStartTime string `json:"opStartTime"`
 	// The Zulu (UTC) operational stop time, expressed in ISO 8601 format as HH:MM.
 	OpStopTime string `json:"opStopTime"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		OpStartTime resp.Field
-		OpStopTime  resp.Field
-		ExtraFields map[string]resp.Field
+		OpStartTime respjson.Field
+		OpStopTime  respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -1232,15 +1232,15 @@ type SiteOperationTupleResponseMaximumOnGround struct {
 	// Maximum on ground (MOG) number of working wide-body aircraft based on spacing
 	// and manpower, for the aircraft type specified.
 	WideWorkingMog int64 `json:"wideWorkingMOG"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AircraftMds        resp.Field
-		ContingencyMog     resp.Field
-		MogLastChangedBy   resp.Field
-		MogLastChangedDate resp.Field
-		WideParkingMog     resp.Field
-		WideWorkingMog     resp.Field
-		ExtraFields        map[string]resp.Field
+		AircraftMds        respjson.Field
+		ContingencyMog     respjson.Field
+		MogLastChangedBy   respjson.Field
+		MogLastChangedDate respjson.Field
+		WideParkingMog     respjson.Field
+		WideWorkingMog     respjson.Field
+		ExtraFields        map[string]respjson.Field
 		raw                string
 	} `json:"-"`
 }
@@ -1272,16 +1272,16 @@ type SiteOperationTupleResponseOperationalDeviation struct {
 	OdLastChangedDate time.Time `json:"odLastChangedDate" format:"date-time"`
 	// Text remark regarding this operational deviation.
 	OdRemark string `json:"odRemark"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AffectedAircraftMds  resp.Field
-		AffectedMog          resp.Field
-		AircraftOnGroundTime resp.Field
-		CrewRestTime         resp.Field
-		OdLastChangedBy      resp.Field
-		OdLastChangedDate    resp.Field
-		OdRemark             resp.Field
-		ExtraFields          map[string]resp.Field
+		AffectedAircraftMds  respjson.Field
+		AffectedMog          respjson.Field
+		AircraftOnGroundTime respjson.Field
+		CrewRestTime         respjson.Field
+		OdLastChangedBy      respjson.Field
+		OdLastChangedDate    respjson.Field
+		OdRemark             respjson.Field
+		ExtraFields          map[string]respjson.Field
 		raw                  string
 	} `json:"-"`
 }
@@ -1312,16 +1312,16 @@ type SiteOperationTupleResponseOperationalPlanning struct {
 	OpStartDate time.Time `json:"opStartDate" format:"date-time"`
 	// The status of this operational planning.
 	OpStatus string `json:"opStatus"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		OpEndDate         resp.Field
-		OpLastChangedBy   resp.Field
-		OpLastChangedDate resp.Field
-		OpRemark          resp.Field
-		OpSource          resp.Field
-		OpStartDate       resp.Field
-		OpStatus          resp.Field
-		ExtraFields       map[string]resp.Field
+		OpEndDate         respjson.Field
+		OpLastChangedBy   respjson.Field
+		OpLastChangedDate respjson.Field
+		OpRemark          respjson.Field
+		OpSource          respjson.Field
+		OpStartDate       respjson.Field
+		OpStatus          respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -1346,14 +1346,14 @@ type SiteOperationTupleResponsePathway struct {
 	PwType string `json:"pwType"`
 	// The intended use of this pathway.
 	PwUsage string `json:"pwUsage"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		PwDefinition      resp.Field
-		PwLastChangedBy   resp.Field
-		PwLastChangedDate resp.Field
-		PwType            resp.Field
-		PwUsage           resp.Field
-		ExtraFields       map[string]resp.Field
+		PwDefinition      respjson.Field
+		PwLastChangedBy   respjson.Field
+		PwLastChangedDate respjson.Field
+		PwType            respjson.Field
+		PwUsage           respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -1391,20 +1391,20 @@ type SiteOperationTupleResponseWaiver struct {
 	// The datetime of the most recent change made to this waiver data, in ISO8601 UTC
 	// format with millisecond precision.
 	WaiverLastChangedDate time.Time `json:"waiverLastChangedDate" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ExpirationDate        resp.Field
-		HasExpired            resp.Field
-		IssueDate             resp.Field
-		IssuerName            resp.Field
-		RequesterName         resp.Field
-		RequesterPhoneNumber  resp.Field
-		RequestingUnit        resp.Field
-		WaiverAppliesTo       resp.Field
-		WaiverDescription     resp.Field
-		WaiverLastChangedBy   resp.Field
-		WaiverLastChangedDate resp.Field
-		ExtraFields           map[string]resp.Field
+		ExpirationDate        respjson.Field
+		HasExpired            respjson.Field
+		IssueDate             respjson.Field
+		IssuerName            respjson.Field
+		RequesterName         respjson.Field
+		RequesterPhoneNumber  respjson.Field
+		RequestingUnit        respjson.Field
+		WaiverAppliesTo       respjson.Field
+		WaiverDescription     respjson.Field
+		WaiverLastChangedBy   respjson.Field
+		WaiverLastChangedDate respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

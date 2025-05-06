@@ -15,7 +15,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // MissileTrackService contains methods and other services that help with
@@ -471,66 +471,66 @@ type MissileTrackListResponse struct {
 	// coordinate frame but in some cases data may be in another frame as specified by
 	// 'referenceFrame', depending on the provider.
 	Vectors []MissileTrackListResponseVector `json:"vectors"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		ID                    resp.Field
-		AcftSubType           resp.Field
-		Alert                 resp.Field
-		AngElev               resp.Field
-		AouRptData            resp.Field
-		AouRptType            resp.Field
-		AzCorr                resp.Field
-		Boosting              resp.Field
-		BurnoutAlt            resp.Field
-		CallSign              resp.Field
-		Containment           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DropPtInd             resp.Field
-		EmgInd                resp.Field
-		Env                   resp.Field
-		ImpactAouData         resp.Field
-		ImpactAouType         resp.Field
-		ImpactLat             resp.Field
-		ImpactLon             resp.Field
-		ImpactTime            resp.Field
-		InfoSource            resp.Field
-		LaunchAouData         resp.Field
-		LaunchAouType         resp.Field
-		LaunchLat             resp.Field
-		LaunchLon             resp.Field
-		LaunchTime            resp.Field
-		LostTrkInd            resp.Field
-		MsgCreateDate         resp.Field
-		MsgSubType            resp.Field
-		MsgType               resp.Field
-		MslStatus             resp.Field
-		MuidSrc               resp.Field
-		MuidSrcTrk            resp.Field
-		Name                  resp.Field
-		ObjAct                resp.Field
-		ObjIdent              resp.Field
-		ObjPlat               resp.Field
-		ObjType               resp.Field
-		ObjTypeConf           resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ParentTrackID         resp.Field
-		PolarSingLocLat       resp.Field
-		PolarSingLocLon       resp.Field
-		SenMode               resp.Field
-		SpaceAmp              resp.Field
-		SpaceAmpConf          resp.Field
-		SpaceSpecType         resp.Field
-		TrackID               resp.Field
-		TrkConf               resp.Field
-		TrkQual               resp.Field
-		Vectors               resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		ID                    respjson.Field
+		AcftSubType           respjson.Field
+		Alert                 respjson.Field
+		AngElev               respjson.Field
+		AouRptData            respjson.Field
+		AouRptType            respjson.Field
+		AzCorr                respjson.Field
+		Boosting              respjson.Field
+		BurnoutAlt            respjson.Field
+		CallSign              respjson.Field
+		Containment           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DropPtInd             respjson.Field
+		EmgInd                respjson.Field
+		Env                   respjson.Field
+		ImpactAouData         respjson.Field
+		ImpactAouType         respjson.Field
+		ImpactLat             respjson.Field
+		ImpactLon             respjson.Field
+		ImpactTime            respjson.Field
+		InfoSource            respjson.Field
+		LaunchAouData         respjson.Field
+		LaunchAouType         respjson.Field
+		LaunchLat             respjson.Field
+		LaunchLon             respjson.Field
+		LaunchTime            respjson.Field
+		LostTrkInd            respjson.Field
+		MsgCreateDate         respjson.Field
+		MsgSubType            respjson.Field
+		MsgType               respjson.Field
+		MslStatus             respjson.Field
+		MuidSrc               respjson.Field
+		MuidSrcTrk            respjson.Field
+		Name                  respjson.Field
+		ObjAct                respjson.Field
+		ObjIdent              respjson.Field
+		ObjPlat               respjson.Field
+		ObjType               respjson.Field
+		ObjTypeConf           respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ParentTrackID         respjson.Field
+		PolarSingLocLat       respjson.Field
+		PolarSingLocLon       respjson.Field
+		SenMode               respjson.Field
+		SpaceAmp              respjson.Field
+		SpaceAmpConf          respjson.Field
+		SpaceSpecType         respjson.Field
+		TrackID               respjson.Field
+		TrkConf               respjson.Field
+		TrkQual               respjson.Field
+		Vectors               respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -716,30 +716,30 @@ type MissileTrackListResponseVector struct {
 	// object, in kilometers/second, in the specified referenceFrame. If referenceFrame
 	// is null then ECEF should be assumed. The array element order is [x', y', z'].
 	Vel []float64 `json:"vel"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Epoch             resp.Field
-		Accel             resp.Field
-		Confidence        resp.Field
-		Course            resp.Field
-		Cov               resp.Field
-		CovReferenceFrame resp.Field
-		FlightAz          resp.Field
-		IDSensor          resp.Field
-		Object            resp.Field
-		OrigSensorID      resp.Field
-		Pos               resp.Field
-		Quat              resp.Field
-		ReferenceFrame    resp.Field
-		Spd               resp.Field
-		Status            resp.Field
-		TimeSource        resp.Field
-		Type              resp.Field
-		VectorAlt         resp.Field
-		VectorLat         resp.Field
-		VectorLon         resp.Field
-		Vel               resp.Field
-		ExtraFields       map[string]resp.Field
+		Epoch             respjson.Field
+		Accel             respjson.Field
+		Confidence        respjson.Field
+		Course            respjson.Field
+		Cov               respjson.Field
+		CovReferenceFrame respjson.Field
+		FlightAz          respjson.Field
+		IDSensor          respjson.Field
+		Object            respjson.Field
+		OrigSensorID      respjson.Field
+		Pos               respjson.Field
+		Quat              respjson.Field
+		ReferenceFrame    respjson.Field
+		Spd               respjson.Field
+		Status            respjson.Field
+		TimeSource        respjson.Field
+		Type              respjson.Field
+		VectorAlt         respjson.Field
+		VectorLat         respjson.Field
+		VectorLon         respjson.Field
+		Vel               respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -1090,66 +1090,66 @@ type MissileTrackTupleResponse struct {
 	// coordinate frame but in some cases data may be in another frame as specified by
 	// 'referenceFrame', depending on the provider.
 	Vectors []MissileTrackTupleResponseVector `json:"vectors"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		ID                    resp.Field
-		AcftSubType           resp.Field
-		Alert                 resp.Field
-		AngElev               resp.Field
-		AouRptData            resp.Field
-		AouRptType            resp.Field
-		AzCorr                resp.Field
-		Boosting              resp.Field
-		BurnoutAlt            resp.Field
-		CallSign              resp.Field
-		Containment           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DropPtInd             resp.Field
-		EmgInd                resp.Field
-		Env                   resp.Field
-		ImpactAouData         resp.Field
-		ImpactAouType         resp.Field
-		ImpactLat             resp.Field
-		ImpactLon             resp.Field
-		ImpactTime            resp.Field
-		InfoSource            resp.Field
-		LaunchAouData         resp.Field
-		LaunchAouType         resp.Field
-		LaunchLat             resp.Field
-		LaunchLon             resp.Field
-		LaunchTime            resp.Field
-		LostTrkInd            resp.Field
-		MsgCreateDate         resp.Field
-		MsgSubType            resp.Field
-		MsgType               resp.Field
-		MslStatus             resp.Field
-		MuidSrc               resp.Field
-		MuidSrcTrk            resp.Field
-		Name                  resp.Field
-		ObjAct                resp.Field
-		ObjIdent              resp.Field
-		ObjPlat               resp.Field
-		ObjType               resp.Field
-		ObjTypeConf           resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ParentTrackID         resp.Field
-		PolarSingLocLat       resp.Field
-		PolarSingLocLon       resp.Field
-		SenMode               resp.Field
-		SpaceAmp              resp.Field
-		SpaceAmpConf          resp.Field
-		SpaceSpecType         resp.Field
-		TrackID               resp.Field
-		TrkConf               resp.Field
-		TrkQual               resp.Field
-		Vectors               resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		ID                    respjson.Field
+		AcftSubType           respjson.Field
+		Alert                 respjson.Field
+		AngElev               respjson.Field
+		AouRptData            respjson.Field
+		AouRptType            respjson.Field
+		AzCorr                respjson.Field
+		Boosting              respjson.Field
+		BurnoutAlt            respjson.Field
+		CallSign              respjson.Field
+		Containment           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DropPtInd             respjson.Field
+		EmgInd                respjson.Field
+		Env                   respjson.Field
+		ImpactAouData         respjson.Field
+		ImpactAouType         respjson.Field
+		ImpactLat             respjson.Field
+		ImpactLon             respjson.Field
+		ImpactTime            respjson.Field
+		InfoSource            respjson.Field
+		LaunchAouData         respjson.Field
+		LaunchAouType         respjson.Field
+		LaunchLat             respjson.Field
+		LaunchLon             respjson.Field
+		LaunchTime            respjson.Field
+		LostTrkInd            respjson.Field
+		MsgCreateDate         respjson.Field
+		MsgSubType            respjson.Field
+		MsgType               respjson.Field
+		MslStatus             respjson.Field
+		MuidSrc               respjson.Field
+		MuidSrcTrk            respjson.Field
+		Name                  respjson.Field
+		ObjAct                respjson.Field
+		ObjIdent              respjson.Field
+		ObjPlat               respjson.Field
+		ObjType               respjson.Field
+		ObjTypeConf           respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ParentTrackID         respjson.Field
+		PolarSingLocLat       respjson.Field
+		PolarSingLocLon       respjson.Field
+		SenMode               respjson.Field
+		SpaceAmp              respjson.Field
+		SpaceAmpConf          respjson.Field
+		SpaceSpecType         respjson.Field
+		TrackID               respjson.Field
+		TrkConf               respjson.Field
+		TrkQual               respjson.Field
+		Vectors               respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -1335,30 +1335,30 @@ type MissileTrackTupleResponseVector struct {
 	// object, in kilometers/second, in the specified referenceFrame. If referenceFrame
 	// is null then ECEF should be assumed. The array element order is [x', y', z'].
 	Vel []float64 `json:"vel"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Epoch             resp.Field
-		Accel             resp.Field
-		Confidence        resp.Field
-		Course            resp.Field
-		Cov               resp.Field
-		CovReferenceFrame resp.Field
-		FlightAz          resp.Field
-		IDSensor          resp.Field
-		Object            resp.Field
-		OrigSensorID      resp.Field
-		Pos               resp.Field
-		Quat              resp.Field
-		ReferenceFrame    resp.Field
-		Spd               resp.Field
-		Status            resp.Field
-		TimeSource        resp.Field
-		Type              resp.Field
-		VectorAlt         resp.Field
-		VectorLat         resp.Field
-		VectorLon         resp.Field
-		Vel               resp.Field
-		ExtraFields       map[string]resp.Field
+		Epoch             respjson.Field
+		Accel             respjson.Field
+		Confidence        respjson.Field
+		Course            respjson.Field
+		Cov               respjson.Field
+		CovReferenceFrame respjson.Field
+		FlightAz          respjson.Field
+		IDSensor          respjson.Field
+		Object            respjson.Field
+		OrigSensorID      respjson.Field
+		Pos               respjson.Field
+		Quat              respjson.Field
+		ReferenceFrame    respjson.Field
+		Spd               respjson.Field
+		Status            respjson.Field
+		TimeSource        respjson.Field
+		Type              respjson.Field
+		VectorAlt         respjson.Field
+		VectorLat         respjson.Field
+		VectorLon         respjson.Field
+		Vel               respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }

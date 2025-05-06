@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // EffectRequestService contains methods and other services that help with
@@ -241,30 +241,30 @@ type EffectRequestGetResponse struct {
 	TargetSrcID string `json:"targetSrcId"`
 	// The source type of the targetId identifier (POI, TRACK).
 	TargetSrcType string `json:"targetSrcType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		EffectList            resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Context               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DeadlineType          resp.Field
-		EndTime               resp.Field
-		ExternalRequestID     resp.Field
-		MetricTypes           resp.Field
-		MetricWeights         resp.Field
-		ModelClass            resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Priority              resp.Field
-		StartTime             resp.Field
-		State                 resp.Field
-		TargetSrcID           resp.Field
-		TargetSrcType         resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		EffectList            respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Context               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DeadlineType          respjson.Field
+		EndTime               respjson.Field
+		ExternalRequestID     respjson.Field
+		MetricTypes           respjson.Field
+		MetricWeights         respjson.Field
+		ModelClass            respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Priority              respjson.Field
+		StartTime             respjson.Field
+		State                 respjson.Field
+		TargetSrcID           respjson.Field
+		TargetSrcType         respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -380,30 +380,30 @@ type EffectRequestListResponse struct {
 	TargetSrcID string `json:"targetSrcId"`
 	// The source type of the targetId identifier (POI, TRACK).
 	TargetSrcType string `json:"targetSrcType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		EffectList            resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Context               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DeadlineType          resp.Field
-		EndTime               resp.Field
-		ExternalRequestID     resp.Field
-		MetricTypes           resp.Field
-		MetricWeights         resp.Field
-		ModelClass            resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Priority              resp.Field
-		StartTime             resp.Field
-		State                 resp.Field
-		TargetSrcID           resp.Field
-		TargetSrcType         resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		EffectList            respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Context               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DeadlineType          respjson.Field
+		EndTime               respjson.Field
+		ExternalRequestID     respjson.Field
+		MetricTypes           respjson.Field
+		MetricWeights         respjson.Field
+		ModelClass            respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Priority              respjson.Field
+		StartTime             respjson.Field
+		State                 respjson.Field
+		TargetSrcID           respjson.Field
+		TargetSrcType         respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -519,30 +519,30 @@ type EffectRequestTupleResponse struct {
 	TargetSrcID string `json:"targetSrcId"`
 	// The source type of the targetId identifier (POI, TRACK).
 	TargetSrcType string `json:"targetSrcType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		EffectList            resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Context               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DeadlineType          resp.Field
-		EndTime               resp.Field
-		ExternalRequestID     resp.Field
-		MetricTypes           resp.Field
-		MetricWeights         resp.Field
-		ModelClass            resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Priority              resp.Field
-		StartTime             resp.Field
-		State                 resp.Field
-		TargetSrcID           resp.Field
-		TargetSrcType         resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		EffectList            respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Context               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DeadlineType          respjson.Field
+		EndTime               respjson.Field
+		ExternalRequestID     respjson.Field
+		MetricTypes           respjson.Field
+		MetricWeights         respjson.Field
+		ModelClass            respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Priority              respjson.Field
+		StartTime             respjson.Field
+		State                 respjson.Field
+		TargetSrcID           respjson.Field
+		TargetSrcType         respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

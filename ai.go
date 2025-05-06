@@ -15,7 +15,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
@@ -311,60 +311,60 @@ type AIsAbridged struct {
 	// The breadth of the vessel, in meters. A value of 63 indicates a vessel breadth
 	// of 63 meters or greater.
 	Width float64 `json:"width"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		ID                    resp.Field
-		AntennaRefDimensions  resp.Field
-		AvgSpeed              resp.Field
-		CallSign              resp.Field
-		CargoType             resp.Field
-		Course                resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		CurrentPortGuid       resp.Field
-		CurrentPortLocode     resp.Field
-		Destination           resp.Field
-		DestinationEta        resp.Field
-		DistanceToGo          resp.Field
-		DistanceTravelled     resp.Field
-		Draught               resp.Field
-		EngagedIn             resp.Field
-		EtaCalculated         resp.Field
-		EtaUpdated            resp.Field
-		IDTrack               resp.Field
-		IDVessel              resp.Field
-		Imon                  resp.Field
-		LastPortGuid          resp.Field
-		LastPortLocode        resp.Field
-		Lat                   resp.Field
-		Length                resp.Field
-		Lon                   resp.Field
-		MaxSpeed              resp.Field
-		Mmsi                  resp.Field
-		NavStatus             resp.Field
-		NextPortGuid          resp.Field
-		NextPortLocode        resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		PosDeviceType         resp.Field
-		PosHiAccuracy         resp.Field
-		PosHiLatency          resp.Field
-		RateOfTurn            resp.Field
-		ShipDescription       resp.Field
-		ShipName              resp.Field
-		ShipType              resp.Field
-		SourceDl              resp.Field
-		SpecialCraft          resp.Field
-		SpecialManeuver       resp.Field
-		Speed                 resp.Field
-		TrueHeading           resp.Field
-		VesselFlag            resp.Field
-		Width                 resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		ID                    respjson.Field
+		AntennaRefDimensions  respjson.Field
+		AvgSpeed              respjson.Field
+		CallSign              respjson.Field
+		CargoType             respjson.Field
+		Course                respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		CurrentPortGuid       respjson.Field
+		CurrentPortLocode     respjson.Field
+		Destination           respjson.Field
+		DestinationEta        respjson.Field
+		DistanceToGo          respjson.Field
+		DistanceTravelled     respjson.Field
+		Draught               respjson.Field
+		EngagedIn             respjson.Field
+		EtaCalculated         respjson.Field
+		EtaUpdated            respjson.Field
+		IDTrack               respjson.Field
+		IDVessel              respjson.Field
+		Imon                  respjson.Field
+		LastPortGuid          respjson.Field
+		LastPortLocode        respjson.Field
+		Lat                   respjson.Field
+		Length                respjson.Field
+		Lon                   respjson.Field
+		MaxSpeed              respjson.Field
+		Mmsi                  respjson.Field
+		NavStatus             respjson.Field
+		NextPortGuid          respjson.Field
+		NextPortLocode        respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		PosDeviceType         respjson.Field
+		PosHiAccuracy         respjson.Field
+		PosHiLatency          respjson.Field
+		RateOfTurn            respjson.Field
+		ShipDescription       respjson.Field
+		ShipName              respjson.Field
+		ShipType              respjson.Field
+		SourceDl              respjson.Field
+		SpecialCraft          respjson.Field
+		SpecialManeuver       respjson.Field
+		Speed                 respjson.Field
+		TrueHeading           respjson.Field
+		VesselFlag            respjson.Field
+		Width                 respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

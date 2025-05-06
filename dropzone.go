@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // DropzoneService contains methods and other services that help with interacting
@@ -283,46 +283,46 @@ type DropzoneGetResponse struct {
 	Width float64 `json:"width"`
 	// The identifier of the Zone Availability Report (ZAR) for the drop zone.
 	ZarID string `json:"zarId"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking   resp.Field
-		DataMode                resp.Field
-		Lat                     resp.Field
-		Lon                     resp.Field
-		Name                    resp.Field
-		Source                  resp.Field
-		ID                      resp.Field
-		AltCountryCode          resp.Field
-		AltCountryName          resp.Field
-		ApprovalDate            resp.Field
-		Code                    resp.Field
-		CountryCode             resp.Field
-		CountryName             resp.Field
-		CreatedAt               resp.Field
-		CreatedBy               resp.Field
-		ExpirationDate          resp.Field
-		ExtIdentifier           resp.Field
-		IDSite                  resp.Field
-		LastUpdate              resp.Field
-		Length                  resp.Field
-		Majcom                  resp.Field
-		NearestLoc              resp.Field
-		OperationalApprovalDate resp.Field
-		Origin                  resp.Field
-		OrigNetwork             resp.Field
-		PointName               resp.Field
-		Radius                  resp.Field
-		RecertDate              resp.Field
-		Remark                  resp.Field
-		SourceDl                resp.Field
-		StateAbbr               resp.Field
-		StateName               resp.Field
-		SurveyDate              resp.Field
-		UpdatedAt               resp.Field
-		UpdatedBy               resp.Field
-		Width                   resp.Field
-		ZarID                   resp.Field
-		ExtraFields             map[string]resp.Field
+		ClassificationMarking   respjson.Field
+		DataMode                respjson.Field
+		Lat                     respjson.Field
+		Lon                     respjson.Field
+		Name                    respjson.Field
+		Source                  respjson.Field
+		ID                      respjson.Field
+		AltCountryCode          respjson.Field
+		AltCountryName          respjson.Field
+		ApprovalDate            respjson.Field
+		Code                    respjson.Field
+		CountryCode             respjson.Field
+		CountryName             respjson.Field
+		CreatedAt               respjson.Field
+		CreatedBy               respjson.Field
+		ExpirationDate          respjson.Field
+		ExtIdentifier           respjson.Field
+		IDSite                  respjson.Field
+		LastUpdate              respjson.Field
+		Length                  respjson.Field
+		Majcom                  respjson.Field
+		NearestLoc              respjson.Field
+		OperationalApprovalDate respjson.Field
+		Origin                  respjson.Field
+		OrigNetwork             respjson.Field
+		PointName               respjson.Field
+		Radius                  respjson.Field
+		RecertDate              respjson.Field
+		Remark                  respjson.Field
+		SourceDl                respjson.Field
+		StateAbbr               respjson.Field
+		StateName               respjson.Field
+		SurveyDate              respjson.Field
+		UpdatedAt               respjson.Field
+		UpdatedBy               respjson.Field
+		Width                   respjson.Field
+		ZarID                   respjson.Field
+		ExtraFields             map[string]respjson.Field
 		raw                     string
 	} `json:"-"`
 }
@@ -468,44 +468,44 @@ type DropzoneQueryResponse struct {
 	Width float64 `json:"width"`
 	// The identifier of the Zone Availability Report (ZAR) for the drop zone.
 	ZarID string `json:"zarId"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking   resp.Field
-		DataMode                resp.Field
-		Lat                     resp.Field
-		Lon                     resp.Field
-		Name                    resp.Field
-		Source                  resp.Field
-		ID                      resp.Field
-		AltCountryCode          resp.Field
-		AltCountryName          resp.Field
-		ApprovalDate            resp.Field
-		Code                    resp.Field
-		CountryCode             resp.Field
-		CountryName             resp.Field
-		CreatedAt               resp.Field
-		CreatedBy               resp.Field
-		ExpirationDate          resp.Field
-		ExtIdentifier           resp.Field
-		IDSite                  resp.Field
-		LastUpdate              resp.Field
-		Length                  resp.Field
-		Majcom                  resp.Field
-		NearestLoc              resp.Field
-		OperationalApprovalDate resp.Field
-		Origin                  resp.Field
-		OrigNetwork             resp.Field
-		PointName               resp.Field
-		Radius                  resp.Field
-		RecertDate              resp.Field
-		Remark                  resp.Field
-		SourceDl                resp.Field
-		StateAbbr               resp.Field
-		StateName               resp.Field
-		SurveyDate              resp.Field
-		Width                   resp.Field
-		ZarID                   resp.Field
-		ExtraFields             map[string]resp.Field
+		ClassificationMarking   respjson.Field
+		DataMode                respjson.Field
+		Lat                     respjson.Field
+		Lon                     respjson.Field
+		Name                    respjson.Field
+		Source                  respjson.Field
+		ID                      respjson.Field
+		AltCountryCode          respjson.Field
+		AltCountryName          respjson.Field
+		ApprovalDate            respjson.Field
+		Code                    respjson.Field
+		CountryCode             respjson.Field
+		CountryName             respjson.Field
+		CreatedAt               respjson.Field
+		CreatedBy               respjson.Field
+		ExpirationDate          respjson.Field
+		ExtIdentifier           respjson.Field
+		IDSite                  respjson.Field
+		LastUpdate              respjson.Field
+		Length                  respjson.Field
+		Majcom                  respjson.Field
+		NearestLoc              respjson.Field
+		OperationalApprovalDate respjson.Field
+		Origin                  respjson.Field
+		OrigNetwork             respjson.Field
+		PointName               respjson.Field
+		Radius                  respjson.Field
+		RecertDate              respjson.Field
+		Remark                  respjson.Field
+		SourceDl                respjson.Field
+		StateAbbr               respjson.Field
+		StateName               respjson.Field
+		SurveyDate              respjson.Field
+		Width                   respjson.Field
+		ZarID                   respjson.Field
+		ExtraFields             map[string]respjson.Field
 		raw                     string
 	} `json:"-"`
 }
@@ -656,46 +656,46 @@ type DropzoneTupleResponse struct {
 	Width float64 `json:"width"`
 	// The identifier of the Zone Availability Report (ZAR) for the drop zone.
 	ZarID string `json:"zarId"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking   resp.Field
-		DataMode                resp.Field
-		Lat                     resp.Field
-		Lon                     resp.Field
-		Name                    resp.Field
-		Source                  resp.Field
-		ID                      resp.Field
-		AltCountryCode          resp.Field
-		AltCountryName          resp.Field
-		ApprovalDate            resp.Field
-		Code                    resp.Field
-		CountryCode             resp.Field
-		CountryName             resp.Field
-		CreatedAt               resp.Field
-		CreatedBy               resp.Field
-		ExpirationDate          resp.Field
-		ExtIdentifier           resp.Field
-		IDSite                  resp.Field
-		LastUpdate              resp.Field
-		Length                  resp.Field
-		Majcom                  resp.Field
-		NearestLoc              resp.Field
-		OperationalApprovalDate resp.Field
-		Origin                  resp.Field
-		OrigNetwork             resp.Field
-		PointName               resp.Field
-		Radius                  resp.Field
-		RecertDate              resp.Field
-		Remark                  resp.Field
-		SourceDl                resp.Field
-		StateAbbr               resp.Field
-		StateName               resp.Field
-		SurveyDate              resp.Field
-		UpdatedAt               resp.Field
-		UpdatedBy               resp.Field
-		Width                   resp.Field
-		ZarID                   resp.Field
-		ExtraFields             map[string]resp.Field
+		ClassificationMarking   respjson.Field
+		DataMode                respjson.Field
+		Lat                     respjson.Field
+		Lon                     respjson.Field
+		Name                    respjson.Field
+		Source                  respjson.Field
+		ID                      respjson.Field
+		AltCountryCode          respjson.Field
+		AltCountryName          respjson.Field
+		ApprovalDate            respjson.Field
+		Code                    respjson.Field
+		CountryCode             respjson.Field
+		CountryName             respjson.Field
+		CreatedAt               respjson.Field
+		CreatedBy               respjson.Field
+		ExpirationDate          respjson.Field
+		ExtIdentifier           respjson.Field
+		IDSite                  respjson.Field
+		LastUpdate              respjson.Field
+		Length                  respjson.Field
+		Majcom                  respjson.Field
+		NearestLoc              respjson.Field
+		OperationalApprovalDate respjson.Field
+		Origin                  respjson.Field
+		OrigNetwork             respjson.Field
+		PointName               respjson.Field
+		Radius                  respjson.Field
+		RecertDate              respjson.Field
+		Remark                  respjson.Field
+		SourceDl                respjson.Field
+		StateAbbr               respjson.Field
+		StateName               respjson.Field
+		SurveyDate              respjson.Field
+		UpdatedAt               respjson.Field
+		UpdatedBy               respjson.Field
+		Width                   respjson.Field
+		ZarID                   respjson.Field
+		ExtraFields             map[string]respjson.Field
 		raw                     string
 	} `json:"-"`
 }

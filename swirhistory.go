@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
@@ -165,31 +165,31 @@ type SwirFull struct {
 	// Array of wavelengths, in microns. This array should correspond with the
 	// same-sized array of absFluxes.
 	Wavelengths []float64 `json:"wavelengths"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		ID                    resp.Field
-		AbsFluxes             resp.Field
-		BadWave               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		FluxRatios            resp.Field
-		IDOnOrbit             resp.Field
-		Lat                   resp.Field
-		LocationName          resp.Field
-		Lon                   resp.Field
-		OnOrbit               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		RatioWavelengths      resp.Field
-		SatNo                 resp.Field
-		SolarPhaseAngle       resp.Field
-		Wavelengths           resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		ID                    respjson.Field
+		AbsFluxes             respjson.Field
+		BadWave               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		FluxRatios            respjson.Field
+		IDOnOrbit             respjson.Field
+		Lat                   respjson.Field
+		LocationName          respjson.Field
+		Lon                   respjson.Field
+		OnOrbit               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		RatioWavelengths      respjson.Field
+		SatNo                 respjson.Field
+		SolarPhaseAngle       respjson.Field
+		Wavelengths           respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

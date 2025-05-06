@@ -12,7 +12,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // AirOperationDiplomaticClearanceService contains methods and other services that
@@ -118,28 +118,28 @@ type DiplomaticclearanceAbridged struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking      resp.Field
-		DataMode                   resp.Field
-		FirstDepDate               resp.Field
-		IDMission                  resp.Field
-		Source                     resp.Field
-		ID                         resp.Field
-		ApacsID                    resp.Field
-		CreatedAt                  resp.Field
-		CreatedBy                  resp.Field
-		DiplomaticClearanceDetails resp.Field
-		DiplomaticClearanceRemarks resp.Field
-		DipWorksheetName           resp.Field
-		DocDeadline                resp.Field
-		ExternalWorksheetID        resp.Field
-		Origin                     resp.Field
-		OrigNetwork                resp.Field
-		SourceDl                   resp.Field
-		UpdatedAt                  resp.Field
-		UpdatedBy                  resp.Field
-		ExtraFields                map[string]resp.Field
+		ClassificationMarking      respjson.Field
+		DataMode                   respjson.Field
+		FirstDepDate               respjson.Field
+		IDMission                  respjson.Field
+		Source                     respjson.Field
+		ID                         respjson.Field
+		ApacsID                    respjson.Field
+		CreatedAt                  respjson.Field
+		CreatedBy                  respjson.Field
+		DiplomaticClearanceDetails respjson.Field
+		DiplomaticClearanceRemarks respjson.Field
+		DipWorksheetName           respjson.Field
+		DocDeadline                respjson.Field
+		ExternalWorksheetID        respjson.Field
+		Origin                     respjson.Field
+		OrigNetwork                respjson.Field
+		SourceDl                   respjson.Field
+		UpdatedAt                  respjson.Field
+		UpdatedBy                  respjson.Field
+		ExtraFields                map[string]respjson.Field
 		raw                        string
 	} `json:"-"`
 }
@@ -241,33 +241,33 @@ type DiplomaticclearanceAbridgedDiplomaticClearanceDetail struct {
 	ValidStartTime time.Time `json:"validStartTime" format:"date-time"`
 	// Remarks concerning the valid diplomatic clearance window.
 	WindowRemark string `json:"windowRemark"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Action              resp.Field
-		AltCountryCode      resp.Field
-		ClearanceID         resp.Field
-		ClearanceRemark     resp.Field
-		ClearedCallSign     resp.Field
-		CountryCode         resp.Field
-		CountryName         resp.Field
-		EntryNet            resp.Field
-		EntryPoint          resp.Field
-		ExitNlt             resp.Field
-		ExitPoint           resp.Field
-		ExternalClearanceID resp.Field
-		IDSortie            resp.Field
-		LegNum              resp.Field
-		Profile             resp.Field
-		ReqIcao             resp.Field
-		ReqPoint            resp.Field
-		RouteString         resp.Field
-		SequenceNum         resp.Field
-		Status              resp.Field
-		ValidDesc           resp.Field
-		ValidEndTime        resp.Field
-		ValidStartTime      resp.Field
-		WindowRemark        resp.Field
-		ExtraFields         map[string]resp.Field
+		Action              respjson.Field
+		AltCountryCode      respjson.Field
+		ClearanceID         respjson.Field
+		ClearanceRemark     respjson.Field
+		ClearedCallSign     respjson.Field
+		CountryCode         respjson.Field
+		CountryName         respjson.Field
+		EntryNet            respjson.Field
+		EntryPoint          respjson.Field
+		ExitNlt             respjson.Field
+		ExitPoint           respjson.Field
+		ExternalClearanceID respjson.Field
+		IDSortie            respjson.Field
+		LegNum              respjson.Field
+		Profile             respjson.Field
+		ReqIcao             respjson.Field
+		ReqPoint            respjson.Field
+		RouteString         respjson.Field
+		SequenceNum         respjson.Field
+		Status              respjson.Field
+		ValidDesc           respjson.Field
+		ValidEndTime        respjson.Field
+		ValidStartTime      respjson.Field
+		WindowRemark        respjson.Field
+		ExtraFields         map[string]respjson.Field
 		raw                 string
 	} `json:"-"`
 }
@@ -289,13 +289,13 @@ type DiplomaticclearanceAbridgedDiplomaticClearanceRemark struct {
 	Text string `json:"text"`
 	// User who published the remark.
 	User string `json:"user"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Date         resp.Field
-		GdssRemarkID resp.Field
-		Text         resp.Field
-		User         resp.Field
-		ExtraFields  map[string]resp.Field
+		Date         respjson.Field
+		GdssRemarkID respjson.Field
+		Text         respjson.Field
+		User         respjson.Field
+		ExtraFields  map[string]respjson.Field
 		raw          string
 	} `json:"-"`
 }
@@ -378,28 +378,28 @@ type DiplomaticclearanceFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking      resp.Field
-		DataMode                   resp.Field
-		FirstDepDate               resp.Field
-		IDMission                  resp.Field
-		Source                     resp.Field
-		ID                         resp.Field
-		ApacsID                    resp.Field
-		CreatedAt                  resp.Field
-		CreatedBy                  resp.Field
-		DiplomaticClearanceDetails resp.Field
-		DiplomaticClearanceRemarks resp.Field
-		DipWorksheetName           resp.Field
-		DocDeadline                resp.Field
-		ExternalWorksheetID        resp.Field
-		Origin                     resp.Field
-		OrigNetwork                resp.Field
-		SourceDl                   resp.Field
-		UpdatedAt                  resp.Field
-		UpdatedBy                  resp.Field
-		ExtraFields                map[string]resp.Field
+		ClassificationMarking      respjson.Field
+		DataMode                   respjson.Field
+		FirstDepDate               respjson.Field
+		IDMission                  respjson.Field
+		Source                     respjson.Field
+		ID                         respjson.Field
+		ApacsID                    respjson.Field
+		CreatedAt                  respjson.Field
+		CreatedBy                  respjson.Field
+		DiplomaticClearanceDetails respjson.Field
+		DiplomaticClearanceRemarks respjson.Field
+		DipWorksheetName           respjson.Field
+		DocDeadline                respjson.Field
+		ExternalWorksheetID        respjson.Field
+		Origin                     respjson.Field
+		OrigNetwork                respjson.Field
+		SourceDl                   respjson.Field
+		UpdatedAt                  respjson.Field
+		UpdatedBy                  respjson.Field
+		ExtraFields                map[string]respjson.Field
 		raw                        string
 	} `json:"-"`
 }
@@ -501,33 +501,33 @@ type DiplomaticclearanceFullDiplomaticClearanceDetail struct {
 	ValidStartTime time.Time `json:"validStartTime" format:"date-time"`
 	// Remarks concerning the valid diplomatic clearance window.
 	WindowRemark string `json:"windowRemark"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Action              resp.Field
-		AltCountryCode      resp.Field
-		ClearanceID         resp.Field
-		ClearanceRemark     resp.Field
-		ClearedCallSign     resp.Field
-		CountryCode         resp.Field
-		CountryName         resp.Field
-		EntryNet            resp.Field
-		EntryPoint          resp.Field
-		ExitNlt             resp.Field
-		ExitPoint           resp.Field
-		ExternalClearanceID resp.Field
-		IDSortie            resp.Field
-		LegNum              resp.Field
-		Profile             resp.Field
-		ReqIcao             resp.Field
-		ReqPoint            resp.Field
-		RouteString         resp.Field
-		SequenceNum         resp.Field
-		Status              resp.Field
-		ValidDesc           resp.Field
-		ValidEndTime        resp.Field
-		ValidStartTime      resp.Field
-		WindowRemark        resp.Field
-		ExtraFields         map[string]resp.Field
+		Action              respjson.Field
+		AltCountryCode      respjson.Field
+		ClearanceID         respjson.Field
+		ClearanceRemark     respjson.Field
+		ClearedCallSign     respjson.Field
+		CountryCode         respjson.Field
+		CountryName         respjson.Field
+		EntryNet            respjson.Field
+		EntryPoint          respjson.Field
+		ExitNlt             respjson.Field
+		ExitPoint           respjson.Field
+		ExternalClearanceID respjson.Field
+		IDSortie            respjson.Field
+		LegNum              respjson.Field
+		Profile             respjson.Field
+		ReqIcao             respjson.Field
+		ReqPoint            respjson.Field
+		RouteString         respjson.Field
+		SequenceNum         respjson.Field
+		Status              respjson.Field
+		ValidDesc           respjson.Field
+		ValidEndTime        respjson.Field
+		ValidStartTime      respjson.Field
+		WindowRemark        respjson.Field
+		ExtraFields         map[string]respjson.Field
 		raw                 string
 	} `json:"-"`
 }
@@ -549,13 +549,13 @@ type DiplomaticclearanceFullDiplomaticClearanceRemark struct {
 	Text string `json:"text"`
 	// User who published the remark.
 	User string `json:"user"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Date         resp.Field
-		GdssRemarkID resp.Field
-		Text         resp.Field
-		User         resp.Field
-		ExtraFields  map[string]resp.Field
+		Date         respjson.Field
+		GdssRemarkID respjson.Field
+		Text         respjson.Field
+		User         respjson.Field
+		ExtraFields  map[string]respjson.Field
 		raw          string
 	} `json:"-"`
 }

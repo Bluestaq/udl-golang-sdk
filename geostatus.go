@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // GeoStatusService contains methods and other services that help with interacting
@@ -235,33 +235,33 @@ type GeoStatusListResponse struct {
 	// West - Drifting westward; large relative energy and a period greater than 1436.2
 	// minutes.
 	TroughType string `json:"troughType"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		ConfidenceLevel       resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		IDOnOrbit             resp.Field
-		LongitudeMax          resp.Field
-		LongitudeMin          resp.Field
-		LongitudeRate         resp.Field
-		LostFlag              resp.Field
-		ObjectStatus          resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		PlaneChangeStatus     resp.Field
-		RawFileUri            resp.Field
-		RelativeEnergy        resp.Field
-		SatNo                 resp.Field
-		Sc                    resp.Field
-		SemiAnnualCorrFlag    resp.Field
-		SS                    resp.Field
-		TroughType            resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		ConfidenceLevel       respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		IDOnOrbit             respjson.Field
+		LongitudeMax          respjson.Field
+		LongitudeMin          respjson.Field
+		LongitudeRate         respjson.Field
+		LostFlag              respjson.Field
+		ObjectStatus          respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		PlaneChangeStatus     respjson.Field
+		RawFileUri            respjson.Field
+		RelativeEnergy        respjson.Field
+		SatNo                 respjson.Field
+		Sc                    respjson.Field
+		SemiAnnualCorrFlag    respjson.Field
+		SS                    respjson.Field
+		TroughType            respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

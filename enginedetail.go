@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // EngineDetailService contains methods and other services that help with
@@ -215,35 +215,35 @@ type EngineDetailsFull struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Engine maximum thrust in a vacuum in Kilo-Newtons.
 	VacuumThrust float64 `json:"vacuumThrust"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDEngine              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		BurnTime              resp.Field
-		ChamberPressure       resp.Field
-		CharacteristicType    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		CycleType             resp.Field
-		Family                resp.Field
-		ManufacturerOrgID     resp.Field
-		MaxFirings            resp.Field
-		Notes                 resp.Field
-		NozzleExpansionRatio  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Oxidizer              resp.Field
-		Propellant            resp.Field
-		SeaLevelThrust        resp.Field
-		SpecificImpulse       resp.Field
-		Tags                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		VacuumThrust          resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDEngine              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		BurnTime              respjson.Field
+		ChamberPressure       respjson.Field
+		CharacteristicType    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		CycleType             respjson.Field
+		Family                respjson.Field
+		ManufacturerOrgID     respjson.Field
+		MaxFirings            respjson.Field
+		Notes                 respjson.Field
+		NozzleExpansionRatio  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Oxidizer              respjson.Field
+		Propellant            respjson.Field
+		SeaLevelThrust        respjson.Field
+		SpecificImpulse       respjson.Field
+		Tags                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		VacuumThrust          respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -350,32 +350,32 @@ type EngineDetailsAbridged struct {
 	SpecificImpulse float64 `json:"specificImpulse"`
 	// Engine maximum thrust in a vacuum in Kilo-Newtons.
 	VacuumThrust float64 `json:"vacuumThrust"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDEngine              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		BurnTime              resp.Field
-		ChamberPressure       resp.Field
-		CharacteristicType    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		CycleType             resp.Field
-		Family                resp.Field
-		ManufacturerOrgID     resp.Field
-		MaxFirings            resp.Field
-		Notes                 resp.Field
-		NozzleExpansionRatio  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Oxidizer              resp.Field
-		Propellant            resp.Field
-		SeaLevelThrust        resp.Field
-		SpecificImpulse       resp.Field
-		VacuumThrust          resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDEngine              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		BurnTime              respjson.Field
+		ChamberPressure       respjson.Field
+		CharacteristicType    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		CycleType             respjson.Field
+		Family                respjson.Field
+		ManufacturerOrgID     respjson.Field
+		MaxFirings            respjson.Field
+		Notes                 respjson.Field
+		NozzleExpansionRatio  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Oxidizer              respjson.Field
+		Propellant            respjson.Field
+		SeaLevelThrust        respjson.Field
+		SpecificImpulse       respjson.Field
+		VacuumThrust          respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

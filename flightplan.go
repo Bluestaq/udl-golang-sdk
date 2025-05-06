@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
@@ -450,108 +450,108 @@ type FlightPlanAbridged struct {
 	// The date and time the weather valid period begins in ISO 8601 UTC format, with
 	// millisecond precision.
 	WxValidStart time.Time `json:"wxValidStart" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ArrAirfield           resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		DepAirfield           resp.Field
-		GenTs                 resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		AircraftMds           resp.Field
-		AirRefuelEvents       resp.Field
-		AmcMissionID          resp.Field
-		AppLandingFuel        resp.Field
-		ArrAlternate1         resp.Field
-		ArrAlternate1Fuel     resp.Field
-		ArrAlternate2         resp.Field
-		ArrAlternate2Fuel     resp.Field
-		ArrIceFuel            resp.Field
-		ArrRunway             resp.Field
-		AtcAddresses          resp.Field
-		AvgTempDev            resp.Field
-		BurnedFuel            resp.Field
-		CallSign              resp.Field
-		CargoRemark           resp.Field
-		ClimbFuel             resp.Field
-		ClimbTime             resp.Field
-		ContingencyFuel       resp.Field
-		CountryCodes          resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DepAlternate          resp.Field
-		DepressFuel           resp.Field
-		DepRunway             resp.Field
-		DragIndex             resp.Field
-		EarlyDescentFuel      resp.Field
-		EnduranceTime         resp.Field
-		EnrouteFuel           resp.Field
-		EnrouteTime           resp.Field
-		Equipment             resp.Field
-		EstDepTime            resp.Field
-		EtopsAirfields        resp.Field
-		EtopsAltAirfields     resp.Field
-		EtopsRating           resp.Field
-		EtopsValWindow        resp.Field
-		ExternalID            resp.Field
-		FlightPlanMessages    resp.Field
-		FlightPlanPointGroups resp.Field
-		FlightPlanWaypoints   resp.Field
-		FlightRules           resp.Field
-		FlightType            resp.Field
-		FuelDegrade           resp.Field
-		GpsRaim               resp.Field
-		HoldDownFuel          resp.Field
-		HoldFuel              resp.Field
-		HoldTime              resp.Field
-		IDAircraft            resp.Field
-		IDArrAirfield         resp.Field
-		IDDepAirfield         resp.Field
-		IdentExtraFuel        resp.Field
-		IDSortie              resp.Field
-		InitialCruiseSpeed    resp.Field
-		InitialFlightLevel    resp.Field
-		LandingFuel           resp.Field
-		LegNum                resp.Field
-		MinDivertFuel         resp.Field
-		MsnIndex              resp.Field
-		Notes                 resp.Field
-		NumAircraft           resp.Field
-		OpConditionFuel       resp.Field
-		OpWeight              resp.Field
-		Origin                resp.Field
-		Originator            resp.Field
-		OrigNetwork           resp.Field
-		PlannerRemark         resp.Field
-		RampFuel              resp.Field
-		RemAlternate1Fuel     resp.Field
-		RemAlternate2Fuel     resp.Field
-		ReserveFuel           resp.Field
-		RouteString           resp.Field
-		Sid                   resp.Field
-		SourceDl              resp.Field
-		Star                  resp.Field
-		Status                resp.Field
-		TailNumber            resp.Field
-		TakeoffFuel           resp.Field
-		TaxiFuel              resp.Field
-		ThunderAvoidFuel      resp.Field
-		TocFuel               resp.Field
-		TocIceFuel            resp.Field
-		TodFuel               resp.Field
-		TodIceFuel            resp.Field
-		UnidentExtraFuel      resp.Field
-		UnusableFuel          resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		WakeTurbCat           resp.Field
-		WindFac1              resp.Field
-		WindFac2              resp.Field
-		WindFacAvg            resp.Field
-		WxValidEnd            resp.Field
-		WxValidStart          resp.Field
-		ExtraFields           map[string]resp.Field
+		ArrAirfield           respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		DepAirfield           respjson.Field
+		GenTs                 respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		AircraftMds           respjson.Field
+		AirRefuelEvents       respjson.Field
+		AmcMissionID          respjson.Field
+		AppLandingFuel        respjson.Field
+		ArrAlternate1         respjson.Field
+		ArrAlternate1Fuel     respjson.Field
+		ArrAlternate2         respjson.Field
+		ArrAlternate2Fuel     respjson.Field
+		ArrIceFuel            respjson.Field
+		ArrRunway             respjson.Field
+		AtcAddresses          respjson.Field
+		AvgTempDev            respjson.Field
+		BurnedFuel            respjson.Field
+		CallSign              respjson.Field
+		CargoRemark           respjson.Field
+		ClimbFuel             respjson.Field
+		ClimbTime             respjson.Field
+		ContingencyFuel       respjson.Field
+		CountryCodes          respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DepAlternate          respjson.Field
+		DepressFuel           respjson.Field
+		DepRunway             respjson.Field
+		DragIndex             respjson.Field
+		EarlyDescentFuel      respjson.Field
+		EnduranceTime         respjson.Field
+		EnrouteFuel           respjson.Field
+		EnrouteTime           respjson.Field
+		Equipment             respjson.Field
+		EstDepTime            respjson.Field
+		EtopsAirfields        respjson.Field
+		EtopsAltAirfields     respjson.Field
+		EtopsRating           respjson.Field
+		EtopsValWindow        respjson.Field
+		ExternalID            respjson.Field
+		FlightPlanMessages    respjson.Field
+		FlightPlanPointGroups respjson.Field
+		FlightPlanWaypoints   respjson.Field
+		FlightRules           respjson.Field
+		FlightType            respjson.Field
+		FuelDegrade           respjson.Field
+		GpsRaim               respjson.Field
+		HoldDownFuel          respjson.Field
+		HoldFuel              respjson.Field
+		HoldTime              respjson.Field
+		IDAircraft            respjson.Field
+		IDArrAirfield         respjson.Field
+		IDDepAirfield         respjson.Field
+		IdentExtraFuel        respjson.Field
+		IDSortie              respjson.Field
+		InitialCruiseSpeed    respjson.Field
+		InitialFlightLevel    respjson.Field
+		LandingFuel           respjson.Field
+		LegNum                respjson.Field
+		MinDivertFuel         respjson.Field
+		MsnIndex              respjson.Field
+		Notes                 respjson.Field
+		NumAircraft           respjson.Field
+		OpConditionFuel       respjson.Field
+		OpWeight              respjson.Field
+		Origin                respjson.Field
+		Originator            respjson.Field
+		OrigNetwork           respjson.Field
+		PlannerRemark         respjson.Field
+		RampFuel              respjson.Field
+		RemAlternate1Fuel     respjson.Field
+		RemAlternate2Fuel     respjson.Field
+		ReserveFuel           respjson.Field
+		RouteString           respjson.Field
+		Sid                   respjson.Field
+		SourceDl              respjson.Field
+		Star                  respjson.Field
+		Status                respjson.Field
+		TailNumber            respjson.Field
+		TakeoffFuel           respjson.Field
+		TaxiFuel              respjson.Field
+		ThunderAvoidFuel      respjson.Field
+		TocFuel               respjson.Field
+		TocIceFuel            respjson.Field
+		TodFuel               respjson.Field
+		TodIceFuel            respjson.Field
+		UnidentExtraFuel      respjson.Field
+		UnusableFuel          respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		WakeTurbCat           respjson.Field
+		WindFac1              respjson.Field
+		WindFac2              respjson.Field
+		WindFacAvg            respjson.Field
+		WxValidEnd            respjson.Field
+		WxValidStart          respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -599,14 +599,14 @@ type FlightPlanAbridgedAirRefuelEvent struct {
 	DivertFuel float64 `json:"divertFuel"`
 	// Fuel remaining at the air refueling exit in pounds.
 	ExitFuel float64 `json:"exitFuel"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ArDegrade       resp.Field
-		ArExchangedFuel resp.Field
-		ArNum           resp.Field
-		DivertFuel      resp.Field
-		ExitFuel        resp.Field
-		ExtraFields     map[string]resp.Field
+		ArDegrade       respjson.Field
+		ArExchangedFuel respjson.Field
+		ArNum           respjson.Field
+		DivertFuel      respjson.Field
+		ExitFuel        respjson.Field
+		ExtraFields     map[string]respjson.Field
 		raw             string
 	} `json:"-"`
 }
@@ -630,13 +630,13 @@ type FlightPlanAbridgedFlightPlanMessage struct {
 	// The waypoint number for which the message was generated, or enter "PLAN" for a
 	// message impacting the entire route.
 	WpNum string `json:"wpNum"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		MsgText     resp.Field
-		RoutePath   resp.Field
-		Severity    resp.Field
-		WpNum       resp.Field
-		ExtraFields map[string]resp.Field
+		MsgText     respjson.Field
+		RoutePath   respjson.Field
+		Severity    respjson.Field
+		WpNum       respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -716,33 +716,33 @@ type FlightPlanAbridgedFlightPlanPointGroup struct {
 	PointGroupName string `json:"pointGroupName"`
 	// Specifies which Point Group case requires the most fuel.
 	WorstFuelCase string `json:"worstFuelCase"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AvgFuelFlow        resp.Field
-		EtopsAvgWindFactor resp.Field
-		EtopsDistance      resp.Field
-		EtopsReqFuel       resp.Field
-		EtopsTempDev       resp.Field
-		EtopsTime          resp.Field
-		FlightPlanPoints   resp.Field
-		FromTakeoffTime    resp.Field
-		FsafAvgWindFactor  resp.Field
-		FsafDistance       resp.Field
-		FsafReqFuel        resp.Field
-		FsafTempDev        resp.Field
-		FsafTime           resp.Field
-		FuelCalcAlt        resp.Field
-		FuelCalcSpd        resp.Field
-		LsafAvgWindFactor  resp.Field
-		LsafDistance       resp.Field
-		LsafName           resp.Field
-		LsafReqFuel        resp.Field
-		LsafTempDev        resp.Field
-		LsafTime           resp.Field
-		PlannedFuel        resp.Field
-		PointGroupName     resp.Field
-		WorstFuelCase      resp.Field
-		ExtraFields        map[string]resp.Field
+		AvgFuelFlow        respjson.Field
+		EtopsAvgWindFactor respjson.Field
+		EtopsDistance      respjson.Field
+		EtopsReqFuel       respjson.Field
+		EtopsTempDev       respjson.Field
+		EtopsTime          respjson.Field
+		FlightPlanPoints   respjson.Field
+		FromTakeoffTime    respjson.Field
+		FsafAvgWindFactor  respjson.Field
+		FsafDistance       respjson.Field
+		FsafReqFuel        respjson.Field
+		FsafTempDev        respjson.Field
+		FsafTime           respjson.Field
+		FuelCalcAlt        respjson.Field
+		FuelCalcSpd        respjson.Field
+		LsafAvgWindFactor  respjson.Field
+		LsafDistance       respjson.Field
+		LsafName           respjson.Field
+		LsafReqFuel        respjson.Field
+		LsafTempDev        respjson.Field
+		LsafTime           respjson.Field
+		PlannedFuel        respjson.Field
+		PointGroupName     respjson.Field
+		WorstFuelCase      respjson.Field
+		ExtraFields        map[string]respjson.Field
 		raw                string
 	} `json:"-"`
 }
@@ -769,14 +769,14 @@ type FlightPlanAbridgedFlightPlanPointGroupFlightPlanPoint struct {
 	FppReqFuel float64 `json:"fppReqFuel"`
 	// Name of this point.
 	PointName string `json:"pointName"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		FppEta      resp.Field
-		FppLat      resp.Field
-		FppLon      resp.Field
-		FppReqFuel  resp.Field
-		PointName   resp.Field
-		ExtraFields map[string]resp.Field
+		FppEta      respjson.Field
+		FppLat      respjson.Field
+		FppLon      respjson.Field
+		FppReqFuel  respjson.Field
+		PointName   respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -926,65 +926,65 @@ type FlightPlanAbridgedFlightPlanWaypoint struct {
 	ZoneFuel float64 `json:"zoneFuel"`
 	// The time to fly this zone/leg in minutes.
 	ZoneTime float64 `json:"zoneTime"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Type               resp.Field
-		WaypointName       resp.Field
-		AaTacanChannel     resp.Field
-		AirDistance        resp.Field
-		Airway             resp.Field
-		Alt                resp.Field
-		ArID               resp.Field
-		Arpt               resp.Field
-		Ata                resp.Field
-		AvgCalAirspeed     resp.Field
-		AvgDriftAng        resp.Field
-		AvgGroundSpeed     resp.Field
-		AvgTrueAirspeed    resp.Field
-		AvgWindDir         resp.Field
-		AvgWindSpeed       resp.Field
-		DayLowAlt          resp.Field
-		Eta                resp.Field
-		ExchangedFuel      resp.Field
-		FuelFlow           resp.Field
-		IceCat             resp.Field
-		Lat                resp.Field
-		LegAlternate       resp.Field
-		LegDragIndex       resp.Field
-		LegFuelDegrade     resp.Field
-		LegMach            resp.Field
-		LegMsnIndex        resp.Field
-		LegWindFac         resp.Field
-		Lon                resp.Field
-		MagCourse          resp.Field
-		MagHeading         resp.Field
-		MagVar             resp.Field
-		Navaid             resp.Field
-		NightLowAlt        resp.Field
-		NvgLowAlt          resp.Field
-		PointWindDir       resp.Field
-		PointWindSpeed     resp.Field
-		PriFreq            resp.Field
-		SecFreq            resp.Field
-		TacanChannel       resp.Field
-		TempDev            resp.Field
-		ThunderCat         resp.Field
-		TotalAirDistance   resp.Field
-		TotalFlownDistance resp.Field
-		TotalRemDistance   resp.Field
-		TotalRemFuel       resp.Field
-		TotalTime          resp.Field
-		TotalTimeRem       resp.Field
-		TotalUsedFuel      resp.Field
-		TotalWeight        resp.Field
-		TrueCourse         resp.Field
-		TurbCat            resp.Field
-		VorFreq            resp.Field
-		WaypointNum        resp.Field
-		ZoneDistance       resp.Field
-		ZoneFuel           resp.Field
-		ZoneTime           resp.Field
-		ExtraFields        map[string]resp.Field
+		Type               respjson.Field
+		WaypointName       respjson.Field
+		AaTacanChannel     respjson.Field
+		AirDistance        respjson.Field
+		Airway             respjson.Field
+		Alt                respjson.Field
+		ArID               respjson.Field
+		Arpt               respjson.Field
+		Ata                respjson.Field
+		AvgCalAirspeed     respjson.Field
+		AvgDriftAng        respjson.Field
+		AvgGroundSpeed     respjson.Field
+		AvgTrueAirspeed    respjson.Field
+		AvgWindDir         respjson.Field
+		AvgWindSpeed       respjson.Field
+		DayLowAlt          respjson.Field
+		Eta                respjson.Field
+		ExchangedFuel      respjson.Field
+		FuelFlow           respjson.Field
+		IceCat             respjson.Field
+		Lat                respjson.Field
+		LegAlternate       respjson.Field
+		LegDragIndex       respjson.Field
+		LegFuelDegrade     respjson.Field
+		LegMach            respjson.Field
+		LegMsnIndex        respjson.Field
+		LegWindFac         respjson.Field
+		Lon                respjson.Field
+		MagCourse          respjson.Field
+		MagHeading         respjson.Field
+		MagVar             respjson.Field
+		Navaid             respjson.Field
+		NightLowAlt        respjson.Field
+		NvgLowAlt          respjson.Field
+		PointWindDir       respjson.Field
+		PointWindSpeed     respjson.Field
+		PriFreq            respjson.Field
+		SecFreq            respjson.Field
+		TacanChannel       respjson.Field
+		TempDev            respjson.Field
+		ThunderCat         respjson.Field
+		TotalAirDistance   respjson.Field
+		TotalFlownDistance respjson.Field
+		TotalRemDistance   respjson.Field
+		TotalRemFuel       respjson.Field
+		TotalTime          respjson.Field
+		TotalTimeRem       respjson.Field
+		TotalUsedFuel      respjson.Field
+		TotalWeight        respjson.Field
+		TrueCourse         respjson.Field
+		TurbCat            respjson.Field
+		VorFreq            respjson.Field
+		WaypointNum        respjson.Field
+		ZoneDistance       respjson.Field
+		ZoneFuel           respjson.Field
+		ZoneTime           respjson.Field
+		ExtraFields        map[string]respjson.Field
 		raw                string
 	} `json:"-"`
 }

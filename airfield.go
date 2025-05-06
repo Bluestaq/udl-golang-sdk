@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // AirfieldService contains methods and other services that help with interacting
@@ -279,51 +279,51 @@ type AirfieldAbridged struct {
 	WacInnr string `json:"wacINNR"`
 	// Air Mobility Command (AMC) Zone availability Report identifier.
 	ZarID string `json:"zarId"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		AltAirfieldID         resp.Field
-		AlternativeNames      resp.Field
-		City                  resp.Field
-		CountryCode           resp.Field
-		CountryName           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DstInfo               resp.Field
-		ElevFt                resp.Field
-		ElevM                 resp.Field
-		Faa                   resp.Field
-		Geoloc                resp.Field
-		GmtOffset             resp.Field
-		HostNatCode           resp.Field
-		Iata                  resp.Field
-		Icao                  resp.Field
-		IDSite                resp.Field
-		InfoURL               resp.Field
-		Lat                   resp.Field
-		Lon                   resp.Field
-		MagDec                resp.Field
-		MaxRunwayLength       resp.Field
-		MiscCodes             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		RegionalAuthority     resp.Field
-		RegionName            resp.Field
-		Runways               resp.Field
-		SecondaryIcao         resp.Field
-		SourceDl              resp.Field
-		State                 resp.Field
-		StateProvinceCode     resp.Field
-		SuitabilityCodeDescs  resp.Field
-		SuitabilityCodes      resp.Field
-		WacInnr               resp.Field
-		ZarID                 resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		AltAirfieldID         respjson.Field
+		AlternativeNames      respjson.Field
+		City                  respjson.Field
+		CountryCode           respjson.Field
+		CountryName           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DstInfo               respjson.Field
+		ElevFt                respjson.Field
+		ElevM                 respjson.Field
+		Faa                   respjson.Field
+		Geoloc                respjson.Field
+		GmtOffset             respjson.Field
+		HostNatCode           respjson.Field
+		Iata                  respjson.Field
+		Icao                  respjson.Field
+		IDSite                respjson.Field
+		InfoURL               respjson.Field
+		Lat                   respjson.Field
+		Lon                   respjson.Field
+		MagDec                respjson.Field
+		MaxRunwayLength       respjson.Field
+		MiscCodes             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		RegionalAuthority     respjson.Field
+		RegionName            respjson.Field
+		Runways               respjson.Field
+		SecondaryIcao         respjson.Field
+		SourceDl              respjson.Field
+		State                 respjson.Field
+		StateProvinceCode     respjson.Field
+		SuitabilityCodeDescs  respjson.Field
+		SuitabilityCodes      respjson.Field
+		WacInnr               respjson.Field
+		ZarID                 respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -496,53 +496,53 @@ type AirfieldFull struct {
 	WacInnr string `json:"wacINNR"`
 	// Air Mobility Command (AMC) Zone availability Report identifier.
 	ZarID string `json:"zarId"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		Type                  resp.Field
-		ID                    resp.Field
-		AltAirfieldID         resp.Field
-		AlternativeNames      resp.Field
-		City                  resp.Field
-		CountryCode           resp.Field
-		CountryName           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DstInfo               resp.Field
-		ElevFt                resp.Field
-		ElevM                 resp.Field
-		Faa                   resp.Field
-		Geoloc                resp.Field
-		GmtOffset             resp.Field
-		HostNatCode           resp.Field
-		Iata                  resp.Field
-		Icao                  resp.Field
-		IDSite                resp.Field
-		InfoURL               resp.Field
-		Lat                   resp.Field
-		Lon                   resp.Field
-		MagDec                resp.Field
-		MaxRunwayLength       resp.Field
-		MiscCodes             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		RegionalAuthority     resp.Field
-		RegionName            resp.Field
-		Runways               resp.Field
-		SecondaryIcao         resp.Field
-		SourceDl              resp.Field
-		State                 resp.Field
-		StateProvinceCode     resp.Field
-		SuitabilityCodeDescs  resp.Field
-		SuitabilityCodes      resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		WacInnr               resp.Field
-		ZarID                 resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		Type                  respjson.Field
+		ID                    respjson.Field
+		AltAirfieldID         respjson.Field
+		AlternativeNames      respjson.Field
+		City                  respjson.Field
+		CountryCode           respjson.Field
+		CountryName           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DstInfo               respjson.Field
+		ElevFt                respjson.Field
+		ElevM                 respjson.Field
+		Faa                   respjson.Field
+		Geoloc                respjson.Field
+		GmtOffset             respjson.Field
+		HostNatCode           respjson.Field
+		Iata                  respjson.Field
+		Icao                  respjson.Field
+		IDSite                respjson.Field
+		InfoURL               respjson.Field
+		Lat                   respjson.Field
+		Lon                   respjson.Field
+		MagDec                respjson.Field
+		MaxRunwayLength       respjson.Field
+		MiscCodes             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		RegionalAuthority     respjson.Field
+		RegionName            respjson.Field
+		Runways               respjson.Field
+		SecondaryIcao         respjson.Field
+		SourceDl              respjson.Field
+		State                 respjson.Field
+		StateProvinceCode     respjson.Field
+		SuitabilityCodeDescs  respjson.Field
+		SuitabilityCodes      respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		WacInnr               respjson.Field
+		ZarID                 respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

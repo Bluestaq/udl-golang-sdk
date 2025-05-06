@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // LaunchVehicleService contains methods and other services that help with
@@ -202,19 +202,19 @@ type LaunchVehicleListResponse struct {
 	OrigNetwork string `json:"origNetwork"`
 	// Vehicle type.
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Type                  resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Type                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -304,23 +304,23 @@ type LaunchVehicleGetResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		LaunchVehicleDetails  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Stages                resp.Field
-		Type                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		LaunchVehicleDetails  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Stages                respjson.Field
+		Type                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -501,67 +501,67 @@ type LaunchVehicleGetResponseLaunchVehicleDetail struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Vehicle variant.
 	Variant string `json:"variant"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking               resp.Field
-		DataMode                            resp.Field
-		IDLaunchVehicle                     resp.Field
-		Source                              resp.Field
-		ID                                  resp.Field
-		AttitudeAccuracy                    resp.Field
-		Category                            resp.Field
-		CreatedAt                           resp.Field
-		CreatedBy                           resp.Field
-		DeploymentRotationRate              resp.Field
-		Diameter                            resp.Field
-		EstLaunchPrice                      resp.Field
-		EstLaunchPriceTypical               resp.Field
-		FairingExternalDiameter             resp.Field
-		FairingInternalDiameter             resp.Field
-		FairingLength                       resp.Field
-		FairingMass                         resp.Field
-		FairingMaterial                     resp.Field
-		FairingName                         resp.Field
-		FairingNotes                        resp.Field
-		Family                              resp.Field
-		GeoPayloadMass                      resp.Field
-		GtoInj3SigAccuracyApogeeMargin      resp.Field
-		GtoInj3SigAccuracyApogeeTarget      resp.Field
-		GtoInj3SigAccuracyInclinationMargin resp.Field
-		GtoInj3SigAccuracyInclinationTarget resp.Field
-		GtoInj3SigAccuracyPerigeeMargin     resp.Field
-		GtoInj3SigAccuracyPerigeeTarget     resp.Field
-		GtoPayloadMass                      resp.Field
-		LaunchMass                          resp.Field
-		LaunchPrefix                        resp.Field
-		Length                              resp.Field
-		LeoPayloadMass                      resp.Field
-		ManufacturerOrg                     resp.Field
-		ManufacturerOrgID                   resp.Field
-		MaxAccelLoad                        resp.Field
-		MaxAcousticLevel                    resp.Field
-		MaxAcousticLevelRange               resp.Field
-		MaxFairingPressureChange            resp.Field
-		MaxFlightShockForce                 resp.Field
-		MaxFlightShockFreq                  resp.Field
-		MaxPayloadFreqLat                   resp.Field
-		MaxPayloadFreqLon                   resp.Field
-		MinorVariant                        resp.Field
-		Notes                               resp.Field
-		Origin                              resp.Field
-		OrigNetwork                         resp.Field
-		Oxidizer                            resp.Field
-		PayloadNotes                        resp.Field
-		PayloadSeparationRate               resp.Field
-		Propellant                          resp.Field
-		SoundPressureLevel                  resp.Field
-		SourceURL                           resp.Field
-		SSOPayloadMass                      resp.Field
-		Tags                                resp.Field
-		UpdatedAt                           resp.Field
-		UpdatedBy                           resp.Field
-		Variant                             resp.Field
-		ExtraFields                         map[string]resp.Field
+		ClassificationMarking               respjson.Field
+		DataMode                            respjson.Field
+		IDLaunchVehicle                     respjson.Field
+		Source                              respjson.Field
+		ID                                  respjson.Field
+		AttitudeAccuracy                    respjson.Field
+		Category                            respjson.Field
+		CreatedAt                           respjson.Field
+		CreatedBy                           respjson.Field
+		DeploymentRotationRate              respjson.Field
+		Diameter                            respjson.Field
+		EstLaunchPrice                      respjson.Field
+		EstLaunchPriceTypical               respjson.Field
+		FairingExternalDiameter             respjson.Field
+		FairingInternalDiameter             respjson.Field
+		FairingLength                       respjson.Field
+		FairingMass                         respjson.Field
+		FairingMaterial                     respjson.Field
+		FairingName                         respjson.Field
+		FairingNotes                        respjson.Field
+		Family                              respjson.Field
+		GeoPayloadMass                      respjson.Field
+		GtoInj3SigAccuracyApogeeMargin      respjson.Field
+		GtoInj3SigAccuracyApogeeTarget      respjson.Field
+		GtoInj3SigAccuracyInclinationMargin respjson.Field
+		GtoInj3SigAccuracyInclinationTarget respjson.Field
+		GtoInj3SigAccuracyPerigeeMargin     respjson.Field
+		GtoInj3SigAccuracyPerigeeTarget     respjson.Field
+		GtoPayloadMass                      respjson.Field
+		LaunchMass                          respjson.Field
+		LaunchPrefix                        respjson.Field
+		Length                              respjson.Field
+		LeoPayloadMass                      respjson.Field
+		ManufacturerOrg                     respjson.Field
+		ManufacturerOrgID                   respjson.Field
+		MaxAccelLoad                        respjson.Field
+		MaxAcousticLevel                    respjson.Field
+		MaxAcousticLevelRange               respjson.Field
+		MaxFairingPressureChange            respjson.Field
+		MaxFlightShockForce                 respjson.Field
+		MaxFlightShockFreq                  respjson.Field
+		MaxPayloadFreqLat                   respjson.Field
+		MaxPayloadFreqLon                   respjson.Field
+		MinorVariant                        respjson.Field
+		Notes                               respjson.Field
+		Origin                              respjson.Field
+		OrigNetwork                         respjson.Field
+		Oxidizer                            respjson.Field
+		PayloadNotes                        respjson.Field
+		PayloadSeparationRate               respjson.Field
+		Propellant                          respjson.Field
+		SoundPressureLevel                  respjson.Field
+		SourceURL                           respjson.Field
+		SSOPayloadMass                      respjson.Field
+		Tags                                respjson.Field
+		UpdatedAt                           respjson.Field
+		UpdatedBy                           respjson.Field
+		Variant                             respjson.Field
+		ExtraFields                         map[string]respjson.Field
 		raw                                 string
 	} `json:"-"`
 }
@@ -688,52 +688,52 @@ type LaunchVehicleGetResponseStage struct {
 	VernierThrustSeaLevel float64 `json:"vernierThrustSeaLevel"`
 	// Total thrust of one of the vernier or additional engines in a vacuum in kN.
 	VernierThrustVacuum float64 `json:"vernierThrustVacuum"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking    resp.Field
-		DataMode                 resp.Field
-		IDEngine                 resp.Field
-		IDLaunchVehicle          resp.Field
-		Source                   resp.Field
-		ID                       resp.Field
-		AvionicsNotes            resp.Field
-		BurnTime                 resp.Field
-		ControlThruster1         resp.Field
-		ControlThruster2         resp.Field
-		CreatedAt                resp.Field
-		CreatedBy                resp.Field
-		Diameter                 resp.Field
-		Engine                   resp.Field
-		Length                   resp.Field
-		MainEngineThrustSeaLevel resp.Field
-		MainEngineThrustVacuum   resp.Field
-		ManufacturerOrgID        resp.Field
-		Mass                     resp.Field
-		Notes                    resp.Field
-		NumBurns                 resp.Field
-		NumControlThruster1      resp.Field
-		NumControlThruster2      resp.Field
-		NumEngines               resp.Field
-		NumStageElements         resp.Field
-		NumVernier               resp.Field
-		Origin                   resp.Field
-		OrigNetwork              resp.Field
-		PhotoURLs                resp.Field
-		Restartable              resp.Field
-		Reusable                 resp.Field
-		StageNumber              resp.Field
-		Tags                     resp.Field
-		ThrustSeaLevel           resp.Field
-		ThrustVacuum             resp.Field
-		Type                     resp.Field
-		UpdatedAt                resp.Field
-		UpdatedBy                resp.Field
-		Vernier                  resp.Field
-		VernierBurnTime          resp.Field
-		VernierNumBurns          resp.Field
-		VernierThrustSeaLevel    resp.Field
-		VernierThrustVacuum      resp.Field
-		ExtraFields              map[string]resp.Field
+		ClassificationMarking    respjson.Field
+		DataMode                 respjson.Field
+		IDEngine                 respjson.Field
+		IDLaunchVehicle          respjson.Field
+		Source                   respjson.Field
+		ID                       respjson.Field
+		AvionicsNotes            respjson.Field
+		BurnTime                 respjson.Field
+		ControlThruster1         respjson.Field
+		ControlThruster2         respjson.Field
+		CreatedAt                respjson.Field
+		CreatedBy                respjson.Field
+		Diameter                 respjson.Field
+		Engine                   respjson.Field
+		Length                   respjson.Field
+		MainEngineThrustSeaLevel respjson.Field
+		MainEngineThrustVacuum   respjson.Field
+		ManufacturerOrgID        respjson.Field
+		Mass                     respjson.Field
+		Notes                    respjson.Field
+		NumBurns                 respjson.Field
+		NumControlThruster1      respjson.Field
+		NumControlThruster2      respjson.Field
+		NumEngines               respjson.Field
+		NumStageElements         respjson.Field
+		NumVernier               respjson.Field
+		Origin                   respjson.Field
+		OrigNetwork              respjson.Field
+		PhotoURLs                respjson.Field
+		Restartable              respjson.Field
+		Reusable                 respjson.Field
+		StageNumber              respjson.Field
+		Tags                     respjson.Field
+		ThrustSeaLevel           respjson.Field
+		ThrustVacuum             respjson.Field
+		Type                     respjson.Field
+		UpdatedAt                respjson.Field
+		UpdatedBy                respjson.Field
+		Vernier                  respjson.Field
+		VernierBurnTime          respjson.Field
+		VernierNumBurns          respjson.Field
+		VernierThrustSeaLevel    respjson.Field
+		VernierThrustVacuum      respjson.Field
+		ExtraFields              map[string]respjson.Field
 		raw                      string
 	} `json:"-"`
 }
@@ -800,23 +800,23 @@ type LaunchVehicleTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		LaunchVehicleDetails  resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Stages                resp.Field
-		Type                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		LaunchVehicleDetails  respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Stages                respjson.Field
+		Type                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -997,67 +997,67 @@ type LaunchVehicleTupleResponseLaunchVehicleDetail struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Vehicle variant.
 	Variant string `json:"variant"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking               resp.Field
-		DataMode                            resp.Field
-		IDLaunchVehicle                     resp.Field
-		Source                              resp.Field
-		ID                                  resp.Field
-		AttitudeAccuracy                    resp.Field
-		Category                            resp.Field
-		CreatedAt                           resp.Field
-		CreatedBy                           resp.Field
-		DeploymentRotationRate              resp.Field
-		Diameter                            resp.Field
-		EstLaunchPrice                      resp.Field
-		EstLaunchPriceTypical               resp.Field
-		FairingExternalDiameter             resp.Field
-		FairingInternalDiameter             resp.Field
-		FairingLength                       resp.Field
-		FairingMass                         resp.Field
-		FairingMaterial                     resp.Field
-		FairingName                         resp.Field
-		FairingNotes                        resp.Field
-		Family                              resp.Field
-		GeoPayloadMass                      resp.Field
-		GtoInj3SigAccuracyApogeeMargin      resp.Field
-		GtoInj3SigAccuracyApogeeTarget      resp.Field
-		GtoInj3SigAccuracyInclinationMargin resp.Field
-		GtoInj3SigAccuracyInclinationTarget resp.Field
-		GtoInj3SigAccuracyPerigeeMargin     resp.Field
-		GtoInj3SigAccuracyPerigeeTarget     resp.Field
-		GtoPayloadMass                      resp.Field
-		LaunchMass                          resp.Field
-		LaunchPrefix                        resp.Field
-		Length                              resp.Field
-		LeoPayloadMass                      resp.Field
-		ManufacturerOrg                     resp.Field
-		ManufacturerOrgID                   resp.Field
-		MaxAccelLoad                        resp.Field
-		MaxAcousticLevel                    resp.Field
-		MaxAcousticLevelRange               resp.Field
-		MaxFairingPressureChange            resp.Field
-		MaxFlightShockForce                 resp.Field
-		MaxFlightShockFreq                  resp.Field
-		MaxPayloadFreqLat                   resp.Field
-		MaxPayloadFreqLon                   resp.Field
-		MinorVariant                        resp.Field
-		Notes                               resp.Field
-		Origin                              resp.Field
-		OrigNetwork                         resp.Field
-		Oxidizer                            resp.Field
-		PayloadNotes                        resp.Field
-		PayloadSeparationRate               resp.Field
-		Propellant                          resp.Field
-		SoundPressureLevel                  resp.Field
-		SourceURL                           resp.Field
-		SSOPayloadMass                      resp.Field
-		Tags                                resp.Field
-		UpdatedAt                           resp.Field
-		UpdatedBy                           resp.Field
-		Variant                             resp.Field
-		ExtraFields                         map[string]resp.Field
+		ClassificationMarking               respjson.Field
+		DataMode                            respjson.Field
+		IDLaunchVehicle                     respjson.Field
+		Source                              respjson.Field
+		ID                                  respjson.Field
+		AttitudeAccuracy                    respjson.Field
+		Category                            respjson.Field
+		CreatedAt                           respjson.Field
+		CreatedBy                           respjson.Field
+		DeploymentRotationRate              respjson.Field
+		Diameter                            respjson.Field
+		EstLaunchPrice                      respjson.Field
+		EstLaunchPriceTypical               respjson.Field
+		FairingExternalDiameter             respjson.Field
+		FairingInternalDiameter             respjson.Field
+		FairingLength                       respjson.Field
+		FairingMass                         respjson.Field
+		FairingMaterial                     respjson.Field
+		FairingName                         respjson.Field
+		FairingNotes                        respjson.Field
+		Family                              respjson.Field
+		GeoPayloadMass                      respjson.Field
+		GtoInj3SigAccuracyApogeeMargin      respjson.Field
+		GtoInj3SigAccuracyApogeeTarget      respjson.Field
+		GtoInj3SigAccuracyInclinationMargin respjson.Field
+		GtoInj3SigAccuracyInclinationTarget respjson.Field
+		GtoInj3SigAccuracyPerigeeMargin     respjson.Field
+		GtoInj3SigAccuracyPerigeeTarget     respjson.Field
+		GtoPayloadMass                      respjson.Field
+		LaunchMass                          respjson.Field
+		LaunchPrefix                        respjson.Field
+		Length                              respjson.Field
+		LeoPayloadMass                      respjson.Field
+		ManufacturerOrg                     respjson.Field
+		ManufacturerOrgID                   respjson.Field
+		MaxAccelLoad                        respjson.Field
+		MaxAcousticLevel                    respjson.Field
+		MaxAcousticLevelRange               respjson.Field
+		MaxFairingPressureChange            respjson.Field
+		MaxFlightShockForce                 respjson.Field
+		MaxFlightShockFreq                  respjson.Field
+		MaxPayloadFreqLat                   respjson.Field
+		MaxPayloadFreqLon                   respjson.Field
+		MinorVariant                        respjson.Field
+		Notes                               respjson.Field
+		Origin                              respjson.Field
+		OrigNetwork                         respjson.Field
+		Oxidizer                            respjson.Field
+		PayloadNotes                        respjson.Field
+		PayloadSeparationRate               respjson.Field
+		Propellant                          respjson.Field
+		SoundPressureLevel                  respjson.Field
+		SourceURL                           respjson.Field
+		SSOPayloadMass                      respjson.Field
+		Tags                                respjson.Field
+		UpdatedAt                           respjson.Field
+		UpdatedBy                           respjson.Field
+		Variant                             respjson.Field
+		ExtraFields                         map[string]respjson.Field
 		raw                                 string
 	} `json:"-"`
 }
@@ -1184,52 +1184,52 @@ type LaunchVehicleTupleResponseStage struct {
 	VernierThrustSeaLevel float64 `json:"vernierThrustSeaLevel"`
 	// Total thrust of one of the vernier or additional engines in a vacuum in kN.
 	VernierThrustVacuum float64 `json:"vernierThrustVacuum"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking    resp.Field
-		DataMode                 resp.Field
-		IDEngine                 resp.Field
-		IDLaunchVehicle          resp.Field
-		Source                   resp.Field
-		ID                       resp.Field
-		AvionicsNotes            resp.Field
-		BurnTime                 resp.Field
-		ControlThruster1         resp.Field
-		ControlThruster2         resp.Field
-		CreatedAt                resp.Field
-		CreatedBy                resp.Field
-		Diameter                 resp.Field
-		Engine                   resp.Field
-		Length                   resp.Field
-		MainEngineThrustSeaLevel resp.Field
-		MainEngineThrustVacuum   resp.Field
-		ManufacturerOrgID        resp.Field
-		Mass                     resp.Field
-		Notes                    resp.Field
-		NumBurns                 resp.Field
-		NumControlThruster1      resp.Field
-		NumControlThruster2      resp.Field
-		NumEngines               resp.Field
-		NumStageElements         resp.Field
-		NumVernier               resp.Field
-		Origin                   resp.Field
-		OrigNetwork              resp.Field
-		PhotoURLs                resp.Field
-		Restartable              resp.Field
-		Reusable                 resp.Field
-		StageNumber              resp.Field
-		Tags                     resp.Field
-		ThrustSeaLevel           resp.Field
-		ThrustVacuum             resp.Field
-		Type                     resp.Field
-		UpdatedAt                resp.Field
-		UpdatedBy                resp.Field
-		Vernier                  resp.Field
-		VernierBurnTime          resp.Field
-		VernierNumBurns          resp.Field
-		VernierThrustSeaLevel    resp.Field
-		VernierThrustVacuum      resp.Field
-		ExtraFields              map[string]resp.Field
+		ClassificationMarking    respjson.Field
+		DataMode                 respjson.Field
+		IDEngine                 respjson.Field
+		IDLaunchVehicle          respjson.Field
+		Source                   respjson.Field
+		ID                       respjson.Field
+		AvionicsNotes            respjson.Field
+		BurnTime                 respjson.Field
+		ControlThruster1         respjson.Field
+		ControlThruster2         respjson.Field
+		CreatedAt                respjson.Field
+		CreatedBy                respjson.Field
+		Diameter                 respjson.Field
+		Engine                   respjson.Field
+		Length                   respjson.Field
+		MainEngineThrustSeaLevel respjson.Field
+		MainEngineThrustVacuum   respjson.Field
+		ManufacturerOrgID        respjson.Field
+		Mass                     respjson.Field
+		Notes                    respjson.Field
+		NumBurns                 respjson.Field
+		NumControlThruster1      respjson.Field
+		NumControlThruster2      respjson.Field
+		NumEngines               respjson.Field
+		NumStageElements         respjson.Field
+		NumVernier               respjson.Field
+		Origin                   respjson.Field
+		OrigNetwork              respjson.Field
+		PhotoURLs                respjson.Field
+		Restartable              respjson.Field
+		Reusable                 respjson.Field
+		StageNumber              respjson.Field
+		Tags                     respjson.Field
+		ThrustSeaLevel           respjson.Field
+		ThrustVacuum             respjson.Field
+		Type                     respjson.Field
+		UpdatedAt                respjson.Field
+		UpdatedBy                respjson.Field
+		Vernier                  respjson.Field
+		VernierBurnTime          respjson.Field
+		VernierNumBurns          respjson.Field
+		VernierThrustSeaLevel    respjson.Field
+		VernierThrustVacuum      respjson.Field
+		ExtraFields              map[string]respjson.Field
 		raw                      string
 	} `json:"-"`
 }

@@ -15,7 +15,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
 )
 
@@ -343,54 +343,54 @@ type OrbittrackListResponse struct {
 	VehType string `json:"vehType"`
 	// Source cross-reference code for the command that originated the track report.
 	Xref string `json:"xref"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Lat                   resp.Field
-		Lon                   resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		ID                    resp.Field
-		Alt                   resp.Field
-		Amplification         resp.Field
-		AngElev               resp.Field
-		AouData               resp.Field
-		AouType               resp.Field
-		CallSign              resp.Field
-		CharlieLine           resp.Field
-		ChXRef                resp.Field
-		Cntnmnt               resp.Field
-		CountryCode           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Decay                 resp.Field
-		Dummy                 resp.Field
-		Feint                 resp.Field
-		Hq                    resp.Field
-		IDElset               resp.Field
-		IdentAmp              resp.Field
-		IDOnOrbit             resp.Field
-		Iff                   resp.Field
-		Installation          resp.Field
-		ObjectType            resp.Field
-		ObjIdent              resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		RdfRf                 resp.Field
-		Reduced               resp.Field
-		Reinforced            resp.Field
-		RptNum                resp.Field
-		SatNo                 resp.Field
-		SatStatus             resp.Field
-		Spd                   resp.Field
-		TaskForce             resp.Field
-		TrackSensors          resp.Field
-		TrkID                 resp.Field
-		VehType               resp.Field
-		Xref                  resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Lat                   respjson.Field
+		Lon                   respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		ID                    respjson.Field
+		Alt                   respjson.Field
+		Amplification         respjson.Field
+		AngElev               respjson.Field
+		AouData               respjson.Field
+		AouType               respjson.Field
+		CallSign              respjson.Field
+		CharlieLine           respjson.Field
+		ChXRef                respjson.Field
+		Cntnmnt               respjson.Field
+		CountryCode           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Decay                 respjson.Field
+		Dummy                 respjson.Field
+		Feint                 respjson.Field
+		Hq                    respjson.Field
+		IDElset               respjson.Field
+		IdentAmp              respjson.Field
+		IDOnOrbit             respjson.Field
+		Iff                   respjson.Field
+		Installation          respjson.Field
+		ObjectType            respjson.Field
+		ObjIdent              respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		RdfRf                 respjson.Field
+		Reduced               respjson.Field
+		Reinforced            respjson.Field
+		RptNum                respjson.Field
+		SatNo                 respjson.Field
+		SatStatus             respjson.Field
+		Spd                   respjson.Field
+		TaskForce             respjson.Field
+		TrackSensors          respjson.Field
+		TrkID                 respjson.Field
+		VehType               respjson.Field
+		Xref                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -495,16 +495,16 @@ type OrbittrackListResponseTrackSensor struct {
 	// scheme, these numbers sometimes collide across sensors (especially commercial
 	// sensors). It is therefore not a unique identifier.
 	SensorNumber int64 `json:"sensorNumber"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Az            resp.Field
-		Range         resp.Field
-		MinRangeLimit resp.Field
-		MissionNumber resp.Field
-		SensorFovType resp.Field
-		SensorName    resp.Field
-		SensorNumber  resp.Field
-		ExtraFields   map[string]resp.Field
+		Az            respjson.Field
+		Range         respjson.Field
+		MinRangeLimit respjson.Field
+		MissionNumber respjson.Field
+		SensorFovType respjson.Field
+		SensorName    respjson.Field
+		SensorNumber  respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }
@@ -728,55 +728,55 @@ type OrbittrackTupleResponse struct {
 	VehType string `json:"vehType"`
 	// Source cross-reference code for the command that originated the track report.
 	Xref string `json:"xref"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Lat                   resp.Field
-		Lon                   resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		ID                    resp.Field
-		Alt                   resp.Field
-		Amplification         resp.Field
-		AngElev               resp.Field
-		AouData               resp.Field
-		AouType               resp.Field
-		CallSign              resp.Field
-		CharlieLine           resp.Field
-		ChXRef                resp.Field
-		Cntnmnt               resp.Field
-		CountryCode           resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Decay                 resp.Field
-		Dummy                 resp.Field
-		Feint                 resp.Field
-		Hq                    resp.Field
-		IDElset               resp.Field
-		IdentAmp              resp.Field
-		IDOnOrbit             resp.Field
-		Iff                   resp.Field
-		Installation          resp.Field
-		ObjectType            resp.Field
-		ObjIdent              resp.Field
-		OnOrbit               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigObjectID          resp.Field
-		RdfRf                 resp.Field
-		Reduced               resp.Field
-		Reinforced            resp.Field
-		RptNum                resp.Field
-		SatNo                 resp.Field
-		SatStatus             resp.Field
-		Spd                   resp.Field
-		TaskForce             resp.Field
-		TrackSensors          resp.Field
-		TrkID                 resp.Field
-		VehType               resp.Field
-		Xref                  resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Lat                   respjson.Field
+		Lon                   respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		ID                    respjson.Field
+		Alt                   respjson.Field
+		Amplification         respjson.Field
+		AngElev               respjson.Field
+		AouData               respjson.Field
+		AouType               respjson.Field
+		CallSign              respjson.Field
+		CharlieLine           respjson.Field
+		ChXRef                respjson.Field
+		Cntnmnt               respjson.Field
+		CountryCode           respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Decay                 respjson.Field
+		Dummy                 respjson.Field
+		Feint                 respjson.Field
+		Hq                    respjson.Field
+		IDElset               respjson.Field
+		IdentAmp              respjson.Field
+		IDOnOrbit             respjson.Field
+		Iff                   respjson.Field
+		Installation          respjson.Field
+		ObjectType            respjson.Field
+		ObjIdent              respjson.Field
+		OnOrbit               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigObjectID          respjson.Field
+		RdfRf                 respjson.Field
+		Reduced               respjson.Field
+		Reinforced            respjson.Field
+		RptNum                respjson.Field
+		SatNo                 respjson.Field
+		SatStatus             respjson.Field
+		Spd                   respjson.Field
+		TaskForce             respjson.Field
+		TrackSensors          respjson.Field
+		TrkID                 respjson.Field
+		VehType               respjson.Field
+		Xref                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -881,16 +881,16 @@ type OrbittrackTupleResponseTrackSensor struct {
 	// scheme, these numbers sometimes collide across sensors (especially commercial
 	// sensors). It is therefore not a unique identifier.
 	SensorNumber int64 `json:"sensorNumber"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Az            resp.Field
-		Range         resp.Field
-		MinRangeLimit resp.Field
-		MissionNumber resp.Field
-		SensorFovType resp.Field
-		SensorName    resp.Field
-		SensorNumber  resp.Field
-		ExtraFields   map[string]resp.Field
+		Az            respjson.Field
+		Range         respjson.Field
+		MinRangeLimit respjson.Field
+		MissionNumber respjson.Field
+		SensorFovType respjson.Field
+		SensorName    respjson.Field
+		SensorNumber  respjson.Field
+		ExtraFields   map[string]respjson.Field
 		raw           string
 	} `json:"-"`
 }

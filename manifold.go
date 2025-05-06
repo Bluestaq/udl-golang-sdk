@@ -17,7 +17,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // ManifoldService contains methods and other services that help with interacting
@@ -227,22 +227,22 @@ type ManifoldListResponse struct {
 	// Weight or probability of this manifold for prioritization purposes, between 0
 	// and 1.
 	Weight float64 `json:"weight"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDObjectOfInterest    resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DeltaT                resp.Field
-		DeltaV                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Status                resp.Field
-		Weight                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDObjectOfInterest    respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DeltaT                respjson.Field
+		DeltaV                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Status                respjson.Field
+		Weight                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -334,24 +334,24 @@ type ManifoldGetResponse struct {
 	// Weight or probability of this manifold for prioritization purposes, between 0
 	// and 1.
 	Weight float64 `json:"weight"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDObjectOfInterest    resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DeltaT                resp.Field
-		DeltaV                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Status                resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		Weight                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDObjectOfInterest    respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DeltaT                respjson.Field
+		DeltaV                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Status                respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		Weight                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -443,24 +443,24 @@ type ManifoldTupleResponse struct {
 	// Weight or probability of this manifold for prioritization purposes, between 0
 	// and 1.
 	Weight float64 `json:"weight"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDObjectOfInterest    resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		DeltaT                resp.Field
-		DeltaV                resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Status                resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		Weight                resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDObjectOfInterest    respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		DeltaT                respjson.Field
+		DeltaV                respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Status                respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		Weight                respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

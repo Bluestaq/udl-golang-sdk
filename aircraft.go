@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // AircraftService contains methods and other services that help with interacting
@@ -223,32 +223,32 @@ type AircraftAbridged struct {
 	SourceDl string `json:"sourceDL"`
 	// The tail number of this aircraft.
 	TailNumber string `json:"tailNumber"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AircraftMds           resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Category              resp.Field
-		Command               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		CruiseSpeed           resp.Field
-		Dtd                   resp.Field
-		IDEntity              resp.Field
-		MaxSpeed              resp.Field
-		MinReqRunwayFt        resp.Field
-		MinReqRunwayM         resp.Field
-		NominalTaTime         resp.Field
-		Notes                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Owner                 resp.Field
-		SerialNumber          resp.Field
-		SourceDl              resp.Field
-		TailNumber            resp.Field
-		ExtraFields           map[string]resp.Field
+		AircraftMds           respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Category              respjson.Field
+		Command               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		CruiseSpeed           respjson.Field
+		Dtd                   respjson.Field
+		IDEntity              respjson.Field
+		MaxSpeed              respjson.Field
+		MinReqRunwayFt        respjson.Field
+		MinReqRunwayM         respjson.Field
+		NominalTaTime         respjson.Field
+		Notes                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Owner                 respjson.Field
+		SerialNumber          respjson.Field
+		SourceDl              respjson.Field
+		TailNumber            respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -371,35 +371,35 @@ type AircraftFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		AircraftMds           resp.Field
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Category              resp.Field
-		Command               resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		CruiseSpeed           resp.Field
-		Dtd                   resp.Field
-		Entity                resp.Field
-		IDEntity              resp.Field
-		MaxSpeed              resp.Field
-		MinReqRunwayFt        resp.Field
-		MinReqRunwayM         resp.Field
-		NominalTaTime         resp.Field
-		Notes                 resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Owner                 resp.Field
-		SerialNumber          resp.Field
-		SourceDl              resp.Field
-		TailNumber            resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		AircraftMds           respjson.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Category              respjson.Field
+		Command               respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		CruiseSpeed           respjson.Field
+		Dtd                   respjson.Field
+		Entity                respjson.Field
+		IDEntity              respjson.Field
+		MaxSpeed              respjson.Field
+		MinReqRunwayFt        respjson.Field
+		MinReqRunwayM         respjson.Field
+		NominalTaTime         respjson.Field
+		Notes                 respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Owner                 respjson.Field
+		SerialNumber          respjson.Field
+		SourceDl              respjson.Field
+		TailNumber            respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

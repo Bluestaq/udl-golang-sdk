@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // OrganizationdetailService contains methods and other services that help with
@@ -259,48 +259,48 @@ type OrganizationDetailsFull struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDOrganization        resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Address1              resp.Field
-		Address2              resp.Field
-		Address3              resp.Field
-		Broker                resp.Field
-		Ceo                   resp.Field
-		Cfo                   resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Cto                   resp.Field
-		Description           resp.Field
-		Ebitda                resp.Field
-		Email                 resp.Field
-		FinancialNotes        resp.Field
-		FinancialYearEndDate  resp.Field
-		FleetPlanNotes        resp.Field
-		FormerOrgID           resp.Field
-		Ftes                  resp.Field
-		GeoAdminLevel1        resp.Field
-		GeoAdminLevel2        resp.Field
-		GeoAdminLevel3        resp.Field
-		MassRanking           resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ParentOrgID           resp.Field
-		PostalCode            resp.Field
-		Profit                resp.Field
-		Revenue               resp.Field
-		RevenueRanking        resp.Field
-		RiskManager           resp.Field
-		ServicesNotes         resp.Field
-		Tags                  resp.Field
-		UpdatedAt             resp.Field
-		UpdatedBy             resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDOrganization        respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Address1              respjson.Field
+		Address2              respjson.Field
+		Address3              respjson.Field
+		Broker                respjson.Field
+		Ceo                   respjson.Field
+		Cfo                   respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Cto                   respjson.Field
+		Description           respjson.Field
+		Ebitda                respjson.Field
+		Email                 respjson.Field
+		FinancialNotes        respjson.Field
+		FinancialYearEndDate  respjson.Field
+		FleetPlanNotes        respjson.Field
+		FormerOrgID           respjson.Field
+		Ftes                  respjson.Field
+		GeoAdminLevel1        respjson.Field
+		GeoAdminLevel2        respjson.Field
+		GeoAdminLevel3        respjson.Field
+		MassRanking           respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ParentOrgID           respjson.Field
+		PostalCode            respjson.Field
+		Profit                respjson.Field
+		Revenue               respjson.Field
+		RevenueRanking        respjson.Field
+		RiskManager           respjson.Field
+		ServicesNotes         respjson.Field
+		Tags                  respjson.Field
+		UpdatedAt             respjson.Field
+		UpdatedBy             respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -442,45 +442,45 @@ type OrganizationdetailListResponse struct {
 	RiskManager string `json:"riskManager"`
 	// Notes on the services provided by the organization.
 	ServicesNotes string `json:"servicesNotes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDOrganization        resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Address1              resp.Field
-		Address2              resp.Field
-		Address3              resp.Field
-		Broker                resp.Field
-		Ceo                   resp.Field
-		Cfo                   resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Cto                   resp.Field
-		Description           resp.Field
-		Ebitda                resp.Field
-		Email                 resp.Field
-		FinancialNotes        resp.Field
-		FinancialYearEndDate  resp.Field
-		FleetPlanNotes        resp.Field
-		FormerOrgID           resp.Field
-		Ftes                  resp.Field
-		GeoAdminLevel1        resp.Field
-		GeoAdminLevel2        resp.Field
-		GeoAdminLevel3        resp.Field
-		MassRanking           resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ParentOrgID           resp.Field
-		PostalCode            resp.Field
-		Profit                resp.Field
-		Revenue               resp.Field
-		RevenueRanking        resp.Field
-		RiskManager           resp.Field
-		ServicesNotes         resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDOrganization        respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Address1              respjson.Field
+		Address2              respjson.Field
+		Address3              respjson.Field
+		Broker                respjson.Field
+		Ceo                   respjson.Field
+		Cfo                   respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Cto                   respjson.Field
+		Description           respjson.Field
+		Ebitda                respjson.Field
+		Email                 respjson.Field
+		FinancialNotes        respjson.Field
+		FinancialYearEndDate  respjson.Field
+		FleetPlanNotes        respjson.Field
+		FormerOrgID           respjson.Field
+		Ftes                  respjson.Field
+		GeoAdminLevel1        respjson.Field
+		GeoAdminLevel2        respjson.Field
+		GeoAdminLevel3        respjson.Field
+		MassRanking           respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ParentOrgID           respjson.Field
+		PostalCode            respjson.Field
+		Profit                respjson.Field
+		Revenue               respjson.Field
+		RevenueRanking        respjson.Field
+		RiskManager           respjson.Field
+		ServicesNotes         respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
@@ -622,45 +622,45 @@ type OrganizationdetailFindBySourceResponse struct {
 	RiskManager string `json:"riskManager"`
 	// Notes on the services provided by the organization.
 	ServicesNotes string `json:"servicesNotes"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		IDOrganization        resp.Field
-		Name                  resp.Field
-		Source                resp.Field
-		ID                    resp.Field
-		Address1              resp.Field
-		Address2              resp.Field
-		Address3              resp.Field
-		Broker                resp.Field
-		Ceo                   resp.Field
-		Cfo                   resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Cto                   resp.Field
-		Description           resp.Field
-		Ebitda                resp.Field
-		Email                 resp.Field
-		FinancialNotes        resp.Field
-		FinancialYearEndDate  resp.Field
-		FleetPlanNotes        resp.Field
-		FormerOrgID           resp.Field
-		Ftes                  resp.Field
-		GeoAdminLevel1        resp.Field
-		GeoAdminLevel2        resp.Field
-		GeoAdminLevel3        resp.Field
-		MassRanking           resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		ParentOrgID           resp.Field
-		PostalCode            resp.Field
-		Profit                resp.Field
-		Revenue               resp.Field
-		RevenueRanking        resp.Field
-		RiskManager           resp.Field
-		ServicesNotes         resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		IDOrganization        respjson.Field
+		Name                  respjson.Field
+		Source                respjson.Field
+		ID                    respjson.Field
+		Address1              respjson.Field
+		Address2              respjson.Field
+		Address3              respjson.Field
+		Broker                respjson.Field
+		Ceo                   respjson.Field
+		Cfo                   respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Cto                   respjson.Field
+		Description           respjson.Field
+		Ebitda                respjson.Field
+		Email                 respjson.Field
+		FinancialNotes        respjson.Field
+		FinancialYearEndDate  respjson.Field
+		FleetPlanNotes        respjson.Field
+		FormerOrgID           respjson.Field
+		Ftes                  respjson.Field
+		GeoAdminLevel1        respjson.Field
+		GeoAdminLevel2        respjson.Field
+		GeoAdminLevel3        respjson.Field
+		MassRanking           respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		ParentOrgID           respjson.Field
+		PostalCode            respjson.Field
+		Profit                respjson.Field
+		Revenue               respjson.Field
+		RevenueRanking        respjson.Field
+		RiskManager           respjson.Field
+		ServicesNotes         respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

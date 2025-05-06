@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // H3GeoHistoryService contains methods and other services that help with
@@ -131,24 +131,24 @@ type H3GeoHistoryQueryResponse struct {
 	// An optional field containing the type of data that is represented by this H3 Geo
 	// data set.
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		NumCells              resp.Field
-		Source                resp.Field
-		StartTime             resp.Field
-		ID                    resp.Field
-		CenterFreq            resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		EndTime               resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Resolution            resp.Field
-		SourceDl              resp.Field
-		Type                  resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		NumCells              respjson.Field
+		Source                respjson.Field
+		StartTime             respjson.Field
+		ID                    respjson.Field
+		CenterFreq            respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		EndTime               respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Resolution            respjson.Field
+		SourceDl              respjson.Field
+		Type                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

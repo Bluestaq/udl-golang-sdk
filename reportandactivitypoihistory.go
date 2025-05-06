@@ -14,7 +14,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // ReportAndActivityPoiHistoryService contains methods and other services that help
@@ -263,61 +263,61 @@ type ReportAndActivityPoiHistoryListResponse struct {
 	Type string `json:"type"`
 	// List of URLs to before/after images of this Point of Interest entity.
 	URLs []string `json:"urls"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Name                  resp.Field
-		Poiid                 resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		ID                    resp.Field
-		Activity              resp.Field
-		Agjson                resp.Field
-		Alt                   resp.Field
-		Andims                resp.Field
-		Area                  resp.Field
-		Asrid                 resp.Field
-		Asset                 resp.Field
-		Atext                 resp.Field
-		Atype                 resp.Field
-		Az                    resp.Field
-		BeNumber              resp.Field
-		Ce                    resp.Field
-		Cntct                 resp.Field
-		Conf                  resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Desc                  resp.Field
-		El                    resp.Field
-		Elle                  resp.Field
-		Env                   resp.Field
-		Groups                resp.Field
-		How                   resp.Field
-		Ident                 resp.Field
-		IDWeatherReport       resp.Field
-		Lat                   resp.Field
-		Le                    resp.Field
-		Lon                   resp.Field
-		Msnid                 resp.Field
-		Orientation           resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		Plat                  resp.Field
-		Pps                   resp.Field
-		Pri                   resp.Field
-		SourceDl              resp.Field
-		Spec                  resp.Field
-		SrcIDs                resp.Field
-		SrcTyps               resp.Field
-		Stale                 resp.Field
-		Start                 resp.Field
-		Tags                  resp.Field
-		TransactionID         resp.Field
-		Trkid                 resp.Field
-		Type                  resp.Field
-		URLs                  resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Name                  respjson.Field
+		Poiid                 respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		ID                    respjson.Field
+		Activity              respjson.Field
+		Agjson                respjson.Field
+		Alt                   respjson.Field
+		Andims                respjson.Field
+		Area                  respjson.Field
+		Asrid                 respjson.Field
+		Asset                 respjson.Field
+		Atext                 respjson.Field
+		Atype                 respjson.Field
+		Az                    respjson.Field
+		BeNumber              respjson.Field
+		Ce                    respjson.Field
+		Cntct                 respjson.Field
+		Conf                  respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Desc                  respjson.Field
+		El                    respjson.Field
+		Elle                  respjson.Field
+		Env                   respjson.Field
+		Groups                respjson.Field
+		How                   respjson.Field
+		Ident                 respjson.Field
+		IDWeatherReport       respjson.Field
+		Lat                   respjson.Field
+		Le                    respjson.Field
+		Lon                   respjson.Field
+		Msnid                 respjson.Field
+		Orientation           respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		Plat                  respjson.Field
+		Pps                   respjson.Field
+		Pri                   respjson.Field
+		SourceDl              respjson.Field
+		Spec                  respjson.Field
+		SrcIDs                respjson.Field
+		SrcTyps               respjson.Field
+		Stale                 respjson.Field
+		Start                 respjson.Field
+		Tags                  respjson.Field
+		TransactionID         respjson.Field
+		Trkid                 respjson.Field
+		Type                  respjson.Field
+		URLs                  respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }

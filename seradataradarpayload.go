@@ -16,7 +16,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // SeradataRadarPayloadService contains methods and other services that help with
@@ -247,41 +247,41 @@ type SeradataRadarPayloadListResponse struct {
 	TransmitPolarization string `json:"transmitPolarization"`
 	// Wave length in meters.
 	WaveLength float64 `json:"waveLength"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                  resp.Field
-		DataMode                               resp.Field
-		Source                                 resp.Field
-		SpacecraftID                           resp.Field
-		ID                                     resp.Field
-		Bandwidth                              resp.Field
-		BestResolution                         resp.Field
-		Category                               resp.Field
-		ConstellationInterferometricCapability resp.Field
-		CreatedAt                              resp.Field
-		CreatedBy                              resp.Field
-		DutyCycle                              resp.Field
-		FieldOfRegard                          resp.Field
-		FieldOfView                            resp.Field
-		Frequency                              resp.Field
-		FrequencyBand                          resp.Field
-		GroundStationLocations                 resp.Field
-		GroundStations                         resp.Field
-		HostedForCompanyOrgID                  resp.Field
-		IDSensor                               resp.Field
-		ManufacturerOrgID                      resp.Field
-		Name                                   resp.Field
-		Notes                                  resp.Field
-		Origin                                 resp.Field
-		OrigNetwork                            resp.Field
-		PartnerSpacecraft                      resp.Field
-		PointingMethod                         resp.Field
-		ReceivePolarization                    resp.Field
-		RecorderSize                           resp.Field
-		SwathWidth                             resp.Field
-		TransmitPolarization                   resp.Field
-		WaveLength                             resp.Field
-		ExtraFields                            map[string]resp.Field
+		ClassificationMarking                  respjson.Field
+		DataMode                               respjson.Field
+		Source                                 respjson.Field
+		SpacecraftID                           respjson.Field
+		ID                                     respjson.Field
+		Bandwidth                              respjson.Field
+		BestResolution                         respjson.Field
+		Category                               respjson.Field
+		ConstellationInterferometricCapability respjson.Field
+		CreatedAt                              respjson.Field
+		CreatedBy                              respjson.Field
+		DutyCycle                              respjson.Field
+		FieldOfRegard                          respjson.Field
+		FieldOfView                            respjson.Field
+		Frequency                              respjson.Field
+		FrequencyBand                          respjson.Field
+		GroundStationLocations                 respjson.Field
+		GroundStations                         respjson.Field
+		HostedForCompanyOrgID                  respjson.Field
+		IDSensor                               respjson.Field
+		ManufacturerOrgID                      respjson.Field
+		Name                                   respjson.Field
+		Notes                                  respjson.Field
+		Origin                                 respjson.Field
+		OrigNetwork                            respjson.Field
+		PartnerSpacecraft                      respjson.Field
+		PointingMethod                         respjson.Field
+		ReceivePolarization                    respjson.Field
+		RecorderSize                           respjson.Field
+		SwathWidth                             respjson.Field
+		TransmitPolarization                   respjson.Field
+		WaveLength                             respjson.Field
+		ExtraFields                            map[string]respjson.Field
 		raw                                    string
 	} `json:"-"`
 }
@@ -409,43 +409,43 @@ type SeradataRadarPayloadGetResponse struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Wave length in meters.
 	WaveLength float64 `json:"waveLength"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                  resp.Field
-		DataMode                               resp.Field
-		Source                                 resp.Field
-		SpacecraftID                           resp.Field
-		ID                                     resp.Field
-		Bandwidth                              resp.Field
-		BestResolution                         resp.Field
-		Category                               resp.Field
-		ConstellationInterferometricCapability resp.Field
-		CreatedAt                              resp.Field
-		CreatedBy                              resp.Field
-		DutyCycle                              resp.Field
-		FieldOfRegard                          resp.Field
-		FieldOfView                            resp.Field
-		Frequency                              resp.Field
-		FrequencyBand                          resp.Field
-		GroundStationLocations                 resp.Field
-		GroundStations                         resp.Field
-		HostedForCompanyOrgID                  resp.Field
-		IDSensor                               resp.Field
-		ManufacturerOrgID                      resp.Field
-		Name                                   resp.Field
-		Notes                                  resp.Field
-		Origin                                 resp.Field
-		OrigNetwork                            resp.Field
-		PartnerSpacecraft                      resp.Field
-		PointingMethod                         resp.Field
-		ReceivePolarization                    resp.Field
-		RecorderSize                           resp.Field
-		SwathWidth                             resp.Field
-		TransmitPolarization                   resp.Field
-		UpdatedAt                              resp.Field
-		UpdatedBy                              resp.Field
-		WaveLength                             resp.Field
-		ExtraFields                            map[string]resp.Field
+		ClassificationMarking                  respjson.Field
+		DataMode                               respjson.Field
+		Source                                 respjson.Field
+		SpacecraftID                           respjson.Field
+		ID                                     respjson.Field
+		Bandwidth                              respjson.Field
+		BestResolution                         respjson.Field
+		Category                               respjson.Field
+		ConstellationInterferometricCapability respjson.Field
+		CreatedAt                              respjson.Field
+		CreatedBy                              respjson.Field
+		DutyCycle                              respjson.Field
+		FieldOfRegard                          respjson.Field
+		FieldOfView                            respjson.Field
+		Frequency                              respjson.Field
+		FrequencyBand                          respjson.Field
+		GroundStationLocations                 respjson.Field
+		GroundStations                         respjson.Field
+		HostedForCompanyOrgID                  respjson.Field
+		IDSensor                               respjson.Field
+		ManufacturerOrgID                      respjson.Field
+		Name                                   respjson.Field
+		Notes                                  respjson.Field
+		Origin                                 respjson.Field
+		OrigNetwork                            respjson.Field
+		PartnerSpacecraft                      respjson.Field
+		PointingMethod                         respjson.Field
+		ReceivePolarization                    respjson.Field
+		RecorderSize                           respjson.Field
+		SwathWidth                             respjson.Field
+		TransmitPolarization                   respjson.Field
+		UpdatedAt                              respjson.Field
+		UpdatedBy                              respjson.Field
+		WaveLength                             respjson.Field
+		ExtraFields                            map[string]respjson.Field
 		raw                                    string
 	} `json:"-"`
 }
@@ -573,43 +573,43 @@ type SeradataRadarPayloadTupleResponse struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Wave length in meters.
 	WaveLength float64 `json:"waveLength"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking                  resp.Field
-		DataMode                               resp.Field
-		Source                                 resp.Field
-		SpacecraftID                           resp.Field
-		ID                                     resp.Field
-		Bandwidth                              resp.Field
-		BestResolution                         resp.Field
-		Category                               resp.Field
-		ConstellationInterferometricCapability resp.Field
-		CreatedAt                              resp.Field
-		CreatedBy                              resp.Field
-		DutyCycle                              resp.Field
-		FieldOfRegard                          resp.Field
-		FieldOfView                            resp.Field
-		Frequency                              resp.Field
-		FrequencyBand                          resp.Field
-		GroundStationLocations                 resp.Field
-		GroundStations                         resp.Field
-		HostedForCompanyOrgID                  resp.Field
-		IDSensor                               resp.Field
-		ManufacturerOrgID                      resp.Field
-		Name                                   resp.Field
-		Notes                                  resp.Field
-		Origin                                 resp.Field
-		OrigNetwork                            resp.Field
-		PartnerSpacecraft                      resp.Field
-		PointingMethod                         resp.Field
-		ReceivePolarization                    resp.Field
-		RecorderSize                           resp.Field
-		SwathWidth                             resp.Field
-		TransmitPolarization                   resp.Field
-		UpdatedAt                              resp.Field
-		UpdatedBy                              resp.Field
-		WaveLength                             resp.Field
-		ExtraFields                            map[string]resp.Field
+		ClassificationMarking                  respjson.Field
+		DataMode                               respjson.Field
+		Source                                 respjson.Field
+		SpacecraftID                           respjson.Field
+		ID                                     respjson.Field
+		Bandwidth                              respjson.Field
+		BestResolution                         respjson.Field
+		Category                               respjson.Field
+		ConstellationInterferometricCapability respjson.Field
+		CreatedAt                              respjson.Field
+		CreatedBy                              respjson.Field
+		DutyCycle                              respjson.Field
+		FieldOfRegard                          respjson.Field
+		FieldOfView                            respjson.Field
+		Frequency                              respjson.Field
+		FrequencyBand                          respjson.Field
+		GroundStationLocations                 respjson.Field
+		GroundStations                         respjson.Field
+		HostedForCompanyOrgID                  respjson.Field
+		IDSensor                               respjson.Field
+		ManufacturerOrgID                      respjson.Field
+		Name                                   respjson.Field
+		Notes                                  respjson.Field
+		Origin                                 respjson.Field
+		OrigNetwork                            respjson.Field
+		PartnerSpacecraft                      respjson.Field
+		PointingMethod                         respjson.Field
+		ReceivePolarization                    respjson.Field
+		RecorderSize                           respjson.Field
+		SwathWidth                             respjson.Field
+		TransmitPolarization                   respjson.Field
+		UpdatedAt                              respjson.Field
+		UpdatedBy                              respjson.Field
+		WaveLength                             respjson.Field
+		ExtraFields                            map[string]respjson.Field
 		raw                                    string
 	} `json:"-"`
 }

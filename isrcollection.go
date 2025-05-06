@@ -15,7 +15,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/pagination"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // IsrCollectionService contains methods and other services that help with
@@ -227,43 +227,43 @@ type IsrCollectionListResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking           resp.Field
-		DataMode                        resp.Field
-		Source                          resp.Field
-		ID                              resp.Field
-		CollectionRequirements          resp.Field
-		CreatedAt                       resp.Field
-		CreatedBy                       resp.Field
-		IdexVersion                     resp.Field
-		MissionAor                      resp.Field
-		MissionCollectionArea           resp.Field
-		MissionCountry                  resp.Field
-		MissionEmphasis                 resp.Field
-		MissionID                       resp.Field
-		MissionJoa                      resp.Field
-		MissionOperation                resp.Field
-		MissionPrimaryIntelDiscipline   resp.Field
-		MissionPrimarySubCategory       resp.Field
-		MissionPriority                 resp.Field
-		MissionRegion                   resp.Field
-		MissionRole                     resp.Field
-		MissionSecondaryIntelDiscipline resp.Field
-		MissionSecondarySubCategory     resp.Field
-		MissionStartPointLat            resp.Field
-		MissionStartPointLong           resp.Field
-		MissionSubRegion                resp.Field
-		MissionSupportedUnit            resp.Field
-		MissionSyncMatrixBin            resp.Field
-		Name                            resp.Field
-		Origin                          resp.Field
-		OrigNetwork                     resp.Field
-		Taskings                        resp.Field
-		Transit                         resp.Field
-		UpdatedAt                       resp.Field
-		UpdatedBy                       resp.Field
-		ExtraFields                     map[string]resp.Field
+		ClassificationMarking           respjson.Field
+		DataMode                        respjson.Field
+		Source                          respjson.Field
+		ID                              respjson.Field
+		CollectionRequirements          respjson.Field
+		CreatedAt                       respjson.Field
+		CreatedBy                       respjson.Field
+		IdexVersion                     respjson.Field
+		MissionAor                      respjson.Field
+		MissionCollectionArea           respjson.Field
+		MissionCountry                  respjson.Field
+		MissionEmphasis                 respjson.Field
+		MissionID                       respjson.Field
+		MissionJoa                      respjson.Field
+		MissionOperation                respjson.Field
+		MissionPrimaryIntelDiscipline   respjson.Field
+		MissionPrimarySubCategory       respjson.Field
+		MissionPriority                 respjson.Field
+		MissionRegion                   respjson.Field
+		MissionRole                     respjson.Field
+		MissionSecondaryIntelDiscipline respjson.Field
+		MissionSecondarySubCategory     respjson.Field
+		MissionStartPointLat            respjson.Field
+		MissionStartPointLong           respjson.Field
+		MissionSubRegion                respjson.Field
+		MissionSupportedUnit            respjson.Field
+		MissionSyncMatrixBin            respjson.Field
+		Name                            respjson.Field
+		Origin                          respjson.Field
+		OrigNetwork                     respjson.Field
+		Taskings                        respjson.Field
+		Transit                         respjson.Field
+		UpdatedAt                       respjson.Field
+		UpdatedBy                       respjson.Field
+		ExtraFields                     map[string]respjson.Field
 		raw                             string
 	} `json:"-"`
 }
@@ -343,31 +343,31 @@ type IsrCollectionListResponseCollectionRequirement struct {
 	TargetList []string `json:"targetList"`
 	// Type collection this requirement applies to.
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID                      resp.Field
-		Country                 resp.Field
-		CridNumbers             resp.Field
-		CriticalTimes           resp.Field
-		Emphasized              resp.Field
-		ExploitationRequirement resp.Field
-		Hash                    resp.Field
-		IntelDiscipline         resp.Field
-		IsPrismCr               resp.Field
-		Operation               resp.Field
-		Priority                resp.Field
-		ReconSurvey             resp.Field
-		RecordID                resp.Field
-		Region                  resp.Field
-		Secondary               resp.Field
-		SpecialComGuidance      resp.Field
-		Start                   resp.Field
-		Stop                    resp.Field
-		Subregion               resp.Field
-		SupportedUnit           resp.Field
-		TargetList              resp.Field
-		Type                    resp.Field
-		ExtraFields             map[string]resp.Field
+		ID                      respjson.Field
+		Country                 respjson.Field
+		CridNumbers             respjson.Field
+		CriticalTimes           respjson.Field
+		Emphasized              respjson.Field
+		ExploitationRequirement respjson.Field
+		Hash                    respjson.Field
+		IntelDiscipline         respjson.Field
+		IsPrismCr               respjson.Field
+		Operation               respjson.Field
+		Priority                respjson.Field
+		ReconSurvey             respjson.Field
+		RecordID                respjson.Field
+		Region                  respjson.Field
+		Secondary               respjson.Field
+		SpecialComGuidance      respjson.Field
+		Start                   respjson.Field
+		Stop                    respjson.Field
+		Subregion               respjson.Field
+		SupportedUnit           respjson.Field
+		TargetList              respjson.Field
+		Type                    respjson.Field
+		ExtraFields             map[string]respjson.Field
 		raw                     string
 	} `json:"-"`
 }
@@ -383,11 +383,11 @@ type IsrCollectionListResponseCollectionRequirementCriticalTimes struct {
 	EarliestImagingTime time.Time `json:"earliestImagingTime,required" format:"date-time"`
 	// Critical stop time to collect an image for this requirement.
 	LatestImagingTime time.Time `json:"latestImagingTime,required" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		EarliestImagingTime resp.Field
-		LatestImagingTime   resp.Field
-		ExtraFields         map[string]resp.Field
+		EarliestImagingTime respjson.Field
+		LatestImagingTime   respjson.Field
+		ExtraFields         map[string]respjson.Field
 		raw                 string
 	} `json:"-"`
 }
@@ -412,15 +412,15 @@ type IsrCollectionListResponseCollectionRequirementExploitationRequirement struc
 	Poc IsrCollectionListResponseCollectionRequirementExploitationRequirementPoc `json:"poc"`
 	// The reporting criteria of the collection requirement.
 	ReportingCriteria string `json:"reportingCriteria"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID                resp.Field
-		Amplification     resp.Field
-		Dissemination     resp.Field
-		Eei               resp.Field
-		Poc               resp.Field
-		ReportingCriteria resp.Field
-		ExtraFields       map[string]resp.Field
+		ID                respjson.Field
+		Amplification     respjson.Field
+		Dissemination     respjson.Field
+		Eei               respjson.Field
+		Poc               respjson.Field
+		ReportingCriteria respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -454,19 +454,19 @@ type IsrCollectionListResponseCollectionRequirementExploitationRequirementPoc st
 	RadioFrequency float64 `json:"radioFrequency"`
 	// Unit the POC belongs to.
 	Unit string `json:"unit"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID             resp.Field
-		Callsign       resp.Field
-		ChatName       resp.Field
-		ChatSystem     resp.Field
-		Email          resp.Field
-		Name           resp.Field
-		Notes          resp.Field
-		Phone          resp.Field
-		RadioFrequency resp.Field
-		Unit           resp.Field
-		ExtraFields    map[string]resp.Field
+		ID             respjson.Field
+		Callsign       respjson.Field
+		ChatName       respjson.Field
+		ChatSystem     respjson.Field
+		Email          respjson.Field
+		Name           respjson.Field
+		Notes          respjson.Field
+		Phone          respjson.Field
+		RadioFrequency respjson.Field
+		Unit           respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }
@@ -543,36 +543,36 @@ type IsrCollectionListResponseTasking struct {
 	//
 	// Any of "Deliberate", "Dynamic", "Training", "Transit".
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID                              resp.Field
-		CollectionPeriods               resp.Field
-		CollectionType                  resp.Field
-		EightLine                       resp.Field
-		SpecialComGuidance              resp.Field
-		SroTrack                        resp.Field
-		TaskingAor                      resp.Field
-		TaskingCollectionArea           resp.Field
-		TaskingCollectionRequirements   resp.Field
-		TaskingCountry                  resp.Field
-		TaskingEmphasis                 resp.Field
-		TaskingJoa                      resp.Field
-		TaskingOperation                resp.Field
-		TaskingPrimaryIntelDiscipline   resp.Field
-		TaskingPrimarySubCategory       resp.Field
-		TaskingPriority                 resp.Field
-		TaskingRegion                   resp.Field
-		TaskingRetaskTime               resp.Field
-		TaskingRole                     resp.Field
-		TaskingSecondaryIntelDiscipline resp.Field
-		TaskingSecondarySubCategory     resp.Field
-		TaskingStartPointLat            resp.Field
-		TaskingStartPointLong           resp.Field
-		TaskingSubRegion                resp.Field
-		TaskingSupportedUnit            resp.Field
-		TaskingSyncMatrixBin            resp.Field
-		Type                            resp.Field
-		ExtraFields                     map[string]resp.Field
+		ID                              respjson.Field
+		CollectionPeriods               respjson.Field
+		CollectionType                  respjson.Field
+		EightLine                       respjson.Field
+		SpecialComGuidance              respjson.Field
+		SroTrack                        respjson.Field
+		TaskingAor                      respjson.Field
+		TaskingCollectionArea           respjson.Field
+		TaskingCollectionRequirements   respjson.Field
+		TaskingCountry                  respjson.Field
+		TaskingEmphasis                 respjson.Field
+		TaskingJoa                      respjson.Field
+		TaskingOperation                respjson.Field
+		TaskingPrimaryIntelDiscipline   respjson.Field
+		TaskingPrimarySubCategory       respjson.Field
+		TaskingPriority                 respjson.Field
+		TaskingRegion                   respjson.Field
+		TaskingRetaskTime               respjson.Field
+		TaskingRole                     respjson.Field
+		TaskingSecondaryIntelDiscipline respjson.Field
+		TaskingSecondarySubCategory     respjson.Field
+		TaskingStartPointLat            respjson.Field
+		TaskingStartPointLong           respjson.Field
+		TaskingSubRegion                respjson.Field
+		TaskingSupportedUnit            respjson.Field
+		TaskingSyncMatrixBin            respjson.Field
+		Type                            respjson.Field
+		ExtraFields                     map[string]respjson.Field
 		raw                             string
 	} `json:"-"`
 }
@@ -587,11 +587,11 @@ type IsrCollectionListResponseTaskingCollectionPeriods struct {
 	// Actual start and stop for the collection.
 	Actual  []IsrCollectionListResponseTaskingCollectionPeriodsActual `json:"actual"`
 	Planned IsrCollectionListResponseTaskingCollectionPeriodsPlanned  `json:"planned"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Actual      resp.Field
-		Planned     resp.Field
-		ExtraFields map[string]resp.Field
+		Actual      respjson.Field
+		Planned     respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -609,12 +609,12 @@ type IsrCollectionListResponseTaskingCollectionPeriodsActual struct {
 	Start time.Time `json:"start" format:"date-time"`
 	// Stop time the collection actually occurred, in ISO 8601 UTC format.
 	Stop time.Time `json:"stop" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID          resp.Field
-		Start       resp.Field
-		Stop        resp.Field
-		ExtraFields map[string]resp.Field
+		ID          respjson.Field
+		Start       respjson.Field
+		Stop        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -632,12 +632,12 @@ type IsrCollectionListResponseTaskingCollectionPeriodsPlanned struct {
 	Start time.Time `json:"start" format:"date-time"`
 	// Stop time of collection, in ISO 8601 UTC format.
 	Stop time.Time `json:"stop" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Additional  resp.Field
-		Start       resp.Field
-		Stop        resp.Field
-		ExtraFields map[string]resp.Field
+		Additional  respjson.Field
+		Start       respjson.Field
+		Stop        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -655,12 +655,12 @@ type IsrCollectionListResponseTaskingCollectionPeriodsPlannedAdditional struct {
 	Start time.Time `json:"start" format:"date-time"`
 	// Stop time of collection, in ISO 8601 UTC format.
 	Stop time.Time `json:"stop" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID          resp.Field
-		Start       resp.Field
-		Stop        resp.Field
-		ExtraFields map[string]resp.Field
+		ID          respjson.Field
+		Start       respjson.Field
+		Stop        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -719,31 +719,31 @@ type IsrCollectionListResponseTaskingTaskingCollectionRequirement struct {
 	TargetList []string `json:"targetList"`
 	// Type collection this requirement applies to.
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID                      resp.Field
-		Country                 resp.Field
-		CridNumbers             resp.Field
-		CriticalTimes           resp.Field
-		Emphasized              resp.Field
-		ExploitationRequirement resp.Field
-		Hash                    resp.Field
-		IntelDiscipline         resp.Field
-		IsPrismCr               resp.Field
-		Operation               resp.Field
-		Priority                resp.Field
-		ReconSurvey             resp.Field
-		RecordID                resp.Field
-		Region                  resp.Field
-		Secondary               resp.Field
-		SpecialComGuidance      resp.Field
-		Start                   resp.Field
-		Stop                    resp.Field
-		Subregion               resp.Field
-		SupportedUnit           resp.Field
-		TargetList              resp.Field
-		Type                    resp.Field
-		ExtraFields             map[string]resp.Field
+		ID                      respjson.Field
+		Country                 respjson.Field
+		CridNumbers             respjson.Field
+		CriticalTimes           respjson.Field
+		Emphasized              respjson.Field
+		ExploitationRequirement respjson.Field
+		Hash                    respjson.Field
+		IntelDiscipline         respjson.Field
+		IsPrismCr               respjson.Field
+		Operation               respjson.Field
+		Priority                respjson.Field
+		ReconSurvey             respjson.Field
+		RecordID                respjson.Field
+		Region                  respjson.Field
+		Secondary               respjson.Field
+		SpecialComGuidance      respjson.Field
+		Start                   respjson.Field
+		Stop                    respjson.Field
+		Subregion               respjson.Field
+		SupportedUnit           respjson.Field
+		TargetList              respjson.Field
+		Type                    respjson.Field
+		ExtraFields             map[string]respjson.Field
 		raw                     string
 	} `json:"-"`
 }
@@ -761,11 +761,11 @@ type IsrCollectionListResponseTaskingTaskingCollectionRequirementCriticalTimes s
 	EarliestImagingTime time.Time `json:"earliestImagingTime,required" format:"date-time"`
 	// Critical stop time to collect an image for this requirement.
 	LatestImagingTime time.Time `json:"latestImagingTime,required" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		EarliestImagingTime resp.Field
-		LatestImagingTime   resp.Field
-		ExtraFields         map[string]resp.Field
+		EarliestImagingTime respjson.Field
+		LatestImagingTime   respjson.Field
+		ExtraFields         map[string]respjson.Field
 		raw                 string
 	} `json:"-"`
 }
@@ -790,15 +790,15 @@ type IsrCollectionListResponseTaskingTaskingCollectionRequirementExploitationReq
 	Poc IsrCollectionListResponseTaskingTaskingCollectionRequirementExploitationRequirementPoc `json:"poc"`
 	// The reporting criteria of the collection requirement.
 	ReportingCriteria string `json:"reportingCriteria"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID                resp.Field
-		Amplification     resp.Field
-		Dissemination     resp.Field
-		Eei               resp.Field
-		Poc               resp.Field
-		ReportingCriteria resp.Field
-		ExtraFields       map[string]resp.Field
+		ID                respjson.Field
+		Amplification     respjson.Field
+		Dissemination     respjson.Field
+		Eei               respjson.Field
+		Poc               respjson.Field
+		ReportingCriteria respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -832,19 +832,19 @@ type IsrCollectionListResponseTaskingTaskingCollectionRequirementExploitationReq
 	RadioFrequency float64 `json:"radioFrequency"`
 	// Unit the POC belongs to.
 	Unit string `json:"unit"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID             resp.Field
-		Callsign       resp.Field
-		ChatName       resp.Field
-		ChatSystem     resp.Field
-		Email          resp.Field
-		Name           resp.Field
-		Notes          resp.Field
-		Phone          resp.Field
-		RadioFrequency resp.Field
-		Unit           resp.Field
-		ExtraFields    map[string]resp.Field
+		ID             respjson.Field
+		Callsign       respjson.Field
+		ChatName       respjson.Field
+		ChatSystem     respjson.Field
+		Email          respjson.Field
+		Name           respjson.Field
+		Notes          respjson.Field
+		Phone          respjson.Field
+		RadioFrequency respjson.Field
+		Unit           respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }
@@ -864,12 +864,12 @@ type IsrCollectionListResponseTransit struct {
 	Base string `json:"base"`
 	// Length of mission in milliseconds.
 	Duration float64 `json:"duration"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID          resp.Field
-		Base        resp.Field
-		Duration    resp.Field
-		ExtraFields map[string]resp.Field
+		ID          respjson.Field
+		Base        respjson.Field
+		Duration    respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -976,43 +976,43 @@ type IsrCollectionTupleResponse struct {
 	// Application user who updated the row in the database, auto-populated by the
 	// system.
 	UpdatedBy string `json:"updatedBy"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking           resp.Field
-		DataMode                        resp.Field
-		Source                          resp.Field
-		ID                              resp.Field
-		CollectionRequirements          resp.Field
-		CreatedAt                       resp.Field
-		CreatedBy                       resp.Field
-		IdexVersion                     resp.Field
-		MissionAor                      resp.Field
-		MissionCollectionArea           resp.Field
-		MissionCountry                  resp.Field
-		MissionEmphasis                 resp.Field
-		MissionID                       resp.Field
-		MissionJoa                      resp.Field
-		MissionOperation                resp.Field
-		MissionPrimaryIntelDiscipline   resp.Field
-		MissionPrimarySubCategory       resp.Field
-		MissionPriority                 resp.Field
-		MissionRegion                   resp.Field
-		MissionRole                     resp.Field
-		MissionSecondaryIntelDiscipline resp.Field
-		MissionSecondarySubCategory     resp.Field
-		MissionStartPointLat            resp.Field
-		MissionStartPointLong           resp.Field
-		MissionSubRegion                resp.Field
-		MissionSupportedUnit            resp.Field
-		MissionSyncMatrixBin            resp.Field
-		Name                            resp.Field
-		Origin                          resp.Field
-		OrigNetwork                     resp.Field
-		Taskings                        resp.Field
-		Transit                         resp.Field
-		UpdatedAt                       resp.Field
-		UpdatedBy                       resp.Field
-		ExtraFields                     map[string]resp.Field
+		ClassificationMarking           respjson.Field
+		DataMode                        respjson.Field
+		Source                          respjson.Field
+		ID                              respjson.Field
+		CollectionRequirements          respjson.Field
+		CreatedAt                       respjson.Field
+		CreatedBy                       respjson.Field
+		IdexVersion                     respjson.Field
+		MissionAor                      respjson.Field
+		MissionCollectionArea           respjson.Field
+		MissionCountry                  respjson.Field
+		MissionEmphasis                 respjson.Field
+		MissionID                       respjson.Field
+		MissionJoa                      respjson.Field
+		MissionOperation                respjson.Field
+		MissionPrimaryIntelDiscipline   respjson.Field
+		MissionPrimarySubCategory       respjson.Field
+		MissionPriority                 respjson.Field
+		MissionRegion                   respjson.Field
+		MissionRole                     respjson.Field
+		MissionSecondaryIntelDiscipline respjson.Field
+		MissionSecondarySubCategory     respjson.Field
+		MissionStartPointLat            respjson.Field
+		MissionStartPointLong           respjson.Field
+		MissionSubRegion                respjson.Field
+		MissionSupportedUnit            respjson.Field
+		MissionSyncMatrixBin            respjson.Field
+		Name                            respjson.Field
+		Origin                          respjson.Field
+		OrigNetwork                     respjson.Field
+		Taskings                        respjson.Field
+		Transit                         respjson.Field
+		UpdatedAt                       respjson.Field
+		UpdatedBy                       respjson.Field
+		ExtraFields                     map[string]respjson.Field
 		raw                             string
 	} `json:"-"`
 }
@@ -1092,31 +1092,31 @@ type IsrCollectionTupleResponseCollectionRequirement struct {
 	TargetList []string `json:"targetList"`
 	// Type collection this requirement applies to.
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID                      resp.Field
-		Country                 resp.Field
-		CridNumbers             resp.Field
-		CriticalTimes           resp.Field
-		Emphasized              resp.Field
-		ExploitationRequirement resp.Field
-		Hash                    resp.Field
-		IntelDiscipline         resp.Field
-		IsPrismCr               resp.Field
-		Operation               resp.Field
-		Priority                resp.Field
-		ReconSurvey             resp.Field
-		RecordID                resp.Field
-		Region                  resp.Field
-		Secondary               resp.Field
-		SpecialComGuidance      resp.Field
-		Start                   resp.Field
-		Stop                    resp.Field
-		Subregion               resp.Field
-		SupportedUnit           resp.Field
-		TargetList              resp.Field
-		Type                    resp.Field
-		ExtraFields             map[string]resp.Field
+		ID                      respjson.Field
+		Country                 respjson.Field
+		CridNumbers             respjson.Field
+		CriticalTimes           respjson.Field
+		Emphasized              respjson.Field
+		ExploitationRequirement respjson.Field
+		Hash                    respjson.Field
+		IntelDiscipline         respjson.Field
+		IsPrismCr               respjson.Field
+		Operation               respjson.Field
+		Priority                respjson.Field
+		ReconSurvey             respjson.Field
+		RecordID                respjson.Field
+		Region                  respjson.Field
+		Secondary               respjson.Field
+		SpecialComGuidance      respjson.Field
+		Start                   respjson.Field
+		Stop                    respjson.Field
+		Subregion               respjson.Field
+		SupportedUnit           respjson.Field
+		TargetList              respjson.Field
+		Type                    respjson.Field
+		ExtraFields             map[string]respjson.Field
 		raw                     string
 	} `json:"-"`
 }
@@ -1132,11 +1132,11 @@ type IsrCollectionTupleResponseCollectionRequirementCriticalTimes struct {
 	EarliestImagingTime time.Time `json:"earliestImagingTime,required" format:"date-time"`
 	// Critical stop time to collect an image for this requirement.
 	LatestImagingTime time.Time `json:"latestImagingTime,required" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		EarliestImagingTime resp.Field
-		LatestImagingTime   resp.Field
-		ExtraFields         map[string]resp.Field
+		EarliestImagingTime respjson.Field
+		LatestImagingTime   respjson.Field
+		ExtraFields         map[string]respjson.Field
 		raw                 string
 	} `json:"-"`
 }
@@ -1161,15 +1161,15 @@ type IsrCollectionTupleResponseCollectionRequirementExploitationRequirement stru
 	Poc IsrCollectionTupleResponseCollectionRequirementExploitationRequirementPoc `json:"poc"`
 	// The reporting criteria of the collection requirement.
 	ReportingCriteria string `json:"reportingCriteria"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID                resp.Field
-		Amplification     resp.Field
-		Dissemination     resp.Field
-		Eei               resp.Field
-		Poc               resp.Field
-		ReportingCriteria resp.Field
-		ExtraFields       map[string]resp.Field
+		ID                respjson.Field
+		Amplification     respjson.Field
+		Dissemination     respjson.Field
+		Eei               respjson.Field
+		Poc               respjson.Field
+		ReportingCriteria respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -1203,19 +1203,19 @@ type IsrCollectionTupleResponseCollectionRequirementExploitationRequirementPoc s
 	RadioFrequency float64 `json:"radioFrequency"`
 	// Unit the POC belongs to.
 	Unit string `json:"unit"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID             resp.Field
-		Callsign       resp.Field
-		ChatName       resp.Field
-		ChatSystem     resp.Field
-		Email          resp.Field
-		Name           resp.Field
-		Notes          resp.Field
-		Phone          resp.Field
-		RadioFrequency resp.Field
-		Unit           resp.Field
-		ExtraFields    map[string]resp.Field
+		ID             respjson.Field
+		Callsign       respjson.Field
+		ChatName       respjson.Field
+		ChatSystem     respjson.Field
+		Email          respjson.Field
+		Name           respjson.Field
+		Notes          respjson.Field
+		Phone          respjson.Field
+		RadioFrequency respjson.Field
+		Unit           respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }
@@ -1292,36 +1292,36 @@ type IsrCollectionTupleResponseTasking struct {
 	//
 	// Any of "Deliberate", "Dynamic", "Training", "Transit".
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID                              resp.Field
-		CollectionPeriods               resp.Field
-		CollectionType                  resp.Field
-		EightLine                       resp.Field
-		SpecialComGuidance              resp.Field
-		SroTrack                        resp.Field
-		TaskingAor                      resp.Field
-		TaskingCollectionArea           resp.Field
-		TaskingCollectionRequirements   resp.Field
-		TaskingCountry                  resp.Field
-		TaskingEmphasis                 resp.Field
-		TaskingJoa                      resp.Field
-		TaskingOperation                resp.Field
-		TaskingPrimaryIntelDiscipline   resp.Field
-		TaskingPrimarySubCategory       resp.Field
-		TaskingPriority                 resp.Field
-		TaskingRegion                   resp.Field
-		TaskingRetaskTime               resp.Field
-		TaskingRole                     resp.Field
-		TaskingSecondaryIntelDiscipline resp.Field
-		TaskingSecondarySubCategory     resp.Field
-		TaskingStartPointLat            resp.Field
-		TaskingStartPointLong           resp.Field
-		TaskingSubRegion                resp.Field
-		TaskingSupportedUnit            resp.Field
-		TaskingSyncMatrixBin            resp.Field
-		Type                            resp.Field
-		ExtraFields                     map[string]resp.Field
+		ID                              respjson.Field
+		CollectionPeriods               respjson.Field
+		CollectionType                  respjson.Field
+		EightLine                       respjson.Field
+		SpecialComGuidance              respjson.Field
+		SroTrack                        respjson.Field
+		TaskingAor                      respjson.Field
+		TaskingCollectionArea           respjson.Field
+		TaskingCollectionRequirements   respjson.Field
+		TaskingCountry                  respjson.Field
+		TaskingEmphasis                 respjson.Field
+		TaskingJoa                      respjson.Field
+		TaskingOperation                respjson.Field
+		TaskingPrimaryIntelDiscipline   respjson.Field
+		TaskingPrimarySubCategory       respjson.Field
+		TaskingPriority                 respjson.Field
+		TaskingRegion                   respjson.Field
+		TaskingRetaskTime               respjson.Field
+		TaskingRole                     respjson.Field
+		TaskingSecondaryIntelDiscipline respjson.Field
+		TaskingSecondarySubCategory     respjson.Field
+		TaskingStartPointLat            respjson.Field
+		TaskingStartPointLong           respjson.Field
+		TaskingSubRegion                respjson.Field
+		TaskingSupportedUnit            respjson.Field
+		TaskingSyncMatrixBin            respjson.Field
+		Type                            respjson.Field
+		ExtraFields                     map[string]respjson.Field
 		raw                             string
 	} `json:"-"`
 }
@@ -1336,11 +1336,11 @@ type IsrCollectionTupleResponseTaskingCollectionPeriods struct {
 	// Actual start and stop for the collection.
 	Actual  []IsrCollectionTupleResponseTaskingCollectionPeriodsActual `json:"actual"`
 	Planned IsrCollectionTupleResponseTaskingCollectionPeriodsPlanned  `json:"planned"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Actual      resp.Field
-		Planned     resp.Field
-		ExtraFields map[string]resp.Field
+		Actual      respjson.Field
+		Planned     respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -1358,12 +1358,12 @@ type IsrCollectionTupleResponseTaskingCollectionPeriodsActual struct {
 	Start time.Time `json:"start" format:"date-time"`
 	// Stop time the collection actually occurred, in ISO 8601 UTC format.
 	Stop time.Time `json:"stop" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID          resp.Field
-		Start       resp.Field
-		Stop        resp.Field
-		ExtraFields map[string]resp.Field
+		ID          respjson.Field
+		Start       respjson.Field
+		Stop        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -1381,12 +1381,12 @@ type IsrCollectionTupleResponseTaskingCollectionPeriodsPlanned struct {
 	Start time.Time `json:"start" format:"date-time"`
 	// Stop time of collection, in ISO 8601 UTC format.
 	Stop time.Time `json:"stop" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		Additional  resp.Field
-		Start       resp.Field
-		Stop        resp.Field
-		ExtraFields map[string]resp.Field
+		Additional  respjson.Field
+		Start       respjson.Field
+		Stop        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -1406,12 +1406,12 @@ type IsrCollectionTupleResponseTaskingCollectionPeriodsPlannedAdditional struct 
 	Start time.Time `json:"start" format:"date-time"`
 	// Stop time of collection, in ISO 8601 UTC format.
 	Stop time.Time `json:"stop" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID          resp.Field
-		Start       resp.Field
-		Stop        resp.Field
-		ExtraFields map[string]resp.Field
+		ID          respjson.Field
+		Start       respjson.Field
+		Stop        respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }
@@ -1470,31 +1470,31 @@ type IsrCollectionTupleResponseTaskingTaskingCollectionRequirement struct {
 	TargetList []string `json:"targetList"`
 	// Type collection this requirement applies to.
 	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID                      resp.Field
-		Country                 resp.Field
-		CridNumbers             resp.Field
-		CriticalTimes           resp.Field
-		Emphasized              resp.Field
-		ExploitationRequirement resp.Field
-		Hash                    resp.Field
-		IntelDiscipline         resp.Field
-		IsPrismCr               resp.Field
-		Operation               resp.Field
-		Priority                resp.Field
-		ReconSurvey             resp.Field
-		RecordID                resp.Field
-		Region                  resp.Field
-		Secondary               resp.Field
-		SpecialComGuidance      resp.Field
-		Start                   resp.Field
-		Stop                    resp.Field
-		Subregion               resp.Field
-		SupportedUnit           resp.Field
-		TargetList              resp.Field
-		Type                    resp.Field
-		ExtraFields             map[string]resp.Field
+		ID                      respjson.Field
+		Country                 respjson.Field
+		CridNumbers             respjson.Field
+		CriticalTimes           respjson.Field
+		Emphasized              respjson.Field
+		ExploitationRequirement respjson.Field
+		Hash                    respjson.Field
+		IntelDiscipline         respjson.Field
+		IsPrismCr               respjson.Field
+		Operation               respjson.Field
+		Priority                respjson.Field
+		ReconSurvey             respjson.Field
+		RecordID                respjson.Field
+		Region                  respjson.Field
+		Secondary               respjson.Field
+		SpecialComGuidance      respjson.Field
+		Start                   respjson.Field
+		Stop                    respjson.Field
+		Subregion               respjson.Field
+		SupportedUnit           respjson.Field
+		TargetList              respjson.Field
+		Type                    respjson.Field
+		ExtraFields             map[string]respjson.Field
 		raw                     string
 	} `json:"-"`
 }
@@ -1512,11 +1512,11 @@ type IsrCollectionTupleResponseTaskingTaskingCollectionRequirementCriticalTimes 
 	EarliestImagingTime time.Time `json:"earliestImagingTime,required" format:"date-time"`
 	// Critical stop time to collect an image for this requirement.
 	LatestImagingTime time.Time `json:"latestImagingTime,required" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		EarliestImagingTime resp.Field
-		LatestImagingTime   resp.Field
-		ExtraFields         map[string]resp.Field
+		EarliestImagingTime respjson.Field
+		LatestImagingTime   respjson.Field
+		ExtraFields         map[string]respjson.Field
 		raw                 string
 	} `json:"-"`
 }
@@ -1541,15 +1541,15 @@ type IsrCollectionTupleResponseTaskingTaskingCollectionRequirementExploitationRe
 	Poc IsrCollectionTupleResponseTaskingTaskingCollectionRequirementExploitationRequirementPoc `json:"poc"`
 	// The reporting criteria of the collection requirement.
 	ReportingCriteria string `json:"reportingCriteria"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID                resp.Field
-		Amplification     resp.Field
-		Dissemination     resp.Field
-		Eei               resp.Field
-		Poc               resp.Field
-		ReportingCriteria resp.Field
-		ExtraFields       map[string]resp.Field
+		ID                respjson.Field
+		Amplification     respjson.Field
+		Dissemination     respjson.Field
+		Eei               respjson.Field
+		Poc               respjson.Field
+		ReportingCriteria respjson.Field
+		ExtraFields       map[string]respjson.Field
 		raw               string
 	} `json:"-"`
 }
@@ -1583,19 +1583,19 @@ type IsrCollectionTupleResponseTaskingTaskingCollectionRequirementExploitationRe
 	RadioFrequency float64 `json:"radioFrequency"`
 	// Unit the POC belongs to.
 	Unit string `json:"unit"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID             resp.Field
-		Callsign       resp.Field
-		ChatName       resp.Field
-		ChatSystem     resp.Field
-		Email          resp.Field
-		Name           resp.Field
-		Notes          resp.Field
-		Phone          resp.Field
-		RadioFrequency resp.Field
-		Unit           resp.Field
-		ExtraFields    map[string]resp.Field
+		ID             respjson.Field
+		Callsign       respjson.Field
+		ChatName       respjson.Field
+		ChatSystem     respjson.Field
+		Email          respjson.Field
+		Name           respjson.Field
+		Notes          respjson.Field
+		Phone          respjson.Field
+		RadioFrequency respjson.Field
+		Unit           respjson.Field
+		ExtraFields    map[string]respjson.Field
 		raw            string
 	} `json:"-"`
 }
@@ -1615,12 +1615,12 @@ type IsrCollectionTupleResponseTransit struct {
 	Base string `json:"base"`
 	// Length of mission in milliseconds.
 	Duration float64 `json:"duration"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID          resp.Field
-		Base        resp.Field
-		Duration    resp.Field
-		ExtraFields map[string]resp.Field
+		ID          respjson.Field
+		Base        respjson.Field
+		Duration    respjson.Field
+		ExtraFields map[string]respjson.Field
 		raw         string
 	} `json:"-"`
 }

@@ -13,7 +13,7 @@ import (
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/resp"
+	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
 )
 
 // ObservationMonoradarHistoryService contains methods and other services that help
@@ -260,82 +260,82 @@ type ObservationMonoradarHistoryQueryResponse struct {
 	Tti string `json:"tti"`
 	// Warning/Error Conditions and Target Classification.
 	Wectc []string `json:"wectc"`
-	// JSON contains metadata for fields, check presence with [resp.Field.Valid].
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking resp.Field
-		DataMode              resp.Field
-		Msgfmt                resp.Field
-		Msgts                 resp.Field
-		Msgtyp                resp.Field
-		Source                resp.Field
-		Ts                    resp.Field
-		ID                    resp.Field
-		Acp                   resp.Field
-		Addr                  resp.Field
-		Af                    resp.Field
-		Aims                  resp.Field
-		Alt3d                 resp.Field
-		Artsqual              resp.Field
-		Az                    resp.Field
-		Azdelt                resp.Field
-		Bcnhits               resp.Field
-		Cartpos               resp.Field
-		Cdm                   resp.Field
-		Code7500              resp.Field
-		Code7600              resp.Field
-		Code7700              resp.Field
-		CreatedAt             resp.Field
-		CreatedBy             resp.Field
-		Faa                   resp.Field
-		Grndspd               resp.Field
-		Hdng                  resp.Field
-		IDSensor              resp.Field
-		M1                    resp.Field
-		M1g                   resp.Field
-		M1v                   resp.Field
-		M2                    resp.Field
-		M2g                   resp.Field
-		M2v                   resp.Field
-		M2xv                  resp.Field
-		M3a                   resp.Field
-		M3ag                  resp.Field
-		M3av                  resp.Field
-		M3axv                 resp.Field
-		M4                    resp.Field
-		M4d1d2                resp.Field
-		M4v                   resp.Field
-		Mah                   resp.Field
-		Mc                    resp.Field
-		Mcg                   resp.Field
-		Mcv                   resp.Field
-		Milemrgcy             resp.Field
-		Mrgrpt                resp.Field
-		Mscommb               resp.Field
-		Mti                   resp.Field
-		Origin                resp.Field
-		OrigNetwork           resp.Field
-		OrigSensorID          resp.Field
-		Psrrl                 resp.Field
-		Rad                   resp.Field
-		Rng                   resp.Field
-		Rngdelt               resp.Field
-		Sac                   resp.Field
-		Senalt                resp.Field
-		Senlat                resp.Field
-		Senlon                resp.Field
-		Sic                   resp.Field
-		Spi                   resp.Field
-		Ssrl                  resp.Field
-		Tags                  resp.Field
-		Tgtconf               resp.Field
-		Tgtcorr               resp.Field
-		Tgtid                 resp.Field
-		Tis                   resp.Field
-		Trkelig               resp.Field
-		Trknum                resp.Field
-		Tti                   resp.Field
-		Wectc                 resp.Field
-		ExtraFields           map[string]resp.Field
+		ClassificationMarking respjson.Field
+		DataMode              respjson.Field
+		Msgfmt                respjson.Field
+		Msgts                 respjson.Field
+		Msgtyp                respjson.Field
+		Source                respjson.Field
+		Ts                    respjson.Field
+		ID                    respjson.Field
+		Acp                   respjson.Field
+		Addr                  respjson.Field
+		Af                    respjson.Field
+		Aims                  respjson.Field
+		Alt3d                 respjson.Field
+		Artsqual              respjson.Field
+		Az                    respjson.Field
+		Azdelt                respjson.Field
+		Bcnhits               respjson.Field
+		Cartpos               respjson.Field
+		Cdm                   respjson.Field
+		Code7500              respjson.Field
+		Code7600              respjson.Field
+		Code7700              respjson.Field
+		CreatedAt             respjson.Field
+		CreatedBy             respjson.Field
+		Faa                   respjson.Field
+		Grndspd               respjson.Field
+		Hdng                  respjson.Field
+		IDSensor              respjson.Field
+		M1                    respjson.Field
+		M1g                   respjson.Field
+		M1v                   respjson.Field
+		M2                    respjson.Field
+		M2g                   respjson.Field
+		M2v                   respjson.Field
+		M2xv                  respjson.Field
+		M3a                   respjson.Field
+		M3ag                  respjson.Field
+		M3av                  respjson.Field
+		M3axv                 respjson.Field
+		M4                    respjson.Field
+		M4d1d2                respjson.Field
+		M4v                   respjson.Field
+		Mah                   respjson.Field
+		Mc                    respjson.Field
+		Mcg                   respjson.Field
+		Mcv                   respjson.Field
+		Milemrgcy             respjson.Field
+		Mrgrpt                respjson.Field
+		Mscommb               respjson.Field
+		Mti                   respjson.Field
+		Origin                respjson.Field
+		OrigNetwork           respjson.Field
+		OrigSensorID          respjson.Field
+		Psrrl                 respjson.Field
+		Rad                   respjson.Field
+		Rng                   respjson.Field
+		Rngdelt               respjson.Field
+		Sac                   respjson.Field
+		Senalt                respjson.Field
+		Senlat                respjson.Field
+		Senlon                respjson.Field
+		Sic                   respjson.Field
+		Spi                   respjson.Field
+		Ssrl                  respjson.Field
+		Tags                  respjson.Field
+		Tgtconf               respjson.Field
+		Tgtcorr               respjson.Field
+		Tgtid                 respjson.Field
+		Tis                   respjson.Field
+		Trkelig               respjson.Field
+		Trknum                respjson.Field
+		Tti                   respjson.Field
+		Wectc                 respjson.Field
+		ExtraFields           map[string]respjson.Field
 		raw                   string
 	} `json:"-"`
 }
