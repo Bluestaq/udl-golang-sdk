@@ -827,6 +827,9 @@ func (r SoiObservationSetNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SoiObservationSetNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SoiObservationSetNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -900,6 +903,9 @@ func (r SoiObservationSetNewParamsCalibration) MarshalJSON() (data []byte, err e
 	type shadow SoiObservationSetNewParamsCalibration
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SoiObservationSetNewParamsCalibration) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // An Optical SOI record contains observation information taken from a sensor about
 // a Space Object.
@@ -972,6 +978,9 @@ type SoiObservationSetNewParamsOpticalSoiObservationList struct {
 func (r SoiObservationSetNewParamsOpticalSoiObservationList) MarshalJSON() (data []byte, err error) {
 	type shadow SoiObservationSetNewParamsOpticalSoiObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SoiObservationSetNewParamsOpticalSoiObservationList) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // A Radar SOI record contains observation information taken from a sensor about a
@@ -1128,6 +1137,9 @@ func (r SoiObservationSetNewParamsRadarSoiObservationList) MarshalJSON() (data [
 	type shadow SoiObservationSetNewParamsRadarSoiObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SoiObservationSetNewParamsRadarSoiObservationList) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // The reference frame of the observation measurements. If the referenceFrame is
 // null it is assumed to be J2000.
@@ -1198,6 +1210,9 @@ type SoiObservationSetNewBulkParams struct {
 
 func (r SoiObservationSetNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *SoiObservationSetNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // These services provide operations for posting space object idenfification
@@ -1452,19 +1467,22 @@ func (r SoiObservationSetNewBulkParamsBody) MarshalJSON() (data []byte, err erro
 	type shadow SoiObservationSetNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SoiObservationSetNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SoiObservationSetNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SoiObservationSetNewBulkParamsBody](
-		"Type", false, "OPTICAL", "RADAR",
+		"type", "OPTICAL", "RADAR",
 	)
 	apijson.RegisterFieldValidator[SoiObservationSetNewBulkParamsBody](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 	apijson.RegisterFieldValidator[SoiObservationSetNewBulkParamsBody](
-		"SenReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"senReferenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -1508,6 +1526,9 @@ type SoiObservationSetNewBulkParamsBodyCalibration struct {
 func (r SoiObservationSetNewBulkParamsBodyCalibration) MarshalJSON() (data []byte, err error) {
 	type shadow SoiObservationSetNewBulkParamsBodyCalibration
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SoiObservationSetNewBulkParamsBodyCalibration) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // An Optical SOI record contains observation information taken from a sensor about
@@ -1581,6 +1602,9 @@ type SoiObservationSetNewBulkParamsBodyOpticalSoiObservationList struct {
 func (r SoiObservationSetNewBulkParamsBodyOpticalSoiObservationList) MarshalJSON() (data []byte, err error) {
 	type shadow SoiObservationSetNewBulkParamsBodyOpticalSoiObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SoiObservationSetNewBulkParamsBodyOpticalSoiObservationList) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // A Radar SOI record contains observation information taken from a sensor about a
@@ -1737,6 +1761,9 @@ func (r SoiObservationSetNewBulkParamsBodyRadarSoiObservationList) MarshalJSON()
 	type shadow SoiObservationSetNewBulkParamsBodyRadarSoiObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SoiObservationSetNewBulkParamsBodyRadarSoiObservationList) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type SoiObservationSetGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
@@ -1783,6 +1810,9 @@ type SoiObservationSetUnvalidatedPublishParams struct {
 
 func (r SoiObservationSetUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *SoiObservationSetUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // These services provide operations for posting space object idenfification
@@ -2037,19 +2067,22 @@ func (r SoiObservationSetUnvalidatedPublishParamsBody) MarshalJSON() (data []byt
 	type shadow SoiObservationSetUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SoiObservationSetUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SoiObservationSetUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SoiObservationSetUnvalidatedPublishParamsBody](
-		"Type", false, "OPTICAL", "RADAR",
+		"type", "OPTICAL", "RADAR",
 	)
 	apijson.RegisterFieldValidator[SoiObservationSetUnvalidatedPublishParamsBody](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 	apijson.RegisterFieldValidator[SoiObservationSetUnvalidatedPublishParamsBody](
-		"SenReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"senReferenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -2093,6 +2126,9 @@ type SoiObservationSetUnvalidatedPublishParamsBodyCalibration struct {
 func (r SoiObservationSetUnvalidatedPublishParamsBodyCalibration) MarshalJSON() (data []byte, err error) {
 	type shadow SoiObservationSetUnvalidatedPublishParamsBodyCalibration
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SoiObservationSetUnvalidatedPublishParamsBodyCalibration) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // An Optical SOI record contains observation information taken from a sensor about
@@ -2166,6 +2202,9 @@ type SoiObservationSetUnvalidatedPublishParamsBodyOpticalSoiObservationList stru
 func (r SoiObservationSetUnvalidatedPublishParamsBodyOpticalSoiObservationList) MarshalJSON() (data []byte, err error) {
 	type shadow SoiObservationSetUnvalidatedPublishParamsBodyOpticalSoiObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SoiObservationSetUnvalidatedPublishParamsBodyOpticalSoiObservationList) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // A Radar SOI record contains observation information taken from a sensor about a
@@ -2321,4 +2360,7 @@ type SoiObservationSetUnvalidatedPublishParamsBodyRadarSoiObservationList struct
 func (r SoiObservationSetUnvalidatedPublishParamsBodyRadarSoiObservationList) MarshalJSON() (data []byte, err error) {
 	type shadow SoiObservationSetUnvalidatedPublishParamsBodyRadarSoiObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SoiObservationSetUnvalidatedPublishParamsBodyRadarSoiObservationList) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

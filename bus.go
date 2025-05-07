@@ -792,6 +792,9 @@ func (r BusNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow BusNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *BusNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -977,6 +980,9 @@ type BusUpdateParams struct {
 func (r BusUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow BusUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *BusUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

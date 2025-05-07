@@ -773,6 +773,9 @@ func (r GroundImageryNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow GroundImageryNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *GroundImageryNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //

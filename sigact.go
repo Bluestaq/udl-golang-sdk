@@ -1062,6 +1062,9 @@ type SigactNewBulkParams struct {
 func (r SigactNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *SigactNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // Provides information on the dates, actors, locations, fatalities, and types of
 // all reported political violence and protest events across the world.
@@ -1342,10 +1345,13 @@ func (r SigactNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SigactNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SigactNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SigactNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1360,6 +1366,9 @@ type SigactNewBulkParamsBodyRelatedDoc struct {
 func (r SigactNewBulkParamsBodyRelatedDoc) MarshalJSON() (data []byte, err error) {
 	type shadow SigactNewBulkParamsBodyRelatedDoc
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SigactNewBulkParamsBodyRelatedDoc) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type SigactNewBulkParamsBodyRelatedDocDataSourceRef struct {
@@ -1379,6 +1388,9 @@ type SigactNewBulkParamsBodyRelatedDocDataSourceRef struct {
 func (r SigactNewBulkParamsBodyRelatedDocDataSourceRef) MarshalJSON() (data []byte, err error) {
 	type shadow SigactNewBulkParamsBodyRelatedDocDataSourceRef
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SigactNewBulkParamsBodyRelatedDocDataSourceRef) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type SigactTupleParams struct {

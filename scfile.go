@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/url"
 
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
@@ -104,6 +105,9 @@ type ScFileUpdateParams struct {
 func (r ScFileUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow ScFileUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *ScFileUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type ScFileListParams struct {

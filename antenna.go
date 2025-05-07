@@ -374,6 +374,9 @@ func (r AntennaNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow AntennaNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AntennaNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -447,6 +450,9 @@ type AntennaUpdateParams struct {
 func (r AntennaUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow AntennaUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AntennaUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

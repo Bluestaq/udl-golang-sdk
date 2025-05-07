@@ -1629,6 +1629,9 @@ func (r ObservationRfObservationNewParams) MarshalJSON() (data []byte, err error
 	type shadow ObservationRfObservationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationRfObservationNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1710,6 +1713,9 @@ type ObservationRfObservationNewBulkParams struct {
 
 func (r ObservationRfObservationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *ObservationRfObservationNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Model representation of observation data for active/passive radio frequency (RF)
@@ -2006,13 +2012,16 @@ func (r ObservationRfObservationNewBulkParamsBody) MarshalJSON() (data []byte, e
 	type shadow ObservationRfObservationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationRfObservationNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ObservationRfObservationNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ObservationRfObservationNewBulkParamsBody](
-		"PolarityType", false, "H", "V", "R", "L",
+		"polarityType", "H", "V", "R", "L",
 	)
 }
 
@@ -2061,6 +2070,9 @@ type ObservationRfObservationUnvalidatedPublishParams struct {
 
 func (r ObservationRfObservationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *ObservationRfObservationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Model representation of observation data for active/passive radio frequency (RF)
@@ -2357,12 +2369,15 @@ func (r ObservationRfObservationUnvalidatedPublishParamsBody) MarshalJSON() (dat
 	type shadow ObservationRfObservationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationRfObservationUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ObservationRfObservationUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ObservationRfObservationUnvalidatedPublishParamsBody](
-		"PolarityType", false, "H", "V", "R", "L",
+		"polarityType", "H", "V", "R", "L",
 	)
 }

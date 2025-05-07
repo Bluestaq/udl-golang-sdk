@@ -837,6 +837,9 @@ func (r StageNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow StageNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *StageNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -965,6 +968,9 @@ type StageUpdateParams struct {
 func (r StageUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow StageUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *StageUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

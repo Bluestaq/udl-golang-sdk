@@ -1010,6 +1010,9 @@ func (r StarCatalogNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow StarCatalogNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *StarCatalogNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Originating astrometric catalog for this object. Enum: [GAIADR3, HIPPARCOS,
 // USNOBSC].
@@ -1174,6 +1177,9 @@ func (r StarCatalogUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow StarCatalogUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *StarCatalogUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Originating astrometric catalog for this object. Enum: [GAIADR3, HIPPARCOS,
 // USNOBSC].
@@ -1259,6 +1265,9 @@ type StarCatalogNewBulkParams struct {
 
 func (r StarCatalogNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *StarCatalogNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // The star catalog provides the position, proper motion, parallax, and photometric
@@ -1408,13 +1417,16 @@ func (r StarCatalogNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow StarCatalogNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *StarCatalogNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[StarCatalogNewBulkParamsBody](
-		"AstrometryOrigin", false, "GAIADR3", "HIPPARCOS", "USNOBSC",
+		"astrometryOrigin", "GAIADR3", "HIPPARCOS", "USNOBSC",
 	)
 	apijson.RegisterFieldValidator[StarCatalogNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1466,6 +1478,9 @@ type StarCatalogUnvalidatedPublishParams struct {
 
 func (r StarCatalogUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *StarCatalogUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // The star catalog provides the position, proper motion, parallax, and photometric
@@ -1615,12 +1630,15 @@ func (r StarCatalogUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err
 	type shadow StarCatalogUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *StarCatalogUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[StarCatalogUnvalidatedPublishParamsBody](
-		"AstrometryOrigin", false, "GAIADR3", "HIPPARCOS", "USNOBSC",
+		"astrometryOrigin", "GAIADR3", "HIPPARCOS", "USNOBSC",
 	)
 	apijson.RegisterFieldValidator[StarCatalogUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

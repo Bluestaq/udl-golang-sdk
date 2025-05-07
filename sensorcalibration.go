@@ -1101,6 +1101,9 @@ func (r SensorCalibrationNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SensorCalibrationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorCalibrationNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1165,6 +1168,9 @@ type SensorCalibrationNewBulkParams struct {
 
 func (r SensorCalibrationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *SensorCalibrationNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // The Sensor Calibration service records data about a sensor's overall accuracy
@@ -1349,10 +1355,13 @@ func (r SensorCalibrationNewBulkParamsBody) MarshalJSON() (data []byte, err erro
 	type shadow SensorCalibrationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorCalibrationNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorCalibrationNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1404,6 +1413,9 @@ type SensorCalibrationUnvalidatedPublishParams struct {
 
 func (r SensorCalibrationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *SensorCalibrationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // The Sensor Calibration service records data about a sensor's overall accuracy
@@ -1588,9 +1600,12 @@ func (r SensorCalibrationUnvalidatedPublishParamsBody) MarshalJSON() (data []byt
 	type shadow SensorCalibrationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorCalibrationUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorCalibrationUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

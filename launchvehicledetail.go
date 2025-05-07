@@ -726,6 +726,9 @@ func (r LaunchVehicleDetailNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow LaunchVehicleDetailNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LaunchVehicleDetailNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -883,6 +886,9 @@ type LaunchVehicleDetailUpdateParams struct {
 func (r LaunchVehicleDetailUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow LaunchVehicleDetailUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *LaunchVehicleDetailUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

@@ -484,6 +484,9 @@ func (r EngineDetailNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow EngineDetailNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EngineDetailNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -596,6 +599,9 @@ type EngineDetailUpdateParams struct {
 func (r EngineDetailUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow EngineDetailUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *EngineDetailUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

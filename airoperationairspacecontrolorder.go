@@ -53,6 +53,9 @@ type AirOperationAirspaceControlOrderUnvalidatedPublishParams struct {
 func (r AirOperationAirspaceControlOrderUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *AirOperationAirspaceControlOrderUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // Beta Version Airspace Control Order: Contains airspace coordination information
 // and instructions that have been issued by an airspace control authority.
@@ -174,10 +177,13 @@ func (r AirOperationAirspaceControlOrderUnvalidatedPublishParamsBody) MarshalJSO
 	type shadow AirOperationAirspaceControlOrderUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirOperationAirspaceControlOrderUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[AirOperationAirspaceControlOrderUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -198,6 +204,9 @@ type AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControl
 func (r AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatus) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatus
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatus) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // A conditional nested segment to report multiple airspace control means within a
@@ -320,10 +329,13 @@ func (r AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceCont
 	type shadow AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatusAirspaceControlMean
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatusAirspaceControlMean) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatusAirspaceControlMean](
-		"CmShape", false, "POLYARC", "1TRACK", "POLYGON", "CIRCLE", "CORRIDOR", "APOINT", "AORBIT", "GEOLINE",
+		"cmShape", "POLYARC", "1TRACK", "POLYGON", "CIRCLE", "CORRIDOR", "APOINT", "AORBIT", "GEOLINE",
 	)
 }
 
@@ -345,6 +357,9 @@ type AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControl
 func (r AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatusAirspaceControlMeanAirspaceControlPoint) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatusAirspaceControlMeanAirspaceControlPoint
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatusAirspaceControlMeanAirspaceControlPoint) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // The timePeriods set describes the effective datetime for a given airspace
@@ -372,6 +387,9 @@ type AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControl
 func (r AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatusAirspaceControlMeanAirspaceTimePeriod) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatusAirspaceControlMeanAirspaceTimePeriod
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlMeansStatusAirspaceControlMeanAirspaceTimePeriod) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // The airspaceControlReferences set provides both USMTF and non-USMTF references
@@ -401,4 +419,7 @@ type AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControl
 func (r AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlOrderReference) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlOrderReference
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirOperationAirspaceControlOrderUnvalidatedPublishParamsBodyAirspaceControlOrderReference) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

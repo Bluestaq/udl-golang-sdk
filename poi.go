@@ -1074,6 +1074,9 @@ func (r PoiNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow PoiNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *PoiNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1137,6 +1140,9 @@ type PoiNewBulkParams struct {
 
 func (r PoiNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *PoiNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // A Point of Interest is loosely based on the MITRE CoT (Cursor on Target) schema
@@ -1321,10 +1327,13 @@ func (r PoiNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow PoiNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *PoiNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[PoiNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1370,6 +1379,9 @@ type PoiUnvalidatedPublishParams struct {
 
 func (r PoiUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *PoiUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // A Point of Interest is loosely based on the MITRE CoT (Cursor on Target) schema
@@ -1554,9 +1566,12 @@ func (r PoiUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) 
 	type shadow PoiUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *PoiUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[PoiUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

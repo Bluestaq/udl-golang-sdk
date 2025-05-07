@@ -774,6 +774,9 @@ func (r EphemerisSetNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow EphemerisSetNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EphemerisSetNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -926,10 +929,13 @@ func (r EphemerisSetNewParamsEphemerisList) MarshalJSON() (data []byte, err erro
 	type shadow EphemerisSetNewParamsEphemerisList
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EphemerisSetNewParamsEphemerisList) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[EphemerisSetNewParamsEphemerisList](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

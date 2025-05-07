@@ -1289,6 +1289,9 @@ func (r ObservationPassiveRadarObservationNewParams) MarshalJSON() (data []byte,
 	type shadow ObservationPassiveRadarObservationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationPassiveRadarObservationNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1356,6 +1359,9 @@ type ObservationPassiveRadarObservationNewBulkParams struct {
 
 func (r ObservationPassiveRadarObservationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *ObservationPassiveRadarObservationNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Model representation of observation data for passive radar based sensor
@@ -1579,10 +1585,13 @@ func (r ObservationPassiveRadarObservationNewBulkParamsBody) MarshalJSON() (data
 	type shadow ObservationPassiveRadarObservationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationPassiveRadarObservationNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ObservationPassiveRadarObservationNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1593,6 +1602,9 @@ type ObservationPassiveRadarObservationFileNewParams struct {
 
 func (r ObservationPassiveRadarObservationFileNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *ObservationPassiveRadarObservationFileNewParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Model representation of observation data for passive radar based sensor
@@ -1816,10 +1828,13 @@ func (r ObservationPassiveRadarObservationFileNewParamsBody) MarshalJSON() (data
 	type shadow ObservationPassiveRadarObservationFileNewParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationPassiveRadarObservationFileNewParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ObservationPassiveRadarObservationFileNewParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

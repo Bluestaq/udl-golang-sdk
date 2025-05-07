@@ -1615,6 +1615,9 @@ func (r CollectRequestNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow CollectRequestNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CollectRequestNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1836,10 +1839,13 @@ func (r CollectRequestNewParamsElset) MarshalJSON() (data []byte, err error) {
 	type shadow CollectRequestNewParamsElset
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CollectRequestNewParamsElset) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[CollectRequestNewParamsElset](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -2290,16 +2296,19 @@ func (r CollectRequestNewParamsStateVector) MarshalJSON() (data []byte, err erro
 	type shadow CollectRequestNewParamsStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CollectRequestNewParamsStateVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[CollectRequestNewParamsStateVector](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[CollectRequestNewParamsStateVector](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[CollectRequestNewParamsStateVector](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -2361,6 +2370,9 @@ type CollectRequestNewBulkParams struct {
 
 func (r CollectRequestNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *CollectRequestNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Collect Requests support several types of individual requests, or
@@ -2677,10 +2689,13 @@ func (r CollectRequestNewBulkParamsBody) MarshalJSON() (data []byte, err error) 
 	type shadow CollectRequestNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CollectRequestNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[CollectRequestNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -2881,10 +2896,13 @@ func (r CollectRequestNewBulkParamsBodyElset) MarshalJSON() (data []byte, err er
 	type shadow CollectRequestNewBulkParamsBodyElset
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CollectRequestNewBulkParamsBodyElset) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[CollectRequestNewBulkParamsBodyElset](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -3335,16 +3353,19 @@ func (r CollectRequestNewBulkParamsBodyStateVector) MarshalJSON() (data []byte, 
 	type shadow CollectRequestNewBulkParamsBodyStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CollectRequestNewBulkParamsBodyStateVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[CollectRequestNewBulkParamsBodyStateVector](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[CollectRequestNewBulkParamsBodyStateVector](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[CollectRequestNewBulkParamsBodyStateVector](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -3378,6 +3399,9 @@ type CollectRequestUnvalidatedPublishParams struct {
 
 func (r CollectRequestUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *CollectRequestUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Collect Requests support several types of individual requests, or
@@ -3694,10 +3718,13 @@ func (r CollectRequestUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, 
 	type shadow CollectRequestUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CollectRequestUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[CollectRequestUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -3898,10 +3925,13 @@ func (r CollectRequestUnvalidatedPublishParamsBodyElset) MarshalJSON() (data []b
 	type shadow CollectRequestUnvalidatedPublishParamsBodyElset
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CollectRequestUnvalidatedPublishParamsBodyElset) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[CollectRequestUnvalidatedPublishParamsBodyElset](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -4352,15 +4382,18 @@ func (r CollectRequestUnvalidatedPublishParamsBodyStateVector) MarshalJSON() (da
 	type shadow CollectRequestUnvalidatedPublishParamsBodyStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CollectRequestUnvalidatedPublishParamsBodyStateVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[CollectRequestUnvalidatedPublishParamsBodyStateVector](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[CollectRequestUnvalidatedPublishParamsBodyStateVector](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[CollectRequestUnvalidatedPublishParamsBodyStateVector](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }

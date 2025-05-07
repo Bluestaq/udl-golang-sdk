@@ -1770,6 +1770,9 @@ func (r SurfaceNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SurfaceNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SurfaceNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE data.
 type SurfaceNewParamsDataMode string
@@ -2053,6 +2056,9 @@ type SurfaceUpdateParams struct {
 func (r SurfaceUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SurfaceUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SurfaceUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE data.

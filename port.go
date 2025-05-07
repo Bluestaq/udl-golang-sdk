@@ -756,6 +756,9 @@ func (r PortNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow PortNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *PortNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -878,6 +881,9 @@ func (r PortUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow PortUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *PortUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -937,6 +943,9 @@ type PortNewBulkParams struct {
 
 func (r PortNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *PortNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Properties and characteristics of a maritime port, which includes location, port
@@ -1049,10 +1058,13 @@ func (r PortNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow PortNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *PortNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[PortNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

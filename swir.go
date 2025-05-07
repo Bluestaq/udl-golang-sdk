@@ -324,6 +324,9 @@ func (r SwirNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SwirNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SwirNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -387,6 +390,9 @@ type SwirNewBulkParams struct {
 
 func (r SwirNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *SwirNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Data representing observed short wave infrared (SWIR) measurements.
@@ -469,10 +475,13 @@ func (r SwirNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SwirNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SwirNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SwirNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

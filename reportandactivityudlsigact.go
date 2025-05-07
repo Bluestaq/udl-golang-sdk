@@ -86,6 +86,9 @@ type ReportAndActivityUdlSigactUnvalidatedPublishParams struct {
 func (r ReportAndActivityUdlSigactUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *ReportAndActivityUdlSigactUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // Provides information on the dates, actors, locations, fatalities, and types of
 // all reported political violence and protest events across the world.
@@ -366,10 +369,13 @@ func (r ReportAndActivityUdlSigactUnvalidatedPublishParamsBody) MarshalJSON() (d
 	type shadow ReportAndActivityUdlSigactUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ReportAndActivityUdlSigactUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ReportAndActivityUdlSigactUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -384,6 +390,9 @@ type ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDoc struct {
 func (r ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDoc) MarshalJSON() (data []byte, err error) {
 	type shadow ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDoc
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDoc) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDocDataSourceRef struct {
@@ -403,4 +412,7 @@ type ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDocDataSourceR
 func (r ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDocDataSourceRef) MarshalJSON() (data []byte, err error) {
 	type shadow ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDocDataSourceRef
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *ReportAndActivityUdlSigactUnvalidatedPublishParamsBodyRelatedDocDataSourceRef) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

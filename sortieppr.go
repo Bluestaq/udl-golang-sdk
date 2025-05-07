@@ -381,6 +381,9 @@ func (r SortiePprNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SortiePprNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SortiePprNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -476,6 +479,9 @@ func (r SortiePprUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SortiePprUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SortiePprUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -550,6 +556,9 @@ type SortiePprNewBulkParams struct {
 
 func (r SortiePprNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *SortiePprNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // SortiePPR is a regulatory requirement where operators must obtain permissions to
@@ -630,13 +639,16 @@ func (r SortiePprNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SortiePprNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SortiePprNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SortiePprNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SortiePprNewBulkParamsBody](
-		"Type", false, "M", "C",
+		"type", "M", "C",
 	)
 }
 
@@ -683,6 +695,9 @@ type SortiePprUnvalidatedPublishParams struct {
 
 func (r SortiePprUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *SortiePprUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // SortiePPR is a regulatory requirement where operators must obtain permissions to
@@ -763,12 +778,15 @@ func (r SortiePprUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err e
 	type shadow SortiePprUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SortiePprUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SortiePprUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SortiePprUnvalidatedPublishParamsBody](
-		"Type", false, "M", "C",
+		"type", "M", "C",
 	)
 }

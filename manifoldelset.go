@@ -780,6 +780,9 @@ func (r ManifoldelsetNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow ManifoldelsetNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManifoldelsetNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -895,6 +898,9 @@ func (r ManifoldelsetUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow ManifoldelsetUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManifoldelsetUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -962,6 +968,9 @@ type ManifoldelsetNewBulkParams struct {
 
 func (r ManifoldelsetNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *ManifoldelsetNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Theoretical Keplarian orbital elements belonging to an object of interest's
@@ -1075,10 +1084,13 @@ func (r ManifoldelsetNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow ManifoldelsetNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManifoldelsetNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ManifoldelsetNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

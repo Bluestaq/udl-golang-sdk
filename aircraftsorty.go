@@ -10,6 +10,7 @@ import (
 	"net/url"
 	"time"
 
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
@@ -296,6 +297,9 @@ type AircraftSortyUpdateParams struct {
 func (r AircraftSortyUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow AircraftSortyUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AircraftSortyUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

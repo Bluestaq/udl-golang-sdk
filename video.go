@@ -582,6 +582,9 @@ func (r VideoNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow VideoNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *VideoNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //

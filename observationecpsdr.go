@@ -786,6 +786,9 @@ func (r ObservationEcpsdrNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow ObservationEcpsdrNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationEcpsdrNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -868,6 +871,9 @@ type ObservationEcpsdrNewBulkParams struct {
 
 func (r ObservationEcpsdrNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *ObservationEcpsdrNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Supports Sensor Data Records (SDR) from space-borne Energetic Charged Particle
@@ -1034,10 +1040,13 @@ func (r ObservationEcpsdrNewBulkParamsBody) MarshalJSON() (data []byte, err erro
 	type shadow ObservationEcpsdrNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationEcpsdrNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ObservationEcpsdrNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

@@ -661,6 +661,9 @@ func (r SeradataOpticalPayloadNewParams) MarshalJSON() (data []byte, err error) 
 	type shadow SeradataOpticalPayloadNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SeradataOpticalPayloadNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -758,6 +761,9 @@ type SeradataOpticalPayloadUpdateParams struct {
 func (r SeradataOpticalPayloadUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SeradataOpticalPayloadUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SeradataOpticalPayloadUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

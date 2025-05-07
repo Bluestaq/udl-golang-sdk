@@ -1489,6 +1489,9 @@ func (r SiteOperationNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1539,10 +1542,13 @@ func (r SiteOperationNewParamsDailyOperation) MarshalJSON() (data []byte, err er
 	type shadow SiteOperationNewParamsDailyOperation
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationNewParamsDailyOperation) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SiteOperationNewParamsDailyOperation](
-		"DayOfWeek", false, "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY",
+		"dayOfWeek", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY",
 	)
 }
 
@@ -1559,6 +1565,9 @@ type SiteOperationNewParamsDailyOperationOperatingHour struct {
 func (r SiteOperationNewParamsDailyOperationOperatingHour) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewParamsDailyOperationOperatingHour
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SiteOperationNewParamsDailyOperationOperatingHour) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection providing maximum on ground (MOG) information for specific aircraft
@@ -1589,6 +1598,9 @@ func (r SiteOperationNewParamsMaximumOnGround) MarshalJSON() (data []byte, err e
 	type shadow SiteOperationNewParamsMaximumOnGround
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationNewParamsMaximumOnGround) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection providing relevant information in the event of deviations/exceptions
 // to normal operations.
@@ -1618,6 +1630,9 @@ func (r SiteOperationNewParamsOperationalDeviation) MarshalJSON() (data []byte, 
 	type shadow SiteOperationNewParamsOperationalDeviation
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationNewParamsOperationalDeviation) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of planning information associated with this SiteOperations record.
 type SiteOperationNewParamsOperationalPlanning struct {
@@ -1646,6 +1661,9 @@ func (r SiteOperationNewParamsOperationalPlanning) MarshalJSON() (data []byte, e
 	type shadow SiteOperationNewParamsOperationalPlanning
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationNewParamsOperationalPlanning) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection detailing operational pathways at the Site associated with this
 // SiteOperations record.
@@ -1667,6 +1685,9 @@ type SiteOperationNewParamsPathway struct {
 func (r SiteOperationNewParamsPathway) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewParamsPathway
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SiteOperationNewParamsPathway) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection documenting operational waivers that have been issued for the Site
@@ -1702,6 +1723,9 @@ type SiteOperationNewParamsWaiver struct {
 func (r SiteOperationNewParamsWaiver) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewParamsWaiver
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SiteOperationNewParamsWaiver) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type SiteOperationGetParams struct {
@@ -1792,6 +1816,9 @@ func (r SiteOperationUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1842,10 +1869,13 @@ func (r SiteOperationUpdateParamsDailyOperation) MarshalJSON() (data []byte, err
 	type shadow SiteOperationUpdateParamsDailyOperation
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationUpdateParamsDailyOperation) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SiteOperationUpdateParamsDailyOperation](
-		"DayOfWeek", false, "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY",
+		"dayOfWeek", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY",
 	)
 }
 
@@ -1862,6 +1892,9 @@ type SiteOperationUpdateParamsDailyOperationOperatingHour struct {
 func (r SiteOperationUpdateParamsDailyOperationOperatingHour) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUpdateParamsDailyOperationOperatingHour
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SiteOperationUpdateParamsDailyOperationOperatingHour) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection providing maximum on ground (MOG) information for specific aircraft
@@ -1892,6 +1925,9 @@ func (r SiteOperationUpdateParamsMaximumOnGround) MarshalJSON() (data []byte, er
 	type shadow SiteOperationUpdateParamsMaximumOnGround
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationUpdateParamsMaximumOnGround) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection providing relevant information in the event of deviations/exceptions
 // to normal operations.
@@ -1921,6 +1957,9 @@ func (r SiteOperationUpdateParamsOperationalDeviation) MarshalJSON() (data []byt
 	type shadow SiteOperationUpdateParamsOperationalDeviation
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationUpdateParamsOperationalDeviation) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of planning information associated with this SiteOperations record.
 type SiteOperationUpdateParamsOperationalPlanning struct {
@@ -1949,6 +1988,9 @@ func (r SiteOperationUpdateParamsOperationalPlanning) MarshalJSON() (data []byte
 	type shadow SiteOperationUpdateParamsOperationalPlanning
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationUpdateParamsOperationalPlanning) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection detailing operational pathways at the Site associated with this
 // SiteOperations record.
@@ -1970,6 +2012,9 @@ type SiteOperationUpdateParamsPathway struct {
 func (r SiteOperationUpdateParamsPathway) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUpdateParamsPathway
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SiteOperationUpdateParamsPathway) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection documenting operational waivers that have been issued for the Site
@@ -2005,6 +2050,9 @@ type SiteOperationUpdateParamsWaiver struct {
 func (r SiteOperationUpdateParamsWaiver) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUpdateParamsWaiver
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SiteOperationUpdateParamsWaiver) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type SiteOperationListParams struct {
@@ -2048,6 +2096,9 @@ type SiteOperationNewBulkParams struct {
 
 func (r SiteOperationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *SiteOperationNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Site operating details concerning the hours of operation, operational
@@ -2145,10 +2196,13 @@ func (r SiteOperationNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SiteOperationNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -2178,10 +2232,13 @@ func (r SiteOperationNewBulkParamsBodyDailyOperation) MarshalJSON() (data []byte
 	type shadow SiteOperationNewBulkParamsBodyDailyOperation
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationNewBulkParamsBodyDailyOperation) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SiteOperationNewBulkParamsBodyDailyOperation](
-		"DayOfWeek", false, "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY",
+		"dayOfWeek", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY",
 	)
 }
 
@@ -2198,6 +2255,9 @@ type SiteOperationNewBulkParamsBodyDailyOperationOperatingHour struct {
 func (r SiteOperationNewBulkParamsBodyDailyOperationOperatingHour) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewBulkParamsBodyDailyOperationOperatingHour
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SiteOperationNewBulkParamsBodyDailyOperationOperatingHour) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection providing maximum on ground (MOG) information for specific aircraft
@@ -2228,6 +2288,9 @@ func (r SiteOperationNewBulkParamsBodyMaximumOnGround) MarshalJSON() (data []byt
 	type shadow SiteOperationNewBulkParamsBodyMaximumOnGround
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationNewBulkParamsBodyMaximumOnGround) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection providing relevant information in the event of deviations/exceptions
 // to normal operations.
@@ -2257,6 +2320,9 @@ func (r SiteOperationNewBulkParamsBodyOperationalDeviation) MarshalJSON() (data 
 	type shadow SiteOperationNewBulkParamsBodyOperationalDeviation
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationNewBulkParamsBodyOperationalDeviation) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of planning information associated with this SiteOperations record.
 type SiteOperationNewBulkParamsBodyOperationalPlanning struct {
@@ -2285,6 +2351,9 @@ func (r SiteOperationNewBulkParamsBodyOperationalPlanning) MarshalJSON() (data [
 	type shadow SiteOperationNewBulkParamsBodyOperationalPlanning
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationNewBulkParamsBodyOperationalPlanning) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection detailing operational pathways at the Site associated with this
 // SiteOperations record.
@@ -2306,6 +2375,9 @@ type SiteOperationNewBulkParamsBodyPathway struct {
 func (r SiteOperationNewBulkParamsBodyPathway) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationNewBulkParamsBodyPathway
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SiteOperationNewBulkParamsBodyPathway) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection documenting operational waivers that have been issued for the Site
@@ -2342,6 +2414,9 @@ func (r SiteOperationNewBulkParamsBodyWaiver) MarshalJSON() (data []byte, err er
 	type shadow SiteOperationNewBulkParamsBodyWaiver
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationNewBulkParamsBodyWaiver) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type SiteOperationTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
@@ -2372,6 +2447,9 @@ type SiteOperationUnvalidatedPublishParams struct {
 
 func (r SiteOperationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *SiteOperationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Site operating details concerning the hours of operation, operational
@@ -2469,10 +2547,13 @@ func (r SiteOperationUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, e
 	type shadow SiteOperationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SiteOperationUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -2502,10 +2583,13 @@ func (r SiteOperationUnvalidatedPublishParamsBodyDailyOperation) MarshalJSON() (
 	type shadow SiteOperationUnvalidatedPublishParamsBodyDailyOperation
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationUnvalidatedPublishParamsBodyDailyOperation) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SiteOperationUnvalidatedPublishParamsBodyDailyOperation](
-		"DayOfWeek", false, "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY",
+		"dayOfWeek", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY",
 	)
 }
 
@@ -2522,6 +2606,9 @@ type SiteOperationUnvalidatedPublishParamsBodyDailyOperationOperatingHour struct
 func (r SiteOperationUnvalidatedPublishParamsBodyDailyOperationOperatingHour) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUnvalidatedPublishParamsBodyDailyOperationOperatingHour
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SiteOperationUnvalidatedPublishParamsBodyDailyOperationOperatingHour) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection providing maximum on ground (MOG) information for specific aircraft
@@ -2552,6 +2639,9 @@ func (r SiteOperationUnvalidatedPublishParamsBodyMaximumOnGround) MarshalJSON() 
 	type shadow SiteOperationUnvalidatedPublishParamsBodyMaximumOnGround
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationUnvalidatedPublishParamsBodyMaximumOnGround) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection providing relevant information in the event of deviations/exceptions
 // to normal operations.
@@ -2581,6 +2671,9 @@ func (r SiteOperationUnvalidatedPublishParamsBodyOperationalDeviation) MarshalJS
 	type shadow SiteOperationUnvalidatedPublishParamsBodyOperationalDeviation
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationUnvalidatedPublishParamsBodyOperationalDeviation) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of planning information associated with this SiteOperations record.
 type SiteOperationUnvalidatedPublishParamsBodyOperationalPlanning struct {
@@ -2609,6 +2702,9 @@ func (r SiteOperationUnvalidatedPublishParamsBodyOperationalPlanning) MarshalJSO
 	type shadow SiteOperationUnvalidatedPublishParamsBodyOperationalPlanning
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SiteOperationUnvalidatedPublishParamsBodyOperationalPlanning) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection detailing operational pathways at the Site associated with this
 // SiteOperations record.
@@ -2630,6 +2726,9 @@ type SiteOperationUnvalidatedPublishParamsBodyPathway struct {
 func (r SiteOperationUnvalidatedPublishParamsBodyPathway) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUnvalidatedPublishParamsBodyPathway
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SiteOperationUnvalidatedPublishParamsBodyPathway) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection documenting operational waivers that have been issued for the Site
@@ -2665,4 +2764,7 @@ type SiteOperationUnvalidatedPublishParamsBodyWaiver struct {
 func (r SiteOperationUnvalidatedPublishParamsBodyWaiver) MarshalJSON() (data []byte, err error) {
 	type shadow SiteOperationUnvalidatedPublishParamsBodyWaiver
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SiteOperationUnvalidatedPublishParamsBodyWaiver) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

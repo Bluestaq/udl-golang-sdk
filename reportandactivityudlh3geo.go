@@ -104,6 +104,9 @@ func (r ReportAndActivityUdlH3geoUnvalidatedPublishParams) MarshalJSON() (data [
 	type shadow ReportAndActivityUdlH3geoUnvalidatedPublishParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ReportAndActivityUdlH3geoUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Model representation of a hex cell array containing data for a set of
 // observations.
@@ -194,10 +197,13 @@ func (r ReportAndActivityUdlH3geoUnvalidatedPublishParamsCell) MarshalJSON() (da
 	type shadow ReportAndActivityUdlH3geoUnvalidatedPublishParamsCell
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ReportAndActivityUdlH3geoUnvalidatedPublishParamsCell) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ReportAndActivityUdlH3geoUnvalidatedPublishParamsCell](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

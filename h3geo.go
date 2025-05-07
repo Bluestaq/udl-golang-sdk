@@ -776,6 +776,9 @@ func (r H3GeoNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow H3GeoNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *H3GeoNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Model representation of a hex cell array containing data for a set of
 // observations.
@@ -866,10 +869,13 @@ func (r H3GeoNewParamsCell) MarshalJSON() (data []byte, err error) {
 	type shadow H3GeoNewParamsCell
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *H3GeoNewParamsCell) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[H3GeoNewParamsCell](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

@@ -1355,6 +1355,9 @@ func (r SarObservationNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SarObservationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SarObservationNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1422,6 +1425,9 @@ type SarObservationNewBulkParams struct {
 
 func (r SarObservationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *SarObservationNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Model representation of observation data for SAR based sensor phenomenologies.
@@ -1656,10 +1662,13 @@ func (r SarObservationNewBulkParamsBody) MarshalJSON() (data []byte, err error) 
 	type shadow SarObservationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SarObservationNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SarObservationNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1708,6 +1717,9 @@ type SarObservationUnvalidatedPublishParams struct {
 
 func (r SarObservationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *SarObservationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Model representation of observation data for SAR based sensor phenomenologies.
@@ -1942,9 +1954,12 @@ func (r SarObservationUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, 
 	type shadow SarObservationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SarObservationUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SarObservationUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

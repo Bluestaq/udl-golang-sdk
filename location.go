@@ -343,6 +343,9 @@ func (r LocationIngestParam) MarshalJSON() (data []byte, err error) {
 	type shadow LocationIngestParam
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LocationIngestParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -482,6 +485,9 @@ type LocationNewParams struct {
 func (r LocationNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.LocationIngest)
 }
+func (r *LocationNewParams) UnmarshalJSON(data []byte) error {
+	return r.LocationIngest.UnmarshalJSON(data)
+}
 
 type LocationUpdateParams struct {
 	// Model representation of a location, which is a specific fixed point on the earth
@@ -492,6 +498,9 @@ type LocationUpdateParams struct {
 
 func (r LocationUpdateParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.LocationIngest)
+}
+func (r *LocationUpdateParams) UnmarshalJSON(data []byte) error {
+	return r.LocationIngest.UnmarshalJSON(data)
 }
 
 type LocationListParams struct {

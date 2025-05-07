@@ -371,6 +371,9 @@ func (r OnorbitthrusterstatusNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitthrusterstatusNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OnorbitthrusterstatusNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -452,6 +455,9 @@ type OnorbitthrusterstatusNewBulkParams struct {
 
 func (r OnorbitthrusterstatusNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *OnorbitthrusterstatusNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Status information for OnorbitThruster objects.
@@ -540,10 +546,13 @@ func (r OnorbitthrusterstatusNewBulkParamsBody) MarshalJSON() (data []byte, err 
 	type shadow OnorbitthrusterstatusNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OnorbitthrusterstatusNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OnorbitthrusterstatusNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

@@ -1260,6 +1260,9 @@ func (r FlightplanNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *FlightplanNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1305,6 +1308,9 @@ func (r FlightplanNewParamsAirRefuelEvent) MarshalJSON() (data []byte, err error
 	type shadow FlightplanNewParamsAirRefuelEvent
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *FlightplanNewParamsAirRefuelEvent) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of messages associated with this flight plan indicating the severity,
 // the point where the message was generated, the path (Primary, Alternate, etc.),
@@ -1325,6 +1331,9 @@ type FlightplanNewParamsFlightPlanMessage struct {
 func (r FlightplanNewParamsFlightPlanMessage) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanNewParamsFlightPlanMessage
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *FlightplanNewParamsFlightPlanMessage) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of point groups generated for this flight plan. Groups include point
@@ -1403,6 +1412,9 @@ func (r FlightplanNewParamsFlightPlanPointGroup) MarshalJSON() (data []byte, err
 	type shadow FlightplanNewParamsFlightPlanPointGroup
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *FlightplanNewParamsFlightPlanPointGroup) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Array of point data for this Point Group.
 type FlightplanNewParamsFlightPlanPointGroupFlightPlanPoint struct {
@@ -1426,6 +1438,9 @@ type FlightplanNewParamsFlightPlanPointGroupFlightPlanPoint struct {
 func (r FlightplanNewParamsFlightPlanPointGroupFlightPlanPoint) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanNewParamsFlightPlanPointGroupFlightPlanPoint
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *FlightplanNewParamsFlightPlanPointGroupFlightPlanPoint) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of waypoints associated with this flight plan.
@@ -1575,6 +1590,9 @@ type FlightplanNewParamsFlightPlanWaypoint struct {
 func (r FlightplanNewParamsFlightPlanWaypoint) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanNewParamsFlightPlanWaypoint
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *FlightplanNewParamsFlightPlanWaypoint) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type FlightplanGetParams struct {
@@ -1856,6 +1874,9 @@ func (r FlightplanUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *FlightplanUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1901,6 +1922,9 @@ func (r FlightplanUpdateParamsAirRefuelEvent) MarshalJSON() (data []byte, err er
 	type shadow FlightplanUpdateParamsAirRefuelEvent
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *FlightplanUpdateParamsAirRefuelEvent) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of messages associated with this flight plan indicating the severity,
 // the point where the message was generated, the path (Primary, Alternate, etc.),
@@ -1921,6 +1945,9 @@ type FlightplanUpdateParamsFlightPlanMessage struct {
 func (r FlightplanUpdateParamsFlightPlanMessage) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanUpdateParamsFlightPlanMessage
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *FlightplanUpdateParamsFlightPlanMessage) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of point groups generated for this flight plan. Groups include point
@@ -1999,6 +2026,9 @@ func (r FlightplanUpdateParamsFlightPlanPointGroup) MarshalJSON() (data []byte, 
 	type shadow FlightplanUpdateParamsFlightPlanPointGroup
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *FlightplanUpdateParamsFlightPlanPointGroup) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Array of point data for this Point Group.
 type FlightplanUpdateParamsFlightPlanPointGroupFlightPlanPoint struct {
@@ -2022,6 +2052,9 @@ type FlightplanUpdateParamsFlightPlanPointGroupFlightPlanPoint struct {
 func (r FlightplanUpdateParamsFlightPlanPointGroupFlightPlanPoint) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanUpdateParamsFlightPlanPointGroupFlightPlanPoint
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *FlightplanUpdateParamsFlightPlanPointGroupFlightPlanPoint) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of waypoints associated with this flight plan.
@@ -2172,6 +2205,9 @@ func (r FlightplanUpdateParamsFlightPlanWaypoint) MarshalJSON() (data []byte, er
 	type shadow FlightplanUpdateParamsFlightPlanWaypoint
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *FlightplanUpdateParamsFlightPlanWaypoint) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type FlightplanListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
@@ -2227,6 +2263,9 @@ type FlightplanUnvalidatedPublishParams struct {
 
 func (r FlightplanUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *FlightplanUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Flight Plan contains data specifying the details of an intended flight including
@@ -2516,10 +2555,13 @@ func (r FlightplanUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err 
 	type shadow FlightplanUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *FlightplanUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[FlightplanUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -2544,6 +2586,9 @@ func (r FlightplanUnvalidatedPublishParamsBodyAirRefuelEvent) MarshalJSON() (dat
 	type shadow FlightplanUnvalidatedPublishParamsBodyAirRefuelEvent
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *FlightplanUnvalidatedPublishParamsBodyAirRefuelEvent) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of messages associated with this flight plan indicating the severity,
 // the point where the message was generated, the path (Primary, Alternate, etc.),
@@ -2564,6 +2609,9 @@ type FlightplanUnvalidatedPublishParamsBodyFlightPlanMessage struct {
 func (r FlightplanUnvalidatedPublishParamsBodyFlightPlanMessage) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanUnvalidatedPublishParamsBodyFlightPlanMessage
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *FlightplanUnvalidatedPublishParamsBodyFlightPlanMessage) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of point groups generated for this flight plan. Groups include point
@@ -2642,6 +2690,9 @@ func (r FlightplanUnvalidatedPublishParamsBodyFlightPlanPointGroup) MarshalJSON(
 	type shadow FlightplanUnvalidatedPublishParamsBodyFlightPlanPointGroup
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *FlightplanUnvalidatedPublishParamsBodyFlightPlanPointGroup) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Array of point data for this Point Group.
 type FlightplanUnvalidatedPublishParamsBodyFlightPlanPointGroupFlightPlanPoint struct {
@@ -2665,6 +2716,9 @@ type FlightplanUnvalidatedPublishParamsBodyFlightPlanPointGroupFlightPlanPoint s
 func (r FlightplanUnvalidatedPublishParamsBodyFlightPlanPointGroupFlightPlanPoint) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanUnvalidatedPublishParamsBodyFlightPlanPointGroupFlightPlanPoint
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *FlightplanUnvalidatedPublishParamsBodyFlightPlanPointGroupFlightPlanPoint) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of waypoints associated with this flight plan.
@@ -2814,4 +2868,7 @@ type FlightplanUnvalidatedPublishParamsBodyFlightPlanWaypoint struct {
 func (r FlightplanUnvalidatedPublishParamsBodyFlightPlanWaypoint) MarshalJSON() (data []byte, err error) {
 	type shadow FlightplanUnvalidatedPublishParamsBodyFlightPlanWaypoint
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *FlightplanUnvalidatedPublishParamsBodyFlightPlanWaypoint) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

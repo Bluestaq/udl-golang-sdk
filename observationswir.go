@@ -53,6 +53,9 @@ type ObservationSwirUnvalidatedPublishParams struct {
 func (r ObservationSwirUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *ObservationSwirUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // Data representing observed short wave infrared (SWIR) measurements.
 //
@@ -134,9 +137,12 @@ func (r ObservationSwirUnvalidatedPublishParamsBody) MarshalJSON() (data []byte,
 	type shadow ObservationSwirUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationSwirUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ObservationSwirUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

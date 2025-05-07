@@ -302,6 +302,9 @@ func (r NotificationNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow NotificationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *NotificationNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -393,6 +396,9 @@ type NotificationNewRawParams struct {
 
 func (r NotificationNewRawParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *NotificationNewRawParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // URLQuery serializes [NotificationNewRawParams]'s query parameters as

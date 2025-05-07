@@ -395,6 +395,9 @@ func (r CountryNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow CountryNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CountryNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -476,6 +479,9 @@ type CountryUpdateParams struct {
 func (r CountryUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow CountryUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *CountryUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

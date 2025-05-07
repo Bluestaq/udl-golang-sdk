@@ -943,6 +943,9 @@ type OrbittrackNewBulkParams struct {
 func (r OrbittrackNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *OrbittrackNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // Keplerian orbital elements describing an orbit for a particular on-orbit
 // satellite and applicable sensor data aiding in the orbit prediction.
@@ -1165,16 +1168,19 @@ func (r OrbittrackNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow OrbittrackNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OrbittrackNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OrbittrackNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[OrbittrackNewBulkParamsBody](
-		"ObjectType", false, "DEBRIS", "MANNED", "PAYLOAD", "PLATFORM", "ROCKET BODY", "UNKNOWN",
+		"objectType", "DEBRIS", "MANNED", "PAYLOAD", "PLATFORM", "ROCKET BODY", "UNKNOWN",
 	)
 	apijson.RegisterFieldValidator[OrbittrackNewBulkParamsBody](
-		"ObjIdent", false, "ASSUMED FRIEND", "FRIEND", "HOSTILE", "NEUTRAL", "PENDING", "SUSPECT", "UNKNOWN",
+		"objIdent", "ASSUMED FRIEND", "FRIEND", "HOSTILE", "NEUTRAL", "PENDING", "SUSPECT", "UNKNOWN",
 	)
 }
 
@@ -1209,10 +1215,13 @@ func (r OrbittrackNewBulkParamsBodyTrackSensor) MarshalJSON() (data []byte, err 
 	type shadow OrbittrackNewBulkParamsBodyTrackSensor
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OrbittrackNewBulkParamsBodyTrackSensor) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OrbittrackNewBulkParamsBodyTrackSensor](
-		"SensorFovType", false, "BUTTERFLY", "CONE ANGULAR", "CONE DISTANCE", "HORIZON TO HORIZON", "UNKNOWN",
+		"sensorFOVType", "BUTTERFLY", "CONE ANGULAR", "CONE DISTANCE", "HORIZON TO HORIZON", "UNKNOWN",
 	)
 }
 
@@ -1245,6 +1254,9 @@ type OrbittrackUnvalidatedPublishParams struct {
 
 func (r OrbittrackUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *OrbittrackUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Keplerian orbital elements describing an orbit for a particular on-orbit
@@ -1468,16 +1480,19 @@ func (r OrbittrackUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err 
 	type shadow OrbittrackUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OrbittrackUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OrbittrackUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[OrbittrackUnvalidatedPublishParamsBody](
-		"ObjectType", false, "DEBRIS", "MANNED", "PAYLOAD", "PLATFORM", "ROCKET BODY", "UNKNOWN",
+		"objectType", "DEBRIS", "MANNED", "PAYLOAD", "PLATFORM", "ROCKET BODY", "UNKNOWN",
 	)
 	apijson.RegisterFieldValidator[OrbittrackUnvalidatedPublishParamsBody](
-		"ObjIdent", false, "ASSUMED FRIEND", "FRIEND", "HOSTILE", "NEUTRAL", "PENDING", "SUSPECT", "UNKNOWN",
+		"objIdent", "ASSUMED FRIEND", "FRIEND", "HOSTILE", "NEUTRAL", "PENDING", "SUSPECT", "UNKNOWN",
 	)
 }
 
@@ -1512,9 +1527,12 @@ func (r OrbittrackUnvalidatedPublishParamsBodyTrackSensor) MarshalJSON() (data [
 	type shadow OrbittrackUnvalidatedPublishParamsBodyTrackSensor
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OrbittrackUnvalidatedPublishParamsBodyTrackSensor) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OrbittrackUnvalidatedPublishParamsBodyTrackSensor](
-		"SensorFovType", false, "BUTTERFLY", "CONE ANGULAR", "CONE DISTANCE", "HORIZON TO HORIZON", "UNKNOWN",
+		"sensorFOVType", "BUTTERFLY", "CONE ANGULAR", "CONE DISTANCE", "HORIZON TO HORIZON", "UNKNOWN",
 	)
 }

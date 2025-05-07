@@ -1675,6 +1675,9 @@ type IsrCollectionNewBulkParams struct {
 func (r IsrCollectionNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *IsrCollectionNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // ISR Collection data.
 //
@@ -1781,10 +1784,13 @@ func (r IsrCollectionNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IsrCollectionNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[IsrCollectionNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1841,6 +1847,9 @@ func (r IsrCollectionNewBulkParamsBodyCollectionRequirement) MarshalJSON() (data
 	type shadow IsrCollectionNewBulkParamsBodyCollectionRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IsrCollectionNewBulkParamsBodyCollectionRequirement) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // The properties EarliestImagingTime, LatestImagingTime are required.
 type IsrCollectionNewBulkParamsBodyCollectionRequirementCriticalTimes struct {
@@ -1854,6 +1863,9 @@ type IsrCollectionNewBulkParamsBodyCollectionRequirementCriticalTimes struct {
 func (r IsrCollectionNewBulkParamsBodyCollectionRequirementCriticalTimes) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyCollectionRequirementCriticalTimes
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IsrCollectionNewBulkParamsBodyCollectionRequirementCriticalTimes) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IsrCollectionNewBulkParamsBodyCollectionRequirementExploitationRequirement struct {
@@ -1874,6 +1886,9 @@ type IsrCollectionNewBulkParamsBodyCollectionRequirementExploitationRequirement 
 func (r IsrCollectionNewBulkParamsBodyCollectionRequirementExploitationRequirement) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyCollectionRequirementExploitationRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IsrCollectionNewBulkParamsBodyCollectionRequirementExploitationRequirement) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IsrCollectionNewBulkParamsBodyCollectionRequirementExploitationRequirementPoc struct {
@@ -1903,6 +1918,9 @@ type IsrCollectionNewBulkParamsBodyCollectionRequirementExploitationRequirementP
 func (r IsrCollectionNewBulkParamsBodyCollectionRequirementExploitationRequirementPoc) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyCollectionRequirementExploitationRequirementPoc
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IsrCollectionNewBulkParamsBodyCollectionRequirementExploitationRequirementPoc) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IsrCollectionNewBulkParamsBodyTasking struct {
@@ -1976,13 +1994,16 @@ func (r IsrCollectionNewBulkParamsBodyTasking) MarshalJSON() (data []byte, err e
 	type shadow IsrCollectionNewBulkParamsBodyTasking
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IsrCollectionNewBulkParamsBodyTasking) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[IsrCollectionNewBulkParamsBodyTasking](
-		"CollectionType", false, "Simultaneous", "Sequential", "Operationally", "Driven", "Priority", "Order",
+		"collectionType", "Simultaneous", "Sequential", "Operationally", "Driven", "Priority", "Order",
 	)
 	apijson.RegisterFieldValidator[IsrCollectionNewBulkParamsBodyTasking](
-		"Type", false, "Deliberate", "Dynamic", "Training", "Transit",
+		"type", "Deliberate", "Dynamic", "Training", "Transit",
 	)
 }
 
@@ -1996,6 +2017,9 @@ type IsrCollectionNewBulkParamsBodyTaskingCollectionPeriods struct {
 func (r IsrCollectionNewBulkParamsBodyTaskingCollectionPeriods) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyTaskingCollectionPeriods
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IsrCollectionNewBulkParamsBodyTaskingCollectionPeriods) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsActual struct {
@@ -2012,6 +2036,9 @@ func (r IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsActual) MarshalJSO
 	type shadow IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsActual
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsActual) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsPlanned struct {
 	// Start time of collection, in ISO 8601 UTC format.
@@ -2027,6 +2054,9 @@ func (r IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsPlanned) MarshalJS
 	type shadow IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsPlanned
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsPlanned) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsPlannedAdditional struct {
 	// Unique Identifier of additional collection period.
@@ -2041,6 +2071,9 @@ type IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsPlannedAdditional str
 func (r IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsPlannedAdditional) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsPlannedAdditional
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IsrCollectionNewBulkParamsBodyTaskingCollectionPeriodsPlannedAdditional) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirement struct {
@@ -2096,6 +2129,9 @@ func (r IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirement) Marsh
 	type shadow IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirement) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // The properties EarliestImagingTime, LatestImagingTime are required.
 type IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementCriticalTimes struct {
@@ -2109,6 +2145,9 @@ type IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementCriticalTi
 func (r IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementCriticalTimes) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementCriticalTimes
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementCriticalTimes) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementExploitationRequirement struct {
@@ -2129,6 +2168,9 @@ type IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementExploitati
 func (r IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementExploitationRequirement) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementExploitationRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementExploitationRequirement) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementExploitationRequirementPoc struct {
@@ -2159,6 +2201,9 @@ func (r IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementExploit
 	type shadow IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementExploitationRequirementPoc
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IsrCollectionNewBulkParamsBodyTaskingTaskingCollectionRequirementExploitationRequirementPoc) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IsrCollectionNewBulkParamsBodyTransit struct {
 	// Transit Unique Identifier.
@@ -2173,6 +2218,9 @@ type IsrCollectionNewBulkParamsBodyTransit struct {
 func (r IsrCollectionNewBulkParamsBodyTransit) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionNewBulkParamsBodyTransit
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IsrCollectionNewBulkParamsBodyTransit) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IsrCollectionTupleParams struct {
@@ -2205,6 +2253,9 @@ type IsrCollectionUnvalidatedPublishParams struct {
 
 func (r IsrCollectionUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *IsrCollectionUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // ISR Collection data.
@@ -2312,10 +2363,13 @@ func (r IsrCollectionUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, e
 	type shadow IsrCollectionUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IsrCollectionUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[IsrCollectionUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -2372,6 +2426,9 @@ func (r IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirement) MarshalJ
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirement) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // The properties EarliestImagingTime, LatestImagingTime are required.
 type IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementCriticalTimes struct {
@@ -2385,6 +2442,9 @@ type IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementCriticalTimes
 func (r IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementCriticalTimes) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementCriticalTimes
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementCriticalTimes) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementExploitationRequirement struct {
@@ -2405,6 +2465,9 @@ type IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementExploitationR
 func (r IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementExploitationRequirement) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementExploitationRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementExploitationRequirement) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementExploitationRequirementPoc struct {
@@ -2434,6 +2497,9 @@ type IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementExploitationR
 func (r IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementExploitationRequirementPoc) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementExploitationRequirementPoc
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IsrCollectionUnvalidatedPublishParamsBodyCollectionRequirementExploitationRequirementPoc) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IsrCollectionUnvalidatedPublishParamsBodyTasking struct {
@@ -2507,13 +2573,16 @@ func (r IsrCollectionUnvalidatedPublishParamsBodyTasking) MarshalJSON() (data []
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTasking
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IsrCollectionUnvalidatedPublishParamsBodyTasking) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[IsrCollectionUnvalidatedPublishParamsBodyTasking](
-		"CollectionType", false, "Simultaneous", "Sequential", "Operationally", "Driven", "Priority", "Order",
+		"collectionType", "Simultaneous", "Sequential", "Operationally", "Driven", "Priority", "Order",
 	)
 	apijson.RegisterFieldValidator[IsrCollectionUnvalidatedPublishParamsBodyTasking](
-		"Type", false, "Deliberate", "Dynamic", "Training", "Transit",
+		"type", "Deliberate", "Dynamic", "Training", "Transit",
 	)
 }
 
@@ -2527,6 +2596,9 @@ type IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriods struct {
 func (r IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriods) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriods
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriods) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsActual struct {
@@ -2543,6 +2615,9 @@ func (r IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsActual)
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsActual
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsActual) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsPlanned struct {
 	// Start time of collection, in ISO 8601 UTC format.
@@ -2558,6 +2633,9 @@ func (r IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsPlanned
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsPlanned
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsPlanned) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsPlannedAdditional struct {
 	// Unique Identifier of additional collection period.
@@ -2572,6 +2650,9 @@ type IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsPlannedAdd
 func (r IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsPlannedAdditional) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsPlannedAdditional
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IsrCollectionUnvalidatedPublishParamsBodyTaskingCollectionPeriodsPlannedAdditional) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirement struct {
@@ -2627,6 +2708,9 @@ func (r IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequire
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirement) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // The properties EarliestImagingTime, LatestImagingTime are required.
 type IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementCriticalTimes struct {
@@ -2640,6 +2724,9 @@ type IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequiremen
 func (r IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementCriticalTimes) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementCriticalTimes
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementCriticalTimes) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementExploitationRequirement struct {
@@ -2660,6 +2747,9 @@ type IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequiremen
 func (r IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementExploitationRequirement) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementExploitationRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementExploitationRequirement) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementExploitationRequirementPoc struct {
@@ -2690,6 +2780,9 @@ func (r IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequire
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementExploitationRequirementPoc
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IsrCollectionUnvalidatedPublishParamsBodyTaskingTaskingCollectionRequirementExploitationRequirementPoc) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IsrCollectionUnvalidatedPublishParamsBodyTransit struct {
 	// Transit Unique Identifier.
@@ -2704,4 +2797,7 @@ type IsrCollectionUnvalidatedPublishParamsBodyTransit struct {
 func (r IsrCollectionUnvalidatedPublishParamsBodyTransit) MarshalJSON() (data []byte, err error) {
 	type shadow IsrCollectionUnvalidatedPublishParamsBodyTransit
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IsrCollectionUnvalidatedPublishParamsBodyTransit) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

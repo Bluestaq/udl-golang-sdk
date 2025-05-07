@@ -455,6 +455,9 @@ type GnssObservationsetNewBulkParams struct {
 func (r GnssObservationsetNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *GnssObservationsetNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // Set of GNSSObservation data.
 //
@@ -611,10 +614,13 @@ func (r GnssObservationsetNewBulkParamsBody) MarshalJSON() (data []byte, err err
 	type shadow GnssObservationsetNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *GnssObservationsetNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[GnssObservationsetNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -665,6 +671,9 @@ func (r GnssObservationsetNewBulkParamsBodyGnssObservationList) MarshalJSON() (d
 	type shadow GnssObservationsetNewBulkParamsBodyGnssObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *GnssObservationsetNewBulkParamsBodyGnssObservationList) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type GnssObservationsetTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
@@ -697,6 +706,9 @@ type GnssObservationsetUnvalidatedPublishParams struct {
 
 func (r GnssObservationsetUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *GnssObservationsetUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Set of GNSSObservation data.
@@ -854,10 +866,13 @@ func (r GnssObservationsetUnvalidatedPublishParamsBody) MarshalJSON() (data []by
 	type shadow GnssObservationsetUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *GnssObservationsetUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[GnssObservationsetUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -907,4 +922,7 @@ type GnssObservationsetUnvalidatedPublishParamsBodyGnssObservationList struct {
 func (r GnssObservationsetUnvalidatedPublishParamsBodyGnssObservationList) MarshalJSON() (data []byte, err error) {
 	type shadow GnssObservationsetUnvalidatedPublishParamsBodyGnssObservationList
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *GnssObservationsetUnvalidatedPublishParamsBodyGnssObservationList) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

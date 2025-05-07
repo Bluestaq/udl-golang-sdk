@@ -607,6 +607,9 @@ func (r TransponderNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow TransponderNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *TransponderNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -691,6 +694,9 @@ type TransponderUpdateParams struct {
 func (r TransponderUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow TransponderUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *TransponderUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

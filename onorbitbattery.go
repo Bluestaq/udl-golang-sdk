@@ -366,6 +366,9 @@ func (r OnorbitbatteryNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitbatteryNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OnorbitbatteryNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -437,10 +440,13 @@ func (r OnorbitbatteryNewParamsBattery) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitbatteryNewParamsBattery
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OnorbitbatteryNewParamsBattery) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OnorbitbatteryNewParamsBattery](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -487,6 +493,9 @@ type OnorbitbatteryUpdateParams struct {
 func (r OnorbitbatteryUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitbatteryUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OnorbitbatteryUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -559,10 +568,13 @@ func (r OnorbitbatteryUpdateParamsBattery) MarshalJSON() (data []byte, err error
 	type shadow OnorbitbatteryUpdateParamsBattery
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OnorbitbatteryUpdateParamsBattery) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OnorbitbatteryUpdateParamsBattery](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

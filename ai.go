@@ -440,6 +440,9 @@ type AINewBulkParams struct {
 func (r AINewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *AINewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // Self-reported information obtained from Automatic Identification System (AIS)
 // equipment. This contains information such as unique identification, status,
@@ -628,10 +631,13 @@ func (r AINewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow AINewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AINewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[AINewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

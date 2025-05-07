@@ -1459,6 +1459,9 @@ func (r NavigationalObstructionNewParams) MarshalJSON() (data []byte, err error)
 	type shadow NavigationalObstructionNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *NavigationalObstructionNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1711,6 +1714,9 @@ func (r NavigationalObstructionUpdateParams) MarshalJSON() (data []byte, err err
 	type shadow NavigationalObstructionUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *NavigationalObstructionUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1784,6 +1790,9 @@ type NavigationalObstructionNewBulkParams struct {
 
 func (r NavigationalObstructionNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *NavigationalObstructionNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Beta Version Navigational Obstruction: Information describing navigational
@@ -2036,10 +2045,13 @@ func (r NavigationalObstructionNewBulkParamsBody) MarshalJSON() (data []byte, er
 	type shadow NavigationalObstructionNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *NavigationalObstructionNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[NavigationalObstructionNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

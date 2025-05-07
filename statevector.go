@@ -1784,6 +1784,9 @@ func (r StateVectorIngestParam) MarshalJSON() (data []byte, err error) {
 	type shadow StateVectorIngestParam
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *StateVectorIngestParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1846,6 +1849,9 @@ type StateVectorNewParams struct {
 func (r StateVectorNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.StateVectorIngest)
 }
+func (r *StateVectorNewParams) UnmarshalJSON(data []byte) error {
+	return r.StateVectorIngest.UnmarshalJSON(data)
+}
 
 type StateVectorListParams struct {
 	// Time of validity for state vector in ISO 8601 UTC datetime format, with
@@ -1888,6 +1894,9 @@ type StateVectorNewBulkParams struct {
 
 func (r StateVectorNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *StateVectorNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 type StateVectorGetParams struct {
@@ -1933,4 +1942,7 @@ type StateVectorUnvalidatedPublishParams struct {
 
 func (r StateVectorUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *StateVectorUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }

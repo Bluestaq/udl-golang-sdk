@@ -513,6 +513,9 @@ func (r WeatherDataNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow WeatherDataNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *WeatherDataNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -578,6 +581,9 @@ type WeatherDataNewBulkParams struct {
 
 func (r WeatherDataNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *WeatherDataNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // These services provide for posting and querying Weather Data. Weather Data
@@ -732,10 +738,13 @@ func (r WeatherDataNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow WeatherDataNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *WeatherDataNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[WeatherDataNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -782,6 +791,9 @@ type WeatherDataUnvalidatedPublishParams struct {
 
 func (r WeatherDataUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *WeatherDataUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // These services provide for posting and querying Weather Data. Weather Data
@@ -936,9 +948,12 @@ func (r WeatherDataUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err
 	type shadow WeatherDataUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *WeatherDataUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[WeatherDataUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

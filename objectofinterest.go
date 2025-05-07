@@ -1161,6 +1161,9 @@ func (r ObjectOfInterestNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow ObjectOfInterestNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObjectOfInterestNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1323,6 +1326,9 @@ type ObjectOfInterestUpdateParams struct {
 func (r ObjectOfInterestUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow ObjectOfInterestUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *ObjectOfInterestUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

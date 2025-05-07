@@ -2335,6 +2335,9 @@ func (r EntityIngestParam) MarshalJSON() (data []byte, err error) {
 	type shadow EntityIngestParam
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EntityIngestParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -2468,16 +2471,19 @@ func (r EntityIngestOnOrbitParam) MarshalJSON() (data []byte, err error) {
 	type shadow EntityIngestOnOrbitParam
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EntityIngestOnOrbitParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[EntityIngestOnOrbitParam](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[EntityIngestOnOrbitParam](
-		"Category", false, "Unknown", "On-Orbit", "Decayed", "Cataloged Without State", "Launch Nominal", "Analyst Satellite", "Cislunar", "Lunar", "Hyperbolic", "Heliocentric", "Interplanetary", "Lagrangian", "Docked",
+		"category", "Unknown", "On-Orbit", "Decayed", "Cataloged Without State", "Launch Nominal", "Analyst Satellite", "Cislunar", "Lunar", "Hyperbolic", "Heliocentric", "Interplanetary", "Lagrangian", "Docked",
 	)
 	apijson.RegisterFieldValidator[EntityIngestOnOrbitParam](
-		"ObjectType", false, "ROCKET BODY", "DEBRIS", "PAYLOAD", "PLATFORM", "MANNED", "UNKNOWN",
+		"objectType", "ROCKET BODY", "DEBRIS", "PAYLOAD", "PLATFORM", "MANNED", "UNKNOWN",
 	)
 }
 
@@ -6226,6 +6232,9 @@ type EntityNewParams struct {
 func (r EntityNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.EntityIngest)
 }
+func (r *EntityNewParams) UnmarshalJSON(data []byte) error {
+	return r.EntityIngest.UnmarshalJSON(data)
+}
 
 type EntityGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
@@ -6251,6 +6260,9 @@ type EntityUpdateParams struct {
 
 func (r EntityUpdateParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.EntityIngest)
+}
+func (r *EntityUpdateParams) UnmarshalJSON(data []byte) error {
+	return r.EntityIngest.UnmarshalJSON(data)
 }
 
 type EntityListParams struct {

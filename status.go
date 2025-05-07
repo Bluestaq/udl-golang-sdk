@@ -1419,6 +1419,9 @@ func (r StatusNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow StatusNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *StatusNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1525,16 +1528,19 @@ func (r StatusNewParamsSubStatusCollection) MarshalJSON() (data []byte, err erro
 	type shadow StatusNewParamsSubStatusCollection
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *StatusNewParamsSubStatusCollection) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[StatusNewParamsSubStatusCollection](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[StatusNewParamsSubStatusCollection](
-		"Status", false, "FMC", "NMC", "PMC", "UNK",
+		"status", "FMC", "NMC", "PMC", "UNK",
 	)
 	apijson.RegisterFieldValidator[StatusNewParamsSubStatusCollection](
-		"Type", false, "mwCap", "ssCap", "mdCap",
+		"type", "mwCap", "ssCap", "mdCap",
 	)
 }
 
@@ -1608,6 +1614,9 @@ type StatusUpdateParams struct {
 func (r StatusUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow StatusUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *StatusUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1715,16 +1724,19 @@ func (r StatusUpdateParamsSubStatusCollection) MarshalJSON() (data []byte, err e
 	type shadow StatusUpdateParamsSubStatusCollection
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *StatusUpdateParamsSubStatusCollection) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[StatusUpdateParamsSubStatusCollection](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[StatusUpdateParamsSubStatusCollection](
-		"Status", false, "FMC", "NMC", "PMC", "UNK",
+		"status", "FMC", "NMC", "PMC", "UNK",
 	)
 	apijson.RegisterFieldValidator[StatusUpdateParamsSubStatusCollection](
-		"Type", false, "mwCap", "ssCap", "mdCap",
+		"type", "mwCap", "ssCap", "mdCap",
 	)
 }
 

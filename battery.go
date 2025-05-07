@@ -370,6 +370,9 @@ func (r BatteryNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow BatteryNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *BatteryNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -443,6 +446,9 @@ type BatteryUpdateParams struct {
 func (r BatteryUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow BatteryUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *BatteryUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

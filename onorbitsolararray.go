@@ -511,6 +511,9 @@ func (r OnorbitsolararrayNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitsolararrayNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OnorbitsolararrayNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -584,10 +587,13 @@ func (r OnorbitsolararrayNewParamsSolarArray) MarshalJSON() (data []byte, err er
 	type shadow OnorbitsolararrayNewParamsSolarArray
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OnorbitsolararrayNewParamsSolarArray) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OnorbitsolararrayNewParamsSolarArray](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -637,6 +643,9 @@ type OnorbitsolararrayUpdateParams struct {
 func (r OnorbitsolararrayUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitsolararrayUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OnorbitsolararrayUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -711,10 +720,13 @@ func (r OnorbitsolararrayUpdateParamsSolarArray) MarshalJSON() (data []byte, err
 	type shadow OnorbitsolararrayUpdateParamsSolarArray
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OnorbitsolararrayUpdateParamsSolarArray) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OnorbitsolararrayUpdateParamsSolarArray](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

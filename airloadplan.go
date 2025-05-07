@@ -1536,6 +1536,9 @@ func (r AirLoadPlanNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow AirLoadPlanNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirLoadPlanNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1613,6 +1616,9 @@ func (r AirLoadPlanNewParamsAirLoadPlanHazmatActual) MarshalJSON() (data []byte,
 	type shadow AirLoadPlanNewParamsAirLoadPlanHazmatActual
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirLoadPlanNewParamsAirLoadPlanHazmatActual) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of human remains transport information associated with this load
 // plan.
@@ -1654,6 +1660,9 @@ func (r AirLoadPlanNewParamsAirLoadPlanHr) MarshalJSON() (data []byte, err error
 	type shadow AirLoadPlanNewParamsAirLoadPlanHr
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirLoadPlanNewParamsAirLoadPlanHr) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of cargo information located at the pallet positions associated with
 // this load plan.
@@ -1683,6 +1692,9 @@ type AirLoadPlanNewParamsAirLoadPlanPalletDetail struct {
 func (r AirLoadPlanNewParamsAirLoadPlanPalletDetail) MarshalJSON() (data []byte, err error) {
 	type shadow AirLoadPlanNewParamsAirLoadPlanPalletDetail
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirLoadPlanNewParamsAirLoadPlanPalletDetail) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of passenger and cargo details associated with this load plan for
@@ -1726,6 +1738,9 @@ func (r AirLoadPlanNewParamsAirLoadPlanPaxCargo) MarshalJSON() (data []byte, err
 	type shadow AirLoadPlanNewParamsAirLoadPlanPaxCargo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirLoadPlanNewParamsAirLoadPlanPaxCargo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of unit line number actuals associated with this load plan.
 type AirLoadPlanNewParamsAirLoadPlanUlnActual struct {
@@ -1762,6 +1777,9 @@ type AirLoadPlanNewParamsAirLoadPlanUlnActual struct {
 func (r AirLoadPlanNewParamsAirLoadPlanUlnActual) MarshalJSON() (data []byte, err error) {
 	type shadow AirLoadPlanNewParamsAirLoadPlanUlnActual
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirLoadPlanNewParamsAirLoadPlanUlnActual) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type AirLoadPlanGetParams struct {

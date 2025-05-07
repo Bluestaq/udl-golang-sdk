@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
@@ -256,6 +257,9 @@ func (r AirloadPlanUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow AirloadPlanUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirloadPlanUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -333,6 +337,9 @@ func (r AirloadPlanUpdateParamsAirLoadPlanHazmatActual) MarshalJSON() (data []by
 	type shadow AirloadPlanUpdateParamsAirLoadPlanHazmatActual
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirloadPlanUpdateParamsAirLoadPlanHazmatActual) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of human remains transport information associated with this load
 // plan.
@@ -374,6 +381,9 @@ func (r AirloadPlanUpdateParamsAirLoadPlanHr) MarshalJSON() (data []byte, err er
 	type shadow AirloadPlanUpdateParamsAirLoadPlanHr
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirloadPlanUpdateParamsAirLoadPlanHr) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of cargo information located at the pallet positions associated with
 // this load plan.
@@ -403,6 +413,9 @@ type AirloadPlanUpdateParamsAirLoadPlanPalletDetail struct {
 func (r AirloadPlanUpdateParamsAirLoadPlanPalletDetail) MarshalJSON() (data []byte, err error) {
 	type shadow AirloadPlanUpdateParamsAirLoadPlanPalletDetail
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirloadPlanUpdateParamsAirLoadPlanPalletDetail) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of passenger and cargo details associated with this load plan for
@@ -446,6 +459,9 @@ func (r AirloadPlanUpdateParamsAirLoadPlanPaxCargo) MarshalJSON() (data []byte, 
 	type shadow AirloadPlanUpdateParamsAirLoadPlanPaxCargo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirloadPlanUpdateParamsAirLoadPlanPaxCargo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of unit line number actuals associated with this load plan.
 type AirloadPlanUpdateParamsAirLoadPlanUlnActual struct {
@@ -482,4 +498,7 @@ type AirloadPlanUpdateParamsAirLoadPlanUlnActual struct {
 func (r AirloadPlanUpdateParamsAirLoadPlanUlnActual) MarshalJSON() (data []byte, err error) {
 	type shadow AirloadPlanUpdateParamsAirLoadPlanUlnActual
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirloadPlanUpdateParamsAirLoadPlanUlnActual) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

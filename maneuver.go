@@ -6564,6 +6564,9 @@ func (r ManeuverNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow ManeuverNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManeuverNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -6785,10 +6788,13 @@ func (r ManeuverNewParamsPostEventElset) MarshalJSON() (data []byte, err error) 
 	type shadow ManeuverNewParamsPostEventElset
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManeuverNewParamsPostEventElset) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ManeuverNewParamsPostEventElset](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -7239,16 +7245,19 @@ func (r ManeuverNewParamsPostEventStateVector) MarshalJSON() (data []byte, err e
 	type shadow ManeuverNewParamsPostEventStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManeuverNewParamsPostEventStateVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ManeuverNewParamsPostEventStateVector](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ManeuverNewParamsPostEventStateVector](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[ManeuverNewParamsPostEventStateVector](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -7449,10 +7458,13 @@ func (r ManeuverNewParamsPreEventElset) MarshalJSON() (data []byte, err error) {
 	type shadow ManeuverNewParamsPreEventElset
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManeuverNewParamsPreEventElset) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ManeuverNewParamsPreEventElset](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -7903,16 +7915,19 @@ func (r ManeuverNewParamsPreEventStateVector) MarshalJSON() (data []byte, err er
 	type shadow ManeuverNewParamsPreEventStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManeuverNewParamsPreEventStateVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ManeuverNewParamsPreEventStateVector](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ManeuverNewParamsPreEventStateVector](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[ManeuverNewParamsPreEventStateVector](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -7959,6 +7974,9 @@ type ManeuverNewBulkParams struct {
 
 func (r ManeuverNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *ManeuverNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Model representation of on-orbit object maneuver information for detected,
@@ -8297,10 +8315,13 @@ func (r ManeuverNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow ManeuverNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManeuverNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ManeuverNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -8501,10 +8522,13 @@ func (r ManeuverNewBulkParamsBodyPostEventElset) MarshalJSON() (data []byte, err
 	type shadow ManeuverNewBulkParamsBodyPostEventElset
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManeuverNewBulkParamsBodyPostEventElset) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ManeuverNewBulkParamsBodyPostEventElset](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -8955,16 +8979,19 @@ func (r ManeuverNewBulkParamsBodyPostEventStateVector) MarshalJSON() (data []byt
 	type shadow ManeuverNewBulkParamsBodyPostEventStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManeuverNewBulkParamsBodyPostEventStateVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ManeuverNewBulkParamsBodyPostEventStateVector](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ManeuverNewBulkParamsBodyPostEventStateVector](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[ManeuverNewBulkParamsBodyPostEventStateVector](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -9165,10 +9192,13 @@ func (r ManeuverNewBulkParamsBodyPreEventElset) MarshalJSON() (data []byte, err 
 	type shadow ManeuverNewBulkParamsBodyPreEventElset
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManeuverNewBulkParamsBodyPreEventElset) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ManeuverNewBulkParamsBodyPreEventElset](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -9619,16 +9649,19 @@ func (r ManeuverNewBulkParamsBodyPreEventStateVector) MarshalJSON() (data []byte
 	type shadow ManeuverNewBulkParamsBodyPreEventStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManeuverNewBulkParamsBodyPreEventStateVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ManeuverNewBulkParamsBodyPreEventStateVector](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ManeuverNewBulkParamsBodyPreEventStateVector](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[ManeuverNewBulkParamsBodyPreEventStateVector](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -9676,6 +9709,9 @@ type ManeuverUnvalidatedPublishParams struct {
 
 func (r ManeuverUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *ManeuverUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Model representation of on-orbit object maneuver information for detected,
@@ -10014,10 +10050,13 @@ func (r ManeuverUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err er
 	type shadow ManeuverUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManeuverUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ManeuverUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -10218,10 +10257,13 @@ func (r ManeuverUnvalidatedPublishParamsBodyPostEventElset) MarshalJSON() (data 
 	type shadow ManeuverUnvalidatedPublishParamsBodyPostEventElset
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManeuverUnvalidatedPublishParamsBodyPostEventElset) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ManeuverUnvalidatedPublishParamsBodyPostEventElset](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -10672,16 +10714,19 @@ func (r ManeuverUnvalidatedPublishParamsBodyPostEventStateVector) MarshalJSON() 
 	type shadow ManeuverUnvalidatedPublishParamsBodyPostEventStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManeuverUnvalidatedPublishParamsBodyPostEventStateVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ManeuverUnvalidatedPublishParamsBodyPostEventStateVector](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ManeuverUnvalidatedPublishParamsBodyPostEventStateVector](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[ManeuverUnvalidatedPublishParamsBodyPostEventStateVector](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -10882,10 +10927,13 @@ func (r ManeuverUnvalidatedPublishParamsBodyPreEventElset) MarshalJSON() (data [
 	type shadow ManeuverUnvalidatedPublishParamsBodyPreEventElset
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManeuverUnvalidatedPublishParamsBodyPreEventElset) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ManeuverUnvalidatedPublishParamsBodyPreEventElset](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -11336,15 +11384,18 @@ func (r ManeuverUnvalidatedPublishParamsBodyPreEventStateVector) MarshalJSON() (
 	type shadow ManeuverUnvalidatedPublishParamsBodyPreEventStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManeuverUnvalidatedPublishParamsBodyPreEventStateVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ManeuverUnvalidatedPublishParamsBodyPreEventStateVector](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ManeuverUnvalidatedPublishParamsBodyPreEventStateVector](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[ManeuverUnvalidatedPublishParamsBodyPreEventStateVector](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }

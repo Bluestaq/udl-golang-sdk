@@ -468,6 +468,9 @@ func (r CollectResponseNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow CollectResponseNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CollectResponseNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -550,6 +553,9 @@ type CollectResponseNewBulkParams struct {
 
 func (r CollectResponseNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *CollectResponseNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Collect response supports the response and status of individual collect
@@ -699,10 +705,13 @@ func (r CollectResponseNewBulkParamsBody) MarshalJSON() (data []byte, err error)
 	type shadow CollectResponseNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CollectResponseNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[CollectResponseNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -713,6 +722,9 @@ type CollectResponseUnvalidatedPublishParams struct {
 
 func (r CollectResponseUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *CollectResponseUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Collect response supports the response and status of individual collect
@@ -862,9 +874,12 @@ func (r CollectResponseUnvalidatedPublishParamsBody) MarshalJSON() (data []byte,
 	type shadow CollectResponseUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CollectResponseUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[CollectResponseUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

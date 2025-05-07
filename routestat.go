@@ -811,6 +811,9 @@ func (r RouteStatNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow RouteStatNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *RouteStatNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -950,6 +953,9 @@ func (r RouteStatUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow RouteStatUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *RouteStatUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -995,6 +1001,9 @@ type RouteStatNewBulkParams struct {
 
 func (r RouteStatNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *RouteStatNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // General statistics applying to navigation routes utilized by vessels, aircraft,
@@ -1115,10 +1124,13 @@ func (r RouteStatNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow RouteStatNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *RouteStatNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[RouteStatNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1162,6 +1174,9 @@ type RouteStatUnvalidatedPublishParams struct {
 
 func (r RouteStatUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *RouteStatUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // General statistics applying to navigation routes utilized by vessels, aircraft,
@@ -1282,9 +1297,12 @@ func (r RouteStatUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err e
 	type shadow RouteStatUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *RouteStatUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[RouteStatUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

@@ -611,6 +611,9 @@ func (r TrackRouteNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *TrackRouteNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -650,6 +653,9 @@ func (r TrackRouteNewParamsAltitudeBlock) MarshalJSON() (data []byte, err error)
 	type shadow TrackRouteNewParamsAltitudeBlock
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *TrackRouteNewParamsAltitudeBlock) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Point of contacts for scheduling or modifying the route.
 type TrackRouteNewParamsPoc struct {
@@ -678,6 +684,9 @@ type TrackRouteNewParamsPoc struct {
 func (r TrackRouteNewParamsPoc) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteNewParamsPoc
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *TrackRouteNewParamsPoc) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Points identified within the route.
@@ -727,6 +736,9 @@ type TrackRouteNewParamsRoutePoint struct {
 func (r TrackRouteNewParamsRoutePoint) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteNewParamsRoutePoint
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *TrackRouteNewParamsRoutePoint) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type TrackRouteUpdateParams struct {
@@ -831,6 +843,9 @@ func (r TrackRouteUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *TrackRouteUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -870,6 +885,9 @@ func (r TrackRouteUpdateParamsAltitudeBlock) MarshalJSON() (data []byte, err err
 	type shadow TrackRouteUpdateParamsAltitudeBlock
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *TrackRouteUpdateParamsAltitudeBlock) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Point of contacts for scheduling or modifying the route.
 type TrackRouteUpdateParamsPoc struct {
@@ -898,6 +916,9 @@ type TrackRouteUpdateParamsPoc struct {
 func (r TrackRouteUpdateParamsPoc) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteUpdateParamsPoc
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *TrackRouteUpdateParamsPoc) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Points identified within the route.
@@ -948,6 +969,9 @@ func (r TrackRouteUpdateParamsRoutePoint) MarshalJSON() (data []byte, err error)
 	type shadow TrackRouteUpdateParamsRoutePoint
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *TrackRouteUpdateParamsRoutePoint) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type TrackRouteListParams struct {
 	// The last updated date of the track route in ISO 8601 UTC format with millisecond
@@ -990,6 +1014,9 @@ type TrackRouteNewBulkParams struct {
 
 func (r TrackRouteNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *TrackRouteNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // A track route is a prescribed route for performing training events or operations
@@ -1116,10 +1143,13 @@ func (r TrackRouteNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *TrackRouteNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[TrackRouteNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1137,6 +1167,9 @@ type TrackRouteNewBulkParamsBodyAltitudeBlock struct {
 func (r TrackRouteNewBulkParamsBodyAltitudeBlock) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteNewBulkParamsBodyAltitudeBlock
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *TrackRouteNewBulkParamsBodyAltitudeBlock) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Point of contacts for scheduling or modifying the route.
@@ -1166,6 +1199,9 @@ type TrackRouteNewBulkParamsBodyPoc struct {
 func (r TrackRouteNewBulkParamsBodyPoc) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteNewBulkParamsBodyPoc
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *TrackRouteNewBulkParamsBodyPoc) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Points identified within the route.
@@ -1215,6 +1251,9 @@ type TrackRouteNewBulkParamsBodyRoutePoint struct {
 func (r TrackRouteNewBulkParamsBodyRoutePoint) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteNewBulkParamsBodyRoutePoint
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *TrackRouteNewBulkParamsBodyRoutePoint) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type TrackRouteGetParams struct {
@@ -1355,6 +1394,9 @@ func (r TrackRouteUnvalidatedPublishParams) MarshalJSON() (data []byte, err erro
 	type shadow TrackRouteUnvalidatedPublishParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *TrackRouteUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1394,6 +1436,9 @@ func (r TrackRouteUnvalidatedPublishParamsAltitudeBlock) MarshalJSON() (data []b
 	type shadow TrackRouteUnvalidatedPublishParamsAltitudeBlock
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *TrackRouteUnvalidatedPublishParamsAltitudeBlock) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Point of contacts for scheduling or modifying the route.
 type TrackRouteUnvalidatedPublishParamsPoc struct {
@@ -1422,6 +1467,9 @@ type TrackRouteUnvalidatedPublishParamsPoc struct {
 func (r TrackRouteUnvalidatedPublishParamsPoc) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteUnvalidatedPublishParamsPoc
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *TrackRouteUnvalidatedPublishParamsPoc) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Points identified within the route.
@@ -1471,4 +1519,7 @@ type TrackRouteUnvalidatedPublishParamsRoutePoint struct {
 func (r TrackRouteUnvalidatedPublishParamsRoutePoint) MarshalJSON() (data []byte, err error) {
 	type shadow TrackRouteUnvalidatedPublishParamsRoutePoint
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *TrackRouteUnvalidatedPublishParamsRoutePoint) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

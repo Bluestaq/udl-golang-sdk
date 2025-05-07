@@ -957,6 +957,9 @@ func (r ObservationEoObservationNewParams) MarshalJSON() (data []byte, err error
 	type shadow ObservationEoObservationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationEoObservationNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1268,10 +1271,13 @@ func (r ObservationEoObservationNewParamsEoobservationDetails) MarshalJSON() (da
 	type shadow ObservationEoObservationNewParamsEoobservationDetails
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationEoObservationNewParamsEoobservationDetails) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ObservationEoObservationNewParamsEoobservationDetails](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1361,6 +1367,9 @@ type ObservationEoObservationNewBulkParams struct {
 
 func (r ObservationEoObservationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *ObservationEoObservationNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // URLQuery serializes [ObservationEoObservationNewBulkParams]'s query parameters
@@ -1715,16 +1724,19 @@ func (r ObservationEoObservationNewBulkParamsBody) MarshalJSON() (data []byte, e
 	type shadow ObservationEoObservationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationEoObservationNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ObservationEoObservationNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ObservationEoObservationNewBulkParamsBody](
-		"ReferenceFrame", false, "J2000", "GCRF", "ITRF", "TEME",
+		"referenceFrame", "J2000", "GCRF", "ITRF", "TEME",
 	)
 	apijson.RegisterFieldValidator[ObservationEoObservationNewBulkParamsBody](
-		"SenReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"senReferenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -2015,10 +2027,13 @@ func (r ObservationEoObservationNewBulkParamsBodyEoobservationDetails) MarshalJS
 	type shadow ObservationEoObservationNewBulkParamsBodyEoobservationDetails
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationEoObservationNewBulkParamsBodyEoobservationDetails) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ObservationEoObservationNewBulkParamsBodyEoobservationDetails](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -2053,6 +2068,9 @@ type ObservationEoObservationUnvalidatedPublishParams struct {
 
 func (r ObservationEoObservationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *ObservationEoObservationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Model representation of observation data for electro-optical based sensor
@@ -2398,16 +2416,19 @@ func (r ObservationEoObservationUnvalidatedPublishParamsBody) MarshalJSON() (dat
 	type shadow ObservationEoObservationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationEoObservationUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ObservationEoObservationUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ObservationEoObservationUnvalidatedPublishParamsBody](
-		"ReferenceFrame", false, "J2000", "GCRF", "ITRF", "TEME",
+		"referenceFrame", "J2000", "GCRF", "ITRF", "TEME",
 	)
 	apijson.RegisterFieldValidator[ObservationEoObservationUnvalidatedPublishParamsBody](
-		"SenReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"senReferenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -2698,9 +2719,12 @@ func (r ObservationEoObservationUnvalidatedPublishParamsBodyEoobservationDetails
 	type shadow ObservationEoObservationUnvalidatedPublishParamsBodyEoobservationDetails
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationEoObservationUnvalidatedPublishParamsBodyEoobservationDetails) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ObservationEoObservationUnvalidatedPublishParamsBodyEoobservationDetails](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

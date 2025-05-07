@@ -466,6 +466,9 @@ type SpaceEnvObservationNewBulkParams struct {
 func (r SpaceEnvObservationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *SpaceEnvObservationNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // SpaceEnvObservation data.
 //
@@ -618,13 +621,16 @@ func (r SpaceEnvObservationNewBulkParamsBody) MarshalJSON() (data []byte, err er
 	type shadow SpaceEnvObservationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SpaceEnvObservationNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SpaceEnvObservationNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SpaceEnvObservationNewBulkParamsBody](
-		"SenReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"senReferenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -675,6 +681,9 @@ func (r SpaceEnvObservationNewBulkParamsBodySeoList) MarshalJSON() (data []byte,
 	type shadow SpaceEnvObservationNewBulkParamsBodySeoList
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SpaceEnvObservationNewBulkParamsBodySeoList) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type SpaceEnvObservationTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
@@ -706,6 +715,9 @@ type SpaceEnvObservationUnvalidatedPublishParams struct {
 
 func (r SpaceEnvObservationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *SpaceEnvObservationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // SpaceEnvObservation data.
@@ -859,13 +871,16 @@ func (r SpaceEnvObservationUnvalidatedPublishParamsBody) MarshalJSON() (data []b
 	type shadow SpaceEnvObservationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SpaceEnvObservationUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SpaceEnvObservationUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SpaceEnvObservationUnvalidatedPublishParamsBody](
-		"SenReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"senReferenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -915,4 +930,7 @@ type SpaceEnvObservationUnvalidatedPublishParamsBodySeoList struct {
 func (r SpaceEnvObservationUnvalidatedPublishParamsBodySeoList) MarshalJSON() (data []byte, err error) {
 	type shadow SpaceEnvObservationUnvalidatedPublishParamsBodySeoList
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SpaceEnvObservationUnvalidatedPublishParamsBodySeoList) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

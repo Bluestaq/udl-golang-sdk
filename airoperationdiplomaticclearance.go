@@ -574,6 +574,9 @@ type AirOperationDiplomaticClearanceUnvalidatedPublishParams struct {
 func (r AirOperationDiplomaticClearanceUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *AirOperationDiplomaticClearanceUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // A diplomatic clearance is an authorization for an aircraft to traverse or land
 // within a specified country.
@@ -657,10 +660,13 @@ func (r AirOperationDiplomaticClearanceUnvalidatedPublishParamsBody) MarshalJSON
 	type shadow AirOperationDiplomaticClearanceUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirOperationDiplomaticClearanceUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[AirOperationDiplomaticClearanceUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -739,6 +745,9 @@ func (r AirOperationDiplomaticClearanceUnvalidatedPublishParamsBodyDiplomaticCle
 	type shadow AirOperationDiplomaticClearanceUnvalidatedPublishParamsBodyDiplomaticClearanceDetail
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirOperationDiplomaticClearanceUnvalidatedPublishParamsBodyDiplomaticClearanceDetail) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of diplomatic clearance remarks.
 type AirOperationDiplomaticClearanceUnvalidatedPublishParamsBodyDiplomaticClearanceRemark struct {
@@ -757,4 +766,7 @@ type AirOperationDiplomaticClearanceUnvalidatedPublishParamsBodyDiplomaticCleara
 func (r AirOperationDiplomaticClearanceUnvalidatedPublishParamsBodyDiplomaticClearanceRemark) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationDiplomaticClearanceUnvalidatedPublishParamsBodyDiplomaticClearanceRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirOperationDiplomaticClearanceUnvalidatedPublishParamsBodyDiplomaticClearanceRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

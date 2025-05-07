@@ -769,6 +769,9 @@ type ObservationMonoradarNewBulkParams struct {
 func (r ObservationMonoradarNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *ObservationMonoradarNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // A monoradar record contains the raw, and in some cases, processed target reports
 // from primary and secondary air surveillance radars. All target positions for
@@ -968,10 +971,13 @@ func (r ObservationMonoradarNewBulkParamsBody) MarshalJSON() (data []byte, err e
 	type shadow ObservationMonoradarNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationMonoradarNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ObservationMonoradarNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1005,6 +1011,9 @@ type ObservationMonoradarUnvalidatedPublishParams struct {
 
 func (r ObservationMonoradarUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *ObservationMonoradarUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // A monoradar record contains the raw, and in some cases, processed target reports
@@ -1205,9 +1214,12 @@ func (r ObservationMonoradarUnvalidatedPublishParamsBody) MarshalJSON() (data []
 	type shadow ObservationMonoradarUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationMonoradarUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ObservationMonoradarUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
