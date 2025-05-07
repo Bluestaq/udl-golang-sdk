@@ -1009,6 +1009,9 @@ type MtiNewBulkParams struct {
 func (r MtiNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *MtiNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // Information on the mission and flight plans, the type and configuration of the
 // platform, and the reference time.
@@ -1102,10 +1105,13 @@ func (r MtiNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow MtiNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *MtiNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[MtiNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1209,6 +1215,9 @@ func (r MtiNewBulkParamsBodyDwell) MarshalJSON() (data []byte, err error) {
 	type shadow MtiNewBulkParamsBodyDwell
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *MtiNewBulkParamsBodyDwell) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // A grouping of zero or more target reports for which the sensor provides a single
 // time, sensor position, reference position on the ground with simple estimates
@@ -1274,6 +1283,9 @@ func (r MtiNewBulkParamsBodyDwellD32) MarshalJSON() (data []byte, err error) {
 	type shadow MtiNewBulkParamsBodyDwellD32
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *MtiNewBulkParamsBodyDwellD32) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type MtiNewBulkParamsBodyFreeText struct {
 	// The originator of the Free Text message.
@@ -1288,6 +1300,9 @@ type MtiNewBulkParamsBodyFreeText struct {
 func (r MtiNewBulkParamsBodyFreeText) MarshalJSON() (data []byte, err error) {
 	type shadow MtiNewBulkParamsBodyFreeText
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *MtiNewBulkParamsBodyFreeText) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type MtiNewBulkParamsBodyHrr struct {
@@ -1369,6 +1384,9 @@ func (r MtiNewBulkParamsBodyHrr) MarshalJSON() (data []byte, err error) {
 	type shadow MtiNewBulkParamsBodyHrr
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *MtiNewBulkParamsBodyHrr) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // HRR Scatterer record for a target pixel that exceeds the target detection
 // threshold.
@@ -1389,6 +1407,9 @@ type MtiNewBulkParamsBodyHrrH32 struct {
 func (r MtiNewBulkParamsBodyHrrH32) MarshalJSON() (data []byte, err error) {
 	type shadow MtiNewBulkParamsBodyHrrH32
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *MtiNewBulkParamsBodyHrrH32) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // The means for the platform to pass information pertaining to the sensor job that
@@ -1490,6 +1511,9 @@ func (r MtiNewBulkParamsBodyJobDef) MarshalJSON() (data []byte, err error) {
 	type shadow MtiNewBulkParamsBodyJobDef
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *MtiNewBulkParamsBodyJobDef) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type MtiNewBulkParamsBodyJobRequest struct {
 	// Specifies the Earliest Start Time for which the service is requested. Composite
@@ -1564,6 +1588,9 @@ func (r MtiNewBulkParamsBodyJobRequest) MarshalJSON() (data []byte, err error) {
 	type shadow MtiNewBulkParamsBodyJobRequest
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *MtiNewBulkParamsBodyJobRequest) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type MtiNewBulkParamsBodyMission struct {
 	// The mission plan id.
@@ -1582,6 +1609,9 @@ type MtiNewBulkParamsBodyMission struct {
 func (r MtiNewBulkParamsBodyMission) MarshalJSON() (data []byte, err error) {
 	type shadow MtiNewBulkParamsBodyMission
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *MtiNewBulkParamsBodyMission) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type MtiNewBulkParamsBodyPlatformLoc struct {
@@ -1616,6 +1646,9 @@ func (r MtiNewBulkParamsBodyPlatformLoc) MarshalJSON() (data []byte, err error) 
 	type shadow MtiNewBulkParamsBodyPlatformLoc
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *MtiNewBulkParamsBodyPlatformLoc) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type MtiTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
@@ -1645,6 +1678,9 @@ type MtiUnvalidatedPublishParams struct {
 
 func (r MtiUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *MtiUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Information on the mission and flight plans, the type and configuration of the
@@ -1739,10 +1775,13 @@ func (r MtiUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) 
 	type shadow MtiUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *MtiUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[MtiUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1846,6 +1885,9 @@ func (r MtiUnvalidatedPublishParamsBodyDwell) MarshalJSON() (data []byte, err er
 	type shadow MtiUnvalidatedPublishParamsBodyDwell
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *MtiUnvalidatedPublishParamsBodyDwell) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // A grouping of zero or more target reports for which the sensor provides a single
 // time, sensor position, reference position on the ground with simple estimates
@@ -1911,6 +1953,9 @@ func (r MtiUnvalidatedPublishParamsBodyDwellD32) MarshalJSON() (data []byte, err
 	type shadow MtiUnvalidatedPublishParamsBodyDwellD32
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *MtiUnvalidatedPublishParamsBodyDwellD32) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type MtiUnvalidatedPublishParamsBodyFreeText struct {
 	// The originator of the Free Text message.
@@ -1925,6 +1970,9 @@ type MtiUnvalidatedPublishParamsBodyFreeText struct {
 func (r MtiUnvalidatedPublishParamsBodyFreeText) MarshalJSON() (data []byte, err error) {
 	type shadow MtiUnvalidatedPublishParamsBodyFreeText
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *MtiUnvalidatedPublishParamsBodyFreeText) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type MtiUnvalidatedPublishParamsBodyHrr struct {
@@ -2006,6 +2054,9 @@ func (r MtiUnvalidatedPublishParamsBodyHrr) MarshalJSON() (data []byte, err erro
 	type shadow MtiUnvalidatedPublishParamsBodyHrr
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *MtiUnvalidatedPublishParamsBodyHrr) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // HRR Scatterer record for a target pixel that exceeds the target detection
 // threshold.
@@ -2026,6 +2077,9 @@ type MtiUnvalidatedPublishParamsBodyHrrH32 struct {
 func (r MtiUnvalidatedPublishParamsBodyHrrH32) MarshalJSON() (data []byte, err error) {
 	type shadow MtiUnvalidatedPublishParamsBodyHrrH32
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *MtiUnvalidatedPublishParamsBodyHrrH32) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // The means for the platform to pass information pertaining to the sensor job that
@@ -2127,6 +2181,9 @@ func (r MtiUnvalidatedPublishParamsBodyJobDef) MarshalJSON() (data []byte, err e
 	type shadow MtiUnvalidatedPublishParamsBodyJobDef
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *MtiUnvalidatedPublishParamsBodyJobDef) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type MtiUnvalidatedPublishParamsBodyJobRequest struct {
 	// Specifies the Earliest Start Time for which the service is requested. Composite
@@ -2201,6 +2258,9 @@ func (r MtiUnvalidatedPublishParamsBodyJobRequest) MarshalJSON() (data []byte, e
 	type shadow MtiUnvalidatedPublishParamsBodyJobRequest
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *MtiUnvalidatedPublishParamsBodyJobRequest) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type MtiUnvalidatedPublishParamsBodyMission struct {
 	// The mission plan id.
@@ -2219,6 +2279,9 @@ type MtiUnvalidatedPublishParamsBodyMission struct {
 func (r MtiUnvalidatedPublishParamsBodyMission) MarshalJSON() (data []byte, err error) {
 	type shadow MtiUnvalidatedPublishParamsBodyMission
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *MtiUnvalidatedPublishParamsBodyMission) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type MtiUnvalidatedPublishParamsBodyPlatformLoc struct {
@@ -2252,4 +2315,7 @@ type MtiUnvalidatedPublishParamsBodyPlatformLoc struct {
 func (r MtiUnvalidatedPublishParamsBodyPlatformLoc) MarshalJSON() (data []byte, err error) {
 	type shadow MtiUnvalidatedPublishParamsBodyPlatformLoc
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *MtiUnvalidatedPublishParamsBodyPlatformLoc) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

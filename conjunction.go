@@ -3261,6 +3261,9 @@ func (r ConjunctionNewUdlParams) MarshalJSON() (data []byte, err error) {
 	type shadow ConjunctionNewUdlParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ConjunctionNewUdlParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // URLQuery serializes [ConjunctionNewUdlParams]'s query parameters as
 // `url.Values`.
@@ -3741,16 +3744,19 @@ func (r ConjunctionNewUdlParamsStateVector1) MarshalJSON() (data []byte, err err
 	type shadow ConjunctionNewUdlParamsStateVector1
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ConjunctionNewUdlParamsStateVector1) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ConjunctionNewUdlParamsStateVector1](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ConjunctionNewUdlParamsStateVector1](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[ConjunctionNewUdlParamsStateVector1](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -4201,16 +4207,19 @@ func (r ConjunctionNewUdlParamsStateVector2) MarshalJSON() (data []byte, err err
 	type shadow ConjunctionNewUdlParamsStateVector2
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ConjunctionNewUdlParamsStateVector2) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ConjunctionNewUdlParamsStateVector2](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ConjunctionNewUdlParamsStateVector2](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[ConjunctionNewUdlParamsStateVector2](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -4221,6 +4230,9 @@ type ConjunctionNewBulkParams struct {
 
 func (r ConjunctionNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *ConjunctionNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Stores the results of a particular Conjunction Assessment (CA) run.
@@ -4449,10 +4461,13 @@ func (r ConjunctionNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow ConjunctionNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ConjunctionNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ConjunctionNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -4903,16 +4918,19 @@ func (r ConjunctionNewBulkParamsBodyStateVector1) MarshalJSON() (data []byte, er
 	type shadow ConjunctionNewBulkParamsBodyStateVector1
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ConjunctionNewBulkParamsBodyStateVector1) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ConjunctionNewBulkParamsBodyStateVector1](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ConjunctionNewBulkParamsBodyStateVector1](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[ConjunctionNewBulkParamsBodyStateVector1](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -5363,16 +5381,19 @@ func (r ConjunctionNewBulkParamsBodyStateVector2) MarshalJSON() (data []byte, er
 	type shadow ConjunctionNewBulkParamsBodyStateVector2
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ConjunctionNewBulkParamsBodyStateVector2) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ConjunctionNewBulkParamsBodyStateVector2](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ConjunctionNewBulkParamsBodyStateVector2](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[ConjunctionNewBulkParamsBodyStateVector2](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -5425,6 +5446,9 @@ type ConjunctionUnvalidatedPublishParams struct {
 
 func (r ConjunctionUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *ConjunctionUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Stores the results of a particular Conjunction Assessment (CA) run.
@@ -5653,10 +5677,13 @@ func (r ConjunctionUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err
 	type shadow ConjunctionUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ConjunctionUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ConjunctionUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -6107,16 +6134,19 @@ func (r ConjunctionUnvalidatedPublishParamsBodyStateVector1) MarshalJSON() (data
 	type shadow ConjunctionUnvalidatedPublishParamsBodyStateVector1
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ConjunctionUnvalidatedPublishParamsBodyStateVector1) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ConjunctionUnvalidatedPublishParamsBodyStateVector1](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ConjunctionUnvalidatedPublishParamsBodyStateVector1](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[ConjunctionUnvalidatedPublishParamsBodyStateVector1](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -6567,16 +6597,19 @@ func (r ConjunctionUnvalidatedPublishParamsBodyStateVector2) MarshalJSON() (data
 	type shadow ConjunctionUnvalidatedPublishParamsBodyStateVector2
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ConjunctionUnvalidatedPublishParamsBodyStateVector2) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ConjunctionUnvalidatedPublishParamsBodyStateVector2](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ConjunctionUnvalidatedPublishParamsBodyStateVector2](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[ConjunctionUnvalidatedPublishParamsBodyStateVector2](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 

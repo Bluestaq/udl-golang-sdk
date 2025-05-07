@@ -660,6 +660,9 @@ func (r ElsetIngestParam) MarshalJSON() (data []byte, err error) {
 	type shadow ElsetIngestParam
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ElsetIngestParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -935,6 +938,9 @@ type ElsetNewParams struct {
 func (r ElsetNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.ElsetIngest)
 }
+func (r *ElsetNewParams) UnmarshalJSON(data []byte) error {
+	return r.ElsetIngest.UnmarshalJSON(data)
+}
 
 type ElsetGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
@@ -995,6 +1001,9 @@ type ElsetNewBulkParams struct {
 func (r ElsetNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *ElsetNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // URLQuery serializes [ElsetNewBulkParams]'s query parameters as `url.Values`.
 func (r ElsetNewBulkParams) URLQuery() (v url.Values, err error) {
@@ -1032,6 +1041,9 @@ type ElsetNewBulkFromTleParams struct {
 
 func (r ElsetNewBulkFromTleParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *ElsetNewBulkFromTleParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // URLQuery serializes [ElsetNewBulkFromTleParams]'s query parameters as
@@ -1072,4 +1084,7 @@ type ElsetUnvalidatedPublishParams struct {
 
 func (r ElsetUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *ElsetUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }

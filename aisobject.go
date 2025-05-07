@@ -53,6 +53,9 @@ type AIsObjectUnvalidatedPublishParams struct {
 func (r AIsObjectUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *AIsObjectUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // Self-reported information obtained from Automatic Identification System (AIS)
 // equipment. This contains information such as unique identification, status,
@@ -241,9 +244,12 @@ func (r AIsObjectUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err e
 	type shadow AIsObjectUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AIsObjectUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[AIsObjectUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

@@ -236,6 +236,9 @@ func (r DiplomaticClearanceNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DiplomaticClearanceNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -335,6 +338,9 @@ func (r DiplomaticClearanceNewParamsDiplomaticClearanceDetail) MarshalJSON() (da
 	type shadow DiplomaticClearanceNewParamsDiplomaticClearanceDetail
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DiplomaticClearanceNewParamsDiplomaticClearanceDetail) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of diplomatic clearance remarks.
 type DiplomaticClearanceNewParamsDiplomaticClearanceRemark struct {
@@ -353,6 +359,9 @@ type DiplomaticClearanceNewParamsDiplomaticClearanceRemark struct {
 func (r DiplomaticClearanceNewParamsDiplomaticClearanceRemark) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceNewParamsDiplomaticClearanceRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *DiplomaticClearanceNewParamsDiplomaticClearanceRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type DiplomaticClearanceGetParams struct {
@@ -429,6 +438,9 @@ type DiplomaticClearanceUpdateParams struct {
 func (r DiplomaticClearanceUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *DiplomaticClearanceUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -529,6 +541,9 @@ func (r DiplomaticClearanceUpdateParamsDiplomaticClearanceDetail) MarshalJSON() 
 	type shadow DiplomaticClearanceUpdateParamsDiplomaticClearanceDetail
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DiplomaticClearanceUpdateParamsDiplomaticClearanceDetail) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of diplomatic clearance remarks.
 type DiplomaticClearanceUpdateParamsDiplomaticClearanceRemark struct {
@@ -547,6 +562,9 @@ type DiplomaticClearanceUpdateParamsDiplomaticClearanceRemark struct {
 func (r DiplomaticClearanceUpdateParamsDiplomaticClearanceRemark) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceUpdateParamsDiplomaticClearanceRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *DiplomaticClearanceUpdateParamsDiplomaticClearanceRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type DiplomaticClearanceListParams struct {
@@ -592,6 +610,9 @@ type DiplomaticClearanceNewBulkParams struct {
 
 func (r DiplomaticClearanceNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *DiplomaticClearanceNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // A diplomatic clearance is an authorization for an aircraft to traverse or land
@@ -676,10 +697,13 @@ func (r DiplomaticClearanceNewBulkParamsBody) MarshalJSON() (data []byte, err er
 	type shadow DiplomaticClearanceNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DiplomaticClearanceNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[DiplomaticClearanceNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -758,6 +782,9 @@ func (r DiplomaticClearanceNewBulkParamsBodyDiplomaticClearanceDetail) MarshalJS
 	type shadow DiplomaticClearanceNewBulkParamsBodyDiplomaticClearanceDetail
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DiplomaticClearanceNewBulkParamsBodyDiplomaticClearanceDetail) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of diplomatic clearance remarks.
 type DiplomaticClearanceNewBulkParamsBodyDiplomaticClearanceRemark struct {
@@ -776,6 +803,9 @@ type DiplomaticClearanceNewBulkParamsBodyDiplomaticClearanceRemark struct {
 func (r DiplomaticClearanceNewBulkParamsBodyDiplomaticClearanceRemark) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceNewBulkParamsBodyDiplomaticClearanceRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *DiplomaticClearanceNewBulkParamsBodyDiplomaticClearanceRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type DiplomaticClearanceTupleParams struct {

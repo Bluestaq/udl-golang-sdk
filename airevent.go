@@ -1588,6 +1588,9 @@ func (r AirEventNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow AirEventNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirEventNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1673,6 +1676,9 @@ func (r AirEventNewParamsReceiver) MarshalJSON() (data []byte, err error) {
 	type shadow AirEventNewParamsReceiver
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirEventNewParamsReceiver) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of remarks associated with this Air Event.
 type AirEventNewParamsRemark struct {
@@ -1693,6 +1699,9 @@ type AirEventNewParamsRemark struct {
 func (r AirEventNewParamsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow AirEventNewParamsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirEventNewParamsRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of tanker aircraft associated with this Air Event.
@@ -1745,6 +1754,9 @@ type AirEventNewParamsTanker struct {
 func (r AirEventNewParamsTanker) MarshalJSON() (data []byte, err error) {
 	type shadow AirEventNewParamsTanker
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirEventNewParamsTanker) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type AirEventUpdateParams struct {
@@ -1883,6 +1895,9 @@ func (r AirEventUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow AirEventUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirEventUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1968,6 +1983,9 @@ func (r AirEventUpdateParamsReceiver) MarshalJSON() (data []byte, err error) {
 	type shadow AirEventUpdateParamsReceiver
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirEventUpdateParamsReceiver) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of remarks associated with this Air Event.
 type AirEventUpdateParamsRemark struct {
@@ -1988,6 +2006,9 @@ type AirEventUpdateParamsRemark struct {
 func (r AirEventUpdateParamsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow AirEventUpdateParamsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirEventUpdateParamsRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of tanker aircraft associated with this Air Event.
@@ -2041,6 +2062,9 @@ func (r AirEventUpdateParamsTanker) MarshalJSON() (data []byte, err error) {
 	type shadow AirEventUpdateParamsTanker
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirEventUpdateParamsTanker) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type AirEventListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
@@ -2077,6 +2101,9 @@ type AirEventNewBulkParams struct {
 
 func (r AirEventNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *AirEventNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Information related to an air event (e.g. FUEL TRANSFER, AIR DROP) and the
@@ -2236,10 +2263,13 @@ func (r AirEventNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow AirEventNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirEventNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[AirEventNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -2304,6 +2334,9 @@ func (r AirEventNewBulkParamsBodyReceiver) MarshalJSON() (data []byte, err error
 	type shadow AirEventNewBulkParamsBodyReceiver
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirEventNewBulkParamsBodyReceiver) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of remarks associated with this Air Event.
 type AirEventNewBulkParamsBodyRemark struct {
@@ -2324,6 +2357,9 @@ type AirEventNewBulkParamsBodyRemark struct {
 func (r AirEventNewBulkParamsBodyRemark) MarshalJSON() (data []byte, err error) {
 	type shadow AirEventNewBulkParamsBodyRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirEventNewBulkParamsBodyRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of tanker aircraft associated with this Air Event.
@@ -2377,6 +2413,9 @@ func (r AirEventNewBulkParamsBodyTanker) MarshalJSON() (data []byte, err error) 
 	type shadow AirEventNewBulkParamsBodyTanker
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirEventNewBulkParamsBodyTanker) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type AirEventGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
@@ -2418,6 +2457,9 @@ type AirEventUnvalidatedPublishParams struct {
 
 func (r AirEventUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *AirEventUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Information related to an air event (e.g. FUEL TRANSFER, AIR DROP) and the
@@ -2577,10 +2619,13 @@ func (r AirEventUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err er
 	type shadow AirEventUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirEventUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[AirEventUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -2645,6 +2690,9 @@ func (r AirEventUnvalidatedPublishParamsBodyReceiver) MarshalJSON() (data []byte
 	type shadow AirEventUnvalidatedPublishParamsBodyReceiver
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirEventUnvalidatedPublishParamsBodyReceiver) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of remarks associated with this Air Event.
 type AirEventUnvalidatedPublishParamsBodyRemark struct {
@@ -2665,6 +2713,9 @@ type AirEventUnvalidatedPublishParamsBodyRemark struct {
 func (r AirEventUnvalidatedPublishParamsBodyRemark) MarshalJSON() (data []byte, err error) {
 	type shadow AirEventUnvalidatedPublishParamsBodyRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirEventUnvalidatedPublishParamsBodyRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of tanker aircraft associated with this Air Event.
@@ -2717,4 +2768,7 @@ type AirEventUnvalidatedPublishParamsBodyTanker struct {
 func (r AirEventUnvalidatedPublishParamsBodyTanker) MarshalJSON() (data []byte, err error) {
 	type shadow AirEventUnvalidatedPublishParamsBodyTanker
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirEventUnvalidatedPublishParamsBodyTanker) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

@@ -480,6 +480,9 @@ func (r EventEvolutionNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow EventEvolutionNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EventEvolutionNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -574,6 +577,9 @@ type EventEvolutionNewBulkParams struct {
 
 func (r EventEvolutionNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *EventEvolutionNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Event Evolution is a unique service supporting the association of UDL records of
@@ -718,10 +724,13 @@ func (r EventEvolutionNewBulkParamsBody) MarshalJSON() (data []byte, err error) 
 	type shadow EventEvolutionNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EventEvolutionNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[EventEvolutionNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -761,6 +770,9 @@ type EventEvolutionUnvalidatedPublishParams struct {
 
 func (r EventEvolutionUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *EventEvolutionUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Event Evolution is a unique service supporting the association of UDL records of
@@ -905,9 +917,12 @@ func (r EventEvolutionUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, 
 	type shadow EventEvolutionUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EventEvolutionUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[EventEvolutionUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

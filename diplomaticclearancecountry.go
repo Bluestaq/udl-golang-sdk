@@ -1812,6 +1812,9 @@ func (r DiplomaticClearanceCountryNewParams) MarshalJSON() (data []byte, err err
 	type shadow DiplomaticClearanceCountryNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DiplomaticClearanceCountryNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1871,6 +1874,9 @@ func (r DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryContact) Ma
 	type shadow DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryContact
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryContact) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of entry and exit points for this country.
 type DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryEntryExitPoint struct {
@@ -1886,6 +1892,9 @@ type DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryEntryExitPoint
 func (r DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryEntryExitPoint) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryEntryExitPoint
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryEntryExitPoint) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of diplomatic clearance profile information for this country.
@@ -2046,6 +2055,9 @@ func (r DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryProfile) Ma
 	type shadow DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryProfile
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DiplomaticClearanceCountryNewParamsDiplomaticClearanceCountryProfile) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type DiplomaticClearanceCountryGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
@@ -2177,6 +2189,9 @@ func (r DiplomaticClearanceCountryUpdateParams) MarshalJSON() (data []byte, err 
 	type shadow DiplomaticClearanceCountryUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DiplomaticClearanceCountryUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -2236,6 +2251,9 @@ func (r DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryContact)
 	type shadow DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryContact
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryContact) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of entry and exit points for this country.
 type DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryEntryExitPoint struct {
@@ -2251,6 +2269,9 @@ type DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryEntryExitPo
 func (r DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryEntryExitPoint) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryEntryExitPoint
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryEntryExitPoint) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of diplomatic clearance profile information for this country.
@@ -2411,6 +2432,9 @@ func (r DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryProfile)
 	type shadow DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryProfile
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DiplomaticClearanceCountryUpdateParamsDiplomaticClearanceCountryProfile) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type DiplomaticClearanceCountryListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
@@ -2449,6 +2473,9 @@ type DiplomaticClearanceCountryNewBulkParams struct {
 
 func (r DiplomaticClearanceCountryNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *DiplomaticClearanceCountryNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Diplomatic Clearance Country provides information such as entry/exit points,
@@ -2589,10 +2616,13 @@ func (r DiplomaticClearanceCountryNewBulkParamsBody) MarshalJSON() (data []byte,
 	type shadow DiplomaticClearanceCountryNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DiplomaticClearanceCountryNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[DiplomaticClearanceCountryNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -2631,6 +2661,9 @@ func (r DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryCon
 	type shadow DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryContact
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryContact) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of entry and exit points for this country.
 type DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryEntryExitPoint struct {
@@ -2646,6 +2679,9 @@ type DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryEntryE
 func (r DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryEntryExitPoint) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryEntryExitPoint
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryEntryExitPoint) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of diplomatic clearance profile information for this country.
@@ -2806,6 +2842,9 @@ func (r DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryPro
 	type shadow DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryProfile
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryProfile) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type DiplomaticClearanceCountryTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
@@ -2834,6 +2873,9 @@ type DiplomaticClearanceCountryUnvalidatedPublishParams struct {
 
 func (r DiplomaticClearanceCountryUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *DiplomaticClearanceCountryUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Diplomatic Clearance Country provides information such as entry/exit points,
@@ -2974,10 +3016,13 @@ func (r DiplomaticClearanceCountryUnvalidatedPublishParamsBody) MarshalJSON() (d
 	type shadow DiplomaticClearanceCountryUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DiplomaticClearanceCountryUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[DiplomaticClearanceCountryUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -3016,6 +3061,9 @@ func (r DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanc
 	type shadow DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCountryContact
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCountryContact) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of entry and exit points for this country.
 type DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCountryEntryExitPoint struct {
@@ -3031,6 +3079,9 @@ type DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCo
 func (r DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCountryEntryExitPoint) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCountryEntryExitPoint
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCountryEntryExitPoint) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of diplomatic clearance profile information for this country.
@@ -3190,4 +3241,7 @@ type DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCo
 func (r DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCountryProfile) MarshalJSON() (data []byte, err error) {
 	type shadow DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCountryProfile
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCountryProfile) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

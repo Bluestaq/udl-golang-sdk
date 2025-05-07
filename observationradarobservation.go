@@ -1389,6 +1389,9 @@ func (r ObservationRadarobservationNewParams) MarshalJSON() (data []byte, err er
 	type shadow ObservationRadarobservationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationRadarobservationNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1469,6 +1472,9 @@ type ObservationRadarobservationNewBulkParams struct {
 
 func (r ObservationRadarobservationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *ObservationRadarobservationNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Model representation of observation data for radar based sensor phenomenologies.
@@ -1704,13 +1710,16 @@ func (r ObservationRadarobservationNewBulkParamsBody) MarshalJSON() (data []byte
 	type shadow ObservationRadarobservationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationRadarobservationNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ObservationRadarobservationNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ObservationRadarobservationNewBulkParamsBody](
-		"SenReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"senReferenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -1759,6 +1768,9 @@ type ObservationRadarobservationUnvalidatedPublishParams struct {
 
 func (r ObservationRadarobservationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *ObservationRadarobservationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Model representation of observation data for radar based sensor phenomenologies.
@@ -1994,12 +2006,15 @@ func (r ObservationRadarobservationUnvalidatedPublishParamsBody) MarshalJSON() (
 	type shadow ObservationRadarobservationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ObservationRadarobservationUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ObservationRadarobservationUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ObservationRadarobservationUnvalidatedPublishParamsBody](
-		"SenReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"senReferenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }

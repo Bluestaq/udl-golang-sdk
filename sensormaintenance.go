@@ -907,6 +907,9 @@ func (r SensorMaintenanceNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SensorMaintenanceNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorMaintenanceNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1015,6 +1018,9 @@ func (r SensorMaintenanceUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SensorMaintenanceUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorMaintenanceUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1092,6 +1098,9 @@ type SensorMaintenanceNewBulkParams struct {
 
 func (r SensorMaintenanceNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *SensorMaintenanceNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // URLQuery serializes [SensorMaintenanceNewBulkParams]'s query parameters as
@@ -1201,10 +1210,13 @@ func (r SensorMaintenanceNewBulkParamsBody) MarshalJSON() (data []byte, err erro
 	type shadow SensorMaintenanceNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorMaintenanceNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorMaintenanceNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

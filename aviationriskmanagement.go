@@ -1073,6 +1073,9 @@ func (r AviationRiskManagementNewParams) MarshalJSON() (data []byte, err error) 
 	type shadow AviationRiskManagementNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AviationRiskManagementNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1152,6 +1155,9 @@ func (r AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecord) Ma
 	type shadow AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecord
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecord) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of Aviation Risk Management worksheet record scores.
 type AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
@@ -1191,6 +1197,9 @@ func (r AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAvia
 	type shadow AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of aviation risk management worksheet record score aircraft sorties.
 type AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
@@ -1213,6 +1222,9 @@ type AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviatio
 func (r AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AviationRiskManagementNewParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type AviationRiskManagementGetParams struct {
@@ -1281,6 +1293,9 @@ type AviationRiskManagementUpdateParams struct {
 func (r AviationRiskManagementUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AviationRiskManagementUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1361,6 +1376,9 @@ func (r AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecord)
 	type shadow AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecord
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecord) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of Aviation Risk Management worksheet record scores.
 type AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
@@ -1400,6 +1418,9 @@ func (r AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordA
 	type shadow AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of aviation risk management worksheet record score aircraft sorties.
 type AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
@@ -1422,6 +1443,9 @@ type AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAvia
 func (r AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type AviationRiskManagementCountParams struct {
@@ -1449,6 +1473,9 @@ type AviationRiskManagementNewBulkParams struct {
 
 func (r AviationRiskManagementNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *AviationRiskManagementNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Aviation Risk Management is used to identify, evaluate, and track risks when
@@ -1525,10 +1552,13 @@ func (r AviationRiskManagementNewBulkParamsBody) MarshalJSON() (data []byte, err
 	type shadow AviationRiskManagementNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AviationRiskManagementNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[AviationRiskManagementNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1587,6 +1617,9 @@ func (r AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRe
 	type shadow AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecord
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecord) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of Aviation Risk Management worksheet record scores.
 type AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
@@ -1626,6 +1659,9 @@ func (r AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRe
 	type shadow AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of aviation risk management worksheet record score aircraft sorties.
 type AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
@@ -1648,6 +1684,9 @@ type AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecor
 func (r AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type AviationRiskManagementQueryParams struct {
@@ -1698,6 +1737,9 @@ type AviationRiskManagementUnvalidatedPublishParams struct {
 
 func (r AviationRiskManagementUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *AviationRiskManagementUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Aviation Risk Management is used to identify, evaluate, and track risks when
@@ -1774,10 +1816,13 @@ func (r AviationRiskManagementUnvalidatedPublishParamsBody) MarshalJSON() (data 
 	type shadow AviationRiskManagementUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AviationRiskManagementUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[AviationRiskManagementUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1836,6 +1881,9 @@ func (r AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagement
 	type shadow AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecord
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecord) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of Aviation Risk Management worksheet record scores.
 type AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
@@ -1875,6 +1923,9 @@ func (r AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagement
 	type shadow AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of aviation risk management worksheet record score aircraft sorties.
 type AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
@@ -1897,4 +1948,7 @@ type AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWor
 func (r AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) MarshalJSON() (data []byte, err error) {
 	type shadow AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AviationRiskManagementUnvalidatedPublishParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

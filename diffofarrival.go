@@ -134,6 +134,9 @@ type DiffOfArrivalUnvalidatedPublishParams struct {
 func (r DiffOfArrivalUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *DiffOfArrivalUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // Model representation of Signal time and frequency difference of arrival
 // (TDOA/FDOA) information obtained by using passive RF based sensor
@@ -287,9 +290,12 @@ func (r DiffOfArrivalUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, e
 	type shadow DiffOfArrivalUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DiffOfArrivalUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[DiffOfArrivalUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

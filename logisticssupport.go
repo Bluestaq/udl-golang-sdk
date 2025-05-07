@@ -2158,6 +2158,9 @@ func (r LogisticsSupportNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -2199,6 +2202,9 @@ func (r LogisticsSupportNewParamsLogisticsDiscrepancyInfo) MarshalJSON() (data [
 	type shadow LogisticsSupportNewParamsLogisticsDiscrepancyInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportNewParamsLogisticsDiscrepancyInfo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Remarks associated with this LogisticsSupport record.
 type LogisticsSupportNewParamsLogisticsRemark struct {
@@ -2215,6 +2221,9 @@ type LogisticsSupportNewParamsLogisticsRemark struct {
 func (r LogisticsSupportNewParamsLogisticsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewParamsLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *LogisticsSupportNewParamsLogisticsRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Support items associated with this LogisticsSupport record.
@@ -2285,6 +2294,9 @@ func (r LogisticsSupportNewParamsLogisticsSupportItem) MarshalJSON() (data []byt
 	type shadow LogisticsSupportNewParamsLogisticsSupportItem
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportNewParamsLogisticsSupportItem) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // The parts associated with this support item.
 type LogisticsSupportNewParamsLogisticsSupportItemLogisticsPart struct {
@@ -2319,6 +2331,9 @@ func (r LogisticsSupportNewParamsLogisticsSupportItemLogisticsPart) MarshalJSON(
 	type shadow LogisticsSupportNewParamsLogisticsSupportItemLogisticsPart
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportNewParamsLogisticsSupportItemLogisticsPart) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // The supply stocks for this support item.
 type LogisticsSupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock struct {
@@ -2338,6 +2353,9 @@ func (r LogisticsSupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock
 	type shadow LogisticsSupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Remarks associated with this LogisticsSupport record.
 type LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark struct {
@@ -2354,6 +2372,9 @@ type LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark struct {
 func (r LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // The specialties required to implement this support item.
@@ -2381,6 +2402,9 @@ type LogisticsSupportNewParamsLogisticsSupportItemLogisticsSpecialty struct {
 func (r LogisticsSupportNewParamsLogisticsSupportItemLogisticsSpecialty) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewParamsLogisticsSupportItemLogisticsSpecialty
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *LogisticsSupportNewParamsLogisticsSupportItemLogisticsSpecialty) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Transportation plans associated with this LogisticsSupport record, used to
@@ -2459,6 +2483,9 @@ func (r LogisticsSupportNewParamsLogisticsTransportationPlan) MarshalJSON() (dat
 	type shadow LogisticsSupportNewParamsLogisticsTransportationPlan
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportNewParamsLogisticsTransportationPlan) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Remarks associated with this LogisticsSupport record.
 type LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsSegment struct {
@@ -2510,6 +2537,9 @@ func (r LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsSegment) Ma
 	type shadow LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsSegment
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsSegment) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Remarks associated with this LogisticsSupport record.
 type LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark struct {
@@ -2526,6 +2556,9 @@ type LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportation
 func (r LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type LogisticsSupportUpdateParams struct {
@@ -2625,6 +2658,9 @@ func (r LogisticsSupportUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -2666,6 +2702,9 @@ func (r LogisticsSupportUpdateParamsLogisticsDiscrepancyInfo) MarshalJSON() (dat
 	type shadow LogisticsSupportUpdateParamsLogisticsDiscrepancyInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportUpdateParamsLogisticsDiscrepancyInfo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Remarks associated with this LogisticsSupport record.
 type LogisticsSupportUpdateParamsLogisticsRemark struct {
@@ -2682,6 +2721,9 @@ type LogisticsSupportUpdateParamsLogisticsRemark struct {
 func (r LogisticsSupportUpdateParamsLogisticsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUpdateParamsLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *LogisticsSupportUpdateParamsLogisticsRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Support items associated with this LogisticsSupport record.
@@ -2752,6 +2794,9 @@ func (r LogisticsSupportUpdateParamsLogisticsSupportItem) MarshalJSON() (data []
 	type shadow LogisticsSupportUpdateParamsLogisticsSupportItem
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportUpdateParamsLogisticsSupportItem) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // The parts associated with this support item.
 type LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPart struct {
@@ -2786,6 +2831,9 @@ func (r LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPart) MarshalJS
 	type shadow LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPart
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPart) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // The supply stocks for this support item.
 type LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock struct {
@@ -2805,6 +2853,9 @@ func (r LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsSt
 	type shadow LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Remarks associated with this LogisticsSupport record.
 type LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark struct {
@@ -2821,6 +2872,9 @@ type LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark struct {
 func (r LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // The specialties required to implement this support item.
@@ -2848,6 +2902,9 @@ type LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsSpecialty struct {
 func (r LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsSpecialty) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsSpecialty
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsSpecialty) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Transportation plans associated with this LogisticsSupport record, used to
@@ -2926,6 +2983,9 @@ func (r LogisticsSupportUpdateParamsLogisticsTransportationPlan) MarshalJSON() (
 	type shadow LogisticsSupportUpdateParamsLogisticsTransportationPlan
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportUpdateParamsLogisticsTransportationPlan) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Remarks associated with this LogisticsSupport record.
 type LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsSegment struct {
@@ -2977,6 +3037,9 @@ func (r LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsSegment)
 	type shadow LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsSegment
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsSegment) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Remarks associated with this LogisticsSupport record.
 type LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark struct {
@@ -2993,6 +3056,9 @@ type LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportat
 func (r LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type LogisticsSupportListParams struct {
@@ -3032,6 +3098,9 @@ type LogisticsSupportNewBulkParams struct {
 
 func (r LogisticsSupportNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *LogisticsSupportNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Comprehensive logistical details concerning the planned support of maintenance
@@ -3149,10 +3218,13 @@ func (r LogisticsSupportNewBulkParamsBody) MarshalJSON() (data []byte, err error
 	type shadow LogisticsSupportNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[LogisticsSupportNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -3173,6 +3245,9 @@ func (r LogisticsSupportNewBulkParamsBodyLogisticsDiscrepancyInfo) MarshalJSON()
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsDiscrepancyInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportNewBulkParamsBodyLogisticsDiscrepancyInfo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Remarks associated with this LogisticsSupport record.
 type LogisticsSupportNewBulkParamsBodyLogisticsRemark struct {
@@ -3189,6 +3264,9 @@ type LogisticsSupportNewBulkParamsBodyLogisticsRemark struct {
 func (r LogisticsSupportNewBulkParamsBodyLogisticsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *LogisticsSupportNewBulkParamsBodyLogisticsRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Support items associated with this LogisticsSupport record.
@@ -3259,6 +3337,9 @@ func (r LogisticsSupportNewBulkParamsBodyLogisticsSupportItem) MarshalJSON() (da
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsSupportItem
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportNewBulkParamsBodyLogisticsSupportItem) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // The parts associated with this support item.
 type LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart struct {
@@ -3293,6 +3374,9 @@ func (r LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart) Mars
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // The supply stocks for this support item.
 type LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock struct {
@@ -3312,6 +3396,9 @@ func (r LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogist
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Remarks associated with this LogisticsSupport record.
 type LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark struct {
@@ -3328,6 +3415,9 @@ type LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark struct
 func (r LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // The specialties required to implement this support item.
@@ -3355,6 +3445,9 @@ type LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty str
 func (r LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Transportation plans associated with this LogisticsSupport record, used to
@@ -3433,6 +3526,9 @@ func (r LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlan) MarshalJSO
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlan
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlan) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Remarks associated with this LogisticsSupport record.
 type LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment struct {
@@ -3484,6 +3580,9 @@ func (r LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSeg
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Remarks associated with this LogisticsSupport record.
 type LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark struct {
@@ -3500,6 +3599,9 @@ type LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransp
 func (r LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type LogisticsSupportGetParams struct {
@@ -3544,6 +3646,9 @@ type LogisticsSupportUnvalidatedPublishParams struct {
 
 func (r LogisticsSupportUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *LogisticsSupportUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Comprehensive logistical details concerning the planned support of maintenance
@@ -3661,10 +3766,13 @@ func (r LogisticsSupportUnvalidatedPublishParamsBody) MarshalJSON() (data []byte
 	type shadow LogisticsSupportUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[LogisticsSupportUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -3685,6 +3793,9 @@ func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo) Ma
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Remarks associated with this LogisticsSupport record.
 type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark struct {
@@ -3701,6 +3812,9 @@ type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark struct {
 func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Support items associated with this LogisticsSupport record.
@@ -3771,6 +3885,9 @@ func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItem) Marsha
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItem
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItem) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // The parts associated with this support item.
 type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPart struct {
@@ -3805,6 +3922,9 @@ func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogistic
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPart
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPart) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // The supply stocks for this support item.
 type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock struct {
@@ -3824,6 +3944,9 @@ func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogistic
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Remarks associated with this LogisticsSupport record.
 type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark struct {
@@ -3840,6 +3963,9 @@ type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRe
 func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // The specialties required to implement this support item.
@@ -3867,6 +3993,9 @@ type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSp
 func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSpecialty) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSpecialty
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSpecialty) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Transportation plans associated with this LogisticsSupport record, used to
@@ -3945,6 +4074,9 @@ func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan)
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Remarks associated with this LogisticsSupport record.
 type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment struct {
@@ -3996,6 +4128,9 @@ func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanL
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Remarks associated with this LogisticsSupport record.
 type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark struct {
@@ -4012,4 +4147,7 @@ type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogi
 func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
 	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

@@ -1756,6 +1756,9 @@ func (r SgiNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SgiNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SgiNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -2019,6 +2022,9 @@ func (r SgiUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SgiUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SgiUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -2120,6 +2126,9 @@ type SgiNewBulkParams struct {
 
 func (r SgiNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *SgiNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Model representation of space weather/solar, geomagnetic, and radiation belt
@@ -2352,16 +2361,19 @@ func (r SgiNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow SgiNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SgiNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SgiNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SgiNewBulkParamsBody](
-		"Precedence", false, "O", "P", "R", "Y", "Z",
+		"precedence", "O", "P", "R", "Y", "Z",
 	)
 	apijson.RegisterFieldValidator[SgiNewBulkParamsBody](
-		"State", false, "I", "N", "P",
+		"state", "I", "N", "P",
 	)
 }
 
@@ -2440,6 +2452,9 @@ type SgiUnvalidatedPublishParams struct {
 
 func (r SgiUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *SgiUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Model representation of space weather/solar, geomagnetic, and radiation belt
@@ -2672,15 +2687,18 @@ func (r SgiUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) 
 	type shadow SgiUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SgiUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SgiUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SgiUnvalidatedPublishParamsBody](
-		"Precedence", false, "O", "P", "R", "Y", "Z",
+		"precedence", "O", "P", "R", "Y", "Z",
 	)
 	apijson.RegisterFieldValidator[SgiUnvalidatedPublishParamsBody](
-		"State", false, "I", "N", "P",
+		"state", "I", "N", "P",
 	)
 }

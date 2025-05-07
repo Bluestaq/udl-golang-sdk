@@ -598,6 +598,9 @@ func (r SeradataSigintPayloadNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SeradataSigintPayloadNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SeradataSigintPayloadNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -683,6 +686,9 @@ type SeradataSigintPayloadUpdateParams struct {
 func (r SeradataSigintPayloadUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SeradataSigintPayloadUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SeradataSigintPayloadUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

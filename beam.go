@@ -388,6 +388,9 @@ func (r BeamNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow BeamNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *BeamNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -466,6 +469,9 @@ type BeamUpdateParams struct {
 func (r BeamUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow BeamUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *BeamUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

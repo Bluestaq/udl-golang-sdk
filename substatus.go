@@ -572,6 +572,9 @@ func (r SubstatusNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SubstatusNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SubstatusNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -662,6 +665,9 @@ type SubstatusUpdateParams struct {
 func (r SubstatusUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SubstatusUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SubstatusUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

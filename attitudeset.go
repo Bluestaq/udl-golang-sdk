@@ -463,6 +463,9 @@ func (r AttitudeSetNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow AttitudeSetNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AttitudeSetNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -607,10 +610,13 @@ func (r AttitudeSetNewParamsAttitudeList) MarshalJSON() (data []byte, err error)
 	type shadow AttitudeSetNewParamsAttitudeList
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AttitudeSetNewParamsAttitudeList) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[AttitudeSetNewParamsAttitudeList](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -797,6 +803,9 @@ func (r AttitudeSetUnvalidatedPublishParams) MarshalJSON() (data []byte, err err
 	type shadow AttitudeSetUnvalidatedPublishParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AttitudeSetUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -941,9 +950,12 @@ func (r AttitudeSetUnvalidatedPublishParamsAttitudeList) MarshalJSON() (data []b
 	type shadow AttitudeSetUnvalidatedPublishParamsAttitudeList
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AttitudeSetUnvalidatedPublishParamsAttitudeList) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[AttitudeSetUnvalidatedPublishParamsAttitudeList](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

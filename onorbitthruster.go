@@ -383,6 +383,9 @@ func (r OnorbitthrusterNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitthrusterNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OnorbitthrusterNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -457,10 +460,13 @@ func (r OnorbitthrusterNewParamsEngine) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitthrusterNewParamsEngine
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OnorbitthrusterNewParamsEngine) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OnorbitthrusterNewParamsEngine](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -512,6 +518,9 @@ type OnorbitthrusterUpdateParams struct {
 func (r OnorbitthrusterUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitthrusterUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OnorbitthrusterUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -587,10 +596,13 @@ func (r OnorbitthrusterUpdateParamsEngine) MarshalJSON() (data []byte, err error
 	type shadow OnorbitthrusterUpdateParamsEngine
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OnorbitthrusterUpdateParamsEngine) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OnorbitthrusterUpdateParamsEngine](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

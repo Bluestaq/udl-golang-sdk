@@ -6085,6 +6085,9 @@ func (r SensorNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SensorNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -6197,16 +6200,19 @@ func (r SensorNewParamsEntity) MarshalJSON() (data []byte, err error) {
 	type shadow SensorNewParamsEntity
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorNewParamsEntity) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorNewParamsEntity](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SensorNewParamsEntity](
-		"Type", false, "AIRCRAFT", "BUS", "COMM", "IR", "NAVIGATION", "ONORBIT", "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL",
+		"type", "AIRCRAFT", "BUS", "COMM", "IR", "NAVIGATION", "ONORBIT", "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL",
 	)
 	apijson.RegisterFieldValidator[SensorNewParamsEntity](
-		"OwnerType", false, "Commercial", "Government", "Academic", "Consortium", "Other",
+		"ownerType", "Commercial", "Government", "Academic", "Consortium", "Other",
 	)
 }
 
@@ -6301,16 +6307,19 @@ func (r SensorNewParamsEntityOnOrbit) MarshalJSON() (data []byte, err error) {
 	type shadow SensorNewParamsEntityOnOrbit
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorNewParamsEntityOnOrbit) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorNewParamsEntityOnOrbit](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SensorNewParamsEntityOnOrbit](
-		"Category", false, "Unknown", "On-Orbit", "Decayed", "Cataloged Without State", "Launch Nominal", "Analyst Satellite", "Cislunar", "Lunar", "Hyperbolic", "Heliocentric", "Interplanetary", "Lagrangian", "Docked",
+		"category", "Unknown", "On-Orbit", "Decayed", "Cataloged Without State", "Launch Nominal", "Analyst Satellite", "Cislunar", "Lunar", "Hyperbolic", "Heliocentric", "Interplanetary", "Lagrangian", "Docked",
 	)
 	apijson.RegisterFieldValidator[SensorNewParamsEntityOnOrbit](
-		"ObjectType", false, "ROCKET BODY", "DEBRIS", "PAYLOAD", "PLATFORM", "MANNED", "UNKNOWN",
+		"objectType", "ROCKET BODY", "DEBRIS", "PAYLOAD", "PLATFORM", "MANNED", "UNKNOWN",
 	)
 }
 
@@ -6549,10 +6558,13 @@ func (r SensorNewParamsSensorcharacteristic) MarshalJSON() (data []byte, err err
 	type shadow SensorNewParamsSensorcharacteristic
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorNewParamsSensorcharacteristic) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorNewParamsSensorcharacteristic](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -6639,10 +6651,13 @@ func (r SensorNewParamsSensorlimitsCollection) MarshalJSON() (data []byte, err e
 	type shadow SensorNewParamsSensorlimitsCollection
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorNewParamsSensorlimitsCollection) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorNewParamsSensorlimitsCollection](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -6665,6 +6680,9 @@ type SensorNewParamsSensorObservationType struct {
 func (r SensorNewParamsSensorObservationType) MarshalJSON() (data []byte, err error) {
 	type shadow SensorNewParamsSensorObservationType
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SensorNewParamsSensorObservationType) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // SensorStats contain statistics on sensors related to observation production such
@@ -6717,10 +6735,13 @@ func (r SensorNewParamsSensorStat) MarshalJSON() (data []byte, err error) {
 	type shadow SensorNewParamsSensorStat
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorNewParamsSensorStat) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorNewParamsSensorStat](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -6743,6 +6764,9 @@ type SensorNewParamsSensorType struct {
 func (r SensorNewParamsSensorType) MarshalJSON() (data []byte, err error) {
 	type shadow SensorNewParamsSensorType
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SensorNewParamsSensorType) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type SensorUpdateParams struct {
@@ -6815,6 +6839,9 @@ type SensorUpdateParams struct {
 func (r SensorUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SensorUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SensorUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -6928,16 +6955,19 @@ func (r SensorUpdateParamsEntity) MarshalJSON() (data []byte, err error) {
 	type shadow SensorUpdateParamsEntity
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorUpdateParamsEntity) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorUpdateParamsEntity](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SensorUpdateParamsEntity](
-		"Type", false, "AIRCRAFT", "BUS", "COMM", "IR", "NAVIGATION", "ONORBIT", "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL",
+		"type", "AIRCRAFT", "BUS", "COMM", "IR", "NAVIGATION", "ONORBIT", "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL",
 	)
 	apijson.RegisterFieldValidator[SensorUpdateParamsEntity](
-		"OwnerType", false, "Commercial", "Government", "Academic", "Consortium", "Other",
+		"ownerType", "Commercial", "Government", "Academic", "Consortium", "Other",
 	)
 }
 
@@ -7032,16 +7062,19 @@ func (r SensorUpdateParamsEntityOnOrbit) MarshalJSON() (data []byte, err error) 
 	type shadow SensorUpdateParamsEntityOnOrbit
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorUpdateParamsEntityOnOrbit) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorUpdateParamsEntityOnOrbit](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SensorUpdateParamsEntityOnOrbit](
-		"Category", false, "Unknown", "On-Orbit", "Decayed", "Cataloged Without State", "Launch Nominal", "Analyst Satellite", "Cislunar", "Lunar", "Hyperbolic", "Heliocentric", "Interplanetary", "Lagrangian", "Docked",
+		"category", "Unknown", "On-Orbit", "Decayed", "Cataloged Without State", "Launch Nominal", "Analyst Satellite", "Cislunar", "Lunar", "Hyperbolic", "Heliocentric", "Interplanetary", "Lagrangian", "Docked",
 	)
 	apijson.RegisterFieldValidator[SensorUpdateParamsEntityOnOrbit](
-		"ObjectType", false, "ROCKET BODY", "DEBRIS", "PAYLOAD", "PLATFORM", "MANNED", "UNKNOWN",
+		"objectType", "ROCKET BODY", "DEBRIS", "PAYLOAD", "PLATFORM", "MANNED", "UNKNOWN",
 	)
 }
 
@@ -7280,10 +7313,13 @@ func (r SensorUpdateParamsSensorcharacteristic) MarshalJSON() (data []byte, err 
 	type shadow SensorUpdateParamsSensorcharacteristic
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorUpdateParamsSensorcharacteristic) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorUpdateParamsSensorcharacteristic](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -7370,10 +7406,13 @@ func (r SensorUpdateParamsSensorlimitsCollection) MarshalJSON() (data []byte, er
 	type shadow SensorUpdateParamsSensorlimitsCollection
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorUpdateParamsSensorlimitsCollection) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorUpdateParamsSensorlimitsCollection](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -7396,6 +7435,9 @@ type SensorUpdateParamsSensorObservationType struct {
 func (r SensorUpdateParamsSensorObservationType) MarshalJSON() (data []byte, err error) {
 	type shadow SensorUpdateParamsSensorObservationType
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SensorUpdateParamsSensorObservationType) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // SensorStats contain statistics on sensors related to observation production such
@@ -7448,10 +7490,13 @@ func (r SensorUpdateParamsSensorStat) MarshalJSON() (data []byte, err error) {
 	type shadow SensorUpdateParamsSensorStat
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorUpdateParamsSensorStat) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorUpdateParamsSensorStat](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -7474,6 +7519,9 @@ type SensorUpdateParamsSensorType struct {
 func (r SensorUpdateParamsSensorType) MarshalJSON() (data []byte, err error) {
 	type shadow SensorUpdateParamsSensorType
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SensorUpdateParamsSensorType) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type SensorListParams struct {

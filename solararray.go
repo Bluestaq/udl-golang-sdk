@@ -470,6 +470,9 @@ func (r SolarArrayNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SolarArrayNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SolarArrayNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -529,6 +532,9 @@ type SolarArrayUpdateParams struct {
 func (r SolarArrayUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SolarArrayUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SolarArrayUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

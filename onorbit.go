@@ -261,6 +261,9 @@ func (r OnorbitIngestParam) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitIngestParam
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OnorbitIngestParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1178,6 +1181,9 @@ type OnorbitNewParams struct {
 func (r OnorbitNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.OnorbitIngest)
 }
+func (r *OnorbitNewParams) UnmarshalJSON(data []byte) error {
+	return r.OnorbitIngest.UnmarshalJSON(data)
+}
 
 type OnorbitUpdateParams struct {
 	// Model object representing on-orbit objects or satellites in the system.
@@ -1187,6 +1193,9 @@ type OnorbitUpdateParams struct {
 
 func (r OnorbitUpdateParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.OnorbitIngest)
+}
+func (r *OnorbitUpdateParams) UnmarshalJSON(data []byte) error {
+	return r.OnorbitIngest.UnmarshalJSON(data)
 }
 
 type OnorbitListParams struct {

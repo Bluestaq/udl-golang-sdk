@@ -556,6 +556,9 @@ func (r ScientificNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow ScientificNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ScientificNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -635,6 +638,9 @@ type ScientificUpdateParams struct {
 func (r ScientificUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow ScientificUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *ScientificUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

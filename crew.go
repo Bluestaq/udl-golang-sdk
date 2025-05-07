@@ -1399,6 +1399,9 @@ func (r CrewNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow CrewNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CrewNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1597,6 +1600,9 @@ func (r CrewNewParamsCrewMember) MarshalJSON() (data []byte, err error) {
 	type shadow CrewNewParamsCrewMember
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CrewNewParamsCrewMember) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type CrewGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
@@ -1788,6 +1794,9 @@ type CrewUpdateParams struct {
 func (r CrewUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow CrewUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *CrewUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1987,6 +1996,9 @@ func (r CrewUpdateParamsCrewMember) MarshalJSON() (data []byte, err error) {
 	type shadow CrewUpdateParamsCrewMember
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CrewUpdateParamsCrewMember) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type CrewListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
@@ -2042,6 +2054,9 @@ type CrewUnvalidatedPublishParams struct {
 
 func (r CrewUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *CrewUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Crew Services.
@@ -2241,10 +2256,13 @@ func (r CrewUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error)
 	type shadow CrewUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CrewUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[CrewUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -2421,4 +2439,7 @@ type CrewUnvalidatedPublishParamsBodyCrewMember struct {
 func (r CrewUnvalidatedPublishParamsBodyCrewMember) MarshalJSON() (data []byte, err error) {
 	type shadow CrewUnvalidatedPublishParamsBodyCrewMember
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *CrewUnvalidatedPublishParamsBodyCrewMember) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

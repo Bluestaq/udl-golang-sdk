@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
 	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
@@ -84,6 +85,9 @@ func (r CotNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow CotNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CotNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Schema for the CotChatData to post.
 type CotNewParamsCotChatData struct {
@@ -99,6 +103,9 @@ type CotNewParamsCotChatData struct {
 func (r CotNewParamsCotChatData) MarshalJSON() (data []byte, err error) {
 	type shadow CotNewParamsCotChatData
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *CotNewParamsCotChatData) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Schema for the CotPositionData to post.
@@ -118,4 +125,7 @@ type CotNewParamsCotPositionData struct {
 func (r CotNewParamsCotPositionData) MarshalJSON() (data []byte, err error) {
 	type shadow CotNewParamsCotPositionData
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *CotNewParamsCotPositionData) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

@@ -676,6 +676,9 @@ func (r TdoaFdoaDiffofarrivalNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow TdoaFdoaDiffofarrivalNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *TdoaFdoaDiffofarrivalNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -743,6 +746,9 @@ type TdoaFdoaDiffofarrivalNewBulkParams struct {
 
 func (r TdoaFdoaDiffofarrivalNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *TdoaFdoaDiffofarrivalNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Model representation of Signal time and frequency difference of arrival
@@ -897,9 +903,12 @@ func (r TdoaFdoaDiffofarrivalNewBulkParamsBody) MarshalJSON() (data []byte, err 
 	type shadow TdoaFdoaDiffofarrivalNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *TdoaFdoaDiffofarrivalNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[TdoaFdoaDiffofarrivalNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

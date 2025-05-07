@@ -475,6 +475,9 @@ func (r RfBandTypeNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow RfBandTypeNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *RfBandTypeNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -540,6 +543,9 @@ type RfBandTypeUpdateParams struct {
 func (r RfBandTypeUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow RfBandTypeUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *RfBandTypeUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

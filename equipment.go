@@ -1310,6 +1310,9 @@ func (r EquipmentNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow EquipmentNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EquipmentNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1664,6 +1667,9 @@ func (r EquipmentUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow EquipmentUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EquipmentUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1723,6 +1729,9 @@ type EquipmentNewBulkParams struct {
 
 func (r EquipmentNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *EquipmentNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Properties and characteristics of equipment that can be associated with a site
@@ -2051,10 +2060,13 @@ func (r EquipmentNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow EquipmentNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EquipmentNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[EquipmentNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

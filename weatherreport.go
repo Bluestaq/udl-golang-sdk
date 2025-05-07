@@ -872,6 +872,9 @@ func (r WeatherReportNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow WeatherReportNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *WeatherReportNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -976,6 +979,9 @@ type WeatherReportUnvalidatedPublishParams struct {
 
 func (r WeatherReportUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *WeatherReportUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // These services provide for posting and querying Weather Over Target information.
@@ -1295,9 +1301,12 @@ func (r WeatherReportUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, e
 	type shadow WeatherReportUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *WeatherReportUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[WeatherReportUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

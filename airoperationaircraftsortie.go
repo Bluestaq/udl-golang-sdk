@@ -1080,6 +1080,9 @@ func (r AirOperationAircraftSortieNewParams) MarshalJSON() (data []byte, err err
 	type shadow AirOperationAircraftSortieNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirOperationAircraftSortieNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1169,6 +1172,9 @@ type AirOperationAircraftSortieNewBulkParams struct {
 
 func (r AirOperationAircraftSortieNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *AirOperationAircraftSortieNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Information related to the planning, load, status, and deployment or dispatch of
@@ -1399,19 +1405,22 @@ func (r AirOperationAircraftSortieNewBulkParamsBody) MarshalJSON() (data []byte,
 	type shadow AirOperationAircraftSortieNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirOperationAircraftSortieNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[AirOperationAircraftSortieNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[AirOperationAircraftSortieNewBulkParamsBody](
-		"PaperStatus", false, "PUBLISHED", "DELETED", "UPDATED", "READ",
+		"paperStatus", "PUBLISHED", "DELETED", "UPDATED", "READ",
 	)
 	apijson.RegisterFieldValidator[AirOperationAircraftSortieNewBulkParamsBody](
-		"PprStatus", false, "NOT REQUIRED", "REQUIRED NOT REQUESTED", "GRANTED", "PENDING",
+		"pprStatus", "NOT REQUIRED", "REQUIRED NOT REQUESTED", "GRANTED", "PENDING",
 	)
 	apijson.RegisterFieldValidator[AirOperationAircraftSortieNewBulkParamsBody](
-		"RvnReq", false, "N", "R", "C6", "R6",
+		"rvnReq", "N", "R", "C6", "R6",
 	)
 }
 

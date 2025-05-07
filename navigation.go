@@ -504,6 +504,9 @@ func (r NavigationNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow NavigationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *NavigationNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -573,6 +576,9 @@ type NavigationUpdateParams struct {
 func (r NavigationUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow NavigationUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *NavigationUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

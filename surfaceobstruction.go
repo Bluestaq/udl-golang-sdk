@@ -515,6 +515,9 @@ func (r SurfaceObstructionNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SurfaceObstructionNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SurfaceObstructionNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE data.
 type SurfaceObstructionNewParamsDataMode string
@@ -572,6 +575,9 @@ type SurfaceObstructionUpdateParams struct {
 func (r SurfaceObstructionUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SurfaceObstructionUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SurfaceObstructionUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE data.
@@ -657,6 +663,9 @@ type SurfaceObstructionUnvalidatedPublishParams struct {
 func (r SurfaceObstructionUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *SurfaceObstructionUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // The properties ClassificationMarking, DataMode, IDSurface, Source are required.
 type SurfaceObstructionUnvalidatedPublishParamsBody struct {
@@ -718,9 +727,12 @@ func (r SurfaceObstructionUnvalidatedPublishParamsBody) MarshalJSON() (data []by
 	type shadow SurfaceObstructionUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SurfaceObstructionUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SurfaceObstructionUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

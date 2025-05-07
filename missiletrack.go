@@ -1412,6 +1412,9 @@ type MissileTrackNewBulkParams struct {
 func (r MissileTrackNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *MissileTrackNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // These services provide operations for querying of all available missile track
 // details and amplifying missile data. A missile track is a position and
@@ -1762,16 +1765,19 @@ func (r MissileTrackNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow MissileTrackNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *MissileTrackNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[MissileTrackNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[MissileTrackNewBulkParamsBody](
-		"Env", false, "AIR", "LAND", "SPACE", "SURFACE", "SUBSURFACE", "UNKNOWN",
+		"env", "AIR", "LAND", "SPACE", "SURFACE", "SUBSURFACE", "UNKNOWN",
 	)
 	apijson.RegisterFieldValidator[MissileTrackNewBulkParamsBody](
-		"ObjIdent", false, "ASSUMED FRIEND", "FRIEND", "HOSTILE", "NEUTRAL", "PENDING", "SUSPECT", "UNKNOWN",
+		"objIdent", "ASSUMED FRIEND", "FRIEND", "HOSTILE", "NEUTRAL", "PENDING", "SUSPECT", "UNKNOWN",
 	)
 }
 
@@ -1874,6 +1880,9 @@ func (r MissileTrackNewBulkParamsBodyVector) MarshalJSON() (data []byte, err err
 	type shadow MissileTrackNewBulkParamsBodyVector
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *MissileTrackNewBulkParamsBodyVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type MissileTrackTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
@@ -1905,6 +1914,9 @@ type MissileTrackUnvalidatedPublishParams struct {
 
 func (r MissileTrackUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *MissileTrackUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // These services provide operations for querying of all available missile track
@@ -2256,16 +2268,19 @@ func (r MissileTrackUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, er
 	type shadow MissileTrackUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *MissileTrackUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[MissileTrackUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[MissileTrackUnvalidatedPublishParamsBody](
-		"Env", false, "AIR", "LAND", "SPACE", "SURFACE", "SUBSURFACE", "UNKNOWN",
+		"env", "AIR", "LAND", "SPACE", "SURFACE", "SUBSURFACE", "UNKNOWN",
 	)
 	apijson.RegisterFieldValidator[MissileTrackUnvalidatedPublishParamsBody](
-		"ObjIdent", false, "ASSUMED FRIEND", "FRIEND", "HOSTILE", "NEUTRAL", "PENDING", "SUSPECT", "UNKNOWN",
+		"objIdent", "ASSUMED FRIEND", "FRIEND", "HOSTILE", "NEUTRAL", "PENDING", "SUSPECT", "UNKNOWN",
 	)
 }
 
@@ -2367,4 +2382,7 @@ type MissileTrackUnvalidatedPublishParamsBodyVector struct {
 func (r MissileTrackUnvalidatedPublishParamsBodyVector) MarshalJSON() (data []byte, err error) {
 	type shadow MissileTrackUnvalidatedPublishParamsBodyVector
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *MissileTrackUnvalidatedPublishParamsBodyVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

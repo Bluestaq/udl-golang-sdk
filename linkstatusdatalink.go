@@ -374,6 +374,9 @@ func (r DatalinkIngestParam) MarshalJSON() (data []byte, err error) {
 	type shadow DatalinkIngestParam
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DatalinkIngestParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -426,6 +429,9 @@ func (r DatalinkIngestMultiDutyParam) MarshalJSON() (data []byte, err error) {
 	type shadow DatalinkIngestMultiDutyParam
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DatalinkIngestMultiDutyParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of information regarding the function, frequency, and priority of
 // interface control and coordination nets for multilink coordination. There can be
@@ -450,6 +456,9 @@ type DatalinkIngestMultiDutyMultiDutyVoiceCoordParam struct {
 func (r DatalinkIngestMultiDutyMultiDutyVoiceCoordParam) MarshalJSON() (data []byte, err error) {
 	type shadow DatalinkIngestMultiDutyMultiDutyVoiceCoordParam
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *DatalinkIngestMultiDutyMultiDutyVoiceCoordParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of information describing the establishment and detailed operation of
@@ -476,6 +485,9 @@ type DatalinkIngestOpParam struct {
 func (r DatalinkIngestOpParam) MarshalJSON() (data []byte, err error) {
 	type shadow DatalinkIngestOpParam
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *DatalinkIngestOpParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of reference information. There can be 0 to many DataLinkReferences
@@ -506,6 +518,9 @@ func (r DatalinkIngestReferenceParam) MarshalJSON() (data []byte, err error) {
 	type shadow DatalinkIngestReferenceParam
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DatalinkIngestReferenceParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection that identifies points of reference used in the establishment of the
 // data links. There can be 1 to many DataLinkRefPoints collections within the
@@ -533,6 +548,9 @@ func (r DatalinkIngestRefPointParam) MarshalJSON() (data []byte, err error) {
 	type shadow DatalinkIngestRefPointParam
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DatalinkIngestRefPointParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of remarks associated with this data link message.
 type DatalinkIngestRemarkParam struct {
@@ -546,6 +564,9 @@ type DatalinkIngestRemarkParam struct {
 func (r DatalinkIngestRemarkParam) MarshalJSON() (data []byte, err error) {
 	type shadow DatalinkIngestRemarkParam
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *DatalinkIngestRemarkParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of special track numbers used on the data links. There can be 0 to
@@ -564,6 +585,9 @@ type DatalinkIngestSpecTrackParam struct {
 func (r DatalinkIngestSpecTrackParam) MarshalJSON() (data []byte, err error) {
 	type shadow DatalinkIngestSpecTrackParam
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *DatalinkIngestSpecTrackParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of information regarding the function, frequency, and priority of
@@ -588,6 +612,9 @@ type DatalinkIngestVoiceCoordParam struct {
 func (r DatalinkIngestVoiceCoordParam) MarshalJSON() (data []byte, err error) {
 	type shadow DatalinkIngestVoiceCoordParam
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *DatalinkIngestVoiceCoordParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Beta Version DataLink: Detailed instructions regarding the operations of data
@@ -1834,6 +1861,9 @@ type LinkStatusDatalinkNewParams struct {
 func (r LinkStatusDatalinkNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.DatalinkIngest)
 }
+func (r *LinkStatusDatalinkNewParams) UnmarshalJSON(data []byte) error {
+	return r.DatalinkIngest.UnmarshalJSON(data)
+}
 
 type LinkStatusDatalinkListParams struct {
 	// The start of the effective time period of this data link message, in ISO 8601
@@ -1901,4 +1931,7 @@ type LinkStatusDatalinkUnvalidatedPublishParams struct {
 
 func (r LinkStatusDatalinkUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *LinkStatusDatalinkUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }

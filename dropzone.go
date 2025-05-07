@@ -834,6 +834,9 @@ func (r DropzoneNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow DropzoneNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DropzoneNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -977,6 +980,9 @@ func (r DropzoneUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow DropzoneUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DropzoneUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1022,6 +1028,9 @@ type DropzoneNewBulkParams struct {
 
 func (r DropzoneNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *DropzoneNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Properties and characteristics of a Drop Zone, including name, location, shape,
@@ -1146,10 +1155,13 @@ func (r DropzoneNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow DropzoneNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DropzoneNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[DropzoneNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1193,6 +1205,9 @@ type DropzoneUnvalidatedPublishParams struct {
 
 func (r DropzoneUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *DropzoneUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Properties and characteristics of a Drop Zone, including name, location, shape,
@@ -1317,9 +1332,12 @@ func (r DropzoneUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err er
 	type shadow DropzoneUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *DropzoneUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[DropzoneUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

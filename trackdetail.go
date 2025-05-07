@@ -1164,6 +1164,9 @@ type TrackDetailNewBulkParams struct {
 func (r TrackDetailNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *TrackDetailNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // These services provide operations for querying of all available track details
 // and amplifying track data. A track is a position and optionally a
@@ -1922,16 +1925,19 @@ func (r TrackDetailNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow TrackDetailNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *TrackDetailNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[TrackDetailNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[TrackDetailNewBulkParamsBody](
-		"Env", false, "AIR", "LAND", "SPACE", "SURFACE", "SUBSURFACE", "UNKNOWN",
+		"env", "AIR", "LAND", "SPACE", "SURFACE", "SUBSURFACE", "UNKNOWN",
 	)
 	apijson.RegisterFieldValidator[TrackDetailNewBulkParamsBody](
-		"ObjIdent", false, "ASSUMED FRIEND", "FRIEND", "HOSTILE", "NEUTRAL", "PENDING", "SUSPECT", "UNKNOWN",
+		"objIdent", "ASSUMED FRIEND", "FRIEND", "HOSTILE", "NEUTRAL", "PENDING", "SUSPECT", "UNKNOWN",
 	)
 }
 

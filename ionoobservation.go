@@ -2722,6 +2722,9 @@ type IonOobservationNewBulkParams struct {
 func (r IonOobservationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *IonOobservationNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // These services provide operations for posting and querying ionospheric
 // observation data. Characteristics are defined by the CHARS: URSI IIWG format for
@@ -3005,19 +3008,22 @@ func (r IonOobservationNewBulkParamsBody) MarshalJSON() (data []byte, err error)
 	type shadow IonOobservationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[IonOobservationNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[IonOobservationNewBulkParamsBody](
-		"AntennaElementPositionCoordinateSystem", false, "J2000", "ECR/ECEF", "TEME", "GCRF", "WGS84 (GEODetic lat, long, alt)", "GEOCentric (lat, long, radii)",
+		"antennaElementPositionCoordinateSystem", "J2000", "ECR/ECEF", "TEME", "GCRF", "WGS84 (GEODetic lat, long, alt)", "GEOCentric (lat, long, radii)",
 	)
 	apijson.RegisterFieldValidator[IonOobservationNewBulkParamsBody](
-		"ReceiveSensorType", false, "Mobile", "Static",
+		"receiveSensorType", "Mobile", "Static",
 	)
 	apijson.RegisterFieldValidator[IonOobservationNewBulkParamsBody](
-		"TransmitSensorType", false, "Mobile", "Static",
+		"transmitSensorType", "Mobile", "Static",
 	)
 }
 
@@ -3037,6 +3043,9 @@ func (r IonOobservationNewBulkParamsBodyAmplitude) MarshalJSON() (data []byte, e
 	type shadow IonOobservationNewBulkParamsBodyAmplitude
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationNewBulkParamsBodyAmplitude) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IonOobservationNewBulkParamsBodyAntennaElementPosition struct {
 	// Array of 3-element tuples (x,y,z) in km.
@@ -3051,6 +3060,9 @@ type IonOobservationNewBulkParamsBodyAntennaElementPosition struct {
 func (r IonOobservationNewBulkParamsBodyAntennaElementPosition) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyAntennaElementPosition
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationNewBulkParamsBodyAntennaElementPosition) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IonOobservationNewBulkParamsBodyAzimuth struct {
@@ -3068,6 +3080,9 @@ type IonOobservationNewBulkParamsBodyAzimuth struct {
 func (r IonOobservationNewBulkParamsBodyAzimuth) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyAzimuth
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationNewBulkParamsBodyAzimuth) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Characteristic attributes of a IonoObservation.
@@ -3108,6 +3123,9 @@ func (r IonOobservationNewBulkParamsBodyCharAtt) MarshalJSON() (data []byte, err
 	type shadow IonOobservationNewBulkParamsBodyCharAtt
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationNewBulkParamsBodyCharAtt) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IonOobservationNewBulkParamsBodyDatum struct {
 	// Notes for the datum with details of what the data is, units, etc.
@@ -3120,6 +3138,9 @@ type IonOobservationNewBulkParamsBodyDatum struct {
 func (r IonOobservationNewBulkParamsBodyDatum) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyDatum
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationNewBulkParamsBodyDatum) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Profile of electron densities in the ionosphere associated with an
@@ -3148,6 +3169,9 @@ type IonOobservationNewBulkParamsBodyDensityProfile struct {
 func (r IonOobservationNewBulkParamsBodyDensityProfile) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyDensityProfile
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationNewBulkParamsBodyDensityProfile) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Full set of the IRI formalism coefficients.
@@ -3204,6 +3228,9 @@ func (r IonOobservationNewBulkParamsBodyDensityProfileIri) MarshalJSON() (data [
 	type shadow IonOobservationNewBulkParamsBodyDensityProfileIri
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationNewBulkParamsBodyDensityProfileIri) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Coefficients to describe the E, F1, and F2 layers as parabolic-shape segments.
 type IonOobservationNewBulkParamsBodyDensityProfileParabolic struct {
@@ -3217,6 +3244,9 @@ type IonOobservationNewBulkParamsBodyDensityProfileParabolic struct {
 func (r IonOobservationNewBulkParamsBodyDensityProfileParabolic) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyDensityProfileParabolic
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationNewBulkParamsBodyDensityProfileParabolic) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Describes the E, F1, and F2 layers as parabolic-shape segments.
@@ -3236,6 +3266,9 @@ func (r IonOobservationNewBulkParamsBodyDensityProfileParabolicParabolicItem) Ma
 	type shadow IonOobservationNewBulkParamsBodyDensityProfileParabolicParabolicItem
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationNewBulkParamsBodyDensityProfileParabolicParabolicItem) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Coefficients to describe profile shape as quasi-parabolic segments.
 type IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolic struct {
@@ -3254,6 +3287,9 @@ type IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolic struct {
 func (r IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolic) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolic
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolic) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // A quasi-parabolic segment is the best-fit 3-parameter quasi-parabolas defined
@@ -3281,6 +3317,9 @@ func (r IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabol
 	type shadow IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Coefficients to describe either the E, F1, and bottomside F2 profile shapes or
 // the height uncertainty boundaries.
@@ -3297,6 +3336,9 @@ type IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshev struct {
 func (r IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshev) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshev
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshev) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Coefficients, using ‘shiftedChebyshev’ sub-field, to describe E, F1, and
@@ -3326,6 +3368,9 @@ func (r IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChe
 	type shadow IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Parameters of the constant-scale-height Chapman layer.
 type IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst struct {
@@ -3346,6 +3391,9 @@ type IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst 
 func (r IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Varying scale height Chapman topside layer.
@@ -3374,6 +3422,9 @@ func (r IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap) 
 	type shadow IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IonOobservationNewBulkParamsBodyDoppler struct {
 	// Notes for the doppler data.
@@ -3390,6 +3441,9 @@ type IonOobservationNewBulkParamsBodyDoppler struct {
 func (r IonOobservationNewBulkParamsBodyDoppler) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyDoppler
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationNewBulkParamsBodyDoppler) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IonOobservationNewBulkParamsBodyElevation struct {
@@ -3408,6 +3462,9 @@ func (r IonOobservationNewBulkParamsBodyElevation) MarshalJSON() (data []byte, e
 	type shadow IonOobservationNewBulkParamsBodyElevation
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationNewBulkParamsBodyElevation) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IonOobservationNewBulkParamsBodyFrequency struct {
 	// Notes for the frequency data.
@@ -3424,6 +3481,9 @@ type IonOobservationNewBulkParamsBodyFrequency struct {
 func (r IonOobservationNewBulkParamsBodyFrequency) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyFrequency
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationNewBulkParamsBodyFrequency) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IonOobservationNewBulkParamsBodyPhase struct {
@@ -3443,6 +3503,9 @@ func (r IonOobservationNewBulkParamsBodyPhase) MarshalJSON() (data []byte, err e
 	type shadow IonOobservationNewBulkParamsBodyPhase
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationNewBulkParamsBodyPhase) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IonOobservationNewBulkParamsBodyPolarization struct {
 	// Notes for the polarization data.
@@ -3459,6 +3522,9 @@ type IonOobservationNewBulkParamsBodyPolarization struct {
 func (r IonOobservationNewBulkParamsBodyPolarization) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyPolarization
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationNewBulkParamsBodyPolarization) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IonOobservationNewBulkParamsBodyPower struct {
@@ -3477,6 +3543,9 @@ func (r IonOobservationNewBulkParamsBodyPower) MarshalJSON() (data []byte, err e
 	type shadow IonOobservationNewBulkParamsBodyPower
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationNewBulkParamsBodyPower) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IonOobservationNewBulkParamsBodyRange struct {
 	// Notes for the range data.
@@ -3493,6 +3562,9 @@ type IonOobservationNewBulkParamsBodyRange struct {
 func (r IonOobservationNewBulkParamsBodyRange) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyRange
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationNewBulkParamsBodyRange) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // The ScalerInfo record describes the person or system who interpreted the
@@ -3517,6 +3589,9 @@ func (r IonOobservationNewBulkParamsBodyScalerInfo) MarshalJSON() (data []byte, 
 	type shadow IonOobservationNewBulkParamsBodyScalerInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationNewBulkParamsBodyScalerInfo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IonOobservationNewBulkParamsBodyStokes struct {
 	// Notes for the stokes data.
@@ -3536,6 +3611,9 @@ func (r IonOobservationNewBulkParamsBodyStokes) MarshalJSON() (data []byte, err 
 	type shadow IonOobservationNewBulkParamsBodyStokes
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationNewBulkParamsBodyStokes) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IonOobservationNewBulkParamsBodyTime struct {
 	// The notes indicate the scheme and accuracy.
@@ -3554,6 +3632,9 @@ func (r IonOobservationNewBulkParamsBodyTime) MarshalJSON() (data []byte, err er
 	type shadow IonOobservationNewBulkParamsBodyTime
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationNewBulkParamsBodyTime) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IonOobservationNewBulkParamsBodyTraceGeneric struct {
 	// Notes for the trace generic data.
@@ -3569,6 +3650,9 @@ type IonOobservationNewBulkParamsBodyTraceGeneric struct {
 func (r IonOobservationNewBulkParamsBodyTraceGeneric) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationNewBulkParamsBodyTraceGeneric
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationNewBulkParamsBodyTraceGeneric) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IonOobservationTupleParams struct {
@@ -3600,6 +3684,9 @@ type IonOobservationUnvalidatedPublishParams struct {
 
 func (r IonOobservationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *IonOobservationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // These services provide operations for posting and querying ionospheric
@@ -3884,19 +3971,22 @@ func (r IonOobservationUnvalidatedPublishParamsBody) MarshalJSON() (data []byte,
 	type shadow IonOobservationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[IonOobservationUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[IonOobservationUnvalidatedPublishParamsBody](
-		"AntennaElementPositionCoordinateSystem", false, "J2000", "ECR/ECEF", "TEME", "GCRF", "WGS84 (GEODetic lat, long, alt)", "GEOCentric (lat, long, radii)",
+		"antennaElementPositionCoordinateSystem", "J2000", "ECR/ECEF", "TEME", "GCRF", "WGS84 (GEODetic lat, long, alt)", "GEOCentric (lat, long, radii)",
 	)
 	apijson.RegisterFieldValidator[IonOobservationUnvalidatedPublishParamsBody](
-		"ReceiveSensorType", false, "Mobile", "Static",
+		"receiveSensorType", "Mobile", "Static",
 	)
 	apijson.RegisterFieldValidator[IonOobservationUnvalidatedPublishParamsBody](
-		"TransmitSensorType", false, "Mobile", "Static",
+		"transmitSensorType", "Mobile", "Static",
 	)
 }
 
@@ -3916,6 +4006,9 @@ func (r IonOobservationUnvalidatedPublishParamsBodyAmplitude) MarshalJSON() (dat
 	type shadow IonOobservationUnvalidatedPublishParamsBodyAmplitude
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationUnvalidatedPublishParamsBodyAmplitude) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IonOobservationUnvalidatedPublishParamsBodyAntennaElementPosition struct {
 	// Array of 3-element tuples (x,y,z) in km.
@@ -3930,6 +4023,9 @@ type IonOobservationUnvalidatedPublishParamsBodyAntennaElementPosition struct {
 func (r IonOobservationUnvalidatedPublishParamsBodyAntennaElementPosition) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyAntennaElementPosition
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationUnvalidatedPublishParamsBodyAntennaElementPosition) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IonOobservationUnvalidatedPublishParamsBodyAzimuth struct {
@@ -3947,6 +4043,9 @@ type IonOobservationUnvalidatedPublishParamsBodyAzimuth struct {
 func (r IonOobservationUnvalidatedPublishParamsBodyAzimuth) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyAzimuth
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationUnvalidatedPublishParamsBodyAzimuth) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Characteristic attributes of a IonoObservation.
@@ -3987,6 +4086,9 @@ func (r IonOobservationUnvalidatedPublishParamsBodyCharAtt) MarshalJSON() (data 
 	type shadow IonOobservationUnvalidatedPublishParamsBodyCharAtt
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationUnvalidatedPublishParamsBodyCharAtt) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IonOobservationUnvalidatedPublishParamsBodyDatum struct {
 	// Notes for the datum with details of what the data is, units, etc.
@@ -3999,6 +4101,9 @@ type IonOobservationUnvalidatedPublishParamsBodyDatum struct {
 func (r IonOobservationUnvalidatedPublishParamsBodyDatum) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDatum
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationUnvalidatedPublishParamsBodyDatum) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Profile of electron densities in the ionosphere associated with an
@@ -4027,6 +4132,9 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfile struct {
 func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfile) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfile
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfile) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Full set of the IRI formalism coefficients.
@@ -4083,6 +4191,9 @@ func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileIri) MarshalJSO
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileIri
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfileIri) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Coefficients to describe the E, F1, and F2 layers as parabolic-shape segments.
 type IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolic struct {
@@ -4096,6 +4207,9 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolic struct {
 func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolic) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolic
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolic) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Describes the E, F1, and F2 layers as parabolic-shape segments.
@@ -4115,6 +4229,9 @@ func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabo
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabolicItem
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabolicItem) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Coefficients to describe profile shape as quasi-parabolic segments.
 type IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic struct {
@@ -4133,6 +4250,9 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic str
 func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // A quasi-parabolic segment is the best-fit 3-parameter quasi-parabolas defined
@@ -4160,6 +4280,9 @@ func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQ
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Coefficients to describe either the E, F1, and bottomside F2 profile shapes or
 // the height uncertainty boundaries.
@@ -4176,6 +4299,9 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev s
 func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Coefficients, using ‘shiftedChebyshev’ sub-field, to describe E, F1, and
@@ -4205,6 +4331,9 @@ func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshe
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Parameters of the constant-scale-height Chapman layer.
 type IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionChapmanConst struct {
@@ -4225,6 +4354,9 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionCh
 func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionChapmanConst) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionChapmanConst
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionChapmanConst) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Varying scale height Chapman topside layer.
@@ -4253,6 +4385,9 @@ func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensio
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionVaryChap
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionVaryChap) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IonOobservationUnvalidatedPublishParamsBodyDoppler struct {
 	// Notes for the doppler data.
@@ -4269,6 +4404,9 @@ type IonOobservationUnvalidatedPublishParamsBodyDoppler struct {
 func (r IonOobservationUnvalidatedPublishParamsBodyDoppler) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyDoppler
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationUnvalidatedPublishParamsBodyDoppler) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IonOobservationUnvalidatedPublishParamsBodyElevation struct {
@@ -4287,6 +4425,9 @@ func (r IonOobservationUnvalidatedPublishParamsBodyElevation) MarshalJSON() (dat
 	type shadow IonOobservationUnvalidatedPublishParamsBodyElevation
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationUnvalidatedPublishParamsBodyElevation) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IonOobservationUnvalidatedPublishParamsBodyFrequency struct {
 	// Notes for the frequency data.
@@ -4303,6 +4444,9 @@ type IonOobservationUnvalidatedPublishParamsBodyFrequency struct {
 func (r IonOobservationUnvalidatedPublishParamsBodyFrequency) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyFrequency
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationUnvalidatedPublishParamsBodyFrequency) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IonOobservationUnvalidatedPublishParamsBodyPhase struct {
@@ -4322,6 +4466,9 @@ func (r IonOobservationUnvalidatedPublishParamsBodyPhase) MarshalJSON() (data []
 	type shadow IonOobservationUnvalidatedPublishParamsBodyPhase
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationUnvalidatedPublishParamsBodyPhase) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IonOobservationUnvalidatedPublishParamsBodyPolarization struct {
 	// Notes for the polarization data.
@@ -4338,6 +4485,9 @@ type IonOobservationUnvalidatedPublishParamsBodyPolarization struct {
 func (r IonOobservationUnvalidatedPublishParamsBodyPolarization) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyPolarization
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationUnvalidatedPublishParamsBodyPolarization) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type IonOobservationUnvalidatedPublishParamsBodyPower struct {
@@ -4356,6 +4506,9 @@ func (r IonOobservationUnvalidatedPublishParamsBodyPower) MarshalJSON() (data []
 	type shadow IonOobservationUnvalidatedPublishParamsBodyPower
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationUnvalidatedPublishParamsBodyPower) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IonOobservationUnvalidatedPublishParamsBodyRange struct {
 	// Notes for the range data.
@@ -4372,6 +4525,9 @@ type IonOobservationUnvalidatedPublishParamsBodyRange struct {
 func (r IonOobservationUnvalidatedPublishParamsBodyRange) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyRange
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationUnvalidatedPublishParamsBodyRange) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // The ScalerInfo record describes the person or system who interpreted the
@@ -4396,6 +4552,9 @@ func (r IonOobservationUnvalidatedPublishParamsBodyScalerInfo) MarshalJSON() (da
 	type shadow IonOobservationUnvalidatedPublishParamsBodyScalerInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationUnvalidatedPublishParamsBodyScalerInfo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IonOobservationUnvalidatedPublishParamsBodyStokes struct {
 	// Notes for the stokes data.
@@ -4415,6 +4574,9 @@ func (r IonOobservationUnvalidatedPublishParamsBodyStokes) MarshalJSON() (data [
 	type shadow IonOobservationUnvalidatedPublishParamsBodyStokes
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationUnvalidatedPublishParamsBodyStokes) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IonOobservationUnvalidatedPublishParamsBodyTime struct {
 	// The notes indicate the scheme and accuracy.
@@ -4433,6 +4595,9 @@ func (r IonOobservationUnvalidatedPublishParamsBodyTime) MarshalJSON() (data []b
 	type shadow IonOobservationUnvalidatedPublishParamsBodyTime
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *IonOobservationUnvalidatedPublishParamsBodyTime) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type IonOobservationUnvalidatedPublishParamsBodyTraceGeneric struct {
 	// Notes for the trace generic data.
@@ -4448,4 +4613,7 @@ type IonOobservationUnvalidatedPublishParamsBodyTraceGeneric struct {
 func (r IonOobservationUnvalidatedPublishParamsBodyTraceGeneric) MarshalJSON() (data []byte, err error) {
 	type shadow IonOobservationUnvalidatedPublishParamsBodyTraceGeneric
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *IonOobservationUnvalidatedPublishParamsBodyTraceGeneric) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

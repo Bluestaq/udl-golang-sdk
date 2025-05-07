@@ -53,6 +53,9 @@ type EcpSdrUnvalidatedPublishParams struct {
 func (r EcpSdrUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *EcpSdrUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // Supports Sensor Data Records (SDR) from space-borne Energetic Charged Particle
 // (ECP) Sensors. SDR contains sensor status telemetry and raw dosimeter
@@ -218,9 +221,12 @@ func (r EcpSdrUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err erro
 	type shadow EcpSdrUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EcpSdrUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[EcpSdrUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

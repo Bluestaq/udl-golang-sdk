@@ -12,6 +12,7 @@ import (
 	"net/url"
 
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiform"
+	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
 	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
 	"github.com/stainless-sdks/unifieddatalibrary-go/option"
@@ -199,6 +200,9 @@ type ScDownloadParams struct {
 func (r ScDownloadParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *ScDownloadParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 type ScFileDownloadParams struct {
 	// The complete path and filename of the file to download.
@@ -306,6 +310,9 @@ type ScSearchParams struct {
 func (r ScSearchParams) MarshalJSON() (data []byte, err error) {
 	type shadow ScSearchParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *ScSearchParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // URLQuery serializes [ScSearchParams]'s query parameters as `url.Values`.

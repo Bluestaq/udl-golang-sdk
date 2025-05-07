@@ -3105,6 +3105,9 @@ func (r SensorPlanNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow SensorPlanNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorPlanNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -3443,10 +3446,13 @@ func (r SensorPlanNewParamsCollectRequest) MarshalJSON() (data []byte, err error
 	type shadow SensorPlanNewParamsCollectRequest
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorPlanNewParamsCollectRequest) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorPlanNewParamsCollectRequest](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -3647,10 +3653,13 @@ func (r SensorPlanNewParamsCollectRequestElset) MarshalJSON() (data []byte, err 
 	type shadow SensorPlanNewParamsCollectRequestElset
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorPlanNewParamsCollectRequestElset) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorPlanNewParamsCollectRequestElset](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -4101,16 +4110,19 @@ func (r SensorPlanNewParamsCollectRequestStateVector) MarshalJSON() (data []byte
 	type shadow SensorPlanNewParamsCollectRequestStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorPlanNewParamsCollectRequestStateVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorPlanNewParamsCollectRequestStateVector](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SensorPlanNewParamsCollectRequestStateVector](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[SensorPlanNewParamsCollectRequestStateVector](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -4189,6 +4201,9 @@ type SensorPlanUpdateParams struct {
 func (r SensorPlanUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow SensorPlanUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SensorPlanUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -4528,10 +4543,13 @@ func (r SensorPlanUpdateParamsCollectRequest) MarshalJSON() (data []byte, err er
 	type shadow SensorPlanUpdateParamsCollectRequest
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorPlanUpdateParamsCollectRequest) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorPlanUpdateParamsCollectRequest](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -4732,10 +4750,13 @@ func (r SensorPlanUpdateParamsCollectRequestElset) MarshalJSON() (data []byte, e
 	type shadow SensorPlanUpdateParamsCollectRequestElset
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorPlanUpdateParamsCollectRequestElset) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorPlanUpdateParamsCollectRequestElset](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -5186,16 +5207,19 @@ func (r SensorPlanUpdateParamsCollectRequestStateVector) MarshalJSON() (data []b
 	type shadow SensorPlanUpdateParamsCollectRequestStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorPlanUpdateParamsCollectRequestStateVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorPlanUpdateParamsCollectRequestStateVector](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SensorPlanUpdateParamsCollectRequestStateVector](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[SensorPlanUpdateParamsCollectRequestStateVector](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -5276,6 +5300,9 @@ type SensorPlanUnvalidatedPublishParams struct {
 
 func (r SensorPlanUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *SensorPlanUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // A Plan is used to aggregate two or more of the same type of record to a parent
@@ -5368,10 +5395,13 @@ func (r SensorPlanUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err 
 	type shadow SensorPlanUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorPlanUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorPlanUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -5689,10 +5719,13 @@ func (r SensorPlanUnvalidatedPublishParamsBodyCollectRequest) MarshalJSON() (dat
 	type shadow SensorPlanUnvalidatedPublishParamsBodyCollectRequest
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorPlanUnvalidatedPublishParamsBodyCollectRequest) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorPlanUnvalidatedPublishParamsBodyCollectRequest](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -5893,10 +5926,13 @@ func (r SensorPlanUnvalidatedPublishParamsBodyCollectRequestElset) MarshalJSON()
 	type shadow SensorPlanUnvalidatedPublishParamsBodyCollectRequestElset
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorPlanUnvalidatedPublishParamsBodyCollectRequestElset) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorPlanUnvalidatedPublishParamsBodyCollectRequestElset](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -6347,15 +6383,18 @@ func (r SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector) Marshal
 	type shadow SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }

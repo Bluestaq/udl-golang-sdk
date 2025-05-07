@@ -320,6 +320,9 @@ func (r TaiUtcNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow TaiUtcNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *TaiUtcNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -390,6 +393,9 @@ type TaiUtcUpdateParams struct {
 func (r TaiUtcUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow TaiUtcUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *TaiUtcUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

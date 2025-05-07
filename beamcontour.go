@@ -560,6 +560,9 @@ func (r BeamContourNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow BeamContourNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *BeamContourNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -693,6 +696,9 @@ func (r BeamContourUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow BeamContourUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *BeamContourUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -770,6 +776,9 @@ type BeamContourNewBulkParams struct {
 
 func (r BeamContourNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *BeamContourNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Describes the beam contour associated with a beam entity. Beam contours are the
@@ -868,13 +877,16 @@ func (r BeamContourNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow BeamContourNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *BeamContourNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[BeamContourNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[BeamContourNewBulkParamsBody](
-		"Type", false, "BORESIGHT", "CONTOUR", "SVC AREA",
+		"type", "BORESIGHT", "CONTOUR", "SVC AREA",
 	)
 }
 

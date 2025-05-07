@@ -387,6 +387,9 @@ type EphemerisFileUploadParams struct {
 func (r EphemerisFileUploadParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *EphemerisFileUploadParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // URLQuery serializes [EphemerisFileUploadParams]'s query parameters as
 // `url.Values`.
@@ -573,6 +576,9 @@ func (r EphemerisUnvalidatedPublishParams) MarshalJSON() (data []byte, err error
 	type shadow EphemerisUnvalidatedPublishParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EphemerisUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -725,10 +731,13 @@ func (r EphemerisUnvalidatedPublishParamsEphemerisList) MarshalJSON() (data []by
 	type shadow EphemerisUnvalidatedPublishParamsEphemerisList
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EphemerisUnvalidatedPublishParamsEphemerisList) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[EphemerisUnvalidatedPublishParamsEphemerisList](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

@@ -543,6 +543,9 @@ func (r ManifoldNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow ManifoldNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManifoldNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -616,6 +619,9 @@ func (r ManifoldUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow ManifoldUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManifoldUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -675,6 +681,9 @@ type ManifoldNewBulkParams struct {
 
 func (r ManifoldNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *ManifoldNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // A manifold represents a set of possible/theoretical orbits for an object of
@@ -739,10 +748,13 @@ func (r ManifoldNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow ManifoldNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ManifoldNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ManifoldNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

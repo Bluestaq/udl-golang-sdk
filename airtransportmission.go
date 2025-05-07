@@ -677,6 +677,9 @@ func (r AirTransportMissionNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow AirTransportMissionNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirTransportMissionNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -753,6 +756,9 @@ func (r AirTransportMissionNewParamsHazMat) MarshalJSON() (data []byte, err erro
 	type shadow AirTransportMissionNewParamsHazMat
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirTransportMissionNewParamsHazMat) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of Remarks associated with this Air Transport Mission.
 type AirTransportMissionNewParamsRemark struct {
@@ -776,6 +782,9 @@ type AirTransportMissionNewParamsRemark struct {
 func (r AirTransportMissionNewParamsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow AirTransportMissionNewParamsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirTransportMissionNewParamsRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of Requirements planned to be associated with this Air Transport
@@ -826,6 +835,9 @@ type AirTransportMissionNewParamsRequirement struct {
 func (r AirTransportMissionNewParamsRequirement) MarshalJSON() (data []byte, err error) {
 	type shadow AirTransportMissionNewParamsRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirTransportMissionNewParamsRequirement) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type AirTransportMissionGetParams struct {
@@ -970,6 +982,9 @@ func (r AirTransportMissionUpdateParams) MarshalJSON() (data []byte, err error) 
 	type shadow AirTransportMissionUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirTransportMissionUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1046,6 +1061,9 @@ func (r AirTransportMissionUpdateParamsHazMat) MarshalJSON() (data []byte, err e
 	type shadow AirTransportMissionUpdateParamsHazMat
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirTransportMissionUpdateParamsHazMat) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of Remarks associated with this Air Transport Mission.
 type AirTransportMissionUpdateParamsRemark struct {
@@ -1069,6 +1087,9 @@ type AirTransportMissionUpdateParamsRemark struct {
 func (r AirTransportMissionUpdateParamsRemark) MarshalJSON() (data []byte, err error) {
 	type shadow AirTransportMissionUpdateParamsRemark
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirTransportMissionUpdateParamsRemark) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of Requirements planned to be associated with this Air Transport
@@ -1119,6 +1140,9 @@ type AirTransportMissionUpdateParamsRequirement struct {
 func (r AirTransportMissionUpdateParamsRequirement) MarshalJSON() (data []byte, err error) {
 	type shadow AirTransportMissionUpdateParamsRequirement
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirTransportMissionUpdateParamsRequirement) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type AirTransportMissionListParams struct {

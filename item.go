@@ -1058,6 +1058,9 @@ func (r ItemNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow ItemNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ItemNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1231,6 +1234,9 @@ func (r ItemUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow ItemUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ItemUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1323,6 +1329,9 @@ type ItemUnvalidatedPublishParams struct {
 
 func (r ItemUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *ItemUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // The properties ClassificationMarking, DataMode, ScanCode, Source, Type are
@@ -1488,9 +1497,12 @@ func (r ItemUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error)
 	type shadow ItemUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ItemUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[ItemUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

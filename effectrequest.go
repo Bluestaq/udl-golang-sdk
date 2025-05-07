@@ -656,6 +656,9 @@ func (r EffectRequestNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow EffectRequestNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EffectRequestNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -737,6 +740,9 @@ type EffectRequestNewBulkParams struct {
 
 func (r EffectRequestNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *EffectRequestNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // A request for various effects on a target.
@@ -830,10 +836,13 @@ func (r EffectRequestNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow EffectRequestNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EffectRequestNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[EffectRequestNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -867,6 +876,9 @@ type EffectRequestUnvalidatedPublishParams struct {
 
 func (r EffectRequestUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *EffectRequestUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // A request for various effects on a target.
@@ -960,9 +972,12 @@ func (r EffectRequestUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, e
 	type shadow EffectRequestUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EffectRequestUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[EffectRequestUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

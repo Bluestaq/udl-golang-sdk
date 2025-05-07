@@ -364,6 +364,9 @@ func (r OnorbitantennaNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitantennaNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OnorbitantennaNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -437,10 +440,13 @@ func (r OnorbitantennaNewParamsAntenna) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitantennaNewParamsAntenna
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OnorbitantennaNewParamsAntenna) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OnorbitantennaNewParamsAntenna](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -487,6 +493,9 @@ type OnorbitantennaUpdateParams struct {
 func (r OnorbitantennaUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitantennaUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OnorbitantennaUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -561,10 +570,13 @@ func (r OnorbitantennaUpdateParamsAntenna) MarshalJSON() (data []byte, err error
 	type shadow OnorbitantennaUpdateParamsAntenna
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OnorbitantennaUpdateParamsAntenna) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OnorbitantennaUpdateParamsAntenna](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

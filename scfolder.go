@@ -111,3 +111,6 @@ type ScFolderUpdateParams struct {
 func (r ScFolderUpdateParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.FileData)
 }
+func (r *ScFolderUpdateParams) UnmarshalJSON(data []byte) error {
+	return r.FileData.UnmarshalJSON(data)
+}

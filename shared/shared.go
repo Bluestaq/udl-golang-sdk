@@ -4278,6 +4278,9 @@ func (r FileDataParam) MarshalJSON() (data []byte, err error) {
 	type shadow FileDataParam
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *FileDataParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type FileDataAttributesParam struct {
 	ID                    param.Opt[string]  `json:"id,omitzero"`
@@ -4316,6 +4319,9 @@ type FileDataAttributesParam struct {
 func (r FileDataAttributesParam) MarshalJSON() (data []byte, err error) {
 	type shadow FileDataAttributesParam
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *FileDataAttributesParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Flight Plan contains data specifying the details of an intended flight including

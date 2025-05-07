@@ -894,6 +894,9 @@ func (r EvacNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1033,6 +1036,9 @@ func (r EvacNewParamsCasualtyInfo) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewParamsCasualtyInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacNewParamsCasualtyInfo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EvacNewParamsCasualtyInfoAllergy struct {
 	// Additional comments on the patient's allergy information.
@@ -1045,6 +1051,9 @@ type EvacNewParamsCasualtyInfoAllergy struct {
 func (r EvacNewParamsCasualtyInfoAllergy) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewParamsCasualtyInfoAllergy
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *EvacNewParamsCasualtyInfoAllergy) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type EvacNewParamsCasualtyInfoCondition struct {
@@ -1069,6 +1078,9 @@ func (r EvacNewParamsCasualtyInfoCondition) MarshalJSON() (data []byte, err erro
 	type shadow EvacNewParamsCasualtyInfoCondition
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacNewParamsCasualtyInfoCondition) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EvacNewParamsCasualtyInfoEtiology struct {
 	// The body part or location affected from the etiology. Intended as, but not
@@ -1092,6 +1104,9 @@ func (r EvacNewParamsCasualtyInfoEtiology) MarshalJSON() (data []byte, err error
 	type shadow EvacNewParamsCasualtyInfoEtiology
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacNewParamsCasualtyInfoEtiology) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EvacNewParamsCasualtyInfoHealthState struct {
 	// Medical color code used to quickly identify various medical state (e.g. AMBER,
@@ -1110,6 +1125,9 @@ type EvacNewParamsCasualtyInfoHealthState struct {
 func (r EvacNewParamsCasualtyInfoHealthState) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewParamsCasualtyInfoHealthState
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *EvacNewParamsCasualtyInfoHealthState) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type EvacNewParamsCasualtyInfoInjury struct {
@@ -1138,6 +1156,9 @@ type EvacNewParamsCasualtyInfoInjury struct {
 func (r EvacNewParamsCasualtyInfoInjury) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewParamsCasualtyInfoInjury
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *EvacNewParamsCasualtyInfoInjury) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type EvacNewParamsCasualtyInfoMedication struct {
@@ -1168,6 +1189,9 @@ func (r EvacNewParamsCasualtyInfoMedication) MarshalJSON() (data []byte, err err
 	type shadow EvacNewParamsCasualtyInfoMedication
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacNewParamsCasualtyInfoMedication) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EvacNewParamsCasualtyInfoTreatment struct {
 	// Body part location or body part treated or to be treated. Intended as, but not
@@ -1192,6 +1216,9 @@ func (r EvacNewParamsCasualtyInfoTreatment) MarshalJSON() (data []byte, err erro
 	type shadow EvacNewParamsCasualtyInfoTreatment
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacNewParamsCasualtyInfoTreatment) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EvacNewParamsCasualtyInfoVitalSignData struct {
 	// Medical confidence factor.
@@ -1214,6 +1241,9 @@ func (r EvacNewParamsCasualtyInfoVitalSignData) MarshalJSON() (data []byte, err 
 	type shadow EvacNewParamsCasualtyInfoVitalSignData
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacNewParamsCasualtyInfoVitalSignData) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EvacNewParamsEnemyData struct {
 	// Directions to known enemies in the operation area (NORTH, NORTHEAST, EAST,
@@ -1231,6 +1261,9 @@ type EvacNewParamsEnemyData struct {
 func (r EvacNewParamsEnemyData) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewParamsEnemyData
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *EvacNewParamsEnemyData) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type EvacGetParams struct {
@@ -1286,6 +1319,9 @@ type EvacNewBulkParams struct {
 
 func (r EvacNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *EvacNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Casualty report and evacuation request. Used to report and request support to
@@ -1418,13 +1454,16 @@ func (r EvacNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[EvacNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[EvacNewBulkParamsBody](
-		"Type", false, "REQUEST", "RESPONSE",
+		"type", "REQUEST", "RESPONSE",
 	)
 }
 
@@ -1535,6 +1574,9 @@ func (r EvacNewBulkParamsBodyCasualtyInfo) MarshalJSON() (data []byte, err error
 	type shadow EvacNewBulkParamsBodyCasualtyInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacNewBulkParamsBodyCasualtyInfo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EvacNewBulkParamsBodyCasualtyInfoAllergy struct {
 	// Additional comments on the patient's allergy information.
@@ -1547,6 +1589,9 @@ type EvacNewBulkParamsBodyCasualtyInfoAllergy struct {
 func (r EvacNewBulkParamsBodyCasualtyInfoAllergy) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewBulkParamsBodyCasualtyInfoAllergy
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *EvacNewBulkParamsBodyCasualtyInfoAllergy) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type EvacNewBulkParamsBodyCasualtyInfoCondition struct {
@@ -1571,6 +1616,9 @@ func (r EvacNewBulkParamsBodyCasualtyInfoCondition) MarshalJSON() (data []byte, 
 	type shadow EvacNewBulkParamsBodyCasualtyInfoCondition
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacNewBulkParamsBodyCasualtyInfoCondition) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EvacNewBulkParamsBodyCasualtyInfoEtiology struct {
 	// The body part or location affected from the etiology. Intended as, but not
@@ -1594,6 +1642,9 @@ func (r EvacNewBulkParamsBodyCasualtyInfoEtiology) MarshalJSON() (data []byte, e
 	type shadow EvacNewBulkParamsBodyCasualtyInfoEtiology
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacNewBulkParamsBodyCasualtyInfoEtiology) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EvacNewBulkParamsBodyCasualtyInfoHealthState struct {
 	// Medical color code used to quickly identify various medical state (e.g. AMBER,
@@ -1612,6 +1663,9 @@ type EvacNewBulkParamsBodyCasualtyInfoHealthState struct {
 func (r EvacNewBulkParamsBodyCasualtyInfoHealthState) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewBulkParamsBodyCasualtyInfoHealthState
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *EvacNewBulkParamsBodyCasualtyInfoHealthState) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type EvacNewBulkParamsBodyCasualtyInfoInjury struct {
@@ -1640,6 +1694,9 @@ type EvacNewBulkParamsBodyCasualtyInfoInjury struct {
 func (r EvacNewBulkParamsBodyCasualtyInfoInjury) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewBulkParamsBodyCasualtyInfoInjury
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *EvacNewBulkParamsBodyCasualtyInfoInjury) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type EvacNewBulkParamsBodyCasualtyInfoMedication struct {
@@ -1670,6 +1727,9 @@ func (r EvacNewBulkParamsBodyCasualtyInfoMedication) MarshalJSON() (data []byte,
 	type shadow EvacNewBulkParamsBodyCasualtyInfoMedication
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacNewBulkParamsBodyCasualtyInfoMedication) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EvacNewBulkParamsBodyCasualtyInfoTreatment struct {
 	// Body part location or body part treated or to be treated. Intended as, but not
@@ -1694,6 +1754,9 @@ func (r EvacNewBulkParamsBodyCasualtyInfoTreatment) MarshalJSON() (data []byte, 
 	type shadow EvacNewBulkParamsBodyCasualtyInfoTreatment
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacNewBulkParamsBodyCasualtyInfoTreatment) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EvacNewBulkParamsBodyCasualtyInfoVitalSignData struct {
 	// Medical confidence factor.
@@ -1716,6 +1779,9 @@ func (r EvacNewBulkParamsBodyCasualtyInfoVitalSignData) MarshalJSON() (data []by
 	type shadow EvacNewBulkParamsBodyCasualtyInfoVitalSignData
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacNewBulkParamsBodyCasualtyInfoVitalSignData) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EvacNewBulkParamsBodyEnemyData struct {
 	// Directions to known enemies in the operation area (NORTH, NORTHEAST, EAST,
@@ -1734,6 +1800,9 @@ func (r EvacNewBulkParamsBodyEnemyData) MarshalJSON() (data []byte, err error) {
 	type shadow EvacNewBulkParamsBodyEnemyData
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacNewBulkParamsBodyEnemyData) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EvacUnvalidatedPublishParams struct {
 	Body []EvacUnvalidatedPublishParamsBody
@@ -1742,6 +1811,9 @@ type EvacUnvalidatedPublishParams struct {
 
 func (r EvacUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *EvacUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Casualty report and evacuation request. Used to report and request support to
@@ -1874,13 +1946,16 @@ func (r EvacUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error)
 	type shadow EvacUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[EvacUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[EvacUnvalidatedPublishParamsBody](
-		"Type", false, "REQUEST", "RESPONSE",
+		"type", "REQUEST", "RESPONSE",
 	)
 }
 
@@ -1991,6 +2066,9 @@ func (r EvacUnvalidatedPublishParamsBodyCasualtyInfo) MarshalJSON() (data []byte
 	type shadow EvacUnvalidatedPublishParamsBodyCasualtyInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacUnvalidatedPublishParamsBodyCasualtyInfo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EvacUnvalidatedPublishParamsBodyCasualtyInfoAllergy struct {
 	// Additional comments on the patient's allergy information.
@@ -2003,6 +2081,9 @@ type EvacUnvalidatedPublishParamsBodyCasualtyInfoAllergy struct {
 func (r EvacUnvalidatedPublishParamsBodyCasualtyInfoAllergy) MarshalJSON() (data []byte, err error) {
 	type shadow EvacUnvalidatedPublishParamsBodyCasualtyInfoAllergy
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *EvacUnvalidatedPublishParamsBodyCasualtyInfoAllergy) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type EvacUnvalidatedPublishParamsBodyCasualtyInfoCondition struct {
@@ -2027,6 +2108,9 @@ func (r EvacUnvalidatedPublishParamsBodyCasualtyInfoCondition) MarshalJSON() (da
 	type shadow EvacUnvalidatedPublishParamsBodyCasualtyInfoCondition
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacUnvalidatedPublishParamsBodyCasualtyInfoCondition) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EvacUnvalidatedPublishParamsBodyCasualtyInfoEtiology struct {
 	// The body part or location affected from the etiology. Intended as, but not
@@ -2050,6 +2134,9 @@ func (r EvacUnvalidatedPublishParamsBodyCasualtyInfoEtiology) MarshalJSON() (dat
 	type shadow EvacUnvalidatedPublishParamsBodyCasualtyInfoEtiology
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacUnvalidatedPublishParamsBodyCasualtyInfoEtiology) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EvacUnvalidatedPublishParamsBodyCasualtyInfoHealthState struct {
 	// Medical color code used to quickly identify various medical state (e.g. AMBER,
@@ -2068,6 +2155,9 @@ type EvacUnvalidatedPublishParamsBodyCasualtyInfoHealthState struct {
 func (r EvacUnvalidatedPublishParamsBodyCasualtyInfoHealthState) MarshalJSON() (data []byte, err error) {
 	type shadow EvacUnvalidatedPublishParamsBodyCasualtyInfoHealthState
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *EvacUnvalidatedPublishParamsBodyCasualtyInfoHealthState) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type EvacUnvalidatedPublishParamsBodyCasualtyInfoInjury struct {
@@ -2096,6 +2186,9 @@ type EvacUnvalidatedPublishParamsBodyCasualtyInfoInjury struct {
 func (r EvacUnvalidatedPublishParamsBodyCasualtyInfoInjury) MarshalJSON() (data []byte, err error) {
 	type shadow EvacUnvalidatedPublishParamsBodyCasualtyInfoInjury
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *EvacUnvalidatedPublishParamsBodyCasualtyInfoInjury) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type EvacUnvalidatedPublishParamsBodyCasualtyInfoMedication struct {
@@ -2126,6 +2219,9 @@ func (r EvacUnvalidatedPublishParamsBodyCasualtyInfoMedication) MarshalJSON() (d
 	type shadow EvacUnvalidatedPublishParamsBodyCasualtyInfoMedication
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacUnvalidatedPublishParamsBodyCasualtyInfoMedication) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EvacUnvalidatedPublishParamsBodyCasualtyInfoTreatment struct {
 	// Body part location or body part treated or to be treated. Intended as, but not
@@ -2150,6 +2246,9 @@ func (r EvacUnvalidatedPublishParamsBodyCasualtyInfoTreatment) MarshalJSON() (da
 	type shadow EvacUnvalidatedPublishParamsBodyCasualtyInfoTreatment
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacUnvalidatedPublishParamsBodyCasualtyInfoTreatment) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EvacUnvalidatedPublishParamsBodyCasualtyInfoVitalSignData struct {
 	// Medical confidence factor.
@@ -2172,6 +2271,9 @@ func (r EvacUnvalidatedPublishParamsBodyCasualtyInfoVitalSignData) MarshalJSON()
 	type shadow EvacUnvalidatedPublishParamsBodyCasualtyInfoVitalSignData
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EvacUnvalidatedPublishParamsBodyCasualtyInfoVitalSignData) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EvacUnvalidatedPublishParamsBodyEnemyData struct {
 	// Directions to known enemies in the operation area (NORTH, NORTHEAST, EAST,
@@ -2189,4 +2291,7 @@ type EvacUnvalidatedPublishParamsBodyEnemyData struct {
 func (r EvacUnvalidatedPublishParamsBodyEnemyData) MarshalJSON() (data []byte, err error) {
 	type shadow EvacUnvalidatedPublishParamsBodyEnemyData
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *EvacUnvalidatedPublishParamsBodyEnemyData) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

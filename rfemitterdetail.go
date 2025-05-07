@@ -796,6 +796,9 @@ func (r RfEmitterDetailNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow RfEmitterDetailNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *RfEmitterDetailNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -915,6 +918,9 @@ type RfEmitterDetailUpdateParams struct {
 func (r RfEmitterDetailUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow RfEmitterDetailUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *RfEmitterDetailUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

@@ -1046,6 +1046,9 @@ func (r EffectResponseNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow EffectResponseNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EffectResponseNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1122,6 +1125,9 @@ func (r EffectResponseNewParamsActionsList) MarshalJSON() (data []byte, err erro
 	type shadow EffectResponseNewParamsActionsList
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EffectResponseNewParamsActionsList) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EffectResponseNewParamsActionsListActionMetric struct {
 	// The metric score specific to its domain.
@@ -1140,6 +1146,9 @@ func (r EffectResponseNewParamsActionsListActionMetric) MarshalJSON() (data []by
 	type shadow EffectResponseNewParamsActionsListActionMetric
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EffectResponseNewParamsActionsListActionMetric) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EffectResponseNewParamsCoaMetric struct {
 	// The metric score specific to its domain.
@@ -1157,6 +1166,9 @@ type EffectResponseNewParamsCoaMetric struct {
 func (r EffectResponseNewParamsCoaMetric) MarshalJSON() (data []byte, err error) {
 	type shadow EffectResponseNewParamsCoaMetric
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *EffectResponseNewParamsCoaMetric) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type EffectResponseGetParams struct {
@@ -1217,6 +1229,9 @@ type EffectResponseNewBulkParams struct {
 
 func (r EffectResponseNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *EffectResponseNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // A response for various effects on a target.
@@ -1307,10 +1322,13 @@ func (r EffectResponseNewBulkParamsBody) MarshalJSON() (data []byte, err error) 
 	type shadow EffectResponseNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EffectResponseNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[EffectResponseNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1366,6 +1384,9 @@ func (r EffectResponseNewBulkParamsBodyActionsList) MarshalJSON() (data []byte, 
 	type shadow EffectResponseNewBulkParamsBodyActionsList
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EffectResponseNewBulkParamsBodyActionsList) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EffectResponseNewBulkParamsBodyActionsListActionMetric struct {
 	// The metric score specific to its domain.
@@ -1384,6 +1405,9 @@ func (r EffectResponseNewBulkParamsBodyActionsListActionMetric) MarshalJSON() (d
 	type shadow EffectResponseNewBulkParamsBodyActionsListActionMetric
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EffectResponseNewBulkParamsBodyActionsListActionMetric) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EffectResponseNewBulkParamsBodyCoaMetric struct {
 	// The metric score specific to its domain.
@@ -1401,6 +1425,9 @@ type EffectResponseNewBulkParamsBodyCoaMetric struct {
 func (r EffectResponseNewBulkParamsBodyCoaMetric) MarshalJSON() (data []byte, err error) {
 	type shadow EffectResponseNewBulkParamsBodyCoaMetric
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *EffectResponseNewBulkParamsBodyCoaMetric) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type EffectResponseTupleParams struct {
@@ -1433,6 +1460,9 @@ type EffectResponseUnvalidatedPublishParams struct {
 
 func (r EffectResponseUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *EffectResponseUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // A response for various effects on a target.
@@ -1523,10 +1553,13 @@ func (r EffectResponseUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, 
 	type shadow EffectResponseUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EffectResponseUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[EffectResponseUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1582,6 +1615,9 @@ func (r EffectResponseUnvalidatedPublishParamsBodyActionsList) MarshalJSON() (da
 	type shadow EffectResponseUnvalidatedPublishParamsBodyActionsList
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EffectResponseUnvalidatedPublishParamsBodyActionsList) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EffectResponseUnvalidatedPublishParamsBodyActionsListActionMetric struct {
 	// The metric score specific to its domain.
@@ -1600,6 +1636,9 @@ func (r EffectResponseUnvalidatedPublishParamsBodyActionsListActionMetric) Marsh
 	type shadow EffectResponseUnvalidatedPublishParamsBodyActionsListActionMetric
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EffectResponseUnvalidatedPublishParamsBodyActionsListActionMetric) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EffectResponseUnvalidatedPublishParamsBodyCoaMetric struct {
 	// The metric score specific to its domain.
@@ -1617,4 +1656,7 @@ type EffectResponseUnvalidatedPublishParamsBodyCoaMetric struct {
 func (r EffectResponseUnvalidatedPublishParamsBodyCoaMetric) MarshalJSON() (data []byte, err error) {
 	type shadow EffectResponseUnvalidatedPublishParamsBodyCoaMetric
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *EffectResponseUnvalidatedPublishParamsBodyCoaMetric) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

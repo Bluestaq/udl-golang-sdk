@@ -487,6 +487,9 @@ func (r OrganizationNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow OrganizationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OrganizationNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -573,6 +576,9 @@ type OrganizationUpdateParams struct {
 func (r OrganizationUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow OrganizationUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OrganizationUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

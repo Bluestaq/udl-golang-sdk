@@ -1005,6 +1005,9 @@ func (r EmitterGeolocationNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow EmitterGeolocationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EmitterGeolocationNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1069,6 +1072,9 @@ type EmitterGeolocationNewBulkParams struct {
 
 func (r EmitterGeolocationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *EmitterGeolocationNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Model representation of Emitter geolocation data for a signal of interest.
@@ -1236,10 +1242,13 @@ func (r EmitterGeolocationNewBulkParamsBody) MarshalJSON() (data []byte, err err
 	type shadow EmitterGeolocationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EmitterGeolocationNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[EmitterGeolocationNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1291,6 +1300,9 @@ type EmitterGeolocationUnvalidatedPublishParams struct {
 
 func (r EmitterGeolocationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *EmitterGeolocationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Model representation of Emitter geolocation data for a signal of interest.
@@ -1458,9 +1470,12 @@ func (r EmitterGeolocationUnvalidatedPublishParamsBody) MarshalJSON() (data []by
 	type shadow EmitterGeolocationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EmitterGeolocationUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[EmitterGeolocationUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

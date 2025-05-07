@@ -825,6 +825,9 @@ func (r VesselNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow VesselNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *VesselNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -955,6 +958,9 @@ func (r VesselUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow VesselUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *VesselUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1014,6 +1020,9 @@ type VesselNewBulkParams struct {
 
 func (r VesselNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *VesselNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // This service provides operations for manipulation and querying of maritime
@@ -1135,10 +1144,13 @@ func (r VesselNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow VesselNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *VesselNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[VesselNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

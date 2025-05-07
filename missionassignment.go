@@ -1115,6 +1115,9 @@ func (r MissionAssignmentNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow MissionAssignmentNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *MissionAssignmentNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1293,6 +1296,9 @@ func (r MissionAssignmentUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow MissionAssignmentUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *MissionAssignmentUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1360,6 +1366,9 @@ type MissionAssignmentNewBulkParams struct {
 
 func (r MissionAssignmentNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *MissionAssignmentNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Platform mission assignment data.
@@ -1527,10 +1536,13 @@ func (r MissionAssignmentNewBulkParamsBody) MarshalJSON() (data []byte, err erro
 	type shadow MissionAssignmentNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *MissionAssignmentNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[MissionAssignmentNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 

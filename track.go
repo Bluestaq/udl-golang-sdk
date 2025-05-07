@@ -608,6 +608,9 @@ type TrackNewBulkParams struct {
 func (r TrackNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
+func (r *TrackNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
+}
 
 // A track is a position and optionally a heading/velocity of an object such as an
 // aircraft at a particular timestamp. It also includes optional information
@@ -949,10 +952,13 @@ func (r TrackNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
 	type shadow TrackNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *TrackNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[TrackNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -985,6 +991,9 @@ type TrackUnvalidatedPublishParams struct {
 
 func (r TrackUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *TrackUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // A track is a position and optionally a heading/velocity of an object such as an
@@ -1327,9 +1336,12 @@ func (r TrackUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error
 	type shadow TrackUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *TrackUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[TrackUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }

@@ -592,6 +592,9 @@ func (r EopNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow EopNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *EopNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -804,6 +807,9 @@ type EopUpdateParams struct {
 func (r EopUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow EopUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *EopUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

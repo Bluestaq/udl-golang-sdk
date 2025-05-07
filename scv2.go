@@ -243,6 +243,9 @@ func (r ScV2UpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow ScV2UpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *ScV2UpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // URLQuery serializes [ScV2UpdateParams]'s query parameters as `url.Values`.
 func (r ScV2UpdateParams) URLQuery() (v url.Values, err error) {
@@ -363,6 +366,9 @@ type ScV2FolderNewParams struct {
 func (r ScV2FolderNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow ScV2FolderNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *ScV2FolderNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // URLQuery serializes [ScV2FolderNewParams]'s query parameters as `url.Values`.

@@ -1918,6 +1918,9 @@ func (r OperatingunitNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow OperatingunitNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OperatingunitNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -2256,6 +2259,9 @@ type OperatingunitUpdateParams struct {
 func (r OperatingunitUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow OperatingunitUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OperatingunitUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:

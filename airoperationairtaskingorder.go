@@ -1009,6 +1009,9 @@ func (r AirOperationAirTaskingOrderNewParams) MarshalJSON() (data []byte, err er
 	type shadow AirOperationAirTaskingOrderNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirOperationAirTaskingOrderNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1110,6 +1113,9 @@ func (r AirOperationAirTaskingOrderNewParamsAcMsnTasking) MarshalJSON() (data []
 	type shadow AirOperationAirTaskingOrderNewParamsAcMsnTasking
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirOperationAirTaskingOrderNewParamsAcMsnTasking) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of aircraft mission location information for this aircraft mission
 // tasking.
@@ -1147,6 +1153,9 @@ type AirOperationAirTaskingOrderNewParamsAcMsnTaskingAcMsnLocSeg struct {
 func (r AirOperationAirTaskingOrderNewParamsAcMsnTaskingAcMsnLocSeg) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirTaskingOrderNewParamsAcMsnTaskingAcMsnLocSeg
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirOperationAirTaskingOrderNewParamsAcMsnTaskingAcMsnLocSeg) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection that specifies the naval flight operations for this ATO.
@@ -1188,6 +1197,9 @@ func (r AirOperationAirTaskingOrderNewParamsAcMsnTaskingIndAcTasking) MarshalJSO
 	type shadow AirOperationAirTaskingOrderNewParamsAcMsnTaskingIndAcTasking
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirOperationAirTaskingOrderNewParamsAcMsnTaskingIndAcTasking) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection that details special instructions, important information, guidance,
 // and amplifying information regarding this ATO.
@@ -1203,6 +1215,9 @@ type AirOperationAirTaskingOrderNewParamsGenText struct {
 func (r AirOperationAirTaskingOrderNewParamsGenText) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirTaskingOrderNewParamsGenText
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirOperationAirTaskingOrderNewParamsGenText) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection that specifies the naval flight operations for this ATO.
@@ -1226,6 +1241,9 @@ type AirOperationAirTaskingOrderNewParamsNavalFltOp struct {
 func (r AirOperationAirTaskingOrderNewParamsNavalFltOp) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirTaskingOrderNewParamsNavalFltOp
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirOperationAirTaskingOrderNewParamsNavalFltOp) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type AirOperationAirTaskingOrderGetParams struct {
@@ -1300,6 +1318,9 @@ type AirOperationAirTaskingOrderUnvalidatedPublishParams struct {
 
 func (r AirOperationAirTaskingOrderUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *AirOperationAirTaskingOrderUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Beta Version Air Tasking Order: The ATO is used to task air missions, assign
@@ -1389,10 +1410,13 @@ func (r AirOperationAirTaskingOrderUnvalidatedPublishParamsBody) MarshalJSON() (
 	type shadow AirOperationAirTaskingOrderUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirOperationAirTaskingOrderUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[AirOperationAirTaskingOrderUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1473,6 +1497,9 @@ func (r AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTasking) Mar
 	type shadow AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTasking
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTasking) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection of aircraft mission location information for this aircraft mission
 // tasking.
@@ -1510,6 +1537,9 @@ type AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTaskingAcMsnLoc
 func (r AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTaskingAcMsnLocSeg) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTaskingAcMsnLocSeg
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTaskingAcMsnLocSeg) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection that specifies the naval flight operations for this ATO.
@@ -1551,6 +1581,9 @@ func (r AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTaskingIndAc
 	type shadow AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTaskingIndAcTasking
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTaskingIndAcTasking) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Collection that details special instructions, important information, guidance,
 // and amplifying information regarding this ATO.
@@ -1566,6 +1599,9 @@ type AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyGenText struct {
 func (r AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyGenText) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyGenText
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyGenText) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection that specifies the naval flight operations for this ATO.
@@ -1589,4 +1625,7 @@ type AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyNavalFltOp struct {
 func (r AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyNavalFltOp) MarshalJSON() (data []byte, err error) {
 	type shadow AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyNavalFltOp
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyNavalFltOp) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }

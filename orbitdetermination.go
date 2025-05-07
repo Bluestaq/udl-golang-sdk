@@ -3424,6 +3424,9 @@ func (r OrbitdeterminationNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow OrbitdeterminationNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OrbitdeterminationNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -3645,10 +3648,13 @@ func (r OrbitdeterminationNewParamsAprioriElset) MarshalJSON() (data []byte, err
 	type shadow OrbitdeterminationNewParamsAprioriElset
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OrbitdeterminationNewParamsAprioriElset) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OrbitdeterminationNewParamsAprioriElset](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -4099,16 +4105,19 @@ func (r OrbitdeterminationNewParamsAprioriStateVector) MarshalJSON() (data []byt
 	type shadow OrbitdeterminationNewParamsAprioriStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OrbitdeterminationNewParamsAprioriStateVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OrbitdeterminationNewParamsAprioriStateVector](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[OrbitdeterminationNewParamsAprioriStateVector](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[OrbitdeterminationNewParamsAprioriStateVector](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -4169,6 +4178,9 @@ type OrbitdeterminationNewBulkParams struct {
 
 func (r OrbitdeterminationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *OrbitdeterminationNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Model representation of orbit determination algorithm results describing General
@@ -4349,10 +4361,13 @@ func (r OrbitdeterminationNewBulkParamsBody) MarshalJSON() (data []byte, err err
 	type shadow OrbitdeterminationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OrbitdeterminationNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OrbitdeterminationNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -4553,10 +4568,13 @@ func (r OrbitdeterminationNewBulkParamsBodyAprioriElset) MarshalJSON() (data []b
 	type shadow OrbitdeterminationNewBulkParamsBodyAprioriElset
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OrbitdeterminationNewBulkParamsBodyAprioriElset) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OrbitdeterminationNewBulkParamsBodyAprioriElset](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -5007,16 +5025,19 @@ func (r OrbitdeterminationNewBulkParamsBodyAprioriStateVector) MarshalJSON() (da
 	type shadow OrbitdeterminationNewBulkParamsBodyAprioriStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OrbitdeterminationNewBulkParamsBodyAprioriStateVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OrbitdeterminationNewBulkParamsBodyAprioriStateVector](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[OrbitdeterminationNewBulkParamsBodyAprioriStateVector](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[OrbitdeterminationNewBulkParamsBodyAprioriStateVector](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 
@@ -5072,6 +5093,9 @@ type OrbitdeterminationUnvalidatedPublishParams struct {
 
 func (r OrbitdeterminationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *OrbitdeterminationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Model representation of orbit determination algorithm results describing General
@@ -5252,10 +5276,13 @@ func (r OrbitdeterminationUnvalidatedPublishParamsBody) MarshalJSON() (data []by
 	type shadow OrbitdeterminationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OrbitdeterminationUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OrbitdeterminationUnvalidatedPublishParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -5456,10 +5483,13 @@ func (r OrbitdeterminationUnvalidatedPublishParamsBodyAprioriElset) MarshalJSON(
 	type shadow OrbitdeterminationUnvalidatedPublishParamsBodyAprioriElset
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OrbitdeterminationUnvalidatedPublishParamsBodyAprioriElset) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OrbitdeterminationUnvalidatedPublishParamsBodyAprioriElset](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -5910,15 +5940,18 @@ func (r OrbitdeterminationUnvalidatedPublishParamsBodyAprioriStateVector) Marsha
 	type shadow OrbitdeterminationUnvalidatedPublishParamsBodyAprioriStateVector
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OrbitdeterminationUnvalidatedPublishParamsBodyAprioriStateVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[OrbitdeterminationUnvalidatedPublishParamsBodyAprioriStateVector](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[OrbitdeterminationUnvalidatedPublishParamsBodyAprioriStateVector](
-		"CovReferenceFrame", false, "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW",
 	)
 	apijson.RegisterFieldValidator[OrbitdeterminationUnvalidatedPublishParamsBodyAprioriStateVector](
-		"ReferenceFrame", false, "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }

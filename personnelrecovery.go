@@ -1069,6 +1069,9 @@ func (r PersonnelrecoveryNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *PersonnelrecoveryNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -1121,6 +1124,9 @@ func (r PersonnelrecoveryNewParamsExecutionInfo) MarshalJSON() (data []byte, err
 	type shadow PersonnelrecoveryNewParamsExecutionInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *PersonnelrecoveryNewParamsExecutionInfo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type PersonnelrecoveryNewParamsExecutionInfoEscortVehicle struct {
 	// The call sign of the recovery vehicle.
@@ -1143,6 +1149,9 @@ func (r PersonnelrecoveryNewParamsExecutionInfoEscortVehicle) MarshalJSON() (dat
 	type shadow PersonnelrecoveryNewParamsExecutionInfoEscortVehicle
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *PersonnelrecoveryNewParamsExecutionInfoEscortVehicle) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type PersonnelrecoveryNewParamsExecutionInfoRecoveryVehicle struct {
 	// The call sign of the recovery vehicle.
@@ -1164,6 +1173,9 @@ type PersonnelrecoveryNewParamsExecutionInfoRecoveryVehicle struct {
 func (r PersonnelrecoveryNewParamsExecutionInfoRecoveryVehicle) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryNewParamsExecutionInfoRecoveryVehicle
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *PersonnelrecoveryNewParamsExecutionInfoRecoveryVehicle) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type PersonnelrecoveryNewParamsObjectiveAreaInfo struct {
@@ -1188,6 +1200,9 @@ func (r PersonnelrecoveryNewParamsObjectiveAreaInfo) MarshalJSON() (data []byte,
 	type shadow PersonnelrecoveryNewParamsObjectiveAreaInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *PersonnelrecoveryNewParamsObjectiveAreaInfo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type PersonnelrecoveryNewParamsObjectiveAreaInfoEnemyData struct {
 	// Directions to known enemies in the operation area (NORTH, NORTHEAST, EAST,
@@ -1205,6 +1220,9 @@ type PersonnelrecoveryNewParamsObjectiveAreaInfoEnemyData struct {
 func (r PersonnelrecoveryNewParamsObjectiveAreaInfoEnemyData) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryNewParamsObjectiveAreaInfoEnemyData
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *PersonnelrecoveryNewParamsObjectiveAreaInfoEnemyData) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type PersonnelrecoveryListParams struct {
@@ -1250,6 +1268,9 @@ type PersonnelrecoveryNewBulkParams struct {
 
 func (r PersonnelrecoveryNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *PersonnelrecoveryNewBulkParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Provides information concerning search and rescue operations and other
@@ -1408,10 +1429,13 @@ func (r PersonnelrecoveryNewBulkParamsBody) MarshalJSON() (data []byte, err erro
 	type shadow PersonnelrecoveryNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *PersonnelrecoveryNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[PersonnelrecoveryNewBulkParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1443,6 +1467,9 @@ func (r PersonnelrecoveryNewBulkParamsBodyExecutionInfo) MarshalJSON() (data []b
 	type shadow PersonnelrecoveryNewBulkParamsBodyExecutionInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *PersonnelrecoveryNewBulkParamsBodyExecutionInfo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type PersonnelrecoveryNewBulkParamsBodyExecutionInfoEscortVehicle struct {
 	// The call sign of the recovery vehicle.
@@ -1465,6 +1492,9 @@ func (r PersonnelrecoveryNewBulkParamsBodyExecutionInfoEscortVehicle) MarshalJSO
 	type shadow PersonnelrecoveryNewBulkParamsBodyExecutionInfoEscortVehicle
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *PersonnelrecoveryNewBulkParamsBodyExecutionInfoEscortVehicle) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type PersonnelrecoveryNewBulkParamsBodyExecutionInfoRecoveryVehicle struct {
 	// The call sign of the recovery vehicle.
@@ -1486,6 +1516,9 @@ type PersonnelrecoveryNewBulkParamsBodyExecutionInfoRecoveryVehicle struct {
 func (r PersonnelrecoveryNewBulkParamsBodyExecutionInfoRecoveryVehicle) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryNewBulkParamsBodyExecutionInfoRecoveryVehicle
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *PersonnelrecoveryNewBulkParamsBodyExecutionInfoRecoveryVehicle) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type PersonnelrecoveryNewBulkParamsBodyObjectiveAreaInfo struct {
@@ -1510,6 +1543,9 @@ func (r PersonnelrecoveryNewBulkParamsBodyObjectiveAreaInfo) MarshalJSON() (data
 	type shadow PersonnelrecoveryNewBulkParamsBodyObjectiveAreaInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *PersonnelrecoveryNewBulkParamsBodyObjectiveAreaInfo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type PersonnelrecoveryNewBulkParamsBodyObjectiveAreaInfoEnemyData struct {
 	// Directions to known enemies in the operation area (NORTH, NORTHEAST, EAST,
@@ -1528,6 +1564,9 @@ func (r PersonnelrecoveryNewBulkParamsBodyObjectiveAreaInfoEnemyData) MarshalJSO
 	type shadow PersonnelrecoveryNewBulkParamsBodyObjectiveAreaInfoEnemyData
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *PersonnelrecoveryNewBulkParamsBodyObjectiveAreaInfoEnemyData) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type PersonnelrecoveryFileNewParams struct {
 	Body []PersonnelrecoveryFileNewParamsBody
@@ -1536,6 +1575,9 @@ type PersonnelrecoveryFileNewParams struct {
 
 func (r PersonnelrecoveryFileNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
+}
+func (r *PersonnelrecoveryFileNewParams) UnmarshalJSON(data []byte) error {
+	return r.Body.UnmarshalJSON(data)
 }
 
 // Provides information concerning search and rescue operations and other
@@ -1694,10 +1736,13 @@ func (r PersonnelrecoveryFileNewParamsBody) MarshalJSON() (data []byte, err erro
 	type shadow PersonnelrecoveryFileNewParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *PersonnelrecoveryFileNewParamsBody) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 func init() {
 	apijson.RegisterFieldValidator[PersonnelrecoveryFileNewParamsBody](
-		"DataMode", false, "REAL", "TEST", "SIMULATED", "EXERCISE",
+		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 }
 
@@ -1729,6 +1774,9 @@ func (r PersonnelrecoveryFileNewParamsBodyExecutionInfo) MarshalJSON() (data []b
 	type shadow PersonnelrecoveryFileNewParamsBodyExecutionInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *PersonnelrecoveryFileNewParamsBodyExecutionInfo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type PersonnelrecoveryFileNewParamsBodyExecutionInfoEscortVehicle struct {
 	// The call sign of the recovery vehicle.
@@ -1751,6 +1799,9 @@ func (r PersonnelrecoveryFileNewParamsBodyExecutionInfoEscortVehicle) MarshalJSO
 	type shadow PersonnelrecoveryFileNewParamsBodyExecutionInfoEscortVehicle
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *PersonnelrecoveryFileNewParamsBodyExecutionInfoEscortVehicle) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type PersonnelrecoveryFileNewParamsBodyExecutionInfoRecoveryVehicle struct {
 	// The call sign of the recovery vehicle.
@@ -1772,6 +1823,9 @@ type PersonnelrecoveryFileNewParamsBodyExecutionInfoRecoveryVehicle struct {
 func (r PersonnelrecoveryFileNewParamsBodyExecutionInfoRecoveryVehicle) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryFileNewParamsBodyExecutionInfoRecoveryVehicle
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *PersonnelrecoveryFileNewParamsBodyExecutionInfoRecoveryVehicle) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type PersonnelrecoveryFileNewParamsBodyObjectiveAreaInfo struct {
@@ -1796,6 +1850,9 @@ func (r PersonnelrecoveryFileNewParamsBodyObjectiveAreaInfo) MarshalJSON() (data
 	type shadow PersonnelrecoveryFileNewParamsBodyObjectiveAreaInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *PersonnelrecoveryFileNewParamsBodyObjectiveAreaInfo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type PersonnelrecoveryFileNewParamsBodyObjectiveAreaInfoEnemyData struct {
 	// Directions to known enemies in the operation area (NORTH, NORTHEAST, EAST,
@@ -1813,6 +1870,9 @@ type PersonnelrecoveryFileNewParamsBodyObjectiveAreaInfoEnemyData struct {
 func (r PersonnelrecoveryFileNewParamsBodyObjectiveAreaInfoEnemyData) MarshalJSON() (data []byte, err error) {
 	type shadow PersonnelrecoveryFileNewParamsBodyObjectiveAreaInfoEnemyData
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *PersonnelrecoveryFileNewParamsBodyObjectiveAreaInfoEnemyData) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type PersonnelrecoveryGetParams struct {

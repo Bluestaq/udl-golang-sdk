@@ -319,6 +319,9 @@ func (r CommAbridgedParam) MarshalJSON() (data []byte, err error) {
 	type shadow CommAbridgedParam
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CommAbridgedParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Comm represents communications entities (e.g. on-orbit communications satellite
 // payloads) within the SSA environment.
@@ -581,6 +584,9 @@ func (r CommNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow CommNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *CommNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -628,6 +634,9 @@ type CommUpdateParams struct {
 
 func (r CommUpdateParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.CommAbridged)
+}
+func (r *CommUpdateParams) UnmarshalJSON(data []byte) error {
+	return r.CommAbridged.UnmarshalJSON(data)
 }
 
 type CommListParams struct {

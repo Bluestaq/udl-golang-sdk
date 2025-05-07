@@ -481,6 +481,9 @@ func (r OnorbitlistNewParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitlistNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
+func (r *OnorbitlistNewParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
 //
@@ -546,6 +549,9 @@ type OnorbitlistUpdateParams struct {
 func (r OnorbitlistUpdateParams) MarshalJSON() (data []byte, err error) {
 	type shadow OnorbitlistUpdateParams
 	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *OnorbitlistUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
