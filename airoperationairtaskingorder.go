@@ -67,7 +67,7 @@ func (r *AirOperationAirTaskingOrderService) Get(ctx context.Context, id string,
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *AirOperationAirTaskingOrderService) List(ctx context.Context, query AirOperationAirTaskingOrderListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AirOperationAirTaskingOrderListResponse], err error) {
+func (r *AirOperationAirTaskingOrderService) List(ctx context.Context, query AirOperationAirTaskingOrderListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AirtaskingorderAbridged], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -88,7 +88,7 @@ func (r *AirOperationAirTaskingOrderService) List(ctx context.Context, query Air
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *AirOperationAirTaskingOrderService) ListAutoPaging(ctx context.Context, query AirOperationAirTaskingOrderListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[AirOperationAirTaskingOrderListResponse] {
+func (r *AirOperationAirTaskingOrderService) ListAutoPaging(ctx context.Context, query AirOperationAirTaskingOrderListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[AirtaskingorderAbridged] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -542,7 +542,7 @@ func (r *AirTaskingOrderFullNavalFltOp) UnmarshalJSON(data []byte) error {
 
 // Beta Version Air Tasking Order: The ATO is used to task air missions, assign
 // cross force tasking as well as intraservice tasking.
-type AirOperationAirTaskingOrderListResponse struct {
+type AirtaskingorderAbridged struct {
 	// The effective begin time for this ATO in ISO 8601 UTC format with millisecond
 	// precision.
 	BeginTs time.Time `json:"beginTs,required" format:"date-time"`
@@ -564,7 +564,7 @@ type AirOperationAirTaskingOrderListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode AirOperationAirTaskingOrderListResponseDataMode `json:"dataMode,required"`
+	DataMode AirtaskingorderAbridgedDataMode `json:"dataMode,required"`
 	// Specifies the unique operation or exercise name, nickname, or codeword assigned
 	// to a joint exercise or operation plan.
 	OpExerName string `json:"opExerName,required"`
@@ -580,7 +580,7 @@ type AirOperationAirTaskingOrderListResponse struct {
 	AckUnitInstructions string `json:"ackUnitInstructions"`
 	// A collection that specifies the tasked country, tasked service, unit and mission
 	// level tasking for this ATO.
-	AcMsnTasking []AirOperationAirTaskingOrderListResponseAcMsnTasking `json:"acMsnTasking"`
+	AcMsnTasking []AirtaskingorderAbridgedAcMsnTasking `json:"acMsnTasking"`
 	// Time the row was created in the database.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database.
@@ -590,7 +590,7 @@ type AirOperationAirTaskingOrderListResponse struct {
 	EndTs time.Time `json:"endTs" format:"date-time"`
 	// A collection that details special instructions, important information, guidance,
 	// and amplifying information regarding this ATO.
-	GenText []AirOperationAirTaskingOrderListResponseGenText `json:"genText"`
+	GenText []AirtaskingorderAbridgedGenText `json:"genText"`
 	// The month in which the message originated.
 	MsgMonth string `json:"msgMonth"`
 	// The identifier of the originator of the message.
@@ -600,7 +600,7 @@ type AirOperationAirTaskingOrderListResponse struct {
 	// The unique message identifier sequentially assigned by the originator.
 	MsgSn string `json:"msgSN"`
 	// A collection that specifies the naval flight operations for this ATO.
-	NavalFltOps []AirOperationAirTaskingOrderListResponseNavalFltOp `json:"navalFltOps"`
+	NavalFltOps []AirtaskingorderAbridgedNavalFltOp `json:"navalFltOps"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
@@ -647,8 +647,8 @@ type AirOperationAirTaskingOrderListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r AirOperationAirTaskingOrderListResponse) RawJSON() string { return r.JSON.raw }
-func (r *AirOperationAirTaskingOrderListResponse) UnmarshalJSON(data []byte) error {
+func (r AirtaskingorderAbridged) RawJSON() string { return r.JSON.raw }
+func (r *AirtaskingorderAbridged) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -666,18 +666,18 @@ func (r *AirOperationAirTaskingOrderListResponse) UnmarshalJSON(data []byte) err
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type AirOperationAirTaskingOrderListResponseDataMode string
+type AirtaskingorderAbridgedDataMode string
 
 const (
-	AirOperationAirTaskingOrderListResponseDataModeReal      AirOperationAirTaskingOrderListResponseDataMode = "REAL"
-	AirOperationAirTaskingOrderListResponseDataModeTest      AirOperationAirTaskingOrderListResponseDataMode = "TEST"
-	AirOperationAirTaskingOrderListResponseDataModeSimulated AirOperationAirTaskingOrderListResponseDataMode = "SIMULATED"
-	AirOperationAirTaskingOrderListResponseDataModeExercise  AirOperationAirTaskingOrderListResponseDataMode = "EXERCISE"
+	AirtaskingorderAbridgedDataModeReal      AirtaskingorderAbridgedDataMode = "REAL"
+	AirtaskingorderAbridgedDataModeTest      AirtaskingorderAbridgedDataMode = "TEST"
+	AirtaskingorderAbridgedDataModeSimulated AirtaskingorderAbridgedDataMode = "SIMULATED"
+	AirtaskingorderAbridgedDataModeExercise  AirtaskingorderAbridgedDataMode = "EXERCISE"
 )
 
 // Collection that specifies the tasked country, tasked service, unit and mission
 // level tasking for this ATO.
-type AirOperationAirTaskingOrderListResponseAcMsnTasking struct {
+type AirtaskingorderAbridgedAcMsnTasking struct {
 	// The country code responsible for conducting this aircraft mission tasking for
 	// the exercise or operation.
 	CountryCode string `json:"countryCode,required"`
@@ -689,7 +689,7 @@ type AirOperationAirTaskingOrderListResponseAcMsnTasking struct {
 	UnitDesignator string `json:"unitDesignator,required"`
 	// A collection of aircraft mission location information for this aircraft mission
 	// tasking.
-	AcMsnLocSeg []AirOperationAirTaskingOrderListResponseAcMsnTaskingAcMsnLocSeg `json:"acMsnLocSeg"`
+	AcMsnLocSeg []AirtaskingorderAbridgedAcMsnTaskingAcMsnLocSeg `json:"acMsnLocSeg"`
 	// The readiness status expressed in time (minutes) for an aircraft to be airborne
 	// after the launch order is received or the time required for a missile unit to
 	// assume battle stations.
@@ -712,7 +712,7 @@ type AirOperationAirTaskingOrderListResponseAcMsnTasking struct {
 	DepTime time.Time `json:"depTime" format:"date-time"`
 	// A collection of the individual aircraft assigned to this aircraft mission
 	// tasking.
-	IndAcTasking []AirOperationAirTaskingOrderListResponseAcMsnTaskingIndAcTasking `json:"indACTasking"`
+	IndAcTasking []AirtaskingorderAbridgedAcMsnTaskingIndAcTasking `json:"indACTasking"`
 	// The commander responsible for the planning and execution of the forces necessary
 	// to achieve desired objectives.
 	MsnCommander string `json:"msnCommander"`
@@ -775,14 +775,14 @@ type AirOperationAirTaskingOrderListResponseAcMsnTasking struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r AirOperationAirTaskingOrderListResponseAcMsnTasking) RawJSON() string { return r.JSON.raw }
-func (r *AirOperationAirTaskingOrderListResponseAcMsnTasking) UnmarshalJSON(data []byte) error {
+func (r AirtaskingorderAbridgedAcMsnTasking) RawJSON() string { return r.JSON.raw }
+func (r *AirtaskingorderAbridgedAcMsnTasking) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of aircraft mission location information for this aircraft mission
 // tasking.
-type AirOperationAirTaskingOrderListResponseAcMsnTaskingAcMsnLocSeg struct {
+type AirtaskingorderAbridgedAcMsnTaskingAcMsnLocSeg struct {
 	// The start time of this mission in ISO 8601 UTC format with millisecond
 	// precision.
 	StartTime time.Time `json:"startTime,required" format:"date-time"`
@@ -826,15 +826,13 @@ type AirOperationAirTaskingOrderListResponseAcMsnTaskingAcMsnLocSeg struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r AirOperationAirTaskingOrderListResponseAcMsnTaskingAcMsnLocSeg) RawJSON() string {
-	return r.JSON.raw
-}
-func (r *AirOperationAirTaskingOrderListResponseAcMsnTaskingAcMsnLocSeg) UnmarshalJSON(data []byte) error {
+func (r AirtaskingorderAbridgedAcMsnTaskingAcMsnLocSeg) RawJSON() string { return r.JSON.raw }
+func (r *AirtaskingorderAbridgedAcMsnTaskingAcMsnLocSeg) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection that specifies the naval flight operations for this ATO.
-type AirOperationAirTaskingOrderListResponseAcMsnTaskingIndAcTasking struct {
+type AirtaskingorderAbridgedAcMsnTaskingIndAcTasking struct {
 	// The type and model number for the aircraft. The field may specify a value of an
 	// aircraft not yet assigned an aircraft code contained in the aircraft codes list.
 	AcftType string `json:"acftType,required"`
@@ -882,16 +880,14 @@ type AirOperationAirTaskingOrderListResponseAcMsnTaskingIndAcTasking struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r AirOperationAirTaskingOrderListResponseAcMsnTaskingIndAcTasking) RawJSON() string {
-	return r.JSON.raw
-}
-func (r *AirOperationAirTaskingOrderListResponseAcMsnTaskingIndAcTasking) UnmarshalJSON(data []byte) error {
+func (r AirtaskingorderAbridgedAcMsnTaskingIndAcTasking) RawJSON() string { return r.JSON.raw }
+func (r *AirtaskingorderAbridgedAcMsnTaskingIndAcTasking) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection that details special instructions, important information, guidance,
 // and amplifying information regarding this ATO.
-type AirOperationAirTaskingOrderListResponseGenText struct {
+type AirtaskingorderAbridgedGenText struct {
 	// The free text that describes the information specific to the text indicator.
 	Text string `json:"text"`
 	// The indicator for the general text block. Examples include "OPENING REMARKS" and
@@ -907,13 +903,13 @@ type AirOperationAirTaskingOrderListResponseGenText struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r AirOperationAirTaskingOrderListResponseGenText) RawJSON() string { return r.JSON.raw }
-func (r *AirOperationAirTaskingOrderListResponseGenText) UnmarshalJSON(data []byte) error {
+func (r AirtaskingorderAbridgedGenText) RawJSON() string { return r.JSON.raw }
+func (r *AirtaskingorderAbridgedGenText) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection that specifies the naval flight operations for this ATO.
-type AirOperationAirTaskingOrderListResponseNavalFltOp struct {
+type AirtaskingorderAbridgedNavalFltOp struct {
 	// The name of a ship or maritime vessel. Specify UNKNOWN if name is not known.
 	ShipName string `json:"shipName,required"`
 	// The time when flight operations begin in ISO8601 UTC format with millisecond
@@ -937,8 +933,8 @@ type AirOperationAirTaskingOrderListResponseNavalFltOp struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r AirOperationAirTaskingOrderListResponseNavalFltOp) RawJSON() string { return r.JSON.raw }
-func (r *AirOperationAirTaskingOrderListResponseNavalFltOp) UnmarshalJSON(data []byte) error {
+func (r AirtaskingorderAbridgedNavalFltOp) RawJSON() string { return r.JSON.raw }
+func (r *AirtaskingorderAbridgedNavalFltOp) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
