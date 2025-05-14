@@ -183,6 +183,7 @@ func (r *GroundImageryService) Tuple(ctx context.Context, query GroundImageryTup
 func (r *GroundImageryService) UploadZip(ctx context.Context, body GroundImageryUploadZipParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithBaseURL("https://imagery.unifieddatalibrary.com/")}, opts...)
 	path := "filedrop/udl-groundimagery"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
