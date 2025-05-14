@@ -161,6 +161,7 @@ func (r *SkyImageryService) Tuple(ctx context.Context, query SkyImageryTuplePara
 func (r *SkyImageryService) UploadZip(ctx context.Context, body SkyImageryUploadZipParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithBaseURL("https://imagery.unifieddatalibrary.com/")}, opts...)
 	path := "filedrop/udl-skyimagery"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
