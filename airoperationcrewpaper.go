@@ -91,6 +91,9 @@ func (r AirOperationCrewpaperUploadPdfParams) MarshalMultipart() (data []byte, c
 	buf := bytes.NewBuffer(nil)
 	writer := multipart.NewWriter(buf)
 	err = apiform.MarshalRoot(r, writer)
+	if err == nil {
+		err = apiform.WriteExtras(writer, r.ExtraFields())
+	}
 	if err != nil {
 		writer.Close()
 		return nil, "", err
