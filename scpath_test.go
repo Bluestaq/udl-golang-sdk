@@ -32,8 +32,10 @@ func TestScPathNewWithOptionalParams(t *testing.T) {
 		ID:                    "id",
 		ClassificationMarking: "classificationMarking",
 		Body:                  io.Reader(bytes.NewBuffer([]byte("some file contents"))),
+		DeleteAfter:           unifieddatalibrary.String("deleteAfter"),
 		Description:           unifieddatalibrary.String("description"),
 		Overwrite:             unifieddatalibrary.Bool(true),
+		SendNotification:      unifieddatalibrary.Bool(true),
 		Tags:                  unifieddatalibrary.String("tags"),
 	})
 	if err != nil {

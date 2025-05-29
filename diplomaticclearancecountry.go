@@ -150,11 +150,10 @@ func (r *DiplomaticClearanceCountryService) NewBulk(ctx context.Context, body Di
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *DiplomaticClearanceCountryService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *DiplomaticClearanceCountryService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *DiplomaticClearanceCountryQueryHelpResponse, err error) {
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/diplomaticclearancecountry/queryhelp"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, nil, opts...)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
 }
 
@@ -233,10 +232,10 @@ type DiplomaticClearanceCountryGetResponse struct {
 	AcceptsSiprNet bool `json:"acceptsSIPRNet"`
 	// The source agency of the diplomatic clearance country data.
 	Agency string `json:"agency"`
-	// Specifies an alternate country code if the data provider code is not part of an
-	// official Country Code standard such as ISO-3166 or FIPS. This field will be set
-	// to the value provided by the source and should be used for all Queries
-	// specifying a Country Code.
+	// Specifies an alternate country code if the data provider code does not match a
+	// UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+	// provided by the source and should be used for all Queries specifying a Country
+	// Code.
 	AltCountryCode string `json:"altCountryCode"`
 	// Zulu closing time of this country's diplomatic clearance office expressed in
 	// HH:MM format.
@@ -737,10 +736,10 @@ type DiplomaticClearanceCountryListResponse struct {
 	AcceptsSiprNet bool `json:"acceptsSIPRNet"`
 	// The source agency of the diplomatic clearance country data.
 	Agency string `json:"agency"`
-	// Specifies an alternate country code if the data provider code is not part of an
-	// official Country Code standard such as ISO-3166 or FIPS. This field will be set
-	// to the value provided by the source and should be used for all Queries
-	// specifying a Country Code.
+	// Specifies an alternate country code if the data provider code does not match a
+	// UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+	// provided by the source and should be used for all Queries specifying a Country
+	// Code.
 	AltCountryCode string `json:"altCountryCode"`
 	// Zulu closing time of this country's diplomatic clearance office expressed in
 	// HH:MM format.
@@ -1193,6 +1192,84 @@ func (r *DiplomaticClearanceCountryListResponseDiplomaticClearanceCountryProfile
 	return apijson.UnmarshalRoot(data, r)
 }
 
+type DiplomaticClearanceCountryQueryHelpResponse struct {
+	AodrSupported         bool                                                   `json:"aodrSupported"`
+	ClassificationMarking string                                                 `json:"classificationMarking"`
+	Description           string                                                 `json:"description"`
+	HistorySupported      bool                                                   `json:"historySupported"`
+	Name                  string                                                 `json:"name"`
+	Parameters            []DiplomaticClearanceCountryQueryHelpResponseParameter `json:"parameters"`
+	RequiredRoles         []string                                               `json:"requiredRoles"`
+	RestSupported         bool                                                   `json:"restSupported"`
+	SortSupported         bool                                                   `json:"sortSupported"`
+	TypeName              string                                                 `json:"typeName"`
+	Uri                   string                                                 `json:"uri"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		AodrSupported         respjson.Field
+		ClassificationMarking respjson.Field
+		Description           respjson.Field
+		HistorySupported      respjson.Field
+		Name                  respjson.Field
+		Parameters            respjson.Field
+		RequiredRoles         respjson.Field
+		RestSupported         respjson.Field
+		SortSupported         respjson.Field
+		TypeName              respjson.Field
+		Uri                   respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r DiplomaticClearanceCountryQueryHelpResponse) RawJSON() string { return r.JSON.raw }
+func (r *DiplomaticClearanceCountryQueryHelpResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type DiplomaticClearanceCountryQueryHelpResponseParameter struct {
+	ClassificationMarking string `json:"classificationMarking"`
+	Derived               bool   `json:"derived"`
+	Description           string `json:"description"`
+	ElemMatch             bool   `json:"elemMatch"`
+	Format                string `json:"format"`
+	HistQuerySupported    bool   `json:"histQuerySupported"`
+	HistTupleSupported    bool   `json:"histTupleSupported"`
+	Name                  string `json:"name"`
+	Required              bool   `json:"required"`
+	RestQuerySupported    bool   `json:"restQuerySupported"`
+	RestTupleSupported    bool   `json:"restTupleSupported"`
+	Type                  string `json:"type"`
+	UnitOfMeasure         string `json:"unitOfMeasure"`
+	UtcDate               bool   `json:"utcDate"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		ClassificationMarking respjson.Field
+		Derived               respjson.Field
+		Description           respjson.Field
+		ElemMatch             respjson.Field
+		Format                respjson.Field
+		HistQuerySupported    respjson.Field
+		HistTupleSupported    respjson.Field
+		Name                  respjson.Field
+		Required              respjson.Field
+		RestQuerySupported    respjson.Field
+		RestTupleSupported    respjson.Field
+		Type                  respjson.Field
+		UnitOfMeasure         respjson.Field
+		UtcDate               respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r DiplomaticClearanceCountryQueryHelpResponseParameter) RawJSON() string { return r.JSON.raw }
+func (r *DiplomaticClearanceCountryQueryHelpResponseParameter) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
 // Diplomatic Clearance Country provides information such as entry/exit points,
 // requirements, and points of contact for countries diplomatic clearances are
 // being created for.
@@ -1241,10 +1318,10 @@ type DiplomaticClearanceCountryTupleResponse struct {
 	AcceptsSiprNet bool `json:"acceptsSIPRNet"`
 	// The source agency of the diplomatic clearance country data.
 	Agency string `json:"agency"`
-	// Specifies an alternate country code if the data provider code is not part of an
-	// official Country Code standard such as ISO-3166 or FIPS. This field will be set
-	// to the value provided by the source and should be used for all Queries
-	// specifying a Country Code.
+	// Specifies an alternate country code if the data provider code does not match a
+	// UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+	// provided by the source and should be used for all Queries specifying a Country
+	// Code.
 	AltCountryCode string `json:"altCountryCode"`
 	// Zulu closing time of this country's diplomatic clearance office expressed in
 	// HH:MM format.
@@ -1742,10 +1819,10 @@ type DiplomaticClearanceCountryNewParams struct {
 	AcceptsSiprNet param.Opt[bool] `json:"acceptsSIPRNet,omitzero"`
 	// The source agency of the diplomatic clearance country data.
 	Agency param.Opt[string] `json:"agency,omitzero"`
-	// Specifies an alternate country code if the data provider code is not part of an
-	// official Country Code standard such as ISO-3166 or FIPS. This field will be set
-	// to the value provided by the source and should be used for all Queries
-	// specifying a Country Code.
+	// Specifies an alternate country code if the data provider code does not match a
+	// UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+	// provided by the source and should be used for all Queries specifying a Country
+	// Code.
 	AltCountryCode param.Opt[string] `json:"altCountryCode,omitzero"`
 	// Zulu closing time of this country's diplomatic clearance office expressed in
 	// HH:MM format.
@@ -2119,10 +2196,10 @@ type DiplomaticClearanceCountryUpdateParams struct {
 	AcceptsSiprNet param.Opt[bool] `json:"acceptsSIPRNet,omitzero"`
 	// The source agency of the diplomatic clearance country data.
 	Agency param.Opt[string] `json:"agency,omitzero"`
-	// Specifies an alternate country code if the data provider code is not part of an
-	// official Country Code standard such as ISO-3166 or FIPS. This field will be set
-	// to the value provided by the source and should be used for all Queries
-	// specifying a Country Code.
+	// Specifies an alternate country code if the data provider code does not match a
+	// UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+	// provided by the source and should be used for all Queries specifying a Country
+	// Code.
 	AltCountryCode param.Opt[string] `json:"altCountryCode,omitzero"`
 	// Zulu closing time of this country's diplomatic clearance office expressed in
 	// HH:MM format.
@@ -2529,10 +2606,10 @@ type DiplomaticClearanceCountryNewBulkParamsBody struct {
 	AcceptsSiprNet param.Opt[bool] `json:"acceptsSIPRNet,omitzero"`
 	// The source agency of the diplomatic clearance country data.
 	Agency param.Opt[string] `json:"agency,omitzero"`
-	// Specifies an alternate country code if the data provider code is not part of an
-	// official Country Code standard such as ISO-3166 or FIPS. This field will be set
-	// to the value provided by the source and should be used for all Queries
-	// specifying a Country Code.
+	// Specifies an alternate country code if the data provider code does not match a
+	// UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+	// provided by the source and should be used for all Queries specifying a Country
+	// Code.
 	AltCountryCode param.Opt[string] `json:"altCountryCode,omitzero"`
 	// Zulu closing time of this country's diplomatic clearance office expressed in
 	// HH:MM format.
@@ -2929,10 +3006,10 @@ type DiplomaticClearanceCountryUnvalidatedPublishParamsBody struct {
 	AcceptsSiprNet param.Opt[bool] `json:"acceptsSIPRNet,omitzero"`
 	// The source agency of the diplomatic clearance country data.
 	Agency param.Opt[string] `json:"agency,omitzero"`
-	// Specifies an alternate country code if the data provider code is not part of an
-	// official Country Code standard such as ISO-3166 or FIPS. This field will be set
-	// to the value provided by the source and should be used for all Queries
-	// specifying a Country Code.
+	// Specifies an alternate country code if the data provider code does not match a
+	// UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+	// provided by the source and should be used for all Queries specifying a Country
+	// Code.
 	AltCountryCode param.Opt[string] `json:"altCountryCode,omitzero"`
 	// Zulu closing time of this country's diplomatic clearance office expressed in
 	// HH:MM format.

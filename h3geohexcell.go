@@ -80,11 +80,10 @@ func (r *H3GeoHexCellService) Count(ctx context.Context, query H3GeoHexCellCount
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *H3GeoHexCellService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *H3GeoHexCellService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *H3GeoHexCellQueryhelpResponse, err error) {
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/h3geohexcell/queryhelp"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, nil, opts...)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
 }
 
@@ -240,6 +239,84 @@ const (
 	H3GeoHexCellListResponseDataModeSimulated H3GeoHexCellListResponseDataMode = "SIMULATED"
 	H3GeoHexCellListResponseDataModeExercise  H3GeoHexCellListResponseDataMode = "EXERCISE"
 )
+
+type H3GeoHexCellQueryhelpResponse struct {
+	AodrSupported         bool                                     `json:"aodrSupported"`
+	ClassificationMarking string                                   `json:"classificationMarking"`
+	Description           string                                   `json:"description"`
+	HistorySupported      bool                                     `json:"historySupported"`
+	Name                  string                                   `json:"name"`
+	Parameters            []H3GeoHexCellQueryhelpResponseParameter `json:"parameters"`
+	RequiredRoles         []string                                 `json:"requiredRoles"`
+	RestSupported         bool                                     `json:"restSupported"`
+	SortSupported         bool                                     `json:"sortSupported"`
+	TypeName              string                                   `json:"typeName"`
+	Uri                   string                                   `json:"uri"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		AodrSupported         respjson.Field
+		ClassificationMarking respjson.Field
+		Description           respjson.Field
+		HistorySupported      respjson.Field
+		Name                  respjson.Field
+		Parameters            respjson.Field
+		RequiredRoles         respjson.Field
+		RestSupported         respjson.Field
+		SortSupported         respjson.Field
+		TypeName              respjson.Field
+		Uri                   respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r H3GeoHexCellQueryhelpResponse) RawJSON() string { return r.JSON.raw }
+func (r *H3GeoHexCellQueryhelpResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type H3GeoHexCellQueryhelpResponseParameter struct {
+	ClassificationMarking string `json:"classificationMarking"`
+	Derived               bool   `json:"derived"`
+	Description           string `json:"description"`
+	ElemMatch             bool   `json:"elemMatch"`
+	Format                string `json:"format"`
+	HistQuerySupported    bool   `json:"histQuerySupported"`
+	HistTupleSupported    bool   `json:"histTupleSupported"`
+	Name                  string `json:"name"`
+	Required              bool   `json:"required"`
+	RestQuerySupported    bool   `json:"restQuerySupported"`
+	RestTupleSupported    bool   `json:"restTupleSupported"`
+	Type                  string `json:"type"`
+	UnitOfMeasure         string `json:"unitOfMeasure"`
+	UtcDate               bool   `json:"utcDate"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		ClassificationMarking respjson.Field
+		Derived               respjson.Field
+		Description           respjson.Field
+		ElemMatch             respjson.Field
+		Format                respjson.Field
+		HistQuerySupported    respjson.Field
+		HistTupleSupported    respjson.Field
+		Name                  respjson.Field
+		Required              respjson.Field
+		RestQuerySupported    respjson.Field
+		RestTupleSupported    respjson.Field
+		Type                  respjson.Field
+		UnitOfMeasure         respjson.Field
+		UtcDate               respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r H3GeoHexCellQueryhelpResponseParameter) RawJSON() string { return r.JSON.raw }
+func (r *H3GeoHexCellQueryhelpResponseParameter) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Model representation of a hex cell array containing data for a set of
 // observations.

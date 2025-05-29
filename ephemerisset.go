@@ -139,11 +139,10 @@ func (r *EphemerisSetService) FileGet(ctx context.Context, id string, query Ephe
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *EphemerisSetService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *EphemerisSetService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *EphemerisSetQueryhelpResponse, err error) {
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/ephemerisset/queryhelp"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, nil, opts...)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
 }
 
@@ -212,7 +211,7 @@ type EphemerisSet struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW".
+	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
 	CovReferenceFrame EphemerisSetCovReferenceFrame `json:"covReferenceFrame"`
 	// Time the row was created in the database, in UTC.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
@@ -397,8 +396,11 @@ const (
 type EphemerisSetCovReferenceFrame string
 
 const (
-	EphemerisSetCovReferenceFrameJ2000 EphemerisSetCovReferenceFrame = "J2000"
-	EphemerisSetCovReferenceFrameUvw   EphemerisSetCovReferenceFrame = "UVW"
+	EphemerisSetCovReferenceFrameJ2000  EphemerisSetCovReferenceFrame = "J2000"
+	EphemerisSetCovReferenceFrameUvw    EphemerisSetCovReferenceFrame = "UVW"
+	EphemerisSetCovReferenceFrameEfgTdr EphemerisSetCovReferenceFrame = "EFG/TDR"
+	EphemerisSetCovReferenceFrameTeme   EphemerisSetCovReferenceFrame = "TEME"
+	EphemerisSetCovReferenceFrameGcrf   EphemerisSetCovReferenceFrame = "GCRF"
 )
 
 // The reference frame of the cartesian orbital states. If the referenceFrame is
@@ -464,7 +466,7 @@ type EphemerisSetAbridged struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW".
+	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
 	CovReferenceFrame EphemerisSetAbridgedCovReferenceFrame `json:"covReferenceFrame"`
 	// Time the row was created in the database, in UTC.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
@@ -625,8 +627,11 @@ const (
 type EphemerisSetAbridgedCovReferenceFrame string
 
 const (
-	EphemerisSetAbridgedCovReferenceFrameJ2000 EphemerisSetAbridgedCovReferenceFrame = "J2000"
-	EphemerisSetAbridgedCovReferenceFrameUvw   EphemerisSetAbridgedCovReferenceFrame = "UVW"
+	EphemerisSetAbridgedCovReferenceFrameJ2000  EphemerisSetAbridgedCovReferenceFrame = "J2000"
+	EphemerisSetAbridgedCovReferenceFrameUvw    EphemerisSetAbridgedCovReferenceFrame = "UVW"
+	EphemerisSetAbridgedCovReferenceFrameEfgTdr EphemerisSetAbridgedCovReferenceFrame = "EFG/TDR"
+	EphemerisSetAbridgedCovReferenceFrameTeme   EphemerisSetAbridgedCovReferenceFrame = "TEME"
+	EphemerisSetAbridgedCovReferenceFrameGcrf   EphemerisSetAbridgedCovReferenceFrame = "GCRF"
 )
 
 // The reference frame of the cartesian orbital states. If the referenceFrame is
@@ -641,6 +646,84 @@ const (
 	EphemerisSetAbridgedReferenceFrameItrf    EphemerisSetAbridgedReferenceFrame = "ITRF"
 	EphemerisSetAbridgedReferenceFrameGcrf    EphemerisSetAbridgedReferenceFrame = "GCRF"
 )
+
+type EphemerisSetQueryhelpResponse struct {
+	AodrSupported         bool                                     `json:"aodrSupported"`
+	ClassificationMarking string                                   `json:"classificationMarking"`
+	Description           string                                   `json:"description"`
+	HistorySupported      bool                                     `json:"historySupported"`
+	Name                  string                                   `json:"name"`
+	Parameters            []EphemerisSetQueryhelpResponseParameter `json:"parameters"`
+	RequiredRoles         []string                                 `json:"requiredRoles"`
+	RestSupported         bool                                     `json:"restSupported"`
+	SortSupported         bool                                     `json:"sortSupported"`
+	TypeName              string                                   `json:"typeName"`
+	Uri                   string                                   `json:"uri"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		AodrSupported         respjson.Field
+		ClassificationMarking respjson.Field
+		Description           respjson.Field
+		HistorySupported      respjson.Field
+		Name                  respjson.Field
+		Parameters            respjson.Field
+		RequiredRoles         respjson.Field
+		RestSupported         respjson.Field
+		SortSupported         respjson.Field
+		TypeName              respjson.Field
+		Uri                   respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r EphemerisSetQueryhelpResponse) RawJSON() string { return r.JSON.raw }
+func (r *EphemerisSetQueryhelpResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type EphemerisSetQueryhelpResponseParameter struct {
+	ClassificationMarking string `json:"classificationMarking"`
+	Derived               bool   `json:"derived"`
+	Description           string `json:"description"`
+	ElemMatch             bool   `json:"elemMatch"`
+	Format                string `json:"format"`
+	HistQuerySupported    bool   `json:"histQuerySupported"`
+	HistTupleSupported    bool   `json:"histTupleSupported"`
+	Name                  string `json:"name"`
+	Required              bool   `json:"required"`
+	RestQuerySupported    bool   `json:"restQuerySupported"`
+	RestTupleSupported    bool   `json:"restTupleSupported"`
+	Type                  string `json:"type"`
+	UnitOfMeasure         string `json:"unitOfMeasure"`
+	UtcDate               bool   `json:"utcDate"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		ClassificationMarking respjson.Field
+		Derived               respjson.Field
+		Description           respjson.Field
+		ElemMatch             respjson.Field
+		Format                respjson.Field
+		HistQuerySupported    respjson.Field
+		HistTupleSupported    respjson.Field
+		Name                  respjson.Field
+		Required              respjson.Field
+		RestQuerySupported    respjson.Field
+		RestTupleSupported    respjson.Field
+		Type                  respjson.Field
+		UnitOfMeasure         respjson.Field
+		UtcDate               respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r EphemerisSetQueryhelpResponseParameter) RawJSON() string { return r.JSON.raw }
+func (r *EphemerisSetQueryhelpResponseParameter) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type EphemerisSetNewParams struct {
 	// The source category of the ephemeris (e.g. OWNER_OPERATOR, ANALYST, EXTERNAL).
@@ -749,7 +832,7 @@ type EphemerisSetNewParams struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW".
+	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
 	CovReferenceFrame EphemerisSetNewParamsCovReferenceFrame `json:"covReferenceFrame,omitzero"`
 	// The list of ephemeris states belonging to the EphemerisSet. Each ephemeris point
 	// is associated with a parent Ephemeris Set via the EphemerisSet ID (esId).
@@ -806,8 +889,11 @@ const (
 type EphemerisSetNewParamsCovReferenceFrame string
 
 const (
-	EphemerisSetNewParamsCovReferenceFrameJ2000 EphemerisSetNewParamsCovReferenceFrame = "J2000"
-	EphemerisSetNewParamsCovReferenceFrameUvw   EphemerisSetNewParamsCovReferenceFrame = "UVW"
+	EphemerisSetNewParamsCovReferenceFrameJ2000  EphemerisSetNewParamsCovReferenceFrame = "J2000"
+	EphemerisSetNewParamsCovReferenceFrameUvw    EphemerisSetNewParamsCovReferenceFrame = "UVW"
+	EphemerisSetNewParamsCovReferenceFrameEfgTdr EphemerisSetNewParamsCovReferenceFrame = "EFG/TDR"
+	EphemerisSetNewParamsCovReferenceFrameTeme   EphemerisSetNewParamsCovReferenceFrame = "TEME"
+	EphemerisSetNewParamsCovReferenceFrameGcrf   EphemerisSetNewParamsCovReferenceFrame = "GCRF"
 )
 
 // An ephemeris record is a position and velocity vector identifying the location

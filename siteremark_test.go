@@ -143,7 +143,7 @@ func TestSiteRemarkQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.SiteRemark.Queryhelp(context.TODO())
+	_, err := client.SiteRemark.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {

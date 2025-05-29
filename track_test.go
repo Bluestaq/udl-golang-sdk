@@ -91,6 +91,8 @@ func TestTrackNewBulk(t *testing.T) {
 			Alt:                   unifieddatalibrary.Float(1.23),
 			Asset:                 unifieddatalibrary.String("asset"),
 			AssetNat:              unifieddatalibrary.String("US"),
+			Attitude:              []float64{10, 0.1, 1},
+			AttitudeRate:          []float64{0.0003, 1e-7, 0.00003},
 			CallSign:              unifieddatalibrary.String("callSign"),
 			Cntct:                 unifieddatalibrary.String("Contact Info"),
 			Course:                unifieddatalibrary.Float(88.37),
@@ -98,6 +100,7 @@ func TestTrackNewBulk(t *testing.T) {
 			EcefAcc:               []float64{1.23, 2.34, 3.45},
 			EcefPos:               []float64{1.23, 2.34, 3.45},
 			EcefVel:               []float64{1.23, 2.34, 3.45},
+			ENuAcc:                []float64{0.0003, 0.014, 0.0003},
 			ENuPos:                []float64{1.23, 2.34, 3.45},
 			ENuVel:                []float64{1.23, 2.34, 3.45},
 			Env:                   unifieddatalibrary.String("LAND"),
@@ -171,7 +174,7 @@ func TestTrackQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Track.Queryhelp(context.TODO())
+	_, err := client.Track.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -232,6 +235,8 @@ func TestTrackUnvalidatedPublish(t *testing.T) {
 			Alt:                   unifieddatalibrary.Float(1.23),
 			Asset:                 unifieddatalibrary.String("asset"),
 			AssetNat:              unifieddatalibrary.String("US"),
+			Attitude:              []float64{10, 0.1, 1},
+			AttitudeRate:          []float64{0.0003, 1e-7, 0.00003},
 			CallSign:              unifieddatalibrary.String("callSign"),
 			Cntct:                 unifieddatalibrary.String("Contact Info"),
 			Course:                unifieddatalibrary.Float(88.37),
@@ -239,6 +244,7 @@ func TestTrackUnvalidatedPublish(t *testing.T) {
 			EcefAcc:               []float64{1.23, 2.34, 3.45},
 			EcefPos:               []float64{1.23, 2.34, 3.45},
 			EcefVel:               []float64{1.23, 2.34, 3.45},
+			ENuAcc:                []float64{0.0003, 0.014, 0.0003},
 			ENuPos:                []float64{1.23, 2.34, 3.45},
 			ENuVel:                []float64{1.23, 2.34, 3.45},
 			Env:                   unifieddatalibrary.String("LAND"),

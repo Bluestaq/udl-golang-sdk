@@ -123,11 +123,10 @@ func (r *CollectRequestService) NewBulk(ctx context.Context, body CollectRequest
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *CollectRequestService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *CollectRequestService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *CollectRequestQueryHelpResponse, err error) {
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/collectrequest/queryhelp"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, nil, opts...)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
 }
 
@@ -887,7 +886,7 @@ type CollectRequestAbridgedStateVector struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW".
+	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
@@ -1317,6 +1316,84 @@ type CollectRequestAbridgedStateVector struct {
 // Returns the unmodified JSON received from the API
 func (r CollectRequestAbridgedStateVector) RawJSON() string { return r.JSON.raw }
 func (r *CollectRequestAbridgedStateVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type CollectRequestQueryHelpResponse struct {
+	AodrSupported         bool                                       `json:"aodrSupported"`
+	ClassificationMarking string                                     `json:"classificationMarking"`
+	Description           string                                     `json:"description"`
+	HistorySupported      bool                                       `json:"historySupported"`
+	Name                  string                                     `json:"name"`
+	Parameters            []CollectRequestQueryHelpResponseParameter `json:"parameters"`
+	RequiredRoles         []string                                   `json:"requiredRoles"`
+	RestSupported         bool                                       `json:"restSupported"`
+	SortSupported         bool                                       `json:"sortSupported"`
+	TypeName              string                                     `json:"typeName"`
+	Uri                   string                                     `json:"uri"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		AodrSupported         respjson.Field
+		ClassificationMarking respjson.Field
+		Description           respjson.Field
+		HistorySupported      respjson.Field
+		Name                  respjson.Field
+		Parameters            respjson.Field
+		RequiredRoles         respjson.Field
+		RestSupported         respjson.Field
+		SortSupported         respjson.Field
+		TypeName              respjson.Field
+		Uri                   respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r CollectRequestQueryHelpResponse) RawJSON() string { return r.JSON.raw }
+func (r *CollectRequestQueryHelpResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type CollectRequestQueryHelpResponseParameter struct {
+	ClassificationMarking string `json:"classificationMarking"`
+	Derived               bool   `json:"derived"`
+	Description           string `json:"description"`
+	ElemMatch             bool   `json:"elemMatch"`
+	Format                string `json:"format"`
+	HistQuerySupported    bool   `json:"histQuerySupported"`
+	HistTupleSupported    bool   `json:"histTupleSupported"`
+	Name                  string `json:"name"`
+	Required              bool   `json:"required"`
+	RestQuerySupported    bool   `json:"restQuerySupported"`
+	RestTupleSupported    bool   `json:"restTupleSupported"`
+	Type                  string `json:"type"`
+	UnitOfMeasure         string `json:"unitOfMeasure"`
+	UtcDate               bool   `json:"utcDate"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		ClassificationMarking respjson.Field
+		Derived               respjson.Field
+		Description           respjson.Field
+		ElemMatch             respjson.Field
+		Format                respjson.Field
+		HistQuerySupported    respjson.Field
+		HistTupleSupported    respjson.Field
+		Name                  respjson.Field
+		Required              respjson.Field
+		RestQuerySupported    respjson.Field
+		RestTupleSupported    respjson.Field
+		Type                  respjson.Field
+		UnitOfMeasure         respjson.Field
+		UtcDate               respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r CollectRequestQueryHelpResponseParameter) RawJSON() string { return r.JSON.raw }
+func (r *CollectRequestQueryHelpResponseParameter) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -2183,7 +2260,7 @@ type CollectRequestNewParamsStateVector struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW".
+	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// The covariance matrix values represent the lower triangular half of the
 	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
@@ -2305,7 +2382,7 @@ func init() {
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[CollectRequestNewParamsStateVector](
-		"covReferenceFrame", "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF",
 	)
 	apijson.RegisterFieldValidator[CollectRequestNewParamsStateVector](
 		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
@@ -3240,7 +3317,7 @@ type CollectRequestNewBulkParamsBodyStateVector struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW".
+	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// The covariance matrix values represent the lower triangular half of the
 	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
@@ -3362,7 +3439,7 @@ func init() {
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[CollectRequestNewBulkParamsBodyStateVector](
-		"covReferenceFrame", "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF",
 	)
 	apijson.RegisterFieldValidator[CollectRequestNewBulkParamsBodyStateVector](
 		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
@@ -4269,7 +4346,7 @@ type CollectRequestUnvalidatedPublishParamsBodyStateVector struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW".
+	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// The covariance matrix values represent the lower triangular half of the
 	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
@@ -4391,7 +4468,7 @@ func init() {
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[CollectRequestUnvalidatedPublishParamsBodyStateVector](
-		"covReferenceFrame", "J2000", "UVW",
+		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF",
 	)
 	apijson.RegisterFieldValidator[CollectRequestUnvalidatedPublishParamsBodyStateVector](
 		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",

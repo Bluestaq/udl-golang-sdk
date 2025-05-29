@@ -131,6 +131,20 @@ type TrackFull struct {
 	// Nationality or organization of the tracking/reporting system or platform (e.g.
 	// FR, NATO, US, etc.).
 	AssetNat string `json:"assetNat"`
+	// The attitude (Yaw, Pitch, and Roll), in degrees, of the track object. When
+	// provided, the array must always contain 3 values. These values represent the
+	// vehicle's rotation about the vertical, lateral, and longitudinal axes,
+	// respectively, in a locally level, East, North, Up "right handed" coordinate
+	// system centered on the vehicle. Yaw is measured in degrees and ranges from -180
+	// to 180. Pitch is measured in degrees and ranges from -90 to 90. Roll is measured
+	// in degrees and ranges from -180 to 180.
+	Attitude []float64 `json:"attitude"`
+	// The attitude rate (Yaw Rate, Pitch Rate, and Roll Rate), in degrees per second,
+	// of the track object. When provided, the array must always contain 3 values.
+	// These values represent the rate of change of the vehicle's rotation about the
+	// vertical, lateral, and longitudinal axes, respectively, in a locally level,
+	// East, North, Up "right handed" coordinate system centered on the vehicle.
+	AttitudeRate []float64 `json:"attitudeRate"`
 	// The call sign currently assigned to this track object.
 	CallSign string `json:"callSign"`
 	// Contact information for assets reporting PPLI (Precise Participant Location and
@@ -187,6 +201,9 @@ type TrackFull struct {
 	// Track object velocity in ECEF [x', y', z'], meters/sec. When provided, array
 	// must always contain 3 values.
 	EcefVel []float64 `json:"ecefVel"`
+	// East, North, Up acceleration components, in meters per second squared. When
+	// provided, array must always contain 3 values.
+	ENuAcc []float64 `json:"eNUAcc"`
 	// East, North, Up position components, in meters. When provided, array must always
 	// contain 3 values.
 	ENuPos []float64 `json:"eNUPos"`
@@ -432,6 +449,8 @@ type TrackFull struct {
 		Alt                   respjson.Field
 		Asset                 respjson.Field
 		AssetNat              respjson.Field
+		Attitude              respjson.Field
+		AttitudeRate          respjson.Field
 		CallSign              respjson.Field
 		Cntct                 respjson.Field
 		Course                respjson.Field
@@ -441,6 +460,7 @@ type TrackFull struct {
 		EcefAcc               respjson.Field
 		EcefPos               respjson.Field
 		EcefVel               respjson.Field
+		ENuAcc                respjson.Field
 		ENuPos                respjson.Field
 		ENuVel                respjson.Field
 		Env                   respjson.Field

@@ -137,11 +137,10 @@ func (r *SensorService) Get(ctx context.Context, id string, query SensorGetParam
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *SensorService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *SensorService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SensorQueryhelpResponse, err error) {
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sensor/queryhelp"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, nil, opts...)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
 }
 
@@ -320,10 +319,10 @@ type SensorListResponseEntity struct {
 	// Source of the data.
 	Source string `json:"source,required"`
 	// The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
-	// NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+	// LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
 	//
-	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "NAVIGATION", "ONORBIT", "RFEMITTER",
-	// "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
+	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "LASEREMITTER", "NAVIGATION", "ONORBIT",
+	// "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
 	Type string `json:"type,required"`
 	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
 	// country code, however it can also represent various consortiums that do not
@@ -630,18 +629,41 @@ type SensorListResponseSensorcharacteristic struct {
 	// this field is populated, the associated beam(s) must be provided in the
 	// beamOrder field.
 	AcceptSampleRanges []float64 `json:"acceptSampleRanges"`
+	// Number of bits used in the conversion from analog electrons in a pixel well to a
+	// digital number. The digital number has a maximum value of 2^N, where N is the
+	// number of bits.
+	AnalogToDigitalBitSize int64 `json:"analogToDigitalBitSize"`
 	// Optical sensor camera aperture.
 	Aperture float64 `json:"aperture"`
 	// For ASR (Air Surveillance Radar) sensors, the scan (360 deg sweep) rate of the
 	// radar, in scans/minute.
 	AsrScanRate float64 `json:"asrScanRate"`
+	// One-way radar receiver loss factor due to atmospheric effects. This value will
+	// often be the same as the corresponding transmission factor but may be different
+	// for bistatic systems.
+	AtmosReceiverLoss float64 `json:"atmosReceiverLoss"`
+	// One-way radar transmission loss factor due to atmospheric effects.
+	AtmosTransmissionLoss float64 `json:"atmosTransmissionLoss"`
+	// Average atmospheric angular width with no distortion from turbulence at an
+	// optical sensor site in arcseconds.
+	AvgAtmosSeeingConditions float64 `json:"avgAtmosSeeingConditions"`
 	// Array of azimuth angles of a radar beam, in degrees. If this field is populated,
 	// the associated beam(s) must be provided in the beamOrder field.
 	AzAngs []float64 `json:"azAngs"`
 	// Azimuth rate acquisition limit (radians/minute).
 	AzimuthRate float64 `json:"azimuthRate"`
+	// Average background sky brightness at an optical sensor site during new moon
+	// conditions. This field uses units of watts per square meter per steradian
+	// (W/(m^2 str)) consistent with sensor detection bands.
+	BackgroundSkyRadiance float64 `json:"backgroundSkyRadiance"`
+	// Average background sky brightness at an optical sensor site during new moon
+	// conditions. This field uses units of visual magnitude consistent with sensor
+	// detection bands.
+	BackgroundSkyVisMag float64 `json:"backgroundSkyVisMag"`
 	// Sensor band.
 	Band string `json:"band"`
+	// The total bandwidth, in megahertz, about the radar center frequency.
+	Bandwidth float64 `json:"bandwidth"`
 	// Array designating the beam order of provided values (e.g. vb1 for vertical beam
 	// 1, ob1 for oblique beam 1, etc.). Required if any of the following array fields
 	// are populated: azAngs, elAngs, radarPulseWidths, pulseRepPeriods, delayGates,
@@ -654,6 +676,15 @@ type SensorListResponseSensorcharacteristic struct {
 	Boresight float64 `json:"boresight"`
 	// The number of degrees off of the boresight for the sensor.
 	BoresightOffAngle float64 `json:"boresightOffAngle"`
+	// Weighted center wavelength for an optical sensor bandpass in micrometers. It is
+	// the center wavelength in a weighted integral sense, accounting for the
+	// sensitivity vs. wavelength curve for the sensor focal plane array.
+	CenterWavelength float64 `json:"centerWavelength"`
+	// Collapsing loss in decibels. Collapsing losses occur when two or more sources of
+	// noise are added to the target signal. Examples include receiver bandwidth
+	// mismatch with filtering bandwidth and elevation or azimuth beam collapse onto
+	// position/height indicator displays.
+	CollapsingLoss float64 `json:"collapsingLoss"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -662,12 +693,28 @@ type SensorListResponseSensorcharacteristic struct {
 	// Threshold shear value beyond which one of the radial velocity values will be
 	// rejected, measured in units of inverse second.
 	CritShear float64 `json:"critShear"`
+	// Current flowing through optical sensor focal plane electronics with a closed
+	// shutter in electrons per second.
+	DarkCurrent float64 `json:"darkCurrent"`
 	// Array of time delay(s) for pulses from a radar beam to get to the first range
 	// gate, in nanoseconds. If this field is populated, the associated beam(s) must be
 	// provided in the beamOrder field.
 	DelayGates []float64 `json:"delayGates"`
 	// Description of the equipment and data source.
 	Description string `json:"description"`
+	// Detection signal-to-noise ratio (SNR) threshold in decibels. This value is
+	// typically lower than trackSNR.
+	DetectSnr float64 `json:"detectSNR"`
+	// Sensor duty cycle as a fraction of 1. Duty cycle is the fraction of time a
+	// sensor is actively transmitting.
+	DutyCycle float64 `json:"dutyCycle"`
+	// Sensor Earth limb exclusion height in kilometers and is generally only applied
+	// to space-based sensors. Some models used an earth exclusion angle instead, but
+	// this assumes the sensor is in a circular orbit with constant altitude relative
+	// to the earth. The limb exclusion height can be used for space-based sensors in
+	// any orbit (assuming it is constant with sensor altitude). The limb height is
+	// defined to be 0 at the surface of the earth.
+	EarthLimbExclHgt float64 `json:"earthLimbExclHgt"`
 	// Array of elevation angles of a radar beam, in degrees. If this field is
 	// populated, the associated beam(s) must be provided in the beamOrder field.
 	ElAngs []float64 `json:"elAngs"`
@@ -684,10 +731,17 @@ type SensorListResponseSensorcharacteristic struct {
 	// Maximum number of times the first guess was propagated in each gate before
 	// failing the first guess check.
 	FgpCrit int64 `json:"fgpCrit"`
+	// Noise term, in decibels, that arises when a radar receiver filter has a
+	// non-optimal bandwidth for an incoming signal (i.e., when it does not match the
+	// pulse width).
+	FilterMismatchFactor float64 `json:"filterMismatchFactor"`
+	// F-number for an optical telescope. It is dimensionless and is defined as the
+	// ratio of the focal length to the aperture width.
+	FNum float64 `json:"fNum"`
 	// For radar based sensors, the focal point elevation of the radar at the site, in
 	// meters.
 	FocalPoint float64 `json:"focalPoint"`
-	// Horizontal field of view.
+	// Horizontal field of view, in degrees.
 	HFov float64 `json:"hFOV"`
 	// Horizontal pixel resolution.
 	HResPixels int64 `json:"hResPixels"`
@@ -700,34 +754,108 @@ type SensorListResponseSensorcharacteristic struct {
 	LeftGeoBeltLimit float64 `json:"leftGeoBeltLimit"`
 	// Site where measurement is taken.
 	Location string `json:"location"`
+	// Aggregated radar range equation gain in decibels for maximum sensitivity. It is
+	// a roll-up value for low fidelity modeling and is often the only sensitivity
+	// value available for a radar system without access to detailed performance
+	// parameters.
+	LoopGain float64 `json:"loopGain"`
+	// Lowest aspect angle of the full moon in degrees at which the sensor can achieve
+	// full performance.
+	LunarExclAngle float64 `json:"lunarExclAngle"`
 	// Angle between magnetic north and true north at the sensor site, in degrees.
 	MagDec float64 `json:"magDec"`
 	// Absolute magnitude acquisition limit for optical sensors.
 	MagnitudeLimit float64 `json:"magnitudeLimit"`
 	// Max deviation angle of the sensor in degrees.
 	MaxDeviationAngle float64 `json:"maxDeviationAngle"`
+	// Maximum integration time per image frame in seconds for an optical sensor.
+	MaxIntegrationTime float64 `json:"maxIntegrationTime"`
 	// Maximum observable sensor range, in kilometers.
 	MaxObservableRange float64 `json:"maxObservableRange"`
 	// Maximum observable range limit in kilometers -- sensor cannot acquire beyond
 	// this range.
 	MaxRangeLimit float64 `json:"maxRangeLimit"`
+	// Maximum wavelength detectable by an optical sensor in micrometers.
+	MaxWavelength float64 `json:"maxWavelength"`
+	// Minimum integration time per image frame in seconds for an optical sensor.
+	MinIntegrationTime float64 `json:"minIntegrationTime"`
 	// Minimum range measurement capability of the sensor, in kilometers.
 	MinRangeLimit float64 `json:"minRangeLimit"`
 	// Signal to Noise Ratio, in decibels. The values for this range from 0.0 - + 99.99
 	// dB.
 	MinSignalNoiseRatio float64 `json:"minSignalNoiseRatio"`
+	// Minimum wavelength detectable by an optical sensor in micrometers.
+	MinWavelength float64 `json:"minWavelength"`
 	// Negative Range-rate/relative velocity limit (kilometers/second).
 	NegativeRangeRateLimit float64 `json:"negativeRangeRateLimit"`
+	// Noise figure for a radar system in decibels. This value may be used to compute
+	// system noise when the system temperature is unavailable.
+	NoiseFigure float64 `json:"noiseFigure"`
+	// Number of pulses that are non-coherently integrated during detection processing.
+	NonCoherentIntegratedPulses int64 `json:"nonCoherentIntegratedPulses"`
 	// For radar based sensors, number of integrated pulses in a transmit cycle.
 	NumIntegratedPulses int64 `json:"numIntegratedPulses"`
+	// Number of integration frames for an optical sensor.
+	NumIntegrationFrames int64 `json:"numIntegrationFrames"`
+	// The number of optical integration mode characteristics provided in this record.
+	// If provided, the numOpticalIntegrationModes value indicates the number of
+	// elements in each of the opticalIntegrationTimes, opticalIntegrationAngularRates,
+	// opticalIntegrationFrames, opticalIntegrationPixelBinnings, and
+	// opticalIntegrationSNRs arrays.
+	NumOpticalIntegrationModes int64 `json:"numOpticalIntegrationModes"`
+	// The number of waveforms characteristics provided in this record. If provided,
+	// the numWaveforms value indicates the number of elements in each of the
+	// waveformPulseWidths, waveformBandWidths, waveformMinRanges, waveformMaxRanges,
+	// and waveformLoopGains arrays.
+	NumWaveforms int64 `json:"numWaveforms"`
+	// Array containing the angular rate, in arcsec/sec, for each provided optical
+	// integration mode. The number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationAngularRates []float64 `json:"opticalIntegrationAngularRates"`
+	// Array containing the number of frames, for each optical integration mode. The
+	// number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationFrames []float64 `json:"opticalIntegrationFrames"`
+	// Array containing the pixel binning, for each optical integration mode. The
+	// number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationPixelBinnings []float64 `json:"opticalIntegrationPixelBinnings"`
+	// Array of optical integration modes signal to noise ratios. The number of
+	// elements must be equal to the value indicated in numOpticalIntegrationModes.
+	OpticalIntegrationSnRs []float64 `json:"opticalIntegrationSNRs"`
+	// Array containing the time, in seconds, for each provided optical integration
+	// mode. The number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationTimes []float64 `json:"opticalIntegrationTimes"`
+	// Fraction of incident light transmitted to an optical sensor focal plane array.
+	// The value is given as a fraction of 1, not as a percent.
+	OpticalTransmission float64 `json:"opticalTransmission"`
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
+	// Two-way pattern absorption/propagation loss due to medium in decibels.
+	PatternAbsorptionLoss float64 `json:"patternAbsorptionLoss"`
+	// Losses from the beam shape, scanning, and pattern factor in decibels. These
+	// losses occur when targets are not directly in line with a beam center. For space
+	// surveillance, this will occur most often during sensor scanning.
+	PatternScanLoss float64 `json:"patternScanLoss"`
+	// Maximum instantaneous radar transmit power in watts for use in the radar range
+	// equation.
+	PeakPower float64 `json:"peakPower"`
+	// Angular field-of-view covered by one pixel in a focal plane array in
+	// microradians. The pixel is assumed to be a perfect square so that only a single
+	// value is required.
+	PixelInstantaneousFov float64 `json:"pixelInstantaneousFOV"`
+	// Maximum number of electrons that can be collected in a single pixel on an
+	// optical sensor focal plane array.
+	PixelWellDepth int64 `json:"pixelWellDepth"`
 	// Positive Range-rate/relative velocity limit (kilometers/second).
 	PositiveRangeRateLimit float64 `json:"positiveRangeRateLimit"`
 	// For radar based sensors, pulse repetition frequency (PRF), in hertz. Number of
 	// new pulses transmitted per second.
 	Prf float64 `json:"prf"`
+	// Designated probability of detection at the signal-to-noise detection threshold.
+	ProbDetectSnr float64 `json:"probDetectSNR"`
 	// For radar based sensors, probability of the indication of the presence of a
 	// radar target due to noise or interference.
 	ProbFalseAlarm float64 `json:"probFalseAlarm"`
@@ -735,7 +863,10 @@ type SensorListResponseSensorcharacteristic struct {
 	// another for a radar beam, in microseconds. If this field is populated, the
 	// associated beam(s) must be provided in the beamOrder field.
 	PulseRepPeriods []float64 `json:"pulseRepPeriods"`
-	// Radar frequency of the sensor (if a radar sensor).
+	// Fraction of incident photons converted to electrons at the focal plane array.
+	// This value is a decimal number between 0 and 1, inclusive.
+	QuantumEff float64 `json:"quantumEff"`
+	// Radar frequency in hertz, of the sensor (if a radar sensor).
 	RadarFrequency float64 `json:"radarFrequency"`
 	// Message data format transmitted by the sensor digitizer.
 	RadarMessageFormat string `json:"radarMessageFormat"`
@@ -746,6 +877,9 @@ type SensorListResponseSensorcharacteristic struct {
 	RadarPulseWidths []float64 `json:"radarPulseWidths"`
 	// Radio frequency (if sensor is RF).
 	RadioFrequency float64 `json:"radioFrequency"`
+	// Losses due to the presence of a protective radome surrounding a radar sensor, in
+	// decibels.
+	RadomeLoss float64 `json:"radomeLoss"`
 	// Array of the number(s) of discrete altitudes where return signals are sampled by
 	// a radar beam. If this field is populated, the associated beam(s) must be
 	// provided in the beamOrder field.
@@ -753,6 +887,22 @@ type SensorListResponseSensorcharacteristic struct {
 	// Array of range gate spacing(s) for a radar beam, in nanoseconds. If this field
 	// is populated, the associated beam(s) must be provided in the beamOrder field.
 	RangeSpacings []float64 `json:"rangeSpacings"`
+	// Number of false-signal electrons generated by optical sensor focal plane
+	// read-out electronics from photon-to-electron conversion during frame
+	// integration. The units are in electrons RMS.
+	ReadNoise int64 `json:"readNoise"`
+	// Radar receive gain in decibels.
+	ReceiveGain float64 `json:"receiveGain"`
+	// Horizontal/azimuthal receive beamwidth for a radar in degrees.
+	ReceiveHorizBeamWidth float64 `json:"receiveHorizBeamWidth"`
+	// Aggregate radar receive loss, in decibels.
+	ReceiveLoss float64 `json:"receiveLoss"`
+	// Vertical/elevation receive beamwidth for a radar in degrees.
+	ReceiveVertBeamWidth float64 `json:"receiveVertBeamWidth"`
+	// Reference temperature for radar noise in Kelvin. A reference temperature is used
+	// when the radar system temperature is unknown and is combined with the system
+	// noise figure to estimate signal loss.
+	RefTemp float64 `json:"refTemp"`
 	// Array of the total number(s) of records required to meet consensus for a radar
 	// beam. If this field is populated, the associated beam(s) must be provided in the
 	// beamOrder field.
@@ -766,8 +916,16 @@ type SensorListResponseSensorcharacteristic struct {
 	// data set to smooth out short-term fluctuations in the data. If this field is
 	// populated, the associated beam(s) must be provided in the beamOrder field.
 	RunMeanCodes []int64 `json:"runMeanCodes"`
+	// Radar signal processing losses, in decibels.
+	SignalProcessingLoss float64 `json:"signalProcessingLoss"`
 	// Site code of the sensor.
 	SiteCode string `json:"siteCode"`
+	// Sensor and target position vector origins are at the center of the earth. The
+	// sun vector origin is at the target position and points toward the sun. Any value
+	// between 0 and 180 degrees is acceptable and is assumed to apply in both
+	// directions (i.e., a solar exclusion angle of 30 degrees is understood to mean no
+	// viewing for any angle between -30 deg and +30 deg).
+	SolarExclAngle float64 `json:"solarExclAngle"`
 	// Array of the number(s) of Doppler spectra used to process measurements from
 	// radar. Spectral averaging involves combining multiple Doppler spectra acquired
 	// to obtain a more accurate and representative spectrum. If this field is
@@ -793,12 +951,30 @@ type SensorListResponseSensorcharacteristic struct {
 	// Beginning track angle limit, in radians. Track angle is the angle between the
 	// camera axis and the gimbal plane. Values range from 0 - PI/2.
 	TrackAngle float64 `json:"trackAngle"`
+	// Track signal-to-noise ratio (SNR) threshold in decibels. This value is typically
+	// higher than detectSNR.
+	TrackSnr float64 `json:"trackSNR"`
+	// Radar transmit gain in decibels.
+	TransmitGain float64 `json:"transmitGain"`
+	// Horizontal/azimuthal transmit beamwidth for a radar in degrees.
+	TransmitHorizBeamWidth float64 `json:"transmitHorizBeamWidth"`
+	// Aggregate radar transmit loss, in decibels.
+	TransmitLoss float64 `json:"transmitLoss"`
 	// Radar transmit power in Watts.
 	TransmitPower float64 `json:"transmitPower"`
+	// Vertical/elevation transmit beamwidth for a radar in degrees.
+	TransmitVertBeamWidth float64 `json:"transmitVertBeamWidth"`
 	// True North correction for the sensor, in ACP (Azimunth Change Pulse) count.
 	TrueNorthCorrector int64 `json:"trueNorthCorrector"`
 	// Antenna true tilt, in degrees.
 	TrueTilt float64 `json:"trueTilt"`
+	// Twilight angle for ground-based optical sensors in degrees. A sensor cannot view
+	// targets until the sun is below the twilight angle relative to the local horizon.
+	// The sign of the angle is positive despite the sun elevation being negative after
+	// local sunset. Typical values for the twilight angle are civil twilight (6
+	// degrees), nautical twilight (12 degrees), and astronomical twilight (18
+	// degrees).
+	TwilightAngle float64 `json:"twilightAngle"`
 	// Flag indicating if a vertical radar beam was used in the wind calculation.
 	VertBeamFlag bool `json:"vertBeamFlag"`
 	// Array of vertical distance(s) between points where radar measurements are taken,
@@ -809,10 +985,30 @@ type SensorListResponseSensorcharacteristic struct {
 	// meters. If this field is populated, the associated beam(s) must be provided in
 	// the beamOrder field.
 	VertGateWidths []float64 `json:"vertGateWidths"`
-	// Vertical field of view.
+	// Vertical field of view, in degrees.
 	VFov float64 `json:"vFOV"`
 	// Vertical pixel resolution.
 	VResPixels int64 `json:"vResPixels"`
+	// Array containing the bandwidth, in megahertz, for each provided waveform. The
+	// number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformBandwidths []float64 `json:"waveformBandwidths"`
+	// Array containing the loop gain, in decibels, for each provided waveform. The
+	// number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field (10 SNR vs. 1 dBsm at 1000 km).
+	WaveformLoopGains []float64 `json:"waveformLoopGains"`
+	// Array containing the maximum range, in kilometers, for each provided waveform.
+	// The number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformMaxRanges []float64 `json:"waveformMaxRanges"`
+	// Array containing the minimum range, in kilometers, for each provided waveform.
+	// The number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformMinRanges []float64 `json:"waveformMinRanges"`
+	// Array containing the pulse width, in microseconds, for each provided waveform.
+	// The number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformPulseWidths []float64 `json:"waveformPulseWidths"`
 	// Peformance zone-1 maximum range, in kilometers. Note that the zones apply only
 	// to the PSR/Search radars.
 	Z1MaxRange float64 `json:"z1MaxRange"`
@@ -827,87 +1023,146 @@ type SensorListResponseSensorcharacteristic struct {
 	Z2MinRange float64 `json:"z2MinRange"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking  respjson.Field
-		DataMode               respjson.Field
-		IDSensor               respjson.Field
-		Source                 respjson.Field
-		ID                     respjson.Field
-		AcceptSampleRanges     respjson.Field
-		Aperture               respjson.Field
-		AsrScanRate            respjson.Field
-		AzAngs                 respjson.Field
-		AzimuthRate            respjson.Field
-		Band                   respjson.Field
-		BeamOrder              respjson.Field
-		BeamQty                respjson.Field
-		Boresight              respjson.Field
-		BoresightOffAngle      respjson.Field
-		CreatedAt              respjson.Field
-		CreatedBy              respjson.Field
-		CritShear              respjson.Field
-		DelayGates             respjson.Field
-		Description            respjson.Field
-		ElAngs                 respjson.Field
-		ElevationRateGeolm     respjson.Field
-		EquipmentType          respjson.Field
-		FanBeamWidth           respjson.Field
-		Fft                    respjson.Field
-		FgpCrit                respjson.Field
-		FocalPoint             respjson.Field
-		HFov                   respjson.Field
-		HResPixels             respjson.Field
-		K                      respjson.Field
-		LeftClockAngle         respjson.Field
-		LeftGeoBeltLimit       respjson.Field
-		Location               respjson.Field
-		MagDec                 respjson.Field
-		MagnitudeLimit         respjson.Field
-		MaxDeviationAngle      respjson.Field
-		MaxObservableRange     respjson.Field
-		MaxRangeLimit          respjson.Field
-		MinRangeLimit          respjson.Field
-		MinSignalNoiseRatio    respjson.Field
-		NegativeRangeRateLimit respjson.Field
-		NumIntegratedPulses    respjson.Field
-		OrigNetwork            respjson.Field
-		PositiveRangeRateLimit respjson.Field
-		Prf                    respjson.Field
-		ProbFalseAlarm         respjson.Field
-		PulseRepPeriods        respjson.Field
-		RadarFrequency         respjson.Field
-		RadarMessageFormat     respjson.Field
-		RadarMur               respjson.Field
-		RadarPulseWidths       respjson.Field
-		RadioFrequency         respjson.Field
-		RangeGates             respjson.Field
-		RangeSpacings          respjson.Field
-		ReqRecords             respjson.Field
-		RightClockAngle        respjson.Field
-		RightGeoBeltLimit      respjson.Field
-		RunMeanCodes           respjson.Field
-		SiteCode               respjson.Field
-		SpecAvgSpectraNums     respjson.Field
-		SystemNoiseTemperature respjson.Field
-		TaskableRange          respjson.Field
-		TempMedFiltCodes       respjson.Field
-		TestNumber             respjson.Field
-		TotRecNums             respjson.Field
-		TowerHeight            respjson.Field
-		TrackAngle             respjson.Field
-		TransmitPower          respjson.Field
-		TrueNorthCorrector     respjson.Field
-		TrueTilt               respjson.Field
-		VertBeamFlag           respjson.Field
-		VertGateSpacings       respjson.Field
-		VertGateWidths         respjson.Field
-		VFov                   respjson.Field
-		VResPixels             respjson.Field
-		Z1MaxRange             respjson.Field
-		Z1MinRange             respjson.Field
-		Z2MaxRange             respjson.Field
-		Z2MinRange             respjson.Field
-		ExtraFields            map[string]respjson.Field
-		raw                    string
+		ClassificationMarking           respjson.Field
+		DataMode                        respjson.Field
+		IDSensor                        respjson.Field
+		Source                          respjson.Field
+		ID                              respjson.Field
+		AcceptSampleRanges              respjson.Field
+		AnalogToDigitalBitSize          respjson.Field
+		Aperture                        respjson.Field
+		AsrScanRate                     respjson.Field
+		AtmosReceiverLoss               respjson.Field
+		AtmosTransmissionLoss           respjson.Field
+		AvgAtmosSeeingConditions        respjson.Field
+		AzAngs                          respjson.Field
+		AzimuthRate                     respjson.Field
+		BackgroundSkyRadiance           respjson.Field
+		BackgroundSkyVisMag             respjson.Field
+		Band                            respjson.Field
+		Bandwidth                       respjson.Field
+		BeamOrder                       respjson.Field
+		BeamQty                         respjson.Field
+		Boresight                       respjson.Field
+		BoresightOffAngle               respjson.Field
+		CenterWavelength                respjson.Field
+		CollapsingLoss                  respjson.Field
+		CreatedAt                       respjson.Field
+		CreatedBy                       respjson.Field
+		CritShear                       respjson.Field
+		DarkCurrent                     respjson.Field
+		DelayGates                      respjson.Field
+		Description                     respjson.Field
+		DetectSnr                       respjson.Field
+		DutyCycle                       respjson.Field
+		EarthLimbExclHgt                respjson.Field
+		ElAngs                          respjson.Field
+		ElevationRateGeolm              respjson.Field
+		EquipmentType                   respjson.Field
+		FanBeamWidth                    respjson.Field
+		Fft                             respjson.Field
+		FgpCrit                         respjson.Field
+		FilterMismatchFactor            respjson.Field
+		FNum                            respjson.Field
+		FocalPoint                      respjson.Field
+		HFov                            respjson.Field
+		HResPixels                      respjson.Field
+		K                               respjson.Field
+		LeftClockAngle                  respjson.Field
+		LeftGeoBeltLimit                respjson.Field
+		Location                        respjson.Field
+		LoopGain                        respjson.Field
+		LunarExclAngle                  respjson.Field
+		MagDec                          respjson.Field
+		MagnitudeLimit                  respjson.Field
+		MaxDeviationAngle               respjson.Field
+		MaxIntegrationTime              respjson.Field
+		MaxObservableRange              respjson.Field
+		MaxRangeLimit                   respjson.Field
+		MaxWavelength                   respjson.Field
+		MinIntegrationTime              respjson.Field
+		MinRangeLimit                   respjson.Field
+		MinSignalNoiseRatio             respjson.Field
+		MinWavelength                   respjson.Field
+		NegativeRangeRateLimit          respjson.Field
+		NoiseFigure                     respjson.Field
+		NonCoherentIntegratedPulses     respjson.Field
+		NumIntegratedPulses             respjson.Field
+		NumIntegrationFrames            respjson.Field
+		NumOpticalIntegrationModes      respjson.Field
+		NumWaveforms                    respjson.Field
+		OpticalIntegrationAngularRates  respjson.Field
+		OpticalIntegrationFrames        respjson.Field
+		OpticalIntegrationPixelBinnings respjson.Field
+		OpticalIntegrationSnRs          respjson.Field
+		OpticalIntegrationTimes         respjson.Field
+		OpticalTransmission             respjson.Field
+		OrigNetwork                     respjson.Field
+		PatternAbsorptionLoss           respjson.Field
+		PatternScanLoss                 respjson.Field
+		PeakPower                       respjson.Field
+		PixelInstantaneousFov           respjson.Field
+		PixelWellDepth                  respjson.Field
+		PositiveRangeRateLimit          respjson.Field
+		Prf                             respjson.Field
+		ProbDetectSnr                   respjson.Field
+		ProbFalseAlarm                  respjson.Field
+		PulseRepPeriods                 respjson.Field
+		QuantumEff                      respjson.Field
+		RadarFrequency                  respjson.Field
+		RadarMessageFormat              respjson.Field
+		RadarMur                        respjson.Field
+		RadarPulseWidths                respjson.Field
+		RadioFrequency                  respjson.Field
+		RadomeLoss                      respjson.Field
+		RangeGates                      respjson.Field
+		RangeSpacings                   respjson.Field
+		ReadNoise                       respjson.Field
+		ReceiveGain                     respjson.Field
+		ReceiveHorizBeamWidth           respjson.Field
+		ReceiveLoss                     respjson.Field
+		ReceiveVertBeamWidth            respjson.Field
+		RefTemp                         respjson.Field
+		ReqRecords                      respjson.Field
+		RightClockAngle                 respjson.Field
+		RightGeoBeltLimit               respjson.Field
+		RunMeanCodes                    respjson.Field
+		SignalProcessingLoss            respjson.Field
+		SiteCode                        respjson.Field
+		SolarExclAngle                  respjson.Field
+		SpecAvgSpectraNums              respjson.Field
+		SystemNoiseTemperature          respjson.Field
+		TaskableRange                   respjson.Field
+		TempMedFiltCodes                respjson.Field
+		TestNumber                      respjson.Field
+		TotRecNums                      respjson.Field
+		TowerHeight                     respjson.Field
+		TrackAngle                      respjson.Field
+		TrackSnr                        respjson.Field
+		TransmitGain                    respjson.Field
+		TransmitHorizBeamWidth          respjson.Field
+		TransmitLoss                    respjson.Field
+		TransmitPower                   respjson.Field
+		TransmitVertBeamWidth           respjson.Field
+		TrueNorthCorrector              respjson.Field
+		TrueTilt                        respjson.Field
+		TwilightAngle                   respjson.Field
+		VertBeamFlag                    respjson.Field
+		VertGateSpacings                respjson.Field
+		VertGateWidths                  respjson.Field
+		VFov                            respjson.Field
+		VResPixels                      respjson.Field
+		WaveformBandwidths              respjson.Field
+		WaveformLoopGains               respjson.Field
+		WaveformMaxRanges               respjson.Field
+		WaveformMinRanges               respjson.Field
+		WaveformPulseWidths             respjson.Field
+		Z1MaxRange                      respjson.Field
+		Z1MinRange                      respjson.Field
+		Z2MaxRange                      respjson.Field
+		Z2MinRange                      respjson.Field
+		ExtraFields                     map[string]respjson.Field
+		raw                             string
 	} `json:"-"`
 }
 
@@ -1313,10 +1568,10 @@ type SensorGetResponseEntity struct {
 	// Source of the data.
 	Source string `json:"source,required"`
 	// The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
-	// NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+	// LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
 	//
-	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "NAVIGATION", "ONORBIT", "RFEMITTER",
-	// "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
+	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "LASEREMITTER", "NAVIGATION", "ONORBIT",
+	// "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
 	Type string `json:"type,required"`
 	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
 	// country code, however it can also represent various consortiums that do not
@@ -2993,18 +3248,41 @@ type SensorGetResponseSensorcharacteristic struct {
 	// this field is populated, the associated beam(s) must be provided in the
 	// beamOrder field.
 	AcceptSampleRanges []float64 `json:"acceptSampleRanges"`
+	// Number of bits used in the conversion from analog electrons in a pixel well to a
+	// digital number. The digital number has a maximum value of 2^N, where N is the
+	// number of bits.
+	AnalogToDigitalBitSize int64 `json:"analogToDigitalBitSize"`
 	// Optical sensor camera aperture.
 	Aperture float64 `json:"aperture"`
 	// For ASR (Air Surveillance Radar) sensors, the scan (360 deg sweep) rate of the
 	// radar, in scans/minute.
 	AsrScanRate float64 `json:"asrScanRate"`
+	// One-way radar receiver loss factor due to atmospheric effects. This value will
+	// often be the same as the corresponding transmission factor but may be different
+	// for bistatic systems.
+	AtmosReceiverLoss float64 `json:"atmosReceiverLoss"`
+	// One-way radar transmission loss factor due to atmospheric effects.
+	AtmosTransmissionLoss float64 `json:"atmosTransmissionLoss"`
+	// Average atmospheric angular width with no distortion from turbulence at an
+	// optical sensor site in arcseconds.
+	AvgAtmosSeeingConditions float64 `json:"avgAtmosSeeingConditions"`
 	// Array of azimuth angles of a radar beam, in degrees. If this field is populated,
 	// the associated beam(s) must be provided in the beamOrder field.
 	AzAngs []float64 `json:"azAngs"`
 	// Azimuth rate acquisition limit (radians/minute).
 	AzimuthRate float64 `json:"azimuthRate"`
+	// Average background sky brightness at an optical sensor site during new moon
+	// conditions. This field uses units of watts per square meter per steradian
+	// (W/(m^2 str)) consistent with sensor detection bands.
+	BackgroundSkyRadiance float64 `json:"backgroundSkyRadiance"`
+	// Average background sky brightness at an optical sensor site during new moon
+	// conditions. This field uses units of visual magnitude consistent with sensor
+	// detection bands.
+	BackgroundSkyVisMag float64 `json:"backgroundSkyVisMag"`
 	// Sensor band.
 	Band string `json:"band"`
+	// The total bandwidth, in megahertz, about the radar center frequency.
+	Bandwidth float64 `json:"bandwidth"`
 	// Array designating the beam order of provided values (e.g. vb1 for vertical beam
 	// 1, ob1 for oblique beam 1, etc.). Required if any of the following array fields
 	// are populated: azAngs, elAngs, radarPulseWidths, pulseRepPeriods, delayGates,
@@ -3017,6 +3295,15 @@ type SensorGetResponseSensorcharacteristic struct {
 	Boresight float64 `json:"boresight"`
 	// The number of degrees off of the boresight for the sensor.
 	BoresightOffAngle float64 `json:"boresightOffAngle"`
+	// Weighted center wavelength for an optical sensor bandpass in micrometers. It is
+	// the center wavelength in a weighted integral sense, accounting for the
+	// sensitivity vs. wavelength curve for the sensor focal plane array.
+	CenterWavelength float64 `json:"centerWavelength"`
+	// Collapsing loss in decibels. Collapsing losses occur when two or more sources of
+	// noise are added to the target signal. Examples include receiver bandwidth
+	// mismatch with filtering bandwidth and elevation or azimuth beam collapse onto
+	// position/height indicator displays.
+	CollapsingLoss float64 `json:"collapsingLoss"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -3025,12 +3312,28 @@ type SensorGetResponseSensorcharacteristic struct {
 	// Threshold shear value beyond which one of the radial velocity values will be
 	// rejected, measured in units of inverse second.
 	CritShear float64 `json:"critShear"`
+	// Current flowing through optical sensor focal plane electronics with a closed
+	// shutter in electrons per second.
+	DarkCurrent float64 `json:"darkCurrent"`
 	// Array of time delay(s) for pulses from a radar beam to get to the first range
 	// gate, in nanoseconds. If this field is populated, the associated beam(s) must be
 	// provided in the beamOrder field.
 	DelayGates []float64 `json:"delayGates"`
 	// Description of the equipment and data source.
 	Description string `json:"description"`
+	// Detection signal-to-noise ratio (SNR) threshold in decibels. This value is
+	// typically lower than trackSNR.
+	DetectSnr float64 `json:"detectSNR"`
+	// Sensor duty cycle as a fraction of 1. Duty cycle is the fraction of time a
+	// sensor is actively transmitting.
+	DutyCycle float64 `json:"dutyCycle"`
+	// Sensor Earth limb exclusion height in kilometers and is generally only applied
+	// to space-based sensors. Some models used an earth exclusion angle instead, but
+	// this assumes the sensor is in a circular orbit with constant altitude relative
+	// to the earth. The limb exclusion height can be used for space-based sensors in
+	// any orbit (assuming it is constant with sensor altitude). The limb height is
+	// defined to be 0 at the surface of the earth.
+	EarthLimbExclHgt float64 `json:"earthLimbExclHgt"`
 	// Array of elevation angles of a radar beam, in degrees. If this field is
 	// populated, the associated beam(s) must be provided in the beamOrder field.
 	ElAngs []float64 `json:"elAngs"`
@@ -3047,10 +3350,17 @@ type SensorGetResponseSensorcharacteristic struct {
 	// Maximum number of times the first guess was propagated in each gate before
 	// failing the first guess check.
 	FgpCrit int64 `json:"fgpCrit"`
+	// Noise term, in decibels, that arises when a radar receiver filter has a
+	// non-optimal bandwidth for an incoming signal (i.e., when it does not match the
+	// pulse width).
+	FilterMismatchFactor float64 `json:"filterMismatchFactor"`
+	// F-number for an optical telescope. It is dimensionless and is defined as the
+	// ratio of the focal length to the aperture width.
+	FNum float64 `json:"fNum"`
 	// For radar based sensors, the focal point elevation of the radar at the site, in
 	// meters.
 	FocalPoint float64 `json:"focalPoint"`
-	// Horizontal field of view.
+	// Horizontal field of view, in degrees.
 	HFov float64 `json:"hFOV"`
 	// Horizontal pixel resolution.
 	HResPixels int64 `json:"hResPixels"`
@@ -3063,34 +3373,108 @@ type SensorGetResponseSensorcharacteristic struct {
 	LeftGeoBeltLimit float64 `json:"leftGeoBeltLimit"`
 	// Site where measurement is taken.
 	Location string `json:"location"`
+	// Aggregated radar range equation gain in decibels for maximum sensitivity. It is
+	// a roll-up value for low fidelity modeling and is often the only sensitivity
+	// value available for a radar system without access to detailed performance
+	// parameters.
+	LoopGain float64 `json:"loopGain"`
+	// Lowest aspect angle of the full moon in degrees at which the sensor can achieve
+	// full performance.
+	LunarExclAngle float64 `json:"lunarExclAngle"`
 	// Angle between magnetic north and true north at the sensor site, in degrees.
 	MagDec float64 `json:"magDec"`
 	// Absolute magnitude acquisition limit for optical sensors.
 	MagnitudeLimit float64 `json:"magnitudeLimit"`
 	// Max deviation angle of the sensor in degrees.
 	MaxDeviationAngle float64 `json:"maxDeviationAngle"`
+	// Maximum integration time per image frame in seconds for an optical sensor.
+	MaxIntegrationTime float64 `json:"maxIntegrationTime"`
 	// Maximum observable sensor range, in kilometers.
 	MaxObservableRange float64 `json:"maxObservableRange"`
 	// Maximum observable range limit in kilometers -- sensor cannot acquire beyond
 	// this range.
 	MaxRangeLimit float64 `json:"maxRangeLimit"`
+	// Maximum wavelength detectable by an optical sensor in micrometers.
+	MaxWavelength float64 `json:"maxWavelength"`
+	// Minimum integration time per image frame in seconds for an optical sensor.
+	MinIntegrationTime float64 `json:"minIntegrationTime"`
 	// Minimum range measurement capability of the sensor, in kilometers.
 	MinRangeLimit float64 `json:"minRangeLimit"`
 	// Signal to Noise Ratio, in decibels. The values for this range from 0.0 - + 99.99
 	// dB.
 	MinSignalNoiseRatio float64 `json:"minSignalNoiseRatio"`
+	// Minimum wavelength detectable by an optical sensor in micrometers.
+	MinWavelength float64 `json:"minWavelength"`
 	// Negative Range-rate/relative velocity limit (kilometers/second).
 	NegativeRangeRateLimit float64 `json:"negativeRangeRateLimit"`
+	// Noise figure for a radar system in decibels. This value may be used to compute
+	// system noise when the system temperature is unavailable.
+	NoiseFigure float64 `json:"noiseFigure"`
+	// Number of pulses that are non-coherently integrated during detection processing.
+	NonCoherentIntegratedPulses int64 `json:"nonCoherentIntegratedPulses"`
 	// For radar based sensors, number of integrated pulses in a transmit cycle.
 	NumIntegratedPulses int64 `json:"numIntegratedPulses"`
+	// Number of integration frames for an optical sensor.
+	NumIntegrationFrames int64 `json:"numIntegrationFrames"`
+	// The number of optical integration mode characteristics provided in this record.
+	// If provided, the numOpticalIntegrationModes value indicates the number of
+	// elements in each of the opticalIntegrationTimes, opticalIntegrationAngularRates,
+	// opticalIntegrationFrames, opticalIntegrationPixelBinnings, and
+	// opticalIntegrationSNRs arrays.
+	NumOpticalIntegrationModes int64 `json:"numOpticalIntegrationModes"`
+	// The number of waveforms characteristics provided in this record. If provided,
+	// the numWaveforms value indicates the number of elements in each of the
+	// waveformPulseWidths, waveformBandWidths, waveformMinRanges, waveformMaxRanges,
+	// and waveformLoopGains arrays.
+	NumWaveforms int64 `json:"numWaveforms"`
+	// Array containing the angular rate, in arcsec/sec, for each provided optical
+	// integration mode. The number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationAngularRates []float64 `json:"opticalIntegrationAngularRates"`
+	// Array containing the number of frames, for each optical integration mode. The
+	// number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationFrames []float64 `json:"opticalIntegrationFrames"`
+	// Array containing the pixel binning, for each optical integration mode. The
+	// number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationPixelBinnings []float64 `json:"opticalIntegrationPixelBinnings"`
+	// Array of optical integration modes signal to noise ratios. The number of
+	// elements must be equal to the value indicated in numOpticalIntegrationModes.
+	OpticalIntegrationSnRs []float64 `json:"opticalIntegrationSNRs"`
+	// Array containing the time, in seconds, for each provided optical integration
+	// mode. The number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationTimes []float64 `json:"opticalIntegrationTimes"`
+	// Fraction of incident light transmitted to an optical sensor focal plane array.
+	// The value is given as a fraction of 1, not as a percent.
+	OpticalTransmission float64 `json:"opticalTransmission"`
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
+	// Two-way pattern absorption/propagation loss due to medium in decibels.
+	PatternAbsorptionLoss float64 `json:"patternAbsorptionLoss"`
+	// Losses from the beam shape, scanning, and pattern factor in decibels. These
+	// losses occur when targets are not directly in line with a beam center. For space
+	// surveillance, this will occur most often during sensor scanning.
+	PatternScanLoss float64 `json:"patternScanLoss"`
+	// Maximum instantaneous radar transmit power in watts for use in the radar range
+	// equation.
+	PeakPower float64 `json:"peakPower"`
+	// Angular field-of-view covered by one pixel in a focal plane array in
+	// microradians. The pixel is assumed to be a perfect square so that only a single
+	// value is required.
+	PixelInstantaneousFov float64 `json:"pixelInstantaneousFOV"`
+	// Maximum number of electrons that can be collected in a single pixel on an
+	// optical sensor focal plane array.
+	PixelWellDepth int64 `json:"pixelWellDepth"`
 	// Positive Range-rate/relative velocity limit (kilometers/second).
 	PositiveRangeRateLimit float64 `json:"positiveRangeRateLimit"`
 	// For radar based sensors, pulse repetition frequency (PRF), in hertz. Number of
 	// new pulses transmitted per second.
 	Prf float64 `json:"prf"`
+	// Designated probability of detection at the signal-to-noise detection threshold.
+	ProbDetectSnr float64 `json:"probDetectSNR"`
 	// For radar based sensors, probability of the indication of the presence of a
 	// radar target due to noise or interference.
 	ProbFalseAlarm float64 `json:"probFalseAlarm"`
@@ -3098,7 +3482,10 @@ type SensorGetResponseSensorcharacteristic struct {
 	// another for a radar beam, in microseconds. If this field is populated, the
 	// associated beam(s) must be provided in the beamOrder field.
 	PulseRepPeriods []float64 `json:"pulseRepPeriods"`
-	// Radar frequency of the sensor (if a radar sensor).
+	// Fraction of incident photons converted to electrons at the focal plane array.
+	// This value is a decimal number between 0 and 1, inclusive.
+	QuantumEff float64 `json:"quantumEff"`
+	// Radar frequency in hertz, of the sensor (if a radar sensor).
 	RadarFrequency float64 `json:"radarFrequency"`
 	// Message data format transmitted by the sensor digitizer.
 	RadarMessageFormat string `json:"radarMessageFormat"`
@@ -3109,6 +3496,9 @@ type SensorGetResponseSensorcharacteristic struct {
 	RadarPulseWidths []float64 `json:"radarPulseWidths"`
 	// Radio frequency (if sensor is RF).
 	RadioFrequency float64 `json:"radioFrequency"`
+	// Losses due to the presence of a protective radome surrounding a radar sensor, in
+	// decibels.
+	RadomeLoss float64 `json:"radomeLoss"`
 	// Array of the number(s) of discrete altitudes where return signals are sampled by
 	// a radar beam. If this field is populated, the associated beam(s) must be
 	// provided in the beamOrder field.
@@ -3116,6 +3506,22 @@ type SensorGetResponseSensorcharacteristic struct {
 	// Array of range gate spacing(s) for a radar beam, in nanoseconds. If this field
 	// is populated, the associated beam(s) must be provided in the beamOrder field.
 	RangeSpacings []float64 `json:"rangeSpacings"`
+	// Number of false-signal electrons generated by optical sensor focal plane
+	// read-out electronics from photon-to-electron conversion during frame
+	// integration. The units are in electrons RMS.
+	ReadNoise int64 `json:"readNoise"`
+	// Radar receive gain in decibels.
+	ReceiveGain float64 `json:"receiveGain"`
+	// Horizontal/azimuthal receive beamwidth for a radar in degrees.
+	ReceiveHorizBeamWidth float64 `json:"receiveHorizBeamWidth"`
+	// Aggregate radar receive loss, in decibels.
+	ReceiveLoss float64 `json:"receiveLoss"`
+	// Vertical/elevation receive beamwidth for a radar in degrees.
+	ReceiveVertBeamWidth float64 `json:"receiveVertBeamWidth"`
+	// Reference temperature for radar noise in Kelvin. A reference temperature is used
+	// when the radar system temperature is unknown and is combined with the system
+	// noise figure to estimate signal loss.
+	RefTemp float64 `json:"refTemp"`
 	// Array of the total number(s) of records required to meet consensus for a radar
 	// beam. If this field is populated, the associated beam(s) must be provided in the
 	// beamOrder field.
@@ -3129,8 +3535,16 @@ type SensorGetResponseSensorcharacteristic struct {
 	// data set to smooth out short-term fluctuations in the data. If this field is
 	// populated, the associated beam(s) must be provided in the beamOrder field.
 	RunMeanCodes []int64 `json:"runMeanCodes"`
+	// Radar signal processing losses, in decibels.
+	SignalProcessingLoss float64 `json:"signalProcessingLoss"`
 	// Site code of the sensor.
 	SiteCode string `json:"siteCode"`
+	// Sensor and target position vector origins are at the center of the earth. The
+	// sun vector origin is at the target position and points toward the sun. Any value
+	// between 0 and 180 degrees is acceptable and is assumed to apply in both
+	// directions (i.e., a solar exclusion angle of 30 degrees is understood to mean no
+	// viewing for any angle between -30 deg and +30 deg).
+	SolarExclAngle float64 `json:"solarExclAngle"`
 	// Array of the number(s) of Doppler spectra used to process measurements from
 	// radar. Spectral averaging involves combining multiple Doppler spectra acquired
 	// to obtain a more accurate and representative spectrum. If this field is
@@ -3156,12 +3570,30 @@ type SensorGetResponseSensorcharacteristic struct {
 	// Beginning track angle limit, in radians. Track angle is the angle between the
 	// camera axis and the gimbal plane. Values range from 0 - PI/2.
 	TrackAngle float64 `json:"trackAngle"`
+	// Track signal-to-noise ratio (SNR) threshold in decibels. This value is typically
+	// higher than detectSNR.
+	TrackSnr float64 `json:"trackSNR"`
+	// Radar transmit gain in decibels.
+	TransmitGain float64 `json:"transmitGain"`
+	// Horizontal/azimuthal transmit beamwidth for a radar in degrees.
+	TransmitHorizBeamWidth float64 `json:"transmitHorizBeamWidth"`
+	// Aggregate radar transmit loss, in decibels.
+	TransmitLoss float64 `json:"transmitLoss"`
 	// Radar transmit power in Watts.
 	TransmitPower float64 `json:"transmitPower"`
+	// Vertical/elevation transmit beamwidth for a radar in degrees.
+	TransmitVertBeamWidth float64 `json:"transmitVertBeamWidth"`
 	// True North correction for the sensor, in ACP (Azimunth Change Pulse) count.
 	TrueNorthCorrector int64 `json:"trueNorthCorrector"`
 	// Antenna true tilt, in degrees.
 	TrueTilt float64 `json:"trueTilt"`
+	// Twilight angle for ground-based optical sensors in degrees. A sensor cannot view
+	// targets until the sun is below the twilight angle relative to the local horizon.
+	// The sign of the angle is positive despite the sun elevation being negative after
+	// local sunset. Typical values for the twilight angle are civil twilight (6
+	// degrees), nautical twilight (12 degrees), and astronomical twilight (18
+	// degrees).
+	TwilightAngle float64 `json:"twilightAngle"`
 	// Time the row was last updated in the database, auto-populated by the system.
 	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
 	// Application user who updated the row in the database, auto-populated by the
@@ -3177,10 +3609,30 @@ type SensorGetResponseSensorcharacteristic struct {
 	// meters. If this field is populated, the associated beam(s) must be provided in
 	// the beamOrder field.
 	VertGateWidths []float64 `json:"vertGateWidths"`
-	// Vertical field of view.
+	// Vertical field of view, in degrees.
 	VFov float64 `json:"vFOV"`
 	// Vertical pixel resolution.
 	VResPixels int64 `json:"vResPixels"`
+	// Array containing the bandwidth, in megahertz, for each provided waveform. The
+	// number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformBandwidths []float64 `json:"waveformBandwidths"`
+	// Array containing the loop gain, in decibels, for each provided waveform. The
+	// number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field (10 SNR vs. 1 dBsm at 1000 km).
+	WaveformLoopGains []float64 `json:"waveformLoopGains"`
+	// Array containing the maximum range, in kilometers, for each provided waveform.
+	// The number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformMaxRanges []float64 `json:"waveformMaxRanges"`
+	// Array containing the minimum range, in kilometers, for each provided waveform.
+	// The number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformMinRanges []float64 `json:"waveformMinRanges"`
+	// Array containing the pulse width, in microseconds, for each provided waveform.
+	// The number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformPulseWidths []float64 `json:"waveformPulseWidths"`
 	// Peformance zone-1 maximum range, in kilometers. Note that the zones apply only
 	// to the PSR/Search radars.
 	Z1MaxRange float64 `json:"z1MaxRange"`
@@ -3195,89 +3647,148 @@ type SensorGetResponseSensorcharacteristic struct {
 	Z2MinRange float64 `json:"z2MinRange"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking  respjson.Field
-		DataMode               respjson.Field
-		IDSensor               respjson.Field
-		Source                 respjson.Field
-		ID                     respjson.Field
-		AcceptSampleRanges     respjson.Field
-		Aperture               respjson.Field
-		AsrScanRate            respjson.Field
-		AzAngs                 respjson.Field
-		AzimuthRate            respjson.Field
-		Band                   respjson.Field
-		BeamOrder              respjson.Field
-		BeamQty                respjson.Field
-		Boresight              respjson.Field
-		BoresightOffAngle      respjson.Field
-		CreatedAt              respjson.Field
-		CreatedBy              respjson.Field
-		CritShear              respjson.Field
-		DelayGates             respjson.Field
-		Description            respjson.Field
-		ElAngs                 respjson.Field
-		ElevationRateGeolm     respjson.Field
-		EquipmentType          respjson.Field
-		FanBeamWidth           respjson.Field
-		Fft                    respjson.Field
-		FgpCrit                respjson.Field
-		FocalPoint             respjson.Field
-		HFov                   respjson.Field
-		HResPixels             respjson.Field
-		K                      respjson.Field
-		LeftClockAngle         respjson.Field
-		LeftGeoBeltLimit       respjson.Field
-		Location               respjson.Field
-		MagDec                 respjson.Field
-		MagnitudeLimit         respjson.Field
-		MaxDeviationAngle      respjson.Field
-		MaxObservableRange     respjson.Field
-		MaxRangeLimit          respjson.Field
-		MinRangeLimit          respjson.Field
-		MinSignalNoiseRatio    respjson.Field
-		NegativeRangeRateLimit respjson.Field
-		NumIntegratedPulses    respjson.Field
-		OrigNetwork            respjson.Field
-		PositiveRangeRateLimit respjson.Field
-		Prf                    respjson.Field
-		ProbFalseAlarm         respjson.Field
-		PulseRepPeriods        respjson.Field
-		RadarFrequency         respjson.Field
-		RadarMessageFormat     respjson.Field
-		RadarMur               respjson.Field
-		RadarPulseWidths       respjson.Field
-		RadioFrequency         respjson.Field
-		RangeGates             respjson.Field
-		RangeSpacings          respjson.Field
-		ReqRecords             respjson.Field
-		RightClockAngle        respjson.Field
-		RightGeoBeltLimit      respjson.Field
-		RunMeanCodes           respjson.Field
-		SiteCode               respjson.Field
-		SpecAvgSpectraNums     respjson.Field
-		SystemNoiseTemperature respjson.Field
-		TaskableRange          respjson.Field
-		TempMedFiltCodes       respjson.Field
-		TestNumber             respjson.Field
-		TotRecNums             respjson.Field
-		TowerHeight            respjson.Field
-		TrackAngle             respjson.Field
-		TransmitPower          respjson.Field
-		TrueNorthCorrector     respjson.Field
-		TrueTilt               respjson.Field
-		UpdatedAt              respjson.Field
-		UpdatedBy              respjson.Field
-		VertBeamFlag           respjson.Field
-		VertGateSpacings       respjson.Field
-		VertGateWidths         respjson.Field
-		VFov                   respjson.Field
-		VResPixels             respjson.Field
-		Z1MaxRange             respjson.Field
-		Z1MinRange             respjson.Field
-		Z2MaxRange             respjson.Field
-		Z2MinRange             respjson.Field
-		ExtraFields            map[string]respjson.Field
-		raw                    string
+		ClassificationMarking           respjson.Field
+		DataMode                        respjson.Field
+		IDSensor                        respjson.Field
+		Source                          respjson.Field
+		ID                              respjson.Field
+		AcceptSampleRanges              respjson.Field
+		AnalogToDigitalBitSize          respjson.Field
+		Aperture                        respjson.Field
+		AsrScanRate                     respjson.Field
+		AtmosReceiverLoss               respjson.Field
+		AtmosTransmissionLoss           respjson.Field
+		AvgAtmosSeeingConditions        respjson.Field
+		AzAngs                          respjson.Field
+		AzimuthRate                     respjson.Field
+		BackgroundSkyRadiance           respjson.Field
+		BackgroundSkyVisMag             respjson.Field
+		Band                            respjson.Field
+		Bandwidth                       respjson.Field
+		BeamOrder                       respjson.Field
+		BeamQty                         respjson.Field
+		Boresight                       respjson.Field
+		BoresightOffAngle               respjson.Field
+		CenterWavelength                respjson.Field
+		CollapsingLoss                  respjson.Field
+		CreatedAt                       respjson.Field
+		CreatedBy                       respjson.Field
+		CritShear                       respjson.Field
+		DarkCurrent                     respjson.Field
+		DelayGates                      respjson.Field
+		Description                     respjson.Field
+		DetectSnr                       respjson.Field
+		DutyCycle                       respjson.Field
+		EarthLimbExclHgt                respjson.Field
+		ElAngs                          respjson.Field
+		ElevationRateGeolm              respjson.Field
+		EquipmentType                   respjson.Field
+		FanBeamWidth                    respjson.Field
+		Fft                             respjson.Field
+		FgpCrit                         respjson.Field
+		FilterMismatchFactor            respjson.Field
+		FNum                            respjson.Field
+		FocalPoint                      respjson.Field
+		HFov                            respjson.Field
+		HResPixels                      respjson.Field
+		K                               respjson.Field
+		LeftClockAngle                  respjson.Field
+		LeftGeoBeltLimit                respjson.Field
+		Location                        respjson.Field
+		LoopGain                        respjson.Field
+		LunarExclAngle                  respjson.Field
+		MagDec                          respjson.Field
+		MagnitudeLimit                  respjson.Field
+		MaxDeviationAngle               respjson.Field
+		MaxIntegrationTime              respjson.Field
+		MaxObservableRange              respjson.Field
+		MaxRangeLimit                   respjson.Field
+		MaxWavelength                   respjson.Field
+		MinIntegrationTime              respjson.Field
+		MinRangeLimit                   respjson.Field
+		MinSignalNoiseRatio             respjson.Field
+		MinWavelength                   respjson.Field
+		NegativeRangeRateLimit          respjson.Field
+		NoiseFigure                     respjson.Field
+		NonCoherentIntegratedPulses     respjson.Field
+		NumIntegratedPulses             respjson.Field
+		NumIntegrationFrames            respjson.Field
+		NumOpticalIntegrationModes      respjson.Field
+		NumWaveforms                    respjson.Field
+		OpticalIntegrationAngularRates  respjson.Field
+		OpticalIntegrationFrames        respjson.Field
+		OpticalIntegrationPixelBinnings respjson.Field
+		OpticalIntegrationSnRs          respjson.Field
+		OpticalIntegrationTimes         respjson.Field
+		OpticalTransmission             respjson.Field
+		OrigNetwork                     respjson.Field
+		PatternAbsorptionLoss           respjson.Field
+		PatternScanLoss                 respjson.Field
+		PeakPower                       respjson.Field
+		PixelInstantaneousFov           respjson.Field
+		PixelWellDepth                  respjson.Field
+		PositiveRangeRateLimit          respjson.Field
+		Prf                             respjson.Field
+		ProbDetectSnr                   respjson.Field
+		ProbFalseAlarm                  respjson.Field
+		PulseRepPeriods                 respjson.Field
+		QuantumEff                      respjson.Field
+		RadarFrequency                  respjson.Field
+		RadarMessageFormat              respjson.Field
+		RadarMur                        respjson.Field
+		RadarPulseWidths                respjson.Field
+		RadioFrequency                  respjson.Field
+		RadomeLoss                      respjson.Field
+		RangeGates                      respjson.Field
+		RangeSpacings                   respjson.Field
+		ReadNoise                       respjson.Field
+		ReceiveGain                     respjson.Field
+		ReceiveHorizBeamWidth           respjson.Field
+		ReceiveLoss                     respjson.Field
+		ReceiveVertBeamWidth            respjson.Field
+		RefTemp                         respjson.Field
+		ReqRecords                      respjson.Field
+		RightClockAngle                 respjson.Field
+		RightGeoBeltLimit               respjson.Field
+		RunMeanCodes                    respjson.Field
+		SignalProcessingLoss            respjson.Field
+		SiteCode                        respjson.Field
+		SolarExclAngle                  respjson.Field
+		SpecAvgSpectraNums              respjson.Field
+		SystemNoiseTemperature          respjson.Field
+		TaskableRange                   respjson.Field
+		TempMedFiltCodes                respjson.Field
+		TestNumber                      respjson.Field
+		TotRecNums                      respjson.Field
+		TowerHeight                     respjson.Field
+		TrackAngle                      respjson.Field
+		TrackSnr                        respjson.Field
+		TransmitGain                    respjson.Field
+		TransmitHorizBeamWidth          respjson.Field
+		TransmitLoss                    respjson.Field
+		TransmitPower                   respjson.Field
+		TransmitVertBeamWidth           respjson.Field
+		TrueNorthCorrector              respjson.Field
+		TrueTilt                        respjson.Field
+		TwilightAngle                   respjson.Field
+		UpdatedAt                       respjson.Field
+		UpdatedBy                       respjson.Field
+		VertBeamFlag                    respjson.Field
+		VertGateSpacings                respjson.Field
+		VertGateWidths                  respjson.Field
+		VFov                            respjson.Field
+		VResPixels                      respjson.Field
+		WaveformBandwidths              respjson.Field
+		WaveformLoopGains               respjson.Field
+		WaveformMaxRanges               respjson.Field
+		WaveformMinRanges               respjson.Field
+		WaveformPulseWidths             respjson.Field
+		Z1MaxRange                      respjson.Field
+		Z1MinRange                      respjson.Field
+		Z2MaxRange                      respjson.Field
+		Z2MinRange                      respjson.Field
+		ExtraFields                     map[string]respjson.Field
+		raw                             string
 	} `json:"-"`
 }
 
@@ -3579,6 +4090,84 @@ func (r *SensorGetResponseSensorType) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
+type SensorQueryhelpResponse struct {
+	AodrSupported         bool                               `json:"aodrSupported"`
+	ClassificationMarking string                             `json:"classificationMarking"`
+	Description           string                             `json:"description"`
+	HistorySupported      bool                               `json:"historySupported"`
+	Name                  string                             `json:"name"`
+	Parameters            []SensorQueryhelpResponseParameter `json:"parameters"`
+	RequiredRoles         []string                           `json:"requiredRoles"`
+	RestSupported         bool                               `json:"restSupported"`
+	SortSupported         bool                               `json:"sortSupported"`
+	TypeName              string                             `json:"typeName"`
+	Uri                   string                             `json:"uri"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		AodrSupported         respjson.Field
+		ClassificationMarking respjson.Field
+		Description           respjson.Field
+		HistorySupported      respjson.Field
+		Name                  respjson.Field
+		Parameters            respjson.Field
+		RequiredRoles         respjson.Field
+		RestSupported         respjson.Field
+		SortSupported         respjson.Field
+		TypeName              respjson.Field
+		Uri                   respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorQueryhelpResponse) RawJSON() string { return r.JSON.raw }
+func (r *SensorQueryhelpResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SensorQueryhelpResponseParameter struct {
+	ClassificationMarking string `json:"classificationMarking"`
+	Derived               bool   `json:"derived"`
+	Description           string `json:"description"`
+	ElemMatch             bool   `json:"elemMatch"`
+	Format                string `json:"format"`
+	HistQuerySupported    bool   `json:"histQuerySupported"`
+	HistTupleSupported    bool   `json:"histTupleSupported"`
+	Name                  string `json:"name"`
+	Required              bool   `json:"required"`
+	RestQuerySupported    bool   `json:"restQuerySupported"`
+	RestTupleSupported    bool   `json:"restTupleSupported"`
+	Type                  string `json:"type"`
+	UnitOfMeasure         string `json:"unitOfMeasure"`
+	UtcDate               bool   `json:"utcDate"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		ClassificationMarking respjson.Field
+		Derived               respjson.Field
+		Description           respjson.Field
+		ElemMatch             respjson.Field
+		Format                respjson.Field
+		HistQuerySupported    respjson.Field
+		HistTupleSupported    respjson.Field
+		Name                  respjson.Field
+		Required              respjson.Field
+		RestQuerySupported    respjson.Field
+		RestTupleSupported    respjson.Field
+		Type                  respjson.Field
+		UnitOfMeasure         respjson.Field
+		UtcDate               respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SensorQueryhelpResponseParameter) RawJSON() string { return r.JSON.raw }
+func (r *SensorQueryhelpResponseParameter) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
 // Model representation of observation data for electro-optical based sensor
 // phenomenologies.
 type SensorTupleResponse struct {
@@ -3746,10 +4335,10 @@ type SensorTupleResponseEntity struct {
 	// Source of the data.
 	Source string `json:"source,required"`
 	// The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
-	// NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+	// LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
 	//
-	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "NAVIGATION", "ONORBIT", "RFEMITTER",
-	// "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
+	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "LASEREMITTER", "NAVIGATION", "ONORBIT",
+	// "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
 	Type string `json:"type,required"`
 	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
 	// country code, however it can also represent various consortiums that do not
@@ -5428,18 +6017,41 @@ type SensorTupleResponseSensorcharacteristic struct {
 	// this field is populated, the associated beam(s) must be provided in the
 	// beamOrder field.
 	AcceptSampleRanges []float64 `json:"acceptSampleRanges"`
+	// Number of bits used in the conversion from analog electrons in a pixel well to a
+	// digital number. The digital number has a maximum value of 2^N, where N is the
+	// number of bits.
+	AnalogToDigitalBitSize int64 `json:"analogToDigitalBitSize"`
 	// Optical sensor camera aperture.
 	Aperture float64 `json:"aperture"`
 	// For ASR (Air Surveillance Radar) sensors, the scan (360 deg sweep) rate of the
 	// radar, in scans/minute.
 	AsrScanRate float64 `json:"asrScanRate"`
+	// One-way radar receiver loss factor due to atmospheric effects. This value will
+	// often be the same as the corresponding transmission factor but may be different
+	// for bistatic systems.
+	AtmosReceiverLoss float64 `json:"atmosReceiverLoss"`
+	// One-way radar transmission loss factor due to atmospheric effects.
+	AtmosTransmissionLoss float64 `json:"atmosTransmissionLoss"`
+	// Average atmospheric angular width with no distortion from turbulence at an
+	// optical sensor site in arcseconds.
+	AvgAtmosSeeingConditions float64 `json:"avgAtmosSeeingConditions"`
 	// Array of azimuth angles of a radar beam, in degrees. If this field is populated,
 	// the associated beam(s) must be provided in the beamOrder field.
 	AzAngs []float64 `json:"azAngs"`
 	// Azimuth rate acquisition limit (radians/minute).
 	AzimuthRate float64 `json:"azimuthRate"`
+	// Average background sky brightness at an optical sensor site during new moon
+	// conditions. This field uses units of watts per square meter per steradian
+	// (W/(m^2 str)) consistent with sensor detection bands.
+	BackgroundSkyRadiance float64 `json:"backgroundSkyRadiance"`
+	// Average background sky brightness at an optical sensor site during new moon
+	// conditions. This field uses units of visual magnitude consistent with sensor
+	// detection bands.
+	BackgroundSkyVisMag float64 `json:"backgroundSkyVisMag"`
 	// Sensor band.
 	Band string `json:"band"`
+	// The total bandwidth, in megahertz, about the radar center frequency.
+	Bandwidth float64 `json:"bandwidth"`
 	// Array designating the beam order of provided values (e.g. vb1 for vertical beam
 	// 1, ob1 for oblique beam 1, etc.). Required if any of the following array fields
 	// are populated: azAngs, elAngs, radarPulseWidths, pulseRepPeriods, delayGates,
@@ -5452,6 +6064,15 @@ type SensorTupleResponseSensorcharacteristic struct {
 	Boresight float64 `json:"boresight"`
 	// The number of degrees off of the boresight for the sensor.
 	BoresightOffAngle float64 `json:"boresightOffAngle"`
+	// Weighted center wavelength for an optical sensor bandpass in micrometers. It is
+	// the center wavelength in a weighted integral sense, accounting for the
+	// sensitivity vs. wavelength curve for the sensor focal plane array.
+	CenterWavelength float64 `json:"centerWavelength"`
+	// Collapsing loss in decibels. Collapsing losses occur when two or more sources of
+	// noise are added to the target signal. Examples include receiver bandwidth
+	// mismatch with filtering bandwidth and elevation or azimuth beam collapse onto
+	// position/height indicator displays.
+	CollapsingLoss float64 `json:"collapsingLoss"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -5460,12 +6081,28 @@ type SensorTupleResponseSensorcharacteristic struct {
 	// Threshold shear value beyond which one of the radial velocity values will be
 	// rejected, measured in units of inverse second.
 	CritShear float64 `json:"critShear"`
+	// Current flowing through optical sensor focal plane electronics with a closed
+	// shutter in electrons per second.
+	DarkCurrent float64 `json:"darkCurrent"`
 	// Array of time delay(s) for pulses from a radar beam to get to the first range
 	// gate, in nanoseconds. If this field is populated, the associated beam(s) must be
 	// provided in the beamOrder field.
 	DelayGates []float64 `json:"delayGates"`
 	// Description of the equipment and data source.
 	Description string `json:"description"`
+	// Detection signal-to-noise ratio (SNR) threshold in decibels. This value is
+	// typically lower than trackSNR.
+	DetectSnr float64 `json:"detectSNR"`
+	// Sensor duty cycle as a fraction of 1. Duty cycle is the fraction of time a
+	// sensor is actively transmitting.
+	DutyCycle float64 `json:"dutyCycle"`
+	// Sensor Earth limb exclusion height in kilometers and is generally only applied
+	// to space-based sensors. Some models used an earth exclusion angle instead, but
+	// this assumes the sensor is in a circular orbit with constant altitude relative
+	// to the earth. The limb exclusion height can be used for space-based sensors in
+	// any orbit (assuming it is constant with sensor altitude). The limb height is
+	// defined to be 0 at the surface of the earth.
+	EarthLimbExclHgt float64 `json:"earthLimbExclHgt"`
 	// Array of elevation angles of a radar beam, in degrees. If this field is
 	// populated, the associated beam(s) must be provided in the beamOrder field.
 	ElAngs []float64 `json:"elAngs"`
@@ -5482,10 +6119,17 @@ type SensorTupleResponseSensorcharacteristic struct {
 	// Maximum number of times the first guess was propagated in each gate before
 	// failing the first guess check.
 	FgpCrit int64 `json:"fgpCrit"`
+	// Noise term, in decibels, that arises when a radar receiver filter has a
+	// non-optimal bandwidth for an incoming signal (i.e., when it does not match the
+	// pulse width).
+	FilterMismatchFactor float64 `json:"filterMismatchFactor"`
+	// F-number for an optical telescope. It is dimensionless and is defined as the
+	// ratio of the focal length to the aperture width.
+	FNum float64 `json:"fNum"`
 	// For radar based sensors, the focal point elevation of the radar at the site, in
 	// meters.
 	FocalPoint float64 `json:"focalPoint"`
-	// Horizontal field of view.
+	// Horizontal field of view, in degrees.
 	HFov float64 `json:"hFOV"`
 	// Horizontal pixel resolution.
 	HResPixels int64 `json:"hResPixels"`
@@ -5498,34 +6142,108 @@ type SensorTupleResponseSensorcharacteristic struct {
 	LeftGeoBeltLimit float64 `json:"leftGeoBeltLimit"`
 	// Site where measurement is taken.
 	Location string `json:"location"`
+	// Aggregated radar range equation gain in decibels for maximum sensitivity. It is
+	// a roll-up value for low fidelity modeling and is often the only sensitivity
+	// value available for a radar system without access to detailed performance
+	// parameters.
+	LoopGain float64 `json:"loopGain"`
+	// Lowest aspect angle of the full moon in degrees at which the sensor can achieve
+	// full performance.
+	LunarExclAngle float64 `json:"lunarExclAngle"`
 	// Angle between magnetic north and true north at the sensor site, in degrees.
 	MagDec float64 `json:"magDec"`
 	// Absolute magnitude acquisition limit for optical sensors.
 	MagnitudeLimit float64 `json:"magnitudeLimit"`
 	// Max deviation angle of the sensor in degrees.
 	MaxDeviationAngle float64 `json:"maxDeviationAngle"`
+	// Maximum integration time per image frame in seconds for an optical sensor.
+	MaxIntegrationTime float64 `json:"maxIntegrationTime"`
 	// Maximum observable sensor range, in kilometers.
 	MaxObservableRange float64 `json:"maxObservableRange"`
 	// Maximum observable range limit in kilometers -- sensor cannot acquire beyond
 	// this range.
 	MaxRangeLimit float64 `json:"maxRangeLimit"`
+	// Maximum wavelength detectable by an optical sensor in micrometers.
+	MaxWavelength float64 `json:"maxWavelength"`
+	// Minimum integration time per image frame in seconds for an optical sensor.
+	MinIntegrationTime float64 `json:"minIntegrationTime"`
 	// Minimum range measurement capability of the sensor, in kilometers.
 	MinRangeLimit float64 `json:"minRangeLimit"`
 	// Signal to Noise Ratio, in decibels. The values for this range from 0.0 - + 99.99
 	// dB.
 	MinSignalNoiseRatio float64 `json:"minSignalNoiseRatio"`
+	// Minimum wavelength detectable by an optical sensor in micrometers.
+	MinWavelength float64 `json:"minWavelength"`
 	// Negative Range-rate/relative velocity limit (kilometers/second).
 	NegativeRangeRateLimit float64 `json:"negativeRangeRateLimit"`
+	// Noise figure for a radar system in decibels. This value may be used to compute
+	// system noise when the system temperature is unavailable.
+	NoiseFigure float64 `json:"noiseFigure"`
+	// Number of pulses that are non-coherently integrated during detection processing.
+	NonCoherentIntegratedPulses int64 `json:"nonCoherentIntegratedPulses"`
 	// For radar based sensors, number of integrated pulses in a transmit cycle.
 	NumIntegratedPulses int64 `json:"numIntegratedPulses"`
+	// Number of integration frames for an optical sensor.
+	NumIntegrationFrames int64 `json:"numIntegrationFrames"`
+	// The number of optical integration mode characteristics provided in this record.
+	// If provided, the numOpticalIntegrationModes value indicates the number of
+	// elements in each of the opticalIntegrationTimes, opticalIntegrationAngularRates,
+	// opticalIntegrationFrames, opticalIntegrationPixelBinnings, and
+	// opticalIntegrationSNRs arrays.
+	NumOpticalIntegrationModes int64 `json:"numOpticalIntegrationModes"`
+	// The number of waveforms characteristics provided in this record. If provided,
+	// the numWaveforms value indicates the number of elements in each of the
+	// waveformPulseWidths, waveformBandWidths, waveformMinRanges, waveformMaxRanges,
+	// and waveformLoopGains arrays.
+	NumWaveforms int64 `json:"numWaveforms"`
+	// Array containing the angular rate, in arcsec/sec, for each provided optical
+	// integration mode. The number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationAngularRates []float64 `json:"opticalIntegrationAngularRates"`
+	// Array containing the number of frames, for each optical integration mode. The
+	// number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationFrames []float64 `json:"opticalIntegrationFrames"`
+	// Array containing the pixel binning, for each optical integration mode. The
+	// number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationPixelBinnings []float64 `json:"opticalIntegrationPixelBinnings"`
+	// Array of optical integration modes signal to noise ratios. The number of
+	// elements must be equal to the value indicated in numOpticalIntegrationModes.
+	OpticalIntegrationSnRs []float64 `json:"opticalIntegrationSNRs"`
+	// Array containing the time, in seconds, for each provided optical integration
+	// mode. The number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationTimes []float64 `json:"opticalIntegrationTimes"`
+	// Fraction of incident light transmitted to an optical sensor focal plane array.
+	// The value is given as a fraction of 1, not as a percent.
+	OpticalTransmission float64 `json:"opticalTransmission"`
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
+	// Two-way pattern absorption/propagation loss due to medium in decibels.
+	PatternAbsorptionLoss float64 `json:"patternAbsorptionLoss"`
+	// Losses from the beam shape, scanning, and pattern factor in decibels. These
+	// losses occur when targets are not directly in line with a beam center. For space
+	// surveillance, this will occur most often during sensor scanning.
+	PatternScanLoss float64 `json:"patternScanLoss"`
+	// Maximum instantaneous radar transmit power in watts for use in the radar range
+	// equation.
+	PeakPower float64 `json:"peakPower"`
+	// Angular field-of-view covered by one pixel in a focal plane array in
+	// microradians. The pixel is assumed to be a perfect square so that only a single
+	// value is required.
+	PixelInstantaneousFov float64 `json:"pixelInstantaneousFOV"`
+	// Maximum number of electrons that can be collected in a single pixel on an
+	// optical sensor focal plane array.
+	PixelWellDepth int64 `json:"pixelWellDepth"`
 	// Positive Range-rate/relative velocity limit (kilometers/second).
 	PositiveRangeRateLimit float64 `json:"positiveRangeRateLimit"`
 	// For radar based sensors, pulse repetition frequency (PRF), in hertz. Number of
 	// new pulses transmitted per second.
 	Prf float64 `json:"prf"`
+	// Designated probability of detection at the signal-to-noise detection threshold.
+	ProbDetectSnr float64 `json:"probDetectSNR"`
 	// For radar based sensors, probability of the indication of the presence of a
 	// radar target due to noise or interference.
 	ProbFalseAlarm float64 `json:"probFalseAlarm"`
@@ -5533,7 +6251,10 @@ type SensorTupleResponseSensorcharacteristic struct {
 	// another for a radar beam, in microseconds. If this field is populated, the
 	// associated beam(s) must be provided in the beamOrder field.
 	PulseRepPeriods []float64 `json:"pulseRepPeriods"`
-	// Radar frequency of the sensor (if a radar sensor).
+	// Fraction of incident photons converted to electrons at the focal plane array.
+	// This value is a decimal number between 0 and 1, inclusive.
+	QuantumEff float64 `json:"quantumEff"`
+	// Radar frequency in hertz, of the sensor (if a radar sensor).
 	RadarFrequency float64 `json:"radarFrequency"`
 	// Message data format transmitted by the sensor digitizer.
 	RadarMessageFormat string `json:"radarMessageFormat"`
@@ -5544,6 +6265,9 @@ type SensorTupleResponseSensorcharacteristic struct {
 	RadarPulseWidths []float64 `json:"radarPulseWidths"`
 	// Radio frequency (if sensor is RF).
 	RadioFrequency float64 `json:"radioFrequency"`
+	// Losses due to the presence of a protective radome surrounding a radar sensor, in
+	// decibels.
+	RadomeLoss float64 `json:"radomeLoss"`
 	// Array of the number(s) of discrete altitudes where return signals are sampled by
 	// a radar beam. If this field is populated, the associated beam(s) must be
 	// provided in the beamOrder field.
@@ -5551,6 +6275,22 @@ type SensorTupleResponseSensorcharacteristic struct {
 	// Array of range gate spacing(s) for a radar beam, in nanoseconds. If this field
 	// is populated, the associated beam(s) must be provided in the beamOrder field.
 	RangeSpacings []float64 `json:"rangeSpacings"`
+	// Number of false-signal electrons generated by optical sensor focal plane
+	// read-out electronics from photon-to-electron conversion during frame
+	// integration. The units are in electrons RMS.
+	ReadNoise int64 `json:"readNoise"`
+	// Radar receive gain in decibels.
+	ReceiveGain float64 `json:"receiveGain"`
+	// Horizontal/azimuthal receive beamwidth for a radar in degrees.
+	ReceiveHorizBeamWidth float64 `json:"receiveHorizBeamWidth"`
+	// Aggregate radar receive loss, in decibels.
+	ReceiveLoss float64 `json:"receiveLoss"`
+	// Vertical/elevation receive beamwidth for a radar in degrees.
+	ReceiveVertBeamWidth float64 `json:"receiveVertBeamWidth"`
+	// Reference temperature for radar noise in Kelvin. A reference temperature is used
+	// when the radar system temperature is unknown and is combined with the system
+	// noise figure to estimate signal loss.
+	RefTemp float64 `json:"refTemp"`
 	// Array of the total number(s) of records required to meet consensus for a radar
 	// beam. If this field is populated, the associated beam(s) must be provided in the
 	// beamOrder field.
@@ -5564,8 +6304,16 @@ type SensorTupleResponseSensorcharacteristic struct {
 	// data set to smooth out short-term fluctuations in the data. If this field is
 	// populated, the associated beam(s) must be provided in the beamOrder field.
 	RunMeanCodes []int64 `json:"runMeanCodes"`
+	// Radar signal processing losses, in decibels.
+	SignalProcessingLoss float64 `json:"signalProcessingLoss"`
 	// Site code of the sensor.
 	SiteCode string `json:"siteCode"`
+	// Sensor and target position vector origins are at the center of the earth. The
+	// sun vector origin is at the target position and points toward the sun. Any value
+	// between 0 and 180 degrees is acceptable and is assumed to apply in both
+	// directions (i.e., a solar exclusion angle of 30 degrees is understood to mean no
+	// viewing for any angle between -30 deg and +30 deg).
+	SolarExclAngle float64 `json:"solarExclAngle"`
 	// Array of the number(s) of Doppler spectra used to process measurements from
 	// radar. Spectral averaging involves combining multiple Doppler spectra acquired
 	// to obtain a more accurate and representative spectrum. If this field is
@@ -5591,12 +6339,30 @@ type SensorTupleResponseSensorcharacteristic struct {
 	// Beginning track angle limit, in radians. Track angle is the angle between the
 	// camera axis and the gimbal plane. Values range from 0 - PI/2.
 	TrackAngle float64 `json:"trackAngle"`
+	// Track signal-to-noise ratio (SNR) threshold in decibels. This value is typically
+	// higher than detectSNR.
+	TrackSnr float64 `json:"trackSNR"`
+	// Radar transmit gain in decibels.
+	TransmitGain float64 `json:"transmitGain"`
+	// Horizontal/azimuthal transmit beamwidth for a radar in degrees.
+	TransmitHorizBeamWidth float64 `json:"transmitHorizBeamWidth"`
+	// Aggregate radar transmit loss, in decibels.
+	TransmitLoss float64 `json:"transmitLoss"`
 	// Radar transmit power in Watts.
 	TransmitPower float64 `json:"transmitPower"`
+	// Vertical/elevation transmit beamwidth for a radar in degrees.
+	TransmitVertBeamWidth float64 `json:"transmitVertBeamWidth"`
 	// True North correction for the sensor, in ACP (Azimunth Change Pulse) count.
 	TrueNorthCorrector int64 `json:"trueNorthCorrector"`
 	// Antenna true tilt, in degrees.
 	TrueTilt float64 `json:"trueTilt"`
+	// Twilight angle for ground-based optical sensors in degrees. A sensor cannot view
+	// targets until the sun is below the twilight angle relative to the local horizon.
+	// The sign of the angle is positive despite the sun elevation being negative after
+	// local sunset. Typical values for the twilight angle are civil twilight (6
+	// degrees), nautical twilight (12 degrees), and astronomical twilight (18
+	// degrees).
+	TwilightAngle float64 `json:"twilightAngle"`
 	// Time the row was last updated in the database, auto-populated by the system.
 	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
 	// Application user who updated the row in the database, auto-populated by the
@@ -5612,10 +6378,30 @@ type SensorTupleResponseSensorcharacteristic struct {
 	// meters. If this field is populated, the associated beam(s) must be provided in
 	// the beamOrder field.
 	VertGateWidths []float64 `json:"vertGateWidths"`
-	// Vertical field of view.
+	// Vertical field of view, in degrees.
 	VFov float64 `json:"vFOV"`
 	// Vertical pixel resolution.
 	VResPixels int64 `json:"vResPixels"`
+	// Array containing the bandwidth, in megahertz, for each provided waveform. The
+	// number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformBandwidths []float64 `json:"waveformBandwidths"`
+	// Array containing the loop gain, in decibels, for each provided waveform. The
+	// number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field (10 SNR vs. 1 dBsm at 1000 km).
+	WaveformLoopGains []float64 `json:"waveformLoopGains"`
+	// Array containing the maximum range, in kilometers, for each provided waveform.
+	// The number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformMaxRanges []float64 `json:"waveformMaxRanges"`
+	// Array containing the minimum range, in kilometers, for each provided waveform.
+	// The number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformMinRanges []float64 `json:"waveformMinRanges"`
+	// Array containing the pulse width, in microseconds, for each provided waveform.
+	// The number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformPulseWidths []float64 `json:"waveformPulseWidths"`
 	// Peformance zone-1 maximum range, in kilometers. Note that the zones apply only
 	// to the PSR/Search radars.
 	Z1MaxRange float64 `json:"z1MaxRange"`
@@ -5630,89 +6416,148 @@ type SensorTupleResponseSensorcharacteristic struct {
 	Z2MinRange float64 `json:"z2MinRange"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ClassificationMarking  respjson.Field
-		DataMode               respjson.Field
-		IDSensor               respjson.Field
-		Source                 respjson.Field
-		ID                     respjson.Field
-		AcceptSampleRanges     respjson.Field
-		Aperture               respjson.Field
-		AsrScanRate            respjson.Field
-		AzAngs                 respjson.Field
-		AzimuthRate            respjson.Field
-		Band                   respjson.Field
-		BeamOrder              respjson.Field
-		BeamQty                respjson.Field
-		Boresight              respjson.Field
-		BoresightOffAngle      respjson.Field
-		CreatedAt              respjson.Field
-		CreatedBy              respjson.Field
-		CritShear              respjson.Field
-		DelayGates             respjson.Field
-		Description            respjson.Field
-		ElAngs                 respjson.Field
-		ElevationRateGeolm     respjson.Field
-		EquipmentType          respjson.Field
-		FanBeamWidth           respjson.Field
-		Fft                    respjson.Field
-		FgpCrit                respjson.Field
-		FocalPoint             respjson.Field
-		HFov                   respjson.Field
-		HResPixels             respjson.Field
-		K                      respjson.Field
-		LeftClockAngle         respjson.Field
-		LeftGeoBeltLimit       respjson.Field
-		Location               respjson.Field
-		MagDec                 respjson.Field
-		MagnitudeLimit         respjson.Field
-		MaxDeviationAngle      respjson.Field
-		MaxObservableRange     respjson.Field
-		MaxRangeLimit          respjson.Field
-		MinRangeLimit          respjson.Field
-		MinSignalNoiseRatio    respjson.Field
-		NegativeRangeRateLimit respjson.Field
-		NumIntegratedPulses    respjson.Field
-		OrigNetwork            respjson.Field
-		PositiveRangeRateLimit respjson.Field
-		Prf                    respjson.Field
-		ProbFalseAlarm         respjson.Field
-		PulseRepPeriods        respjson.Field
-		RadarFrequency         respjson.Field
-		RadarMessageFormat     respjson.Field
-		RadarMur               respjson.Field
-		RadarPulseWidths       respjson.Field
-		RadioFrequency         respjson.Field
-		RangeGates             respjson.Field
-		RangeSpacings          respjson.Field
-		ReqRecords             respjson.Field
-		RightClockAngle        respjson.Field
-		RightGeoBeltLimit      respjson.Field
-		RunMeanCodes           respjson.Field
-		SiteCode               respjson.Field
-		SpecAvgSpectraNums     respjson.Field
-		SystemNoiseTemperature respjson.Field
-		TaskableRange          respjson.Field
-		TempMedFiltCodes       respjson.Field
-		TestNumber             respjson.Field
-		TotRecNums             respjson.Field
-		TowerHeight            respjson.Field
-		TrackAngle             respjson.Field
-		TransmitPower          respjson.Field
-		TrueNorthCorrector     respjson.Field
-		TrueTilt               respjson.Field
-		UpdatedAt              respjson.Field
-		UpdatedBy              respjson.Field
-		VertBeamFlag           respjson.Field
-		VertGateSpacings       respjson.Field
-		VertGateWidths         respjson.Field
-		VFov                   respjson.Field
-		VResPixels             respjson.Field
-		Z1MaxRange             respjson.Field
-		Z1MinRange             respjson.Field
-		Z2MaxRange             respjson.Field
-		Z2MinRange             respjson.Field
-		ExtraFields            map[string]respjson.Field
-		raw                    string
+		ClassificationMarking           respjson.Field
+		DataMode                        respjson.Field
+		IDSensor                        respjson.Field
+		Source                          respjson.Field
+		ID                              respjson.Field
+		AcceptSampleRanges              respjson.Field
+		AnalogToDigitalBitSize          respjson.Field
+		Aperture                        respjson.Field
+		AsrScanRate                     respjson.Field
+		AtmosReceiverLoss               respjson.Field
+		AtmosTransmissionLoss           respjson.Field
+		AvgAtmosSeeingConditions        respjson.Field
+		AzAngs                          respjson.Field
+		AzimuthRate                     respjson.Field
+		BackgroundSkyRadiance           respjson.Field
+		BackgroundSkyVisMag             respjson.Field
+		Band                            respjson.Field
+		Bandwidth                       respjson.Field
+		BeamOrder                       respjson.Field
+		BeamQty                         respjson.Field
+		Boresight                       respjson.Field
+		BoresightOffAngle               respjson.Field
+		CenterWavelength                respjson.Field
+		CollapsingLoss                  respjson.Field
+		CreatedAt                       respjson.Field
+		CreatedBy                       respjson.Field
+		CritShear                       respjson.Field
+		DarkCurrent                     respjson.Field
+		DelayGates                      respjson.Field
+		Description                     respjson.Field
+		DetectSnr                       respjson.Field
+		DutyCycle                       respjson.Field
+		EarthLimbExclHgt                respjson.Field
+		ElAngs                          respjson.Field
+		ElevationRateGeolm              respjson.Field
+		EquipmentType                   respjson.Field
+		FanBeamWidth                    respjson.Field
+		Fft                             respjson.Field
+		FgpCrit                         respjson.Field
+		FilterMismatchFactor            respjson.Field
+		FNum                            respjson.Field
+		FocalPoint                      respjson.Field
+		HFov                            respjson.Field
+		HResPixels                      respjson.Field
+		K                               respjson.Field
+		LeftClockAngle                  respjson.Field
+		LeftGeoBeltLimit                respjson.Field
+		Location                        respjson.Field
+		LoopGain                        respjson.Field
+		LunarExclAngle                  respjson.Field
+		MagDec                          respjson.Field
+		MagnitudeLimit                  respjson.Field
+		MaxDeviationAngle               respjson.Field
+		MaxIntegrationTime              respjson.Field
+		MaxObservableRange              respjson.Field
+		MaxRangeLimit                   respjson.Field
+		MaxWavelength                   respjson.Field
+		MinIntegrationTime              respjson.Field
+		MinRangeLimit                   respjson.Field
+		MinSignalNoiseRatio             respjson.Field
+		MinWavelength                   respjson.Field
+		NegativeRangeRateLimit          respjson.Field
+		NoiseFigure                     respjson.Field
+		NonCoherentIntegratedPulses     respjson.Field
+		NumIntegratedPulses             respjson.Field
+		NumIntegrationFrames            respjson.Field
+		NumOpticalIntegrationModes      respjson.Field
+		NumWaveforms                    respjson.Field
+		OpticalIntegrationAngularRates  respjson.Field
+		OpticalIntegrationFrames        respjson.Field
+		OpticalIntegrationPixelBinnings respjson.Field
+		OpticalIntegrationSnRs          respjson.Field
+		OpticalIntegrationTimes         respjson.Field
+		OpticalTransmission             respjson.Field
+		OrigNetwork                     respjson.Field
+		PatternAbsorptionLoss           respjson.Field
+		PatternScanLoss                 respjson.Field
+		PeakPower                       respjson.Field
+		PixelInstantaneousFov           respjson.Field
+		PixelWellDepth                  respjson.Field
+		PositiveRangeRateLimit          respjson.Field
+		Prf                             respjson.Field
+		ProbDetectSnr                   respjson.Field
+		ProbFalseAlarm                  respjson.Field
+		PulseRepPeriods                 respjson.Field
+		QuantumEff                      respjson.Field
+		RadarFrequency                  respjson.Field
+		RadarMessageFormat              respjson.Field
+		RadarMur                        respjson.Field
+		RadarPulseWidths                respjson.Field
+		RadioFrequency                  respjson.Field
+		RadomeLoss                      respjson.Field
+		RangeGates                      respjson.Field
+		RangeSpacings                   respjson.Field
+		ReadNoise                       respjson.Field
+		ReceiveGain                     respjson.Field
+		ReceiveHorizBeamWidth           respjson.Field
+		ReceiveLoss                     respjson.Field
+		ReceiveVertBeamWidth            respjson.Field
+		RefTemp                         respjson.Field
+		ReqRecords                      respjson.Field
+		RightClockAngle                 respjson.Field
+		RightGeoBeltLimit               respjson.Field
+		RunMeanCodes                    respjson.Field
+		SignalProcessingLoss            respjson.Field
+		SiteCode                        respjson.Field
+		SolarExclAngle                  respjson.Field
+		SpecAvgSpectraNums              respjson.Field
+		SystemNoiseTemperature          respjson.Field
+		TaskableRange                   respjson.Field
+		TempMedFiltCodes                respjson.Field
+		TestNumber                      respjson.Field
+		TotRecNums                      respjson.Field
+		TowerHeight                     respjson.Field
+		TrackAngle                      respjson.Field
+		TrackSnr                        respjson.Field
+		TransmitGain                    respjson.Field
+		TransmitHorizBeamWidth          respjson.Field
+		TransmitLoss                    respjson.Field
+		TransmitPower                   respjson.Field
+		TransmitVertBeamWidth           respjson.Field
+		TrueNorthCorrector              respjson.Field
+		TrueTilt                        respjson.Field
+		TwilightAngle                   respjson.Field
+		UpdatedAt                       respjson.Field
+		UpdatedBy                       respjson.Field
+		VertBeamFlag                    respjson.Field
+		VertGateSpacings                respjson.Field
+		VertGateWidths                  respjson.Field
+		VFov                            respjson.Field
+		VResPixels                      respjson.Field
+		WaveformBandwidths              respjson.Field
+		WaveformLoopGains               respjson.Field
+		WaveformMaxRanges               respjson.Field
+		WaveformMinRanges               respjson.Field
+		WaveformPulseWidths             respjson.Field
+		Z1MaxRange                      respjson.Field
+		Z1MinRange                      respjson.Field
+		Z2MaxRange                      respjson.Field
+		Z2MinRange                      respjson.Field
+		ExtraFields                     map[string]respjson.Field
+		raw                             string
 	} `json:"-"`
 }
 
@@ -6142,10 +6987,10 @@ type SensorNewParamsEntity struct {
 	// Source of the data.
 	Source string `json:"source,required"`
 	// The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
-	// NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+	// LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
 	//
-	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "NAVIGATION", "ONORBIT", "RFEMITTER",
-	// "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
+	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "LASEREMITTER", "NAVIGATION", "ONORBIT",
+	// "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
 	Type string `json:"type,omitzero,required"`
 	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
 	// country code, however it can also represent various consortiums that do not
@@ -6209,7 +7054,7 @@ func init() {
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SensorNewParamsEntity](
-		"type", "AIRCRAFT", "BUS", "COMM", "IR", "NAVIGATION", "ONORBIT", "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL",
+		"type", "AIRCRAFT", "BUS", "COMM", "IR", "LASEREMITTER", "NAVIGATION", "ONORBIT", "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL",
 	)
 	apijson.RegisterFieldValidator[SensorNewParamsEntity](
 		"ownerType", "Commercial", "Government", "Academic", "Consortium", "Other",
@@ -6352,21 +7197,53 @@ type SensorNewParamsSensorcharacteristic struct {
 	Source string `json:"source,required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
+	// Number of bits used in the conversion from analog electrons in a pixel well to a
+	// digital number. The digital number has a maximum value of 2^N, where N is the
+	// number of bits.
+	AnalogToDigitalBitSize param.Opt[int64] `json:"analogToDigitalBitSize,omitzero"`
 	// Optical sensor camera aperture.
 	Aperture param.Opt[float64] `json:"aperture,omitzero"`
 	// For ASR (Air Surveillance Radar) sensors, the scan (360 deg sweep) rate of the
 	// radar, in scans/minute.
 	AsrScanRate param.Opt[float64] `json:"asrScanRate,omitzero"`
+	// One-way radar receiver loss factor due to atmospheric effects. This value will
+	// often be the same as the corresponding transmission factor but may be different
+	// for bistatic systems.
+	AtmosReceiverLoss param.Opt[float64] `json:"atmosReceiverLoss,omitzero"`
+	// One-way radar transmission loss factor due to atmospheric effects.
+	AtmosTransmissionLoss param.Opt[float64] `json:"atmosTransmissionLoss,omitzero"`
+	// Average atmospheric angular width with no distortion from turbulence at an
+	// optical sensor site in arcseconds.
+	AvgAtmosSeeingConditions param.Opt[float64] `json:"avgAtmosSeeingConditions,omitzero"`
 	// Azimuth rate acquisition limit (radians/minute).
 	AzimuthRate param.Opt[float64] `json:"azimuthRate,omitzero"`
+	// Average background sky brightness at an optical sensor site during new moon
+	// conditions. This field uses units of watts per square meter per steradian
+	// (W/(m^2 str)) consistent with sensor detection bands.
+	BackgroundSkyRadiance param.Opt[float64] `json:"backgroundSkyRadiance,omitzero"`
+	// Average background sky brightness at an optical sensor site during new moon
+	// conditions. This field uses units of visual magnitude consistent with sensor
+	// detection bands.
+	BackgroundSkyVisMag param.Opt[float64] `json:"backgroundSkyVisMag,omitzero"`
 	// Sensor band.
 	Band param.Opt[string] `json:"band,omitzero"`
+	// The total bandwidth, in megahertz, about the radar center frequency.
+	Bandwidth param.Opt[float64] `json:"bandwidth,omitzero"`
 	// Number of radar beams used by the sensor.
 	BeamQty param.Opt[int64] `json:"beamQty,omitzero"`
 	// The angle of the center of a phased array sensor.
 	Boresight param.Opt[float64] `json:"boresight,omitzero"`
 	// The number of degrees off of the boresight for the sensor.
 	BoresightOffAngle param.Opt[float64] `json:"boresightOffAngle,omitzero"`
+	// Weighted center wavelength for an optical sensor bandpass in micrometers. It is
+	// the center wavelength in a weighted integral sense, accounting for the
+	// sensitivity vs. wavelength curve for the sensor focal plane array.
+	CenterWavelength param.Opt[float64] `json:"centerWavelength,omitzero"`
+	// Collapsing loss in decibels. Collapsing losses occur when two or more sources of
+	// noise are added to the target signal. Examples include receiver bandwidth
+	// mismatch with filtering bandwidth and elevation or azimuth beam collapse onto
+	// position/height indicator displays.
+	CollapsingLoss param.Opt[float64] `json:"collapsingLoss,omitzero"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -6375,8 +7252,24 @@ type SensorNewParamsSensorcharacteristic struct {
 	// Threshold shear value beyond which one of the radial velocity values will be
 	// rejected, measured in units of inverse second.
 	CritShear param.Opt[float64] `json:"critShear,omitzero"`
+	// Current flowing through optical sensor focal plane electronics with a closed
+	// shutter in electrons per second.
+	DarkCurrent param.Opt[float64] `json:"darkCurrent,omitzero"`
 	// Description of the equipment and data source.
 	Description param.Opt[string] `json:"description,omitzero"`
+	// Detection signal-to-noise ratio (SNR) threshold in decibels. This value is
+	// typically lower than trackSNR.
+	DetectSnr param.Opt[float64] `json:"detectSNR,omitzero"`
+	// Sensor duty cycle as a fraction of 1. Duty cycle is the fraction of time a
+	// sensor is actively transmitting.
+	DutyCycle param.Opt[float64] `json:"dutyCycle,omitzero"`
+	// Sensor Earth limb exclusion height in kilometers and is generally only applied
+	// to space-based sensors. Some models used an earth exclusion angle instead, but
+	// this assumes the sensor is in a circular orbit with constant altitude relative
+	// to the earth. The limb exclusion height can be used for space-based sensors in
+	// any orbit (assuming it is constant with sensor altitude). The limb height is
+	// defined to be 0 at the surface of the earth.
+	EarthLimbExclHgt param.Opt[float64] `json:"earthLimbExclHgt,omitzero"`
 	// Elevation rate acquisition limit (radians/minute).
 	ElevationRateGeolm param.Opt[float64] `json:"elevationRateGeolm,omitzero"`
 	// Type of equipment used to take measurements.
@@ -6390,10 +7283,17 @@ type SensorNewParamsSensorcharacteristic struct {
 	// Maximum number of times the first guess was propagated in each gate before
 	// failing the first guess check.
 	FgpCrit param.Opt[int64] `json:"fgpCrit,omitzero"`
+	// Noise term, in decibels, that arises when a radar receiver filter has a
+	// non-optimal bandwidth for an incoming signal (i.e., when it does not match the
+	// pulse width).
+	FilterMismatchFactor param.Opt[float64] `json:"filterMismatchFactor,omitzero"`
+	// F-number for an optical telescope. It is dimensionless and is defined as the
+	// ratio of the focal length to the aperture width.
+	FNum param.Opt[float64] `json:"fNum,omitzero"`
 	// For radar based sensors, the focal point elevation of the radar at the site, in
 	// meters.
 	FocalPoint param.Opt[float64] `json:"focalPoint,omitzero"`
-	// Horizontal field of view.
+	// Horizontal field of view, in degrees.
 	HFov param.Opt[float64] `json:"hFOV,omitzero"`
 	// Horizontal pixel resolution.
 	HResPixels param.Opt[int64] `json:"hResPixels,omitzero"`
@@ -6406,38 +7306,96 @@ type SensorNewParamsSensorcharacteristic struct {
 	LeftGeoBeltLimit param.Opt[float64] `json:"leftGeoBeltLimit,omitzero"`
 	// Site where measurement is taken.
 	Location param.Opt[string] `json:"location,omitzero"`
+	// Aggregated radar range equation gain in decibels for maximum sensitivity. It is
+	// a roll-up value for low fidelity modeling and is often the only sensitivity
+	// value available for a radar system without access to detailed performance
+	// parameters.
+	LoopGain param.Opt[float64] `json:"loopGain,omitzero"`
+	// Lowest aspect angle of the full moon in degrees at which the sensor can achieve
+	// full performance.
+	LunarExclAngle param.Opt[float64] `json:"lunarExclAngle,omitzero"`
 	// Angle between magnetic north and true north at the sensor site, in degrees.
 	MagDec param.Opt[float64] `json:"magDec,omitzero"`
 	// Absolute magnitude acquisition limit for optical sensors.
 	MagnitudeLimit param.Opt[float64] `json:"magnitudeLimit,omitzero"`
 	// Max deviation angle of the sensor in degrees.
 	MaxDeviationAngle param.Opt[float64] `json:"maxDeviationAngle,omitzero"`
+	// Maximum integration time per image frame in seconds for an optical sensor.
+	MaxIntegrationTime param.Opt[float64] `json:"maxIntegrationTime,omitzero"`
 	// Maximum observable sensor range, in kilometers.
 	MaxObservableRange param.Opt[float64] `json:"maxObservableRange,omitzero"`
 	// Maximum observable range limit in kilometers -- sensor cannot acquire beyond
 	// this range.
 	MaxRangeLimit param.Opt[float64] `json:"maxRangeLimit,omitzero"`
+	// Maximum wavelength detectable by an optical sensor in micrometers.
+	MaxWavelength param.Opt[float64] `json:"maxWavelength,omitzero"`
+	// Minimum integration time per image frame in seconds for an optical sensor.
+	MinIntegrationTime param.Opt[float64] `json:"minIntegrationTime,omitzero"`
 	// Minimum range measurement capability of the sensor, in kilometers.
 	MinRangeLimit param.Opt[float64] `json:"minRangeLimit,omitzero"`
 	// Signal to Noise Ratio, in decibels. The values for this range from 0.0 - + 99.99
 	// dB.
 	MinSignalNoiseRatio param.Opt[float64] `json:"minSignalNoiseRatio,omitzero"`
+	// Minimum wavelength detectable by an optical sensor in micrometers.
+	MinWavelength param.Opt[float64] `json:"minWavelength,omitzero"`
 	// Negative Range-rate/relative velocity limit (kilometers/second).
 	NegativeRangeRateLimit param.Opt[float64] `json:"negativeRangeRateLimit,omitzero"`
+	// Noise figure for a radar system in decibels. This value may be used to compute
+	// system noise when the system temperature is unavailable.
+	NoiseFigure param.Opt[float64] `json:"noiseFigure,omitzero"`
+	// Number of pulses that are non-coherently integrated during detection processing.
+	NonCoherentIntegratedPulses param.Opt[int64] `json:"nonCoherentIntegratedPulses,omitzero"`
 	// For radar based sensors, number of integrated pulses in a transmit cycle.
 	NumIntegratedPulses param.Opt[int64] `json:"numIntegratedPulses,omitzero"`
+	// Number of integration frames for an optical sensor.
+	NumIntegrationFrames param.Opt[int64] `json:"numIntegrationFrames,omitzero"`
+	// The number of optical integration mode characteristics provided in this record.
+	// If provided, the numOpticalIntegrationModes value indicates the number of
+	// elements in each of the opticalIntegrationTimes, opticalIntegrationAngularRates,
+	// opticalIntegrationFrames, opticalIntegrationPixelBinnings, and
+	// opticalIntegrationSNRs arrays.
+	NumOpticalIntegrationModes param.Opt[int64] `json:"numOpticalIntegrationModes,omitzero"`
+	// The number of waveforms characteristics provided in this record. If provided,
+	// the numWaveforms value indicates the number of elements in each of the
+	// waveformPulseWidths, waveformBandWidths, waveformMinRanges, waveformMaxRanges,
+	// and waveformLoopGains arrays.
+	NumWaveforms param.Opt[int64] `json:"numWaveforms,omitzero"`
+	// Fraction of incident light transmitted to an optical sensor focal plane array.
+	// The value is given as a fraction of 1, not as a percent.
+	OpticalTransmission param.Opt[float64] `json:"opticalTransmission,omitzero"`
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// Two-way pattern absorption/propagation loss due to medium in decibels.
+	PatternAbsorptionLoss param.Opt[float64] `json:"patternAbsorptionLoss,omitzero"`
+	// Losses from the beam shape, scanning, and pattern factor in decibels. These
+	// losses occur when targets are not directly in line with a beam center. For space
+	// surveillance, this will occur most often during sensor scanning.
+	PatternScanLoss param.Opt[float64] `json:"patternScanLoss,omitzero"`
+	// Maximum instantaneous radar transmit power in watts for use in the radar range
+	// equation.
+	PeakPower param.Opt[float64] `json:"peakPower,omitzero"`
+	// Angular field-of-view covered by one pixel in a focal plane array in
+	// microradians. The pixel is assumed to be a perfect square so that only a single
+	// value is required.
+	PixelInstantaneousFov param.Opt[float64] `json:"pixelInstantaneousFOV,omitzero"`
+	// Maximum number of electrons that can be collected in a single pixel on an
+	// optical sensor focal plane array.
+	PixelWellDepth param.Opt[int64] `json:"pixelWellDepth,omitzero"`
 	// Positive Range-rate/relative velocity limit (kilometers/second).
 	PositiveRangeRateLimit param.Opt[float64] `json:"positiveRangeRateLimit,omitzero"`
 	// For radar based sensors, pulse repetition frequency (PRF), in hertz. Number of
 	// new pulses transmitted per second.
 	Prf param.Opt[float64] `json:"prf,omitzero"`
+	// Designated probability of detection at the signal-to-noise detection threshold.
+	ProbDetectSnr param.Opt[float64] `json:"probDetectSNR,omitzero"`
 	// For radar based sensors, probability of the indication of the presence of a
 	// radar target due to noise or interference.
 	ProbFalseAlarm param.Opt[float64] `json:"probFalseAlarm,omitzero"`
-	// Radar frequency of the sensor (if a radar sensor).
+	// Fraction of incident photons converted to electrons at the focal plane array.
+	// This value is a decimal number between 0 and 1, inclusive.
+	QuantumEff param.Opt[float64] `json:"quantumEff,omitzero"`
+	// Radar frequency in hertz, of the sensor (if a radar sensor).
 	RadarFrequency param.Opt[float64] `json:"radarFrequency,omitzero"`
 	// Message data format transmitted by the sensor digitizer.
 	RadarMessageFormat param.Opt[string] `json:"radarMessageFormat,omitzero"`
@@ -6445,12 +7403,39 @@ type SensorNewParamsSensorcharacteristic struct {
 	RadarMur param.Opt[float64] `json:"radarMUR,omitzero"`
 	// Radio frequency (if sensor is RF).
 	RadioFrequency param.Opt[float64] `json:"radioFrequency,omitzero"`
+	// Losses due to the presence of a protective radome surrounding a radar sensor, in
+	// decibels.
+	RadomeLoss param.Opt[float64] `json:"radomeLoss,omitzero"`
+	// Number of false-signal electrons generated by optical sensor focal plane
+	// read-out electronics from photon-to-electron conversion during frame
+	// integration. The units are in electrons RMS.
+	ReadNoise param.Opt[int64] `json:"readNoise,omitzero"`
+	// Radar receive gain in decibels.
+	ReceiveGain param.Opt[float64] `json:"receiveGain,omitzero"`
+	// Horizontal/azimuthal receive beamwidth for a radar in degrees.
+	ReceiveHorizBeamWidth param.Opt[float64] `json:"receiveHorizBeamWidth,omitzero"`
+	// Aggregate radar receive loss, in decibels.
+	ReceiveLoss param.Opt[float64] `json:"receiveLoss,omitzero"`
+	// Vertical/elevation receive beamwidth for a radar in degrees.
+	ReceiveVertBeamWidth param.Opt[float64] `json:"receiveVertBeamWidth,omitzero"`
+	// Reference temperature for radar noise in Kelvin. A reference temperature is used
+	// when the radar system temperature is unknown and is combined with the system
+	// noise figure to estimate signal loss.
+	RefTemp param.Opt[float64] `json:"refTemp,omitzero"`
 	// For Orbiting Sensors, First Card Azimuth limit #3 (right, degrees).
 	RightClockAngle param.Opt[float64] `json:"rightClockAngle,omitzero"`
 	// Rightmost GEO belt longitude limit for this sensor (if applicable).
 	RightGeoBeltLimit param.Opt[float64] `json:"rightGeoBeltLimit,omitzero"`
+	// Radar signal processing losses, in decibels.
+	SignalProcessingLoss param.Opt[float64] `json:"signalProcessingLoss,omitzero"`
 	// Site code of the sensor.
 	SiteCode param.Opt[string] `json:"siteCode,omitzero"`
+	// Sensor and target position vector origins are at the center of the earth. The
+	// sun vector origin is at the target position and points toward the sun. Any value
+	// between 0 and 180 degrees is acceptable and is assumed to apply in both
+	// directions (i.e., a solar exclusion angle of 30 degrees is understood to mean no
+	// viewing for any angle between -30 deg and +30 deg).
+	SolarExclAngle param.Opt[float64] `json:"solarExclAngle,omitzero"`
 	// For radar based sensors, expression of the radar system noise, aggregated as an
 	// equivalent thermal noise value, in degrees Kelvin.
 	SystemNoiseTemperature param.Opt[float64] `json:"systemNoiseTemperature,omitzero"`
@@ -6463,15 +7448,33 @@ type SensorNewParamsSensorcharacteristic struct {
 	// Beginning track angle limit, in radians. Track angle is the angle between the
 	// camera axis and the gimbal plane. Values range from 0 - PI/2.
 	TrackAngle param.Opt[float64] `json:"trackAngle,omitzero"`
+	// Track signal-to-noise ratio (SNR) threshold in decibels. This value is typically
+	// higher than detectSNR.
+	TrackSnr param.Opt[float64] `json:"trackSNR,omitzero"`
+	// Radar transmit gain in decibels.
+	TransmitGain param.Opt[float64] `json:"transmitGain,omitzero"`
+	// Horizontal/azimuthal transmit beamwidth for a radar in degrees.
+	TransmitHorizBeamWidth param.Opt[float64] `json:"transmitHorizBeamWidth,omitzero"`
+	// Aggregate radar transmit loss, in decibels.
+	TransmitLoss param.Opt[float64] `json:"transmitLoss,omitzero"`
 	// Radar transmit power in Watts.
 	TransmitPower param.Opt[float64] `json:"transmitPower,omitzero"`
+	// Vertical/elevation transmit beamwidth for a radar in degrees.
+	TransmitVertBeamWidth param.Opt[float64] `json:"transmitVertBeamWidth,omitzero"`
 	// True North correction for the sensor, in ACP (Azimunth Change Pulse) count.
 	TrueNorthCorrector param.Opt[int64] `json:"trueNorthCorrector,omitzero"`
 	// Antenna true tilt, in degrees.
 	TrueTilt param.Opt[float64] `json:"trueTilt,omitzero"`
+	// Twilight angle for ground-based optical sensors in degrees. A sensor cannot view
+	// targets until the sun is below the twilight angle relative to the local horizon.
+	// The sign of the angle is positive despite the sun elevation being negative after
+	// local sunset. Typical values for the twilight angle are civil twilight (6
+	// degrees), nautical twilight (12 degrees), and astronomical twilight (18
+	// degrees).
+	TwilightAngle param.Opt[float64] `json:"twilightAngle,omitzero"`
 	// Flag indicating if a vertical radar beam was used in the wind calculation.
 	VertBeamFlag param.Opt[bool] `json:"vertBeamFlag,omitzero"`
-	// Vertical field of view.
+	// Vertical field of view, in degrees.
 	VFov param.Opt[float64] `json:"vFOV,omitzero"`
 	// Vertical pixel resolution.
 	VResPixels param.Opt[int64] `json:"vResPixels,omitzero"`
@@ -6507,6 +7510,25 @@ type SensorNewParamsSensorcharacteristic struct {
 	// Array of elevation angles of a radar beam, in degrees. If this field is
 	// populated, the associated beam(s) must be provided in the beamOrder field.
 	ElAngs []float64 `json:"elAngs,omitzero"`
+	// Array containing the angular rate, in arcsec/sec, for each provided optical
+	// integration mode. The number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationAngularRates []float64 `json:"opticalIntegrationAngularRates,omitzero"`
+	// Array containing the number of frames, for each optical integration mode. The
+	// number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationFrames []float64 `json:"opticalIntegrationFrames,omitzero"`
+	// Array containing the pixel binning, for each optical integration mode. The
+	// number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationPixelBinnings []float64 `json:"opticalIntegrationPixelBinnings,omitzero"`
+	// Array of optical integration modes signal to noise ratios. The number of
+	// elements must be equal to the value indicated in numOpticalIntegrationModes.
+	OpticalIntegrationSnRs []float64 `json:"opticalIntegrationSNRs,omitzero"`
+	// Array containing the time, in seconds, for each provided optical integration
+	// mode. The number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationTimes []float64 `json:"opticalIntegrationTimes,omitzero"`
 	// Array of interval(s) between the start of one radar pulse and the start of
 	// another for a radar beam, in microseconds. If this field is populated, the
 	// associated beam(s) must be provided in the beamOrder field.
@@ -6551,6 +7573,26 @@ type SensorNewParamsSensorcharacteristic struct {
 	// meters. If this field is populated, the associated beam(s) must be provided in
 	// the beamOrder field.
 	VertGateWidths []float64 `json:"vertGateWidths,omitzero"`
+	// Array containing the bandwidth, in megahertz, for each provided waveform. The
+	// number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformBandwidths []float64 `json:"waveformBandwidths,omitzero"`
+	// Array containing the loop gain, in decibels, for each provided waveform. The
+	// number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field (10 SNR vs. 1 dBsm at 1000 km).
+	WaveformLoopGains []float64 `json:"waveformLoopGains,omitzero"`
+	// Array containing the maximum range, in kilometers, for each provided waveform.
+	// The number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformMaxRanges []float64 `json:"waveformMaxRanges,omitzero"`
+	// Array containing the minimum range, in kilometers, for each provided waveform.
+	// The number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformMinRanges []float64 `json:"waveformMinRanges,omitzero"`
+	// Array containing the pulse width, in microseconds, for each provided waveform.
+	// The number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformPulseWidths []float64 `json:"waveformPulseWidths,omitzero"`
 	paramObj
 }
 
@@ -6897,10 +7939,10 @@ type SensorUpdateParamsEntity struct {
 	// Source of the data.
 	Source string `json:"source,required"`
 	// The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
-	// NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+	// LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
 	//
-	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "NAVIGATION", "ONORBIT", "RFEMITTER",
-	// "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
+	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "LASEREMITTER", "NAVIGATION", "ONORBIT",
+	// "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
 	Type string `json:"type,omitzero,required"`
 	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
 	// country code, however it can also represent various consortiums that do not
@@ -6964,7 +8006,7 @@ func init() {
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SensorUpdateParamsEntity](
-		"type", "AIRCRAFT", "BUS", "COMM", "IR", "NAVIGATION", "ONORBIT", "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL",
+		"type", "AIRCRAFT", "BUS", "COMM", "IR", "LASEREMITTER", "NAVIGATION", "ONORBIT", "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL",
 	)
 	apijson.RegisterFieldValidator[SensorUpdateParamsEntity](
 		"ownerType", "Commercial", "Government", "Academic", "Consortium", "Other",
@@ -7107,21 +8149,53 @@ type SensorUpdateParamsSensorcharacteristic struct {
 	Source string `json:"source,required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
+	// Number of bits used in the conversion from analog electrons in a pixel well to a
+	// digital number. The digital number has a maximum value of 2^N, where N is the
+	// number of bits.
+	AnalogToDigitalBitSize param.Opt[int64] `json:"analogToDigitalBitSize,omitzero"`
 	// Optical sensor camera aperture.
 	Aperture param.Opt[float64] `json:"aperture,omitzero"`
 	// For ASR (Air Surveillance Radar) sensors, the scan (360 deg sweep) rate of the
 	// radar, in scans/minute.
 	AsrScanRate param.Opt[float64] `json:"asrScanRate,omitzero"`
+	// One-way radar receiver loss factor due to atmospheric effects. This value will
+	// often be the same as the corresponding transmission factor but may be different
+	// for bistatic systems.
+	AtmosReceiverLoss param.Opt[float64] `json:"atmosReceiverLoss,omitzero"`
+	// One-way radar transmission loss factor due to atmospheric effects.
+	AtmosTransmissionLoss param.Opt[float64] `json:"atmosTransmissionLoss,omitzero"`
+	// Average atmospheric angular width with no distortion from turbulence at an
+	// optical sensor site in arcseconds.
+	AvgAtmosSeeingConditions param.Opt[float64] `json:"avgAtmosSeeingConditions,omitzero"`
 	// Azimuth rate acquisition limit (radians/minute).
 	AzimuthRate param.Opt[float64] `json:"azimuthRate,omitzero"`
+	// Average background sky brightness at an optical sensor site during new moon
+	// conditions. This field uses units of watts per square meter per steradian
+	// (W/(m^2 str)) consistent with sensor detection bands.
+	BackgroundSkyRadiance param.Opt[float64] `json:"backgroundSkyRadiance,omitzero"`
+	// Average background sky brightness at an optical sensor site during new moon
+	// conditions. This field uses units of visual magnitude consistent with sensor
+	// detection bands.
+	BackgroundSkyVisMag param.Opt[float64] `json:"backgroundSkyVisMag,omitzero"`
 	// Sensor band.
 	Band param.Opt[string] `json:"band,omitzero"`
+	// The total bandwidth, in megahertz, about the radar center frequency.
+	Bandwidth param.Opt[float64] `json:"bandwidth,omitzero"`
 	// Number of radar beams used by the sensor.
 	BeamQty param.Opt[int64] `json:"beamQty,omitzero"`
 	// The angle of the center of a phased array sensor.
 	Boresight param.Opt[float64] `json:"boresight,omitzero"`
 	// The number of degrees off of the boresight for the sensor.
 	BoresightOffAngle param.Opt[float64] `json:"boresightOffAngle,omitzero"`
+	// Weighted center wavelength for an optical sensor bandpass in micrometers. It is
+	// the center wavelength in a weighted integral sense, accounting for the
+	// sensitivity vs. wavelength curve for the sensor focal plane array.
+	CenterWavelength param.Opt[float64] `json:"centerWavelength,omitzero"`
+	// Collapsing loss in decibels. Collapsing losses occur when two or more sources of
+	// noise are added to the target signal. Examples include receiver bandwidth
+	// mismatch with filtering bandwidth and elevation or azimuth beam collapse onto
+	// position/height indicator displays.
+	CollapsingLoss param.Opt[float64] `json:"collapsingLoss,omitzero"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -7130,8 +8204,24 @@ type SensorUpdateParamsSensorcharacteristic struct {
 	// Threshold shear value beyond which one of the radial velocity values will be
 	// rejected, measured in units of inverse second.
 	CritShear param.Opt[float64] `json:"critShear,omitzero"`
+	// Current flowing through optical sensor focal plane electronics with a closed
+	// shutter in electrons per second.
+	DarkCurrent param.Opt[float64] `json:"darkCurrent,omitzero"`
 	// Description of the equipment and data source.
 	Description param.Opt[string] `json:"description,omitzero"`
+	// Detection signal-to-noise ratio (SNR) threshold in decibels. This value is
+	// typically lower than trackSNR.
+	DetectSnr param.Opt[float64] `json:"detectSNR,omitzero"`
+	// Sensor duty cycle as a fraction of 1. Duty cycle is the fraction of time a
+	// sensor is actively transmitting.
+	DutyCycle param.Opt[float64] `json:"dutyCycle,omitzero"`
+	// Sensor Earth limb exclusion height in kilometers and is generally only applied
+	// to space-based sensors. Some models used an earth exclusion angle instead, but
+	// this assumes the sensor is in a circular orbit with constant altitude relative
+	// to the earth. The limb exclusion height can be used for space-based sensors in
+	// any orbit (assuming it is constant with sensor altitude). The limb height is
+	// defined to be 0 at the surface of the earth.
+	EarthLimbExclHgt param.Opt[float64] `json:"earthLimbExclHgt,omitzero"`
 	// Elevation rate acquisition limit (radians/minute).
 	ElevationRateGeolm param.Opt[float64] `json:"elevationRateGeolm,omitzero"`
 	// Type of equipment used to take measurements.
@@ -7145,10 +8235,17 @@ type SensorUpdateParamsSensorcharacteristic struct {
 	// Maximum number of times the first guess was propagated in each gate before
 	// failing the first guess check.
 	FgpCrit param.Opt[int64] `json:"fgpCrit,omitzero"`
+	// Noise term, in decibels, that arises when a radar receiver filter has a
+	// non-optimal bandwidth for an incoming signal (i.e., when it does not match the
+	// pulse width).
+	FilterMismatchFactor param.Opt[float64] `json:"filterMismatchFactor,omitzero"`
+	// F-number for an optical telescope. It is dimensionless and is defined as the
+	// ratio of the focal length to the aperture width.
+	FNum param.Opt[float64] `json:"fNum,omitzero"`
 	// For radar based sensors, the focal point elevation of the radar at the site, in
 	// meters.
 	FocalPoint param.Opt[float64] `json:"focalPoint,omitzero"`
-	// Horizontal field of view.
+	// Horizontal field of view, in degrees.
 	HFov param.Opt[float64] `json:"hFOV,omitzero"`
 	// Horizontal pixel resolution.
 	HResPixels param.Opt[int64] `json:"hResPixels,omitzero"`
@@ -7161,38 +8258,96 @@ type SensorUpdateParamsSensorcharacteristic struct {
 	LeftGeoBeltLimit param.Opt[float64] `json:"leftGeoBeltLimit,omitzero"`
 	// Site where measurement is taken.
 	Location param.Opt[string] `json:"location,omitzero"`
+	// Aggregated radar range equation gain in decibels for maximum sensitivity. It is
+	// a roll-up value for low fidelity modeling and is often the only sensitivity
+	// value available for a radar system without access to detailed performance
+	// parameters.
+	LoopGain param.Opt[float64] `json:"loopGain,omitzero"`
+	// Lowest aspect angle of the full moon in degrees at which the sensor can achieve
+	// full performance.
+	LunarExclAngle param.Opt[float64] `json:"lunarExclAngle,omitzero"`
 	// Angle between magnetic north and true north at the sensor site, in degrees.
 	MagDec param.Opt[float64] `json:"magDec,omitzero"`
 	// Absolute magnitude acquisition limit for optical sensors.
 	MagnitudeLimit param.Opt[float64] `json:"magnitudeLimit,omitzero"`
 	// Max deviation angle of the sensor in degrees.
 	MaxDeviationAngle param.Opt[float64] `json:"maxDeviationAngle,omitzero"`
+	// Maximum integration time per image frame in seconds for an optical sensor.
+	MaxIntegrationTime param.Opt[float64] `json:"maxIntegrationTime,omitzero"`
 	// Maximum observable sensor range, in kilometers.
 	MaxObservableRange param.Opt[float64] `json:"maxObservableRange,omitzero"`
 	// Maximum observable range limit in kilometers -- sensor cannot acquire beyond
 	// this range.
 	MaxRangeLimit param.Opt[float64] `json:"maxRangeLimit,omitzero"`
+	// Maximum wavelength detectable by an optical sensor in micrometers.
+	MaxWavelength param.Opt[float64] `json:"maxWavelength,omitzero"`
+	// Minimum integration time per image frame in seconds for an optical sensor.
+	MinIntegrationTime param.Opt[float64] `json:"minIntegrationTime,omitzero"`
 	// Minimum range measurement capability of the sensor, in kilometers.
 	MinRangeLimit param.Opt[float64] `json:"minRangeLimit,omitzero"`
 	// Signal to Noise Ratio, in decibels. The values for this range from 0.0 - + 99.99
 	// dB.
 	MinSignalNoiseRatio param.Opt[float64] `json:"minSignalNoiseRatio,omitzero"`
+	// Minimum wavelength detectable by an optical sensor in micrometers.
+	MinWavelength param.Opt[float64] `json:"minWavelength,omitzero"`
 	// Negative Range-rate/relative velocity limit (kilometers/second).
 	NegativeRangeRateLimit param.Opt[float64] `json:"negativeRangeRateLimit,omitzero"`
+	// Noise figure for a radar system in decibels. This value may be used to compute
+	// system noise when the system temperature is unavailable.
+	NoiseFigure param.Opt[float64] `json:"noiseFigure,omitzero"`
+	// Number of pulses that are non-coherently integrated during detection processing.
+	NonCoherentIntegratedPulses param.Opt[int64] `json:"nonCoherentIntegratedPulses,omitzero"`
 	// For radar based sensors, number of integrated pulses in a transmit cycle.
 	NumIntegratedPulses param.Opt[int64] `json:"numIntegratedPulses,omitzero"`
+	// Number of integration frames for an optical sensor.
+	NumIntegrationFrames param.Opt[int64] `json:"numIntegrationFrames,omitzero"`
+	// The number of optical integration mode characteristics provided in this record.
+	// If provided, the numOpticalIntegrationModes value indicates the number of
+	// elements in each of the opticalIntegrationTimes, opticalIntegrationAngularRates,
+	// opticalIntegrationFrames, opticalIntegrationPixelBinnings, and
+	// opticalIntegrationSNRs arrays.
+	NumOpticalIntegrationModes param.Opt[int64] `json:"numOpticalIntegrationModes,omitzero"`
+	// The number of waveforms characteristics provided in this record. If provided,
+	// the numWaveforms value indicates the number of elements in each of the
+	// waveformPulseWidths, waveformBandWidths, waveformMinRanges, waveformMaxRanges,
+	// and waveformLoopGains arrays.
+	NumWaveforms param.Opt[int64] `json:"numWaveforms,omitzero"`
+	// Fraction of incident light transmitted to an optical sensor focal plane array.
+	// The value is given as a fraction of 1, not as a percent.
+	OpticalTransmission param.Opt[float64] `json:"opticalTransmission,omitzero"`
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// Two-way pattern absorption/propagation loss due to medium in decibels.
+	PatternAbsorptionLoss param.Opt[float64] `json:"patternAbsorptionLoss,omitzero"`
+	// Losses from the beam shape, scanning, and pattern factor in decibels. These
+	// losses occur when targets are not directly in line with a beam center. For space
+	// surveillance, this will occur most often during sensor scanning.
+	PatternScanLoss param.Opt[float64] `json:"patternScanLoss,omitzero"`
+	// Maximum instantaneous radar transmit power in watts for use in the radar range
+	// equation.
+	PeakPower param.Opt[float64] `json:"peakPower,omitzero"`
+	// Angular field-of-view covered by one pixel in a focal plane array in
+	// microradians. The pixel is assumed to be a perfect square so that only a single
+	// value is required.
+	PixelInstantaneousFov param.Opt[float64] `json:"pixelInstantaneousFOV,omitzero"`
+	// Maximum number of electrons that can be collected in a single pixel on an
+	// optical sensor focal plane array.
+	PixelWellDepth param.Opt[int64] `json:"pixelWellDepth,omitzero"`
 	// Positive Range-rate/relative velocity limit (kilometers/second).
 	PositiveRangeRateLimit param.Opt[float64] `json:"positiveRangeRateLimit,omitzero"`
 	// For radar based sensors, pulse repetition frequency (PRF), in hertz. Number of
 	// new pulses transmitted per second.
 	Prf param.Opt[float64] `json:"prf,omitzero"`
+	// Designated probability of detection at the signal-to-noise detection threshold.
+	ProbDetectSnr param.Opt[float64] `json:"probDetectSNR,omitzero"`
 	// For radar based sensors, probability of the indication of the presence of a
 	// radar target due to noise or interference.
 	ProbFalseAlarm param.Opt[float64] `json:"probFalseAlarm,omitzero"`
-	// Radar frequency of the sensor (if a radar sensor).
+	// Fraction of incident photons converted to electrons at the focal plane array.
+	// This value is a decimal number between 0 and 1, inclusive.
+	QuantumEff param.Opt[float64] `json:"quantumEff,omitzero"`
+	// Radar frequency in hertz, of the sensor (if a radar sensor).
 	RadarFrequency param.Opt[float64] `json:"radarFrequency,omitzero"`
 	// Message data format transmitted by the sensor digitizer.
 	RadarMessageFormat param.Opt[string] `json:"radarMessageFormat,omitzero"`
@@ -7200,12 +8355,39 @@ type SensorUpdateParamsSensorcharacteristic struct {
 	RadarMur param.Opt[float64] `json:"radarMUR,omitzero"`
 	// Radio frequency (if sensor is RF).
 	RadioFrequency param.Opt[float64] `json:"radioFrequency,omitzero"`
+	// Losses due to the presence of a protective radome surrounding a radar sensor, in
+	// decibels.
+	RadomeLoss param.Opt[float64] `json:"radomeLoss,omitzero"`
+	// Number of false-signal electrons generated by optical sensor focal plane
+	// read-out electronics from photon-to-electron conversion during frame
+	// integration. The units are in electrons RMS.
+	ReadNoise param.Opt[int64] `json:"readNoise,omitzero"`
+	// Radar receive gain in decibels.
+	ReceiveGain param.Opt[float64] `json:"receiveGain,omitzero"`
+	// Horizontal/azimuthal receive beamwidth for a radar in degrees.
+	ReceiveHorizBeamWidth param.Opt[float64] `json:"receiveHorizBeamWidth,omitzero"`
+	// Aggregate radar receive loss, in decibels.
+	ReceiveLoss param.Opt[float64] `json:"receiveLoss,omitzero"`
+	// Vertical/elevation receive beamwidth for a radar in degrees.
+	ReceiveVertBeamWidth param.Opt[float64] `json:"receiveVertBeamWidth,omitzero"`
+	// Reference temperature for radar noise in Kelvin. A reference temperature is used
+	// when the radar system temperature is unknown and is combined with the system
+	// noise figure to estimate signal loss.
+	RefTemp param.Opt[float64] `json:"refTemp,omitzero"`
 	// For Orbiting Sensors, First Card Azimuth limit #3 (right, degrees).
 	RightClockAngle param.Opt[float64] `json:"rightClockAngle,omitzero"`
 	// Rightmost GEO belt longitude limit for this sensor (if applicable).
 	RightGeoBeltLimit param.Opt[float64] `json:"rightGeoBeltLimit,omitzero"`
+	// Radar signal processing losses, in decibels.
+	SignalProcessingLoss param.Opt[float64] `json:"signalProcessingLoss,omitzero"`
 	// Site code of the sensor.
 	SiteCode param.Opt[string] `json:"siteCode,omitzero"`
+	// Sensor and target position vector origins are at the center of the earth. The
+	// sun vector origin is at the target position and points toward the sun. Any value
+	// between 0 and 180 degrees is acceptable and is assumed to apply in both
+	// directions (i.e., a solar exclusion angle of 30 degrees is understood to mean no
+	// viewing for any angle between -30 deg and +30 deg).
+	SolarExclAngle param.Opt[float64] `json:"solarExclAngle,omitzero"`
 	// For radar based sensors, expression of the radar system noise, aggregated as an
 	// equivalent thermal noise value, in degrees Kelvin.
 	SystemNoiseTemperature param.Opt[float64] `json:"systemNoiseTemperature,omitzero"`
@@ -7218,15 +8400,33 @@ type SensorUpdateParamsSensorcharacteristic struct {
 	// Beginning track angle limit, in radians. Track angle is the angle between the
 	// camera axis and the gimbal plane. Values range from 0 - PI/2.
 	TrackAngle param.Opt[float64] `json:"trackAngle,omitzero"`
+	// Track signal-to-noise ratio (SNR) threshold in decibels. This value is typically
+	// higher than detectSNR.
+	TrackSnr param.Opt[float64] `json:"trackSNR,omitzero"`
+	// Radar transmit gain in decibels.
+	TransmitGain param.Opt[float64] `json:"transmitGain,omitzero"`
+	// Horizontal/azimuthal transmit beamwidth for a radar in degrees.
+	TransmitHorizBeamWidth param.Opt[float64] `json:"transmitHorizBeamWidth,omitzero"`
+	// Aggregate radar transmit loss, in decibels.
+	TransmitLoss param.Opt[float64] `json:"transmitLoss,omitzero"`
 	// Radar transmit power in Watts.
 	TransmitPower param.Opt[float64] `json:"transmitPower,omitzero"`
+	// Vertical/elevation transmit beamwidth for a radar in degrees.
+	TransmitVertBeamWidth param.Opt[float64] `json:"transmitVertBeamWidth,omitzero"`
 	// True North correction for the sensor, in ACP (Azimunth Change Pulse) count.
 	TrueNorthCorrector param.Opt[int64] `json:"trueNorthCorrector,omitzero"`
 	// Antenna true tilt, in degrees.
 	TrueTilt param.Opt[float64] `json:"trueTilt,omitzero"`
+	// Twilight angle for ground-based optical sensors in degrees. A sensor cannot view
+	// targets until the sun is below the twilight angle relative to the local horizon.
+	// The sign of the angle is positive despite the sun elevation being negative after
+	// local sunset. Typical values for the twilight angle are civil twilight (6
+	// degrees), nautical twilight (12 degrees), and astronomical twilight (18
+	// degrees).
+	TwilightAngle param.Opt[float64] `json:"twilightAngle,omitzero"`
 	// Flag indicating if a vertical radar beam was used in the wind calculation.
 	VertBeamFlag param.Opt[bool] `json:"vertBeamFlag,omitzero"`
-	// Vertical field of view.
+	// Vertical field of view, in degrees.
 	VFov param.Opt[float64] `json:"vFOV,omitzero"`
 	// Vertical pixel resolution.
 	VResPixels param.Opt[int64] `json:"vResPixels,omitzero"`
@@ -7262,6 +8462,25 @@ type SensorUpdateParamsSensorcharacteristic struct {
 	// Array of elevation angles of a radar beam, in degrees. If this field is
 	// populated, the associated beam(s) must be provided in the beamOrder field.
 	ElAngs []float64 `json:"elAngs,omitzero"`
+	// Array containing the angular rate, in arcsec/sec, for each provided optical
+	// integration mode. The number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationAngularRates []float64 `json:"opticalIntegrationAngularRates,omitzero"`
+	// Array containing the number of frames, for each optical integration mode. The
+	// number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationFrames []float64 `json:"opticalIntegrationFrames,omitzero"`
+	// Array containing the pixel binning, for each optical integration mode. The
+	// number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationPixelBinnings []float64 `json:"opticalIntegrationPixelBinnings,omitzero"`
+	// Array of optical integration modes signal to noise ratios. The number of
+	// elements must be equal to the value indicated in numOpticalIntegrationModes.
+	OpticalIntegrationSnRs []float64 `json:"opticalIntegrationSNRs,omitzero"`
+	// Array containing the time, in seconds, for each provided optical integration
+	// mode. The number of elements must be equal to the value indicated in
+	// numOpticalIntegrationModes.
+	OpticalIntegrationTimes []float64 `json:"opticalIntegrationTimes,omitzero"`
 	// Array of interval(s) between the start of one radar pulse and the start of
 	// another for a radar beam, in microseconds. If this field is populated, the
 	// associated beam(s) must be provided in the beamOrder field.
@@ -7306,6 +8525,26 @@ type SensorUpdateParamsSensorcharacteristic struct {
 	// meters. If this field is populated, the associated beam(s) must be provided in
 	// the beamOrder field.
 	VertGateWidths []float64 `json:"vertGateWidths,omitzero"`
+	// Array containing the bandwidth, in megahertz, for each provided waveform. The
+	// number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformBandwidths []float64 `json:"waveformBandwidths,omitzero"`
+	// Array containing the loop gain, in decibels, for each provided waveform. The
+	// number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field (10 SNR vs. 1 dBsm at 1000 km).
+	WaveformLoopGains []float64 `json:"waveformLoopGains,omitzero"`
+	// Array containing the maximum range, in kilometers, for each provided waveform.
+	// The number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformMaxRanges []float64 `json:"waveformMaxRanges,omitzero"`
+	// Array containing the minimum range, in kilometers, for each provided waveform.
+	// The number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformMinRanges []float64 `json:"waveformMinRanges,omitzero"`
+	// Array containing the pulse width, in microseconds, for each provided waveform.
+	// The number of elements in this array must be equal to the value indicated in the
+	// numWaveforms field.
+	WaveformPulseWidths []float64 `json:"waveformPulseWidths,omitzero"`
 	paramObj
 }
 

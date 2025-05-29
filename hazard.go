@@ -124,11 +124,10 @@ func (r *HazardService) Get(ctx context.Context, id string, query HazardGetParam
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *HazardService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *HazardService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *HazardQueryhelpResponse, err error) {
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/hazard/queryhelp"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, nil, opts...)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
 }
 
@@ -624,6 +623,84 @@ const (
 	HazardGetResponseDataModeSimulated HazardGetResponseDataMode = "SIMULATED"
 	HazardGetResponseDataModeExercise  HazardGetResponseDataMode = "EXERCISE"
 )
+
+type HazardQueryhelpResponse struct {
+	AodrSupported         bool                               `json:"aodrSupported"`
+	ClassificationMarking string                             `json:"classificationMarking"`
+	Description           string                             `json:"description"`
+	HistorySupported      bool                               `json:"historySupported"`
+	Name                  string                             `json:"name"`
+	Parameters            []HazardQueryhelpResponseParameter `json:"parameters"`
+	RequiredRoles         []string                           `json:"requiredRoles"`
+	RestSupported         bool                               `json:"restSupported"`
+	SortSupported         bool                               `json:"sortSupported"`
+	TypeName              string                             `json:"typeName"`
+	Uri                   string                             `json:"uri"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		AodrSupported         respjson.Field
+		ClassificationMarking respjson.Field
+		Description           respjson.Field
+		HistorySupported      respjson.Field
+		Name                  respjson.Field
+		Parameters            respjson.Field
+		RequiredRoles         respjson.Field
+		RestSupported         respjson.Field
+		SortSupported         respjson.Field
+		TypeName              respjson.Field
+		Uri                   respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r HazardQueryhelpResponse) RawJSON() string { return r.JSON.raw }
+func (r *HazardQueryhelpResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type HazardQueryhelpResponseParameter struct {
+	ClassificationMarking string `json:"classificationMarking"`
+	Derived               bool   `json:"derived"`
+	Description           string `json:"description"`
+	ElemMatch             bool   `json:"elemMatch"`
+	Format                string `json:"format"`
+	HistQuerySupported    bool   `json:"histQuerySupported"`
+	HistTupleSupported    bool   `json:"histTupleSupported"`
+	Name                  string `json:"name"`
+	Required              bool   `json:"required"`
+	RestQuerySupported    bool   `json:"restQuerySupported"`
+	RestTupleSupported    bool   `json:"restTupleSupported"`
+	Type                  string `json:"type"`
+	UnitOfMeasure         string `json:"unitOfMeasure"`
+	UtcDate               bool   `json:"utcDate"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		ClassificationMarking respjson.Field
+		Derived               respjson.Field
+		Description           respjson.Field
+		ElemMatch             respjson.Field
+		Format                respjson.Field
+		HistQuerySupported    respjson.Field
+		HistTupleSupported    respjson.Field
+		Name                  respjson.Field
+		Required              respjson.Field
+		RestQuerySupported    respjson.Field
+		RestTupleSupported    respjson.Field
+		Type                  respjson.Field
+		UnitOfMeasure         respjson.Field
+		UtcDate               respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r HazardQueryhelpResponseParameter) RawJSON() string { return r.JSON.raw }
+func (r *HazardQueryhelpResponseParameter) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Hazard contains information concerning the exposure of a geographic area to a
 // Chemical, Biological, Radiological, or Nuclear (CBRN) contaminant. The Hazard

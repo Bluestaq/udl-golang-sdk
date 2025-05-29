@@ -135,11 +135,10 @@ func (r *SolarArrayService) Get(ctx context.Context, id string, query SolarArray
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *SolarArrayService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *SolarArrayService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SolarArrayQueryhelpResponse, err error) {
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/solararray/queryhelp"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, nil, opts...)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
 }
 
@@ -337,6 +336,84 @@ const (
 	SolarArrayGetResponseDataModeSimulated SolarArrayGetResponseDataMode = "SIMULATED"
 	SolarArrayGetResponseDataModeExercise  SolarArrayGetResponseDataMode = "EXERCISE"
 )
+
+type SolarArrayQueryhelpResponse struct {
+	AodrSupported         bool                                   `json:"aodrSupported"`
+	ClassificationMarking string                                 `json:"classificationMarking"`
+	Description           string                                 `json:"description"`
+	HistorySupported      bool                                   `json:"historySupported"`
+	Name                  string                                 `json:"name"`
+	Parameters            []SolarArrayQueryhelpResponseParameter `json:"parameters"`
+	RequiredRoles         []string                               `json:"requiredRoles"`
+	RestSupported         bool                                   `json:"restSupported"`
+	SortSupported         bool                                   `json:"sortSupported"`
+	TypeName              string                                 `json:"typeName"`
+	Uri                   string                                 `json:"uri"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		AodrSupported         respjson.Field
+		ClassificationMarking respjson.Field
+		Description           respjson.Field
+		HistorySupported      respjson.Field
+		Name                  respjson.Field
+		Parameters            respjson.Field
+		RequiredRoles         respjson.Field
+		RestSupported         respjson.Field
+		SortSupported         respjson.Field
+		TypeName              respjson.Field
+		Uri                   respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SolarArrayQueryhelpResponse) RawJSON() string { return r.JSON.raw }
+func (r *SolarArrayQueryhelpResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type SolarArrayQueryhelpResponseParameter struct {
+	ClassificationMarking string `json:"classificationMarking"`
+	Derived               bool   `json:"derived"`
+	Description           string `json:"description"`
+	ElemMatch             bool   `json:"elemMatch"`
+	Format                string `json:"format"`
+	HistQuerySupported    bool   `json:"histQuerySupported"`
+	HistTupleSupported    bool   `json:"histTupleSupported"`
+	Name                  string `json:"name"`
+	Required              bool   `json:"required"`
+	RestQuerySupported    bool   `json:"restQuerySupported"`
+	RestTupleSupported    bool   `json:"restTupleSupported"`
+	Type                  string `json:"type"`
+	UnitOfMeasure         string `json:"unitOfMeasure"`
+	UtcDate               bool   `json:"utcDate"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		ClassificationMarking respjson.Field
+		Derived               respjson.Field
+		Description           respjson.Field
+		ElemMatch             respjson.Field
+		Format                respjson.Field
+		HistQuerySupported    respjson.Field
+		HistTupleSupported    respjson.Field
+		Name                  respjson.Field
+		Required              respjson.Field
+		RestQuerySupported    respjson.Field
+		RestTupleSupported    respjson.Field
+		Type                  respjson.Field
+		UnitOfMeasure         respjson.Field
+		UtcDate               respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SolarArrayQueryhelpResponseParameter) RawJSON() string { return r.JSON.raw }
+func (r *SolarArrayQueryhelpResponseParameter) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // Model representation of information on on-orbit/spacecraft solar arrays. A
 // spacecraft may have multiple solar arrays and each solar array can have multiple

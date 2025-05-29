@@ -170,6 +170,7 @@ type ScsEntity struct {
 	CreatedAt             string `json:"createdAt"`
 	CreatedBy             string `json:"createdBy"`
 	Data                  string `json:"data"`
+	DeleteOn              int64  `json:"deleteOn"`
 	// Optional description for the file or folder.
 	Description string `json:"description"`
 	FileName    string `json:"fileName"`
@@ -197,6 +198,7 @@ type ScsEntity struct {
 		CreatedAt             respjson.Field
 		CreatedBy             respjson.Field
 		Data                  respjson.Field
+		DeleteOn              respjson.Field
 		Description           respjson.Field
 		FileName              respjson.Field
 		FilePath              respjson.Field
@@ -223,8 +225,11 @@ func (r *ScsEntity) UnmarshalJSON(data []byte) error {
 type ScV2UpdateParams struct {
 	// The complete path for the object to be updated.
 	Path string `query:"path,required" json:"-"`
+	// Whether or not to send a notification that the target file/folder was updated.
+	SendNotification param.Opt[bool] `query:"sendNotification,omitzero" json:"-"`
 	// Classification marking of the folder or file in IC/CAPCO portion-marked format.
 	ClassificationMarking param.Opt[string] `json:"classificationMarking,omitzero"`
+	DeleteOn              param.Opt[int64]  `json:"deleteOn,omitzero"`
 	// Optional description for the file or folder.
 	Description param.Opt[string] `json:"description,omitzero"`
 	// For folders only. Comma separated list of user and group ids that should have
@@ -309,10 +314,14 @@ type ScV2FileUploadParams struct {
 	// folders in path if necessary. Must start with '/'.
 	Path string `query:"path,required" json:"-"`
 	Body io.Reader
+	// Length of time after which to automatically delete the file.
+	DeleteAfter param.Opt[string] `query:"deleteAfter,omitzero" json:"-"`
 	// Optional description of uploaded document.
 	Description param.Opt[string] `query:"description,omitzero" json:"-"`
 	// Whether or not to overwrite a file with the same name and path, if one exists.
 	Overwrite param.Opt[bool] `query:"overwrite,omitzero" json:"-"`
+	// Whether or not to send a notification that this file was uploaded.
+	SendNotification param.Opt[bool] `query:"sendNotification,omitzero" json:"-"`
 	// Optional array of provider/source specific tags for this data, used for
 	// implementing data owner conditional access controls to restrict access to the
 	// data.
@@ -350,8 +359,11 @@ type ScV2FolderNewParams struct {
 	// Path to create. Will attempt to create all folders in the path that do not
 	// exist. Must start and end with '/'.
 	Path string `query:"path,required" json:"-"`
+	// Whether or not to send a notification that this folder was created.
+	SendNotification param.Opt[bool] `query:"sendNotification,omitzero" json:"-"`
 	// Classification marking of the folder or file in IC/CAPCO portion-marked format.
 	ClassificationMarking param.Opt[string] `json:"classificationMarking,omitzero"`
+	DeleteOn              param.Opt[int64]  `json:"deleteOn,omitzero"`
 	// Optional description for the file or folder.
 	Description param.Opt[string] `json:"description,omitzero"`
 	// For folders only. Comma separated list of user and group ids that should have

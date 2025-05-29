@@ -258,7 +258,7 @@ func TestAirfieldStatusQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.AirfieldStatus.Queryhelp(context.TODO())
+	_, err := client.AirfieldStatus.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
