@@ -63,6 +63,7 @@ func TestScFileUpdateWithOptionalParams(t *testing.T) {
 				ClassificationMarking: unifieddatalibrary.String("classificationMarking"),
 				CreatedBy:             unifieddatalibrary.String("createdBy"),
 				CreatedDate:           unifieddatalibrary.String("createdDate"),
+				DeleteOn:              unifieddatalibrary.Int(0),
 				Description:           unifieddatalibrary.String("A new Example description"),
 				DocTitle:              unifieddatalibrary.String("docTitle"),
 				DocType:               unifieddatalibrary.String("docType"),

@@ -344,7 +344,7 @@ func TestAviationRiskManagementQueryHelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.AviationRiskManagement.QueryHelp(context.TODO())
+	_, err := client.AviationRiskManagement.QueryHelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {

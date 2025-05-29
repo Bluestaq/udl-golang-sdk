@@ -30,7 +30,9 @@ func TestScV2UpdateWithOptionalParams(t *testing.T) {
 	)
 	err := client.Scs.V2.Update(context.TODO(), unifieddatalibrary.ScV2UpdateParams{
 		Path:                  "path",
+		SendNotification:      unifieddatalibrary.Bool(true),
 		ClassificationMarking: unifieddatalibrary.String("U"),
+		DeleteOn:              unifieddatalibrary.Int(0),
 		Description:           unifieddatalibrary.String("A description of the updated folder."),
 		ReadACL:               unifieddatalibrary.String("user.id1,group.id1"),
 		Tags:                  []string{"TAG1", "TAG2"},
@@ -140,8 +142,10 @@ func TestScV2FileUploadWithOptionalParams(t *testing.T) {
 		ClassificationMarking: "classificationMarking",
 		Path:                  "path",
 		Body:                  io.Reader(bytes.NewBuffer([]byte("some file contents"))),
+		DeleteAfter:           unifieddatalibrary.String("deleteAfter"),
 		Description:           unifieddatalibrary.String("description"),
 		Overwrite:             unifieddatalibrary.Bool(true),
+		SendNotification:      unifieddatalibrary.Bool(true),
 		Tags:                  unifieddatalibrary.String("tags"),
 	})
 	if err != nil {
@@ -168,7 +172,9 @@ func TestScV2FolderNewWithOptionalParams(t *testing.T) {
 	)
 	err := client.Scs.V2.FolderNew(context.TODO(), unifieddatalibrary.ScV2FolderNewParams{
 		Path:                  "path",
+		SendNotification:      unifieddatalibrary.Bool(true),
 		ClassificationMarking: unifieddatalibrary.String("U"),
+		DeleteOn:              unifieddatalibrary.Int(0),
 		Description:           unifieddatalibrary.String("My first folder"),
 		ReadACL:               unifieddatalibrary.String("user.id1,group.id1"),
 		Tags:                  []string{"TAG1", "TAG2"},

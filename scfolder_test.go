@@ -32,6 +32,7 @@ func TestScFolderNewWithOptionalParams(t *testing.T) {
 		ClassificationMarking: "classificationMarking",
 		Description:           unifieddatalibrary.String("description"),
 		Read:                  unifieddatalibrary.String("read"),
+		SendNotification:      unifieddatalibrary.Bool(true),
 		Tags:                  unifieddatalibrary.String("tags"),
 		Write:                 unifieddatalibrary.String("write"),
 	})
@@ -93,6 +94,7 @@ func TestScFolderUpdateWithOptionalParams(t *testing.T) {
 				ClassificationMarking: unifieddatalibrary.String("classificationMarking"),
 				CreatedBy:             unifieddatalibrary.String("createdBy"),
 				CreatedDate:           unifieddatalibrary.String("createdDate"),
+				DeleteOn:              unifieddatalibrary.Int(0),
 				Description:           unifieddatalibrary.String("A new Example Description"),
 				DocTitle:              unifieddatalibrary.String("docTitle"),
 				DocType:               unifieddatalibrary.String("docType"),

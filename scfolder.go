@@ -72,6 +72,8 @@ type ScFolderNewParams struct {
 	Description param.Opt[string] `query:"description,omitzero" json:"-"`
 	// Comma separated list of user ids who can read contents of the folder.
 	Read param.Opt[string] `query:"read,omitzero" json:"-"`
+	// Whether or not to send a notification that this folder was created.
+	SendNotification param.Opt[bool] `query:"sendNotification,omitzero" json:"-"`
 	// Comma separated list of tags to add to the folder.
 	Tags param.Opt[string] `query:"tags,omitzero" json:"-"`
 	// Comma separated list of user ids who can write to the folder.

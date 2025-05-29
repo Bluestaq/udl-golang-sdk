@@ -1954,7 +1954,7 @@ type CollectRequestFullStateVector struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW".
+	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
@@ -4178,6 +4178,7 @@ type FileDataAttributes struct {
 	ClassificationMarking string   `json:"classificationMarking"`
 	CreatedBy             string   `json:"createdBy"`
 	CreatedDate           string   `json:"createdDate"`
+	DeleteOn              int64    `json:"deleteOn"`
 	Description           string   `json:"description"`
 	DocTitle              string   `json:"docTitle"`
 	DocType               string   `json:"docType"`
@@ -4210,6 +4211,7 @@ type FileDataAttributes struct {
 		ClassificationMarking respjson.Field
 		CreatedBy             respjson.Field
 		CreatedDate           respjson.Field
+		DeleteOn              respjson.Field
 		Description           respjson.Field
 		DocTitle              respjson.Field
 		DocType               respjson.Field
@@ -4288,6 +4290,7 @@ type FileDataAttributesParam struct {
 	ClassificationMarking param.Opt[string]  `json:"classificationMarking,omitzero"`
 	CreatedBy             param.Opt[string]  `json:"createdBy,omitzero"`
 	CreatedDate           param.Opt[string]  `json:"createdDate,omitzero"`
+	DeleteOn              param.Opt[int64]   `json:"deleteOn,omitzero"`
 	Description           param.Opt[string]  `json:"description,omitzero"`
 	DocTitle              param.Opt[string]  `json:"docTitle,omitzero"`
 	DocType               param.Opt[string]  `json:"docType,omitzero"`
@@ -5512,10 +5515,10 @@ type OnorbitFullEntityCollection struct {
 	// Source of the data.
 	Source string `json:"source,required"`
 	// The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
-	// NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
+	// LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
 	//
-	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "NAVIGATION", "ONORBIT", "RFEMITTER",
-	// "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
+	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "LASEREMITTER", "NAVIGATION", "ONORBIT",
+	// "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
 	Type string `json:"type,required"`
 	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
 	// country code, however it can also represent various consortiums that do not

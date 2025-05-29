@@ -142,7 +142,7 @@ func TestMissileTrackNewBulk(t *testing.T) {
 				Confidence:        unifieddatalibrary.Int(100),
 				Course:            unifieddatalibrary.Float(7.3580153),
 				Cov:               []float64{1.1, 2.2, 3.3},
-				CovReferenceFrame: unifieddatalibrary.String("ECEF"),
+				CovReferenceFrame: "ECEF",
 				FlightAz:          unifieddatalibrary.Float(45.23),
 				IDSensor:          unifieddatalibrary.String("a7e99418-b6d6-29ab-e767-440a989cce26"),
 				Object:            unifieddatalibrary.String("TARGET"),
@@ -183,7 +183,7 @@ func TestMissileTrackQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.MissileTracks.Queryhelp(context.TODO())
+	_, err := client.MissileTracks.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -295,7 +295,7 @@ func TestMissileTrackUnvalidatedPublish(t *testing.T) {
 				Confidence:        unifieddatalibrary.Int(100),
 				Course:            unifieddatalibrary.Float(7.3580153),
 				Cov:               []float64{1.1, 2.2, 3.3},
-				CovReferenceFrame: unifieddatalibrary.String("ECEF"),
+				CovReferenceFrame: "ECEF",
 				FlightAz:          unifieddatalibrary.Float(45.23),
 				IDSensor:          unifieddatalibrary.String("a7e99418-b6d6-29ab-e767-440a989cce26"),
 				Object:            unifieddatalibrary.String("TARGET"),

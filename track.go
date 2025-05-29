@@ -96,11 +96,10 @@ func (r *TrackService) NewBulk(ctx context.Context, body TrackNewBulkParams, opt
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *TrackService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *TrackService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *TrackQueryhelpResponse, err error) {
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/track/queryhelp"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, nil, opts...)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
 }
 
@@ -171,6 +170,20 @@ type TrackListResponse struct {
 	// Nationality or organization of the tracking/reporting system or platform (e.g.
 	// FR, NATO, US, etc.).
 	AssetNat string `json:"assetNat"`
+	// The attitude (Yaw, Pitch, and Roll), in degrees, of the track object. When
+	// provided, the array must always contain 3 values. These values represent the
+	// vehicle's rotation about the vertical, lateral, and longitudinal axes,
+	// respectively, in a locally level, East, North, Up "right handed" coordinate
+	// system centered on the vehicle. Yaw is measured in degrees and ranges from -180
+	// to 180. Pitch is measured in degrees and ranges from -90 to 90. Roll is measured
+	// in degrees and ranges from -180 to 180.
+	Attitude []float64 `json:"attitude"`
+	// The attitude rate (Yaw Rate, Pitch Rate, and Roll Rate), in degrees per second,
+	// of the track object. When provided, the array must always contain 3 values.
+	// These values represent the rate of change of the vehicle's rotation about the
+	// vertical, lateral, and longitudinal axes, respectively, in a locally level,
+	// East, North, Up "right handed" coordinate system centered on the vehicle.
+	AttitudeRate []float64 `json:"attitudeRate"`
 	// The call sign currently assigned to this track object.
 	CallSign string `json:"callSign"`
 	// Contact information for assets reporting PPLI (Precise Participant Location and
@@ -227,6 +240,9 @@ type TrackListResponse struct {
 	// Track object velocity in ECEF [x', y', z'], meters/sec. When provided, array
 	// must always contain 3 values.
 	EcefVel []float64 `json:"ecefVel"`
+	// East, North, Up acceleration components, in meters per second squared. When
+	// provided, array must always contain 3 values.
+	ENuAcc []float64 `json:"eNUAcc"`
 	// East, North, Up position components, in meters. When provided, array must always
 	// contain 3 values.
 	ENuPos []float64 `json:"eNUPos"`
@@ -472,6 +488,8 @@ type TrackListResponse struct {
 		Alt                   respjson.Field
 		Asset                 respjson.Field
 		AssetNat              respjson.Field
+		Attitude              respjson.Field
+		AttitudeRate          respjson.Field
 		CallSign              respjson.Field
 		Cntct                 respjson.Field
 		Course                respjson.Field
@@ -481,6 +499,7 @@ type TrackListResponse struct {
 		EcefAcc               respjson.Field
 		EcefPos               respjson.Field
 		EcefVel               respjson.Field
+		ENuAcc                respjson.Field
 		ENuPos                respjson.Field
 		ENuVel                respjson.Field
 		Env                   respjson.Field
@@ -565,6 +584,84 @@ const (
 	TrackListResponseDataModeSimulated TrackListResponseDataMode = "SIMULATED"
 	TrackListResponseDataModeExercise  TrackListResponseDataMode = "EXERCISE"
 )
+
+type TrackQueryhelpResponse struct {
+	AodrSupported         bool                              `json:"aodrSupported"`
+	ClassificationMarking string                            `json:"classificationMarking"`
+	Description           string                            `json:"description"`
+	HistorySupported      bool                              `json:"historySupported"`
+	Name                  string                            `json:"name"`
+	Parameters            []TrackQueryhelpResponseParameter `json:"parameters"`
+	RequiredRoles         []string                          `json:"requiredRoles"`
+	RestSupported         bool                              `json:"restSupported"`
+	SortSupported         bool                              `json:"sortSupported"`
+	TypeName              string                            `json:"typeName"`
+	Uri                   string                            `json:"uri"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		AodrSupported         respjson.Field
+		ClassificationMarking respjson.Field
+		Description           respjson.Field
+		HistorySupported      respjson.Field
+		Name                  respjson.Field
+		Parameters            respjson.Field
+		RequiredRoles         respjson.Field
+		RestSupported         respjson.Field
+		SortSupported         respjson.Field
+		TypeName              respjson.Field
+		Uri                   respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r TrackQueryhelpResponse) RawJSON() string { return r.JSON.raw }
+func (r *TrackQueryhelpResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type TrackQueryhelpResponseParameter struct {
+	ClassificationMarking string `json:"classificationMarking"`
+	Derived               bool   `json:"derived"`
+	Description           string `json:"description"`
+	ElemMatch             bool   `json:"elemMatch"`
+	Format                string `json:"format"`
+	HistQuerySupported    bool   `json:"histQuerySupported"`
+	HistTupleSupported    bool   `json:"histTupleSupported"`
+	Name                  string `json:"name"`
+	Required              bool   `json:"required"`
+	RestQuerySupported    bool   `json:"restQuerySupported"`
+	RestTupleSupported    bool   `json:"restTupleSupported"`
+	Type                  string `json:"type"`
+	UnitOfMeasure         string `json:"unitOfMeasure"`
+	UtcDate               bool   `json:"utcDate"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		ClassificationMarking respjson.Field
+		Derived               respjson.Field
+		Description           respjson.Field
+		ElemMatch             respjson.Field
+		Format                respjson.Field
+		HistQuerySupported    respjson.Field
+		HistTupleSupported    respjson.Field
+		Name                  respjson.Field
+		Required              respjson.Field
+		RestQuerySupported    respjson.Field
+		RestTupleSupported    respjson.Field
+		Type                  respjson.Field
+		UnitOfMeasure         respjson.Field
+		UtcDate               respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r TrackQueryhelpResponseParameter) RawJSON() string { return r.JSON.raw }
+func (r *TrackQueryhelpResponseParameter) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 type TrackListParams struct {
 	// Track timestamp in ISO8601 UTC format with microsecond precision.
@@ -859,6 +956,20 @@ type TrackNewBulkParamsBody struct {
 	TrkQual param.Opt[int64] `json:"trkQual,omitzero"`
 	// Status of the track (e.g., INITIATING, MAINTAINING, DROPPING, TERMINATED, etc.).
 	TrkStat param.Opt[string] `json:"trkStat,omitzero"`
+	// The attitude (Yaw, Pitch, and Roll), in degrees, of the track object. When
+	// provided, the array must always contain 3 values. These values represent the
+	// vehicle's rotation about the vertical, lateral, and longitudinal axes,
+	// respectively, in a locally level, East, North, Up "right handed" coordinate
+	// system centered on the vehicle. Yaw is measured in degrees and ranges from -180
+	// to 180. Pitch is measured in degrees and ranges from -90 to 90. Roll is measured
+	// in degrees and ranges from -180 to 180.
+	Attitude []float64 `json:"attitude,omitzero"`
+	// The attitude rate (Yaw Rate, Pitch Rate, and Roll Rate), in degrees per second,
+	// of the track object. When provided, the array must always contain 3 values.
+	// These values represent the rate of change of the vehicle's rotation about the
+	// vertical, lateral, and longitudinal axes, respectively, in a locally level,
+	// East, North, Up "right handed" coordinate system centered on the vehicle.
+	AttitudeRate []float64 `json:"attitudeRate,omitzero"`
 	// Covariance matrix, in meter and second based units, for the defined cartesian
 	// system.
 	//
@@ -901,6 +1012,9 @@ type TrackNewBulkParamsBody struct {
 	// Track object velocity in ECEF [x', y', z'], meters/sec. When provided, array
 	// must always contain 3 values.
 	EcefVel []float64 `json:"ecefVel,omitzero"`
+	// East, North, Up acceleration components, in meters per second squared. When
+	// provided, array must always contain 3 values.
+	ENuAcc []float64 `json:"eNUAcc,omitzero"`
 	// East, North, Up position components, in meters. When provided, array must always
 	// contain 3 values.
 	ENuPos []float64 `json:"eNUPos,omitzero"`
@@ -1243,6 +1357,20 @@ type TrackUnvalidatedPublishParamsBody struct {
 	TrkQual param.Opt[int64] `json:"trkQual,omitzero"`
 	// Status of the track (e.g., INITIATING, MAINTAINING, DROPPING, TERMINATED, etc.).
 	TrkStat param.Opt[string] `json:"trkStat,omitzero"`
+	// The attitude (Yaw, Pitch, and Roll), in degrees, of the track object. When
+	// provided, the array must always contain 3 values. These values represent the
+	// vehicle's rotation about the vertical, lateral, and longitudinal axes,
+	// respectively, in a locally level, East, North, Up "right handed" coordinate
+	// system centered on the vehicle. Yaw is measured in degrees and ranges from -180
+	// to 180. Pitch is measured in degrees and ranges from -90 to 90. Roll is measured
+	// in degrees and ranges from -180 to 180.
+	Attitude []float64 `json:"attitude,omitzero"`
+	// The attitude rate (Yaw Rate, Pitch Rate, and Roll Rate), in degrees per second,
+	// of the track object. When provided, the array must always contain 3 values.
+	// These values represent the rate of change of the vehicle's rotation about the
+	// vertical, lateral, and longitudinal axes, respectively, in a locally level,
+	// East, North, Up "right handed" coordinate system centered on the vehicle.
+	AttitudeRate []float64 `json:"attitudeRate,omitzero"`
 	// Covariance matrix, in meter and second based units, for the defined cartesian
 	// system.
 	//
@@ -1285,6 +1413,9 @@ type TrackUnvalidatedPublishParamsBody struct {
 	// Track object velocity in ECEF [x', y', z'], meters/sec. When provided, array
 	// must always contain 3 values.
 	EcefVel []float64 `json:"ecefVel,omitzero"`
+	// East, North, Up acceleration components, in meters per second squared. When
+	// provided, array must always contain 3 values.
+	ENuAcc []float64 `json:"eNUAcc,omitzero"`
 	// East, North, Up position components, in meters. When provided, array must always
 	// contain 3 values.
 	ENuPos []float64 `json:"eNUPos,omitzero"`

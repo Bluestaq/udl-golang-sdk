@@ -96,11 +96,10 @@ func (r *MissileTrackService) NewBulk(ctx context.Context, body MissileTrackNewB
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *MissileTrackService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *MissileTrackService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *MissileTrackQueryhelpResponse, err error) {
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/missiletrack/queryhelp"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, nil, opts...)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
 }
 
@@ -672,8 +671,10 @@ type MissileTrackListResponseVector struct {
 	// The cov array should contain only the upper right triangle values from top left
 	// down to bottom right, in order.
 	Cov []float64 `json:"cov"`
-	// The reference frame of the covariance elements (ECEF, J2000, UVW). If the
-	// referenceFrame is null it is assumed to be UVW.
+	// The reference frame of the covariance elements (ECEF, J2000, UVW, EFG/TDR, TEME,
+	// GCRF). If the referenceFrame is null it is assumed to be UVW.
+	//
+	// Any of "ECEF", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame"`
 	// The flight azimuth associated with the current state vector (0-360 degrees).
 	FlightAz float64 `json:"flightAz"`
@@ -747,6 +748,84 @@ type MissileTrackListResponseVector struct {
 // Returns the unmodified JSON received from the API
 func (r MissileTrackListResponseVector) RawJSON() string { return r.JSON.raw }
 func (r *MissileTrackListResponseVector) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type MissileTrackQueryhelpResponse struct {
+	AodrSupported         bool                                     `json:"aodrSupported"`
+	ClassificationMarking string                                   `json:"classificationMarking"`
+	Description           string                                   `json:"description"`
+	HistorySupported      bool                                     `json:"historySupported"`
+	Name                  string                                   `json:"name"`
+	Parameters            []MissileTrackQueryhelpResponseParameter `json:"parameters"`
+	RequiredRoles         []string                                 `json:"requiredRoles"`
+	RestSupported         bool                                     `json:"restSupported"`
+	SortSupported         bool                                     `json:"sortSupported"`
+	TypeName              string                                   `json:"typeName"`
+	Uri                   string                                   `json:"uri"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		AodrSupported         respjson.Field
+		ClassificationMarking respjson.Field
+		Description           respjson.Field
+		HistorySupported      respjson.Field
+		Name                  respjson.Field
+		Parameters            respjson.Field
+		RequiredRoles         respjson.Field
+		RestSupported         respjson.Field
+		SortSupported         respjson.Field
+		TypeName              respjson.Field
+		Uri                   respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r MissileTrackQueryhelpResponse) RawJSON() string { return r.JSON.raw }
+func (r *MissileTrackQueryhelpResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type MissileTrackQueryhelpResponseParameter struct {
+	ClassificationMarking string `json:"classificationMarking"`
+	Derived               bool   `json:"derived"`
+	Description           string `json:"description"`
+	ElemMatch             bool   `json:"elemMatch"`
+	Format                string `json:"format"`
+	HistQuerySupported    bool   `json:"histQuerySupported"`
+	HistTupleSupported    bool   `json:"histTupleSupported"`
+	Name                  string `json:"name"`
+	Required              bool   `json:"required"`
+	RestQuerySupported    bool   `json:"restQuerySupported"`
+	RestTupleSupported    bool   `json:"restTupleSupported"`
+	Type                  string `json:"type"`
+	UnitOfMeasure         string `json:"unitOfMeasure"`
+	UtcDate               bool   `json:"utcDate"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		ClassificationMarking respjson.Field
+		Derived               respjson.Field
+		Description           respjson.Field
+		ElemMatch             respjson.Field
+		Format                respjson.Field
+		HistQuerySupported    respjson.Field
+		HistTupleSupported    respjson.Field
+		Name                  respjson.Field
+		Required              respjson.Field
+		RestQuerySupported    respjson.Field
+		RestTupleSupported    respjson.Field
+		Type                  respjson.Field
+		UnitOfMeasure         respjson.Field
+		UtcDate               respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r MissileTrackQueryhelpResponseParameter) RawJSON() string { return r.JSON.raw }
+func (r *MissileTrackQueryhelpResponseParameter) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -1291,8 +1370,10 @@ type MissileTrackTupleResponseVector struct {
 	// The cov array should contain only the upper right triangle values from top left
 	// down to bottom right, in order.
 	Cov []float64 `json:"cov"`
-	// The reference frame of the covariance elements (ECEF, J2000, UVW). If the
-	// referenceFrame is null it is assumed to be UVW.
+	// The reference frame of the covariance elements (ECEF, J2000, UVW, EFG/TDR, TEME,
+	// GCRF). If the referenceFrame is null it is assumed to be UVW.
+	//
+	// Any of "ECEF", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame"`
 	// The flight azimuth associated with the current state vector (0-360 degrees).
 	FlightAz float64 `json:"flightAz"`
@@ -1791,9 +1872,6 @@ type MissileTrackNewBulkParamsBodyVector struct {
 	Confidence param.Opt[int64] `json:"confidence,omitzero"`
 	// Track object course, in degrees clockwise from true north.
 	Course param.Opt[float64] `json:"course,omitzero"`
-	// The reference frame of the covariance elements (ECEF, J2000, UVW). If the
-	// referenceFrame is null it is assumed to be UVW.
-	CovReferenceFrame param.Opt[string] `json:"covReferenceFrame,omitzero"`
 	// The flight azimuth associated with the current state vector (0-360 degrees).
 	FlightAz param.Opt[float64] `json:"flightAz,omitzero"`
 	// Unique identifier of the reporting sensor of the object.
@@ -1861,6 +1939,11 @@ type MissileTrackNewBulkParamsBodyVector struct {
 	// The cov array should contain only the upper right triangle values from top left
 	// down to bottom right, in order.
 	Cov []float64 `json:"cov,omitzero"`
+	// The reference frame of the covariance elements (ECEF, J2000, UVW, EFG/TDR, TEME,
+	// GCRF). If the referenceFrame is null it is assumed to be UVW.
+	//
+	// Any of "ECEF", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// Three element array, expressing the cartesian position vector of the target
 	// object, in kilometers, in the specified referenceFrame. If referenceFrame is
 	// null then ECEF should be assumed. The array element order is [x, y, z].
@@ -1882,6 +1965,12 @@ func (r MissileTrackNewBulkParamsBodyVector) MarshalJSON() (data []byte, err err
 }
 func (r *MissileTrackNewBulkParamsBodyVector) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
+}
+
+func init() {
+	apijson.RegisterFieldValidator[MissileTrackNewBulkParamsBodyVector](
+		"covReferenceFrame", "ECEF", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF",
+	)
 }
 
 type MissileTrackTupleParams struct {
@@ -2294,9 +2383,6 @@ type MissileTrackUnvalidatedPublishParamsBodyVector struct {
 	Confidence param.Opt[int64] `json:"confidence,omitzero"`
 	// Track object course, in degrees clockwise from true north.
 	Course param.Opt[float64] `json:"course,omitzero"`
-	// The reference frame of the covariance elements (ECEF, J2000, UVW). If the
-	// referenceFrame is null it is assumed to be UVW.
-	CovReferenceFrame param.Opt[string] `json:"covReferenceFrame,omitzero"`
 	// The flight azimuth associated with the current state vector (0-360 degrees).
 	FlightAz param.Opt[float64] `json:"flightAz,omitzero"`
 	// Unique identifier of the reporting sensor of the object.
@@ -2364,6 +2450,11 @@ type MissileTrackUnvalidatedPublishParamsBodyVector struct {
 	// The cov array should contain only the upper right triangle values from top left
 	// down to bottom right, in order.
 	Cov []float64 `json:"cov,omitzero"`
+	// The reference frame of the covariance elements (ECEF, J2000, UVW, EFG/TDR, TEME,
+	// GCRF). If the referenceFrame is null it is assumed to be UVW.
+	//
+	// Any of "ECEF", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// Three element array, expressing the cartesian position vector of the target
 	// object, in kilometers, in the specified referenceFrame. If referenceFrame is
 	// null then ECEF should be assumed. The array element order is [x, y, z].
@@ -2385,4 +2476,10 @@ func (r MissileTrackUnvalidatedPublishParamsBodyVector) MarshalJSON() (data []by
 }
 func (r *MissileTrackUnvalidatedPublishParamsBodyVector) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
+}
+
+func init() {
+	apijson.RegisterFieldValidator[MissileTrackUnvalidatedPublishParamsBodyVector](
+		"covReferenceFrame", "ECEF", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF",
+	)
 }

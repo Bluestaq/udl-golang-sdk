@@ -231,8 +231,10 @@ func TestScFileUploadWithOptionalParams(t *testing.T) {
 		FileName:              "fileName",
 		Path:                  "path",
 		Body:                  io.Reader(bytes.NewBuffer([]byte("some file contents"))),
+		DeleteAfter:           unifieddatalibrary.String("deleteAfter"),
 		Description:           unifieddatalibrary.String("description"),
 		Overwrite:             unifieddatalibrary.Bool(true),
+		SendNotification:      unifieddatalibrary.Bool(true),
 		Tags:                  unifieddatalibrary.String("tags"),
 	})
 	if err != nil {

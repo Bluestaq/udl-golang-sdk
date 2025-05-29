@@ -96,11 +96,10 @@ func (r *ObservationMonoradarService) NewBulk(ctx context.Context, body Observat
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *ObservationMonoradarService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (err error) {
+func (r *ObservationMonoradarService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *ObservationMonoradarQueryhelpResponse, err error) {
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/monoradar/queryhelp"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, nil, opts...)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
 }
 
@@ -427,6 +426,84 @@ const (
 	ObservationMonoradarListResponseDataModeSimulated ObservationMonoradarListResponseDataMode = "SIMULATED"
 	ObservationMonoradarListResponseDataModeExercise  ObservationMonoradarListResponseDataMode = "EXERCISE"
 )
+
+type ObservationMonoradarQueryhelpResponse struct {
+	AodrSupported         bool                                             `json:"aodrSupported"`
+	ClassificationMarking string                                           `json:"classificationMarking"`
+	Description           string                                           `json:"description"`
+	HistorySupported      bool                                             `json:"historySupported"`
+	Name                  string                                           `json:"name"`
+	Parameters            []ObservationMonoradarQueryhelpResponseParameter `json:"parameters"`
+	RequiredRoles         []string                                         `json:"requiredRoles"`
+	RestSupported         bool                                             `json:"restSupported"`
+	SortSupported         bool                                             `json:"sortSupported"`
+	TypeName              string                                           `json:"typeName"`
+	Uri                   string                                           `json:"uri"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		AodrSupported         respjson.Field
+		ClassificationMarking respjson.Field
+		Description           respjson.Field
+		HistorySupported      respjson.Field
+		Name                  respjson.Field
+		Parameters            respjson.Field
+		RequiredRoles         respjson.Field
+		RestSupported         respjson.Field
+		SortSupported         respjson.Field
+		TypeName              respjson.Field
+		Uri                   respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r ObservationMonoradarQueryhelpResponse) RawJSON() string { return r.JSON.raw }
+func (r *ObservationMonoradarQueryhelpResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type ObservationMonoradarQueryhelpResponseParameter struct {
+	ClassificationMarking string `json:"classificationMarking"`
+	Derived               bool   `json:"derived"`
+	Description           string `json:"description"`
+	ElemMatch             bool   `json:"elemMatch"`
+	Format                string `json:"format"`
+	HistQuerySupported    bool   `json:"histQuerySupported"`
+	HistTupleSupported    bool   `json:"histTupleSupported"`
+	Name                  string `json:"name"`
+	Required              bool   `json:"required"`
+	RestQuerySupported    bool   `json:"restQuerySupported"`
+	RestTupleSupported    bool   `json:"restTupleSupported"`
+	Type                  string `json:"type"`
+	UnitOfMeasure         string `json:"unitOfMeasure"`
+	UtcDate               bool   `json:"utcDate"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		ClassificationMarking respjson.Field
+		Derived               respjson.Field
+		Description           respjson.Field
+		ElemMatch             respjson.Field
+		Format                respjson.Field
+		HistQuerySupported    respjson.Field
+		HistTupleSupported    respjson.Field
+		Name                  respjson.Field
+		Required              respjson.Field
+		RestQuerySupported    respjson.Field
+		RestTupleSupported    respjson.Field
+		Type                  respjson.Field
+		UnitOfMeasure         respjson.Field
+		UtcDate               respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r ObservationMonoradarQueryhelpResponseParameter) RawJSON() string { return r.JSON.raw }
+func (r *ObservationMonoradarQueryhelpResponseParameter) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
 
 // A monoradar record contains the raw, and in some cases, processed target reports
 // from primary and secondary air surveillance radars. All target positions for

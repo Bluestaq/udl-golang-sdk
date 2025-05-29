@@ -613,8 +613,10 @@ type MissileTrackHistoryQueryResponseVector struct {
 	// The cov array should contain only the upper right triangle values from top left
 	// down to bottom right, in order.
 	Cov []float64 `json:"cov"`
-	// The reference frame of the covariance elements (ECEF, J2000, UVW). If the
-	// referenceFrame is null it is assumed to be UVW.
+	// The reference frame of the covariance elements (ECEF, J2000, UVW, EFG/TDR, TEME,
+	// GCRF). If the referenceFrame is null it is assumed to be UVW.
+	//
+	// Any of "ECEF", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame"`
 	// The flight azimuth associated with the current state vector (0-360 degrees).
 	FlightAz float64 `json:"flightAz"`

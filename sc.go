@@ -228,10 +228,14 @@ type ScFileUploadParams struct {
 	// The base path to upload file (ex. images)
 	Path string `query:"path,required" json:"-"`
 	Body io.Reader
+	// Length of time after which to automatically delete the file.
+	DeleteAfter param.Opt[string] `query:"deleteAfter,omitzero" json:"-"`
 	// Description
 	Description param.Opt[string] `query:"description,omitzero" json:"-"`
 	// Whether or not to overwrite a file with the same name and path, if one exists.
 	Overwrite param.Opt[bool] `query:"overwrite,omitzero" json:"-"`
+	// Whether or not to send a notification that this file was uploaded.
+	SendNotification param.Opt[bool] `query:"sendNotification,omitzero" json:"-"`
 	// Tags
 	Tags param.Opt[string] `query:"tags,omitzero" json:"-"`
 	paramObj

@@ -178,10 +178,10 @@ type DiplomaticclearanceAbridgedDiplomaticClearanceDetail struct {
 	// The type of action the aircraft can take with this diplomatic clearance (e.g. O
 	// for Overfly, L for Land, etc.).
 	Action string `json:"action"`
-	// Specifies an alternate country code if the data provider code is not part of an
-	// official Country Code standard such as ISO-3166 or FIPS. This field will be set
-	// to the value provided by the source and should be used for all Queries
-	// specifying a Country Code.
+	// Specifies an alternate country code if the data provider code does not match a
+	// UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+	// provided by the source and should be used for all Queries specifying a Country
+	// Code.
 	AltCountryCode string `json:"altCountryCode"`
 	// Identifier of this diplomatic clearance issued by the host country.
 	ClearanceID string `json:"clearanceId"`
@@ -438,10 +438,10 @@ type DiplomaticclearanceFullDiplomaticClearanceDetail struct {
 	// The type of action the aircraft can take with this diplomatic clearance (e.g. O
 	// for Overfly, L for Land, etc.).
 	Action string `json:"action"`
-	// Specifies an alternate country code if the data provider code is not part of an
-	// official Country Code standard such as ISO-3166 or FIPS. This field will be set
-	// to the value provided by the source and should be used for all Queries
-	// specifying a Country Code.
+	// Specifies an alternate country code if the data provider code does not match a
+	// UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+	// provided by the source and should be used for all Queries specifying a Country
+	// Code.
 	AltCountryCode string `json:"altCountryCode"`
 	// Identifier of this diplomatic clearance issued by the host country.
 	ClearanceID string `json:"clearanceId"`
@@ -675,10 +675,10 @@ type AirOperationDiplomaticClearanceUnvalidatedPublishParamsBodyDiplomaticCleara
 	// The type of action the aircraft can take with this diplomatic clearance (e.g. O
 	// for Overfly, L for Land, etc.).
 	Action param.Opt[string] `json:"action,omitzero"`
-	// Specifies an alternate country code if the data provider code is not part of an
-	// official Country Code standard such as ISO-3166 or FIPS. This field will be set
-	// to the value provided by the source and should be used for all Queries
-	// specifying a Country Code.
+	// Specifies an alternate country code if the data provider code does not match a
+	// UDL Country code value (ISO-3166-ALPHA-2). This field will be set to the value
+	// provided by the source and should be used for all Queries specifying a Country
+	// Code.
 	AltCountryCode param.Opt[string] `json:"altCountryCode,omitzero"`
 	// Identifier of this diplomatic clearance issued by the host country.
 	ClearanceID param.Opt[string] `json:"clearanceId,omitzero"`

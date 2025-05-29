@@ -271,7 +271,7 @@ func TestAirLoadPlanQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.AirLoadPlans.Queryhelp(context.TODO())
+	_, err := client.AirLoadPlans.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
