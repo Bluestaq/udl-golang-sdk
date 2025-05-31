@@ -54,7 +54,7 @@ func (r AIsObjectUnvalidatedPublishParams) MarshalJSON() (data []byte, err error
 	return json.Marshal(r.Body)
 }
 func (r *AIsObjectUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Self-reported information obtained from Automatic Identification System (AIS)

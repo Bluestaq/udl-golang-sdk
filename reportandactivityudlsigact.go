@@ -87,7 +87,7 @@ func (r ReportAndActivityUdlSigactUnvalidatedPublishParams) MarshalJSON() (data 
 	return json.Marshal(r.Body)
 }
 func (r *ReportAndActivityUdlSigactUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Provides information on the dates, actors, locations, fatalities, and types of

@@ -656,7 +656,7 @@ func (r EventEvolutionNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *EventEvolutionNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Event Evolution is a unique service supporting the association of UDL records of
@@ -849,7 +849,7 @@ func (r EventEvolutionUnvalidatedPublishParams) MarshalJSON() (data []byte, err 
 	return json.Marshal(r.Body)
 }
 func (r *EventEvolutionUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Event Evolution is a unique service supporting the association of UDL records of

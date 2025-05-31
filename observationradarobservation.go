@@ -1551,7 +1551,7 @@ func (r ObservationRadarobservationNewBulkParams) MarshalJSON() (data []byte, er
 	return json.Marshal(r.Body)
 }
 func (r *ObservationRadarobservationNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Model representation of observation data for radar based sensor phenomenologies.
@@ -1847,7 +1847,7 @@ func (r ObservationRadarobservationUnvalidatedPublishParams) MarshalJSON() (data
 	return json.Marshal(r.Body)
 }
 func (r *ObservationRadarobservationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Model representation of observation data for radar based sensor phenomenologies.

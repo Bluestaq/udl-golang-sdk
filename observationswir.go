@@ -54,7 +54,7 @@ func (r ObservationSwirUnvalidatedPublishParams) MarshalJSON() (data []byte, err
 	return json.Marshal(r.Body)
 }
 func (r *ObservationSwirUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Data representing observed short wave infrared (SWIR) measurements.

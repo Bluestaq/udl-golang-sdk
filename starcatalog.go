@@ -1344,7 +1344,7 @@ func (r StarCatalogNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *StarCatalogNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // The star catalog provides the position, proper motion, parallax, and photometric
@@ -1557,7 +1557,7 @@ func (r StarCatalogUnvalidatedPublishParams) MarshalJSON() (data []byte, err err
 	return json.Marshal(r.Body)
 }
 func (r *StarCatalogUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // The star catalog provides the position, proper motion, parallax, and photometric

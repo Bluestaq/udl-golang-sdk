@@ -1099,7 +1099,7 @@ func (r VesselNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *VesselNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // This service provides operations for manipulation and querying of maritime

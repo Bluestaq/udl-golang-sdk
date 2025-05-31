@@ -1242,7 +1242,7 @@ func (r TrackDetailNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *TrackDetailNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // These services provide operations for querying of all available track details

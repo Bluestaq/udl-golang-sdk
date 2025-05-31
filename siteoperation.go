@@ -2175,7 +2175,7 @@ func (r SiteOperationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *SiteOperationNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Site operating details concerning the hours of operation, operational
@@ -2526,7 +2526,7 @@ func (r SiteOperationUnvalidatedPublishParams) MarshalJSON() (data []byte, err e
 	return json.Marshal(r.Body)
 }
 func (r *SiteOperationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Site operating details concerning the hours of operation, operational

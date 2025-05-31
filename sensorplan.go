@@ -5379,7 +5379,7 @@ func (r SensorPlanUnvalidatedPublishParams) MarshalJSON() (data []byte, err erro
 	return json.Marshal(r.Body)
 }
 func (r *SensorPlanUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // A Plan is used to aggregate two or more of the same type of record to a parent

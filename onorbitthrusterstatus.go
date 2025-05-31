@@ -534,7 +534,7 @@ func (r OnorbitthrusterstatusNewBulkParams) MarshalJSON() (data []byte, err erro
 	return json.Marshal(r.Body)
 }
 func (r *OnorbitthrusterstatusNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Status information for OnorbitThruster objects.

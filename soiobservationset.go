@@ -1289,7 +1289,7 @@ func (r SoiObservationSetNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *SoiObservationSetNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // These services provide operations for posting space object idenfification
@@ -1889,7 +1889,7 @@ func (r SoiObservationSetUnvalidatedPublishParams) MarshalJSON() (data []byte, e
 	return json.Marshal(r.Body)
 }
 func (r *SoiObservationSetUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // These services provide operations for posting space object idenfification

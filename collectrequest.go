@@ -2449,7 +2449,7 @@ func (r CollectRequestNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *CollectRequestNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Collect Requests support several types of individual requests, or
@@ -3478,7 +3478,7 @@ func (r CollectRequestUnvalidatedPublishParams) MarshalJSON() (data []byte, err 
 	return json.Marshal(r.Body)
 }
 func (r *CollectRequestUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Collect Requests support several types of individual requests, or

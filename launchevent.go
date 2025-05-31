@@ -727,7 +727,7 @@ func (r LaunchEventNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *LaunchEventNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Information on known launch events.
@@ -858,7 +858,7 @@ func (r LaunchEventUnvalidatedPublishParams) MarshalJSON() (data []byte, err err
 	return json.Marshal(r.Body)
 }
 func (r *LaunchEventUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Information on known launch events.

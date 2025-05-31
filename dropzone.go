@@ -1107,7 +1107,7 @@ func (r DropzoneNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *DropzoneNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Properties and characteristics of a Drop Zone, including name, location, shape,
@@ -1284,7 +1284,7 @@ func (r DropzoneUnvalidatedPublishParams) MarshalJSON() (data []byte, err error)
 	return json.Marshal(r.Body)
 }
 func (r *DropzoneUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Properties and characteristics of a Drop Zone, including name, location, shape,

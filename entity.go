@@ -2591,7 +2591,7 @@ func (r EntityNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.EntityIngest)
 }
 func (r *EntityNewParams) UnmarshalJSON(data []byte) error {
-	return r.EntityIngest.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.EntityIngest)
 }
 
 type EntityGetParams struct {
@@ -2620,7 +2620,7 @@ func (r EntityUpdateParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.EntityIngest)
 }
 func (r *EntityUpdateParams) UnmarshalJSON(data []byte) error {
-	return r.EntityIngest.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.EntityIngest)
 }
 
 type EntityListParams struct {

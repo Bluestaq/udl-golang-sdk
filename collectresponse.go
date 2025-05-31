@@ -632,7 +632,7 @@ func (r CollectResponseNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *CollectResponseNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Collect response supports the response and status of individual collect
@@ -801,7 +801,7 @@ func (r CollectResponseUnvalidatedPublishParams) MarshalJSON() (data []byte, err
 	return json.Marshal(r.Body)
 }
 func (r *CollectResponseUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Collect response supports the response and status of individual collect

@@ -1093,7 +1093,7 @@ func (r ElsetNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.ElsetIngest)
 }
 func (r *ElsetNewParams) UnmarshalJSON(data []byte) error {
-	return r.ElsetIngest.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.ElsetIngest)
 }
 
 type ElsetGetParams struct {
@@ -1156,7 +1156,7 @@ func (r ElsetNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *ElsetNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // URLQuery serializes [ElsetNewBulkParams]'s query parameters as `url.Values`.
@@ -1197,7 +1197,7 @@ func (r ElsetNewBulkFromTleParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *ElsetNewBulkFromTleParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // URLQuery serializes [ElsetNewBulkFromTleParams]'s query parameters as
@@ -1240,5 +1240,5 @@ func (r ElsetUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *ElsetUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }

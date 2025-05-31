@@ -1177,7 +1177,7 @@ func (r SensorMaintenanceNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *SensorMaintenanceNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // URLQuery serializes [SensorMaintenanceNewBulkParams]'s query parameters as

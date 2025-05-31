@@ -533,7 +533,7 @@ func (r GnssObservationsetNewBulkParams) MarshalJSON() (data []byte, err error) 
 	return json.Marshal(r.Body)
 }
 func (r *GnssObservationsetNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Set of GNSSObservation data.
@@ -785,7 +785,7 @@ func (r GnssObservationsetUnvalidatedPublishParams) MarshalJSON() (data []byte, 
 	return json.Marshal(r.Body)
 }
 func (r *GnssObservationsetUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Set of GNSSObservation data.

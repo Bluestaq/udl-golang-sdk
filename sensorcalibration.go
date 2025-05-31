@@ -1259,7 +1259,7 @@ func (r SensorCalibrationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *SensorCalibrationNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // The Sensor Calibration service records data about a sensor's overall accuracy
@@ -1507,7 +1507,7 @@ func (r SensorCalibrationUnvalidatedPublishParams) MarshalJSON() (data []byte, e
 	return json.Marshal(r.Body)
 }
 func (r *SensorCalibrationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // The Sensor Calibration service records data about a sensor's overall accuracy

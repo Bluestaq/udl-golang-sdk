@@ -1174,7 +1174,7 @@ func (r AirOperationAircraftSortieNewBulkParams) MarshalJSON() (data []byte, err
 	return json.Marshal(r.Body)
 }
 func (r *AirOperationAircraftSortieNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Information related to the planning, load, status, and deployment or dispatch of

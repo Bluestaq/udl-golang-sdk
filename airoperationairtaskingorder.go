@@ -1393,7 +1393,7 @@ func (r AirOperationAirTaskingOrderUnvalidatedPublishParams) MarshalJSON() (data
 	return json.Marshal(r.Body)
 }
 func (r *AirOperationAirTaskingOrderUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Beta Version Air Tasking Order: The ATO is used to task air missions, assign

@@ -741,7 +741,7 @@ func (r SurfaceObstructionUnvalidatedPublishParams) MarshalJSON() (data []byte, 
 	return json.Marshal(r.Body)
 }
 func (r *SurfaceObstructionUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // The properties ClassificationMarking, DataMode, IDSurface, Source are required.

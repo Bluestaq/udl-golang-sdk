@@ -525,7 +525,7 @@ func (r GeoStatusNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *GeoStatusNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Information for the specified on-orbit GEO spacecraft, including status,

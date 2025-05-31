@@ -1446,7 +1446,7 @@ func (r ObservationEoObservationNewBulkParams) MarshalJSON() (data []byte, err e
 	return json.Marshal(r.Body)
 }
 func (r *ObservationEoObservationNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // URLQuery serializes [ObservationEoObservationNewBulkParams]'s query parameters
@@ -2147,7 +2147,7 @@ func (r ObservationEoObservationUnvalidatedPublishParams) MarshalJSON() (data []
 	return json.Marshal(r.Body)
 }
 func (r *ObservationEoObservationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Model representation of observation data for electro-optical based sensor

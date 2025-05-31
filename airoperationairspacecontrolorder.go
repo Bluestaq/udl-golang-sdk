@@ -54,7 +54,7 @@ func (r AirOperationAirspaceControlOrderUnvalidatedPublishParams) MarshalJSON() 
 	return json.Marshal(r.Body)
 }
 func (r *AirOperationAirspaceControlOrderUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Beta Version Airspace Control Order: Contains airspace coordination information

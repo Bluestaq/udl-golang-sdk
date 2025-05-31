@@ -1308,7 +1308,7 @@ func (r EffectResponseNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *EffectResponseNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // A response for various effects on a target.
@@ -1539,7 +1539,7 @@ func (r EffectResponseUnvalidatedPublishParams) MarshalJSON() (data []byte, err 
 	return json.Marshal(r.Body)
 }
 func (r *EffectResponseUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // A response for various effects on a target.

@@ -1869,7 +1869,7 @@ func (r NavigationalObstructionNewBulkParams) MarshalJSON() (data []byte, err er
 	return json.Marshal(r.Body)
 }
 func (r *NavigationalObstructionNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Beta Version Navigational Obstruction: Information describing navigational

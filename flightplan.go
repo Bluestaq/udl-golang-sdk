@@ -2342,7 +2342,7 @@ func (r FlightplanUnvalidatedPublishParams) MarshalJSON() (data []byte, err erro
 	return json.Marshal(r.Body)
 }
 func (r *FlightplanUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Flight Plan contains data specifying the details of an intended flight including

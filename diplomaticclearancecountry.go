@@ -2552,7 +2552,7 @@ func (r DiplomaticClearanceCountryNewBulkParams) MarshalJSON() (data []byte, err
 	return json.Marshal(r.Body)
 }
 func (r *DiplomaticClearanceCountryNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Diplomatic Clearance Country provides information such as entry/exit points,
@@ -2952,7 +2952,7 @@ func (r DiplomaticClearanceCountryUnvalidatedPublishParams) MarshalJSON() (data 
 	return json.Marshal(r.Body)
 }
 func (r *DiplomaticClearanceCountryUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Diplomatic Clearance Country provides information such as entry/exit points,

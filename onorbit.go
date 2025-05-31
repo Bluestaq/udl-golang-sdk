@@ -1259,7 +1259,7 @@ func (r OnorbitNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.OnorbitIngest)
 }
 func (r *OnorbitNewParams) UnmarshalJSON(data []byte) error {
-	return r.OnorbitIngest.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.OnorbitIngest)
 }
 
 type OnorbitUpdateParams struct {
@@ -1272,7 +1272,7 @@ func (r OnorbitUpdateParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.OnorbitIngest)
 }
 func (r *OnorbitUpdateParams) UnmarshalJSON(data []byte) error {
-	return r.OnorbitIngest.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.OnorbitIngest)
 }
 
 type OnorbitListParams struct {
