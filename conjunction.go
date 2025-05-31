@@ -4309,7 +4309,7 @@ func (r ConjunctionNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *ConjunctionNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Stores the results of a particular Conjunction Assessment (CA) run.
@@ -5525,7 +5525,7 @@ func (r ConjunctionUnvalidatedPublishParams) MarshalJSON() (data []byte, err err
 	return json.Marshal(r.Body)
 }
 func (r *ConjunctionUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Stores the results of a particular Conjunction Assessment (CA) run.

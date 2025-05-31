@@ -1047,7 +1047,7 @@ func (r ManifoldelsetNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *ManifoldelsetNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Theoretical Keplarian orbital elements belonging to an object of interest's

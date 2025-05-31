@@ -1936,7 +1936,7 @@ func (r StateVectorNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.StateVectorIngest)
 }
 func (r *StateVectorNewParams) UnmarshalJSON(data []byte) error {
-	return r.StateVectorIngest.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.StateVectorIngest)
 }
 
 type StateVectorListParams struct {
@@ -1982,7 +1982,7 @@ func (r StateVectorNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *StateVectorNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 type StateVectorGetParams struct {
@@ -2030,5 +2030,5 @@ func (r StateVectorUnvalidatedPublishParams) MarshalJSON() (data []byte, err err
 	return json.Marshal(r.Body)
 }
 func (r *StateVectorUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }

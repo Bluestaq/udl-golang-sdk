@@ -563,7 +563,7 @@ func (r LocationNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.LocationIngest)
 }
 func (r *LocationNewParams) UnmarshalJSON(data []byte) error {
-	return r.LocationIngest.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.LocationIngest)
 }
 
 type LocationUpdateParams struct {
@@ -577,7 +577,7 @@ func (r LocationUpdateParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.LocationIngest)
 }
 func (r *LocationUpdateParams) UnmarshalJSON(data []byte) error {
-	return r.LocationIngest.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.LocationIngest)
 }
 
 type LocationListParams struct {

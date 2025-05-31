@@ -475,7 +475,7 @@ func (r NotificationNewRawParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *NotificationNewRawParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // URLQuery serializes [NotificationNewRawParams]'s query parameters as

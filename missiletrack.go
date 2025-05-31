@@ -1494,7 +1494,7 @@ func (r MissileTrackNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *MissileTrackNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // These services provide operations for querying of all available missile track
@@ -2005,7 +2005,7 @@ func (r MissileTrackUnvalidatedPublishParams) MarshalJSON() (data []byte, err er
 	return json.Marshal(r.Body)
 }
 func (r *MissileTrackUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // These services provide operations for querying of all available missile track

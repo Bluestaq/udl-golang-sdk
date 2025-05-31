@@ -544,7 +544,7 @@ func (r SpaceEnvObservationNewBulkParams) MarshalJSON() (data []byte, err error)
 	return json.Marshal(r.Body)
 }
 func (r *SpaceEnvObservationNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // SpaceEnvObservation data.
@@ -794,7 +794,7 @@ func (r SpaceEnvObservationUnvalidatedPublishParams) MarshalJSON() (data []byte,
 	return json.Marshal(r.Body)
 }
 func (r *SpaceEnvObservationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // SpaceEnvObservation data.

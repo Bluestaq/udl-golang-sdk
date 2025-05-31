@@ -847,7 +847,7 @@ func (r ObservationMonoradarNewBulkParams) MarshalJSON() (data []byte, err error
 	return json.Marshal(r.Body)
 }
 func (r *ObservationMonoradarNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // A monoradar record contains the raw, and in some cases, processed target reports
@@ -1090,7 +1090,7 @@ func (r ObservationMonoradarUnvalidatedPublishParams) MarshalJSON() (data []byte
 	return json.Marshal(r.Body)
 }
 func (r *ObservationMonoradarUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // A monoradar record contains the raw, and in some cases, processed target reports

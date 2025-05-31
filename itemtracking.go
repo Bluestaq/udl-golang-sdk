@@ -817,7 +817,7 @@ func (r ItemTrackingUnvalidatedPublishParams) MarshalJSON() (data []byte, err er
 	return json.Marshal(r.Body)
 }
 func (r *ItemTrackingUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // The properties ClassificationMarking, DataMode, ScanCode, ScannerID, Source, Ts

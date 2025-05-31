@@ -1021,7 +1021,7 @@ func (r OrbittrackNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *OrbittrackNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Keplerian orbital elements describing an orbit for a particular on-orbit
@@ -1333,7 +1333,7 @@ func (r OrbittrackUnvalidatedPublishParams) MarshalJSON() (data []byte, err erro
 	return json.Marshal(r.Body)
 }
 func (r *OrbittrackUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Keplerian orbital elements describing an orbit for a particular on-orbit

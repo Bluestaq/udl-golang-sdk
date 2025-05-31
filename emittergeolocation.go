@@ -1151,7 +1151,7 @@ func (r EmitterGeolocationNewBulkParams) MarshalJSON() (data []byte, err error) 
 	return json.Marshal(r.Body)
 }
 func (r *EmitterGeolocationNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Model representation of Emitter geolocation data for a signal of interest.
@@ -1379,7 +1379,7 @@ func (r EmitterGeolocationUnvalidatedPublishParams) MarshalJSON() (data []byte, 
 	return json.Marshal(r.Body)
 }
 func (r *EmitterGeolocationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Model representation of Emitter geolocation data for a signal of interest.

@@ -1347,7 +1347,7 @@ func (r PersonnelrecoveryNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *PersonnelrecoveryNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Provides information concerning search and rescue operations and other
@@ -1654,7 +1654,7 @@ func (r PersonnelrecoveryFileNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *PersonnelrecoveryFileNewParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Provides information concerning search and rescue operations and other

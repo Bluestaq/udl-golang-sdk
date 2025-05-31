@@ -1080,7 +1080,7 @@ func (r RouteStatNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *RouteStatNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // General statistics applying to navigation routes utilized by vessels, aircraft,
@@ -1253,7 +1253,7 @@ func (r RouteStatUnvalidatedPublishParams) MarshalJSON() (data []byte, err error
 	return json.Marshal(r.Body)
 }
 func (r *RouteStatUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // General statistics applying to navigation routes utilized by vessels, aircraft,

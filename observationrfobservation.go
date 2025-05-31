@@ -1792,7 +1792,7 @@ func (r ObservationRfObservationNewBulkParams) MarshalJSON() (data []byte, err e
 	return json.Marshal(r.Body)
 }
 func (r *ObservationRfObservationNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Model representation of observation data for active/passive radio frequency (RF)
@@ -2149,7 +2149,7 @@ func (r ObservationRfObservationUnvalidatedPublishParams) MarshalJSON() (data []
 	return json.Marshal(r.Body)
 }
 func (r *ObservationRfObservationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Model representation of observation data for active/passive radio frequency (RF)

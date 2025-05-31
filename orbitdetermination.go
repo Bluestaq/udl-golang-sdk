@@ -4257,7 +4257,7 @@ func (r OrbitdeterminationNewBulkParams) MarshalJSON() (data []byte, err error) 
 	return json.Marshal(r.Body)
 }
 func (r *OrbitdeterminationNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Model representation of orbit determination algorithm results describing General
@@ -5172,7 +5172,7 @@ func (r OrbitdeterminationUnvalidatedPublishParams) MarshalJSON() (data []byte, 
 	return json.Marshal(r.Body)
 }
 func (r *OrbitdeterminationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Model representation of orbit determination algorithm results describing General

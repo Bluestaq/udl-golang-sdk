@@ -635,7 +635,7 @@ func (r SortiePprNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *SortiePprNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // SortiePPR is a regulatory requirement where operators must obtain permissions to
@@ -774,7 +774,7 @@ func (r SortiePprUnvalidatedPublishParams) MarshalJSON() (data []byte, err error
 	return json.Marshal(r.Body)
 }
 func (r *SortiePprUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // SortiePPR is a regulatory requirement where operators must obtain permissions to

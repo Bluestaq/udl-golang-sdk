@@ -3177,7 +3177,7 @@ func (r LogisticsSupportNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *LogisticsSupportNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Comprehensive logistical details concerning the planned support of maintenance
@@ -3725,7 +3725,7 @@ func (r LogisticsSupportUnvalidatedPublishParams) MarshalJSON() (data []byte, er
 	return json.Marshal(r.Body)
 }
 func (r *LogisticsSupportUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Comprehensive logistical details concerning the planned support of maintenance

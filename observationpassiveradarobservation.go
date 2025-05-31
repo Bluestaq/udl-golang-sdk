@@ -1440,7 +1440,7 @@ func (r ObservationPassiveRadarObservationNewBulkParams) MarshalJSON() (data []b
 	return json.Marshal(r.Body)
 }
 func (r *ObservationPassiveRadarObservationNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Model representation of observation data for passive radar based sensor
@@ -1683,7 +1683,7 @@ func (r ObservationPassiveRadarObservationFileNewParams) MarshalJSON() (data []b
 	return json.Marshal(r.Body)
 }
 func (r *ObservationPassiveRadarObservationFileNewParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Model representation of observation data for passive radar based sensor

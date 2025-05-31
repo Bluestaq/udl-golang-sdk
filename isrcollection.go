@@ -1753,7 +1753,7 @@ func (r IsrCollectionNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *IsrCollectionNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // ISR Collection data.
@@ -2332,7 +2332,7 @@ func (r IsrCollectionUnvalidatedPublishParams) MarshalJSON() (data []byte, err e
 	return json.Marshal(r.Body)
 }
 func (r *IsrCollectionUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // ISR Collection data.

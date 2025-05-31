@@ -2800,7 +2800,7 @@ func (r IonOobservationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *IonOobservationNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // These services provide operations for posting and querying ionospheric
@@ -3763,7 +3763,7 @@ func (r IonOobservationUnvalidatedPublishParams) MarshalJSON() (data []byte, err
 	return json.Marshal(r.Body)
 }
 func (r *IonOobservationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // These services provide operations for posting and querying ionospheric

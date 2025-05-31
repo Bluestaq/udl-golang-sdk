@@ -748,7 +748,7 @@ func (r TdoaFdoaDiffofarrivalNewBulkParams) MarshalJSON() (data []byte, err erro
 	return json.Marshal(r.Body)
 }
 func (r *TdoaFdoaDiffofarrivalNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Model representation of Signal time and frequency difference of arrival

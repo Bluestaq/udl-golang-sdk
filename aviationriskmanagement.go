@@ -1552,7 +1552,7 @@ func (r AviationRiskManagementNewBulkParams) MarshalJSON() (data []byte, err err
 	return json.Marshal(r.Body)
 }
 func (r *AviationRiskManagementNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Aviation Risk Management is used to identify, evaluate, and track risks when
@@ -1816,7 +1816,7 @@ func (r AviationRiskManagementUnvalidatedPublishParams) MarshalJSON() (data []by
 	return json.Marshal(r.Body)
 }
 func (r *AviationRiskManagementUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Aviation Risk Management is used to identify, evaluate, and track risks when

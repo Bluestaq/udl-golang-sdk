@@ -1587,7 +1587,7 @@ func (r AirspaceControlOrderNewBulkParams) MarshalJSON() (data []byte, err error
 	return json.Marshal(r.Body)
 }
 func (r *AirspaceControlOrderNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Beta Version Airspace Control Order: Contains airspace coordination information

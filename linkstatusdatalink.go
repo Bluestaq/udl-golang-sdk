@@ -1939,7 +1939,7 @@ func (r LinkStatusDatalinkNewParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.DatalinkIngest)
 }
 func (r *LinkStatusDatalinkNewParams) UnmarshalJSON(data []byte) error {
-	return r.DatalinkIngest.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.DatalinkIngest)
 }
 
 type LinkStatusDatalinkListParams struct {
@@ -2010,5 +2010,5 @@ func (r LinkStatusDatalinkUnvalidatedPublishParams) MarshalJSON() (data []byte, 
 	return json.Marshal(r.Body)
 }
 func (r *LinkStatusDatalinkUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }

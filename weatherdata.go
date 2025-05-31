@@ -660,7 +660,7 @@ func (r WeatherDataNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *WeatherDataNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // These services provide for posting and querying Weather Data. Weather Data
@@ -870,7 +870,7 @@ func (r WeatherDataUnvalidatedPublishParams) MarshalJSON() (data []byte, err err
 	return json.Marshal(r.Body)
 }
 func (r *WeatherDataUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // These services provide for posting and querying Weather Data. Weather Data

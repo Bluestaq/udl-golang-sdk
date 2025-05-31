@@ -1199,7 +1199,7 @@ func (r FeatureAssessmentNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *FeatureAssessmentNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Feature assessments obtained from imagery analysis or other data analytics.
@@ -1449,7 +1449,7 @@ func (r FeatureAssessmentUnvalidatedPublishParams) MarshalJSON() (data []byte, e
 	return json.Marshal(r.Body)
 }
 func (r *FeatureAssessmentUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Feature assessments obtained from imagery analysis or other data analytics.

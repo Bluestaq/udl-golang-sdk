@@ -713,7 +713,7 @@ func (r CommUpdateParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.CommAbridged)
 }
 func (r *CommUpdateParams) UnmarshalJSON(data []byte) error {
-	return r.CommAbridged.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.CommAbridged)
 }
 
 type CommListParams struct {

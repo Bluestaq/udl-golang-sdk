@@ -2180,7 +2180,7 @@ func (r AirEventNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *AirEventNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Information related to an air event (e.g. FUEL TRANSFER, AIR DROP) and the
@@ -2536,7 +2536,7 @@ func (r AirEventUnvalidatedPublishParams) MarshalJSON() (data []byte, err error)
 	return json.Marshal(r.Body)
 }
 func (r *AirEventUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Information related to an air event (e.g. FUEL TRANSFER, AIR DROP) and the

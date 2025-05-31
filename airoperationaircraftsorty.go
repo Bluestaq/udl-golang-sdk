@@ -54,7 +54,7 @@ func (r AirOperationAircraftSortyUnvalidatedPublishParams) MarshalJSON() (data [
 	return json.Marshal(r.Body)
 }
 func (r *AirOperationAircraftSortyUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Information related to the planning, load, status, and deployment or dispatch of

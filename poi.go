@@ -1219,7 +1219,7 @@ func (r PoiNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *PoiNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // A Point of Interest is loosely based on the MITRE CoT (Cursor on Target) schema
@@ -1458,7 +1458,7 @@ func (r PoiUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *PoiUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // A Point of Interest is loosely based on the MITRE CoT (Cursor on Target) schema

@@ -1058,7 +1058,7 @@ func (r WeatherReportUnvalidatedPublishParams) MarshalJSON() (data []byte, err e
 	return json.Marshal(r.Body)
 }
 func (r *WeatherReportUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // These services provide for posting and querying Weather Over Target information.

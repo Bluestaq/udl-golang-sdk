@@ -465,7 +465,7 @@ func (r EphemerisFileUploadParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *EphemerisFileUploadParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // URLQuery serializes [EphemerisFileUploadParams]'s query parameters as

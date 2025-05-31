@@ -950,7 +950,7 @@ func (r ObservationEcpsdrNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return json.Marshal(r.Body)
 }
 func (r *ObservationEcpsdrNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Supports Sensor Data Records (SDR) from space-borne Energetic Charged Particle

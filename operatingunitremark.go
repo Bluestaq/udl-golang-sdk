@@ -643,7 +643,7 @@ func (r OperatingunitremarkNewBulkParams) MarshalJSON() (data []byte, err error)
 	return json.Marshal(r.Body)
 }
 func (r *OperatingunitremarkNewBulkParams) UnmarshalJSON(data []byte) error {
-	return r.Body.UnmarshalJSON(data)
+	return json.Unmarshal(data, &r.Body)
 }
 
 // Remarks contain amplifying information for a specific service. The information
