@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"encoding/json"
 	"time"
 
 	"github.com/stainless-sdks/unifieddatalibrary-go"
@@ -4169,7 +4170,7 @@ func (r *FileData) UnmarshalJSON(data []byte) error {
 // be used at the last possible moment before sending a request. Test for this with
 // FileDataParam.Overrides()
 func (r FileData) ToParam() FileDataParam {
-	return param.Override[FileDataParam](r.RawJSON())
+	return param.Override[FileDataParam](json.RawMessage(r.RawJSON()))
 }
 
 type FileDataAttributes struct {
