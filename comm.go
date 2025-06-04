@@ -238,7 +238,7 @@ func (r *CommAbridged) UnmarshalJSON(data []byte) error {
 // be used at the last possible moment before sending a request. Test for this with
 // CommAbridgedParam.Overrides()
 func (r CommAbridged) ToParam() CommAbridgedParam {
-	return param.Override[CommAbridgedParam](r.RawJSON())
+	return param.Override[CommAbridgedParam](json.RawMessage(r.RawJSON()))
 }
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
