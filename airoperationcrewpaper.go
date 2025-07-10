@@ -10,10 +10,10 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiform"
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
-	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/Bluestaq/udl-golang-sdk/internal/apiform"
+	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
+	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
+	"github.com/Bluestaq/udl-golang-sdk/option"
 )
 
 // AirOperationCrewpaperService contains methods and other services that help with

@@ -1,8 +1,8 @@
 package sentinel_test
 
 import (
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/encoding/json/sentinel"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/internal/encoding/json/sentinel"
+	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"reflect"
 	"slices"
 	"testing"

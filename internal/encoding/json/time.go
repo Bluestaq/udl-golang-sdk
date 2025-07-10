@@ -2,7 +2,7 @@
 package json
 
 import (
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/encoding/json/shims"
+	"github.com/Bluestaq/udl-golang-sdk/internal/encoding/json/shims"
 	"reflect"
 	"time"
 )
