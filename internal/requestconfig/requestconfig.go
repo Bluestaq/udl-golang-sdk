@@ -18,10 +18,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal"
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apierror"
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiform"
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
+	"github.com/Bluestaq/udl-golang-sdk/internal"
+	"github.com/Bluestaq/udl-golang-sdk/internal/apierror"
+	"github.com/Bluestaq/udl-golang-sdk/internal/apiform"
+	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 )
 
 func getDefaultHeaders() map[string]string {

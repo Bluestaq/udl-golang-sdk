@@ -6,11 +6,11 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
-	"github.com/stainless-sdks/unifieddatalibrary-go/option"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
+	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
+	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
 
 // aliased to make [param.APIUnion] private when embedding

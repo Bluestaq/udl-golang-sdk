@@ -8,10 +8,10 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
-	"github.com/stainless-sdks/unifieddatalibrary-go/option"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
+	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
+	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 )
 
 // AirOperationAircraftSortyService contains methods and other services that help

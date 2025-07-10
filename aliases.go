@@ -3,9 +3,9 @@
 package unifieddatalibrary
 
 import (
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apierror"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/shared"
+	"github.com/Bluestaq/udl-golang-sdk/internal/apierror"
+	"github.com/Bluestaq/udl-golang-sdk/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // aliased to make [param.APIUnion] private when embedding

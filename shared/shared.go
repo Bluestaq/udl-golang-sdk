@@ -6,10 +6,10 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/stainless-sdks/unifieddatalibrary-go"
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk"
+	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
+	"github.com/Bluestaq/udl-golang-sdk/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
 
 // aliased to make [param.APIUnion] private when embedding

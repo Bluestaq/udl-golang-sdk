@@ -3,8 +3,8 @@ package respjson_test
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
-	rj "github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
+	rj "github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 	"reflect"
 	"testing"
 )

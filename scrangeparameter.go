@@ -6,8 +6,8 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
-	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
+	"github.com/Bluestaq/udl-golang-sdk/option"
 )
 
 // ScRangeParameterService contains methods and other services that help with

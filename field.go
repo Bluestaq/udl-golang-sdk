@@ -1,7 +1,7 @@
 package unifieddatalibrary
 
 import (
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"io"
 	"time"
 )

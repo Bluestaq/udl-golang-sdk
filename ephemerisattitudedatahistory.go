@@ -7,10 +7,10 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apiquery"
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
-	"github.com/stainless-sdks/unifieddatalibrary-go/option"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
+	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
+	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 )
 
 // EphemerisAttitudeDataHistoryService contains methods and other services that
