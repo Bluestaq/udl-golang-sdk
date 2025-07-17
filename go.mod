@@ -1,4 +1,4 @@
-module github.com/stainless-sdks/unifieddatalibrary-go
+module github.com/Bluestaq/udl-golang-sdk
 
 go 1.21
 

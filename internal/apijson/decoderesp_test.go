@@ -2,8 +2,8 @@ package apijson_test
 
 import (
 	"encoding/json"
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
+	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 	"testing"
 )
 

@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"net/http/httputil"
 
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/apijson"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
+	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
 
 // Error represents an error that originates from the API, i.e. when a request is

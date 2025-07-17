@@ -3,7 +3,7 @@ package param
 import (
 	"encoding/json"
 	"fmt"
-	shimjson "github.com/stainless-sdks/unifieddatalibrary-go/internal/encoding/json"
+	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"time"
 )
 

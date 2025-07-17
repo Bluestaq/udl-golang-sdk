@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/stainless-sdks/unifieddatalibrary-go/internal/requestconfig"
-	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
+	"github.com/Bluestaq/udl-golang-sdk/option"
 )
 
 // Client creates a struct with services and top level methods that help with

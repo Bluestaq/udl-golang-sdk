@@ -11,8 +11,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/stainless-sdks/unifieddatalibrary-go"
-	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/Bluestaq/udl-golang-sdk"
+	"github.com/Bluestaq/udl-golang-sdk/option"
 )
 
 func TestScsViewGetWithOptionalParams(t *testing.T) {

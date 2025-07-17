@@ -2,7 +2,7 @@ package apiform
 
 import (
 	"bytes"
-	"github.com/stainless-sdks/unifieddatalibrary-go/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"io"
 	"mime/multipart"
 	"strings"

@@ -3,7 +3,7 @@
 package unifieddatalibrary
 
 import (
-	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/Bluestaq/udl-golang-sdk/option"
 )
 
 // AirOperationService contains methods and other services that help with

@@ -1,6 +1,6 @@
 # Unifieddatalibrary Go API Library
 
-<a href="https://pkg.go.dev/github.com/stainless-sdks/unifieddatalibrary-go"><img src="https://pkg.go.dev/badge/github.com/stainless-sdks/unifieddatalibrary-go.svg" alt="Go Reference"></a>
+<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk"><img src="https://pkg.go.dev/badge/github.com/Bluestaq/udl-golang-sdk.svg" alt="Go Reference"></a>
 
 The Unifieddatalibrary Go library provides convenient access to the [Unifieddatalibrary REST API](https://unifieddatalibrary.com/storefront/#/api-docs)
 from applications written in Go.
@@ -9,17 +9,25 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Installation
 
+<!-- x-release-please-start-version -->
+
 ```go
 import (
-	"github.com/stainless-sdks/unifieddatalibrary-go" // imported as unifieddatalibrary
+	"github.com/Bluestaq/udl-golang-sdk" // imported as unifieddatalibrary
 )
 ```
 
+<!-- x-release-please-end -->
+
 Or to pin the version:
 
+<!-- x-release-please-start-version -->
+
 ```sh
-go get -u 'github.com/stainless-sdks/unifieddatalibrary-go@v0.0.1-alpha.0'
+go get -u 'github.com/Bluestaq/udl-golang-sdk@v0.1.0-alpha.1'
 ```
+
+<!-- x-release-please-end -->
 
 ## Requirements
 
@@ -36,8 +44,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/stainless-sdks/unifieddatalibrary-go"
-	"github.com/stainless-sdks/unifieddatalibrary-go/option"
+	"github.com/Bluestaq/udl-golang-sdk"
+	"github.com/Bluestaq/udl-golang-sdk/option"
 )
 
 func main() {
@@ -265,7 +273,7 @@ client.Elsets.Current.List(context.TODO(), ...,
 
 The request option `option.WithDebugLog(nil)` may be helpful while debugging.
 
-See the [full list of request options](https://pkg.go.dev/github.com/stainless-sdks/unifieddatalibrary-go/option).
+See the [full list of request options](https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/option).
 
 ### Pagination
 
@@ -514,7 +522,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/unifieddatalibrary-go/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/Bluestaq/udl-golang-sdk/issues) with questions, bugs, or suggestions.
 
 ## Contributing
 
