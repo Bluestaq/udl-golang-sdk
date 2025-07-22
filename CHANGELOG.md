@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.2 (2025-07-22)
+
+Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
+
+### Bug Fixes
+
+* **client:** process custom base url ahead of time ([3741953](https://github.com/Bluestaq/udl-golang-sdk/commit/374195331572d71197a2b9a28d1335bbb08ab1c8))
+
 ## 0.1.0-alpha.1 (2025-07-16)
 
 Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
