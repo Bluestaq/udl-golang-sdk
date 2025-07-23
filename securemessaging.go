@@ -13,6 +13,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
@@ -63,16 +64,33 @@ func (r *SecureMessagingService) GetLatestOffset(ctx context.Context, topic stri
 
 // Retrieve a set of messages from the given topic at the given offset. See Help >
 // Secure Messaging API on Storefront for more details on how to use getMessages.
-func (r *SecureMessagingService) GetMessages(ctx context.Context, offset int64, params SecureMessagingGetMessagesParams, opts ...option.RequestOption) (err error) {
+func (r *SecureMessagingService) GetMessages(ctx context.Context, offset int64, params SecureMessagingGetMessagesParams, opts ...option.RequestOption) (res *pagination.KafkaOffsetPage[interface{}], err error) {
+	var raw *http.Response
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", ""), option.WithResponseInto(&raw)}, opts...)
 	if params.Topic == "" {
 		err = errors.New("missing required topic parameter")
 		return
 	}
 	path := fmt.Sprintf("sm/getMessages/%s/%v", params.Topic, offset)
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, params, nil, opts...)
-	return
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, params, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw, func(nextOffset int64) string {
+		return fmt.Sprintf("sm/getMessages/%s/%v", params.Topic, nextOffset)
+	})
+	return res, nil
+}
+
+// Retrieve a set of messages from the given topic at the given offset. See Help >
+// Secure Messaging API on Storefront for more details on how to use getMessages.
+func (r *SecureMessagingService) GetMessagesAutoPaging(ctx context.Context, offset int64, params SecureMessagingGetMessagesParams, opts ...option.RequestOption) *pagination.KafkaOffsetPageAutoPager[interface{}] {
+	return pagination.NewKafkaOffsetPageAutoPager(r.GetMessages(ctx, offset, params, opts...))
 }
 
 // Retrieve the list of available secure messaging topics or data types available.
