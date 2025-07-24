@@ -67,7 +67,7 @@ func (r *SecureMessagingService) GetLatestOffset(ctx context.Context, topic stri
 func (r *SecureMessagingService) GetMessages(ctx context.Context, offset int64, params SecureMessagingGetMessagesParams, opts ...option.RequestOption) (res *pagination.KafkaOffsetPage[interface{}], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", ""), option.WithResponseInto(&raw)}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*"), option.WithResponseInto(&raw)}, opts...)
 	if params.Topic == "" {
 		err = errors.New("missing required topic parameter")
 		return
