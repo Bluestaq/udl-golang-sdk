@@ -8,7 +8,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/Bluestaq/udl-golang-sdk"
+	unifieddatalibrary "github.com/Bluestaq/udl-golang-sdk"
 	"github.com/Bluestaq/udl-golang-sdk/internal/testutil"
 	"github.com/Bluestaq/udl-golang-sdk/option"
 )
@@ -86,7 +86,7 @@ func TestSecureMessagingGetMessagesWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.SecureMessaging.GetMessages(
+	_, err := client.SecureMessaging.GetMessages(
 		context.TODO(),
 		0,
 		unifieddatalibrary.SecureMessagingGetMessagesParams{
