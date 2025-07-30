@@ -350,7 +350,7 @@ var tests = map[string]struct {
 	"ptr_float_1.54":         {"1.54", P(float32(1.54))},
 	"ptr_float_1.89":         {"1.89", P(float64(1.89))},
 
-	"date_time":             {`"2007-03-01T13:00:00Z"`, time.Date(2007, time.March, 1, 13, 0, 0, 0, time.UTC)},
+	"date_time":             {`"2007-03-01T13:00:00.000000Z"`, time.Date(2007, time.March, 1, 13, 0, 0, 0, time.UTC)},
 	"date_time_nano_coerce": {`"2007-03-01T13:03:05.123456789Z"`, time.Date(2007, time.March, 1, 13, 3, 5, 123456789, time.UTC)},
 
 	"date_time_missing_t_coerce":        {`"2007-03-01 13:03:05Z"`, time.Date(2007, time.March, 1, 13, 3, 5, 0, time.UTC)},
@@ -389,7 +389,7 @@ var tests = map[string]struct {
 	},
 
 	"datetime_struct": {
-		`{"date":"2006-01-02","date-time":"2006-01-02T15:04:05Z"}`,
+		`{"date":"2006-01-02","date-time":"2006-01-02T15:04:05.000000Z"}`,
 		DateTime{
 			Date:     time.Date(2006, time.January, 2, 0, 0, 0, 0, time.UTC),
 			DateTime: time.Date(2006, time.January, 2, 15, 4, 5, 0, time.UTC),

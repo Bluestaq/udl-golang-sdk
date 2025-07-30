@@ -9,6 +9,7 @@ import (
 	"sync"
 	"time"
 
+	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 )
 
@@ -168,7 +169,7 @@ func (e *encoder) newStructTypeEncoder(t reflect.Type) encoderFunc {
 			if ok {
 				switch dateFormat {
 				case "date-time":
-					e.dateFormat = time.RFC3339
+					e.dateFormat = apijson.CustomISO8601
 				case "date":
 					e.dateFormat = "2006-01-02"
 				}
