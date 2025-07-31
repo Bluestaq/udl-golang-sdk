@@ -53,13 +53,16 @@ func TestAirOperationCrewpaperUploadPdf(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.AirOperations.Crewpapers.UploadPdf(context.TODO(), unifieddatalibrary.AirOperationCrewpaperUploadPdfParams{
-		AircraftSortieIDs:     "aircraftSortieIds",
-		ClassificationMarking: "x",
-		PaperStatus:           unifieddatalibrary.AirOperationCrewpaperUploadPdfParamsPaperStatusPublished,
-		PapersVersion:         "x",
-		Body:                  io.Reader(bytes.NewBuffer([]byte("some file contents"))),
-	})
+	err := client.AirOperations.Crewpapers.UploadPdf(
+		context.TODO(),
+		io.Reader(bytes.NewBuffer([]byte("some file contents"))),
+		unifieddatalibrary.AirOperationCrewpaperUploadPdfParams{
+			AircraftSortieIDs:     "aircraftSortieIds",
+			ClassificationMarking: "x",
+			PaperStatus:           unifieddatalibrary.AirOperationCrewpaperUploadPdfParamsPaperStatusPublished,
+			PapersVersion:         "x",
+		},
+	)
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {

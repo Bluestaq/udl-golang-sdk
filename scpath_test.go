@@ -28,16 +28,19 @@ func TestScPathNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Scs.Paths.New(context.TODO(), unifieddatalibrary.ScPathNewParams{
-		ID:                    "id",
-		ClassificationMarking: "classificationMarking",
-		Body:                  io.Reader(bytes.NewBuffer([]byte("some file contents"))),
-		DeleteAfter:           unifieddatalibrary.String("deleteAfter"),
-		Description:           unifieddatalibrary.String("description"),
-		Overwrite:             unifieddatalibrary.Bool(true),
-		SendNotification:      unifieddatalibrary.Bool(true),
-		Tags:                  unifieddatalibrary.String("tags"),
-	})
+	_, err := client.Scs.Paths.New(
+		context.TODO(),
+		io.Reader(bytes.NewBuffer([]byte("some file contents"))),
+		unifieddatalibrary.ScPathNewParams{
+			ID:                    "id",
+			ClassificationMarking: "classificationMarking",
+			DeleteAfter:           unifieddatalibrary.String("deleteAfter"),
+			Description:           unifieddatalibrary.String("description"),
+			Overwrite:             unifieddatalibrary.Bool(true),
+			SendNotification:      unifieddatalibrary.Bool(true),
+			Tags:                  unifieddatalibrary.String("tags"),
+		},
+	)
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {

@@ -138,16 +138,19 @@ func TestScV2FileUploadWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Scs.V2.FileUpload(context.TODO(), unifieddatalibrary.ScV2FileUploadParams{
-		ClassificationMarking: "classificationMarking",
-		Path:                  "path",
-		Body:                  io.Reader(bytes.NewBuffer([]byte("some file contents"))),
-		DeleteAfter:           unifieddatalibrary.String("deleteAfter"),
-		Description:           unifieddatalibrary.String("description"),
-		Overwrite:             unifieddatalibrary.Bool(true),
-		SendNotification:      unifieddatalibrary.Bool(true),
-		Tags:                  unifieddatalibrary.String("tags"),
-	})
+	err := client.Scs.V2.FileUpload(
+		context.TODO(),
+		io.Reader(bytes.NewBuffer([]byte("some file contents"))),
+		unifieddatalibrary.ScV2FileUploadParams{
+			ClassificationMarking: "classificationMarking",
+			Path:                  "path",
+			DeleteAfter:           unifieddatalibrary.String("deleteAfter"),
+			Description:           unifieddatalibrary.String("description"),
+			Overwrite:             unifieddatalibrary.Bool(true),
+			SendNotification:      unifieddatalibrary.Bool(true),
+			Tags:                  unifieddatalibrary.String("tags"),
+		},
+	)
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
