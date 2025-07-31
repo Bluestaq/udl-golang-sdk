@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.1.0-alpha.3 (2025-07-31)
+
+Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
+
+### ⚠ BREAKING CHANGES
+
+* **api:** move multiple models to shared resources
+
+### Features
+
+* add Kafka offset pagination ([8923e40](https://github.com/Bluestaq/udl-golang-sdk/commit/8923e40b7e850d98f6d9ad630ded627684485b49))
+* **api:** define additional models to reduce duplication ([d96e6a9](https://github.com/Bluestaq/udl-golang-sdk/commit/d96e6a9efa3fe57ece96d6be3977a1ccc7e3a8f8))
+* **api:** manual changes ([df5d954](https://github.com/Bluestaq/udl-golang-sdk/commit/df5d95477dfd333bfce06019f056d2962f45ff9a))
+* **client:** support file upload requests ([0b77eba](https://github.com/Bluestaq/udl-golang-sdk/commit/0b77eba67b960fbf10f16f0dc31edb66e1a8fd19))
+
+
+### Chores
+
+* **api:** move multiple models to shared resources ([9e0e66f](https://github.com/Bluestaq/udl-golang-sdk/commit/9e0e66f6e8cc034bc6ff49745dd65ccaa7a4eb4d))
+
 ## 0.1.0-alpha.2 (2025-07-22)
 
 Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
