@@ -39,15 +39,15 @@ func NewScPathService(opts ...option.RequestOption) (r ScPathService) {
 // Creates the path and uploads file that is passed. If folder exist it will only
 // create folders that are missing. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
-func (r *ScPathService) New(ctx context.Context, body io.Reader, body ScPathNewParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *ScPathService) NewWithFile(ctx context.Context, params io.Reader, body ScPathNewWithFileParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithRequestBody("application/octet-stream", body)}, opts...)
+	opts = append([]option.RequestOption{option.WithRequestBody("application/octet-stream", params)}, opts...)
 	path := "scs/path"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, &res, opts...)
 	return
 }
 
-type ScPathNewParams struct {
+type ScPathNewWithFileParams struct {
 	// The full path to create, including path and file name
 	ID string `query:"id,required" json:"-"`
 	// Classification (ex. U//FOUO)
@@ -65,7 +65,7 @@ type ScPathNewParams struct {
 	paramObj
 }
 
-func (r ScPathNewParams) MarshalMultipart() (data []byte, contentType string, err error) {
+func (r ScPathNewWithFileParams) MarshalMultipart() (data []byte, contentType string, err error) {
 	buf := bytes.NewBuffer(nil)
 	writer := multipart.NewWriter(buf)
 	err = apiform.MarshalRoot(r, writer)
@@ -83,8 +83,9 @@ func (r ScPathNewParams) MarshalMultipart() (data []byte, contentType string, er
 	return buf.Bytes(), writer.FormDataContentType(), nil
 }
 
-// URLQuery serializes [ScPathNewParams]'s query parameters as `url.Values`.
-func (r ScPathNewParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [ScPathNewWithFileParams]'s query parameters as
+// `url.Values`.
+func (r ScPathNewWithFileParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
