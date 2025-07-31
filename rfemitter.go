@@ -17,6 +17,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // RfEmitterService contains methods and other services that help with interacting
@@ -285,7 +286,7 @@ type RfEmitterGetResponse struct {
 	// An entity is a generic representation of any object within a space/SSA system
 	// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
 	// entity can have an operating unit, a location (if terrestrial), and statuses.
-	Entity EntityFull `json:"entity"`
+	Entity shared.EntityFull `json:"entity"`
 	// ID of the parent entity for this rfemitter.
 	IDEntity string `json:"idEntity"`
 	// Originating system or organization which produced the data, if different from
@@ -413,7 +414,7 @@ type RfEmitterGetResponseRfEmitterDetail struct {
 	// An organization such as a corporation, manufacturer, consortium, government,
 	// etc. An organization may have parent and child organizations as well as link to
 	// a former organization if this org previously existed as another organization.
-	ManufacturerOrg OrganizationFull `json:"manufacturerOrg"`
+	ManufacturerOrg shared.OrganizationFull `json:"manufacturerOrg"`
 	// Unique identifier of the organization which manufactures this RF Emitter.
 	ManufacturerOrgID string `json:"manufacturerOrgId"`
 	// Notes on the RF Emitter.
@@ -432,7 +433,7 @@ type RfEmitterGetResponseRfEmitterDetail struct {
 	OrigNetwork string `json:"origNetwork"`
 	// Model representation of a location, which is a specific fixed point on the earth
 	// and is used to denote the locations of fixed sensors, operating units, etc.
-	ProductionFacilityLocation LocationFull `json:"productionFacilityLocation"`
+	ProductionFacilityLocation shared.LocationFull `json:"productionFacilityLocation"`
 	// Unique identifier of the location of the production facility for this RF
 	// Emitter.
 	ProductionFacilityLocationID string `json:"productionFacilityLocationId"`
@@ -633,7 +634,7 @@ type RfEmitterTupleResponse struct {
 	// An entity is a generic representation of any object within a space/SSA system
 	// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
 	// entity can have an operating unit, a location (if terrestrial), and statuses.
-	Entity EntityFull `json:"entity"`
+	Entity shared.EntityFull `json:"entity"`
 	// ID of the parent entity for this rfemitter.
 	IDEntity string `json:"idEntity"`
 	// Originating system or organization which produced the data, if different from
@@ -761,7 +762,7 @@ type RfEmitterTupleResponseRfEmitterDetail struct {
 	// An organization such as a corporation, manufacturer, consortium, government,
 	// etc. An organization may have parent and child organizations as well as link to
 	// a former organization if this org previously existed as another organization.
-	ManufacturerOrg OrganizationFull `json:"manufacturerOrg"`
+	ManufacturerOrg shared.OrganizationFull `json:"manufacturerOrg"`
 	// Unique identifier of the organization which manufactures this RF Emitter.
 	ManufacturerOrgID string `json:"manufacturerOrgId"`
 	// Notes on the RF Emitter.
@@ -780,7 +781,7 @@ type RfEmitterTupleResponseRfEmitterDetail struct {
 	OrigNetwork string `json:"origNetwork"`
 	// Model representation of a location, which is a specific fixed point on the earth
 	// and is used to denote the locations of fixed sensors, operating units, etc.
-	ProductionFacilityLocation LocationFull `json:"productionFacilityLocation"`
+	ProductionFacilityLocation shared.LocationFull `json:"productionFacilityLocation"`
 	// Unique identifier of the location of the production facility for this RF
 	// Emitter.
 	ProductionFacilityLocationID string `json:"productionFacilityLocationId"`

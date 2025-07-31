@@ -291,7 +291,7 @@ type EphemerisSet struct {
 	// may be in another frame depending on the provider and/or datatype. Please see
 	// the 'Discover' tab in the storefront to confirm coordinate frames by data
 	// provider.
-	StateVector StateVectorFull `json:"stateVector"`
+	StateVector shared.StateVectorFull `json:"stateVector"`
 	// Ephemeris step size, in seconds.
 	StepSize int64 `json:"stepSize"`
 	// Optional array of provider/source specific tags for this data, where each

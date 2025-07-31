@@ -17,6 +17,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // StageService contains methods and other services that help with interacting with
@@ -388,7 +389,7 @@ type StageGetResponse struct {
 	Diameter float64 `json:"diameter"`
 	// Known launch vehicle engines and their performance characteristics and limits. A
 	// launch vehicle has 1 to many engines per stage.
-	Engine Engine `json:"engine"`
+	Engine shared.Engine `json:"engine"`
 	// Stage length in meters.
 	Length float64 `json:"length"`
 	// Thrust of the stage main engine at sea level in kN.
@@ -661,7 +662,7 @@ type StageTupleResponse struct {
 	Diameter float64 `json:"diameter"`
 	// Known launch vehicle engines and their performance characteristics and limits. A
 	// launch vehicle has 1 to many engines per stage.
-	Engine Engine `json:"engine"`
+	Engine shared.Engine `json:"engine"`
 	// Stage length in meters.
 	Length float64 `json:"length"`
 	// Thrust of the stage main engine at sea level in kN.

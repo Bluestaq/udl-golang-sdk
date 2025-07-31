@@ -17,6 +17,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // OnorbitantennaService contains methods and other services that help with
@@ -252,7 +253,7 @@ type OnorbitantennaGetResponse struct {
 	// Model representation of information on on-orbit/spacecraft communication
 	// antennas. A spacecraft may have multiple antennas and each antenna can have
 	// multiple 'details' records compiled by different sources.
-	Antenna AntennaFull `json:"antenna"`
+	Antenna shared.AntennaFull `json:"antenna"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the

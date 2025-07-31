@@ -11,6 +11,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // EphemerisAttitudeDataHistoryService contains methods and other services that
@@ -36,7 +37,7 @@ func NewEphemerisAttitudeDataHistoryService(opts ...option.RequestOption) (r Eph
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *EphemerisAttitudeDataHistoryService) Get(ctx context.Context, query EphemerisAttitudeDataHistoryGetParams, opts ...option.RequestOption) (res *[]AttitudedataFull, err error) {
+func (r *EphemerisAttitudeDataHistoryService) Get(ctx context.Context, query EphemerisAttitudeDataHistoryGetParams, opts ...option.RequestOption) (res *[]shared.AttitudedataFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/attitudedata/history"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)

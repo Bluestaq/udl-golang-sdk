@@ -17,6 +17,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // LaunchVehicleService contains methods and other services that help with
@@ -442,7 +443,7 @@ type LaunchVehicleGetResponseLaunchVehicleDetail struct {
 	// An organization such as a corporation, manufacturer, consortium, government,
 	// etc. An organization may have parent and child organizations as well as link to
 	// a former organization if this org previously existed as another organization.
-	ManufacturerOrg OrganizationFull `json:"manufacturerOrg"`
+	ManufacturerOrg shared.OrganizationFull `json:"manufacturerOrg"`
 	// ID of the organization that manufactures the launch vehicle.
 	ManufacturerOrgID string `json:"manufacturerOrgId"`
 	// Vehicle maximum acceleration load in g.
@@ -618,7 +619,7 @@ type LaunchVehicleGetResponseStage struct {
 	Diameter float64 `json:"diameter"`
 	// Known launch vehicle engines and their performance characteristics and limits. A
 	// launch vehicle has 1 to many engines per stage.
-	Engine Engine `json:"engine"`
+	Engine shared.Engine `json:"engine"`
 	// Stage length in meters.
 	Length float64 `json:"length"`
 	// Thrust of the stage main engine at sea level in kN.
@@ -1016,7 +1017,7 @@ type LaunchVehicleTupleResponseLaunchVehicleDetail struct {
 	// An organization such as a corporation, manufacturer, consortium, government,
 	// etc. An organization may have parent and child organizations as well as link to
 	// a former organization if this org previously existed as another organization.
-	ManufacturerOrg OrganizationFull `json:"manufacturerOrg"`
+	ManufacturerOrg shared.OrganizationFull `json:"manufacturerOrg"`
 	// ID of the organization that manufactures the launch vehicle.
 	ManufacturerOrgID string `json:"manufacturerOrgId"`
 	// Vehicle maximum acceleration load in g.
@@ -1192,7 +1193,7 @@ type LaunchVehicleTupleResponseStage struct {
 	Diameter float64 `json:"diameter"`
 	// Known launch vehicle engines and their performance characteristics and limits. A
 	// launch vehicle has 1 to many engines per stage.
-	Engine Engine `json:"engine"`
+	Engine shared.Engine `json:"engine"`
 	// Stage length in meters.
 	Length float64 `json:"length"`
 	// Thrust of the stage main engine at sea level in kN.

@@ -17,6 +17,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // LaunchSiteService contains methods and other services that help with interacting
@@ -411,7 +412,7 @@ type LaunchSiteGetResponseLaunchSiteDetail struct {
 	LaunchGroup string `json:"launchGroup"`
 	// Model representation of a location, which is a specific fixed point on the earth
 	// and is used to denote the locations of fixed sensors, operating units, etc.
-	Location LocationFull `json:"location"`
+	Location shared.LocationFull `json:"location"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
@@ -696,7 +697,7 @@ type LaunchSiteTupleResponseLaunchSiteDetail struct {
 	LaunchGroup string `json:"launchGroup"`
 	// Model representation of a location, which is a specific fixed point on the earth
 	// and is used to denote the locations of fixed sensors, operating units, etc.
-	Location LocationFull `json:"location"`
+	Location shared.LocationFull `json:"location"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If

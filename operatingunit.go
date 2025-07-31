@@ -17,6 +17,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // OperatingunitService contains methods and other services that help with
@@ -793,7 +794,7 @@ type OperatingunitGetResponse struct {
 	Lat float64 `json:"lat"`
 	// Model representation of a location, which is a specific fixed point on the earth
 	// and is used to denote the locations of fixed sensors, operating units, etc.
-	Location LocationFull `json:"location"`
+	Location shared.LocationFull `json:"location"`
 	// Location name for the coordinates.
 	LocName string `json:"locName"`
 	// Indicates the reason that the operating unit is at that location. The specific
@@ -848,7 +849,7 @@ type OperatingunitGetResponse struct {
 	// An organization such as a corporation, manufacturer, consortium, government,
 	// etc. An organization may have parent and child organizations as well as link to
 	// a former organization if this org previously existed as another organization.
-	Organization OrganizationFull `json:"organization"`
+	Organization shared.OrganizationFull `json:"organization"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
@@ -1385,7 +1386,7 @@ type OperatingunitTupleResponse struct {
 	Lat float64 `json:"lat"`
 	// Model representation of a location, which is a specific fixed point on the earth
 	// and is used to denote the locations of fixed sensors, operating units, etc.
-	Location LocationFull `json:"location"`
+	Location shared.LocationFull `json:"location"`
 	// Location name for the coordinates.
 	LocName string `json:"locName"`
 	// Indicates the reason that the operating unit is at that location. The specific
@@ -1440,7 +1441,7 @@ type OperatingunitTupleResponse struct {
 	// An organization such as a corporation, manufacturer, consortium, government,
 	// etc. An organization may have parent and child organizations as well as link to
 	// a former organization if this org previously existed as another organization.
-	Organization OrganizationFull `json:"organization"`
+	Organization shared.OrganizationFull `json:"organization"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If

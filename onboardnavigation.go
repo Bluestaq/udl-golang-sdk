@@ -16,6 +16,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // OnboardnavigationService contains methods and other services that help with
@@ -111,7 +112,7 @@ func (r *OnboardnavigationService) Queryhelp(ctx context.Context, opts ...option
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *OnboardnavigationService) Tuple(ctx context.Context, query OnboardnavigationTupleParams, opts ...option.RequestOption) (res *[]OnboardnavigationFull, err error) {
+func (r *OnboardnavigationService) Tuple(ctx context.Context, query OnboardnavigationTupleParams, opts ...option.RequestOption) (res *[]shared.OnboardnavigationFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/onboardnavigation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)

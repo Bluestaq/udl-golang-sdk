@@ -12,6 +12,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // AirfieldStatusHistoryService contains methods and other services that help with
@@ -37,7 +38,7 @@ func NewAirfieldStatusHistoryService(opts ...option.RequestOption) (r AirfieldSt
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *AirfieldStatusHistoryService) List(ctx context.Context, query AirfieldStatusHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AirfieldstatusFull], err error) {
+func (r *AirfieldStatusHistoryService) List(ctx context.Context, query AirfieldStatusHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[shared.AirfieldstatusFull], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -58,7 +59,7 @@ func (r *AirfieldStatusHistoryService) List(ctx context.Context, query AirfieldS
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *AirfieldStatusHistoryService) ListAutoPaging(ctx context.Context, query AirfieldStatusHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[AirfieldstatusFull] {
+func (r *AirfieldStatusHistoryService) ListAutoPaging(ctx context.Context, query AirfieldStatusHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[shared.AirfieldstatusFull] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
