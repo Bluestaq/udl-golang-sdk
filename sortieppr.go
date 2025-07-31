@@ -18,6 +18,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // SortiePprService contains methods and other services that help with interacting
@@ -139,7 +140,7 @@ func (r *SortiePprService) NewBulk(ctx context.Context, body SortiePprNewBulkPar
 
 // Service operation to get a single sortieppr record by its unique ID passed as a
 // path parameter.
-func (r *SortiePprService) Get(ctx context.Context, id string, query SortiePprGetParams, opts ...option.RequestOption) (res *SortiePprFull, err error) {
+func (r *SortiePprService) Get(ctx context.Context, id string, query SortiePprGetParams, opts ...option.RequestOption) (res *shared.SortiePprFull, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -167,7 +168,7 @@ func (r *SortiePprService) Queryhelp(ctx context.Context, opts ...option.Request
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *SortiePprService) Tuple(ctx context.Context, query SortiePprTupleParams, opts ...option.RequestOption) (res *[]SortiePprFull, err error) {
+func (r *SortiePprService) Tuple(ctx context.Context, query SortiePprTupleParams, opts ...option.RequestOption) (res *[]shared.SortiePprFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/sortieppr/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)

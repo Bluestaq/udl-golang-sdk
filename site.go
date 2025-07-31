@@ -17,6 +17,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // SiteService contains methods and other services that help with interacting with
@@ -767,7 +768,7 @@ type SiteGetResponse struct {
 	// An entity is a generic representation of any object within a space/SSA system
 	// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
 	// entity can have an operating unit, a location (if terrestrial), and statuses.
-	Entity EntityFull `json:"entity"`
+	Entity shared.EntityFull `json:"entity"`
 	// Eval represents the Intelligence Confidence Level or the Reliability/degree of
 	// confidence that the analyst has assigned to the data within this record. The
 	// numerical range is from 1 to 9 with 1 representing the highest confidence level.
@@ -1817,7 +1818,7 @@ type SiteTupleResponse struct {
 	// An entity is a generic representation of any object within a space/SSA system
 	// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
 	// entity can have an operating unit, a location (if terrestrial), and statuses.
-	Entity EntityFull `json:"entity"`
+	Entity shared.EntityFull `json:"entity"`
 	// Eval represents the Intelligence Confidence Level or the Reliability/degree of
 	// confidence that the analyst has assigned to the data within this record. The
 	// numerical range is from 1 to 9 with 1 representing the highest confidence level.

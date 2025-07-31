@@ -13,6 +13,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // DiplomaticClearanceHistoryService contains methods and other services that help
@@ -38,7 +39,7 @@ func NewDiplomaticClearanceHistoryService(opts ...option.RequestOption) (r Diplo
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *DiplomaticClearanceHistoryService) List(ctx context.Context, query DiplomaticClearanceHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[DiplomaticclearanceFull], err error) {
+func (r *DiplomaticClearanceHistoryService) List(ctx context.Context, query DiplomaticClearanceHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[shared.DiplomaticclearanceFull], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -59,7 +60,7 @@ func (r *DiplomaticClearanceHistoryService) List(ctx context.Context, query Dipl
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *DiplomaticClearanceHistoryService) ListAutoPaging(ctx context.Context, query DiplomaticClearanceHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[DiplomaticclearanceFull] {
+func (r *DiplomaticClearanceHistoryService) ListAutoPaging(ctx context.Context, query DiplomaticClearanceHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[shared.DiplomaticclearanceFull] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 

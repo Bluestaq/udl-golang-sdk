@@ -18,6 +18,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // DiplomaticClearanceService contains methods and other services that help with
@@ -56,7 +57,7 @@ func (r *DiplomaticClearanceService) New(ctx context.Context, body DiplomaticCle
 
 // Service operation to get a single diplomatic clearance record by its unique ID
 // passed as a path parameter.
-func (r *DiplomaticClearanceService) Get(ctx context.Context, id string, query DiplomaticClearanceGetParams, opts ...option.RequestOption) (res *DiplomaticclearanceFull, err error) {
+func (r *DiplomaticClearanceService) Get(ctx context.Context, id string, query DiplomaticClearanceGetParams, opts ...option.RequestOption) (res *shared.DiplomaticclearanceFull, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -169,7 +170,7 @@ func (r *DiplomaticClearanceService) Queryhelp(ctx context.Context, opts ...opti
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *DiplomaticClearanceService) Tuple(ctx context.Context, query DiplomaticClearanceTupleParams, opts ...option.RequestOption) (res *[]DiplomaticclearanceFull, err error) {
+func (r *DiplomaticClearanceService) Tuple(ctx context.Context, query DiplomaticClearanceTupleParams, opts ...option.RequestOption) (res *[]shared.DiplomaticclearanceFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/diplomaticclearance/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)

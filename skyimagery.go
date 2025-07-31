@@ -454,7 +454,7 @@ type SkyImageryGetResponse struct {
 	// Optional name/description associated with this image.
 	Description string `json:"description"`
 	// Collection of linked EOObservations.
-	EoObservations []EoObservationFull `json:"eoObservations"`
+	EoObservations []shared.EoObservationFull `json:"eoObservations"`
 	// End time of the exposure, in ISO 8601 UTC format with microsecond precision.
 	ExpEndTime time.Time `json:"expEndTime" format:"date-time"`
 	// Name of the uploaded image file.
@@ -779,7 +779,7 @@ type SkyImageryTupleResponse struct {
 	// Optional name/description associated with this image.
 	Description string `json:"description"`
 	// Collection of linked EOObservations.
-	EoObservations []EoObservationFull `json:"eoObservations"`
+	EoObservations []shared.EoObservationFull `json:"eoObservations"`
 	// End time of the exposure, in ISO 8601 UTC format with microsecond precision.
 	ExpEndTime time.Time `json:"expEndTime" format:"date-time"`
 	// Name of the uploaded image file.

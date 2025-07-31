@@ -17,6 +17,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // NavigationService contains methods and other services that help with interacting
@@ -288,7 +289,7 @@ type NavigationGetResponse struct {
 	// An entity is a generic representation of any object within a space/SSA system
 	// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
 	// entity can have an operating unit, a location (if terrestrial), and statuses.
-	Entity EntityFull `json:"entity"`
+	Entity shared.EntityFull `json:"entity"`
 	// ID of the parent entity for this navigation.
 	IDEntity string `json:"idEntity"`
 	// Originating system or organization which produced the data, if different from
@@ -469,7 +470,7 @@ type NavigationTupleResponse struct {
 	// An entity is a generic representation of any object within a space/SSA system
 	// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
 	// entity can have an operating unit, a location (if terrestrial), and statuses.
-	Entity EntityFull `json:"entity"`
+	Entity shared.EntityFull `json:"entity"`
 	// ID of the parent entity for this navigation.
 	IDEntity string `json:"idEntity"`
 	// Originating system or organization which produced the data, if different from

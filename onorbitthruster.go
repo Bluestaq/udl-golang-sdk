@@ -17,6 +17,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // OnorbitthrusterService contains methods and other services that help with
@@ -263,7 +264,7 @@ type OnorbitthrusterGetResponse struct {
 	CreatedBy string `json:"createdBy"`
 	// Known launch vehicle engines and their performance characteristics and limits. A
 	// launch vehicle has 1 to many engines per stage.
-	Engine Engine `json:"engine"`
+	Engine shared.Engine `json:"engine"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If

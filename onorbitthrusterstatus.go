@@ -18,6 +18,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // OnorbitthrusterstatusService contains methods and other services that help with
@@ -125,7 +126,7 @@ func (r *OnorbitthrusterstatusService) NewBulk(ctx context.Context, body Onorbit
 // Service operation to get a single OnorbitThrusterStatus record by its unique ID
 // passed as a path parameter. OnorbitThrusterStatus records are information for
 // OnorbitThruster objects.
-func (r *OnorbitthrusterstatusService) Get(ctx context.Context, id string, query OnorbitthrusterstatusGetParams, opts ...option.RequestOption) (res *OnorbitthrusterstatusFull, err error) {
+func (r *OnorbitthrusterstatusService) Get(ctx context.Context, id string, query OnorbitthrusterstatusGetParams, opts ...option.RequestOption) (res *shared.OnorbitthrusterstatusFull, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -153,7 +154,7 @@ func (r *OnorbitthrusterstatusService) Queryhelp(ctx context.Context, opts ...op
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *OnorbitthrusterstatusService) Tuple(ctx context.Context, query OnorbitthrusterstatusTupleParams, opts ...option.RequestOption) (res *[]OnorbitthrusterstatusFull, err error) {
+func (r *OnorbitthrusterstatusService) Tuple(ctx context.Context, query OnorbitthrusterstatusTupleParams, opts ...option.RequestOption) (res *[]shared.OnorbitthrusterstatusFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/onorbitthrusterstatus/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)

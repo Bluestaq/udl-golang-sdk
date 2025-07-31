@@ -17,6 +17,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // RfEmitterDetailService contains methods and other services that help with
@@ -384,7 +385,7 @@ type RfEmitterDetailGetResponse struct {
 	// An organization such as a corporation, manufacturer, consortium, government,
 	// etc. An organization may have parent and child organizations as well as link to
 	// a former organization if this org previously existed as another organization.
-	ManufacturerOrg OrganizationFull `json:"manufacturerOrg"`
+	ManufacturerOrg shared.OrganizationFull `json:"manufacturerOrg"`
 	// Unique identifier of the organization which manufactures this RF Emitter.
 	ManufacturerOrgID string `json:"manufacturerOrgId"`
 	// Notes on the RF Emitter.
@@ -403,7 +404,7 @@ type RfEmitterDetailGetResponse struct {
 	OrigNetwork string `json:"origNetwork"`
 	// Model representation of a location, which is a specific fixed point on the earth
 	// and is used to denote the locations of fixed sensors, operating units, etc.
-	ProductionFacilityLocation LocationFull `json:"productionFacilityLocation"`
+	ProductionFacilityLocation shared.LocationFull `json:"productionFacilityLocation"`
 	// Unique identifier of the location of the production facility for this RF
 	// Emitter.
 	ProductionFacilityLocationID string `json:"productionFacilityLocationId"`
@@ -648,7 +649,7 @@ type RfEmitterDetailTupleResponse struct {
 	// An organization such as a corporation, manufacturer, consortium, government,
 	// etc. An organization may have parent and child organizations as well as link to
 	// a former organization if this org previously existed as another organization.
-	ManufacturerOrg OrganizationFull `json:"manufacturerOrg"`
+	ManufacturerOrg shared.OrganizationFull `json:"manufacturerOrg"`
 	// Unique identifier of the organization which manufactures this RF Emitter.
 	ManufacturerOrgID string `json:"manufacturerOrgId"`
 	// Notes on the RF Emitter.
@@ -667,7 +668,7 @@ type RfEmitterDetailTupleResponse struct {
 	OrigNetwork string `json:"origNetwork"`
 	// Model representation of a location, which is a specific fixed point on the earth
 	// and is used to denote the locations of fixed sensors, operating units, etc.
-	ProductionFacilityLocation LocationFull `json:"productionFacilityLocation"`
+	ProductionFacilityLocation shared.LocationFull `json:"productionFacilityLocation"`
 	// Unique identifier of the location of the production facility for this RF
 	// Emitter.
 	ProductionFacilityLocationID string `json:"productionFacilityLocationId"`

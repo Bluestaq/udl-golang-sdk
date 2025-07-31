@@ -18,6 +18,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // ObservationEoObservationService contains methods and other services that help
@@ -56,7 +57,7 @@ func (r *ObservationEoObservationService) New(ctx context.Context, body Observat
 
 // Service operation to get a single EO observation by its unique ID passed as a
 // path parameter.
-func (r *ObservationEoObservationService) Get(ctx context.Context, id string, query ObservationEoObservationGetParams, opts ...option.RequestOption) (res *EoObservationFull, err error) {
+func (r *ObservationEoObservationService) Get(ctx context.Context, id string, query ObservationEoObservationGetParams, opts ...option.RequestOption) (res *shared.EoObservationFull, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -139,7 +140,7 @@ func (r *ObservationEoObservationService) Queryhelp(ctx context.Context, opts ..
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *ObservationEoObservationService) Tuple(ctx context.Context, query ObservationEoObservationTupleParams, opts ...option.RequestOption) (res *[]EoObservationFull, err error) {
+func (r *ObservationEoObservationService) Tuple(ctx context.Context, query ObservationEoObservationTupleParams, opts ...option.RequestOption) (res *[]shared.EoObservationFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/eoobservation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)

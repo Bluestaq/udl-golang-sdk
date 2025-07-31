@@ -17,6 +17,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // SolarArrayService contains methods and other services that help with interacting
@@ -284,7 +285,7 @@ type SolarArrayGetResponse struct {
 	// Read-only collection of additional SolarArrayDetails by various sources for this
 	// organization, ignored on create/update. These details must be created separately
 	// via the /udl/solararraydetails operations.
-	SolarArrayDetails []SolarArrayDetailsFull `json:"solarArrayDetails"`
+	SolarArrayDetails []shared.SolarArrayDetailsFull `json:"solarArrayDetails"`
 	// Time the row was last updated in the database, auto-populated by the system.
 	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
 	// Application user who updated the row in the database, auto-populated by the
@@ -458,7 +459,7 @@ type SolarArrayTupleResponse struct {
 	// Read-only collection of additional SolarArrayDetails by various sources for this
 	// organization, ignored on create/update. These details must be created separately
 	// via the /udl/solararraydetails operations.
-	SolarArrayDetails []SolarArrayDetailsFull `json:"solarArrayDetails"`
+	SolarArrayDetails []shared.SolarArrayDetailsFull `json:"solarArrayDetails"`
 	// Time the row was last updated in the database, auto-populated by the system.
 	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
 	// Application user who updated the row in the database, auto-populated by the
