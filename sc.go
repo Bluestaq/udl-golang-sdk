@@ -119,10 +119,11 @@ func (r *ScService) FileDownload(ctx context.Context, query ScFileDownloadParams
 
 // Operation to upload a file. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *ScService) FileUpload(ctx context.Context, params ScFileUploadParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *ScService) FileUpload(ctx context.Context, body io.Reader, body ScFileUploadParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithRequestBody("application/octet-stream", body)}, opts...)
 	path := "scs/file"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, &res, opts...)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, &res, opts...)
 	return
 }
 
@@ -227,7 +228,6 @@ type ScFileUploadParams struct {
 	FileName string `query:"fileName,required" json:"-"`
 	// The base path to upload file (ex. images)
 	Path string `query:"path,required" json:"-"`
-	Body io.Reader
 	// Length of time after which to automatically delete the file.
 	DeleteAfter param.Opt[string] `query:"deleteAfter,omitzero" json:"-"`
 	// Description

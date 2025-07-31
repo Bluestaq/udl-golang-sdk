@@ -39,10 +39,11 @@ func NewScPathService(opts ...option.RequestOption) (r ScPathService) {
 // Creates the path and uploads file that is passed. If folder exist it will only
 // create folders that are missing. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
-func (r *ScPathService) New(ctx context.Context, params ScPathNewParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *ScPathService) New(ctx context.Context, body io.Reader, body ScPathNewParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithRequestBody("application/octet-stream", body)}, opts...)
 	path := "scs/path"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, &res, opts...)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, &res, opts...)
 	return
 }
 
@@ -51,7 +52,6 @@ type ScPathNewParams struct {
 	ID string `query:"id,required" json:"-"`
 	// Classification (ex. U//FOUO)
 	ClassificationMarking string `query:"classificationMarking,required" json:"-"`
-	Body                  io.Reader
 	// Length of time after which to automatically delete the file.
 	DeleteAfter param.Opt[string] `query:"deleteAfter,omitzero" json:"-"`
 	// Description

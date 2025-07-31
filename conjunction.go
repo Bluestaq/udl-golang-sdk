@@ -185,11 +185,11 @@ func (r *ConjunctionService) UnvalidatedPublish(ctx context.Context, body Conjun
 //
 // **Example:**
 // /filedrop/cdms?filename=conj.zip&classification=U&dataMode=TEST&source=Bluestaq&tags=tag1,tag2
-func (r *ConjunctionService) UploadConjunctionDataMessage(ctx context.Context, params ConjunctionUploadConjunctionDataMessageParams, opts ...option.RequestOption) (err error) {
+func (r *ConjunctionService) UploadConjunctionDataMessage(ctx context.Context, body io.Reader, body ConjunctionUploadConjunctionDataMessageParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", ""), option.WithRequestBody("application/zip", body)}, opts...)
 	path := "filedrop/cdms"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, nil, opts...)
 	return
 }
 
@@ -6701,7 +6701,6 @@ type ConjunctionUploadConjunctionDataMessageParams struct {
 	Filename string `query:"filename,required" json:"-"`
 	// Source of the data.
 	Source string `query:"source,required" json:"-"`
-	Body   io.Reader
 	// Optional array of provider/source specific tags for this data, where each
 	// element is no longer than 32 characters, used for implementing data owner
 	// conditional access controls to restrict access to the data. Should be left null

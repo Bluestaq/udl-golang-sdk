@@ -1031,14 +1031,17 @@ func TestConjunctionUploadConjunctionDataMessageWithOptionalParams(t *testing.T)
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.Conjunctions.UploadConjunctionDataMessage(context.TODO(), unifieddatalibrary.ConjunctionUploadConjunctionDataMessageParams{
-		Classification: "classification",
-		DataMode:       unifieddatalibrary.ConjunctionUploadConjunctionDataMessageParamsDataModeReal,
-		Filename:       "filename",
-		Source:         "source",
-		Body:           io.Reader(bytes.NewBuffer([]byte("some file contents"))),
-		Tags:           unifieddatalibrary.String("tags"),
-	})
+	err := client.Conjunctions.UploadConjunctionDataMessage(
+		context.TODO(),
+		io.Reader(bytes.NewBuffer([]byte("some file contents"))),
+		unifieddatalibrary.ConjunctionUploadConjunctionDataMessageParams{
+			Classification: "classification",
+			DataMode:       unifieddatalibrary.ConjunctionUploadConjunctionDataMessageParamsDataModeReal,
+			Filename:       "filename",
+			Source:         "source",
+			Tags:           unifieddatalibrary.String("tags"),
+		},
+	)
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
