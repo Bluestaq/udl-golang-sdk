@@ -1458,6 +1458,38 @@ const CrewFullDataModeExercise = shared.CrewFullDataModeExercise
 // This is an alias to an internal type.
 type CrewFullCrewMember = shared.CrewFullCrewMember
 
+// Collection providing hours of operation and other information specific to a day
+// of the week.
+//
+// This is an alias to an internal type.
+type DailyOperationFull = shared.DailyOperationFull
+
+// The day of the week to which this operational information pertains.
+//
+// This is an alias to an internal type.
+type DailyOperationFullDayOfWeek = shared.DailyOperationFullDayOfWeek
+
+// Equals "MONDAY"
+const DailyOperationFullDayOfWeekMonday = shared.DailyOperationFullDayOfWeekMonday
+
+// Equals "TUESDAY"
+const DailyOperationFullDayOfWeekTuesday = shared.DailyOperationFullDayOfWeekTuesday
+
+// Equals "WEDNESDAY"
+const DailyOperationFullDayOfWeekWednesday = shared.DailyOperationFullDayOfWeekWednesday
+
+// Equals "THURSDAY"
+const DailyOperationFullDayOfWeekThursday = shared.DailyOperationFullDayOfWeekThursday
+
+// Equals "FRIDAY"
+const DailyOperationFullDayOfWeekFriday = shared.DailyOperationFullDayOfWeekFriday
+
+// Equals "SATURDAY"
+const DailyOperationFullDayOfWeekSaturday = shared.DailyOperationFullDayOfWeekSaturday
+
+// Equals "SUNDAY"
+const DailyOperationFullDayOfWeekSunday = shared.DailyOperationFullDayOfWeekSunday
+
 // A diplomatic clearance is an authorization for an aircraft to traverse or land
 // within a specified country.
 //
@@ -1733,43 +1765,6 @@ const EntityFullTypeVessel = shared.EntityFullTypeVessel
 // This is an alias to an internal type.
 type EntityFullOnOrbit = shared.EntityFullOnOrbit
 
-// This is an alias to an internal type.
-type EntityFullOnOrbitAntenna = shared.EntityFullOnOrbitAntenna
-
-// This is an alias to an internal type.
-type EntityFullOnOrbitBattery = shared.EntityFullOnOrbitBattery
-
-// Contains details of the OnOrbit object.
-//
-// This is an alias to an internal type.
-type EntityFullOnOrbitOnorbitDetail = shared.EntityFullOnOrbitOnorbitDetail
-
-// This is an alias to an internal type.
-type EntityFullOnOrbitSolarArray = shared.EntityFullOnOrbitSolarArray
-
-// Model representation of information on on-orbit/spacecraft solar arrays. A
-// spacecraft may have multiple solar arrays and each solar array can have multiple
-// 'details' records compiled by different sources.
-//
-// This is an alias to an internal type.
-type EntityFullOnOrbitSolarArraySolarArray = shared.EntityFullOnOrbitSolarArraySolarArray
-
-// This is an alias to an internal type.
-type EntityFullOnOrbitThruster = shared.EntityFullOnOrbitThruster
-
-// Model representation of a unit or organization which operates or controls a
-// space-related Entity such as an on-orbit payload, a sensor, etc. A contact may
-// belong to an organization.
-//
-// This is an alias to an internal type.
-type EntityFullOperatingUnit = shared.EntityFullOperatingUnit
-
-// Remarks contain amplifying information for a specific service. The information
-// may contain context and interpretations for consumer use.
-//
-// This is an alias to an internal type.
-type EntityFullOperatingUnitOperatingUnitRemark = shared.EntityFullOperatingUnitOperatingUnitRemark
-
 // Type of organization which owns this entity (e.g. Commercial, Government,
 // Academic, Consortium, etc).
 //
@@ -1790,23 +1785,6 @@ const EntityFullOwnerTypeConsortium = shared.EntityFullOwnerTypeConsortium
 
 // Equals "Other"
 const EntityFullOwnerTypeOther = shared.EntityFullOwnerTypeOther
-
-// Details on a particular Radio Frequency (RF) band, also known as a carrier,
-// which may be in use by any type of Entity for communications or operations.
-//
-// This is an alias to an internal type.
-type EntityFullRfBand = shared.EntityFullRfBand
-
-// Status for a particular Entity. An entity may have multiple status records
-// collected by various sources.
-//
-// This is an alias to an internal type.
-type EntityFullStatusCollection = shared.EntityFullStatusCollection
-
-// Additional sub-system or capability status for the parent entity.
-//
-// This is an alias to an internal type.
-type EntityFullStatusCollectionSubStatusCollection = shared.EntityFullStatusCollectionSubStatusCollection
 
 // Model representation of observation data for electro-optical based sensor
 // phenomenologies. ECI J2K is the preferred reference frame for EOObservations,
@@ -2117,12 +2095,6 @@ type EvacFullCasualtyInfoVitalSignData = shared.EvacFullCasualtyInfoVitalSignDat
 // This is an alias to an internal type.
 type EvacFullEnemyData = shared.EvacFullEnemyData
 
-// This is an alias to an internal type.
-type EvacFullRelatedDoc = shared.EvacFullRelatedDoc
-
-// This is an alias to an internal type.
-type EvacFullRelatedDocDataSourceRef = shared.EvacFullRelatedDocDataSourceRef
-
 // Event Evolution is a unique service supporting the association of UDL records of
 // various data types to a common event or activity. The associations may be a one
 // time summary, aggregating sources of a past event, or of an ongoing activity
@@ -2266,6 +2238,42 @@ type FlightPlanFullFlightPlanWaypoint = shared.FlightPlanFullFlightPlanWaypoint
 // and is used to denote the locations of fixed sensors, operating units, etc.
 //
 // This is an alias to an internal type.
+type LocationAbridged = shared.LocationAbridged
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+//
+// This is an alias to an internal type.
+type LocationAbridgedDataMode = shared.LocationAbridgedDataMode
+
+// Equals "REAL"
+const LocationAbridgedDataModeReal = shared.LocationAbridgedDataModeReal
+
+// Equals "TEST"
+const LocationAbridgedDataModeTest = shared.LocationAbridgedDataModeTest
+
+// Equals "SIMULATED"
+const LocationAbridgedDataModeSimulated = shared.LocationAbridgedDataModeSimulated
+
+// Equals "EXERCISE"
+const LocationAbridgedDataModeExercise = shared.LocationAbridgedDataModeExercise
+
+// Model representation of a location, which is a specific fixed point on the earth
+// and is used to denote the locations of fixed sensors, operating units, etc.
+//
+// This is an alias to an internal type.
 type LocationFull = shared.LocationFull
 
 // Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -2297,6 +2305,12 @@ const LocationFullDataModeSimulated = shared.LocationFullDataModeSimulated
 
 // Equals "EXERCISE"
 const LocationFullDataModeExercise = shared.LocationFullDataModeExercise
+
+// Collection providing maximum on ground (MOG) information for specific aircraft
+// at the site associated with this SiteOperations record.
+//
+// This is an alias to an internal type.
+type MaximumOnGroundFull = shared.MaximumOnGroundFull
 
 // Model representation of client generated notification data. Contains a message
 // type and message body field to store notification information.
@@ -2398,6 +2412,107 @@ const OnboardnavigationFullReferenceFrameItrf = shared.OnboardnavigationFullRefe
 // Equals "GCRF"
 const OnboardnavigationFullReferenceFrameGcrf = shared.OnboardnavigationFullReferenceFrameGcrf
 
+// This is an alias to an internal type.
+type OnorbitAntennaFull = shared.OnorbitAntennaFull
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+//
+// This is an alias to an internal type.
+type OnorbitAntennaFullDataMode = shared.OnorbitAntennaFullDataMode
+
+// Equals "REAL"
+const OnorbitAntennaFullDataModeReal = shared.OnorbitAntennaFullDataModeReal
+
+// Equals "TEST"
+const OnorbitAntennaFullDataModeTest = shared.OnorbitAntennaFullDataModeTest
+
+// Equals "SIMULATED"
+const OnorbitAntennaFullDataModeSimulated = shared.OnorbitAntennaFullDataModeSimulated
+
+// Equals "EXERCISE"
+const OnorbitAntennaFullDataModeExercise = shared.OnorbitAntennaFullDataModeExercise
+
+// This is an alias to an internal type.
+type OnorbitBatteryFull = shared.OnorbitBatteryFull
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+//
+// This is an alias to an internal type.
+type OnorbitBatteryFullDataMode = shared.OnorbitBatteryFullDataMode
+
+// Equals "REAL"
+const OnorbitBatteryFullDataModeReal = shared.OnorbitBatteryFullDataModeReal
+
+// Equals "TEST"
+const OnorbitBatteryFullDataModeTest = shared.OnorbitBatteryFullDataModeTest
+
+// Equals "SIMULATED"
+const OnorbitBatteryFullDataModeSimulated = shared.OnorbitBatteryFullDataModeSimulated
+
+// Equals "EXERCISE"
+const OnorbitBatteryFullDataModeExercise = shared.OnorbitBatteryFullDataModeExercise
+
+// Contains details of the OnOrbit object.
+//
+// This is an alias to an internal type.
+type OnorbitDetailsFull = shared.OnorbitDetailsFull
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+//
+// This is an alias to an internal type.
+type OnorbitDetailsFullDataMode = shared.OnorbitDetailsFullDataMode
+
+// Equals "REAL"
+const OnorbitDetailsFullDataModeReal = shared.OnorbitDetailsFullDataModeReal
+
+// Equals "TEST"
+const OnorbitDetailsFullDataModeTest = shared.OnorbitDetailsFullDataModeTest
+
+// Equals "SIMULATED"
+const OnorbitDetailsFullDataModeSimulated = shared.OnorbitDetailsFullDataModeSimulated
+
+// Equals "EXERCISE"
+const OnorbitDetailsFullDataModeExercise = shared.OnorbitDetailsFullDataModeExercise
+
 // Model object representing on-orbit objects or satellites in the system.
 //
 // This is an alias to an internal type.
@@ -2432,12 +2547,6 @@ const OnorbitFullDataModeSimulated = shared.OnorbitFullDataModeSimulated
 
 // Equals "EXERCISE"
 const OnorbitFullDataModeExercise = shared.OnorbitFullDataModeExercise
-
-// This is an alias to an internal type.
-type OnorbitFullAntenna = shared.OnorbitFullAntenna
-
-// This is an alias to an internal type.
-type OnorbitFullBattery = shared.OnorbitFullBattery
 
 // Category of the on-orbit object. (Unknown, On-Orbit, Decayed, Cataloged Without
 // State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
@@ -2492,36 +2601,6 @@ const OnorbitFullCategoryDocked = shared.OnorbitFullCategoryDocked
 // This is an alias to an internal type.
 type OnorbitFullEntityCollection = shared.OnorbitFullEntityCollection
 
-// Model representation of a unit or organization which operates or controls a
-// space-related Entity such as an on-orbit payload, a sensor, etc. A contact may
-// belong to an organization.
-//
-// This is an alias to an internal type.
-type OnorbitFullEntityCollectionOperatingUnit = shared.OnorbitFullEntityCollectionOperatingUnit
-
-// Remarks contain amplifying information for a specific service. The information
-// may contain context and interpretations for consumer use.
-//
-// This is an alias to an internal type.
-type OnorbitFullEntityCollectionOperatingUnitOperatingUnitRemark = shared.OnorbitFullEntityCollectionOperatingUnitOperatingUnitRemark
-
-// Details on a particular Radio Frequency (RF) band, also known as a carrier,
-// which may be in use by any type of Entity for communications or operations.
-//
-// This is an alias to an internal type.
-type OnorbitFullEntityCollectionRfBand = shared.OnorbitFullEntityCollectionRfBand
-
-// Status for a particular Entity. An entity may have multiple status records
-// collected by various sources.
-//
-// This is an alias to an internal type.
-type OnorbitFullEntityCollectionStatusCollection = shared.OnorbitFullEntityCollectionStatusCollection
-
-// Additional sub-system or capability status for the parent entity.
-//
-// This is an alias to an internal type.
-type OnorbitFullEntityCollectionStatusCollectionSubStatusCollection = shared.OnorbitFullEntityCollectionStatusCollectionSubStatusCollection
-
 // Type of on-orbit object: ROCKET BODY, DEBRIS, PAYLOAD, PLATFORM, MANNED,
 // UNKNOWN.
 //
@@ -2546,23 +2625,71 @@ const OnorbitFullObjectTypeManned = shared.OnorbitFullObjectTypeManned
 // Equals "UNKNOWN"
 const OnorbitFullObjectTypeUnknown = shared.OnorbitFullObjectTypeUnknown
 
-// Contains details of the OnOrbit object.
+// This is an alias to an internal type.
+type OnorbitSolarArrayFull = shared.OnorbitSolarArrayFull
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
 //
 // This is an alias to an internal type.
-type OnorbitFullOnorbitDetail = shared.OnorbitFullOnorbitDetail
+type OnorbitSolarArrayFullDataMode = shared.OnorbitSolarArrayFullDataMode
+
+// Equals "REAL"
+const OnorbitSolarArrayFullDataModeReal = shared.OnorbitSolarArrayFullDataModeReal
+
+// Equals "TEST"
+const OnorbitSolarArrayFullDataModeTest = shared.OnorbitSolarArrayFullDataModeTest
+
+// Equals "SIMULATED"
+const OnorbitSolarArrayFullDataModeSimulated = shared.OnorbitSolarArrayFullDataModeSimulated
+
+// Equals "EXERCISE"
+const OnorbitSolarArrayFullDataModeExercise = shared.OnorbitSolarArrayFullDataModeExercise
 
 // This is an alias to an internal type.
-type OnorbitFullSolarArray = shared.OnorbitFullSolarArray
+type OnorbitThrusterFull = shared.OnorbitThrusterFull
 
-// Model representation of information on on-orbit/spacecraft solar arrays. A
-// spacecraft may have multiple solar arrays and each solar array can have multiple
-// 'details' records compiled by different sources.
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
 //
 // This is an alias to an internal type.
-type OnorbitFullSolarArraySolarArray = shared.OnorbitFullSolarArraySolarArray
+type OnorbitThrusterFullDataMode = shared.OnorbitThrusterFullDataMode
 
-// This is an alias to an internal type.
-type OnorbitFullThruster = shared.OnorbitFullThruster
+// Equals "REAL"
+const OnorbitThrusterFullDataModeReal = shared.OnorbitThrusterFullDataModeReal
+
+// Equals "TEST"
+const OnorbitThrusterFullDataModeTest = shared.OnorbitThrusterFullDataModeTest
+
+// Equals "SIMULATED"
+const OnorbitThrusterFullDataModeSimulated = shared.OnorbitThrusterFullDataModeSimulated
+
+// Equals "EXERCISE"
+const OnorbitThrusterFullDataModeExercise = shared.OnorbitThrusterFullDataModeExercise
 
 // Status information for OnorbitThruster objects.
 //
@@ -2598,6 +2725,96 @@ const OnorbitthrusterstatusFullDataModeSimulated = shared.OnorbitthrusterstatusF
 
 // Equals "EXERCISE"
 const OnorbitthrusterstatusFullDataModeExercise = shared.OnorbitthrusterstatusFullDataModeExercise
+
+// A collection containing the operational start and stop times scheduled for the
+// day of the week specified.
+//
+// This is an alias to an internal type.
+type OperatingHoursFull = shared.OperatingHoursFull
+
+// Remarks contain amplifying information for a specific service. The information
+// may contain context and interpretations for consumer use.
+//
+// This is an alias to an internal type.
+type OperatingUnitRemarkFull = shared.OperatingUnitRemarkFull
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+//
+// This is an alias to an internal type.
+type OperatingUnitRemarkFullDataMode = shared.OperatingUnitRemarkFullDataMode
+
+// Equals "REAL"
+const OperatingUnitRemarkFullDataModeReal = shared.OperatingUnitRemarkFullDataModeReal
+
+// Equals "TEST"
+const OperatingUnitRemarkFullDataModeTest = shared.OperatingUnitRemarkFullDataModeTest
+
+// Equals "SIMULATED"
+const OperatingUnitRemarkFullDataModeSimulated = shared.OperatingUnitRemarkFullDataModeSimulated
+
+// Equals "EXERCISE"
+const OperatingUnitRemarkFullDataModeExercise = shared.OperatingUnitRemarkFullDataModeExercise
+
+// Model representation of a unit or organization which operates or controls a
+// space-related Entity such as an on-orbit payload, a sensor, etc. A contact may
+// belong to an organization.
+//
+// This is an alias to an internal type.
+type OperatingunitFull = shared.OperatingunitFull
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+//
+// This is an alias to an internal type.
+type OperatingunitFullDataMode = shared.OperatingunitFullDataMode
+
+// Equals "REAL"
+const OperatingunitFullDataModeReal = shared.OperatingunitFullDataModeReal
+
+// Equals "TEST"
+const OperatingunitFullDataModeTest = shared.OperatingunitFullDataModeTest
+
+// Equals "SIMULATED"
+const OperatingunitFullDataModeSimulated = shared.OperatingunitFullDataModeSimulated
+
+// Equals "EXERCISE"
+const OperatingunitFullDataModeExercise = shared.OperatingunitFullDataModeExercise
+
+// Collection providing relevant information in the event of deviations/exceptions
+// to normal operations.
+//
+// This is an alias to an internal type.
+type OperationalDeviationFull = shared.OperationalDeviationFull
+
+// Collection of planning information associated with this SiteOperations record.
+//
+// This is an alias to an internal type.
+type OperationalPlanningFull = shared.OperationalPlanningFull
 
 // Model representation of additional detailed organization data as collected by a
 // particular source.
@@ -2672,6 +2889,107 @@ const OrganizationFullDataModeSimulated = shared.OrganizationFullDataModeSimulat
 // Equals "EXERCISE"
 const OrganizationFullDataModeExercise = shared.OrganizationFullDataModeExercise
 
+// This is an alias to an internal type.
+type ParamDescriptorResp = shared.ParamDescriptorResp
+
+// Collection detailing operational pathways at the Site associated with this
+// SiteOperations record.
+//
+// This is an alias to an internal type.
+type PathwayFull = shared.PathwayFull
+
+// This is an alias to an internal type.
+type RelatedDocumentFull = shared.RelatedDocumentFull
+
+// Details on a particular Radio Frequency (RF) band, also known as a carrier,
+// which may be in use by any type of Entity for communications or operations.
+//
+// This is an alias to an internal type.
+type RfBandFull = shared.RfBandFull
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+//
+// This is an alias to an internal type.
+type RfBandFullDataMode = shared.RfBandFullDataMode
+
+// Equals "REAL"
+const RfBandFullDataModeReal = shared.RfBandFullDataModeReal
+
+// Equals "TEST"
+const RfBandFullDataModeTest = shared.RfBandFullDataModeTest
+
+// Equals "SIMULATED"
+const RfBandFullDataModeSimulated = shared.RfBandFullDataModeSimulated
+
+// Equals "EXERCISE"
+const RfBandFullDataModeExercise = shared.RfBandFullDataModeExercise
+
+// RF Band mode (e.g. TX, RX).
+//
+// This is an alias to an internal type.
+type RfBandFullMode = shared.RfBandFullMode
+
+// Equals "TX"
+const RfBandFullModeTx = shared.RfBandFullModeTx
+
+// Equals "RX"
+const RfBandFullModeRx = shared.RfBandFullModeRx
+
+// Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
+// Earth's surface, V - (Vertically Polarized) Parallel to Earth's surface, L -
+// (Left Hand Circularly Polarized) Rotating left relative to the Earth's surface,
+// R - (Right Hand Circularly Polarized) Rotating right relative to the Earth's
+// surface.
+//
+// This is an alias to an internal type.
+type RfBandFullPolarization = shared.RfBandFullPolarization
+
+// Equals "H"
+const RfBandFullPolarizationH = shared.RfBandFullPolarizationH
+
+// Equals "V"
+const RfBandFullPolarizationV = shared.RfBandFullPolarizationV
+
+// Equals "R"
+const RfBandFullPolarizationR = shared.RfBandFullPolarizationR
+
+// Equals "L"
+const RfBandFullPolarizationL = shared.RfBandFullPolarizationL
+
+// Purpose or use of the RF Band -- COMM = communications, TTC =
+// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+//
+// This is an alias to an internal type.
+type RfBandFullPurpose = shared.RfBandFullPurpose
+
+// Equals "COMM"
+const RfBandFullPurposeComm = shared.RfBandFullPurposeComm
+
+// Equals "TTC"
+const RfBandFullPurposeTtc = shared.RfBandFullPurposeTtc
+
+// Equals "OPS"
+const RfBandFullPurposeOps = shared.RfBandFullPurposeOps
+
+// Equals "OTHER"
+const RfBandFullPurposeOther = shared.RfBandFullPurposeOther
+
+// This is an alias to an internal type.
+type SofDataSourceRefFull = shared.SofDataSourceRefFull
+
 // Model representation of Information on spacecraft SolarArrayDetails. A
 // SolarArray may have multiple details records compiled by various sources.
 //
@@ -2707,6 +3025,43 @@ const SolarArrayDetailsFullDataModeSimulated = shared.SolarArrayDetailsFullDataM
 
 // Equals "EXERCISE"
 const SolarArrayDetailsFullDataModeExercise = shared.SolarArrayDetailsFullDataModeExercise
+
+// Model representation of information on on-orbit/spacecraft solar arrays. A
+// spacecraft may have multiple solar arrays and each solar array can have multiple
+// 'details' records compiled by different sources.
+//
+// This is an alias to an internal type.
+type SolarArrayFull = shared.SolarArrayFull
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+//
+// This is an alias to an internal type.
+type SolarArrayFullDataMode = shared.SolarArrayFullDataMode
+
+// Equals "REAL"
+const SolarArrayFullDataModeReal = shared.SolarArrayFullDataModeReal
+
+// Equals "TEST"
+const SolarArrayFullDataModeTest = shared.SolarArrayFullDataModeTest
+
+// Equals "SIMULATED"
+const SolarArrayFullDataModeSimulated = shared.SolarArrayFullDataModeSimulated
+
+// Equals "EXERCISE"
+const SolarArrayFullDataModeExercise = shared.SolarArrayFullDataModeExercise
 
 // SortiePPR is a regulatory requirement where operators must obtain permissions to
 // full operational access to a runway, taxiway, or airport service.
@@ -2842,3 +3197,166 @@ const StateVectorFullReferenceFrameItrf = shared.StateVectorFullReferenceFrameIt
 
 // Equals "GCRF"
 const StateVectorFullReferenceFrameGcrf = shared.StateVectorFullReferenceFrameGcrf
+
+// Status for a particular Entity. An entity may have multiple status records
+// collected by various sources.
+//
+// This is an alias to an internal type.
+type StatusFull = shared.StatusFull
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+//
+// This is an alias to an internal type.
+type StatusFullDataMode = shared.StatusFullDataMode
+
+// Equals "REAL"
+const StatusFullDataModeReal = shared.StatusFullDataModeReal
+
+// Equals "TEST"
+const StatusFullDataModeTest = shared.StatusFullDataModeTest
+
+// Equals "SIMULATED"
+const StatusFullDataModeSimulated = shared.StatusFullDataModeSimulated
+
+// Equals "EXERCISE"
+const StatusFullDataModeExercise = shared.StatusFullDataModeExercise
+
+// Operation capability of the entity, if applicable (e.g. FMC, NMC, PMC, UNK).
+//
+// This is an alias to an internal type.
+type StatusFullOpsCap = shared.StatusFullOpsCap
+
+// Equals "FMC"
+const StatusFullOpsCapFmc = shared.StatusFullOpsCapFmc
+
+// Equals "NMC"
+const StatusFullOpsCapNmc = shared.StatusFullOpsCapNmc
+
+// Equals "PMC"
+const StatusFullOpsCapPmc = shared.StatusFullOpsCapPmc
+
+// Equals "UNK"
+const StatusFullOpsCapUnk = shared.StatusFullOpsCapUnk
+
+// Overall state of the entity, if applicable (e.g. UNKNOWN, DEAD, ACTIVE, RF
+// ACTIVE, STANDBY).
+//
+// This is an alias to an internal type.
+type StatusFullState = shared.StatusFullState
+
+// Equals "UNKNOWN"
+const StatusFullStateUnknown = shared.StatusFullStateUnknown
+
+// Equals "DEAD"
+const StatusFullStateDead = shared.StatusFullStateDead
+
+// Equals "ACTIVE"
+const StatusFullStateActive = shared.StatusFullStateActive
+
+// Equals "RF ACTIVE"
+const StatusFullStateRfActive = shared.StatusFullStateRfActive
+
+// Equals "STANDBY"
+const StatusFullStateStandby = shared.StatusFullStateStandby
+
+// System capability of the entity, if applicable (e.g. FMC, NMC, PMC, UNK).
+//
+// This is an alias to an internal type.
+type StatusFullSysCap = shared.StatusFullSysCap
+
+// Equals "FMC"
+const StatusFullSysCapFmc = shared.StatusFullSysCapFmc
+
+// Equals "NMC"
+const StatusFullSysCapNmc = shared.StatusFullSysCapNmc
+
+// Equals "PMC"
+const StatusFullSysCapPmc = shared.StatusFullSysCapPmc
+
+// Equals "UNK"
+const StatusFullSysCapUnk = shared.StatusFullSysCapUnk
+
+// Additional sub-system or capability status for the parent entity.
+//
+// This is an alias to an internal type.
+type SubStatusFull = shared.SubStatusFull
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+//
+// This is an alias to an internal type.
+type SubStatusFullDataMode = shared.SubStatusFullDataMode
+
+// Equals "REAL"
+const SubStatusFullDataModeReal = shared.SubStatusFullDataModeReal
+
+// Equals "TEST"
+const SubStatusFullDataModeTest = shared.SubStatusFullDataModeTest
+
+// Equals "SIMULATED"
+const SubStatusFullDataModeSimulated = shared.SubStatusFullDataModeSimulated
+
+// Equals "EXERCISE"
+const SubStatusFullDataModeExercise = shared.SubStatusFullDataModeExercise
+
+// Status of the sub-system/capability, e.g. FMC, NMC, PMC, UNK.
+//
+// This is an alias to an internal type.
+type SubStatusFullStatus = shared.SubStatusFullStatus
+
+// Equals "FMC"
+const SubStatusFullStatusFmc = shared.SubStatusFullStatusFmc
+
+// Equals "NMC"
+const SubStatusFullStatusNmc = shared.SubStatusFullStatusNmc
+
+// Equals "PMC"
+const SubStatusFullStatusPmc = shared.SubStatusFullStatusPmc
+
+// Equals "UNK"
+const SubStatusFullStatusUnk = shared.SubStatusFullStatusUnk
+
+// Parent entity's sub-system or capability status: mwCap, mdCap, ssCap, etc.
+//
+// This is an alias to an internal type.
+type SubStatusFullType = shared.SubStatusFullType
+
+// Equals "mwCap"
+const SubStatusFullTypeMwCap = shared.SubStatusFullTypeMwCap
+
+// Equals "ssCap"
+const SubStatusFullTypeSSCap = shared.SubStatusFullTypeSSCap
+
+// Equals "mdCap"
+const SubStatusFullTypeMdCap = shared.SubStatusFullTypeMdCap
+
+// Collection documenting operational waivers that have been issued for the Site
+// associated with this record.
+//
+// This is an alias to an internal type.
+type WaiverFull = shared.WaiverFull

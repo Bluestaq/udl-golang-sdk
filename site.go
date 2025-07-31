@@ -1174,7 +1174,7 @@ type SiteGetResponseSiteOperation struct {
 	CreatedBy string `json:"createdBy"`
 	// Collection providing hours of operation and other information specific to a day
 	// of the week.
-	DailyOperations []SiteGetResponseSiteOperationDailyOperation `json:"dailyOperations"`
+	DailyOperations []shared.DailyOperationFull `json:"dailyOperations"`
 	// The name of the person who made the most recent change to data in the
 	// DailyOperations collection.
 	DopsLastChangedBy string `json:"dopsLastChangedBy"`
@@ -1187,7 +1187,7 @@ type SiteGetResponseSiteOperation struct {
 	IDLaunchSite string `json:"idLaunchSite"`
 	// Collection providing maximum on ground (MOG) information for specific aircraft
 	// at the site associated with this SiteOperations record.
-	MaximumOnGrounds []SiteGetResponseSiteOperationMaximumOnGround `json:"maximumOnGrounds"`
+	MaximumOnGrounds []shared.MaximumOnGroundFull `json:"maximumOnGrounds"`
 	// The name of the person who made the most recent change to data in the
 	// MaximumOnGrounds collection.
 	MogsLastChangedBy string `json:"mogsLastChangedBy"`
@@ -1199,9 +1199,9 @@ type SiteGetResponseSiteOperation struct {
 	MogsLastChangedReason string `json:"mogsLastChangedReason"`
 	// Collection providing relevant information in the event of deviations/exceptions
 	// to normal operations.
-	OperationalDeviations []SiteGetResponseSiteOperationOperationalDeviation `json:"operationalDeviations"`
+	OperationalDeviations []shared.OperationalDeviationFull `json:"operationalDeviations"`
 	// Collection of planning information associated with this SiteOperations record.
-	OperationalPlannings []SiteGetResponseSiteOperationOperationalPlanning `json:"operationalPlannings"`
+	OperationalPlannings []shared.OperationalPlanningFull `json:"operationalPlannings"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
@@ -1212,7 +1212,7 @@ type SiteGetResponseSiteOperation struct {
 	OrigNetwork string `json:"origNetwork"`
 	// Collection detailing operational pathways at the Site associated with this
 	// SiteOperations record.
-	Pathways []SiteGetResponseSiteOperationPathway `json:"pathways"`
+	Pathways []shared.PathwayFull `json:"pathways"`
 	// The source data library from which this record was received. This could be a
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
@@ -1224,7 +1224,7 @@ type SiteGetResponseSiteOperation struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Collection documenting operational waivers that have been issued for the Site
 	// associated with this record.
-	Waivers []SiteGetResponseSiteOperationWaiver `json:"waivers"`
+	Waivers []shared.WaiverFull `json:"waivers"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		ClassificationMarking respjson.Field
@@ -1260,269 +1260,6 @@ type SiteGetResponseSiteOperation struct {
 // Returns the unmodified JSON received from the API
 func (r SiteGetResponseSiteOperation) RawJSON() string { return r.JSON.raw }
 func (r *SiteGetResponseSiteOperation) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Collection providing hours of operation and other information specific to a day
-// of the week.
-type SiteGetResponseSiteOperationDailyOperation struct {
-	// The day of the week to which this operational information pertains.
-	//
-	// Any of "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY",
-	// "SUNDAY".
-	DayOfWeek string `json:"dayOfWeek"`
-	// A collection containing the operational start and stop times scheduled for the
-	// day of the week specified.
-	OperatingHours []SiteGetResponseSiteOperationDailyOperationOperatingHour `json:"operatingHours"`
-	// The name or type of operation to which this information pertains.
-	OperationName string `json:"operationName"`
-	// The name of the person who made the most recent change to this DailyOperation
-	// data.
-	OphrsLastChangedBy string `json:"ophrsLastChangedBy"`
-	// The datetime of the most recent change made to this DailyOperation data, in ISO
-	// 8601 UTC format with millisecond precision.
-	OphrsLastChangedDate time.Time `json:"ophrsLastChangedDate" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		DayOfWeek            respjson.Field
-		OperatingHours       respjson.Field
-		OperationName        respjson.Field
-		OphrsLastChangedBy   respjson.Field
-		OphrsLastChangedDate respjson.Field
-		ExtraFields          map[string]respjson.Field
-		raw                  string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r SiteGetResponseSiteOperationDailyOperation) RawJSON() string { return r.JSON.raw }
-func (r *SiteGetResponseSiteOperationDailyOperation) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// A collection containing the operational start and stop times scheduled for the
-// day of the week specified.
-type SiteGetResponseSiteOperationDailyOperationOperatingHour struct {
-	// The Zulu (UTC) operational start time, expressed in ISO 8601 format as HH:MM.
-	OpStartTime string `json:"opStartTime"`
-	// The Zulu (UTC) operational stop time, expressed in ISO 8601 format as HH:MM.
-	OpStopTime string `json:"opStopTime"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		OpStartTime respjson.Field
-		OpStopTime  respjson.Field
-		ExtraFields map[string]respjson.Field
-		raw         string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r SiteGetResponseSiteOperationDailyOperationOperatingHour) RawJSON() string { return r.JSON.raw }
-func (r *SiteGetResponseSiteOperationDailyOperationOperatingHour) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Collection providing maximum on ground (MOG) information for specific aircraft
-// at the site associated with this SiteOperations record.
-type SiteGetResponseSiteOperationMaximumOnGround struct {
-	// The Model Design Series (MDS) designation of the aircraft to which this maximum
-	// on ground (MOG) data pertains.
-	AircraftMds string `json:"aircraftMDS"`
-	// Maximum on ground (MOG) number of contingent aircraft based on spacing and
-	// manpower, for the aircraft type specified.
-	ContingencyMog int64 `json:"contingencyMOG"`
-	// The name of the person who made the most recent change to this maximum on ground
-	// data.
-	MogLastChangedBy string `json:"mogLastChangedBy"`
-	// The datetime of the most recent change made to this maximum on ground data, in
-	// ISO 8601 UTC format with millisecond precision.
-	MogLastChangedDate time.Time `json:"mogLastChangedDate" format:"date-time"`
-	// Maximum on ground (MOG) number of parking wide-body aircraft based on spacing
-	// and manpower, for the aircraft type specified.
-	WideParkingMog int64 `json:"wideParkingMOG"`
-	// Maximum on ground (MOG) number of working wide-body aircraft based on spacing
-	// and manpower, for the aircraft type specified.
-	WideWorkingMog int64 `json:"wideWorkingMOG"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		AircraftMds        respjson.Field
-		ContingencyMog     respjson.Field
-		MogLastChangedBy   respjson.Field
-		MogLastChangedDate respjson.Field
-		WideParkingMog     respjson.Field
-		WideWorkingMog     respjson.Field
-		ExtraFields        map[string]respjson.Field
-		raw                string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r SiteGetResponseSiteOperationMaximumOnGround) RawJSON() string { return r.JSON.raw }
-func (r *SiteGetResponseSiteOperationMaximumOnGround) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Collection providing relevant information in the event of deviations/exceptions
-// to normal operations.
-type SiteGetResponseSiteOperationOperationalDeviation struct {
-	// The Model Design Series (MDS) designation of the aircraft affected by this
-	// operational deviation.
-	AffectedAircraftMds string `json:"affectedAircraftMDS"`
-	// The maximum on ground (MOG) number for aircraft affected by this operational
-	// deviation.
-	AffectedMog int64 `json:"affectedMOG"`
-	// On ground time for aircraft affected by this operational deviation.
-	AircraftOnGroundTime string `json:"aircraftOnGroundTime"`
-	// Rest time for crew affected by this operational deviation.
-	CrewRestTime string `json:"crewRestTime"`
-	// The name of the person who made the most recent change to this
-	// OperationalDeviation data.
-	OdLastChangedBy string `json:"odLastChangedBy"`
-	// The datetime of the most recent change made to this OperationalDeviation data,
-	// in ISO 8601 UTC format with millisecond precision.
-	OdLastChangedDate time.Time `json:"odLastChangedDate" format:"date-time"`
-	// Text remark regarding this operational deviation.
-	OdRemark string `json:"odRemark"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		AffectedAircraftMds  respjson.Field
-		AffectedMog          respjson.Field
-		AircraftOnGroundTime respjson.Field
-		CrewRestTime         respjson.Field
-		OdLastChangedBy      respjson.Field
-		OdLastChangedDate    respjson.Field
-		OdRemark             respjson.Field
-		ExtraFields          map[string]respjson.Field
-		raw                  string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r SiteGetResponseSiteOperationOperationalDeviation) RawJSON() string { return r.JSON.raw }
-func (r *SiteGetResponseSiteOperationOperationalDeviation) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Collection of planning information associated with this SiteOperations record.
-type SiteGetResponseSiteOperationOperationalPlanning struct {
-	// The end date of this operational planning, in ISO8601 UTC format with
-	// millisecond precision.
-	OpEndDate time.Time `json:"opEndDate" format:"date-time"`
-	// The name of the person who made the most recent change made to this
-	// OperationalPlanning data.
-	OpLastChangedBy string `json:"opLastChangedBy"`
-	// The datetime of the most recent change made to this OperationalPlanning data, in
-	// ISO8601 UTC format with millisecond precision.
-	OpLastChangedDate time.Time `json:"opLastChangedDate" format:"date-time"`
-	// Remark text regarding this operation planning.
-	OpRemark string `json:"opRemark"`
-	// The person, unit, organization, etc. responsible for this operation planning.
-	OpSource string `json:"opSource"`
-	// The start date of this operational planning, in ISO8601 UTC format with
-	// millisecond precision.
-	OpStartDate time.Time `json:"opStartDate" format:"date-time"`
-	// The status of this operational planning.
-	OpStatus string `json:"opStatus"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		OpEndDate         respjson.Field
-		OpLastChangedBy   respjson.Field
-		OpLastChangedDate respjson.Field
-		OpRemark          respjson.Field
-		OpSource          respjson.Field
-		OpStartDate       respjson.Field
-		OpStatus          respjson.Field
-		ExtraFields       map[string]respjson.Field
-		raw               string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r SiteGetResponseSiteOperationOperationalPlanning) RawJSON() string { return r.JSON.raw }
-func (r *SiteGetResponseSiteOperationOperationalPlanning) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Collection detailing operational pathways at the Site associated with this
-// SiteOperations record.
-type SiteGetResponseSiteOperationPathway struct {
-	// Text defining this pathway from its constituent parts.
-	PwDefinition string `json:"pwDefinition"`
-	// The name of the person who made the most recent change to this Pathway data.
-	PwLastChangedBy string `json:"pwLastChangedBy"`
-	// The datetime of the most recent change made to this Pathway data, in ISO 8601
-	// UTC format with millisecond precision.
-	PwLastChangedDate time.Time `json:"pwLastChangedDate" format:"date-time"`
-	// The type of paths that constitute this pathway.
-	PwType string `json:"pwType"`
-	// The intended use of this pathway.
-	PwUsage string `json:"pwUsage"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		PwDefinition      respjson.Field
-		PwLastChangedBy   respjson.Field
-		PwLastChangedDate respjson.Field
-		PwType            respjson.Field
-		PwUsage           respjson.Field
-		ExtraFields       map[string]respjson.Field
-		raw               string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r SiteGetResponseSiteOperationPathway) RawJSON() string { return r.JSON.raw }
-func (r *SiteGetResponseSiteOperationPathway) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Collection documenting operational waivers that have been issued for the Site
-// associated with this record.
-type SiteGetResponseSiteOperationWaiver struct {
-	// The expiration date of this waiver, in ISO8601 UTC format with millisecond
-	// precision.
-	ExpirationDate time.Time `json:"expirationDate" format:"date-time"`
-	// Boolean indicating whether or not this waiver has expired.
-	HasExpired bool `json:"hasExpired"`
-	// The issue date of this waiver, in ISO8601 UTC format with millisecond precision.
-	IssueDate time.Time `json:"issueDate" format:"date-time"`
-	// The name of the person who issued this waiver.
-	IssuerName string `json:"issuerName"`
-	// The name of the person requesting this waiver.
-	RequesterName string `json:"requesterName"`
-	// The phone number of the person requesting this waiver.
-	RequesterPhoneNumber string `json:"requesterPhoneNumber"`
-	// The unit requesting this waiver.
-	RequestingUnit string `json:"requestingUnit"`
-	// Description of the entities to which this waiver applies.
-	WaiverAppliesTo string `json:"waiverAppliesTo"`
-	// The description of this waiver.
-	WaiverDescription string `json:"waiverDescription"`
-	// The name of the person who made the most recent change to this Waiver data.
-	WaiverLastChangedBy string `json:"waiverLastChangedBy"`
-	// The datetime of the most recent change made to this waiver data, in ISO8601 UTC
-	// format with millisecond precision.
-	WaiverLastChangedDate time.Time `json:"waiverLastChangedDate" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		ExpirationDate        respjson.Field
-		HasExpired            respjson.Field
-		IssueDate             respjson.Field
-		IssuerName            respjson.Field
-		RequesterName         respjson.Field
-		RequesterPhoneNumber  respjson.Field
-		RequestingUnit        respjson.Field
-		WaiverAppliesTo       respjson.Field
-		WaiverDescription     respjson.Field
-		WaiverLastChangedBy   respjson.Field
-		WaiverLastChangedDate respjson.Field
-		ExtraFields           map[string]respjson.Field
-		raw                   string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r SiteGetResponseSiteOperationWaiver) RawJSON() string { return r.JSON.raw }
-func (r *SiteGetResponseSiteOperationWaiver) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -1606,17 +1343,17 @@ func (r *SiteGetResponseSiteRemark) UnmarshalJSON(data []byte) error {
 }
 
 type SiteQueryhelpResponse struct {
-	AodrSupported         bool                             `json:"aodrSupported"`
-	ClassificationMarking string                           `json:"classificationMarking"`
-	Description           string                           `json:"description"`
-	HistorySupported      bool                             `json:"historySupported"`
-	Name                  string                           `json:"name"`
-	Parameters            []SiteQueryhelpResponseParameter `json:"parameters"`
-	RequiredRoles         []string                         `json:"requiredRoles"`
-	RestSupported         bool                             `json:"restSupported"`
-	SortSupported         bool                             `json:"sortSupported"`
-	TypeName              string                           `json:"typeName"`
-	Uri                   string                           `json:"uri"`
+	AodrSupported         bool                         `json:"aodrSupported"`
+	ClassificationMarking string                       `json:"classificationMarking"`
+	Description           string                       `json:"description"`
+	HistorySupported      bool                         `json:"historySupported"`
+	Name                  string                       `json:"name"`
+	Parameters            []shared.ParamDescriptorResp `json:"parameters"`
+	RequiredRoles         []string                     `json:"requiredRoles"`
+	RestSupported         bool                         `json:"restSupported"`
+	SortSupported         bool                         `json:"sortSupported"`
+	TypeName              string                       `json:"typeName"`
+	Uri                   string                       `json:"uri"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		AodrSupported         respjson.Field
@@ -1638,48 +1375,6 @@ type SiteQueryhelpResponse struct {
 // Returns the unmodified JSON received from the API
 func (r SiteQueryhelpResponse) RawJSON() string { return r.JSON.raw }
 func (r *SiteQueryhelpResponse) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type SiteQueryhelpResponseParameter struct {
-	ClassificationMarking string `json:"classificationMarking"`
-	Derived               bool   `json:"derived"`
-	Description           string `json:"description"`
-	ElemMatch             bool   `json:"elemMatch"`
-	Format                string `json:"format"`
-	HistQuerySupported    bool   `json:"histQuerySupported"`
-	HistTupleSupported    bool   `json:"histTupleSupported"`
-	Name                  string `json:"name"`
-	Required              bool   `json:"required"`
-	RestQuerySupported    bool   `json:"restQuerySupported"`
-	RestTupleSupported    bool   `json:"restTupleSupported"`
-	Type                  string `json:"type"`
-	UnitOfMeasure         string `json:"unitOfMeasure"`
-	UtcDate               bool   `json:"utcDate"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		ClassificationMarking respjson.Field
-		Derived               respjson.Field
-		Description           respjson.Field
-		ElemMatch             respjson.Field
-		Format                respjson.Field
-		HistQuerySupported    respjson.Field
-		HistTupleSupported    respjson.Field
-		Name                  respjson.Field
-		Required              respjson.Field
-		RestQuerySupported    respjson.Field
-		RestTupleSupported    respjson.Field
-		Type                  respjson.Field
-		UnitOfMeasure         respjson.Field
-		UtcDate               respjson.Field
-		ExtraFields           map[string]respjson.Field
-		raw                   string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r SiteQueryhelpResponseParameter) RawJSON() string { return r.JSON.raw }
-func (r *SiteQueryhelpResponseParameter) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -2224,7 +1919,7 @@ type SiteTupleResponseSiteOperation struct {
 	CreatedBy string `json:"createdBy"`
 	// Collection providing hours of operation and other information specific to a day
 	// of the week.
-	DailyOperations []SiteTupleResponseSiteOperationDailyOperation `json:"dailyOperations"`
+	DailyOperations []shared.DailyOperationFull `json:"dailyOperations"`
 	// The name of the person who made the most recent change to data in the
 	// DailyOperations collection.
 	DopsLastChangedBy string `json:"dopsLastChangedBy"`
@@ -2237,7 +1932,7 @@ type SiteTupleResponseSiteOperation struct {
 	IDLaunchSite string `json:"idLaunchSite"`
 	// Collection providing maximum on ground (MOG) information for specific aircraft
 	// at the site associated with this SiteOperations record.
-	MaximumOnGrounds []SiteTupleResponseSiteOperationMaximumOnGround `json:"maximumOnGrounds"`
+	MaximumOnGrounds []shared.MaximumOnGroundFull `json:"maximumOnGrounds"`
 	// The name of the person who made the most recent change to data in the
 	// MaximumOnGrounds collection.
 	MogsLastChangedBy string `json:"mogsLastChangedBy"`
@@ -2249,9 +1944,9 @@ type SiteTupleResponseSiteOperation struct {
 	MogsLastChangedReason string `json:"mogsLastChangedReason"`
 	// Collection providing relevant information in the event of deviations/exceptions
 	// to normal operations.
-	OperationalDeviations []SiteTupleResponseSiteOperationOperationalDeviation `json:"operationalDeviations"`
+	OperationalDeviations []shared.OperationalDeviationFull `json:"operationalDeviations"`
 	// Collection of planning information associated with this SiteOperations record.
-	OperationalPlannings []SiteTupleResponseSiteOperationOperationalPlanning `json:"operationalPlannings"`
+	OperationalPlannings []shared.OperationalPlanningFull `json:"operationalPlannings"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
@@ -2262,7 +1957,7 @@ type SiteTupleResponseSiteOperation struct {
 	OrigNetwork string `json:"origNetwork"`
 	// Collection detailing operational pathways at the Site associated with this
 	// SiteOperations record.
-	Pathways []SiteTupleResponseSiteOperationPathway `json:"pathways"`
+	Pathways []shared.PathwayFull `json:"pathways"`
 	// The source data library from which this record was received. This could be a
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
@@ -2274,7 +1969,7 @@ type SiteTupleResponseSiteOperation struct {
 	UpdatedBy string `json:"updatedBy"`
 	// Collection documenting operational waivers that have been issued for the Site
 	// associated with this record.
-	Waivers []SiteTupleResponseSiteOperationWaiver `json:"waivers"`
+	Waivers []shared.WaiverFull `json:"waivers"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		ClassificationMarking respjson.Field
@@ -2310,271 +2005,6 @@ type SiteTupleResponseSiteOperation struct {
 // Returns the unmodified JSON received from the API
 func (r SiteTupleResponseSiteOperation) RawJSON() string { return r.JSON.raw }
 func (r *SiteTupleResponseSiteOperation) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Collection providing hours of operation and other information specific to a day
-// of the week.
-type SiteTupleResponseSiteOperationDailyOperation struct {
-	// The day of the week to which this operational information pertains.
-	//
-	// Any of "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY",
-	// "SUNDAY".
-	DayOfWeek string `json:"dayOfWeek"`
-	// A collection containing the operational start and stop times scheduled for the
-	// day of the week specified.
-	OperatingHours []SiteTupleResponseSiteOperationDailyOperationOperatingHour `json:"operatingHours"`
-	// The name or type of operation to which this information pertains.
-	OperationName string `json:"operationName"`
-	// The name of the person who made the most recent change to this DailyOperation
-	// data.
-	OphrsLastChangedBy string `json:"ophrsLastChangedBy"`
-	// The datetime of the most recent change made to this DailyOperation data, in ISO
-	// 8601 UTC format with millisecond precision.
-	OphrsLastChangedDate time.Time `json:"ophrsLastChangedDate" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		DayOfWeek            respjson.Field
-		OperatingHours       respjson.Field
-		OperationName        respjson.Field
-		OphrsLastChangedBy   respjson.Field
-		OphrsLastChangedDate respjson.Field
-		ExtraFields          map[string]respjson.Field
-		raw                  string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r SiteTupleResponseSiteOperationDailyOperation) RawJSON() string { return r.JSON.raw }
-func (r *SiteTupleResponseSiteOperationDailyOperation) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// A collection containing the operational start and stop times scheduled for the
-// day of the week specified.
-type SiteTupleResponseSiteOperationDailyOperationOperatingHour struct {
-	// The Zulu (UTC) operational start time, expressed in ISO 8601 format as HH:MM.
-	OpStartTime string `json:"opStartTime"`
-	// The Zulu (UTC) operational stop time, expressed in ISO 8601 format as HH:MM.
-	OpStopTime string `json:"opStopTime"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		OpStartTime respjson.Field
-		OpStopTime  respjson.Field
-		ExtraFields map[string]respjson.Field
-		raw         string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r SiteTupleResponseSiteOperationDailyOperationOperatingHour) RawJSON() string {
-	return r.JSON.raw
-}
-func (r *SiteTupleResponseSiteOperationDailyOperationOperatingHour) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Collection providing maximum on ground (MOG) information for specific aircraft
-// at the site associated with this SiteOperations record.
-type SiteTupleResponseSiteOperationMaximumOnGround struct {
-	// The Model Design Series (MDS) designation of the aircraft to which this maximum
-	// on ground (MOG) data pertains.
-	AircraftMds string `json:"aircraftMDS"`
-	// Maximum on ground (MOG) number of contingent aircraft based on spacing and
-	// manpower, for the aircraft type specified.
-	ContingencyMog int64 `json:"contingencyMOG"`
-	// The name of the person who made the most recent change to this maximum on ground
-	// data.
-	MogLastChangedBy string `json:"mogLastChangedBy"`
-	// The datetime of the most recent change made to this maximum on ground data, in
-	// ISO 8601 UTC format with millisecond precision.
-	MogLastChangedDate time.Time `json:"mogLastChangedDate" format:"date-time"`
-	// Maximum on ground (MOG) number of parking wide-body aircraft based on spacing
-	// and manpower, for the aircraft type specified.
-	WideParkingMog int64 `json:"wideParkingMOG"`
-	// Maximum on ground (MOG) number of working wide-body aircraft based on spacing
-	// and manpower, for the aircraft type specified.
-	WideWorkingMog int64 `json:"wideWorkingMOG"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		AircraftMds        respjson.Field
-		ContingencyMog     respjson.Field
-		MogLastChangedBy   respjson.Field
-		MogLastChangedDate respjson.Field
-		WideParkingMog     respjson.Field
-		WideWorkingMog     respjson.Field
-		ExtraFields        map[string]respjson.Field
-		raw                string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r SiteTupleResponseSiteOperationMaximumOnGround) RawJSON() string { return r.JSON.raw }
-func (r *SiteTupleResponseSiteOperationMaximumOnGround) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Collection providing relevant information in the event of deviations/exceptions
-// to normal operations.
-type SiteTupleResponseSiteOperationOperationalDeviation struct {
-	// The Model Design Series (MDS) designation of the aircraft affected by this
-	// operational deviation.
-	AffectedAircraftMds string `json:"affectedAircraftMDS"`
-	// The maximum on ground (MOG) number for aircraft affected by this operational
-	// deviation.
-	AffectedMog int64 `json:"affectedMOG"`
-	// On ground time for aircraft affected by this operational deviation.
-	AircraftOnGroundTime string `json:"aircraftOnGroundTime"`
-	// Rest time for crew affected by this operational deviation.
-	CrewRestTime string `json:"crewRestTime"`
-	// The name of the person who made the most recent change to this
-	// OperationalDeviation data.
-	OdLastChangedBy string `json:"odLastChangedBy"`
-	// The datetime of the most recent change made to this OperationalDeviation data,
-	// in ISO 8601 UTC format with millisecond precision.
-	OdLastChangedDate time.Time `json:"odLastChangedDate" format:"date-time"`
-	// Text remark regarding this operational deviation.
-	OdRemark string `json:"odRemark"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		AffectedAircraftMds  respjson.Field
-		AffectedMog          respjson.Field
-		AircraftOnGroundTime respjson.Field
-		CrewRestTime         respjson.Field
-		OdLastChangedBy      respjson.Field
-		OdLastChangedDate    respjson.Field
-		OdRemark             respjson.Field
-		ExtraFields          map[string]respjson.Field
-		raw                  string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r SiteTupleResponseSiteOperationOperationalDeviation) RawJSON() string { return r.JSON.raw }
-func (r *SiteTupleResponseSiteOperationOperationalDeviation) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Collection of planning information associated with this SiteOperations record.
-type SiteTupleResponseSiteOperationOperationalPlanning struct {
-	// The end date of this operational planning, in ISO8601 UTC format with
-	// millisecond precision.
-	OpEndDate time.Time `json:"opEndDate" format:"date-time"`
-	// The name of the person who made the most recent change made to this
-	// OperationalPlanning data.
-	OpLastChangedBy string `json:"opLastChangedBy"`
-	// The datetime of the most recent change made to this OperationalPlanning data, in
-	// ISO8601 UTC format with millisecond precision.
-	OpLastChangedDate time.Time `json:"opLastChangedDate" format:"date-time"`
-	// Remark text regarding this operation planning.
-	OpRemark string `json:"opRemark"`
-	// The person, unit, organization, etc. responsible for this operation planning.
-	OpSource string `json:"opSource"`
-	// The start date of this operational planning, in ISO8601 UTC format with
-	// millisecond precision.
-	OpStartDate time.Time `json:"opStartDate" format:"date-time"`
-	// The status of this operational planning.
-	OpStatus string `json:"opStatus"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		OpEndDate         respjson.Field
-		OpLastChangedBy   respjson.Field
-		OpLastChangedDate respjson.Field
-		OpRemark          respjson.Field
-		OpSource          respjson.Field
-		OpStartDate       respjson.Field
-		OpStatus          respjson.Field
-		ExtraFields       map[string]respjson.Field
-		raw               string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r SiteTupleResponseSiteOperationOperationalPlanning) RawJSON() string { return r.JSON.raw }
-func (r *SiteTupleResponseSiteOperationOperationalPlanning) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Collection detailing operational pathways at the Site associated with this
-// SiteOperations record.
-type SiteTupleResponseSiteOperationPathway struct {
-	// Text defining this pathway from its constituent parts.
-	PwDefinition string `json:"pwDefinition"`
-	// The name of the person who made the most recent change to this Pathway data.
-	PwLastChangedBy string `json:"pwLastChangedBy"`
-	// The datetime of the most recent change made to this Pathway data, in ISO 8601
-	// UTC format with millisecond precision.
-	PwLastChangedDate time.Time `json:"pwLastChangedDate" format:"date-time"`
-	// The type of paths that constitute this pathway.
-	PwType string `json:"pwType"`
-	// The intended use of this pathway.
-	PwUsage string `json:"pwUsage"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		PwDefinition      respjson.Field
-		PwLastChangedBy   respjson.Field
-		PwLastChangedDate respjson.Field
-		PwType            respjson.Field
-		PwUsage           respjson.Field
-		ExtraFields       map[string]respjson.Field
-		raw               string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r SiteTupleResponseSiteOperationPathway) RawJSON() string { return r.JSON.raw }
-func (r *SiteTupleResponseSiteOperationPathway) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Collection documenting operational waivers that have been issued for the Site
-// associated with this record.
-type SiteTupleResponseSiteOperationWaiver struct {
-	// The expiration date of this waiver, in ISO8601 UTC format with millisecond
-	// precision.
-	ExpirationDate time.Time `json:"expirationDate" format:"date-time"`
-	// Boolean indicating whether or not this waiver has expired.
-	HasExpired bool `json:"hasExpired"`
-	// The issue date of this waiver, in ISO8601 UTC format with millisecond precision.
-	IssueDate time.Time `json:"issueDate" format:"date-time"`
-	// The name of the person who issued this waiver.
-	IssuerName string `json:"issuerName"`
-	// The name of the person requesting this waiver.
-	RequesterName string `json:"requesterName"`
-	// The phone number of the person requesting this waiver.
-	RequesterPhoneNumber string `json:"requesterPhoneNumber"`
-	// The unit requesting this waiver.
-	RequestingUnit string `json:"requestingUnit"`
-	// Description of the entities to which this waiver applies.
-	WaiverAppliesTo string `json:"waiverAppliesTo"`
-	// The description of this waiver.
-	WaiverDescription string `json:"waiverDescription"`
-	// The name of the person who made the most recent change to this Waiver data.
-	WaiverLastChangedBy string `json:"waiverLastChangedBy"`
-	// The datetime of the most recent change made to this waiver data, in ISO8601 UTC
-	// format with millisecond precision.
-	WaiverLastChangedDate time.Time `json:"waiverLastChangedDate" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		ExpirationDate        respjson.Field
-		HasExpired            respjson.Field
-		IssueDate             respjson.Field
-		IssuerName            respjson.Field
-		RequesterName         respjson.Field
-		RequesterPhoneNumber  respjson.Field
-		RequestingUnit        respjson.Field
-		WaiverAppliesTo       respjson.Field
-		WaiverDescription     respjson.Field
-		WaiverLastChangedBy   respjson.Field
-		WaiverLastChangedDate respjson.Field
-		ExtraFields           map[string]respjson.Field
-		raw                   string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r SiteTupleResponseSiteOperationWaiver) RawJSON() string { return r.JSON.raw }
-func (r *SiteTupleResponseSiteOperationWaiver) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 

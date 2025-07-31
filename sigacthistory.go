@@ -15,6 +15,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // SigactHistoryService contains methods and other services that help with
@@ -306,7 +307,7 @@ type SigactHistoryListResponse struct {
 	// The province in which this event occurred.
 	Province string `json:"province"`
 	// Related document ids.
-	RelatedDocs []SigactHistoryListResponseRelatedDoc `json:"relatedDocs"`
+	RelatedDocs []shared.RelatedDocumentFull `json:"relatedDocs"`
 	// The reporting unit.
 	RepUnit string `json:"repUnit"`
 	// The activity the unit was engaged in.
@@ -466,55 +467,6 @@ const (
 	SigactHistoryListResponseDataModeSimulated SigactHistoryListResponseDataMode = "SIMULATED"
 	SigactHistoryListResponseDataModeExercise  SigactHistoryListResponseDataMode = "EXERCISE"
 )
-
-type SigactHistoryListResponseRelatedDoc struct {
-	// List of data sources related to this document.
-	DataSourceRefs []SigactHistoryListResponseRelatedDocDataSourceRef `json:"dataSourceRefs"`
-	// The document id of the related document.
-	DocumentID string `json:"documentId"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		DataSourceRefs respjson.Field
-		DocumentID     respjson.Field
-		ExtraFields    map[string]respjson.Field
-		raw            string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r SigactHistoryListResponseRelatedDoc) RawJSON() string { return r.JSON.raw }
-func (r *SigactHistoryListResponseRelatedDoc) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type SigactHistoryListResponseRelatedDocDataSourceRef struct {
-	// Data source id.
-	DataSourceID string `json:"dataSourceId"`
-	// end position.
-	EndPosition string `json:"endPosition"`
-	// paragraph number.
-	ParagraphNumber string `json:"paragraphNumber"`
-	// sentence number.
-	SentenceNumber string `json:"sentenceNumber"`
-	// start position.
-	StartPosition string `json:"startPosition"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		DataSourceID    respjson.Field
-		EndPosition     respjson.Field
-		ParagraphNumber respjson.Field
-		SentenceNumber  respjson.Field
-		StartPosition   respjson.Field
-		ExtraFields     map[string]respjson.Field
-		raw             string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r SigactHistoryListResponseRelatedDocDataSourceRef) RawJSON() string { return r.JSON.raw }
-func (r *SigactHistoryListResponseRelatedDocDataSourceRef) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
 
 type SigactHistoryListParams struct {
 	// Date of the report or filing. (YYYY-MM-DDTHH:MM:SS.sssZ)
