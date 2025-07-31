@@ -185,9 +185,9 @@ func (r *ConjunctionService) UnvalidatedPublish(ctx context.Context, body Conjun
 //
 // **Example:**
 // /filedrop/cdms?filename=conj.zip&classification=U&dataMode=TEST&source=Bluestaq&tags=tag1,tag2
-func (r *ConjunctionService) UploadConjunctionDataMessage(ctx context.Context, body io.Reader, body ConjunctionUploadConjunctionDataMessageParams, opts ...option.RequestOption) (err error) {
+func (r *ConjunctionService) UploadConjunctionDataMessage(ctx context.Context, aprams io.Reader, body ConjunctionUploadConjunctionDataMessageParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", ""), option.WithRequestBody("application/zip", body)}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", ""), option.WithRequestBody("application/zip", aprams)}, opts...)
 	path := "filedrop/cdms"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, nil, opts...)
 	return

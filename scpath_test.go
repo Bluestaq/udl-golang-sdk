@@ -15,7 +15,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/option"
 )
 
-func TestScPathNewWithOptionalParams(t *testing.T) {
+func TestScPathNewWithFileWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -28,10 +28,10 @@ func TestScPathNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Scs.Paths.New(
+	_, err := client.Scs.Paths.NewWithFile(
 		context.TODO(),
 		io.Reader(bytes.NewBuffer([]byte("some file contents"))),
-		unifieddatalibrary.ScPathNewParams{
+		unifieddatalibrary.ScPathNewWithFileParams{
 			ID:                    "id",
 			ClassificationMarking: "classificationMarking",
 			DeleteAfter:           unifieddatalibrary.String("deleteAfter"),
