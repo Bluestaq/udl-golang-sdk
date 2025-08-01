@@ -98,11 +98,11 @@ func (r *ScV2Service) Copy(ctx context.Context, body ScV2CopyParams, opts ...opt
 
 // Operation to upload a file. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *ScV2Service) FileUpload(ctx context.Context, params ScV2FileUploadParams, opts ...option.RequestOption) (err error) {
+func (r *ScV2Service) FileUpload(ctx context.Context, params io.Reader, body ScV2FileUploadParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", ""), option.WithRequestBody("application/octet-stream", params)}, opts...)
 	path := "scs/v2/file"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, nil, opts...)
 	return
 }
 
@@ -313,7 +313,6 @@ type ScV2FileUploadParams struct {
 	// The complete path for the upload including filename. Will attempt to create
 	// folders in path if necessary. Must start with '/'.
 	Path string `query:"path,required" json:"-"`
-	Body io.Reader
 	// Length of time after which to automatically delete the file.
 	DeleteAfter param.Opt[string] `query:"deleteAfter,omitzero" json:"-"`
 	// Optional description of uploaded document.

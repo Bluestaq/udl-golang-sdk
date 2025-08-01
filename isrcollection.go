@@ -16,6 +16,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // IsrCollectionService contains methods and other services that help with
@@ -128,6 +129,182 @@ func (r *IsrCollectionService) UnvalidatedPublish(ctx context.Context, body IsrC
 	path := "filedrop/udl-isrcollection"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
+}
+
+type IsrCollectionCriticalTimesFull struct {
+	// Critical start time to collect an image for this requirement.
+	EarliestImagingTime time.Time `json:"earliestImagingTime,required" format:"date-time"`
+	// Critical stop time to collect an image for this requirement.
+	LatestImagingTime time.Time `json:"latestImagingTime,required" format:"date-time"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		EarliestImagingTime respjson.Field
+		LatestImagingTime   respjson.Field
+		ExtraFields         map[string]respjson.Field
+		raw                 string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r IsrCollectionCriticalTimesFull) RawJSON() string { return r.JSON.raw }
+func (r *IsrCollectionCriticalTimesFull) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type IsrCollectionExploitationRequirementFull struct {
+	// Exploitation requirement id.
+	ID string `json:"id"`
+	// Amplifying data for the exploitation requirement.
+	Amplification string `json:"amplification"`
+	// List of e-mails to disseminate collection verification information.
+	Dissemination string `json:"dissemination"`
+	// Essential Elements of Information.
+	Eei string               `json:"eei"`
+	Poc IsrCollectionPocFull `json:"poc"`
+	// The reporting criteria of the collection requirement.
+	ReportingCriteria string `json:"reportingCriteria"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		ID                respjson.Field
+		Amplification     respjson.Field
+		Dissemination     respjson.Field
+		Eei               respjson.Field
+		Poc               respjson.Field
+		ReportingCriteria respjson.Field
+		ExtraFields       map[string]respjson.Field
+		raw               string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r IsrCollectionExploitationRequirementFull) RawJSON() string { return r.JSON.raw }
+func (r *IsrCollectionExploitationRequirementFull) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type IsrCollectionPocFull struct {
+	// Unique identifier of the collection requirement POC.
+	ID string `json:"id"`
+	// Callsign of the POC.
+	Callsign string `json:"callsign"`
+	// Chat name of the POC.
+	ChatName string `json:"chatName"`
+	// Chat system the POC is accessing.
+	ChatSystem string `json:"chatSystem"`
+	// Email address of the POC.
+	Email string `json:"email"`
+	// Name of the POC.
+	Name string `json:"name"`
+	// Amplifying notes about the POC.
+	Notes string `json:"notes"`
+	// Phone number of the POC.
+	Phone string `json:"phone"`
+	// Radio Frequency the POC is on.
+	RadioFrequency float64 `json:"radioFrequency"`
+	// Unit the POC belongs to.
+	Unit string `json:"unit"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		ID             respjson.Field
+		Callsign       respjson.Field
+		ChatName       respjson.Field
+		ChatSystem     respjson.Field
+		Email          respjson.Field
+		Name           respjson.Field
+		Notes          respjson.Field
+		Phone          respjson.Field
+		RadioFrequency respjson.Field
+		Unit           respjson.Field
+		ExtraFields    map[string]respjson.Field
+		raw            string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r IsrCollectionPocFull) RawJSON() string { return r.JSON.raw }
+func (r *IsrCollectionPocFull) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type IsrCollectionRequirementsFull struct {
+	// Collection Requirement Unique Identifier.
+	ID string `json:"id"`
+	// Country code of the collection requirement. A Country may represent countries,
+	// multi-national consortiums, and international organizations.
+	Country string `json:"country"`
+	// Collection Requirement Unique Identifier.
+	CridNumbers   string                         `json:"cridNumbers"`
+	CriticalTimes IsrCollectionCriticalTimesFull `json:"criticalTimes"`
+	// Is this collection requirement an emphasized/critical requirement.
+	Emphasized              bool                                     `json:"emphasized"`
+	ExploitationRequirement IsrCollectionExploitationRequirementFull `json:"exploitationRequirement"`
+	// Encryption hashing algorithm.
+	Hash string `json:"hash"`
+	// Primary type of intelligence to be collected for this requirement.
+	IntelDiscipline string `json:"intelDiscipline"`
+	// Is this collection request for the Prism system?.
+	IsPrismCr bool `json:"isPrismCr"`
+	// Human readable name for this operation.
+	Operation string `json:"operation"`
+	// 1-n priority for this collection requirement.
+	Priority float64 `json:"priority"`
+	// Reconnaissance Survey information the operator needs.
+	ReconSurvey string `json:"reconSurvey"`
+	// Record id.
+	RecordID string `json:"recordId"`
+	// Region of the collection requirement.
+	Region string `json:"region"`
+	// Sub category of primary intelligence to be collected for this requirement.
+	Secondary bool `json:"secondary"`
+	// Free text field for the user to specify special instructions needed for this
+	// collection.
+	SpecialComGuidance string `json:"specialComGuidance"`
+	// Start time for this requirement, should be within the mission time window.
+	Start time.Time `json:"start" format:"date-time"`
+	// Stop time for this requirement, should be within the mission time window.
+	Stop time.Time `json:"stop" format:"date-time"`
+	// Subregion of the collection requirement.
+	Subregion string `json:"subregion"`
+	// The name of the military unit that this assigned collection requirement will
+	// support.
+	SupportedUnit string `json:"supportedUnit"`
+	// Array of POI Id's for the targets being tasked.
+	TargetList []string `json:"targetList"`
+	// Type collection this requirement applies to.
+	Type string `json:"type"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		ID                      respjson.Field
+		Country                 respjson.Field
+		CridNumbers             respjson.Field
+		CriticalTimes           respjson.Field
+		Emphasized              respjson.Field
+		ExploitationRequirement respjson.Field
+		Hash                    respjson.Field
+		IntelDiscipline         respjson.Field
+		IsPrismCr               respjson.Field
+		Operation               respjson.Field
+		Priority                respjson.Field
+		ReconSurvey             respjson.Field
+		RecordID                respjson.Field
+		Region                  respjson.Field
+		Secondary               respjson.Field
+		SpecialComGuidance      respjson.Field
+		Start                   respjson.Field
+		Stop                    respjson.Field
+		Subregion               respjson.Field
+		SupportedUnit           respjson.Field
+		TargetList              respjson.Field
+		Type                    respjson.Field
+		ExtraFields             map[string]respjson.Field
+		raw                     string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r IsrCollectionRequirementsFull) RawJSON() string { return r.JSON.raw }
+func (r *IsrCollectionRequirementsFull) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // ISR Collection data.
@@ -880,17 +1057,17 @@ func (r *IsrCollectionListResponseTransit) UnmarshalJSON(data []byte) error {
 }
 
 type IsrCollectionQueryhelpResponse struct {
-	AodrSupported         bool                                      `json:"aodrSupported"`
-	ClassificationMarking string                                    `json:"classificationMarking"`
-	Description           string                                    `json:"description"`
-	HistorySupported      bool                                      `json:"historySupported"`
-	Name                  string                                    `json:"name"`
-	Parameters            []IsrCollectionQueryhelpResponseParameter `json:"parameters"`
-	RequiredRoles         []string                                  `json:"requiredRoles"`
-	RestSupported         bool                                      `json:"restSupported"`
-	SortSupported         bool                                      `json:"sortSupported"`
-	TypeName              string                                    `json:"typeName"`
-	Uri                   string                                    `json:"uri"`
+	AodrSupported         bool                         `json:"aodrSupported"`
+	ClassificationMarking string                       `json:"classificationMarking"`
+	Description           string                       `json:"description"`
+	HistorySupported      bool                         `json:"historySupported"`
+	Name                  string                       `json:"name"`
+	Parameters            []shared.ParamDescriptorResp `json:"parameters"`
+	RequiredRoles         []string                     `json:"requiredRoles"`
+	RestSupported         bool                         `json:"restSupported"`
+	SortSupported         bool                         `json:"sortSupported"`
+	TypeName              string                       `json:"typeName"`
+	Uri                   string                       `json:"uri"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		AodrSupported         respjson.Field
@@ -912,48 +1089,6 @@ type IsrCollectionQueryhelpResponse struct {
 // Returns the unmodified JSON received from the API
 func (r IsrCollectionQueryhelpResponse) RawJSON() string { return r.JSON.raw }
 func (r *IsrCollectionQueryhelpResponse) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type IsrCollectionQueryhelpResponseParameter struct {
-	ClassificationMarking string `json:"classificationMarking"`
-	Derived               bool   `json:"derived"`
-	Description           string `json:"description"`
-	ElemMatch             bool   `json:"elemMatch"`
-	Format                string `json:"format"`
-	HistQuerySupported    bool   `json:"histQuerySupported"`
-	HistTupleSupported    bool   `json:"histTupleSupported"`
-	Name                  string `json:"name"`
-	Required              bool   `json:"required"`
-	RestQuerySupported    bool   `json:"restQuerySupported"`
-	RestTupleSupported    bool   `json:"restTupleSupported"`
-	Type                  string `json:"type"`
-	UnitOfMeasure         string `json:"unitOfMeasure"`
-	UtcDate               bool   `json:"utcDate"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		ClassificationMarking respjson.Field
-		Derived               respjson.Field
-		Description           respjson.Field
-		ElemMatch             respjson.Field
-		Format                respjson.Field
-		HistQuerySupported    respjson.Field
-		HistTupleSupported    respjson.Field
-		Name                  respjson.Field
-		Required              respjson.Field
-		RestQuerySupported    respjson.Field
-		RestTupleSupported    respjson.Field
-		Type                  respjson.Field
-		UnitOfMeasure         respjson.Field
-		UtcDate               respjson.Field
-		ExtraFields           map[string]respjson.Field
-		raw                   string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r IsrCollectionQueryhelpResponseParameter) RawJSON() string { return r.JSON.raw }
-func (r *IsrCollectionQueryhelpResponseParameter) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -983,7 +1118,7 @@ type IsrCollectionTupleResponse struct {
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// Mission desired collection requirements.
-	CollectionRequirements []IsrCollectionTupleResponseCollectionRequirement `json:"collectionRequirements"`
+	CollectionRequirements []IsrCollectionRequirementsFull `json:"collectionRequirements"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -1123,188 +1258,6 @@ const (
 	IsrCollectionTupleResponseDataModeExercise  IsrCollectionTupleResponseDataMode = "EXERCISE"
 )
 
-type IsrCollectionTupleResponseCollectionRequirement struct {
-	// Collection Requirement Unique Identifier.
-	ID string `json:"id"`
-	// Country code of the collection requirement. A Country may represent countries,
-	// multi-national consortiums, and international organizations.
-	Country string `json:"country"`
-	// Collection Requirement Unique Identifier.
-	CridNumbers   string                                                       `json:"cridNumbers"`
-	CriticalTimes IsrCollectionTupleResponseCollectionRequirementCriticalTimes `json:"criticalTimes"`
-	// Is this collection requirement an emphasized/critical requirement.
-	Emphasized              bool                                                                   `json:"emphasized"`
-	ExploitationRequirement IsrCollectionTupleResponseCollectionRequirementExploitationRequirement `json:"exploitationRequirement"`
-	// Encryption hashing algorithm.
-	Hash string `json:"hash"`
-	// Primary type of intelligence to be collected for this requirement.
-	IntelDiscipline string `json:"intelDiscipline"`
-	// Is this collection request for the Prism system?.
-	IsPrismCr bool `json:"isPrismCr"`
-	// Human readable name for this operation.
-	Operation string `json:"operation"`
-	// 1-n priority for this collection requirement.
-	Priority float64 `json:"priority"`
-	// Reconnaissance Survey information the operator needs.
-	ReconSurvey string `json:"reconSurvey"`
-	// Record id.
-	RecordID string `json:"recordId"`
-	// Region of the collection requirement.
-	Region string `json:"region"`
-	// Sub category of primary intelligence to be collected for this requirement.
-	Secondary bool `json:"secondary"`
-	// Free text field for the user to specify special instructions needed for this
-	// collection.
-	SpecialComGuidance string `json:"specialComGuidance"`
-	// Start time for this requirement, should be within the mission time window.
-	Start time.Time `json:"start" format:"date-time"`
-	// Stop time for this requirement, should be within the mission time window.
-	Stop time.Time `json:"stop" format:"date-time"`
-	// Subregion of the collection requirement.
-	Subregion string `json:"subregion"`
-	// The name of the military unit that this assigned collection requirement will
-	// support.
-	SupportedUnit string `json:"supportedUnit"`
-	// Array of POI Id's for the targets being tasked.
-	TargetList []string `json:"targetList"`
-	// Type collection this requirement applies to.
-	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		ID                      respjson.Field
-		Country                 respjson.Field
-		CridNumbers             respjson.Field
-		CriticalTimes           respjson.Field
-		Emphasized              respjson.Field
-		ExploitationRequirement respjson.Field
-		Hash                    respjson.Field
-		IntelDiscipline         respjson.Field
-		IsPrismCr               respjson.Field
-		Operation               respjson.Field
-		Priority                respjson.Field
-		ReconSurvey             respjson.Field
-		RecordID                respjson.Field
-		Region                  respjson.Field
-		Secondary               respjson.Field
-		SpecialComGuidance      respjson.Field
-		Start                   respjson.Field
-		Stop                    respjson.Field
-		Subregion               respjson.Field
-		SupportedUnit           respjson.Field
-		TargetList              respjson.Field
-		Type                    respjson.Field
-		ExtraFields             map[string]respjson.Field
-		raw                     string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r IsrCollectionTupleResponseCollectionRequirement) RawJSON() string { return r.JSON.raw }
-func (r *IsrCollectionTupleResponseCollectionRequirement) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type IsrCollectionTupleResponseCollectionRequirementCriticalTimes struct {
-	// Critical start time to collect an image for this requirement.
-	EarliestImagingTime time.Time `json:"earliestImagingTime,required" format:"date-time"`
-	// Critical stop time to collect an image for this requirement.
-	LatestImagingTime time.Time `json:"latestImagingTime,required" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		EarliestImagingTime respjson.Field
-		LatestImagingTime   respjson.Field
-		ExtraFields         map[string]respjson.Field
-		raw                 string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r IsrCollectionTupleResponseCollectionRequirementCriticalTimes) RawJSON() string {
-	return r.JSON.raw
-}
-func (r *IsrCollectionTupleResponseCollectionRequirementCriticalTimes) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type IsrCollectionTupleResponseCollectionRequirementExploitationRequirement struct {
-	// Exploitation requirement id.
-	ID string `json:"id"`
-	// Amplifying data for the exploitation requirement.
-	Amplification string `json:"amplification"`
-	// List of e-mails to disseminate collection verification information.
-	Dissemination string `json:"dissemination"`
-	// Essential Elements of Information.
-	Eei string                                                                    `json:"eei"`
-	Poc IsrCollectionTupleResponseCollectionRequirementExploitationRequirementPoc `json:"poc"`
-	// The reporting criteria of the collection requirement.
-	ReportingCriteria string `json:"reportingCriteria"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		ID                respjson.Field
-		Amplification     respjson.Field
-		Dissemination     respjson.Field
-		Eei               respjson.Field
-		Poc               respjson.Field
-		ReportingCriteria respjson.Field
-		ExtraFields       map[string]respjson.Field
-		raw               string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r IsrCollectionTupleResponseCollectionRequirementExploitationRequirement) RawJSON() string {
-	return r.JSON.raw
-}
-func (r *IsrCollectionTupleResponseCollectionRequirementExploitationRequirement) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type IsrCollectionTupleResponseCollectionRequirementExploitationRequirementPoc struct {
-	// Unique identifier of the collection requirement POC.
-	ID string `json:"id"`
-	// Callsign of the POC.
-	Callsign string `json:"callsign"`
-	// Chat name of the POC.
-	ChatName string `json:"chatName"`
-	// Chat system the POC is accessing.
-	ChatSystem string `json:"chatSystem"`
-	// Email address of the POC.
-	Email string `json:"email"`
-	// Name of the POC.
-	Name string `json:"name"`
-	// Amplifying notes about the POC.
-	Notes string `json:"notes"`
-	// Phone number of the POC.
-	Phone string `json:"phone"`
-	// Radio Frequency the POC is on.
-	RadioFrequency float64 `json:"radioFrequency"`
-	// Unit the POC belongs to.
-	Unit string `json:"unit"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		ID             respjson.Field
-		Callsign       respjson.Field
-		ChatName       respjson.Field
-		ChatSystem     respjson.Field
-		Email          respjson.Field
-		Name           respjson.Field
-		Notes          respjson.Field
-		Phone          respjson.Field
-		RadioFrequency respjson.Field
-		Unit           respjson.Field
-		ExtraFields    map[string]respjson.Field
-		raw            string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r IsrCollectionTupleResponseCollectionRequirementExploitationRequirementPoc) RawJSON() string {
-	return r.JSON.raw
-}
-func (r *IsrCollectionTupleResponseCollectionRequirementExploitationRequirementPoc) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
 type IsrCollectionTupleResponseTasking struct {
 	// Tasking Unique Identifier.
 	ID                string                                             `json:"id"`
@@ -1326,7 +1279,7 @@ type IsrCollectionTupleResponseTasking struct {
 	// Tasking geographical collection area.
 	TaskingCollectionArea string `json:"taskingCollectionArea"`
 	// Tasking desired collection requirements.
-	TaskingCollectionRequirements []IsrCollectionTupleResponseTaskingTaskingCollectionRequirement `json:"taskingCollectionRequirements"`
+	TaskingCollectionRequirements []IsrCollectionRequirementsFull `json:"taskingCollectionRequirements"`
 	// Country code of the tasking. A Country may represent countries, multi-national
 	// consortiums, and international organizations.
 	TaskingCountry string `json:"taskingCountry"`
@@ -1498,190 +1451,6 @@ func (r IsrCollectionTupleResponseTaskingCollectionPeriodsPlannedAdditional) Raw
 	return r.JSON.raw
 }
 func (r *IsrCollectionTupleResponseTaskingCollectionPeriodsPlannedAdditional) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type IsrCollectionTupleResponseTaskingTaskingCollectionRequirement struct {
-	// Collection Requirement Unique Identifier.
-	ID string `json:"id"`
-	// Country code of the collection requirement. A Country may represent countries,
-	// multi-national consortiums, and international organizations.
-	Country string `json:"country"`
-	// Collection Requirement Unique Identifier.
-	CridNumbers   string                                                                     `json:"cridNumbers"`
-	CriticalTimes IsrCollectionTupleResponseTaskingTaskingCollectionRequirementCriticalTimes `json:"criticalTimes"`
-	// Is this collection requirement an emphasized/critical requirement.
-	Emphasized              bool                                                                                 `json:"emphasized"`
-	ExploitationRequirement IsrCollectionTupleResponseTaskingTaskingCollectionRequirementExploitationRequirement `json:"exploitationRequirement"`
-	// Encryption hashing algorithm.
-	Hash string `json:"hash"`
-	// Primary type of intelligence to be collected for this requirement.
-	IntelDiscipline string `json:"intelDiscipline"`
-	// Is this collection request for the Prism system?.
-	IsPrismCr bool `json:"isPrismCr"`
-	// Human readable name for this operation.
-	Operation string `json:"operation"`
-	// 1-n priority for this collection requirement.
-	Priority float64 `json:"priority"`
-	// Reconnaissance Survey information the operator needs.
-	ReconSurvey string `json:"reconSurvey"`
-	// Record id.
-	RecordID string `json:"recordId"`
-	// Region of the collection requirement.
-	Region string `json:"region"`
-	// Sub category of primary intelligence to be collected for this requirement.
-	Secondary bool `json:"secondary"`
-	// Free text field for the user to specify special instructions needed for this
-	// collection.
-	SpecialComGuidance string `json:"specialComGuidance"`
-	// Start time for this requirement, should be within the mission time window.
-	Start time.Time `json:"start" format:"date-time"`
-	// Stop time for this requirement, should be within the mission time window.
-	Stop time.Time `json:"stop" format:"date-time"`
-	// Subregion of the collection requirement.
-	Subregion string `json:"subregion"`
-	// The name of the military unit that this assigned collection requirement will
-	// support.
-	SupportedUnit string `json:"supportedUnit"`
-	// Array of POI Id's for the targets being tasked.
-	TargetList []string `json:"targetList"`
-	// Type collection this requirement applies to.
-	Type string `json:"type"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		ID                      respjson.Field
-		Country                 respjson.Field
-		CridNumbers             respjson.Field
-		CriticalTimes           respjson.Field
-		Emphasized              respjson.Field
-		ExploitationRequirement respjson.Field
-		Hash                    respjson.Field
-		IntelDiscipline         respjson.Field
-		IsPrismCr               respjson.Field
-		Operation               respjson.Field
-		Priority                respjson.Field
-		ReconSurvey             respjson.Field
-		RecordID                respjson.Field
-		Region                  respjson.Field
-		Secondary               respjson.Field
-		SpecialComGuidance      respjson.Field
-		Start                   respjson.Field
-		Stop                    respjson.Field
-		Subregion               respjson.Field
-		SupportedUnit           respjson.Field
-		TargetList              respjson.Field
-		Type                    respjson.Field
-		ExtraFields             map[string]respjson.Field
-		raw                     string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r IsrCollectionTupleResponseTaskingTaskingCollectionRequirement) RawJSON() string {
-	return r.JSON.raw
-}
-func (r *IsrCollectionTupleResponseTaskingTaskingCollectionRequirement) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type IsrCollectionTupleResponseTaskingTaskingCollectionRequirementCriticalTimes struct {
-	// Critical start time to collect an image for this requirement.
-	EarliestImagingTime time.Time `json:"earliestImagingTime,required" format:"date-time"`
-	// Critical stop time to collect an image for this requirement.
-	LatestImagingTime time.Time `json:"latestImagingTime,required" format:"date-time"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		EarliestImagingTime respjson.Field
-		LatestImagingTime   respjson.Field
-		ExtraFields         map[string]respjson.Field
-		raw                 string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r IsrCollectionTupleResponseTaskingTaskingCollectionRequirementCriticalTimes) RawJSON() string {
-	return r.JSON.raw
-}
-func (r *IsrCollectionTupleResponseTaskingTaskingCollectionRequirementCriticalTimes) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type IsrCollectionTupleResponseTaskingTaskingCollectionRequirementExploitationRequirement struct {
-	// Exploitation requirement id.
-	ID string `json:"id"`
-	// Amplifying data for the exploitation requirement.
-	Amplification string `json:"amplification"`
-	// List of e-mails to disseminate collection verification information.
-	Dissemination string `json:"dissemination"`
-	// Essential Elements of Information.
-	Eei string                                                                                  `json:"eei"`
-	Poc IsrCollectionTupleResponseTaskingTaskingCollectionRequirementExploitationRequirementPoc `json:"poc"`
-	// The reporting criteria of the collection requirement.
-	ReportingCriteria string `json:"reportingCriteria"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		ID                respjson.Field
-		Amplification     respjson.Field
-		Dissemination     respjson.Field
-		Eei               respjson.Field
-		Poc               respjson.Field
-		ReportingCriteria respjson.Field
-		ExtraFields       map[string]respjson.Field
-		raw               string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r IsrCollectionTupleResponseTaskingTaskingCollectionRequirementExploitationRequirement) RawJSON() string {
-	return r.JSON.raw
-}
-func (r *IsrCollectionTupleResponseTaskingTaskingCollectionRequirementExploitationRequirement) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type IsrCollectionTupleResponseTaskingTaskingCollectionRequirementExploitationRequirementPoc struct {
-	// Unique identifier of the collection requirement POC.
-	ID string `json:"id"`
-	// Callsign of the POC.
-	Callsign string `json:"callsign"`
-	// Chat name of the POC.
-	ChatName string `json:"chatName"`
-	// Chat system the POC is accessing.
-	ChatSystem string `json:"chatSystem"`
-	// Email address of the POC.
-	Email string `json:"email"`
-	// Name of the POC.
-	Name string `json:"name"`
-	// Amplifying notes about the POC.
-	Notes string `json:"notes"`
-	// Phone number of the POC.
-	Phone string `json:"phone"`
-	// Radio Frequency the POC is on.
-	RadioFrequency float64 `json:"radioFrequency"`
-	// Unit the POC belongs to.
-	Unit string `json:"unit"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		ID             respjson.Field
-		Callsign       respjson.Field
-		ChatName       respjson.Field
-		ChatSystem     respjson.Field
-		Email          respjson.Field
-		Name           respjson.Field
-		Notes          respjson.Field
-		Phone          respjson.Field
-		RadioFrequency respjson.Field
-		Unit           respjson.Field
-		ExtraFields    map[string]respjson.Field
-		raw            string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r IsrCollectionTupleResponseTaskingTaskingCollectionRequirementExploitationRequirementPoc) RawJSON() string {
-	return r.JSON.raw
-}
-func (r *IsrCollectionTupleResponseTaskingTaskingCollectionRequirementExploitationRequirementPoc) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 

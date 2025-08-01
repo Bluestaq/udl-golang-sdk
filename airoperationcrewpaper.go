@@ -49,11 +49,11 @@ func (r *AirOperationCrewpaperService) Unpublish(ctx context.Context, body AirOp
 // Service operation to upload a supporting PDF for the aircraft sortie. A specific
 // role is required to perform this service operation. Please contact the UDL team
 // for assistance.
-func (r *AirOperationCrewpaperService) UploadPdf(ctx context.Context, params AirOperationCrewpaperUploadPdfParams, opts ...option.RequestOption) (err error) {
+func (r *AirOperationCrewpaperService) UploadPdf(ctx context.Context, params io.Reader, body AirOperationCrewpaperUploadPdfParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", ""), option.WithRequestBody("application/pdf", params)}, opts...)
 	path := "filedrop/crewpapers"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, nil, opts...)
 	return
 }
 
@@ -83,7 +83,6 @@ type AirOperationCrewpaperUploadPdfParams struct {
 	PaperStatus AirOperationCrewpaperUploadPdfParamsPaperStatus `query:"paperStatus,omitzero,required" json:"-"`
 	// The version number of the crew paper.
 	PapersVersion string `query:"papersVersion,required" json:"-"`
-	Body          io.Reader
 	paramObj
 }
 

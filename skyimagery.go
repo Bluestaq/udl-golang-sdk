@@ -454,7 +454,7 @@ type SkyImageryGetResponse struct {
 	// Optional name/description associated with this image.
 	Description string `json:"description"`
 	// Collection of linked EOObservations.
-	EoObservations []EoObservationFull `json:"eoObservations"`
+	EoObservations []shared.EoObservationFull `json:"eoObservations"`
 	// End time of the exposure, in ISO 8601 UTC format with microsecond precision.
 	ExpEndTime time.Time `json:"expEndTime" format:"date-time"`
 	// Name of the uploaded image file.
@@ -655,17 +655,17 @@ const (
 )
 
 type SkyImageryQueryhelpResponse struct {
-	AodrSupported         bool                                   `json:"aodrSupported"`
-	ClassificationMarking string                                 `json:"classificationMarking"`
-	Description           string                                 `json:"description"`
-	HistorySupported      bool                                   `json:"historySupported"`
-	Name                  string                                 `json:"name"`
-	Parameters            []SkyImageryQueryhelpResponseParameter `json:"parameters"`
-	RequiredRoles         []string                               `json:"requiredRoles"`
-	RestSupported         bool                                   `json:"restSupported"`
-	SortSupported         bool                                   `json:"sortSupported"`
-	TypeName              string                                 `json:"typeName"`
-	Uri                   string                                 `json:"uri"`
+	AodrSupported         bool                         `json:"aodrSupported"`
+	ClassificationMarking string                       `json:"classificationMarking"`
+	Description           string                       `json:"description"`
+	HistorySupported      bool                         `json:"historySupported"`
+	Name                  string                       `json:"name"`
+	Parameters            []shared.ParamDescriptorResp `json:"parameters"`
+	RequiredRoles         []string                     `json:"requiredRoles"`
+	RestSupported         bool                         `json:"restSupported"`
+	SortSupported         bool                         `json:"sortSupported"`
+	TypeName              string                       `json:"typeName"`
+	Uri                   string                       `json:"uri"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		AodrSupported         respjson.Field
@@ -687,48 +687,6 @@ type SkyImageryQueryhelpResponse struct {
 // Returns the unmodified JSON received from the API
 func (r SkyImageryQueryhelpResponse) RawJSON() string { return r.JSON.raw }
 func (r *SkyImageryQueryhelpResponse) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type SkyImageryQueryhelpResponseParameter struct {
-	ClassificationMarking string `json:"classificationMarking"`
-	Derived               bool   `json:"derived"`
-	Description           string `json:"description"`
-	ElemMatch             bool   `json:"elemMatch"`
-	Format                string `json:"format"`
-	HistQuerySupported    bool   `json:"histQuerySupported"`
-	HistTupleSupported    bool   `json:"histTupleSupported"`
-	Name                  string `json:"name"`
-	Required              bool   `json:"required"`
-	RestQuerySupported    bool   `json:"restQuerySupported"`
-	RestTupleSupported    bool   `json:"restTupleSupported"`
-	Type                  string `json:"type"`
-	UnitOfMeasure         string `json:"unitOfMeasure"`
-	UtcDate               bool   `json:"utcDate"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		ClassificationMarking respjson.Field
-		Derived               respjson.Field
-		Description           respjson.Field
-		ElemMatch             respjson.Field
-		Format                respjson.Field
-		HistQuerySupported    respjson.Field
-		HistTupleSupported    respjson.Field
-		Name                  respjson.Field
-		Required              respjson.Field
-		RestQuerySupported    respjson.Field
-		RestTupleSupported    respjson.Field
-		Type                  respjson.Field
-		UnitOfMeasure         respjson.Field
-		UtcDate               respjson.Field
-		ExtraFields           map[string]respjson.Field
-		raw                   string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r SkyImageryQueryhelpResponseParameter) RawJSON() string { return r.JSON.raw }
-func (r *SkyImageryQueryhelpResponseParameter) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -779,7 +737,7 @@ type SkyImageryTupleResponse struct {
 	// Optional name/description associated with this image.
 	Description string `json:"description"`
 	// Collection of linked EOObservations.
-	EoObservations []EoObservationFull `json:"eoObservations"`
+	EoObservations []shared.EoObservationFull `json:"eoObservations"`
 	// End time of the exposure, in ISO 8601 UTC format with microsecond precision.
 	ExpEndTime time.Time `json:"expEndTime" format:"date-time"`
 	// Name of the uploaded image file.

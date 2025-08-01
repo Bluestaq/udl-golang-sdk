@@ -18,6 +18,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // VesselService contains methods and other services that help with interacting
@@ -373,7 +374,7 @@ type VesselGetResponse struct {
 	// An entity is a generic representation of any object within a space/SSA system
 	// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
 	// entity can have an operating unit, a location (if terrestrial), and statuses.
-	Entity EntityFull `json:"entity"`
+	Entity shared.EntityFull `json:"entity"`
 	// The date this vessel was first seen.
 	FirstSeen time.Time `json:"firstSeen" format:"date-time"`
 	// The vessel hull number designation of this maritime vessel. The hull number is a
@@ -526,17 +527,17 @@ const (
 )
 
 type VesselQueryhelpResponse struct {
-	AodrSupported         bool                               `json:"aodrSupported"`
-	ClassificationMarking string                             `json:"classificationMarking"`
-	Description           string                             `json:"description"`
-	HistorySupported      bool                               `json:"historySupported"`
-	Name                  string                             `json:"name"`
-	Parameters            []VesselQueryhelpResponseParameter `json:"parameters"`
-	RequiredRoles         []string                           `json:"requiredRoles"`
-	RestSupported         bool                               `json:"restSupported"`
-	SortSupported         bool                               `json:"sortSupported"`
-	TypeName              string                             `json:"typeName"`
-	Uri                   string                             `json:"uri"`
+	AodrSupported         bool                         `json:"aodrSupported"`
+	ClassificationMarking string                       `json:"classificationMarking"`
+	Description           string                       `json:"description"`
+	HistorySupported      bool                         `json:"historySupported"`
+	Name                  string                       `json:"name"`
+	Parameters            []shared.ParamDescriptorResp `json:"parameters"`
+	RequiredRoles         []string                     `json:"requiredRoles"`
+	RestSupported         bool                         `json:"restSupported"`
+	SortSupported         bool                         `json:"sortSupported"`
+	TypeName              string                       `json:"typeName"`
+	Uri                   string                       `json:"uri"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		AodrSupported         respjson.Field
@@ -558,48 +559,6 @@ type VesselQueryhelpResponse struct {
 // Returns the unmodified JSON received from the API
 func (r VesselQueryhelpResponse) RawJSON() string { return r.JSON.raw }
 func (r *VesselQueryhelpResponse) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type VesselQueryhelpResponseParameter struct {
-	ClassificationMarking string `json:"classificationMarking"`
-	Derived               bool   `json:"derived"`
-	Description           string `json:"description"`
-	ElemMatch             bool   `json:"elemMatch"`
-	Format                string `json:"format"`
-	HistQuerySupported    bool   `json:"histQuerySupported"`
-	HistTupleSupported    bool   `json:"histTupleSupported"`
-	Name                  string `json:"name"`
-	Required              bool   `json:"required"`
-	RestQuerySupported    bool   `json:"restQuerySupported"`
-	RestTupleSupported    bool   `json:"restTupleSupported"`
-	Type                  string `json:"type"`
-	UnitOfMeasure         string `json:"unitOfMeasure"`
-	UtcDate               bool   `json:"utcDate"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		ClassificationMarking respjson.Field
-		Derived               respjson.Field
-		Description           respjson.Field
-		ElemMatch             respjson.Field
-		Format                respjson.Field
-		HistQuerySupported    respjson.Field
-		HistTupleSupported    respjson.Field
-		Name                  respjson.Field
-		Required              respjson.Field
-		RestQuerySupported    respjson.Field
-		RestTupleSupported    respjson.Field
-		Type                  respjson.Field
-		UnitOfMeasure         respjson.Field
-		UtcDate               respjson.Field
-		ExtraFields           map[string]respjson.Field
-		raw                   string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r VesselQueryhelpResponseParameter) RawJSON() string { return r.JSON.raw }
-func (r *VesselQueryhelpResponseParameter) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -644,7 +603,7 @@ type VesselTupleResponse struct {
 	// An entity is a generic representation of any object within a space/SSA system
 	// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
 	// entity can have an operating unit, a location (if terrestrial), and statuses.
-	Entity EntityFull `json:"entity"`
+	Entity shared.EntityFull `json:"entity"`
 	// The date this vessel was first seen.
 	FirstSeen time.Time `json:"firstSeen" format:"date-time"`
 	// The vessel hull number designation of this maritime vessel. The hull number is a

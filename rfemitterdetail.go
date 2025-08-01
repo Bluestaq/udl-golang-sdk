@@ -17,6 +17,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // RfEmitterDetailService contains methods and other services that help with
@@ -384,7 +385,7 @@ type RfEmitterDetailGetResponse struct {
 	// An organization such as a corporation, manufacturer, consortium, government,
 	// etc. An organization may have parent and child organizations as well as link to
 	// a former organization if this org previously existed as another organization.
-	ManufacturerOrg OrganizationFull `json:"manufacturerOrg"`
+	ManufacturerOrg shared.OrganizationFull `json:"manufacturerOrg"`
 	// Unique identifier of the organization which manufactures this RF Emitter.
 	ManufacturerOrgID string `json:"manufacturerOrgId"`
 	// Notes on the RF Emitter.
@@ -403,7 +404,7 @@ type RfEmitterDetailGetResponse struct {
 	OrigNetwork string `json:"origNetwork"`
 	// Model representation of a location, which is a specific fixed point on the earth
 	// and is used to denote the locations of fixed sensors, operating units, etc.
-	ProductionFacilityLocation LocationFull `json:"productionFacilityLocation"`
+	ProductionFacilityLocation shared.LocationFull `json:"productionFacilityLocation"`
 	// Unique identifier of the location of the production facility for this RF
 	// Emitter.
 	ProductionFacilityLocationID string `json:"productionFacilityLocationId"`
@@ -514,17 +515,17 @@ const (
 )
 
 type RfEmitterDetailQueryhelpResponse struct {
-	AodrSupported         bool                                        `json:"aodrSupported"`
-	ClassificationMarking string                                      `json:"classificationMarking"`
-	Description           string                                      `json:"description"`
-	HistorySupported      bool                                        `json:"historySupported"`
-	Name                  string                                      `json:"name"`
-	Parameters            []RfEmitterDetailQueryhelpResponseParameter `json:"parameters"`
-	RequiredRoles         []string                                    `json:"requiredRoles"`
-	RestSupported         bool                                        `json:"restSupported"`
-	SortSupported         bool                                        `json:"sortSupported"`
-	TypeName              string                                      `json:"typeName"`
-	Uri                   string                                      `json:"uri"`
+	AodrSupported         bool                         `json:"aodrSupported"`
+	ClassificationMarking string                       `json:"classificationMarking"`
+	Description           string                       `json:"description"`
+	HistorySupported      bool                         `json:"historySupported"`
+	Name                  string                       `json:"name"`
+	Parameters            []shared.ParamDescriptorResp `json:"parameters"`
+	RequiredRoles         []string                     `json:"requiredRoles"`
+	RestSupported         bool                         `json:"restSupported"`
+	SortSupported         bool                         `json:"sortSupported"`
+	TypeName              string                       `json:"typeName"`
+	Uri                   string                       `json:"uri"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		AodrSupported         respjson.Field
@@ -546,48 +547,6 @@ type RfEmitterDetailQueryhelpResponse struct {
 // Returns the unmodified JSON received from the API
 func (r RfEmitterDetailQueryhelpResponse) RawJSON() string { return r.JSON.raw }
 func (r *RfEmitterDetailQueryhelpResponse) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type RfEmitterDetailQueryhelpResponseParameter struct {
-	ClassificationMarking string `json:"classificationMarking"`
-	Derived               bool   `json:"derived"`
-	Description           string `json:"description"`
-	ElemMatch             bool   `json:"elemMatch"`
-	Format                string `json:"format"`
-	HistQuerySupported    bool   `json:"histQuerySupported"`
-	HistTupleSupported    bool   `json:"histTupleSupported"`
-	Name                  string `json:"name"`
-	Required              bool   `json:"required"`
-	RestQuerySupported    bool   `json:"restQuerySupported"`
-	RestTupleSupported    bool   `json:"restTupleSupported"`
-	Type                  string `json:"type"`
-	UnitOfMeasure         string `json:"unitOfMeasure"`
-	UtcDate               bool   `json:"utcDate"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		ClassificationMarking respjson.Field
-		Derived               respjson.Field
-		Description           respjson.Field
-		ElemMatch             respjson.Field
-		Format                respjson.Field
-		HistQuerySupported    respjson.Field
-		HistTupleSupported    respjson.Field
-		Name                  respjson.Field
-		Required              respjson.Field
-		RestQuerySupported    respjson.Field
-		RestTupleSupported    respjson.Field
-		Type                  respjson.Field
-		UnitOfMeasure         respjson.Field
-		UtcDate               respjson.Field
-		ExtraFields           map[string]respjson.Field
-		raw                   string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r RfEmitterDetailQueryhelpResponseParameter) RawJSON() string { return r.JSON.raw }
-func (r *RfEmitterDetailQueryhelpResponseParameter) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -648,7 +607,7 @@ type RfEmitterDetailTupleResponse struct {
 	// An organization such as a corporation, manufacturer, consortium, government,
 	// etc. An organization may have parent and child organizations as well as link to
 	// a former organization if this org previously existed as another organization.
-	ManufacturerOrg OrganizationFull `json:"manufacturerOrg"`
+	ManufacturerOrg shared.OrganizationFull `json:"manufacturerOrg"`
 	// Unique identifier of the organization which manufactures this RF Emitter.
 	ManufacturerOrgID string `json:"manufacturerOrgId"`
 	// Notes on the RF Emitter.
@@ -667,7 +626,7 @@ type RfEmitterDetailTupleResponse struct {
 	OrigNetwork string `json:"origNetwork"`
 	// Model representation of a location, which is a specific fixed point on the earth
 	// and is used to denote the locations of fixed sensors, operating units, etc.
-	ProductionFacilityLocation LocationFull `json:"productionFacilityLocation"`
+	ProductionFacilityLocation shared.LocationFull `json:"productionFacilityLocation"`
 	// Unique identifier of the location of the production facility for this RF
 	// Emitter.
 	ProductionFacilityLocationID string `json:"productionFacilityLocationId"`

@@ -12,6 +12,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // StateVectorCurrentService contains methods and other services that help with
@@ -84,7 +85,7 @@ func (r *StateVectorCurrentService) ListAutoPaging(ctx context.Context, query St
 // information, or explicitly specify the desired source. See the queryhelp
 // operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required
 // query parameter information.
-func (r *StateVectorCurrentService) Tuple(ctx context.Context, query StateVectorCurrentTupleParams, opts ...option.RequestOption) (res *[]StateVectorFull, err error) {
+func (r *StateVectorCurrentService) Tuple(ctx context.Context, query StateVectorCurrentTupleParams, opts ...option.RequestOption) (res *[]shared.StateVectorFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/statevector/current/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)

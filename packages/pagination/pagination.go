@@ -125,3 +125,114 @@ func (r *OffsetPageAutoPager[T]) Err() error {
 func (r *OffsetPageAutoPager[T]) Index() int {
 	return r.run
 }
+
+// KafkaOffsetPage represents pagination for Kafka-style endpoints that return the next offset in a response header.
+//
+// This page type reads the `KAFKA_NEXT_OFFSET` header from the response to determine
+// if there are more pages available and what offset to use for the next request.
+type KafkaOffsetPage[T any] struct {
+	Items []T `json:",inline"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		Items       respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
+	} `json:"-"`
+	cfg     *requestconfig.RequestConfig
+	res     *http.Response
+	urlFunc func(offset int64) string
+}
+
+// Returns the unmodified JSON received from the API
+func (r KafkaOffsetPage[T]) RawJSON() string { return r.JSON.raw }
+func (r *KafkaOffsetPage[T]) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// GetNextPage returns the next page as defined by this pagination style. When
+// there is no next page, this function will return a 'nil' for the page value, but
+// will not return an error
+func (r *KafkaOffsetPage[T]) GetNextPage() (res *KafkaOffsetPage[T], err error) {
+	if r.res == nil {
+		return nil, nil
+	}
+
+	nextOffsetStr := r.res.Header.Get("KAFKA_NEXT_OFFSET")
+	if nextOffsetStr == "" {
+		return nil, nil
+	}
+
+	nextOffset, err := strconv.ParseInt(nextOffsetStr, 10, 64)
+	if err != nil {
+		return nil, nil
+	}
+
+	cfg := r.cfg.Clone(r.cfg.Context)
+
+	newPath := r.urlFunc(nextOffset)
+	cfg.Request.URL.Path = newPath
+
+	var raw *http.Response
+	cfg.ResponseInto = &raw
+	cfg.ResponseBodyInto = &res
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw, r.urlFunc)
+	return res, nil
+}
+
+func (r *KafkaOffsetPage[T]) SetPageConfig(cfg *requestconfig.RequestConfig, res *http.Response, urlFunc func(offset int64) string) {
+	if r == nil {
+		r = &KafkaOffsetPage[T]{}
+	}
+	r.cfg = cfg
+	r.res = res
+	r.urlFunc = urlFunc
+}
+
+type KafkaOffsetPageAutoPager[T any] struct {
+	page *KafkaOffsetPage[T]
+	cur  T
+	idx  int
+	run  int
+	err  error
+	paramObj
+}
+
+func NewKafkaOffsetPageAutoPager[T any](page *KafkaOffsetPage[T], err error) *KafkaOffsetPageAutoPager[T] {
+	return &KafkaOffsetPageAutoPager[T]{
+		page: page,
+		err:  err,
+	}
+}
+
+func (r *KafkaOffsetPageAutoPager[T]) Next() bool {
+	if r.page == nil || len(r.page.Items) == 0 {
+		return false
+	}
+	if r.idx >= len(r.page.Items) {
+		r.idx = 0
+		r.page, r.err = r.page.GetNextPage()
+		if r.err != nil || r.page == nil || len(r.page.Items) == 0 {
+			return false
+		}
+	}
+	r.cur = r.page.Items[r.idx]
+	r.run += 1
+	r.idx += 1
+	return true
+}
+
+func (r *KafkaOffsetPageAutoPager[T]) Current() T {
+	return r.cur
+}
+
+func (r *KafkaOffsetPageAutoPager[T]) Err() error {
+	return r.err
+}
+
+func (r *KafkaOffsetPageAutoPager[T]) Index() int {
+	return r.run
+}

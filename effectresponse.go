@@ -18,6 +18,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // EffectResponseService contains methods and other services that help with
@@ -158,6 +159,109 @@ func (r *EffectResponseService) UnvalidatedPublish(ctx context.Context, body Eff
 	return
 }
 
+type EffectResponseActionsListFull struct {
+	// The record ID, depending on the type identified in actorSrcType, of the
+	// requested asset/actor.
+	ActionActorSrcID string `json:"actionActorSrcId"`
+	// The source type of the asset/actor identifier (AIRCRAFT, LANDCRAFT, SEACRAFT,
+	// TRACK).
+	ActionActorSrcType string `json:"actionActorSrcType"`
+	// The desired end time of this task, in ISO8601 UTC format.
+	ActionEndTime time.Time `json:"actionEndTime" format:"date-time"`
+	// Identifier of this action.
+	ActionID string `json:"actionId"`
+	// List of metrics associated with this action.
+	ActionMetrics []EffectResponseMetricsFull `json:"actionMetrics"`
+	// The desired start time of this task, in ISO8601 UTC format.
+	ActionStartTime time.Time `json:"actionStartTime" format:"date-time"`
+	// The WGS-84 altitude of the asset/actor location at weapon launch, in meters.
+	ActorInterceptAlt float64 `json:"actorInterceptAlt"`
+	// The WGS-84 latitude of the asset/actor location at weapon launch, in degrees.
+	// -90 to 90 degrees (negative values south of equator).
+	ActorInterceptLat float64 `json:"actorInterceptLat"`
+	// The WGS-84 longitude of the asset/actor location at weapon launch, in degrees.
+	// -180 to 180 degrees (negative values west of Prime Meridian).
+	ActorInterceptLon float64 `json:"actorInterceptLon"`
+	// The type of munition or sensor used by this asset/actor.
+	Effector string `json:"effector"`
+	// A summary string describing different aspects of the action.
+	Summary string `json:"summary"`
+	// The POI or TRACK ID, depending on the type identified in targetSrcType, of the
+	// requested target. This identifier corresponds to either poi.poiid or track.trkId
+	// from their respective schemas.
+	TargetSrcID string `json:"targetSrcId"`
+	// The source type of the targetId identifier (POI, TRACK).
+	TargetSrcType string `json:"targetSrcType"`
+	// The end time of the asset TOT (time over target), in ISO8601 UTC format.
+	TotEndTime time.Time `json:"totEndTime" format:"date-time"`
+	// The start time of the asset TOT (time over target), in ISO8601 UTC format.
+	TotStartTime time.Time `json:"totStartTime" format:"date-time"`
+	// The WGS-84 altitude of the weapon destination location, in meters.
+	WeaponInterceptAlt float64 `json:"weaponInterceptAlt"`
+	// The WGS-84 latitude of the weapon destination location, in degrees. -90 to 90
+	// degrees (negative values south of equator).
+	WeaponInterceptLat float64 `json:"weaponInterceptLat"`
+	// The WGS-84 longitude of the weapon destination location, in degrees. -180 to 180
+	// degrees (negative values west of Prime Meridian).
+	WeaponInterceptLon float64 `json:"weaponInterceptLon"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		ActionActorSrcID   respjson.Field
+		ActionActorSrcType respjson.Field
+		ActionEndTime      respjson.Field
+		ActionID           respjson.Field
+		ActionMetrics      respjson.Field
+		ActionStartTime    respjson.Field
+		ActorInterceptAlt  respjson.Field
+		ActorInterceptLat  respjson.Field
+		ActorInterceptLon  respjson.Field
+		Effector           respjson.Field
+		Summary            respjson.Field
+		TargetSrcID        respjson.Field
+		TargetSrcType      respjson.Field
+		TotEndTime         respjson.Field
+		TotStartTime       respjson.Field
+		WeaponInterceptAlt respjson.Field
+		WeaponInterceptLat respjson.Field
+		WeaponInterceptLon respjson.Field
+		ExtraFields        map[string]respjson.Field
+		raw                string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r EffectResponseActionsListFull) RawJSON() string { return r.JSON.raw }
+func (r *EffectResponseActionsListFull) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type EffectResponseMetricsFull struct {
+	// The metric score specific to its domain.
+	DomainValue float64 `json:"domainValue"`
+	// The type of the metric (e.g. CollateralDamage, GoalAchievement, OpportunityCost,
+	// Timeliness, Unavailable, etc.).
+	MetricType string `json:"metricType"`
+	// The metric that was used to score this task.
+	Provenance string `json:"provenance"`
+	// The metric score adjusted to be relative and comparable to other domains.
+	RelativeValue float64 `json:"relativeValue"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		DomainValue   respjson.Field
+		MetricType    respjson.Field
+		Provenance    respjson.Field
+		RelativeValue respjson.Field
+		ExtraFields   map[string]respjson.Field
+		raw           string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r EffectResponseMetricsFull) RawJSON() string { return r.JSON.raw }
+func (r *EffectResponseMetricsFull) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
 // A response for various effects on a target.
 type EffectResponseGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
@@ -186,7 +290,7 @@ type EffectResponseGetResponse struct {
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// List of actions associated with this effect response.
-	ActionsList []EffectResponseGetResponseActionsList `json:"actionsList"`
+	ActionsList []EffectResponseActionsListFull `json:"actionsList"`
 	// The record ID, depending on the type identified in actorSrcType, of the
 	// requested asset.
 	ActorSrcID string `json:"actorSrcId"`
@@ -194,7 +298,7 @@ type EffectResponseGetResponse struct {
 	// TRACK).
 	ActorSrcType string `json:"actorSrcType"`
 	// List of COA metrics associated with this effect response.
-	CoaMetrics []EffectResponseGetResponseCoaMetric `json:"coaMetrics"`
+	CoaMetrics []EffectResponseMetricsFull `json:"coaMetrics"`
 	// The collateral damage estimate (CDE) of the munition being fired.
 	CollateralDamageEst float64 `json:"collateralDamageEst"`
 	// Time the row was created in the database, auto-populated by the system.
@@ -297,136 +401,6 @@ const (
 	EffectResponseGetResponseDataModeSimulated EffectResponseGetResponseDataMode = "SIMULATED"
 	EffectResponseGetResponseDataModeExercise  EffectResponseGetResponseDataMode = "EXERCISE"
 )
-
-type EffectResponseGetResponseActionsList struct {
-	// The record ID, depending on the type identified in actorSrcType, of the
-	// requested asset/actor.
-	ActionActorSrcID string `json:"actionActorSrcId"`
-	// The source type of the asset/actor identifier (AIRCRAFT, LANDCRAFT, SEACRAFT,
-	// TRACK).
-	ActionActorSrcType string `json:"actionActorSrcType"`
-	// The desired end time of this task, in ISO8601 UTC format.
-	ActionEndTime time.Time `json:"actionEndTime" format:"date-time"`
-	// Identifier of this action.
-	ActionID string `json:"actionId"`
-	// List of metrics associated with this action.
-	ActionMetrics []EffectResponseGetResponseActionsListActionMetric `json:"actionMetrics"`
-	// The desired start time of this task, in ISO8601 UTC format.
-	ActionStartTime time.Time `json:"actionStartTime" format:"date-time"`
-	// The WGS-84 altitude of the asset/actor location at weapon launch, in meters.
-	ActorInterceptAlt float64 `json:"actorInterceptAlt"`
-	// The WGS-84 latitude of the asset/actor location at weapon launch, in degrees.
-	// -90 to 90 degrees (negative values south of equator).
-	ActorInterceptLat float64 `json:"actorInterceptLat"`
-	// The WGS-84 longitude of the asset/actor location at weapon launch, in degrees.
-	// -180 to 180 degrees (negative values west of Prime Meridian).
-	ActorInterceptLon float64 `json:"actorInterceptLon"`
-	// The type of munition or sensor used by this asset/actor.
-	Effector string `json:"effector"`
-	// A summary string describing different aspects of the action.
-	Summary string `json:"summary"`
-	// The POI or TRACK ID, depending on the type identified in targetSrcType, of the
-	// requested target. This identifier corresponds to either poi.poiid or track.trkId
-	// from their respective schemas.
-	TargetSrcID string `json:"targetSrcId"`
-	// The source type of the targetId identifier (POI, TRACK).
-	TargetSrcType string `json:"targetSrcType"`
-	// The end time of the asset TOT (time over target), in ISO8601 UTC format.
-	TotEndTime time.Time `json:"totEndTime" format:"date-time"`
-	// The start time of the asset TOT (time over target), in ISO8601 UTC format.
-	TotStartTime time.Time `json:"totStartTime" format:"date-time"`
-	// The WGS-84 altitude of the weapon destination location, in meters.
-	WeaponInterceptAlt float64 `json:"weaponInterceptAlt"`
-	// The WGS-84 latitude of the weapon destination location, in degrees. -90 to 90
-	// degrees (negative values south of equator).
-	WeaponInterceptLat float64 `json:"weaponInterceptLat"`
-	// The WGS-84 longitude of the weapon destination location, in degrees. -180 to 180
-	// degrees (negative values west of Prime Meridian).
-	WeaponInterceptLon float64 `json:"weaponInterceptLon"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		ActionActorSrcID   respjson.Field
-		ActionActorSrcType respjson.Field
-		ActionEndTime      respjson.Field
-		ActionID           respjson.Field
-		ActionMetrics      respjson.Field
-		ActionStartTime    respjson.Field
-		ActorInterceptAlt  respjson.Field
-		ActorInterceptLat  respjson.Field
-		ActorInterceptLon  respjson.Field
-		Effector           respjson.Field
-		Summary            respjson.Field
-		TargetSrcID        respjson.Field
-		TargetSrcType      respjson.Field
-		TotEndTime         respjson.Field
-		TotStartTime       respjson.Field
-		WeaponInterceptAlt respjson.Field
-		WeaponInterceptLat respjson.Field
-		WeaponInterceptLon respjson.Field
-		ExtraFields        map[string]respjson.Field
-		raw                string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r EffectResponseGetResponseActionsList) RawJSON() string { return r.JSON.raw }
-func (r *EffectResponseGetResponseActionsList) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type EffectResponseGetResponseActionsListActionMetric struct {
-	// The metric score specific to its domain.
-	DomainValue float64 `json:"domainValue"`
-	// The type of the metric (e.g. CollateralDamage, GoalAchievement, OpportunityCost,
-	// Timeliness, Unavailable, etc.).
-	MetricType string `json:"metricType"`
-	// The metric that was used to score this task.
-	Provenance string `json:"provenance"`
-	// The metric score adjusted to be relative and comparable to other domains.
-	RelativeValue float64 `json:"relativeValue"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		DomainValue   respjson.Field
-		MetricType    respjson.Field
-		Provenance    respjson.Field
-		RelativeValue respjson.Field
-		ExtraFields   map[string]respjson.Field
-		raw           string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r EffectResponseGetResponseActionsListActionMetric) RawJSON() string { return r.JSON.raw }
-func (r *EffectResponseGetResponseActionsListActionMetric) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type EffectResponseGetResponseCoaMetric struct {
-	// The metric score specific to its domain.
-	DomainValue float64 `json:"domainValue"`
-	// The type of the metric (e.g. CollateralDamage, GoalAchievement, OpportunityCost,
-	// Timeliness, Unavailable, etc.).
-	MetricType string `json:"metricType"`
-	// The metric that was used to score this task.
-	Provenance string `json:"provenance"`
-	// The metric score adjusted to be relative and comparable to other domains.
-	RelativeValue float64 `json:"relativeValue"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		DomainValue   respjson.Field
-		MetricType    respjson.Field
-		Provenance    respjson.Field
-		RelativeValue respjson.Field
-		ExtraFields   map[string]respjson.Field
-		raw           string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r EffectResponseGetResponseCoaMetric) RawJSON() string { return r.JSON.raw }
-func (r *EffectResponseGetResponseCoaMetric) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
 
 // A response for various effects on a target.
 type EffectResponseListResponse struct {
@@ -699,17 +673,17 @@ func (r *EffectResponseListResponseCoaMetric) UnmarshalJSON(data []byte) error {
 }
 
 type EffectResponseQueryHelpResponse struct {
-	AodrSupported         bool                                       `json:"aodrSupported"`
-	ClassificationMarking string                                     `json:"classificationMarking"`
-	Description           string                                     `json:"description"`
-	HistorySupported      bool                                       `json:"historySupported"`
-	Name                  string                                     `json:"name"`
-	Parameters            []EffectResponseQueryHelpResponseParameter `json:"parameters"`
-	RequiredRoles         []string                                   `json:"requiredRoles"`
-	RestSupported         bool                                       `json:"restSupported"`
-	SortSupported         bool                                       `json:"sortSupported"`
-	TypeName              string                                     `json:"typeName"`
-	Uri                   string                                     `json:"uri"`
+	AodrSupported         bool                         `json:"aodrSupported"`
+	ClassificationMarking string                       `json:"classificationMarking"`
+	Description           string                       `json:"description"`
+	HistorySupported      bool                         `json:"historySupported"`
+	Name                  string                       `json:"name"`
+	Parameters            []shared.ParamDescriptorResp `json:"parameters"`
+	RequiredRoles         []string                     `json:"requiredRoles"`
+	RestSupported         bool                         `json:"restSupported"`
+	SortSupported         bool                         `json:"sortSupported"`
+	TypeName              string                       `json:"typeName"`
+	Uri                   string                       `json:"uri"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		AodrSupported         respjson.Field
@@ -731,48 +705,6 @@ type EffectResponseQueryHelpResponse struct {
 // Returns the unmodified JSON received from the API
 func (r EffectResponseQueryHelpResponse) RawJSON() string { return r.JSON.raw }
 func (r *EffectResponseQueryHelpResponse) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type EffectResponseQueryHelpResponseParameter struct {
-	ClassificationMarking string `json:"classificationMarking"`
-	Derived               bool   `json:"derived"`
-	Description           string `json:"description"`
-	ElemMatch             bool   `json:"elemMatch"`
-	Format                string `json:"format"`
-	HistQuerySupported    bool   `json:"histQuerySupported"`
-	HistTupleSupported    bool   `json:"histTupleSupported"`
-	Name                  string `json:"name"`
-	Required              bool   `json:"required"`
-	RestQuerySupported    bool   `json:"restQuerySupported"`
-	RestTupleSupported    bool   `json:"restTupleSupported"`
-	Type                  string `json:"type"`
-	UnitOfMeasure         string `json:"unitOfMeasure"`
-	UtcDate               bool   `json:"utcDate"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		ClassificationMarking respjson.Field
-		Derived               respjson.Field
-		Description           respjson.Field
-		ElemMatch             respjson.Field
-		Format                respjson.Field
-		HistQuerySupported    respjson.Field
-		HistTupleSupported    respjson.Field
-		Name                  respjson.Field
-		Required              respjson.Field
-		RestQuerySupported    respjson.Field
-		RestTupleSupported    respjson.Field
-		Type                  respjson.Field
-		UnitOfMeasure         respjson.Field
-		UtcDate               respjson.Field
-		ExtraFields           map[string]respjson.Field
-		raw                   string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r EffectResponseQueryHelpResponseParameter) RawJSON() string { return r.JSON.raw }
-func (r *EffectResponseQueryHelpResponseParameter) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -804,7 +736,7 @@ type EffectResponseTupleResponse struct {
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// List of actions associated with this effect response.
-	ActionsList []EffectResponseTupleResponseActionsList `json:"actionsList"`
+	ActionsList []EffectResponseActionsListFull `json:"actionsList"`
 	// The record ID, depending on the type identified in actorSrcType, of the
 	// requested asset.
 	ActorSrcID string `json:"actorSrcId"`
@@ -812,7 +744,7 @@ type EffectResponseTupleResponse struct {
 	// TRACK).
 	ActorSrcType string `json:"actorSrcType"`
 	// List of COA metrics associated with this effect response.
-	CoaMetrics []EffectResponseTupleResponseCoaMetric `json:"coaMetrics"`
+	CoaMetrics []EffectResponseMetricsFull `json:"coaMetrics"`
 	// The collateral damage estimate (CDE) of the munition being fired.
 	CollateralDamageEst float64 `json:"collateralDamageEst"`
 	// Time the row was created in the database, auto-populated by the system.
@@ -915,136 +847,6 @@ const (
 	EffectResponseTupleResponseDataModeSimulated EffectResponseTupleResponseDataMode = "SIMULATED"
 	EffectResponseTupleResponseDataModeExercise  EffectResponseTupleResponseDataMode = "EXERCISE"
 )
-
-type EffectResponseTupleResponseActionsList struct {
-	// The record ID, depending on the type identified in actorSrcType, of the
-	// requested asset/actor.
-	ActionActorSrcID string `json:"actionActorSrcId"`
-	// The source type of the asset/actor identifier (AIRCRAFT, LANDCRAFT, SEACRAFT,
-	// TRACK).
-	ActionActorSrcType string `json:"actionActorSrcType"`
-	// The desired end time of this task, in ISO8601 UTC format.
-	ActionEndTime time.Time `json:"actionEndTime" format:"date-time"`
-	// Identifier of this action.
-	ActionID string `json:"actionId"`
-	// List of metrics associated with this action.
-	ActionMetrics []EffectResponseTupleResponseActionsListActionMetric `json:"actionMetrics"`
-	// The desired start time of this task, in ISO8601 UTC format.
-	ActionStartTime time.Time `json:"actionStartTime" format:"date-time"`
-	// The WGS-84 altitude of the asset/actor location at weapon launch, in meters.
-	ActorInterceptAlt float64 `json:"actorInterceptAlt"`
-	// The WGS-84 latitude of the asset/actor location at weapon launch, in degrees.
-	// -90 to 90 degrees (negative values south of equator).
-	ActorInterceptLat float64 `json:"actorInterceptLat"`
-	// The WGS-84 longitude of the asset/actor location at weapon launch, in degrees.
-	// -180 to 180 degrees (negative values west of Prime Meridian).
-	ActorInterceptLon float64 `json:"actorInterceptLon"`
-	// The type of munition or sensor used by this asset/actor.
-	Effector string `json:"effector"`
-	// A summary string describing different aspects of the action.
-	Summary string `json:"summary"`
-	// The POI or TRACK ID, depending on the type identified in targetSrcType, of the
-	// requested target. This identifier corresponds to either poi.poiid or track.trkId
-	// from their respective schemas.
-	TargetSrcID string `json:"targetSrcId"`
-	// The source type of the targetId identifier (POI, TRACK).
-	TargetSrcType string `json:"targetSrcType"`
-	// The end time of the asset TOT (time over target), in ISO8601 UTC format.
-	TotEndTime time.Time `json:"totEndTime" format:"date-time"`
-	// The start time of the asset TOT (time over target), in ISO8601 UTC format.
-	TotStartTime time.Time `json:"totStartTime" format:"date-time"`
-	// The WGS-84 altitude of the weapon destination location, in meters.
-	WeaponInterceptAlt float64 `json:"weaponInterceptAlt"`
-	// The WGS-84 latitude of the weapon destination location, in degrees. -90 to 90
-	// degrees (negative values south of equator).
-	WeaponInterceptLat float64 `json:"weaponInterceptLat"`
-	// The WGS-84 longitude of the weapon destination location, in degrees. -180 to 180
-	// degrees (negative values west of Prime Meridian).
-	WeaponInterceptLon float64 `json:"weaponInterceptLon"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		ActionActorSrcID   respjson.Field
-		ActionActorSrcType respjson.Field
-		ActionEndTime      respjson.Field
-		ActionID           respjson.Field
-		ActionMetrics      respjson.Field
-		ActionStartTime    respjson.Field
-		ActorInterceptAlt  respjson.Field
-		ActorInterceptLat  respjson.Field
-		ActorInterceptLon  respjson.Field
-		Effector           respjson.Field
-		Summary            respjson.Field
-		TargetSrcID        respjson.Field
-		TargetSrcType      respjson.Field
-		TotEndTime         respjson.Field
-		TotStartTime       respjson.Field
-		WeaponInterceptAlt respjson.Field
-		WeaponInterceptLat respjson.Field
-		WeaponInterceptLon respjson.Field
-		ExtraFields        map[string]respjson.Field
-		raw                string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r EffectResponseTupleResponseActionsList) RawJSON() string { return r.JSON.raw }
-func (r *EffectResponseTupleResponseActionsList) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type EffectResponseTupleResponseActionsListActionMetric struct {
-	// The metric score specific to its domain.
-	DomainValue float64 `json:"domainValue"`
-	// The type of the metric (e.g. CollateralDamage, GoalAchievement, OpportunityCost,
-	// Timeliness, Unavailable, etc.).
-	MetricType string `json:"metricType"`
-	// The metric that was used to score this task.
-	Provenance string `json:"provenance"`
-	// The metric score adjusted to be relative and comparable to other domains.
-	RelativeValue float64 `json:"relativeValue"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		DomainValue   respjson.Field
-		MetricType    respjson.Field
-		Provenance    respjson.Field
-		RelativeValue respjson.Field
-		ExtraFields   map[string]respjson.Field
-		raw           string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r EffectResponseTupleResponseActionsListActionMetric) RawJSON() string { return r.JSON.raw }
-func (r *EffectResponseTupleResponseActionsListActionMetric) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type EffectResponseTupleResponseCoaMetric struct {
-	// The metric score specific to its domain.
-	DomainValue float64 `json:"domainValue"`
-	// The type of the metric (e.g. CollateralDamage, GoalAchievement, OpportunityCost,
-	// Timeliness, Unavailable, etc.).
-	MetricType string `json:"metricType"`
-	// The metric that was used to score this task.
-	Provenance string `json:"provenance"`
-	// The metric score adjusted to be relative and comparable to other domains.
-	RelativeValue float64 `json:"relativeValue"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		DomainValue   respjson.Field
-		MetricType    respjson.Field
-		Provenance    respjson.Field
-		RelativeValue respjson.Field
-		ExtraFields   map[string]respjson.Field
-		raw           string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r EffectResponseTupleResponseCoaMetric) RawJSON() string { return r.JSON.raw }
-func (r *EffectResponseTupleResponseCoaMetric) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
 
 type EffectResponseNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.

@@ -13,6 +13,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // StateVectorHistoryService contains methods and other services that help with
@@ -38,7 +39,7 @@ func NewStateVectorHistoryService(opts ...option.RequestOption) (r StateVectorHi
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *StateVectorHistoryService) List(ctx context.Context, query StateVectorHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[StateVectorFull], err error) {
+func (r *StateVectorHistoryService) List(ctx context.Context, query StateVectorHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[shared.StateVectorFull], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -59,7 +60,7 @@ func (r *StateVectorHistoryService) List(ctx context.Context, query StateVectorH
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *StateVectorHistoryService) ListAutoPaging(ctx context.Context, query StateVectorHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[StateVectorFull] {
+func (r *StateVectorHistoryService) ListAutoPaging(ctx context.Context, query StateVectorHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[shared.StateVectorFull] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 

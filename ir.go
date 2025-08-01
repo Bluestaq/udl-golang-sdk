@@ -17,6 +17,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // IrService contains methods and other services that help with interacting with
@@ -286,7 +287,7 @@ type IrGetResponse struct {
 	// An entity is a generic representation of any object within a space/SSA system
 	// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
 	// entity can have an operating unit, a location (if terrestrial), and statuses.
-	Entity EntityFull `json:"entity"`
+	Entity shared.EntityFull `json:"entity"`
 	// ID of the parent entity for this IR.
 	IDEntity string `json:"idEntity"`
 	// Originating system or organization which produced the data, if different from
@@ -353,17 +354,17 @@ const (
 )
 
 type IrQueryhelpResponse struct {
-	AodrSupported         bool                           `json:"aodrSupported"`
-	ClassificationMarking string                         `json:"classificationMarking"`
-	Description           string                         `json:"description"`
-	HistorySupported      bool                           `json:"historySupported"`
-	Name                  string                         `json:"name"`
-	Parameters            []IrQueryhelpResponseParameter `json:"parameters"`
-	RequiredRoles         []string                       `json:"requiredRoles"`
-	RestSupported         bool                           `json:"restSupported"`
-	SortSupported         bool                           `json:"sortSupported"`
-	TypeName              string                         `json:"typeName"`
-	Uri                   string                         `json:"uri"`
+	AodrSupported         bool                         `json:"aodrSupported"`
+	ClassificationMarking string                       `json:"classificationMarking"`
+	Description           string                       `json:"description"`
+	HistorySupported      bool                         `json:"historySupported"`
+	Name                  string                       `json:"name"`
+	Parameters            []shared.ParamDescriptorResp `json:"parameters"`
+	RequiredRoles         []string                     `json:"requiredRoles"`
+	RestSupported         bool                         `json:"restSupported"`
+	SortSupported         bool                         `json:"sortSupported"`
+	TypeName              string                       `json:"typeName"`
+	Uri                   string                       `json:"uri"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		AodrSupported         respjson.Field
@@ -385,48 +386,6 @@ type IrQueryhelpResponse struct {
 // Returns the unmodified JSON received from the API
 func (r IrQueryhelpResponse) RawJSON() string { return r.JSON.raw }
 func (r *IrQueryhelpResponse) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type IrQueryhelpResponseParameter struct {
-	ClassificationMarking string `json:"classificationMarking"`
-	Derived               bool   `json:"derived"`
-	Description           string `json:"description"`
-	ElemMatch             bool   `json:"elemMatch"`
-	Format                string `json:"format"`
-	HistQuerySupported    bool   `json:"histQuerySupported"`
-	HistTupleSupported    bool   `json:"histTupleSupported"`
-	Name                  string `json:"name"`
-	Required              bool   `json:"required"`
-	RestQuerySupported    bool   `json:"restQuerySupported"`
-	RestTupleSupported    bool   `json:"restTupleSupported"`
-	Type                  string `json:"type"`
-	UnitOfMeasure         string `json:"unitOfMeasure"`
-	UtcDate               bool   `json:"utcDate"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		ClassificationMarking respjson.Field
-		Derived               respjson.Field
-		Description           respjson.Field
-		ElemMatch             respjson.Field
-		Format                respjson.Field
-		HistQuerySupported    respjson.Field
-		HistTupleSupported    respjson.Field
-		Name                  respjson.Field
-		Required              respjson.Field
-		RestQuerySupported    respjson.Field
-		RestTupleSupported    respjson.Field
-		Type                  respjson.Field
-		UnitOfMeasure         respjson.Field
-		UtcDate               respjson.Field
-		ExtraFields           map[string]respjson.Field
-		raw                   string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r IrQueryhelpResponseParameter) RawJSON() string { return r.JSON.raw }
-func (r *IrQueryhelpResponseParameter) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -467,7 +426,7 @@ type IrTupleResponse struct {
 	// An entity is a generic representation of any object within a space/SSA system
 	// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
 	// entity can have an operating unit, a location (if terrestrial), and statuses.
-	Entity EntityFull `json:"entity"`
+	Entity shared.EntityFull `json:"entity"`
 	// ID of the parent entity for this IR.
 	IDEntity string `json:"idEntity"`
 	// Originating system or organization which produced the data, if different from

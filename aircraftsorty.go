@@ -16,6 +16,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // AircraftSortyService contains methods and other services that help with
@@ -39,7 +40,7 @@ func NewAircraftSortyService(opts ...option.RequestOption) (r AircraftSortyServi
 
 // Service operation to get a single AircraftSortie record by its unique ID passed
 // as a path parameter.
-func (r *AircraftSortyService) Get(ctx context.Context, id string, query AircraftSortyGetParams, opts ...option.RequestOption) (res *AircraftsortieFull, err error) {
+func (r *AircraftSortyService) Get(ctx context.Context, id string, query AircraftSortyGetParams, opts ...option.RequestOption) (res *shared.AircraftsortieFull, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -81,7 +82,7 @@ func (r *AircraftSortyService) Queryhelp(ctx context.Context, opts ...option.Req
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *AircraftSortyService) Tuple(ctx context.Context, query AircraftSortyTupleParams, opts ...option.RequestOption) (res *[]AircraftsortieFull, err error) {
+func (r *AircraftSortyService) Tuple(ctx context.Context, query AircraftSortyTupleParams, opts ...option.RequestOption) (res *[]shared.AircraftsortieFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/aircraftsortie/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -89,17 +90,17 @@ func (r *AircraftSortyService) Tuple(ctx context.Context, query AircraftSortyTup
 }
 
 type AircraftSortyQueryhelpResponse struct {
-	AodrSupported         bool                                      `json:"aodrSupported"`
-	ClassificationMarking string                                    `json:"classificationMarking"`
-	Description           string                                    `json:"description"`
-	HistorySupported      bool                                      `json:"historySupported"`
-	Name                  string                                    `json:"name"`
-	Parameters            []AircraftSortyQueryhelpResponseParameter `json:"parameters"`
-	RequiredRoles         []string                                  `json:"requiredRoles"`
-	RestSupported         bool                                      `json:"restSupported"`
-	SortSupported         bool                                      `json:"sortSupported"`
-	TypeName              string                                    `json:"typeName"`
-	Uri                   string                                    `json:"uri"`
+	AodrSupported         bool                         `json:"aodrSupported"`
+	ClassificationMarking string                       `json:"classificationMarking"`
+	Description           string                       `json:"description"`
+	HistorySupported      bool                         `json:"historySupported"`
+	Name                  string                       `json:"name"`
+	Parameters            []shared.ParamDescriptorResp `json:"parameters"`
+	RequiredRoles         []string                     `json:"requiredRoles"`
+	RestSupported         bool                         `json:"restSupported"`
+	SortSupported         bool                         `json:"sortSupported"`
+	TypeName              string                       `json:"typeName"`
+	Uri                   string                       `json:"uri"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		AodrSupported         respjson.Field
@@ -121,48 +122,6 @@ type AircraftSortyQueryhelpResponse struct {
 // Returns the unmodified JSON received from the API
 func (r AircraftSortyQueryhelpResponse) RawJSON() string { return r.JSON.raw }
 func (r *AircraftSortyQueryhelpResponse) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-type AircraftSortyQueryhelpResponseParameter struct {
-	ClassificationMarking string `json:"classificationMarking"`
-	Derived               bool   `json:"derived"`
-	Description           string `json:"description"`
-	ElemMatch             bool   `json:"elemMatch"`
-	Format                string `json:"format"`
-	HistQuerySupported    bool   `json:"histQuerySupported"`
-	HistTupleSupported    bool   `json:"histTupleSupported"`
-	Name                  string `json:"name"`
-	Required              bool   `json:"required"`
-	RestQuerySupported    bool   `json:"restQuerySupported"`
-	RestTupleSupported    bool   `json:"restTupleSupported"`
-	Type                  string `json:"type"`
-	UnitOfMeasure         string `json:"unitOfMeasure"`
-	UtcDate               bool   `json:"utcDate"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		ClassificationMarking respjson.Field
-		Derived               respjson.Field
-		Description           respjson.Field
-		ElemMatch             respjson.Field
-		Format                respjson.Field
-		HistQuerySupported    respjson.Field
-		HistTupleSupported    respjson.Field
-		Name                  respjson.Field
-		Required              respjson.Field
-		RestQuerySupported    respjson.Field
-		RestTupleSupported    respjson.Field
-		Type                  respjson.Field
-		UnitOfMeasure         respjson.Field
-		UtcDate               respjson.Field
-		ExtraFields           map[string]respjson.Field
-		raw                   string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r AircraftSortyQueryhelpResponseParameter) RawJSON() string { return r.JSON.raw }
-func (r *AircraftSortyQueryhelpResponseParameter) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
