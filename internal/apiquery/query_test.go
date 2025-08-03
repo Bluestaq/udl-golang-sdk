@@ -185,7 +185,7 @@ var tests = map[string]struct {
 	},
 
 	"datetime_struct": {
-		`date=2006-01-02&date-time=2006-01-02T15:04:05Z`,
+		`date=2006-01-02&date-time=2006-01-02T15:04:05.000000Z`,
 		DateTime{
 			Date:     time.Date(2006, time.January, 2, 0, 0, 0, 0, time.UTC),
 			DateTime: time.Date(2006, time.January, 2, 15, 4, 5, 0, time.UTC),

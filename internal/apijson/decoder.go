@@ -24,7 +24,7 @@ var decoders sync.Map
 // Unmarshal is similar to [encoding/json.Unmarshal] and parses the JSON-encoded
 // data and stores it in the given pointer.
 func Unmarshal(raw []byte, to any) error {
-	d := &decoderBuilder{dateFormat: time.RFC3339}
+	d := &decoderBuilder{dateFormat: CustomISO8601}
 	return d.unmarshal(raw, to)
 }
 
@@ -32,7 +32,7 @@ func Unmarshal(raw []byte, to any) error {
 // root element. Useful if a struct's UnmarshalJSON is overrode to use the
 // behavior of this encoder versus the standard library.
 func UnmarshalRoot(raw []byte, to any) error {
-	d := &decoderBuilder{dateFormat: time.RFC3339, root: true}
+	d := &decoderBuilder{dateFormat: CustomISO8601, root: true}
 	return d.unmarshal(raw, to)
 }
 
@@ -369,7 +369,7 @@ func (d *decoderBuilder) newStructTypeDecoder(t reflect.Type) decoderFunc {
 		if ok {
 			switch dateFormat {
 			case "date-time":
-				d.dateFormat = time.RFC3339
+				d.dateFormat = CustomISO8601
 			case "date":
 				d.dateFormat = "2006-01-02"
 			}

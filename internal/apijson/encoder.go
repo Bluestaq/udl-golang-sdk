@@ -16,13 +16,17 @@ import (
 
 var encoders sync.Map // map[encoderEntry]encoderFunc
 
+// CustomISO8601 is a time format that matches Python's '%Y-%m-%dT%H:%M:%S.%fZ'
+// It always includes exactly 6 digits of microseconds
+const CustomISO8601 = "2006-01-02T15:04:05.000000Z"
+
 func Marshal(value any) ([]byte, error) {
-	e := &encoder{dateFormat: time.RFC3339}
+	e := &encoder{dateFormat: CustomISO8601}
 	return e.marshal(value)
 }
 
 func MarshalRoot(value any) ([]byte, error) {
-	e := &encoder{root: true, dateFormat: time.RFC3339}
+	e := &encoder{root: true, dateFormat: CustomISO8601}
 	return e.marshal(value)
 }
 
@@ -242,7 +246,7 @@ func (e *encoder) newStructTypeEncoder(t reflect.Type) encoderFunc {
 			if ok {
 				switch dateFormat {
 				case "date-time":
-					e.dateFormat = time.RFC3339
+					e.dateFormat = CustomISO8601
 				case "date":
 					e.dateFormat = "2006-01-02"
 				}
