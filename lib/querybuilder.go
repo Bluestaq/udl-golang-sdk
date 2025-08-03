@@ -4,6 +4,9 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"unicode"
+
+	"github.com/Bluestaq/udl-golang-sdk/option"
 )
 
 type QueryOperator string
@@ -18,7 +21,7 @@ const (
 )
 
 var operatorSymbols = map[QueryOperator]string{
-	EqualTo:              "",
+	EqualTo:              "=",
 	GreaterThanOrEqualTo: ">=",
 	LessThanOrEqualTo:    "<=",
 	Like:                 "like",
@@ -31,6 +34,29 @@ type QueryBuilder struct {
 	fieldLookup map[string]string // maps struct field names to query field names
 }
 
+// toLowerCamelCase converts a string to lowerCamelCase
+func toLowerCamelCase(s string) string {
+	if s == "" {
+		return s
+	}
+
+	// Handle the first character - make it lowercase
+	result := strings.ToLower(string(s[0]))
+
+	// Handle the rest of the string
+	for i := 1; i < len(s); i++ {
+		if unicode.IsUpper(rune(s[i])) {
+			// For uppercase letters, keep them as is (this preserves camelCase)
+			result += string(s[i])
+		} else {
+			// For lowercase letters, keep them as is
+			result += string(s[i])
+		}
+	}
+
+	return result
+}
+
 // NewQueryBuilder builds a new query builder for the given struct type
 func NewQueryBuilder(model any) *QueryBuilder {
 	fieldLookup := make(map[string]string)
@@ -40,12 +66,12 @@ func NewQueryBuilder(model any) *QueryBuilder {
 		typ = typ.Elem()
 	}
 
-	// Use `query` tag or field name
+	// Use `query` tag or convert field name to lowerCamelCase
 	for i := 0; i < typ.NumField(); i++ {
 		field := typ.Field(i)
 		queryTag := field.Tag.Get("query")
 		if queryTag == "" {
-			queryTag = strings.ToLower(field.Name)
+			queryTag = toLowerCamelCase(field.Name)
 		}
 		fieldLookup[field.Name] = queryTag
 	}
@@ -63,8 +89,7 @@ func (q *QueryBuilder) Add(fieldName string, op QueryOperator, value any) *Query
 		panic(fmt.Sprintf("field %s not found in model", fieldName))
 	}
 
-	operator, ok := operatorSymbols[op]
-	if !ok {
+	if _, ok := operatorSymbols[op]; !ok {
 		panic(fmt.Sprintf("unsupported operator: %s", op))
 	}
 
@@ -80,7 +105,8 @@ func (q *QueryBuilder) Add(fieldName string, op QueryOperator, value any) *Query
 		}
 		q.filters[queryField] = fmt.Sprintf("%v..%v", vals.Index(0), vals.Index(1))
 	default:
-		q.filters[queryField] = fmt.Sprintf("%s%v", operator, value)
+		// For standard operators, just use the value - the API handles operators differently
+		q.filters[queryField] = fmt.Sprintf("%v", value)
 	}
 
 	return q
@@ -88,4 +114,13 @@ func (q *QueryBuilder) Add(fieldName string, op QueryOperator, value any) *Query
 
 func (q *QueryBuilder) ToParams() map[string]string {
 	return q.filters
+}
+
+// ToRequestOptions returns the query parameters as a slice of option.RequestOption
+func (q *QueryBuilder) ToRequestOptions() []option.RequestOption {
+	var opts []option.RequestOption
+	for k, v := range q.filters {
+		opts = append(opts, option.WithQuery(k, v))
+	}
+	return opts
 }

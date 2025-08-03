@@ -13,18 +13,15 @@ func main() {
 	// UDL_AUTH_PASSWORD,UDL_AUTH_USERNAME, and UDL_BASE_URL will be
 	// obtained automatically
 	client := unifieddatalibrary.NewClient()
-	params := unifieddatalibrary.ElsetCurrentListParams{}
-	queryParams := lib.NewQueryBuilder(unifieddatalibrary.ElsetAbridged{}).Add("SatNo", lib.EqualTo, "25544").ToParams()
-	extraFields := make(map[string]any)
-	for k, v := range queryParams {
-		extraFields[k] = v
-	}
-	params.SetExtraFields(extraFields)
-	page, err := client.Elsets.Current.List(context.TODO(), params)
+
+	// Build query and get request options directly
+	queryOpts := lib.NewQueryBuilder(unifieddatalibrary.ElsetAbridged{}).Add("SatNo", lib.EqualTo, "25544").ToRequestOptions()
+
+	page, err := client.Elsets.Current.List(context.TODO(), unifieddatalibrary.ElsetCurrentListParams{}, queryOpts...)
 
 	if err != nil {
 		panic(err.Error())
 	}
-	fmt.Printf(("%+v\n"), page)
+	fmt.Printf("Response: %+v\n", page)
 
 }
