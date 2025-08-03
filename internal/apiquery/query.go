@@ -3,11 +3,12 @@ package apiquery
 import (
 	"net/url"
 	"reflect"
-	"time"
+
+	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 )
 
 func MarshalWithSettings(value any, settings QuerySettings) (url.Values, error) {
-	e := encoder{time.RFC3339, true, settings}
+	e := encoder{apijson.CustomISO8601, true, settings}
 	kv := url.Values{}
 	val := reflect.ValueOf(value)
 	if !val.IsValid() {

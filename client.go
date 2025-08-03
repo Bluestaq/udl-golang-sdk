@@ -183,8 +183,8 @@ type Client struct {
 }
 
 // DefaultClientOptions read from the environment (UDL_AUTH_PASSWORD,
-// UDL_AUTH_USERNAME, UNIFIEDDATALIBRARY_BASE_URL). This should be used to
-// initialize new clients.
+// UDL_AUTH_USERNAME, UDL_ACCESS_TOKEN, UNIFIEDDATALIBRARY_BASE_URL). This should
+// be used to initialize new clients.
 func DefaultClientOptions() []option.RequestOption {
 	defaults := []option.RequestOption{option.WithEnvironmentProduction()}
 	if o, ok := os.LookupEnv("UNIFIEDDATALIBRARY_BASE_URL"); ok {
@@ -196,14 +196,17 @@ func DefaultClientOptions() []option.RequestOption {
 	if o, ok := os.LookupEnv("UDL_AUTH_USERNAME"); ok {
 		defaults = append(defaults, option.WithUsername(o))
 	}
+	if o, ok := os.LookupEnv("UDL_ACCESS_TOKEN"); ok {
+		defaults = append(defaults, option.WithAccessToken(o))
+	}
 	return defaults
 }
 
 // NewClient generates a new client with the default option read from the
-// environment (UDL_AUTH_PASSWORD, UDL_AUTH_USERNAME, UNIFIEDDATALIBRARY_BASE_URL).
-// The option passed in as arguments are applied after these default arguments, and
-// all option will be passed down to the services and requests that this client
-// makes.
+// environment (UDL_AUTH_PASSWORD, UDL_AUTH_USERNAME, UDL_ACCESS_TOKEN,
+// UNIFIEDDATALIBRARY_BASE_URL). The option passed in as arguments are applied
+// after these default arguments, and all option will be passed down to the
+// services and requests that this client makes.
 func NewClient(opts ...option.RequestOption) (r Client) {
 	opts = append(DefaultClientOptions(), opts...)
 
