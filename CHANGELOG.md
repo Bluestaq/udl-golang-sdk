@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.4 (2025-08-03)
+
+Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
+
+### Features
+
+* **api:** support for Bearer Auth ([1a9c45c](https://github.com/Bluestaq/udl-golang-sdk/commit/1a9c45c4ffbe51fe29afae641b1f8270e323c805))
+
 ## 0.1.0-alpha.3 (2025-07-31)
 
 Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
