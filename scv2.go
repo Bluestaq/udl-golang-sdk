@@ -98,9 +98,9 @@ func (r *ScV2Service) Copy(ctx context.Context, body ScV2CopyParams, opts ...opt
 
 // Operation to upload a file. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *ScV2Service) FileUpload(ctx context.Context, params io.Reader, body ScV2FileUploadParams, opts ...option.RequestOption) (err error) {
+func (r *ScV2Service) FileUpload(ctx context.Context, fileContent io.Reader, body ScV2FileUploadParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", ""), option.WithRequestBody("application/octet-stream", params)}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", ""), option.WithRequestBody("application/octet-stream", fileContent)}, opts...)
 	path := "scs/v2/file"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, nil, opts...)
 	return
