@@ -13,6 +13,7 @@ import (
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
+	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
@@ -454,7 +455,7 @@ type CommUpdateParams struct {
 }
 
 func (r CommUpdateParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.CommAbridged)
+	return shimjson.Marshal(r.CommAbridged)
 }
 func (r *CommUpdateParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.CommAbridged)

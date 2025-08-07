@@ -13,6 +13,7 @@ import (
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
+	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
@@ -1006,7 +1007,7 @@ type ElsetNewParams struct {
 }
 
 func (r ElsetNewParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.ElsetIngest)
+	return shimjson.Marshal(r.ElsetIngest)
 }
 func (r *ElsetNewParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.ElsetIngest)
@@ -1069,7 +1070,7 @@ type ElsetNewBulkParams struct {
 }
 
 func (r ElsetNewBulkParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.Body)
+	return shimjson.Marshal(r.Body)
 }
 func (r *ElsetNewBulkParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.Body)
@@ -1110,7 +1111,7 @@ type ElsetNewBulkFromTleParams struct {
 }
 
 func (r ElsetNewBulkFromTleParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.Body)
+	return shimjson.Marshal(r.Body)
 }
 func (r *ElsetNewBulkFromTleParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.Body)
@@ -1153,7 +1154,7 @@ type ElsetUnvalidatedPublishParams struct {
 }
 
 func (r ElsetUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.Body)
+	return shimjson.Marshal(r.Body)
 }
 func (r *ElsetUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.Body)
