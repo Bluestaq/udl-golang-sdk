@@ -9,6 +9,7 @@ import (
 	"net/url"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
+	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
@@ -111,7 +112,7 @@ type ScFolderUpdateParams struct {
 }
 
 func (r ScFolderUpdateParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.FileData)
+	return shimjson.Marshal(r.FileData)
 }
 func (r *ScFolderUpdateParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.FileData)

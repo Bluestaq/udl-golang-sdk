@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
+	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
@@ -51,7 +52,7 @@ type AirOperationAirspaceControlOrderUnvalidatedPublishParams struct {
 }
 
 func (r AirOperationAirspaceControlOrderUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.Body)
+	return shimjson.Marshal(r.Body)
 }
 func (r *AirOperationAirspaceControlOrderUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.Body)
