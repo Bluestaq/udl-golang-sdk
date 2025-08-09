@@ -14,6 +14,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiform"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
+	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
@@ -119,9 +120,9 @@ func (r *ScService) FileDownload(ctx context.Context, query ScFileDownloadParams
 
 // Operation to upload a file. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *ScService) FileUpload(ctx context.Context, params io.Reader, body ScFileUploadParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *ScService) FileUpload(ctx context.Context, fileContent io.Reader, body ScFileUploadParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithRequestBody("application/octet-stream", params)}, opts...)
+	opts = append([]option.RequestOption{option.WithRequestBody("application/octet-stream", fileContent)}, opts...)
 	path := "scs/file"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, &res, opts...)
 	return
@@ -199,7 +200,7 @@ type ScDownloadParams struct {
 }
 
 func (r ScDownloadParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.Body)
+	return shimjson.Marshal(r.Body)
 }
 func (r *ScDownloadParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.Body)

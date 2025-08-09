@@ -13,6 +13,7 @@ import (
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
+	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
@@ -1214,7 +1215,7 @@ type OnorbitNewParams struct {
 }
 
 func (r OnorbitNewParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.OnorbitIngest)
+	return shimjson.Marshal(r.OnorbitIngest)
 }
 func (r *OnorbitNewParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.OnorbitIngest)
@@ -1227,7 +1228,7 @@ type OnorbitUpdateParams struct {
 }
 
 func (r OnorbitUpdateParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.OnorbitIngest)
+	return shimjson.Marshal(r.OnorbitIngest)
 }
 func (r *OnorbitUpdateParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.OnorbitIngest)

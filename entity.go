@@ -13,6 +13,7 @@ import (
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
+	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
@@ -739,7 +740,7 @@ type EntityNewParams struct {
 }
 
 func (r EntityNewParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.EntityIngest)
+	return shimjson.Marshal(r.EntityIngest)
 }
 func (r *EntityNewParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.EntityIngest)
@@ -768,7 +769,7 @@ type EntityUpdateParams struct {
 }
 
 func (r EntityUpdateParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.EntityIngest)
+	return shimjson.Marshal(r.EntityIngest)
 }
 func (r *EntityUpdateParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.EntityIngest)

@@ -11,6 +11,7 @@ import (
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
+	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
@@ -500,7 +501,7 @@ type SpaceEnvObservationNewBulkParams struct {
 }
 
 func (r SpaceEnvObservationNewBulkParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.Body)
+	return shimjson.Marshal(r.Body)
 }
 func (r *SpaceEnvObservationNewBulkParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.Body)
@@ -750,7 +751,7 @@ type SpaceEnvObservationUnvalidatedPublishParams struct {
 }
 
 func (r SpaceEnvObservationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.Body)
+	return shimjson.Marshal(r.Body)
 }
 func (r *SpaceEnvObservationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.Body)

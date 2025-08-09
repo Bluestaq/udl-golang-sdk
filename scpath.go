@@ -39,9 +39,9 @@ func NewScPathService(opts ...option.RequestOption) (r ScPathService) {
 // Creates the path and uploads file that is passed. If folder exist it will only
 // create folders that are missing. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
-func (r *ScPathService) NewWithFile(ctx context.Context, params io.Reader, body ScPathNewWithFileParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *ScPathService) NewWithFile(ctx context.Context, fileContent io.Reader, body ScPathNewWithFileParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithRequestBody("application/octet-stream", params)}, opts...)
+	opts = append([]option.RequestOption{option.WithRequestBody("application/octet-stream", fileContent)}, opts...)
 	path := "scs/path"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, &res, opts...)
 	return
