@@ -15,7 +15,6 @@ import (
 type AirOperationService struct {
 	Options               []option.RequestOption
 	AirTaskingOrders      AirOperationAirTaskingOrderService
-	AircraftSortie        AirOperationAircraftSortieService
 	AircraftSorties       AirOperationAircraftSortyService
 	AirspaceControlOrders AirOperationAirspaceControlOrderService
 	Crewpapers            AirOperationCrewpaperService
@@ -29,7 +28,6 @@ func NewAirOperationService(opts ...option.RequestOption) (r AirOperationService
 	r = AirOperationService{}
 	r.Options = opts
 	r.AirTaskingOrders = NewAirOperationAirTaskingOrderService(opts...)
-	r.AircraftSortie = NewAirOperationAircraftSortieService(opts...)
 	r.AircraftSorties = NewAirOperationAircraftSortyService(opts...)
 	r.AirspaceControlOrders = NewAirOperationAirspaceControlOrderService(opts...)
 	r.Crewpapers = NewAirOperationCrewpaperService(opts...)

@@ -4,6 +4,8 @@ package unifieddatalibrary
 
 import (
 	"context"
+	"errors"
+	"fmt"
 	"net/http"
 	"net/url"
 	"time"
@@ -63,6 +65,19 @@ func (r *AttitudeSetService) New(ctx context.Context, body AttitudeSetNewParams,
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/attitudeset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
+	return
+}
+
+// Service operation to get a single AttitudeSet record by its unique ID passed as
+// a path parameter.
+func (r *AttitudeSetService) Get(ctx context.Context, id string, query AttitudeSetGetParams, opts ...option.RequestOption) (res *shared.AttitudesetFull, err error) {
+	opts = append(r.Options[:], opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("udl/attitudeset/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
 }
 
@@ -653,6 +668,20 @@ func init() {
 	apijson.RegisterFieldValidator[AttitudeSetNewParamsAttitudeList](
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
+}
+
+type AttitudeSetGetParams struct {
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [AttitudeSetGetParams]'s query parameters as `url.Values`.
+func (r AttitudeSetGetParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
 }
 
 type AttitudeSetListParams struct {

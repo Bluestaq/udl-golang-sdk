@@ -20,21 +20,21 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
-// AirLoadPlanService contains methods and other services that help with
+// AirloadPlanService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewAirLoadPlanService] method instead.
-type AirLoadPlanService struct {
+// the [NewAirloadPlanService] method instead.
+type AirloadPlanService struct {
 	Options []option.RequestOption
 }
 
-// NewAirLoadPlanService generates a new service that applies the given options to
+// NewAirloadPlanService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewAirLoadPlanService(opts ...option.RequestOption) (r AirLoadPlanService) {
-	r = AirLoadPlanService{}
+func NewAirloadPlanService(opts ...option.RequestOption) (r AirloadPlanService) {
+	r = AirloadPlanService{}
 	r.Options = opts
 	return
 }
@@ -42,7 +42,7 @@ func NewAirLoadPlanService(opts ...option.RequestOption) (r AirLoadPlanService) 
 // Service operation to take a single airloadplan record as a POST body and ingest
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
-func (r *AirLoadPlanService) New(ctx context.Context, body AirLoadPlanNewParams, opts ...option.RequestOption) (err error) {
+func (r *AirloadPlanService) New(ctx context.Context, body AirloadPlanNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/airloadplan"
@@ -52,7 +52,7 @@ func (r *AirLoadPlanService) New(ctx context.Context, body AirLoadPlanNewParams,
 
 // Service operation to get a single airloadplan record by its unique ID passed as
 // a path parameter.
-func (r *AirLoadPlanService) Get(ctx context.Context, id string, query AirLoadPlanGetParams, opts ...option.RequestOption) (res *shared.AirloadplanFull, err error) {
+func (r *AirloadPlanService) Get(ctx context.Context, id string, query AirloadPlanGetParams, opts ...option.RequestOption) (res *shared.AirloadplanFull, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -63,11 +63,26 @@ func (r *AirLoadPlanService) Get(ctx context.Context, id string, query AirLoadPl
 	return
 }
 
+// Service operation to update a single airloadplan record. A specific role is
+// required to perform this service operation. Please contact the UDL team for
+// assistance.
+func (r *AirloadPlanService) Update(ctx context.Context, id string, body AirloadPlanUpdateParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("udl/airloadplan/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
+	return
+}
+
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *AirLoadPlanService) List(ctx context.Context, query AirLoadPlanListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AirloadplanAbridged], err error) {
+func (r *AirloadPlanService) List(ctx context.Context, query AirloadPlanListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AirloadplanAbridged], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -88,8 +103,23 @@ func (r *AirLoadPlanService) List(ctx context.Context, query AirLoadPlanListPara
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *AirLoadPlanService) ListAutoPaging(ctx context.Context, query AirLoadPlanListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[AirloadplanAbridged] {
+func (r *AirloadPlanService) ListAutoPaging(ctx context.Context, query AirloadPlanListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[AirloadplanAbridged] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
+}
+
+// Service operation to delete a airloadplan record specified by the passed ID path
+// parameter. A specific role is required to perform this service operation. Please
+// contact the UDL team for assistance.
+func (r *AirloadPlanService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
+	path := fmt.Sprintf("udl/airloadplan/%s", id)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
+	return
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -97,7 +127,7 @@ func (r *AirLoadPlanService) ListAutoPaging(ctx context.Context, query AirLoadPl
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *AirLoadPlanService) Count(ctx context.Context, query AirLoadPlanCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *AirloadPlanService) Count(ctx context.Context, query AirloadPlanCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/airloadplan/count"
@@ -107,7 +137,7 @@ func (r *AirLoadPlanService) Count(ctx context.Context, query AirLoadPlanCountPa
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *AirLoadPlanService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *AirLoadPlanQueryhelpResponse, err error) {
+func (r *AirloadPlanService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *AirloadPlanQueryhelpResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/airloadplan/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
@@ -122,7 +152,7 @@ func (r *AirLoadPlanService) Queryhelp(ctx context.Context, opts ...option.Reque
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *AirLoadPlanService) Tuple(ctx context.Context, query AirLoadPlanTupleParams, opts ...option.RequestOption) (res *[]shared.AirloadplanFull, err error) {
+func (r *AirloadPlanService) Tuple(ctx context.Context, query AirloadPlanTupleParams, opts ...option.RequestOption) (res *[]shared.AirloadplanFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/airloadplan/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -736,7 +766,7 @@ func (r *AirloadplanAbridgedAirLoadPlanUlnActual) UnmarshalJSON(data []byte) err
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type AirLoadPlanQueryhelpResponse struct {
+type AirloadPlanQueryhelpResponse struct {
 	AodrSupported         bool                         `json:"aodrSupported"`
 	ClassificationMarking string                       `json:"classificationMarking"`
 	Description           string                       `json:"description"`
@@ -767,12 +797,12 @@ type AirLoadPlanQueryhelpResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r AirLoadPlanQueryhelpResponse) RawJSON() string { return r.JSON.raw }
-func (r *AirLoadPlanQueryhelpResponse) UnmarshalJSON(data []byte) error {
+func (r AirloadPlanQueryhelpResponse) RawJSON() string { return r.JSON.raw }
+func (r *AirloadPlanQueryhelpResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type AirLoadPlanNewParams struct {
+type AirloadPlanNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -791,7 +821,7 @@ type AirLoadPlanNewParams struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode AirLoadPlanNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode AirloadPlanNewParamsDataMode `json:"dataMode,omitzero,required"`
 	// The current estimated time that the aircraft is planned to depart, in ISO 8601
 	// UTC format with millisecond precision.
 	EstDepTime time.Time `json:"estDepTime,required" format:"date-time"`
@@ -946,26 +976,26 @@ type AirLoadPlanNewParams struct {
 	// passengers, but without usable fuel, in kilograms.
 	ZeroFuelWeight param.Opt[float64] `json:"zeroFuelWeight,omitzero"`
 	// Collection of hazmat actuals associated with this load plan.
-	AirLoadPlanHazmatActuals []AirLoadPlanNewParamsAirLoadPlanHazmatActual `json:"airLoadPlanHazmatActuals,omitzero"`
+	AirLoadPlanHazmatActuals []AirloadPlanNewParamsAirLoadPlanHazmatActual `json:"airLoadPlanHazmatActuals,omitzero"`
 	// Collection of human remains transport information associated with this load
 	// plan.
-	AirLoadPlanHr []AirLoadPlanNewParamsAirLoadPlanHr `json:"airLoadPlanHR,omitzero"`
+	AirLoadPlanHr []AirloadPlanNewParamsAirLoadPlanHr `json:"airLoadPlanHR,omitzero"`
 	// Collection of cargo information located at the pallet positions associated with
 	// this load plan.
-	AirLoadPlanPalletDetails []AirLoadPlanNewParamsAirLoadPlanPalletDetail `json:"airLoadPlanPalletDetails,omitzero"`
+	AirLoadPlanPalletDetails []AirloadPlanNewParamsAirLoadPlanPalletDetail `json:"airLoadPlanPalletDetails,omitzero"`
 	// Collection of passenger and cargo details associated with this load plan for
 	// this leg of the mission.
-	AirLoadPlanPaxCargo []AirLoadPlanNewParamsAirLoadPlanPaxCargo `json:"airLoadPlanPaxCargo,omitzero"`
+	AirLoadPlanPaxCargo []AirloadPlanNewParamsAirLoadPlanPaxCargo `json:"airLoadPlanPaxCargo,omitzero"`
 	// Collection of unit line number actuals associated with this load plan.
-	AirLoadPlanUlnActuals []AirLoadPlanNewParamsAirLoadPlanUlnActual `json:"airLoadPlanULNActuals,omitzero"`
+	AirLoadPlanUlnActuals []AirloadPlanNewParamsAirLoadPlanUlnActual `json:"airLoadPlanULNActuals,omitzero"`
 	paramObj
 }
 
-func (r AirLoadPlanNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow AirLoadPlanNewParams
+func (r AirloadPlanNewParams) MarshalJSON() (data []byte, err error) {
+	type shadow AirloadPlanNewParams
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *AirLoadPlanNewParams) UnmarshalJSON(data []byte) error {
+func (r *AirloadPlanNewParams) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -983,17 +1013,17 @@ func (r *AirLoadPlanNewParams) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type AirLoadPlanNewParamsDataMode string
+type AirloadPlanNewParamsDataMode string
 
 const (
-	AirLoadPlanNewParamsDataModeReal      AirLoadPlanNewParamsDataMode = "REAL"
-	AirLoadPlanNewParamsDataModeTest      AirLoadPlanNewParamsDataMode = "TEST"
-	AirLoadPlanNewParamsDataModeSimulated AirLoadPlanNewParamsDataMode = "SIMULATED"
-	AirLoadPlanNewParamsDataModeExercise  AirLoadPlanNewParamsDataMode = "EXERCISE"
+	AirloadPlanNewParamsDataModeReal      AirloadPlanNewParamsDataMode = "REAL"
+	AirloadPlanNewParamsDataModeTest      AirloadPlanNewParamsDataMode = "TEST"
+	AirloadPlanNewParamsDataModeSimulated AirloadPlanNewParamsDataMode = "SIMULATED"
+	AirloadPlanNewParamsDataModeExercise  AirloadPlanNewParamsDataMode = "EXERCISE"
 )
 
 // Collection of hazmat actuals associated with this load plan.
-type AirLoadPlanNewParamsAirLoadPlanHazmatActual struct {
+type AirloadPlanNewParamsAirLoadPlanHazmatActual struct {
 	// The Air Special Handling Code (ASHC) indicates the type of special handling
 	// required for hazardous cargo.
 	Ashc param.Opt[string] `json:"ashc,omitzero"`
@@ -1041,17 +1071,17 @@ type AirLoadPlanNewParamsAirLoadPlanHazmatActual struct {
 	paramObj
 }
 
-func (r AirLoadPlanNewParamsAirLoadPlanHazmatActual) MarshalJSON() (data []byte, err error) {
-	type shadow AirLoadPlanNewParamsAirLoadPlanHazmatActual
+func (r AirloadPlanNewParamsAirLoadPlanHazmatActual) MarshalJSON() (data []byte, err error) {
+	type shadow AirloadPlanNewParamsAirLoadPlanHazmatActual
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *AirLoadPlanNewParamsAirLoadPlanHazmatActual) UnmarshalJSON(data []byte) error {
+func (r *AirloadPlanNewParamsAirLoadPlanHazmatActual) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of human remains transport information associated with this load
 // plan.
-type AirLoadPlanNewParamsAirLoadPlanHr struct {
+type AirloadPlanNewParamsAirLoadPlanHr struct {
 	// Type of transfer case used.
 	Container param.Opt[string] `json:"container,omitzero"`
 	// Name of the escort for the remains.
@@ -1085,17 +1115,17 @@ type AirLoadPlanNewParamsAirLoadPlanHr struct {
 	paramObj
 }
 
-func (r AirLoadPlanNewParamsAirLoadPlanHr) MarshalJSON() (data []byte, err error) {
-	type shadow AirLoadPlanNewParamsAirLoadPlanHr
+func (r AirloadPlanNewParamsAirLoadPlanHr) MarshalJSON() (data []byte, err error) {
+	type shadow AirloadPlanNewParamsAirLoadPlanHr
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *AirLoadPlanNewParamsAirLoadPlanHr) UnmarshalJSON(data []byte) error {
+func (r *AirloadPlanNewParamsAirLoadPlanHr) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of cargo information located at the pallet positions associated with
 // this load plan.
-type AirLoadPlanNewParamsAirLoadPlanPalletDetail struct {
+type AirloadPlanNewParamsAirLoadPlanPalletDetail struct {
 	// Category of special interest cargo.
 	Category param.Opt[string] `json:"category,omitzero"`
 	// Pallet position of the cargo.
@@ -1118,17 +1148,17 @@ type AirLoadPlanNewParamsAirLoadPlanPalletDetail struct {
 	paramObj
 }
 
-func (r AirLoadPlanNewParamsAirLoadPlanPalletDetail) MarshalJSON() (data []byte, err error) {
-	type shadow AirLoadPlanNewParamsAirLoadPlanPalletDetail
+func (r AirloadPlanNewParamsAirLoadPlanPalletDetail) MarshalJSON() (data []byte, err error) {
+	type shadow AirloadPlanNewParamsAirLoadPlanPalletDetail
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *AirLoadPlanNewParamsAirLoadPlanPalletDetail) UnmarshalJSON(data []byte) error {
+func (r *AirloadPlanNewParamsAirLoadPlanPalletDetail) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of passenger and cargo details associated with this load plan for
 // this leg of the mission.
-type AirLoadPlanNewParamsAirLoadPlanPaxCargo struct {
+type AirloadPlanNewParamsAirLoadPlanPaxCargo struct {
 	// Number of ambulatory medical passengers in this group.
 	AmbPax param.Opt[int64] `json:"ambPax,omitzero"`
 	// Number of patient attendant passengers in this group.
@@ -1163,16 +1193,16 @@ type AirLoadPlanNewParamsAirLoadPlanPaxCargo struct {
 	paramObj
 }
 
-func (r AirLoadPlanNewParamsAirLoadPlanPaxCargo) MarshalJSON() (data []byte, err error) {
-	type shadow AirLoadPlanNewParamsAirLoadPlanPaxCargo
+func (r AirloadPlanNewParamsAirLoadPlanPaxCargo) MarshalJSON() (data []byte, err error) {
+	type shadow AirloadPlanNewParamsAirLoadPlanPaxCargo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *AirLoadPlanNewParamsAirLoadPlanPaxCargo) UnmarshalJSON(data []byte) error {
+func (r *AirloadPlanNewParamsAirLoadPlanPaxCargo) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of unit line number actuals associated with this load plan.
-type AirLoadPlanNewParamsAirLoadPlanUlnActual struct {
+type AirloadPlanNewParamsAirLoadPlanUlnActual struct {
 	// Number of ambulatory patients associated with this load plan.
 	NumAmbulatory param.Opt[int64] `json:"numAmbulatory,omitzero"`
 	// Number of attendants associated with this load plan.
@@ -1203,29 +1233,468 @@ type AirLoadPlanNewParamsAirLoadPlanUlnActual struct {
 	paramObj
 }
 
-func (r AirLoadPlanNewParamsAirLoadPlanUlnActual) MarshalJSON() (data []byte, err error) {
-	type shadow AirLoadPlanNewParamsAirLoadPlanUlnActual
+func (r AirloadPlanNewParamsAirLoadPlanUlnActual) MarshalJSON() (data []byte, err error) {
+	type shadow AirloadPlanNewParamsAirLoadPlanUlnActual
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *AirLoadPlanNewParamsAirLoadPlanUlnActual) UnmarshalJSON(data []byte) error {
+func (r *AirloadPlanNewParamsAirLoadPlanUlnActual) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type AirLoadPlanGetParams struct {
+type AirloadPlanGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
 
-// URLQuery serializes [AirLoadPlanGetParams]'s query parameters as `url.Values`.
-func (r AirLoadPlanGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [AirloadPlanGetParams]'s query parameters as `url.Values`.
+func (r AirloadPlanGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type AirLoadPlanListParams struct {
+type AirloadPlanUpdateParams struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode AirloadPlanUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	// The current estimated time that the aircraft is planned to depart, in ISO 8601
+	// UTC format with millisecond precision.
+	EstDepTime time.Time `json:"estDepTime,required" format:"date-time"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// Allowable Cabin Load (ACL) onboard the aircraft. The maximum weight of
+	// passengers, baggage, and cargo that can be safely transported in the aircraft
+	// cabin, in kilograms.
+	ACLOnboard param.Opt[float64] `json:"aclOnboard,omitzero"`
+	// Allowable Cabin Load (ACL) released this leg. The weight of passengers, baggage,
+	// and cargo released from the aircraft cabin, in kilograms.
+	ACLReleased param.Opt[float64] `json:"aclReleased,omitzero"`
+	// The Model Design Series designation of the aircraft supporting this load plan.
+	AircraftMds param.Opt[string] `json:"aircraftMDS,omitzero"`
+	// Optional identifier of arrival airfield with no International Civil Organization
+	// (ICAO) code.
+	ArrAirfield param.Opt[string] `json:"arrAirfield,omitzero"`
+	// The arrival International Civil Organization (ICAO) code of the landing
+	// airfield.
+	ArrIcao param.Opt[string] `json:"arrICAO,omitzero"`
+	// Time the loadmaster or boom operator is available for cargo loading/unloading,
+	// in ISO 8601 UTC format with millisecond precision.
+	AvailableTime param.Opt[time.Time] `json:"availableTime,omitzero" format:"date-time"`
+	// The basic weight of the aircraft multiplied by the distance between the
+	// reference datum and the aircraft's center of gravity, in Newton-meters.
+	BasicMoment param.Opt[float64] `json:"basicMoment,omitzero"`
+	// The weight of the aircraft without passengers, cargo, equipment, or usable fuel,
+	// in kilograms.
+	BasicWeight param.Opt[float64] `json:"basicWeight,omitzero"`
+	// Time the cargo briefing was given to the loadmaster or boom operator, in ISO
+	// 8601 UTC format with millisecond precision.
+	BriefTime param.Opt[time.Time] `json:"briefTime,omitzero" format:"date-time"`
+	// The call sign of the mission supporting this load plan.
+	CallSign param.Opt[string] `json:"callSign,omitzero"`
+	// Maximum fuselage station (FS) where cargo can be stored. FS is the distance from
+	// the reference datum, in meters.
+	CargoBayFsMax param.Opt[float64] `json:"cargoBayFSMax,omitzero"`
+	// Minimum fuselage station (FS) where cargo can be stored. FS is the distance from
+	// the reference datum, in meters.
+	CargoBayFsMin param.Opt[float64] `json:"cargoBayFSMin,omitzero"`
+	// Width of the cargo bay, in meters.
+	CargoBayWidth param.Opt[float64] `json:"cargoBayWidth,omitzero"`
+	// The cargo configuration required for this leg (e.g. C-1, C-2, C-3, DV-1, DV-2,
+	// AE-1, etc.). Configuration meanings are determined by the data source.
+	CargoConfig param.Opt[string] `json:"cargoConfig,omitzero"`
+	// The sum of cargo moments of all cargo on board the aircraft, in Newton-meters.
+	// Each individual cargo moment is the weight of the cargo multiplied by the
+	// distance between the reference datum and the cargo's center of gravity.
+	CargoMoment param.Opt[float64] `json:"cargoMoment,omitzero"`
+	// Volume of cargo space in the aircraft, in cubic meters.
+	CargoVolume param.Opt[float64] `json:"cargoVolume,omitzero"`
+	// The weight of the cargo on board the aircraft, in kilograms.
+	CargoWeight param.Opt[float64] `json:"cargoWeight,omitzero"`
+	// The number of crew members on the aircraft.
+	CrewSize param.Opt[int64] `json:"crewSize,omitzero"`
+	// Optional identifier of departure airfield with no International Civil
+	// Organization (ICAO) code.
+	DepAirfield param.Opt[string] `json:"depAirfield,omitzero"`
+	// The departure International Civil Organization (ICAO) code of the departure
+	// airfield.
+	DepIcao param.Opt[string] `json:"depICAO,omitzero"`
+	// Description of the equipment configuration (e.g. Standard, Ferry, JBLM, CHS,
+	// Combat, etc.). Configuration meanings are determined by the data source.
+	EquipConfig param.Opt[string] `json:"equipConfig,omitzero"`
+	// The current estimated time that the aircraft is planned to arrive, in ISO 8601
+	// UTC format with millisecond precision.
+	EstArrTime param.Opt[time.Time] `json:"estArrTime,omitzero" format:"date-time"`
+	// The estimated weight of usable fuel upon landing multiplied by the distance
+	// between the reference datum and the fuel's center of gravity, in Newton-meters.
+	EstLandingFuelMoment param.Opt[float64] `json:"estLandingFuelMoment,omitzero"`
+	// The estimated weight of usable fuel upon landing, in kilograms.
+	EstLandingFuelWeight param.Opt[float64] `json:"estLandingFuelWeight,omitzero"`
+	// Optional ID from external systems. This field has no meaning within UDL and is
+	// provided as a convenience for systems that require tracking of an internal
+	// system generated ID.
+	ExternalID param.Opt[string] `json:"externalId,omitzero"`
+	// The fuel weight on board the aircraft multiplied by the distance between the
+	// reference datum and the fuel's center of gravity, in Newton-meters.
+	FuelMoment param.Opt[float64] `json:"fuelMoment,omitzero"`
+	// The weight of usable fuel on board the aircraft, in kilograms.
+	FuelWeight param.Opt[float64] `json:"fuelWeight,omitzero"`
+	// The center of gravity of the aircraft using the gross weight and gross moment,
+	// as a percentage of the mean aerodynamic chord (%MAC).
+	GrossCg param.Opt[float64] `json:"grossCG,omitzero"`
+	// The sum of moments of all items making up the gross weight of the aircraft, in
+	// Newton-meters.
+	GrossMoment param.Opt[float64] `json:"grossMoment,omitzero"`
+	// The total weight of the aircraft at takeoff including passengers, cargo,
+	// equipment, and usable fuel, in kilograms.
+	GrossWeight param.Opt[float64] `json:"grossWeight,omitzero"`
+	// The UDL ID of the mission this record is associated with.
+	IDMission param.Opt[string] `json:"idMission,omitzero"`
+	// The UDL ID of the aircraft sortie this record is associated with.
+	IDSortie param.Opt[string] `json:"idSortie,omitzero"`
+	// The center of gravity of the aircraft using the landing weight and landing
+	// moment, as a percentage of the mean aerodynamic chord (%MAC).
+	LandingCg param.Opt[float64] `json:"landingCG,omitzero"`
+	// The sum of moments of all items making up the gross weight of the aircraft upon
+	// landing, in Newton-meters.
+	LandingMoment param.Opt[float64] `json:"landingMoment,omitzero"`
+	// The gross weight of the aircraft upon landing, in kilograms.
+	LandingWeight param.Opt[float64] `json:"landingWeight,omitzero"`
+	// The leg number of the mission supporting this load plan.
+	LegNum param.Opt[int64] `json:"legNum,omitzero"`
+	// Name of the loadmaster or boom operator who received the cargo briefing.
+	LoadmasterName param.Opt[string] `json:"loadmasterName,omitzero"`
+	// Rank of the loadmaster or boom operator overseeing cargo loading/unloading.
+	LoadmasterRank param.Opt[string] `json:"loadmasterRank,omitzero"`
+	// Remarks concerning this load plan.
+	LoadRemarks param.Opt[string] `json:"loadRemarks,omitzero"`
+	// The mission number of the mission supporting this load plan.
+	MissionNumber param.Opt[string] `json:"missionNumber,omitzero"`
+	// The operating weight of the aircraft multiplied by the distance between the
+	// reference datum and the aircraft's center of gravity, in Newton-meters.
+	OperatingMoment param.Opt[float64] `json:"operatingMoment,omitzero"`
+	// The basic weight of the aircraft including passengers and equipment, in
+	// kilograms.
+	OperatingWeight param.Opt[float64] `json:"operatingWeight,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// Number of pallet positions on the aircraft.
+	PpOnboard param.Opt[int64] `json:"ppOnboard,omitzero"`
+	// Number of pallet positions released this leg.
+	PpReleased param.Opt[int64] `json:"ppReleased,omitzero"`
+	// Time the loadmaster or boom operator is scheduled to begin overseeing cargo
+	// loading/unloading, in ISO 8601 UTC format with millisecond precision.
+	SchedTime param.Opt[time.Time] `json:"schedTime,omitzero" format:"date-time"`
+	// Number of passenger seats on the aircraft.
+	SeatsOnboard param.Opt[int64] `json:"seatsOnboard,omitzero"`
+	// Number of passenger seats released this leg.
+	SeatsReleased param.Opt[int64] `json:"seatsReleased,omitzero"`
+	// The tail number of the aircraft supporting this load plan.
+	TailNumber param.Opt[string] `json:"tailNumber,omitzero"`
+	// Description of the fuel tank(s) configuration (e.g. ER, NON-ER, etc.).
+	// Configuration meanings are determined by the data source.
+	TankConfig param.Opt[string] `json:"tankConfig,omitzero"`
+	// Alphanumeric code that describes general cargo-related utilization and
+	// characteristics for an itinerary point.
+	UtilCode param.Opt[string] `json:"utilCode,omitzero"`
+	// The center of gravity of the aircraft using the zero fuel weight and zero fuel
+	// total moment, as a percentage of the mean aerodynamic chord (%MAC).
+	ZeroFuelCg param.Opt[float64] `json:"zeroFuelCG,omitzero"`
+	// The zero fuel weight of the aircraft multiplied by the distance between the
+	// reference datum and the aircraft's center of gravity, in Newton-meters.
+	ZeroFuelMoment param.Opt[float64] `json:"zeroFuelMoment,omitzero"`
+	// The operating weight of the aircraft including cargo, mail, baggage, and
+	// passengers, but without usable fuel, in kilograms.
+	ZeroFuelWeight param.Opt[float64] `json:"zeroFuelWeight,omitzero"`
+	// Collection of hazmat actuals associated with this load plan.
+	AirLoadPlanHazmatActuals []AirloadPlanUpdateParamsAirLoadPlanHazmatActual `json:"airLoadPlanHazmatActuals,omitzero"`
+	// Collection of human remains transport information associated with this load
+	// plan.
+	AirLoadPlanHr []AirloadPlanUpdateParamsAirLoadPlanHr `json:"airLoadPlanHR,omitzero"`
+	// Collection of cargo information located at the pallet positions associated with
+	// this load plan.
+	AirLoadPlanPalletDetails []AirloadPlanUpdateParamsAirLoadPlanPalletDetail `json:"airLoadPlanPalletDetails,omitzero"`
+	// Collection of passenger and cargo details associated with this load plan for
+	// this leg of the mission.
+	AirLoadPlanPaxCargo []AirloadPlanUpdateParamsAirLoadPlanPaxCargo `json:"airLoadPlanPaxCargo,omitzero"`
+	// Collection of unit line number actuals associated with this load plan.
+	AirLoadPlanUlnActuals []AirloadPlanUpdateParamsAirLoadPlanUlnActual `json:"airLoadPlanULNActuals,omitzero"`
+	paramObj
+}
+
+func (r AirloadPlanUpdateParams) MarshalJSON() (data []byte, err error) {
+	type shadow AirloadPlanUpdateParams
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirloadPlanUpdateParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type AirloadPlanUpdateParamsDataMode string
+
+const (
+	AirloadPlanUpdateParamsDataModeReal      AirloadPlanUpdateParamsDataMode = "REAL"
+	AirloadPlanUpdateParamsDataModeTest      AirloadPlanUpdateParamsDataMode = "TEST"
+	AirloadPlanUpdateParamsDataModeSimulated AirloadPlanUpdateParamsDataMode = "SIMULATED"
+	AirloadPlanUpdateParamsDataModeExercise  AirloadPlanUpdateParamsDataMode = "EXERCISE"
+)
+
+// Collection of hazmat actuals associated with this load plan.
+type AirloadPlanUpdateParamsAirLoadPlanHazmatActual struct {
+	// The Air Special Handling Code (ASHC) indicates the type of special handling
+	// required for hazardous cargo.
+	Ashc param.Opt[string] `json:"ashc,omitzero"`
+	// Compatibility group code used to specify the controls for the transportation and
+	// storage of hazardous materials according to the Hazardous Materials Regulations
+	// issued by the U.S. Department of Transportation.
+	Cgc param.Opt[string] `json:"cgc,omitzero"`
+	// Class and division of the hazardous material according to the Hazardous
+	// Materials Regulations issued by the U.S. Department of Transportation.
+	ClassDiv param.Opt[string] `json:"classDiv,omitzero"`
+	// Description of the hazardous item.
+	HazDescription param.Opt[string] `json:"hazDescription,omitzero"`
+	// Remarks concerning this hazardous material.
+	HazmatRemarks param.Opt[string] `json:"hazmatRemarks,omitzero"`
+	// United Nations number or North American number that identifies hazardous
+	// materials according to the Hazardous Materials Regulations issued by the U.S.
+	// Department of Transportation.
+	HazNum param.Opt[string] `json:"hazNum,omitzero"`
+	// Designates the type of hazmat number for the item (UN for United Nations or NA
+	// for North American).
+	HazNumType param.Opt[string] `json:"hazNumType,omitzero"`
+	// The International Civil Aviation Organization (ICAO) code of the site where the
+	// hazardous material is unloaded.
+	HazOffIcao param.Opt[string] `json:"hazOffICAO,omitzero"`
+	// Itinerary number that identifies where the hazardous material is unloaded.
+	HazOffItin param.Opt[int64] `json:"hazOffItin,omitzero"`
+	// The International Civil Aviation Organization (ICAO) code of the site where the
+	// hazardous material is loaded.
+	HazOnIcao param.Opt[string] `json:"hazOnICAO,omitzero"`
+	// Itinerary number that identifies where the hazardous material is loaded.
+	HazOnItin param.Opt[int64] `json:"hazOnItin,omitzero"`
+	// Number of pieces of hazardous cargo.
+	HazPieces param.Opt[int64] `json:"hazPieces,omitzero"`
+	// Transportation Control Number (TCN) of the hazardous item.
+	HazTcn param.Opt[string] `json:"hazTcn,omitzero"`
+	// Total weight of hazardous cargo, including non-explosive parts, in kilograms.
+	HazWeight param.Opt[float64] `json:"hazWeight,omitzero"`
+	// United Nations proper shipping name of the hazardous material according to the
+	// Hazardous Materials Regulations issued by the U.S. Department of Transportation.
+	ItemName param.Opt[string] `json:"itemName,omitzero"`
+	// Manufacturer's lot number for identification of the hazardous material.
+	LotNum param.Opt[string] `json:"lotNum,omitzero"`
+	// Net explosive weight of the hazardous material, in kilograms.
+	NetExpWt param.Opt[float64] `json:"netExpWt,omitzero"`
+	paramObj
+}
+
+func (r AirloadPlanUpdateParamsAirLoadPlanHazmatActual) MarshalJSON() (data []byte, err error) {
+	type shadow AirloadPlanUpdateParamsAirLoadPlanHazmatActual
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirloadPlanUpdateParamsAirLoadPlanHazmatActual) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Collection of human remains transport information associated with this load
+// plan.
+type AirloadPlanUpdateParamsAirLoadPlanHr struct {
+	// Type of transfer case used.
+	Container param.Opt[string] `json:"container,omitzero"`
+	// Name of the escort for the remains.
+	Escort param.Opt[string] `json:"escort,omitzero"`
+	// The current estimated time of arrival for the remains in ISO 8601 UTC format
+	// with millisecond precision.
+	HrEstArrTime param.Opt[time.Time] `json:"hrEstArrTime,omitzero" format:"date-time"`
+	// The International Civil Aviation Organization (ICAO) code of the site where the
+	// remains are unloaded.
+	HrOffIcao param.Opt[string] `json:"hrOffICAO,omitzero"`
+	// Itinerary number that identifies where the remains are unloaded.
+	HrOffItin param.Opt[int64] `json:"hrOffItin,omitzero"`
+	// The International Civil Aviation Organization (ICAO) code of the site where the
+	// remains are loaded.
+	HrOnIcao param.Opt[string] `json:"hrOnICAO,omitzero"`
+	// Itinerary number that identifies where the remains are loaded.
+	HrOnItin param.Opt[int64] `json:"hrOnItin,omitzero"`
+	// Remarks concerning the remains.
+	HrRemarks param.Opt[string] `json:"hrRemarks,omitzero"`
+	// Name of the deceased.
+	Name param.Opt[string] `json:"name,omitzero"`
+	// Rank of the deceased.
+	Rank param.Opt[string] `json:"rank,omitzero"`
+	// Name of the receiving agency or funeral home to which the remains are being
+	// delivered.
+	RecAgency param.Opt[string] `json:"recAgency,omitzero"`
+	// Branch of service of the deceased.
+	Service param.Opt[string] `json:"service,omitzero"`
+	// Flag indicating if the remains are viewable.
+	Viewable param.Opt[bool] `json:"viewable,omitzero"`
+	paramObj
+}
+
+func (r AirloadPlanUpdateParamsAirLoadPlanHr) MarshalJSON() (data []byte, err error) {
+	type shadow AirloadPlanUpdateParamsAirLoadPlanHr
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirloadPlanUpdateParamsAirLoadPlanHr) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Collection of cargo information located at the pallet positions associated with
+// this load plan.
+type AirloadPlanUpdateParamsAirLoadPlanPalletDetail struct {
+	// Category of special interest cargo.
+	Category param.Opt[string] `json:"category,omitzero"`
+	// Pallet position of the cargo.
+	Pp param.Opt[string] `json:"pp,omitzero"`
+	// Description of the cargo.
+	PpDescription param.Opt[string] `json:"ppDescription,omitzero"`
+	// The International Civil Aviation Organization (ICAO) code of the site where the
+	// cargo is unloaded.
+	PpOffIcao param.Opt[string] `json:"ppOffICAO,omitzero"`
+	// Number of pieces included in the Transportation Control Number (TCN).
+	PpPieces param.Opt[int64] `json:"ppPieces,omitzero"`
+	// Remarks concerning the cargo at this pallet position.
+	PpRemarks param.Opt[string] `json:"ppRemarks,omitzero"`
+	// Transportation Control Number (TCN) of the cargo.
+	PpTcn param.Opt[string] `json:"ppTcn,omitzero"`
+	// Total weight of the cargo at this pallet position in kilograms.
+	PpWeight param.Opt[float64] `json:"ppWeight,omitzero"`
+	// Flag indicating if this cargo is considered special interest.
+	SpecialInterest param.Opt[bool] `json:"specialInterest,omitzero"`
+	paramObj
+}
+
+func (r AirloadPlanUpdateParamsAirLoadPlanPalletDetail) MarshalJSON() (data []byte, err error) {
+	type shadow AirloadPlanUpdateParamsAirLoadPlanPalletDetail
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirloadPlanUpdateParamsAirLoadPlanPalletDetail) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Collection of passenger and cargo details associated with this load plan for
+// this leg of the mission.
+type AirloadPlanUpdateParamsAirLoadPlanPaxCargo struct {
+	// Number of ambulatory medical passengers in this group.
+	AmbPax param.Opt[int64] `json:"ambPax,omitzero"`
+	// Number of patient attendant passengers in this group.
+	AttPax param.Opt[int64] `json:"attPax,omitzero"`
+	// Number of space available passengers in this group.
+	AvailablePax param.Opt[int64] `json:"availablePax,omitzero"`
+	// Weight of baggage in this group in kilograms.
+	BagWeight param.Opt[float64] `json:"bagWeight,omitzero"`
+	// Number of civilian passengers in this group.
+	CivPax param.Opt[int64] `json:"civPax,omitzero"`
+	// Number of distinguished visitor passengers in this group.
+	DvPax param.Opt[int64] `json:"dvPax,omitzero"`
+	// Number of foreign national passengers in this group.
+	FnPax param.Opt[int64] `json:"fnPax,omitzero"`
+	// Weight of cargo in this group in kilograms.
+	GroupCargoWeight param.Opt[float64] `json:"groupCargoWeight,omitzero"`
+	// Describes the status or action needed for this group of passenger and cargo data
+	// (e.g. ARRONBD, OFFTHIS, THROUGH, ONTHIS, DEPONBD, OFFNEXT).
+	GroupType param.Opt[string] `json:"groupType,omitzero"`
+	// Number of litter-bound passengers in this group.
+	LitPax param.Opt[int64] `json:"litPax,omitzero"`
+	// Weight of mail in this group in kilograms.
+	MailWeight param.Opt[float64] `json:"mailWeight,omitzero"`
+	// Number of cargo pallets in this group.
+	NumPallet param.Opt[int64] `json:"numPallet,omitzero"`
+	// Weight of pallets, chains, and devices in this group in kilograms.
+	PalletWeight param.Opt[float64] `json:"palletWeight,omitzero"`
+	// Weight of passengers in this group in kilograms.
+	PaxWeight param.Opt[float64] `json:"paxWeight,omitzero"`
+	// Number of space required passengers in this group.
+	RequiredPax param.Opt[int64] `json:"requiredPax,omitzero"`
+	paramObj
+}
+
+func (r AirloadPlanUpdateParamsAirLoadPlanPaxCargo) MarshalJSON() (data []byte, err error) {
+	type shadow AirloadPlanUpdateParamsAirLoadPlanPaxCargo
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirloadPlanUpdateParamsAirLoadPlanPaxCargo) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Collection of unit line number actuals associated with this load plan.
+type AirloadPlanUpdateParamsAirLoadPlanUlnActual struct {
+	// Number of ambulatory patients associated with this load plan.
+	NumAmbulatory param.Opt[int64] `json:"numAmbulatory,omitzero"`
+	// Number of attendants associated with this load plan.
+	NumAttendant param.Opt[int64] `json:"numAttendant,omitzero"`
+	// Number of litter patients associated with this load plan.
+	NumLitter param.Opt[int64] `json:"numLitter,omitzero"`
+	// Number of passengers associated with this load plan.
+	NumPax param.Opt[int64] `json:"numPax,omitzero"`
+	// Identifier of the offload itinerary location.
+	OffloadID param.Opt[int64] `json:"offloadId,omitzero"`
+	// Offload location code.
+	OffloadLoCode param.Opt[string] `json:"offloadLOCode,omitzero"`
+	// Identifier of the onload itinerary location.
+	OnloadID param.Opt[int64] `json:"onloadId,omitzero"`
+	// Onload location code.
+	OnloadLoCode param.Opt[string] `json:"onloadLOCode,omitzero"`
+	// Identification number of the Operation Plan (OPLAN) associated with this load
+	// plan.
+	Oplan param.Opt[string] `json:"oplan,omitzero"`
+	// Project name.
+	ProjName param.Opt[string] `json:"projName,omitzero"`
+	// Unit line number.
+	Uln param.Opt[string] `json:"uln,omitzero"`
+	// Total weight of all cargo items for this unit line number in kilograms.
+	UlnCargoWeight param.Opt[float64] `json:"ulnCargoWeight,omitzero"`
+	// Remarks concerning these unit line number actuals.
+	UlnRemarks param.Opt[string] `json:"ulnRemarks,omitzero"`
+	paramObj
+}
+
+func (r AirloadPlanUpdateParamsAirLoadPlanUlnActual) MarshalJSON() (data []byte, err error) {
+	type shadow AirloadPlanUpdateParamsAirLoadPlanUlnActual
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AirloadPlanUpdateParamsAirLoadPlanUlnActual) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+type AirloadPlanListParams struct {
 	// The current estimated time that the aircraft is planned to depart, in ISO 8601
 	// UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	EstDepTime  time.Time        `query:"estDepTime,required" format:"date-time" json:"-"`
@@ -1234,15 +1703,15 @@ type AirLoadPlanListParams struct {
 	paramObj
 }
 
-// URLQuery serializes [AirLoadPlanListParams]'s query parameters as `url.Values`.
-func (r AirLoadPlanListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [AirloadPlanListParams]'s query parameters as `url.Values`.
+func (r AirloadPlanListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type AirLoadPlanCountParams struct {
+type AirloadPlanCountParams struct {
 	// The current estimated time that the aircraft is planned to depart, in ISO 8601
 	// UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	EstDepTime  time.Time        `query:"estDepTime,required" format:"date-time" json:"-"`
@@ -1251,15 +1720,15 @@ type AirLoadPlanCountParams struct {
 	paramObj
 }
 
-// URLQuery serializes [AirLoadPlanCountParams]'s query parameters as `url.Values`.
-func (r AirLoadPlanCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [AirloadPlanCountParams]'s query parameters as `url.Values`.
+func (r AirloadPlanCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type AirLoadPlanTupleParams struct {
+type AirloadPlanTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -1273,8 +1742,8 @@ type AirLoadPlanTupleParams struct {
 	paramObj
 }
 
-// URLQuery serializes [AirLoadPlanTupleParams]'s query parameters as `url.Values`.
-func (r AirLoadPlanTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [AirloadPlanTupleParams]'s query parameters as `url.Values`.
+func (r AirloadPlanTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

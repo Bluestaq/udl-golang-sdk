@@ -18,7 +18,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/option"
 )
 
-func TestGnssRawifListWithOptionalParams(t *testing.T) {
+func TestGnssRawIfListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -31,7 +31,7 @@ func TestGnssRawifListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.GnssRawif.List(context.TODO(), unifieddatalibrary.GnssRawifListParams{
+	_, err := client.GnssRawIf.List(context.TODO(), unifieddatalibrary.GnssRawIfListParams{
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -45,7 +45,7 @@ func TestGnssRawifListWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestGnssRawifCountWithOptionalParams(t *testing.T) {
+func TestGnssRawIfCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -58,7 +58,7 @@ func TestGnssRawifCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.GnssRawif.Count(context.TODO(), unifieddatalibrary.GnssRawifCountParams{
+	_, err := client.GnssRawIf.Count(context.TODO(), unifieddatalibrary.GnssRawIfCountParams{
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
@@ -72,7 +72,7 @@ func TestGnssRawifCountWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestGnssRawifFileGetWithOptionalParams(t *testing.T) {
+func TestGnssRawIfFileGetWithOptionalParams(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(200)
 		w.Write([]byte("abc"))
@@ -84,10 +84,10 @@ func TestGnssRawifFileGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	resp, err := client.GnssRawif.FileGet(
+	resp, err := client.GnssRawIf.FileGet(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.GnssRawifFileGetParams{
+		unifieddatalibrary.GnssRawIfFileGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -114,7 +114,7 @@ func TestGnssRawifFileGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestGnssRawifGetWithOptionalParams(t *testing.T) {
+func TestGnssRawIfGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -127,10 +127,10 @@ func TestGnssRawifGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.GnssRawif.Get(
+	_, err := client.GnssRawIf.Get(
 		context.TODO(),
 		"id",
-		unifieddatalibrary.GnssRawifGetParams{
+		unifieddatalibrary.GnssRawIfGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
@@ -144,7 +144,7 @@ func TestGnssRawifGetWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestGnssRawifQueryhelp(t *testing.T) {
+func TestGnssRawIfQueryhelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -157,7 +157,7 @@ func TestGnssRawifQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.GnssRawif.Queryhelp(context.TODO())
+	_, err := client.GnssRawIf.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -167,7 +167,7 @@ func TestGnssRawifQueryhelp(t *testing.T) {
 	}
 }
 
-func TestGnssRawifTupleWithOptionalParams(t *testing.T) {
+func TestGnssRawIfTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -180,7 +180,7 @@ func TestGnssRawifTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.GnssRawif.Tuple(context.TODO(), unifieddatalibrary.GnssRawifTupleParams{
+	_, err := client.GnssRawIf.Tuple(context.TODO(), unifieddatalibrary.GnssRawIfTupleParams{
 		Columns:     "columns",
 		StartTime:   time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -195,7 +195,7 @@ func TestGnssRawifTupleWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestGnssRawifUploadZip(t *testing.T) {
+func TestGnssRawIfUploadZip(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -208,7 +208,7 @@ func TestGnssRawifUploadZip(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.GnssRawif.UploadZip(context.TODO(), unifieddatalibrary.GnssRawifUploadZipParams{
+	err := client.GnssRawIf.UploadZip(context.TODO(), unifieddatalibrary.GnssRawIfUploadZipParams{
 		File: io.Reader(bytes.NewBuffer([]byte("some file contents"))),
 	})
 	if err != nil {

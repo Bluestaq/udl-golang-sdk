@@ -20,22 +20,24 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
-// IonOobservationService contains methods and other services that help with
+// IonoObservationService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewIonOobservationService] method instead.
-type IonOobservationService struct {
+// the [NewIonoObservationService] method instead.
+type IonoObservationService struct {
 	Options []option.RequestOption
+	History IonoObservationHistoryService
 }
 
-// NewIonOobservationService generates a new service that applies the given options
+// NewIonoObservationService generates a new service that applies the given options
 // to each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewIonOobservationService(opts ...option.RequestOption) (r IonOobservationService) {
-	r = IonOobservationService{}
+func NewIonoObservationService(opts ...option.RequestOption) (r IonoObservationService) {
+	r = IonoObservationService{}
 	r.Options = opts
+	r.History = NewIonoObservationHistoryService(opts...)
 	return
 }
 
@@ -43,7 +45,7 @@ func NewIonOobservationService(opts ...option.RequestOption) (r IonOobservationS
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *IonOobservationService) List(ctx context.Context, query IonOobservationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[IonOobservationListResponse], err error) {
+func (r *IonoObservationService) List(ctx context.Context, query IonoObservationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[IonoObservationListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -64,7 +66,7 @@ func (r *IonOobservationService) List(ctx context.Context, query IonOobservation
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *IonOobservationService) ListAutoPaging(ctx context.Context, query IonOobservationListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[IonOobservationListResponse] {
+func (r *IonoObservationService) ListAutoPaging(ctx context.Context, query IonoObservationListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[IonoObservationListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -73,7 +75,7 @@ func (r *IonOobservationService) ListAutoPaging(ctx context.Context, query IonOo
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *IonOobservationService) Count(ctx context.Context, query IonOobservationCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *IonoObservationService) Count(ctx context.Context, query IonoObservationCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/ionoobservation/count"
@@ -86,7 +88,7 @@ func (r *IonOobservationService) Count(ctx context.Context, query IonOobservatio
 // operation is not intended to be used for automated feeds into UDL. Data
 // providers should contact the UDL team for specific role assignments and for
 // instructions on setting up a permanent feed through an alternate mechanism.
-func (r *IonOobservationService) NewBulk(ctx context.Context, body IonOobservationNewBulkParams, opts ...option.RequestOption) (err error) {
+func (r *IonoObservationService) NewBulk(ctx context.Context, body IonoObservationNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/ionoobservation/createBulk"
@@ -96,7 +98,7 @@ func (r *IonOobservationService) NewBulk(ctx context.Context, body IonOobservati
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *IonOobservationService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *IonOobservationQueryhelpResponse, err error) {
+func (r *IonoObservationService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *IonoObservationQueryhelpResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/ionoobservation/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
@@ -111,7 +113,7 @@ func (r *IonOobservationService) Queryhelp(ctx context.Context, opts ...option.R
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *IonOobservationService) Tuple(ctx context.Context, query IonOobservationTupleParams, opts ...option.RequestOption) (res *[]IonOobservationTupleResponse, err error) {
+func (r *IonoObservationService) Tuple(ctx context.Context, query IonoObservationTupleParams, opts ...option.RequestOption) (res *[]IonoObservationTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/ionoobservation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -123,7 +125,7 @@ func (r *IonOobservationService) Tuple(ctx context.Context, query IonOobservatio
 // checking. This operation is intended to be used for automated feeds into UDL. A
 // specific role is required to perform this service operation. Please contact the
 // UDL team for assistance.
-func (r *IonOobservationService) UnvalidatedPublish(ctx context.Context, body IonOobservationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
+func (r *IonoObservationService) UnvalidatedPublish(ctx context.Context, body IonoObservationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-ionoobs"
@@ -137,7 +139,7 @@ func (r *IonOobservationService) UnvalidatedPublish(ctx context.Context, body Io
 // specification. Qualifying and Descriptive letters are defined by the URSI
 // Handbook for Ionogram Interpretation and reduction, Report UAG, No. 23A
 // specification.
-type IonOobservationListResponse struct {
+type IonoObservationListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -156,7 +158,7 @@ type IonOobservationListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode IonOobservationListResponseDataMode `json:"dataMode,required"`
+	DataMode IonoObservationListResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Sounding Start time in ISO8601 UTC format.
@@ -170,17 +172,17 @@ type IonOobservationListResponse struct {
 	SystemInfo string `json:"systemInfo,required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID                     string                                            `json:"id"`
-	Amplitude              IonOobservationListResponseAmplitude              `json:"amplitude"`
-	AntennaElementPosition IonOobservationListResponseAntennaElementPosition `json:"antennaElementPosition"`
+	Amplitude              IonoObservationListResponseAmplitude              `json:"amplitude"`
+	AntennaElementPosition IonoObservationListResponseAntennaElementPosition `json:"antennaElementPosition"`
 	// Enums: J2000, ECR/ECEF, TEME, GCRF, WGS84 (GEODetic lat, long, alt), GEOCentric
 	// (lat, long, radii).
 	//
 	// Any of "J2000", "ECR/ECEF", "TEME", "GCRF", "WGS84 (GEODetic lat, long, alt)",
 	// "GEOCentric (lat, long, radii)".
-	AntennaElementPositionCoordinateSystem IonOobservationListResponseAntennaElementPositionCoordinateSystem `json:"antennaElementPositionCoordinateSystem"`
+	AntennaElementPositionCoordinateSystem IonoObservationListResponseAntennaElementPositionCoordinateSystem `json:"antennaElementPositionCoordinateSystem"`
 	// Array of Legacy Artist Flags.
 	ArtistFlags []int64                            `json:"artistFlags"`
-	Azimuth     IonOobservationListResponseAzimuth `json:"azimuth"`
+	Azimuth     IonoObservationListResponseAzimuth `json:"azimuth"`
 	// IRI thickness parameter in km. URSI ID: D0.
 	B0 float64 `json:"b0"`
 	// IRI profile shape parameter. URSI ID: D1.
@@ -190,7 +192,7 @@ type IonOobservationListResponse struct {
 	// ionospheric characteristics, INAG Bulletin No. 62 specification. Qualifying and
 	// Descriptive letters are defined by the URSI Handbook for Ionogram Interpretation
 	// and reduction, Report UAG, No. 23A specification.
-	CharAtts []IonOobservationListResponseCharAtt `json:"charAtts"`
+	CharAtts []IonoObservationListResponseCharAtt `json:"charAtts"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -200,13 +202,13 @@ type IonOobservationListResponse struct {
 	D float64 `json:"d"`
 	// IRI profile shape parameter, F1 layer. URSI ID: D2.
 	D1    float64                          `json:"d1"`
-	Datum IonOobservationListResponseDatum `json:"datum"`
+	Datum IonoObservationListResponseDatum `json:"datum"`
 	// Adjustment to the scaled foF2 during profile inversion in MHz.
 	DeltafoF2 float64 `json:"deltafoF2"`
 	// Profile of electron densities in the ionosphere associated with an
 	// IonoObservation.
-	DensityProfile IonOobservationListResponseDensityProfile `json:"densityProfile"`
-	Doppler        IonOobservationListResponseDoppler        `json:"doppler"`
+	DensityProfile IonoObservationListResponseDensityProfile `json:"densityProfile"`
+	Doppler        IonoObservationListResponseDoppler        `json:"doppler"`
 	// Lowering of E trace to the leading edge in km.
 	DownE float64 `json:"downE"`
 	// Lowering of Es trace to the leading edge in km.
@@ -219,7 +221,7 @@ type IonOobservationListResponse struct {
 	// Uncertainty in specifying the electron density at each height point of the
 	// profile (must match the size of the electronDensity array).
 	ElectronDensityUncertainty []float64                            `json:"electronDensityUncertainty"`
-	Elevation                  IonOobservationListResponseElevation `json:"elevation"`
+	Elevation                  IonoObservationListResponseElevation `json:"elevation"`
 	// The blanketing frequency of layer used to derive foEs in MHz. URSI ID: 32.
 	FbEs float64 `json:"fbEs"`
 	// Frequency spread beyond foE in MHz. URSI ID: 87.
@@ -263,7 +265,7 @@ type IonOobservationListResponse struct {
 	// Highest ordinary wave critical frequency of F region patch trace in MHz. URSI
 	// ID: 55.
 	FoP       float64                              `json:"foP"`
-	Frequency IonOobservationListResponseFrequency `json:"frequency"`
+	Frequency IonoObservationListResponseFrequency `json:"frequency"`
 	// The extraordinary wave E critical frequency, in MHz. URSI ID: 21.
 	FxE float64 `json:"fxE"`
 	// The extraordinary wave F1 critical frequency, in MHz. URSI ID: 11.
@@ -325,7 +327,7 @@ type IonOobservationListResponse struct {
 	// identifier which produced this observation. This may be an internal identifier
 	// and not necessarily a valid sensor ID.
 	OrigSensorID string                           `json:"origSensorId"`
-	Phase        IonOobservationListResponsePhase `json:"phase"`
+	Phase        IonoObservationListResponsePhase `json:"phase"`
 	// Array of plasma frequencies in MHz (must match the size of the height and
 	// electronDensity arrays).
 	PlasmaFrequency []float64 `json:"plasmaFrequency"`
@@ -334,13 +336,13 @@ type IonOobservationListResponse struct {
 	PlasmaFrequencyUncertainty []float64 `json:"plasmaFrequencyUncertainty"`
 	// Equipment location.
 	PlatformName string                                  `json:"platformName"`
-	Polarization IonOobservationListResponsePolarization `json:"polarization"`
-	Power        IonOobservationListResponsePower        `json:"power"`
+	Polarization IonoObservationListResponsePolarization `json:"polarization"`
+	Power        IonoObservationListResponsePower        `json:"power"`
 	// Average range spread of E layer in km. URSI ID: 85.
 	Qe float64 `json:"qe"`
 	// Average range spread of F layer in km. URSI ID: 84.
 	Qf    float64                          `json:"qf"`
-	Range IonOobservationListResponseRange `json:"range"`
+	Range IonoObservationListResponseRange `json:"range"`
 	// List of Geodetic Latitude, Longitude, and Altitude coordinates in km of the
 	// receiver. Coordinates List must always have 3 elements. Valid ranges are -90.0
 	// to 90.0 for Latitude and -180.0 to 180.0 for Longitude. Altitude is in km and
@@ -349,7 +351,7 @@ type IonOobservationListResponse struct {
 	// Enums: Mobile, Static.
 	//
 	// Any of "Mobile", "Static".
-	ReceiveSensorType IonOobservationListResponseReceiveSensorType `json:"receiveSensorType"`
+	ReceiveSensorType IonoObservationListResponseReceiveSensorType `json:"receiveSensorType"`
 	// Array of restricted frequencies.
 	RestrictedFrequency []float64 `json:"restrictedFrequency"`
 	// Notes for the restrictedFrequency data.
@@ -358,8 +360,8 @@ type IonOobservationListResponse struct {
 	ScaleHeightF2Peak float64 `json:"scaleHeightF2Peak"`
 	// The ScalerInfo record describes the person or system who interpreted the
 	// ionogram in IonoObservation.
-	ScalerInfo IonOobservationListResponseScalerInfo `json:"scalerInfo"`
-	Stokes     IonOobservationListResponseStokes     `json:"stokes"`
+	ScalerInfo IonoObservationListResponseScalerInfo `json:"scalerInfo"`
+	Stokes     IonoObservationListResponseStokes     `json:"stokes"`
 	// Details concerning the composition/intention/interpretation/audience/etc. of any
 	// data recorded here. This field may contain all of the intended information e.g.
 	// info on signal waveforms used, antenna setup, etc. OR may describe the
@@ -374,8 +376,8 @@ type IonOobservationListResponse struct {
 	TidPeriods []float64 `json:"tidPeriods"`
 	// Array of speed in m/s at which the disturbance travels through the ionosphere.
 	TidPhaseSpeeds []float64                               `json:"tidPhaseSpeeds"`
-	Time           IonOobservationListResponseTime         `json:"time"`
-	TraceGeneric   IonOobservationListResponseTraceGeneric `json:"traceGeneric"`
+	Time           IonoObservationListResponseTime         `json:"time"`
+	TraceGeneric   IonoObservationListResponseTraceGeneric `json:"traceGeneric"`
 	// List of Geodetic Latitude, Longitude, and Altitude coordinates in km of the
 	// receiver. Coordinates List must always have 3 elements. Valid ranges are -90.0
 	// to 90.0 for Latitude and -180.0 to 180.0 for Longitude. Altitude is in km and
@@ -384,7 +386,7 @@ type IonOobservationListResponse struct {
 	// Enums: Mobile, Static.
 	//
 	// Any of "Mobile", "Static".
-	TransmitSensorType IonOobservationListResponseTransmitSensorType `json:"transmitSensorType"`
+	TransmitSensorType IonoObservationListResponseTransmitSensorType `json:"transmitSensorType"`
 	// Characterization of the shape of Es trace. URSI ID: 36.
 	TypeEs string `json:"typeEs"`
 	// Time the row was updated in the database, auto-populated by the system, example
@@ -519,8 +521,8 @@ type IonOobservationListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponse) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponse) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponse) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -538,16 +540,16 @@ func (r *IonOobservationListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type IonOobservationListResponseDataMode string
+type IonoObservationListResponseDataMode string
 
 const (
-	IonOobservationListResponseDataModeReal      IonOobservationListResponseDataMode = "REAL"
-	IonOobservationListResponseDataModeTest      IonOobservationListResponseDataMode = "TEST"
-	IonOobservationListResponseDataModeSimulated IonOobservationListResponseDataMode = "SIMULATED"
-	IonOobservationListResponseDataModeExercise  IonOobservationListResponseDataMode = "EXERCISE"
+	IonoObservationListResponseDataModeReal      IonoObservationListResponseDataMode = "REAL"
+	IonoObservationListResponseDataModeTest      IonoObservationListResponseDataMode = "TEST"
+	IonoObservationListResponseDataModeSimulated IonoObservationListResponseDataMode = "SIMULATED"
+	IonoObservationListResponseDataModeExercise  IonoObservationListResponseDataMode = "EXERCISE"
 )
 
-type IonOobservationListResponseAmplitude struct {
+type IonoObservationListResponseAmplitude struct {
 	// Array of amplitude data.
 	Data [][][][][][][]float64 `json:"data"`
 	// Array of names for dimensions.
@@ -568,12 +570,12 @@ type IonOobservationListResponseAmplitude struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseAmplitude) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponseAmplitude) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponseAmplitude) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponseAmplitude) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationListResponseAntennaElementPosition struct {
+type IonoObservationListResponseAntennaElementPosition struct {
 	// Array of 3-element tuples (x,y,z) in km.
 	Data [][]float64 `json:"data"`
 	// Array of names for dimensions.
@@ -591,25 +593,25 @@ type IonOobservationListResponseAntennaElementPosition struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseAntennaElementPosition) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponseAntennaElementPosition) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponseAntennaElementPosition) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponseAntennaElementPosition) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Enums: J2000, ECR/ECEF, TEME, GCRF, WGS84 (GEODetic lat, long, alt), GEOCentric
 // (lat, long, radii).
-type IonOobservationListResponseAntennaElementPositionCoordinateSystem string
+type IonoObservationListResponseAntennaElementPositionCoordinateSystem string
 
 const (
-	IonOobservationListResponseAntennaElementPositionCoordinateSystemJ2000                   IonOobservationListResponseAntennaElementPositionCoordinateSystem = "J2000"
-	IonOobservationListResponseAntennaElementPositionCoordinateSystemEcrEcef                 IonOobservationListResponseAntennaElementPositionCoordinateSystem = "ECR/ECEF"
-	IonOobservationListResponseAntennaElementPositionCoordinateSystemTeme                    IonOobservationListResponseAntennaElementPositionCoordinateSystem = "TEME"
-	IonOobservationListResponseAntennaElementPositionCoordinateSystemGcrf                    IonOobservationListResponseAntennaElementPositionCoordinateSystem = "GCRF"
-	IonOobservationListResponseAntennaElementPositionCoordinateSystemWgs84GeoDeticLatLongAlt IonOobservationListResponseAntennaElementPositionCoordinateSystem = "WGS84 (GEODetic lat, long, alt)"
-	IonOobservationListResponseAntennaElementPositionCoordinateSystemGeoCentricLatLongRadii  IonOobservationListResponseAntennaElementPositionCoordinateSystem = "GEOCentric (lat, long, radii)"
+	IonoObservationListResponseAntennaElementPositionCoordinateSystemJ2000                   IonoObservationListResponseAntennaElementPositionCoordinateSystem = "J2000"
+	IonoObservationListResponseAntennaElementPositionCoordinateSystemEcrEcef                 IonoObservationListResponseAntennaElementPositionCoordinateSystem = "ECR/ECEF"
+	IonoObservationListResponseAntennaElementPositionCoordinateSystemTeme                    IonoObservationListResponseAntennaElementPositionCoordinateSystem = "TEME"
+	IonoObservationListResponseAntennaElementPositionCoordinateSystemGcrf                    IonoObservationListResponseAntennaElementPositionCoordinateSystem = "GCRF"
+	IonoObservationListResponseAntennaElementPositionCoordinateSystemWgs84GeoDeticLatLongAlt IonoObservationListResponseAntennaElementPositionCoordinateSystem = "WGS84 (GEODetic lat, long, alt)"
+	IonoObservationListResponseAntennaElementPositionCoordinateSystemGeoCentricLatLongRadii  IonoObservationListResponseAntennaElementPositionCoordinateSystem = "GEOCentric (lat, long, radii)"
 )
 
-type IonOobservationListResponseAzimuth struct {
+type IonoObservationListResponseAzimuth struct {
 	// Array of incoming azimuth at the receiver.
 	Data [][][][][][][]float64 `json:"data"`
 	// Array of names for dimensions.
@@ -630,13 +632,13 @@ type IonOobservationListResponseAzimuth struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseAzimuth) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponseAzimuth) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponseAzimuth) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponseAzimuth) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Characteristic attributes of a IonoObservation.
-type IonOobservationListResponseCharAtt struct {
+type IonoObservationListResponseCharAtt struct {
 	// Characteristic name. This value should reflect the UDL field name for the
 	// corresponding characteristic.
 	CharName string `json:"charName"`
@@ -684,12 +686,12 @@ type IonOobservationListResponseCharAtt struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseCharAtt) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponseCharAtt) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponseCharAtt) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponseCharAtt) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationListResponseDatum struct {
+type IonoObservationListResponseDatum struct {
 	// Array to support sparse data collections.
 	Data []float64 `json:"data"`
 	// Notes for the datum with details of what the data is, units, etc.
@@ -704,27 +706,27 @@ type IonOobservationListResponseDatum struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseDatum) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponseDatum) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponseDatum) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponseDatum) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Profile of electron densities in the ionosphere associated with an
 // IonoObservation.
-type IonOobservationListResponseDensityProfile struct {
+type IonoObservationListResponseDensityProfile struct {
 	// Full set of the IRI formalism coefficients.
-	Iri IonOobservationListResponseDensityProfileIri `json:"iri"`
+	Iri IonoObservationListResponseDensityProfileIri `json:"iri"`
 	// Coefficients to describe the E, F1, and F2 layers as parabolic-shape segments.
-	Parabolic IonOobservationListResponseDensityProfileParabolic `json:"parabolic"`
+	Parabolic IonoObservationListResponseDensityProfileParabolic `json:"parabolic"`
 	// Coefficients to describe profile shape as quasi-parabolic segments.
-	QuasiParabolic IonOobservationListResponseDensityProfileQuasiParabolic `json:"quasiParabolic"`
+	QuasiParabolic IonoObservationListResponseDensityProfileQuasiParabolic `json:"quasiParabolic"`
 	// Coefficients to describe either the E, F1, and bottomside F2 profile shapes or
 	// the height uncertainty boundaries.
-	ShiftedChebyshev IonOobservationListResponseDensityProfileShiftedChebyshev `json:"shiftedChebyshev"`
+	ShiftedChebyshev IonoObservationListResponseDensityProfileShiftedChebyshev `json:"shiftedChebyshev"`
 	// Parameters of the constant-scale-height Chapman layer.
-	TopsideExtensionChapmanConst IonOobservationListResponseDensityProfileTopsideExtensionChapmanConst `json:"topsideExtensionChapmanConst"`
+	TopsideExtensionChapmanConst IonoObservationListResponseDensityProfileTopsideExtensionChapmanConst `json:"topsideExtensionChapmanConst"`
 	// Varying scale height Chapman topside layer.
-	TopsideExtensionVaryChap IonOobservationListResponseDensityProfileTopsideExtensionVaryChap `json:"topsideExtensionVaryChap"`
+	TopsideExtensionVaryChap IonoObservationListResponseDensityProfileTopsideExtensionVaryChap `json:"topsideExtensionVaryChap"`
 	// Array of valley model coefficients.
 	ValleyModelCoeffs []float64 `json:"valleyModelCoeffs"`
 	// Description of the valley model and parameters.
@@ -745,13 +747,13 @@ type IonOobservationListResponseDensityProfile struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseDensityProfile) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponseDensityProfile) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponseDensityProfile) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponseDensityProfile) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Full set of the IRI formalism coefficients.
-type IonOobservationListResponseDensityProfileIri struct {
+type IonoObservationListResponseDensityProfileIri struct {
 	// B0 parameter of the F2 layer shape.
 	B0 float64 `json:"b0"`
 	// B1 parameter of the F2 layer shape.
@@ -827,17 +829,17 @@ type IonOobservationListResponseDensityProfileIri struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseDensityProfileIri) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponseDensityProfileIri) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponseDensityProfileIri) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponseDensityProfileIri) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Coefficients to describe the E, F1, and F2 layers as parabolic-shape segments.
-type IonOobservationListResponseDensityProfileParabolic struct {
+type IonoObservationListResponseDensityProfileParabolic struct {
 	// General description of the QP computation algorithm.
 	Description string `json:"description"`
 	// Describes the E, F1, and F2 layers as parabolic-shape segments.
-	ParabolicItems []IonOobservationListResponseDensityProfileParabolicParabolicItem `json:"parabolicItems"`
+	ParabolicItems []IonoObservationListResponseDensityProfileParabolicParabolicItem `json:"parabolicItems"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Description    respjson.Field
@@ -848,13 +850,13 @@ type IonOobservationListResponseDensityProfileParabolic struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseDensityProfileParabolic) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponseDensityProfileParabolic) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponseDensityProfileParabolic) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponseDensityProfileParabolic) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Describes the E, F1, and F2 layers as parabolic-shape segments.
-type IonOobservationListResponseDensityProfileParabolicParabolicItem struct {
+type IonoObservationListResponseDensityProfileParabolicParabolicItem struct {
 	// Plasma frequency at the layer peak, in MHz.
 	F float64 `json:"f"`
 	// Ionospheric plasma layer (E, F1, or F2).
@@ -875,15 +877,15 @@ type IonOobservationListResponseDensityProfileParabolicParabolicItem struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseDensityProfileParabolicParabolicItem) RawJSON() string {
+func (r IonoObservationListResponseDensityProfileParabolicParabolicItem) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *IonOobservationListResponseDensityProfileParabolicParabolicItem) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationListResponseDensityProfileParabolicParabolicItem) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Coefficients to describe profile shape as quasi-parabolic segments.
-type IonOobservationListResponseDensityProfileQuasiParabolic struct {
+type IonoObservationListResponseDensityProfileQuasiParabolic struct {
 	// General description of the quasi-parabolic computation algorithm.
 	Description string `json:"description"`
 	// Value of the Earth's radius, in kilometers, used for computations.
@@ -892,7 +894,7 @@ type IonOobservationListResponseDensityProfileQuasiParabolic struct {
 	// quasi-parabolas defined via A, B, C coefficients, f^2=A/r^2+B/r+C”. Usually 3
 	// groups for E, F1, and F2 layers, but additional segments may be used to improve
 	// accuracy.
-	QuasiParabolicSegments []IonOobservationListResponseDensityProfileQuasiParabolicQuasiParabolicSegment `json:"quasiParabolicSegments"`
+	QuasiParabolicSegments []IonoObservationListResponseDensityProfileQuasiParabolicQuasiParabolicSegment `json:"quasiParabolicSegments"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Description            respjson.Field
@@ -904,15 +906,15 @@ type IonOobservationListResponseDensityProfileQuasiParabolic struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseDensityProfileQuasiParabolic) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponseDensityProfileQuasiParabolic) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponseDensityProfileQuasiParabolic) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponseDensityProfileQuasiParabolic) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // A quasi-parabolic segment is the best-fit 3-parameter quasi-parabolas defined
 // via A, B, C coefficients, f^2=A/r^2+B/r+C”. Usually 3 groups for E, F1, and F2
 // layers, but additional segments may be used to improve accuracy.
-type IonOobservationListResponseDensityProfileQuasiParabolicQuasiParabolicSegment struct {
+type IonoObservationListResponseDensityProfileQuasiParabolicQuasiParabolicSegment struct {
 	// Coefficient A.
 	A float64 `json:"a"`
 	// Coefficient B.
@@ -942,22 +944,22 @@ type IonOobservationListResponseDensityProfileQuasiParabolicQuasiParabolicSegmen
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseDensityProfileQuasiParabolicQuasiParabolicSegment) RawJSON() string {
+func (r IonoObservationListResponseDensityProfileQuasiParabolicQuasiParabolicSegment) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *IonOobservationListResponseDensityProfileQuasiParabolicQuasiParabolicSegment) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationListResponseDensityProfileQuasiParabolicQuasiParabolicSegment) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Coefficients to describe either the E, F1, and bottomside F2 profile shapes or
 // the height uncertainty boundaries.
-type IonOobservationListResponseDensityProfileShiftedChebyshev struct {
+type IonoObservationListResponseDensityProfileShiftedChebyshev struct {
 	// Description of the computation technique.
 	Description string `json:"description"`
 	// Up to 3 groups of coefficients, using “shiftedChebyshev” sub-field, to describe
 	// E, F1, and bottomside F2 profile shapes, or up to 6 groups of coefficients to
 	// describe height uncertainty boundaries (upper and lower).
-	ShiftedChebyshevs []IonOobservationListResponseDensityProfileShiftedChebyshevShiftedChebyshev `json:"shiftedChebyshevs"`
+	ShiftedChebyshevs []IonoObservationListResponseDensityProfileShiftedChebyshevShiftedChebyshev `json:"shiftedChebyshevs"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Description       respjson.Field
@@ -968,17 +970,17 @@ type IonOobservationListResponseDensityProfileShiftedChebyshev struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseDensityProfileShiftedChebyshev) RawJSON() string {
+func (r IonoObservationListResponseDensityProfileShiftedChebyshev) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *IonOobservationListResponseDensityProfileShiftedChebyshev) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationListResponseDensityProfileShiftedChebyshev) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Coefficients, using ‘shiftedChebyshev’ sub-field, to describe E, F1, and
 // bottomside F2 profile shapes, or height uncertainty boundaries (upper and
 // lower).
-type IonOobservationListResponseDensityProfileShiftedChebyshevShiftedChebyshev struct {
+type IonoObservationListResponseDensityProfileShiftedChebyshevShiftedChebyshev struct {
 	// Array of coefficients.
 	Coeffs []float64 `json:"coeffs"`
 	// Best fit error.
@@ -1011,15 +1013,15 @@ type IonOobservationListResponseDensityProfileShiftedChebyshevShiftedChebyshev s
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseDensityProfileShiftedChebyshevShiftedChebyshev) RawJSON() string {
+func (r IonoObservationListResponseDensityProfileShiftedChebyshevShiftedChebyshev) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *IonOobservationListResponseDensityProfileShiftedChebyshevShiftedChebyshev) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationListResponseDensityProfileShiftedChebyshevShiftedChebyshev) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Parameters of the constant-scale-height Chapman layer.
-type IonOobservationListResponseDensityProfileTopsideExtensionChapmanConst struct {
+type IonoObservationListResponseDensityProfileTopsideExtensionChapmanConst struct {
 	// Peak Density Thickness (PDT) for description of the flat-nose shape, in
 	// kilometers.
 	Chi float64 `json:"chi"`
@@ -1044,15 +1046,15 @@ type IonOobservationListResponseDensityProfileTopsideExtensionChapmanConst struc
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseDensityProfileTopsideExtensionChapmanConst) RawJSON() string {
+func (r IonoObservationListResponseDensityProfileTopsideExtensionChapmanConst) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *IonOobservationListResponseDensityProfileTopsideExtensionChapmanConst) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationListResponseDensityProfileTopsideExtensionChapmanConst) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Varying scale height Chapman topside layer.
-type IonOobservationListResponseDensityProfileTopsideExtensionVaryChap struct {
+type IonoObservationListResponseDensityProfileTopsideExtensionVaryChap struct {
 	// Alpha parameter of the profile shape.
 	Alpha float64 `json:"alpha"`
 	// Beta parameter of the profile shape.
@@ -1086,14 +1088,14 @@ type IonOobservationListResponseDensityProfileTopsideExtensionVaryChap struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseDensityProfileTopsideExtensionVaryChap) RawJSON() string {
+func (r IonoObservationListResponseDensityProfileTopsideExtensionVaryChap) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *IonOobservationListResponseDensityProfileTopsideExtensionVaryChap) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationListResponseDensityProfileTopsideExtensionVaryChap) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationListResponseDoppler struct {
+type IonoObservationListResponseDoppler struct {
 	// Array of received doppler shifts in Hz.
 	Data [][][][][][][]float64 `json:"data"`
 	// Array of names for dimensions.
@@ -1114,12 +1116,12 @@ type IonOobservationListResponseDoppler struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseDoppler) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponseDoppler) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponseDoppler) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponseDoppler) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationListResponseElevation struct {
+type IonoObservationListResponseElevation struct {
 	// Array of incoming elevation at the receiver.
 	Data [][][][][][][]float64 `json:"data"`
 	// Array of names for dimensions.
@@ -1140,12 +1142,12 @@ type IonOobservationListResponseElevation struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseElevation) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponseElevation) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponseElevation) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponseElevation) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationListResponseFrequency struct {
+type IonoObservationListResponseFrequency struct {
 	// Array of frequency data.
 	Data [][][][][][][]float64 `json:"data"`
 	// Array of names for frequency dimensions.
@@ -1166,12 +1168,12 @@ type IonOobservationListResponseFrequency struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseFrequency) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponseFrequency) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponseFrequency) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponseFrequency) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationListResponsePhase struct {
+type IonoObservationListResponsePhase struct {
 	// Array of phase data.
 	Data [][][][][][][]float64 `json:"data"`
 	// Array of names for phase dimensions.
@@ -1193,12 +1195,12 @@ type IonOobservationListResponsePhase struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponsePhase) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponsePhase) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponsePhase) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponsePhase) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationListResponsePolarization struct {
+type IonoObservationListResponsePolarization struct {
 	// Array of polarization data.
 	Data [][][][][][][]string `json:"data"`
 	// Array of names for dimensions.
@@ -1219,12 +1221,12 @@ type IonOobservationListResponsePolarization struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponsePolarization) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponsePolarization) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponsePolarization) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponsePolarization) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationListResponsePower struct {
+type IonoObservationListResponsePower struct {
 	// Array of received power in db.
 	Data [][][][][][][]float64 `json:"data"`
 	// Array of names for dimensions.
@@ -1245,12 +1247,12 @@ type IonOobservationListResponsePower struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponsePower) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponsePower) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponsePower) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponsePower) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationListResponseRange struct {
+type IonoObservationListResponseRange struct {
 	// Array of range data.
 	Data [][][][][][][]float64 `json:"data"`
 	// Array of names for range dimensions.
@@ -1271,22 +1273,22 @@ type IonOobservationListResponseRange struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseRange) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponseRange) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponseRange) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponseRange) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Enums: Mobile, Static.
-type IonOobservationListResponseReceiveSensorType string
+type IonoObservationListResponseReceiveSensorType string
 
 const (
-	IonOobservationListResponseReceiveSensorTypeMobile IonOobservationListResponseReceiveSensorType = "Mobile"
-	IonOobservationListResponseReceiveSensorTypeStatic IonOobservationListResponseReceiveSensorType = "Static"
+	IonoObservationListResponseReceiveSensorTypeMobile IonoObservationListResponseReceiveSensorType = "Mobile"
+	IonoObservationListResponseReceiveSensorTypeStatic IonoObservationListResponseReceiveSensorType = "Static"
 )
 
 // The ScalerInfo record describes the person or system who interpreted the
 // ionogram in IonoObservation.
-type IonOobservationListResponseScalerInfo struct {
+type IonoObservationListResponseScalerInfo struct {
 	// Scaler confidence level.
 	ConfidenceLevel int64 `json:"confidenceLevel"`
 	// Scaler confidence score.
@@ -1313,12 +1315,12 @@ type IonOobservationListResponseScalerInfo struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseScalerInfo) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponseScalerInfo) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponseScalerInfo) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponseScalerInfo) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationListResponseStokes struct {
+type IonoObservationListResponseStokes struct {
 	// Array of received stokes data.
 	Data [][][][][][][]float64 `json:"data"`
 	// Array of names for dimensions.
@@ -1342,12 +1344,12 @@ type IonOobservationListResponseStokes struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseStokes) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponseStokes) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponseStokes) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponseStokes) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationListResponseTime struct {
+type IonoObservationListResponseTime struct {
 	// Array of times in number of seconds passed since January 1st, 1970 with the same
 	// dimensions as power.
 	Data [][][][][][][]float64 `json:"data"`
@@ -1369,12 +1371,12 @@ type IonOobservationListResponseTime struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseTime) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponseTime) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponseTime) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponseTime) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationListResponseTraceGeneric struct {
+type IonoObservationListResponseTraceGeneric struct {
 	// Multi-dimensional Array. The 1st dimension spans points along the trace while
 	// the 2nd dimension spans frequency-range pairs.
 	Data [][][]float64 `json:"data"`
@@ -1393,20 +1395,20 @@ type IonOobservationListResponseTraceGeneric struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationListResponseTraceGeneric) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationListResponseTraceGeneric) UnmarshalJSON(data []byte) error {
+func (r IonoObservationListResponseTraceGeneric) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationListResponseTraceGeneric) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Enums: Mobile, Static.
-type IonOobservationListResponseTransmitSensorType string
+type IonoObservationListResponseTransmitSensorType string
 
 const (
-	IonOobservationListResponseTransmitSensorTypeMobile IonOobservationListResponseTransmitSensorType = "Mobile"
-	IonOobservationListResponseTransmitSensorTypeStatic IonOobservationListResponseTransmitSensorType = "Static"
+	IonoObservationListResponseTransmitSensorTypeMobile IonoObservationListResponseTransmitSensorType = "Mobile"
+	IonoObservationListResponseTransmitSensorTypeStatic IonoObservationListResponseTransmitSensorType = "Static"
 )
 
-type IonOobservationQueryhelpResponse struct {
+type IonoObservationQueryhelpResponse struct {
 	AodrSupported         bool                         `json:"aodrSupported"`
 	ClassificationMarking string                       `json:"classificationMarking"`
 	Description           string                       `json:"description"`
@@ -1437,8 +1439,8 @@ type IonOobservationQueryhelpResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationQueryhelpResponse) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationQueryhelpResponse) UnmarshalJSON(data []byte) error {
+func (r IonoObservationQueryhelpResponse) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationQueryhelpResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -1448,7 +1450,7 @@ func (r *IonOobservationQueryhelpResponse) UnmarshalJSON(data []byte) error {
 // specification. Qualifying and Descriptive letters are defined by the URSI
 // Handbook for Ionogram Interpretation and reduction, Report UAG, No. 23A
 // specification.
-type IonOobservationTupleResponse struct {
+type IonoObservationTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1467,7 +1469,7 @@ type IonOobservationTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode IonOobservationTupleResponseDataMode `json:"dataMode,required"`
+	DataMode IonoObservationTupleResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Sounding Start time in ISO8601 UTC format.
@@ -1481,17 +1483,17 @@ type IonOobservationTupleResponse struct {
 	SystemInfo string `json:"systemInfo,required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID                     string                                             `json:"id"`
-	Amplitude              IonOobservationTupleResponseAmplitude              `json:"amplitude"`
-	AntennaElementPosition IonOobservationTupleResponseAntennaElementPosition `json:"antennaElementPosition"`
+	Amplitude              IonoObservationTupleResponseAmplitude              `json:"amplitude"`
+	AntennaElementPosition IonoObservationTupleResponseAntennaElementPosition `json:"antennaElementPosition"`
 	// Enums: J2000, ECR/ECEF, TEME, GCRF, WGS84 (GEODetic lat, long, alt), GEOCentric
 	// (lat, long, radii).
 	//
 	// Any of "J2000", "ECR/ECEF", "TEME", "GCRF", "WGS84 (GEODetic lat, long, alt)",
 	// "GEOCentric (lat, long, radii)".
-	AntennaElementPositionCoordinateSystem IonOobservationTupleResponseAntennaElementPositionCoordinateSystem `json:"antennaElementPositionCoordinateSystem"`
+	AntennaElementPositionCoordinateSystem IonoObservationTupleResponseAntennaElementPositionCoordinateSystem `json:"antennaElementPositionCoordinateSystem"`
 	// Array of Legacy Artist Flags.
 	ArtistFlags []int64                             `json:"artistFlags"`
-	Azimuth     IonOobservationTupleResponseAzimuth `json:"azimuth"`
+	Azimuth     IonoObservationTupleResponseAzimuth `json:"azimuth"`
 	// IRI thickness parameter in km. URSI ID: D0.
 	B0 float64 `json:"b0"`
 	// IRI profile shape parameter. URSI ID: D1.
@@ -1501,7 +1503,7 @@ type IonOobservationTupleResponse struct {
 	// ionospheric characteristics, INAG Bulletin No. 62 specification. Qualifying and
 	// Descriptive letters are defined by the URSI Handbook for Ionogram Interpretation
 	// and reduction, Report UAG, No. 23A specification.
-	CharAtts []IonOobservationTupleResponseCharAtt `json:"charAtts"`
+	CharAtts []IonoObservationTupleResponseCharAtt `json:"charAtts"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -1511,13 +1513,13 @@ type IonOobservationTupleResponse struct {
 	D float64 `json:"d"`
 	// IRI profile shape parameter, F1 layer. URSI ID: D2.
 	D1    float64                           `json:"d1"`
-	Datum IonOobservationTupleResponseDatum `json:"datum"`
+	Datum IonoObservationTupleResponseDatum `json:"datum"`
 	// Adjustment to the scaled foF2 during profile inversion in MHz.
 	DeltafoF2 float64 `json:"deltafoF2"`
 	// Profile of electron densities in the ionosphere associated with an
 	// IonoObservation.
-	DensityProfile IonOobservationTupleResponseDensityProfile `json:"densityProfile"`
-	Doppler        IonOobservationTupleResponseDoppler        `json:"doppler"`
+	DensityProfile IonoObservationTupleResponseDensityProfile `json:"densityProfile"`
+	Doppler        IonoObservationTupleResponseDoppler        `json:"doppler"`
 	// Lowering of E trace to the leading edge in km.
 	DownE float64 `json:"downE"`
 	// Lowering of Es trace to the leading edge in km.
@@ -1530,7 +1532,7 @@ type IonOobservationTupleResponse struct {
 	// Uncertainty in specifying the electron density at each height point of the
 	// profile (must match the size of the electronDensity array).
 	ElectronDensityUncertainty []float64                             `json:"electronDensityUncertainty"`
-	Elevation                  IonOobservationTupleResponseElevation `json:"elevation"`
+	Elevation                  IonoObservationTupleResponseElevation `json:"elevation"`
 	// The blanketing frequency of layer used to derive foEs in MHz. URSI ID: 32.
 	FbEs float64 `json:"fbEs"`
 	// Frequency spread beyond foE in MHz. URSI ID: 87.
@@ -1574,7 +1576,7 @@ type IonOobservationTupleResponse struct {
 	// Highest ordinary wave critical frequency of F region patch trace in MHz. URSI
 	// ID: 55.
 	FoP       float64                               `json:"foP"`
-	Frequency IonOobservationTupleResponseFrequency `json:"frequency"`
+	Frequency IonoObservationTupleResponseFrequency `json:"frequency"`
 	// The extraordinary wave E critical frequency, in MHz. URSI ID: 21.
 	FxE float64 `json:"fxE"`
 	// The extraordinary wave F1 critical frequency, in MHz. URSI ID: 11.
@@ -1636,7 +1638,7 @@ type IonOobservationTupleResponse struct {
 	// identifier which produced this observation. This may be an internal identifier
 	// and not necessarily a valid sensor ID.
 	OrigSensorID string                            `json:"origSensorId"`
-	Phase        IonOobservationTupleResponsePhase `json:"phase"`
+	Phase        IonoObservationTupleResponsePhase `json:"phase"`
 	// Array of plasma frequencies in MHz (must match the size of the height and
 	// electronDensity arrays).
 	PlasmaFrequency []float64 `json:"plasmaFrequency"`
@@ -1645,13 +1647,13 @@ type IonOobservationTupleResponse struct {
 	PlasmaFrequencyUncertainty []float64 `json:"plasmaFrequencyUncertainty"`
 	// Equipment location.
 	PlatformName string                                   `json:"platformName"`
-	Polarization IonOobservationTupleResponsePolarization `json:"polarization"`
-	Power        IonOobservationTupleResponsePower        `json:"power"`
+	Polarization IonoObservationTupleResponsePolarization `json:"polarization"`
+	Power        IonoObservationTupleResponsePower        `json:"power"`
 	// Average range spread of E layer in km. URSI ID: 85.
 	Qe float64 `json:"qe"`
 	// Average range spread of F layer in km. URSI ID: 84.
 	Qf    float64                           `json:"qf"`
-	Range IonOobservationTupleResponseRange `json:"range"`
+	Range IonoObservationTupleResponseRange `json:"range"`
 	// List of Geodetic Latitude, Longitude, and Altitude coordinates in km of the
 	// receiver. Coordinates List must always have 3 elements. Valid ranges are -90.0
 	// to 90.0 for Latitude and -180.0 to 180.0 for Longitude. Altitude is in km and
@@ -1660,7 +1662,7 @@ type IonOobservationTupleResponse struct {
 	// Enums: Mobile, Static.
 	//
 	// Any of "Mobile", "Static".
-	ReceiveSensorType IonOobservationTupleResponseReceiveSensorType `json:"receiveSensorType"`
+	ReceiveSensorType IonoObservationTupleResponseReceiveSensorType `json:"receiveSensorType"`
 	// Array of restricted frequencies.
 	RestrictedFrequency []float64 `json:"restrictedFrequency"`
 	// Notes for the restrictedFrequency data.
@@ -1669,8 +1671,8 @@ type IonOobservationTupleResponse struct {
 	ScaleHeightF2Peak float64 `json:"scaleHeightF2Peak"`
 	// The ScalerInfo record describes the person or system who interpreted the
 	// ionogram in IonoObservation.
-	ScalerInfo IonOobservationTupleResponseScalerInfo `json:"scalerInfo"`
-	Stokes     IonOobservationTupleResponseStokes     `json:"stokes"`
+	ScalerInfo IonoObservationTupleResponseScalerInfo `json:"scalerInfo"`
+	Stokes     IonoObservationTupleResponseStokes     `json:"stokes"`
 	// Details concerning the composition/intention/interpretation/audience/etc. of any
 	// data recorded here. This field may contain all of the intended information e.g.
 	// info on signal waveforms used, antenna setup, etc. OR may describe the
@@ -1685,8 +1687,8 @@ type IonOobservationTupleResponse struct {
 	TidPeriods []float64 `json:"tidPeriods"`
 	// Array of speed in m/s at which the disturbance travels through the ionosphere.
 	TidPhaseSpeeds []float64                                `json:"tidPhaseSpeeds"`
-	Time           IonOobservationTupleResponseTime         `json:"time"`
-	TraceGeneric   IonOobservationTupleResponseTraceGeneric `json:"traceGeneric"`
+	Time           IonoObservationTupleResponseTime         `json:"time"`
+	TraceGeneric   IonoObservationTupleResponseTraceGeneric `json:"traceGeneric"`
 	// List of Geodetic Latitude, Longitude, and Altitude coordinates in km of the
 	// receiver. Coordinates List must always have 3 elements. Valid ranges are -90.0
 	// to 90.0 for Latitude and -180.0 to 180.0 for Longitude. Altitude is in km and
@@ -1695,7 +1697,7 @@ type IonOobservationTupleResponse struct {
 	// Enums: Mobile, Static.
 	//
 	// Any of "Mobile", "Static".
-	TransmitSensorType IonOobservationTupleResponseTransmitSensorType `json:"transmitSensorType"`
+	TransmitSensorType IonoObservationTupleResponseTransmitSensorType `json:"transmitSensorType"`
 	// Characterization of the shape of Es trace. URSI ID: 36.
 	TypeEs string `json:"typeEs"`
 	// Time the row was updated in the database, auto-populated by the system, example
@@ -1830,8 +1832,8 @@ type IonOobservationTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponse) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -1849,16 +1851,16 @@ func (r *IonOobservationTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type IonOobservationTupleResponseDataMode string
+type IonoObservationTupleResponseDataMode string
 
 const (
-	IonOobservationTupleResponseDataModeReal      IonOobservationTupleResponseDataMode = "REAL"
-	IonOobservationTupleResponseDataModeTest      IonOobservationTupleResponseDataMode = "TEST"
-	IonOobservationTupleResponseDataModeSimulated IonOobservationTupleResponseDataMode = "SIMULATED"
-	IonOobservationTupleResponseDataModeExercise  IonOobservationTupleResponseDataMode = "EXERCISE"
+	IonoObservationTupleResponseDataModeReal      IonoObservationTupleResponseDataMode = "REAL"
+	IonoObservationTupleResponseDataModeTest      IonoObservationTupleResponseDataMode = "TEST"
+	IonoObservationTupleResponseDataModeSimulated IonoObservationTupleResponseDataMode = "SIMULATED"
+	IonoObservationTupleResponseDataModeExercise  IonoObservationTupleResponseDataMode = "EXERCISE"
 )
 
-type IonOobservationTupleResponseAmplitude struct {
+type IonoObservationTupleResponseAmplitude struct {
 	// Array of amplitude data.
 	Data [][][][][][][]float64 `json:"data"`
 	// Array of names for dimensions.
@@ -1879,12 +1881,12 @@ type IonOobservationTupleResponseAmplitude struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseAmplitude) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponseAmplitude) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponseAmplitude) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponseAmplitude) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationTupleResponseAntennaElementPosition struct {
+type IonoObservationTupleResponseAntennaElementPosition struct {
 	// Array of 3-element tuples (x,y,z) in km.
 	Data [][]float64 `json:"data"`
 	// Array of names for dimensions.
@@ -1902,25 +1904,25 @@ type IonOobservationTupleResponseAntennaElementPosition struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseAntennaElementPosition) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponseAntennaElementPosition) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponseAntennaElementPosition) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponseAntennaElementPosition) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Enums: J2000, ECR/ECEF, TEME, GCRF, WGS84 (GEODetic lat, long, alt), GEOCentric
 // (lat, long, radii).
-type IonOobservationTupleResponseAntennaElementPositionCoordinateSystem string
+type IonoObservationTupleResponseAntennaElementPositionCoordinateSystem string
 
 const (
-	IonOobservationTupleResponseAntennaElementPositionCoordinateSystemJ2000                   IonOobservationTupleResponseAntennaElementPositionCoordinateSystem = "J2000"
-	IonOobservationTupleResponseAntennaElementPositionCoordinateSystemEcrEcef                 IonOobservationTupleResponseAntennaElementPositionCoordinateSystem = "ECR/ECEF"
-	IonOobservationTupleResponseAntennaElementPositionCoordinateSystemTeme                    IonOobservationTupleResponseAntennaElementPositionCoordinateSystem = "TEME"
-	IonOobservationTupleResponseAntennaElementPositionCoordinateSystemGcrf                    IonOobservationTupleResponseAntennaElementPositionCoordinateSystem = "GCRF"
-	IonOobservationTupleResponseAntennaElementPositionCoordinateSystemWgs84GeoDeticLatLongAlt IonOobservationTupleResponseAntennaElementPositionCoordinateSystem = "WGS84 (GEODetic lat, long, alt)"
-	IonOobservationTupleResponseAntennaElementPositionCoordinateSystemGeoCentricLatLongRadii  IonOobservationTupleResponseAntennaElementPositionCoordinateSystem = "GEOCentric (lat, long, radii)"
+	IonoObservationTupleResponseAntennaElementPositionCoordinateSystemJ2000                   IonoObservationTupleResponseAntennaElementPositionCoordinateSystem = "J2000"
+	IonoObservationTupleResponseAntennaElementPositionCoordinateSystemEcrEcef                 IonoObservationTupleResponseAntennaElementPositionCoordinateSystem = "ECR/ECEF"
+	IonoObservationTupleResponseAntennaElementPositionCoordinateSystemTeme                    IonoObservationTupleResponseAntennaElementPositionCoordinateSystem = "TEME"
+	IonoObservationTupleResponseAntennaElementPositionCoordinateSystemGcrf                    IonoObservationTupleResponseAntennaElementPositionCoordinateSystem = "GCRF"
+	IonoObservationTupleResponseAntennaElementPositionCoordinateSystemWgs84GeoDeticLatLongAlt IonoObservationTupleResponseAntennaElementPositionCoordinateSystem = "WGS84 (GEODetic lat, long, alt)"
+	IonoObservationTupleResponseAntennaElementPositionCoordinateSystemGeoCentricLatLongRadii  IonoObservationTupleResponseAntennaElementPositionCoordinateSystem = "GEOCentric (lat, long, radii)"
 )
 
-type IonOobservationTupleResponseAzimuth struct {
+type IonoObservationTupleResponseAzimuth struct {
 	// Array of incoming azimuth at the receiver.
 	Data [][][][][][][]float64 `json:"data"`
 	// Array of names for dimensions.
@@ -1941,13 +1943,13 @@ type IonOobservationTupleResponseAzimuth struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseAzimuth) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponseAzimuth) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponseAzimuth) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponseAzimuth) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Characteristic attributes of a IonoObservation.
-type IonOobservationTupleResponseCharAtt struct {
+type IonoObservationTupleResponseCharAtt struct {
 	// Characteristic name. This value should reflect the UDL field name for the
 	// corresponding characteristic.
 	CharName string `json:"charName"`
@@ -1995,12 +1997,12 @@ type IonOobservationTupleResponseCharAtt struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseCharAtt) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponseCharAtt) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponseCharAtt) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponseCharAtt) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationTupleResponseDatum struct {
+type IonoObservationTupleResponseDatum struct {
 	// Array to support sparse data collections.
 	Data []float64 `json:"data"`
 	// Notes for the datum with details of what the data is, units, etc.
@@ -2015,27 +2017,27 @@ type IonOobservationTupleResponseDatum struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseDatum) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponseDatum) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponseDatum) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponseDatum) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Profile of electron densities in the ionosphere associated with an
 // IonoObservation.
-type IonOobservationTupleResponseDensityProfile struct {
+type IonoObservationTupleResponseDensityProfile struct {
 	// Full set of the IRI formalism coefficients.
-	Iri IonOobservationTupleResponseDensityProfileIri `json:"iri"`
+	Iri IonoObservationTupleResponseDensityProfileIri `json:"iri"`
 	// Coefficients to describe the E, F1, and F2 layers as parabolic-shape segments.
-	Parabolic IonOobservationTupleResponseDensityProfileParabolic `json:"parabolic"`
+	Parabolic IonoObservationTupleResponseDensityProfileParabolic `json:"parabolic"`
 	// Coefficients to describe profile shape as quasi-parabolic segments.
-	QuasiParabolic IonOobservationTupleResponseDensityProfileQuasiParabolic `json:"quasiParabolic"`
+	QuasiParabolic IonoObservationTupleResponseDensityProfileQuasiParabolic `json:"quasiParabolic"`
 	// Coefficients to describe either the E, F1, and bottomside F2 profile shapes or
 	// the height uncertainty boundaries.
-	ShiftedChebyshev IonOobservationTupleResponseDensityProfileShiftedChebyshev `json:"shiftedChebyshev"`
+	ShiftedChebyshev IonoObservationTupleResponseDensityProfileShiftedChebyshev `json:"shiftedChebyshev"`
 	// Parameters of the constant-scale-height Chapman layer.
-	TopsideExtensionChapmanConst IonOobservationTupleResponseDensityProfileTopsideExtensionChapmanConst `json:"topsideExtensionChapmanConst"`
+	TopsideExtensionChapmanConst IonoObservationTupleResponseDensityProfileTopsideExtensionChapmanConst `json:"topsideExtensionChapmanConst"`
 	// Varying scale height Chapman topside layer.
-	TopsideExtensionVaryChap IonOobservationTupleResponseDensityProfileTopsideExtensionVaryChap `json:"topsideExtensionVaryChap"`
+	TopsideExtensionVaryChap IonoObservationTupleResponseDensityProfileTopsideExtensionVaryChap `json:"topsideExtensionVaryChap"`
 	// Array of valley model coefficients.
 	ValleyModelCoeffs []float64 `json:"valleyModelCoeffs"`
 	// Description of the valley model and parameters.
@@ -2056,13 +2058,13 @@ type IonOobservationTupleResponseDensityProfile struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseDensityProfile) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponseDensityProfile) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponseDensityProfile) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponseDensityProfile) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Full set of the IRI formalism coefficients.
-type IonOobservationTupleResponseDensityProfileIri struct {
+type IonoObservationTupleResponseDensityProfileIri struct {
 	// B0 parameter of the F2 layer shape.
 	B0 float64 `json:"b0"`
 	// B1 parameter of the F2 layer shape.
@@ -2138,17 +2140,17 @@ type IonOobservationTupleResponseDensityProfileIri struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseDensityProfileIri) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponseDensityProfileIri) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponseDensityProfileIri) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponseDensityProfileIri) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Coefficients to describe the E, F1, and F2 layers as parabolic-shape segments.
-type IonOobservationTupleResponseDensityProfileParabolic struct {
+type IonoObservationTupleResponseDensityProfileParabolic struct {
 	// General description of the QP computation algorithm.
 	Description string `json:"description"`
 	// Describes the E, F1, and F2 layers as parabolic-shape segments.
-	ParabolicItems []IonOobservationTupleResponseDensityProfileParabolicParabolicItem `json:"parabolicItems"`
+	ParabolicItems []IonoObservationTupleResponseDensityProfileParabolicParabolicItem `json:"parabolicItems"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Description    respjson.Field
@@ -2159,13 +2161,13 @@ type IonOobservationTupleResponseDensityProfileParabolic struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseDensityProfileParabolic) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponseDensityProfileParabolic) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponseDensityProfileParabolic) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponseDensityProfileParabolic) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Describes the E, F1, and F2 layers as parabolic-shape segments.
-type IonOobservationTupleResponseDensityProfileParabolicParabolicItem struct {
+type IonoObservationTupleResponseDensityProfileParabolicParabolicItem struct {
 	// Plasma frequency at the layer peak, in MHz.
 	F float64 `json:"f"`
 	// Ionospheric plasma layer (E, F1, or F2).
@@ -2186,15 +2188,15 @@ type IonOobservationTupleResponseDensityProfileParabolicParabolicItem struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseDensityProfileParabolicParabolicItem) RawJSON() string {
+func (r IonoObservationTupleResponseDensityProfileParabolicParabolicItem) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *IonOobservationTupleResponseDensityProfileParabolicParabolicItem) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationTupleResponseDensityProfileParabolicParabolicItem) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Coefficients to describe profile shape as quasi-parabolic segments.
-type IonOobservationTupleResponseDensityProfileQuasiParabolic struct {
+type IonoObservationTupleResponseDensityProfileQuasiParabolic struct {
 	// General description of the quasi-parabolic computation algorithm.
 	Description string `json:"description"`
 	// Value of the Earth's radius, in kilometers, used for computations.
@@ -2203,7 +2205,7 @@ type IonOobservationTupleResponseDensityProfileQuasiParabolic struct {
 	// quasi-parabolas defined via A, B, C coefficients, f^2=A/r^2+B/r+C”. Usually 3
 	// groups for E, F1, and F2 layers, but additional segments may be used to improve
 	// accuracy.
-	QuasiParabolicSegments []IonOobservationTupleResponseDensityProfileQuasiParabolicQuasiParabolicSegment `json:"quasiParabolicSegments"`
+	QuasiParabolicSegments []IonoObservationTupleResponseDensityProfileQuasiParabolicQuasiParabolicSegment `json:"quasiParabolicSegments"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Description            respjson.Field
@@ -2215,15 +2217,15 @@ type IonOobservationTupleResponseDensityProfileQuasiParabolic struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseDensityProfileQuasiParabolic) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponseDensityProfileQuasiParabolic) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponseDensityProfileQuasiParabolic) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponseDensityProfileQuasiParabolic) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // A quasi-parabolic segment is the best-fit 3-parameter quasi-parabolas defined
 // via A, B, C coefficients, f^2=A/r^2+B/r+C”. Usually 3 groups for E, F1, and F2
 // layers, but additional segments may be used to improve accuracy.
-type IonOobservationTupleResponseDensityProfileQuasiParabolicQuasiParabolicSegment struct {
+type IonoObservationTupleResponseDensityProfileQuasiParabolicQuasiParabolicSegment struct {
 	// Coefficient A.
 	A float64 `json:"a"`
 	// Coefficient B.
@@ -2253,22 +2255,22 @@ type IonOobservationTupleResponseDensityProfileQuasiParabolicQuasiParabolicSegme
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseDensityProfileQuasiParabolicQuasiParabolicSegment) RawJSON() string {
+func (r IonoObservationTupleResponseDensityProfileQuasiParabolicQuasiParabolicSegment) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *IonOobservationTupleResponseDensityProfileQuasiParabolicQuasiParabolicSegment) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationTupleResponseDensityProfileQuasiParabolicQuasiParabolicSegment) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Coefficients to describe either the E, F1, and bottomside F2 profile shapes or
 // the height uncertainty boundaries.
-type IonOobservationTupleResponseDensityProfileShiftedChebyshev struct {
+type IonoObservationTupleResponseDensityProfileShiftedChebyshev struct {
 	// Description of the computation technique.
 	Description string `json:"description"`
 	// Up to 3 groups of coefficients, using “shiftedChebyshev” sub-field, to describe
 	// E, F1, and bottomside F2 profile shapes, or up to 6 groups of coefficients to
 	// describe height uncertainty boundaries (upper and lower).
-	ShiftedChebyshevs []IonOobservationTupleResponseDensityProfileShiftedChebyshevShiftedChebyshev `json:"shiftedChebyshevs"`
+	ShiftedChebyshevs []IonoObservationTupleResponseDensityProfileShiftedChebyshevShiftedChebyshev `json:"shiftedChebyshevs"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Description       respjson.Field
@@ -2279,17 +2281,17 @@ type IonOobservationTupleResponseDensityProfileShiftedChebyshev struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseDensityProfileShiftedChebyshev) RawJSON() string {
+func (r IonoObservationTupleResponseDensityProfileShiftedChebyshev) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *IonOobservationTupleResponseDensityProfileShiftedChebyshev) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationTupleResponseDensityProfileShiftedChebyshev) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Coefficients, using ‘shiftedChebyshev’ sub-field, to describe E, F1, and
 // bottomside F2 profile shapes, or height uncertainty boundaries (upper and
 // lower).
-type IonOobservationTupleResponseDensityProfileShiftedChebyshevShiftedChebyshev struct {
+type IonoObservationTupleResponseDensityProfileShiftedChebyshevShiftedChebyshev struct {
 	// Array of coefficients.
 	Coeffs []float64 `json:"coeffs"`
 	// Best fit error.
@@ -2322,15 +2324,15 @@ type IonOobservationTupleResponseDensityProfileShiftedChebyshevShiftedChebyshev 
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseDensityProfileShiftedChebyshevShiftedChebyshev) RawJSON() string {
+func (r IonoObservationTupleResponseDensityProfileShiftedChebyshevShiftedChebyshev) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *IonOobservationTupleResponseDensityProfileShiftedChebyshevShiftedChebyshev) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationTupleResponseDensityProfileShiftedChebyshevShiftedChebyshev) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Parameters of the constant-scale-height Chapman layer.
-type IonOobservationTupleResponseDensityProfileTopsideExtensionChapmanConst struct {
+type IonoObservationTupleResponseDensityProfileTopsideExtensionChapmanConst struct {
 	// Peak Density Thickness (PDT) for description of the flat-nose shape, in
 	// kilometers.
 	Chi float64 `json:"chi"`
@@ -2355,15 +2357,15 @@ type IonOobservationTupleResponseDensityProfileTopsideExtensionChapmanConst stru
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseDensityProfileTopsideExtensionChapmanConst) RawJSON() string {
+func (r IonoObservationTupleResponseDensityProfileTopsideExtensionChapmanConst) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *IonOobservationTupleResponseDensityProfileTopsideExtensionChapmanConst) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationTupleResponseDensityProfileTopsideExtensionChapmanConst) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Varying scale height Chapman topside layer.
-type IonOobservationTupleResponseDensityProfileTopsideExtensionVaryChap struct {
+type IonoObservationTupleResponseDensityProfileTopsideExtensionVaryChap struct {
 	// Alpha parameter of the profile shape.
 	Alpha float64 `json:"alpha"`
 	// Beta parameter of the profile shape.
@@ -2397,14 +2399,14 @@ type IonOobservationTupleResponseDensityProfileTopsideExtensionVaryChap struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseDensityProfileTopsideExtensionVaryChap) RawJSON() string {
+func (r IonoObservationTupleResponseDensityProfileTopsideExtensionVaryChap) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *IonOobservationTupleResponseDensityProfileTopsideExtensionVaryChap) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationTupleResponseDensityProfileTopsideExtensionVaryChap) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationTupleResponseDoppler struct {
+type IonoObservationTupleResponseDoppler struct {
 	// Array of received doppler shifts in Hz.
 	Data [][][][][][][]float64 `json:"data"`
 	// Array of names for dimensions.
@@ -2425,12 +2427,12 @@ type IonOobservationTupleResponseDoppler struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseDoppler) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponseDoppler) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponseDoppler) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponseDoppler) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationTupleResponseElevation struct {
+type IonoObservationTupleResponseElevation struct {
 	// Array of incoming elevation at the receiver.
 	Data [][][][][][][]float64 `json:"data"`
 	// Array of names for dimensions.
@@ -2451,12 +2453,12 @@ type IonOobservationTupleResponseElevation struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseElevation) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponseElevation) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponseElevation) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponseElevation) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationTupleResponseFrequency struct {
+type IonoObservationTupleResponseFrequency struct {
 	// Array of frequency data.
 	Data [][][][][][][]float64 `json:"data"`
 	// Array of names for frequency dimensions.
@@ -2477,12 +2479,12 @@ type IonOobservationTupleResponseFrequency struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseFrequency) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponseFrequency) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponseFrequency) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponseFrequency) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationTupleResponsePhase struct {
+type IonoObservationTupleResponsePhase struct {
 	// Array of phase data.
 	Data [][][][][][][]float64 `json:"data"`
 	// Array of names for phase dimensions.
@@ -2504,12 +2506,12 @@ type IonOobservationTupleResponsePhase struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponsePhase) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponsePhase) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponsePhase) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponsePhase) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationTupleResponsePolarization struct {
+type IonoObservationTupleResponsePolarization struct {
 	// Array of polarization data.
 	Data [][][][][][][]string `json:"data"`
 	// Array of names for dimensions.
@@ -2530,12 +2532,12 @@ type IonOobservationTupleResponsePolarization struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponsePolarization) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponsePolarization) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponsePolarization) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponsePolarization) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationTupleResponsePower struct {
+type IonoObservationTupleResponsePower struct {
 	// Array of received power in db.
 	Data [][][][][][][]float64 `json:"data"`
 	// Array of names for dimensions.
@@ -2556,12 +2558,12 @@ type IonOobservationTupleResponsePower struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponsePower) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponsePower) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponsePower) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponsePower) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationTupleResponseRange struct {
+type IonoObservationTupleResponseRange struct {
 	// Array of range data.
 	Data [][][][][][][]float64 `json:"data"`
 	// Array of names for range dimensions.
@@ -2582,22 +2584,22 @@ type IonOobservationTupleResponseRange struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseRange) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponseRange) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponseRange) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponseRange) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Enums: Mobile, Static.
-type IonOobservationTupleResponseReceiveSensorType string
+type IonoObservationTupleResponseReceiveSensorType string
 
 const (
-	IonOobservationTupleResponseReceiveSensorTypeMobile IonOobservationTupleResponseReceiveSensorType = "Mobile"
-	IonOobservationTupleResponseReceiveSensorTypeStatic IonOobservationTupleResponseReceiveSensorType = "Static"
+	IonoObservationTupleResponseReceiveSensorTypeMobile IonoObservationTupleResponseReceiveSensorType = "Mobile"
+	IonoObservationTupleResponseReceiveSensorTypeStatic IonoObservationTupleResponseReceiveSensorType = "Static"
 )
 
 // The ScalerInfo record describes the person or system who interpreted the
 // ionogram in IonoObservation.
-type IonOobservationTupleResponseScalerInfo struct {
+type IonoObservationTupleResponseScalerInfo struct {
 	// Scaler confidence level.
 	ConfidenceLevel int64 `json:"confidenceLevel"`
 	// Scaler confidence score.
@@ -2624,12 +2626,12 @@ type IonOobservationTupleResponseScalerInfo struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseScalerInfo) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponseScalerInfo) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponseScalerInfo) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponseScalerInfo) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationTupleResponseStokes struct {
+type IonoObservationTupleResponseStokes struct {
 	// Array of received stokes data.
 	Data [][][][][][][]float64 `json:"data"`
 	// Array of names for dimensions.
@@ -2653,12 +2655,12 @@ type IonOobservationTupleResponseStokes struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseStokes) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponseStokes) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponseStokes) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponseStokes) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationTupleResponseTime struct {
+type IonoObservationTupleResponseTime struct {
 	// Array of times in number of seconds passed since January 1st, 1970 with the same
 	// dimensions as power.
 	Data [][][][][][][]float64 `json:"data"`
@@ -2680,12 +2682,12 @@ type IonOobservationTupleResponseTime struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseTime) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponseTime) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponseTime) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponseTime) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationTupleResponseTraceGeneric struct {
+type IonoObservationTupleResponseTraceGeneric struct {
 	// Multi-dimensional Array. The 1st dimension spans points along the trace while
 	// the 2nd dimension spans frequency-range pairs.
 	Data [][][]float64 `json:"data"`
@@ -2704,20 +2706,20 @@ type IonOobservationTupleResponseTraceGeneric struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r IonOobservationTupleResponseTraceGeneric) RawJSON() string { return r.JSON.raw }
-func (r *IonOobservationTupleResponseTraceGeneric) UnmarshalJSON(data []byte) error {
+func (r IonoObservationTupleResponseTraceGeneric) RawJSON() string { return r.JSON.raw }
+func (r *IonoObservationTupleResponseTraceGeneric) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Enums: Mobile, Static.
-type IonOobservationTupleResponseTransmitSensorType string
+type IonoObservationTupleResponseTransmitSensorType string
 
 const (
-	IonOobservationTupleResponseTransmitSensorTypeMobile IonOobservationTupleResponseTransmitSensorType = "Mobile"
-	IonOobservationTupleResponseTransmitSensorTypeStatic IonOobservationTupleResponseTransmitSensorType = "Static"
+	IonoObservationTupleResponseTransmitSensorTypeMobile IonoObservationTupleResponseTransmitSensorType = "Mobile"
+	IonoObservationTupleResponseTransmitSensorTypeStatic IonoObservationTupleResponseTransmitSensorType = "Static"
 )
 
-type IonOobservationListParams struct {
+type IonoObservationListParams struct {
 	// Sounding Start time in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	StartTimeUtc time.Time        `query:"startTimeUTC,required" format:"date-time" json:"-"`
 	FirstResult  param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
@@ -2725,16 +2727,16 @@ type IonOobservationListParams struct {
 	paramObj
 }
 
-// URLQuery serializes [IonOobservationListParams]'s query parameters as
+// URLQuery serializes [IonoObservationListParams]'s query parameters as
 // `url.Values`.
-func (r IonOobservationListParams) URLQuery() (v url.Values, err error) {
+func (r IonoObservationListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type IonOobservationCountParams struct {
+type IonoObservationCountParams struct {
 	// Sounding Start time in ISO8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	StartTimeUtc time.Time        `query:"startTimeUTC,required" format:"date-time" json:"-"`
 	FirstResult  param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
@@ -2742,24 +2744,24 @@ type IonOobservationCountParams struct {
 	paramObj
 }
 
-// URLQuery serializes [IonOobservationCountParams]'s query parameters as
+// URLQuery serializes [IonoObservationCountParams]'s query parameters as
 // `url.Values`.
-func (r IonOobservationCountParams) URLQuery() (v url.Values, err error) {
+func (r IonoObservationCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type IonOobservationNewBulkParams struct {
-	Body []IonOobservationNewBulkParamsBody
+type IonoObservationNewBulkParams struct {
+	Body []IonoObservationNewBulkParamsBody
 	paramObj
 }
 
-func (r IonOobservationNewBulkParams) MarshalJSON() (data []byte, err error) {
+func (r IonoObservationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
-func (r *IonOobservationNewBulkParams) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.Body)
 }
 
@@ -2772,7 +2774,7 @@ func (r *IonOobservationNewBulkParams) UnmarshalJSON(data []byte) error {
 //
 // The properties ClassificationMarking, DataMode, Source, StartTimeUtc, StationID,
 // System, SystemInfo are required.
-type IonOobservationNewBulkParamsBody struct {
+type IonoObservationNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -2963,8 +2965,8 @@ type IonOobservationNewBulkParamsBody struct {
 	ZhalfNm param.Opt[float64] `json:"zhalfNm,omitzero"`
 	// Peak height of E-layer in km. URSI ID: 90.
 	ZmE                    param.Opt[float64]                                     `json:"zmE,omitzero"`
-	Amplitude              IonOobservationNewBulkParamsBodyAmplitude              `json:"amplitude,omitzero"`
-	AntennaElementPosition IonOobservationNewBulkParamsBodyAntennaElementPosition `json:"antennaElementPosition,omitzero"`
+	Amplitude              IonoObservationNewBulkParamsBodyAmplitude              `json:"amplitude,omitzero"`
+	AntennaElementPosition IonoObservationNewBulkParamsBodyAntennaElementPosition `json:"antennaElementPosition,omitzero"`
 	// Enums: J2000, ECR/ECEF, TEME, GCRF, WGS84 (GEODetic lat, long, alt), GEOCentric
 	// (lat, long, radii).
 	//
@@ -2973,39 +2975,39 @@ type IonOobservationNewBulkParamsBody struct {
 	AntennaElementPositionCoordinateSystem string `json:"antennaElementPositionCoordinateSystem,omitzero"`
 	// Array of Legacy Artist Flags.
 	ArtistFlags []int64                                 `json:"artistFlags,omitzero"`
-	Azimuth     IonOobservationNewBulkParamsBodyAzimuth `json:"azimuth,omitzero"`
+	Azimuth     IonoObservationNewBulkParamsBodyAzimuth `json:"azimuth,omitzero"`
 	// List of attributes that are associated with the specified characteristics.
 	// Characteristics are defined by the CHARS: URSI IIWG format for archiving monthly
 	// ionospheric characteristics, INAG Bulletin No. 62 specification. Qualifying and
 	// Descriptive letters are defined by the URSI Handbook for Ionogram Interpretation
 	// and reduction, Report UAG, No. 23A specification.
-	CharAtts []IonOobservationNewBulkParamsBodyCharAtt `json:"charAtts,omitzero"`
-	Datum    IonOobservationNewBulkParamsBodyDatum     `json:"datum,omitzero"`
+	CharAtts []IonoObservationNewBulkParamsBodyCharAtt `json:"charAtts,omitzero"`
+	Datum    IonoObservationNewBulkParamsBodyDatum     `json:"datum,omitzero"`
 	// Profile of electron densities in the ionosphere associated with an
 	// IonoObservation.
-	DensityProfile IonOobservationNewBulkParamsBodyDensityProfile `json:"densityProfile,omitzero"`
-	Doppler        IonOobservationNewBulkParamsBodyDoppler        `json:"doppler,omitzero"`
+	DensityProfile IonoObservationNewBulkParamsBodyDensityProfile `json:"densityProfile,omitzero"`
+	Doppler        IonoObservationNewBulkParamsBodyDoppler        `json:"doppler,omitzero"`
 	// Array of electron densities in cm^-3 (must match the size of the height and
 	// plasmaFrequency arrays).
 	ElectronDensity []float64 `json:"electronDensity,omitzero"`
 	// Uncertainty in specifying the electron density at each height point of the
 	// profile (must match the size of the electronDensity array).
 	ElectronDensityUncertainty []float64                                 `json:"electronDensityUncertainty,omitzero"`
-	Elevation                  IonOobservationNewBulkParamsBodyElevation `json:"elevation,omitzero"`
-	Frequency                  IonOobservationNewBulkParamsBodyFrequency `json:"frequency,omitzero"`
+	Elevation                  IonoObservationNewBulkParamsBodyElevation `json:"elevation,omitzero"`
+	Frequency                  IonoObservationNewBulkParamsBodyFrequency `json:"frequency,omitzero"`
 	// Array of altitudes above station level for plasma frequency/density arrays in km
 	// (must match the size of the plasmaFrequency and electronDensity Arrays).
 	Height []float64                             `json:"height,omitzero"`
-	Phase  IonOobservationNewBulkParamsBodyPhase `json:"phase,omitzero"`
+	Phase  IonoObservationNewBulkParamsBodyPhase `json:"phase,omitzero"`
 	// Array of plasma frequencies in MHz (must match the size of the height and
 	// electronDensity arrays).
 	PlasmaFrequency []float64 `json:"plasmaFrequency,omitzero"`
 	// Uncertainty in specifying the electron plasma frequency at each height point of
 	// the profile (must match the size of the plasmaFrequency array).
 	PlasmaFrequencyUncertainty []float64                                    `json:"plasmaFrequencyUncertainty,omitzero"`
-	Polarization               IonOobservationNewBulkParamsBodyPolarization `json:"polarization,omitzero"`
-	Power                      IonOobservationNewBulkParamsBodyPower        `json:"power,omitzero"`
-	Range                      IonOobservationNewBulkParamsBodyRange        `json:"range,omitzero"`
+	Polarization               IonoObservationNewBulkParamsBodyPolarization `json:"polarization,omitzero"`
+	Power                      IonoObservationNewBulkParamsBodyPower        `json:"power,omitzero"`
+	Range                      IonoObservationNewBulkParamsBodyRange        `json:"range,omitzero"`
 	// List of Geodetic Latitude, Longitude, and Altitude coordinates in km of the
 	// receiver. Coordinates List must always have 3 elements. Valid ranges are -90.0
 	// to 90.0 for Latitude and -180.0 to 180.0 for Longitude. Altitude is in km and
@@ -3019,16 +3021,16 @@ type IonOobservationNewBulkParamsBody struct {
 	RestrictedFrequency []float64 `json:"restrictedFrequency,omitzero"`
 	// The ScalerInfo record describes the person or system who interpreted the
 	// ionogram in IonoObservation.
-	ScalerInfo IonOobservationNewBulkParamsBodyScalerInfo `json:"scalerInfo,omitzero"`
-	Stokes     IonOobservationNewBulkParamsBodyStokes     `json:"stokes,omitzero"`
+	ScalerInfo IonoObservationNewBulkParamsBodyScalerInfo `json:"scalerInfo,omitzero"`
+	Stokes     IonoObservationNewBulkParamsBodyStokes     `json:"stokes,omitzero"`
 	// Array of degrees clockwise from true North of the TID.
 	TidAzimuth []float64 `json:"tidAzimuth,omitzero"`
 	// Array of 1/frequency of the TID wave.
 	TidPeriods []float64 `json:"tidPeriods,omitzero"`
 	// Array of speed in m/s at which the disturbance travels through the ionosphere.
 	TidPhaseSpeeds []float64                                    `json:"tidPhaseSpeeds,omitzero"`
-	Time           IonOobservationNewBulkParamsBodyTime         `json:"time,omitzero"`
-	TraceGeneric   IonOobservationNewBulkParamsBodyTraceGeneric `json:"traceGeneric,omitzero"`
+	Time           IonoObservationNewBulkParamsBodyTime         `json:"time,omitzero"`
+	TraceGeneric   IonoObservationNewBulkParamsBodyTraceGeneric `json:"traceGeneric,omitzero"`
 	// List of Geodetic Latitude, Longitude, and Altitude coordinates in km of the
 	// receiver. Coordinates List must always have 3 elements. Valid ranges are -90.0
 	// to 90.0 for Latitude and -180.0 to 180.0 for Longitude. Altitude is in km and
@@ -3041,30 +3043,30 @@ type IonOobservationNewBulkParamsBody struct {
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBody
+func (r IonoObservationNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBody) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBody) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 func init() {
-	apijson.RegisterFieldValidator[IonOobservationNewBulkParamsBody](
+	apijson.RegisterFieldValidator[IonoObservationNewBulkParamsBody](
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
-	apijson.RegisterFieldValidator[IonOobservationNewBulkParamsBody](
+	apijson.RegisterFieldValidator[IonoObservationNewBulkParamsBody](
 		"antennaElementPositionCoordinateSystem", "J2000", "ECR/ECEF", "TEME", "GCRF", "WGS84 (GEODetic lat, long, alt)", "GEOCentric (lat, long, radii)",
 	)
-	apijson.RegisterFieldValidator[IonOobservationNewBulkParamsBody](
+	apijson.RegisterFieldValidator[IonoObservationNewBulkParamsBody](
 		"receiveSensorType", "Mobile", "Static",
 	)
-	apijson.RegisterFieldValidator[IonOobservationNewBulkParamsBody](
+	apijson.RegisterFieldValidator[IonoObservationNewBulkParamsBody](
 		"transmitSensorType", "Mobile", "Static",
 	)
 }
 
-type IonOobservationNewBulkParamsBodyAmplitude struct {
+type IonoObservationNewBulkParamsBodyAmplitude struct {
 	// Notes for the amplitude data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of amplitude data.
@@ -3076,15 +3078,15 @@ type IonOobservationNewBulkParamsBodyAmplitude struct {
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyAmplitude) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyAmplitude
+func (r IonoObservationNewBulkParamsBodyAmplitude) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyAmplitude
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyAmplitude) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyAmplitude) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationNewBulkParamsBodyAntennaElementPosition struct {
+type IonoObservationNewBulkParamsBodyAntennaElementPosition struct {
 	// Array of 3-element tuples (x,y,z) in km.
 	Data [][]float64 `json:"data,omitzero"`
 	// Array of names for dimensions.
@@ -3094,15 +3096,15 @@ type IonOobservationNewBulkParamsBodyAntennaElementPosition struct {
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyAntennaElementPosition) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyAntennaElementPosition
+func (r IonoObservationNewBulkParamsBodyAntennaElementPosition) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyAntennaElementPosition
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyAntennaElementPosition) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyAntennaElementPosition) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationNewBulkParamsBodyAzimuth struct {
+type IonoObservationNewBulkParamsBodyAzimuth struct {
 	// Notes for the azimuth data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of incoming azimuth at the receiver.
@@ -3114,16 +3116,16 @@ type IonOobservationNewBulkParamsBodyAzimuth struct {
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyAzimuth) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyAzimuth
+func (r IonoObservationNewBulkParamsBodyAzimuth) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyAzimuth
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyAzimuth) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyAzimuth) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Characteristic attributes of a IonoObservation.
-type IonOobservationNewBulkParamsBodyCharAtt struct {
+type IonoObservationNewBulkParamsBodyCharAtt struct {
 	// Characteristic name. This value should reflect the UDL field name for the
 	// corresponding characteristic.
 	CharName param.Opt[string] `json:"charName,omitzero"`
@@ -3156,15 +3158,15 @@ type IonOobservationNewBulkParamsBodyCharAtt struct {
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyCharAtt) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyCharAtt
+func (r IonoObservationNewBulkParamsBodyCharAtt) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyCharAtt
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyCharAtt) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyCharAtt) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationNewBulkParamsBodyDatum struct {
+type IonoObservationNewBulkParamsBodyDatum struct {
 	// Notes for the datum with details of what the data is, units, etc.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array to support sparse data collections.
@@ -3172,47 +3174,47 @@ type IonOobservationNewBulkParamsBodyDatum struct {
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyDatum) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyDatum
+func (r IonoObservationNewBulkParamsBodyDatum) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyDatum
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyDatum) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyDatum) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Profile of electron densities in the ionosphere associated with an
 // IonoObservation.
-type IonOobservationNewBulkParamsBodyDensityProfile struct {
+type IonoObservationNewBulkParamsBodyDensityProfile struct {
 	// Description of the valley model and parameters.
 	ValleyModelDescription param.Opt[string] `json:"valleyModelDescription,omitzero"`
 	// Full set of the IRI formalism coefficients.
-	Iri IonOobservationNewBulkParamsBodyDensityProfileIri `json:"iri,omitzero"`
+	Iri IonoObservationNewBulkParamsBodyDensityProfileIri `json:"iri,omitzero"`
 	// Coefficients to describe the E, F1, and F2 layers as parabolic-shape segments.
-	Parabolic IonOobservationNewBulkParamsBodyDensityProfileParabolic `json:"parabolic,omitzero"`
+	Parabolic IonoObservationNewBulkParamsBodyDensityProfileParabolic `json:"parabolic,omitzero"`
 	// Coefficients to describe profile shape as quasi-parabolic segments.
-	QuasiParabolic IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolic `json:"quasiParabolic,omitzero"`
+	QuasiParabolic IonoObservationNewBulkParamsBodyDensityProfileQuasiParabolic `json:"quasiParabolic,omitzero"`
 	// Coefficients to describe either the E, F1, and bottomside F2 profile shapes or
 	// the height uncertainty boundaries.
-	ShiftedChebyshev IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshev `json:"shiftedChebyshev,omitzero"`
+	ShiftedChebyshev IonoObservationNewBulkParamsBodyDensityProfileShiftedChebyshev `json:"shiftedChebyshev,omitzero"`
 	// Parameters of the constant-scale-height Chapman layer.
-	TopsideExtensionChapmanConst IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst `json:"topsideExtensionChapmanConst,omitzero"`
+	TopsideExtensionChapmanConst IonoObservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst `json:"topsideExtensionChapmanConst,omitzero"`
 	// Varying scale height Chapman topside layer.
-	TopsideExtensionVaryChap IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap `json:"topsideExtensionVaryChap,omitzero"`
+	TopsideExtensionVaryChap IonoObservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap `json:"topsideExtensionVaryChap,omitzero"`
 	// Array of valley model coefficients.
 	ValleyModelCoeffs []float64 `json:"valleyModelCoeffs,omitzero"`
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyDensityProfile) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyDensityProfile
+func (r IonoObservationNewBulkParamsBodyDensityProfile) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyDensityProfile
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyDensityProfile) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyDensityProfile) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Full set of the IRI formalism coefficients.
-type IonOobservationNewBulkParamsBodyDensityProfileIri struct {
+type IonoObservationNewBulkParamsBodyDensityProfileIri struct {
 	// B0 parameter of the F2 layer shape.
 	B0 param.Opt[float64] `json:"b0,omitzero"`
 	// B1 parameter of the F2 layer shape.
@@ -3261,33 +3263,33 @@ type IonOobservationNewBulkParamsBodyDensityProfileIri struct {
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyDensityProfileIri) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyDensityProfileIri
+func (r IonoObservationNewBulkParamsBodyDensityProfileIri) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyDensityProfileIri
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyDensityProfileIri) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyDensityProfileIri) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Coefficients to describe the E, F1, and F2 layers as parabolic-shape segments.
-type IonOobservationNewBulkParamsBodyDensityProfileParabolic struct {
+type IonoObservationNewBulkParamsBodyDensityProfileParabolic struct {
 	// General description of the QP computation algorithm.
 	Description param.Opt[string] `json:"description,omitzero"`
 	// Describes the E, F1, and F2 layers as parabolic-shape segments.
-	ParabolicItems []IonOobservationNewBulkParamsBodyDensityProfileParabolicParabolicItem `json:"parabolicItems,omitzero"`
+	ParabolicItems []IonoObservationNewBulkParamsBodyDensityProfileParabolicParabolicItem `json:"parabolicItems,omitzero"`
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyDensityProfileParabolic) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyDensityProfileParabolic
+func (r IonoObservationNewBulkParamsBodyDensityProfileParabolic) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyDensityProfileParabolic
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyDensityProfileParabolic) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyDensityProfileParabolic) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Describes the E, F1, and F2 layers as parabolic-shape segments.
-type IonOobservationNewBulkParamsBodyDensityProfileParabolicParabolicItem struct {
+type IonoObservationNewBulkParamsBodyDensityProfileParabolicParabolicItem struct {
 	// Plasma frequency at the layer peak, in MHz.
 	F param.Opt[float64] `json:"f,omitzero"`
 	// Ionospheric plasma layer (E, F1, or F2).
@@ -3299,16 +3301,16 @@ type IonOobservationNewBulkParamsBodyDensityProfileParabolicParabolicItem struct
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyDensityProfileParabolicParabolicItem) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyDensityProfileParabolicParabolicItem
+func (r IonoObservationNewBulkParamsBodyDensityProfileParabolicParabolicItem) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyDensityProfileParabolicParabolicItem
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyDensityProfileParabolicParabolicItem) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyDensityProfileParabolicParabolicItem) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Coefficients to describe profile shape as quasi-parabolic segments.
-type IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolic struct {
+type IonoObservationNewBulkParamsBodyDensityProfileQuasiParabolic struct {
 	// General description of the quasi-parabolic computation algorithm.
 	Description param.Opt[string] `json:"description,omitzero"`
 	// Value of the Earth's radius, in kilometers, used for computations.
@@ -3317,22 +3319,22 @@ type IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolic struct {
 	// quasi-parabolas defined via A, B, C coefficients, f^2=A/r^2+B/r+C”. Usually 3
 	// groups for E, F1, and F2 layers, but additional segments may be used to improve
 	// accuracy.
-	QuasiParabolicSegments []IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment `json:"quasiParabolicSegments,omitzero"`
+	QuasiParabolicSegments []IonoObservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment `json:"quasiParabolicSegments,omitzero"`
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolic) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolic
+func (r IonoObservationNewBulkParamsBodyDensityProfileQuasiParabolic) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyDensityProfileQuasiParabolic
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolic) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyDensityProfileQuasiParabolic) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // A quasi-parabolic segment is the best-fit 3-parameter quasi-parabolas defined
 // via A, B, C coefficients, f^2=A/r^2+B/r+C”. Usually 3 groups for E, F1, and F2
 // layers, but additional segments may be used to improve accuracy.
-type IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment struct {
+type IonoObservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment struct {
 	// Coefficient A.
 	A param.Opt[float64] `json:"a,omitzero"`
 	// Coefficient B.
@@ -3350,38 +3352,38 @@ type IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabolicS
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment
+func (r IonoObservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Coefficients to describe either the E, F1, and bottomside F2 profile shapes or
 // the height uncertainty boundaries.
-type IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshev struct {
+type IonoObservationNewBulkParamsBodyDensityProfileShiftedChebyshev struct {
 	// Description of the computation technique.
 	Description param.Opt[string] `json:"description,omitzero"`
 	// Up to 3 groups of coefficients, using “shiftedChebyshev” sub-field, to describe
 	// E, F1, and bottomside F2 profile shapes, or up to 6 groups of coefficients to
 	// describe height uncertainty boundaries (upper and lower).
-	ShiftedChebyshevs []IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev `json:"shiftedChebyshevs,omitzero"`
+	ShiftedChebyshevs []IonoObservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev `json:"shiftedChebyshevs,omitzero"`
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshev) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshev
+func (r IonoObservationNewBulkParamsBodyDensityProfileShiftedChebyshev) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyDensityProfileShiftedChebyshev
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshev) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyDensityProfileShiftedChebyshev) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Coefficients, using ‘shiftedChebyshev’ sub-field, to describe E, F1, and
 // bottomside F2 profile shapes, or height uncertainty boundaries (upper and
 // lower).
-type IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev struct {
+type IonoObservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev struct {
 	// Best fit error.
 	Error param.Opt[float64] `json:"error,omitzero"`
 	// Start frequency of the layer, in MHz.
@@ -3401,16 +3403,16 @@ type IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChebys
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev
+func (r IonoObservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Parameters of the constant-scale-height Chapman layer.
-type IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst struct {
+type IonoObservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst struct {
 	// Peak Density Thickness (PDT) for description of the flat-nose shape, in
 	// kilometers.
 	Chi param.Opt[float64] `json:"chi,omitzero"`
@@ -3425,16 +3427,16 @@ type IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst 
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst
+func (r IonoObservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyDensityProfileTopsideExtensionChapmanConst) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Varying scale height Chapman topside layer.
-type IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap struct {
+type IonoObservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap struct {
 	// Alpha parameter of the profile shape.
 	Alpha param.Opt[float64] `json:"alpha,omitzero"`
 	// Beta parameter of the profile shape.
@@ -3455,15 +3457,15 @@ type IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap stru
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap
+func (r IonoObservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyDensityProfileTopsideExtensionVaryChap) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationNewBulkParamsBodyDoppler struct {
+type IonoObservationNewBulkParamsBodyDoppler struct {
 	// Notes for the doppler data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of received doppler shifts in Hz.
@@ -3475,15 +3477,15 @@ type IonOobservationNewBulkParamsBodyDoppler struct {
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyDoppler) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyDoppler
+func (r IonoObservationNewBulkParamsBodyDoppler) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyDoppler
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyDoppler) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyDoppler) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationNewBulkParamsBodyElevation struct {
+type IonoObservationNewBulkParamsBodyElevation struct {
 	// Notes for the elevation data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of incoming elevation at the receiver.
@@ -3495,15 +3497,15 @@ type IonOobservationNewBulkParamsBodyElevation struct {
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyElevation) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyElevation
+func (r IonoObservationNewBulkParamsBodyElevation) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyElevation
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyElevation) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyElevation) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationNewBulkParamsBodyFrequency struct {
+type IonoObservationNewBulkParamsBodyFrequency struct {
 	// Notes for the frequency data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of frequency data.
@@ -3515,15 +3517,15 @@ type IonOobservationNewBulkParamsBodyFrequency struct {
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyFrequency) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyFrequency
+func (r IonoObservationNewBulkParamsBodyFrequency) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyFrequency
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyFrequency) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyFrequency) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationNewBulkParamsBodyPhase struct {
+type IonoObservationNewBulkParamsBodyPhase struct {
 	// Notes for the phase data. Orientation and position for each antenna element
 	// across the antenna_element dimension.
 	Notes param.Opt[string] `json:"notes,omitzero"`
@@ -3536,15 +3538,15 @@ type IonOobservationNewBulkParamsBodyPhase struct {
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyPhase) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyPhase
+func (r IonoObservationNewBulkParamsBodyPhase) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyPhase
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyPhase) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyPhase) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationNewBulkParamsBodyPolarization struct {
+type IonoObservationNewBulkParamsBodyPolarization struct {
 	// Notes for the polarization data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of polarization data.
@@ -3556,15 +3558,15 @@ type IonOobservationNewBulkParamsBodyPolarization struct {
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyPolarization) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyPolarization
+func (r IonoObservationNewBulkParamsBodyPolarization) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyPolarization
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyPolarization) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyPolarization) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationNewBulkParamsBodyPower struct {
+type IonoObservationNewBulkParamsBodyPower struct {
 	// Notes for the power data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of received power in db.
@@ -3576,15 +3578,15 @@ type IonOobservationNewBulkParamsBodyPower struct {
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyPower) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyPower
+func (r IonoObservationNewBulkParamsBodyPower) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyPower
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyPower) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyPower) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationNewBulkParamsBodyRange struct {
+type IonoObservationNewBulkParamsBodyRange struct {
 	// Notes for the range data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of range data.
@@ -3596,17 +3598,17 @@ type IonOobservationNewBulkParamsBodyRange struct {
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyRange) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyRange
+func (r IonoObservationNewBulkParamsBodyRange) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyRange
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyRange) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyRange) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // The ScalerInfo record describes the person or system who interpreted the
 // ionogram in IonoObservation.
-type IonOobservationNewBulkParamsBodyScalerInfo struct {
+type IonoObservationNewBulkParamsBodyScalerInfo struct {
 	// Scaler confidence level.
 	ConfidenceLevel param.Opt[int64] `json:"confidenceLevel,omitzero"`
 	// Scaler confidence score.
@@ -3622,15 +3624,15 @@ type IonOobservationNewBulkParamsBodyScalerInfo struct {
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyScalerInfo) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyScalerInfo
+func (r IonoObservationNewBulkParamsBodyScalerInfo) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyScalerInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyScalerInfo) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyScalerInfo) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationNewBulkParamsBodyStokes struct {
+type IonoObservationNewBulkParamsBodyStokes struct {
 	// Notes for the stokes data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of received stokes data.
@@ -3644,15 +3646,15 @@ type IonOobservationNewBulkParamsBodyStokes struct {
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyStokes) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyStokes
+func (r IonoObservationNewBulkParamsBodyStokes) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyStokes
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyStokes) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyStokes) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationNewBulkParamsBodyTime struct {
+type IonoObservationNewBulkParamsBodyTime struct {
 	// The notes indicate the scheme and accuracy.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of times in number of seconds passed since January 1st, 1970 with the same
@@ -3665,15 +3667,15 @@ type IonOobservationNewBulkParamsBodyTime struct {
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyTime) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyTime
+func (r IonoObservationNewBulkParamsBodyTime) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyTime
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyTime) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyTime) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationNewBulkParamsBodyTraceGeneric struct {
+type IonoObservationNewBulkParamsBodyTraceGeneric struct {
 	// Notes for the trace generic data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Multi-dimensional Array. The 1st dimension spans points along the trace while
@@ -3684,15 +3686,15 @@ type IonOobservationNewBulkParamsBodyTraceGeneric struct {
 	paramObj
 }
 
-func (r IonOobservationNewBulkParamsBodyTraceGeneric) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationNewBulkParamsBodyTraceGeneric
+func (r IonoObservationNewBulkParamsBodyTraceGeneric) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationNewBulkParamsBodyTraceGeneric
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationNewBulkParamsBodyTraceGeneric) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationNewBulkParamsBodyTraceGeneric) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationTupleParams struct {
+type IonoObservationTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -3705,24 +3707,24 @@ type IonOobservationTupleParams struct {
 	paramObj
 }
 
-// URLQuery serializes [IonOobservationTupleParams]'s query parameters as
+// URLQuery serializes [IonoObservationTupleParams]'s query parameters as
 // `url.Values`.
-func (r IonOobservationTupleParams) URLQuery() (v url.Values, err error) {
+func (r IonoObservationTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type IonOobservationUnvalidatedPublishParams struct {
-	Body []IonOobservationUnvalidatedPublishParamsBody
+type IonoObservationUnvalidatedPublishParams struct {
+	Body []IonoObservationUnvalidatedPublishParamsBody
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
+func (r IonoObservationUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
-func (r *IonOobservationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.Body)
 }
 
@@ -3735,7 +3737,7 @@ func (r *IonOobservationUnvalidatedPublishParams) UnmarshalJSON(data []byte) err
 //
 // The properties ClassificationMarking, DataMode, Source, StartTimeUtc, StationID,
 // System, SystemInfo are required.
-type IonOobservationUnvalidatedPublishParamsBody struct {
+type IonoObservationUnvalidatedPublishParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -3926,8 +3928,8 @@ type IonOobservationUnvalidatedPublishParamsBody struct {
 	ZhalfNm param.Opt[float64] `json:"zhalfNm,omitzero"`
 	// Peak height of E-layer in km. URSI ID: 90.
 	ZmE                    param.Opt[float64]                                                `json:"zmE,omitzero"`
-	Amplitude              IonOobservationUnvalidatedPublishParamsBodyAmplitude              `json:"amplitude,omitzero"`
-	AntennaElementPosition IonOobservationUnvalidatedPublishParamsBodyAntennaElementPosition `json:"antennaElementPosition,omitzero"`
+	Amplitude              IonoObservationUnvalidatedPublishParamsBodyAmplitude              `json:"amplitude,omitzero"`
+	AntennaElementPosition IonoObservationUnvalidatedPublishParamsBodyAntennaElementPosition `json:"antennaElementPosition,omitzero"`
 	// Enums: J2000, ECR/ECEF, TEME, GCRF, WGS84 (GEODetic lat, long, alt), GEOCentric
 	// (lat, long, radii).
 	//
@@ -3936,39 +3938,39 @@ type IonOobservationUnvalidatedPublishParamsBody struct {
 	AntennaElementPositionCoordinateSystem string `json:"antennaElementPositionCoordinateSystem,omitzero"`
 	// Array of Legacy Artist Flags.
 	ArtistFlags []int64                                            `json:"artistFlags,omitzero"`
-	Azimuth     IonOobservationUnvalidatedPublishParamsBodyAzimuth `json:"azimuth,omitzero"`
+	Azimuth     IonoObservationUnvalidatedPublishParamsBodyAzimuth `json:"azimuth,omitzero"`
 	// List of attributes that are associated with the specified characteristics.
 	// Characteristics are defined by the CHARS: URSI IIWG format for archiving monthly
 	// ionospheric characteristics, INAG Bulletin No. 62 specification. Qualifying and
 	// Descriptive letters are defined by the URSI Handbook for Ionogram Interpretation
 	// and reduction, Report UAG, No. 23A specification.
-	CharAtts []IonOobservationUnvalidatedPublishParamsBodyCharAtt `json:"charAtts,omitzero"`
-	Datum    IonOobservationUnvalidatedPublishParamsBodyDatum     `json:"datum,omitzero"`
+	CharAtts []IonoObservationUnvalidatedPublishParamsBodyCharAtt `json:"charAtts,omitzero"`
+	Datum    IonoObservationUnvalidatedPublishParamsBodyDatum     `json:"datum,omitzero"`
 	// Profile of electron densities in the ionosphere associated with an
 	// IonoObservation.
-	DensityProfile IonOobservationUnvalidatedPublishParamsBodyDensityProfile `json:"densityProfile,omitzero"`
-	Doppler        IonOobservationUnvalidatedPublishParamsBodyDoppler        `json:"doppler,omitzero"`
+	DensityProfile IonoObservationUnvalidatedPublishParamsBodyDensityProfile `json:"densityProfile,omitzero"`
+	Doppler        IonoObservationUnvalidatedPublishParamsBodyDoppler        `json:"doppler,omitzero"`
 	// Array of electron densities in cm^-3 (must match the size of the height and
 	// plasmaFrequency arrays).
 	ElectronDensity []float64 `json:"electronDensity,omitzero"`
 	// Uncertainty in specifying the electron density at each height point of the
 	// profile (must match the size of the electronDensity array).
 	ElectronDensityUncertainty []float64                                            `json:"electronDensityUncertainty,omitzero"`
-	Elevation                  IonOobservationUnvalidatedPublishParamsBodyElevation `json:"elevation,omitzero"`
-	Frequency                  IonOobservationUnvalidatedPublishParamsBodyFrequency `json:"frequency,omitzero"`
+	Elevation                  IonoObservationUnvalidatedPublishParamsBodyElevation `json:"elevation,omitzero"`
+	Frequency                  IonoObservationUnvalidatedPublishParamsBodyFrequency `json:"frequency,omitzero"`
 	// Array of altitudes above station level for plasma frequency/density arrays in km
 	// (must match the size of the plasmaFrequency and electronDensity Arrays).
 	Height []float64                                        `json:"height,omitzero"`
-	Phase  IonOobservationUnvalidatedPublishParamsBodyPhase `json:"phase,omitzero"`
+	Phase  IonoObservationUnvalidatedPublishParamsBodyPhase `json:"phase,omitzero"`
 	// Array of plasma frequencies in MHz (must match the size of the height and
 	// electronDensity arrays).
 	PlasmaFrequency []float64 `json:"plasmaFrequency,omitzero"`
 	// Uncertainty in specifying the electron plasma frequency at each height point of
 	// the profile (must match the size of the plasmaFrequency array).
 	PlasmaFrequencyUncertainty []float64                                               `json:"plasmaFrequencyUncertainty,omitzero"`
-	Polarization               IonOobservationUnvalidatedPublishParamsBodyPolarization `json:"polarization,omitzero"`
-	Power                      IonOobservationUnvalidatedPublishParamsBodyPower        `json:"power,omitzero"`
-	Range                      IonOobservationUnvalidatedPublishParamsBodyRange        `json:"range,omitzero"`
+	Polarization               IonoObservationUnvalidatedPublishParamsBodyPolarization `json:"polarization,omitzero"`
+	Power                      IonoObservationUnvalidatedPublishParamsBodyPower        `json:"power,omitzero"`
+	Range                      IonoObservationUnvalidatedPublishParamsBodyRange        `json:"range,omitzero"`
 	// List of Geodetic Latitude, Longitude, and Altitude coordinates in km of the
 	// receiver. Coordinates List must always have 3 elements. Valid ranges are -90.0
 	// to 90.0 for Latitude and -180.0 to 180.0 for Longitude. Altitude is in km and
@@ -3982,16 +3984,16 @@ type IonOobservationUnvalidatedPublishParamsBody struct {
 	RestrictedFrequency []float64 `json:"restrictedFrequency,omitzero"`
 	// The ScalerInfo record describes the person or system who interpreted the
 	// ionogram in IonoObservation.
-	ScalerInfo IonOobservationUnvalidatedPublishParamsBodyScalerInfo `json:"scalerInfo,omitzero"`
-	Stokes     IonOobservationUnvalidatedPublishParamsBodyStokes     `json:"stokes,omitzero"`
+	ScalerInfo IonoObservationUnvalidatedPublishParamsBodyScalerInfo `json:"scalerInfo,omitzero"`
+	Stokes     IonoObservationUnvalidatedPublishParamsBodyStokes     `json:"stokes,omitzero"`
 	// Array of degrees clockwise from true North of the TID.
 	TidAzimuth []float64 `json:"tidAzimuth,omitzero"`
 	// Array of 1/frequency of the TID wave.
 	TidPeriods []float64 `json:"tidPeriods,omitzero"`
 	// Array of speed in m/s at which the disturbance travels through the ionosphere.
 	TidPhaseSpeeds []float64                                               `json:"tidPhaseSpeeds,omitzero"`
-	Time           IonOobservationUnvalidatedPublishParamsBodyTime         `json:"time,omitzero"`
-	TraceGeneric   IonOobservationUnvalidatedPublishParamsBodyTraceGeneric `json:"traceGeneric,omitzero"`
+	Time           IonoObservationUnvalidatedPublishParamsBodyTime         `json:"time,omitzero"`
+	TraceGeneric   IonoObservationUnvalidatedPublishParamsBodyTraceGeneric `json:"traceGeneric,omitzero"`
 	// List of Geodetic Latitude, Longitude, and Altitude coordinates in km of the
 	// receiver. Coordinates List must always have 3 elements. Valid ranges are -90.0
 	// to 90.0 for Latitude and -180.0 to 180.0 for Longitude. Altitude is in km and
@@ -4004,30 +4006,30 @@ type IonOobservationUnvalidatedPublishParamsBody struct {
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBody
+func (r IonoObservationUnvalidatedPublishParamsBody) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBody
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 func init() {
-	apijson.RegisterFieldValidator[IonOobservationUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[IonoObservationUnvalidatedPublishParamsBody](
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
-	apijson.RegisterFieldValidator[IonOobservationUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[IonoObservationUnvalidatedPublishParamsBody](
 		"antennaElementPositionCoordinateSystem", "J2000", "ECR/ECEF", "TEME", "GCRF", "WGS84 (GEODetic lat, long, alt)", "GEOCentric (lat, long, radii)",
 	)
-	apijson.RegisterFieldValidator[IonOobservationUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[IonoObservationUnvalidatedPublishParamsBody](
 		"receiveSensorType", "Mobile", "Static",
 	)
-	apijson.RegisterFieldValidator[IonOobservationUnvalidatedPublishParamsBody](
+	apijson.RegisterFieldValidator[IonoObservationUnvalidatedPublishParamsBody](
 		"transmitSensorType", "Mobile", "Static",
 	)
 }
 
-type IonOobservationUnvalidatedPublishParamsBodyAmplitude struct {
+type IonoObservationUnvalidatedPublishParamsBodyAmplitude struct {
 	// Notes for the amplitude data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of amplitude data.
@@ -4039,15 +4041,15 @@ type IonOobservationUnvalidatedPublishParamsBodyAmplitude struct {
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyAmplitude) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyAmplitude
+func (r IonoObservationUnvalidatedPublishParamsBodyAmplitude) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyAmplitude
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyAmplitude) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyAmplitude) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationUnvalidatedPublishParamsBodyAntennaElementPosition struct {
+type IonoObservationUnvalidatedPublishParamsBodyAntennaElementPosition struct {
 	// Array of 3-element tuples (x,y,z) in km.
 	Data [][]float64 `json:"data,omitzero"`
 	// Array of names for dimensions.
@@ -4057,15 +4059,15 @@ type IonOobservationUnvalidatedPublishParamsBodyAntennaElementPosition struct {
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyAntennaElementPosition) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyAntennaElementPosition
+func (r IonoObservationUnvalidatedPublishParamsBodyAntennaElementPosition) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyAntennaElementPosition
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyAntennaElementPosition) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyAntennaElementPosition) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationUnvalidatedPublishParamsBodyAzimuth struct {
+type IonoObservationUnvalidatedPublishParamsBodyAzimuth struct {
 	// Notes for the azimuth data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of incoming azimuth at the receiver.
@@ -4077,16 +4079,16 @@ type IonOobservationUnvalidatedPublishParamsBodyAzimuth struct {
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyAzimuth) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyAzimuth
+func (r IonoObservationUnvalidatedPublishParamsBodyAzimuth) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyAzimuth
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyAzimuth) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyAzimuth) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Characteristic attributes of a IonoObservation.
-type IonOobservationUnvalidatedPublishParamsBodyCharAtt struct {
+type IonoObservationUnvalidatedPublishParamsBodyCharAtt struct {
 	// Characteristic name. This value should reflect the UDL field name for the
 	// corresponding characteristic.
 	CharName param.Opt[string] `json:"charName,omitzero"`
@@ -4119,15 +4121,15 @@ type IonOobservationUnvalidatedPublishParamsBodyCharAtt struct {
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyCharAtt) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyCharAtt
+func (r IonoObservationUnvalidatedPublishParamsBodyCharAtt) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyCharAtt
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyCharAtt) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyCharAtt) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationUnvalidatedPublishParamsBodyDatum struct {
+type IonoObservationUnvalidatedPublishParamsBodyDatum struct {
 	// Notes for the datum with details of what the data is, units, etc.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array to support sparse data collections.
@@ -4135,47 +4137,47 @@ type IonOobservationUnvalidatedPublishParamsBodyDatum struct {
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyDatum) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyDatum
+func (r IonoObservationUnvalidatedPublishParamsBodyDatum) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyDatum
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyDatum) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyDatum) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Profile of electron densities in the ionosphere associated with an
 // IonoObservation.
-type IonOobservationUnvalidatedPublishParamsBodyDensityProfile struct {
+type IonoObservationUnvalidatedPublishParamsBodyDensityProfile struct {
 	// Description of the valley model and parameters.
 	ValleyModelDescription param.Opt[string] `json:"valleyModelDescription,omitzero"`
 	// Full set of the IRI formalism coefficients.
-	Iri IonOobservationUnvalidatedPublishParamsBodyDensityProfileIri `json:"iri,omitzero"`
+	Iri IonoObservationUnvalidatedPublishParamsBodyDensityProfileIri `json:"iri,omitzero"`
 	// Coefficients to describe the E, F1, and F2 layers as parabolic-shape segments.
-	Parabolic IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolic `json:"parabolic,omitzero"`
+	Parabolic IonoObservationUnvalidatedPublishParamsBodyDensityProfileParabolic `json:"parabolic,omitzero"`
 	// Coefficients to describe profile shape as quasi-parabolic segments.
-	QuasiParabolic IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic `json:"quasiParabolic,omitzero"`
+	QuasiParabolic IonoObservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic `json:"quasiParabolic,omitzero"`
 	// Coefficients to describe either the E, F1, and bottomside F2 profile shapes or
 	// the height uncertainty boundaries.
-	ShiftedChebyshev IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev `json:"shiftedChebyshev,omitzero"`
+	ShiftedChebyshev IonoObservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev `json:"shiftedChebyshev,omitzero"`
 	// Parameters of the constant-scale-height Chapman layer.
-	TopsideExtensionChapmanConst IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionChapmanConst `json:"topsideExtensionChapmanConst,omitzero"`
+	TopsideExtensionChapmanConst IonoObservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionChapmanConst `json:"topsideExtensionChapmanConst,omitzero"`
 	// Varying scale height Chapman topside layer.
-	TopsideExtensionVaryChap IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionVaryChap `json:"topsideExtensionVaryChap,omitzero"`
+	TopsideExtensionVaryChap IonoObservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionVaryChap `json:"topsideExtensionVaryChap,omitzero"`
 	// Array of valley model coefficients.
 	ValleyModelCoeffs []float64 `json:"valleyModelCoeffs,omitzero"`
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfile) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfile
+func (r IonoObservationUnvalidatedPublishParamsBodyDensityProfile) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyDensityProfile
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfile) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyDensityProfile) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Full set of the IRI formalism coefficients.
-type IonOobservationUnvalidatedPublishParamsBodyDensityProfileIri struct {
+type IonoObservationUnvalidatedPublishParamsBodyDensityProfileIri struct {
 	// B0 parameter of the F2 layer shape.
 	B0 param.Opt[float64] `json:"b0,omitzero"`
 	// B1 parameter of the F2 layer shape.
@@ -4224,33 +4226,33 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileIri struct {
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileIri) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileIri
+func (r IonoObservationUnvalidatedPublishParamsBodyDensityProfileIri) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyDensityProfileIri
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfileIri) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyDensityProfileIri) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Coefficients to describe the E, F1, and F2 layers as parabolic-shape segments.
-type IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolic struct {
+type IonoObservationUnvalidatedPublishParamsBodyDensityProfileParabolic struct {
 	// General description of the QP computation algorithm.
 	Description param.Opt[string] `json:"description,omitzero"`
 	// Describes the E, F1, and F2 layers as parabolic-shape segments.
-	ParabolicItems []IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabolicItem `json:"parabolicItems,omitzero"`
+	ParabolicItems []IonoObservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabolicItem `json:"parabolicItems,omitzero"`
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolic) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolic
+func (r IonoObservationUnvalidatedPublishParamsBodyDensityProfileParabolic) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyDensityProfileParabolic
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolic) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyDensityProfileParabolic) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Describes the E, F1, and F2 layers as parabolic-shape segments.
-type IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabolicItem struct {
+type IonoObservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabolicItem struct {
 	// Plasma frequency at the layer peak, in MHz.
 	F param.Opt[float64] `json:"f,omitzero"`
 	// Ionospheric plasma layer (E, F1, or F2).
@@ -4262,16 +4264,16 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabolic
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabolicItem) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabolicItem
+func (r IonoObservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabolicItem) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabolicItem
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabolicItem) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyDensityProfileParabolicParabolicItem) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Coefficients to describe profile shape as quasi-parabolic segments.
-type IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic struct {
+type IonoObservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic struct {
 	// General description of the quasi-parabolic computation algorithm.
 	Description param.Opt[string] `json:"description,omitzero"`
 	// Value of the Earth's radius, in kilometers, used for computations.
@@ -4280,22 +4282,22 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic str
 	// quasi-parabolas defined via A, B, C coefficients, f^2=A/r^2+B/r+C”. Usually 3
 	// groups for E, F1, and F2 layers, but additional segments may be used to improve
 	// accuracy.
-	QuasiParabolicSegments []IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment `json:"quasiParabolicSegments,omitzero"`
+	QuasiParabolicSegments []IonoObservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment `json:"quasiParabolicSegments,omitzero"`
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic
+func (r IonoObservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolic) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // A quasi-parabolic segment is the best-fit 3-parameter quasi-parabolas defined
 // via A, B, C coefficients, f^2=A/r^2+B/r+C”. Usually 3 groups for E, F1, and F2
 // layers, but additional segments may be used to improve accuracy.
-type IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment struct {
+type IonoObservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment struct {
 	// Coefficient A.
 	A param.Opt[float64] `json:"a,omitzero"`
 	// Coefficient B.
@@ -4313,38 +4315,38 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQuas
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment
+func (r IonoObservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyDensityProfileQuasiParabolicQuasiParabolicSegment) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Coefficients to describe either the E, F1, and bottomside F2 profile shapes or
 // the height uncertainty boundaries.
-type IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev struct {
+type IonoObservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev struct {
 	// Description of the computation technique.
 	Description param.Opt[string] `json:"description,omitzero"`
 	// Up to 3 groups of coefficients, using “shiftedChebyshev” sub-field, to describe
 	// E, F1, and bottomside F2 profile shapes, or up to 6 groups of coefficients to
 	// describe height uncertainty boundaries (upper and lower).
-	ShiftedChebyshevs []IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev `json:"shiftedChebyshevs,omitzero"`
+	ShiftedChebyshevs []IonoObservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev `json:"shiftedChebyshevs,omitzero"`
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev
+func (r IonoObservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshev) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Coefficients, using ‘shiftedChebyshev’ sub-field, to describe E, F1, and
 // bottomside F2 profile shapes, or height uncertainty boundaries (upper and
 // lower).
-type IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev struct {
+type IonoObservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev struct {
 	// Best fit error.
 	Error param.Opt[float64] `json:"error,omitzero"`
 	// Start frequency of the layer, in MHz.
@@ -4364,16 +4366,16 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshevSh
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev
+func (r IonoObservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyDensityProfileShiftedChebyshevShiftedChebyshev) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Parameters of the constant-scale-height Chapman layer.
-type IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionChapmanConst struct {
+type IonoObservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionChapmanConst struct {
 	// Peak Density Thickness (PDT) for description of the flat-nose shape, in
 	// kilometers.
 	Chi param.Opt[float64] `json:"chi,omitzero"`
@@ -4388,16 +4390,16 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionCh
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionChapmanConst) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionChapmanConst
+func (r IonoObservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionChapmanConst) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionChapmanConst
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionChapmanConst) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionChapmanConst) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Varying scale height Chapman topside layer.
-type IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionVaryChap struct {
+type IonoObservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionVaryChap struct {
 	// Alpha parameter of the profile shape.
 	Alpha param.Opt[float64] `json:"alpha,omitzero"`
 	// Beta parameter of the profile shape.
@@ -4418,15 +4420,15 @@ type IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionVa
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionVaryChap) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionVaryChap
+func (r IonoObservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionVaryChap) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionVaryChap
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionVaryChap) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyDensityProfileTopsideExtensionVaryChap) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationUnvalidatedPublishParamsBodyDoppler struct {
+type IonoObservationUnvalidatedPublishParamsBodyDoppler struct {
 	// Notes for the doppler data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of received doppler shifts in Hz.
@@ -4438,15 +4440,15 @@ type IonOobservationUnvalidatedPublishParamsBodyDoppler struct {
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyDoppler) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyDoppler
+func (r IonoObservationUnvalidatedPublishParamsBodyDoppler) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyDoppler
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyDoppler) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyDoppler) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationUnvalidatedPublishParamsBodyElevation struct {
+type IonoObservationUnvalidatedPublishParamsBodyElevation struct {
 	// Notes for the elevation data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of incoming elevation at the receiver.
@@ -4458,15 +4460,15 @@ type IonOobservationUnvalidatedPublishParamsBodyElevation struct {
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyElevation) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyElevation
+func (r IonoObservationUnvalidatedPublishParamsBodyElevation) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyElevation
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyElevation) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyElevation) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationUnvalidatedPublishParamsBodyFrequency struct {
+type IonoObservationUnvalidatedPublishParamsBodyFrequency struct {
 	// Notes for the frequency data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of frequency data.
@@ -4478,15 +4480,15 @@ type IonOobservationUnvalidatedPublishParamsBodyFrequency struct {
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyFrequency) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyFrequency
+func (r IonoObservationUnvalidatedPublishParamsBodyFrequency) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyFrequency
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyFrequency) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyFrequency) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationUnvalidatedPublishParamsBodyPhase struct {
+type IonoObservationUnvalidatedPublishParamsBodyPhase struct {
 	// Notes for the phase data. Orientation and position for each antenna element
 	// across the antenna_element dimension.
 	Notes param.Opt[string] `json:"notes,omitzero"`
@@ -4499,15 +4501,15 @@ type IonOobservationUnvalidatedPublishParamsBodyPhase struct {
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyPhase) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyPhase
+func (r IonoObservationUnvalidatedPublishParamsBodyPhase) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyPhase
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyPhase) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyPhase) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationUnvalidatedPublishParamsBodyPolarization struct {
+type IonoObservationUnvalidatedPublishParamsBodyPolarization struct {
 	// Notes for the polarization data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of polarization data.
@@ -4519,15 +4521,15 @@ type IonOobservationUnvalidatedPublishParamsBodyPolarization struct {
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyPolarization) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyPolarization
+func (r IonoObservationUnvalidatedPublishParamsBodyPolarization) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyPolarization
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyPolarization) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyPolarization) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationUnvalidatedPublishParamsBodyPower struct {
+type IonoObservationUnvalidatedPublishParamsBodyPower struct {
 	// Notes for the power data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of received power in db.
@@ -4539,15 +4541,15 @@ type IonOobservationUnvalidatedPublishParamsBodyPower struct {
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyPower) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyPower
+func (r IonoObservationUnvalidatedPublishParamsBodyPower) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyPower
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyPower) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyPower) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationUnvalidatedPublishParamsBodyRange struct {
+type IonoObservationUnvalidatedPublishParamsBodyRange struct {
 	// Notes for the range data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of range data.
@@ -4559,17 +4561,17 @@ type IonOobservationUnvalidatedPublishParamsBodyRange struct {
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyRange) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyRange
+func (r IonoObservationUnvalidatedPublishParamsBodyRange) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyRange
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyRange) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyRange) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // The ScalerInfo record describes the person or system who interpreted the
 // ionogram in IonoObservation.
-type IonOobservationUnvalidatedPublishParamsBodyScalerInfo struct {
+type IonoObservationUnvalidatedPublishParamsBodyScalerInfo struct {
 	// Scaler confidence level.
 	ConfidenceLevel param.Opt[int64] `json:"confidenceLevel,omitzero"`
 	// Scaler confidence score.
@@ -4585,15 +4587,15 @@ type IonOobservationUnvalidatedPublishParamsBodyScalerInfo struct {
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyScalerInfo) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyScalerInfo
+func (r IonoObservationUnvalidatedPublishParamsBodyScalerInfo) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyScalerInfo
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyScalerInfo) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyScalerInfo) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationUnvalidatedPublishParamsBodyStokes struct {
+type IonoObservationUnvalidatedPublishParamsBodyStokes struct {
 	// Notes for the stokes data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of received stokes data.
@@ -4607,15 +4609,15 @@ type IonOobservationUnvalidatedPublishParamsBodyStokes struct {
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyStokes) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyStokes
+func (r IonoObservationUnvalidatedPublishParamsBodyStokes) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyStokes
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyStokes) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyStokes) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationUnvalidatedPublishParamsBodyTime struct {
+type IonoObservationUnvalidatedPublishParamsBodyTime struct {
 	// The notes indicate the scheme and accuracy.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Array of times in number of seconds passed since January 1st, 1970 with the same
@@ -4628,15 +4630,15 @@ type IonOobservationUnvalidatedPublishParamsBodyTime struct {
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyTime) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyTime
+func (r IonoObservationUnvalidatedPublishParamsBodyTime) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyTime
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyTime) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyTime) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type IonOobservationUnvalidatedPublishParamsBodyTraceGeneric struct {
+type IonoObservationUnvalidatedPublishParamsBodyTraceGeneric struct {
 	// Notes for the trace generic data.
 	Notes param.Opt[string] `json:"notes,omitzero"`
 	// Multi-dimensional Array. The 1st dimension spans points along the trace while
@@ -4647,10 +4649,10 @@ type IonOobservationUnvalidatedPublishParamsBodyTraceGeneric struct {
 	paramObj
 }
 
-func (r IonOobservationUnvalidatedPublishParamsBodyTraceGeneric) MarshalJSON() (data []byte, err error) {
-	type shadow IonOobservationUnvalidatedPublishParamsBodyTraceGeneric
+func (r IonoObservationUnvalidatedPublishParamsBodyTraceGeneric) MarshalJSON() (data []byte, err error) {
+	type shadow IonoObservationUnvalidatedPublishParamsBodyTraceGeneric
 	return param.MarshalObject(r, (*shadow)(&r))
 }
-func (r *IonOobservationUnvalidatedPublishParamsBodyTraceGeneric) UnmarshalJSON(data []byte) error {
+func (r *IonoObservationUnvalidatedPublishParamsBodyTraceGeneric) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
