@@ -27,7 +27,7 @@ func TestReportAndActivityUdlH3geoUnvalidatedPublishWithOptionalParams(t *testin
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.ReportAndActivity.UdlH3geo.UnvalidatedPublish(context.TODO(), unifieddatalibrary.ReportAndActivityUdlH3geoUnvalidatedPublishParams{
+	err := client.ReportAndActivities.UdlH3geo.UnvalidatedPublish(context.TODO(), unifieddatalibrary.ReportAndActivityUdlH3geoUnvalidatedPublishParams{
 		Cells: []unifieddatalibrary.ReportAndActivityUdlH3geoUnvalidatedPublishParamsCell{{
 			CellID:                "830b90fffffffff",
 			ClassificationMarking: "U",

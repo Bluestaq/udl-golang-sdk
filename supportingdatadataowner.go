@@ -13,6 +13,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // SupportingDataDataownerService contains methods and other services that help
@@ -50,6 +51,30 @@ func (r *SupportingDataDataownerService) Count(ctx context.Context, query Suppor
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/dataowner/count"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Service operation to provide detailed information on available dynamic query
+// parameters for a particular data type.
+func (r *SupportingDataDataownerService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *SupportingDataDataownerQueryHelpResponse, err error) {
+	opts = append(r.Options[:], opts...)
+	path := "udl/dataowner/queryhelp"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
+	return
+}
+
+// Retrieves all distinct data owner types.
+func (r *SupportingDataDataownerService) GetDataOwnerTypes(ctx context.Context, query SupportingDataDataownerGetDataOwnerTypesParams, opts ...option.RequestOption) (res *[]string, err error) {
+	opts = append(r.Options[:], opts...)
+	path := "udl/dataowner/getDataOwnerTypes"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+func (r *SupportingDataDataownerService) GetProviderMetadata(ctx context.Context, query SupportingDataDataownerGetProviderMetadataParams, opts ...option.RequestOption) (res *[]DataownerAbridged, err error) {
+	opts = append(r.Options[:], opts...)
+	path := "udl/dataowner/providerMetadata"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
 }
@@ -112,6 +137,42 @@ func (r *DataownerAbridged) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
+type SupportingDataDataownerQueryHelpResponse struct {
+	AodrSupported         bool                         `json:"aodrSupported"`
+	ClassificationMarking string                       `json:"classificationMarking"`
+	Description           string                       `json:"description"`
+	HistorySupported      bool                         `json:"historySupported"`
+	Name                  string                       `json:"name"`
+	Parameters            []shared.ParamDescriptorResp `json:"parameters"`
+	RequiredRoles         []string                     `json:"requiredRoles"`
+	RestSupported         bool                         `json:"restSupported"`
+	SortSupported         bool                         `json:"sortSupported"`
+	TypeName              string                       `json:"typeName"`
+	Uri                   string                       `json:"uri"`
+	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
+	JSON struct {
+		AodrSupported         respjson.Field
+		ClassificationMarking respjson.Field
+		Description           respjson.Field
+		HistorySupported      respjson.Field
+		Name                  respjson.Field
+		Parameters            respjson.Field
+		RequiredRoles         respjson.Field
+		RestSupported         respjson.Field
+		SortSupported         respjson.Field
+		TypeName              respjson.Field
+		Uri                   respjson.Field
+		ExtraFields           map[string]respjson.Field
+		raw                   string
+	} `json:"-"`
+}
+
+// Returns the unmodified JSON received from the API
+func (r SupportingDataDataownerQueryHelpResponse) RawJSON() string { return r.JSON.raw }
+func (r *SupportingDataDataownerQueryHelpResponse) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
 type SupportingDataDataownerGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
@@ -136,6 +197,36 @@ type SupportingDataDataownerCountParams struct {
 // URLQuery serializes [SupportingDataDataownerCountParams]'s query parameters as
 // `url.Values`.
 func (r SupportingDataDataownerCountParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type SupportingDataDataownerGetDataOwnerTypesParams struct {
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [SupportingDataDataownerGetDataOwnerTypesParams]'s query
+// parameters as `url.Values`.
+func (r SupportingDataDataownerGetDataOwnerTypesParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type SupportingDataDataownerGetProviderMetadataParams struct {
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [SupportingDataDataownerGetProviderMetadataParams]'s query
+// parameters as `url.Values`.
+func (r SupportingDataDataownerGetProviderMetadataParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

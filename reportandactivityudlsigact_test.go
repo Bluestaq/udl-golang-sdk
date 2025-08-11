@@ -30,7 +30,7 @@ func TestReportAndActivityUdlSigactFileGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	resp, err := client.ReportAndActivity.UdlSigact.FileGet(
+	resp, err := client.ReportAndActivities.UdlSigact.FileGet(
 		context.TODO(),
 		"id",
 		unifieddatalibrary.ReportAndActivityUdlSigactFileGetParams{
@@ -73,7 +73,7 @@ func TestReportAndActivityUdlSigactUnvalidatedPublish(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.ReportAndActivity.UdlSigact.UnvalidatedPublish(context.TODO(), unifieddatalibrary.ReportAndActivityUdlSigactUnvalidatedPublishParams{
+	err := client.ReportAndActivities.UdlSigact.UnvalidatedPublish(context.TODO(), unifieddatalibrary.ReportAndActivityUdlSigactUnvalidatedPublishParams{
 		Body: []unifieddatalibrary.ReportAndActivityUdlSigactUnvalidatedPublishParamsBody{{
 			ClassificationMarking: "U",
 			DataMode:              "TEST",

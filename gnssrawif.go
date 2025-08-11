@@ -24,22 +24,24 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
-// GnssRawifService contains methods and other services that help with interacting
+// GnssRawIfService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewGnssRawifService] method instead.
-type GnssRawifService struct {
+// the [NewGnssRawIfService] method instead.
+type GnssRawIfService struct {
 	Options []option.RequestOption
+	History GnssRawIfHistoryService
 }
 
-// NewGnssRawifService generates a new service that applies the given options to
+// NewGnssRawIfService generates a new service that applies the given options to
 // each request. These options are applied after the parent client's options (if
 // there is one), and before any request-specific options.
-func NewGnssRawifService(opts ...option.RequestOption) (r GnssRawifService) {
-	r = GnssRawifService{}
+func NewGnssRawIfService(opts ...option.RequestOption) (r GnssRawIfService) {
+	r = GnssRawIfService{}
 	r.Options = opts
+	r.History = NewGnssRawIfHistoryService(opts...)
 	return
 }
 
@@ -47,7 +49,7 @@ func NewGnssRawifService(opts ...option.RequestOption) (r GnssRawifService) {
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *GnssRawifService) List(ctx context.Context, query GnssRawifListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[GnssRawifListResponse], err error) {
+func (r *GnssRawIfService) List(ctx context.Context, query GnssRawIfListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[GnssRawIfListResponse], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
@@ -68,7 +70,7 @@ func (r *GnssRawifService) List(ctx context.Context, query GnssRawifListParams, 
 // specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *GnssRawifService) ListAutoPaging(ctx context.Context, query GnssRawifListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[GnssRawifListResponse] {
+func (r *GnssRawIfService) ListAutoPaging(ctx context.Context, query GnssRawIfListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[GnssRawIfListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
@@ -77,7 +79,7 @@ func (r *GnssRawifService) ListAutoPaging(ctx context.Context, query GnssRawifLi
 // particular query criteria without retrieving large amounts of data. See the
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
-func (r *GnssRawifService) Count(ctx context.Context, query GnssRawifCountParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *GnssRawIfService) Count(ctx context.Context, query GnssRawIfCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/gnssrawif/count"
@@ -87,7 +89,7 @@ func (r *GnssRawifService) Count(ctx context.Context, query GnssRawifCountParams
 
 // Service operation to get a single GNSSRAWIF hdf5 file by its unique ID passed as
 // a path parameter. The file is returned as an attachment Content-Disposition.
-func (r *GnssRawifService) FileGet(ctx context.Context, id string, query GnssRawifFileGetParams, opts ...option.RequestOption) (res *http.Response, err error) {
+func (r *GnssRawIfService) FileGet(ctx context.Context, id string, query GnssRawIfFileGetParams, opts ...option.RequestOption) (res *http.Response, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	if id == "" {
@@ -101,7 +103,7 @@ func (r *GnssRawifService) FileGet(ctx context.Context, id string, query GnssRaw
 
 // Service operation to get a single GNSSRawIF by its unique ID passed as a path
 // parameter.
-func (r *GnssRawifService) Get(ctx context.Context, id string, query GnssRawifGetParams, opts ...option.RequestOption) (res *GnssRawifGetResponse, err error) {
+func (r *GnssRawIfService) Get(ctx context.Context, id string, query GnssRawIfGetParams, opts ...option.RequestOption) (res *GnssRawIfGetResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -114,7 +116,7 @@ func (r *GnssRawifService) Get(ctx context.Context, id string, query GnssRawifGe
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *GnssRawifService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *GnssRawifQueryhelpResponse, err error) {
+func (r *GnssRawIfService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *GnssRawIfQueryhelpResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/gnssrawif/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
@@ -129,7 +131,7 @@ func (r *GnssRawifService) Queryhelp(ctx context.Context, opts ...option.Request
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *GnssRawifService) Tuple(ctx context.Context, query GnssRawifTupleParams, opts ...option.RequestOption) (res *[]GnssRawifTupleResponse, err error) {
+func (r *GnssRawIfService) Tuple(ctx context.Context, query GnssRawIfTupleParams, opts ...option.RequestOption) (res *[]GnssRawIfTupleResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/gnssrawif/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -153,7 +155,7 @@ func (r *GnssRawifService) Tuple(ctx context.Context, query GnssRawifTupleParams
 // This operation is intended to be used for automated feeds into UDL. A specific
 // role is required to perform this service operation. Please contact the UDL team
 // for assistance.
-func (r *GnssRawifService) UploadZip(ctx context.Context, body GnssRawifUploadZipParams, opts ...option.RequestOption) (err error) {
+func (r *GnssRawIfService) UploadZip(ctx context.Context, body GnssRawIfUploadZipParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-gnssrawif"
@@ -167,7 +169,7 @@ func (r *GnssRawifService) UploadZip(ctx context.Context, body GnssRawifUploadZi
 // spacecraft. These data sets are processed in various geophysical applications
 // and used to characterize Electromagnetic Interference (EMI) in the operating
 // environment.
-type GnssRawifListResponse struct {
+type GnssRawIfListResponse struct {
 	// The center frequency, in MHz, of the observation bands. More than one band may
 	// be reported in each binary file, so this is an array of the center frequency of
 	// each band (including an array of length 1 if only one band is present).
@@ -190,7 +192,7 @@ type GnssRawifListResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode GnssRawifListResponseDataMode `json:"dataMode,required"`
+	DataMode GnssRawIfListResponseDataMode `json:"dataMode,required"`
 	// End time of the data contained in the associated binary file, in ISO 8601 UTC
 	// format with microsecond precision.
 	EndTime time.Time `json:"endTime,required" format:"date-time"`
@@ -377,8 +379,8 @@ type GnssRawifListResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r GnssRawifListResponse) RawJSON() string { return r.JSON.raw }
-func (r *GnssRawifListResponse) UnmarshalJSON(data []byte) error {
+func (r GnssRawIfListResponse) RawJSON() string { return r.JSON.raw }
+func (r *GnssRawIfListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -396,13 +398,13 @@ func (r *GnssRawifListResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type GnssRawifListResponseDataMode string
+type GnssRawIfListResponseDataMode string
 
 const (
-	GnssRawifListResponseDataModeReal      GnssRawifListResponseDataMode = "REAL"
-	GnssRawifListResponseDataModeTest      GnssRawifListResponseDataMode = "TEST"
-	GnssRawifListResponseDataModeSimulated GnssRawifListResponseDataMode = "SIMULATED"
-	GnssRawifListResponseDataModeExercise  GnssRawifListResponseDataMode = "EXERCISE"
+	GnssRawIfListResponseDataModeReal      GnssRawIfListResponseDataMode = "REAL"
+	GnssRawIfListResponseDataModeTest      GnssRawIfListResponseDataMode = "TEST"
+	GnssRawIfListResponseDataModeSimulated GnssRawIfListResponseDataMode = "SIMULATED"
+	GnssRawIfListResponseDataModeExercise  GnssRawIfListResponseDataMode = "EXERCISE"
 )
 
 // Global Navigation Satellite System (GNSS) Raw Intermediate Frequency (IF) data
@@ -411,7 +413,7 @@ const (
 // spacecraft. These data sets are processed in various geophysical applications
 // and used to characterize Electromagnetic Interference (EMI) in the operating
 // environment.
-type GnssRawifGetResponse struct {
+type GnssRawIfGetResponse struct {
 	// The center frequency, in MHz, of the observation bands. More than one band may
 	// be reported in each binary file, so this is an array of the center frequency of
 	// each band (including an array of length 1 if only one band is present).
@@ -434,7 +436,7 @@ type GnssRawifGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode GnssRawifGetResponseDataMode `json:"dataMode,required"`
+	DataMode GnssRawIfGetResponseDataMode `json:"dataMode,required"`
 	// End time of the data contained in the associated binary file, in ISO 8601 UTC
 	// format with microsecond precision.
 	EndTime time.Time `json:"endTime,required" format:"date-time"`
@@ -621,8 +623,8 @@ type GnssRawifGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r GnssRawifGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *GnssRawifGetResponse) UnmarshalJSON(data []byte) error {
+func (r GnssRawIfGetResponse) RawJSON() string { return r.JSON.raw }
+func (r *GnssRawIfGetResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -640,16 +642,16 @@ func (r *GnssRawifGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type GnssRawifGetResponseDataMode string
+type GnssRawIfGetResponseDataMode string
 
 const (
-	GnssRawifGetResponseDataModeReal      GnssRawifGetResponseDataMode = "REAL"
-	GnssRawifGetResponseDataModeTest      GnssRawifGetResponseDataMode = "TEST"
-	GnssRawifGetResponseDataModeSimulated GnssRawifGetResponseDataMode = "SIMULATED"
-	GnssRawifGetResponseDataModeExercise  GnssRawifGetResponseDataMode = "EXERCISE"
+	GnssRawIfGetResponseDataModeReal      GnssRawIfGetResponseDataMode = "REAL"
+	GnssRawIfGetResponseDataModeTest      GnssRawIfGetResponseDataMode = "TEST"
+	GnssRawIfGetResponseDataModeSimulated GnssRawIfGetResponseDataMode = "SIMULATED"
+	GnssRawIfGetResponseDataModeExercise  GnssRawIfGetResponseDataMode = "EXERCISE"
 )
 
-type GnssRawifQueryhelpResponse struct {
+type GnssRawIfQueryhelpResponse struct {
 	AodrSupported         bool                         `json:"aodrSupported"`
 	ClassificationMarking string                       `json:"classificationMarking"`
 	Description           string                       `json:"description"`
@@ -680,8 +682,8 @@ type GnssRawifQueryhelpResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r GnssRawifQueryhelpResponse) RawJSON() string { return r.JSON.raw }
-func (r *GnssRawifQueryhelpResponse) UnmarshalJSON(data []byte) error {
+func (r GnssRawIfQueryhelpResponse) RawJSON() string { return r.JSON.raw }
+func (r *GnssRawIfQueryhelpResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -691,7 +693,7 @@ func (r *GnssRawifQueryhelpResponse) UnmarshalJSON(data []byte) error {
 // spacecraft. These data sets are processed in various geophysical applications
 // and used to characterize Electromagnetic Interference (EMI) in the operating
 // environment.
-type GnssRawifTupleResponse struct {
+type GnssRawIfTupleResponse struct {
 	// The center frequency, in MHz, of the observation bands. More than one band may
 	// be reported in each binary file, so this is an array of the center frequency of
 	// each band (including an array of length 1 if only one band is present).
@@ -714,7 +716,7 @@ type GnssRawifTupleResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode GnssRawifTupleResponseDataMode `json:"dataMode,required"`
+	DataMode GnssRawIfTupleResponseDataMode `json:"dataMode,required"`
 	// End time of the data contained in the associated binary file, in ISO 8601 UTC
 	// format with microsecond precision.
 	EndTime time.Time `json:"endTime,required" format:"date-time"`
@@ -901,8 +903,8 @@ type GnssRawifTupleResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r GnssRawifTupleResponse) RawJSON() string { return r.JSON.raw }
-func (r *GnssRawifTupleResponse) UnmarshalJSON(data []byte) error {
+func (r GnssRawIfTupleResponse) RawJSON() string { return r.JSON.raw }
+func (r *GnssRawIfTupleResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -920,16 +922,16 @@ func (r *GnssRawifTupleResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type GnssRawifTupleResponseDataMode string
+type GnssRawIfTupleResponseDataMode string
 
 const (
-	GnssRawifTupleResponseDataModeReal      GnssRawifTupleResponseDataMode = "REAL"
-	GnssRawifTupleResponseDataModeTest      GnssRawifTupleResponseDataMode = "TEST"
-	GnssRawifTupleResponseDataModeSimulated GnssRawifTupleResponseDataMode = "SIMULATED"
-	GnssRawifTupleResponseDataModeExercise  GnssRawifTupleResponseDataMode = "EXERCISE"
+	GnssRawIfTupleResponseDataModeReal      GnssRawIfTupleResponseDataMode = "REAL"
+	GnssRawIfTupleResponseDataModeTest      GnssRawIfTupleResponseDataMode = "TEST"
+	GnssRawIfTupleResponseDataModeSimulated GnssRawIfTupleResponseDataMode = "SIMULATED"
+	GnssRawIfTupleResponseDataModeExercise  GnssRawIfTupleResponseDataMode = "EXERCISE"
 )
 
-type GnssRawifListParams struct {
+type GnssRawIfListParams struct {
 	// Start time of the data contained in the associated binary file, in ISO 8601 UTC
 	// format with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
@@ -938,15 +940,15 @@ type GnssRawifListParams struct {
 	paramObj
 }
 
-// URLQuery serializes [GnssRawifListParams]'s query parameters as `url.Values`.
-func (r GnssRawifListParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [GnssRawIfListParams]'s query parameters as `url.Values`.
+func (r GnssRawIfListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type GnssRawifCountParams struct {
+type GnssRawIfCountParams struct {
 	// Start time of the data contained in the associated binary file, in ISO 8601 UTC
 	// format with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
@@ -955,43 +957,43 @@ type GnssRawifCountParams struct {
 	paramObj
 }
 
-// URLQuery serializes [GnssRawifCountParams]'s query parameters as `url.Values`.
-func (r GnssRawifCountParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [GnssRawIfCountParams]'s query parameters as `url.Values`.
+func (r GnssRawIfCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type GnssRawifFileGetParams struct {
+type GnssRawIfFileGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
 
-// URLQuery serializes [GnssRawifFileGetParams]'s query parameters as `url.Values`.
-func (r GnssRawifFileGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [GnssRawIfFileGetParams]'s query parameters as `url.Values`.
+func (r GnssRawIfFileGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type GnssRawifGetParams struct {
+type GnssRawIfGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
 
-// URLQuery serializes [GnssRawifGetParams]'s query parameters as `url.Values`.
-func (r GnssRawifGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [GnssRawIfGetParams]'s query parameters as `url.Values`.
+func (r GnssRawIfGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type GnssRawifTupleParams struct {
+type GnssRawIfTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -1005,21 +1007,21 @@ type GnssRawifTupleParams struct {
 	paramObj
 }
 
-// URLQuery serializes [GnssRawifTupleParams]'s query parameters as `url.Values`.
-func (r GnssRawifTupleParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [GnssRawIfTupleParams]'s query parameters as `url.Values`.
+func (r GnssRawIfTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type GnssRawifUploadZipParams struct {
+type GnssRawIfUploadZipParams struct {
 	// Zip file containing files described in the specification
 	File io.Reader `json:"file,omitzero,required" format:"binary"`
 	paramObj
 }
 
-func (r GnssRawifUploadZipParams) MarshalMultipart() (data []byte, contentType string, err error) {
+func (r GnssRawIfUploadZipParams) MarshalMultipart() (data []byte, contentType string, err error) {
 	buf := bytes.NewBuffer(nil)
 	writer := multipart.NewWriter(buf)
 	err = apiform.MarshalRoot(r, writer)
