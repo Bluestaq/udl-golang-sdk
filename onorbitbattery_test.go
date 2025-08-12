@@ -11,6 +11,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk"
 	"github.com/Bluestaq/udl-golang-sdk/internal/testutil"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 func TestOnorbitbatteryNewWithOptionalParams(t *testing.T) {
@@ -33,8 +34,8 @@ func TestOnorbitbatteryNewWithOptionalParams(t *testing.T) {
 		IDOnOrbit:             "ONORBIT-ID",
 		Source:                "Bluestaq",
 		ID:                    unifieddatalibrary.String("ONORBITBATTERY-ID"),
-		Battery: unifieddatalibrary.OnorbitbatteryNewParamsBattery{
-			DataMode: "TEST",
+		Battery: shared.BatteryIngestParam{
+			DataMode: shared.BatteryIngestDataModeTest,
 			Name:     "JAK-BATTERY-1479",
 			Source:   "Bluestaq",
 			ID:       unifieddatalibrary.String("BATTERY-ID"),
@@ -75,8 +76,8 @@ func TestOnorbitbatteryUpdateWithOptionalParams(t *testing.T) {
 			IDOnOrbit:             "ONORBIT-ID",
 			Source:                "Bluestaq",
 			ID:                    unifieddatalibrary.String("ONORBITBATTERY-ID"),
-			Battery: unifieddatalibrary.OnorbitbatteryUpdateParamsBattery{
-				DataMode: "TEST",
+			Battery: shared.BatteryIngestParam{
+				DataMode: shared.BatteryIngestDataModeTest,
 				Name:     "JAK-BATTERY-1479",
 				Source:   "Bluestaq",
 				ID:       unifieddatalibrary.String("BATTERY-ID"),

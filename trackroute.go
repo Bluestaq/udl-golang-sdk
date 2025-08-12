@@ -188,6 +188,260 @@ func (r *TrackRouteService) UnvalidatedPublish(ctx context.Context, body TrackRo
 	return
 }
 
+// Minimum and maximum altitude bounds for the track.
+type AltitudeBlocksIngestParam struct {
+	// Sequencing field for the altitude block.
+	AltitudeSequenceID param.Opt[string] `json:"altitudeSequenceId,omitzero"`
+	// Lowest altitude of the track route altitude block above mean sea level in feet.
+	LowerAltitude param.Opt[float64] `json:"lowerAltitude,omitzero"`
+	// Highest altitude of the track route altitude block above mean sea level in feet.
+	UpperAltitude param.Opt[float64] `json:"upperAltitude,omitzero"`
+	paramObj
+}
+
+func (r AltitudeBlocksIngestParam) MarshalJSON() (data []byte, err error) {
+	type shadow AltitudeBlocksIngestParam
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *AltitudeBlocksIngestParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Point of contacts for scheduling or modifying the route.
+type PointOfContactIngestParam struct {
+	// Office name for which the contact belongs.
+	Office param.Opt[string] `json:"office,omitzero"`
+	// Phone number of the contact.
+	Phone param.Opt[string] `json:"phone,omitzero"`
+	// The name of the contact.
+	PocName param.Opt[string] `json:"pocName,omitzero"`
+	// Organization name for which the contact belongs.
+	PocOrg param.Opt[string] `json:"pocOrg,omitzero"`
+	// Sequencing field for point of contact.
+	PocSequenceID param.Opt[int64] `json:"pocSequenceId,omitzero"`
+	// A code or name that represents the contact's role in association to the track
+	// route (ex. Originator, Scheduler, Maintainer, etc.).
+	PocTypeName param.Opt[string] `json:"pocTypeName,omitzero"`
+	// The rank of contact.
+	Rank param.Opt[string] `json:"rank,omitzero"`
+	// Text of the remark.
+	Remark param.Opt[string] `json:"remark,omitzero"`
+	// The username of the contact.
+	Username param.Opt[string] `json:"username,omitzero"`
+	paramObj
+}
+
+func (r PointOfContactIngestParam) MarshalJSON() (data []byte, err error) {
+	type shadow PointOfContactIngestParam
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *PointOfContactIngestParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Points identified within the route.
+type RoutePointsIngestParam struct {
+	// Specifies an alternate country code if the data provider code is not part of an
+	// official NAVAID Country Code standard such as ISO-3166 or FIPS. This field will
+	// be set to the value provided by the source and should be used for all Queries
+	// specifying a Country Code.
+	AltCountryCode param.Opt[string] `json:"altCountryCode,omitzero"`
+	// The DoD Standard Country Code designator for the country where the route point
+	// resides. This field should be set to "OTHR" if the source value does not match a
+	// UDL country code value (ISO-3166-ALPHA-2).
+	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
+	// Flag indicating this is a Digital Aeronautical Flight Information File (DAFIF)
+	// point.
+	DafifPt param.Opt[bool] `json:"dafifPt,omitzero"`
+	// The magnetic declination/variation of the route point location from true north,
+	// in degrees. Positive values east of true north and negative values west of true
+	// north.
+	MagDec param.Opt[float64] `json:"magDec,omitzero"`
+	// Navigational Aid (NAVAID) identification code.
+	Navaid param.Opt[string] `json:"navaid,omitzero"`
+	// The length of the course from the Navigational Aid (NAVAID) in nautical miles.
+	NavaidLength param.Opt[float64] `json:"navaidLength,omitzero"`
+	// The NAVAID type of this route point (ex. VOR, VORTAC, TACAN, etc.).
+	NavaidType param.Opt[string] `json:"navaidType,omitzero"`
+	// WGS84 latitude of the point location, in degrees. -90 to 90 degrees (negative
+	// values south of equator).
+	PtLat param.Opt[float64] `json:"ptLat,omitzero"`
+	// WGS84 longitude of the point location, in degrees. -180 to 180 degrees (negative
+	// values west of Prime Meridian).
+	PtLon param.Opt[float64] `json:"ptLon,omitzero"`
+	// Sequencing field for the track route. This is the identifier representing the
+	// sequence of waypoints associated to the track route.
+	PtSequenceID param.Opt[int64] `json:"ptSequenceId,omitzero"`
+	// Code representation of the point within the track route (ex. EP, EX, CP, IP,
+	// etc.).
+	PtTypeCode param.Opt[string] `json:"ptTypeCode,omitzero"`
+	// The name that represents the point within the track route (ex. ENTRY POINT, EXIT
+	// POINT, CONTROL POINT, INITIAL POINT, etc.).
+	PtTypeName param.Opt[string] `json:"ptTypeName,omitzero"`
+	// Name of a waypoint which identifies the location of the point.
+	WaypointName param.Opt[string] `json:"waypointName,omitzero"`
+	paramObj
+}
+
+func (r RoutePointsIngestParam) MarshalJSON() (data []byte, err error) {
+	type shadow RoutePointsIngestParam
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *RoutePointsIngestParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// A track route is a prescribed route for performing training events or operations
+// such as air refueling.
+//
+// The properties ClassificationMarking, DataMode, LastUpdateDate, Source, Type are
+// required.
+type TrackRouteIngestParam struct {
+	// Classification marking of the data in IC/CAPCO Portion-marked format.
+	ClassificationMarking string `json:"classificationMarking,required"`
+	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+	//
+	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+	// may include both real and simulated data.
+	//
+	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+	// events, and analysis.
+	//
+	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+	// datasets.
+	//
+	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// requirements, and for validating technical, functional, and performance
+	// characteristics.
+	//
+	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
+	DataMode TrackRouteIngestDataMode `json:"dataMode,omitzero,required"`
+	// The last updated date of the track route in ISO 8601 UTC format with millisecond
+	// precision.
+	LastUpdateDate time.Time `json:"lastUpdateDate,required" format:"date-time"`
+	// Source of the data.
+	Source string `json:"source,required"`
+	// The track route type represented by this record (ex. AIR REFUELING).
+	Type string `json:"type,required"`
+	// Unique identifier of the record, auto-generated by the system.
+	ID param.Opt[string] `json:"id,omitzero"`
+	// The APN radar code sent and received by the aircraft for identification.
+	ApnSetting param.Opt[string] `json:"apnSetting,omitzero"`
+	// The APX radar code sent and received by the aircraft for identification.
+	ApxBeaconCode param.Opt[string] `json:"apxBeaconCode,omitzero"`
+	// Air Refueling Track Control Center message.
+	ArtccMessage param.Opt[string] `json:"artccMessage,omitzero"`
+	// Time the row was created in the database, auto-populated by the system.
+	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
+	// Application user who created the row in the database, auto-populated by the
+	// system.
+	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
+	// The name of the creating organization of the track route.
+	CreatingOrg param.Opt[string] `json:"creatingOrg,omitzero"`
+	// The principal compass direction (cardinal or ordinal) of the track route.
+	Direction param.Opt[string] `json:"direction,omitzero"`
+	// The date which the DAFIF track was last updated/validated in ISO 8601 UTC format
+	// with millisecond precision.
+	EffectiveDate param.Opt[time.Time] `json:"effectiveDate,omitzero" format:"date-time"`
+	// Optional air refueling track ID from external systems. This field has no meaning
+	// within UDL and is provided as a convenience for systems that require tracking of
+	// an internal system generated ID.
+	ExternalID param.Opt[string] `json:"externalId,omitzero"`
+	// Used to show last time the track route was added to an itinerary in ISO 8601 UTC
+	// format with millisecond precision.
+	LastUsedDate param.Opt[time.Time] `json:"lastUsedDate,omitzero" format:"date-time"`
+	// Track location ID.
+	LocationTrackID param.Opt[string] `json:"locationTrackId,omitzero"`
+	// Originating system or organization which produced the data, if different from
+	// the source. The origin may be different than the source if the source was a
+	// mediating system which forwarded the data on behalf of the origin system. If
+	// null, the source may be assumed to be the origin.
+	Origin param.Opt[string] `json:"origin,omitzero"`
+	// The originating source network on which this record was created, auto-populated
+	// by the system.
+	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
+	// The primary UHF radio frequency used for the track route in megahertz.
+	PriFreq param.Opt[float64] `json:"priFreq,omitzero"`
+	// The receiver tanker channel identifer for air refueling tracks.
+	ReceiverTankerChCode param.Opt[string] `json:"receiverTankerCHCode,omitzero"`
+	// Region code indicating where the track resides as determined by the data source.
+	RegionCode param.Opt[string] `json:"regionCode,omitzero"`
+	// Region where the track resides.
+	RegionName param.Opt[string] `json:"regionName,omitzero"`
+	// Date the track needs to be reviewed for accuracy or deletion in ISO 8601 UTC
+	// format with millisecond precision.
+	ReviewDate param.Opt[time.Time] `json:"reviewDate,omitzero" format:"date-time"`
+	// Point of contact for the air refueling track route scheduler.
+	SchedulerOrgName param.Opt[string] `json:"schedulerOrgName,omitzero"`
+	// The unit responsible for scheduling the track route.
+	SchedulerOrgUnit param.Opt[string] `json:"schedulerOrgUnit,omitzero"`
+	// The secondary UHF radio frequency used for the track route in megahertz.
+	SecFreq param.Opt[float64] `json:"secFreq,omitzero"`
+	// Abbreviated name of the track.
+	ShortName param.Opt[string] `json:"shortName,omitzero"`
+	// Standard Indicator Code of the air refueling track.
+	Sic param.Opt[string] `json:"sic,omitzero"`
+	// The source data library from which this record was received. This could be a
+	// remote or tactical UDL or another data library. If null, the record should be
+	// assumed to have originated from the primary Enterprise UDL.
+	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
+	// Identifier of the track.
+	TrackID param.Opt[string] `json:"trackId,omitzero"`
+	// Name of the track.
+	TrackName param.Opt[string] `json:"trackName,omitzero"`
+	// Type of process used by AMC to schedule an air refueling event. Possible values
+	// are A (Matched Long Range), F (Matched AMC Short Notice), N (Unmatched Theater
+	// Operation Short Notice (Theater Assets)), R, Unmatched Long Range, S (Soft Air
+	// Refueling), T (Matched Theater Operation Short Notice (Theater Assets)), V
+	// (Unmatched AMC Short Notice), X (Unmatched Theater Operation Short Notice (AMC
+	// Assets)), Y (Matched Theater Operation Short Notice (AMC Assets)), Z (Other Air
+	// Refueling).
+	TypeCode param.Opt[string] `json:"typeCode,omitzero"`
+	// Time the row was updated in the database, auto-populated by the system.
+	UpdatedAt param.Opt[time.Time] `json:"updatedAt,omitzero" format:"date-time"`
+	// Application user who updated the row in the database, auto-populated by the
+	// system.
+	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
+	// Minimum and maximum altitude bounds for the track.
+	AltitudeBlocks []AltitudeBlocksIngestParam `json:"altitudeBlocks,omitzero"`
+	// Point of contacts for scheduling or modifying the route.
+	Poc []PointOfContactIngestParam `json:"poc,omitzero"`
+	// Points identified within the route.
+	RoutePoints []RoutePointsIngestParam `json:"routePoints,omitzero"`
+	paramObj
+}
+
+func (r TrackRouteIngestParam) MarshalJSON() (data []byte, err error) {
+	type shadow TrackRouteIngestParam
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *TrackRouteIngestParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
+//
+// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
+// may include both real and simulated data.
+//
+// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
+// events, and analysis.
+//
+// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
+// datasets.
+//
+// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// requirements, and for validating technical, functional, and performance
+// characteristics.
+type TrackRouteIngestDataMode string
+
+const (
+	TrackRouteIngestDataModeReal      TrackRouteIngestDataMode = "REAL"
+	TrackRouteIngestDataModeTest      TrackRouteIngestDataMode = "TEST"
+	TrackRouteIngestDataModeSimulated TrackRouteIngestDataMode = "SIMULATED"
+	TrackRouteIngestDataModeExercise  TrackRouteIngestDataMode = "EXERCISE"
+)
+
 // A track route is a prescribed route for performing training events or operations
 // such as air refueling.
 type TrackRouteListResponse struct {
@@ -547,467 +801,31 @@ func (r *TrackRouteQueryhelpResponse) UnmarshalJSON(data []byte) error {
 }
 
 type TrackRouteNewParams struct {
-	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
-	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
-	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
-	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
-	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-	// requirements, and for validating technical, functional, and performance
-	// characteristics.
-	//
-	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode TrackRouteNewParamsDataMode `json:"dataMode,omitzero,required"`
-	// The last updated date of the track route in ISO 8601 UTC format with millisecond
-	// precision.
-	LastUpdateDate time.Time `json:"lastUpdateDate,required" format:"date-time"`
-	// Source of the data.
-	Source string `json:"source,required"`
-	// The track route type represented by this record (ex. AIR REFUELING).
-	Type string `json:"type,required"`
-	// Unique identifier of the record, auto-generated by the system.
-	ID param.Opt[string] `json:"id,omitzero"`
-	// The APN radar code sent and received by the aircraft for identification.
-	ApnSetting param.Opt[string] `json:"apnSetting,omitzero"`
-	// The APX radar code sent and received by the aircraft for identification.
-	ApxBeaconCode param.Opt[string] `json:"apxBeaconCode,omitzero"`
-	// Air Refueling Track Control Center message.
-	ArtccMessage param.Opt[string] `json:"artccMessage,omitzero"`
-	// The name of the creating organization of the track route.
-	CreatingOrg param.Opt[string] `json:"creatingOrg,omitzero"`
-	// The principal compass direction (cardinal or ordinal) of the track route.
-	Direction param.Opt[string] `json:"direction,omitzero"`
-	// The date which the DAFIF track was last updated/validated in ISO 8601 UTC format
-	// with millisecond precision.
-	EffectiveDate param.Opt[time.Time] `json:"effectiveDate,omitzero" format:"date-time"`
-	// Optional air refueling track ID from external systems. This field has no meaning
-	// within UDL and is provided as a convenience for systems that require tracking of
-	// an internal system generated ID.
-	ExternalID param.Opt[string] `json:"externalId,omitzero"`
-	// Used to show last time the track route was added to an itinerary in ISO 8601 UTC
-	// format with millisecond precision.
-	LastUsedDate param.Opt[time.Time] `json:"lastUsedDate,omitzero" format:"date-time"`
-	// Track location ID.
-	LocationTrackID param.Opt[string] `json:"locationTrackId,omitzero"`
-	// Originating system or organization which produced the data, if different from
-	// the source. The origin may be different than the source if the source was a
-	// mediating system which forwarded the data on behalf of the origin system. If
-	// null, the source may be assumed to be the origin.
-	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The primary UHF radio frequency used for the track route in megahertz.
-	PriFreq param.Opt[float64] `json:"priFreq,omitzero"`
-	// The receiver tanker channel identifer for air refueling tracks.
-	ReceiverTankerChCode param.Opt[string] `json:"receiverTankerCHCode,omitzero"`
-	// Region code indicating where the track resides as determined by the data source.
-	RegionCode param.Opt[string] `json:"regionCode,omitzero"`
-	// Region where the track resides.
-	RegionName param.Opt[string] `json:"regionName,omitzero"`
-	// Date the track needs to be reviewed for accuracy or deletion in ISO 8601 UTC
-	// format with millisecond precision.
-	ReviewDate param.Opt[time.Time] `json:"reviewDate,omitzero" format:"date-time"`
-	// Point of contact for the air refueling track route scheduler.
-	SchedulerOrgName param.Opt[string] `json:"schedulerOrgName,omitzero"`
-	// The unit responsible for scheduling the track route.
-	SchedulerOrgUnit param.Opt[string] `json:"schedulerOrgUnit,omitzero"`
-	// The secondary UHF radio frequency used for the track route in megahertz.
-	SecFreq param.Opt[float64] `json:"secFreq,omitzero"`
-	// Abbreviated name of the track.
-	ShortName param.Opt[string] `json:"shortName,omitzero"`
-	// Standard Indicator Code of the air refueling track.
-	Sic param.Opt[string] `json:"sic,omitzero"`
-	// Identifier of the track.
-	TrackID param.Opt[string] `json:"trackId,omitzero"`
-	// Name of the track.
-	TrackName param.Opt[string] `json:"trackName,omitzero"`
-	// Type of process used by AMC to schedule an air refueling event. Possible values
-	// are A (Matched Long Range), F (Matched AMC Short Notice), N (Unmatched Theater
-	// Operation Short Notice (Theater Assets)), R, Unmatched Long Range, S (Soft Air
-	// Refueling), T (Matched Theater Operation Short Notice (Theater Assets)), V
-	// (Unmatched AMC Short Notice), X (Unmatched Theater Operation Short Notice (AMC
-	// Assets)), Y (Matched Theater Operation Short Notice (AMC Assets)), Z (Other Air
-	// Refueling).
-	TypeCode param.Opt[string] `json:"typeCode,omitzero"`
-	// Minimum and maximum altitude bounds for the track.
-	AltitudeBlocks []TrackRouteNewParamsAltitudeBlock `json:"altitudeBlocks,omitzero"`
-	// Point of contacts for scheduling or modifying the route.
-	Poc []TrackRouteNewParamsPoc `json:"poc,omitzero"`
-	// Points identified within the route.
-	RoutePoints []TrackRouteNewParamsRoutePoint `json:"routePoints,omitzero"`
+	// A track route is a prescribed route for performing training events or operations
+	// such as air refueling.
+	TrackRouteIngest TrackRouteIngestParam
 	paramObj
 }
 
 func (r TrackRouteNewParams) MarshalJSON() (data []byte, err error) {
-	type shadow TrackRouteNewParams
-	return param.MarshalObject(r, (*shadow)(&r))
+	return shimjson.Marshal(r.TrackRouteIngest)
 }
 func (r *TrackRouteNewParams) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-//
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
-//
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
-//
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
-//
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-// requirements, and for validating technical, functional, and performance
-// characteristics.
-type TrackRouteNewParamsDataMode string
-
-const (
-	TrackRouteNewParamsDataModeReal      TrackRouteNewParamsDataMode = "REAL"
-	TrackRouteNewParamsDataModeTest      TrackRouteNewParamsDataMode = "TEST"
-	TrackRouteNewParamsDataModeSimulated TrackRouteNewParamsDataMode = "SIMULATED"
-	TrackRouteNewParamsDataModeExercise  TrackRouteNewParamsDataMode = "EXERCISE"
-)
-
-// Minimum and maximum altitude bounds for the track.
-type TrackRouteNewParamsAltitudeBlock struct {
-	// Sequencing field for the altitude block.
-	AltitudeSequenceID param.Opt[string] `json:"altitudeSequenceId,omitzero"`
-	// Lowest altitude of the track route altitude block above mean sea level in feet.
-	LowerAltitude param.Opt[float64] `json:"lowerAltitude,omitzero"`
-	// Highest altitude of the track route altitude block above mean sea level in feet.
-	UpperAltitude param.Opt[float64] `json:"upperAltitude,omitzero"`
-	paramObj
-}
-
-func (r TrackRouteNewParamsAltitudeBlock) MarshalJSON() (data []byte, err error) {
-	type shadow TrackRouteNewParamsAltitudeBlock
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *TrackRouteNewParamsAltitudeBlock) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Point of contacts for scheduling or modifying the route.
-type TrackRouteNewParamsPoc struct {
-	// Office name for which the contact belongs.
-	Office param.Opt[string] `json:"office,omitzero"`
-	// Phone number of the contact.
-	Phone param.Opt[string] `json:"phone,omitzero"`
-	// The name of the contact.
-	PocName param.Opt[string] `json:"pocName,omitzero"`
-	// Organization name for which the contact belongs.
-	PocOrg param.Opt[string] `json:"pocOrg,omitzero"`
-	// Sequencing field for point of contact.
-	PocSequenceID param.Opt[int64] `json:"pocSequenceId,omitzero"`
-	// A code or name that represents the contact's role in association to the track
-	// route (ex. Originator, Scheduler, Maintainer, etc.).
-	PocTypeName param.Opt[string] `json:"pocTypeName,omitzero"`
-	// The rank of contact.
-	Rank param.Opt[string] `json:"rank,omitzero"`
-	// Text of the remark.
-	Remark param.Opt[string] `json:"remark,omitzero"`
-	// The username of the contact.
-	Username param.Opt[string] `json:"username,omitzero"`
-	paramObj
-}
-
-func (r TrackRouteNewParamsPoc) MarshalJSON() (data []byte, err error) {
-	type shadow TrackRouteNewParamsPoc
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *TrackRouteNewParamsPoc) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Points identified within the route.
-type TrackRouteNewParamsRoutePoint struct {
-	// Specifies an alternate country code if the data provider code is not part of an
-	// official NAVAID Country Code standard such as ISO-3166 or FIPS. This field will
-	// be set to the value provided by the source and should be used for all Queries
-	// specifying a Country Code.
-	AltCountryCode param.Opt[string] `json:"altCountryCode,omitzero"`
-	// The DoD Standard Country Code designator for the country where the route point
-	// resides. This field should be set to "OTHR" if the source value does not match a
-	// UDL country code value (ISO-3166-ALPHA-2).
-	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
-	// Flag indicating this is a Digital Aeronautical Flight Information File (DAFIF)
-	// point.
-	DafifPt param.Opt[bool] `json:"dafifPt,omitzero"`
-	// The magnetic declination/variation of the route point location from true north,
-	// in degrees. Positive values east of true north and negative values west of true
-	// north.
-	MagDec param.Opt[float64] `json:"magDec,omitzero"`
-	// Navigational Aid (NAVAID) identification code.
-	Navaid param.Opt[string] `json:"navaid,omitzero"`
-	// The length of the course from the Navigational Aid (NAVAID) in nautical miles.
-	NavaidLength param.Opt[float64] `json:"navaidLength,omitzero"`
-	// The NAVAID type of this route point (ex. VOR, VORTAC, TACAN, etc.).
-	NavaidType param.Opt[string] `json:"navaidType,omitzero"`
-	// WGS84 latitude of the point location, in degrees. -90 to 90 degrees (negative
-	// values south of equator).
-	PtLat param.Opt[float64] `json:"ptLat,omitzero"`
-	// WGS84 longitude of the point location, in degrees. -180 to 180 degrees (negative
-	// values west of Prime Meridian).
-	PtLon param.Opt[float64] `json:"ptLon,omitzero"`
-	// Sequencing field for the track route. This is the identifier representing the
-	// sequence of waypoints associated to the track route.
-	PtSequenceID param.Opt[int64] `json:"ptSequenceId,omitzero"`
-	// Code representation of the point within the track route (ex. EP, EX, CP, IP,
-	// etc.).
-	PtTypeCode param.Opt[string] `json:"ptTypeCode,omitzero"`
-	// The name that represents the point within the track route (ex. ENTRY POINT, EXIT
-	// POINT, CONTROL POINT, INITIAL POINT, etc.).
-	PtTypeName param.Opt[string] `json:"ptTypeName,omitzero"`
-	// Name of a waypoint which identifies the location of the point.
-	WaypointName param.Opt[string] `json:"waypointName,omitzero"`
-	paramObj
-}
-
-func (r TrackRouteNewParamsRoutePoint) MarshalJSON() (data []byte, err error) {
-	type shadow TrackRouteNewParamsRoutePoint
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *TrackRouteNewParamsRoutePoint) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
+	return json.Unmarshal(data, &r.TrackRouteIngest)
 }
 
 type TrackRouteUpdateParams struct {
-	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
-	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
-	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
-	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
-	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-	// requirements, and for validating technical, functional, and performance
-	// characteristics.
-	//
-	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode TrackRouteUpdateParamsDataMode `json:"dataMode,omitzero,required"`
-	// The last updated date of the track route in ISO 8601 UTC format with millisecond
-	// precision.
-	LastUpdateDate time.Time `json:"lastUpdateDate,required" format:"date-time"`
-	// Source of the data.
-	Source string `json:"source,required"`
-	// The track route type represented by this record (ex. AIR REFUELING).
-	Type string `json:"type,required"`
-	// Unique identifier of the record, auto-generated by the system.
-	ID param.Opt[string] `json:"id,omitzero"`
-	// The APN radar code sent and received by the aircraft for identification.
-	ApnSetting param.Opt[string] `json:"apnSetting,omitzero"`
-	// The APX radar code sent and received by the aircraft for identification.
-	ApxBeaconCode param.Opt[string] `json:"apxBeaconCode,omitzero"`
-	// Air Refueling Track Control Center message.
-	ArtccMessage param.Opt[string] `json:"artccMessage,omitzero"`
-	// The name of the creating organization of the track route.
-	CreatingOrg param.Opt[string] `json:"creatingOrg,omitzero"`
-	// The principal compass direction (cardinal or ordinal) of the track route.
-	Direction param.Opt[string] `json:"direction,omitzero"`
-	// The date which the DAFIF track was last updated/validated in ISO 8601 UTC format
-	// with millisecond precision.
-	EffectiveDate param.Opt[time.Time] `json:"effectiveDate,omitzero" format:"date-time"`
-	// Optional air refueling track ID from external systems. This field has no meaning
-	// within UDL and is provided as a convenience for systems that require tracking of
-	// an internal system generated ID.
-	ExternalID param.Opt[string] `json:"externalId,omitzero"`
-	// Used to show last time the track route was added to an itinerary in ISO 8601 UTC
-	// format with millisecond precision.
-	LastUsedDate param.Opt[time.Time] `json:"lastUsedDate,omitzero" format:"date-time"`
-	// Track location ID.
-	LocationTrackID param.Opt[string] `json:"locationTrackId,omitzero"`
-	// Originating system or organization which produced the data, if different from
-	// the source. The origin may be different than the source if the source was a
-	// mediating system which forwarded the data on behalf of the origin system. If
-	// null, the source may be assumed to be the origin.
-	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The primary UHF radio frequency used for the track route in megahertz.
-	PriFreq param.Opt[float64] `json:"priFreq,omitzero"`
-	// The receiver tanker channel identifer for air refueling tracks.
-	ReceiverTankerChCode param.Opt[string] `json:"receiverTankerCHCode,omitzero"`
-	// Region code indicating where the track resides as determined by the data source.
-	RegionCode param.Opt[string] `json:"regionCode,omitzero"`
-	// Region where the track resides.
-	RegionName param.Opt[string] `json:"regionName,omitzero"`
-	// Date the track needs to be reviewed for accuracy or deletion in ISO 8601 UTC
-	// format with millisecond precision.
-	ReviewDate param.Opt[time.Time] `json:"reviewDate,omitzero" format:"date-time"`
-	// Point of contact for the air refueling track route scheduler.
-	SchedulerOrgName param.Opt[string] `json:"schedulerOrgName,omitzero"`
-	// The unit responsible for scheduling the track route.
-	SchedulerOrgUnit param.Opt[string] `json:"schedulerOrgUnit,omitzero"`
-	// The secondary UHF radio frequency used for the track route in megahertz.
-	SecFreq param.Opt[float64] `json:"secFreq,omitzero"`
-	// Abbreviated name of the track.
-	ShortName param.Opt[string] `json:"shortName,omitzero"`
-	// Standard Indicator Code of the air refueling track.
-	Sic param.Opt[string] `json:"sic,omitzero"`
-	// Identifier of the track.
-	TrackID param.Opt[string] `json:"trackId,omitzero"`
-	// Name of the track.
-	TrackName param.Opt[string] `json:"trackName,omitzero"`
-	// Type of process used by AMC to schedule an air refueling event. Possible values
-	// are A (Matched Long Range), F (Matched AMC Short Notice), N (Unmatched Theater
-	// Operation Short Notice (Theater Assets)), R, Unmatched Long Range, S (Soft Air
-	// Refueling), T (Matched Theater Operation Short Notice (Theater Assets)), V
-	// (Unmatched AMC Short Notice), X (Unmatched Theater Operation Short Notice (AMC
-	// Assets)), Y (Matched Theater Operation Short Notice (AMC Assets)), Z (Other Air
-	// Refueling).
-	TypeCode param.Opt[string] `json:"typeCode,omitzero"`
-	// Minimum and maximum altitude bounds for the track.
-	AltitudeBlocks []TrackRouteUpdateParamsAltitudeBlock `json:"altitudeBlocks,omitzero"`
-	// Point of contacts for scheduling or modifying the route.
-	Poc []TrackRouteUpdateParamsPoc `json:"poc,omitzero"`
-	// Points identified within the route.
-	RoutePoints []TrackRouteUpdateParamsRoutePoint `json:"routePoints,omitzero"`
+	// A track route is a prescribed route for performing training events or operations
+	// such as air refueling.
+	TrackRouteIngest TrackRouteIngestParam
 	paramObj
 }
 
 func (r TrackRouteUpdateParams) MarshalJSON() (data []byte, err error) {
-	type shadow TrackRouteUpdateParams
-	return param.MarshalObject(r, (*shadow)(&r))
+	return shimjson.Marshal(r.TrackRouteIngest)
 }
 func (r *TrackRouteUpdateParams) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-//
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
-//
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
-//
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
-//
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-// requirements, and for validating technical, functional, and performance
-// characteristics.
-type TrackRouteUpdateParamsDataMode string
-
-const (
-	TrackRouteUpdateParamsDataModeReal      TrackRouteUpdateParamsDataMode = "REAL"
-	TrackRouteUpdateParamsDataModeTest      TrackRouteUpdateParamsDataMode = "TEST"
-	TrackRouteUpdateParamsDataModeSimulated TrackRouteUpdateParamsDataMode = "SIMULATED"
-	TrackRouteUpdateParamsDataModeExercise  TrackRouteUpdateParamsDataMode = "EXERCISE"
-)
-
-// Minimum and maximum altitude bounds for the track.
-type TrackRouteUpdateParamsAltitudeBlock struct {
-	// Sequencing field for the altitude block.
-	AltitudeSequenceID param.Opt[string] `json:"altitudeSequenceId,omitzero"`
-	// Lowest altitude of the track route altitude block above mean sea level in feet.
-	LowerAltitude param.Opt[float64] `json:"lowerAltitude,omitzero"`
-	// Highest altitude of the track route altitude block above mean sea level in feet.
-	UpperAltitude param.Opt[float64] `json:"upperAltitude,omitzero"`
-	paramObj
-}
-
-func (r TrackRouteUpdateParamsAltitudeBlock) MarshalJSON() (data []byte, err error) {
-	type shadow TrackRouteUpdateParamsAltitudeBlock
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *TrackRouteUpdateParamsAltitudeBlock) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Point of contacts for scheduling or modifying the route.
-type TrackRouteUpdateParamsPoc struct {
-	// Office name for which the contact belongs.
-	Office param.Opt[string] `json:"office,omitzero"`
-	// Phone number of the contact.
-	Phone param.Opt[string] `json:"phone,omitzero"`
-	// The name of the contact.
-	PocName param.Opt[string] `json:"pocName,omitzero"`
-	// Organization name for which the contact belongs.
-	PocOrg param.Opt[string] `json:"pocOrg,omitzero"`
-	// Sequencing field for point of contact.
-	PocSequenceID param.Opt[int64] `json:"pocSequenceId,omitzero"`
-	// A code or name that represents the contact's role in association to the track
-	// route (ex. Originator, Scheduler, Maintainer, etc.).
-	PocTypeName param.Opt[string] `json:"pocTypeName,omitzero"`
-	// The rank of contact.
-	Rank param.Opt[string] `json:"rank,omitzero"`
-	// Text of the remark.
-	Remark param.Opt[string] `json:"remark,omitzero"`
-	// The username of the contact.
-	Username param.Opt[string] `json:"username,omitzero"`
-	paramObj
-}
-
-func (r TrackRouteUpdateParamsPoc) MarshalJSON() (data []byte, err error) {
-	type shadow TrackRouteUpdateParamsPoc
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *TrackRouteUpdateParamsPoc) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Points identified within the route.
-type TrackRouteUpdateParamsRoutePoint struct {
-	// Specifies an alternate country code if the data provider code is not part of an
-	// official NAVAID Country Code standard such as ISO-3166 or FIPS. This field will
-	// be set to the value provided by the source and should be used for all Queries
-	// specifying a Country Code.
-	AltCountryCode param.Opt[string] `json:"altCountryCode,omitzero"`
-	// The DoD Standard Country Code designator for the country where the route point
-	// resides. This field should be set to "OTHR" if the source value does not match a
-	// UDL country code value (ISO-3166-ALPHA-2).
-	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
-	// Flag indicating this is a Digital Aeronautical Flight Information File (DAFIF)
-	// point.
-	DafifPt param.Opt[bool] `json:"dafifPt,omitzero"`
-	// The magnetic declination/variation of the route point location from true north,
-	// in degrees. Positive values east of true north and negative values west of true
-	// north.
-	MagDec param.Opt[float64] `json:"magDec,omitzero"`
-	// Navigational Aid (NAVAID) identification code.
-	Navaid param.Opt[string] `json:"navaid,omitzero"`
-	// The length of the course from the Navigational Aid (NAVAID) in nautical miles.
-	NavaidLength param.Opt[float64] `json:"navaidLength,omitzero"`
-	// The NAVAID type of this route point (ex. VOR, VORTAC, TACAN, etc.).
-	NavaidType param.Opt[string] `json:"navaidType,omitzero"`
-	// WGS84 latitude of the point location, in degrees. -90 to 90 degrees (negative
-	// values south of equator).
-	PtLat param.Opt[float64] `json:"ptLat,omitzero"`
-	// WGS84 longitude of the point location, in degrees. -180 to 180 degrees (negative
-	// values west of Prime Meridian).
-	PtLon param.Opt[float64] `json:"ptLon,omitzero"`
-	// Sequencing field for the track route. This is the identifier representing the
-	// sequence of waypoints associated to the track route.
-	PtSequenceID param.Opt[int64] `json:"ptSequenceId,omitzero"`
-	// Code representation of the point within the track route (ex. EP, EX, CP, IP,
-	// etc.).
-	PtTypeCode param.Opt[string] `json:"ptTypeCode,omitzero"`
-	// The name that represents the point within the track route (ex. ENTRY POINT, EXIT
-	// POINT, CONTROL POINT, INITIAL POINT, etc.).
-	PtTypeName param.Opt[string] `json:"ptTypeName,omitzero"`
-	// Name of a waypoint which identifies the location of the point.
-	WaypointName param.Opt[string] `json:"waypointName,omitzero"`
-	paramObj
-}
-
-func (r TrackRouteUpdateParamsRoutePoint) MarshalJSON() (data []byte, err error) {
-	type shadow TrackRouteUpdateParamsRoutePoint
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *TrackRouteUpdateParamsRoutePoint) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
+	return json.Unmarshal(data, &r.TrackRouteIngest)
 }
 
 type TrackRouteListParams struct {
@@ -1045,7 +863,7 @@ func (r TrackRouteCountParams) URLQuery() (v url.Values, err error) {
 }
 
 type TrackRouteNewBulkParams struct {
-	Body []TrackRouteNewBulkParamsBody
+	Body []TrackRouteIngestParam
 	paramObj
 }
 
@@ -1054,243 +872,6 @@ func (r TrackRouteNewBulkParams) MarshalJSON() (data []byte, err error) {
 }
 func (r *TrackRouteNewBulkParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.Body)
-}
-
-// A track route is a prescribed route for performing training events or operations
-// such as air refueling.
-//
-// The properties ClassificationMarking, DataMode, LastUpdateDate, Source, Type are
-// required.
-type TrackRouteNewBulkParamsBody struct {
-	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
-	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
-	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
-	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
-	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-	// requirements, and for validating technical, functional, and performance
-	// characteristics.
-	//
-	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,omitzero,required"`
-	// The last updated date of the track route in ISO 8601 UTC format with millisecond
-	// precision.
-	LastUpdateDate time.Time `json:"lastUpdateDate,required" format:"date-time"`
-	// Source of the data.
-	Source string `json:"source,required"`
-	// The track route type represented by this record (ex. AIR REFUELING).
-	Type string `json:"type,required"`
-	// Unique identifier of the record, auto-generated by the system.
-	ID param.Opt[string] `json:"id,omitzero"`
-	// The APN radar code sent and received by the aircraft for identification.
-	ApnSetting param.Opt[string] `json:"apnSetting,omitzero"`
-	// The APX radar code sent and received by the aircraft for identification.
-	ApxBeaconCode param.Opt[string] `json:"apxBeaconCode,omitzero"`
-	// Air Refueling Track Control Center message.
-	ArtccMessage param.Opt[string] `json:"artccMessage,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
-	// The name of the creating organization of the track route.
-	CreatingOrg param.Opt[string] `json:"creatingOrg,omitzero"`
-	// The principal compass direction (cardinal or ordinal) of the track route.
-	Direction param.Opt[string] `json:"direction,omitzero"`
-	// The date which the DAFIF track was last updated/validated in ISO 8601 UTC format
-	// with millisecond precision.
-	EffectiveDate param.Opt[time.Time] `json:"effectiveDate,omitzero" format:"date-time"`
-	// Optional air refueling track ID from external systems. This field has no meaning
-	// within UDL and is provided as a convenience for systems that require tracking of
-	// an internal system generated ID.
-	ExternalID param.Opt[string] `json:"externalId,omitzero"`
-	// Used to show last time the track route was added to an itinerary in ISO 8601 UTC
-	// format with millisecond precision.
-	LastUsedDate param.Opt[time.Time] `json:"lastUsedDate,omitzero" format:"date-time"`
-	// Track location ID.
-	LocationTrackID param.Opt[string] `json:"locationTrackId,omitzero"`
-	// Originating system or organization which produced the data, if different from
-	// the source. The origin may be different than the source if the source was a
-	// mediating system which forwarded the data on behalf of the origin system. If
-	// null, the source may be assumed to be the origin.
-	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
-	// The primary UHF radio frequency used for the track route in megahertz.
-	PriFreq param.Opt[float64] `json:"priFreq,omitzero"`
-	// The receiver tanker channel identifer for air refueling tracks.
-	ReceiverTankerChCode param.Opt[string] `json:"receiverTankerCHCode,omitzero"`
-	// Region code indicating where the track resides as determined by the data source.
-	RegionCode param.Opt[string] `json:"regionCode,omitzero"`
-	// Region where the track resides.
-	RegionName param.Opt[string] `json:"regionName,omitzero"`
-	// Date the track needs to be reviewed for accuracy or deletion in ISO 8601 UTC
-	// format with millisecond precision.
-	ReviewDate param.Opt[time.Time] `json:"reviewDate,omitzero" format:"date-time"`
-	// Point of contact for the air refueling track route scheduler.
-	SchedulerOrgName param.Opt[string] `json:"schedulerOrgName,omitzero"`
-	// The unit responsible for scheduling the track route.
-	SchedulerOrgUnit param.Opt[string] `json:"schedulerOrgUnit,omitzero"`
-	// The secondary UHF radio frequency used for the track route in megahertz.
-	SecFreq param.Opt[float64] `json:"secFreq,omitzero"`
-	// Abbreviated name of the track.
-	ShortName param.Opt[string] `json:"shortName,omitzero"`
-	// Standard Indicator Code of the air refueling track.
-	Sic param.Opt[string] `json:"sic,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
-	// Identifier of the track.
-	TrackID param.Opt[string] `json:"trackId,omitzero"`
-	// Name of the track.
-	TrackName param.Opt[string] `json:"trackName,omitzero"`
-	// Type of process used by AMC to schedule an air refueling event. Possible values
-	// are A (Matched Long Range), F (Matched AMC Short Notice), N (Unmatched Theater
-	// Operation Short Notice (Theater Assets)), R, Unmatched Long Range, S (Soft Air
-	// Refueling), T (Matched Theater Operation Short Notice (Theater Assets)), V
-	// (Unmatched AMC Short Notice), X (Unmatched Theater Operation Short Notice (AMC
-	// Assets)), Y (Matched Theater Operation Short Notice (AMC Assets)), Z (Other Air
-	// Refueling).
-	TypeCode param.Opt[string] `json:"typeCode,omitzero"`
-	// Time the row was updated in the database, auto-populated by the system.
-	UpdatedAt param.Opt[time.Time] `json:"updatedAt,omitzero" format:"date-time"`
-	// Application user who updated the row in the database, auto-populated by the
-	// system.
-	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
-	// Minimum and maximum altitude bounds for the track.
-	AltitudeBlocks []TrackRouteNewBulkParamsBodyAltitudeBlock `json:"altitudeBlocks,omitzero"`
-	// Point of contacts for scheduling or modifying the route.
-	Poc []TrackRouteNewBulkParamsBodyPoc `json:"poc,omitzero"`
-	// Points identified within the route.
-	RoutePoints []TrackRouteNewBulkParamsBodyRoutePoint `json:"routePoints,omitzero"`
-	paramObj
-}
-
-func (r TrackRouteNewBulkParamsBody) MarshalJSON() (data []byte, err error) {
-	type shadow TrackRouteNewBulkParamsBody
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *TrackRouteNewBulkParamsBody) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-func init() {
-	apijson.RegisterFieldValidator[TrackRouteNewBulkParamsBody](
-		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
-	)
-}
-
-// Minimum and maximum altitude bounds for the track.
-type TrackRouteNewBulkParamsBodyAltitudeBlock struct {
-	// Sequencing field for the altitude block.
-	AltitudeSequenceID param.Opt[string] `json:"altitudeSequenceId,omitzero"`
-	// Lowest altitude of the track route altitude block above mean sea level in feet.
-	LowerAltitude param.Opt[float64] `json:"lowerAltitude,omitzero"`
-	// Highest altitude of the track route altitude block above mean sea level in feet.
-	UpperAltitude param.Opt[float64] `json:"upperAltitude,omitzero"`
-	paramObj
-}
-
-func (r TrackRouteNewBulkParamsBodyAltitudeBlock) MarshalJSON() (data []byte, err error) {
-	type shadow TrackRouteNewBulkParamsBodyAltitudeBlock
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *TrackRouteNewBulkParamsBodyAltitudeBlock) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Point of contacts for scheduling or modifying the route.
-type TrackRouteNewBulkParamsBodyPoc struct {
-	// Office name for which the contact belongs.
-	Office param.Opt[string] `json:"office,omitzero"`
-	// Phone number of the contact.
-	Phone param.Opt[string] `json:"phone,omitzero"`
-	// The name of the contact.
-	PocName param.Opt[string] `json:"pocName,omitzero"`
-	// Organization name for which the contact belongs.
-	PocOrg param.Opt[string] `json:"pocOrg,omitzero"`
-	// Sequencing field for point of contact.
-	PocSequenceID param.Opt[int64] `json:"pocSequenceId,omitzero"`
-	// A code or name that represents the contact's role in association to the track
-	// route (ex. Originator, Scheduler, Maintainer, etc.).
-	PocTypeName param.Opt[string] `json:"pocTypeName,omitzero"`
-	// The rank of contact.
-	Rank param.Opt[string] `json:"rank,omitzero"`
-	// Text of the remark.
-	Remark param.Opt[string] `json:"remark,omitzero"`
-	// The username of the contact.
-	Username param.Opt[string] `json:"username,omitzero"`
-	paramObj
-}
-
-func (r TrackRouteNewBulkParamsBodyPoc) MarshalJSON() (data []byte, err error) {
-	type shadow TrackRouteNewBulkParamsBodyPoc
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *TrackRouteNewBulkParamsBodyPoc) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Points identified within the route.
-type TrackRouteNewBulkParamsBodyRoutePoint struct {
-	// Specifies an alternate country code if the data provider code is not part of an
-	// official NAVAID Country Code standard such as ISO-3166 or FIPS. This field will
-	// be set to the value provided by the source and should be used for all Queries
-	// specifying a Country Code.
-	AltCountryCode param.Opt[string] `json:"altCountryCode,omitzero"`
-	// The DoD Standard Country Code designator for the country where the route point
-	// resides. This field should be set to "OTHR" if the source value does not match a
-	// UDL country code value (ISO-3166-ALPHA-2).
-	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
-	// Flag indicating this is a Digital Aeronautical Flight Information File (DAFIF)
-	// point.
-	DafifPt param.Opt[bool] `json:"dafifPt,omitzero"`
-	// The magnetic declination/variation of the route point location from true north,
-	// in degrees. Positive values east of true north and negative values west of true
-	// north.
-	MagDec param.Opt[float64] `json:"magDec,omitzero"`
-	// Navigational Aid (NAVAID) identification code.
-	Navaid param.Opt[string] `json:"navaid,omitzero"`
-	// The length of the course from the Navigational Aid (NAVAID) in nautical miles.
-	NavaidLength param.Opt[float64] `json:"navaidLength,omitzero"`
-	// The NAVAID type of this route point (ex. VOR, VORTAC, TACAN, etc.).
-	NavaidType param.Opt[string] `json:"navaidType,omitzero"`
-	// WGS84 latitude of the point location, in degrees. -90 to 90 degrees (negative
-	// values south of equator).
-	PtLat param.Opt[float64] `json:"ptLat,omitzero"`
-	// WGS84 longitude of the point location, in degrees. -180 to 180 degrees (negative
-	// values west of Prime Meridian).
-	PtLon param.Opt[float64] `json:"ptLon,omitzero"`
-	// Sequencing field for the track route. This is the identifier representing the
-	// sequence of waypoints associated to the track route.
-	PtSequenceID param.Opt[int64] `json:"ptSequenceId,omitzero"`
-	// Code representation of the point within the track route (ex. EP, EX, CP, IP,
-	// etc.).
-	PtTypeCode param.Opt[string] `json:"ptTypeCode,omitzero"`
-	// The name that represents the point within the track route (ex. ENTRY POINT, EXIT
-	// POINT, CONTROL POINT, INITIAL POINT, etc.).
-	PtTypeName param.Opt[string] `json:"ptTypeName,omitzero"`
-	// Name of a waypoint which identifies the location of the point.
-	WaypointName param.Opt[string] `json:"waypointName,omitzero"`
-	paramObj
-}
-
-func (r TrackRouteNewBulkParamsBodyRoutePoint) MarshalJSON() (data []byte, err error) {
-	type shadow TrackRouteNewBulkParamsBodyRoutePoint
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *TrackRouteNewBulkParamsBodyRoutePoint) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
 }
 
 type TrackRouteGetParams struct {
@@ -1330,233 +911,15 @@ func (r TrackRouteTupleParams) URLQuery() (v url.Values, err error) {
 }
 
 type TrackRouteUnvalidatedPublishParams struct {
-	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
-	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
-	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
-	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
-	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-	// requirements, and for validating technical, functional, and performance
-	// characteristics.
-	//
-	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode TrackRouteUnvalidatedPublishParamsDataMode `json:"dataMode,omitzero,required"`
-	// The last updated date of the track route in ISO 8601 UTC format with millisecond
-	// precision.
-	LastUpdateDate time.Time `json:"lastUpdateDate,required" format:"date-time"`
-	// Source of the data.
-	Source string `json:"source,required"`
-	// The track route type represented by this record (ex. AIR REFUELING).
-	Type string `json:"type,required"`
-	// Unique identifier of the record, auto-generated by the system.
-	ID param.Opt[string] `json:"id,omitzero"`
-	// The APN radar code sent and received by the aircraft for identification.
-	ApnSetting param.Opt[string] `json:"apnSetting,omitzero"`
-	// The APX radar code sent and received by the aircraft for identification.
-	ApxBeaconCode param.Opt[string] `json:"apxBeaconCode,omitzero"`
-	// Air Refueling Track Control Center message.
-	ArtccMessage param.Opt[string] `json:"artccMessage,omitzero"`
-	// The name of the creating organization of the track route.
-	CreatingOrg param.Opt[string] `json:"creatingOrg,omitzero"`
-	// The principal compass direction (cardinal or ordinal) of the track route.
-	Direction param.Opt[string] `json:"direction,omitzero"`
-	// The date which the DAFIF track was last updated/validated in ISO 8601 UTC format
-	// with millisecond precision.
-	EffectiveDate param.Opt[time.Time] `json:"effectiveDate,omitzero" format:"date-time"`
-	// Optional air refueling track ID from external systems. This field has no meaning
-	// within UDL and is provided as a convenience for systems that require tracking of
-	// an internal system generated ID.
-	ExternalID param.Opt[string] `json:"externalId,omitzero"`
-	// Used to show last time the track route was added to an itinerary in ISO 8601 UTC
-	// format with millisecond precision.
-	LastUsedDate param.Opt[time.Time] `json:"lastUsedDate,omitzero" format:"date-time"`
-	// Track location ID.
-	LocationTrackID param.Opt[string] `json:"locationTrackId,omitzero"`
-	// Originating system or organization which produced the data, if different from
-	// the source. The origin may be different than the source if the source was a
-	// mediating system which forwarded the data on behalf of the origin system. If
-	// null, the source may be assumed to be the origin.
-	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The primary UHF radio frequency used for the track route in megahertz.
-	PriFreq param.Opt[float64] `json:"priFreq,omitzero"`
-	// The receiver tanker channel identifer for air refueling tracks.
-	ReceiverTankerChCode param.Opt[string] `json:"receiverTankerCHCode,omitzero"`
-	// Region code indicating where the track resides as determined by the data source.
-	RegionCode param.Opt[string] `json:"regionCode,omitzero"`
-	// Region where the track resides.
-	RegionName param.Opt[string] `json:"regionName,omitzero"`
-	// Date the track needs to be reviewed for accuracy or deletion in ISO 8601 UTC
-	// format with millisecond precision.
-	ReviewDate param.Opt[time.Time] `json:"reviewDate,omitzero" format:"date-time"`
-	// Point of contact for the air refueling track route scheduler.
-	SchedulerOrgName param.Opt[string] `json:"schedulerOrgName,omitzero"`
-	// The unit responsible for scheduling the track route.
-	SchedulerOrgUnit param.Opt[string] `json:"schedulerOrgUnit,omitzero"`
-	// The secondary UHF radio frequency used for the track route in megahertz.
-	SecFreq param.Opt[float64] `json:"secFreq,omitzero"`
-	// Abbreviated name of the track.
-	ShortName param.Opt[string] `json:"shortName,omitzero"`
-	// Standard Indicator Code of the air refueling track.
-	Sic param.Opt[string] `json:"sic,omitzero"`
-	// Identifier of the track.
-	TrackID param.Opt[string] `json:"trackId,omitzero"`
-	// Name of the track.
-	TrackName param.Opt[string] `json:"trackName,omitzero"`
-	// Type of process used by AMC to schedule an air refueling event. Possible values
-	// are A (Matched Long Range), F (Matched AMC Short Notice), N (Unmatched Theater
-	// Operation Short Notice (Theater Assets)), R, Unmatched Long Range, S (Soft Air
-	// Refueling), T (Matched Theater Operation Short Notice (Theater Assets)), V
-	// (Unmatched AMC Short Notice), X (Unmatched Theater Operation Short Notice (AMC
-	// Assets)), Y (Matched Theater Operation Short Notice (AMC Assets)), Z (Other Air
-	// Refueling).
-	TypeCode param.Opt[string] `json:"typeCode,omitzero"`
-	// Minimum and maximum altitude bounds for the track.
-	AltitudeBlocks []TrackRouteUnvalidatedPublishParamsAltitudeBlock `json:"altitudeBlocks,omitzero"`
-	// Point of contacts for scheduling or modifying the route.
-	Poc []TrackRouteUnvalidatedPublishParamsPoc `json:"poc,omitzero"`
-	// Points identified within the route.
-	RoutePoints []TrackRouteUnvalidatedPublishParamsRoutePoint `json:"routePoints,omitzero"`
+	// A track route is a prescribed route for performing training events or operations
+	// such as air refueling.
+	TrackRouteIngest TrackRouteIngestParam
 	paramObj
 }
 
 func (r TrackRouteUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
-	type shadow TrackRouteUnvalidatedPublishParams
-	return param.MarshalObject(r, (*shadow)(&r))
+	return shimjson.Marshal(r.TrackRouteIngest)
 }
 func (r *TrackRouteUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
-//
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
-//
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
-//
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
-//
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
-// requirements, and for validating technical, functional, and performance
-// characteristics.
-type TrackRouteUnvalidatedPublishParamsDataMode string
-
-const (
-	TrackRouteUnvalidatedPublishParamsDataModeReal      TrackRouteUnvalidatedPublishParamsDataMode = "REAL"
-	TrackRouteUnvalidatedPublishParamsDataModeTest      TrackRouteUnvalidatedPublishParamsDataMode = "TEST"
-	TrackRouteUnvalidatedPublishParamsDataModeSimulated TrackRouteUnvalidatedPublishParamsDataMode = "SIMULATED"
-	TrackRouteUnvalidatedPublishParamsDataModeExercise  TrackRouteUnvalidatedPublishParamsDataMode = "EXERCISE"
-)
-
-// Minimum and maximum altitude bounds for the track.
-type TrackRouteUnvalidatedPublishParamsAltitudeBlock struct {
-	// Sequencing field for the altitude block.
-	AltitudeSequenceID param.Opt[string] `json:"altitudeSequenceId,omitzero"`
-	// Lowest altitude of the track route altitude block above mean sea level in feet.
-	LowerAltitude param.Opt[float64] `json:"lowerAltitude,omitzero"`
-	// Highest altitude of the track route altitude block above mean sea level in feet.
-	UpperAltitude param.Opt[float64] `json:"upperAltitude,omitzero"`
-	paramObj
-}
-
-func (r TrackRouteUnvalidatedPublishParamsAltitudeBlock) MarshalJSON() (data []byte, err error) {
-	type shadow TrackRouteUnvalidatedPublishParamsAltitudeBlock
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *TrackRouteUnvalidatedPublishParamsAltitudeBlock) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Point of contacts for scheduling or modifying the route.
-type TrackRouteUnvalidatedPublishParamsPoc struct {
-	// Office name for which the contact belongs.
-	Office param.Opt[string] `json:"office,omitzero"`
-	// Phone number of the contact.
-	Phone param.Opt[string] `json:"phone,omitzero"`
-	// The name of the contact.
-	PocName param.Opt[string] `json:"pocName,omitzero"`
-	// Organization name for which the contact belongs.
-	PocOrg param.Opt[string] `json:"pocOrg,omitzero"`
-	// Sequencing field for point of contact.
-	PocSequenceID param.Opt[int64] `json:"pocSequenceId,omitzero"`
-	// A code or name that represents the contact's role in association to the track
-	// route (ex. Originator, Scheduler, Maintainer, etc.).
-	PocTypeName param.Opt[string] `json:"pocTypeName,omitzero"`
-	// The rank of contact.
-	Rank param.Opt[string] `json:"rank,omitzero"`
-	// Text of the remark.
-	Remark param.Opt[string] `json:"remark,omitzero"`
-	// The username of the contact.
-	Username param.Opt[string] `json:"username,omitzero"`
-	paramObj
-}
-
-func (r TrackRouteUnvalidatedPublishParamsPoc) MarshalJSON() (data []byte, err error) {
-	type shadow TrackRouteUnvalidatedPublishParamsPoc
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *TrackRouteUnvalidatedPublishParamsPoc) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Points identified within the route.
-type TrackRouteUnvalidatedPublishParamsRoutePoint struct {
-	// Specifies an alternate country code if the data provider code is not part of an
-	// official NAVAID Country Code standard such as ISO-3166 or FIPS. This field will
-	// be set to the value provided by the source and should be used for all Queries
-	// specifying a Country Code.
-	AltCountryCode param.Opt[string] `json:"altCountryCode,omitzero"`
-	// The DoD Standard Country Code designator for the country where the route point
-	// resides. This field should be set to "OTHR" if the source value does not match a
-	// UDL country code value (ISO-3166-ALPHA-2).
-	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
-	// Flag indicating this is a Digital Aeronautical Flight Information File (DAFIF)
-	// point.
-	DafifPt param.Opt[bool] `json:"dafifPt,omitzero"`
-	// The magnetic declination/variation of the route point location from true north,
-	// in degrees. Positive values east of true north and negative values west of true
-	// north.
-	MagDec param.Opt[float64] `json:"magDec,omitzero"`
-	// Navigational Aid (NAVAID) identification code.
-	Navaid param.Opt[string] `json:"navaid,omitzero"`
-	// The length of the course from the Navigational Aid (NAVAID) in nautical miles.
-	NavaidLength param.Opt[float64] `json:"navaidLength,omitzero"`
-	// The NAVAID type of this route point (ex. VOR, VORTAC, TACAN, etc.).
-	NavaidType param.Opt[string] `json:"navaidType,omitzero"`
-	// WGS84 latitude of the point location, in degrees. -90 to 90 degrees (negative
-	// values south of equator).
-	PtLat param.Opt[float64] `json:"ptLat,omitzero"`
-	// WGS84 longitude of the point location, in degrees. -180 to 180 degrees (negative
-	// values west of Prime Meridian).
-	PtLon param.Opt[float64] `json:"ptLon,omitzero"`
-	// Sequencing field for the track route. This is the identifier representing the
-	// sequence of waypoints associated to the track route.
-	PtSequenceID param.Opt[int64] `json:"ptSequenceId,omitzero"`
-	// Code representation of the point within the track route (ex. EP, EX, CP, IP,
-	// etc.).
-	PtTypeCode param.Opt[string] `json:"ptTypeCode,omitzero"`
-	// The name that represents the point within the track route (ex. ENTRY POINT, EXIT
-	// POINT, CONTROL POINT, INITIAL POINT, etc.).
-	PtTypeName param.Opt[string] `json:"ptTypeName,omitzero"`
-	// Name of a waypoint which identifies the location of the point.
-	WaypointName param.Opt[string] `json:"waypointName,omitzero"`
-	paramObj
-}
-
-func (r TrackRouteUnvalidatedPublishParamsRoutePoint) MarshalJSON() (data []byte, err error) {
-	type shadow TrackRouteUnvalidatedPublishParamsRoutePoint
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *TrackRouteUnvalidatedPublishParamsRoutePoint) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
+	return json.Unmarshal(data, &r.TrackRouteIngest)
 }

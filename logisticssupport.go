@@ -301,6 +301,26 @@ func (r *LogisticsRemarksFull) UnmarshalJSON(data []byte) error {
 }
 
 // Remarks associated with this LogisticsSupport record.
+type LogisticsRemarksIngestParam struct {
+	// Date the remark was published or updated, in ISO 8601 UTC format, with
+	// millisecond precision.
+	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
+	// Text of the remark.
+	Remark param.Opt[string] `json:"remark,omitzero"`
+	// User who published the remark.
+	Username param.Opt[string] `json:"username,omitzero"`
+	paramObj
+}
+
+func (r LogisticsRemarksIngestParam) MarshalJSON() (data []byte, err error) {
+	type shadow LogisticsRemarksIngestParam
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *LogisticsRemarksIngestParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Remarks associated with this LogisticsSupport record.
 type LogisticsSegmentsFull struct {
 	// Airport ICAO arrival code.
 	ArrivalIcao string `json:"arrivalICAO"`
@@ -1696,7 +1716,7 @@ type LogisticsSupportNewParams struct {
 	// Discrepancy information associated with this LogisticsSupport record.
 	LogisticsDiscrepancyInfos []LogisticsSupportNewParamsLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos,omitzero"`
 	// Remarks associated with this LogisticsSupport record.
-	LogisticsRemarks []LogisticsSupportNewParamsLogisticsRemark `json:"logisticsRemarks,omitzero"`
+	LogisticsRemarks []LogisticsRemarksIngestParam `json:"logisticsRemarks,omitzero"`
 	// Support items associated with this LogisticsSupport record.
 	LogisticsSupportItems []LogisticsSupportNewParamsLogisticsSupportItem `json:"logisticsSupportItems,omitzero"`
 	// Transportation plans associated with this LogisticsSupport record, used to
@@ -1754,26 +1774,6 @@ func (r LogisticsSupportNewParamsLogisticsDiscrepancyInfo) MarshalJSON() (data [
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 func (r *LogisticsSupportNewParamsLogisticsDiscrepancyInfo) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Remarks associated with this LogisticsSupport record.
-type LogisticsSupportNewParamsLogisticsRemark struct {
-	// Date the remark was published or updated, in ISO 8601 UTC format, with
-	// millisecond precision.
-	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
-	// Text of the remark.
-	Remark param.Opt[string] `json:"remark,omitzero"`
-	// User who published the remark.
-	Username param.Opt[string] `json:"username,omitzero"`
-	paramObj
-}
-
-func (r LogisticsSupportNewParamsLogisticsRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticsSupportNewParamsLogisticsRemark
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *LogisticsSupportNewParamsLogisticsRemark) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -1835,7 +1835,7 @@ type LogisticsSupportNewParamsLogisticsSupportItem struct {
 	// The parts associated with this support item.
 	LogisticsParts []LogisticsSupportNewParamsLogisticsSupportItemLogisticsPart `json:"logisticsParts,omitzero"`
 	// Remarks associated with this support item.
-	LogisticsRemarks []LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark `json:"logisticsRemarks,omitzero"`
+	LogisticsRemarks []LogisticsRemarksIngestParam `json:"logisticsRemarks,omitzero"`
 	// The specialties required to implement this support item.
 	LogisticsSpecialties []LogisticsSupportNewParamsLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties,omitzero"`
 	paramObj
@@ -1905,26 +1905,6 @@ func (r LogisticsSupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 func (r *LogisticsSupportNewParamsLogisticsSupportItemLogisticsPartLogisticsStock) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Remarks associated with this LogisticsSupport record.
-type LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark struct {
-	// Date the remark was published or updated, in ISO 8601 UTC format, with
-	// millisecond precision.
-	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
-	// Text of the remark.
-	Remark param.Opt[string] `json:"remark,omitzero"`
-	// User who published the remark.
-	Username param.Opt[string] `json:"username,omitzero"`
-	paramObj
-}
-
-func (r LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -2026,7 +2006,7 @@ type LogisticsSupportNewParamsLogisticsTransportationPlan struct {
 	// The transportation segments associated with this transportation plan.
 	LogisticsSegments []LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments,omitzero"`
 	// Remarks associated with this transportation plan.
-	LogisticsTransportationPlansRemarks []LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark `json:"logisticsTransportationPlansRemarks,omitzero"`
+	LogisticsTransportationPlansRemarks []LogisticsRemarksIngestParam `json:"logisticsTransportationPlansRemarks,omitzero"`
 	paramObj
 }
 
@@ -2089,26 +2069,6 @@ func (r LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsSegment) Ma
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 func (r *LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsSegment) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Remarks associated with this LogisticsSupport record.
-type LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark struct {
-	// Date the remark was published or updated, in ISO 8601 UTC format, with
-	// millisecond precision.
-	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
-	// Text of the remark.
-	Remark param.Opt[string] `json:"remark,omitzero"`
-	// User who published the remark.
-	Username param.Opt[string] `json:"username,omitzero"`
-	paramObj
-}
-
-func (r LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -2196,7 +2156,7 @@ type LogisticsSupportUpdateParams struct {
 	// Discrepancy information associated with this LogisticsSupport record.
 	LogisticsDiscrepancyInfos []LogisticsSupportUpdateParamsLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos,omitzero"`
 	// Remarks associated with this LogisticsSupport record.
-	LogisticsRemarks []LogisticsSupportUpdateParamsLogisticsRemark `json:"logisticsRemarks,omitzero"`
+	LogisticsRemarks []LogisticsRemarksIngestParam `json:"logisticsRemarks,omitzero"`
 	// Support items associated with this LogisticsSupport record.
 	LogisticsSupportItems []LogisticsSupportUpdateParamsLogisticsSupportItem `json:"logisticsSupportItems,omitzero"`
 	// Transportation plans associated with this LogisticsSupport record, used to
@@ -2254,26 +2214,6 @@ func (r LogisticsSupportUpdateParamsLogisticsDiscrepancyInfo) MarshalJSON() (dat
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 func (r *LogisticsSupportUpdateParamsLogisticsDiscrepancyInfo) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Remarks associated with this LogisticsSupport record.
-type LogisticsSupportUpdateParamsLogisticsRemark struct {
-	// Date the remark was published or updated, in ISO 8601 UTC format, with
-	// millisecond precision.
-	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
-	// Text of the remark.
-	Remark param.Opt[string] `json:"remark,omitzero"`
-	// User who published the remark.
-	Username param.Opt[string] `json:"username,omitzero"`
-	paramObj
-}
-
-func (r LogisticsSupportUpdateParamsLogisticsRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticsSupportUpdateParamsLogisticsRemark
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *LogisticsSupportUpdateParamsLogisticsRemark) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -2335,7 +2275,7 @@ type LogisticsSupportUpdateParamsLogisticsSupportItem struct {
 	// The parts associated with this support item.
 	LogisticsParts []LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPart `json:"logisticsParts,omitzero"`
 	// Remarks associated with this support item.
-	LogisticsRemarks []LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark `json:"logisticsRemarks,omitzero"`
+	LogisticsRemarks []LogisticsRemarksIngestParam `json:"logisticsRemarks,omitzero"`
 	// The specialties required to implement this support item.
 	LogisticsSpecialties []LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties,omitzero"`
 	paramObj
@@ -2405,26 +2345,6 @@ func (r LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsSt
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 func (r *LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsPartLogisticsStock) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Remarks associated with this LogisticsSupport record.
-type LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark struct {
-	// Date the remark was published or updated, in ISO 8601 UTC format, with
-	// millisecond precision.
-	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
-	// Text of the remark.
-	Remark param.Opt[string] `json:"remark,omitzero"`
-	// User who published the remark.
-	Username param.Opt[string] `json:"username,omitzero"`
-	paramObj
-}
-
-func (r LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -2526,7 +2446,7 @@ type LogisticsSupportUpdateParamsLogisticsTransportationPlan struct {
 	// The transportation segments associated with this transportation plan.
 	LogisticsSegments []LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments,omitzero"`
 	// Remarks associated with this transportation plan.
-	LogisticsTransportationPlansRemarks []LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark `json:"logisticsTransportationPlansRemarks,omitzero"`
+	LogisticsTransportationPlansRemarks []LogisticsRemarksIngestParam `json:"logisticsTransportationPlansRemarks,omitzero"`
 	paramObj
 }
 
@@ -2589,26 +2509,6 @@ func (r LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsSegment)
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 func (r *LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsSegment) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Remarks associated with this LogisticsSupport record.
-type LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark struct {
-	// Date the remark was published or updated, in ISO 8601 UTC format, with
-	// millisecond precision.
-	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
-	// Text of the remark.
-	Remark param.Opt[string] `json:"remark,omitzero"`
-	// User who published the remark.
-	Username param.Opt[string] `json:"username,omitzero"`
-	paramObj
-}
-
-func (r LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -2756,7 +2656,7 @@ type LogisticsSupportNewBulkParamsBody struct {
 	// Discrepancy information associated with this LogisticsSupport record.
 	LogisticsDiscrepancyInfos []LogisticsSupportNewBulkParamsBodyLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos,omitzero"`
 	// Remarks associated with this LogisticsSupport record.
-	LogisticsRemarks []LogisticsSupportNewBulkParamsBodyLogisticsRemark `json:"logisticsRemarks,omitzero"`
+	LogisticsRemarks []LogisticsRemarksIngestParam `json:"logisticsRemarks,omitzero"`
 	// Support items associated with this LogisticsSupport record.
 	LogisticsSupportItems []LogisticsSupportNewBulkParamsBodyLogisticsSupportItem `json:"logisticsSupportItems,omitzero"`
 	// Transportation plans associated with this LogisticsSupport record, used to
@@ -2797,26 +2697,6 @@ func (r LogisticsSupportNewBulkParamsBodyLogisticsDiscrepancyInfo) MarshalJSON()
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 func (r *LogisticsSupportNewBulkParamsBodyLogisticsDiscrepancyInfo) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Remarks associated with this LogisticsSupport record.
-type LogisticsSupportNewBulkParamsBodyLogisticsRemark struct {
-	// Date the remark was published or updated, in ISO 8601 UTC format, with
-	// millisecond precision.
-	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
-	// Text of the remark.
-	Remark param.Opt[string] `json:"remark,omitzero"`
-	// User who published the remark.
-	Username param.Opt[string] `json:"username,omitzero"`
-	paramObj
-}
-
-func (r LogisticsSupportNewBulkParamsBodyLogisticsRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticsSupportNewBulkParamsBodyLogisticsRemark
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *LogisticsSupportNewBulkParamsBodyLogisticsRemark) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -2878,7 +2758,7 @@ type LogisticsSupportNewBulkParamsBodyLogisticsSupportItem struct {
 	// The parts associated with this support item.
 	LogisticsParts []LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPart `json:"logisticsParts,omitzero"`
 	// Remarks associated with this support item.
-	LogisticsRemarks []LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark `json:"logisticsRemarks,omitzero"`
+	LogisticsRemarks []LogisticsRemarksIngestParam `json:"logisticsRemarks,omitzero"`
 	// The specialties required to implement this support item.
 	LogisticsSpecialties []LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties,omitzero"`
 	paramObj
@@ -2948,26 +2828,6 @@ func (r LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogist
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 func (r *LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Remarks associated with this LogisticsSupport record.
-type LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark struct {
-	// Date the remark was published or updated, in ISO 8601 UTC format, with
-	// millisecond precision.
-	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
-	// Text of the remark.
-	Remark param.Opt[string] `json:"remark,omitzero"`
-	// User who published the remark.
-	Username param.Opt[string] `json:"username,omitzero"`
-	paramObj
-}
-
-func (r LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -3069,7 +2929,7 @@ type LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlan struct {
 	// The transportation segments associated with this transportation plan.
 	LogisticsSegments []LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments,omitzero"`
 	// Remarks associated with this transportation plan.
-	LogisticsTransportationPlansRemarks []LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark `json:"logisticsTransportationPlansRemarks,omitzero"`
+	LogisticsTransportationPlansRemarks []LogisticsRemarksIngestParam `json:"logisticsTransportationPlansRemarks,omitzero"`
 	paramObj
 }
 
@@ -3132,26 +2992,6 @@ func (r LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSeg
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 func (r *LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsSegment) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Remarks associated with this LogisticsSupport record.
-type LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark struct {
-	// Date the remark was published or updated, in ISO 8601 UTC format, with
-	// millisecond precision.
-	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
-	// Text of the remark.
-	Remark param.Opt[string] `json:"remark,omitzero"`
-	// User who published the remark.
-	Username param.Opt[string] `json:"username,omitzero"`
-	paramObj
-}
-
-func (r LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -3304,7 +3144,7 @@ type LogisticsSupportUnvalidatedPublishParamsBody struct {
 	// Discrepancy information associated with this LogisticsSupport record.
 	LogisticsDiscrepancyInfos []LogisticsSupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos,omitzero"`
 	// Remarks associated with this LogisticsSupport record.
-	LogisticsRemarks []LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark `json:"logisticsRemarks,omitzero"`
+	LogisticsRemarks []LogisticsRemarksIngestParam `json:"logisticsRemarks,omitzero"`
 	// Support items associated with this LogisticsSupport record.
 	LogisticsSupportItems []LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItem `json:"logisticsSupportItems,omitzero"`
 	// Transportation plans associated with this LogisticsSupport record, used to
@@ -3345,26 +3185,6 @@ func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo) Ma
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 func (r *LogisticsSupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Remarks associated with this LogisticsSupport record.
-type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark struct {
-	// Date the remark was published or updated, in ISO 8601 UTC format, with
-	// millisecond precision.
-	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
-	// Text of the remark.
-	Remark param.Opt[string] `json:"remark,omitzero"`
-	// User who published the remark.
-	Username param.Opt[string] `json:"username,omitzero"`
-	paramObj
-}
-
-func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -3426,7 +3246,7 @@ type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItem struct {
 	// The parts associated with this support item.
 	LogisticsParts []LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPart `json:"logisticsParts,omitzero"`
 	// Remarks associated with this support item.
-	LogisticsRemarks []LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark `json:"logisticsRemarks,omitzero"`
+	LogisticsRemarks []LogisticsRemarksIngestParam `json:"logisticsRemarks,omitzero"`
 	// The specialties required to implement this support item.
 	LogisticsSpecialties []LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsSpecialty `json:"logisticsSpecialties,omitzero"`
 	paramObj
@@ -3496,26 +3316,6 @@ func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogistic
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 func (r *LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsPartLogisticsStock) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Remarks associated with this LogisticsSupport record.
-type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark struct {
-	// Date the remark was published or updated, in ISO 8601 UTC format, with
-	// millisecond precision.
-	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
-	// Text of the remark.
-	Remark param.Opt[string] `json:"remark,omitzero"`
-	// User who published the remark.
-	Username param.Opt[string] `json:"username,omitzero"`
-	paramObj
-}
-
-func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -3617,7 +3417,7 @@ type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlan str
 	// The transportation segments associated with this transportation plan.
 	LogisticsSegments []LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment `json:"logisticsSegments,omitzero"`
 	// Remarks associated with this transportation plan.
-	LogisticsTransportationPlansRemarks []LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark `json:"logisticsTransportationPlansRemarks,omitzero"`
+	LogisticsTransportationPlansRemarks []LogisticsRemarksIngestParam `json:"logisticsTransportationPlansRemarks,omitzero"`
 	paramObj
 }
 
@@ -3680,25 +3480,5 @@ func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanL
 	return param.MarshalObject(r, (*shadow)(&r))
 }
 func (r *LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsSegment) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// Remarks associated with this LogisticsSupport record.
-type LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark struct {
-	// Date the remark was published or updated, in ISO 8601 UTC format, with
-	// millisecond precision.
-	LastChanged param.Opt[time.Time] `json:"lastChanged,omitzero" format:"date-time"`
-	// Text of the remark.
-	Remark param.Opt[string] `json:"remark,omitzero"`
-	// User who published the remark.
-	Username param.Opt[string] `json:"username,omitzero"`
-	paramObj
-}
-
-func (r LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) MarshalJSON() (data []byte, err error) {
-	type shadow LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }

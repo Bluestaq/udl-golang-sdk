@@ -11,6 +11,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk"
 	"github.com/Bluestaq/udl-golang-sdk/internal/testutil"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 func TestBatteryNewWithOptionalParams(t *testing.T) {
@@ -27,11 +28,13 @@ func TestBatteryNewWithOptionalParams(t *testing.T) {
 		option.WithUsername("My Username"),
 	)
 	err := client.Batteries.New(context.TODO(), unifieddatalibrary.BatteryNewParams{
-		DataMode: unifieddatalibrary.BatteryNewParamsDataModeTest,
-		Name:     "JAK-BATTERY-1479",
-		Source:   "Bluestaq",
-		ID:       unifieddatalibrary.String("BATTERY-ID"),
-		Origin:   unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+		BatteryIngest: shared.BatteryIngestParam{
+			DataMode: shared.BatteryIngestDataModeTest,
+			Name:     "JAK-BATTERY-1479",
+			Source:   "Bluestaq",
+			ID:       unifieddatalibrary.String("BATTERY-ID"),
+			Origin:   unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+		},
 	})
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
@@ -89,11 +92,13 @@ func TestBatteryUpdateWithOptionalParams(t *testing.T) {
 		context.TODO(),
 		"id",
 		unifieddatalibrary.BatteryUpdateParams{
-			DataMode: unifieddatalibrary.BatteryUpdateParamsDataModeTest,
-			Name:     "JAK-BATTERY-1479",
-			Source:   "Bluestaq",
-			ID:       unifieddatalibrary.String("BATTERY-ID"),
-			Origin:   unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+			BatteryIngest: shared.BatteryIngestParam{
+				DataMode: shared.BatteryIngestDataModeTest,
+				Name:     "JAK-BATTERY-1479",
+				Source:   "Bluestaq",
+				ID:       unifieddatalibrary.String("BATTERY-ID"),
+				Origin:   unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+			},
 		},
 	)
 	if err != nil {
