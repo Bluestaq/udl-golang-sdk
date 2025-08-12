@@ -11,6 +11,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk"
 	"github.com/Bluestaq/udl-golang-sdk/internal/testutil"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 func TestSolarArrayNewWithOptionalParams(t *testing.T) {
@@ -27,11 +28,13 @@ func TestSolarArrayNewWithOptionalParams(t *testing.T) {
 		option.WithUsername("My Username"),
 	)
 	err := client.SolarArray.New(context.TODO(), unifieddatalibrary.SolarArrayNewParams{
-		DataMode: unifieddatalibrary.SolarArrayNewParamsDataModeTest,
-		Name:     "Solar1",
-		Source:   "Bluestaq",
-		ID:       unifieddatalibrary.String("SOLARARRAY-ID"),
-		Origin:   unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+		SolarArrayIngest: shared.SolarArrayIngestParam{
+			DataMode: shared.SolarArrayIngestDataModeTest,
+			Name:     "Solar1",
+			Source:   "Bluestaq",
+			ID:       unifieddatalibrary.String("SOLARARRAY-ID"),
+			Origin:   unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+		},
 	})
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
@@ -59,11 +62,13 @@ func TestSolarArrayUpdateWithOptionalParams(t *testing.T) {
 		context.TODO(),
 		"id",
 		unifieddatalibrary.SolarArrayUpdateParams{
-			DataMode: unifieddatalibrary.SolarArrayUpdateParamsDataModeTest,
-			Name:     "Solar1",
-			Source:   "Bluestaq",
-			ID:       unifieddatalibrary.String("SOLARARRAY-ID"),
-			Origin:   unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+			SolarArrayIngest: shared.SolarArrayIngestParam{
+				DataMode: shared.SolarArrayIngestDataModeTest,
+				Name:     "Solar1",
+				Source:   "Bluestaq",
+				ID:       unifieddatalibrary.String("SOLARARRAY-ID"),
+				Origin:   unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+			},
 		},
 	)
 	if err != nil {

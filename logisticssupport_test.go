@@ -46,7 +46,7 @@ func TestLogisticsSupportNewWithOptionalParams(t *testing.T) {
 			JobStTime:       unifieddatalibrary.Time(time.Now()),
 		}},
 		LogisticsRecordID: unifieddatalibrary.String("L62017"),
-		LogisticsRemarks: []unifieddatalibrary.LogisticsSupportNewParamsLogisticsRemark{{
+		LogisticsRemarks: []unifieddatalibrary.LogisticsRemarksIngestParam{{
 			LastChanged: unifieddatalibrary.Time(time.Now()),
 			Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 			Username:    unifieddatalibrary.String("JSMITH"),
@@ -75,7 +75,7 @@ func TestLogisticsSupportNewWithOptionalParams(t *testing.T) {
 				TechnicalOrderText:   unifieddatalibrary.String("1C-17A-4"),
 				WorkUnitCode:         unifieddatalibrary.String("5611UU001"),
 			}},
-			LogisticsRemarks: []unifieddatalibrary.LogisticsSupportNewParamsLogisticsSupportItemLogisticsRemark{{
+			LogisticsRemarks: []unifieddatalibrary.LogisticsRemarksIngestParam{{
 				LastChanged: unifieddatalibrary.Time(time.Now()),
 				Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 				Username:    unifieddatalibrary.String("JSMITH"),
@@ -132,7 +132,7 @@ func TestLogisticsSupportNewWithOptionalParams(t *testing.T) {
 				SegmentNumber:  unifieddatalibrary.Int(3),
 				SegTailNumber:  unifieddatalibrary.String("N819AX"),
 			}},
-			LogisticsTransportationPlansRemarks: []unifieddatalibrary.LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark{{
+			LogisticsTransportationPlansRemarks: []unifieddatalibrary.LogisticsRemarksIngestParam{{
 				LastChanged: unifieddatalibrary.Time(time.Now()),
 				Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 				Username:    unifieddatalibrary.String("JSMITH"),
@@ -203,7 +203,7 @@ func TestLogisticsSupportUpdateWithOptionalParams(t *testing.T) {
 				JobStTime:       unifieddatalibrary.Time(time.Now()),
 			}},
 			LogisticsRecordID: unifieddatalibrary.String("L62017"),
-			LogisticsRemarks: []unifieddatalibrary.LogisticsSupportUpdateParamsLogisticsRemark{{
+			LogisticsRemarks: []unifieddatalibrary.LogisticsRemarksIngestParam{{
 				LastChanged: unifieddatalibrary.Time(time.Now()),
 				Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 				Username:    unifieddatalibrary.String("JSMITH"),
@@ -232,7 +232,7 @@ func TestLogisticsSupportUpdateWithOptionalParams(t *testing.T) {
 					TechnicalOrderText:   unifieddatalibrary.String("1C-17A-4"),
 					WorkUnitCode:         unifieddatalibrary.String("5611UU001"),
 				}},
-				LogisticsRemarks: []unifieddatalibrary.LogisticsSupportUpdateParamsLogisticsSupportItemLogisticsRemark{{
+				LogisticsRemarks: []unifieddatalibrary.LogisticsRemarksIngestParam{{
 					LastChanged: unifieddatalibrary.Time(time.Now()),
 					Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 					Username:    unifieddatalibrary.String("JSMITH"),
@@ -289,7 +289,7 @@ func TestLogisticsSupportUpdateWithOptionalParams(t *testing.T) {
 					SegmentNumber:  unifieddatalibrary.Int(3),
 					SegTailNumber:  unifieddatalibrary.String("N819AX"),
 				}},
-				LogisticsTransportationPlansRemarks: []unifieddatalibrary.LogisticsSupportUpdateParamsLogisticsTransportationPlanLogisticsTransportationPlansRemark{{
+				LogisticsTransportationPlansRemarks: []unifieddatalibrary.LogisticsRemarksIngestParam{{
 					LastChanged: unifieddatalibrary.Time(time.Now()),
 					Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 					Username:    unifieddatalibrary.String("JSMITH"),
@@ -411,7 +411,7 @@ func TestLogisticsSupportNewBulk(t *testing.T) {
 				JobStTime:       unifieddatalibrary.Time(time.Now()),
 			}},
 			LogisticsRecordID: unifieddatalibrary.String("L62017"),
-			LogisticsRemarks: []unifieddatalibrary.LogisticsSupportNewBulkParamsBodyLogisticsRemark{{
+			LogisticsRemarks: []unifieddatalibrary.LogisticsRemarksIngestParam{{
 				LastChanged: unifieddatalibrary.Time(time.Now()),
 				Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 				Username:    unifieddatalibrary.String("JSMITH"),
@@ -440,7 +440,7 @@ func TestLogisticsSupportNewBulk(t *testing.T) {
 					TechnicalOrderText:   unifieddatalibrary.String("1C-17A-4"),
 					WorkUnitCode:         unifieddatalibrary.String("5611UU001"),
 				}},
-				LogisticsRemarks: []unifieddatalibrary.LogisticsSupportNewBulkParamsBodyLogisticsSupportItemLogisticsRemark{{
+				LogisticsRemarks: []unifieddatalibrary.LogisticsRemarksIngestParam{{
 					LastChanged: unifieddatalibrary.Time(time.Now()),
 					Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 					Username:    unifieddatalibrary.String("JSMITH"),
@@ -497,7 +497,7 @@ func TestLogisticsSupportNewBulk(t *testing.T) {
 					SegmentNumber:  unifieddatalibrary.Int(3),
 					SegTailNumber:  unifieddatalibrary.String("N819AX"),
 				}},
-				LogisticsTransportationPlansRemarks: []unifieddatalibrary.LogisticsSupportNewBulkParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark{{
+				LogisticsTransportationPlansRemarks: []unifieddatalibrary.LogisticsRemarksIngestParam{{
 					LastChanged: unifieddatalibrary.Time(time.Now()),
 					Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 					Username:    unifieddatalibrary.String("JSMITH"),
@@ -647,7 +647,7 @@ func TestLogisticsSupportUnvalidatedPublish(t *testing.T) {
 				JobStTime:       unifieddatalibrary.Time(time.Now()),
 			}},
 			LogisticsRecordID: unifieddatalibrary.String("L62017"),
-			LogisticsRemarks: []unifieddatalibrary.LogisticsSupportUnvalidatedPublishParamsBodyLogisticsRemark{{
+			LogisticsRemarks: []unifieddatalibrary.LogisticsRemarksIngestParam{{
 				LastChanged: unifieddatalibrary.Time(time.Now()),
 				Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 				Username:    unifieddatalibrary.String("JSMITH"),
@@ -676,7 +676,7 @@ func TestLogisticsSupportUnvalidatedPublish(t *testing.T) {
 					TechnicalOrderText:   unifieddatalibrary.String("1C-17A-4"),
 					WorkUnitCode:         unifieddatalibrary.String("5611UU001"),
 				}},
-				LogisticsRemarks: []unifieddatalibrary.LogisticsSupportUnvalidatedPublishParamsBodyLogisticsSupportItemLogisticsRemark{{
+				LogisticsRemarks: []unifieddatalibrary.LogisticsRemarksIngestParam{{
 					LastChanged: unifieddatalibrary.Time(time.Now()),
 					Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 					Username:    unifieddatalibrary.String("JSMITH"),
@@ -733,7 +733,7 @@ func TestLogisticsSupportUnvalidatedPublish(t *testing.T) {
 					SegmentNumber:  unifieddatalibrary.Int(3),
 					SegTailNumber:  unifieddatalibrary.String("N819AX"),
 				}},
-				LogisticsTransportationPlansRemarks: []unifieddatalibrary.LogisticsSupportUnvalidatedPublishParamsBodyLogisticsTransportationPlanLogisticsTransportationPlansRemark{{
+				LogisticsTransportationPlansRemarks: []unifieddatalibrary.LogisticsRemarksIngestParam{{
 					LastChanged: unifieddatalibrary.Time(time.Now()),
 					Remark:      unifieddatalibrary.String("EXAMPLE REMARK"),
 					Username:    unifieddatalibrary.String("JSMITH"),

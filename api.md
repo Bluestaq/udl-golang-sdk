@@ -1,6 +1,11 @@
 # Shared Params Types
 
+- <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/shared">shared</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/shared#AntennaIngestParam">AntennaIngestParam</a>
+- <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/shared">shared</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/shared#BatteryIngestParam">BatteryIngestParam</a>
+- <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/shared">shared</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/shared#EngineIngestParam">EngineIngestParam</a>
 - <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/shared">shared</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/shared#FileDataParam">FileDataParam</a>
+- <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/shared">shared</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/shared#SolarArrayIngestParam">SolarArrayIngestParam</a>
+- <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/shared">shared</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/shared#SubStatusIngestParam">SubStatusIngestParam</a>
 
 # Shared Response Types
 
@@ -1806,6 +1811,10 @@ Methods:
 - <code title="get /udl/location/tuple">client.Location.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#LocationService.Tuple">Tuple</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#LocationTupleParams">LocationTupleParams</a>) ([]<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/shared">shared</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/shared#LocationFull">LocationFull</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 # LogisticsSupport
+
+Params Types:
+
+- <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#LogisticsRemarksIngestParam">LogisticsRemarksIngestParam</a>
 
 Response Types:
 
@@ -3713,6 +3722,13 @@ Methods:
 - <code title="get /udl/trackdetails/history/count">client.TrackDetails.History.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#TrackDetailHistoryService.Count">Count</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#TrackDetailHistoryCountParams">TrackDetailHistoryCountParams</a>) (<a href="https://pkg.go.dev/builtin#string">string</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 # TrackRoute
+
+Params Types:
+
+- <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#AltitudeBlocksIngestParam">AltitudeBlocksIngestParam</a>
+- <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#PointOfContactIngestParam">PointOfContactIngestParam</a>
+- <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#RoutePointsIngestParam">RoutePointsIngestParam</a>
+- <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#TrackRouteIngestParam">TrackRouteIngestParam</a>
 
 Response Types:
 

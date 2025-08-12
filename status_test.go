@@ -12,6 +12,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk"
 	"github.com/Bluestaq/udl-golang-sdk/internal/testutil"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 func TestStatusNewWithOptionalParams(t *testing.T) {
@@ -40,14 +41,14 @@ func TestStatusNewWithOptionalParams(t *testing.T) {
 		OpsCap:                 unifieddatalibrary.StatusNewParamsOpsCapFmc,
 		Origin:                 unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
 		State:                  unifieddatalibrary.StatusNewParamsStateActive,
-		SubStatusCollection: []unifieddatalibrary.StatusNewParamsSubStatusCollection{{
+		SubStatusCollection: []shared.SubStatusIngestParam{{
 			ClassificationMarking: "U",
-			DataMode:              "TEST",
+			DataMode:              shared.SubStatusIngestDataModeTest,
 			Notes:                 "Sample Notes",
 			Source:                "Bluestaq",
-			Status:                "FMC",
+			Status:                shared.SubStatusIngestStatusFmc,
 			StatusID:              "REF-STATUS-ID",
-			Type:                  "mdCap",
+			Type:                  shared.SubStatusIngestTypeMdCap,
 			ID:                    unifieddatalibrary.String("SUBSTATUS-ID"),
 			Origin:                unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
 		}},
@@ -91,14 +92,14 @@ func TestStatusUpdateWithOptionalParams(t *testing.T) {
 			OpsCap:                 unifieddatalibrary.StatusUpdateParamsOpsCapFmc,
 			Origin:                 unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
 			State:                  unifieddatalibrary.StatusUpdateParamsStateActive,
-			SubStatusCollection: []unifieddatalibrary.StatusUpdateParamsSubStatusCollection{{
+			SubStatusCollection: []shared.SubStatusIngestParam{{
 				ClassificationMarking: "U",
-				DataMode:              "TEST",
+				DataMode:              shared.SubStatusIngestDataModeTest,
 				Notes:                 "Sample Notes",
 				Source:                "Bluestaq",
-				Status:                "FMC",
+				Status:                shared.SubStatusIngestStatusFmc,
 				StatusID:              "REF-STATUS-ID",
-				Type:                  "mdCap",
+				Type:                  shared.SubStatusIngestTypeMdCap,
 				ID:                    unifieddatalibrary.String("SUBSTATUS-ID"),
 				Origin:                unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
 			}},

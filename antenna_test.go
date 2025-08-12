@@ -11,6 +11,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk"
 	"github.com/Bluestaq/udl-golang-sdk/internal/testutil"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 func TestAntennaNewWithOptionalParams(t *testing.T) {
@@ -27,11 +28,13 @@ func TestAntennaNewWithOptionalParams(t *testing.T) {
 		option.WithUsername("My Username"),
 	)
 	err := client.Antennas.New(context.TODO(), unifieddatalibrary.AntennaNewParams{
-		DataMode: unifieddatalibrary.AntennaNewParamsDataModeTest,
-		Name:     "IRIDIUM NEXT 121-ANTENNA-10075",
-		Source:   "Bluestaq",
-		ID:       unifieddatalibrary.String("ANTENNA-ID"),
-		Origin:   unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+		AntennaIngest: shared.AntennaIngestParam{
+			DataMode: shared.AntennaIngestDataModeTest,
+			Name:     "IRIDIUM NEXT 121-ANTENNA-10075",
+			Source:   "Bluestaq",
+			ID:       unifieddatalibrary.String("ANTENNA-ID"),
+			Origin:   unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+		},
 	})
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
@@ -89,11 +92,13 @@ func TestAntennaUpdateWithOptionalParams(t *testing.T) {
 		context.TODO(),
 		"id",
 		unifieddatalibrary.AntennaUpdateParams{
-			DataMode: unifieddatalibrary.AntennaUpdateParamsDataModeTest,
-			Name:     "IRIDIUM NEXT 121-ANTENNA-10075",
-			Source:   "Bluestaq",
-			ID:       unifieddatalibrary.String("ANTENNA-ID"),
-			Origin:   unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+			AntennaIngest: shared.AntennaIngestParam{
+				DataMode: shared.AntennaIngestDataModeTest,
+				Name:     "IRIDIUM NEXT 121-ANTENNA-10075",
+				Source:   "Bluestaq",
+				ID:       unifieddatalibrary.String("ANTENNA-ID"),
+				Origin:   unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+			},
 		},
 	)
 	if err != nil {

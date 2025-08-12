@@ -11,6 +11,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk"
 	"github.com/Bluestaq/udl-golang-sdk/internal/testutil"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 func TestOnorbitantennaNewWithOptionalParams(t *testing.T) {
@@ -33,8 +34,8 @@ func TestOnorbitantennaNewWithOptionalParams(t *testing.T) {
 		IDOnOrbit:             "ONORBIT-ID",
 		Source:                "Bluestaq",
 		ID:                    unifieddatalibrary.String("ONORBITANTENNA-ID"),
-		Antenna: unifieddatalibrary.OnorbitantennaNewParamsAntenna{
-			DataMode: "TEST",
+		Antenna: shared.AntennaIngestParam{
+			DataMode: shared.AntennaIngestDataModeTest,
 			Name:     "IRIDIUM NEXT 121-ANTENNA-10075",
 			Source:   "Bluestaq",
 			ID:       unifieddatalibrary.String("ANTENNA-ID"),
@@ -74,8 +75,8 @@ func TestOnorbitantennaUpdateWithOptionalParams(t *testing.T) {
 			IDOnOrbit:             "ONORBIT-ID",
 			Source:                "Bluestaq",
 			ID:                    unifieddatalibrary.String("ONORBITANTENNA-ID"),
-			Antenna: unifieddatalibrary.OnorbitantennaUpdateParamsAntenna{
-				DataMode: "TEST",
+			Antenna: shared.AntennaIngestParam{
+				DataMode: shared.AntennaIngestDataModeTest,
 				Name:     "IRIDIUM NEXT 121-ANTENNA-10075",
 				Source:   "Bluestaq",
 				ID:       unifieddatalibrary.String("ANTENNA-ID"),
