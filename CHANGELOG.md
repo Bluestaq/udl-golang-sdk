@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.1.0-alpha.6 (2025-08-12)
+
+Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
+
+### Features
+
+* **api:** manual updates ([a02e95c](https://github.com/Bluestaq/udl-golang-sdk/commit/a02e95c9f1c651869410b9f00689aeb668a05ec8))
+* **api:** manual updates ([0413b89](https://github.com/Bluestaq/udl-golang-sdk/commit/0413b89ef74257fc23c939f34d33bf0bf672d2a4))
+* **api:** manual updates ([159d4ab](https://github.com/Bluestaq/udl-golang-sdk/commit/159d4abe6f2cc33ad077e95067fd52502027bb06))
+* **api:** manual updates ([cd8cfd1](https://github.com/Bluestaq/udl-golang-sdk/commit/cd8cfd129fd3e04afbd5683e7f5f0b16edad0b2f))
+* **client:** support optional json html escaping ([4af63e3](https://github.com/Bluestaq/udl-golang-sdk/commit/4af63e316c5ce62802ffed56f751a52b67757d2c))
+
+
+### Chores
+
+* **internal:** update comment in script ([eac9138](https://github.com/Bluestaq/udl-golang-sdk/commit/eac9138c5aa0f79996cf2e5cedce9d383fb4fb67))
+* update @stainless-api/prism-cli to v5.15.0 ([68a4368](https://github.com/Bluestaq/udl-golang-sdk/commit/68a43685cdbe00f4ecbdd9390d7dc4136b4a7056))
+
 ## 0.1.0-alpha.5 (2025-08-03)
 
 Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)

@@ -11,6 +11,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk"
 	"github.com/Bluestaq/udl-golang-sdk/internal/testutil"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 func TestSubstatusNewWithOptionalParams(t *testing.T) {
@@ -27,15 +28,17 @@ func TestSubstatusNewWithOptionalParams(t *testing.T) {
 		option.WithUsername("My Username"),
 	)
 	err := client.Substatus.New(context.TODO(), unifieddatalibrary.SubstatusNewParams{
-		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.SubstatusNewParamsDataModeTest,
-		Notes:                 "Sample Notes",
-		Source:                "Bluestaq",
-		Status:                unifieddatalibrary.SubstatusNewParamsStatusFmc,
-		StatusID:              "REF-STATUS-ID",
-		Type:                  unifieddatalibrary.SubstatusNewParamsTypeMdCap,
-		ID:                    unifieddatalibrary.String("SUBSTATUS-ID"),
-		Origin:                unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+		SubStatusIngest: shared.SubStatusIngestParam{
+			ClassificationMarking: "U",
+			DataMode:              shared.SubStatusIngestDataModeTest,
+			Notes:                 "Sample Notes",
+			Source:                "Bluestaq",
+			Status:                shared.SubStatusIngestStatusFmc,
+			StatusID:              "REF-STATUS-ID",
+			Type:                  shared.SubStatusIngestTypeMdCap,
+			ID:                    unifieddatalibrary.String("SUBSTATUS-ID"),
+			Origin:                unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+		},
 	})
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
@@ -63,15 +66,17 @@ func TestSubstatusUpdateWithOptionalParams(t *testing.T) {
 		context.TODO(),
 		"id",
 		unifieddatalibrary.SubstatusUpdateParams{
-			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.SubstatusUpdateParamsDataModeTest,
-			Notes:                 "Sample Notes",
-			Source:                "Bluestaq",
-			Status:                unifieddatalibrary.SubstatusUpdateParamsStatusFmc,
-			StatusID:              "REF-STATUS-ID",
-			Type:                  unifieddatalibrary.SubstatusUpdateParamsTypeMdCap,
-			ID:                    unifieddatalibrary.String("SUBSTATUS-ID"),
-			Origin:                unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+			SubStatusIngest: shared.SubStatusIngestParam{
+				ClassificationMarking: "U",
+				DataMode:              shared.SubStatusIngestDataModeTest,
+				Notes:                 "Sample Notes",
+				Source:                "Bluestaq",
+				Status:                shared.SubStatusIngestStatusFmc,
+				StatusID:              "REF-STATUS-ID",
+				Type:                  shared.SubStatusIngestTypeMdCap,
+				ID:                    unifieddatalibrary.String("SUBSTATUS-ID"),
+				Origin:                unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+			},
 		},
 	)
 	if err != nil {

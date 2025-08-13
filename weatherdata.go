@@ -13,6 +13,7 @@ import (
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
+	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
@@ -616,7 +617,7 @@ type WeatherDataNewBulkParams struct {
 }
 
 func (r WeatherDataNewBulkParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.Body)
+	return shimjson.Marshal(r.Body)
 }
 func (r *WeatherDataNewBulkParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.Body)
@@ -826,7 +827,7 @@ type WeatherDataUnvalidatedPublishParams struct {
 }
 
 func (r WeatherDataUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.Body)
+	return shimjson.Marshal(r.Body)
 }
 func (r *WeatherDataUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.Body)

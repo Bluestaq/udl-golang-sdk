@@ -11,6 +11,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk"
 	"github.com/Bluestaq/udl-golang-sdk/internal/testutil"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 func TestEngineNewWithOptionalParams(t *testing.T) {
@@ -27,12 +28,14 @@ func TestEngineNewWithOptionalParams(t *testing.T) {
 		option.WithUsername("My Username"),
 	)
 	err := client.Engines.New(context.TODO(), unifieddatalibrary.EngineNewParams{
-		ClassificationMarking: "U",
-		DataMode:              unifieddatalibrary.EngineNewParamsDataModeTest,
-		Name:                  "ENGINE_VARIANT1",
-		Source:                "Bluestaq",
-		ID:                    unifieddatalibrary.String("ENGINE-ID"),
-		Origin:                unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+		EngineIngest: shared.EngineIngestParam{
+			ClassificationMarking: "U",
+			DataMode:              shared.EngineIngestDataModeTest,
+			Name:                  "ENGINE_VARIANT1",
+			Source:                "Bluestaq",
+			ID:                    unifieddatalibrary.String("ENGINE-ID"),
+			Origin:                unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+		},
 	})
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
@@ -90,12 +93,14 @@ func TestEngineUpdateWithOptionalParams(t *testing.T) {
 		context.TODO(),
 		"id",
 		unifieddatalibrary.EngineUpdateParams{
-			ClassificationMarking: "U",
-			DataMode:              unifieddatalibrary.EngineUpdateParamsDataModeTest,
-			Name:                  "ENGINE_VARIANT1",
-			Source:                "Bluestaq",
-			ID:                    unifieddatalibrary.String("ENGINE-ID"),
-			Origin:                unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+			EngineIngest: shared.EngineIngestParam{
+				ClassificationMarking: "U",
+				DataMode:              shared.EngineIngestDataModeTest,
+				Name:                  "ENGINE_VARIANT1",
+				Source:                "Bluestaq",
+				ID:                    unifieddatalibrary.String("ENGINE-ID"),
+				Origin:                unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+			},
 		},
 	)
 	if err != nil {

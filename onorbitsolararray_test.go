@@ -11,6 +11,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk"
 	"github.com/Bluestaq/udl-golang-sdk/internal/testutil"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 func TestOnorbitsolararrayNewWithOptionalParams(t *testing.T) {
@@ -35,8 +36,8 @@ func TestOnorbitsolararrayNewWithOptionalParams(t *testing.T) {
 		ID:                    unifieddatalibrary.String("ONORBITSOLARARRAY-ID"),
 		Origin:                unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
 		Quantity:              unifieddatalibrary.Int(10),
-		SolarArray: unifieddatalibrary.OnorbitsolararrayNewParamsSolarArray{
-			DataMode: "TEST",
+		SolarArray: shared.SolarArrayIngestParam{
+			DataMode: shared.SolarArrayIngestDataModeTest,
 			Name:     "Solar1",
 			Source:   "Bluestaq",
 			ID:       unifieddatalibrary.String("SOLARARRAY-ID"),
@@ -77,8 +78,8 @@ func TestOnorbitsolararrayUpdateWithOptionalParams(t *testing.T) {
 			ID:                    unifieddatalibrary.String("ONORBITSOLARARRAY-ID"),
 			Origin:                unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
 			Quantity:              unifieddatalibrary.Int(10),
-			SolarArray: unifieddatalibrary.OnorbitsolararrayUpdateParamsSolarArray{
-				DataMode: "TEST",
+			SolarArray: shared.SolarArrayIngestParam{
+				DataMode: shared.SolarArrayIngestDataModeTest,
 				Name:     "Solar1",
 				Source:   "Bluestaq",
 				ID:       unifieddatalibrary.String("SOLARARRAY-ID"),

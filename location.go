@@ -13,6 +13,7 @@ import (
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
+	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
@@ -302,7 +303,7 @@ type LocationNewParams struct {
 }
 
 func (r LocationNewParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.LocationIngest)
+	return shimjson.Marshal(r.LocationIngest)
 }
 func (r *LocationNewParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.LocationIngest)
@@ -316,7 +317,7 @@ type LocationUpdateParams struct {
 }
 
 func (r LocationUpdateParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.LocationIngest)
+	return shimjson.Marshal(r.LocationIngest)
 }
 func (r *LocationUpdateParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.LocationIngest)

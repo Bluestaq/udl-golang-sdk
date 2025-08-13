@@ -13,6 +13,7 @@ import (
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
+	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
@@ -1282,7 +1283,7 @@ type StateVectorNewParams struct {
 }
 
 func (r StateVectorNewParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.StateVectorIngest)
+	return shimjson.Marshal(r.StateVectorIngest)
 }
 func (r *StateVectorNewParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.StateVectorIngest)
@@ -1328,7 +1329,7 @@ type StateVectorNewBulkParams struct {
 }
 
 func (r StateVectorNewBulkParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.Body)
+	return shimjson.Marshal(r.Body)
 }
 func (r *StateVectorNewBulkParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.Body)
@@ -1376,7 +1377,7 @@ type StateVectorUnvalidatedPublishParams struct {
 }
 
 func (r StateVectorUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.Body)
+	return shimjson.Marshal(r.Body)
 }
 func (r *StateVectorUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.Body)

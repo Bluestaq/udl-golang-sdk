@@ -27,7 +27,7 @@ func TestReportAndActivityPoiHistoryListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.ReportAndActivity.Poi.History.List(context.TODO(), unifieddatalibrary.ReportAndActivityPoiHistoryListParams{
+	_, err := client.ReportAndActivities.Poi.History.List(context.TODO(), unifieddatalibrary.ReportAndActivityPoiHistoryListParams{
 		Ts:          time.Now(),
 		Columns:     unifieddatalibrary.String("columns"),
 		FirstResult: unifieddatalibrary.Int(0),
@@ -55,7 +55,7 @@ func TestReportAndActivityPoiHistoryAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.ReportAndActivity.Poi.History.Aodr(context.TODO(), unifieddatalibrary.ReportAndActivityPoiHistoryAodrParams{
+	err := client.ReportAndActivities.Poi.History.Aodr(context.TODO(), unifieddatalibrary.ReportAndActivityPoiHistoryAodrParams{
 		Ts:              time.Now(),
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -86,7 +86,7 @@ func TestReportAndActivityPoiHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.ReportAndActivity.Poi.History.Count(context.TODO(), unifieddatalibrary.ReportAndActivityPoiHistoryCountParams{
+	_, err := client.ReportAndActivities.Poi.History.Count(context.TODO(), unifieddatalibrary.ReportAndActivityPoiHistoryCountParams{
 		Ts:          time.Now(),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

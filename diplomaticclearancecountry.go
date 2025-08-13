@@ -13,6 +13,7 @@ import (
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
+	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
@@ -2508,7 +2509,7 @@ type DiplomaticClearanceCountryNewBulkParams struct {
 }
 
 func (r DiplomaticClearanceCountryNewBulkParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.Body)
+	return shimjson.Marshal(r.Body)
 }
 func (r *DiplomaticClearanceCountryNewBulkParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.Body)
@@ -2908,7 +2909,7 @@ type DiplomaticClearanceCountryUnvalidatedPublishParams struct {
 }
 
 func (r DiplomaticClearanceCountryUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.Body)
+	return shimjson.Marshal(r.Body)
 }
 func (r *DiplomaticClearanceCountryUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.Body)

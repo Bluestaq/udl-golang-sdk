@@ -17,6 +17,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiform"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
+	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
@@ -185,9 +186,9 @@ func (r *ConjunctionService) UnvalidatedPublish(ctx context.Context, body Conjun
 //
 // **Example:**
 // /filedrop/cdms?filename=conj.zip&classification=U&dataMode=TEST&source=Bluestaq&tags=tag1,tag2
-func (r *ConjunctionService) UploadConjunctionDataMessage(ctx context.Context, aprams io.Reader, body ConjunctionUploadConjunctionDataMessageParams, opts ...option.RequestOption) (err error) {
+func (r *ConjunctionService) UploadConjunctionDataMessage(ctx context.Context, fileContent io.Reader, body ConjunctionUploadConjunctionDataMessageParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", ""), option.WithRequestBody("application/zip", aprams)}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", ""), option.WithRequestBody("application/zip", fileContent)}, opts...)
 	path := "filedrop/cdms"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, nil, opts...)
 	return
@@ -2820,7 +2821,7 @@ type ConjunctionNewBulkParams struct {
 }
 
 func (r ConjunctionNewBulkParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.Body)
+	return shimjson.Marshal(r.Body)
 }
 func (r *ConjunctionNewBulkParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.Body)
@@ -4036,7 +4037,7 @@ type ConjunctionUnvalidatedPublishParams struct {
 }
 
 func (r ConjunctionUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
-	return json.Marshal(r.Body)
+	return shimjson.Marshal(r.Body)
 }
 func (r *ConjunctionUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, &r.Body)

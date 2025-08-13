@@ -11,6 +11,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk"
 	"github.com/Bluestaq/udl-golang-sdk/internal/testutil"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 func TestOnorbitthrusterNewWithOptionalParams(t *testing.T) {
@@ -33,9 +34,9 @@ func TestOnorbitthrusterNewWithOptionalParams(t *testing.T) {
 		IDOnOrbit:             "ONORBIT-ID",
 		Source:                "Bluestaq",
 		ID:                    unifieddatalibrary.String("ONORBITTHRUSTER-ID"),
-		Engine: unifieddatalibrary.OnorbitthrusterNewParamsEngine{
+		Engine: shared.EngineIngestParam{
 			ClassificationMarking: "U",
-			DataMode:              "TEST",
+			DataMode:              shared.EngineIngestDataModeTest,
 			Name:                  "ENGINE_VARIANT1",
 			Source:                "Bluestaq",
 			ID:                    unifieddatalibrary.String("ENGINE-ID"),
@@ -77,9 +78,9 @@ func TestOnorbitthrusterUpdateWithOptionalParams(t *testing.T) {
 			IDOnOrbit:             "ONORBIT-ID",
 			Source:                "Bluestaq",
 			ID:                    unifieddatalibrary.String("ONORBITTHRUSTER-ID"),
-			Engine: unifieddatalibrary.OnorbitthrusterUpdateParamsEngine{
+			Engine: shared.EngineIngestParam{
 				ClassificationMarking: "U",
-				DataMode:              "TEST",
+				DataMode:              shared.EngineIngestDataModeTest,
 				Name:                  "ENGINE_VARIANT1",
 				Source:                "Bluestaq",
 				ID:                    unifieddatalibrary.String("ENGINE-ID"),

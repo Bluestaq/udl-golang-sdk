@@ -27,7 +27,7 @@ func TestIonoObservationHistoryListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.IonoObservation.History.List(context.TODO(), unifieddatalibrary.IonoObservationHistoryListParams{
+	_, err := client.IonoObservations.History.List(context.TODO(), unifieddatalibrary.IonoObservationHistoryListParams{
 		StartTimeUtc: time.Now(),
 		Columns:      unifieddatalibrary.String("columns"),
 		FirstResult:  unifieddatalibrary.Int(0),
@@ -55,7 +55,7 @@ func TestIonoObservationHistoryAodrWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.IonoObservation.History.Aodr(context.TODO(), unifieddatalibrary.IonoObservationHistoryAodrParams{
+	err := client.IonoObservations.History.Aodr(context.TODO(), unifieddatalibrary.IonoObservationHistoryAodrParams{
 		StartTimeUtc:    time.Now(),
 		Columns:         unifieddatalibrary.String("columns"),
 		FirstResult:     unifieddatalibrary.Int(0),
@@ -86,7 +86,7 @@ func TestIonoObservationHistoryCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.IonoObservation.History.Count(context.TODO(), unifieddatalibrary.IonoObservationHistoryCountParams{
+	_, err := client.IonoObservations.History.Count(context.TODO(), unifieddatalibrary.IonoObservationHistoryCountParams{
 		StartTimeUtc: time.Now(),
 		FirstResult:  unifieddatalibrary.Int(0),
 		MaxResults:   unifieddatalibrary.Int(0),

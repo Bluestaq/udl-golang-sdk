@@ -17,7 +17,6 @@ import (
 type Client struct {
 	Options                   []option.RequestOption
 	AirEvents                 AirEventService
-	AirLoadPlans              AirLoadPlanService
 	AirOperations             AirOperationService
 	AirTransportMissions      AirTransportMissionService
 	Aircraft                  AircraftService
@@ -36,7 +35,6 @@ type Client struct {
 	Antennas                  AntennaService
 	AttitudeData              AttitudeDataService
 	AttitudeSets              AttitudeSetService
-	Attitudesets              AttitudesetService
 	Batteries                 BatteryService
 	Batterydetails            BatterydetailService
 	Beam                      BeamService
@@ -76,12 +74,10 @@ type Client struct {
 	Flightplan                FlightplanService
 	GeoStatus                 GeoStatusService
 	GnssObservationset        GnssObservationsetService
-	GnssRawif                 GnssRawifService
 	GroundImagery             GroundImageryService
 	H3Geo                     H3GeoService
 	H3GeoHexCell              H3GeoHexCellService
 	Hazard                    HazardService
-	IonOobservation           IonOobservationService
 	Ir                        IrService
 	IsrCollections            IsrCollectionService
 	Item                      ItemService
@@ -175,8 +171,8 @@ type Client struct {
 	WeatherReport             WeatherReportService
 	GnssObservations          GnssObservationService
 	GnssRawIf                 GnssRawIfService
-	IonoObservation           IonoObservationService
-	ReportAndActivity         ReportAndActivityService
+	IonoObservations          IonoObservationService
+	ReportAndActivities       ReportAndActivityService
 	SecureMessaging           SecureMessagingService
 	Scs                       ScService
 	ScsViews                  ScsViewService
@@ -213,7 +209,6 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r = Client{Options: opts}
 
 	r.AirEvents = NewAirEventService(opts...)
-	r.AirLoadPlans = NewAirLoadPlanService(opts...)
 	r.AirOperations = NewAirOperationService(opts...)
 	r.AirTransportMissions = NewAirTransportMissionService(opts...)
 	r.Aircraft = NewAircraftService(opts...)
@@ -232,7 +227,6 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.Antennas = NewAntennaService(opts...)
 	r.AttitudeData = NewAttitudeDataService(opts...)
 	r.AttitudeSets = NewAttitudeSetService(opts...)
-	r.Attitudesets = NewAttitudesetService(opts...)
 	r.Batteries = NewBatteryService(opts...)
 	r.Batterydetails = NewBatterydetailService(opts...)
 	r.Beam = NewBeamService(opts...)
@@ -272,12 +266,10 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.Flightplan = NewFlightplanService(opts...)
 	r.GeoStatus = NewGeoStatusService(opts...)
 	r.GnssObservationset = NewGnssObservationsetService(opts...)
-	r.GnssRawif = NewGnssRawifService(opts...)
 	r.GroundImagery = NewGroundImageryService(opts...)
 	r.H3Geo = NewH3GeoService(opts...)
 	r.H3GeoHexCell = NewH3GeoHexCellService(opts...)
 	r.Hazard = NewHazardService(opts...)
-	r.IonOobservation = NewIonOobservationService(opts...)
 	r.Ir = NewIrService(opts...)
 	r.IsrCollections = NewIsrCollectionService(opts...)
 	r.Item = NewItemService(opts...)
@@ -371,8 +363,8 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.WeatherReport = NewWeatherReportService(opts...)
 	r.GnssObservations = NewGnssObservationService(opts...)
 	r.GnssRawIf = NewGnssRawIfService(opts...)
-	r.IonoObservation = NewIonoObservationService(opts...)
-	r.ReportAndActivity = NewReportAndActivityService(opts...)
+	r.IonoObservations = NewIonoObservationService(opts...)
+	r.ReportAndActivities = NewReportAndActivityService(opts...)
 	r.SecureMessaging = NewSecureMessagingService(opts...)
 	r.Scs = NewScService(opts...)
 	r.ScsViews = NewScsViewService(opts...)

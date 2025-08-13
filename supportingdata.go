@@ -13,12 +13,9 @@ import (
 // automatically. You should not instantiate this service directly, and instead use
 // the [NewSupportingDataService] method instead.
 type SupportingDataService struct {
-	Options          []option.RequestOption
-	DataTypes        SupportingDataDataTypeService
-	Dataowner        SupportingDataDataownerService
-	DataownerTypes   SupportingDataDataownerTypeService
-	ProviderMetadata SupportingDataProviderMetadataService
-	QueryHelp        SupportingDataQueryHelpService
+	Options   []option.RequestOption
+	DataTypes SupportingDataDataTypeService
+	Dataowner SupportingDataDataownerService
 }
 
 // NewSupportingDataService generates a new service that applies the given options
@@ -29,8 +26,5 @@ func NewSupportingDataService(opts ...option.RequestOption) (r SupportingDataSer
 	r.Options = opts
 	r.DataTypes = NewSupportingDataDataTypeService(opts...)
 	r.Dataowner = NewSupportingDataDataownerService(opts...)
-	r.DataownerTypes = NewSupportingDataDataownerTypeService(opts...)
-	r.ProviderMetadata = NewSupportingDataProviderMetadataService(opts...)
-	r.QueryHelp = NewSupportingDataQueryHelpService(opts...)
 	return
 }
