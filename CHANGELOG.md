@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.7 (2025-08-28)
+
+Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
+
+### Bug Fixes
+
+* close body before retrying ([b730154](https://github.com/Bluestaq/udl-golang-sdk/commit/b7301543c09aa212647a7a036d492c5e8b318996))
+
 ## 0.1.0-alpha.6 (2025-08-12)
 
 Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
