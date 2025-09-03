@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-alpha.9 (2025-09-03)
+
+Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
+
+### Bug Fixes
+
+* remove null from release please manifest ([2157769](https://github.com/Bluestaq/udl-golang-sdk/commit/2157769bd435128b6b33a480658b940f3943e216))
+* use release please annotations on more places ([e563f9f](https://github.com/Bluestaq/udl-golang-sdk/commit/e563f9fd246d855a17a133db247b7306a87e1c5b))
+
 ## 0.1.0-alpha.8 (2025-09-02)
 
 Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
