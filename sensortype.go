@@ -16,7 +16,6 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
-	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
 // SensorTypeService contains methods and other services that help with interacting
@@ -73,15 +72,6 @@ func (r *SensorTypeService) Get(ctx context.Context, id int64, query SensorTypeG
 	opts = append(r.Options[:], opts...)
 	path := fmt.Sprintf("udl/sensortype/%v", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
-}
-
-// Service operation to provide detailed information on available dynamic query
-// parameters for a particular data type.
-func (r *SensorTypeService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SensorTypeQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "udl/sensortype/queryhelp"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
 }
 
@@ -197,42 +187,6 @@ const (
 	SensorTypeGetResponseDataModeSimulated SensorTypeGetResponseDataMode = "SIMULATED"
 	SensorTypeGetResponseDataModeExercise  SensorTypeGetResponseDataMode = "EXERCISE"
 )
-
-type SensorTypeQueryhelpResponse struct {
-	AodrSupported         bool                         `json:"aodrSupported"`
-	ClassificationMarking string                       `json:"classificationMarking"`
-	Description           string                       `json:"description"`
-	HistorySupported      bool                         `json:"historySupported"`
-	Name                  string                       `json:"name"`
-	Parameters            []shared.ParamDescriptorResp `json:"parameters"`
-	RequiredRoles         []string                     `json:"requiredRoles"`
-	RestSupported         bool                         `json:"restSupported"`
-	SortSupported         bool                         `json:"sortSupported"`
-	TypeName              string                       `json:"typeName"`
-	Uri                   string                       `json:"uri"`
-	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
-	JSON struct {
-		AodrSupported         respjson.Field
-		ClassificationMarking respjson.Field
-		Description           respjson.Field
-		HistorySupported      respjson.Field
-		Name                  respjson.Field
-		Parameters            respjson.Field
-		RequiredRoles         respjson.Field
-		RestSupported         respjson.Field
-		SortSupported         respjson.Field
-		TypeName              respjson.Field
-		Uri                   respjson.Field
-		ExtraFields           map[string]respjson.Field
-		raw                   string
-	} `json:"-"`
-}
-
-// Returns the unmodified JSON received from the API
-func (r SensorTypeQueryhelpResponse) RawJSON() string { return r.JSON.raw }
-func (r *SensorTypeQueryhelpResponse) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
 
 type SensorTypeListParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`

@@ -3,10 +3,6 @@
 package unifieddatalibrary
 
 import (
-	"context"
-	"net/http"
-
-	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
 )
 
@@ -26,13 +22,5 @@ type ScRangeParameterService struct {
 func NewScRangeParameterService(opts ...option.RequestOption) (r ScRangeParameterService) {
 	r = ScRangeParameterService{}
 	r.Options = opts
-	return
-}
-
-// Returns a set of File Metadata that can be used for search endpoint.
-func (r *ScRangeParameterService) List(ctx context.Context, opts ...option.RequestOption) (res *[]string, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "scs/listRangeParameters"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
 }

@@ -32,7 +32,7 @@ func TestRfEmitterNewWithOptionalParams(t *testing.T) {
 		DataMode:              unifieddatalibrary.RfEmitterNewParamsDataModeTest,
 		Name:                  "RF_NAME",
 		Source:                "Bluestaq",
-		ID:                    unifieddatalibrary.String("RFEMITTER-ID"),
+		ID:                    unifieddatalibrary.String("ad88770b-d824-443f-bdce-5f9e3fa500a9"),
 		Entity: unifieddatalibrary.EntityIngestParam{
 			ClassificationMarking: "U",
 			DataMode:              unifieddatalibrary.EntityIngestDataModeTest,
@@ -81,8 +81,10 @@ func TestRfEmitterNewWithOptionalParams(t *testing.T) {
 			Taskable:  unifieddatalibrary.Bool(false),
 			URLs:      []string{"URL1", "URL2"},
 		},
+		ExtSysID: unifieddatalibrary.String("EXTSYS-ID"),
 		IDEntity: unifieddatalibrary.String("0167f577-e06c-358e-85aa-0a07a730bdd0"),
 		Origin:   unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+		Subtype:  unifieddatalibrary.String("BLOCK_1"),
 		Type:     unifieddatalibrary.String("TYPE_OF_EMITTER"),
 	})
 	if err != nil {
@@ -115,7 +117,7 @@ func TestRfEmitterUpdateWithOptionalParams(t *testing.T) {
 			DataMode:              unifieddatalibrary.RfEmitterUpdateParamsDataModeTest,
 			Name:                  "RF_NAME",
 			Source:                "Bluestaq",
-			ID:                    unifieddatalibrary.String("RFEMITTER-ID"),
+			ID:                    unifieddatalibrary.String("ad88770b-d824-443f-bdce-5f9e3fa500a9"),
 			Entity: unifieddatalibrary.EntityIngestParam{
 				ClassificationMarking: "U",
 				DataMode:              unifieddatalibrary.EntityIngestDataModeTest,
@@ -164,8 +166,10 @@ func TestRfEmitterUpdateWithOptionalParams(t *testing.T) {
 				Taskable:  unifieddatalibrary.Bool(false),
 				URLs:      []string{"URL1", "URL2"},
 			},
+			ExtSysID: unifieddatalibrary.String("EXTSYS-ID"),
 			IDEntity: unifieddatalibrary.String("0167f577-e06c-358e-85aa-0a07a730bdd0"),
 			Origin:   unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+			Subtype:  unifieddatalibrary.String("BLOCK_1"),
 			Type:     unifieddatalibrary.String("TYPE_OF_EMITTER"),
 		},
 	)

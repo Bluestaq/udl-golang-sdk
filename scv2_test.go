@@ -64,6 +64,10 @@ func TestScV2ListWithOptionalParams(t *testing.T) {
 		Path:        "path",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
+		Order:       unifieddatalibrary.String("order"),
+		SearchAfter: unifieddatalibrary.String("searchAfter"),
+		Size:        unifieddatalibrary.Int(0),
+		Sort:        unifieddatalibrary.String("sort"),
 	})
 	if err != nil {
 		var apierr *unifieddatalibrary.Error

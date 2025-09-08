@@ -173,7 +173,7 @@ type ScsEntity struct {
 	DeleteOn              int64  `json:"deleteOn"`
 	// Optional description for the file or folder.
 	Description string `json:"description"`
-	FileName    string `json:"fileName"`
+	Filename    string `json:"filename"`
 	FilePath    string `json:"filePath"`
 	Keywords    string `json:"keywords"`
 	ParentPath  string `json:"parentPath"`
@@ -200,7 +200,7 @@ type ScsEntity struct {
 		Data                  respjson.Field
 		DeleteOn              respjson.Field
 		Description           respjson.Field
-		FileName              respjson.Field
+		Filename              respjson.Field
 		FilePath              respjson.Field
 		Keywords              respjson.Field
 		ParentPath            respjson.Field
@@ -265,6 +265,15 @@ type ScV2ListParams struct {
 	Path        string           `query:"path,required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	// The order in which entries should be sorted
+	Order param.Opt[string] `query:"order,omitzero" json:"-"`
+	// The starting point for pagination results, usually set to the value of the
+	// SEARCH_AFTER header returned in the previous request.
+	SearchAfter param.Opt[string] `query:"searchAfter,omitzero" json:"-"`
+	// The number of results to retrieve.
+	Size param.Opt[int64] `query:"size,omitzero" json:"-"`
+	// The field on which to sort entries
+	Sort param.Opt[string] `query:"sort,omitzero" json:"-"`
 	paramObj
 }
 

@@ -241,11 +241,15 @@ type ObservationRfObservationHistoryListResponse struct {
 	NominalSnr float64 `json:"nominalSnr"`
 	// Model object representing on-orbit objects or satellites in the system.
 	OnOrbit shared.OnorbitFull `json:"onOrbit"`
+	// Country of origin in which the data was originally posted.
+	OrigCountry string `json:"origCountry"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin string `json:"origin"`
+	// Original security marking that the data was marked with.
+	OrigMarking string `json:"origMarking"`
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
@@ -435,7 +439,9 @@ type ObservationRfObservationHistoryListResponse struct {
 		NominalPowerOverNoise respjson.Field
 		NominalSnr            respjson.Field
 		OnOrbit               respjson.Field
+		OrigCountry           respjson.Field
 		Origin                respjson.Field
+		OrigMarking           respjson.Field
 		OrigNetwork           respjson.Field
 		OrigObjectID          respjson.Field
 		OrigSensorID          respjson.Field

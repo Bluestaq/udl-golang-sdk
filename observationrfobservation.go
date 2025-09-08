@@ -283,11 +283,15 @@ type ObservationRfObservationListResponse struct {
 	NominalPowerOverNoise float64 `json:"nominalPowerOverNoise"`
 	// Nominal or expected signal to noise ratio, in dB.
 	NominalSnr float64 `json:"nominalSnr"`
+	// Country of origin in which the data was originally posted.
+	OrigCountry string `json:"origCountry"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin string `json:"origin"`
+	// Original security marking that the data was marked with.
+	OrigMarking string `json:"origMarking"`
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
@@ -448,7 +452,9 @@ type ObservationRfObservationListResponse struct {
 		NominalFrequency      respjson.Field
 		NominalPowerOverNoise respjson.Field
 		NominalSnr            respjson.Field
+		OrigCountry           respjson.Field
 		Origin                respjson.Field
+		OrigMarking           respjson.Field
 		OrigNetwork           respjson.Field
 		OrigObjectID          respjson.Field
 		OrigSensorID          respjson.Field
@@ -686,11 +692,15 @@ type ObservationRfObservationGetResponse struct {
 	NominalSnr float64 `json:"nominalSnr"`
 	// Model object representing on-orbit objects or satellites in the system.
 	OnOrbit shared.OnorbitFull `json:"onOrbit"`
+	// Country of origin in which the data was originally posted.
+	OrigCountry string `json:"origCountry"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin string `json:"origin"`
+	// Original security marking that the data was marked with.
+	OrigMarking string `json:"origMarking"`
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
@@ -880,7 +890,9 @@ type ObservationRfObservationGetResponse struct {
 		NominalPowerOverNoise respjson.Field
 		NominalSnr            respjson.Field
 		OnOrbit               respjson.Field
+		OrigCountry           respjson.Field
 		Origin                respjson.Field
+		OrigMarking           respjson.Field
 		OrigNetwork           respjson.Field
 		OrigObjectID          respjson.Field
 		OrigSensorID          respjson.Field
@@ -1136,11 +1148,15 @@ type ObservationRfObservationTupleResponse struct {
 	NominalSnr float64 `json:"nominalSnr"`
 	// Model object representing on-orbit objects or satellites in the system.
 	OnOrbit shared.OnorbitFull `json:"onOrbit"`
+	// Country of origin in which the data was originally posted.
+	OrigCountry string `json:"origCountry"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin string `json:"origin"`
+	// Original security marking that the data was marked with.
+	OrigMarking string `json:"origMarking"`
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
@@ -1308,7 +1324,9 @@ type ObservationRfObservationTupleResponse struct {
 		NominalPowerOverNoise respjson.Field
 		NominalSnr            respjson.Field
 		OnOrbit               respjson.Field
+		OrigCountry           respjson.Field
 		Origin                respjson.Field
+		OrigMarking           respjson.Field
 		OrigNetwork           respjson.Field
 		OrigObjectID          respjson.Field
 		OrigSensorID          respjson.Field
@@ -1880,11 +1898,15 @@ type ObservationRfObservationNewBulkParamsBody struct {
 	NominalPowerOverNoise param.Opt[float64] `json:"nominalPowerOverNoise,omitzero"`
 	// Nominal or expected signal to noise ratio, in dB.
 	NominalSnr param.Opt[float64] `json:"nominalSnr,omitzero"`
+	// Country of origin in which the data was originally posted.
+	OrigCountry param.Opt[string] `json:"origCountry,omitzero"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
+	// Original security marking that the data was marked with.
+	OrigMarking param.Opt[string] `json:"origMarking,omitzero"`
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
@@ -2237,11 +2259,15 @@ type ObservationRfObservationUnvalidatedPublishParamsBody struct {
 	NominalPowerOverNoise param.Opt[float64] `json:"nominalPowerOverNoise,omitzero"`
 	// Nominal or expected signal to noise ratio, in dB.
 	NominalSnr param.Opt[float64] `json:"nominalSnr,omitzero"`
+	// Country of origin in which the data was originally posted.
+	OrigCountry param.Opt[string] `json:"origCountry,omitzero"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
+	// Original security marking that the data was marked with.
+	OrigMarking param.Opt[string] `json:"origMarking,omitzero"`
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`

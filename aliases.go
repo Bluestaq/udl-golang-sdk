@@ -2248,18 +2248,6 @@ type FileData = shared.FileData
 type FileDataAttributes = shared.FileDataAttributes
 
 // This is an alias to an internal type.
-type FileDataContentAction = shared.FileDataContentAction
-
-// Equals "UPDATE"
-const FileDataContentActionUpdate = shared.FileDataContentActionUpdate
-
-// Equals "COPY"
-const FileDataContentActionCopy = shared.FileDataContentActionCopy
-
-// Equals "MOVE"
-const FileDataContentActionMove = shared.FileDataContentActionMove
-
-// This is an alias to an internal type.
 type FileDataType = shared.FileDataType
 
 // Equals "file"
@@ -3078,7 +3066,7 @@ const RfBandFullPolarizationR = shared.RfBandFullPolarizationR
 const RfBandFullPolarizationL = shared.RfBandFullPolarizationL
 
 // Purpose or use of the RF Band -- COMM = communications, TTC =
-// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other.
 //
 // This is an alias to an internal type.
 type RfBandFullPurpose = shared.RfBandFullPurpose

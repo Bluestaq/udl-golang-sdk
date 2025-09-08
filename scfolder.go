@@ -38,6 +38,8 @@ func NewScFolderService(opts ...option.RequestOption) (r ScFolderService) {
 // Creates a new folder that is passed as part of the path. A specific role is
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
+//
+// Deprecated: deprecated
 func (r *ScFolderService) New(ctx context.Context, body ScFolderNewParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "scs/folder"
@@ -47,6 +49,8 @@ func (r *ScFolderService) New(ctx context.Context, body ScFolderNewParams, opts 
 
 // Returns a FileData object representing the folder ID that is visible to the
 // calling user.
+//
+// Deprecated: deprecated
 func (r *ScFolderService) Get(ctx context.Context, query ScFolderGetParams, opts ...option.RequestOption) (res *shared.FileData, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "scs/folder"
@@ -56,6 +60,8 @@ func (r *ScFolderService) Get(ctx context.Context, query ScFolderGetParams, opts
 
 // operation to update folders metadata. A specific role is required to perform
 // this service operation. Please contact the UDL team for assistance.
+//
+// Deprecated: deprecated
 func (r *ScFolderService) Update(ctx context.Context, body ScFolderUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)

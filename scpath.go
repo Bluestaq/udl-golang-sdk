@@ -39,6 +39,8 @@ func NewScPathService(opts ...option.RequestOption) (r ScPathService) {
 // Creates the path and uploads file that is passed. If folder exist it will only
 // create folders that are missing. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
+//
+// Deprecated: deprecated
 func (r *ScPathService) NewWithFile(ctx context.Context, fileContent io.Reader, body ScPathNewWithFileParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithRequestBody("application/octet-stream", fileContent)}, opts...)
@@ -50,7 +52,7 @@ func (r *ScPathService) NewWithFile(ctx context.Context, fileContent io.Reader, 
 type ScPathNewWithFileParams struct {
 	// The full path to create, including path and file name
 	ID string `query:"id,required" json:"-"`
-	// Classification (ex. U//FOUO)
+	// Classification marking of the file being uploaded.
 	ClassificationMarking string `query:"classificationMarking,required" json:"-"`
 	// Length of time after which to automatically delete the file.
 	DeleteAfter param.Opt[string] `query:"deleteAfter,omitzero" json:"-"`
