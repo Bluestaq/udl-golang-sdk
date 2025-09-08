@@ -361,10 +361,6 @@ type NavigationalObstructionListResponse struct {
 	// When horizontal and/or vertical accuracy requirements cannot be met because of
 	// inadequate source material, this code indicates the quality of the data.
 	Quality string `json:"quality"`
-	// Optional URI location in the document repository of the raw file parsed by the
-	// system to produce this record. To download the raw file, prepend
-	// https://udl-hostname/scs/download?id= to this value.
-	RawFileUri string `json:"rawFileURI"`
 	// Date this obstacle data was revised, in ISO 8601 date-only format (ex.
 	// YYYY-MM-DD).
 	RevDate time.Time `json:"revDate" format:"date"`
@@ -464,7 +460,6 @@ type NavigationalObstructionListResponse struct {
 		Producer              respjson.Field
 		ProvinceCode          respjson.Field
 		Quality               respjson.Field
-		RawFileUri            respjson.Field
 		RevDate               respjson.Field
 		SegEndPoint           respjson.Field
 		SegNum                respjson.Field
@@ -714,10 +709,6 @@ type NavigationalObstructionGetResponse struct {
 	// When horizontal and/or vertical accuracy requirements cannot be met because of
 	// inadequate source material, this code indicates the quality of the data.
 	Quality string `json:"quality"`
-	// Optional URI location in the document repository of the raw file parsed by the
-	// system to produce this record. To download the raw file, prepend
-	// https://udl-hostname/scs/download?id= to this value.
-	RawFileUri string `json:"rawFileURI"`
 	// Date this obstacle data was revised, in ISO 8601 date-only format (ex.
 	// YYYY-MM-DD).
 	RevDate time.Time `json:"revDate" format:"date"`
@@ -822,7 +813,6 @@ type NavigationalObstructionGetResponse struct {
 		Producer              respjson.Field
 		ProvinceCode          respjson.Field
 		Quality               respjson.Field
-		RawFileUri            respjson.Field
 		RevDate               respjson.Field
 		SegEndPoint           respjson.Field
 		SegNum                respjson.Field
@@ -1110,10 +1100,6 @@ type NavigationalObstructionTupleResponse struct {
 	// When horizontal and/or vertical accuracy requirements cannot be met because of
 	// inadequate source material, this code indicates the quality of the data.
 	Quality string `json:"quality"`
-	// Optional URI location in the document repository of the raw file parsed by the
-	// system to produce this record. To download the raw file, prepend
-	// https://udl-hostname/scs/download?id= to this value.
-	RawFileUri string `json:"rawFileURI"`
 	// Date this obstacle data was revised, in ISO 8601 date-only format (ex.
 	// YYYY-MM-DD).
 	RevDate time.Time `json:"revDate" format:"date"`
@@ -1218,7 +1204,6 @@ type NavigationalObstructionTupleResponse struct {
 		Producer              respjson.Field
 		ProvinceCode          respjson.Field
 		Quality               respjson.Field
-		RawFileUri            respjson.Field
 		RevDate               respjson.Field
 		SegEndPoint           respjson.Field
 		SegNum                respjson.Field
@@ -2032,10 +2017,6 @@ type NavigationalObstructionNewBulkParamsBody struct {
 	// When horizontal and/or vertical accuracy requirements cannot be met because of
 	// inadequate source material, this code indicates the quality of the data.
 	Quality param.Opt[string] `json:"quality,omitzero"`
-	// Optional URI location in the document repository of the raw file parsed by the
-	// system to produce this record. To download the raw file, prepend
-	// https://udl-hostname/scs/download?id= to this value.
-	RawFileUri param.Opt[string] `json:"rawFileURI,omitzero"`
 	// Date this obstacle data was revised, in ISO 8601 date-only format (ex.
 	// YYYY-MM-DD).
 	RevDate param.Opt[time.Time] `json:"revDate,omitzero" format:"date"`

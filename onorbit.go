@@ -955,11 +955,15 @@ type OnorbitGetSignatureResponseRfObservation struct {
 	NominalPowerOverNoise float64 `json:"nominalPowerOverNoise"`
 	// Nominal or expected signal to noise ratio, in dB.
 	NominalSnr float64 `json:"nominalSnr"`
+	// Country of origin in which the data was originally posted.
+	OrigCountry string `json:"origCountry"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin string `json:"origin"`
+	// Original security marking that the data was marked with.
+	OrigMarking string `json:"origMarking"`
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
@@ -1120,7 +1124,9 @@ type OnorbitGetSignatureResponseRfObservation struct {
 		NominalFrequency      respjson.Field
 		NominalPowerOverNoise respjson.Field
 		NominalSnr            respjson.Field
+		OrigCountry           respjson.Field
 		Origin                respjson.Field
+		OrigMarking           respjson.Field
 		OrigNetwork           respjson.Field
 		OrigObjectID          respjson.Field
 		OrigSensorID          respjson.Field

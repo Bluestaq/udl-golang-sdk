@@ -212,10 +212,6 @@ type AirtaskingorderAbridged struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// Optional URI location in the document repository of the raw file parsed by the
-	// system to produce this record. To download the raw file, prepend
-	// https://udl-hostname/scs/download?id= to this value.
-	RawFileUri string `json:"rawFileURI"`
 	// The source data library from which this record was received. This could be a
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
@@ -242,7 +238,6 @@ type AirtaskingorderAbridged struct {
 		NavalFltOps           respjson.Field
 		Origin                respjson.Field
 		OrigNetwork           respjson.Field
-		RawFileUri            respjson.Field
 		SourceDl              respjson.Field
 		ExtraFields           map[string]respjson.Field
 		raw                   string
@@ -1022,10 +1017,6 @@ type AirOperationAirTaskingOrderUnvalidatedPublishParamsBody struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
-	// Optional URI location in the document repository of the raw file parsed by the
-	// system to produce this record. To download the raw file, prepend
-	// https://udl-hostname/scs/download?id= to this value.
-	RawFileUri param.Opt[string] `json:"rawFileURI,omitzero"`
 	// The source data library from which this record was received. This could be a
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.

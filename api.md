@@ -2900,13 +2900,11 @@ Response Types:
 
 - <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorObservationTypeListResponse">SensorObservationTypeListResponse</a>
 - <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorObservationTypeGetResponse">SensorObservationTypeGetResponse</a>
-- <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorObservationTypeQueryhelpResponse">SensorObservationTypeQueryhelpResponse</a>
 
 Methods:
 
 - <code title="get /udl/sensorobservationtype">client.SensorObservationType.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorObservationTypeService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorObservationTypeListParams">SensorObservationTypeListParams</a>) (<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/packages/pagination">pagination</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/packages/pagination#OffsetPage">OffsetPage</a>[<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorObservationTypeListResponse">SensorObservationTypeListResponse</a>], <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="get /udl/sensorobservationtype/{id}">client.SensorObservationType.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorObservationTypeService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, id <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorObservationTypeGetParams">SensorObservationTypeGetParams</a>) (<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorObservationTypeGetResponse">SensorObservationTypeGetResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
-- <code title="get /udl/sensorobservationtype/queryhelp">client.SensorObservationType.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorObservationTypeService.Queryhelp">Queryhelp</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorObservationTypeQueryhelpResponse">SensorObservationTypeQueryhelpResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 # SensorPlan
 
@@ -2946,13 +2944,11 @@ Response Types:
 
 - <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorTypeListResponse">SensorTypeListResponse</a>
 - <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorTypeGetResponse">SensorTypeGetResponse</a>
-- <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorTypeQueryhelpResponse">SensorTypeQueryhelpResponse</a>
 
 Methods:
 
 - <code title="get /udl/sensortype">client.SensorType.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorTypeService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorTypeListParams">SensorTypeListParams</a>) (<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/packages/pagination">pagination</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/packages/pagination#OffsetPage">OffsetPage</a>[<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorTypeListResponse">SensorTypeListResponse</a>], <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="get /udl/sensortype/{id}">client.SensorType.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorTypeService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, id <a href="https://pkg.go.dev/builtin#int64">int64</a>, query <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorTypeGetParams">SensorTypeGetParams</a>) (<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorTypeGetResponse">SensorTypeGetResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
-- <code title="get /udl/sensortype/queryhelp">client.SensorType.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorTypeService.Queryhelp">Queryhelp</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#SensorTypeQueryhelpResponse">SensorTypeQueryhelpResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 # SeraDataCommDetails
 
@@ -4007,7 +4003,6 @@ Methods:
 Methods:
 
 - <code title="delete /scs/delete">client.Scs.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#ScService.Delete">Delete</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, body <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#ScDeleteParams">ScDeleteParams</a>) <a href="https://pkg.go.dev/builtin#error">error</a></code>
-- <code title="get /scs/aggregateDocType">client.Scs.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#ScService.AggregateDocType">AggregateDocType</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) ([]<a href="https://pkg.go.dev/builtin#string">string</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="get /scs/allowableFileExtensions">client.Scs.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#ScService.AllowableFileExtensions">AllowableFileExtensions</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) ([]<a href="https://pkg.go.dev/builtin#string">string</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="get /scs/allowableFileMimes">client.Scs.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#ScService.AllowableFileMimes">AllowableFileMimes</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) ([]<a href="https://pkg.go.dev/builtin#string">string</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="post /scs/copy">client.Scs.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#ScService.Copy">Copy</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, body <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#ScCopyParams">ScCopyParams</a>) (<a href="https://pkg.go.dev/builtin#string">string</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
@@ -4017,7 +4012,6 @@ Methods:
 - <code title="put /scs/move">client.Scs.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#ScService.Move">Move</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, body <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#ScMoveParams">ScMoveParams</a>) (<a href="https://pkg.go.dev/builtin#string">string</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="put /scs/rename">client.Scs.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#ScService.Rename">Rename</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, body <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#ScRenameParams">ScRenameParams</a>) <a href="https://pkg.go.dev/builtin#error">error</a></code>
 - <code title="post /scs/search">client.Scs.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#ScService.Search">Search</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, params <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#ScSearchParams">ScSearchParams</a>) ([]<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/shared">shared</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/shared#FileData">FileData</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
-- <code title="put /scs/updateTagsForFilesInFolder">client.Scs.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#ScService.UpdateTags">UpdateTags</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, body <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#ScUpdateTagsParams">ScUpdateTagsParams</a>) <a href="https://pkg.go.dev/builtin#error">error</a></code>
 
 ## Folders
 
@@ -4029,27 +4023,11 @@ Methods:
 
 ## ClassificationMarkings
 
-Methods:
-
-- <code title="get /scs/getClassificationMarkings">client.Scs.ClassificationMarkings.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#ScClassificationMarkingService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) ([]<a href="https://pkg.go.dev/builtin#string">string</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
-
 ## Groups
-
-Methods:
-
-- <code title="get /scs/groups">client.Scs.Groups.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#ScGroupService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) ([]<a href="https://pkg.go.dev/builtin#string">string</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 ## FileMetadata
 
-Methods:
-
-- <code title="get /scs/listFileMetadata">client.Scs.FileMetadata.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#ScFileMetadataService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) ([]<a href="https://pkg.go.dev/builtin#string">string</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
-
 ## RangeParameters
-
-Methods:
-
-- <code title="get /scs/listRangeParameters">client.Scs.RangeParameters.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#ScRangeParameterService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) ([]<a href="https://pkg.go.dev/builtin#string">string</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 ## Paths
 

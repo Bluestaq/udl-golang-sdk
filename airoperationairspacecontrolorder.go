@@ -136,10 +136,6 @@ type AirOperationAirspaceControlOrderUnvalidatedPublishParamsBody struct {
 	Qualifier param.Opt[string] `json:"qualifier,omitzero"`
 	// The serial number associated with the message qualifier.
 	QualSn param.Opt[int64] `json:"qualSN,omitzero"`
-	// Optional URI location in the document repository of the raw file parsed by the
-	// system to produce this record. To download the raw file, prepend
-	// https://udl-hostname/scs/download?id= to this value.
-	RawFileUri param.Opt[string] `json:"rawFileURI,omitzero"`
 	// The unique message identifier sequentially assigned by the originator.
 	SerialNum param.Opt[string] `json:"serialNum,omitzero"`
 	// The source data library from which this record was received. This could be a

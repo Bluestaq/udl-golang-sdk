@@ -39,9 +39,9 @@ func NewRfBandService(opts ...option.RequestOption) (r RfBandService) {
 	return
 }
 
-// Service operation to take a single RFBand as a POST body and ingest into the
-// database. A specific role is required to perform this service operation. Please
-// contact the UDL team for assistance.
+// Service operation to take a single RFBand record as a POST body and ingest into
+// the database. A specific role is required to perform this service operation.
+// Please contact the UDL team for assistance.
 func (r *RfBandService) New(ctx context.Context, body RfBandNewParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
@@ -50,8 +50,8 @@ func (r *RfBandService) New(ctx context.Context, body RfBandNewParams, opts ...o
 	return
 }
 
-// Service operation to update an RFBand. A specific role is required to perform
-// this service operation. Please contact the UDL team for assistance.
+// Service operation to update a single RFBand record. A specific role is required
+// to perform this service operation. Please contact the UDL team for assistance.
 func (r *RfBandService) Update(ctx context.Context, id string, body RfBandUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
@@ -93,9 +93,9 @@ func (r *RfBandService) ListAutoPaging(ctx context.Context, query RfBandListPara
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
-// Service operation to delete an RFBand specified by the passed ID path parameter.
-// A specific role is required to perform this service operation. Please contact
-// the UDL team for assistance.
+// Service operation to delete a RFBand record specified by the passed ID path
+// parameter. A specific role is required to perform this service operation. Please
+// contact the UDL team for assistance.
 func (r *RfBandService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
@@ -121,8 +121,8 @@ func (r *RfBandService) Count(ctx context.Context, query RfBandCountParams, opts
 	return
 }
 
-// Service operation to get a single RFBand by its unique ID passed as a path
-// parameter.
+// Service operation to get a single RFBand record by its unique ID passed as a
+// path parameter.
 func (r *RfBandService) Get(ctx context.Context, id string, query RfBandGetParams, opts ...option.RequestOption) (res *shared.RfBandFull, err error) {
 	opts = append(r.Options[:], opts...)
 	if id == "" {
@@ -192,19 +192,35 @@ type RfBandListResponse struct {
 	// X,K,Ku,Ka,L,S,C,UHF,VHF,EHF,SHF,UNK,VLF,HF,E,Q,V,W). See RFBandType for more
 	// details and descriptions of each band name.
 	Band string `json:"band"`
-	// RF Band frequency range bandwidth in Mhz.
+	// RF Band frequency range bandwidth in megahertz.
 	Bandwidth float64 `json:"bandwidth"`
+	// Array of frequency range bandwidth settings, in megahertz for this RFBand. If
+	// this array is specified then it must be the same size as the frequencySettings
+	// array. A null value may be used for one or more of the frequencies in the
+	// frequencySettings array if there is no corresponding value for a given
+	// frequency.
+	BandwidthSettings []float64 `json:"bandwidthSettings"`
 	// Angle between the half-power (-3 dB) points of the main lobe of the antenna, in
 	// degrees.
 	Beamwidth float64 `json:"beamwidth"`
-	// Center frequency of RF frequency range, if applicable, in Mhz.
+	// Array of beamwidth settings, in degrees for this RFBand. If this array is
+	// specified then it must be the same size as the frequencySettings array. A null
+	// value may be used for one or more of the frequencies in the frequencySettings
+	// array if there is no corresponding value for a given frequency.
+	BeamwidthSettings []float64 `json:"beamwidthSettings"`
+	// Center frequency of RF frequency range, if applicable, in megahertz.
 	CenterFreq float64 `json:"centerFreq"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
 	// system.
 	CreatedBy string `json:"createdBy"`
-	// RF Range edge gain, in dBi.
+	// Array of delay settings, in seconds for this RFBand. If this array is specified
+	// then it must be the same size as the frequencySettings array. A null value may
+	// be used for one or more of the frequencies in the frequencySettings array if
+	// there is no corresponding value for a given frequency.
+	DelaySettings []float64 `json:"delaySettings"`
+	// RF Range edge gain, in decibel relative to isotrope.
 	EdgeGain float64 `json:"edgeGain"`
 	// EIRP is defined as the RMS power input in decibel watts required to a lossless
 	// half-wave dipole antenna to give the same maximum power density far from the
@@ -213,7 +229,7 @@ type RfBandListResponse struct {
 	// dipole. Effective radiated power and effective isotropic radiated power both
 	// measure the amount of power a radio transmitter and antenna (or other source of
 	// electromagnetic waves) radiates in a specific direction: in the direction of
-	// maximum signal strength (the "main lobe") of its radiation pattern.
+	// maximum signal strength (the main lobe) of its radiation pattern.
 	Eirp float64 `json:"eirp"`
 	// Effective Radiated Power (ERP) is the total power in decibel watts radiated by
 	// an actual antenna relative to a half-wave dipole rather than a theoretical
@@ -222,16 +238,29 @@ type RfBandListResponse struct {
 	// Effective radiated power and effective isotropic radiated power both measure the
 	// amount of power a radio transmitter and antenna (or other source of
 	// electromagnetic waves) radiates in a specific direction: in the direction of
-	// maximum signal strength (the "main lobe") of its radiation pattern.
+	// maximum signal strength (the main lobe) of its radiation pattern.
 	Erp float64 `json:"erp"`
-	// End/maximum of transmit RF frequency range, if applicable, in Mhz.
+	// End/maximum of transmit RF frequency range, if applicable, in megahertz.
 	FreqMax float64 `json:"freqMax"`
-	// Start/minimum of transmit RF frequency range, if applicable, in Mhz.
+	// Start/minimum of transmit RF frequency range, if applicable, in megahertz.
 	FreqMin float64 `json:"freqMin"`
+	// Array of frequency settings, in megahertz for this RFBand. This array and the
+	// settings arrays must match in size.
+	FrequencySettings []float64 `json:"frequencySettings"`
+	// Array of gain settings, in decibels for this RFBand. If this array is specified
+	// then it must be the same size as the frequencySettings array. A null value may
+	// be used for one or more of the frequencies in the frequencySettings array if
+	// there is no corresponding value for a given frequency.
+	GainSettings []float64 `json:"gainSettings"`
 	// RF Band mode (e.g. TX, RX).
 	//
 	// Any of "TX", "RX".
 	Mode RfBandListResponseMode `json:"mode"`
+	// Array of signal noise settings, in decibels for this RFBand. If this array is
+	// specified then it must be the same size as the frequencySettings array. A null
+	// value may be used for one or more of the frequencies in the frequencySettings
+	// array if there is no corresponding value for a given frequency.
+	NoiseSettings []float64 `json:"noiseSettings"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
@@ -240,7 +269,7 @@ type RfBandListResponse struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// RF Range maximum gain, in dBi.
+	// RF Range maximum gain, in decibel relative to isotrope.
 	PeakGain float64 `json:"peakGain"`
 	// Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
 	// Earth's surface, V - (Vertically Polarized) Parallel to Earth's surface, L -
@@ -251,7 +280,7 @@ type RfBandListResponse struct {
 	// Any of "H", "V", "R", "L".
 	Polarization RfBandListResponsePolarization `json:"polarization"`
 	// Purpose or use of the RF Band -- COMM = communications, TTC =
-	// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+	// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other.
 	//
 	// Any of "COMM", "TTC", "OPS", "OTHER".
 	Purpose RfBandListResponsePurpose `json:"purpose"`
@@ -265,16 +294,22 @@ type RfBandListResponse struct {
 		ID                    respjson.Field
 		Band                  respjson.Field
 		Bandwidth             respjson.Field
+		BandwidthSettings     respjson.Field
 		Beamwidth             respjson.Field
+		BeamwidthSettings     respjson.Field
 		CenterFreq            respjson.Field
 		CreatedAt             respjson.Field
 		CreatedBy             respjson.Field
+		DelaySettings         respjson.Field
 		EdgeGain              respjson.Field
 		Eirp                  respjson.Field
 		Erp                   respjson.Field
 		FreqMax               respjson.Field
 		FreqMin               respjson.Field
+		FrequencySettings     respjson.Field
+		GainSettings          respjson.Field
 		Mode                  respjson.Field
+		NoiseSettings         respjson.Field
 		Origin                respjson.Field
 		OrigNetwork           respjson.Field
 		PeakGain              respjson.Field
@@ -337,7 +372,7 @@ const (
 )
 
 // Purpose or use of the RF Band -- COMM = communications, TTC =
-// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other.
 type RfBandListResponsePurpose string
 
 const (
@@ -415,14 +450,14 @@ type RfBandNewParams struct {
 	// X,K,Ku,Ka,L,S,C,UHF,VHF,EHF,SHF,UNK,VLF,HF,E,Q,V,W). See RFBandType for more
 	// details and descriptions of each band name.
 	Band param.Opt[string] `json:"band,omitzero"`
-	// RF Band frequency range bandwidth in Mhz.
+	// RF Band frequency range bandwidth in megahertz.
 	Bandwidth param.Opt[float64] `json:"bandwidth,omitzero"`
 	// Angle between the half-power (-3 dB) points of the main lobe of the antenna, in
 	// degrees.
 	Beamwidth param.Opt[float64] `json:"beamwidth,omitzero"`
-	// Center frequency of RF frequency range, if applicable, in Mhz.
+	// Center frequency of RF frequency range, if applicable, in megahertz.
 	CenterFreq param.Opt[float64] `json:"centerFreq,omitzero"`
-	// RF Range edge gain, in dBi.
+	// RF Range edge gain, in decibel relative to isotrope.
 	EdgeGain param.Opt[float64] `json:"edgeGain,omitzero"`
 	// EIRP is defined as the RMS power input in decibel watts required to a lossless
 	// half-wave dipole antenna to give the same maximum power density far from the
@@ -431,7 +466,7 @@ type RfBandNewParams struct {
 	// dipole. Effective radiated power and effective isotropic radiated power both
 	// measure the amount of power a radio transmitter and antenna (or other source of
 	// electromagnetic waves) radiates in a specific direction: in the direction of
-	// maximum signal strength (the "main lobe") of its radiation pattern.
+	// maximum signal strength (the main lobe) of its radiation pattern.
 	Eirp param.Opt[float64] `json:"eirp,omitzero"`
 	// Effective Radiated Power (ERP) is the total power in decibel watts radiated by
 	// an actual antenna relative to a half-wave dipole rather than a theoretical
@@ -440,23 +475,52 @@ type RfBandNewParams struct {
 	// Effective radiated power and effective isotropic radiated power both measure the
 	// amount of power a radio transmitter and antenna (or other source of
 	// electromagnetic waves) radiates in a specific direction: in the direction of
-	// maximum signal strength (the "main lobe") of its radiation pattern.
+	// maximum signal strength (the main lobe) of its radiation pattern.
 	Erp param.Opt[float64] `json:"erp,omitzero"`
-	// End/maximum of transmit RF frequency range, if applicable, in Mhz.
+	// End/maximum of transmit RF frequency range, if applicable, in megahertz.
 	FreqMax param.Opt[float64] `json:"freqMax,omitzero"`
-	// Start/minimum of transmit RF frequency range, if applicable, in Mhz.
+	// Start/minimum of transmit RF frequency range, if applicable, in megahertz.
 	FreqMin param.Opt[float64] `json:"freqMin,omitzero"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// RF Range maximum gain, in dBi.
+	// RF Range maximum gain, in decibel relative to isotrope.
 	PeakGain param.Opt[float64] `json:"peakGain,omitzero"`
+	// Array of frequency range bandwidth settings, in megahertz for this RFBand. If
+	// this array is specified then it must be the same size as the frequencySettings
+	// array. A null value may be used for one or more of the frequencies in the
+	// frequencySettings array if there is no corresponding value for a given
+	// frequency.
+	BandwidthSettings []float64 `json:"bandwidthSettings,omitzero"`
+	// Array of beamwidth settings, in degrees for this RFBand. If this array is
+	// specified then it must be the same size as the frequencySettings array. A null
+	// value may be used for one or more of the frequencies in the frequencySettings
+	// array if there is no corresponding value for a given frequency.
+	BeamwidthSettings []float64 `json:"beamwidthSettings,omitzero"`
+	// Array of delay settings, in seconds for this RFBand. If this array is specified
+	// then it must be the same size as the frequencySettings array. A null value may
+	// be used for one or more of the frequencies in the frequencySettings array if
+	// there is no corresponding value for a given frequency.
+	DelaySettings []float64 `json:"delaySettings,omitzero"`
+	// Array of frequency settings, in megahertz for this RFBand. This array and the
+	// settings arrays must match in size.
+	FrequencySettings []float64 `json:"frequencySettings,omitzero"`
+	// Array of gain settings, in decibels for this RFBand. If this array is specified
+	// then it must be the same size as the frequencySettings array. A null value may
+	// be used for one or more of the frequencies in the frequencySettings array if
+	// there is no corresponding value for a given frequency.
+	GainSettings []float64 `json:"gainSettings,omitzero"`
 	// RF Band mode (e.g. TX, RX).
 	//
 	// Any of "TX", "RX".
 	Mode RfBandNewParamsMode `json:"mode,omitzero"`
+	// Array of signal noise settings, in decibels for this RFBand. If this array is
+	// specified then it must be the same size as the frequencySettings array. A null
+	// value may be used for one or more of the frequencies in the frequencySettings
+	// array if there is no corresponding value for a given frequency.
+	NoiseSettings []float64 `json:"noiseSettings,omitzero"`
 	// Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
 	// Earth's surface, V - (Vertically Polarized) Parallel to Earth's surface, L -
 	// (Left Hand Circularly Polarized) Rotating left relative to the Earth's surface,
@@ -466,7 +530,7 @@ type RfBandNewParams struct {
 	// Any of "H", "V", "R", "L".
 	Polarization RfBandNewParamsPolarization `json:"polarization,omitzero"`
 	// Purpose or use of the RF Band -- COMM = communications, TTC =
-	// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+	// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other.
 	//
 	// Any of "COMM", "TTC", "OPS", "OTHER".
 	Purpose RfBandNewParamsPurpose `json:"purpose,omitzero"`
@@ -527,7 +591,7 @@ const (
 )
 
 // Purpose or use of the RF Band -- COMM = communications, TTC =
-// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other.
 type RfBandNewParamsPurpose string
 
 const (
@@ -569,14 +633,14 @@ type RfBandUpdateParams struct {
 	// X,K,Ku,Ka,L,S,C,UHF,VHF,EHF,SHF,UNK,VLF,HF,E,Q,V,W). See RFBandType for more
 	// details and descriptions of each band name.
 	Band param.Opt[string] `json:"band,omitzero"`
-	// RF Band frequency range bandwidth in Mhz.
+	// RF Band frequency range bandwidth in megahertz.
 	Bandwidth param.Opt[float64] `json:"bandwidth,omitzero"`
 	// Angle between the half-power (-3 dB) points of the main lobe of the antenna, in
 	// degrees.
 	Beamwidth param.Opt[float64] `json:"beamwidth,omitzero"`
-	// Center frequency of RF frequency range, if applicable, in Mhz.
+	// Center frequency of RF frequency range, if applicable, in megahertz.
 	CenterFreq param.Opt[float64] `json:"centerFreq,omitzero"`
-	// RF Range edge gain, in dBi.
+	// RF Range edge gain, in decibel relative to isotrope.
 	EdgeGain param.Opt[float64] `json:"edgeGain,omitzero"`
 	// EIRP is defined as the RMS power input in decibel watts required to a lossless
 	// half-wave dipole antenna to give the same maximum power density far from the
@@ -585,7 +649,7 @@ type RfBandUpdateParams struct {
 	// dipole. Effective radiated power and effective isotropic radiated power both
 	// measure the amount of power a radio transmitter and antenna (or other source of
 	// electromagnetic waves) radiates in a specific direction: in the direction of
-	// maximum signal strength (the "main lobe") of its radiation pattern.
+	// maximum signal strength (the main lobe) of its radiation pattern.
 	Eirp param.Opt[float64] `json:"eirp,omitzero"`
 	// Effective Radiated Power (ERP) is the total power in decibel watts radiated by
 	// an actual antenna relative to a half-wave dipole rather than a theoretical
@@ -594,23 +658,52 @@ type RfBandUpdateParams struct {
 	// Effective radiated power and effective isotropic radiated power both measure the
 	// amount of power a radio transmitter and antenna (or other source of
 	// electromagnetic waves) radiates in a specific direction: in the direction of
-	// maximum signal strength (the "main lobe") of its radiation pattern.
+	// maximum signal strength (the main lobe) of its radiation pattern.
 	Erp param.Opt[float64] `json:"erp,omitzero"`
-	// End/maximum of transmit RF frequency range, if applicable, in Mhz.
+	// End/maximum of transmit RF frequency range, if applicable, in megahertz.
 	FreqMax param.Opt[float64] `json:"freqMax,omitzero"`
-	// Start/minimum of transmit RF frequency range, if applicable, in Mhz.
+	// Start/minimum of transmit RF frequency range, if applicable, in megahertz.
 	FreqMin param.Opt[float64] `json:"freqMin,omitzero"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// RF Range maximum gain, in dBi.
+	// RF Range maximum gain, in decibel relative to isotrope.
 	PeakGain param.Opt[float64] `json:"peakGain,omitzero"`
+	// Array of frequency range bandwidth settings, in megahertz for this RFBand. If
+	// this array is specified then it must be the same size as the frequencySettings
+	// array. A null value may be used for one or more of the frequencies in the
+	// frequencySettings array if there is no corresponding value for a given
+	// frequency.
+	BandwidthSettings []float64 `json:"bandwidthSettings,omitzero"`
+	// Array of beamwidth settings, in degrees for this RFBand. If this array is
+	// specified then it must be the same size as the frequencySettings array. A null
+	// value may be used for one or more of the frequencies in the frequencySettings
+	// array if there is no corresponding value for a given frequency.
+	BeamwidthSettings []float64 `json:"beamwidthSettings,omitzero"`
+	// Array of delay settings, in seconds for this RFBand. If this array is specified
+	// then it must be the same size as the frequencySettings array. A null value may
+	// be used for one or more of the frequencies in the frequencySettings array if
+	// there is no corresponding value for a given frequency.
+	DelaySettings []float64 `json:"delaySettings,omitzero"`
+	// Array of frequency settings, in megahertz for this RFBand. This array and the
+	// settings arrays must match in size.
+	FrequencySettings []float64 `json:"frequencySettings,omitzero"`
+	// Array of gain settings, in decibels for this RFBand. If this array is specified
+	// then it must be the same size as the frequencySettings array. A null value may
+	// be used for one or more of the frequencies in the frequencySettings array if
+	// there is no corresponding value for a given frequency.
+	GainSettings []float64 `json:"gainSettings,omitzero"`
 	// RF Band mode (e.g. TX, RX).
 	//
 	// Any of "TX", "RX".
 	Mode RfBandUpdateParamsMode `json:"mode,omitzero"`
+	// Array of signal noise settings, in decibels for this RFBand. If this array is
+	// specified then it must be the same size as the frequencySettings array. A null
+	// value may be used for one or more of the frequencies in the frequencySettings
+	// array if there is no corresponding value for a given frequency.
+	NoiseSettings []float64 `json:"noiseSettings,omitzero"`
 	// Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
 	// Earth's surface, V - (Vertically Polarized) Parallel to Earth's surface, L -
 	// (Left Hand Circularly Polarized) Rotating left relative to the Earth's surface,
@@ -620,7 +713,7 @@ type RfBandUpdateParams struct {
 	// Any of "H", "V", "R", "L".
 	Polarization RfBandUpdateParamsPolarization `json:"polarization,omitzero"`
 	// Purpose or use of the RF Band -- COMM = communications, TTC =
-	// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+	// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other.
 	//
 	// Any of "COMM", "TTC", "OPS", "OTHER".
 	Purpose RfBandUpdateParamsPurpose `json:"purpose,omitzero"`
@@ -681,7 +774,7 @@ const (
 )
 
 // Purpose or use of the RF Band -- COMM = communications, TTC =
-// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other.
 type RfBandUpdateParamsPurpose string
 
 const (

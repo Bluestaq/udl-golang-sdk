@@ -3,10 +3,6 @@
 package unifieddatalibrary
 
 import (
-	"context"
-	"net/http"
-
-	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
 )
 
@@ -26,13 +22,5 @@ type ScGroupService struct {
 func NewScGroupService(opts ...option.RequestOption) (r ScGroupService) {
 	r = ScGroupService{}
 	r.Options = opts
-	return
-}
-
-// Returns a list of all available groups for ACL UIs
-func (r *ScGroupService) List(ctx context.Context, opts ...option.RequestOption) (res *[]string, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "scs/groups"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
 }

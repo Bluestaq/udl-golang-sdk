@@ -42,29 +42,6 @@ func TestScDelete(t *testing.T) {
 	}
 }
 
-func TestScAggregateDocType(t *testing.T) {
-	baseURL := "http://localhost:4010"
-	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
-		baseURL = envURL
-	}
-	if !testutil.CheckTestServer(t, baseURL) {
-		return
-	}
-	client := unifieddatalibrary.NewClient(
-		option.WithBaseURL(baseURL),
-		option.WithPassword("My Password"),
-		option.WithUsername("My Username"),
-	)
-	_, err := client.Scs.AggregateDocType(context.TODO())
-	if err != nil {
-		var apierr *unifieddatalibrary.Error
-		if errors.As(err, &apierr) {
-			t.Log(string(apierr.DumpRequest(true)))
-		}
-		t.Fatalf("err should be nil: %s", err.Error())
-	}
-}
-
 func TestScAllowableFileExtensions(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -150,7 +127,7 @@ func TestScDownload(t *testing.T) {
 		option.WithUsername("My Username"),
 	)
 	resp, err := client.Scs.Download(context.TODO(), unifieddatalibrary.ScDownloadParams{
-		Body: []string{"/processPalantirXml/media/PT_MEDIA6831731772984708680", "/processPalantirXml/media/PT_MEDIA7297147303810886654"},
+		Body: []any{"/MyFolderToDownload/"},
 	})
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
@@ -329,32 +306,6 @@ func TestScSearchWithOptionalParams(t *testing.T) {
 			"foo": {"string"},
 		},
 		SearchAfter: unifieddatalibrary.String("searchAfter"),
-	})
-	if err != nil {
-		var apierr *unifieddatalibrary.Error
-		if errors.As(err, &apierr) {
-			t.Log(string(apierr.DumpRequest(true)))
-		}
-		t.Fatalf("err should be nil: %s", err.Error())
-	}
-}
-
-func TestScUpdateTags(t *testing.T) {
-	baseURL := "http://localhost:4010"
-	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
-		baseURL = envURL
-	}
-	if !testutil.CheckTestServer(t, baseURL) {
-		return
-	}
-	client := unifieddatalibrary.NewClient(
-		option.WithBaseURL(baseURL),
-		option.WithPassword("My Password"),
-		option.WithUsername("My Username"),
-	)
-	err := client.Scs.UpdateTags(context.TODO(), unifieddatalibrary.ScUpdateTagsParams{
-		Folder: "folder",
-		Tags:   "tags",
 	})
 	if err != nil {
 		var apierr *unifieddatalibrary.Error

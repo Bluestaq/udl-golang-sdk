@@ -37,6 +37,8 @@ func NewScFileService(opts ...option.RequestOption) (r ScFileService) {
 
 // Returns a FileData object representing the file with the given ID that is
 // visible to the calling user.
+//
+// Deprecated: deprecated
 func (r *ScFileService) Get(ctx context.Context, query ScFileGetParams, opts ...option.RequestOption) (res *shared.FileData, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "scs/file"
@@ -46,6 +48,8 @@ func (r *ScFileService) Get(ctx context.Context, query ScFileGetParams, opts ...
 
 // operation to update files metadata. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
+//
+// Deprecated: deprecated
 func (r *ScFileService) Update(ctx context.Context, body ScFileUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
@@ -57,6 +61,8 @@ func (r *ScFileService) Update(ctx context.Context, body ScFileUpdateParams, opt
 // Returns a non-recursive list of FileData objects representing the files and
 // subdirectories in the passed-in path directory that are visible to the calling
 // user.
+//
+// Deprecated: deprecated
 func (r *ScFileService) List(ctx context.Context, query ScFileListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[shared.FileData], err error) {
 	var raw *http.Response
 	opts = append(r.Options[:], opts...)
@@ -77,6 +83,8 @@ func (r *ScFileService) List(ctx context.Context, query ScFileListParams, opts .
 // Returns a non-recursive list of FileData objects representing the files and
 // subdirectories in the passed-in path directory that are visible to the calling
 // user.
+//
+// Deprecated: deprecated
 func (r *ScFileService) ListAutoPaging(ctx context.Context, query ScFileListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[shared.FileData] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }

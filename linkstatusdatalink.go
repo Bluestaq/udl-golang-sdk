@@ -278,10 +278,6 @@ type DatalinkIngestParam struct {
 	Qualifier param.Opt[string] `json:"qualifier,omitzero"`
 	// The serial number associated with the message qualifier.
 	QualSn param.Opt[int64] `json:"qualSN,omitzero"`
-	// Optional URI location in the document repository of the raw file parsed by the
-	// system to produce this record. To download the raw file, prepend
-	// https://udl-hostname/scs/download?id= to this value.
-	RawFileUri param.Opt[string] `json:"rawFileURI,omitzero"`
 	// Track quality to enter if too many duals involving low track quality tracks are
 	// occurring. Required if sysDefaultCode field is "MAN". Allowable entries are
 	// integers from 2 to 6.
@@ -792,10 +788,6 @@ type LinkStatusDatalinkListResponse struct {
 	Qualifier string `json:"qualifier"`
 	// The serial number associated with the message qualifier.
 	QualSn int64 `json:"qualSN"`
-	// Optional URI location in the document repository of the raw file parsed by the
-	// system to produce this record. To download the raw file, prepend
-	// https://udl-hostname/scs/download?id= to this value.
-	RawFileUri string `json:"rawFileURI"`
 	// Collection of reference information. There can be 0 to many DataLinkReferences
 	// collections within the datalink service.
 	References []LinkStatusDatalinkListResponseReference `json:"references"`
@@ -912,7 +904,6 @@ type LinkStatusDatalinkListResponse struct {
 		PocRank               respjson.Field
 		Qualifier             respjson.Field
 		QualSn                respjson.Field
-		RawFileUri            respjson.Field
 		References            respjson.Field
 		RefPoints             respjson.Field
 		Remarks               respjson.Field
@@ -1445,10 +1436,6 @@ type LinkStatusDatalinkTupleResponse struct {
 	Qualifier string `json:"qualifier"`
 	// The serial number associated with the message qualifier.
 	QualSn int64 `json:"qualSN"`
-	// Optional URI location in the document repository of the raw file parsed by the
-	// system to produce this record. To download the raw file, prepend
-	// https://udl-hostname/scs/download?id= to this value.
-	RawFileUri string `json:"rawFileURI"`
 	// Collection of reference information. There can be 0 to many DataLinkReferences
 	// collections within the datalink service.
 	References []LinkStatusDatalinkTupleResponseReference `json:"references"`
@@ -1565,7 +1552,6 @@ type LinkStatusDatalinkTupleResponse struct {
 		PocRank               respjson.Field
 		Qualifier             respjson.Field
 		QualSn                respjson.Field
-		RawFileUri            respjson.Field
 		References            respjson.Field
 		RefPoints             respjson.Field
 		Remarks               respjson.Field
