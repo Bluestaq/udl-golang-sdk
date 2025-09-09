@@ -279,6 +279,9 @@ type BusAbridged struct {
 	// Orbit averaged power (the power averaged over one orbit) available on this bus,
 	// in kilowatts.
 	OapSpacecraftPower float64 `json:"oapSpacecraftPower"`
+	// Array of orbit types this bus can support (e.g. GEO, LEO, etc.). Must contain
+	// the same number of elements as the value of numOrbitType.
+	OrbitTypes []string `json:"orbitTypes"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
@@ -350,6 +353,7 @@ type BusAbridged struct {
 		NumOrbitType                       respjson.Field
 		OapPayloadPower                    respjson.Field
 		OapSpacecraftPower                 respjson.Field
+		OrbitTypes                         respjson.Field
 		Origin                             respjson.Field
 		OrigNetwork                        respjson.Field
 		PayloadDimensionX                  respjson.Field
