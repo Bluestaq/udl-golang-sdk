@@ -114,6 +114,9 @@ type GlobalAtmosphericModelHistoryQueryResponse struct {
 	// Application user who created the row in the database, auto-populated by the
 	// system.
 	CreatedBy string `json:"createdBy"`
+	// A unique identification code or label assigned to a particular source from which
+	// atmospheric data originates.
+	DataSourceIdentifier string `json:"dataSourceIdentifier"`
 	// Ending altitude of model outputs, in kilometers.
 	EndAlt float64 `json:"endAlt"`
 	// WGS-84 ending latitude of model output, in degrees. -90 to 90 degrees (negative
@@ -175,6 +178,7 @@ type GlobalAtmosphericModelHistoryQueryResponse struct {
 		ChecksumValue         respjson.Field
 		CreatedAt             respjson.Field
 		CreatedBy             respjson.Field
+		DataSourceIdentifier  respjson.Field
 		EndAlt                respjson.Field
 		EndLat                respjson.Field
 		EndLon                respjson.Field

@@ -227,6 +227,8 @@ type LinkStatusListResponse struct {
 	SatNo1 int64 `json:"satNo1"`
 	// Satellite/catalog number of the target on-orbit secondary object.
 	SatNo2 int64 `json:"satNo2"`
+	// Signal to noise ratio, in dB.
+	Snr float64 `json:"snr"`
 	// The SYSCAP mission status of the system(s) forming the link.
 	SysCap string `json:"sysCap"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
@@ -261,6 +263,7 @@ type LinkStatusListResponse struct {
 		OrigNetwork           respjson.Field
 		SatNo1                respjson.Field
 		SatNo2                respjson.Field
+		Snr                   respjson.Field
 		SysCap                respjson.Field
 		ExtraFields           map[string]respjson.Field
 		raw                   string
@@ -390,6 +393,8 @@ type LinkStatusGetResponse struct {
 	SatNo1 int64 `json:"satNo1"`
 	// Satellite/catalog number of the target on-orbit secondary object.
 	SatNo2 int64 `json:"satNo2"`
+	// Signal to noise ratio, in dB.
+	Snr float64 `json:"snr"`
 	// The SYSCAP mission status of the system(s) forming the link.
 	SysCap string `json:"sysCap"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
@@ -424,6 +429,7 @@ type LinkStatusGetResponse struct {
 		OrigNetwork           respjson.Field
 		SatNo1                respjson.Field
 		SatNo2                respjson.Field
+		Snr                   respjson.Field
 		SysCap                respjson.Field
 		ExtraFields           map[string]respjson.Field
 		raw                   string
@@ -589,6 +595,8 @@ type LinkStatusTupleResponse struct {
 	SatNo1 int64 `json:"satNo1"`
 	// Satellite/catalog number of the target on-orbit secondary object.
 	SatNo2 int64 `json:"satNo2"`
+	// Signal to noise ratio, in dB.
+	Snr float64 `json:"snr"`
 	// The SYSCAP mission status of the system(s) forming the link.
 	SysCap string `json:"sysCap"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
@@ -623,6 +631,7 @@ type LinkStatusTupleResponse struct {
 		OrigNetwork           respjson.Field
 		SatNo1                respjson.Field
 		SatNo2                respjson.Field
+		Snr                   respjson.Field
 		SysCap                respjson.Field
 		ExtraFields           map[string]respjson.Field
 		raw                   string
@@ -736,6 +745,8 @@ type LinkStatusNewParams struct {
 	SatNo1 param.Opt[int64] `json:"satNo1,omitzero"`
 	// Satellite/catalog number of the target on-orbit secondary object.
 	SatNo2 param.Opt[int64] `json:"satNo2,omitzero"`
+	// Signal to noise ratio, in dB.
+	Snr param.Opt[float64] `json:"snr,omitzero"`
 	// The SYSCAP mission status of the system(s) forming the link.
 	SysCap param.Opt[string] `json:"sysCap,omitzero"`
 	paramObj
