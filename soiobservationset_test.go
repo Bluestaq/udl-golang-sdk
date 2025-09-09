@@ -69,7 +69,6 @@ func TestSoiObservationSetNewWithOptionalParams(t *testing.T) {
 		OpticalSoiObservationList: []unifieddatalibrary.SoiObservationSetNewParamsOpticalSoiObservationList{{
 			ObStartTime:              time.Now(),
 			CurrentSpectralFilterNum: unifieddatalibrary.Int(0),
-			DeclinationRates:         []float64{0, 0, 0},
 			Declinations:             []float64{-0.45, -0.45, -0.45},
 			ExpDuration:              unifieddatalibrary.Float(0.455),
 			ExtinctionCoeffs:         []float64{0.32, 0.32, 0.32},
@@ -288,7 +287,6 @@ func TestSoiObservationSetNewBulk(t *testing.T) {
 			OpticalSoiObservationList: []unifieddatalibrary.SoiObservationSetNewBulkParamsBodyOpticalSoiObservationList{{
 				ObStartTime:              time.Now(),
 				CurrentSpectralFilterNum: unifieddatalibrary.Int(0),
-				DeclinationRates:         []float64{0, 0, 0},
 				Declinations:             []float64{-0.45, -0.45, -0.45},
 				ExpDuration:              unifieddatalibrary.Float(0.455),
 				ExtinctionCoeffs:         []float64{0.32, 0.32, 0.32},
@@ -535,7 +533,6 @@ func TestSoiObservationSetUnvalidatedPublish(t *testing.T) {
 			OpticalSoiObservationList: []unifieddatalibrary.SoiObservationSetUnvalidatedPublishParamsBodyOpticalSoiObservationList{{
 				ObStartTime:              time.Now(),
 				CurrentSpectralFilterNum: unifieddatalibrary.Int(0),
-				DeclinationRates:         []float64{0, 0, 0},
 				Declinations:             []float64{-0.45, -0.45, -0.45},
 				ExpDuration:              unifieddatalibrary.Float(0.455),
 				ExtinctionCoeffs:         []float64{0.32, 0.32, 0.32},

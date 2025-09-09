@@ -132,24 +132,18 @@ func (r *ScV2Service) Move(ctx context.Context, body ScV2MoveParams, opts ...opt
 }
 
 type Attachment struct {
-	// The creator of this document. Can be a person or a software entity.
-	Author string `json:"author"`
-	// The length of the document, in bytes.
-	ContentLength int64 `json:"content_length"`
-	// The document's MIME-type (if applicable).
-	ContentType string `json:"content_type"`
-	// The time at which this attachment was created, represented in UTC ISO format.
-	Date string `json:"date"`
-	// Any keywords associated with this document. Only applicable to files whose
-	// contents are indexed (e.g. text files, PDFs).
-	Keywords string `json:"keywords"`
-	// The human language of the document, if discernible.
-	Language string `json:"language"`
-	// The title of the document.
-	Title string `json:"title"`
+	Author        string `json:"author"`
+	Content       string `json:"content"`
+	ContentLength int64  `json:"content_length"`
+	ContentType   string `json:"content_type"`
+	Date          string `json:"date"`
+	Keywords      string `json:"keywords"`
+	Language      string `json:"language"`
+	Title         string `json:"title"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Author        respjson.Field
+		Content       respjson.Field
 		ContentLength respjson.Field
 		ContentType   respjson.Field
 		Date          respjson.Field
@@ -169,48 +163,30 @@ func (r *Attachment) UnmarshalJSON(data []byte) error {
 
 // An SCS file or folder.
 type ScsEntity struct {
-	// Unique identifier for document.
-	ID string `json:"id"`
-	// Additional metadata associated with this document.
+	ID         string     `json:"id"`
 	Attachment Attachment `json:"attachment"`
 	// Classification marking of the folder or file in IC/CAPCO portion-marked format.
 	ClassificationMarking string `json:"classificationMarking"`
-	// The time at which this document was created, represented in UTC ISO format.
-	CreatedAt string `json:"createdAt"`
-	// The creator of this document. Can be a person or a software entity.
-	CreatedBy string `json:"createdBy"`
-	// Time at which this document should be automatically deleted. Represented in
-	// milliseconds since Unix epoch.
-	DeleteOn int64 `json:"deleteOn"`
+	CreatedAt             string `json:"createdAt"`
+	CreatedBy             string `json:"createdBy"`
+	Data                  string `json:"data"`
+	DeleteOn              int64  `json:"deleteOn"`
 	// Optional description for the file or folder.
 	Description string `json:"description"`
-	// The name of this document. Applicable to files and folders.
-	Filename string `json:"filename"`
-	// The absolute path to this document.
-	FilePath string `json:"filePath"`
-	// Optional. Any keywords associated with this document. Only applicable to files
-	// whose contents are indexed (e.g. text files, PDFs).
-	Keywords string `json:"keywords"`
-	// The parent folder of this document. If this document is a root-level folder then
-	// the parent path is "/".
-	ParentPath string `json:"parentPath"`
-	// The type of this document.
-	//
-	// Any of "file", "folder".
-	PathType ScsEntityPathType `json:"pathType"`
+	Filename    string `json:"filename"`
+	FilePath    string `json:"filePath"`
+	Keywords    string `json:"keywords"`
+	ParentPath  string `json:"parentPath"`
+	PathType    string `json:"pathType"`
 	// For folders only. Comma separated list of user and group ids that should have
 	// read access on this folder and the items nested in it.
 	ReadACL string `json:"readAcl"`
-	// Size of this document in bytes.
-	Size int64 `json:"size"`
+	Size    int64  `json:"size"`
 	// Array of provider/source specific tags for this data, used for implementing data
 	// owner conditional access controls to restrict access to the data.
-	Tags []string `json:"tags"`
-	// The time at which this document was most recently updated, represented in UTC
-	// ISO format.
-	UpdatedAt string `json:"updatedAt"`
-	// The person or software entity who updated this document most recently.
-	UpdatedBy string `json:"updatedBy"`
+	Tags      []string `json:"tags"`
+	UpdatedAt string   `json:"updatedAt"`
+	UpdatedBy string   `json:"updatedBy"`
 	// For folders only. Comma separated list of user and group ids that should have
 	// write access on this folder and the items nested in it.
 	WriteACL string `json:"writeAcl"`
@@ -221,6 +197,7 @@ type ScsEntity struct {
 		ClassificationMarking respjson.Field
 		CreatedAt             respjson.Field
 		CreatedBy             respjson.Field
+		Data                  respjson.Field
 		DeleteOn              respjson.Field
 		Description           respjson.Field
 		Filename              respjson.Field
@@ -245,61 +222,22 @@ func (r *ScsEntity) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-// The type of this document.
-type ScsEntityPathType string
-
-const (
-	ScsEntityPathTypeFile   ScsEntityPathType = "file"
-	ScsEntityPathTypeFolder ScsEntityPathType = "folder"
-)
-
 type ScV2UpdateParams struct {
 	// The complete path for the object to be updated.
 	Path string `query:"path,required" json:"-"`
 	// Whether or not to send a notification that the target file/folder was updated.
 	SendNotification param.Opt[bool] `query:"sendNotification,omitzero" json:"-"`
-	// Unique identifier for document.
-	ID param.Opt[string] `json:"id,omitzero"`
 	// Classification marking of the folder or file in IC/CAPCO portion-marked format.
 	ClassificationMarking param.Opt[string] `json:"classificationMarking,omitzero"`
-	// The time at which this document was created, represented in UTC ISO format.
-	CreatedAt param.Opt[string] `json:"createdAt,omitzero"`
-	// The creator of this document. Can be a person or a software entity.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
-	// Time at which this document should be automatically deleted. Represented in
-	// milliseconds since Unix epoch.
-	DeleteOn param.Opt[int64] `json:"deleteOn,omitzero"`
+	DeleteOn              param.Opt[int64]  `json:"deleteOn,omitzero"`
 	// Optional description for the file or folder.
 	Description param.Opt[string] `json:"description,omitzero"`
-	// The name of this document. Applicable to files and folders.
-	Filename param.Opt[string] `json:"filename,omitzero"`
-	// The absolute path to this document.
-	FilePath param.Opt[string] `json:"filePath,omitzero"`
-	// Optional. Any keywords associated with this document. Only applicable to files
-	// whose contents are indexed (e.g. text files, PDFs).
-	Keywords param.Opt[string] `json:"keywords,omitzero"`
-	// The parent folder of this document. If this document is a root-level folder then
-	// the parent path is "/".
-	ParentPath param.Opt[string] `json:"parentPath,omitzero"`
 	// For folders only. Comma separated list of user and group ids that should have
 	// read access on this folder and the items nested in it.
 	ReadACL param.Opt[string] `json:"readAcl,omitzero"`
-	// Size of this document in bytes.
-	Size param.Opt[int64] `json:"size,omitzero"`
-	// The time at which this document was most recently updated, represented in UTC
-	// ISO format.
-	UpdatedAt param.Opt[string] `json:"updatedAt,omitzero"`
-	// The person or software entity who updated this document most recently.
-	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// For folders only. Comma separated list of user and group ids that should have
 	// write access on this folder and the items nested in it.
 	WriteACL param.Opt[string] `json:"writeAcl,omitzero"`
-	// Additional metadata associated with this document.
-	Attachment ScV2UpdateParamsAttachment `json:"attachment,omitzero"`
-	// The type of this document.
-	//
-	// Any of "file", "folder".
-	PathType ScV2UpdateParamsPathType `json:"pathType,omitzero"`
 	// Array of provider/source specific tags for this data, used for implementing data
 	// owner conditional access controls to restrict access to the data.
 	Tags []string `json:"tags,omitzero"`
@@ -321,42 +259,6 @@ func (r ScV2UpdateParams) URLQuery() (v url.Values, err error) {
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
-
-// Additional metadata associated with this document.
-type ScV2UpdateParamsAttachment struct {
-	// The creator of this document. Can be a person or a software entity.
-	Author param.Opt[string] `json:"author,omitzero"`
-	// The length of the document, in bytes.
-	ContentLength param.Opt[int64] `json:"content_length,omitzero"`
-	// The document's MIME-type (if applicable).
-	ContentType param.Opt[string] `json:"content_type,omitzero"`
-	// The time at which this attachment was created, represented in UTC ISO format.
-	Date param.Opt[string] `json:"date,omitzero"`
-	// Any keywords associated with this document. Only applicable to files whose
-	// contents are indexed (e.g. text files, PDFs).
-	Keywords param.Opt[string] `json:"keywords,omitzero"`
-	// The human language of the document, if discernible.
-	Language param.Opt[string] `json:"language,omitzero"`
-	// The title of the document.
-	Title param.Opt[string] `json:"title,omitzero"`
-	paramObj
-}
-
-func (r ScV2UpdateParamsAttachment) MarshalJSON() (data []byte, err error) {
-	type shadow ScV2UpdateParamsAttachment
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *ScV2UpdateParamsAttachment) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// The type of this document.
-type ScV2UpdateParamsPathType string
-
-const (
-	ScV2UpdateParamsPathTypeFile   ScV2UpdateParamsPathType = "file"
-	ScV2UpdateParamsPathTypeFolder ScV2UpdateParamsPathType = "folder"
-)
 
 type ScV2ListParams struct {
 	// The base path to list
@@ -467,48 +369,17 @@ type ScV2FolderNewParams struct {
 	Path string `query:"path,required" json:"-"`
 	// Whether or not to send a notification that this folder was created.
 	SendNotification param.Opt[bool] `query:"sendNotification,omitzero" json:"-"`
-	// Unique identifier for document.
-	ID param.Opt[string] `json:"id,omitzero"`
 	// Classification marking of the folder or file in IC/CAPCO portion-marked format.
 	ClassificationMarking param.Opt[string] `json:"classificationMarking,omitzero"`
-	// The time at which this document was created, represented in UTC ISO format.
-	CreatedAt param.Opt[string] `json:"createdAt,omitzero"`
-	// The creator of this document. Can be a person or a software entity.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
-	// Time at which this document should be automatically deleted. Represented in
-	// milliseconds since Unix epoch.
-	DeleteOn param.Opt[int64] `json:"deleteOn,omitzero"`
+	DeleteOn              param.Opt[int64]  `json:"deleteOn,omitzero"`
 	// Optional description for the file or folder.
 	Description param.Opt[string] `json:"description,omitzero"`
-	// The name of this document. Applicable to files and folders.
-	Filename param.Opt[string] `json:"filename,omitzero"`
-	// The absolute path to this document.
-	FilePath param.Opt[string] `json:"filePath,omitzero"`
-	// Optional. Any keywords associated with this document. Only applicable to files
-	// whose contents are indexed (e.g. text files, PDFs).
-	Keywords param.Opt[string] `json:"keywords,omitzero"`
-	// The parent folder of this document. If this document is a root-level folder then
-	// the parent path is "/".
-	ParentPath param.Opt[string] `json:"parentPath,omitzero"`
 	// For folders only. Comma separated list of user and group ids that should have
 	// read access on this folder and the items nested in it.
 	ReadACL param.Opt[string] `json:"readAcl,omitzero"`
-	// Size of this document in bytes.
-	Size param.Opt[int64] `json:"size,omitzero"`
-	// The time at which this document was most recently updated, represented in UTC
-	// ISO format.
-	UpdatedAt param.Opt[string] `json:"updatedAt,omitzero"`
-	// The person or software entity who updated this document most recently.
-	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// For folders only. Comma separated list of user and group ids that should have
 	// write access on this folder and the items nested in it.
 	WriteACL param.Opt[string] `json:"writeAcl,omitzero"`
-	// Additional metadata associated with this document.
-	Attachment ScV2FolderNewParamsAttachment `json:"attachment,omitzero"`
-	// The type of this document.
-	//
-	// Any of "file", "folder".
-	PathType ScV2FolderNewParamsPathType `json:"pathType,omitzero"`
 	// Array of provider/source specific tags for this data, used for implementing data
 	// owner conditional access controls to restrict access to the data.
 	Tags []string `json:"tags,omitzero"`
@@ -530,42 +401,6 @@ func (r ScV2FolderNewParams) URLQuery() (v url.Values, err error) {
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
-
-// Additional metadata associated with this document.
-type ScV2FolderNewParamsAttachment struct {
-	// The creator of this document. Can be a person or a software entity.
-	Author param.Opt[string] `json:"author,omitzero"`
-	// The length of the document, in bytes.
-	ContentLength param.Opt[int64] `json:"content_length,omitzero"`
-	// The document's MIME-type (if applicable).
-	ContentType param.Opt[string] `json:"content_type,omitzero"`
-	// The time at which this attachment was created, represented in UTC ISO format.
-	Date param.Opt[string] `json:"date,omitzero"`
-	// Any keywords associated with this document. Only applicable to files whose
-	// contents are indexed (e.g. text files, PDFs).
-	Keywords param.Opt[string] `json:"keywords,omitzero"`
-	// The human language of the document, if discernible.
-	Language param.Opt[string] `json:"language,omitzero"`
-	// The title of the document.
-	Title param.Opt[string] `json:"title,omitzero"`
-	paramObj
-}
-
-func (r ScV2FolderNewParamsAttachment) MarshalJSON() (data []byte, err error) {
-	type shadow ScV2FolderNewParamsAttachment
-	return param.MarshalObject(r, (*shadow)(&r))
-}
-func (r *ScV2FolderNewParamsAttachment) UnmarshalJSON(data []byte) error {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-// The type of this document.
-type ScV2FolderNewParamsPathType string
-
-const (
-	ScV2FolderNewParamsPathTypeFile   ScV2FolderNewParamsPathType = "file"
-	ScV2FolderNewParamsPathTypeFolder ScV2FolderNewParamsPathType = "folder"
-)
 
 type ScV2MoveParams struct {
 	// The path of the file or folder to move or rename. Must start with '/'.

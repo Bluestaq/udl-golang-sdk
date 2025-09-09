@@ -956,10 +956,6 @@ type SoiObservationSetNewParamsOpticalSoiObservationList struct {
 	CurrentSpectralFilterNum param.Opt[int64] `json:"currentSpectralFilterNum,omitzero"`
 	// Image exposure duration in seconds.
 	ExpDuration param.Opt[float64] `json:"expDuration,omitzero"`
-	// Array of declination rate values, in degrees per second, measuring the rate
-	// speed at which an object's declination changes over time, for each element in
-	// the intensities field, at the middle of the frame's exposure time.
-	DeclinationRates []float64 `json:"declinationRates,omitzero"`
 	// Array of declination values, in degrees, of the Target object from the frame of
 	// reference of the sensor. A value is provided for each element in the intensities
 	// field, at the middle of the frame’s exposure time.
@@ -1584,10 +1580,6 @@ type SoiObservationSetNewBulkParamsBodyOpticalSoiObservationList struct {
 	CurrentSpectralFilterNum param.Opt[int64] `json:"currentSpectralFilterNum,omitzero"`
 	// Image exposure duration in seconds.
 	ExpDuration param.Opt[float64] `json:"expDuration,omitzero"`
-	// Array of declination rate values, in degrees per second, measuring the rate
-	// speed at which an object's declination changes over time, for each element in
-	// the intensities field, at the middle of the frame's exposure time.
-	DeclinationRates []float64 `json:"declinationRates,omitzero"`
 	// Array of declination values, in degrees, of the Target object from the frame of
 	// reference of the sensor. A value is provided for each element in the intensities
 	// field, at the middle of the frame’s exposure time.
@@ -2188,10 +2180,6 @@ type SoiObservationSetUnvalidatedPublishParamsBodyOpticalSoiObservationList stru
 	CurrentSpectralFilterNum param.Opt[int64] `json:"currentSpectralFilterNum,omitzero"`
 	// Image exposure duration in seconds.
 	ExpDuration param.Opt[float64] `json:"expDuration,omitzero"`
-	// Array of declination rate values, in degrees per second, measuring the rate
-	// speed at which an object's declination changes over time, for each element in
-	// the intensities field, at the middle of the frame's exposure time.
-	DeclinationRates []float64 `json:"declinationRates,omitzero"`
 	// Array of declination values, in degrees, of the Target object from the frame of
 	// reference of the sensor. A value is provided for each element in the intensities
 	// field, at the middle of the frame’s exposure time.
