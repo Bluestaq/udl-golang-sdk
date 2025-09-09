@@ -127,7 +127,7 @@ func TestScDownload(t *testing.T) {
 		option.WithUsername("My Username"),
 	)
 	resp, err := client.Scs.Download(context.TODO(), unifieddatalibrary.ScDownloadParams{
-		Body: []string{"/MyFolderToDownload/"},
+		Body: []any{"/MyFolderToDownload/"},
 	})
 	if err != nil {
 		var apierr *unifieddatalibrary.Error

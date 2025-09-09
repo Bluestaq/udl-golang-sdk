@@ -184,9 +184,6 @@ type GlobalAtmosphericModelGetResponse struct {
 	// Application user who created the row in the database, auto-populated by the
 	// system.
 	CreatedBy string `json:"createdBy"`
-	// A unique identification code or label assigned to a particular source from which
-	// atmospheric data originates.
-	DataSourceIdentifier string `json:"dataSourceIdentifier"`
 	// Ending altitude of model outputs, in kilometers.
 	EndAlt float64 `json:"endAlt"`
 	// WGS-84 ending latitude of model output, in degrees. -90 to 90 degrees (negative
@@ -248,7 +245,6 @@ type GlobalAtmosphericModelGetResponse struct {
 		ChecksumValue         respjson.Field
 		CreatedAt             respjson.Field
 		CreatedBy             respjson.Field
-		DataSourceIdentifier  respjson.Field
 		EndAlt                respjson.Field
 		EndLat                respjson.Field
 		EndLon                respjson.Field
@@ -343,9 +339,6 @@ type GlobalAtmosphericModelQueryResponse struct {
 	// Application user who created the row in the database, auto-populated by the
 	// system.
 	CreatedBy string `json:"createdBy"`
-	// A unique identification code or label assigned to a particular source from which
-	// atmospheric data originates.
-	DataSourceIdentifier string `json:"dataSourceIdentifier"`
 	// Ending altitude of model outputs, in kilometers.
 	EndAlt float64 `json:"endAlt"`
 	// WGS-84 ending latitude of model output, in degrees. -90 to 90 degrees (negative
@@ -407,7 +400,6 @@ type GlobalAtmosphericModelQueryResponse struct {
 		ChecksumValue         respjson.Field
 		CreatedAt             respjson.Field
 		CreatedBy             respjson.Field
-		DataSourceIdentifier  respjson.Field
 		EndAlt                respjson.Field
 		EndLat                respjson.Field
 		EndLon                respjson.Field
@@ -538,9 +530,6 @@ type GlobalAtmosphericModelTupleResponse struct {
 	// Application user who created the row in the database, auto-populated by the
 	// system.
 	CreatedBy string `json:"createdBy"`
-	// A unique identification code or label assigned to a particular source from which
-	// atmospheric data originates.
-	DataSourceIdentifier string `json:"dataSourceIdentifier"`
 	// Ending altitude of model outputs, in kilometers.
 	EndAlt float64 `json:"endAlt"`
 	// WGS-84 ending latitude of model output, in degrees. -90 to 90 degrees (negative
@@ -602,7 +591,6 @@ type GlobalAtmosphericModelTupleResponse struct {
 		ChecksumValue         respjson.Field
 		CreatedAt             respjson.Field
 		CreatedBy             respjson.Field
-		DataSourceIdentifier  respjson.Field
 		EndAlt                respjson.Field
 		EndLat                respjson.Field
 		EndLon                respjson.Field
@@ -775,9 +763,6 @@ type GlobalAtmosphericModelUnvalidatedPublishParams struct {
 	ID param.Opt[string] `json:"id,omitzero"`
 	// Model execution cadence, in minutes.
 	Cadence param.Opt[int64] `json:"cadence,omitzero"`
-	// A unique identification code or label assigned to a particular source from which
-	// atmospheric data originates.
-	DataSourceIdentifier param.Opt[string] `json:"dataSourceIdentifier,omitzero"`
 	// Ending altitude of model outputs, in kilometers.
 	EndAlt param.Opt[float64] `json:"endAlt,omitzero"`
 	// WGS-84 ending latitude of model output, in degrees. -90 to 90 degrees (negative

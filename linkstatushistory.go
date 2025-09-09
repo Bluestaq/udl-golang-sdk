@@ -185,8 +185,6 @@ type LinkStatusHistoryListResponse struct {
 	SatNo1 int64 `json:"satNo1"`
 	// Satellite/catalog number of the target on-orbit secondary object.
 	SatNo2 int64 `json:"satNo2"`
-	// Signal to noise ratio, in dB.
-	Snr float64 `json:"snr"`
 	// The SYSCAP mission status of the system(s) forming the link.
 	SysCap string `json:"sysCap"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
@@ -221,7 +219,6 @@ type LinkStatusHistoryListResponse struct {
 		OrigNetwork           respjson.Field
 		SatNo1                respjson.Field
 		SatNo2                respjson.Field
-		Snr                   respjson.Field
 		SysCap                respjson.Field
 		ExtraFields           map[string]respjson.Field
 		raw                   string

@@ -242,21 +242,6 @@ type MissileTrackListResponse struct {
 	// The percentage of time that the estimated AoU will "cover" the true position of
 	// the track.
 	Containment float64 `json:"containment"`
-	// An optional string array containing additional data (keys) representing relevant
-	// items for context of fields not specifically defined in this schema. This array
-	// is paired with the contextValues string array and must contain the same number
-	// of items. Please note these fields are intended for contextual use only and do
-	// not pertain to core schema information. To ensure proper integration and avoid
-	// misuse, coordination of how these fields are populated and consumed is required
-	// during onboarding.
-	ContextKeys []string `json:"contextKeys"`
-	// An optional string array containing the values associated with the contextKeys
-	// array. This array is paired with the contextKeys string array and must contain
-	// the same number of items. Please note these fields are intended for contextual
-	// use only and do not pertain to core schema information. To ensure proper
-	// integration and avoid misuse, coordination of how these fields are populated and
-	// consumed is required during onboarding.
-	ContextValues []string `json:"contextValues"`
 	// Time the row was created in the database.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database.
@@ -283,8 +268,6 @@ type MissileTrackListResponse struct {
 	//
 	// Any of "AIR", "LAND", "SPACE", "SURFACE", "SUBSURFACE", "UNKNOWN".
 	Env MissileTrackListResponseEnv `json:"env"`
-	// Estimated impact point altitude relative to WGS-84 ellipsoid, in kilometers.
-	ImpactAlt float64 `json:"impactAlt"`
 	// Three element array representing an Area of Uncertainty (AoU). The array element
 	// definitions and units are type specific depending on the aouType specified in
 	// this record:
@@ -317,8 +300,6 @@ type MissileTrackListResponse struct {
 	// type defines the elements of the aouEllp array and is required if aouEllp is not
 	// null. See the aouEllp field definition for specific information.
 	ImpactAouType string `json:"impactAouType"`
-	// Confidence level of the impact point estimate. 0 - 100 percent.
-	ImpactConf float64 `json:"impactConf"`
 	// WGS-84 latitude of the missile object impact point, in degrees. -90 to 90
 	// degrees (negative values south of equator).
 	ImpactLat float64 `json:"impactLat"`
@@ -330,8 +311,6 @@ type MissileTrackListResponse struct {
 	ImpactTime time.Time `json:"impactTime" format:"date-time"`
 	// Source code for source of information used to detect track.
 	InfoSource string `json:"infoSource"`
-	// Estimated launch point altitude relative to WGS-84 ellipsoid, in kilometers.
-	LaunchAlt float64 `json:"launchAlt"`
 	// Three element array representing an Area of Uncertainty (AoU). The array element
 	// definitions and units are type specific depending on the aouType specified in
 	// this record:
@@ -364,13 +343,6 @@ type MissileTrackListResponse struct {
 	// type defines the elements of the aouEllp array and is required if aouEllp is not
 	// null. See the aouEllp field definition for specific information.
 	LaunchAouType string `json:"launchAouType"`
-	// Angle between true north and the object's current position, with respect to the
-	// launch point, in degrees. 0 to 360 degrees.
-	LaunchAz float64 `json:"launchAz"`
-	// Uncertainty of the launch azimuth, in degrees.
-	LaunchAzUnc float64 `json:"launchAzUnc"`
-	// Confidence level in the accuracy of the launch point estimate. 0 - 100 percent.
-	LaunchConf float64 `json:"launchConf"`
 	// WGS-84 latitude of the missile launch point, in degrees. -90 to 90 degrees
 	// (negative values south of equator).
 	LaunchLat float64 `json:"launchLat"`
@@ -381,10 +353,6 @@ type MissileTrackListResponse struct {
 	LaunchTime time.Time `json:"launchTime" format:"date-time"`
 	// Indicates whether or not the missile is considered lost.
 	LostTrkInd bool `json:"lostTrkInd"`
-	// Maneuver end time, in ISO 8601 UTC format with microsecond precision.
-	ManeuverEnd time.Time `json:"maneuverEnd" format:"date-time"`
-	// Maneuver start time, in ISO 8601 UTC format with microsecond precision.
-	ManeuverStart time.Time `json:"maneuverStart" format:"date-time"`
 	// The timestamp of the external message from which this request originated, if
 	// applicable, in ISO8601 UTC format with millisecond precision.
 	MsgCreateDate time.Time `json:"msgCreateDate" format:"date-time"`
@@ -521,33 +489,23 @@ type MissileTrackListResponse struct {
 		BurnoutAlt            respjson.Field
 		CallSign              respjson.Field
 		Containment           respjson.Field
-		ContextKeys           respjson.Field
-		ContextValues         respjson.Field
 		CreatedAt             respjson.Field
 		CreatedBy             respjson.Field
 		DropPtInd             respjson.Field
 		EmgInd                respjson.Field
 		Env                   respjson.Field
-		ImpactAlt             respjson.Field
 		ImpactAouData         respjson.Field
 		ImpactAouType         respjson.Field
-		ImpactConf            respjson.Field
 		ImpactLat             respjson.Field
 		ImpactLon             respjson.Field
 		ImpactTime            respjson.Field
 		InfoSource            respjson.Field
-		LaunchAlt             respjson.Field
 		LaunchAouData         respjson.Field
 		LaunchAouType         respjson.Field
-		LaunchAz              respjson.Field
-		LaunchAzUnc           respjson.Field
-		LaunchConf            respjson.Field
 		LaunchLat             respjson.Field
 		LaunchLon             respjson.Field
 		LaunchTime            respjson.Field
 		LostTrkInd            respjson.Field
-		ManeuverEnd           respjson.Field
-		ManeuverStart         respjson.Field
 		MsgCreateDate         respjson.Field
 		MsgSubType            respjson.Field
 		MsgType               respjson.Field
@@ -680,21 +638,6 @@ type MissileTrackListResponseVector struct {
 	Accel []float64 `json:"accel"`
 	// Confidence of the vector, 0-100.
 	Confidence int64 `json:"confidence"`
-	// An optional string array containing additional data (keys) representing relevant
-	// items for context of fields not specifically defined in this schema. This array
-	// is paired with the contextValues string array and must contain the same number
-	// of items. Please note these fields are intended for contextual use only and do
-	// not pertain to core schema information. To ensure proper integration and avoid
-	// misuse, coordination of how these fields are populated and consumed is required
-	// during onboarding.
-	ContextKeys []string `json:"contextKeys"`
-	// An optional string array containing the values associated with the contextKeys
-	// array. This array is paired with the contextKeys string array and must contain
-	// the same number of items. Please note these fields are intended for contextual
-	// use only and do not pertain to core schema information. To ensure proper
-	// integration and avoid misuse, coordination of how these fields are populated and
-	// consumed is required during onboarding.
-	ContextValues []string `json:"contextValues"`
 	// Track object course, in degrees clockwise from true north.
 	Course float64 `json:"course"`
 	// Covariance matrix, in kilometer and second based units, in the specified
@@ -749,14 +692,10 @@ type MissileTrackListResponseVector struct {
 	// object, in kilometers, in the specified referenceFrame. If referenceFrame is
 	// null then ECEF should be assumed. The array element order is [x, y, z].
 	Pos []float64 `json:"pos"`
-	// Flag indicating whether the vector data was propagated.
-	Propagated bool `json:"propagated"`
 	// The quaternion describing the attitude of the spacecraft with respect to the
 	// reference frame listed in the 'referenceFrame' field. The array element order
 	// convention is the three vector components, followed by the scalar component.
 	Quat []float64 `json:"quat"`
-	// Range from the originating system or sensor to the object, in kilometers.
-	Range float64 `json:"range"`
 	// The reference frame of the cartesian vector (ECEF, J2000). If the referenceFrame
 	// is null it is assumed to be ECEF.
 	ReferenceFrame string `json:"referenceFrame"`
@@ -764,7 +703,7 @@ type MissileTrackListResponseVector struct {
 	Spd float64 `json:"spd"`
 	// Status of the vector (e.g. INITIAL, UPDATE).
 	Status string `json:"status"`
-	// Source of the epoch time.
+	// Source of the time value.
 	TimeSource string `json:"timeSource"`
 	// Type of vector represented (e.g. LOS, PREDICTED, STATE).
 	Type string `json:"type"`
@@ -776,8 +715,6 @@ type MissileTrackListResponseVector struct {
 	// WGS-84 object longitude subpoint at epoch, represented as -180 to 180 degrees
 	// (negative values west of Prime Meridian).
 	VectorLon float64 `json:"vectorLon"`
-	// Vector track ID within the originating system or sensor.
-	VectorTrackID string `json:"vectorTrackId"`
 	// Three element array, expressing the cartesian velocity vector of the target
 	// object, in kilometers/second, in the specified referenceFrame. If referenceFrame
 	// is null then ECEF should be assumed. The array element order is [x', y', z'].
@@ -787,8 +724,6 @@ type MissileTrackListResponseVector struct {
 		Epoch             respjson.Field
 		Accel             respjson.Field
 		Confidence        respjson.Field
-		ContextKeys       respjson.Field
-		ContextValues     respjson.Field
 		Course            respjson.Field
 		Cov               respjson.Field
 		CovReferenceFrame respjson.Field
@@ -797,9 +732,7 @@ type MissileTrackListResponseVector struct {
 		Object            respjson.Field
 		OrigSensorID      respjson.Field
 		Pos               respjson.Field
-		Propagated        respjson.Field
 		Quat              respjson.Field
-		Range             respjson.Field
 		ReferenceFrame    respjson.Field
 		Spd               respjson.Field
 		Status            respjson.Field
@@ -808,7 +741,6 @@ type MissileTrackListResponseVector struct {
 		VectorAlt         respjson.Field
 		VectorLat         respjson.Field
 		VectorLon         respjson.Field
-		VectorTrackID     respjson.Field
 		Vel               respjson.Field
 		ExtraFields       map[string]respjson.Field
 		raw               string
@@ -967,21 +899,6 @@ type MissileTrackTupleResponse struct {
 	// The percentage of time that the estimated AoU will "cover" the true position of
 	// the track.
 	Containment float64 `json:"containment"`
-	// An optional string array containing additional data (keys) representing relevant
-	// items for context of fields not specifically defined in this schema. This array
-	// is paired with the contextValues string array and must contain the same number
-	// of items. Please note these fields are intended for contextual use only and do
-	// not pertain to core schema information. To ensure proper integration and avoid
-	// misuse, coordination of how these fields are populated and consumed is required
-	// during onboarding.
-	ContextKeys []string `json:"contextKeys"`
-	// An optional string array containing the values associated with the contextKeys
-	// array. This array is paired with the contextKeys string array and must contain
-	// the same number of items. Please note these fields are intended for contextual
-	// use only and do not pertain to core schema information. To ensure proper
-	// integration and avoid misuse, coordination of how these fields are populated and
-	// consumed is required during onboarding.
-	ContextValues []string `json:"contextValues"`
 	// Time the row was created in the database.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database.
@@ -1008,8 +925,6 @@ type MissileTrackTupleResponse struct {
 	//
 	// Any of "AIR", "LAND", "SPACE", "SURFACE", "SUBSURFACE", "UNKNOWN".
 	Env MissileTrackTupleResponseEnv `json:"env"`
-	// Estimated impact point altitude relative to WGS-84 ellipsoid, in kilometers.
-	ImpactAlt float64 `json:"impactAlt"`
 	// Three element array representing an Area of Uncertainty (AoU). The array element
 	// definitions and units are type specific depending on the aouType specified in
 	// this record:
@@ -1042,8 +957,6 @@ type MissileTrackTupleResponse struct {
 	// type defines the elements of the aouEllp array and is required if aouEllp is not
 	// null. See the aouEllp field definition for specific information.
 	ImpactAouType string `json:"impactAouType"`
-	// Confidence level of the impact point estimate. 0 - 100 percent.
-	ImpactConf float64 `json:"impactConf"`
 	// WGS-84 latitude of the missile object impact point, in degrees. -90 to 90
 	// degrees (negative values south of equator).
 	ImpactLat float64 `json:"impactLat"`
@@ -1055,8 +968,6 @@ type MissileTrackTupleResponse struct {
 	ImpactTime time.Time `json:"impactTime" format:"date-time"`
 	// Source code for source of information used to detect track.
 	InfoSource string `json:"infoSource"`
-	// Estimated launch point altitude relative to WGS-84 ellipsoid, in kilometers.
-	LaunchAlt float64 `json:"launchAlt"`
 	// Three element array representing an Area of Uncertainty (AoU). The array element
 	// definitions and units are type specific depending on the aouType specified in
 	// this record:
@@ -1089,13 +1000,6 @@ type MissileTrackTupleResponse struct {
 	// type defines the elements of the aouEllp array and is required if aouEllp is not
 	// null. See the aouEllp field definition for specific information.
 	LaunchAouType string `json:"launchAouType"`
-	// Angle between true north and the object's current position, with respect to the
-	// launch point, in degrees. 0 to 360 degrees.
-	LaunchAz float64 `json:"launchAz"`
-	// Uncertainty of the launch azimuth, in degrees.
-	LaunchAzUnc float64 `json:"launchAzUnc"`
-	// Confidence level in the accuracy of the launch point estimate. 0 - 100 percent.
-	LaunchConf float64 `json:"launchConf"`
 	// WGS-84 latitude of the missile launch point, in degrees. -90 to 90 degrees
 	// (negative values south of equator).
 	LaunchLat float64 `json:"launchLat"`
@@ -1106,10 +1010,6 @@ type MissileTrackTupleResponse struct {
 	LaunchTime time.Time `json:"launchTime" format:"date-time"`
 	// Indicates whether or not the missile is considered lost.
 	LostTrkInd bool `json:"lostTrkInd"`
-	// Maneuver end time, in ISO 8601 UTC format with microsecond precision.
-	ManeuverEnd time.Time `json:"maneuverEnd" format:"date-time"`
-	// Maneuver start time, in ISO 8601 UTC format with microsecond precision.
-	ManeuverStart time.Time `json:"maneuverStart" format:"date-time"`
 	// The timestamp of the external message from which this request originated, if
 	// applicable, in ISO8601 UTC format with millisecond precision.
 	MsgCreateDate time.Time `json:"msgCreateDate" format:"date-time"`
@@ -1246,33 +1146,23 @@ type MissileTrackTupleResponse struct {
 		BurnoutAlt            respjson.Field
 		CallSign              respjson.Field
 		Containment           respjson.Field
-		ContextKeys           respjson.Field
-		ContextValues         respjson.Field
 		CreatedAt             respjson.Field
 		CreatedBy             respjson.Field
 		DropPtInd             respjson.Field
 		EmgInd                respjson.Field
 		Env                   respjson.Field
-		ImpactAlt             respjson.Field
 		ImpactAouData         respjson.Field
 		ImpactAouType         respjson.Field
-		ImpactConf            respjson.Field
 		ImpactLat             respjson.Field
 		ImpactLon             respjson.Field
 		ImpactTime            respjson.Field
 		InfoSource            respjson.Field
-		LaunchAlt             respjson.Field
 		LaunchAouData         respjson.Field
 		LaunchAouType         respjson.Field
-		LaunchAz              respjson.Field
-		LaunchAzUnc           respjson.Field
-		LaunchConf            respjson.Field
 		LaunchLat             respjson.Field
 		LaunchLon             respjson.Field
 		LaunchTime            respjson.Field
 		LostTrkInd            respjson.Field
-		ManeuverEnd           respjson.Field
-		ManeuverStart         respjson.Field
 		MsgCreateDate         respjson.Field
 		MsgSubType            respjson.Field
 		MsgType               respjson.Field
@@ -1405,21 +1295,6 @@ type MissileTrackTupleResponseVector struct {
 	Accel []float64 `json:"accel"`
 	// Confidence of the vector, 0-100.
 	Confidence int64 `json:"confidence"`
-	// An optional string array containing additional data (keys) representing relevant
-	// items for context of fields not specifically defined in this schema. This array
-	// is paired with the contextValues string array and must contain the same number
-	// of items. Please note these fields are intended for contextual use only and do
-	// not pertain to core schema information. To ensure proper integration and avoid
-	// misuse, coordination of how these fields are populated and consumed is required
-	// during onboarding.
-	ContextKeys []string `json:"contextKeys"`
-	// An optional string array containing the values associated with the contextKeys
-	// array. This array is paired with the contextKeys string array and must contain
-	// the same number of items. Please note these fields are intended for contextual
-	// use only and do not pertain to core schema information. To ensure proper
-	// integration and avoid misuse, coordination of how these fields are populated and
-	// consumed is required during onboarding.
-	ContextValues []string `json:"contextValues"`
 	// Track object course, in degrees clockwise from true north.
 	Course float64 `json:"course"`
 	// Covariance matrix, in kilometer and second based units, in the specified
@@ -1474,14 +1349,10 @@ type MissileTrackTupleResponseVector struct {
 	// object, in kilometers, in the specified referenceFrame. If referenceFrame is
 	// null then ECEF should be assumed. The array element order is [x, y, z].
 	Pos []float64 `json:"pos"`
-	// Flag indicating whether the vector data was propagated.
-	Propagated bool `json:"propagated"`
 	// The quaternion describing the attitude of the spacecraft with respect to the
 	// reference frame listed in the 'referenceFrame' field. The array element order
 	// convention is the three vector components, followed by the scalar component.
 	Quat []float64 `json:"quat"`
-	// Range from the originating system or sensor to the object, in kilometers.
-	Range float64 `json:"range"`
 	// The reference frame of the cartesian vector (ECEF, J2000). If the referenceFrame
 	// is null it is assumed to be ECEF.
 	ReferenceFrame string `json:"referenceFrame"`
@@ -1489,7 +1360,7 @@ type MissileTrackTupleResponseVector struct {
 	Spd float64 `json:"spd"`
 	// Status of the vector (e.g. INITIAL, UPDATE).
 	Status string `json:"status"`
-	// Source of the epoch time.
+	// Source of the time value.
 	TimeSource string `json:"timeSource"`
 	// Type of vector represented (e.g. LOS, PREDICTED, STATE).
 	Type string `json:"type"`
@@ -1501,8 +1372,6 @@ type MissileTrackTupleResponseVector struct {
 	// WGS-84 object longitude subpoint at epoch, represented as -180 to 180 degrees
 	// (negative values west of Prime Meridian).
 	VectorLon float64 `json:"vectorLon"`
-	// Vector track ID within the originating system or sensor.
-	VectorTrackID string `json:"vectorTrackId"`
 	// Three element array, expressing the cartesian velocity vector of the target
 	// object, in kilometers/second, in the specified referenceFrame. If referenceFrame
 	// is null then ECEF should be assumed. The array element order is [x', y', z'].
@@ -1512,8 +1381,6 @@ type MissileTrackTupleResponseVector struct {
 		Epoch             respjson.Field
 		Accel             respjson.Field
 		Confidence        respjson.Field
-		ContextKeys       respjson.Field
-		ContextValues     respjson.Field
 		Course            respjson.Field
 		Cov               respjson.Field
 		CovReferenceFrame respjson.Field
@@ -1522,9 +1389,7 @@ type MissileTrackTupleResponseVector struct {
 		Object            respjson.Field
 		OrigSensorID      respjson.Field
 		Pos               respjson.Field
-		Propagated        respjson.Field
 		Quat              respjson.Field
-		Range             respjson.Field
 		ReferenceFrame    respjson.Field
 		Spd               respjson.Field
 		Status            respjson.Field
@@ -1533,7 +1398,6 @@ type MissileTrackTupleResponseVector struct {
 		VectorAlt         respjson.Field
 		VectorLat         respjson.Field
 		VectorLon         respjson.Field
-		VectorTrackID     respjson.Field
 		Vel               respjson.Field
 		ExtraFields       map[string]respjson.Field
 		raw               string
@@ -1685,14 +1549,10 @@ type MissileTrackNewBulkParamsBody struct {
 	DropPtInd param.Opt[bool] `json:"dropPtInd,omitzero"`
 	// Indicates whether or not a track has an emergency.
 	EmgInd param.Opt[bool] `json:"emgInd,omitzero"`
-	// Estimated impact point altitude relative to WGS-84 ellipsoid, in kilometers.
-	ImpactAlt param.Opt[float64] `json:"impactAlt,omitzero"`
 	// The Area of Uncertainty (AoU) type (BEARING, ELLIPSE, OTHER) definition. This
 	// type defines the elements of the aouEllp array and is required if aouEllp is not
 	// null. See the aouEllp field definition for specific information.
 	ImpactAouType param.Opt[string] `json:"impactAouType,omitzero"`
-	// Confidence level of the impact point estimate. 0 - 100 percent.
-	ImpactConf param.Opt[float64] `json:"impactConf,omitzero"`
 	// WGS-84 latitude of the missile object impact point, in degrees. -90 to 90
 	// degrees (negative values south of equator).
 	ImpactLat param.Opt[float64] `json:"impactLat,omitzero"`
@@ -1704,19 +1564,10 @@ type MissileTrackNewBulkParamsBody struct {
 	ImpactTime param.Opt[time.Time] `json:"impactTime,omitzero" format:"date-time"`
 	// Source code for source of information used to detect track.
 	InfoSource param.Opt[string] `json:"infoSource,omitzero"`
-	// Estimated launch point altitude relative to WGS-84 ellipsoid, in kilometers.
-	LaunchAlt param.Opt[float64] `json:"launchAlt,omitzero"`
 	// The Area of Uncertainty (AoU) type (BEARING, ELLIPSE, OTHER) definition. This
 	// type defines the elements of the aouEllp array and is required if aouEllp is not
 	// null. See the aouEllp field definition for specific information.
 	LaunchAouType param.Opt[string] `json:"launchAouType,omitzero"`
-	// Angle between true north and the object's current position, with respect to the
-	// launch point, in degrees. 0 to 360 degrees.
-	LaunchAz param.Opt[float64] `json:"launchAz,omitzero"`
-	// Uncertainty of the launch azimuth, in degrees.
-	LaunchAzUnc param.Opt[float64] `json:"launchAzUnc,omitzero"`
-	// Confidence level in the accuracy of the launch point estimate. 0 - 100 percent.
-	LaunchConf param.Opt[float64] `json:"launchConf,omitzero"`
 	// WGS-84 latitude of the missile launch point, in degrees. -90 to 90 degrees
 	// (negative values south of equator).
 	LaunchLat param.Opt[float64] `json:"launchLat,omitzero"`
@@ -1727,10 +1578,6 @@ type MissileTrackNewBulkParamsBody struct {
 	LaunchTime param.Opt[time.Time] `json:"launchTime,omitzero" format:"date-time"`
 	// Indicates whether or not the missile is considered lost.
 	LostTrkInd param.Opt[bool] `json:"lostTrkInd,omitzero"`
-	// Maneuver end time, in ISO 8601 UTC format with microsecond precision.
-	ManeuverEnd param.Opt[time.Time] `json:"maneuverEnd,omitzero" format:"date-time"`
-	// Maneuver start time, in ISO 8601 UTC format with microsecond precision.
-	ManeuverStart param.Opt[time.Time] `json:"maneuverStart,omitzero" format:"date-time"`
 	// The timestamp of the external message from which this request originated, if
 	// applicable, in ISO8601 UTC format with millisecond precision.
 	MsgCreateDate param.Opt[time.Time] `json:"msgCreateDate,omitzero" format:"date-time"`
@@ -1844,21 +1691,6 @@ type MissileTrackNewBulkParamsBody struct {
 	//
 	// &nbsp;&nbsp;a2 - estimated range in kilometers.
 	AouRptData []float64 `json:"aouRptData,omitzero"`
-	// An optional string array containing additional data (keys) representing relevant
-	// items for context of fields not specifically defined in this schema. This array
-	// is paired with the contextValues string array and must contain the same number
-	// of items. Please note these fields are intended for contextual use only and do
-	// not pertain to core schema information. To ensure proper integration and avoid
-	// misuse, coordination of how these fields are populated and consumed is required
-	// during onboarding.
-	ContextKeys []string `json:"contextKeys,omitzero"`
-	// An optional string array containing the values associated with the contextKeys
-	// array. This array is paired with the contextKeys string array and must contain
-	// the same number of items. Please note these fields are intended for contextual
-	// use only and do not pertain to core schema information. To ensure proper
-	// integration and avoid misuse, coordination of how these fields are populated and
-	// consumed is required during onboarding.
-	ContextValues []string `json:"contextValues,omitzero"`
 	// The track environment type (AIR, LAND, SPACE, SUBSURFACE, SURFACE, UNKNOWN):
 	//
 	// AIR: Between sea level and the Kármán line, which has an altitude of 100
@@ -2010,10 +1842,6 @@ type MissileTrackNewBulkParamsBodyVector struct {
 	// the object. This may be an internal identifier and not necessarily a valid
 	// sensor ID.
 	OrigSensorID param.Opt[string] `json:"origSensorId,omitzero"`
-	// Flag indicating whether the vector data was propagated.
-	Propagated param.Opt[bool] `json:"propagated,omitzero"`
-	// Range from the originating system or sensor to the object, in kilometers.
-	Range param.Opt[float64] `json:"range,omitzero"`
 	// The reference frame of the cartesian vector (ECEF, J2000). If the referenceFrame
 	// is null it is assumed to be ECEF.
 	ReferenceFrame param.Opt[string] `json:"referenceFrame,omitzero"`
@@ -2021,7 +1849,7 @@ type MissileTrackNewBulkParamsBodyVector struct {
 	Spd param.Opt[float64] `json:"spd,omitzero"`
 	// Status of the vector (e.g. INITIAL, UPDATE).
 	Status param.Opt[string] `json:"status,omitzero"`
-	// Source of the epoch time.
+	// Source of the time value.
 	TimeSource param.Opt[string] `json:"timeSource,omitzero"`
 	// Type of vector represented (e.g. LOS, PREDICTED, STATE).
 	Type param.Opt[string] `json:"type,omitzero"`
@@ -2033,28 +1861,11 @@ type MissileTrackNewBulkParamsBodyVector struct {
 	// WGS-84 object longitude subpoint at epoch, represented as -180 to 180 degrees
 	// (negative values west of Prime Meridian).
 	VectorLon param.Opt[float64] `json:"vectorLon,omitzero"`
-	// Vector track ID within the originating system or sensor.
-	VectorTrackID param.Opt[string] `json:"vectorTrackId,omitzero"`
 	// Three element array, expressing the cartesian acceleration vector of the target
 	// object, in kilometers/second^2, in the specified referenceFrame. If
 	// referenceFrame is null then ECEF should be assumed. The array element order is
 	// [x”, y”, z”].
 	Accel []float64 `json:"accel,omitzero"`
-	// An optional string array containing additional data (keys) representing relevant
-	// items for context of fields not specifically defined in this schema. This array
-	// is paired with the contextValues string array and must contain the same number
-	// of items. Please note these fields are intended for contextual use only and do
-	// not pertain to core schema information. To ensure proper integration and avoid
-	// misuse, coordination of how these fields are populated and consumed is required
-	// during onboarding.
-	ContextKeys []string `json:"contextKeys,omitzero"`
-	// An optional string array containing the values associated with the contextKeys
-	// array. This array is paired with the contextKeys string array and must contain
-	// the same number of items. Please note these fields are intended for contextual
-	// use only and do not pertain to core schema information. To ensure proper
-	// integration and avoid misuse, coordination of how these fields are populated and
-	// consumed is required during onboarding.
-	ContextValues []string `json:"contextValues,omitzero"`
 	// Covariance matrix, in kilometer and second based units, in the specified
 	// covReferenceFrame.
 	//
@@ -2249,14 +2060,10 @@ type MissileTrackUnvalidatedPublishParamsBody struct {
 	DropPtInd param.Opt[bool] `json:"dropPtInd,omitzero"`
 	// Indicates whether or not a track has an emergency.
 	EmgInd param.Opt[bool] `json:"emgInd,omitzero"`
-	// Estimated impact point altitude relative to WGS-84 ellipsoid, in kilometers.
-	ImpactAlt param.Opt[float64] `json:"impactAlt,omitzero"`
 	// The Area of Uncertainty (AoU) type (BEARING, ELLIPSE, OTHER) definition. This
 	// type defines the elements of the aouEllp array and is required if aouEllp is not
 	// null. See the aouEllp field definition for specific information.
 	ImpactAouType param.Opt[string] `json:"impactAouType,omitzero"`
-	// Confidence level of the impact point estimate. 0 - 100 percent.
-	ImpactConf param.Opt[float64] `json:"impactConf,omitzero"`
 	// WGS-84 latitude of the missile object impact point, in degrees. -90 to 90
 	// degrees (negative values south of equator).
 	ImpactLat param.Opt[float64] `json:"impactLat,omitzero"`
@@ -2268,19 +2075,10 @@ type MissileTrackUnvalidatedPublishParamsBody struct {
 	ImpactTime param.Opt[time.Time] `json:"impactTime,omitzero" format:"date-time"`
 	// Source code for source of information used to detect track.
 	InfoSource param.Opt[string] `json:"infoSource,omitzero"`
-	// Estimated launch point altitude relative to WGS-84 ellipsoid, in kilometers.
-	LaunchAlt param.Opt[float64] `json:"launchAlt,omitzero"`
 	// The Area of Uncertainty (AoU) type (BEARING, ELLIPSE, OTHER) definition. This
 	// type defines the elements of the aouEllp array and is required if aouEllp is not
 	// null. See the aouEllp field definition for specific information.
 	LaunchAouType param.Opt[string] `json:"launchAouType,omitzero"`
-	// Angle between true north and the object's current position, with respect to the
-	// launch point, in degrees. 0 to 360 degrees.
-	LaunchAz param.Opt[float64] `json:"launchAz,omitzero"`
-	// Uncertainty of the launch azimuth, in degrees.
-	LaunchAzUnc param.Opt[float64] `json:"launchAzUnc,omitzero"`
-	// Confidence level in the accuracy of the launch point estimate. 0 - 100 percent.
-	LaunchConf param.Opt[float64] `json:"launchConf,omitzero"`
 	// WGS-84 latitude of the missile launch point, in degrees. -90 to 90 degrees
 	// (negative values south of equator).
 	LaunchLat param.Opt[float64] `json:"launchLat,omitzero"`
@@ -2291,10 +2089,6 @@ type MissileTrackUnvalidatedPublishParamsBody struct {
 	LaunchTime param.Opt[time.Time] `json:"launchTime,omitzero" format:"date-time"`
 	// Indicates whether or not the missile is considered lost.
 	LostTrkInd param.Opt[bool] `json:"lostTrkInd,omitzero"`
-	// Maneuver end time, in ISO 8601 UTC format with microsecond precision.
-	ManeuverEnd param.Opt[time.Time] `json:"maneuverEnd,omitzero" format:"date-time"`
-	// Maneuver start time, in ISO 8601 UTC format with microsecond precision.
-	ManeuverStart param.Opt[time.Time] `json:"maneuverStart,omitzero" format:"date-time"`
 	// The timestamp of the external message from which this request originated, if
 	// applicable, in ISO8601 UTC format with millisecond precision.
 	MsgCreateDate param.Opt[time.Time] `json:"msgCreateDate,omitzero" format:"date-time"`
@@ -2408,21 +2202,6 @@ type MissileTrackUnvalidatedPublishParamsBody struct {
 	//
 	// &nbsp;&nbsp;a2 - estimated range in kilometers.
 	AouRptData []float64 `json:"aouRptData,omitzero"`
-	// An optional string array containing additional data (keys) representing relevant
-	// items for context of fields not specifically defined in this schema. This array
-	// is paired with the contextValues string array and must contain the same number
-	// of items. Please note these fields are intended for contextual use only and do
-	// not pertain to core schema information. To ensure proper integration and avoid
-	// misuse, coordination of how these fields are populated and consumed is required
-	// during onboarding.
-	ContextKeys []string `json:"contextKeys,omitzero"`
-	// An optional string array containing the values associated with the contextKeys
-	// array. This array is paired with the contextKeys string array and must contain
-	// the same number of items. Please note these fields are intended for contextual
-	// use only and do not pertain to core schema information. To ensure proper
-	// integration and avoid misuse, coordination of how these fields are populated and
-	// consumed is required during onboarding.
-	ContextValues []string `json:"contextValues,omitzero"`
 	// The track environment type (AIR, LAND, SPACE, SUBSURFACE, SURFACE, UNKNOWN):
 	//
 	// AIR: Between sea level and the Kármán line, which has an altitude of 100
@@ -2574,10 +2353,6 @@ type MissileTrackUnvalidatedPublishParamsBodyVector struct {
 	// the object. This may be an internal identifier and not necessarily a valid
 	// sensor ID.
 	OrigSensorID param.Opt[string] `json:"origSensorId,omitzero"`
-	// Flag indicating whether the vector data was propagated.
-	Propagated param.Opt[bool] `json:"propagated,omitzero"`
-	// Range from the originating system or sensor to the object, in kilometers.
-	Range param.Opt[float64] `json:"range,omitzero"`
 	// The reference frame of the cartesian vector (ECEF, J2000). If the referenceFrame
 	// is null it is assumed to be ECEF.
 	ReferenceFrame param.Opt[string] `json:"referenceFrame,omitzero"`
@@ -2585,7 +2360,7 @@ type MissileTrackUnvalidatedPublishParamsBodyVector struct {
 	Spd param.Opt[float64] `json:"spd,omitzero"`
 	// Status of the vector (e.g. INITIAL, UPDATE).
 	Status param.Opt[string] `json:"status,omitzero"`
-	// Source of the epoch time.
+	// Source of the time value.
 	TimeSource param.Opt[string] `json:"timeSource,omitzero"`
 	// Type of vector represented (e.g. LOS, PREDICTED, STATE).
 	Type param.Opt[string] `json:"type,omitzero"`
@@ -2597,28 +2372,11 @@ type MissileTrackUnvalidatedPublishParamsBodyVector struct {
 	// WGS-84 object longitude subpoint at epoch, represented as -180 to 180 degrees
 	// (negative values west of Prime Meridian).
 	VectorLon param.Opt[float64] `json:"vectorLon,omitzero"`
-	// Vector track ID within the originating system or sensor.
-	VectorTrackID param.Opt[string] `json:"vectorTrackId,omitzero"`
 	// Three element array, expressing the cartesian acceleration vector of the target
 	// object, in kilometers/second^2, in the specified referenceFrame. If
 	// referenceFrame is null then ECEF should be assumed. The array element order is
 	// [x”, y”, z”].
 	Accel []float64 `json:"accel,omitzero"`
-	// An optional string array containing additional data (keys) representing relevant
-	// items for context of fields not specifically defined in this schema. This array
-	// is paired with the contextValues string array and must contain the same number
-	// of items. Please note these fields are intended for contextual use only and do
-	// not pertain to core schema information. To ensure proper integration and avoid
-	// misuse, coordination of how these fields are populated and consumed is required
-	// during onboarding.
-	ContextKeys []string `json:"contextKeys,omitzero"`
-	// An optional string array containing the values associated with the contextKeys
-	// array. This array is paired with the contextKeys string array and must contain
-	// the same number of items. Please note these fields are intended for contextual
-	// use only and do not pertain to core schema information. To ensure proper
-	// integration and avoid misuse, coordination of how these fields are populated and
-	// consumed is required during onboarding.
-	ContextValues []string `json:"contextValues,omitzero"`
 	// Covariance matrix, in kilometer and second based units, in the specified
 	// covReferenceFrame.
 	//

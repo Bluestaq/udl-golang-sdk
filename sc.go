@@ -190,7 +190,7 @@ func (r ScCopyParams) URLQuery() (v url.Values, err error) {
 }
 
 type ScDownloadParams struct {
-	Body []string
+	Body []any
 	paramObj
 }
 

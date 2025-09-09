@@ -516,10 +516,6 @@ type SoiObservationSetFullOpticalSoiObservationList struct {
 	// The reference number, x, where x ranges from 1 to n, where n is the number
 	// specified in spectralFilters that corresponds to the spectral filter used.
 	CurrentSpectralFilterNum int64 `json:"currentSpectralFilterNum"`
-	// Array of declination rate values, in degrees per second, measuring the rate
-	// speed at which an object's declination changes over time, for each element in
-	// the intensities field, at the middle of the frame's exposure time.
-	DeclinationRates []float64 `json:"declinationRates"`
 	// Array of declination values, in degrees, of the Target object from the frame of
 	// reference of the sensor. A value is provided for each element in the intensities
 	// field, at the middle of the frame’s exposure time.
@@ -579,7 +575,6 @@ type SoiObservationSetFullOpticalSoiObservationList struct {
 	JSON struct {
 		ObStartTime              respjson.Field
 		CurrentSpectralFilterNum respjson.Field
-		DeclinationRates         respjson.Field
 		Declinations             respjson.Field
 		ExpDuration              respjson.Field
 		ExtinctionCoeffs         respjson.Field
