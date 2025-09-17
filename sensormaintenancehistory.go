@@ -12,6 +12,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
@@ -39,11 +40,29 @@ func NewSensorMaintenanceHistoryService(opts ...option.RequestOption) (r SensorM
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SensorMaintenanceHistoryService) Get(ctx context.Context, query SensorMaintenanceHistoryGetParams, opts ...option.RequestOption) (res *[]SensorMaintenanceHistoryGetResponse, err error) {
+func (r *SensorMaintenanceHistoryService) List(ctx context.Context, query SensorMaintenanceHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SensorMaintenanceHistoryListResponse], err error) {
+	var raw *http.Response
 	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/sensormaintenance/history"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *SensorMaintenanceHistoryService) ListAutoPaging(ctx context.Context, query SensorMaintenanceHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SensorMaintenanceHistoryListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to dynamically query historical data by a variety of query
@@ -73,7 +92,7 @@ func (r *SensorMaintenanceHistoryService) Count(ctx context.Context, query Senso
 }
 
 // Maintenance schedule and operational status of Sensor.
-type SensorMaintenanceHistoryGetResponse struct {
+type SensorMaintenanceHistoryListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -92,7 +111,7 @@ type SensorMaintenanceHistoryGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SensorMaintenanceHistoryGetResponseDataMode `json:"dataMode,required"`
+	DataMode SensorMaintenanceHistoryListResponseDataMode `json:"dataMode,required"`
 	// The planned outage end time in ISO8601 UTC format.
 	EndTime time.Time `json:"endTime,required" format:"date-time"`
 	// The site to which this item applies. NOTE - this site code is COLT specific and
@@ -206,8 +225,8 @@ type SensorMaintenanceHistoryGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SensorMaintenanceHistoryGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *SensorMaintenanceHistoryGetResponse) UnmarshalJSON(data []byte) error {
+func (r SensorMaintenanceHistoryListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SensorMaintenanceHistoryListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -225,16 +244,16 @@ func (r *SensorMaintenanceHistoryGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SensorMaintenanceHistoryGetResponseDataMode string
+type SensorMaintenanceHistoryListResponseDataMode string
 
 const (
-	SensorMaintenanceHistoryGetResponseDataModeReal      SensorMaintenanceHistoryGetResponseDataMode = "REAL"
-	SensorMaintenanceHistoryGetResponseDataModeTest      SensorMaintenanceHistoryGetResponseDataMode = "TEST"
-	SensorMaintenanceHistoryGetResponseDataModeSimulated SensorMaintenanceHistoryGetResponseDataMode = "SIMULATED"
-	SensorMaintenanceHistoryGetResponseDataModeExercise  SensorMaintenanceHistoryGetResponseDataMode = "EXERCISE"
+	SensorMaintenanceHistoryListResponseDataModeReal      SensorMaintenanceHistoryListResponseDataMode = "REAL"
+	SensorMaintenanceHistoryListResponseDataModeTest      SensorMaintenanceHistoryListResponseDataMode = "TEST"
+	SensorMaintenanceHistoryListResponseDataModeSimulated SensorMaintenanceHistoryListResponseDataMode = "SIMULATED"
+	SensorMaintenanceHistoryListResponseDataModeExercise  SensorMaintenanceHistoryListResponseDataMode = "EXERCISE"
 )
 
-type SensorMaintenanceHistoryGetParams struct {
+type SensorMaintenanceHistoryListParams struct {
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -250,9 +269,9 @@ type SensorMaintenanceHistoryGetParams struct {
 	paramObj
 }
 
-// URLQuery serializes [SensorMaintenanceHistoryGetParams]'s query parameters as
+// URLQuery serializes [SensorMaintenanceHistoryListParams]'s query parameters as
 // `url.Values`.
-func (r SensorMaintenanceHistoryGetParams) URLQuery() (v url.Values, err error) {
+func (r SensorMaintenanceHistoryListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
