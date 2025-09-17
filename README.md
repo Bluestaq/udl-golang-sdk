@@ -1,6 +1,10 @@
 # Unifieddatalibrary Go API Library
 
+<!-- x-release-please-start-version -->
+
 <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk"><img src="https://pkg.go.dev/badge/github.com/Bluestaq/udl-golang-sdk.svg" alt="Go Reference"></a>
+
+<!-- x-release-please-end -->
 
 The Unifieddatalibrary Go library provides convenient access to the [Unifieddatalibrary REST API](https://unifieddatalibrary.com/storefront/#/api-docs)
 from applications written in Go.
@@ -24,7 +28,7 @@ Or to pin the version:
 <!-- x-release-please-start-version -->
 
 ```sh
-go get -u 'github.com/Bluestaq/udl-golang-sdk@v0.1.0-alpha.8'
+go get -u 'github.com/Bluestaq/udl-golang-sdk@v0.1.0-alpha.9'
 ```
 
 <!-- x-release-please-end -->

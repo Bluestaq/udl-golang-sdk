@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.1.0-alpha.9 (2025-09-11)
+
+Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
+
+### Features
+
+* **api:** api update ([f68e56e](https://github.com/Bluestaq/udl-golang-sdk/commit/f68e56ec18673cdbb794771fb8bca87c8990554a))
+* **api:** api update ([ffef04f](https://github.com/Bluestaq/udl-golang-sdk/commit/ffef04fd570ab0f6873d580662608c59d81a13df))
+* **api:** manual updates ([f7c0d79](https://github.com/Bluestaq/udl-golang-sdk/commit/f7c0d79ffe858cce4146b299b8ead6de5ad4368e))
+
+
+### Bug Fixes
+
+* **internal:** unmarshal correctly when there are multiple discriminators ([7c3970f](https://github.com/Bluestaq/udl-golang-sdk/commit/7c3970f457d11f6d4b8cd03df423853c9cd1ca43))
+* remove null from release please manifest ([2157769](https://github.com/Bluestaq/udl-golang-sdk/commit/2157769bd435128b6b33a480658b940f3943e216))
+* use release please annotations on more places ([e563f9f](https://github.com/Bluestaq/udl-golang-sdk/commit/e563f9fd246d855a17a133db247b7306a87e1c5b))
+
 ## 0.1.0-alpha.8 (2025-09-02)
 
 Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)

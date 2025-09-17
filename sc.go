@@ -59,6 +59,8 @@ func NewScService(opts ...option.RequestOption) (r ScService) {
 // Deletes the requested file or folder in the passed path directory that is
 // visible to the calling user. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
+//
+// Deprecated: deprecated
 func (r *ScService) Delete(ctx context.Context, body ScDeleteParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
@@ -67,15 +69,7 @@ func (r *ScService) Delete(ctx context.Context, body ScDeleteParams, opts ...opt
 	return
 }
 
-// Returns a map of document types and counts in root folder.
-func (r *ScService) AggregateDocType(ctx context.Context, opts ...option.RequestOption) (res *[]string, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "scs/aggregateDocType"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
-}
-
-// Returns a list of allowable file extensions for upload.
+// Returns a list of the allowed filename extensions.
 func (r *ScService) AllowableFileExtensions(ctx context.Context, opts ...option.RequestOption) (res *[]string, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "scs/allowableFileExtensions"
@@ -83,7 +77,7 @@ func (r *ScService) AllowableFileExtensions(ctx context.Context, opts ...option.
 	return
 }
 
-// Returns a list of allowable file mime types for upload.
+// Returns a list of the allowed file upload mime types.
 func (r *ScService) AllowableFileMimes(ctx context.Context, opts ...option.RequestOption) (res *[]string, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "scs/allowableFileMimes"
@@ -93,6 +87,8 @@ func (r *ScService) AllowableFileMimes(ctx context.Context, opts ...option.Reque
 
 // operation to copy folders or files. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
+//
+// Deprecated: deprecated
 func (r *ScService) Copy(ctx context.Context, body ScCopyParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "scs/copy"
@@ -120,6 +116,8 @@ func (r *ScService) FileDownload(ctx context.Context, query ScFileDownloadParams
 
 // Operation to upload a file. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
+//
+// Deprecated: deprecated
 func (r *ScService) FileUpload(ctx context.Context, fileContent io.Reader, body ScFileUploadParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithRequestBody("application/octet-stream", fileContent)}, opts...)
@@ -130,6 +128,8 @@ func (r *ScService) FileUpload(ctx context.Context, fileContent io.Reader, body 
 
 // operation to move folders or files. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
+//
+// Deprecated: deprecated
 func (r *ScService) Move(ctx context.Context, body ScMoveParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "scs/move"
@@ -139,6 +139,8 @@ func (r *ScService) Move(ctx context.Context, body ScMoveParams, opts ...option.
 
 // Operation to rename folders or files. A specific role is required to perform
 // this service operation. Please contact the UDL team for assistance.
+//
+// Deprecated: deprecated
 func (r *ScService) Rename(ctx context.Context, body ScRenameParams, opts ...option.RequestOption) (err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
@@ -148,19 +150,12 @@ func (r *ScService) Rename(ctx context.Context, body ScRenameParams, opts ...opt
 }
 
 // Search for files by metadata and/or text in file content.
+//
+// Deprecated: deprecated
 func (r *ScService) Search(ctx context.Context, params ScSearchParams, opts ...option.RequestOption) (res *[]shared.FileData, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "scs/search"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, &res, opts...)
-	return
-}
-
-// Updates tags for given folder.
-func (r *ScService) UpdateTags(ctx context.Context, body ScUpdateTagsParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
-	path := "scs/updateTagsForFilesInFolder"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
 	return
 }
 
@@ -195,7 +190,7 @@ func (r ScCopyParams) URLQuery() (v url.Values, err error) {
 }
 
 type ScDownloadParams struct {
-	Body []string
+	Body []any
 	paramObj
 }
 
@@ -223,11 +218,11 @@ func (r ScFileDownloadParams) URLQuery() (v url.Values, err error) {
 }
 
 type ScFileUploadParams struct {
-	// Classification (ex. U//FOUO)
+	// Classification marking of the file being uploaded.
 	ClassificationMarking string `query:"classificationMarking,required" json:"-"`
-	// FileName (ex. dog.jpg)
+	// Name of the file to upload.
 	FileName string `query:"fileName,required" json:"-"`
-	// The base path to upload file (ex. images)
+	// The base path to upload file
 	Path string `query:"path,required" json:"-"`
 	// Length of time after which to automatically delete the file.
 	DeleteAfter param.Opt[string] `query:"deleteAfter,omitzero" json:"-"`
@@ -269,7 +264,7 @@ func (r ScFileUploadParams) URLQuery() (v url.Values, err error) {
 }
 
 type ScMoveParams struct {
-	// The path of the item to copy
+	// The path of the item to move
 	ID string `query:"id,required" json:"-"`
 	// The path to copy to
 	TargetPath string `query:"targetPath,required" json:"-"`
@@ -325,22 +320,6 @@ func (r *ScSearchParams) UnmarshalJSON(data []byte) error {
 
 // URLQuery serializes [ScSearchParams]'s query parameters as `url.Values`.
 func (r ScSearchParams) URLQuery() (v url.Values, err error) {
-	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
-		ArrayFormat:  apiquery.ArrayQueryFormatComma,
-		NestedFormat: apiquery.NestedQueryFormatBrackets,
-	})
-}
-
-type ScUpdateTagsParams struct {
-	// The base path to folder
-	Folder string `query:"folder,required" json:"-"`
-	// The new tag
-	Tags string `query:"tags,required" json:"-"`
-	paramObj
-}
-
-// URLQuery serializes [ScUpdateTagsParams]'s query parameters as `url.Values`.
-func (r ScUpdateTagsParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

@@ -86,10 +86,6 @@ type AirTaskingOrderFull struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// Optional URI location in the document repository of the raw file parsed by the
-	// system to produce this record. To download the raw file, prepend
-	// https://udl-hostname/scs/download?id= to this value.
-	RawFileUri string `json:"rawFileURI"`
 	// The source data library from which this record was received. This could be a
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
@@ -116,7 +112,6 @@ type AirTaskingOrderFull struct {
 		NavalFltOps           respjson.Field
 		Origin                respjson.Field
 		OrigNetwork           respjson.Field
-		RawFileUri            respjson.Field
 		SourceDl              respjson.Field
 		ExtraFields           map[string]respjson.Field
 		raw                   string
@@ -3266,10 +3261,6 @@ type AirspacecontrolorderFull struct {
 	Qualifier string `json:"qualifier"`
 	// The serial number associated with the message qualifier.
 	QualSn int64 `json:"qualSN"`
-	// Optional URI location in the document repository of the raw file parsed by the
-	// system to produce this record. To download the raw file, prepend
-	// https://udl-hostname/scs/download?id= to this value.
-	RawFileUri string `json:"rawFileURI"`
 	// The unique message identifier sequentially assigned by the originator.
 	SerialNum string `json:"serialNum"`
 	// The source data library from which this record was received. This could be a
@@ -3315,7 +3306,6 @@ type AirspacecontrolorderFull struct {
 		PlanOrigNum                    respjson.Field
 		Qualifier                      respjson.Field
 		QualSn                         respjson.Field
-		RawFileUri                     respjson.Field
 		SerialNum                      respjson.Field
 		SourceDl                       respjson.Field
 		StopQualifier                  respjson.Field
@@ -13040,25 +13030,26 @@ const (
 	EventEvolutionFullDataModeExercise  EventEvolutionFullDataMode = "EXERCISE"
 )
 
+// Deprecated: deprecated
 type FileData struct {
-	ID         string             `json:"id"`
+	ID string `json:"id"`
+	// Deprecated: deprecated
 	Attributes FileDataAttributes `json:"attributes"`
-	// Any of "UPDATE", "COPY", "MOVE".
-	ContentAction FileDataContentAction `json:"contentAction"`
-	TargetName    string                `json:"targetName"`
-	TargetPath    string                `json:"targetPath"`
+	TargetName string             `json:"targetName"`
+	TargetPath string             `json:"targetPath"`
 	// Any of "file", "folder", "summary".
+	//
+	// Deprecated: deprecated
 	Type FileDataType `json:"type"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ID            respjson.Field
-		Attributes    respjson.Field
-		ContentAction respjson.Field
-		TargetName    respjson.Field
-		TargetPath    respjson.Field
-		Type          respjson.Field
-		ExtraFields   map[string]respjson.Field
-		raw           string
+		ID          respjson.Field
+		Attributes  respjson.Field
+		TargetName  respjson.Field
+		TargetPath  respjson.Field
+		Type        respjson.Field
+		ExtraFields map[string]respjson.Field
+		raw         string
 	} `json:"-"`
 }
 
@@ -13077,6 +13068,7 @@ func (r FileData) ToParam() FileDataParam {
 	return param.Override[FileDataParam](json.RawMessage(r.RawJSON()))
 }
 
+// Deprecated: deprecated
 type FileDataAttributes struct {
 	ID                    string   `json:"id"`
 	Classification        string   `json:"classification"`
@@ -13153,14 +13145,6 @@ func (r *FileDataAttributes) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type FileDataContentAction string
-
-const (
-	FileDataContentActionUpdate FileDataContentAction = "UPDATE"
-	FileDataContentActionCopy   FileDataContentAction = "COPY"
-	FileDataContentActionMove   FileDataContentAction = "MOVE"
-)
-
 type FileDataType string
 
 const (
@@ -13169,14 +13153,16 @@ const (
 	FileDataTypeSummary FileDataType = "summary"
 )
 
+// Deprecated: deprecated
 type FileDataParam struct {
-	ID         param.Opt[string]       `json:"id,omitzero"`
-	TargetName param.Opt[string]       `json:"targetName,omitzero"`
-	TargetPath param.Opt[string]       `json:"targetPath,omitzero"`
+	ID         param.Opt[string] `json:"id,omitzero"`
+	TargetName param.Opt[string] `json:"targetName,omitzero"`
+	TargetPath param.Opt[string] `json:"targetPath,omitzero"`
+	// Deprecated: deprecated
 	Attributes FileDataAttributesParam `json:"attributes,omitzero"`
-	// Any of "UPDATE", "COPY", "MOVE".
-	ContentAction FileDataContentAction `json:"contentAction,omitzero"`
 	// Any of "file", "folder", "summary".
+	//
+	// Deprecated: deprecated
 	Type FileDataType `json:"type,omitzero"`
 	paramObj
 }
@@ -13189,6 +13175,7 @@ func (r *FileDataParam) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
+// Deprecated: deprecated
 type FileDataAttributesParam struct {
 	ID                    param.Opt[string]  `json:"id,omitzero"`
 	Classification        param.Opt[string]  `json:"classification,omitzero"`
@@ -16764,19 +16751,35 @@ type RfBandFull struct {
 	// X,K,Ku,Ka,L,S,C,UHF,VHF,EHF,SHF,UNK,VLF,HF,E,Q,V,W). See RFBandType for more
 	// details and descriptions of each band name.
 	Band string `json:"band"`
-	// RF Band frequency range bandwidth in Mhz.
+	// RF Band frequency range bandwidth in megahertz.
 	Bandwidth float64 `json:"bandwidth"`
+	// Array of frequency range bandwidth settings, in megahertz for this RFBand. If
+	// this array is specified then it must be the same size as the frequencySettings
+	// array. A null value may be used for one or more of the frequencies in the
+	// frequencySettings array if there is no corresponding value for a given
+	// frequency.
+	BandwidthSettings []float64 `json:"bandwidthSettings"`
 	// Angle between the half-power (-3 dB) points of the main lobe of the antenna, in
 	// degrees.
 	Beamwidth float64 `json:"beamwidth"`
-	// Center frequency of RF frequency range, if applicable, in Mhz.
+	// Array of beamwidth settings, in degrees for this RFBand. If this array is
+	// specified then it must be the same size as the frequencySettings array. A null
+	// value may be used for one or more of the frequencies in the frequencySettings
+	// array if there is no corresponding value for a given frequency.
+	BeamwidthSettings []float64 `json:"beamwidthSettings"`
+	// Center frequency of RF frequency range, if applicable, in megahertz.
 	CenterFreq float64 `json:"centerFreq"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
 	// system.
 	CreatedBy string `json:"createdBy"`
-	// RF Range edge gain, in dBi.
+	// Array of delay settings, in seconds for this RFBand. If this array is specified
+	// then it must be the same size as the frequencySettings array. A null value may
+	// be used for one or more of the frequencies in the frequencySettings array if
+	// there is no corresponding value for a given frequency.
+	DelaySettings []float64 `json:"delaySettings"`
+	// RF Range edge gain, in decibel relative to isotrope.
 	EdgeGain float64 `json:"edgeGain"`
 	// EIRP is defined as the RMS power input in decibel watts required to a lossless
 	// half-wave dipole antenna to give the same maximum power density far from the
@@ -16785,7 +16788,7 @@ type RfBandFull struct {
 	// dipole. Effective radiated power and effective isotropic radiated power both
 	// measure the amount of power a radio transmitter and antenna (or other source of
 	// electromagnetic waves) radiates in a specific direction: in the direction of
-	// maximum signal strength (the "main lobe") of its radiation pattern.
+	// maximum signal strength (the main lobe) of its radiation pattern.
 	Eirp float64 `json:"eirp"`
 	// Effective Radiated Power (ERP) is the total power in decibel watts radiated by
 	// an actual antenna relative to a half-wave dipole rather than a theoretical
@@ -16794,16 +16797,29 @@ type RfBandFull struct {
 	// Effective radiated power and effective isotropic radiated power both measure the
 	// amount of power a radio transmitter and antenna (or other source of
 	// electromagnetic waves) radiates in a specific direction: in the direction of
-	// maximum signal strength (the "main lobe") of its radiation pattern.
+	// maximum signal strength (the main lobe) of its radiation pattern.
 	Erp float64 `json:"erp"`
-	// End/maximum of transmit RF frequency range, if applicable, in Mhz.
+	// End/maximum of transmit RF frequency range, if applicable, in megahertz.
 	FreqMax float64 `json:"freqMax"`
-	// Start/minimum of transmit RF frequency range, if applicable, in Mhz.
+	// Start/minimum of transmit RF frequency range, if applicable, in megahertz.
 	FreqMin float64 `json:"freqMin"`
+	// Array of frequency settings, in megahertz for this RFBand. This array and the
+	// settings arrays must match in size.
+	FrequencySettings []float64 `json:"frequencySettings"`
+	// Array of gain settings, in decibels for this RFBand. If this array is specified
+	// then it must be the same size as the frequencySettings array. A null value may
+	// be used for one or more of the frequencies in the frequencySettings array if
+	// there is no corresponding value for a given frequency.
+	GainSettings []float64 `json:"gainSettings"`
 	// RF Band mode (e.g. TX, RX).
 	//
 	// Any of "TX", "RX".
 	Mode RfBandFullMode `json:"mode"`
+	// Array of signal noise settings, in decibels for this RFBand. If this array is
+	// specified then it must be the same size as the frequencySettings array. A null
+	// value may be used for one or more of the frequencies in the frequencySettings
+	// array if there is no corresponding value for a given frequency.
+	NoiseSettings []float64 `json:"noiseSettings"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
@@ -16812,7 +16828,7 @@ type RfBandFull struct {
 	// The originating source network on which this record was created, auto-populated
 	// by the system.
 	OrigNetwork string `json:"origNetwork"`
-	// RF Range maximum gain, in dBi.
+	// RF Range maximum gain, in decibel relative to isotrope.
 	PeakGain float64 `json:"peakGain"`
 	// Transponder polarization e.g. H - (Horizontally Polarized) Perpendicular to
 	// Earth's surface, V - (Vertically Polarized) Parallel to Earth's surface, L -
@@ -16823,7 +16839,7 @@ type RfBandFull struct {
 	// Any of "H", "V", "R", "L".
 	Polarization RfBandFullPolarization `json:"polarization"`
 	// Purpose or use of the RF Band -- COMM = communications, TTC =
-	// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+	// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other.
 	//
 	// Any of "COMM", "TTC", "OPS", "OTHER".
 	Purpose RfBandFullPurpose `json:"purpose"`
@@ -16842,16 +16858,22 @@ type RfBandFull struct {
 		ID                    respjson.Field
 		Band                  respjson.Field
 		Bandwidth             respjson.Field
+		BandwidthSettings     respjson.Field
 		Beamwidth             respjson.Field
+		BeamwidthSettings     respjson.Field
 		CenterFreq            respjson.Field
 		CreatedAt             respjson.Field
 		CreatedBy             respjson.Field
+		DelaySettings         respjson.Field
 		EdgeGain              respjson.Field
 		Eirp                  respjson.Field
 		Erp                   respjson.Field
 		FreqMax               respjson.Field
 		FreqMin               respjson.Field
+		FrequencySettings     respjson.Field
+		GainSettings          respjson.Field
 		Mode                  respjson.Field
+		NoiseSettings         respjson.Field
 		Origin                respjson.Field
 		OrigNetwork           respjson.Field
 		PeakGain              respjson.Field
@@ -16916,7 +16938,7 @@ const (
 )
 
 // Purpose or use of the RF Band -- COMM = communications, TTC =
-// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other).
+// Telemetry/Tracking/Control, OPS = Operations, OTHER = Other.
 type RfBandFullPurpose string
 
 const (

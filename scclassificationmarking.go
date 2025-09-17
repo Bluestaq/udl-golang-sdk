@@ -3,10 +3,6 @@
 package unifieddatalibrary
 
 import (
-	"context"
-	"net/http"
-
-	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
 )
 
@@ -26,13 +22,5 @@ type ScClassificationMarkingService struct {
 func NewScClassificationMarkingService(opts ...option.RequestOption) (r ScClassificationMarkingService) {
 	r = ScClassificationMarkingService{}
 	r.Options = opts
-	return
-}
-
-// Returns a list of all classification markings appropriate to the current user.
-func (r *ScClassificationMarkingService) List(ctx context.Context, opts ...option.RequestOption) (res *[]string, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "scs/getClassificationMarkings"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
 }
