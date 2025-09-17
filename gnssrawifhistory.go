@@ -12,6 +12,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
@@ -33,6 +34,35 @@ func NewGnssRawIfHistoryService(opts ...option.RequestOption) (r GnssRawIfHistor
 	r = GnssRawIfHistoryService{}
 	r.Options = opts
 	return
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *GnssRawIfHistoryService) List(ctx context.Context, query GnssRawIfHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[GnssRawIfHistoryListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/gnssrawif/history"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *GnssRawIfHistoryService) ListAutoPaging(ctx context.Context, query GnssRawIfHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[GnssRawIfHistoryListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to dynamically query historical data by a variety of query
@@ -61,24 +91,13 @@ func (r *GnssRawIfHistoryService) Count(ctx context.Context, query GnssRawIfHist
 	return
 }
 
-// Service operation to dynamically query historical data by a variety of query
-// parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
-func (r *GnssRawIfHistoryService) Query(ctx context.Context, query GnssRawIfHistoryQueryParams, opts ...option.RequestOption) (res *[]GnssRawIfHistoryQueryResponse, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "udl/gnssrawif/history"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
-}
-
 // Global Navigation Satellite System (GNSS) Raw Intermediate Frequency (IF) data
 // are the recorded streams of raw signal samples after down-conversion of the
 // received signal to IF and prior to any processing onboard the receiving
 // spacecraft. These data sets are processed in various geophysical applications
 // and used to characterize Electromagnetic Interference (EMI) in the operating
 // environment.
-type GnssRawIfHistoryQueryResponse struct {
+type GnssRawIfHistoryListResponse struct {
 	// The center frequency, in MHz, of the observation bands. More than one band may
 	// be reported in each binary file, so this is an array of the center frequency of
 	// each band (including an array of length 1 if only one band is present).
@@ -101,7 +120,7 @@ type GnssRawIfHistoryQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode GnssRawIfHistoryQueryResponseDataMode `json:"dataMode,required"`
+	DataMode GnssRawIfHistoryListResponseDataMode `json:"dataMode,required"`
 	// End time of the data contained in the associated binary file, in ISO 8601 UTC
 	// format with microsecond precision.
 	EndTime time.Time `json:"endTime,required" format:"date-time"`
@@ -288,8 +307,8 @@ type GnssRawIfHistoryQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r GnssRawIfHistoryQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *GnssRawIfHistoryQueryResponse) UnmarshalJSON(data []byte) error {
+func (r GnssRawIfHistoryListResponse) RawJSON() string { return r.JSON.raw }
+func (r *GnssRawIfHistoryListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -307,14 +326,36 @@ func (r *GnssRawIfHistoryQueryResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type GnssRawIfHistoryQueryResponseDataMode string
+type GnssRawIfHistoryListResponseDataMode string
 
 const (
-	GnssRawIfHistoryQueryResponseDataModeReal      GnssRawIfHistoryQueryResponseDataMode = "REAL"
-	GnssRawIfHistoryQueryResponseDataModeTest      GnssRawIfHistoryQueryResponseDataMode = "TEST"
-	GnssRawIfHistoryQueryResponseDataModeSimulated GnssRawIfHistoryQueryResponseDataMode = "SIMULATED"
-	GnssRawIfHistoryQueryResponseDataModeExercise  GnssRawIfHistoryQueryResponseDataMode = "EXERCISE"
+	GnssRawIfHistoryListResponseDataModeReal      GnssRawIfHistoryListResponseDataMode = "REAL"
+	GnssRawIfHistoryListResponseDataModeTest      GnssRawIfHistoryListResponseDataMode = "TEST"
+	GnssRawIfHistoryListResponseDataModeSimulated GnssRawIfHistoryListResponseDataMode = "SIMULATED"
+	GnssRawIfHistoryListResponseDataModeExercise  GnssRawIfHistoryListResponseDataMode = "EXERCISE"
 )
+
+type GnssRawIfHistoryListParams struct {
+	// Start time of the data contained in the associated binary file, in ISO 8601 UTC
+	// format with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+	StartTime time.Time `query:"startTime,required" format:"date-time" json:"-"`
+	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
+	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// query fields that can be selected.
+	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
+	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [GnssRawIfHistoryListParams]'s query parameters as
+// `url.Values`.
+func (r GnssRawIfHistoryListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
 
 type GnssRawIfHistoryAodrParams struct {
 	// Start time of the data contained in the associated binary file, in ISO 8601 UTC
@@ -361,28 +402,6 @@ type GnssRawIfHistoryCountParams struct {
 // URLQuery serializes [GnssRawIfHistoryCountParams]'s query parameters as
 // `url.Values`.
 func (r GnssRawIfHistoryCountParams) URLQuery() (v url.Values, err error) {
-	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
-		ArrayFormat:  apiquery.ArrayQueryFormatComma,
-		NestedFormat: apiquery.NestedQueryFormatBrackets,
-	})
-}
-
-type GnssRawIfHistoryQueryParams struct {
-	// Start time of the data contained in the associated binary file, in ISO 8601 UTC
-	// format with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	StartTime time.Time `query:"startTime,required" format:"date-time" json:"-"`
-	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
-	// query fields that can be selected.
-	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
-	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
-	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
-	paramObj
-}
-
-// URLQuery serializes [GnssRawIfHistoryQueryParams]'s query parameters as
-// `url.Values`.
-func (r GnssRawIfHistoryQueryParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

@@ -310,7 +310,7 @@ func TestSensorMaintenanceListCurrentWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensorMaintenanceQueryhelp(t *testing.T) {
+func TestSensorMaintenanceQueryHelp(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -323,7 +323,7 @@ func TestSensorMaintenanceQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.SensorMaintenance.Queryhelp(context.TODO())
+	_, err := client.SensorMaintenance.QueryHelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {

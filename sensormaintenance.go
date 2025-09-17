@@ -177,7 +177,7 @@ func (r *SensorMaintenanceService) ListCurrentAutoPaging(ctx context.Context, qu
 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
-func (r *SensorMaintenanceService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SensorMaintenanceQueryhelpResponse, err error) {
+func (r *SensorMaintenanceService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *SensorMaintenanceQueryHelpResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/sensormaintenance/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
@@ -678,7 +678,7 @@ const (
 	SensorMaintenanceListCurrentResponseDataModeExercise  SensorMaintenanceListCurrentResponseDataMode = "EXERCISE"
 )
 
-type SensorMaintenanceQueryhelpResponse struct {
+type SensorMaintenanceQueryHelpResponse struct {
 	AodrSupported         bool                         `json:"aodrSupported"`
 	ClassificationMarking string                       `json:"classificationMarking"`
 	Description           string                       `json:"description"`
@@ -709,8 +709,8 @@ type SensorMaintenanceQueryhelpResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SensorMaintenanceQueryhelpResponse) RawJSON() string { return r.JSON.raw }
-func (r *SensorMaintenanceQueryhelpResponse) UnmarshalJSON(data []byte) error {
+func (r SensorMaintenanceQueryHelpResponse) RawJSON() string { return r.JSON.raw }
+func (r *SensorMaintenanceQueryHelpResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 

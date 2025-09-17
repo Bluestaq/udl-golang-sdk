@@ -14,6 +14,34 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/option"
 )
 
+func TestMissionAssignmentHistoryListWithOptionalParams(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := unifieddatalibrary.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithPassword("My Password"),
+		option.WithUsername("My Username"),
+	)
+	_, err := client.MissionAssignment.History.List(context.TODO(), unifieddatalibrary.MissionAssignmentHistoryListParams{
+		Ts:          time.Now(),
+		Columns:     unifieddatalibrary.String("columns"),
+		FirstResult: unifieddatalibrary.Int(0),
+		MaxResults:  unifieddatalibrary.Int(0),
+	})
+	if err != nil {
+		var apierr *unifieddatalibrary.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
 func TestMissionAssignmentHistoryAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -60,34 +88,6 @@ func TestMissionAssignmentHistoryCountWithOptionalParams(t *testing.T) {
 	)
 	_, err := client.MissionAssignment.History.Count(context.TODO(), unifieddatalibrary.MissionAssignmentHistoryCountParams{
 		Ts:          time.Now(),
-		FirstResult: unifieddatalibrary.Int(0),
-		MaxResults:  unifieddatalibrary.Int(0),
-	})
-	if err != nil {
-		var apierr *unifieddatalibrary.Error
-		if errors.As(err, &apierr) {
-			t.Log(string(apierr.DumpRequest(true)))
-		}
-		t.Fatalf("err should be nil: %s", err.Error())
-	}
-}
-
-func TestMissionAssignmentHistoryQueryWithOptionalParams(t *testing.T) {
-	baseURL := "http://localhost:4010"
-	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
-		baseURL = envURL
-	}
-	if !testutil.CheckTestServer(t, baseURL) {
-		return
-	}
-	client := unifieddatalibrary.NewClient(
-		option.WithBaseURL(baseURL),
-		option.WithPassword("My Password"),
-		option.WithUsername("My Username"),
-	)
-	_, err := client.MissionAssignment.History.Query(context.TODO(), unifieddatalibrary.MissionAssignmentHistoryQueryParams{
-		Ts:          time.Now(),
-		Columns:     unifieddatalibrary.String("columns"),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})

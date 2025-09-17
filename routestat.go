@@ -16,6 +16,7 @@ import (
 	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 	"github.com/Bluestaq/udl-golang-sdk/shared"
@@ -78,6 +79,35 @@ func (r *RouteStatService) Update(ctx context.Context, id string, body RouteStat
 	return
 }
 
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *RouteStatService) List(ctx context.Context, query RouteStatListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[RouteStatListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/routestats"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *RouteStatService) ListAutoPaging(ctx context.Context, query RouteStatListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[RouteStatListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
+}
+
 // Service operation to delete a routeStats record specified by the passed ID path
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
@@ -116,17 +146,6 @@ func (r *RouteStatService) NewBulk(ctx context.Context, body RouteStatNewBulkPar
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/routestats/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
-}
-
-// Service operation to dynamically query data by a variety of query parameters not
-// specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
-func (r *RouteStatService) Query(ctx context.Context, query RouteStatQueryParams, opts ...option.RequestOption) (res *[]RouteStatQueryResponse, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "udl/routestats"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
 }
 
@@ -352,7 +371,7 @@ const (
 
 // General statistics applying to navigation routes utilized by vessels, aircraft,
 // ground vehicles, etc.
-type RouteStatQueryResponse struct {
+type RouteStatListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -371,7 +390,7 @@ type RouteStatQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RouteStatQueryResponseDataMode `json:"dataMode,required"`
+	DataMode RouteStatListResponseDataMode `json:"dataMode,required"`
 	// End location of the vehicle.
 	LocationEnd string `json:"locationEnd,required"`
 	// Starting location of the vehicle.
@@ -499,8 +518,8 @@ type RouteStatQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r RouteStatQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *RouteStatQueryResponse) UnmarshalJSON(data []byte) error {
+func (r RouteStatListResponse) RawJSON() string { return r.JSON.raw }
+func (r *RouteStatListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -518,13 +537,13 @@ func (r *RouteStatQueryResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type RouteStatQueryResponseDataMode string
+type RouteStatListResponseDataMode string
 
 const (
-	RouteStatQueryResponseDataModeReal      RouteStatQueryResponseDataMode = "REAL"
-	RouteStatQueryResponseDataModeTest      RouteStatQueryResponseDataMode = "TEST"
-	RouteStatQueryResponseDataModeSimulated RouteStatQueryResponseDataMode = "SIMULATED"
-	RouteStatQueryResponseDataModeExercise  RouteStatQueryResponseDataMode = "EXERCISE"
+	RouteStatListResponseDataModeReal      RouteStatListResponseDataMode = "REAL"
+	RouteStatListResponseDataModeTest      RouteStatListResponseDataMode = "TEST"
+	RouteStatListResponseDataModeSimulated RouteStatListResponseDataMode = "SIMULATED"
+	RouteStatListResponseDataModeExercise  RouteStatListResponseDataMode = "EXERCISE"
 )
 
 type RouteStatQueryHelpResponse struct {
@@ -1017,6 +1036,20 @@ const (
 	RouteStatUpdateParamsDataModeExercise  RouteStatUpdateParamsDataMode = "EXERCISE"
 )
 
+type RouteStatListParams struct {
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [RouteStatListParams]'s query parameters as `url.Values`.
+func (r RouteStatListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
 type RouteStatCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
@@ -1169,20 +1202,6 @@ func init() {
 	apijson.RegisterFieldValidator[RouteStatNewBulkParamsBody](
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
-}
-
-type RouteStatQueryParams struct {
-	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
-	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
-	paramObj
-}
-
-// URLQuery serializes [RouteStatQueryParams]'s query parameters as `url.Values`.
-func (r RouteStatQueryParams) URLQuery() (v url.Values, err error) {
-	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
-		ArrayFormat:  apiquery.ArrayQueryFormatComma,
-		NestedFormat: apiquery.NestedQueryFormatBrackets,
-	})
 }
 
 type RouteStatTupleParams struct {
