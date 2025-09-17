@@ -28,15 +28,11 @@ import (
 // automatically. You should not instantiate this service directly, and instead use
 // the [NewScService] method instead.
 type ScService struct {
-	Options                []option.RequestOption
-	Folders                ScFolderService
-	ClassificationMarkings ScClassificationMarkingService
-	Groups                 ScGroupService
-	FileMetadata           ScFileMetadataService
-	RangeParameters        ScRangeParameterService
-	Paths                  ScPathService
-	V2                     ScV2Service
-	File                   ScFileService
+	Options []option.RequestOption
+	Folders ScFolderService
+	Paths   ScPathService
+	V2      ScV2Service
+	File    ScFileService
 }
 
 // NewScService generates a new service that applies the given options to each
@@ -46,10 +42,6 @@ func NewScService(opts ...option.RequestOption) (r ScService) {
 	r = ScService{}
 	r.Options = opts
 	r.Folders = NewScFolderService(opts...)
-	r.ClassificationMarkings = NewScClassificationMarkingService(opts...)
-	r.Groups = NewScGroupService(opts...)
-	r.FileMetadata = NewScFileMetadataService(opts...)
-	r.RangeParameters = NewScRangeParameterService(opts...)
 	r.Paths = NewScPathService(opts...)
 	r.V2 = NewScV2Service(opts...)
 	r.File = NewScFileService(opts...)

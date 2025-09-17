@@ -254,32 +254,6 @@ func TestSensorMaintenanceNewBulkWithOptionalParams(t *testing.T) {
 	}
 }
 
-func TestSensorMaintenanceCurrentWithOptionalParams(t *testing.T) {
-	baseURL := "http://localhost:4010"
-	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
-		baseURL = envURL
-	}
-	if !testutil.CheckTestServer(t, baseURL) {
-		return
-	}
-	client := unifieddatalibrary.NewClient(
-		option.WithBaseURL(baseURL),
-		option.WithPassword("My Password"),
-		option.WithUsername("My Username"),
-	)
-	_, err := client.SensorMaintenance.Current(context.TODO(), unifieddatalibrary.SensorMaintenanceCurrentParams{
-		FirstResult: unifieddatalibrary.Int(0),
-		MaxResults:  unifieddatalibrary.Int(0),
-	})
-	if err != nil {
-		var apierr *unifieddatalibrary.Error
-		if errors.As(err, &apierr) {
-			t.Log(string(apierr.DumpRequest(true)))
-		}
-		t.Fatalf("err should be nil: %s", err.Error())
-	}
-}
-
 func TestSensorMaintenanceGetWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -301,6 +275,32 @@ func TestSensorMaintenanceGetWithOptionalParams(t *testing.T) {
 			MaxResults:  unifieddatalibrary.Int(0),
 		},
 	)
+	if err != nil {
+		var apierr *unifieddatalibrary.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestSensorMaintenanceListCurrentWithOptionalParams(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := unifieddatalibrary.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithPassword("My Password"),
+		option.WithUsername("My Username"),
+	)
+	_, err := client.SensorMaintenance.ListCurrent(context.TODO(), unifieddatalibrary.SensorMaintenanceListCurrentParams{
+		FirstResult: unifieddatalibrary.Int(0),
+		MaxResults:  unifieddatalibrary.Int(0),
+	})
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
