@@ -12,6 +12,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
@@ -33,6 +34,35 @@ func NewMissileTrackHistoryService(opts ...option.RequestOption) (r MissileTrack
 	r = MissileTrackHistoryService{}
 	r.Options = opts
 	return
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *MissileTrackHistoryService) List(ctx context.Context, query MissileTrackHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[MissileTrackHistoryListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/missiletrack/history"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *MissileTrackHistoryService) ListAutoPaging(ctx context.Context, query MissileTrackHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[MissileTrackHistoryListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to dynamically query historical data by a variety of query
@@ -61,24 +91,13 @@ func (r *MissileTrackHistoryService) Count(ctx context.Context, query MissileTra
 	return
 }
 
-// Service operation to dynamically query historical data by a variety of query
-// parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
-func (r *MissileTrackHistoryService) Query(ctx context.Context, query MissileTrackHistoryQueryParams, opts ...option.RequestOption) (res *[]MissileTrackHistoryQueryResponse, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "udl/missiletrack/history"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
-}
-
 // These services provide operations for querying of all available missile track
 // details and amplifying missile data. A missile track is a position and
 // optionally a heading/velocity of an object across all environments at a
 // particular timestamp. It also includes optional information regarding the
 // identity/type of missile, impact location, launch location and other amplifying
 // object data, if known.
-type MissileTrackHistoryQueryResponse struct {
+type MissileTrackHistoryListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -97,7 +116,7 @@ type MissileTrackHistoryQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode MissileTrackHistoryQueryResponseDataMode `json:"dataMode,required"`
+	DataMode MissileTrackHistoryListResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// The receipt time of the data by the processing system, in ISO8601 UTC format
@@ -207,7 +226,7 @@ type MissileTrackHistoryQueryResponse struct {
 	// UNKNOWN: Environment is not known.
 	//
 	// Any of "AIR", "LAND", "SPACE", "SURFACE", "SUBSURFACE", "UNKNOWN".
-	Env MissileTrackHistoryQueryResponseEnv `json:"env"`
+	Env MissileTrackHistoryListResponseEnv `json:"env"`
 	// Three element array representing an Area of Uncertainty (AoU). The array element
 	// definitions and units are type specific depending on the aouType specified in
 	// this record:
@@ -359,7 +378,7 @@ type MissileTrackHistoryQueryResponse struct {
 	//
 	// Any of "ASSUMED FRIEND", "FRIEND", "HOSTILE", "NEUTRAL", "PENDING", "SUSPECT",
 	// "UNKNOWN".
-	ObjIdent MissileTrackHistoryQueryResponseObjIdent `json:"objIdent"`
+	ObjIdent MissileTrackHistoryListResponseObjIdent `json:"objIdent"`
 	// Space Platform field along with the Space Activity field further defines the
 	// identity of a Space track (examples: SATELLITE, WEAPON, PATROL). The object
 	// platform type. Intended as, but not constrained to, MIL-STD-6016 environment
@@ -411,7 +430,7 @@ type MissileTrackHistoryQueryResponse struct {
 	// uniquely determine the trajectory of the missile. ECEF is the preferred
 	// coordinate frame but in some cases data may be in another frame as specified by
 	// 'referenceFrame', depending on the provider.
-	Vectors []MissileTrackHistoryQueryResponseVector `json:"vectors"`
+	Vectors []MissileTrackHistoryListResponseVector `json:"vectors"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		ClassificationMarking respjson.Field
@@ -477,8 +496,8 @@ type MissileTrackHistoryQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r MissileTrackHistoryQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *MissileTrackHistoryQueryResponse) UnmarshalJSON(data []byte) error {
+func (r MissileTrackHistoryListResponse) RawJSON() string { return r.JSON.raw }
+func (r *MissileTrackHistoryListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -496,13 +515,13 @@ func (r *MissileTrackHistoryQueryResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type MissileTrackHistoryQueryResponseDataMode string
+type MissileTrackHistoryListResponseDataMode string
 
 const (
-	MissileTrackHistoryQueryResponseDataModeReal      MissileTrackHistoryQueryResponseDataMode = "REAL"
-	MissileTrackHistoryQueryResponseDataModeTest      MissileTrackHistoryQueryResponseDataMode = "TEST"
-	MissileTrackHistoryQueryResponseDataModeSimulated MissileTrackHistoryQueryResponseDataMode = "SIMULATED"
-	MissileTrackHistoryQueryResponseDataModeExercise  MissileTrackHistoryQueryResponseDataMode = "EXERCISE"
+	MissileTrackHistoryListResponseDataModeReal      MissileTrackHistoryListResponseDataMode = "REAL"
+	MissileTrackHistoryListResponseDataModeTest      MissileTrackHistoryListResponseDataMode = "TEST"
+	MissileTrackHistoryListResponseDataModeSimulated MissileTrackHistoryListResponseDataMode = "SIMULATED"
+	MissileTrackHistoryListResponseDataModeExercise  MissileTrackHistoryListResponseDataMode = "EXERCISE"
 )
 
 // The track environment type (AIR, LAND, SPACE, SUBSURFACE, SURFACE, UNKNOWN):
@@ -520,15 +539,15 @@ const (
 // SUBSURFACE: Below the surface of a body of water.
 //
 // UNKNOWN: Environment is not known.
-type MissileTrackHistoryQueryResponseEnv string
+type MissileTrackHistoryListResponseEnv string
 
 const (
-	MissileTrackHistoryQueryResponseEnvAir        MissileTrackHistoryQueryResponseEnv = "AIR"
-	MissileTrackHistoryQueryResponseEnvLand       MissileTrackHistoryQueryResponseEnv = "LAND"
-	MissileTrackHistoryQueryResponseEnvSpace      MissileTrackHistoryQueryResponseEnv = "SPACE"
-	MissileTrackHistoryQueryResponseEnvSurface    MissileTrackHistoryQueryResponseEnv = "SURFACE"
-	MissileTrackHistoryQueryResponseEnvSubsurface MissileTrackHistoryQueryResponseEnv = "SUBSURFACE"
-	MissileTrackHistoryQueryResponseEnvUnknown    MissileTrackHistoryQueryResponseEnv = "UNKNOWN"
+	MissileTrackHistoryListResponseEnvAir        MissileTrackHistoryListResponseEnv = "AIR"
+	MissileTrackHistoryListResponseEnvLand       MissileTrackHistoryListResponseEnv = "LAND"
+	MissileTrackHistoryListResponseEnvSpace      MissileTrackHistoryListResponseEnv = "SPACE"
+	MissileTrackHistoryListResponseEnvSurface    MissileTrackHistoryListResponseEnv = "SURFACE"
+	MissileTrackHistoryListResponseEnvSubsurface MissileTrackHistoryListResponseEnv = "SUBSURFACE"
+	MissileTrackHistoryListResponseEnvUnknown    MissileTrackHistoryListResponseEnv = "UNKNOWN"
 )
 
 // The estimated identity of the track object (ASSUMED FRIEND, FRIEND, HOSTILE,
@@ -555,20 +574,20 @@ const (
 //
 // UNKNOWN: Track object which has been evaluated and does not meet criteria for
 // any standard identity.
-type MissileTrackHistoryQueryResponseObjIdent string
+type MissileTrackHistoryListResponseObjIdent string
 
 const (
-	MissileTrackHistoryQueryResponseObjIdentAssumedFriend MissileTrackHistoryQueryResponseObjIdent = "ASSUMED FRIEND"
-	MissileTrackHistoryQueryResponseObjIdentFriend        MissileTrackHistoryQueryResponseObjIdent = "FRIEND"
-	MissileTrackHistoryQueryResponseObjIdentHostile       MissileTrackHistoryQueryResponseObjIdent = "HOSTILE"
-	MissileTrackHistoryQueryResponseObjIdentNeutral       MissileTrackHistoryQueryResponseObjIdent = "NEUTRAL"
-	MissileTrackHistoryQueryResponseObjIdentPending       MissileTrackHistoryQueryResponseObjIdent = "PENDING"
-	MissileTrackHistoryQueryResponseObjIdentSuspect       MissileTrackHistoryQueryResponseObjIdent = "SUSPECT"
-	MissileTrackHistoryQueryResponseObjIdentUnknown       MissileTrackHistoryQueryResponseObjIdent = "UNKNOWN"
+	MissileTrackHistoryListResponseObjIdentAssumedFriend MissileTrackHistoryListResponseObjIdent = "ASSUMED FRIEND"
+	MissileTrackHistoryListResponseObjIdentFriend        MissileTrackHistoryListResponseObjIdent = "FRIEND"
+	MissileTrackHistoryListResponseObjIdentHostile       MissileTrackHistoryListResponseObjIdent = "HOSTILE"
+	MissileTrackHistoryListResponseObjIdentNeutral       MissileTrackHistoryListResponseObjIdent = "NEUTRAL"
+	MissileTrackHistoryListResponseObjIdentPending       MissileTrackHistoryListResponseObjIdent = "PENDING"
+	MissileTrackHistoryListResponseObjIdentSuspect       MissileTrackHistoryListResponseObjIdent = "SUSPECT"
+	MissileTrackHistoryListResponseObjIdentUnknown       MissileTrackHistoryListResponseObjIdent = "UNKNOWN"
 )
 
 // Schema for Missile Track Vector data.
-type MissileTrackHistoryQueryResponseVector struct {
+type MissileTrackHistoryListResponseVector struct {
 	// Vector timestamp in ISO8601 UTC format, with microsecond precision.
 	Epoch time.Time `json:"epoch,required" format:"date-time"`
 	// Three element array, expressing the cartesian acceleration vector of the target
@@ -688,9 +707,31 @@ type MissileTrackHistoryQueryResponseVector struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r MissileTrackHistoryQueryResponseVector) RawJSON() string { return r.JSON.raw }
-func (r *MissileTrackHistoryQueryResponseVector) UnmarshalJSON(data []byte) error {
+func (r MissileTrackHistoryListResponseVector) RawJSON() string { return r.JSON.raw }
+func (r *MissileTrackHistoryListResponseVector) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
+}
+
+type MissileTrackHistoryListParams struct {
+	// The receipt time of the data by the processing system, in ISO8601 UTC format
+	// with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+	Ts time.Time `query:"ts,required" format:"date-time" json:"-"`
+	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
+	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// query fields that can be selected.
+	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
+	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [MissileTrackHistoryListParams]'s query parameters as
+// `url.Values`.
+func (r MissileTrackHistoryListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
 }
 
 type MissileTrackHistoryAodrParams struct {
@@ -738,28 +779,6 @@ type MissileTrackHistoryCountParams struct {
 // URLQuery serializes [MissileTrackHistoryCountParams]'s query parameters as
 // `url.Values`.
 func (r MissileTrackHistoryCountParams) URLQuery() (v url.Values, err error) {
-	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
-		ArrayFormat:  apiquery.ArrayQueryFormatComma,
-		NestedFormat: apiquery.NestedQueryFormatBrackets,
-	})
-}
-
-type MissileTrackHistoryQueryParams struct {
-	// The receipt time of the data by the processing system, in ISO8601 UTC format
-	// with microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Ts time.Time `query:"ts,required" format:"date-time" json:"-"`
-	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
-	// query fields that can be selected.
-	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
-	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
-	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
-	paramObj
-}
-
-// URLQuery serializes [MissileTrackHistoryQueryParams]'s query parameters as
-// `url.Values`.
-func (r MissileTrackHistoryQueryParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

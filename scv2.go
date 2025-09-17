@@ -131,6 +131,14 @@ func (r *ScV2Service) Move(ctx context.Context, body ScV2MoveParams, opts ...opt
 	return
 }
 
+// Operation to search for files in the Secure Content Store.
+func (r *ScV2Service) Search(ctx context.Context, params ScV2SearchParams, opts ...option.RequestOption) (res *[]ScsEntity, err error) {
+	opts = append(r.Options[:], opts...)
+	path := "scs/v2/search"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, &res, opts...)
+	return
+}
+
 type Attachment struct {
 	Author        string `json:"author"`
 	Content       string `json:"content"`
@@ -413,6 +421,38 @@ type ScV2MoveParams struct {
 
 // URLQuery serializes [ScV2MoveParams]'s query parameters as `url.Values`.
 func (r ScV2MoveParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type ScV2SearchParams struct {
+	// The order in which entries should be sorted
+	Order param.Opt[string] `query:"order,omitzero" json:"-"`
+	// The starting point for pagination results, usually set to the value of the
+	// SEARCH_AFTER header returned in the previous request.
+	SearchAfter param.Opt[string] `query:"searchAfter,omitzero" json:"-"`
+	// The number of results to retrieve.
+	Size param.Opt[int64] `query:"size,omitzero" json:"-"`
+	// The field on which to sort entries
+	Sort param.Opt[string] `query:"sort,omitzero" json:"-"`
+	// A search criterion, which can be a simple field comparison or a logical
+	// combination of other criteria.
+	Query SearchCriterionUnionParam `json:"query,omitzero"`
+	paramObj
+}
+
+func (r ScV2SearchParams) MarshalJSON() (data []byte, err error) {
+	type shadow ScV2SearchParams
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *ScV2SearchParams) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// URLQuery serializes [ScV2SearchParams]'s query parameters as `url.Values`.
+func (r ScV2SearchParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

@@ -12,6 +12,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
@@ -35,6 +36,48 @@ func NewSensorCalibrationHistoryService(opts ...option.RequestOption) (r SensorC
 	return
 }
 
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *SensorCalibrationHistoryService) List(ctx context.Context, query SensorCalibrationHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SensorCalibrationHistoryListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/sensorcalibration/history"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *SensorCalibrationHistoryService) ListAutoPaging(ctx context.Context, query SensorCalibrationHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SensorCalibrationHistoryListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation, then write that data to the
+// Secure Content Store. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *SensorCalibrationHistoryService) Aodr(ctx context.Context, query SensorCalibrationHistoryAodrParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "udl/sensorcalibration/history/aodr"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
+	return
+}
+
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
@@ -48,35 +91,11 @@ func (r *SensorCalibrationHistoryService) Count(ctx context.Context, query Senso
 	return
 }
 
-// Service operation to dynamically query historical data by a variety of query
-// parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
-func (r *SensorCalibrationHistoryService) Query(ctx context.Context, query SensorCalibrationHistoryQueryParams, opts ...option.RequestOption) (res *[]SensorCalibrationHistoryQueryResponse, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "udl/sensorcalibration/history"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
-}
-
-// Service operation to dynamically query historical data by a variety of query
-// parameters not specified in this API documentation, then write that data to the
-// Secure Content Store. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
-func (r *SensorCalibrationHistoryService) WriteAodr(ctx context.Context, query SensorCalibrationHistoryWriteAodrParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
-	path := "udl/sensorcalibration/history/aodr"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
-}
-
 // The Sensor Calibration service records data about a sensor's overall accuracy
 // and is used to adjust sensor settings to achieve and maintain that accuracy in
 // reported sensor observations. Calibration occurs periodically when needed to
 // maintain sensor accuracy or on-demand to adjust a sensor for a specific reading.
-type SensorCalibrationHistoryQueryResponse struct {
+type SensorCalibrationHistoryListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -95,7 +114,7 @@ type SensorCalibrationHistoryQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SensorCalibrationHistoryQueryResponseDataMode `json:"dataMode,required"`
+	DataMode SensorCalibrationHistoryListResponseDataMode `json:"dataMode,required"`
 	// Unique identifier of the sensor to which this calibration data applies. This ID
 	// can be used to obtain additional information on a sensor using the 'get by ID'
 	// operation (e.g. /udl/sensor/{id}). For example, the sensor with idSensor = abc
@@ -313,8 +332,8 @@ type SensorCalibrationHistoryQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SensorCalibrationHistoryQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *SensorCalibrationHistoryQueryResponse) UnmarshalJSON(data []byte) error {
+func (r SensorCalibrationHistoryListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SensorCalibrationHistoryListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -332,34 +351,16 @@ func (r *SensorCalibrationHistoryQueryResponse) UnmarshalJSON(data []byte) error
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SensorCalibrationHistoryQueryResponseDataMode string
+type SensorCalibrationHistoryListResponseDataMode string
 
 const (
-	SensorCalibrationHistoryQueryResponseDataModeReal      SensorCalibrationHistoryQueryResponseDataMode = "REAL"
-	SensorCalibrationHistoryQueryResponseDataModeTest      SensorCalibrationHistoryQueryResponseDataMode = "TEST"
-	SensorCalibrationHistoryQueryResponseDataModeSimulated SensorCalibrationHistoryQueryResponseDataMode = "SIMULATED"
-	SensorCalibrationHistoryQueryResponseDataModeExercise  SensorCalibrationHistoryQueryResponseDataMode = "EXERCISE"
+	SensorCalibrationHistoryListResponseDataModeReal      SensorCalibrationHistoryListResponseDataMode = "REAL"
+	SensorCalibrationHistoryListResponseDataModeTest      SensorCalibrationHistoryListResponseDataMode = "TEST"
+	SensorCalibrationHistoryListResponseDataModeSimulated SensorCalibrationHistoryListResponseDataMode = "SIMULATED"
+	SensorCalibrationHistoryListResponseDataModeExercise  SensorCalibrationHistoryListResponseDataMode = "EXERCISE"
 )
 
-type SensorCalibrationHistoryCountParams struct {
-	// Calibration data span start time in ISO 8601 UTC format with millisecond
-	// precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
-	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
-	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
-	paramObj
-}
-
-// URLQuery serializes [SensorCalibrationHistoryCountParams]'s query parameters as
-// `url.Values`.
-func (r SensorCalibrationHistoryCountParams) URLQuery() (v url.Values, err error) {
-	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
-		ArrayFormat:  apiquery.ArrayQueryFormatComma,
-		NestedFormat: apiquery.NestedQueryFormatBrackets,
-	})
-}
-
-type SensorCalibrationHistoryQueryParams struct {
+type SensorCalibrationHistoryListParams struct {
 	// Calibration data span start time in ISO 8601 UTC format with millisecond
 	// precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	StartTime time.Time `query:"startTime,required" format:"date-time" json:"-"`
@@ -372,16 +373,16 @@ type SensorCalibrationHistoryQueryParams struct {
 	paramObj
 }
 
-// URLQuery serializes [SensorCalibrationHistoryQueryParams]'s query parameters as
+// URLQuery serializes [SensorCalibrationHistoryListParams]'s query parameters as
 // `url.Values`.
-func (r SensorCalibrationHistoryQueryParams) URLQuery() (v url.Values, err error) {
+func (r SensorCalibrationHistoryListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type SensorCalibrationHistoryWriteAodrParams struct {
+type SensorCalibrationHistoryAodrParams struct {
 	// Calibration data span start time in ISO 8601 UTC format with millisecond
 	// precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	StartTime time.Time `query:"startTime,required" format:"date-time" json:"-"`
@@ -405,9 +406,27 @@ type SensorCalibrationHistoryWriteAodrParams struct {
 	paramObj
 }
 
-// URLQuery serializes [SensorCalibrationHistoryWriteAodrParams]'s query parameters
-// as `url.Values`.
-func (r SensorCalibrationHistoryWriteAodrParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [SensorCalibrationHistoryAodrParams]'s query parameters as
+// `url.Values`.
+func (r SensorCalibrationHistoryAodrParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type SensorCalibrationHistoryCountParams struct {
+	// Calibration data span start time in ISO 8601 UTC format with millisecond
+	// precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
+	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [SensorCalibrationHistoryCountParams]'s query parameters as
+// `url.Values`.
+func (r SensorCalibrationHistoryCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

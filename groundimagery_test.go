@@ -93,6 +93,37 @@ func TestGroundImageryListWithOptionalParams(t *testing.T) {
 	}
 }
 
+func TestGroundImageryAodrWithOptionalParams(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := unifieddatalibrary.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithPassword("My Password"),
+		option.WithUsername("My Username"),
+	)
+	err := client.GroundImagery.Aodr(context.TODO(), unifieddatalibrary.GroundImageryAodrParams{
+		ImageTime:       time.Now(),
+		Columns:         unifieddatalibrary.String("columns"),
+		FirstResult:     unifieddatalibrary.Int(0),
+		MaxResults:      unifieddatalibrary.Int(0),
+		Notification:    unifieddatalibrary.String("notification"),
+		OutputDelimiter: unifieddatalibrary.String("outputDelimiter"),
+		OutputFormat:    unifieddatalibrary.String("outputFormat"),
+	})
+	if err != nil {
+		var apierr *unifieddatalibrary.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
 func TestGroundImageryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -189,37 +220,6 @@ func TestGroundImageryGetFileWithOptionalParams(t *testing.T) {
 	}
 	if !bytes.Equal(b, []byte("abc")) {
 		t.Fatalf("return value not %s: %s", "abc", b)
-	}
-}
-
-func TestGroundImageryHistoryAodrWithOptionalParams(t *testing.T) {
-	baseURL := "http://localhost:4010"
-	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
-		baseURL = envURL
-	}
-	if !testutil.CheckTestServer(t, baseURL) {
-		return
-	}
-	client := unifieddatalibrary.NewClient(
-		option.WithBaseURL(baseURL),
-		option.WithPassword("My Password"),
-		option.WithUsername("My Username"),
-	)
-	err := client.GroundImagery.HistoryAodr(context.TODO(), unifieddatalibrary.GroundImageryHistoryAodrParams{
-		ImageTime:       time.Now(),
-		Columns:         unifieddatalibrary.String("columns"),
-		FirstResult:     unifieddatalibrary.Int(0),
-		MaxResults:      unifieddatalibrary.Int(0),
-		Notification:    unifieddatalibrary.String("notification"),
-		OutputDelimiter: unifieddatalibrary.String("outputDelimiter"),
-		OutputFormat:    unifieddatalibrary.String("outputFormat"),
-	})
-	if err != nil {
-		var apierr *unifieddatalibrary.Error
-		if errors.As(err, &apierr) {
-			t.Log(string(apierr.DumpRequest(true)))
-		}
-		t.Fatalf("err should be nil: %s", err.Error())
 	}
 }
 

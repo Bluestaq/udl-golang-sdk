@@ -12,6 +12,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
@@ -35,6 +36,48 @@ func NewFeatureAssessmentHistoryService(opts ...option.RequestOption) (r Feature
 	return
 }
 
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *FeatureAssessmentHistoryService) List(ctx context.Context, query FeatureAssessmentHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[FeatureAssessmentHistoryListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/featureassessment/history"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *FeatureAssessmentHistoryService) ListAutoPaging(ctx context.Context, query FeatureAssessmentHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[FeatureAssessmentHistoryListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation, then write that data to the
+// Secure Content Store. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *FeatureAssessmentHistoryService) Aodr(ctx context.Context, query FeatureAssessmentHistoryAodrParams, opts ...option.RequestOption) (err error) {
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	path := "udl/featureassessment/history/aodr"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
+	return
+}
+
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
@@ -48,36 +91,12 @@ func (r *FeatureAssessmentHistoryService) Count(ctx context.Context, query Featu
 	return
 }
 
-// Service operation to dynamically query historical data by a variety of query
-// parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
-func (r *FeatureAssessmentHistoryService) Query(ctx context.Context, query FeatureAssessmentHistoryQueryParams, opts ...option.RequestOption) (res *[]FeatureAssessmentHistoryQueryResponse, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "udl/featureassessment/history"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
-}
-
-// Service operation to dynamically query historical data by a variety of query
-// parameters not specified in this API documentation, then write that data to the
-// Secure Content Store. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
-func (r *FeatureAssessmentHistoryService) WriteAodr(ctx context.Context, query FeatureAssessmentHistoryWriteAodrParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
-	path := "udl/featureassessment/history/aodr"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
-}
-
 // Feature assessments obtained from imagery analysis or other data analytics.
 // Feature assessments are georeferenced terrestrial features such as marine
 // vessels, vehicles, buildings, etc., or contain other types of non terrestrial
 // assessments such as spacecraft structures. Geospatial queries are supported
 // through either the regionText (WKT) or regionGeoJSON fields.
-type FeatureAssessmentHistoryQueryResponse struct {
+type FeatureAssessmentHistoryListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -96,7 +115,7 @@ type FeatureAssessmentHistoryQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode FeatureAssessmentHistoryQueryResponseDataMode `json:"dataMode,required"`
+	DataMode FeatureAssessmentHistoryListResponseDataMode `json:"dataMode,required"`
 	// Datetime type value associated with this record, in ISO 8601 UTC format with
 	// millisecond precision.
 	FeatureTs time.Time `json:"featureTs,required" format:"date-time"`
@@ -297,8 +316,8 @@ type FeatureAssessmentHistoryQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r FeatureAssessmentHistoryQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *FeatureAssessmentHistoryQueryResponse) UnmarshalJSON(data []byte) error {
+func (r FeatureAssessmentHistoryListResponse) RawJSON() string { return r.JSON.raw }
+func (r *FeatureAssessmentHistoryListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -316,34 +335,16 @@ func (r *FeatureAssessmentHistoryQueryResponse) UnmarshalJSON(data []byte) error
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type FeatureAssessmentHistoryQueryResponseDataMode string
+type FeatureAssessmentHistoryListResponseDataMode string
 
 const (
-	FeatureAssessmentHistoryQueryResponseDataModeReal      FeatureAssessmentHistoryQueryResponseDataMode = "REAL"
-	FeatureAssessmentHistoryQueryResponseDataModeTest      FeatureAssessmentHistoryQueryResponseDataMode = "TEST"
-	FeatureAssessmentHistoryQueryResponseDataModeSimulated FeatureAssessmentHistoryQueryResponseDataMode = "SIMULATED"
-	FeatureAssessmentHistoryQueryResponseDataModeExercise  FeatureAssessmentHistoryQueryResponseDataMode = "EXERCISE"
+	FeatureAssessmentHistoryListResponseDataModeReal      FeatureAssessmentHistoryListResponseDataMode = "REAL"
+	FeatureAssessmentHistoryListResponseDataModeTest      FeatureAssessmentHistoryListResponseDataMode = "TEST"
+	FeatureAssessmentHistoryListResponseDataModeSimulated FeatureAssessmentHistoryListResponseDataMode = "SIMULATED"
+	FeatureAssessmentHistoryListResponseDataModeExercise  FeatureAssessmentHistoryListResponseDataMode = "EXERCISE"
 )
 
-type FeatureAssessmentHistoryCountParams struct {
-	// Unique identifier of the Analytic Imagery associated with this Feature
-	// Assessment record.
-	IDAnalyticImagery string           `query:"idAnalyticImagery,required" json:"-"`
-	FirstResult       param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
-	MaxResults        param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
-	paramObj
-}
-
-// URLQuery serializes [FeatureAssessmentHistoryCountParams]'s query parameters as
-// `url.Values`.
-func (r FeatureAssessmentHistoryCountParams) URLQuery() (v url.Values, err error) {
-	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
-		ArrayFormat:  apiquery.ArrayQueryFormatComma,
-		NestedFormat: apiquery.NestedQueryFormatBrackets,
-	})
-}
-
-type FeatureAssessmentHistoryQueryParams struct {
+type FeatureAssessmentHistoryListParams struct {
 	// Unique identifier of the Analytic Imagery associated with this Feature
 	// Assessment record.
 	IDAnalyticImagery string `query:"idAnalyticImagery,required" json:"-"`
@@ -356,16 +357,16 @@ type FeatureAssessmentHistoryQueryParams struct {
 	paramObj
 }
 
-// URLQuery serializes [FeatureAssessmentHistoryQueryParams]'s query parameters as
+// URLQuery serializes [FeatureAssessmentHistoryListParams]'s query parameters as
 // `url.Values`.
-func (r FeatureAssessmentHistoryQueryParams) URLQuery() (v url.Values, err error) {
+func (r FeatureAssessmentHistoryListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type FeatureAssessmentHistoryWriteAodrParams struct {
+type FeatureAssessmentHistoryAodrParams struct {
 	// Unique identifier of the Analytic Imagery associated with this Feature
 	// Assessment record.
 	IDAnalyticImagery string `query:"idAnalyticImagery,required" json:"-"`
@@ -389,9 +390,27 @@ type FeatureAssessmentHistoryWriteAodrParams struct {
 	paramObj
 }
 
-// URLQuery serializes [FeatureAssessmentHistoryWriteAodrParams]'s query parameters
-// as `url.Values`.
-func (r FeatureAssessmentHistoryWriteAodrParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [FeatureAssessmentHistoryAodrParams]'s query parameters as
+// `url.Values`.
+func (r FeatureAssessmentHistoryAodrParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type FeatureAssessmentHistoryCountParams struct {
+	// Unique identifier of the Analytic Imagery associated with this Feature
+	// Assessment record.
+	IDAnalyticImagery string           `query:"idAnalyticImagery,required" json:"-"`
+	FirstResult       param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults        param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [FeatureAssessmentHistoryCountParams]'s query parameters as
+// `url.Values`.
+func (r FeatureAssessmentHistoryCountParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

@@ -23,10 +23,10 @@ type Client struct {
 	AircraftSorties           AircraftSortyService
 	AircraftStatusRemarks     AircraftStatusRemarkService
 	AircraftStatuses          AircraftStatusService
+	AirfieldSlotConsumptions  AirfieldSlotConsumptionService
 	AirfieldSlots             AirfieldSlotService
 	AirfieldStatus            AirfieldStatusService
 	Airfields                 AirfieldService
-	AirfieldSlotConsumptions  AirfieldSlotConsumptionService
 	AirloadPlans              AirloadPlanService
 	AirspaceControlOrders     AirspaceControlOrderService
 	AIs                       AIService
@@ -35,6 +35,7 @@ type Client struct {
 	Antennas                  AntennaService
 	AttitudeData              AttitudeDataService
 	AttitudeSets              AttitudeSetService
+	AviationRiskManagement    AviationRiskManagementService
 	Batteries                 BatteryService
 	Batterydetails            BatterydetailService
 	Beam                      BeamService
@@ -46,21 +47,19 @@ type Client struct {
 	Comm                      CommService
 	Conjunctions              ConjunctionService
 	Cots                      CotService
-	AviationRiskManagement    AviationRiskManagementService
-	Dropzone                  DropzoneService
-	EmitterGeolocation        EmitterGeolocationService
-	FeatureAssessment         FeatureAssessmentService
-	GlobalAtmosphericModel    GlobalAtmosphericModelService
-	RouteStats                RouteStatService
 	Countries                 CountryService
 	Crew                      CrewService
+	Deconflictset             DeconflictsetService
 	DiffOfArrival             DiffOfArrivalService
 	DiplomaticClearance       DiplomaticClearanceService
 	DriftHistory              DriftHistoryService
-	EcpSdr                    EcpSdrService
+	Dropzone                  DropzoneService
+	Ecpedr                    EcpedrService
 	EffectRequests            EffectRequestService
 	EffectResponses           EffectResponseService
 	Elsets                    ElsetService
+	Emireport                 EmireportService
+	EmitterGeolocation        EmitterGeolocationService
 	EngineDetails             EngineDetailService
 	Engines                   EngineService
 	Entities                  EntityService
@@ -71,17 +70,24 @@ type Client struct {
 	EquipmentRemarks          EquipmentRemarkService
 	Evac                      EvacService
 	EventEvolution            EventEvolutionService
+	FeatureAssessment         FeatureAssessmentService
 	Flightplan                FlightplanService
 	GeoStatus                 GeoStatusService
+	GlobalAtmosphericModel    GlobalAtmosphericModelService
+	GnssObservations          GnssObservationService
 	GnssObservationset        GnssObservationsetService
+	GnssRawIf                 GnssRawIfService
 	GroundImagery             GroundImageryService
 	H3Geo                     H3GeoService
 	H3GeoHexCell              H3GeoHexCellService
 	Hazard                    HazardService
+	IonoObservations          IonoObservationService
 	Ir                        IrService
 	IsrCollections            IsrCollectionService
 	Item                      ItemService
 	ItemTrackings             ItemTrackingService
+	Laserdeconflictrequest    LaserdeconflictrequestService
+	Laseremitter              LaseremitterService
 	LaunchDetection           LaunchDetectionService
 	LaunchEvent               LaunchEventService
 	LaunchSite                LaunchSiteService
@@ -89,6 +95,7 @@ type Client struct {
 	LaunchVehicle             LaunchVehicleService
 	LaunchVehicleDetails      LaunchVehicleDetailService
 	LinkStatus                LinkStatusService
+	Linkstatus                LinkstatusService
 	Location                  LocationService
 	LogisticsSupport          LogisticsSupportService
 	Maneuvers                 ManeuverService
@@ -121,12 +128,16 @@ type Client struct {
 	Personnelrecovery         PersonnelrecoveryService
 	Poi                       PoiService
 	Port                      PortService
+	ReportAndActivities       ReportAndActivityService
 	RfBand                    RfBandService
 	RfBandType                RfBandTypeService
 	RfEmitter                 RfEmitterService
 	RfEmitterDetails          RfEmitterDetailService
+	RouteStats                RouteStatService
 	SarObservation            SarObservationService
 	Scientific                ScientificService
+	Scs                       ScService
+	SecureMessaging           SecureMessagingService
 	Sensor                    SensorService
 	SensorMaintenance         SensorMaintenanceService
 	SensorObservationType     SensorObservationTypeService
@@ -169,22 +180,18 @@ type Client struct {
 	Video                     VideoService
 	WeatherData               WeatherDataService
 	WeatherReport             WeatherReportService
-	GnssObservations          GnssObservationService
-	GnssRawIf                 GnssRawIfService
-	IonoObservations          IonoObservationService
-	ReportAndActivities       ReportAndActivityService
-	SecureMessaging           SecureMessagingService
-	Scs                       ScService
-	ScsViews                  ScsViewService
 }
 
-// DefaultClientOptions read from the environment (UDL_AUTH_PASSWORD,
-// UDL_AUTH_USERNAME, UDL_ACCESS_TOKEN, UNIFIEDDATALIBRARY_BASE_URL). This should
+// DefaultClientOptions read from the environment (UDL_ACCESS_TOKEN,
+// UDL_AUTH_PASSWORD, UDL_AUTH_USERNAME, UNIFIEDDATALIBRARY_BASE_URL). This should
 // be used to initialize new clients.
 func DefaultClientOptions() []option.RequestOption {
 	defaults := []option.RequestOption{option.WithEnvironmentProduction()}
 	if o, ok := os.LookupEnv("UNIFIEDDATALIBRARY_BASE_URL"); ok {
 		defaults = append(defaults, option.WithBaseURL(o))
+	}
+	if o, ok := os.LookupEnv("UDL_ACCESS_TOKEN"); ok {
+		defaults = append(defaults, option.WithAccessToken(o))
 	}
 	if o, ok := os.LookupEnv("UDL_AUTH_PASSWORD"); ok {
 		defaults = append(defaults, option.WithPassword(o))
@@ -192,14 +199,11 @@ func DefaultClientOptions() []option.RequestOption {
 	if o, ok := os.LookupEnv("UDL_AUTH_USERNAME"); ok {
 		defaults = append(defaults, option.WithUsername(o))
 	}
-	if o, ok := os.LookupEnv("UDL_ACCESS_TOKEN"); ok {
-		defaults = append(defaults, option.WithAccessToken(o))
-	}
 	return defaults
 }
 
 // NewClient generates a new client with the default option read from the
-// environment (UDL_AUTH_PASSWORD, UDL_AUTH_USERNAME, UDL_ACCESS_TOKEN,
+// environment (UDL_ACCESS_TOKEN, UDL_AUTH_PASSWORD, UDL_AUTH_USERNAME,
 // UNIFIEDDATALIBRARY_BASE_URL). The option passed in as arguments are applied
 // after these default arguments, and all option will be passed down to the
 // services and requests that this client makes.
@@ -215,10 +219,10 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.AircraftSorties = NewAircraftSortyService(opts...)
 	r.AircraftStatusRemarks = NewAircraftStatusRemarkService(opts...)
 	r.AircraftStatuses = NewAircraftStatusService(opts...)
+	r.AirfieldSlotConsumptions = NewAirfieldSlotConsumptionService(opts...)
 	r.AirfieldSlots = NewAirfieldSlotService(opts...)
 	r.AirfieldStatus = NewAirfieldStatusService(opts...)
 	r.Airfields = NewAirfieldService(opts...)
-	r.AirfieldSlotConsumptions = NewAirfieldSlotConsumptionService(opts...)
 	r.AirloadPlans = NewAirloadPlanService(opts...)
 	r.AirspaceControlOrders = NewAirspaceControlOrderService(opts...)
 	r.AIs = NewAIService(opts...)
@@ -227,6 +231,7 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.Antennas = NewAntennaService(opts...)
 	r.AttitudeData = NewAttitudeDataService(opts...)
 	r.AttitudeSets = NewAttitudeSetService(opts...)
+	r.AviationRiskManagement = NewAviationRiskManagementService(opts...)
 	r.Batteries = NewBatteryService(opts...)
 	r.Batterydetails = NewBatterydetailService(opts...)
 	r.Beam = NewBeamService(opts...)
@@ -238,21 +243,19 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.Comm = NewCommService(opts...)
 	r.Conjunctions = NewConjunctionService(opts...)
 	r.Cots = NewCotService(opts...)
-	r.AviationRiskManagement = NewAviationRiskManagementService(opts...)
-	r.Dropzone = NewDropzoneService(opts...)
-	r.EmitterGeolocation = NewEmitterGeolocationService(opts...)
-	r.FeatureAssessment = NewFeatureAssessmentService(opts...)
-	r.GlobalAtmosphericModel = NewGlobalAtmosphericModelService(opts...)
-	r.RouteStats = NewRouteStatService(opts...)
 	r.Countries = NewCountryService(opts...)
 	r.Crew = NewCrewService(opts...)
+	r.Deconflictset = NewDeconflictsetService(opts...)
 	r.DiffOfArrival = NewDiffOfArrivalService(opts...)
 	r.DiplomaticClearance = NewDiplomaticClearanceService(opts...)
 	r.DriftHistory = NewDriftHistoryService(opts...)
-	r.EcpSdr = NewEcpSdrService(opts...)
+	r.Dropzone = NewDropzoneService(opts...)
+	r.Ecpedr = NewEcpedrService(opts...)
 	r.EffectRequests = NewEffectRequestService(opts...)
 	r.EffectResponses = NewEffectResponseService(opts...)
 	r.Elsets = NewElsetService(opts...)
+	r.Emireport = NewEmireportService(opts...)
+	r.EmitterGeolocation = NewEmitterGeolocationService(opts...)
 	r.EngineDetails = NewEngineDetailService(opts...)
 	r.Engines = NewEngineService(opts...)
 	r.Entities = NewEntityService(opts...)
@@ -263,17 +266,24 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.EquipmentRemarks = NewEquipmentRemarkService(opts...)
 	r.Evac = NewEvacService(opts...)
 	r.EventEvolution = NewEventEvolutionService(opts...)
+	r.FeatureAssessment = NewFeatureAssessmentService(opts...)
 	r.Flightplan = NewFlightplanService(opts...)
 	r.GeoStatus = NewGeoStatusService(opts...)
+	r.GlobalAtmosphericModel = NewGlobalAtmosphericModelService(opts...)
+	r.GnssObservations = NewGnssObservationService(opts...)
 	r.GnssObservationset = NewGnssObservationsetService(opts...)
+	r.GnssRawIf = NewGnssRawIfService(opts...)
 	r.GroundImagery = NewGroundImageryService(opts...)
 	r.H3Geo = NewH3GeoService(opts...)
 	r.H3GeoHexCell = NewH3GeoHexCellService(opts...)
 	r.Hazard = NewHazardService(opts...)
+	r.IonoObservations = NewIonoObservationService(opts...)
 	r.Ir = NewIrService(opts...)
 	r.IsrCollections = NewIsrCollectionService(opts...)
 	r.Item = NewItemService(opts...)
 	r.ItemTrackings = NewItemTrackingService(opts...)
+	r.Laserdeconflictrequest = NewLaserdeconflictrequestService(opts...)
+	r.Laseremitter = NewLaseremitterService(opts...)
 	r.LaunchDetection = NewLaunchDetectionService(opts...)
 	r.LaunchEvent = NewLaunchEventService(opts...)
 	r.LaunchSite = NewLaunchSiteService(opts...)
@@ -281,6 +291,7 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.LaunchVehicle = NewLaunchVehicleService(opts...)
 	r.LaunchVehicleDetails = NewLaunchVehicleDetailService(opts...)
 	r.LinkStatus = NewLinkStatusService(opts...)
+	r.Linkstatus = NewLinkstatusService(opts...)
 	r.Location = NewLocationService(opts...)
 	r.LogisticsSupport = NewLogisticsSupportService(opts...)
 	r.Maneuvers = NewManeuverService(opts...)
@@ -313,12 +324,16 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.Personnelrecovery = NewPersonnelrecoveryService(opts...)
 	r.Poi = NewPoiService(opts...)
 	r.Port = NewPortService(opts...)
+	r.ReportAndActivities = NewReportAndActivityService(opts...)
 	r.RfBand = NewRfBandService(opts...)
 	r.RfBandType = NewRfBandTypeService(opts...)
 	r.RfEmitter = NewRfEmitterService(opts...)
 	r.RfEmitterDetails = NewRfEmitterDetailService(opts...)
+	r.RouteStats = NewRouteStatService(opts...)
 	r.SarObservation = NewSarObservationService(opts...)
 	r.Scientific = NewScientificService(opts...)
+	r.Scs = NewScService(opts...)
+	r.SecureMessaging = NewSecureMessagingService(opts...)
 	r.Sensor = NewSensorService(opts...)
 	r.SensorMaintenance = NewSensorMaintenanceService(opts...)
 	r.SensorObservationType = NewSensorObservationTypeService(opts...)
@@ -361,13 +376,6 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.Video = NewVideoService(opts...)
 	r.WeatherData = NewWeatherDataService(opts...)
 	r.WeatherReport = NewWeatherReportService(opts...)
-	r.GnssObservations = NewGnssObservationService(opts...)
-	r.GnssRawIf = NewGnssRawIfService(opts...)
-	r.IonoObservations = NewIonoObservationService(opts...)
-	r.ReportAndActivities = NewReportAndActivityService(opts...)
-	r.SecureMessaging = NewSecureMessagingService(opts...)
-	r.Scs = NewScService(opts...)
-	r.ScsViews = NewScsViewService(opts...)
 
 	return
 }

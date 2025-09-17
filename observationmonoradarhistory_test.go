@@ -14,6 +14,34 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/option"
 )
 
+func TestObservationMonoradarHistoryListWithOptionalParams(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := unifieddatalibrary.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithPassword("My Password"),
+		option.WithUsername("My Username"),
+	)
+	_, err := client.Observations.Monoradar.History.List(context.TODO(), unifieddatalibrary.ObservationMonoradarHistoryListParams{
+		Ts:          time.Now(),
+		Columns:     unifieddatalibrary.String("columns"),
+		FirstResult: unifieddatalibrary.Int(0),
+		MaxResults:  unifieddatalibrary.Int(0),
+	})
+	if err != nil {
+		var apierr *unifieddatalibrary.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
 func TestObservationMonoradarHistoryAodrWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -60,34 +88,6 @@ func TestObservationMonoradarHistoryCountWithOptionalParams(t *testing.T) {
 	)
 	_, err := client.Observations.Monoradar.History.Count(context.TODO(), unifieddatalibrary.ObservationMonoradarHistoryCountParams{
 		Ts:          time.Now(),
-		FirstResult: unifieddatalibrary.Int(0),
-		MaxResults:  unifieddatalibrary.Int(0),
-	})
-	if err != nil {
-		var apierr *unifieddatalibrary.Error
-		if errors.As(err, &apierr) {
-			t.Log(string(apierr.DumpRequest(true)))
-		}
-		t.Fatalf("err should be nil: %s", err.Error())
-	}
-}
-
-func TestObservationMonoradarHistoryQueryWithOptionalParams(t *testing.T) {
-	baseURL := "http://localhost:4010"
-	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
-		baseURL = envURL
-	}
-	if !testutil.CheckTestServer(t, baseURL) {
-		return
-	}
-	client := unifieddatalibrary.NewClient(
-		option.WithBaseURL(baseURL),
-		option.WithPassword("My Password"),
-		option.WithUsername("My Username"),
-	)
-	_, err := client.Observations.Monoradar.History.Query(context.TODO(), unifieddatalibrary.ObservationMonoradarHistoryQueryParams{
-		Ts:          time.Now(),
-		Columns:     unifieddatalibrary.String("columns"),
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})

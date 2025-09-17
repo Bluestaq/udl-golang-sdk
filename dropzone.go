@@ -16,6 +16,7 @@ import (
 	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 	"github.com/Bluestaq/udl-golang-sdk/shared"
@@ -79,6 +80,35 @@ func (r *DropzoneService) Update(ctx context.Context, id string, body DropzoneUp
 	return
 }
 
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *DropzoneService) List(ctx context.Context, query DropzoneListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[DropzoneListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/dropzone"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *DropzoneService) ListAutoPaging(ctx context.Context, query DropzoneListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[DropzoneListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
+}
+
 // Service operation to delete a dropzone record specified by the passed ID path
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
@@ -117,17 +147,6 @@ func (r *DropzoneService) NewBulk(ctx context.Context, body DropzoneNewBulkParam
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/dropzone/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
-}
-
-// Service operation to dynamically query data by a variety of query parameters not
-// specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
-func (r *DropzoneService) Query(ctx context.Context, query DropzoneQueryParams, opts ...option.RequestOption) (res *[]DropzoneQueryResponse, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "udl/dropzone"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
 }
 
@@ -359,7 +378,7 @@ const (
 
 // Properties and characteristics of a Drop Zone, including name, location, shape,
 // type code, survey date, and remarks.
-type DropzoneQueryResponse struct {
+type DropzoneListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -378,7 +397,7 @@ type DropzoneQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode DropzoneQueryResponseDataMode `json:"dataMode,required"`
+	DataMode DropzoneListResponseDataMode `json:"dataMode,required"`
 	// WGS84 latitude of the drop zone, in degrees. -90 to 90 degrees (negative values
 	// south of equator).
 	Lat float64 `json:"lat,required"`
@@ -512,8 +531,8 @@ type DropzoneQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r DropzoneQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *DropzoneQueryResponse) UnmarshalJSON(data []byte) error {
+func (r DropzoneListResponse) RawJSON() string { return r.JSON.raw }
+func (r *DropzoneListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -531,13 +550,13 @@ func (r *DropzoneQueryResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type DropzoneQueryResponseDataMode string
+type DropzoneListResponseDataMode string
 
 const (
-	DropzoneQueryResponseDataModeReal      DropzoneQueryResponseDataMode = "REAL"
-	DropzoneQueryResponseDataModeTest      DropzoneQueryResponseDataMode = "TEST"
-	DropzoneQueryResponseDataModeSimulated DropzoneQueryResponseDataMode = "SIMULATED"
-	DropzoneQueryResponseDataModeExercise  DropzoneQueryResponseDataMode = "EXERCISE"
+	DropzoneListResponseDataModeReal      DropzoneListResponseDataMode = "REAL"
+	DropzoneListResponseDataModeTest      DropzoneListResponseDataMode = "TEST"
+	DropzoneListResponseDataModeSimulated DropzoneListResponseDataMode = "SIMULATED"
+	DropzoneListResponseDataModeExercise  DropzoneListResponseDataMode = "EXERCISE"
 )
 
 type DropzoneQueryHelpResponse struct {
@@ -1044,6 +1063,20 @@ const (
 	DropzoneUpdateParamsDataModeExercise  DropzoneUpdateParamsDataMode = "EXERCISE"
 )
 
+type DropzoneListParams struct {
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [DropzoneListParams]'s query parameters as `url.Values`.
+func (r DropzoneListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
 type DropzoneCountParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
@@ -1200,20 +1233,6 @@ func init() {
 	apijson.RegisterFieldValidator[DropzoneNewBulkParamsBody](
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
-}
-
-type DropzoneQueryParams struct {
-	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
-	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
-	paramObj
-}
-
-// URLQuery serializes [DropzoneQueryParams]'s query parameters as `url.Values`.
-func (r DropzoneQueryParams) URLQuery() (v url.Values, err error) {
-	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
-		ArrayFormat:  apiquery.ArrayQueryFormatComma,
-		NestedFormat: apiquery.NestedQueryFormatBrackets,
-	})
 }
 
 type DropzoneTupleParams struct {

@@ -30,8 +30,8 @@ import (
 // the [NewDiplomaticClearanceService] method instead.
 type DiplomaticClearanceService struct {
 	Options []option.RequestOption
-	History DiplomaticClearanceHistoryService
 	Country DiplomaticClearanceCountryService
+	History DiplomaticClearanceHistoryService
 }
 
 // NewDiplomaticClearanceService generates a new service that applies the given
@@ -40,8 +40,8 @@ type DiplomaticClearanceService struct {
 func NewDiplomaticClearanceService(opts ...option.RequestOption) (r DiplomaticClearanceService) {
 	r = DiplomaticClearanceService{}
 	r.Options = opts
-	r.History = NewDiplomaticClearanceHistoryService(opts...)
 	r.Country = NewDiplomaticClearanceCountryService(opts...)
+	r.History = NewDiplomaticClearanceHistoryService(opts...)
 	return
 }
 

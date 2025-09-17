@@ -16,6 +16,7 @@ import (
 	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 	"github.com/Bluestaq/udl-golang-sdk/shared"
@@ -66,6 +67,35 @@ func (r *FeatureAssessmentService) Get(ctx context.Context, id string, query Fea
 	return
 }
 
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *FeatureAssessmentService) List(ctx context.Context, query FeatureAssessmentListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[FeatureAssessmentListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/featureassessment"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *FeatureAssessmentService) ListAutoPaging(ctx context.Context, query FeatureAssessmentListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[FeatureAssessmentListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
+}
+
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
@@ -89,17 +119,6 @@ func (r *FeatureAssessmentService) NewBulk(ctx context.Context, body FeatureAsse
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/featureassessment/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
-}
-
-// Service operation to dynamically query data by a variety of query parameters not
-// specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
-func (r *FeatureAssessmentService) Query(ctx context.Context, query FeatureAssessmentQueryParams, opts ...option.RequestOption) (res *[]FeatureAssessmentQueryResponse, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "udl/featureassessment"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
 }
 
@@ -397,7 +416,7 @@ const (
 // vessels, vehicles, buildings, etc., or contain other types of non terrestrial
 // assessments such as spacecraft structures. Geospatial queries are supported
 // through either the regionText (WKT) or regionGeoJSON fields.
-type FeatureAssessmentQueryResponse struct {
+type FeatureAssessmentListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -416,7 +435,7 @@ type FeatureAssessmentQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode FeatureAssessmentQueryResponseDataMode `json:"dataMode,required"`
+	DataMode FeatureAssessmentListResponseDataMode `json:"dataMode,required"`
 	// Datetime type value associated with this record, in ISO 8601 UTC format with
 	// millisecond precision.
 	FeatureTs time.Time `json:"featureTs,required" format:"date-time"`
@@ -606,8 +625,8 @@ type FeatureAssessmentQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r FeatureAssessmentQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *FeatureAssessmentQueryResponse) UnmarshalJSON(data []byte) error {
+func (r FeatureAssessmentListResponse) RawJSON() string { return r.JSON.raw }
+func (r *FeatureAssessmentListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -625,13 +644,13 @@ func (r *FeatureAssessmentQueryResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type FeatureAssessmentQueryResponseDataMode string
+type FeatureAssessmentListResponseDataMode string
 
 const (
-	FeatureAssessmentQueryResponseDataModeReal      FeatureAssessmentQueryResponseDataMode = "REAL"
-	FeatureAssessmentQueryResponseDataModeTest      FeatureAssessmentQueryResponseDataMode = "TEST"
-	FeatureAssessmentQueryResponseDataModeSimulated FeatureAssessmentQueryResponseDataMode = "SIMULATED"
-	FeatureAssessmentQueryResponseDataModeExercise  FeatureAssessmentQueryResponseDataMode = "EXERCISE"
+	FeatureAssessmentListResponseDataModeReal      FeatureAssessmentListResponseDataMode = "REAL"
+	FeatureAssessmentListResponseDataModeTest      FeatureAssessmentListResponseDataMode = "TEST"
+	FeatureAssessmentListResponseDataModeSimulated FeatureAssessmentListResponseDataMode = "SIMULATED"
+	FeatureAssessmentListResponseDataModeExercise  FeatureAssessmentListResponseDataMode = "EXERCISE"
 )
 
 type FeatureAssessmentQueryHelpResponse struct {
@@ -1132,6 +1151,24 @@ func (r FeatureAssessmentGetParams) URLQuery() (v url.Values, err error) {
 	})
 }
 
+type FeatureAssessmentListParams struct {
+	// Unique identifier of the Analytic Imagery associated with this Feature
+	// Assessment record.
+	IDAnalyticImagery string           `query:"idAnalyticImagery,required" json:"-"`
+	FirstResult       param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults        param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [FeatureAssessmentListParams]'s query parameters as
+// `url.Values`.
+func (r FeatureAssessmentListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
 type FeatureAssessmentCountParams struct {
 	// Unique identifier of the Analytic Imagery associated with this Feature
 	// Assessment record.
@@ -1357,24 +1394,6 @@ func init() {
 	apijson.RegisterFieldValidator[FeatureAssessmentNewBulkParamsBody](
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
-}
-
-type FeatureAssessmentQueryParams struct {
-	// Unique identifier of the Analytic Imagery associated with this Feature
-	// Assessment record.
-	IDAnalyticImagery string           `query:"idAnalyticImagery,required" json:"-"`
-	FirstResult       param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
-	MaxResults        param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
-	paramObj
-}
-
-// URLQuery serializes [FeatureAssessmentQueryParams]'s query parameters as
-// `url.Values`.
-func (r FeatureAssessmentQueryParams) URLQuery() (v url.Values, err error) {
-	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
-		ArrayFormat:  apiquery.ArrayQueryFormatComma,
-		NestedFormat: apiquery.NestedQueryFormatBrackets,
-	})
 }
 
 type FeatureAssessmentTupleParams struct {

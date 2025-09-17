@@ -16,6 +16,7 @@ import (
 	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 	"github.com/Bluestaq/udl-golang-sdk/shared"
@@ -66,6 +67,35 @@ func (r *EmitterGeolocationService) Get(ctx context.Context, id string, query Em
 	return
 }
 
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *EmitterGeolocationService) List(ctx context.Context, query EmitterGeolocationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[EmitterGeolocationListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/emittergeolocation"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *EmitterGeolocationService) ListAutoPaging(ctx context.Context, query EmitterGeolocationListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[EmitterGeolocationListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
+}
+
 // Service operation to delete a RF geolocation specified by the passed ID path
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance. Note, delete operations do not remove data
@@ -105,17 +135,6 @@ func (r *EmitterGeolocationService) NewBulk(ctx context.Context, body EmitterGeo
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/emittergeolocation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
-}
-
-// Service operation to dynamically query data by a variety of query parameters not
-// specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
-func (r *EmitterGeolocationService) Query(ctx context.Context, query EmitterGeolocationQueryParams, opts ...option.RequestOption) (res *[]EmitterGeolocationQueryResponse, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "udl/emittergeolocation"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
 }
 
@@ -394,7 +413,7 @@ const (
 )
 
 // Model representation of Emitter geolocation data for a signal of interest.
-type EmitterGeolocationQueryResponse struct {
+type EmitterGeolocationListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -413,7 +432,7 @@ type EmitterGeolocationQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode EmitterGeolocationQueryResponseDataMode `json:"dataMode,required"`
+	DataMode EmitterGeolocationListResponseDataMode `json:"dataMode,required"`
 	// Type of the signal of interest of this Emitter Geo Location (e.g. RF).
 	SignalOfInterestType string `json:"signalOfInterestType,required"`
 	// Source of the data.
@@ -596,8 +615,8 @@ type EmitterGeolocationQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r EmitterGeolocationQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *EmitterGeolocationQueryResponse) UnmarshalJSON(data []byte) error {
+func (r EmitterGeolocationListResponse) RawJSON() string { return r.JSON.raw }
+func (r *EmitterGeolocationListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -615,13 +634,13 @@ func (r *EmitterGeolocationQueryResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type EmitterGeolocationQueryResponseDataMode string
+type EmitterGeolocationListResponseDataMode string
 
 const (
-	EmitterGeolocationQueryResponseDataModeReal      EmitterGeolocationQueryResponseDataMode = "REAL"
-	EmitterGeolocationQueryResponseDataModeTest      EmitterGeolocationQueryResponseDataMode = "TEST"
-	EmitterGeolocationQueryResponseDataModeSimulated EmitterGeolocationQueryResponseDataMode = "SIMULATED"
-	EmitterGeolocationQueryResponseDataModeExercise  EmitterGeolocationQueryResponseDataMode = "EXERCISE"
+	EmitterGeolocationListResponseDataModeReal      EmitterGeolocationListResponseDataMode = "REAL"
+	EmitterGeolocationListResponseDataModeTest      EmitterGeolocationListResponseDataMode = "TEST"
+	EmitterGeolocationListResponseDataModeSimulated EmitterGeolocationListResponseDataMode = "SIMULATED"
+	EmitterGeolocationListResponseDataModeExercise  EmitterGeolocationListResponseDataMode = "EXERCISE"
 )
 
 type EmitterGeolocationQueryHelpResponse struct {
@@ -1083,6 +1102,24 @@ func (r EmitterGeolocationGetParams) URLQuery() (v url.Values, err error) {
 	})
 }
 
+type EmitterGeolocationListParams struct {
+	// The start time for this Emitter Geo Location data set in ISO 8601 UTC with
+	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [EmitterGeolocationListParams]'s query parameters as
+// `url.Values`.
+func (r EmitterGeolocationListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
 type EmitterGeolocationCountParams struct {
 	// The start time for this Emitter Geo Location data set in ISO 8601 UTC with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
@@ -1286,24 +1323,6 @@ func init() {
 	apijson.RegisterFieldValidator[EmitterGeolocationNewBulkParamsBody](
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
-}
-
-type EmitterGeolocationQueryParams struct {
-	// The start time for this Emitter Geo Location data set in ISO 8601 UTC with
-	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
-	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
-	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
-	paramObj
-}
-
-// URLQuery serializes [EmitterGeolocationQueryParams]'s query parameters as
-// `url.Values`.
-func (r EmitterGeolocationQueryParams) URLQuery() (v url.Values, err error) {
-	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
-		ArrayFormat:  apiquery.ArrayQueryFormatComma,
-		NestedFormat: apiquery.NestedQueryFormatBrackets,
-	})
 }
 
 type EmitterGeolocationTupleParams struct {

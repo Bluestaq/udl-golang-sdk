@@ -267,6 +267,14 @@ func WithEnvironmentProduction() RequestOption {
 	return requestconfig.WithDefaultBaseURL("https://unifieddatalibrary.com/")
 }
 
+// WithAccessToken returns a RequestOption that sets the client setting "access_token".
+func WithAccessToken(value string) RequestOption {
+	return requestconfig.RequestOptionFunc(func(r *requestconfig.RequestConfig) error {
+		r.AccessToken = value
+		return r.Apply(WithHeader("authorization", fmt.Sprintf("Bearer %s", r.AccessToken)))
+	})
+}
+
 // WithPassword returns a RequestOption that sets the client setting "password".
 func WithPassword(value string) RequestOption {
 	return requestconfig.RequestOptionFunc(func(r *requestconfig.RequestConfig) error {
@@ -280,13 +288,5 @@ func WithUsername(value string) RequestOption {
 	return requestconfig.RequestOptionFunc(func(r *requestconfig.RequestConfig) error {
 		r.Username = value
 		return r.Apply(WithHeader("authorization", fmt.Sprintf("Basic %s", base64.StdEncoding.EncodeToString([]byte(r.Username+":"+r.Password)))))
-	})
-}
-
-// WithAccessToken returns a RequestOption that sets the client setting "access_token".
-func WithAccessToken(value string) RequestOption {
-	return requestconfig.RequestOptionFunc(func(r *requestconfig.RequestConfig) error {
-		r.AccessToken = value
-		return r.Apply(WithHeader("authorization", fmt.Sprintf("Bearer %s", r.AccessToken)))
 	})
 }

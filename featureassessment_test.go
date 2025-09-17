@@ -104,6 +104,33 @@ func TestFeatureAssessmentGetWithOptionalParams(t *testing.T) {
 	}
 }
 
+func TestFeatureAssessmentListWithOptionalParams(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := unifieddatalibrary.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithPassword("My Password"),
+		option.WithUsername("My Username"),
+	)
+	_, err := client.FeatureAssessment.List(context.TODO(), unifieddatalibrary.FeatureAssessmentListParams{
+		IDAnalyticImagery: "idAnalyticImagery",
+		FirstResult:       unifieddatalibrary.Int(0),
+		MaxResults:        unifieddatalibrary.Int(0),
+	})
+	if err != nil {
+		var apierr *unifieddatalibrary.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
 func TestFeatureAssessmentCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -183,33 +210,6 @@ func TestFeatureAssessmentNewBulk(t *testing.T) {
 			Type:                  unifieddatalibrary.String("VESSEL"),
 			Width:                 unifieddatalibrary.Float(3.74),
 		}},
-	})
-	if err != nil {
-		var apierr *unifieddatalibrary.Error
-		if errors.As(err, &apierr) {
-			t.Log(string(apierr.DumpRequest(true)))
-		}
-		t.Fatalf("err should be nil: %s", err.Error())
-	}
-}
-
-func TestFeatureAssessmentQueryWithOptionalParams(t *testing.T) {
-	baseURL := "http://localhost:4010"
-	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
-		baseURL = envURL
-	}
-	if !testutil.CheckTestServer(t, baseURL) {
-		return
-	}
-	client := unifieddatalibrary.NewClient(
-		option.WithBaseURL(baseURL),
-		option.WithPassword("My Password"),
-		option.WithUsername("My Username"),
-	)
-	_, err := client.FeatureAssessment.Query(context.TODO(), unifieddatalibrary.FeatureAssessmentQueryParams{
-		IDAnalyticImagery: "idAnalyticImagery",
-		FirstResult:       unifieddatalibrary.Int(0),
-		MaxResults:        unifieddatalibrary.Int(0),
 	})
 	if err != nil {
 		var apierr *unifieddatalibrary.Error

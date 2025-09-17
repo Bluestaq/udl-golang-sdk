@@ -15,7 +15,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/option"
 )
 
-func TestScsViewGetWithOptionalParams(t *testing.T) {
+func TestScViewGetWithOptionalParams(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(200)
 		w.Write([]byte("abc"))
@@ -27,10 +27,10 @@ func TestScsViewGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	resp, err := client.ScsViews.Get(
+	resp, err := client.Scs.View.Get(
 		context.TODO(),
 		"/Documentation/project.pdf",
-		unifieddatalibrary.ScsViewGetParams{
+		unifieddatalibrary.ScViewGetParams{
 			FirstResult: unifieddatalibrary.Int(0),
 			MaxResults:  unifieddatalibrary.Int(0),
 		},

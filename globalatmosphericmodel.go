@@ -14,6 +14,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 	"github.com/Bluestaq/udl-golang-sdk/shared"
@@ -53,6 +54,35 @@ func (r *GlobalAtmosphericModelService) Get(ctx context.Context, id string, quer
 	return
 }
 
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *GlobalAtmosphericModelService) List(ctx context.Context, query GlobalAtmosphericModelListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[GlobalAtmosphericModelListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/globalatmosphericmodel"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *GlobalAtmosphericModelService) ListAutoPaging(ctx context.Context, query GlobalAtmosphericModelListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[GlobalAtmosphericModelListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
+}
+
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
@@ -77,17 +107,6 @@ func (r *GlobalAtmosphericModelService) GetFile(ctx context.Context, id string, 
 		return
 	}
 	path := fmt.Sprintf("udl/globalatmosphericmodel/getFile/%s", id)
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
-}
-
-// Service operation to dynamically query data by a variety of query parameters not
-// specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
-func (r *GlobalAtmosphericModelService) Query(ctx context.Context, query GlobalAtmosphericModelQueryParams, opts ...option.RequestOption) (res *[]GlobalAtmosphericModelQueryResponse, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "udl/globalatmosphericmodel"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
 }
@@ -300,7 +319,7 @@ const (
 // The GlobalAtmosphericModel service provides atmospheric model output data for
 // use in space situational awareness such as the Global Total Electron Content
 // (2D) data, Global Total Electron Density (3D) data, etc.
-type GlobalAtmosphericModelQueryResponse struct {
+type GlobalAtmosphericModelListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -319,7 +338,7 @@ type GlobalAtmosphericModelQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode GlobalAtmosphericModelQueryResponseDataMode `json:"dataMode,required"`
+	DataMode GlobalAtmosphericModelListResponseDataMode `json:"dataMode,required"`
 	// Source of the data.
 	Source string `json:"source,required"`
 	// Target time of the model in ISO 8601 UTC format with millisecond precision.
@@ -424,8 +443,8 @@ type GlobalAtmosphericModelQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r GlobalAtmosphericModelQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *GlobalAtmosphericModelQueryResponse) UnmarshalJSON(data []byte) error {
+func (r GlobalAtmosphericModelListResponse) RawJSON() string { return r.JSON.raw }
+func (r *GlobalAtmosphericModelListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -443,13 +462,13 @@ func (r *GlobalAtmosphericModelQueryResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type GlobalAtmosphericModelQueryResponseDataMode string
+type GlobalAtmosphericModelListResponseDataMode string
 
 const (
-	GlobalAtmosphericModelQueryResponseDataModeReal      GlobalAtmosphericModelQueryResponseDataMode = "REAL"
-	GlobalAtmosphericModelQueryResponseDataModeTest      GlobalAtmosphericModelQueryResponseDataMode = "TEST"
-	GlobalAtmosphericModelQueryResponseDataModeSimulated GlobalAtmosphericModelQueryResponseDataMode = "SIMULATED"
-	GlobalAtmosphericModelQueryResponseDataModeExercise  GlobalAtmosphericModelQueryResponseDataMode = "EXERCISE"
+	GlobalAtmosphericModelListResponseDataModeReal      GlobalAtmosphericModelListResponseDataMode = "REAL"
+	GlobalAtmosphericModelListResponseDataModeTest      GlobalAtmosphericModelListResponseDataMode = "TEST"
+	GlobalAtmosphericModelListResponseDataModeSimulated GlobalAtmosphericModelListResponseDataMode = "SIMULATED"
+	GlobalAtmosphericModelListResponseDataModeExercise  GlobalAtmosphericModelListResponseDataMode = "EXERCISE"
 )
 
 type GlobalAtmosphericModelQueryHelpResponse struct {
@@ -658,6 +677,24 @@ func (r GlobalAtmosphericModelGetParams) URLQuery() (v url.Values, err error) {
 	})
 }
 
+type GlobalAtmosphericModelListParams struct {
+	// Target time of the model in ISO 8601 UTC format with millisecond precision.
+	// (YYYY-MM-DDTHH:MM:SS.sssZ)
+	Ts          time.Time        `query:"ts,required" format:"date-time" json:"-"`
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [GlobalAtmosphericModelListParams]'s query parameters as
+// `url.Values`.
+func (r GlobalAtmosphericModelListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
 type GlobalAtmosphericModelCountParams struct {
 	// Target time of the model in ISO 8601 UTC format with millisecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
@@ -685,24 +722,6 @@ type GlobalAtmosphericModelGetFileParams struct {
 // URLQuery serializes [GlobalAtmosphericModelGetFileParams]'s query parameters as
 // `url.Values`.
 func (r GlobalAtmosphericModelGetFileParams) URLQuery() (v url.Values, err error) {
-	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
-		ArrayFormat:  apiquery.ArrayQueryFormatComma,
-		NestedFormat: apiquery.NestedQueryFormatBrackets,
-	})
-}
-
-type GlobalAtmosphericModelQueryParams struct {
-	// Target time of the model in ISO 8601 UTC format with millisecond precision.
-	// (YYYY-MM-DDTHH:MM:SS.sssZ)
-	Ts          time.Time        `query:"ts,required" format:"date-time" json:"-"`
-	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
-	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
-	paramObj
-}
-
-// URLQuery serializes [GlobalAtmosphericModelQueryParams]'s query parameters as
-// `url.Values`.
-func (r GlobalAtmosphericModelQueryParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

@@ -12,6 +12,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
@@ -33,6 +34,35 @@ func NewObservationMonoradarHistoryService(opts ...option.RequestOption) (r Obse
 	r = ObservationMonoradarHistoryService{}
 	r.Options = opts
 	return
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *ObservationMonoradarHistoryService) List(ctx context.Context, query ObservationMonoradarHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[ObservationMonoradarHistoryListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/monoradar/history"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *ObservationMonoradarHistoryService) ListAutoPaging(ctx context.Context, query ObservationMonoradarHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[ObservationMonoradarHistoryListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to dynamically query historical data by a variety of query
@@ -61,17 +91,6 @@ func (r *ObservationMonoradarHistoryService) Count(ctx context.Context, query Ob
 	return
 }
 
-// Service operation to dynamically query historical data by a variety of query
-// parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
-func (r *ObservationMonoradarHistoryService) Query(ctx context.Context, query ObservationMonoradarHistoryQueryParams, opts ...option.RequestOption) (res *[]ObservationMonoradarHistoryQueryResponse, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "udl/monoradar/history"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
-}
-
 // A monoradar record contains the raw, and in some cases, processed target reports
 // from primary and secondary air surveillance radars. All target positions for
 // monoradar reports are recorded as range and azimuth from geographical North
@@ -79,7 +98,7 @@ func (r *ObservationMonoradarHistoryService) Query(ctx context.Context, query Ob
 // radars, interrogation response codes are provided as well as quality and
 // validation characteristics, when available in the particular record type used to
 // generate the record.
-type ObservationMonoradarHistoryQueryResponse struct {
+type ObservationMonoradarHistoryListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -98,7 +117,7 @@ type ObservationMonoradarHistoryQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode ObservationMonoradarHistoryQueryResponseDataMode `json:"dataMode,required"`
+	DataMode ObservationMonoradarHistoryListResponseDataMode `json:"dataMode,required"`
 	// Message format received (i.e. 'ASR9', 'CAT48', 'TPS70', etc..).
 	Msgfmt string `json:"msgfmt,required"`
 	// Message time, in ISO 8601 UTC format with microsecond precision. This is the
@@ -341,8 +360,8 @@ type ObservationMonoradarHistoryQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r ObservationMonoradarHistoryQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *ObservationMonoradarHistoryQueryResponse) UnmarshalJSON(data []byte) error {
+func (r ObservationMonoradarHistoryListResponse) RawJSON() string { return r.JSON.raw }
+func (r *ObservationMonoradarHistoryListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -360,14 +379,36 @@ func (r *ObservationMonoradarHistoryQueryResponse) UnmarshalJSON(data []byte) er
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type ObservationMonoradarHistoryQueryResponseDataMode string
+type ObservationMonoradarHistoryListResponseDataMode string
 
 const (
-	ObservationMonoradarHistoryQueryResponseDataModeReal      ObservationMonoradarHistoryQueryResponseDataMode = "REAL"
-	ObservationMonoradarHistoryQueryResponseDataModeTest      ObservationMonoradarHistoryQueryResponseDataMode = "TEST"
-	ObservationMonoradarHistoryQueryResponseDataModeSimulated ObservationMonoradarHistoryQueryResponseDataMode = "SIMULATED"
-	ObservationMonoradarHistoryQueryResponseDataModeExercise  ObservationMonoradarHistoryQueryResponseDataMode = "EXERCISE"
+	ObservationMonoradarHistoryListResponseDataModeReal      ObservationMonoradarHistoryListResponseDataMode = "REAL"
+	ObservationMonoradarHistoryListResponseDataModeTest      ObservationMonoradarHistoryListResponseDataMode = "TEST"
+	ObservationMonoradarHistoryListResponseDataModeSimulated ObservationMonoradarHistoryListResponseDataMode = "SIMULATED"
+	ObservationMonoradarHistoryListResponseDataModeExercise  ObservationMonoradarHistoryListResponseDataMode = "EXERCISE"
 )
+
+type ObservationMonoradarHistoryListParams struct {
+	// Target detection time, in ISO 8601 UTC format with microsecond precision.
+	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+	Ts time.Time `query:"ts,required" format:"date-time" json:"-"`
+	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
+	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// query fields that can be selected.
+	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
+	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [ObservationMonoradarHistoryListParams]'s query parameters
+// as `url.Values`.
+func (r ObservationMonoradarHistoryListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
 
 type ObservationMonoradarHistoryAodrParams struct {
 	// Target detection time, in ISO 8601 UTC format with microsecond precision.
@@ -414,28 +455,6 @@ type ObservationMonoradarHistoryCountParams struct {
 // URLQuery serializes [ObservationMonoradarHistoryCountParams]'s query parameters
 // as `url.Values`.
 func (r ObservationMonoradarHistoryCountParams) URLQuery() (v url.Values, err error) {
-	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
-		ArrayFormat:  apiquery.ArrayQueryFormatComma,
-		NestedFormat: apiquery.NestedQueryFormatBrackets,
-	})
-}
-
-type ObservationMonoradarHistoryQueryParams struct {
-	// Target detection time, in ISO 8601 UTC format with microsecond precision.
-	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Ts time.Time `query:"ts,required" format:"date-time" json:"-"`
-	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
-	// query fields that can be selected.
-	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
-	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
-	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
-	paramObj
-}
-
-// URLQuery serializes [ObservationMonoradarHistoryQueryParams]'s query parameters
-// as `url.Values`.
-func (r ObservationMonoradarHistoryQueryParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

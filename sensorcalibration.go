@@ -16,6 +16,7 @@ import (
 	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 	"github.com/Bluestaq/udl-golang-sdk/shared"
@@ -68,6 +69,35 @@ func (r *SensorCalibrationService) Get(ctx context.Context, id string, query Sen
 	return
 }
 
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *SensorCalibrationService) List(ctx context.Context, query SensorCalibrationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SensorCalibrationListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/sensorcalibration"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *SensorCalibrationService) ListAutoPaging(ctx context.Context, query SensorCalibrationListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SensorCalibrationListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
+}
+
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
@@ -91,17 +121,6 @@ func (r *SensorCalibrationService) NewBulk(ctx context.Context, body SensorCalib
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sensorcalibration/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
-}
-
-// Service operation to dynamically query data by a variety of query parameters not
-// specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
-func (r *SensorCalibrationService) Query(ctx context.Context, query SensorCalibrationQueryParams, opts ...option.RequestOption) (res *[]SensorCalibrationQueryResponse, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "udl/sensorcalibration"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
 }
 
@@ -414,7 +433,7 @@ const (
 // and is used to adjust sensor settings to achieve and maintain that accuracy in
 // reported sensor observations. Calibration occurs periodically when needed to
 // maintain sensor accuracy or on-demand to adjust a sensor for a specific reading.
-type SensorCalibrationQueryResponse struct {
+type SensorCalibrationListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -433,7 +452,7 @@ type SensorCalibrationQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SensorCalibrationQueryResponseDataMode `json:"dataMode,required"`
+	DataMode SensorCalibrationListResponseDataMode `json:"dataMode,required"`
 	// Unique identifier of the sensor to which this calibration data applies. This ID
 	// can be used to obtain additional information on a sensor using the 'get by ID'
 	// operation (e.g. /udl/sensor/{id}). For example, the sensor with idSensor = abc
@@ -651,8 +670,8 @@ type SensorCalibrationQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SensorCalibrationQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *SensorCalibrationQueryResponse) UnmarshalJSON(data []byte) error {
+func (r SensorCalibrationListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SensorCalibrationListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -670,13 +689,13 @@ func (r *SensorCalibrationQueryResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SensorCalibrationQueryResponseDataMode string
+type SensorCalibrationListResponseDataMode string
 
 const (
-	SensorCalibrationQueryResponseDataModeReal      SensorCalibrationQueryResponseDataMode = "REAL"
-	SensorCalibrationQueryResponseDataModeTest      SensorCalibrationQueryResponseDataMode = "TEST"
-	SensorCalibrationQueryResponseDataModeSimulated SensorCalibrationQueryResponseDataMode = "SIMULATED"
-	SensorCalibrationQueryResponseDataModeExercise  SensorCalibrationQueryResponseDataMode = "EXERCISE"
+	SensorCalibrationListResponseDataModeReal      SensorCalibrationListResponseDataMode = "REAL"
+	SensorCalibrationListResponseDataModeTest      SensorCalibrationListResponseDataMode = "TEST"
+	SensorCalibrationListResponseDataModeSimulated SensorCalibrationListResponseDataMode = "SIMULATED"
+	SensorCalibrationListResponseDataModeExercise  SensorCalibrationListResponseDataMode = "EXERCISE"
 )
 
 type SensorCalibrationQueryHelpResponse struct {
@@ -1192,6 +1211,24 @@ func (r SensorCalibrationGetParams) URLQuery() (v url.Values, err error) {
 	})
 }
 
+type SensorCalibrationListParams struct {
+	// Calibration data span start time in ISO 8601 UTC format with millisecond
+	// precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
+	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [SensorCalibrationListParams]'s query parameters as
+// `url.Values`.
+func (r SensorCalibrationListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
 type SensorCalibrationCountParams struct {
 	// Calibration data span start time in ISO 8601 UTC format with millisecond
 	// precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
@@ -1415,24 +1452,6 @@ func init() {
 	apijson.RegisterFieldValidator[SensorCalibrationNewBulkParamsBody](
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
-}
-
-type SensorCalibrationQueryParams struct {
-	// Calibration data span start time in ISO 8601 UTC format with millisecond
-	// precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
-	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
-	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
-	paramObj
-}
-
-// URLQuery serializes [SensorCalibrationQueryParams]'s query parameters as
-// `url.Values`.
-func (r SensorCalibrationQueryParams) URLQuery() (v url.Values, err error) {
-	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
-		ArrayFormat:  apiquery.ArrayQueryFormatComma,
-		NestedFormat: apiquery.NestedQueryFormatBrackets,
-	})
 }
 
 type SensorCalibrationTupleParams struct {

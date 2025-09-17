@@ -136,7 +136,7 @@ func (r *AircraftService) Queryhelp(ctx context.Context, opts ...option.RequestO
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
-func (r *AircraftService) TupleQuery(ctx context.Context, query AircraftTupleQueryParams, opts ...option.RequestOption) (res *[]shared.AircraftFull, err error) {
+func (r *AircraftService) Tuple(ctx context.Context, query AircraftTupleParams, opts ...option.RequestOption) (res *[]shared.AircraftFull, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "udl/aircraft/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -566,7 +566,7 @@ func (r AircraftCountParams) URLQuery() (v url.Values, err error) {
 	})
 }
 
-type AircraftTupleQueryParams struct {
+type AircraftTupleParams struct {
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
@@ -577,9 +577,8 @@ type AircraftTupleQueryParams struct {
 	paramObj
 }
 
-// URLQuery serializes [AircraftTupleQueryParams]'s query parameters as
-// `url.Values`.
-func (r AircraftTupleQueryParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [AircraftTupleParams]'s query parameters as `url.Values`.
+func (r AircraftTupleParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

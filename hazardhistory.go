@@ -12,6 +12,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
@@ -33,6 +34,35 @@ func NewHazardHistoryService(opts ...option.RequestOption) (r HazardHistoryServi
 	r = HazardHistoryService{}
 	r.Options = opts
 	return
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *HazardHistoryService) List(ctx context.Context, query HazardHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[HazardHistoryListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/hazard/history"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *HazardHistoryService) ListAutoPaging(ctx context.Context, query HazardHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[HazardHistoryListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to dynamically query historical data by a variety of query
@@ -61,23 +91,12 @@ func (r *HazardHistoryService) Count(ctx context.Context, query HazardHistoryCou
 	return
 }
 
-// Service operation to dynamically query historical data by a variety of query
-// parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
-func (r *HazardHistoryService) Query(ctx context.Context, query HazardHistoryQueryParams, opts ...option.RequestOption) (res *[]HazardHistoryQueryResponse, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "udl/hazard/history"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
-}
-
 // Hazard contains information concerning the exposure of a geographic area to a
 // Chemical, Biological, Radiological, or Nuclear (CBRN) contaminant. The Hazard
 // schema includes the detection time and type of contamination as well as optional
 // information regarding specific material properties, the extent of contamination,
 // and identification of affected regions.
-type HazardHistoryQueryResponse struct {
+type HazardHistoryListResponse struct {
 	// Array of the specific alarms associated with this detection. The alarms and
 	// alarmValues arrays must contain the same number of elements.
 	Alarms []string `json:"alarms,required"`
@@ -102,7 +121,7 @@ type HazardHistoryQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode HazardHistoryQueryResponseDataMode `json:"dataMode,required"`
+	DataMode HazardHistoryListResponseDataMode `json:"dataMode,required"`
 	// The detect time, in ISO 8601 UTC format, with millisecond precision.
 	DetectTime time.Time `json:"detectTime,required" format:"date-time"`
 	// The type of hazard (Chemical, Biological, Radiological, Nuclear) detect
@@ -283,8 +302,8 @@ type HazardHistoryQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r HazardHistoryQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *HazardHistoryQueryResponse) UnmarshalJSON(data []byte) error {
+func (r HazardHistoryListResponse) RawJSON() string { return r.JSON.raw }
+func (r *HazardHistoryListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -302,14 +321,36 @@ func (r *HazardHistoryQueryResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type HazardHistoryQueryResponseDataMode string
+type HazardHistoryListResponseDataMode string
 
 const (
-	HazardHistoryQueryResponseDataModeReal      HazardHistoryQueryResponseDataMode = "REAL"
-	HazardHistoryQueryResponseDataModeTest      HazardHistoryQueryResponseDataMode = "TEST"
-	HazardHistoryQueryResponseDataModeSimulated HazardHistoryQueryResponseDataMode = "SIMULATED"
-	HazardHistoryQueryResponseDataModeExercise  HazardHistoryQueryResponseDataMode = "EXERCISE"
+	HazardHistoryListResponseDataModeReal      HazardHistoryListResponseDataMode = "REAL"
+	HazardHistoryListResponseDataModeTest      HazardHistoryListResponseDataMode = "TEST"
+	HazardHistoryListResponseDataModeSimulated HazardHistoryListResponseDataMode = "SIMULATED"
+	HazardHistoryListResponseDataModeExercise  HazardHistoryListResponseDataMode = "EXERCISE"
 )
+
+type HazardHistoryListParams struct {
+	// The detect time, in ISO 8601 UTC format, with millisecond precision.
+	// (YYYY-MM-DDTHH:MM:SS.sssZ)
+	DetectTime time.Time `query:"detectTime,required" format:"date-time" json:"-"`
+	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
+	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// query fields that can be selected.
+	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
+	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [HazardHistoryListParams]'s query parameters as
+// `url.Values`.
+func (r HazardHistoryListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
 
 type HazardHistoryAodrParams struct {
 	// The detect time, in ISO 8601 UTC format, with millisecond precision.
@@ -356,28 +397,6 @@ type HazardHistoryCountParams struct {
 // URLQuery serializes [HazardHistoryCountParams]'s query parameters as
 // `url.Values`.
 func (r HazardHistoryCountParams) URLQuery() (v url.Values, err error) {
-	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
-		ArrayFormat:  apiquery.ArrayQueryFormatComma,
-		NestedFormat: apiquery.NestedQueryFormatBrackets,
-	})
-}
-
-type HazardHistoryQueryParams struct {
-	// The detect time, in ISO 8601 UTC format, with millisecond precision.
-	// (YYYY-MM-DDTHH:MM:SS.sssZ)
-	DetectTime time.Time `query:"detectTime,required" format:"date-time" json:"-"`
-	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
-	// query fields that can be selected.
-	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
-	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
-	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
-	paramObj
-}
-
-// URLQuery serializes [HazardHistoryQueryParams]'s query parameters as
-// `url.Values`.
-func (r HazardHistoryQueryParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

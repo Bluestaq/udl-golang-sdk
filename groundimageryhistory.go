@@ -12,6 +12,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
@@ -35,6 +36,35 @@ func NewGroundImageryHistoryService(opts ...option.RequestOption) (r GroundImage
 	return
 }
 
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *GroundImageryHistoryService) List(ctx context.Context, query GroundImageryHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[GroundImageryHistoryListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/groundimagery/history"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *GroundImageryHistoryService) ListAutoPaging(ctx context.Context, query GroundImageryHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[GroundImageryHistoryListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
+}
+
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
@@ -48,19 +78,8 @@ func (r *GroundImageryHistoryService) Count(ctx context.Context, query GroundIma
 	return
 }
 
-// Service operation to dynamically query historical data by a variety of query
-// parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
-func (r *GroundImageryHistoryService) Query(ctx context.Context, query GroundImageryHistoryQueryParams, opts ...option.RequestOption) (res *[]GroundImageryHistoryQueryResponse, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "udl/groundimagery/history"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
-}
-
 // Imagery of terrestrial regions from on-orbit, air, and other sensors.
-type GroundImageryHistoryQueryResponse struct {
+type GroundImageryHistoryListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -79,7 +98,7 @@ type GroundImageryHistoryQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode GroundImageryHistoryQueryResponseDataMode `json:"dataMode,required"`
+	DataMode GroundImageryHistoryListResponseDataMode `json:"dataMode,required"`
 	// Name of the image file.
 	Filename string `json:"filename,required"`
 	// Timestamp the image was captured/produced.
@@ -203,8 +222,8 @@ type GroundImageryHistoryQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r GroundImageryHistoryQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *GroundImageryHistoryQueryResponse) UnmarshalJSON(data []byte) error {
+func (r GroundImageryHistoryListResponse) RawJSON() string { return r.JSON.raw }
+func (r *GroundImageryHistoryListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -222,14 +241,35 @@ func (r *GroundImageryHistoryQueryResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type GroundImageryHistoryQueryResponseDataMode string
+type GroundImageryHistoryListResponseDataMode string
 
 const (
-	GroundImageryHistoryQueryResponseDataModeReal      GroundImageryHistoryQueryResponseDataMode = "REAL"
-	GroundImageryHistoryQueryResponseDataModeTest      GroundImageryHistoryQueryResponseDataMode = "TEST"
-	GroundImageryHistoryQueryResponseDataModeSimulated GroundImageryHistoryQueryResponseDataMode = "SIMULATED"
-	GroundImageryHistoryQueryResponseDataModeExercise  GroundImageryHistoryQueryResponseDataMode = "EXERCISE"
+	GroundImageryHistoryListResponseDataModeReal      GroundImageryHistoryListResponseDataMode = "REAL"
+	GroundImageryHistoryListResponseDataModeTest      GroundImageryHistoryListResponseDataMode = "TEST"
+	GroundImageryHistoryListResponseDataModeSimulated GroundImageryHistoryListResponseDataMode = "SIMULATED"
+	GroundImageryHistoryListResponseDataModeExercise  GroundImageryHistoryListResponseDataMode = "EXERCISE"
 )
+
+type GroundImageryHistoryListParams struct {
+	// Timestamp the image was captured/produced. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+	ImageTime time.Time `query:"imageTime,required" format:"date-time" json:"-"`
+	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
+	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// query fields that can be selected.
+	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
+	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [GroundImageryHistoryListParams]'s query parameters as
+// `url.Values`.
+func (r GroundImageryHistoryListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
 
 type GroundImageryHistoryCountParams struct {
 	// Timestamp the image was captured/produced. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
@@ -242,27 +282,6 @@ type GroundImageryHistoryCountParams struct {
 // URLQuery serializes [GroundImageryHistoryCountParams]'s query parameters as
 // `url.Values`.
 func (r GroundImageryHistoryCountParams) URLQuery() (v url.Values, err error) {
-	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
-		ArrayFormat:  apiquery.ArrayQueryFormatComma,
-		NestedFormat: apiquery.NestedQueryFormatBrackets,
-	})
-}
-
-type GroundImageryHistoryQueryParams struct {
-	// Timestamp the image was captured/produced. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	ImageTime time.Time `query:"imageTime,required" format:"date-time" json:"-"`
-	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
-	// query fields that can be selected.
-	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
-	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
-	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
-	paramObj
-}
-
-// URLQuery serializes [GroundImageryHistoryQueryParams]'s query parameters as
-// `url.Values`.
-func (r GroundImageryHistoryQueryParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
