@@ -16,6 +16,7 @@ import (
 	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 	"github.com/Bluestaq/udl-golang-sdk/shared"
@@ -79,6 +80,35 @@ func (r *AviationRiskManagementService) Update(ctx context.Context, id string, b
 	return
 }
 
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *AviationRiskManagementService) List(ctx context.Context, query AviationRiskManagementListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AviationRiskManagementListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/aviationriskmanagement"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query data by a variety of query parameters not
+// specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *AviationRiskManagementService) ListAutoPaging(ctx context.Context, query AviationRiskManagementListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[AviationRiskManagementListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
+}
+
 // Service operation to delete an Aviation Risk Management record specified by the
 // passed ID path parameter. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
@@ -117,17 +147,6 @@ func (r *AviationRiskManagementService) NewBulk(ctx context.Context, body Aviati
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/aviationriskmanagement/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
-}
-
-// Service operation to dynamically query data by a variety of query parameters not
-// specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
-func (r *AviationRiskManagementService) Query(ctx context.Context, query AviationRiskManagementQueryParams, opts ...option.RequestOption) (res *[]AviationRiskManagementQueryResponse, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "udl/aviationriskmanagement"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
 }
 
@@ -455,7 +474,7 @@ func (r *AviationRiskManagementGetResponseAviationRiskManagementWorksheetRecordA
 // Aviation Risk Management is used to identify, evaluate, and track risks when
 // mission planning by accounting for factors such as crew fatigue and mission
 // complexity.
-type AviationRiskManagementQueryResponse struct {
+type AviationRiskManagementListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -474,7 +493,7 @@ type AviationRiskManagementQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode AviationRiskManagementQueryResponseDataMode `json:"dataMode,required"`
+	DataMode AviationRiskManagementListResponseDataMode `json:"dataMode,required"`
 	// The unique identifier of the mission to which this risk management record is
 	// assigned.
 	IDMission string `json:"idMission,required"`
@@ -484,7 +503,7 @@ type AviationRiskManagementQueryResponse struct {
 	// create operations.
 	ID string `json:"id"`
 	// Collection of Aviation Risk Management Worksheet Records.
-	AviationRiskManagementWorksheetRecord []AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecord `json:"aviationRiskManagementWorksheetRecord"`
+	AviationRiskManagementWorksheetRecord []AviationRiskManagementListResponseAviationRiskManagementWorksheetRecord `json:"aviationRiskManagementWorksheetRecord"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -542,8 +561,8 @@ type AviationRiskManagementQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r AviationRiskManagementQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *AviationRiskManagementQueryResponse) UnmarshalJSON(data []byte) error {
+func (r AviationRiskManagementListResponse) RawJSON() string { return r.JSON.raw }
+func (r *AviationRiskManagementListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -561,17 +580,17 @@ func (r *AviationRiskManagementQueryResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type AviationRiskManagementQueryResponseDataMode string
+type AviationRiskManagementListResponseDataMode string
 
 const (
-	AviationRiskManagementQueryResponseDataModeReal      AviationRiskManagementQueryResponseDataMode = "REAL"
-	AviationRiskManagementQueryResponseDataModeTest      AviationRiskManagementQueryResponseDataMode = "TEST"
-	AviationRiskManagementQueryResponseDataModeSimulated AviationRiskManagementQueryResponseDataMode = "SIMULATED"
-	AviationRiskManagementQueryResponseDataModeExercise  AviationRiskManagementQueryResponseDataMode = "EXERCISE"
+	AviationRiskManagementListResponseDataModeReal      AviationRiskManagementListResponseDataMode = "REAL"
+	AviationRiskManagementListResponseDataModeTest      AviationRiskManagementListResponseDataMode = "TEST"
+	AviationRiskManagementListResponseDataModeSimulated AviationRiskManagementListResponseDataMode = "SIMULATED"
+	AviationRiskManagementListResponseDataModeExercise  AviationRiskManagementListResponseDataMode = "EXERCISE"
 )
 
 // Collection of Aviation Risk Management Worksheet Records.
-type AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecord struct {
+type AviationRiskManagementListResponseAviationRiskManagementWorksheetRecord struct {
 	// Date of the mission in ISO 8601 date-only format (YYYY-MM-DD).
 	MissionDate time.Time `json:"missionDate,required" format:"date"`
 	// The aircraft Model Design Series (MDS) designation (e.g. E-2C HAWKEYE, F-15
@@ -584,7 +603,7 @@ type AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecord st
 	// Flag indicating the worksheet record is approved.
 	Approved bool `json:"approved"`
 	// Collection of Aviation Risk Management worksheet record scores.
-	AviationRiskManagementWorksheetScore []AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore `json:"aviationRiskManagementWorksheetScore"`
+	AviationRiskManagementWorksheetScore []AviationRiskManagementListResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore `json:"aviationRiskManagementWorksheetScore"`
 	// Comment(s) explaining why the worksheet record has been approved or disapproved.
 	DispositionComments string `json:"dispositionComments"`
 	// Optional identifier of the worksheet record provided by the data source. This
@@ -639,15 +658,15 @@ type AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecord st
 }
 
 // Returns the unmodified JSON received from the API
-func (r AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecord) RawJSON() string {
+func (r AviationRiskManagementListResponseAviationRiskManagementWorksheetRecord) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecord) UnmarshalJSON(data []byte) error {
+func (r *AviationRiskManagementListResponseAviationRiskManagementWorksheetRecord) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of Aviation Risk Management worksheet record scores.
-type AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
+type AviationRiskManagementListResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore struct {
 	// Timestamp the worksheet record score was approval or disapproval, in ISO 8601
 	// UTC format with millisecond precision.
 	ApprovalDate time.Time `json:"approvalDate" format:"date-time"`
@@ -658,7 +677,7 @@ type AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAvi
 	// DISAPPROVED.
 	ApprovedCode int64 `json:"approvedCode"`
 	// Collection of aviation risk management worksheet record score aircraft sorties.
-	AviationRiskManagementSortie []AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie `json:"aviationRiskManagementSortie"`
+	AviationRiskManagementSortie []AviationRiskManagementListResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie `json:"aviationRiskManagementSortie"`
 	// Optional identifier of the worksheet record score provided by the data source.
 	// This field has no meaning within UDL and is provided as a convenience for
 	// systems that require tracking of an internal system generated ID.
@@ -696,15 +715,15 @@ type AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAvi
 }
 
 // Returns the unmodified JSON received from the API
-func (r AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) RawJSON() string {
+func (r AviationRiskManagementListResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) UnmarshalJSON(data []byte) error {
+func (r *AviationRiskManagementListResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScore) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collection of aviation risk management worksheet record score aircraft sorties.
-type AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
+type AviationRiskManagementListResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie struct {
 	// Optional aircraft sortie ID from external systems. This field has no meaning
 	// within UDL and is provided as a convenience for systems that require tracking of
 	// an internal system generated ID.
@@ -730,10 +749,10 @@ type AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAvi
 }
 
 // Returns the unmodified JSON received from the API
-func (r AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) RawJSON() string {
+func (r AviationRiskManagementListResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) RawJSON() string {
 	return r.JSON.raw
 }
-func (r *AviationRiskManagementQueryResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) UnmarshalJSON(data []byte) error {
+func (r *AviationRiskManagementListResponseAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -1485,6 +1504,24 @@ func (r *AviationRiskManagementUpdateParamsAviationRiskManagementWorksheetRecord
 	return apijson.UnmarshalRoot(data, r)
 }
 
+type AviationRiskManagementListParams struct {
+	// The unique identifier of the mission to which this risk management record is
+	// assigned.
+	IDMission   string           `query:"idMission,required" json:"-"`
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [AviationRiskManagementListParams]'s query parameters as
+// `url.Values`.
+func (r AviationRiskManagementListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
 type AviationRiskManagementCountParams struct {
 	// The unique identifier of the mission to which this risk management record is
 	// assigned.
@@ -1724,24 +1761,6 @@ func (r AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRe
 }
 func (r *AviationRiskManagementNewBulkParamsBodyAviationRiskManagementWorksheetRecordAviationRiskManagementWorksheetScoreAviationRiskManagementSortie) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
-}
-
-type AviationRiskManagementQueryParams struct {
-	// The unique identifier of the mission to which this risk management record is
-	// assigned.
-	IDMission   string           `query:"idMission,required" json:"-"`
-	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
-	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
-	paramObj
-}
-
-// URLQuery serializes [AviationRiskManagementQueryParams]'s query parameters as
-// `url.Values`.
-func (r AviationRiskManagementQueryParams) URLQuery() (v url.Values, err error) {
-	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
-		ArrayFormat:  apiquery.ArrayQueryFormatComma,
-		NestedFormat: apiquery.NestedQueryFormatBrackets,
-	})
 }
 
 type AviationRiskManagementTupleParams struct {

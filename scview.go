@@ -15,27 +15,27 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 )
 
-// ScsViewService contains methods and other services that help with interacting
+// ScViewService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
 // Note, unlike clients, this service does not read variables from the environment
 // automatically. You should not instantiate this service directly, and instead use
-// the [NewScsViewService] method instead.
-type ScsViewService struct {
+// the [NewScViewService] method instead.
+type ScViewService struct {
 	Options []option.RequestOption
 }
 
-// NewScsViewService generates a new service that applies the given options to each
+// NewScViewService generates a new service that applies the given options to each
 // request. These options are applied after the parent client's options (if there
 // is one), and before any request-specific options.
-func NewScsViewService(opts ...option.RequestOption) (r ScsViewService) {
-	r = ScsViewService{}
+func NewScViewService(opts ...option.RequestOption) (r ScViewService) {
+	r = ScViewService{}
 	r.Options = opts
 	return
 }
 
 // Return a single file to view in browser.
-func (r *ScsViewService) Get(ctx context.Context, id string, query ScsViewGetParams, opts ...option.RequestOption) (res *http.Response, err error) {
+func (r *ScViewService) Get(ctx context.Context, id string, query ScViewGetParams, opts ...option.RequestOption) (res *http.Response, err error) {
 	opts = append(r.Options[:], opts...)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	if id == "" {
@@ -47,14 +47,14 @@ func (r *ScsViewService) Get(ctx context.Context, id string, query ScsViewGetPar
 	return
 }
 
-type ScsViewGetParams struct {
+type ScViewGetParams struct {
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
 }
 
-// URLQuery serializes [ScsViewGetParams]'s query parameters as `url.Values`.
-func (r ScsViewGetParams) URLQuery() (v url.Values, err error) {
+// URLQuery serializes [ScViewGetParams]'s query parameters as `url.Values`.
+func (r ScViewGetParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

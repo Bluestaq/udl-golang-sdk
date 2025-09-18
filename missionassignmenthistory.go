@@ -12,6 +12,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
@@ -33,6 +34,35 @@ func NewMissionAssignmentHistoryService(opts ...option.RequestOption) (r Mission
 	r = MissionAssignmentHistoryService{}
 	r.Options = opts
 	return
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *MissionAssignmentHistoryService) List(ctx context.Context, query MissionAssignmentHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[MissionAssignmentHistoryListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/missionassignment/history"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *MissionAssignmentHistoryService) ListAutoPaging(ctx context.Context, query MissionAssignmentHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[MissionAssignmentHistoryListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to dynamically query historical data by a variety of query
@@ -61,19 +91,8 @@ func (r *MissionAssignmentHistoryService) Count(ctx context.Context, query Missi
 	return
 }
 
-// Service operation to dynamically query historical data by a variety of query
-// parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
-func (r *MissionAssignmentHistoryService) Query(ctx context.Context, query MissionAssignmentHistoryQueryParams, opts ...option.RequestOption) (res *[]MissionAssignmentHistoryQueryResponse, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "udl/missionassignment/history"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
-}
-
 // Platform mission assignment data.
-type MissionAssignmentHistoryQueryResponse struct {
+type MissionAssignmentHistoryListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -92,7 +111,7 @@ type MissionAssignmentHistoryQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode MissionAssignmentHistoryQueryResponseDataMode `json:"dataMode,required"`
+	DataMode MissionAssignmentHistoryListResponseDataMode `json:"dataMode,required"`
 	// The mission assignment discrete value.
 	Mad string `json:"mad,required"`
 	// Source of the data.
@@ -309,8 +328,8 @@ type MissionAssignmentHistoryQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r MissionAssignmentHistoryQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *MissionAssignmentHistoryQueryResponse) UnmarshalJSON(data []byte) error {
+func (r MissionAssignmentHistoryListResponse) RawJSON() string { return r.JSON.raw }
+func (r *MissionAssignmentHistoryListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -328,14 +347,36 @@ func (r *MissionAssignmentHistoryQueryResponse) UnmarshalJSON(data []byte) error
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type MissionAssignmentHistoryQueryResponseDataMode string
+type MissionAssignmentHistoryListResponseDataMode string
 
 const (
-	MissionAssignmentHistoryQueryResponseDataModeReal      MissionAssignmentHistoryQueryResponseDataMode = "REAL"
-	MissionAssignmentHistoryQueryResponseDataModeTest      MissionAssignmentHistoryQueryResponseDataMode = "TEST"
-	MissionAssignmentHistoryQueryResponseDataModeSimulated MissionAssignmentHistoryQueryResponseDataMode = "SIMULATED"
-	MissionAssignmentHistoryQueryResponseDataModeExercise  MissionAssignmentHistoryQueryResponseDataMode = "EXERCISE"
+	MissionAssignmentHistoryListResponseDataModeReal      MissionAssignmentHistoryListResponseDataMode = "REAL"
+	MissionAssignmentHistoryListResponseDataModeTest      MissionAssignmentHistoryListResponseDataMode = "TEST"
+	MissionAssignmentHistoryListResponseDataModeSimulated MissionAssignmentHistoryListResponseDataMode = "SIMULATED"
+	MissionAssignmentHistoryListResponseDataModeExercise  MissionAssignmentHistoryListResponseDataMode = "EXERCISE"
 )
+
+type MissionAssignmentHistoryListParams struct {
+	// the timestamp of the mission data, in ISO 8601 UTC format.
+	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
+	Ts time.Time `query:"ts,required" format:"date-time" json:"-"`
+	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
+	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// query fields that can be selected.
+	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
+	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [MissionAssignmentHistoryListParams]'s query parameters as
+// `url.Values`.
+func (r MissionAssignmentHistoryListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
 
 type MissionAssignmentHistoryAodrParams struct {
 	// the timestamp of the mission data, in ISO 8601 UTC format.
@@ -382,28 +423,6 @@ type MissionAssignmentHistoryCountParams struct {
 // URLQuery serializes [MissionAssignmentHistoryCountParams]'s query parameters as
 // `url.Values`.
 func (r MissionAssignmentHistoryCountParams) URLQuery() (v url.Values, err error) {
-	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
-		ArrayFormat:  apiquery.ArrayQueryFormatComma,
-		NestedFormat: apiquery.NestedQueryFormatBrackets,
-	})
-}
-
-type MissionAssignmentHistoryQueryParams struct {
-	// the timestamp of the mission data, in ISO 8601 UTC format.
-	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Ts time.Time `query:"ts,required" format:"date-time" json:"-"`
-	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
-	// query fields that can be selected.
-	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
-	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
-	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
-	paramObj
-}
-
-// URLQuery serializes [MissionAssignmentHistoryQueryParams]'s query parameters as
-// `url.Values`.
-func (r MissionAssignmentHistoryQueryParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

@@ -12,6 +12,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 	"github.com/Bluestaq/udl-golang-sdk/shared"
@@ -40,11 +41,29 @@ func NewSensorPlanHistoryService(opts ...option.RequestOption) (r SensorPlanHist
 // parameters not specified in this API documentation. See the queryhelp operation
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
-func (r *SensorPlanHistoryService) Get(ctx context.Context, query SensorPlanHistoryGetParams, opts ...option.RequestOption) (res *[]SensorPlanHistoryGetResponse, err error) {
+func (r *SensorPlanHistoryService) List(ctx context.Context, query SensorPlanHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SensorPlanHistoryListResponse], err error) {
+	var raw *http.Response
 	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/sensorplan/history"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *SensorPlanHistoryService) ListAutoPaging(ctx context.Context, query SensorPlanHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SensorPlanHistoryListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to dynamically query historical data by a variety of query
@@ -76,7 +95,7 @@ func (r *SensorPlanHistoryService) Count(ctx context.Context, query SensorPlanHi
 // A Plan is used to aggregate two or more of the same type of record to a parent
 // entity, with the planId (UUID) being included in all of the subordinate records,
 // enabling resolution back to the parent.
-type SensorPlanHistoryGetResponse struct {
+type SensorPlanHistoryListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -95,7 +114,7 @@ type SensorPlanHistoryGetResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SensorPlanHistoryGetResponseDataMode `json:"dataMode,required"`
+	DataMode SensorPlanHistoryListResponseDataMode `json:"dataMode,required"`
 	// The type of records that comprise this parent set (COLLECT, CONTACT).
 	RecType string `json:"recType,required"`
 	// Source of the data.
@@ -109,7 +128,7 @@ type SensorPlanHistoryGetResponse struct {
 	// The list of collect requests belonging to the SensorPlan. Each collect request
 	// is associated with a parent SensorPlan via the IdPlan. If provided, the list
 	// must have the same size as reqTotal.
-	CollectRequests []SensorPlanHistoryGetResponseCollectRequest `json:"collectRequests"`
+	CollectRequests []SensorPlanHistoryListResponseCollectRequest `json:"collectRequests"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -190,8 +209,8 @@ type SensorPlanHistoryGetResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SensorPlanHistoryGetResponse) RawJSON() string { return r.JSON.raw }
-func (r *SensorPlanHistoryGetResponse) UnmarshalJSON(data []byte) error {
+func (r SensorPlanHistoryListResponse) RawJSON() string { return r.JSON.raw }
+func (r *SensorPlanHistoryListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -209,13 +228,13 @@ func (r *SensorPlanHistoryGetResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type SensorPlanHistoryGetResponseDataMode string
+type SensorPlanHistoryListResponseDataMode string
 
 const (
-	SensorPlanHistoryGetResponseDataModeReal      SensorPlanHistoryGetResponseDataMode = "REAL"
-	SensorPlanHistoryGetResponseDataModeTest      SensorPlanHistoryGetResponseDataMode = "TEST"
-	SensorPlanHistoryGetResponseDataModeSimulated SensorPlanHistoryGetResponseDataMode = "SIMULATED"
-	SensorPlanHistoryGetResponseDataModeExercise  SensorPlanHistoryGetResponseDataMode = "EXERCISE"
+	SensorPlanHistoryListResponseDataModeReal      SensorPlanHistoryListResponseDataMode = "REAL"
+	SensorPlanHistoryListResponseDataModeTest      SensorPlanHistoryListResponseDataMode = "TEST"
+	SensorPlanHistoryListResponseDataModeSimulated SensorPlanHistoryListResponseDataMode = "SIMULATED"
+	SensorPlanHistoryListResponseDataModeExercise  SensorPlanHistoryListResponseDataMode = "EXERCISE"
 )
 
 // Collect Requests support several types of individual requests, or
@@ -224,7 +243,7 @@ const (
 // single sensor-object tasking, search operations, and TT&C support. Multiple
 // requests originating from a plan or schedule may be associated to a sensor plan
 // if desired.
-type SensorPlanHistoryGetResponseCollectRequest struct {
+type SensorPlanHistoryListResponseCollectRequest struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -294,7 +313,7 @@ type SensorPlanHistoryGetResponseCollectRequest struct {
 	// of a particular satellite. The data is used along with an orbit propagator in
 	// order to predict the motion of a satellite. The element set, or elset for short,
 	// consists of identification data, the classical elements and drag parameters.
-	Elset SensorPlanHistoryGetResponseCollectRequestElset `json:"elset"`
+	Elset SensorPlanHistoryListResponseCollectRequestElset `json:"elset"`
 	// The end time of the collect or contact request window, in ISO 8601 UTC format.
 	// If no endTime or duration is provided it is assumed the request is either
 	// ongoing or that the request is for a specified number of tracks (numTracks). If
@@ -462,7 +481,7 @@ type SensorPlanHistoryGetResponseCollectRequest struct {
 	// may be in another frame depending on the provider and/or datatype. Please see
 	// the 'Discover' tab in the storefront to confirm coordinate frames by data
 	// provider.
-	StateVector SensorPlanHistoryGetResponseCollectRequestStateVector `json:"stateVector"`
+	StateVector SensorPlanHistoryListResponseCollectRequestStateVector `json:"stateVector"`
 	// The stopping HAE WGS-84 height above ellipsoid (HAE), of a volume definition, in
 	// kilometers. The stopAlt value is only meaningful if a (starting) alt value is
 	// provided.
@@ -630,8 +649,8 @@ type SensorPlanHistoryGetResponseCollectRequest struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SensorPlanHistoryGetResponseCollectRequest) RawJSON() string { return r.JSON.raw }
-func (r *SensorPlanHistoryGetResponseCollectRequest) UnmarshalJSON(data []byte) error {
+func (r SensorPlanHistoryListResponseCollectRequest) RawJSON() string { return r.JSON.raw }
+func (r *SensorPlanHistoryListResponseCollectRequest) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -639,7 +658,7 @@ func (r *SensorPlanHistoryGetResponseCollectRequest) UnmarshalJSON(data []byte) 
 // of a particular satellite. The data is used along with an orbit propagator in
 // order to predict the motion of a satellite. The element set, or elset for short,
 // consists of identification data, the classical elements and drag parameters.
-type SensorPlanHistoryGetResponseCollectRequestElset struct {
+type SensorPlanHistoryListResponseCollectRequestElset struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -882,8 +901,8 @@ type SensorPlanHistoryGetResponseCollectRequestElset struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SensorPlanHistoryGetResponseCollectRequestElset) RawJSON() string { return r.JSON.raw }
-func (r *SensorPlanHistoryGetResponseCollectRequestElset) UnmarshalJSON(data []byte) error {
+func (r SensorPlanHistoryListResponseCollectRequestElset) RawJSON() string { return r.JSON.raw }
+func (r *SensorPlanHistoryListResponseCollectRequestElset) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -895,7 +914,7 @@ func (r *SensorPlanHistoryGetResponseCollectRequestElset) UnmarshalJSON(data []b
 // may be in another frame depending on the provider and/or datatype. Please see
 // the 'Discover' tab in the storefront to confirm coordinate frames by data
 // provider.
-type SensorPlanHistoryGetResponseCollectRequestStateVector struct {
+type SensorPlanHistoryListResponseCollectRequestStateVector struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -1440,12 +1459,12 @@ type SensorPlanHistoryGetResponseCollectRequestStateVector struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r SensorPlanHistoryGetResponseCollectRequestStateVector) RawJSON() string { return r.JSON.raw }
-func (r *SensorPlanHistoryGetResponseCollectRequestStateVector) UnmarshalJSON(data []byte) error {
+func (r SensorPlanHistoryListResponseCollectRequestStateVector) RawJSON() string { return r.JSON.raw }
+func (r *SensorPlanHistoryListResponseCollectRequestStateVector) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-type SensorPlanHistoryGetParams struct {
+type SensorPlanHistoryListParams struct {
 	// The start time of the plan or schedule, in ISO 8601 UTC format.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	StartTime time.Time `query:"startTime,required" format:"date-time" json:"-"`
@@ -1458,9 +1477,9 @@ type SensorPlanHistoryGetParams struct {
 	paramObj
 }
 
-// URLQuery serializes [SensorPlanHistoryGetParams]'s query parameters as
+// URLQuery serializes [SensorPlanHistoryListParams]'s query parameters as
 // `url.Values`.
-func (r SensorPlanHistoryGetParams) URLQuery() (v url.Values, err error) {
+func (r SensorPlanHistoryListParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

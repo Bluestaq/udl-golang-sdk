@@ -13,6 +13,65 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/option"
 )
 
+func TestFeatureAssessmentHistoryListWithOptionalParams(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := unifieddatalibrary.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithPassword("My Password"),
+		option.WithUsername("My Username"),
+	)
+	_, err := client.FeatureAssessment.History.List(context.TODO(), unifieddatalibrary.FeatureAssessmentHistoryListParams{
+		IDAnalyticImagery: "idAnalyticImagery",
+		Columns:           unifieddatalibrary.String("columns"),
+		FirstResult:       unifieddatalibrary.Int(0),
+		MaxResults:        unifieddatalibrary.Int(0),
+	})
+	if err != nil {
+		var apierr *unifieddatalibrary.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestFeatureAssessmentHistoryAodrWithOptionalParams(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := unifieddatalibrary.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithPassword("My Password"),
+		option.WithUsername("My Username"),
+	)
+	err := client.FeatureAssessment.History.Aodr(context.TODO(), unifieddatalibrary.FeatureAssessmentHistoryAodrParams{
+		IDAnalyticImagery: "idAnalyticImagery",
+		Columns:           unifieddatalibrary.String("columns"),
+		FirstResult:       unifieddatalibrary.Int(0),
+		MaxResults:        unifieddatalibrary.Int(0),
+		Notification:      unifieddatalibrary.String("notification"),
+		OutputDelimiter:   unifieddatalibrary.String("outputDelimiter"),
+		OutputFormat:      unifieddatalibrary.String("outputFormat"),
+	})
+	if err != nil {
+		var apierr *unifieddatalibrary.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
 func TestFeatureAssessmentHistoryCountWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -30,65 +89,6 @@ func TestFeatureAssessmentHistoryCountWithOptionalParams(t *testing.T) {
 		IDAnalyticImagery: "idAnalyticImagery",
 		FirstResult:       unifieddatalibrary.Int(0),
 		MaxResults:        unifieddatalibrary.Int(0),
-	})
-	if err != nil {
-		var apierr *unifieddatalibrary.Error
-		if errors.As(err, &apierr) {
-			t.Log(string(apierr.DumpRequest(true)))
-		}
-		t.Fatalf("err should be nil: %s", err.Error())
-	}
-}
-
-func TestFeatureAssessmentHistoryQueryWithOptionalParams(t *testing.T) {
-	baseURL := "http://localhost:4010"
-	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
-		baseURL = envURL
-	}
-	if !testutil.CheckTestServer(t, baseURL) {
-		return
-	}
-	client := unifieddatalibrary.NewClient(
-		option.WithBaseURL(baseURL),
-		option.WithPassword("My Password"),
-		option.WithUsername("My Username"),
-	)
-	_, err := client.FeatureAssessment.History.Query(context.TODO(), unifieddatalibrary.FeatureAssessmentHistoryQueryParams{
-		IDAnalyticImagery: "idAnalyticImagery",
-		Columns:           unifieddatalibrary.String("columns"),
-		FirstResult:       unifieddatalibrary.Int(0),
-		MaxResults:        unifieddatalibrary.Int(0),
-	})
-	if err != nil {
-		var apierr *unifieddatalibrary.Error
-		if errors.As(err, &apierr) {
-			t.Log(string(apierr.DumpRequest(true)))
-		}
-		t.Fatalf("err should be nil: %s", err.Error())
-	}
-}
-
-func TestFeatureAssessmentHistoryWriteAodrWithOptionalParams(t *testing.T) {
-	baseURL := "http://localhost:4010"
-	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
-		baseURL = envURL
-	}
-	if !testutil.CheckTestServer(t, baseURL) {
-		return
-	}
-	client := unifieddatalibrary.NewClient(
-		option.WithBaseURL(baseURL),
-		option.WithPassword("My Password"),
-		option.WithUsername("My Username"),
-	)
-	err := client.FeatureAssessment.History.WriteAodr(context.TODO(), unifieddatalibrary.FeatureAssessmentHistoryWriteAodrParams{
-		IDAnalyticImagery: "idAnalyticImagery",
-		Columns:           unifieddatalibrary.String("columns"),
-		FirstResult:       unifieddatalibrary.Int(0),
-		MaxResults:        unifieddatalibrary.Int(0),
-		Notification:      unifieddatalibrary.String("notification"),
-		OutputDelimiter:   unifieddatalibrary.String("outputDelimiter"),
-		OutputFormat:      unifieddatalibrary.String("outputFormat"),
 	})
 	if err != nil {
 		var apierr *unifieddatalibrary.Error

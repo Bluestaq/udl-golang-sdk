@@ -14,7 +14,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/option"
 )
 
-func TestSensorPlanHistoryGetWithOptionalParams(t *testing.T) {
+func TestSensorPlanHistoryListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -27,7 +27,7 @@ func TestSensorPlanHistoryGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.SensorPlan.History.Get(context.TODO(), unifieddatalibrary.SensorPlanHistoryGetParams{
+	_, err := client.SensorPlan.History.List(context.TODO(), unifieddatalibrary.SensorPlanHistoryListParams{
 		StartTime:   time.Now(),
 		Columns:     unifieddatalibrary.String("columns"),
 		FirstResult: unifieddatalibrary.Int(0),

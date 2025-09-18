@@ -107,6 +107,33 @@ func TestEmitterGeolocationGetWithOptionalParams(t *testing.T) {
 	}
 }
 
+func TestEmitterGeolocationListWithOptionalParams(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := unifieddatalibrary.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithPassword("My Password"),
+		option.WithUsername("My Username"),
+	)
+	_, err := client.EmitterGeolocation.List(context.TODO(), unifieddatalibrary.EmitterGeolocationListParams{
+		StartTime:   time.Now(),
+		FirstResult: unifieddatalibrary.Int(0),
+		MaxResults:  unifieddatalibrary.Int(0),
+	})
+	if err != nil {
+		var apierr *unifieddatalibrary.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
 func TestEmitterGeolocationDelete(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -212,33 +239,6 @@ func TestEmitterGeolocationNewBulk(t *testing.T) {
 			SignalOfInterest:      unifieddatalibrary.String("GPS"),
 			Tags:                  []string{"TAG1", "TAG2"},
 		}},
-	})
-	if err != nil {
-		var apierr *unifieddatalibrary.Error
-		if errors.As(err, &apierr) {
-			t.Log(string(apierr.DumpRequest(true)))
-		}
-		t.Fatalf("err should be nil: %s", err.Error())
-	}
-}
-
-func TestEmitterGeolocationQueryWithOptionalParams(t *testing.T) {
-	baseURL := "http://localhost:4010"
-	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
-		baseURL = envURL
-	}
-	if !testutil.CheckTestServer(t, baseURL) {
-		return
-	}
-	client := unifieddatalibrary.NewClient(
-		option.WithBaseURL(baseURL),
-		option.WithPassword("My Password"),
-		option.WithUsername("My Username"),
-	)
-	_, err := client.EmitterGeolocation.Query(context.TODO(), unifieddatalibrary.EmitterGeolocationQueryParams{
-		StartTime:   time.Now(),
-		FirstResult: unifieddatalibrary.Int(0),
-		MaxResults:  unifieddatalibrary.Int(0),
 	})
 	if err != nil {
 		var apierr *unifieddatalibrary.Error

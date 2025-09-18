@@ -305,7 +305,7 @@ func TestAircraftQueryhelp(t *testing.T) {
 	}
 }
 
-func TestAircraftTupleQueryWithOptionalParams(t *testing.T) {
+func TestAircraftTupleWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -318,7 +318,7 @@ func TestAircraftTupleQueryWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.Aircraft.TupleQuery(context.TODO(), unifieddatalibrary.AircraftTupleQueryParams{
+	_, err := client.Aircraft.Tuple(context.TODO(), unifieddatalibrary.AircraftTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),

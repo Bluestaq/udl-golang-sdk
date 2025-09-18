@@ -221,3 +221,38 @@ func TestScV2Move(t *testing.T) {
 		t.Fatalf("err should be nil: %s", err.Error())
 	}
 }
+
+func TestScV2SearchWithOptionalParams(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := unifieddatalibrary.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithPassword("My Password"),
+		option.WithUsername("My Username"),
+	)
+	_, err := client.Scs.V2.Search(context.TODO(), unifieddatalibrary.ScV2SearchParams{
+		Order:       unifieddatalibrary.String("order"),
+		SearchAfter: unifieddatalibrary.String("searchAfter"),
+		Size:        unifieddatalibrary.Int(0),
+		Sort:        unifieddatalibrary.String("sort"),
+		Query: unifieddatalibrary.SearchCriterionUnionParam{
+			OfSearchCriterionScsSearchFieldCriterion: &unifieddatalibrary.SearchCriterionScsSearchFieldCriterionParam{
+				Field:    unifieddatalibrary.String("attachment.content"),
+				Operator: "EXACT_MATCH",
+				Value:    unifieddatalibrary.String("This is a very cool file."),
+			},
+		},
+	})
+	if err != nil {
+		var apierr *unifieddatalibrary.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}

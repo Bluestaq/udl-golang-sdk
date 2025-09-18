@@ -30,8 +30,8 @@ import (
 // the [NewStateVectorService] method instead.
 type StateVectorService struct {
 	Options []option.RequestOption
-	History StateVectorHistoryService
 	Current StateVectorCurrentService
+	History StateVectorHistoryService
 }
 
 // NewStateVectorService generates a new service that applies the given options to
@@ -40,8 +40,8 @@ type StateVectorService struct {
 func NewStateVectorService(opts ...option.RequestOption) (r StateVectorService) {
 	r = StateVectorService{}
 	r.Options = opts
-	r.History = NewStateVectorHistoryService(opts...)
 	r.Current = NewStateVectorCurrentService(opts...)
+	r.History = NewStateVectorHistoryService(opts...)
 	return
 }
 

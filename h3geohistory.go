@@ -12,6 +12,7 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
 	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/packages/pagination"
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
@@ -33,6 +34,35 @@ func NewH3GeoHistoryService(opts ...option.RequestOption) (r H3GeoHistoryService
 	r = H3GeoHistoryService{}
 	r.Options = opts
 	return
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *H3GeoHistoryService) List(ctx context.Context, query H3GeoHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[H3GeoHistoryListResponse], err error) {
+	var raw *http.Response
+	opts = append(r.Options[:], opts...)
+	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
+	path := "udl/h3geo/history"
+	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
+	if err != nil {
+		return nil, err
+	}
+	err = cfg.Execute()
+	if err != nil {
+		return nil, err
+	}
+	res.SetPageConfig(cfg, raw)
+	return res, nil
+}
+
+// Service operation to dynamically query historical data by a variety of query
+// parameters not specified in this API documentation. See the queryhelp operation
+// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
+// parameter information.
+func (r *H3GeoHistoryService) ListAutoPaging(ctx context.Context, query H3GeoHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[H3GeoHistoryListResponse] {
+	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to dynamically query historical data by a variety of query
@@ -61,21 +91,10 @@ func (r *H3GeoHistoryService) Count(ctx context.Context, query H3GeoHistoryCount
 	return
 }
 
-// Service operation to dynamically query historical data by a variety of query
-// parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
-func (r *H3GeoHistoryService) Query(ctx context.Context, query H3GeoHistoryQueryParams, opts ...option.RequestOption) (res *[]H3GeoHistoryQueryResponse, err error) {
-	opts = append(r.Options[:], opts...)
-	path := "udl/h3geo/history"
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
-}
-
 // H3 Geospatial Binning is a discrete global grid system for indexing geographies
 // into a hexagonal grid. The H3 schema is a collection of hexagonal cells that
 // contain data for producing geospatial maps over a specified time span.
-type H3GeoHistoryQueryResponse struct {
+type H3GeoHistoryListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking,required"`
 	// Indicator of whether the data is EXERCISE, REAL, SIMULATED, or TEST data:
@@ -94,7 +113,7 @@ type H3GeoHistoryQueryResponse struct {
 	// characteristics.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode H3GeoHistoryQueryResponseDataMode `json:"dataMode,required"`
+	DataMode H3GeoHistoryListResponseDataMode `json:"dataMode,required"`
 	// The number of cells associated with this H3 Geo data set. At this time, UDL
 	// supports up to 50,000 cells.
 	NumCells int64 `json:"numCells,required"`
@@ -154,8 +173,8 @@ type H3GeoHistoryQueryResponse struct {
 }
 
 // Returns the unmodified JSON received from the API
-func (r H3GeoHistoryQueryResponse) RawJSON() string { return r.JSON.raw }
-func (r *H3GeoHistoryQueryResponse) UnmarshalJSON(data []byte) error {
+func (r H3GeoHistoryListResponse) RawJSON() string { return r.JSON.raw }
+func (r *H3GeoHistoryListResponse) UnmarshalJSON(data []byte) error {
 	return apijson.UnmarshalRoot(data, r)
 }
 
@@ -173,14 +192,35 @@ func (r *H3GeoHistoryQueryResponse) UnmarshalJSON(data []byte) error {
 // TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
-type H3GeoHistoryQueryResponseDataMode string
+type H3GeoHistoryListResponseDataMode string
 
 const (
-	H3GeoHistoryQueryResponseDataModeReal      H3GeoHistoryQueryResponseDataMode = "REAL"
-	H3GeoHistoryQueryResponseDataModeTest      H3GeoHistoryQueryResponseDataMode = "TEST"
-	H3GeoHistoryQueryResponseDataModeSimulated H3GeoHistoryQueryResponseDataMode = "SIMULATED"
-	H3GeoHistoryQueryResponseDataModeExercise  H3GeoHistoryQueryResponseDataMode = "EXERCISE"
+	H3GeoHistoryListResponseDataModeReal      H3GeoHistoryListResponseDataMode = "REAL"
+	H3GeoHistoryListResponseDataModeTest      H3GeoHistoryListResponseDataMode = "TEST"
+	H3GeoHistoryListResponseDataModeSimulated H3GeoHistoryListResponseDataMode = "SIMULATED"
+	H3GeoHistoryListResponseDataModeExercise  H3GeoHistoryListResponseDataMode = "EXERCISE"
 )
+
+type H3GeoHistoryListParams struct {
+	// Start time for this H3 Geo data set in ISO 8601 UTC with millisecond precision.
+	// (YYYY-MM-DDTHH:MM:SS.sssZ)
+	StartTime time.Time `query:"startTime,required" format:"date-time" json:"-"`
+	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
+	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// query fields that can be selected.
+	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
+	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [H3GeoHistoryListParams]'s query parameters as `url.Values`.
+func (r H3GeoHistoryListParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
 
 type H3GeoHistoryAdorParams struct {
 	// Start time for this H3 Geo data set in ISO 8601 UTC with millisecond precision.
@@ -226,28 +266,6 @@ type H3GeoHistoryCountParams struct {
 // URLQuery serializes [H3GeoHistoryCountParams]'s query parameters as
 // `url.Values`.
 func (r H3GeoHistoryCountParams) URLQuery() (v url.Values, err error) {
-	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
-		ArrayFormat:  apiquery.ArrayQueryFormatComma,
-		NestedFormat: apiquery.NestedQueryFormatBrackets,
-	})
-}
-
-type H3GeoHistoryQueryParams struct {
-	// Start time for this H3 Geo data set in ISO 8601 UTC with millisecond precision.
-	// (YYYY-MM-DDTHH:MM:SS.sssZ)
-	StartTime time.Time `query:"startTime,required" format:"date-time" json:"-"`
-	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
-	// query fields that can be selected.
-	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
-	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
-	MaxResults  param.Opt[int64]  `query:"maxResults,omitzero" json:"-"`
-	paramObj
-}
-
-// URLQuery serializes [H3GeoHistoryQueryParams]'s query parameters as
-// `url.Values`.
-func (r H3GeoHistoryQueryParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

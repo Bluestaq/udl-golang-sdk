@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-alpha.10 (2025-09-17)
+
+Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
+
+### Features
+
+* **api:** removing old routes ([e97b439](https://github.com/Bluestaq/udl-golang-sdk/commit/e97b439ca5749730b4e332ea89496bd5249e3a8e))
+* **api:** Support for latest UDL release ([246c7fd](https://github.com/Bluestaq/udl-golang-sdk/commit/246c7fd715f8dfa963cfb7f251c4981b8418e36e))
+
 ## 0.1.0-alpha.9 (2025-09-11)
 
 Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)

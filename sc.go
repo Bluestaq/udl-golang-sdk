@@ -28,15 +28,13 @@ import (
 // automatically. You should not instantiate this service directly, and instead use
 // the [NewScService] method instead.
 type ScService struct {
-	Options                []option.RequestOption
-	Folders                ScFolderService
-	ClassificationMarkings ScClassificationMarkingService
-	Groups                 ScGroupService
-	FileMetadata           ScFileMetadataService
-	RangeParameters        ScRangeParameterService
-	Paths                  ScPathService
-	V2                     ScV2Service
-	File                   ScFileService
+	Options       []option.RequestOption
+	Notifications ScNotificationService
+	File          ScFileService
+	Folders       ScFolderService
+	Paths         ScPathService
+	View          ScViewService
+	V2            ScV2Service
 }
 
 // NewScService generates a new service that applies the given options to each
@@ -45,14 +43,12 @@ type ScService struct {
 func NewScService(opts ...option.RequestOption) (r ScService) {
 	r = ScService{}
 	r.Options = opts
-	r.Folders = NewScFolderService(opts...)
-	r.ClassificationMarkings = NewScClassificationMarkingService(opts...)
-	r.Groups = NewScGroupService(opts...)
-	r.FileMetadata = NewScFileMetadataService(opts...)
-	r.RangeParameters = NewScRangeParameterService(opts...)
-	r.Paths = NewScPathService(opts...)
-	r.V2 = NewScV2Service(opts...)
+	r.Notifications = NewScNotificationService(opts...)
 	r.File = NewScFileService(opts...)
+	r.Folders = NewScFolderService(opts...)
+	r.Paths = NewScPathService(opts...)
+	r.View = NewScViewService(opts...)
+	r.V2 = NewScV2Service(opts...)
 	return
 }
 
@@ -158,6 +154,120 @@ func (r *ScService) Search(ctx context.Context, params ScSearchParams, opts ...o
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, &res, opts...)
 	return
 }
+
+// Only one field can be non-zero.
+//
+// Use [param.IsOmitted] to confirm if a field is set.
+type SearchCriterionUnionParam struct {
+	OfSearchCriterionScsSearchFieldCriterion *SearchCriterionScsSearchFieldCriterionParam `json:",omitzero,inline"`
+	OfSearchLogicalCriterion                 *SearchLogicalCriterionParam                 `json:",omitzero,inline"`
+	paramUnion
+}
+
+func (u SearchCriterionUnionParam) MarshalJSON() ([]byte, error) {
+	return param.MarshalUnion(u, u.OfSearchCriterionScsSearchFieldCriterion, u.OfSearchLogicalCriterion)
+}
+func (u *SearchCriterionUnionParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, u)
+}
+
+func (u *SearchCriterionUnionParam) asAny() any {
+	if !param.IsOmitted(u.OfSearchCriterionScsSearchFieldCriterion) {
+		return u.OfSearchCriterionScsSearchFieldCriterion
+	} else if !param.IsOmitted(u.OfSearchLogicalCriterion) {
+		return u.OfSearchLogicalCriterion
+	}
+	return nil
+}
+
+// Returns a pointer to the underlying variant's property, if present.
+func (u SearchCriterionUnionParam) GetField() *string {
+	if vt := u.OfSearchCriterionScsSearchFieldCriterion; vt != nil && vt.Field.Valid() {
+		return &vt.Field.Value
+	}
+	return nil
+}
+
+// Returns a pointer to the underlying variant's property, if present.
+func (u SearchCriterionUnionParam) GetValue() *string {
+	if vt := u.OfSearchCriterionScsSearchFieldCriterion; vt != nil && vt.Value.Valid() {
+		return &vt.Value.Value
+	}
+	return nil
+}
+
+// Returns a pointer to the underlying variant's property, if present.
+func (u SearchCriterionUnionParam) GetCriteria() []SearchCriterionUnionParam {
+	if vt := u.OfSearchLogicalCriterion; vt != nil {
+		return vt.Criteria
+	}
+	return nil
+}
+
+// Returns a pointer to the underlying variant's property, if present.
+func (u SearchCriterionUnionParam) GetOperator() *string {
+	if vt := u.OfSearchCriterionScsSearchFieldCriterion; vt != nil {
+		return (*string)(&vt.Operator)
+	} else if vt := u.OfSearchLogicalCriterion; vt != nil {
+		return (*string)(&vt.Operator)
+	}
+	return nil
+}
+
+// A search on a specific field with a given value and operator.
+type SearchCriterionScsSearchFieldCriterionParam struct {
+	// The field to search on (e.g., attachment.content, createdBy).
+	Field param.Opt[string] `json:"field,omitzero"`
+	// The value to compare against (e.g., The Great Gatsby)
+	Value param.Opt[string] `json:"value,omitzero"`
+	// Supported search operators
+	//
+	// Any of "EXACT_MATCH", "WILDCARD", "FUZZY", "GTE", "LTE", "GT", "LT".
+	Operator string `json:"operator,omitzero"`
+	paramObj
+}
+
+func (r SearchCriterionScsSearchFieldCriterionParam) MarshalJSON() (data []byte, err error) {
+	type shadow SearchCriterionScsSearchFieldCriterionParam
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SearchCriterionScsSearchFieldCriterionParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func init() {
+	apijson.RegisterFieldValidator[SearchCriterionScsSearchFieldCriterionParam](
+		"operator", "EXACT_MATCH", "WILDCARD", "FUZZY", "GTE", "LTE", "GT", "LT",
+	)
+}
+
+// Combines multiple search criteria with a logical operator (AND, OR, NOT).
+type SearchLogicalCriterionParam struct {
+	// List of search criteria to combine
+	Criteria []SearchCriterionUnionParam `json:"criteria,omitzero"`
+	// Supported search operators
+	//
+	// Any of "AND", "OR", "NOT".
+	Operator SearchLogicalCriterionOperator `json:"operator,omitzero"`
+	paramObj
+}
+
+func (r SearchLogicalCriterionParam) MarshalJSON() (data []byte, err error) {
+	type shadow SearchLogicalCriterionParam
+	return param.MarshalObject(r, (*shadow)(&r))
+}
+func (r *SearchLogicalCriterionParam) UnmarshalJSON(data []byte) error {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+// Supported search operators
+type SearchLogicalCriterionOperator string
+
+const (
+	SearchLogicalCriterionOperatorAnd SearchLogicalCriterionOperator = "AND"
+	SearchLogicalCriterionOperatorOr  SearchLogicalCriterionOperator = "OR"
+	SearchLogicalCriterionOperatorNot SearchLogicalCriterionOperator = "NOT"
+)
 
 type ScDeleteParams struct {
 	// The id of the item to delete

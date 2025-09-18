@@ -15,12 +15,12 @@ import (
 type ObservationService struct {
 	Options                 []option.RequestOption
 	Ecpsdr                  ObservationEcpsdrService
+	EoObservations          ObservationEoObservationService
 	Monoradar               ObservationMonoradarService
-	Swir                    ObservationSwirService
+	PassiveRadarObservation ObservationPassiveRadarObservationService
 	Radarobservation        ObservationRadarobservationService
 	RfObservation           ObservationRfObservationService
-	PassiveRadarObservation ObservationPassiveRadarObservationService
-	EoObservations          ObservationEoObservationService
+	Swir                    ObservationSwirService
 }
 
 // NewObservationService generates a new service that applies the given options to
@@ -30,11 +30,11 @@ func NewObservationService(opts ...option.RequestOption) (r ObservationService) 
 	r = ObservationService{}
 	r.Options = opts
 	r.Ecpsdr = NewObservationEcpsdrService(opts...)
+	r.EoObservations = NewObservationEoObservationService(opts...)
 	r.Monoradar = NewObservationMonoradarService(opts...)
-	r.Swir = NewObservationSwirService(opts...)
+	r.PassiveRadarObservation = NewObservationPassiveRadarObservationService(opts...)
 	r.Radarobservation = NewObservationRadarobservationService(opts...)
 	r.RfObservation = NewObservationRfObservationService(opts...)
-	r.PassiveRadarObservation = NewObservationPassiveRadarObservationService(opts...)
-	r.EoObservations = NewObservationEoObservationService(opts...)
+	r.Swir = NewObservationSwirService(opts...)
 	return
 }
