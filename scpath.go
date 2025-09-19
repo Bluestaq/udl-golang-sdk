@@ -9,6 +9,7 @@ import (
 	"mime/multipart"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiform"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
@@ -42,7 +43,7 @@ func NewScPathService(opts ...option.RequestOption) (r ScPathService) {
 //
 // Deprecated: deprecated
 func (r *ScPathService) NewWithFile(ctx context.Context, fileContent io.Reader, body ScPathNewWithFileParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithRequestBody("application/octet-stream", fileContent)}, opts...)
 	path := "scs/path"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, &res, opts...)

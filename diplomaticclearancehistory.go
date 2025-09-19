@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
@@ -41,7 +42,7 @@ func NewDiplomaticClearanceHistoryService(opts ...option.RequestOption) (r Diplo
 // parameter information.
 func (r *DiplomaticClearanceHistoryService) List(ctx context.Context, query DiplomaticClearanceHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[shared.DiplomaticclearanceFull], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/diplomaticclearance/history"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -70,7 +71,7 @@ func (r *DiplomaticClearanceHistoryService) ListAutoPaging(ctx context.Context, 
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
 func (r *DiplomaticClearanceHistoryService) Aodr(ctx context.Context, query DiplomaticClearanceHistoryAodrParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/diplomaticclearance/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
@@ -83,7 +84,7 @@ func (r *DiplomaticClearanceHistoryService) Aodr(ctx context.Context, query Dipl
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *DiplomaticClearanceHistoryService) Count(ctx context.Context, query DiplomaticClearanceHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/diplomaticclearance/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)

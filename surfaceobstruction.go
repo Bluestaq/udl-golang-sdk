@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewSurfaceObstructionService(opts ...option.RequestOption) (r SurfaceObstru
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *SurfaceObstructionService) New(ctx context.Context, body SurfaceObstructionNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/surfaceobstruction"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -56,7 +57,7 @@ func (r *SurfaceObstructionService) New(ctx context.Context, body SurfaceObstruc
 // is required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *SurfaceObstructionService) Update(ctx context.Context, id string, body SurfaceObstructionUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -73,7 +74,7 @@ func (r *SurfaceObstructionService) Update(ctx context.Context, id string, body 
 // parameter information.
 func (r *SurfaceObstructionService) List(ctx context.Context, query SurfaceObstructionListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SurfaceObstructionListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/surfaceobstruction"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -100,7 +101,7 @@ func (r *SurfaceObstructionService) ListAutoPaging(ctx context.Context, query Su
 // ID path parameter. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *SurfaceObstructionService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -117,7 +118,7 @@ func (r *SurfaceObstructionService) Delete(ctx context.Context, id string, opts 
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SurfaceObstructionService) Count(ctx context.Context, query SurfaceObstructionCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/surfaceobstruction/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -127,7 +128,7 @@ func (r *SurfaceObstructionService) Count(ctx context.Context, query SurfaceObst
 // Service operation to get a single surfaceobstruction record by its unique ID
 // passed as a path parameter.
 func (r *SurfaceObstructionService) Get(ctx context.Context, id string, query SurfaceObstructionGetParams, opts ...option.RequestOption) (res *SurfaceObstructionGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -140,7 +141,7 @@ func (r *SurfaceObstructionService) Get(ctx context.Context, id string, query Su
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SurfaceObstructionService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SurfaceObstructionQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/surfaceobstruction/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -155,7 +156,7 @@ func (r *SurfaceObstructionService) Queryhelp(ctx context.Context, opts ...optio
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SurfaceObstructionService) Tuple(ctx context.Context, query SurfaceObstructionTupleParams, opts ...option.RequestOption) (res *[]SurfaceObstructionTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/surfaceobstruction/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -166,7 +167,7 @@ func (r *SurfaceObstructionService) Tuple(ctx context.Context, query SurfaceObst
 // feeds into UDL. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *SurfaceObstructionService) UnvalidatedPublish(ctx context.Context, body SurfaceObstructionUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-surfaceobstruction"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

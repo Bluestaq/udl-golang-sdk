@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewH3GeoHexCellService(opts ...option.RequestOption) (r H3GeoHexCellService
 // parameter information.
 func (r *H3GeoHexCellService) List(ctx context.Context, query H3GeoHexCellListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[H3GeoHexCellListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/h3geohexcell"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -72,7 +73,7 @@ func (r *H3GeoHexCellService) ListAutoPaging(ctx context.Context, query H3GeoHex
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *H3GeoHexCellService) Count(ctx context.Context, query H3GeoHexCellCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/h3geohexcell/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -82,7 +83,7 @@ func (r *H3GeoHexCellService) Count(ctx context.Context, query H3GeoHexCellCount
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *H3GeoHexCellService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *H3GeoHexCellQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/h3geohexcell/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -97,7 +98,7 @@ func (r *H3GeoHexCellService) Queryhelp(ctx context.Context, opts ...option.Requ
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *H3GeoHexCellService) Tuple(ctx context.Context, query H3GeoHexCellTupleParams, opts ...option.RequestOption) (res *[]H3GeoHexCellTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/h3geohexcell/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

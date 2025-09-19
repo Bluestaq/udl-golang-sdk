@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewMissileTrackService(opts ...option.RequestOption) (r MissileTrackService
 // parameter information.
 func (r *MissileTrackService) List(ctx context.Context, query MissileTrackListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[MissileTrackListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/missiletrack"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -76,7 +77,7 @@ func (r *MissileTrackService) ListAutoPaging(ctx context.Context, query MissileT
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *MissileTrackService) Count(ctx context.Context, query MissileTrackCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/missiletrack/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -89,7 +90,7 @@ func (r *MissileTrackService) Count(ctx context.Context, query MissileTrackCount
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
 func (r *MissileTrackService) NewBulk(ctx context.Context, body MissileTrackNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/missiletrack/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -99,7 +100,7 @@ func (r *MissileTrackService) NewBulk(ctx context.Context, body MissileTrackNewB
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *MissileTrackService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *MissileTrackQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/missiletrack/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -114,7 +115,7 @@ func (r *MissileTrackService) Queryhelp(ctx context.Context, opts ...option.Requ
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *MissileTrackService) Tuple(ctx context.Context, query MissileTrackTupleParams, opts ...option.RequestOption) (res *[]MissileTrackTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/missiletrack/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -125,7 +126,7 @@ func (r *MissileTrackService) Tuple(ctx context.Context, query MissileTrackTuple
 // feeds into UDL. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *MissileTrackService) UnvalidatedPublish(ctx context.Context, body MissileTrackUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-missiletrack"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

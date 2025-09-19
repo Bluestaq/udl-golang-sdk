@@ -5,6 +5,7 @@ package unifieddatalibrary
 import (
 	"context"
 	"net/http"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -37,7 +38,7 @@ func NewReportAndActivityUdlH3geoService(opts ...option.RequestOption) (r Report
 // intended to be used for automated feeds into UDL. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *ReportAndActivityUdlH3geoService) UnvalidatedPublish(ctx context.Context, body ReportAndActivityUdlH3geoUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-h3geo"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

@@ -11,6 +11,7 @@ import (
 	"mime/multipart"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiform"
@@ -49,7 +50,7 @@ func NewAnalyticImageryService(opts ...option.RequestOption) (r AnalyticImageryS
 // as a path parameter. AnalyticImagery represents metadata about an image, as well
 // as the actual binary image data.
 func (r *AnalyticImageryService) Get(ctx context.Context, id string, query AnalyticImageryGetParams, opts ...option.RequestOption) (res *shared.AnalyticImageryFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -65,7 +66,7 @@ func (r *AnalyticImageryService) Get(ctx context.Context, id string, query Analy
 // parameter information.
 func (r *AnalyticImageryService) List(ctx context.Context, query AnalyticImageryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AnalyticImageryAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/analyticimagery"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -94,7 +95,7 @@ func (r *AnalyticImageryService) ListAutoPaging(ctx context.Context, query Analy
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *AnalyticImageryService) Count(ctx context.Context, query AnalyticImageryCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/analyticimagery/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -105,7 +106,7 @@ func (r *AnalyticImageryService) Count(ctx context.Context, query AnalyticImager
 // passed as a path parameter. The image is returned as an attachment
 // Content-Disposition.
 func (r *AnalyticImageryService) FileGet(ctx context.Context, id string, query AnalyticImageryFileGetParams, opts ...option.RequestOption) (res *http.Response, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -119,7 +120,7 @@ func (r *AnalyticImageryService) FileGet(ctx context.Context, id string, query A
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *AnalyticImageryService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *AnalyticImageryQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/analyticimagery/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -134,7 +135,7 @@ func (r *AnalyticImageryService) Queryhelp(ctx context.Context, opts ...option.R
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *AnalyticImageryService) Tuple(ctx context.Context, query AnalyticImageryTupleParams, opts ...option.RequestOption) (res *[]AnalyticImageryAbridged, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/analyticimagery/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -158,7 +159,7 @@ func (r *AnalyticImageryService) Tuple(ctx context.Context, query AnalyticImager
 // role is required to perform this service operation. Please contact the UDL team
 // for assistance.
 func (r *AnalyticImageryService) UnvalidatedPublish(ctx context.Context, body AnalyticImageryUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	opts = append([]option.RequestOption{option.WithBaseURL("https://imagery.unifieddatalibrary.com/")}, opts...)
 	path := "filedrop/udl-analyticimagery"

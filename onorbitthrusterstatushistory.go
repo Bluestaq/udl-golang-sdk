@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
@@ -41,7 +42,7 @@ func NewOnorbitthrusterstatusHistoryService(opts ...option.RequestOption) (r Ono
 // parameter information.
 func (r *OnorbitthrusterstatusHistoryService) List(ctx context.Context, query OnorbitthrusterstatusHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[shared.OnorbitthrusterstatusFull], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/onorbitthrusterstatus/history"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -70,7 +71,7 @@ func (r *OnorbitthrusterstatusHistoryService) ListAutoPaging(ctx context.Context
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *OnorbitthrusterstatusHistoryService) Count(ctx context.Context, query OnorbitthrusterstatusHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/onorbitthrusterstatus/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)

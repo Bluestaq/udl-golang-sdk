@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewIsrCollectionService(opts ...option.RequestOption) (r IsrCollectionServi
 // parameter information.
 func (r *IsrCollectionService) List(ctx context.Context, query IsrCollectionListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[IsrCollectionListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/isrcollection"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -76,7 +77,7 @@ func (r *IsrCollectionService) ListAutoPaging(ctx context.Context, query IsrColl
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *IsrCollectionService) Count(ctx context.Context, query IsrCollectionCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/isrcollection/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -89,7 +90,7 @@ func (r *IsrCollectionService) Count(ctx context.Context, query IsrCollectionCou
 // providers should contact the UDL team for specific role assignments and for
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *IsrCollectionService) NewBulk(ctx context.Context, body IsrCollectionNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/isrcollection/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -99,7 +100,7 @@ func (r *IsrCollectionService) NewBulk(ctx context.Context, body IsrCollectionNe
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *IsrCollectionService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *IsrCollectionQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/isrcollection/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -114,7 +115,7 @@ func (r *IsrCollectionService) Queryhelp(ctx context.Context, opts ...option.Req
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *IsrCollectionService) Tuple(ctx context.Context, query IsrCollectionTupleParams, opts ...option.RequestOption) (res *[]IsrCollectionTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/isrcollection/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -125,7 +126,7 @@ func (r *IsrCollectionService) Tuple(ctx context.Context, query IsrCollectionTup
 // into UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *IsrCollectionService) UnvalidatedPublish(ctx context.Context, body IsrCollectionUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-isrcollection"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

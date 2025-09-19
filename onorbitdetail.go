@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -44,7 +45,7 @@ func NewOnorbitdetailService(opts ...option.RequestOption) (r OnorbitdetailServi
 // an on-orbit object. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *OnorbitdetailService) New(ctx context.Context, body OnorbitdetailNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/onorbitdetails"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -56,7 +57,7 @@ func (r *OnorbitdetailService) New(ctx context.Context, body OnorbitdetailNewPar
 // is required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *OnorbitdetailService) Update(ctx context.Context, id string, body OnorbitdetailUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -73,7 +74,7 @@ func (r *OnorbitdetailService) Update(ctx context.Context, id string, body Onorb
 // parameter information.
 func (r *OnorbitdetailService) List(ctx context.Context, query OnorbitdetailListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[OnorbitdetailListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/onorbitdetails"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -101,7 +102,7 @@ func (r *OnorbitdetailService) ListAutoPaging(ctx context.Context, query Onorbit
 // on an on-orbit object. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *OnorbitdetailService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -116,7 +117,7 @@ func (r *OnorbitdetailService) Delete(ctx context.Context, id string, opts ...op
 // as a path parameter. An OnorbitDetails is a collection of additional
 // characteristics on an on-orbit object.
 func (r *OnorbitdetailService) Get(ctx context.Context, id string, query OnorbitdetailGetParams, opts ...option.RequestOption) (res *shared.OnorbitDetailsFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

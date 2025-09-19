@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewOperatingunitremarkService(opts ...option.RequestOption) (r Operatinguni
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *OperatingunitremarkService) New(ctx context.Context, body OperatingunitremarkNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/operatingunitremark"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -58,7 +59,7 @@ func (r *OperatingunitremarkService) New(ctx context.Context, body Operatingunit
 // parameter information.
 func (r *OperatingunitremarkService) List(ctx context.Context, query OperatingunitremarkListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[OperatingunitremarkListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/operatingunitremark"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -87,7 +88,7 @@ func (r *OperatingunitremarkService) ListAutoPaging(ctx context.Context, query O
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *OperatingunitremarkService) Count(ctx context.Context, query OperatingunitremarkCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/operatingunitremark/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -100,7 +101,7 @@ func (r *OperatingunitremarkService) Count(ctx context.Context, query Operatingu
 // providers should contact the UDL team for specific role assignments and for
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *OperatingunitremarkService) NewBulk(ctx context.Context, body OperatingunitremarkNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/operatingunitremark/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -110,7 +111,7 @@ func (r *OperatingunitremarkService) NewBulk(ctx context.Context, body Operating
 // Service operation to get a single operatingunitremark record by its unique ID
 // passed as a path parameter.
 func (r *OperatingunitremarkService) Get(ctx context.Context, id string, query OperatingunitremarkGetParams, opts ...option.RequestOption) (res *shared.OperatingUnitRemarkFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -123,7 +124,7 @@ func (r *OperatingunitremarkService) Get(ctx context.Context, id string, query O
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *OperatingunitremarkService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *OperatingunitremarkQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/operatingunitremark/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -138,7 +139,7 @@ func (r *OperatingunitremarkService) Queryhelp(ctx context.Context, opts ...opti
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *OperatingunitremarkService) Tuple(ctx context.Context, query OperatingunitremarkTupleParams, opts ...option.RequestOption) (res *[]shared.OperatingUnitRemarkFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/operatingunitremark/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

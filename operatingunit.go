@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -44,7 +45,7 @@ func NewOperatingunitService(opts ...option.RequestOption) (r OperatingunitServi
 // controls a space-related Entity. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
 func (r *OperatingunitService) New(ctx context.Context, body OperatingunitNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/operatingunit"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -56,7 +57,7 @@ func (r *OperatingunitService) New(ctx context.Context, body OperatingunitNewPar
 // role is required to perform this service operation. Please contact the UDL team
 // for assistance.
 func (r *OperatingunitService) Update(ctx context.Context, id string, body OperatingunitUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -73,7 +74,7 @@ func (r *OperatingunitService) Update(ctx context.Context, id string, body Opera
 // parameter information.
 func (r *OperatingunitService) List(ctx context.Context, query OperatingunitListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[OperatingunitListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/operatingunit"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -101,7 +102,7 @@ func (r *OperatingunitService) ListAutoPaging(ctx context.Context, query Operati
 // controls a space-related Entity. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
 func (r *OperatingunitService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -118,7 +119,7 @@ func (r *OperatingunitService) Delete(ctx context.Context, id string, opts ...op
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *OperatingunitService) Count(ctx context.Context, query OperatingunitCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/operatingunit/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -129,7 +130,7 @@ func (r *OperatingunitService) Count(ctx context.Context, query OperatingunitCou
 // as a path parameter. Operatingunit defines a unit or organization which operates
 // or controls a space-related Entity.
 func (r *OperatingunitService) Get(ctx context.Context, id string, query OperatingunitGetParams, opts ...option.RequestOption) (res *shared.OperatingunitFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -142,7 +143,7 @@ func (r *OperatingunitService) Get(ctx context.Context, id string, query Operati
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *OperatingunitService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *OperatingunitQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/operatingunit/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -157,7 +158,7 @@ func (r *OperatingunitService) Queryhelp(ctx context.Context, opts ...option.Req
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *OperatingunitService) Tuple(ctx context.Context, query OperatingunitTupleParams, opts ...option.RequestOption) (res *[]shared.OperatingunitFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/operatingunit/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

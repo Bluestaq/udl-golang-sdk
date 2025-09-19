@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewRouteStatService(opts ...option.RequestOption) (r RouteStatService) {
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *RouteStatService) New(ctx context.Context, body RouteStatNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/routestats"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -55,7 +56,7 @@ func (r *RouteStatService) New(ctx context.Context, body RouteStatNewParams, opt
 // Service operation to get a single routeStats record by its unique ID passed as a
 // path parameter.
 func (r *RouteStatService) Get(ctx context.Context, id string, query RouteStatGetParams, opts ...option.RequestOption) (res *RouteStatGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -68,7 +69,7 @@ func (r *RouteStatService) Get(ctx context.Context, id string, query RouteStatGe
 // Service operation to update a single RouteStats. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *RouteStatService) Update(ctx context.Context, id string, body RouteStatUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -85,7 +86,7 @@ func (r *RouteStatService) Update(ctx context.Context, id string, body RouteStat
 // parameter information.
 func (r *RouteStatService) List(ctx context.Context, query RouteStatListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[RouteStatListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/routestats"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -112,7 +113,7 @@ func (r *RouteStatService) ListAutoPaging(ctx context.Context, query RouteStatLi
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *RouteStatService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -129,7 +130,7 @@ func (r *RouteStatService) Delete(ctx context.Context, id string, opts ...option
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *RouteStatService) Count(ctx context.Context, query RouteStatCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/routestats/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -142,7 +143,7 @@ func (r *RouteStatService) Count(ctx context.Context, query RouteStatCountParams
 // the UDL team for specific role assignments and for instructions on setting up a
 // permanent feed through an alternate mechanism.
 func (r *RouteStatService) NewBulk(ctx context.Context, body RouteStatNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/routestats/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -152,7 +153,7 @@ func (r *RouteStatService) NewBulk(ctx context.Context, body RouteStatNewBulkPar
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *RouteStatService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *RouteStatQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/routestats/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -167,7 +168,7 @@ func (r *RouteStatService) QueryHelp(ctx context.Context, opts ...option.Request
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *RouteStatService) Tuple(ctx context.Context, query RouteStatTupleParams, opts ...option.RequestOption) (res *[]RouteStatTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/routestats/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -178,7 +179,7 @@ func (r *RouteStatService) Tuple(ctx context.Context, query RouteStatTupleParams
 // into UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *RouteStatService) UnvalidatedPublish(ctx context.Context, body RouteStatUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-routestats"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

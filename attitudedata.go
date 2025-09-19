@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
@@ -38,7 +39,7 @@ func NewAttitudeDataService(opts ...option.RequestOption) (r AttitudeDataService
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *AttitudeDataService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *AttitudeDataQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/attitudedata/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -53,7 +54,7 @@ func (r *AttitudeDataService) QueryHelp(ctx context.Context, opts ...option.Requ
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *AttitudeDataService) Tuple(ctx context.Context, query AttitudeDataTupleParams, opts ...option.RequestOption) (res *[]shared.AttitudedataFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/attitudedata/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

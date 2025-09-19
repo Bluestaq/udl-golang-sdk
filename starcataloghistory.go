@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
@@ -38,7 +39,7 @@ func NewStarCatalogHistoryService(opts ...option.RequestOption) (r StarCatalogHi
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
 func (r *StarCatalogHistoryService) Aodr(ctx context.Context, query StarCatalogHistoryAodrParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/starcatalog/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)

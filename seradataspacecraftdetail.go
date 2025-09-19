@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewSeradataSpacecraftDetailService(opts ...option.RequestOption) (r Seradat
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *SeradataSpacecraftDetailService) New(ctx context.Context, body SeradataSpacecraftDetailNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/seradataspacecraftdetails"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -54,7 +55,7 @@ func (r *SeradataSpacecraftDetailService) New(ctx context.Context, body Seradata
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *SeradataSpacecraftDetailService) Update(ctx context.Context, id string, body SeradataSpacecraftDetailUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -71,7 +72,7 @@ func (r *SeradataSpacecraftDetailService) Update(ctx context.Context, id string,
 // parameter information.
 func (r *SeradataSpacecraftDetailService) List(ctx context.Context, query SeradataSpacecraftDetailListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SeradataSpacecraftDetailListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/seradataspacecraftdetails"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -98,7 +99,7 @@ func (r *SeradataSpacecraftDetailService) ListAutoPaging(ctx context.Context, qu
 // ID path parameter. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *SeradataSpacecraftDetailService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -115,7 +116,7 @@ func (r *SeradataSpacecraftDetailService) Delete(ctx context.Context, id string,
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SeradataSpacecraftDetailService) Count(ctx context.Context, query SeradataSpacecraftDetailCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/seradataspacecraftdetails/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -125,7 +126,7 @@ func (r *SeradataSpacecraftDetailService) Count(ctx context.Context, query Serad
 // Service operation to get a single SeradataSpacecraftDetails by its unique ID
 // passed as a path parameter.
 func (r *SeradataSpacecraftDetailService) Get(ctx context.Context, id string, query SeradataSpacecraftDetailGetParams, opts ...option.RequestOption) (res *SeradataSpacecraftDetailGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -138,7 +139,7 @@ func (r *SeradataSpacecraftDetailService) Get(ctx context.Context, id string, qu
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SeradataSpacecraftDetailService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SeradataSpacecraftDetailQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradataspacecraftdetails/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -153,7 +154,7 @@ func (r *SeradataSpacecraftDetailService) Queryhelp(ctx context.Context, opts ..
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SeradataSpacecraftDetailService) Tuple(ctx context.Context, query SeradataSpacecraftDetailTupleParams, opts ...option.RequestOption) (res *[]SeradataSpacecraftDetailTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradataspacecraftdetails/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

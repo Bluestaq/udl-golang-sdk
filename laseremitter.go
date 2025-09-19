@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewLaseremitterService(opts ...option.RequestOption) (r LaseremitterService
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *LaseremitterService) New(ctx context.Context, body LaseremitterNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/laseremitter"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -54,7 +55,7 @@ func (r *LaseremitterService) New(ctx context.Context, body LaseremitterNewParam
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *LaseremitterService) Update(ctx context.Context, id string, body LaseremitterUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -71,7 +72,7 @@ func (r *LaseremitterService) Update(ctx context.Context, id string, body Lasere
 // parameter information.
 func (r *LaseremitterService) List(ctx context.Context, query LaseremitterListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LaseremitterListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/laseremitter"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -98,7 +99,7 @@ func (r *LaseremitterService) ListAutoPaging(ctx context.Context, query Laseremi
 // path parameter. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *LaseremitterService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -115,7 +116,7 @@ func (r *LaseremitterService) Delete(ctx context.Context, id string, opts ...opt
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *LaseremitterService) Count(ctx context.Context, query LaseremitterCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/laseremitter/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -125,7 +126,7 @@ func (r *LaseremitterService) Count(ctx context.Context, query LaseremitterCount
 // Service operation to get a single LaserEmitter record by its unique ID passed as
 // a path parameter.
 func (r *LaseremitterService) Get(ctx context.Context, id string, query LaseremitterGetParams, opts ...option.RequestOption) (res *LaseremitterGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -138,7 +139,7 @@ func (r *LaseremitterService) Get(ctx context.Context, id string, query Laseremi
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *LaseremitterService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *LaseremitterQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/laseremitter/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -153,7 +154,7 @@ func (r *LaseremitterService) Queryhelp(ctx context.Context, opts ...option.Requ
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *LaseremitterService) Tuple(ctx context.Context, query LaseremitterTupleParams, opts ...option.RequestOption) (res *[]LaseremitterTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/laseremitter/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

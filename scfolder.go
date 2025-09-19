@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
@@ -41,7 +42,7 @@ func NewScFolderService(opts ...option.RequestOption) (r ScFolderService) {
 //
 // Deprecated: deprecated
 func (r *ScFolderService) New(ctx context.Context, body ScFolderNewParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "scs/folder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
 	return
@@ -52,7 +53,7 @@ func (r *ScFolderService) New(ctx context.Context, body ScFolderNewParams, opts 
 //
 // Deprecated: deprecated
 func (r *ScFolderService) Get(ctx context.Context, query ScFolderGetParams, opts ...option.RequestOption) (res *shared.FileData, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "scs/folder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -63,7 +64,7 @@ func (r *ScFolderService) Get(ctx context.Context, query ScFolderGetParams, opts
 //
 // Deprecated: deprecated
 func (r *ScFolderService) Update(ctx context.Context, body ScFolderUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "scs/folder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPatch, path, body, nil, opts...)

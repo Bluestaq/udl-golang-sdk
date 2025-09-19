@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -49,7 +50,7 @@ func NewEvacService(opts ...option.RequestOption) (r EvacService) {
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *EvacService) New(ctx context.Context, body EvacNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/evac"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -59,7 +60,7 @@ func (r *EvacService) New(ctx context.Context, body EvacNewParams, opts ...optio
 // Service operation to get a single Evac by its unique ID passed as a path
 // parameter.
 func (r *EvacService) Get(ctx context.Context, id string, query EvacGetParams, opts ...option.RequestOption) (res *shared.EvacFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -75,7 +76,7 @@ func (r *EvacService) Get(ctx context.Context, id string, query EvacGetParams, o
 // parameter information.
 func (r *EvacService) List(ctx context.Context, query EvacListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[EvacAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/evac"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -104,7 +105,7 @@ func (r *EvacService) ListAutoPaging(ctx context.Context, query EvacListParams, 
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *EvacService) Count(ctx context.Context, query EvacCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/evac/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -117,7 +118,7 @@ func (r *EvacService) Count(ctx context.Context, query EvacCountParams, opts ...
 // the UDL team for specific role assignments and for instructions on setting up a
 // permanent feed through an alternate mechanism.
 func (r *EvacService) NewBulk(ctx context.Context, body EvacNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/evac/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -127,7 +128,7 @@ func (r *EvacService) NewBulk(ctx context.Context, body EvacNewBulkParams, opts 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *EvacService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *EvacQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/evac/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -137,7 +138,7 @@ func (r *EvacService) QueryHelp(ctx context.Context, opts ...option.RequestOptio
 // the database. Requires a specific role, please contact the UDL team to gain
 // access. This operation is intended to be used for automated feeds into UDL.
 func (r *EvacService) UnvalidatedPublish(ctx context.Context, body EvacUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-evac"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

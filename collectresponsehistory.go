@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
@@ -41,7 +42,7 @@ func NewCollectResponseHistoryService(opts ...option.RequestOption) (r CollectRe
 // parameter information.
 func (r *CollectResponseHistoryService) List(ctx context.Context, query CollectResponseHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[shared.CollectResponseFull], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/collectresponse/history"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -70,7 +71,7 @@ func (r *CollectResponseHistoryService) ListAutoPaging(ctx context.Context, quer
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
 func (r *CollectResponseHistoryService) Aodr(ctx context.Context, query CollectResponseHistoryAodrParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/collectresponse/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
@@ -83,7 +84,7 @@ func (r *CollectResponseHistoryService) Aodr(ctx context.Context, query CollectR
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *CollectResponseHistoryService) Count(ctx context.Context, query CollectResponseHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/collectresponse/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)

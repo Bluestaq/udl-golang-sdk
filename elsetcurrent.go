@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
@@ -43,7 +44,7 @@ func NewElsetCurrentService(opts ...option.RequestOption) (r ElsetCurrentService
 // details on additional query parameter information.
 func (r *ElsetCurrentService) List(ctx context.Context, query ElsetCurrentListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[ElsetAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/elset/current"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -79,7 +80,7 @@ func (r *ElsetCurrentService) ListAutoPaging(ctx context.Context, query ElsetCur
 // SPCS'. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more
 // details on additional query parameter information.
 func (r *ElsetCurrentService) Tuple(ctx context.Context, query ElsetCurrentTupleParams, opts ...option.RequestOption) (res *[]Elset, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/elset/current/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

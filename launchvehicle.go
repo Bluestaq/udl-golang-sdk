@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewLaunchVehicleService(opts ...option.RequestOption) (r LaunchVehicleServi
 // the database. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *LaunchVehicleService) New(ctx context.Context, body LaunchVehicleNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/launchvehicle"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -53,7 +54,7 @@ func (r *LaunchVehicleService) New(ctx context.Context, body LaunchVehicleNewPar
 // Service operation to update a single LaunchVehicle. A specific role is required
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *LaunchVehicleService) Update(ctx context.Context, id string, body LaunchVehicleUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -70,7 +71,7 @@ func (r *LaunchVehicleService) Update(ctx context.Context, id string, body Launc
 // parameter information.
 func (r *LaunchVehicleService) List(ctx context.Context, query LaunchVehicleListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LaunchVehicleListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/launchvehicle"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -97,7 +98,7 @@ func (r *LaunchVehicleService) ListAutoPaging(ctx context.Context, query LaunchV
 // path parameter. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *LaunchVehicleService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -114,7 +115,7 @@ func (r *LaunchVehicleService) Delete(ctx context.Context, id string, opts ...op
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *LaunchVehicleService) Count(ctx context.Context, query LaunchVehicleCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/launchvehicle/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -124,7 +125,7 @@ func (r *LaunchVehicleService) Count(ctx context.Context, query LaunchVehicleCou
 // Service operation to get a single LaunchVehicle record by its unique ID passed
 // as a path parameter.
 func (r *LaunchVehicleService) Get(ctx context.Context, id string, query LaunchVehicleGetParams, opts ...option.RequestOption) (res *LaunchVehicleGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -137,7 +138,7 @@ func (r *LaunchVehicleService) Get(ctx context.Context, id string, query LaunchV
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *LaunchVehicleService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *LaunchVehicleQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/launchvehicle/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -152,7 +153,7 @@ func (r *LaunchVehicleService) Queryhelp(ctx context.Context, opts ...option.Req
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *LaunchVehicleService) Tuple(ctx context.Context, query LaunchVehicleTupleParams, opts ...option.RequestOption) (res *[]LaunchVehicleTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/launchvehicle/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

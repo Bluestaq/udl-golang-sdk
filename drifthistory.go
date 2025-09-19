@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
@@ -42,7 +43,7 @@ func NewDriftHistoryService(opts ...option.RequestOption) (r DriftHistoryService
 // a path parameter. DriftHistory represents historical drift rates for GEO Onorbit
 // objects resulting from updates to OnorbitDetails driftRate values.
 func (r *DriftHistoryService) Get(ctx context.Context, id string, query DriftHistoryGetParams, opts ...option.RequestOption) (res *shared.DriftHistoryFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -58,7 +59,7 @@ func (r *DriftHistoryService) Get(ctx context.Context, id string, query DriftHis
 // parameter information.
 func (r *DriftHistoryService) List(ctx context.Context, query DriftHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[shared.DriftHistoryAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/drifthistory"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -87,7 +88,7 @@ func (r *DriftHistoryService) ListAutoPaging(ctx context.Context, query DriftHis
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *DriftHistoryService) Count(ctx context.Context, query DriftHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/drifthistory/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -97,7 +98,7 @@ func (r *DriftHistoryService) Count(ctx context.Context, query DriftHistoryCount
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *DriftHistoryService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *DriftHistoryQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/drifthistory/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -112,7 +113,7 @@ func (r *DriftHistoryService) Queryhelp(ctx context.Context, opts ...option.Requ
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *DriftHistoryService) Tuple(ctx context.Context, query DriftHistoryTupleParams, opts ...option.RequestOption) (res *[]shared.DriftHistoryFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/drifthistory/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

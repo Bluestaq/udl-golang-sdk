@@ -11,6 +11,7 @@ import (
 	"mime/multipart"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiform"
@@ -51,7 +52,7 @@ func NewGnssRawIfService(opts ...option.RequestOption) (r GnssRawIfService) {
 // parameter information.
 func (r *GnssRawIfService) List(ctx context.Context, query GnssRawIfListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[GnssRawIfListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/gnssrawif"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -80,7 +81,7 @@ func (r *GnssRawIfService) ListAutoPaging(ctx context.Context, query GnssRawIfLi
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *GnssRawIfService) Count(ctx context.Context, query GnssRawIfCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/gnssrawif/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -90,7 +91,7 @@ func (r *GnssRawIfService) Count(ctx context.Context, query GnssRawIfCountParams
 // Service operation to get a single GNSSRAWIF hdf5 file by its unique ID passed as
 // a path parameter. The file is returned as an attachment Content-Disposition.
 func (r *GnssRawIfService) FileGet(ctx context.Context, id string, query GnssRawIfFileGetParams, opts ...option.RequestOption) (res *http.Response, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -104,7 +105,7 @@ func (r *GnssRawIfService) FileGet(ctx context.Context, id string, query GnssRaw
 // Service operation to get a single GNSSRawIF by its unique ID passed as a path
 // parameter.
 func (r *GnssRawIfService) Get(ctx context.Context, id string, query GnssRawIfGetParams, opts ...option.RequestOption) (res *GnssRawIfGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -117,7 +118,7 @@ func (r *GnssRawIfService) Get(ctx context.Context, id string, query GnssRawIfGe
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *GnssRawIfService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *GnssRawIfQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/gnssrawif/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -132,7 +133,7 @@ func (r *GnssRawIfService) Queryhelp(ctx context.Context, opts ...option.Request
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *GnssRawIfService) Tuple(ctx context.Context, query GnssRawIfTupleParams, opts ...option.RequestOption) (res *[]GnssRawIfTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/gnssrawif/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -156,7 +157,7 @@ func (r *GnssRawIfService) Tuple(ctx context.Context, query GnssRawIfTupleParams
 // role is required to perform this service operation. Please contact the UDL team
 // for assistance.
 func (r *GnssRawIfService) UploadZip(ctx context.Context, body GnssRawIfUploadZipParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-gnssrawif"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewWeatherReportService(opts ...option.RequestOption) (r WeatherReportServi
 // the database. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *WeatherReportService) New(ctx context.Context, body WeatherReportNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/weatherreport"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -60,7 +61,7 @@ func (r *WeatherReportService) New(ctx context.Context, body WeatherReportNewPar
 // parameter information.
 func (r *WeatherReportService) List(ctx context.Context, query WeatherReportListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[WeatherReportListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/weatherreport"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -89,7 +90,7 @@ func (r *WeatherReportService) ListAutoPaging(ctx context.Context, query Weather
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *WeatherReportService) Count(ctx context.Context, query WeatherReportCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/weatherreport/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -99,7 +100,7 @@ func (r *WeatherReportService) Count(ctx context.Context, query WeatherReportCou
 // Service operation to get a single WeatherReport by its unique ID passed as a
 // path parameter.
 func (r *WeatherReportService) Get(ctx context.Context, id string, query WeatherReportGetParams, opts ...option.RequestOption) (res *WeatherReportFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -112,7 +113,7 @@ func (r *WeatherReportService) Get(ctx context.Context, id string, query Weather
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *WeatherReportService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *WeatherReportQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/weatherreport/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -127,7 +128,7 @@ func (r *WeatherReportService) Queryhelp(ctx context.Context, opts ...option.Req
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *WeatherReportService) Tuple(ctx context.Context, query WeatherReportTupleParams, opts ...option.RequestOption) (res *[]WeatherReportFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/weatherreport/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -138,7 +139,7 @@ func (r *WeatherReportService) Tuple(ctx context.Context, query WeatherReportTup
 // into UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *WeatherReportService) UnvalidatedPublish(ctx context.Context, body WeatherReportUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-weatherreport"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
