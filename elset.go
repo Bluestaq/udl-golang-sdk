@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -51,7 +52,7 @@ func NewElsetService(opts ...option.RequestOption) (r ElsetService) {
 // and for instructions on setting up a permanent feed through an alternate
 // mechanism.
 func (r *ElsetService) New(ctx context.Context, body ElsetNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/elset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -61,7 +62,7 @@ func (r *ElsetService) New(ctx context.Context, body ElsetNewParams, opts ...opt
 // Service operation to get a single elset by its unique ID passed as a path
 // parameter.
 func (r *ElsetService) Get(ctx context.Context, id string, query ElsetGetParams, opts ...option.RequestOption) (res *Elset, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -77,7 +78,7 @@ func (r *ElsetService) Get(ctx context.Context, id string, query ElsetGetParams,
 // parameter information.
 func (r *ElsetService) List(ctx context.Context, query ElsetListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[ElsetAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/elset"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -106,7 +107,7 @@ func (r *ElsetService) ListAutoPaging(ctx context.Context, query ElsetListParams
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *ElsetService) Count(ctx context.Context, query ElsetCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/elset/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -120,7 +121,7 @@ func (r *ElsetService) Count(ctx context.Context, query ElsetCountParams, opts .
 // for specific role assignments and for instructions on setting up a permanent
 // feed through an alternate mechanism.
 func (r *ElsetService) NewBulk(ctx context.Context, params ElsetNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/elset/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
@@ -133,7 +134,7 @@ func (r *ElsetService) NewBulk(ctx context.Context, params ElsetNewBulkParams, o
 // and for instructions on setting up a permanent feed through an alternate
 // mechanism.
 func (r *ElsetService) NewBulkFromTle(ctx context.Context, params ElsetNewBulkFromTleParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/elset/createBulkFromTLE"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
@@ -143,7 +144,7 @@ func (r *ElsetService) NewBulkFromTle(ctx context.Context, params ElsetNewBulkFr
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *ElsetService) QueryCurrentElsetHelp(ctx context.Context, opts ...option.RequestOption) (res *ElsetQueryCurrentElsetHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/currentelset/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -152,7 +153,7 @@ func (r *ElsetService) QueryCurrentElsetHelp(ctx context.Context, opts ...option
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *ElsetService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *ElsetQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/elset/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -167,7 +168,7 @@ func (r *ElsetService) Queryhelp(ctx context.Context, opts ...option.RequestOpti
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *ElsetService) Tuple(ctx context.Context, query ElsetTupleParams, opts ...option.RequestOption) (res *[]Elset, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/elset/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -177,7 +178,7 @@ func (r *ElsetService) Tuple(ctx context.Context, query ElsetTupleParams, opts .
 // with or without dupe detection. Default is no dupe checking. This operation is
 // intended to be used for automated feeds into UDL.
 func (r *ElsetService) UnvalidatedPublish(ctx context.Context, body ElsetUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-elset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

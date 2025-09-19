@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -42,7 +43,7 @@ func NewGroundImageryHistoryService(opts ...option.RequestOption) (r GroundImage
 // parameter information.
 func (r *GroundImageryHistoryService) List(ctx context.Context, query GroundImageryHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[GroundImageryHistoryListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/groundimagery/history"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -71,7 +72,7 @@ func (r *GroundImageryHistoryService) ListAutoPaging(ctx context.Context, query 
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *GroundImageryHistoryService) Count(ctx context.Context, query GroundImageryHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/groundimagery/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)

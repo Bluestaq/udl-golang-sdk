@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -44,7 +45,7 @@ func NewSolarArrayDetailService(opts ...option.RequestOption) (r SolarArrayDetai
 // operation. Please contact the UDL team for assistance. A SolarArray may have
 // multiple details records compiled by various sources.
 func (r *SolarArrayDetailService) New(ctx context.Context, body SolarArrayDetailNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/solararraydetails"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -56,7 +57,7 @@ func (r *SolarArrayDetailService) New(ctx context.Context, body SolarArrayDetail
 // assistance. A SolarArray may have multiple details records compiled by various
 // sources.
 func (r *SolarArrayDetailService) Update(ctx context.Context, id string, body SolarArrayDetailUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -73,7 +74,7 @@ func (r *SolarArrayDetailService) Update(ctx context.Context, id string, body So
 // parameter information.
 func (r *SolarArrayDetailService) List(ctx context.Context, query SolarArrayDetailListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SolarArrayDetailListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/solararraydetails"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -101,7 +102,7 @@ func (r *SolarArrayDetailService) ListAutoPaging(ctx context.Context, query Sola
 // operation. Please contact the UDL team for assistance. A SolarArray may have
 // multiple details records compiled by various sources.
 func (r *SolarArrayDetailService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -116,7 +117,7 @@ func (r *SolarArrayDetailService) Delete(ctx context.Context, id string, opts ..
 // passed as a path parameter. A SolarArray may have multiple details records
 // compiled by various sources.
 func (r *SolarArrayDetailService) Get(ctx context.Context, id string, query SolarArrayDetailGetParams, opts ...option.RequestOption) (res *shared.SolarArrayDetailsFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

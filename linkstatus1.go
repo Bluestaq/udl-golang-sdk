@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -37,7 +38,7 @@ func NewLinkstatusService(opts ...option.RequestOption) (r LinkstatusService) {
 // Service operation to update a single LinkStatus. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *LinkstatusService) Update(ctx context.Context, id string, body LinkstatusUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -52,7 +53,7 @@ func (r *LinkstatusService) Update(ctx context.Context, id string, body Linkstat
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *LinkstatusService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")

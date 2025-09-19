@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewSeraDataEarlyWarningService(opts ...option.RequestOption) (r SeraDataEar
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *SeraDataEarlyWarningService) New(ctx context.Context, body SeraDataEarlyWarningNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/seradataearlywarning"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -53,7 +54,7 @@ func (r *SeraDataEarlyWarningService) New(ctx context.Context, body SeraDataEarl
 // Service operation to update an SeradataEarlyWarning. A specific role is required
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *SeraDataEarlyWarningService) Update(ctx context.Context, id string, body SeraDataEarlyWarningUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -70,7 +71,7 @@ func (r *SeraDataEarlyWarningService) Update(ctx context.Context, id string, bod
 // parameter information.
 func (r *SeraDataEarlyWarningService) List(ctx context.Context, query SeraDataEarlyWarningListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SeraDataEarlyWarningListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/seradataearlywarning"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -97,7 +98,7 @@ func (r *SeraDataEarlyWarningService) ListAutoPaging(ctx context.Context, query 
 // path parameter. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *SeraDataEarlyWarningService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -114,7 +115,7 @@ func (r *SeraDataEarlyWarningService) Delete(ctx context.Context, id string, opt
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SeraDataEarlyWarningService) Count(ctx context.Context, query SeraDataEarlyWarningCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/seradataearlywarning/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -124,7 +125,7 @@ func (r *SeraDataEarlyWarningService) Count(ctx context.Context, query SeraDataE
 // Service operation to get a single SeradataEarlyWarning by its unique ID passed
 // as a path parameter.
 func (r *SeraDataEarlyWarningService) Get(ctx context.Context, id string, query SeraDataEarlyWarningGetParams, opts ...option.RequestOption) (res *SeraDataEarlyWarningGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -137,7 +138,7 @@ func (r *SeraDataEarlyWarningService) Get(ctx context.Context, id string, query 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SeraDataEarlyWarningService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SeraDataEarlyWarningQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradataearlywarning/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -152,7 +153,7 @@ func (r *SeraDataEarlyWarningService) Queryhelp(ctx context.Context, opts ...opt
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SeraDataEarlyWarningService) Tuple(ctx context.Context, query SeraDataEarlyWarningTupleParams, opts ...option.RequestOption) (res *[]SeraDataEarlyWarningTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradataearlywarning/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

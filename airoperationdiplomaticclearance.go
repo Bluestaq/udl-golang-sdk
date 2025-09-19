@@ -6,6 +6,7 @@ import (
 	"context"
 	"encoding/json"
 	"net/http"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -40,7 +41,7 @@ func NewAirOperationDiplomaticClearanceService(opts ...option.RequestOption) (r 
 // automated feeds into UDL. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *AirOperationDiplomaticClearanceService) UnvalidatedPublish(ctx context.Context, body AirOperationDiplomaticClearanceUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-diplomaticclearance"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

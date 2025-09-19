@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -49,7 +50,7 @@ func NewSensorCalibrationService(opts ...option.RequestOption) (r SensorCalibrat
 // assignments and for instructions on setting up a permanent feed through an
 // alternate mechanism.
 func (r *SensorCalibrationService) New(ctx context.Context, body SensorCalibrationNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sensorcalibration"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -59,7 +60,7 @@ func (r *SensorCalibrationService) New(ctx context.Context, body SensorCalibrati
 // Service operation to get a single SensorCalibration by its unique ID passed as a
 // path parameter.
 func (r *SensorCalibrationService) Get(ctx context.Context, id string, query SensorCalibrationGetParams, opts ...option.RequestOption) (res *SensorCalibrationGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -75,7 +76,7 @@ func (r *SensorCalibrationService) Get(ctx context.Context, id string, query Sen
 // parameter information.
 func (r *SensorCalibrationService) List(ctx context.Context, query SensorCalibrationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SensorCalibrationListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/sensorcalibration"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -104,7 +105,7 @@ func (r *SensorCalibrationService) ListAutoPaging(ctx context.Context, query Sen
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SensorCalibrationService) Count(ctx context.Context, query SensorCalibrationCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sensorcalibration/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -117,7 +118,7 @@ func (r *SensorCalibrationService) Count(ctx context.Context, query SensorCalibr
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
 func (r *SensorCalibrationService) NewBulk(ctx context.Context, body SensorCalibrationNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sensorcalibration/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -127,7 +128,7 @@ func (r *SensorCalibrationService) NewBulk(ctx context.Context, body SensorCalib
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SensorCalibrationService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *SensorCalibrationQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/sensorcalibration/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -142,7 +143,7 @@ func (r *SensorCalibrationService) QueryHelp(ctx context.Context, opts ...option
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SensorCalibrationService) Tuple(ctx context.Context, query SensorCalibrationTupleParams, opts ...option.RequestOption) (res *[]SensorCalibrationTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/sensorcalibration/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -153,7 +154,7 @@ func (r *SensorCalibrationService) Tuple(ctx context.Context, query SensorCalibr
 // feeds into UDL. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *SensorCalibrationService) UnvalidatedPublish(ctx context.Context, body SensorCalibrationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-sensorcalibration"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

@@ -9,6 +9,7 @@ import (
 	"mime/multipart"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiform"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -44,7 +45,7 @@ func NewScV2Service(opts ...option.RequestOption) (r ScV2Service) {
 // description, classificationMarking, and tags. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *ScV2Service) Update(ctx context.Context, params ScV2UpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "scs/v2/update"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPatch, path, params, nil, opts...)
@@ -55,7 +56,7 @@ func (r *ScV2Service) Update(ctx context.Context, params ScV2UpdateParams, opts 
 // path.
 func (r *ScV2Service) List(ctx context.Context, query ScV2ListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[ScsEntity], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "scs/v2/list"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -79,7 +80,7 @@ func (r *ScV2Service) ListAutoPaging(ctx context.Context, query ScV2ListParams, 
 // Operation to delete a folder or file. A specific role is required to perform
 // this service operation. Please contact the UDL team for assistance.
 func (r *ScV2Service) Delete(ctx context.Context, body ScV2DeleteParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "scs/v2/delete"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, body, nil, opts...)
@@ -89,7 +90,7 @@ func (r *ScV2Service) Delete(ctx context.Context, body ScV2DeleteParams, opts ..
 // Operation to copy a folder or file. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
 func (r *ScV2Service) Copy(ctx context.Context, body ScV2CopyParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "scs/v2/copy"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -99,7 +100,7 @@ func (r *ScV2Service) Copy(ctx context.Context, body ScV2CopyParams, opts ...opt
 // Operation to upload a file. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *ScV2Service) FileUpload(ctx context.Context, fileContent io.Reader, body ScV2FileUploadParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", ""), option.WithRequestBody("application/octet-stream", fileContent)}, opts...)
 	path := "scs/v2/file"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, nil, opts...)
@@ -114,7 +115,7 @@ func (r *ScV2Service) FileUpload(ctx context.Context, fileContent io.Reader, bod
 // role is required to perform this service operation. Please contact the UDL team
 // for assistance.
 func (r *ScV2Service) FolderNew(ctx context.Context, params ScV2FolderNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "scs/v2/folder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
@@ -124,7 +125,7 @@ func (r *ScV2Service) FolderNew(ctx context.Context, params ScV2FolderNewParams,
 // Operation to move or rename a folder or file. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *ScV2Service) Move(ctx context.Context, body ScV2MoveParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "scs/v2/move"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
@@ -133,7 +134,7 @@ func (r *ScV2Service) Move(ctx context.Context, body ScV2MoveParams, opts ...opt
 
 // Operation to search for files in the Secure Content Store.
 func (r *ScV2Service) Search(ctx context.Context, params ScV2SearchParams, opts ...option.RequestOption) (res *[]ScsEntity, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "scs/v2/search"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, &res, opts...)
 	return

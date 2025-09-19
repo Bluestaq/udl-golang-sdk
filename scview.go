@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
@@ -36,7 +37,7 @@ func NewScViewService(opts ...option.RequestOption) (r ScViewService) {
 
 // Return a single file to view in browser.
 func (r *ScViewService) Get(ctx context.Context, id string, query ScViewGetParams, opts ...option.RequestOption) (res *http.Response, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")

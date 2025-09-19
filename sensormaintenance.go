@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewSensorMaintenanceService(opts ...option.RequestOption) (r SensorMaintena
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *SensorMaintenanceService) New(ctx context.Context, body SensorMaintenanceNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sensormaintenance"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -58,7 +59,7 @@ func (r *SensorMaintenanceService) New(ctx context.Context, body SensorMaintenan
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *SensorMaintenanceService) Update(ctx context.Context, id string, body SensorMaintenanceUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -75,7 +76,7 @@ func (r *SensorMaintenanceService) Update(ctx context.Context, id string, body S
 // parameter information.
 func (r *SensorMaintenanceService) List(ctx context.Context, query SensorMaintenanceListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SensorMaintenanceListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/sensormaintenance"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -102,7 +103,7 @@ func (r *SensorMaintenanceService) ListAutoPaging(ctx context.Context, query Sen
 // ID path parameter. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *SensorMaintenanceService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -119,7 +120,7 @@ func (r *SensorMaintenanceService) Delete(ctx context.Context, id string, opts .
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SensorMaintenanceService) Count(ctx context.Context, query SensorMaintenanceCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sensormaintenance/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -130,7 +131,7 @@ func (r *SensorMaintenanceService) Count(ctx context.Context, query SensorMainte
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *SensorMaintenanceService) NewBulk(ctx context.Context, params SensorMaintenanceNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sensormaintenance/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
@@ -140,7 +141,7 @@ func (r *SensorMaintenanceService) NewBulk(ctx context.Context, params SensorMai
 // Service operation to get a single SensorMaintenance record by its unique ID
 // passed as a path parameter.
 func (r *SensorMaintenanceService) Get(ctx context.Context, id string, query SensorMaintenanceGetParams, opts ...option.RequestOption) (res *SensorMaintenanceGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -154,7 +155,7 @@ func (r *SensorMaintenanceService) Get(ctx context.Context, id string, query Sen
 // additional parameters.
 func (r *SensorMaintenanceService) ListCurrent(ctx context.Context, query SensorMaintenanceListCurrentParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SensorMaintenanceListCurrentResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/sensormaintenance/current"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -178,7 +179,7 @@ func (r *SensorMaintenanceService) ListCurrentAutoPaging(ctx context.Context, qu
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SensorMaintenanceService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *SensorMaintenanceQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/sensormaintenance/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -193,7 +194,7 @@ func (r *SensorMaintenanceService) QueryHelp(ctx context.Context, opts ...option
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SensorMaintenanceService) Tuple(ctx context.Context, query SensorMaintenanceTupleParams, opts ...option.RequestOption) (res *[]SensorMaintenanceTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/sensormaintenance/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

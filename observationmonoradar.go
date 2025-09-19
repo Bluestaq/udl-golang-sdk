@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewObservationMonoradarService(opts ...option.RequestOption) (r Observation
 // parameter information.
 func (r *ObservationMonoradarService) List(ctx context.Context, query ObservationMonoradarListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[ObservationMonoradarListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/monoradar"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -76,7 +77,7 @@ func (r *ObservationMonoradarService) ListAutoPaging(ctx context.Context, query 
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *ObservationMonoradarService) Count(ctx context.Context, query ObservationMonoradarCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/monoradar/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -89,7 +90,7 @@ func (r *ObservationMonoradarService) Count(ctx context.Context, query Observati
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
 func (r *ObservationMonoradarService) NewBulk(ctx context.Context, body ObservationMonoradarNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/monoradar/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -99,7 +100,7 @@ func (r *ObservationMonoradarService) NewBulk(ctx context.Context, body Observat
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *ObservationMonoradarService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *ObservationMonoradarQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/monoradar/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -114,7 +115,7 @@ func (r *ObservationMonoradarService) Queryhelp(ctx context.Context, opts ...opt
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *ObservationMonoradarService) Tuple(ctx context.Context, query ObservationMonoradarTupleParams, opts ...option.RequestOption) (res *[]ObservationMonoradarTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/monoradar/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -125,7 +126,7 @@ func (r *ObservationMonoradarService) Tuple(ctx context.Context, query Observati
 // into UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *ObservationMonoradarService) UnvalidatedPublish(ctx context.Context, body ObservationMonoradarUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/monoradar"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

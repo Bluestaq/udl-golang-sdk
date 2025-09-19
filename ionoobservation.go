@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewIonoObservationService(opts ...option.RequestOption) (r IonoObservationS
 // parameter information.
 func (r *IonoObservationService) List(ctx context.Context, query IonoObservationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[IonoObservationListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/ionoobservation"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -76,7 +77,7 @@ func (r *IonoObservationService) ListAutoPaging(ctx context.Context, query IonoO
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *IonoObservationService) Count(ctx context.Context, query IonoObservationCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/ionoobservation/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -89,7 +90,7 @@ func (r *IonoObservationService) Count(ctx context.Context, query IonoObservatio
 // providers should contact the UDL team for specific role assignments and for
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *IonoObservationService) NewBulk(ctx context.Context, body IonoObservationNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/ionoobservation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -99,7 +100,7 @@ func (r *IonoObservationService) NewBulk(ctx context.Context, body IonoObservati
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *IonoObservationService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *IonoObservationQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/ionoobservation/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -114,7 +115,7 @@ func (r *IonoObservationService) Queryhelp(ctx context.Context, opts ...option.R
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *IonoObservationService) Tuple(ctx context.Context, query IonoObservationTupleParams, opts ...option.RequestOption) (res *[]IonoObservationTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/ionoobservation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -126,7 +127,7 @@ func (r *IonoObservationService) Tuple(ctx context.Context, query IonoObservatio
 // specific role is required to perform this service operation. Please contact the
 // UDL team for assistance.
 func (r *IonoObservationService) UnvalidatedPublish(ctx context.Context, body IonoObservationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-ionoobs"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewGnssObservationsetService(opts ...option.RequestOption) (r GnssObservati
 // parameter information.
 func (r *GnssObservationsetService) List(ctx context.Context, query GnssObservationsetListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[GnssObservationsetListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/gnssobservationset"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -76,7 +77,7 @@ func (r *GnssObservationsetService) ListAutoPaging(ctx context.Context, query Gn
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *GnssObservationsetService) Count(ctx context.Context, query GnssObservationsetCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/gnssobservationset/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -89,7 +90,7 @@ func (r *GnssObservationsetService) Count(ctx context.Context, query GnssObserva
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
 func (r *GnssObservationsetService) NewBulk(ctx context.Context, body GnssObservationsetNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/gnssobservationset/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -99,7 +100,7 @@ func (r *GnssObservationsetService) NewBulk(ctx context.Context, body GnssObserv
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *GnssObservationsetService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *GnssObservationsetQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/gnssobservationset/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -114,7 +115,7 @@ func (r *GnssObservationsetService) Queryhelp(ctx context.Context, opts ...optio
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *GnssObservationsetService) Tuple(ctx context.Context, query GnssObservationsetTupleParams, opts ...option.RequestOption) (res *[]GnssObservationSetFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/gnssobservationset/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -125,7 +126,7 @@ func (r *GnssObservationsetService) Tuple(ctx context.Context, query GnssObserva
 // is intended to be used for automated feeds into UDL. A specific role is required
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *GnssObservationsetService) UnvalidatedPublish(ctx context.Context, body GnssObservationsetUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-gnssobset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

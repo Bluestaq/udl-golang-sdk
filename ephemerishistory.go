@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
@@ -40,7 +41,7 @@ func NewEphemerisHistoryService(opts ...option.RequestOption) (r EphemerisHistor
 // parameter information.
 func (r *EphemerisHistoryService) List(ctx context.Context, query EphemerisHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[shared.EphemerisFull], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/ephemeris/history"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -69,7 +70,7 @@ func (r *EphemerisHistoryService) ListAutoPaging(ctx context.Context, query Ephe
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
 func (r *EphemerisHistoryService) Aodr(ctx context.Context, query EphemerisHistoryAodrParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/ephemeris/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
@@ -82,7 +83,7 @@ func (r *EphemerisHistoryService) Aodr(ctx context.Context, query EphemerisHisto
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *EphemerisHistoryService) Count(ctx context.Context, query EphemerisHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/ephemeris/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)

@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -42,7 +43,7 @@ func NewMtiHistoryService(opts ...option.RequestOption) (r MtiHistoryService) {
 // parameter information.
 func (r *MtiHistoryService) List(ctx context.Context, query MtiHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[MtiFull], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/mti/history"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -71,7 +72,7 @@ func (r *MtiHistoryService) ListAutoPaging(ctx context.Context, query MtiHistory
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
 func (r *MtiHistoryService) Aodr(ctx context.Context, query MtiHistoryAodrParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/mti/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
@@ -84,7 +85,7 @@ func (r *MtiHistoryService) Aodr(ctx context.Context, query MtiHistoryAodrParams
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *MtiHistoryService) Count(ctx context.Context, query MtiHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/mti/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)

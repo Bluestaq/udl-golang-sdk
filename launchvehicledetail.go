@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewLaunchVehicleDetailService(opts ...option.RequestOption) (r LaunchVehicl
 // multiple details records from various sources. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *LaunchVehicleDetailService) New(ctx context.Context, body LaunchVehicleDetailNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/launchvehicledetails"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -58,7 +59,7 @@ func (r *LaunchVehicleDetailService) New(ctx context.Context, body LaunchVehicle
 // specific role is required to perform this service operation. Please contact the
 // UDL team for assistance.
 func (r *LaunchVehicleDetailService) Update(ctx context.Context, id string, body LaunchVehicleDetailUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -75,7 +76,7 @@ func (r *LaunchVehicleDetailService) Update(ctx context.Context, id string, body
 // parameter information.
 func (r *LaunchVehicleDetailService) List(ctx context.Context, query LaunchVehicleDetailListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LaunchVehicleDetailListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/launchvehicledetails"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -104,7 +105,7 @@ func (r *LaunchVehicleDetailService) ListAutoPaging(ctx context.Context, query L
 // multiple details records from various sources. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *LaunchVehicleDetailService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -120,7 +121,7 @@ func (r *LaunchVehicleDetailService) Delete(ctx context.Context, id string, opts
 // details and characteristics, compiled by a particular source. A vehicle may have
 // multiple details records from various sources.
 func (r *LaunchVehicleDetailService) Get(ctx context.Context, id string, query LaunchVehicleDetailGetParams, opts ...option.RequestOption) (res *LaunchVehicleDetailGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewEquipmentService(opts ...option.RequestOption) (r EquipmentService) {
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *EquipmentService) New(ctx context.Context, body EquipmentNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/equipment"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -55,7 +56,7 @@ func (r *EquipmentService) New(ctx context.Context, body EquipmentNewParams, opt
 // Service operation to get a single equipment record by its unique ID passed as a
 // path parameter.
 func (r *EquipmentService) Get(ctx context.Context, id string, query EquipmentGetParams, opts ...option.RequestOption) (res *EquipmentFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -69,7 +70,7 @@ func (r *EquipmentService) Get(ctx context.Context, id string, query EquipmentGe
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *EquipmentService) Update(ctx context.Context, id string, body EquipmentUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -86,7 +87,7 @@ func (r *EquipmentService) Update(ctx context.Context, id string, body Equipment
 // parameter information.
 func (r *EquipmentService) List(ctx context.Context, query EquipmentListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[EquipmentAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/equipment"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -113,7 +114,7 @@ func (r *EquipmentService) ListAutoPaging(ctx context.Context, query EquipmentLi
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *EquipmentService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -130,7 +131,7 @@ func (r *EquipmentService) Delete(ctx context.Context, id string, opts ...option
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *EquipmentService) Count(ctx context.Context, query EquipmentCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/equipment/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -143,7 +144,7 @@ func (r *EquipmentService) Count(ctx context.Context, query EquipmentCountParams
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
 func (r *EquipmentService) NewBulk(ctx context.Context, body EquipmentNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/equipment/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -153,7 +154,7 @@ func (r *EquipmentService) NewBulk(ctx context.Context, body EquipmentNewBulkPar
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *EquipmentService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *EquipmentQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/equipment/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -168,7 +169,7 @@ func (r *EquipmentService) QueryHelp(ctx context.Context, opts ...option.Request
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *EquipmentService) Tuple(ctx context.Context, query EquipmentTupleParams, opts ...option.RequestOption) (res *[]EquipmentFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/equipment/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

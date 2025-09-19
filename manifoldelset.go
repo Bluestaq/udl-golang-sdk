@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -48,7 +49,7 @@ func NewManifoldelsetService(opts ...option.RequestOption) (r ManifoldelsetServi
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *ManifoldelsetService) New(ctx context.Context, body ManifoldelsetNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/manifoldelset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -61,7 +62,7 @@ func (r *ManifoldelsetService) New(ctx context.Context, body ManifoldelsetNewPar
 // tasking purposes. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *ManifoldelsetService) Update(ctx context.Context, id string, body ManifoldelsetUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -78,7 +79,7 @@ func (r *ManifoldelsetService) Update(ctx context.Context, id string, body Manif
 // parameter information.
 func (r *ManifoldelsetService) List(ctx context.Context, query ManifoldelsetListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[ManifoldelsetListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/manifoldelset"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -108,7 +109,7 @@ func (r *ManifoldelsetService) ListAutoPaging(ctx context.Context, query Manifol
 // specific role is required to perform this service operation. Please contact the
 // UDL team for assistance.
 func (r *ManifoldelsetService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -125,7 +126,7 @@ func (r *ManifoldelsetService) Delete(ctx context.Context, id string, opts ...op
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *ManifoldelsetService) Count(ctx context.Context, query ManifoldelsetCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/manifoldelset/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -136,7 +137,7 @@ func (r *ManifoldelsetService) Count(ctx context.Context, query ManifoldelsetCou
 // the database. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *ManifoldelsetService) NewBulk(ctx context.Context, body ManifoldelsetNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/manifoldelset/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -148,7 +149,7 @@ func (r *ManifoldelsetService) NewBulk(ctx context.Context, body ManifoldelsetNe
 // elements belonging to an object of interest's manifold describing a
 // possible/theoretical orbit for an object of interest for tasking purposes.
 func (r *ManifoldelsetService) Get(ctx context.Context, id string, query ManifoldelsetGetParams, opts ...option.RequestOption) (res *ManifoldelsetGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -161,7 +162,7 @@ func (r *ManifoldelsetService) Get(ctx context.Context, id string, query Manifol
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *ManifoldelsetService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *ManifoldelsetQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/manifoldelset/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -176,7 +177,7 @@ func (r *ManifoldelsetService) Queryhelp(ctx context.Context, opts ...option.Req
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *ManifoldelsetService) Tuple(ctx context.Context, query ManifoldelsetTupleParams, opts ...option.RequestOption) (res *[]ManifoldelsetTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/manifoldelset/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

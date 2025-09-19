@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -49,7 +50,7 @@ func NewSarObservationService(opts ...option.RequestOption) (r SarObservationSer
 // assignments and for instructions on setting up a permanent feed through an
 // alternate mechanism.
 func (r *SarObservationService) New(ctx context.Context, body SarObservationNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sarobservation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -62,7 +63,7 @@ func (r *SarObservationService) New(ctx context.Context, body SarObservationNewP
 // parameter information.
 func (r *SarObservationService) List(ctx context.Context, query SarObservationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SarObservationListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/sarobservation"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -91,7 +92,7 @@ func (r *SarObservationService) ListAutoPaging(ctx context.Context, query SarObs
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SarObservationService) Count(ctx context.Context, query SarObservationCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sarobservation/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -104,7 +105,7 @@ func (r *SarObservationService) Count(ctx context.Context, query SarObservationC
 // the UDL team for specific role assignments and for instructions on setting up a
 // permanent feed through an alternate mechanism.
 func (r *SarObservationService) NewBulk(ctx context.Context, body SarObservationNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sarobservation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -114,7 +115,7 @@ func (r *SarObservationService) NewBulk(ctx context.Context, body SarObservation
 // Service operation to get a single SAR observations by its unique ID passed as a
 // path parameter.
 func (r *SarObservationService) Get(ctx context.Context, id string, query SarObservationGetParams, opts ...option.RequestOption) (res *SarObservationGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -127,7 +128,7 @@ func (r *SarObservationService) Get(ctx context.Context, id string, query SarObs
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SarObservationService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SarObservationQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/sarobservation/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -142,7 +143,7 @@ func (r *SarObservationService) Queryhelp(ctx context.Context, opts ...option.Re
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SarObservationService) Tuple(ctx context.Context, query SarObservationTupleParams, opts ...option.RequestOption) (res *[]SarObservationTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/sarobservation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -153,7 +154,7 @@ func (r *SarObservationService) Tuple(ctx context.Context, query SarObservationT
 // specific role is required to perform this service operation. Please contact the
 // UDL team for assistance.
 func (r *SarObservationService) UnvalidatedPublish(ctx context.Context, body SarObservationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-sar"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

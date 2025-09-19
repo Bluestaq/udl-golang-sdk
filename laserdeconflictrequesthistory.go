@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -42,7 +43,7 @@ func NewLaserdeconflictrequestHistoryService(opts ...option.RequestOption) (r La
 // parameter information.
 func (r *LaserdeconflictrequestHistoryService) List(ctx context.Context, query LaserdeconflictrequestHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LaserdeconflictrequestHistoryListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/laserdeconflictrequest/history"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -71,7 +72,7 @@ func (r *LaserdeconflictrequestHistoryService) ListAutoPaging(ctx context.Contex
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
 func (r *LaserdeconflictrequestHistoryService) Aodr(ctx context.Context, query LaserdeconflictrequestHistoryAodrParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/laserdeconflictrequest/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
@@ -84,7 +85,7 @@ func (r *LaserdeconflictrequestHistoryService) Aodr(ctx context.Context, query L
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *LaserdeconflictrequestHistoryService) Count(ctx context.Context, query LaserdeconflictrequestHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/laserdeconflictrequest/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)

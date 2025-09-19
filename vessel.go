@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewVesselService(opts ...option.RequestOption) (r VesselService) {
 // the database. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *VesselService) New(ctx context.Context, body VesselNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/vessel"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -55,7 +56,7 @@ func (r *VesselService) New(ctx context.Context, body VesselNewParams, opts ...o
 // Service operation to update a single vessel record. A specific role is required
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *VesselService) Update(ctx context.Context, id string, body VesselUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -72,7 +73,7 @@ func (r *VesselService) Update(ctx context.Context, id string, body VesselUpdate
 // parameter information.
 func (r *VesselService) List(ctx context.Context, query VesselListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[VesselListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/vessel"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -101,7 +102,7 @@ func (r *VesselService) ListAutoPaging(ctx context.Context, query VesselListPara
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *VesselService) Count(ctx context.Context, query VesselCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/vessel/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -114,7 +115,7 @@ func (r *VesselService) Count(ctx context.Context, query VesselCountParams, opts
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
 func (r *VesselService) NewBulk(ctx context.Context, body VesselNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/vessel/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -124,7 +125,7 @@ func (r *VesselService) NewBulk(ctx context.Context, body VesselNewBulkParams, o
 // Service operation to get a single vessel record by its unique ID passed as a
 // path parameter.
 func (r *VesselService) Get(ctx context.Context, id string, query VesselGetParams, opts ...option.RequestOption) (res *VesselGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -137,7 +138,7 @@ func (r *VesselService) Get(ctx context.Context, id string, query VesselGetParam
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *VesselService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *VesselQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/vessel/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -152,7 +153,7 @@ func (r *VesselService) Queryhelp(ctx context.Context, opts ...option.RequestOpt
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *VesselService) Tuple(ctx context.Context, query VesselTupleParams, opts ...option.RequestOption) (res *[]VesselTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/vessel/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

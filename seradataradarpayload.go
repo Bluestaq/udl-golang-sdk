@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewSeradataRadarPayloadService(opts ...option.RequestOption) (r SeradataRad
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *SeradataRadarPayloadService) New(ctx context.Context, body SeradataRadarPayloadNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/seradataradarpayload"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -53,7 +54,7 @@ func (r *SeradataRadarPayloadService) New(ctx context.Context, body SeradataRada
 // Service operation to update an SeradataRadarPayload. A specific role is required
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *SeradataRadarPayloadService) Update(ctx context.Context, id string, body SeradataRadarPayloadUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -70,7 +71,7 @@ func (r *SeradataRadarPayloadService) Update(ctx context.Context, id string, bod
 // parameter information.
 func (r *SeradataRadarPayloadService) List(ctx context.Context, query SeradataRadarPayloadListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SeradataRadarPayloadListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/seradataradarpayload"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -97,7 +98,7 @@ func (r *SeradataRadarPayloadService) ListAutoPaging(ctx context.Context, query 
 // path parameter. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *SeradataRadarPayloadService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -114,7 +115,7 @@ func (r *SeradataRadarPayloadService) Delete(ctx context.Context, id string, opt
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SeradataRadarPayloadService) Count(ctx context.Context, query SeradataRadarPayloadCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/seradataradarpayload/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -124,7 +125,7 @@ func (r *SeradataRadarPayloadService) Count(ctx context.Context, query SeradataR
 // Service operation to get a single SeradataRadarPayload by its unique ID passed
 // as a path parameter.
 func (r *SeradataRadarPayloadService) Get(ctx context.Context, id string, query SeradataRadarPayloadGetParams, opts ...option.RequestOption) (res *SeradataRadarPayloadGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -137,7 +138,7 @@ func (r *SeradataRadarPayloadService) Get(ctx context.Context, id string, query 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SeradataRadarPayloadService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SeradataRadarPayloadQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradataradarpayload/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -152,7 +153,7 @@ func (r *SeradataRadarPayloadService) Queryhelp(ctx context.Context, opts ...opt
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SeradataRadarPayloadService) Tuple(ctx context.Context, query SeradataRadarPayloadTupleParams, opts ...option.RequestOption) (res *[]SeradataRadarPayloadTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradataradarpayload/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

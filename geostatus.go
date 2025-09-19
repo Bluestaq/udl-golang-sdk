@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -49,7 +50,7 @@ func NewGeoStatusService(opts ...option.RequestOption) (r GeoStatusService) {
 // assignments and for instructions on setting up a permanent feed through an
 // alternate mechanism.
 func (r *GeoStatusService) New(ctx context.Context, body GeoStatusNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/geostatus"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -62,7 +63,7 @@ func (r *GeoStatusService) New(ctx context.Context, body GeoStatusNewParams, opt
 // parameter information.
 func (r *GeoStatusService) List(ctx context.Context, query GeoStatusListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[GeoStatusListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/geostatus"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -91,7 +92,7 @@ func (r *GeoStatusService) ListAutoPaging(ctx context.Context, query GeoStatusLi
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *GeoStatusService) Count(ctx context.Context, query GeoStatusCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/geostatus/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -104,7 +105,7 @@ func (r *GeoStatusService) Count(ctx context.Context, query GeoStatusCountParams
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
 func (r *GeoStatusService) NewBulk(ctx context.Context, body GeoStatusNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/geostatus/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -114,7 +115,7 @@ func (r *GeoStatusService) NewBulk(ctx context.Context, body GeoStatusNewBulkPar
 // Service operation to get a single GEOStatus record by its unique ID passed as a
 // path parameter.
 func (r *GeoStatusService) Get(ctx context.Context, id string, query GeoStatusGetParams, opts ...option.RequestOption) (res *GeoStatusFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -127,7 +128,7 @@ func (r *GeoStatusService) Get(ctx context.Context, id string, query GeoStatusGe
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *GeoStatusService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *GeoStatusQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/geostatus/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -142,7 +143,7 @@ func (r *GeoStatusService) Queryhelp(ctx context.Context, opts ...option.Request
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *GeoStatusService) Tuple(ctx context.Context, query GeoStatusTupleParams, opts ...option.RequestOption) (res *[]GeoStatusFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/geostatus/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

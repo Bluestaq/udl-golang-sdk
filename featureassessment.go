@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewFeatureAssessmentService(opts ...option.RequestOption) (r FeatureAssessm
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *FeatureAssessmentService) New(ctx context.Context, body FeatureAssessmentNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/featureassessment"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -57,7 +58,7 @@ func (r *FeatureAssessmentService) New(ctx context.Context, body FeatureAssessme
 // Service operation to get a single FeatureAssessment record by its unique ID
 // passed as a path parameter.
 func (r *FeatureAssessmentService) Get(ctx context.Context, id string, query FeatureAssessmentGetParams, opts ...option.RequestOption) (res *FeatureAssessmentGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -73,7 +74,7 @@ func (r *FeatureAssessmentService) Get(ctx context.Context, id string, query Fea
 // parameter information.
 func (r *FeatureAssessmentService) List(ctx context.Context, query FeatureAssessmentListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[FeatureAssessmentListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/featureassessment"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -102,7 +103,7 @@ func (r *FeatureAssessmentService) ListAutoPaging(ctx context.Context, query Fea
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *FeatureAssessmentService) Count(ctx context.Context, query FeatureAssessmentCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/featureassessment/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -115,7 +116,7 @@ func (r *FeatureAssessmentService) Count(ctx context.Context, query FeatureAsses
 // providers should contact the UDL team for specific role assignments and for
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *FeatureAssessmentService) NewBulk(ctx context.Context, body FeatureAssessmentNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/featureassessment/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -125,7 +126,7 @@ func (r *FeatureAssessmentService) NewBulk(ctx context.Context, body FeatureAsse
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *FeatureAssessmentService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *FeatureAssessmentQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/featureassessment/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -140,7 +141,7 @@ func (r *FeatureAssessmentService) QueryHelp(ctx context.Context, opts ...option
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *FeatureAssessmentService) Tuple(ctx context.Context, query FeatureAssessmentTupleParams, opts ...option.RequestOption) (res *[]FeatureAssessmentTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/featureassessment/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -151,7 +152,7 @@ func (r *FeatureAssessmentService) Tuple(ctx context.Context, query FeatureAsses
 // feeds into UDL. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *FeatureAssessmentService) UnvalidatedPublish(ctx context.Context, body FeatureAssessmentUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-featureassessment"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

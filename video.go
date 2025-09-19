@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewVideoService(opts ...option.RequestOption) (r VideoService) {
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *VideoService) New(ctx context.Context, body VideoNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/video"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -58,7 +59,7 @@ func (r *VideoService) New(ctx context.Context, body VideoNewParams, opts ...opt
 // parameter information.
 func (r *VideoService) List(ctx context.Context, query VideoListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[VideoListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/video"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -87,7 +88,7 @@ func (r *VideoService) ListAutoPaging(ctx context.Context, query VideoListParams
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *VideoService) Count(ctx context.Context, query VideoCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/video/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -97,7 +98,7 @@ func (r *VideoService) Count(ctx context.Context, query VideoCountParams, opts .
 // Service operation to get a single Video Stream record by its unique ID passed as
 // a path parameter.
 func (r *VideoService) Get(ctx context.Context, id string, query VideoGetParams, opts ...option.RequestOption) (res *VideoStreamsFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -110,7 +111,7 @@ func (r *VideoService) Get(ctx context.Context, id string, query VideoGetParams,
 // Service operation to retrieve player URL and token for given stream name and
 // source.
 func (r *VideoService) GetPlayerStreamingInfo(ctx context.Context, query VideoGetPlayerStreamingInfoParams, opts ...option.RequestOption) (res *VideoGetPlayerStreamingInfoResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/video/getPlayerStreamingInfo"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -119,7 +120,7 @@ func (r *VideoService) GetPlayerStreamingInfo(ctx context.Context, query VideoGe
 // Service operation to retrieve publisher URL and token for given stream name and
 // source.
 func (r *VideoService) GetPublisherStreamingInfo(ctx context.Context, query VideoGetPublisherStreamingInfoParams, opts ...option.RequestOption) (res *VideoGetPublisherStreamingInfoResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/video/getPublisherStreamingInfo"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -128,7 +129,7 @@ func (r *VideoService) GetPublisherStreamingInfo(ctx context.Context, query Vide
 // Service operation to retrieve a static pre-configured SRT or UDP streamfile URL
 // for given stream name and source.
 func (r *VideoService) GetStreamFile(ctx context.Context, query VideoGetStreamFileParams, opts ...option.RequestOption) (res *VideoGetStreamFileResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/video/getStreamFile"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -137,7 +138,7 @@ func (r *VideoService) GetStreamFile(ctx context.Context, query VideoGetStreamFi
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *VideoService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *VideoQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/video/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -152,7 +153,7 @@ func (r *VideoService) Queryhelp(ctx context.Context, opts ...option.RequestOpti
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *VideoService) Tuple(ctx context.Context, query VideoTupleParams, opts ...option.RequestOption) (res *[]VideoStreamsFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/video/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

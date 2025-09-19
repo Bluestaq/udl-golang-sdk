@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -42,7 +43,7 @@ func NewIsrCollectionHistoryService(opts ...option.RequestOption) (r IsrCollecti
 // parameter information.
 func (r *IsrCollectionHistoryService) List(ctx context.Context, query IsrCollectionHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[IsrCollectionHistoryListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/isrcollection/history"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -71,7 +72,7 @@ func (r *IsrCollectionHistoryService) ListAutoPaging(ctx context.Context, query 
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
 func (r *IsrCollectionHistoryService) Aodr(ctx context.Context, query IsrCollectionHistoryAodrParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/isrcollection/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
@@ -84,7 +85,7 @@ func (r *IsrCollectionHistoryService) Aodr(ctx context.Context, query IsrCollect
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *IsrCollectionHistoryService) Count(ctx context.Context, query IsrCollectionHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/isrcollection/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)

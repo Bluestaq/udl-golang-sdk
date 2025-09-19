@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewLogisticsSupportService(opts ...option.RequestOption) (r LogisticsSuppor
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *LogisticsSupportService) New(ctx context.Context, body LogisticsSupportNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/logisticssupport"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -58,7 +59,7 @@ func (r *LogisticsSupportService) New(ctx context.Context, body LogisticsSupport
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *LogisticsSupportService) Update(ctx context.Context, id string, body LogisticsSupportUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -75,7 +76,7 @@ func (r *LogisticsSupportService) Update(ctx context.Context, id string, body Lo
 // parameter information.
 func (r *LogisticsSupportService) List(ctx context.Context, query LogisticsSupportListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LogisticsSupportListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/logisticssupport"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -104,7 +105,7 @@ func (r *LogisticsSupportService) ListAutoPaging(ctx context.Context, query Logi
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *LogisticsSupportService) Count(ctx context.Context, query LogisticsSupportCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/logisticssupport/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -117,7 +118,7 @@ func (r *LogisticsSupportService) Count(ctx context.Context, query LogisticsSupp
 // providers should contact the UDL team for specific role assignments and for
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *LogisticsSupportService) NewBulk(ctx context.Context, body LogisticsSupportNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/logisticssupport/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -127,7 +128,7 @@ func (r *LogisticsSupportService) NewBulk(ctx context.Context, body LogisticsSup
 // Service operation to get a single LogisticsSupport record by its unique ID
 // passed as a path parameter.
 func (r *LogisticsSupportService) Get(ctx context.Context, id string, query LogisticsSupportGetParams, opts ...option.RequestOption) (res *LogisticsSupportGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -140,7 +141,7 @@ func (r *LogisticsSupportService) Get(ctx context.Context, id string, query Logi
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *LogisticsSupportService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *LogisticsSupportQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/logisticssupport/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -155,7 +156,7 @@ func (r *LogisticsSupportService) Queryhelp(ctx context.Context, opts ...option.
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *LogisticsSupportService) Tuple(ctx context.Context, query LogisticsSupportTupleParams, opts ...option.RequestOption) (res *[]LogisticsSupportTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/logisticssupport/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -166,7 +167,7 @@ func (r *LogisticsSupportService) Tuple(ctx context.Context, query LogisticsSupp
 // feeds into UDL. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *LogisticsSupportService) UnvalidatedPublish(ctx context.Context, body LogisticsSupportUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-logisticssupport"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

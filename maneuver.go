@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -49,7 +50,7 @@ func NewManeuverService(opts ...option.RequestOption) (r ManeuverService) {
 // and for instructions on setting up a permanent feed through an alternate
 // mechanism.
 func (r *ManeuverService) New(ctx context.Context, body ManeuverNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/maneuver"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -62,7 +63,7 @@ func (r *ManeuverService) New(ctx context.Context, body ManeuverNewParams, opts 
 // parameter information.
 func (r *ManeuverService) List(ctx context.Context, query ManeuverListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[ManeuverListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/maneuver"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -91,7 +92,7 @@ func (r *ManeuverService) ListAutoPaging(ctx context.Context, query ManeuverList
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *ManeuverService) Count(ctx context.Context, query ManeuverCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/maneuver/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -104,7 +105,7 @@ func (r *ManeuverService) Count(ctx context.Context, query ManeuverCountParams, 
 // the UDL team for specific role assignments and for instructions on setting up a
 // permanent feed through an alternate mechanism.
 func (r *ManeuverService) NewBulk(ctx context.Context, body ManeuverNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/maneuver/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -114,7 +115,7 @@ func (r *ManeuverService) NewBulk(ctx context.Context, body ManeuverNewBulkParam
 // Service operation to get a single maneuver by its unique ID passed as a path
 // parameter.
 func (r *ManeuverService) Get(ctx context.Context, id string, query ManeuverGetParams, opts ...option.RequestOption) (res *ManeuverGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -127,7 +128,7 @@ func (r *ManeuverService) Get(ctx context.Context, id string, query ManeuverGetP
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *ManeuverService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *ManeuverQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/maneuver/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -142,7 +143,7 @@ func (r *ManeuverService) Queryhelp(ctx context.Context, opts ...option.RequestO
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *ManeuverService) Tuple(ctx context.Context, query ManeuverTupleParams, opts ...option.RequestOption) (res *[]ManeuverTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/maneuver/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -153,7 +154,7 @@ func (r *ManeuverService) Tuple(ctx context.Context, query ManeuverTupleParams, 
 // specific role is required to perform this service operation. Please contact the
 // UDL team for assistance.
 func (r *ManeuverService) UnvalidatedPublish(ctx context.Context, body ManeuverUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-maneuver"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

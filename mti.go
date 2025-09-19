@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewMtiService(opts ...option.RequestOption) (r MtiService) {
 // parameter information.
 func (r *MtiService) List(ctx context.Context, query MtiListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[MtiListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/mti"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -76,7 +77,7 @@ func (r *MtiService) ListAutoPaging(ctx context.Context, query MtiListParams, op
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *MtiService) Count(ctx context.Context, query MtiCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/mti/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -90,7 +91,7 @@ func (r *MtiService) Count(ctx context.Context, query MtiCountParams, opts ...op
 // and for instructions on setting up a permanent feed through an alternate
 // mechanism.
 func (r *MtiService) NewBulk(ctx context.Context, body MtiNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/mti/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -100,7 +101,7 @@ func (r *MtiService) NewBulk(ctx context.Context, body MtiNewBulkParams, opts ..
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *MtiService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *MtiQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/mti/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -115,7 +116,7 @@ func (r *MtiService) Queryhelp(ctx context.Context, opts ...option.RequestOption
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *MtiService) Tuple(ctx context.Context, query MtiTupleParams, opts ...option.RequestOption) (res *[]MtiFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/mti/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -126,7 +127,7 @@ func (r *MtiService) Tuple(ctx context.Context, query MtiTupleParams, opts ...op
 // used for automated feeds into UDL. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
 func (r *MtiService) UnvalidatedPublish(ctx context.Context, body MtiUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-mti"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

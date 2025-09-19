@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewAirfieldStatusService(opts ...option.RequestOption) (r AirfieldStatusSer
 // specific role assignments and for instructions on setting up a permanent feed
 // through an alternate mechanism.
 func (r *AirfieldStatusService) New(ctx context.Context, body AirfieldStatusNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/airfieldstatus"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -57,7 +58,7 @@ func (r *AirfieldStatusService) New(ctx context.Context, body AirfieldStatusNewP
 // Service operation to get a single airfield status record by its unique ID passed
 // as a path parameter.
 func (r *AirfieldStatusService) Get(ctx context.Context, id string, query AirfieldStatusGetParams, opts ...option.RequestOption) (res *shared.AirfieldstatusFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -71,7 +72,7 @@ func (r *AirfieldStatusService) Get(ctx context.Context, id string, query Airfie
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *AirfieldStatusService) Update(ctx context.Context, id string, body AirfieldStatusUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -88,7 +89,7 @@ func (r *AirfieldStatusService) Update(ctx context.Context, id string, body Airf
 // parameter information.
 func (r *AirfieldStatusService) List(ctx context.Context, query AirfieldStatusListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AirfieldstatusAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/airfieldstatus"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -115,7 +116,7 @@ func (r *AirfieldStatusService) ListAutoPaging(ctx context.Context, query Airfie
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *AirfieldStatusService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -132,7 +133,7 @@ func (r *AirfieldStatusService) Delete(ctx context.Context, id string, opts ...o
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *AirfieldStatusService) Count(ctx context.Context, query AirfieldStatusCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/airfieldstatus/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -142,7 +143,7 @@ func (r *AirfieldStatusService) Count(ctx context.Context, query AirfieldStatusC
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *AirfieldStatusService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *AirfieldStatusQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/airfieldstatus/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -157,7 +158,7 @@ func (r *AirfieldStatusService) Queryhelp(ctx context.Context, opts ...option.Re
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *AirfieldStatusService) Tuple(ctx context.Context, query AirfieldStatusTupleParams, opts ...option.RequestOption) (res *[]shared.AirfieldstatusFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/airfieldstatus/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

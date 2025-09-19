@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewDeconflictsetService(opts ...option.RequestOption) (r DeconflictsetServi
 // intended to be used for automated feeds into UDL. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *DeconflictsetService) New(ctx context.Context, body DeconflictsetNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/deconflictset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -60,7 +61,7 @@ func (r *DeconflictsetService) New(ctx context.Context, body DeconflictsetNewPar
 // parameter information.
 func (r *DeconflictsetService) List(ctx context.Context, query DeconflictsetListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[DeconflictsetListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/deconflictset"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -89,7 +90,7 @@ func (r *DeconflictsetService) ListAutoPaging(ctx context.Context, query Deconfl
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *DeconflictsetService) Count(ctx context.Context, query DeconflictsetCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/deconflictset/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -99,7 +100,7 @@ func (r *DeconflictsetService) Count(ctx context.Context, query DeconflictsetCou
 // Service operation to get a single DeconflictSet record by its unique ID passed
 // as a path parameter.
 func (r *DeconflictsetService) Get(ctx context.Context, id string, query DeconflictsetGetParams, opts ...option.RequestOption) (res *DeconflictsetGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -112,7 +113,7 @@ func (r *DeconflictsetService) Get(ctx context.Context, id string, query Deconfl
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *DeconflictsetService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *DeconflictsetQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/deconflictset/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -127,7 +128,7 @@ func (r *DeconflictsetService) Queryhelp(ctx context.Context, opts ...option.Req
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *DeconflictsetService) Tuple(ctx context.Context, query DeconflictsetTupleParams, opts ...option.RequestOption) (res *[]DeconflictsetTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/deconflictset/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -138,7 +139,7 @@ func (r *DeconflictsetService) Tuple(ctx context.Context, query DeconflictsetTup
 // feeds into UDL. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *DeconflictsetService) UnvalidatedPublish(ctx context.Context, body DeconflictsetUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-deconflictset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewObjectOfInterestService(opts ...option.RequestOption) (r ObjectOfInteres
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *ObjectOfInterestService) New(ctx context.Context, body ObjectOfInterestNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/objectofinterest"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -54,7 +55,7 @@ func (r *ObjectOfInterestService) New(ctx context.Context, body ObjectOfInterest
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *ObjectOfInterestService) Update(ctx context.Context, id string, body ObjectOfInterestUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -71,7 +72,7 @@ func (r *ObjectOfInterestService) Update(ctx context.Context, id string, body Ob
 // parameter information.
 func (r *ObjectOfInterestService) List(ctx context.Context, query ObjectOfInterestListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[ObjectOfInterestListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/objectofinterest"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -100,7 +101,7 @@ func (r *ObjectOfInterestService) ListAutoPaging(ctx context.Context, query Obje
 // specific role is required to perform this service operation. Please contact the
 // UDL team for assistance.
 func (r *ObjectOfInterestService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -117,7 +118,7 @@ func (r *ObjectOfInterestService) Delete(ctx context.Context, id string, opts ..
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *ObjectOfInterestService) Count(ctx context.Context, query ObjectOfInterestCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/objectofinterest/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -127,7 +128,7 @@ func (r *ObjectOfInterestService) Count(ctx context.Context, query ObjectOfInter
 // Service operation to get a single ObjectOfInterest record by its unique ID
 // passed as a path parameter.
 func (r *ObjectOfInterestService) Get(ctx context.Context, id string, query ObjectOfInterestGetParams, opts ...option.RequestOption) (res *ObjectOfInterestGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -140,7 +141,7 @@ func (r *ObjectOfInterestService) Get(ctx context.Context, id string, query Obje
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *ObjectOfInterestService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *ObjectOfInterestQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/objectofinterest/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -155,7 +156,7 @@ func (r *ObjectOfInterestService) Queryhelp(ctx context.Context, opts ...option.
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *ObjectOfInterestService) Tuple(ctx context.Context, query ObjectOfInterestTupleParams, opts ...option.RequestOption) (res *[]ObjectOfInterestTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/objectofinterest/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

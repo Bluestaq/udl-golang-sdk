@@ -12,6 +12,7 @@ import (
 	"mime/multipart"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiform"
@@ -50,7 +51,7 @@ func NewConjunctionService(opts ...option.RequestOption) (r ConjunctionService) 
 // Service operation to get a single conjunction by its unique ID passed as a path
 // parameter.
 func (r *ConjunctionService) Get(ctx context.Context, id string, query ConjunctionGetParams, opts ...option.RequestOption) (res *shared.ConjunctionFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -66,7 +67,7 @@ func (r *ConjunctionService) Get(ctx context.Context, id string, query Conjuncti
 // parameter information.
 func (r *ConjunctionService) List(ctx context.Context, query ConjunctionListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[ConjunctionAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/conjunction"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -95,7 +96,7 @@ func (r *ConjunctionService) ListAutoPaging(ctx context.Context, query Conjuncti
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *ConjunctionService) Count(ctx context.Context, query ConjunctionCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/conjunction/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -108,7 +109,7 @@ func (r *ConjunctionService) Count(ctx context.Context, query ConjunctionCountPa
 // is required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *ConjunctionService) NewUdl(ctx context.Context, params ConjunctionNewUdlParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/conjunction"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
@@ -123,7 +124,7 @@ func (r *ConjunctionService) NewUdl(ctx context.Context, params ConjunctionNewUd
 // specific role assignments and for instructions on setting up a permanent feed
 // through an alternate mechanism.
 func (r *ConjunctionService) NewBulk(ctx context.Context, body ConjunctionNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/conjunction/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -135,7 +136,7 @@ func (r *ConjunctionService) NewBulk(ctx context.Context, body ConjunctionNewBul
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
 func (r *ConjunctionService) GetHistory(ctx context.Context, query ConjunctionGetHistoryParams, opts ...option.RequestOption) (res *[]shared.ConjunctionFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/conjunction/history"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -144,7 +145,7 @@ func (r *ConjunctionService) GetHistory(ctx context.Context, query ConjunctionGe
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *ConjunctionService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *ConjunctionQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/conjunction/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -159,7 +160,7 @@ func (r *ConjunctionService) Queryhelp(ctx context.Context, opts ...option.Reque
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *ConjunctionService) Tuple(ctx context.Context, query ConjunctionTupleParams, opts ...option.RequestOption) (res *[]shared.ConjunctionFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/conjunction/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -171,7 +172,7 @@ func (r *ConjunctionService) Tuple(ctx context.Context, query ConjunctionTuplePa
 // is intended to be used for automated feeds into UDL. A specific role is required
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *ConjunctionService) UnvalidatedPublish(ctx context.Context, body ConjunctionUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-conjunction"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -187,7 +188,7 @@ func (r *ConjunctionService) UnvalidatedPublish(ctx context.Context, body Conjun
 // **Example:**
 // /filedrop/cdms?filename=conj.zip&classification=U&dataMode=TEST&source=Bluestaq&tags=tag1,tag2
 func (r *ConjunctionService) UploadConjunctionDataMessage(ctx context.Context, fileContent io.Reader, body ConjunctionUploadConjunctionDataMessageParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", ""), option.WithRequestBody("application/zip", fileContent)}, opts...)
 	path := "filedrop/cdms"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, nil, opts...)

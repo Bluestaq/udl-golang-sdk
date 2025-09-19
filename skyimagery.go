@@ -11,6 +11,7 @@ import (
 	"mime/multipart"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiform"
@@ -51,7 +52,7 @@ func NewSkyImageryService(opts ...option.RequestOption) (r SkyImageryService) {
 // parameter information.
 func (r *SkyImageryService) List(ctx context.Context, query SkyImageryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SkyImageryListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/skyimagery"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -80,7 +81,7 @@ func (r *SkyImageryService) ListAutoPaging(ctx context.Context, query SkyImagery
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SkyImageryService) Count(ctx context.Context, query SkyImageryCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/skyimagery/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -91,7 +92,7 @@ func (r *SkyImageryService) Count(ctx context.Context, query SkyImageryCountPara
 // passed as a path parameter. The image is returned as an attachment
 // Content-Disposition.
 func (r *SkyImageryService) FileGet(ctx context.Context, id string, query SkyImageryFileGetParams, opts ...option.RequestOption) (res *http.Response, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -106,7 +107,7 @@ func (r *SkyImageryService) FileGet(ctx context.Context, id string, query SkyIma
 // path parameter. SkyImagery represents metadata about a sky image, as well as the
 // actual binary image data.
 func (r *SkyImageryService) Get(ctx context.Context, id string, query SkyImageryGetParams, opts ...option.RequestOption) (res *SkyImageryGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -119,7 +120,7 @@ func (r *SkyImageryService) Get(ctx context.Context, id string, query SkyImagery
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SkyImageryService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SkyImageryQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/skyimagery/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -134,7 +135,7 @@ func (r *SkyImageryService) Queryhelp(ctx context.Context, opts ...option.Reques
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SkyImageryService) Tuple(ctx context.Context, query SkyImageryTupleParams, opts ...option.RequestOption) (res *[]SkyImageryTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/skyimagery/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -158,7 +159,7 @@ func (r *SkyImageryService) Tuple(ctx context.Context, query SkyImageryTuplePara
 // role is required to perform this service operation. Please contact the UDL team
 // for assistance.
 func (r *SkyImageryService) UploadZip(ctx context.Context, body SkyImageryUploadZipParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	opts = append([]option.RequestOption{option.WithBaseURL("https://imagery.unifieddatalibrary.com/")}, opts...)
 	path := "filedrop/udl-skyimagery"

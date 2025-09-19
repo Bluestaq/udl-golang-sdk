@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewAirspaceControlOrderService(opts ...option.RequestOption) (r AirspaceCon
 // and ingest into the database. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
 func (r *AirspaceControlOrderService) New(ctx context.Context, body AirspaceControlOrderNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/airspacecontrolorder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -55,7 +56,7 @@ func (r *AirspaceControlOrderService) New(ctx context.Context, body AirspaceCont
 // Service operation to get a single AirspaceControlOrder record by its unique ID
 // passed as a path parameter.
 func (r *AirspaceControlOrderService) Get(ctx context.Context, id string, query AirspaceControlOrderGetParams, opts ...option.RequestOption) (res *shared.AirspacecontrolorderFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -71,7 +72,7 @@ func (r *AirspaceControlOrderService) Get(ctx context.Context, id string, query 
 // parameter information.
 func (r *AirspaceControlOrderService) List(ctx context.Context, query AirspaceControlOrderListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AirspacecontrolorderAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/airspacecontrolorder"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -100,7 +101,7 @@ func (r *AirspaceControlOrderService) ListAutoPaging(ctx context.Context, query 
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *AirspaceControlOrderService) Count(ctx context.Context, query AirspaceControlOrderCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/airspacecontrolorder/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -113,7 +114,7 @@ func (r *AirspaceControlOrderService) Count(ctx context.Context, query AirspaceC
 // providers should contact the UDL team for specific role assignments and for
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *AirspaceControlOrderService) NewBulk(ctx context.Context, body AirspaceControlOrderNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/airspacecontrolorder/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -123,7 +124,7 @@ func (r *AirspaceControlOrderService) NewBulk(ctx context.Context, body Airspace
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *AirspaceControlOrderService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *AirspaceControlOrderQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/airspacecontrolorder/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -138,7 +139,7 @@ func (r *AirspaceControlOrderService) QueryHelp(ctx context.Context, opts ...opt
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *AirspaceControlOrderService) Tuple(ctx context.Context, query AirspaceControlOrderTupleParams, opts ...option.RequestOption) (res *[]shared.AirspacecontrolorderFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/airspacecontrolorder/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

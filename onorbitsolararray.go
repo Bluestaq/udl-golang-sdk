@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -46,7 +47,7 @@ func NewOnorbitsolararrayService(opts ...option.RequestOption) (r Onorbitsolarar
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *OnorbitsolararrayService) New(ctx context.Context, body OnorbitsolararrayNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/onorbitsolararray"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -59,7 +60,7 @@ func (r *OnorbitsolararrayService) New(ctx context.Context, body Onorbitsolararr
 // on-orbit spacecraft. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *OnorbitsolararrayService) Update(ctx context.Context, id string, body OnorbitsolararrayUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -76,7 +77,7 @@ func (r *OnorbitsolararrayService) Update(ctx context.Context, id string, body O
 // parameter information.
 func (r *OnorbitsolararrayService) List(ctx context.Context, query OnorbitsolararrayListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[OnorbitsolararrayListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/onorbitsolararray"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -106,7 +107,7 @@ func (r *OnorbitsolararrayService) ListAutoPaging(ctx context.Context, query Ono
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *OnorbitsolararrayService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -122,7 +123,7 @@ func (r *OnorbitsolararrayService) Delete(ctx context.Context, id string, opts .
 // on-orbit spacecraft SolarArrays and a particular on-orbit spacecraft. A
 // SolarArray type may be associated with many different on-orbit spacecraft.
 func (r *OnorbitsolararrayService) Get(ctx context.Context, id string, query OnorbitsolararrayGetParams, opts ...option.RequestOption) (res *shared.OnorbitSolarArrayFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

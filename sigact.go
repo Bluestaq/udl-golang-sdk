@@ -10,6 +10,7 @@ import (
 	"mime/multipart"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiform"
@@ -51,7 +52,7 @@ func NewSigactService(opts ...option.RequestOption) (r SigactService) {
 // parameter information.
 func (r *SigactService) List(ctx context.Context, query SigactListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SigactListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/sigact"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -80,7 +81,7 @@ func (r *SigactService) ListAutoPaging(ctx context.Context, query SigactListPara
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SigactService) Count(ctx context.Context, query SigactCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sigact/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -94,7 +95,7 @@ func (r *SigactService) Count(ctx context.Context, query SigactCountParams, opts
 // the UDL team for instructions on setting up a permanent feed through an
 // alternate mechanism.
 func (r *SigactService) NewBulk(ctx context.Context, body SigactNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sigact/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -104,7 +105,7 @@ func (r *SigactService) NewBulk(ctx context.Context, body SigactNewBulkParams, o
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SigactService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SigactQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/sigact/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -119,7 +120,7 @@ func (r *SigactService) Queryhelp(ctx context.Context, opts ...option.RequestOpt
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SigactService) Tuple(ctx context.Context, query SigactTupleParams, opts ...option.RequestOption) (res *[]SigactTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/sigact/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -144,7 +145,7 @@ func (r *SigactService) Tuple(ctx context.Context, query SigactTupleParams, opts
 // role is required to perform this service operation. Please contact the UDL team
 // for assistance.
 func (r *SigactService) UploadZip(ctx context.Context, body SigactUploadZipParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-sigact-text"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

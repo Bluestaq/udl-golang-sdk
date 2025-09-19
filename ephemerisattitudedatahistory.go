@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
@@ -38,7 +39,7 @@ func NewEphemerisAttitudeDataHistoryService(opts ...option.RequestOption) (r Eph
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
 func (r *EphemerisAttitudeDataHistoryService) Get(ctx context.Context, query EphemerisAttitudeDataHistoryGetParams, opts ...option.RequestOption) (res *[]shared.AttitudedataFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/attitudedata/history"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -50,7 +51,7 @@ func (r *EphemerisAttitudeDataHistoryService) Get(ctx context.Context, query Eph
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
 func (r *EphemerisAttitudeDataHistoryService) Aodr(ctx context.Context, query EphemerisAttitudeDataHistoryAodrParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/attitudedata/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
@@ -63,7 +64,7 @@ func (r *EphemerisAttitudeDataHistoryService) Aodr(ctx context.Context, query Ep
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *EphemerisAttitudeDataHistoryService) Count(ctx context.Context, query EphemerisAttitudeDataHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/attitudedata/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)

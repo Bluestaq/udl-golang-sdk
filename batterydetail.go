@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -44,7 +45,7 @@ func NewBatterydetailService(opts ...option.RequestOption) (r BatterydetailServi
 // sources. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *BatterydetailService) New(ctx context.Context, body BatterydetailNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/batterydetails"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -55,7 +56,7 @@ func (r *BatterydetailService) New(ctx context.Context, body BatterydetailNewPar
 // as a path parameter. A Battery record may have multiple details records from
 // several sources.
 func (r *BatterydetailService) Get(ctx context.Context, id string, query BatterydetailGetParams, opts ...option.RequestOption) (res *shared.BatterydetailsFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -69,7 +70,7 @@ func (r *BatterydetailService) Get(ctx context.Context, id string, query Battery
 // multiple details records from several sources. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *BatterydetailService) Update(ctx context.Context, id string, body BatterydetailUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -86,7 +87,7 @@ func (r *BatterydetailService) Update(ctx context.Context, id string, body Batte
 // parameter information.
 func (r *BatterydetailService) List(ctx context.Context, query BatterydetailListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[BatterydetailsAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/batterydetails"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -114,7 +115,7 @@ func (r *BatterydetailService) ListAutoPaging(ctx context.Context, query Battery
 // sources. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *BatterydetailService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")

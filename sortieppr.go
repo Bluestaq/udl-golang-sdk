@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewSortiePprService(opts ...option.RequestOption) (r SortiePprService) {
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *SortiePprService) New(ctx context.Context, body SortiePprNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sortieppr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -58,7 +59,7 @@ func (r *SortiePprService) New(ctx context.Context, body SortiePprNewParams, opt
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *SortiePprService) Update(ctx context.Context, id string, body SortiePprUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -75,7 +76,7 @@ func (r *SortiePprService) Update(ctx context.Context, id string, body SortiePpr
 // parameter information.
 func (r *SortiePprService) List(ctx context.Context, query SortiePprListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SortiePprListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/sortieppr"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -102,7 +103,7 @@ func (r *SortiePprService) ListAutoPaging(ctx context.Context, query SortiePprLi
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *SortiePprService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -119,7 +120,7 @@ func (r *SortiePprService) Delete(ctx context.Context, id string, opts ...option
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SortiePprService) Count(ctx context.Context, query SortiePprCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sortieppr/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -132,7 +133,7 @@ func (r *SortiePprService) Count(ctx context.Context, query SortiePprCountParams
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
 func (r *SortiePprService) NewBulk(ctx context.Context, body SortiePprNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sortieppr/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -142,7 +143,7 @@ func (r *SortiePprService) NewBulk(ctx context.Context, body SortiePprNewBulkPar
 // Service operation to get a single sortieppr record by its unique ID passed as a
 // path parameter.
 func (r *SortiePprService) Get(ctx context.Context, id string, query SortiePprGetParams, opts ...option.RequestOption) (res *shared.SortiePprFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -155,7 +156,7 @@ func (r *SortiePprService) Get(ctx context.Context, id string, query SortiePprGe
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SortiePprService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SortiePprQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/sortieppr/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -170,7 +171,7 @@ func (r *SortiePprService) Queryhelp(ctx context.Context, opts ...option.Request
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SortiePprService) Tuple(ctx context.Context, query SortiePprTupleParams, opts ...option.RequestOption) (res *[]shared.SortiePprFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/sortieppr/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -181,7 +182,7 @@ func (r *SortiePprService) Tuple(ctx context.Context, query SortiePprTupleParams
 // role is required to perform this service operation. Please contact the UDL team
 // for assistance.
 func (r *SortiePprService) UnvalidatedPublish(ctx context.Context, body SortiePprUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-sortieppr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

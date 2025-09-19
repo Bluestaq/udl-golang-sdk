@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -44,7 +45,7 @@ func NewChannelService(opts ...option.RequestOption) (r ChannelService) {
 // have many channels. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *ChannelService) New(ctx context.Context, body ChannelNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/channel"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -55,7 +56,7 @@ func (r *ChannelService) New(ctx context.Context, body ChannelNewParams, opts ..
 // path parameter. A Comm payload may have multiple transponders and a transponder
 // may have many channels.
 func (r *ChannelService) Get(ctx context.Context, id string, query ChannelGetParams, opts ...option.RequestOption) (res *shared.ChannelFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -70,7 +71,7 @@ func (r *ChannelService) Get(ctx context.Context, id string, query ChannelGetPar
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *ChannelService) Update(ctx context.Context, id string, body ChannelUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -87,7 +88,7 @@ func (r *ChannelService) Update(ctx context.Context, id string, body ChannelUpda
 // parameter information.
 func (r *ChannelService) List(ctx context.Context, query ChannelListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[ChannelAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/channel"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -115,7 +116,7 @@ func (r *ChannelService) ListAutoPaging(ctx context.Context, query ChannelListPa
 // have many channels. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *ChannelService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -132,7 +133,7 @@ func (r *ChannelService) Delete(ctx context.Context, id string, opts ...option.R
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *ChannelService) Count(ctx context.Context, query ChannelCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/channel/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -142,7 +143,7 @@ func (r *ChannelService) Count(ctx context.Context, query ChannelCountParams, op
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *ChannelService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *ChannelQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/channel/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -157,7 +158,7 @@ func (r *ChannelService) Queryhelp(ctx context.Context, opts ...option.RequestOp
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *ChannelService) Tuple(ctx context.Context, query ChannelTupleParams, opts ...option.RequestOption) (res *[]shared.ChannelFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/channel/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewOnorbitbatteryService(opts ...option.RequestOption) (r OnorbitbatterySer
 // many different on-orbit spacecraft. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
 func (r *OnorbitbatteryService) New(ctx context.Context, body OnorbitbatteryNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/onorbitbattery"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -58,7 +59,7 @@ func (r *OnorbitbatteryService) New(ctx context.Context, body OnorbitbatteryNewP
 // A specific role is required to perform this service operation. Please contact
 // the UDL team for assistance.
 func (r *OnorbitbatteryService) Update(ctx context.Context, id string, body OnorbitbatteryUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -75,7 +76,7 @@ func (r *OnorbitbatteryService) Update(ctx context.Context, id string, body Onor
 // parameter information.
 func (r *OnorbitbatteryService) List(ctx context.Context, query OnorbitbatteryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[OnorbitbatteryListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/onorbitbattery"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -104,7 +105,7 @@ func (r *OnorbitbatteryService) ListAutoPaging(ctx context.Context, query Onorbi
 // many different on-orbit spacecraft. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
 func (r *OnorbitbatteryService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -120,7 +121,7 @@ func (r *OnorbitbatteryService) Delete(ctx context.Context, id string, opts ...o
 // spacecraft batteries and a particular on-orbit spacecraft. A Battery may be
 // associated with many different on-orbit spacecraft.
 func (r *OnorbitbatteryService) Get(ctx context.Context, id string, query OnorbitbatteryGetParams, opts ...option.RequestOption) (res *shared.OnorbitBatteryFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

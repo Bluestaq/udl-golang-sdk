@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewBeamContourService(opts ...option.RequestOption) (r BeamContourService) 
 // the database. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *BeamContourService) New(ctx context.Context, body BeamContourNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/beamcontour"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -55,7 +56,7 @@ func (r *BeamContourService) New(ctx context.Context, body BeamContourNewParams,
 // Service operation to get a single BeamContour by its unique ID passed as a path
 // parameter.
 func (r *BeamContourService) Get(ctx context.Context, id string, query BeamContourGetParams, opts ...option.RequestOption) (res *shared.BeamcontourFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -68,7 +69,7 @@ func (r *BeamContourService) Get(ctx context.Context, id string, query BeamConto
 // Service operation to update a single BeamContour. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *BeamContourService) Update(ctx context.Context, id string, body BeamContourUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -85,7 +86,7 @@ func (r *BeamContourService) Update(ctx context.Context, id string, body BeamCon
 // parameter information.
 func (r *BeamContourService) List(ctx context.Context, query BeamContourListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[BeamcontourAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/beamcontour"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -112,7 +113,7 @@ func (r *BeamContourService) ListAutoPaging(ctx context.Context, query BeamConto
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *BeamContourService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -129,7 +130,7 @@ func (r *BeamContourService) Delete(ctx context.Context, id string, opts ...opti
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *BeamContourService) Count(ctx context.Context, query BeamContourCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/beamcontour/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -142,7 +143,7 @@ func (r *BeamContourService) Count(ctx context.Context, query BeamContourCountPa
 // and for instructions on setting up a permanent feed through an alternate
 // mechanism.
 func (r *BeamContourService) NewBulk(ctx context.Context, body BeamContourNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/beamcontour/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -152,7 +153,7 @@ func (r *BeamContourService) NewBulk(ctx context.Context, body BeamContourNewBul
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *BeamContourService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *BeamContourQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/beamcontour/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -167,7 +168,7 @@ func (r *BeamContourService) QueryHelp(ctx context.Context, opts ...option.Reque
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *BeamContourService) Tuple(ctx context.Context, query BeamContourTupleParams, opts ...option.RequestOption) (res *[]shared.BeamcontourFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/beamcontour/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

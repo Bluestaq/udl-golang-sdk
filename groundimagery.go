@@ -11,6 +11,7 @@ import (
 	"mime/multipart"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiform"
@@ -49,7 +50,7 @@ func NewGroundImageryService(opts ...option.RequestOption) (r GroundImageryServi
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *GroundImageryService) New(ctx context.Context, body GroundImageryNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/groundimagery"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -62,7 +63,7 @@ func (r *GroundImageryService) New(ctx context.Context, body GroundImageryNewPar
 // parameter information.
 func (r *GroundImageryService) List(ctx context.Context, query GroundImageryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[GroundImageryListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/groundimagery"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -91,7 +92,7 @@ func (r *GroundImageryService) ListAutoPaging(ctx context.Context, query GroundI
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
 func (r *GroundImageryService) Aodr(ctx context.Context, query GroundImageryAodrParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/groundimagery/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
@@ -104,7 +105,7 @@ func (r *GroundImageryService) Aodr(ctx context.Context, query GroundImageryAodr
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *GroundImageryService) Count(ctx context.Context, query GroundImageryCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/groundimagery/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -115,7 +116,7 @@ func (r *GroundImageryService) Count(ctx context.Context, query GroundImageryCou
 // as a path parameter. GroundImagery represents metadata about a ground image, as
 // well as the actual binary image data.
 func (r *GroundImageryService) Get(ctx context.Context, id string, query GroundImageryGetParams, opts ...option.RequestOption) (res *GroundImageryGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -129,7 +130,7 @@ func (r *GroundImageryService) Get(ctx context.Context, id string, query GroundI
 // passed as a path parameter. The image is returned as an attachment
 // Content-Disposition.
 func (r *GroundImageryService) GetFile(ctx context.Context, id string, query GroundImageryGetFileParams, opts ...option.RequestOption) (res *http.Response, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -143,7 +144,7 @@ func (r *GroundImageryService) GetFile(ctx context.Context, id string, query Gro
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *GroundImageryService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *GroundImageryQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/groundimagery/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -158,7 +159,7 @@ func (r *GroundImageryService) Queryhelp(ctx context.Context, opts ...option.Req
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *GroundImageryService) Tuple(ctx context.Context, query GroundImageryTupleParams, opts ...option.RequestOption) (res *[]GroundImageryTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/groundimagery/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -181,7 +182,7 @@ func (r *GroundImageryService) Tuple(ctx context.Context, query GroundImageryTup
 // role is required to perform this service operation. Please contact the UDL team
 // for assistance.
 func (r *GroundImageryService) UploadZip(ctx context.Context, body GroundImageryUploadZipParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	opts = append([]option.RequestOption{option.WithBaseURL("https://imagery.unifieddatalibrary.com/")}, opts...)
 	path := "filedrop/udl-groundimagery"

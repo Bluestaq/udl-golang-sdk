@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewSolarArrayService(opts ...option.RequestOption) (r SolarArrayService) {
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *SolarArrayService) New(ctx context.Context, body SolarArrayNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/solararray"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -55,7 +56,7 @@ func (r *SolarArrayService) New(ctx context.Context, body SolarArrayNewParams, o
 // Service operation to update a single SolarArray. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *SolarArrayService) Update(ctx context.Context, id string, body SolarArrayUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -72,7 +73,7 @@ func (r *SolarArrayService) Update(ctx context.Context, id string, body SolarArr
 // parameter information.
 func (r *SolarArrayService) List(ctx context.Context, query SolarArrayListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SolarArrayListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/solararray"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -99,7 +100,7 @@ func (r *SolarArrayService) ListAutoPaging(ctx context.Context, query SolarArray
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *SolarArrayService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -116,7 +117,7 @@ func (r *SolarArrayService) Delete(ctx context.Context, id string, opts ...optio
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SolarArrayService) Count(ctx context.Context, query SolarArrayCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/solararray/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -126,7 +127,7 @@ func (r *SolarArrayService) Count(ctx context.Context, query SolarArrayCountPara
 // Service operation to get a single SolarArray record by its unique ID passed as a
 // path parameter.
 func (r *SolarArrayService) Get(ctx context.Context, id string, query SolarArrayGetParams, opts ...option.RequestOption) (res *shared.SolarArrayFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -139,7 +140,7 @@ func (r *SolarArrayService) Get(ctx context.Context, id string, query SolarArray
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SolarArrayService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SolarArrayQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/solararray/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -154,7 +155,7 @@ func (r *SolarArrayService) Queryhelp(ctx context.Context, opts ...option.Reques
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SolarArrayService) Tuple(ctx context.Context, query SolarArrayTupleParams, opts ...option.RequestOption) (res *[]shared.SolarArrayFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/solararray/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

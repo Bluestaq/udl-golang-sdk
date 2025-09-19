@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -49,7 +50,7 @@ func NewHazardService(opts ...option.RequestOption) (r HazardService) {
 // and for instructions on setting up a permanent feed through an alternate
 // mechanism.
 func (r *HazardService) New(ctx context.Context, body HazardNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/hazard"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -62,7 +63,7 @@ func (r *HazardService) New(ctx context.Context, body HazardNewParams, opts ...o
 // parameter information.
 func (r *HazardService) List(ctx context.Context, query HazardListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[HazardListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/hazard"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -91,7 +92,7 @@ func (r *HazardService) ListAutoPaging(ctx context.Context, query HazardListPara
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *HazardService) Count(ctx context.Context, query HazardCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/hazard/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -104,7 +105,7 @@ func (r *HazardService) Count(ctx context.Context, query HazardCountParams, opts
 // the UDL team for specific role assignments and for instructions on setting up a
 // permanent feed through an alternate mechanism.
 func (r *HazardService) NewBulk(ctx context.Context, body HazardNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/hazard/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -114,7 +115,7 @@ func (r *HazardService) NewBulk(ctx context.Context, body HazardNewBulkParams, o
 // Service operation to get a single Hazard by its unique ID passed as a path
 // parameter.
 func (r *HazardService) Get(ctx context.Context, id string, query HazardGetParams, opts ...option.RequestOption) (res *HazardGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -127,7 +128,7 @@ func (r *HazardService) Get(ctx context.Context, id string, query HazardGetParam
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *HazardService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *HazardQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/hazard/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -142,7 +143,7 @@ func (r *HazardService) Queryhelp(ctx context.Context, opts ...option.RequestOpt
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *HazardService) Tuple(ctx context.Context, query HazardTupleParams, opts ...option.RequestOption) (res *[]HazardTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/hazard/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

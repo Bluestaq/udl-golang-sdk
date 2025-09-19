@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewIrService(opts ...option.RequestOption) (r IrService) {
 // database. An IR is an on-orbit infrared payload. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *IrService) New(ctx context.Context, body IrNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/ir"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -54,7 +55,7 @@ func (r *IrService) New(ctx context.Context, body IrNewParams, opts ...option.Re
 // A specific role is required to perform this service operation. Please contact
 // the UDL team for assistance.
 func (r *IrService) Update(ctx context.Context, id string, body IrUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -71,7 +72,7 @@ func (r *IrService) Update(ctx context.Context, id string, body IrUpdateParams, 
 // parameter information.
 func (r *IrService) List(ctx context.Context, query IrListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[IrListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/ir"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -98,7 +99,7 @@ func (r *IrService) ListAutoPaging(ctx context.Context, query IrListParams, opts
 // parameter. An IR is an on-orbit infrared payload. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *IrService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -115,7 +116,7 @@ func (r *IrService) Delete(ctx context.Context, id string, opts ...option.Reques
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *IrService) Count(ctx context.Context, query IrCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/ir/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -125,7 +126,7 @@ func (r *IrService) Count(ctx context.Context, query IrCountParams, opts ...opti
 // Service operation to get a single IR record by its unique ID passed as a path
 // parameter. An IR is an on-orbit infrared payload.
 func (r *IrService) Get(ctx context.Context, id string, query IrGetParams, opts ...option.RequestOption) (res *IrGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -138,7 +139,7 @@ func (r *IrService) Get(ctx context.Context, id string, query IrGetParams, opts 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *IrService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *IrQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/ir/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -153,7 +154,7 @@ func (r *IrService) Queryhelp(ctx context.Context, opts ...option.RequestOption)
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *IrService) Tuple(ctx context.Context, query IrTupleParams, opts ...option.RequestOption) (res *[]IrTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/ir/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

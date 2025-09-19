@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -40,7 +41,7 @@ func NewSensorObservationTypeService(opts ...option.RequestOption) (r SensorObse
 
 func (r *SensorObservationTypeService) List(ctx context.Context, query SensorObservationTypeListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SensorObservationTypeListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/sensorobservationtype"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -60,7 +61,7 @@ func (r *SensorObservationTypeService) ListAutoPaging(ctx context.Context, query
 }
 
 func (r *SensorObservationTypeService) Get(ctx context.Context, id string, query SensorObservationTypeGetParams, opts ...option.RequestOption) (res *SensorObservationTypeGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

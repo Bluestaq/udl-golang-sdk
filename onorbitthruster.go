@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewOnorbitthrusterService(opts ...option.RequestOption) (r OnorbitthrusterS
 // associated with many different on-orbit spacecraft. A specific role is required
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *OnorbitthrusterService) New(ctx context.Context, body OnorbitthrusterNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/onorbitthruster"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -58,7 +59,7 @@ func (r *OnorbitthrusterService) New(ctx context.Context, body OnorbitthrusterNe
 // spacecraft. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *OnorbitthrusterService) Update(ctx context.Context, id string, body OnorbitthrusterUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -75,7 +76,7 @@ func (r *OnorbitthrusterService) Update(ctx context.Context, id string, body Ono
 // parameter information.
 func (r *OnorbitthrusterService) List(ctx context.Context, query OnorbitthrusterListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[OnorbitthrusterListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/onorbitthruster"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -104,7 +105,7 @@ func (r *OnorbitthrusterService) ListAutoPaging(ctx context.Context, query Onorb
 // associated with many different on-orbit spacecraft. A specific role is required
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *OnorbitthrusterService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -120,7 +121,7 @@ func (r *OnorbitthrusterService) Delete(ctx context.Context, id string, opts ...
 // spacecraft's engine and a particular on-orbit spacecraft. An Engine type may be
 // associated with many different on-orbit spacecraft.
 func (r *OnorbitthrusterService) Get(ctx context.Context, id string, query OnorbitthrusterGetParams, opts ...option.RequestOption) (res *shared.OnorbitThrusterFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

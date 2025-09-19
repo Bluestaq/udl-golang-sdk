@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -61,7 +62,7 @@ func NewAttitudeSetService(opts ...option.RequestOption) (r AttitudeSetService) 
 //
 // </h3>
 func (r *AttitudeSetService) New(ctx context.Context, body AttitudeSetNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/attitudeset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -71,7 +72,7 @@ func (r *AttitudeSetService) New(ctx context.Context, body AttitudeSetNewParams,
 // Service operation to get a single AttitudeSet record by its unique ID passed as
 // a path parameter.
 func (r *AttitudeSetService) Get(ctx context.Context, id string, query AttitudeSetGetParams, opts ...option.RequestOption) (res *shared.AttitudesetFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -87,7 +88,7 @@ func (r *AttitudeSetService) Get(ctx context.Context, id string, query AttitudeS
 // parameter information.
 func (r *AttitudeSetService) List(ctx context.Context, query AttitudeSetListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AttitudesetAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/attitudeset"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -116,7 +117,7 @@ func (r *AttitudeSetService) ListAutoPaging(ctx context.Context, query AttitudeS
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *AttitudeSetService) Count(ctx context.Context, query AttitudeSetCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/attitudeset/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -126,7 +127,7 @@ func (r *AttitudeSetService) Count(ctx context.Context, query AttitudeSetCountPa
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *AttitudeSetService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *AttitudeSetQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/attitudeset/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -141,7 +142,7 @@ func (r *AttitudeSetService) QueryHelp(ctx context.Context, opts ...option.Reque
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *AttitudeSetService) Tuple(ctx context.Context, query AttitudeSetTupleParams, opts ...option.RequestOption) (res *[]shared.AttitudesetFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/attitudeset/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -165,7 +166,7 @@ func (r *AttitudeSetService) Tuple(ctx context.Context, query AttitudeSetTuplePa
 //
 // </h3>
 func (r *AttitudeSetService) UnvalidatedPublish(ctx context.Context, body AttitudeSetUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-attitudeset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

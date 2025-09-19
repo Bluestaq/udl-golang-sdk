@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
@@ -41,7 +42,7 @@ func NewEventEvolutionHistoryService(opts ...option.RequestOption) (r EventEvolu
 // parameter information.
 func (r *EventEvolutionHistoryService) List(ctx context.Context, query EventEvolutionHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[shared.EventEvolutionFull], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/eventevolution/history"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -70,7 +71,7 @@ func (r *EventEvolutionHistoryService) ListAutoPaging(ctx context.Context, query
 // (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
 // parameter information.
 func (r *EventEvolutionHistoryService) Aodr(ctx context.Context, query EventEvolutionHistoryAodrParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/eventevolution/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
@@ -83,7 +84,7 @@ func (r *EventEvolutionHistoryService) Aodr(ctx context.Context, query EventEvol
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *EventEvolutionHistoryService) Count(ctx context.Context, query EventEvolutionHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/eventevolution/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)

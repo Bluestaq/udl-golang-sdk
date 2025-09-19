@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
@@ -39,7 +40,7 @@ func NewSecureMessagingService(opts ...option.RequestOption) (r SecureMessagingS
 
 // Retrieve the details of the specified topic or data type.
 func (r *SecureMessagingService) DescribeTopic(ctx context.Context, topic string, query SecureMessagingDescribeTopicParams, opts ...option.RequestOption) (res *TopicDetails, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if topic == "" {
 		err = errors.New("missing required topic parameter")
 		return
@@ -51,7 +52,7 @@ func (r *SecureMessagingService) DescribeTopic(ctx context.Context, topic string
 
 // Returns the current/latest offset for the passed topic name.
 func (r *SecureMessagingService) GetLatestOffset(ctx context.Context, topic string, query SecureMessagingGetLatestOffsetParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if topic == "" {
 		err = errors.New("missing required topic parameter")
@@ -66,7 +67,7 @@ func (r *SecureMessagingService) GetLatestOffset(ctx context.Context, topic stri
 // Secure Messaging API on Storefront for more details on how to use getMessages.
 func (r *SecureMessagingService) GetMessages(ctx context.Context, offset int64, params SecureMessagingGetMessagesParams, opts ...option.RequestOption) (res *pagination.KafkaOffsetPage[interface{}], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*"), option.WithResponseInto(&raw)}, opts...)
 	if params.Topic == "" {
 		err = errors.New("missing required topic parameter")
@@ -95,7 +96,7 @@ func (r *SecureMessagingService) GetMessagesAutoPaging(ctx context.Context, offs
 
 // Retrieve the list of available secure messaging topics or data types available.
 func (r *SecureMessagingService) ListTopics(ctx context.Context, opts ...option.RequestOption) (res *[]TopicDetails, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "sm/listTopics"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return

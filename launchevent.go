@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewLaunchEventService(opts ...option.RequestOption) (r LaunchEventService) 
 // the database. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *LaunchEventService) New(ctx context.Context, body LaunchEventNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/launchevent"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -60,7 +61,7 @@ func (r *LaunchEventService) New(ctx context.Context, body LaunchEventNewParams,
 // parameter information.
 func (r *LaunchEventService) List(ctx context.Context, query LaunchEventListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LaunchEventListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/launchevent"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -89,7 +90,7 @@ func (r *LaunchEventService) ListAutoPaging(ctx context.Context, query LaunchEve
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *LaunchEventService) Count(ctx context.Context, query LaunchEventCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/launchevent/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -102,7 +103,7 @@ func (r *LaunchEventService) Count(ctx context.Context, query LaunchEventCountPa
 // the UDL team for specific role assignments and for instructions on setting up a
 // permanent feed through an alternate mechanism.
 func (r *LaunchEventService) NewBulk(ctx context.Context, body LaunchEventNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/launchevent/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -112,7 +113,7 @@ func (r *LaunchEventService) NewBulk(ctx context.Context, body LaunchEventNewBul
 // Service operation to get a single LaunchEvent record by its unique ID passed as
 // a path parameter.
 func (r *LaunchEventService) Get(ctx context.Context, id string, query LaunchEventGetParams, opts ...option.RequestOption) (res *LaunchEventGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -125,7 +126,7 @@ func (r *LaunchEventService) Get(ctx context.Context, id string, query LaunchEve
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *LaunchEventService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *LaunchEventQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/launchevent/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -140,7 +141,7 @@ func (r *LaunchEventService) Queryhelp(ctx context.Context, opts ...option.Reque
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *LaunchEventService) Tuple(ctx context.Context, query LaunchEventTupleParams, opts ...option.RequestOption) (res *[]LaunchEventTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/launchevent/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -151,7 +152,7 @@ func (r *LaunchEventService) Tuple(ctx context.Context, query LaunchEventTuplePa
 // specific role is required to perform this service operation. Please contact the
 // UDL team for assistance.
 func (r *LaunchEventService) UnvalidatedPublish(ctx context.Context, body LaunchEventUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-launchevent"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -41,7 +42,7 @@ func NewAircraftSortyService(opts ...option.RequestOption) (r AircraftSortyServi
 // Service operation to get a single AircraftSortie record by its unique ID passed
 // as a path parameter.
 func (r *AircraftSortyService) Get(ctx context.Context, id string, query AircraftSortyGetParams, opts ...option.RequestOption) (res *shared.AircraftsortieFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -54,7 +55,7 @@ func (r *AircraftSortyService) Get(ctx context.Context, id string, query Aircraf
 // Service operation to update a single AircraftSortie. A specific role is required
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *AircraftSortyService) Update(ctx context.Context, id string, body AircraftSortyUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -68,7 +69,7 @@ func (r *AircraftSortyService) Update(ctx context.Context, id string, body Aircr
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *AircraftSortyService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *AircraftSortyQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/aircraftsortie/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -83,7 +84,7 @@ func (r *AircraftSortyService) Queryhelp(ctx context.Context, opts ...option.Req
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *AircraftSortyService) Tuple(ctx context.Context, query AircraftSortyTupleParams, opts ...option.RequestOption) (res *[]shared.AircraftsortieFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/aircraftsortie/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

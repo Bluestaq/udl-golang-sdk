@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewSiteService(opts ...option.RequestOption) (r SiteService) {
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *SiteService) New(ctx context.Context, body SiteNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/site"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -55,7 +56,7 @@ func (r *SiteService) New(ctx context.Context, body SiteNewParams, opts ...optio
 // Service operation to update a single Site. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *SiteService) Update(ctx context.Context, id string, body SiteUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -72,7 +73,7 @@ func (r *SiteService) Update(ctx context.Context, id string, body SiteUpdatePara
 // parameter information.
 func (r *SiteService) List(ctx context.Context, query SiteListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SiteListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/site"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -101,7 +102,7 @@ func (r *SiteService) ListAutoPaging(ctx context.Context, query SiteListParams, 
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SiteService) Count(ctx context.Context, query SiteCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/site/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -111,7 +112,7 @@ func (r *SiteService) Count(ctx context.Context, query SiteCountParams, opts ...
 // Service operation to get a single Site record by its unique ID passed as a path
 // parameter.
 func (r *SiteService) Get(ctx context.Context, id string, query SiteGetParams, opts ...option.RequestOption) (res *SiteGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -124,7 +125,7 @@ func (r *SiteService) Get(ctx context.Context, id string, query SiteGetParams, o
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SiteService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SiteQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/site/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -139,7 +140,7 @@ func (r *SiteService) Queryhelp(ctx context.Context, opts ...option.RequestOptio
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SiteService) Tuple(ctx context.Context, query SiteTupleParams, opts ...option.RequestOption) (res *[]SiteTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/site/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

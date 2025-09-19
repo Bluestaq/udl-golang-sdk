@@ -10,6 +10,7 @@ import (
 	"mime/multipart"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiform"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -58,7 +59,7 @@ func NewScService(opts ...option.RequestOption) (r ScService) {
 //
 // Deprecated: deprecated
 func (r *ScService) Delete(ctx context.Context, body ScDeleteParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "scs/delete"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, body, nil, opts...)
@@ -67,7 +68,7 @@ func (r *ScService) Delete(ctx context.Context, body ScDeleteParams, opts ...opt
 
 // Returns a list of the allowed filename extensions.
 func (r *ScService) AllowableFileExtensions(ctx context.Context, opts ...option.RequestOption) (res *[]string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "scs/allowableFileExtensions"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -75,7 +76,7 @@ func (r *ScService) AllowableFileExtensions(ctx context.Context, opts ...option.
 
 // Returns a list of the allowed file upload mime types.
 func (r *ScService) AllowableFileMimes(ctx context.Context, opts ...option.RequestOption) (res *[]string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "scs/allowableFileMimes"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -86,7 +87,7 @@ func (r *ScService) AllowableFileMimes(ctx context.Context, opts ...option.Reque
 //
 // Deprecated: deprecated
 func (r *ScService) Copy(ctx context.Context, body ScCopyParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "scs/copy"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
 	return
@@ -94,7 +95,7 @@ func (r *ScService) Copy(ctx context.Context, body ScCopyParams, opts ...option.
 
 // Downloads a zip of one or more files and/or folders.
 func (r *ScService) Download(ctx context.Context, body ScDownloadParams, opts ...option.RequestOption) (res *http.Response, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	path := "scs/download"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
@@ -103,7 +104,7 @@ func (r *ScService) Download(ctx context.Context, body ScDownloadParams, opts ..
 
 // Download a single file from SCS.
 func (r *ScService) FileDownload(ctx context.Context, query ScFileDownloadParams, opts ...option.RequestOption) (res *http.Response, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	path := "scs/download"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -115,7 +116,7 @@ func (r *ScService) FileDownload(ctx context.Context, query ScFileDownloadParams
 //
 // Deprecated: deprecated
 func (r *ScService) FileUpload(ctx context.Context, fileContent io.Reader, body ScFileUploadParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithRequestBody("application/octet-stream", fileContent)}, opts...)
 	path := "scs/file"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, &res, opts...)
@@ -127,7 +128,7 @@ func (r *ScService) FileUpload(ctx context.Context, fileContent io.Reader, body 
 //
 // Deprecated: deprecated
 func (r *ScService) Move(ctx context.Context, body ScMoveParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "scs/move"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, &res, opts...)
 	return
@@ -138,7 +139,7 @@ func (r *ScService) Move(ctx context.Context, body ScMoveParams, opts ...option.
 //
 // Deprecated: deprecated
 func (r *ScService) Rename(ctx context.Context, body ScRenameParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "scs/rename"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
@@ -149,7 +150,7 @@ func (r *ScService) Rename(ctx context.Context, body ScRenameParams, opts ...opt
 //
 // Deprecated: deprecated
 func (r *ScService) Search(ctx context.Context, params ScSearchParams, opts ...option.RequestOption) (res *[]shared.FileData, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "scs/search"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, &res, opts...)
 	return

@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -48,7 +49,7 @@ func NewObservationPassiveRadarObservationService(opts ...option.RequestOption) 
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *ObservationPassiveRadarObservationService) New(ctx context.Context, body ObservationPassiveRadarObservationNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/passiveradarobservation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -61,7 +62,7 @@ func (r *ObservationPassiveRadarObservationService) New(ctx context.Context, bod
 // parameter information.
 func (r *ObservationPassiveRadarObservationService) List(ctx context.Context, query ObservationPassiveRadarObservationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[ObservationPassiveRadarObservationListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/passiveradarobservation"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -90,7 +91,7 @@ func (r *ObservationPassiveRadarObservationService) ListAutoPaging(ctx context.C
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *ObservationPassiveRadarObservationService) Count(ctx context.Context, query ObservationPassiveRadarObservationCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/passiveradarobservation/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -103,7 +104,7 @@ func (r *ObservationPassiveRadarObservationService) Count(ctx context.Context, q
 // providers should contact the UDL team for specific role assignments and for
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *ObservationPassiveRadarObservationService) NewBulk(ctx context.Context, body ObservationPassiveRadarObservationNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/passiveradarobservation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -115,7 +116,7 @@ func (r *ObservationPassiveRadarObservationService) NewBulk(ctx context.Context,
 // automated feeds into UDL. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *ObservationPassiveRadarObservationService) FileNew(ctx context.Context, body ObservationPassiveRadarObservationFileNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-passiveradar"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -125,7 +126,7 @@ func (r *ObservationPassiveRadarObservationService) FileNew(ctx context.Context,
 // Service operation to get a single PassiveRadarObservation record by its unique
 // ID passed as a path parameter.
 func (r *ObservationPassiveRadarObservationService) Get(ctx context.Context, id string, query ObservationPassiveRadarObservationGetParams, opts ...option.RequestOption) (res *ObservationPassiveRadarObservationGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -138,7 +139,7 @@ func (r *ObservationPassiveRadarObservationService) Get(ctx context.Context, id 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *ObservationPassiveRadarObservationService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *ObservationPassiveRadarObservationQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/passiveradarobservation/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -153,7 +154,7 @@ func (r *ObservationPassiveRadarObservationService) Queryhelp(ctx context.Contex
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *ObservationPassiveRadarObservationService) Tuple(ctx context.Context, query ObservationPassiveRadarObservationTupleParams, opts ...option.RequestOption) (res *[]ObservationPassiveRadarObservationTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/passiveradarobservation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

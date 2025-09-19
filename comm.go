@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -46,7 +47,7 @@ func NewCommService(opts ...option.RequestOption) (r CommService) {
 // data such as transponders and channels, etc. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *CommService) New(ctx context.Context, body CommNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/comm"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -57,7 +58,7 @@ func (r *CommService) New(ctx context.Context, body CommNewParams, opts ...optio
 // parameter. A Comm is an on-orbit communications payload, including supporting
 // data such as transponders and channels, etc.
 func (r *CommService) Get(ctx context.Context, id string, query CommGetParams, opts ...option.RequestOption) (res *shared.CommFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -72,7 +73,7 @@ func (r *CommService) Get(ctx context.Context, id string, query CommGetParams, o
 // specific role is required to perform this service operation. Please contact the
 // UDL team for assistance.
 func (r *CommService) Update(ctx context.Context, id string, body CommUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -89,7 +90,7 @@ func (r *CommService) Update(ctx context.Context, id string, body CommUpdatePara
 // parameter information.
 func (r *CommService) List(ctx context.Context, query CommListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[CommAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/comm"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -117,7 +118,7 @@ func (r *CommService) ListAutoPaging(ctx context.Context, query CommListParams, 
 // data such as transponders and channels, etc. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *CommService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -134,7 +135,7 @@ func (r *CommService) Delete(ctx context.Context, id string, opts ...option.Requ
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *CommService) Count(ctx context.Context, query CommCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/comm/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -144,7 +145,7 @@ func (r *CommService) Count(ctx context.Context, query CommCountParams, opts ...
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *CommService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *CommQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/comm/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -159,7 +160,7 @@ func (r *CommService) Queryhelp(ctx context.Context, opts ...option.RequestOptio
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *CommService) Tuple(ctx context.Context, query CommTupleParams, opts ...option.RequestOption) (res *[]shared.CommFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/comm/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

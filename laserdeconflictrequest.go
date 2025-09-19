@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -48,7 +49,7 @@ func NewLaserdeconflictrequestService(opts ...option.RequestOption) (r Laserdeco
 // specific role is required to perform this service operation. Please contact the
 // UDL team for assistance.
 func (r *LaserdeconflictrequestService) New(ctx context.Context, body LaserdeconflictrequestNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/laserdeconflictrequest"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -61,7 +62,7 @@ func (r *LaserdeconflictrequestService) New(ctx context.Context, body Laserdecon
 // parameter information.
 func (r *LaserdeconflictrequestService) List(ctx context.Context, query LaserdeconflictrequestListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LaserdeconflictrequestListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/laserdeconflictrequest"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -90,7 +91,7 @@ func (r *LaserdeconflictrequestService) ListAutoPaging(ctx context.Context, quer
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *LaserdeconflictrequestService) Count(ctx context.Context, query LaserdeconflictrequestCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/laserdeconflictrequest/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -100,7 +101,7 @@ func (r *LaserdeconflictrequestService) Count(ctx context.Context, query Laserde
 // Service operation to get a single LaserDeconflictRequest record by its unique ID
 // passed as a path parameter.
 func (r *LaserdeconflictrequestService) Get(ctx context.Context, id string, query LaserdeconflictrequestGetParams, opts ...option.RequestOption) (res *LaserdeconflictrequestGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -113,7 +114,7 @@ func (r *LaserdeconflictrequestService) Get(ctx context.Context, id string, quer
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *LaserdeconflictrequestService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *LaserdeconflictrequestQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/laserdeconflictrequest/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -128,7 +129,7 @@ func (r *LaserdeconflictrequestService) Queryhelp(ctx context.Context, opts ...o
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *LaserdeconflictrequestService) Tuple(ctx context.Context, query LaserdeconflictrequestTupleParams, opts ...option.RequestOption) (res *[]LaserdeconflictrequestTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/laserdeconflictrequest/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -139,7 +140,7 @@ func (r *LaserdeconflictrequestService) Tuple(ctx context.Context, query Laserde
 // automated feeds into UDL. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *LaserdeconflictrequestService) UnvalidatedPublish(ctx context.Context, body LaserdeconflictrequestUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-laserdeconflictrequest"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewSeradataOpticalPayloadService(opts ...option.RequestOption) (r SeradataO
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *SeradataOpticalPayloadService) New(ctx context.Context, body SeradataOpticalPayloadNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/seradataopticalpayload"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -54,7 +55,7 @@ func (r *SeradataOpticalPayloadService) New(ctx context.Context, body SeradataOp
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *SeradataOpticalPayloadService) Update(ctx context.Context, id string, body SeradataOpticalPayloadUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -71,7 +72,7 @@ func (r *SeradataOpticalPayloadService) Update(ctx context.Context, id string, b
 // parameter information.
 func (r *SeradataOpticalPayloadService) List(ctx context.Context, query SeradataOpticalPayloadListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SeradataOpticalPayloadListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/seradataopticalpayload"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -98,7 +99,7 @@ func (r *SeradataOpticalPayloadService) ListAutoPaging(ctx context.Context, quer
 // path parameter. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *SeradataOpticalPayloadService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -115,7 +116,7 @@ func (r *SeradataOpticalPayloadService) Delete(ctx context.Context, id string, o
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SeradataOpticalPayloadService) Count(ctx context.Context, query SeradataOpticalPayloadCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/seradataopticalpayload/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -125,7 +126,7 @@ func (r *SeradataOpticalPayloadService) Count(ctx context.Context, query Seradat
 // Service operation to get a single SeradataOpticalPayload by its unique ID passed
 // as a path parameter.
 func (r *SeradataOpticalPayloadService) Get(ctx context.Context, id string, query SeradataOpticalPayloadGetParams, opts ...option.RequestOption) (res *SeradataOpticalPayloadGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -138,7 +139,7 @@ func (r *SeradataOpticalPayloadService) Get(ctx context.Context, id string, quer
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SeradataOpticalPayloadService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SeradataOpticalPayloadQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradataopticalpayload/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -153,7 +154,7 @@ func (r *SeradataOpticalPayloadService) Queryhelp(ctx context.Context, opts ...o
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SeradataOpticalPayloadService) Tuple(ctx context.Context, query SeradataOpticalPayloadTupleParams, opts ...option.RequestOption) (res *[]SeradataOpticalPayloadTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradataopticalpayload/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

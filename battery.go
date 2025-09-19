@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewBatteryService(opts ...option.RequestOption) (r BatteryService) {
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *BatteryService) New(ctx context.Context, body BatteryNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/battery"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -55,7 +56,7 @@ func (r *BatteryService) New(ctx context.Context, body BatteryNewParams, opts ..
 // Service operation to get a single Battery record by its unique ID passed as a
 // path parameter.
 func (r *BatteryService) Get(ctx context.Context, id string, query BatteryGetParams, opts ...option.RequestOption) (res *shared.BatteryFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -68,7 +69,7 @@ func (r *BatteryService) Get(ctx context.Context, id string, query BatteryGetPar
 // Service operation to update a single Battery. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *BatteryService) Update(ctx context.Context, id string, body BatteryUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -85,7 +86,7 @@ func (r *BatteryService) Update(ctx context.Context, id string, body BatteryUpda
 // parameter information.
 func (r *BatteryService) List(ctx context.Context, query BatteryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[BatteryAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/battery"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -112,7 +113,7 @@ func (r *BatteryService) ListAutoPaging(ctx context.Context, query BatteryListPa
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *BatteryService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -129,7 +130,7 @@ func (r *BatteryService) Delete(ctx context.Context, id string, opts ...option.R
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *BatteryService) Count(ctx context.Context, query BatteryCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/battery/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -139,7 +140,7 @@ func (r *BatteryService) Count(ctx context.Context, query BatteryCountParams, op
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *BatteryService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *BatteryQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/battery/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -154,7 +155,7 @@ func (r *BatteryService) Queryhelp(ctx context.Context, opts ...option.RequestOp
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *BatteryService) Tuple(ctx context.Context, query BatteryTupleParams, opts ...option.RequestOption) (res *[]shared.BatteryFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/battery/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

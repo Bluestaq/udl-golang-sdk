@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -44,7 +45,7 @@ func NewGlobalAtmosphericModelService(opts ...option.RequestOption) (r GlobalAtm
 // Service operation to get a single GlobalAtmosphericModel record by its unique ID
 // passed as a path parameter.
 func (r *GlobalAtmosphericModelService) Get(ctx context.Context, id string, query GlobalAtmosphericModelGetParams, opts ...option.RequestOption) (res *GlobalAtmosphericModelGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -60,7 +61,7 @@ func (r *GlobalAtmosphericModelService) Get(ctx context.Context, id string, quer
 // parameter information.
 func (r *GlobalAtmosphericModelService) List(ctx context.Context, query GlobalAtmosphericModelListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[GlobalAtmosphericModelListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/globalatmosphericmodel"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -89,7 +90,7 @@ func (r *GlobalAtmosphericModelService) ListAutoPaging(ctx context.Context, quer
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *GlobalAtmosphericModelService) Count(ctx context.Context, query GlobalAtmosphericModelCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/globalatmosphericmodel/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -100,7 +101,7 @@ func (r *GlobalAtmosphericModelService) Count(ctx context.Context, query GlobalA
 // its unique ID passed as a path parameter. The compressed data file is returned
 // as an attachment Content-Disposition.
 func (r *GlobalAtmosphericModelService) GetFile(ctx context.Context, id string, query GlobalAtmosphericModelGetFileParams, opts ...option.RequestOption) (res *http.Response, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -114,7 +115,7 @@ func (r *GlobalAtmosphericModelService) GetFile(ctx context.Context, id string, 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *GlobalAtmosphericModelService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *GlobalAtmosphericModelQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/globalatmosphericmodel/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -129,7 +130,7 @@ func (r *GlobalAtmosphericModelService) QueryHelp(ctx context.Context, opts ...o
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *GlobalAtmosphericModelService) Tuple(ctx context.Context, query GlobalAtmosphericModelTupleParams, opts ...option.RequestOption) (res *[]GlobalAtmosphericModelTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/globalatmosphericmodel/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -154,7 +155,7 @@ func (r *GlobalAtmosphericModelService) Tuple(ctx context.Context, query GlobalA
 // role is required to perform this service operation. Please contact the UDL team
 // for assistance.
 func (r *GlobalAtmosphericModelService) UnvalidatedPublish(ctx context.Context, body GlobalAtmosphericModelUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-globalatmosphericmodel"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

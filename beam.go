@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewBeamService(opts ...option.RequestOption) (r BeamService) {
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *BeamService) New(ctx context.Context, body BeamNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/beam"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -53,7 +54,7 @@ func (r *BeamService) New(ctx context.Context, body BeamNewParams, opts ...optio
 // Service operation to get a single Beam record by its unique ID passed as a path
 // parameter.
 func (r *BeamService) Get(ctx context.Context, id string, query BeamGetParams, opts ...option.RequestOption) (res *shared.BeamFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -66,7 +67,7 @@ func (r *BeamService) Get(ctx context.Context, id string, query BeamGetParams, o
 // Service operation to update a single Beam. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *BeamService) Update(ctx context.Context, id string, body BeamUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -83,7 +84,7 @@ func (r *BeamService) Update(ctx context.Context, id string, body BeamUpdatePara
 // parameter information.
 func (r *BeamService) List(ctx context.Context, query BeamListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[BeamAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/beam"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -110,7 +111,7 @@ func (r *BeamService) ListAutoPaging(ctx context.Context, query BeamListParams, 
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *BeamService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -127,7 +128,7 @@ func (r *BeamService) Delete(ctx context.Context, id string, opts ...option.Requ
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *BeamService) Count(ctx context.Context, query BeamCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/beam/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -137,7 +138,7 @@ func (r *BeamService) Count(ctx context.Context, query BeamCountParams, opts ...
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *BeamService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *BeamQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/beam/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -152,7 +153,7 @@ func (r *BeamService) QueryHelp(ctx context.Context, opts ...option.RequestOptio
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *BeamService) Tuple(ctx context.Context, query BeamTupleParams, opts ...option.RequestOption) (res *[]shared.BeamFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/beam/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewSwirService(opts ...option.RequestOption) (r SwirService) {
 // the database. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *SwirService) New(ctx context.Context, body SwirNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/swir"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -60,7 +61,7 @@ func (r *SwirService) New(ctx context.Context, body SwirNewParams, opts ...optio
 // parameter information.
 func (r *SwirService) List(ctx context.Context, query SwirListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SwirListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/swir"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -89,7 +90,7 @@ func (r *SwirService) ListAutoPaging(ctx context.Context, query SwirListParams, 
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SwirService) Count(ctx context.Context, query SwirCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/swir/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -102,7 +103,7 @@ func (r *SwirService) Count(ctx context.Context, query SwirCountParams, opts ...
 // the UDL team for specific role assignments and for instructions on setting up a
 // permanent feed through an alternate mechanism.
 func (r *SwirService) NewBulk(ctx context.Context, body SwirNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/swir/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -112,7 +113,7 @@ func (r *SwirService) NewBulk(ctx context.Context, body SwirNewBulkParams, opts 
 // Service operation to get a single SWIR record by its unique ID passed as a path
 // parameter.
 func (r *SwirService) Get(ctx context.Context, id string, query SwirGetParams, opts ...option.RequestOption) (res *SwirFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -125,7 +126,7 @@ func (r *SwirService) Get(ctx context.Context, id string, query SwirGetParams, o
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SwirService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SwirQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/swir/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -140,7 +141,7 @@ func (r *SwirService) Queryhelp(ctx context.Context, opts ...option.RequestOptio
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SwirService) Tuple(ctx context.Context, query SwirTupleParams, opts ...option.RequestOption) (res *[]SwirFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/swir/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

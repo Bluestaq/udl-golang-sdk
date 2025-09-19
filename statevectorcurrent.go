@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
@@ -46,7 +47,7 @@ func NewStateVectorCurrentService(opts ...option.RequestOption) (r StateVectorCu
 // query parameter information.
 func (r *StateVectorCurrentService) List(ctx context.Context, query StateVectorCurrentListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[StateVectorAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/statevector/current"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -86,7 +87,7 @@ func (r *StateVectorCurrentService) ListAutoPaging(ctx context.Context, query St
 // operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required
 // query parameter information.
 func (r *StateVectorCurrentService) Tuple(ctx context.Context, query StateVectorCurrentTupleParams, opts ...option.RequestOption) (res *[]shared.StateVectorFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/statevector/current/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

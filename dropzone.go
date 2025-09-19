@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewDropzoneService(opts ...option.RequestOption) (r DropzoneService) {
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *DropzoneService) New(ctx context.Context, body DropzoneNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/dropzone"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -55,7 +56,7 @@ func (r *DropzoneService) New(ctx context.Context, body DropzoneNewParams, opts 
 // Service operation to get a single dropzone record by its unique ID passed as a
 // path parameter.
 func (r *DropzoneService) Get(ctx context.Context, id string, query DropzoneGetParams, opts ...option.RequestOption) (res *DropzoneGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -69,7 +70,7 @@ func (r *DropzoneService) Get(ctx context.Context, id string, query DropzoneGetP
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *DropzoneService) Update(ctx context.Context, id string, body DropzoneUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -86,7 +87,7 @@ func (r *DropzoneService) Update(ctx context.Context, id string, body DropzoneUp
 // parameter information.
 func (r *DropzoneService) List(ctx context.Context, query DropzoneListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[DropzoneListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/dropzone"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -113,7 +114,7 @@ func (r *DropzoneService) ListAutoPaging(ctx context.Context, query DropzoneList
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *DropzoneService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -130,7 +131,7 @@ func (r *DropzoneService) Delete(ctx context.Context, id string, opts ...option.
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *DropzoneService) Count(ctx context.Context, query DropzoneCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/dropzone/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -143,7 +144,7 @@ func (r *DropzoneService) Count(ctx context.Context, query DropzoneCountParams, 
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
 func (r *DropzoneService) NewBulk(ctx context.Context, body DropzoneNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/dropzone/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -153,7 +154,7 @@ func (r *DropzoneService) NewBulk(ctx context.Context, body DropzoneNewBulkParam
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *DropzoneService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *DropzoneQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/dropzone/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -168,7 +169,7 @@ func (r *DropzoneService) QueryHelp(ctx context.Context, opts ...option.RequestO
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *DropzoneService) Tuple(ctx context.Context, query DropzoneTupleParams, opts ...option.RequestOption) (res *[]DropzoneTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/dropzone/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -179,7 +180,7 @@ func (r *DropzoneService) Tuple(ctx context.Context, query DropzoneTupleParams, 
 // into UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *DropzoneService) UnvalidatedPublish(ctx context.Context, body DropzoneUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-dropzone"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

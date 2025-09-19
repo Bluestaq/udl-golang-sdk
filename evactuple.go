@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
@@ -45,7 +46,7 @@ func NewEvacTupleService(opts ...option.RequestOption) (r EvacTupleService) {
 // hours ago.
 func (r *EvacTupleService) List(ctx context.Context, query EvacTupleListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[shared.EvacFull], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/evac/tuple"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)

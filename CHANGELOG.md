@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.0-alpha.11 (2025-09-19)
+
+Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
+
+### Bug Fixes
+
+* use slices.Concat instead of sometimes modifying r.Options ([fd9196a](https://github.com/Bluestaq/udl-golang-sdk/commit/fd9196a3247b8a66ff98d6bfc1347b9b97d44a8d))
+
+
+### Chores
+
+* bump minimum go version to 1.22 ([929c908](https://github.com/Bluestaq/udl-golang-sdk/commit/929c90874ca609546432e936195a2f3157c5a2be))
+* do not install brew dependencies in ./scripts/bootstrap by default ([636ac09](https://github.com/Bluestaq/udl-golang-sdk/commit/636ac09ecc10fe50bf559797923899998c975036))
+* update more docs for 1.22 ([55d41e6](https://github.com/Bluestaq/udl-golang-sdk/commit/55d41e632751b15f588914ffc3ea04fc4c408a76))
+
 ## 0.1.0-alpha.10 (2025-09-17)
 
 Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)

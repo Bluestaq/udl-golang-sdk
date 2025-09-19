@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewAntennaService(opts ...option.RequestOption) (r AntennaService) {
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *AntennaService) New(ctx context.Context, body AntennaNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/antenna"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -55,7 +56,7 @@ func (r *AntennaService) New(ctx context.Context, body AntennaNewParams, opts ..
 // Service operation to get a single Antenna record by its unique ID passed as a
 // path parameter.
 func (r *AntennaService) Get(ctx context.Context, id string, query AntennaGetParams, opts ...option.RequestOption) (res *shared.AntennaFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -68,7 +69,7 @@ func (r *AntennaService) Get(ctx context.Context, id string, query AntennaGetPar
 // Service operation to update a single Antenna. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *AntennaService) Update(ctx context.Context, id string, body AntennaUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -85,7 +86,7 @@ func (r *AntennaService) Update(ctx context.Context, id string, body AntennaUpda
 // parameter information.
 func (r *AntennaService) List(ctx context.Context, query AntennaListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AntennaAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/antenna"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -112,7 +113,7 @@ func (r *AntennaService) ListAutoPaging(ctx context.Context, query AntennaListPa
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *AntennaService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -129,7 +130,7 @@ func (r *AntennaService) Delete(ctx context.Context, id string, opts ...option.R
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *AntennaService) Count(ctx context.Context, query AntennaCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/antenna/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -139,7 +140,7 @@ func (r *AntennaService) Count(ctx context.Context, query AntennaCountParams, op
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *AntennaService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *AntennaQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/antenna/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -154,7 +155,7 @@ func (r *AntennaService) Queryhelp(ctx context.Context, opts ...option.RequestOp
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *AntennaService) Tuple(ctx context.Context, query AntennaTupleParams, opts ...option.RequestOption) (res *[]shared.AntennaFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/antenna/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

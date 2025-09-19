@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
@@ -42,7 +43,7 @@ func NewScNotificationService(opts ...option.RequestOption) (r ScNotificationSer
 // Returns a list of notifications for items in a specific folder.
 func (r *ScNotificationService) List(ctx context.Context, offset string, query ScNotificationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[ScNotificationListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	if offset == "" {
 		err = errors.New("missing required offset parameter")

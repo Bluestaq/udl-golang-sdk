@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
@@ -40,7 +41,7 @@ func NewPersonnelrecoveryHistoryService(opts ...option.RequestOption) (r Personn
 // parameter information.
 func (r *PersonnelrecoveryHistoryService) List(ctx context.Context, query PersonnelrecoveryHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[PersonnelRecoveryFullL], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/personnelrecovery/history"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -69,7 +70,7 @@ func (r *PersonnelrecoveryHistoryService) ListAutoPaging(ctx context.Context, qu
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *PersonnelrecoveryHistoryService) Count(ctx context.Context, query PersonnelrecoveryHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/personnelrecovery/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)

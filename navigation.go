@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -44,7 +45,7 @@ func NewNavigationService(opts ...option.RequestOption) (r NavigationService) {
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *NavigationService) New(ctx context.Context, body NavigationNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/navigation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -55,7 +56,7 @@ func (r *NavigationService) New(ctx context.Context, body NavigationNewParams, o
 // navigation payload. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *NavigationService) Update(ctx context.Context, id string, body NavigationUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -72,7 +73,7 @@ func (r *NavigationService) Update(ctx context.Context, id string, body Navigati
 // parameter information.
 func (r *NavigationService) List(ctx context.Context, query NavigationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[NavigationListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/navigation"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -100,7 +101,7 @@ func (r *NavigationService) ListAutoPaging(ctx context.Context, query Navigation
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *NavigationService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -117,7 +118,7 @@ func (r *NavigationService) Delete(ctx context.Context, id string, opts ...optio
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *NavigationService) Count(ctx context.Context, query NavigationCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/navigation/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -127,7 +128,7 @@ func (r *NavigationService) Count(ctx context.Context, query NavigationCountPara
 // Service operation to get a single Navigation record by its unique ID passed as a
 // path parameter. An Navigation is an on-orbit navigation payload.
 func (r *NavigationService) Get(ctx context.Context, id string, query NavigationGetParams, opts ...option.RequestOption) (res *NavigationGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -140,7 +141,7 @@ func (r *NavigationService) Get(ctx context.Context, id string, query Navigation
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *NavigationService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *NavigationQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/navigation/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -155,7 +156,7 @@ func (r *NavigationService) Queryhelp(ctx context.Context, opts ...option.Reques
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *NavigationService) Tuple(ctx context.Context, query NavigationTupleParams, opts ...option.RequestOption) (res *[]NavigationTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/navigation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewBusService(opts ...option.RequestOption) (r BusService) {
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *BusService) New(ctx context.Context, body BusNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/bus"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -53,7 +54,7 @@ func (r *BusService) New(ctx context.Context, body BusNewParams, opts ...option.
 // Service operation to get a single Bus record by its unique ID passed as a path
 // parameter.
 func (r *BusService) Get(ctx context.Context, id string, query BusGetParams, opts ...option.RequestOption) (res *shared.BusFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -66,7 +67,7 @@ func (r *BusService) Get(ctx context.Context, id string, query BusGetParams, opt
 // Service operation to update a single Bus. A specific role is required to perform
 // this service operation. Please contact the UDL team for assistance.
 func (r *BusService) Update(ctx context.Context, id string, body BusUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -83,7 +84,7 @@ func (r *BusService) Update(ctx context.Context, id string, body BusUpdateParams
 // parameter information.
 func (r *BusService) List(ctx context.Context, query BusListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[BusAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/bus"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -110,7 +111,7 @@ func (r *BusService) ListAutoPaging(ctx context.Context, query BusListParams, op
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *BusService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -127,7 +128,7 @@ func (r *BusService) Delete(ctx context.Context, id string, opts ...option.Reque
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *BusService) Count(ctx context.Context, query BusCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/bus/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -137,7 +138,7 @@ func (r *BusService) Count(ctx context.Context, query BusCountParams, opts ...op
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *BusService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *BusQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/bus/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -152,7 +153,7 @@ func (r *BusService) QueryHelp(ctx context.Context, opts ...option.RequestOption
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *BusService) Tuple(ctx context.Context, query BusTupleParams, opts ...option.RequestOption) (res *[]shared.BusFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/bus/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

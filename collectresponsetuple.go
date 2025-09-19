@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
@@ -45,7 +46,7 @@ func NewCollectResponseTupleService(opts ...option.RequestOption) (r CollectResp
 // hours ago.
 func (r *CollectResponseTupleService) List(ctx context.Context, query CollectResponseTupleListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[shared.CollectResponseFull], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/collectresponse/tuple"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)

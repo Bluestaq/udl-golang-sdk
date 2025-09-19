@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewAirfieldService(opts ...option.RequestOption) (r AirfieldService) {
 // and for instructions on setting up a permanent feed through an alternate
 // mechanism.
 func (r *AirfieldService) New(ctx context.Context, body AirfieldNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/airfield"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -55,7 +56,7 @@ func (r *AirfieldService) New(ctx context.Context, body AirfieldNewParams, opts 
 // Service operation to get a single Airfield by its unique ID passed as a path
 // parameter.
 func (r *AirfieldService) Get(ctx context.Context, id string, query AirfieldGetParams, opts ...option.RequestOption) (res *shared.AirfieldFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -68,7 +69,7 @@ func (r *AirfieldService) Get(ctx context.Context, id string, query AirfieldGetP
 // Service operation to update a single Airfield. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *AirfieldService) Update(ctx context.Context, id string, body AirfieldUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -85,7 +86,7 @@ func (r *AirfieldService) Update(ctx context.Context, id string, body AirfieldUp
 // parameter information.
 func (r *AirfieldService) List(ctx context.Context, query AirfieldListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AirfieldAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/airfield"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -114,7 +115,7 @@ func (r *AirfieldService) ListAutoPaging(ctx context.Context, query AirfieldList
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *AirfieldService) Count(ctx context.Context, query AirfieldCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/airfield/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -124,7 +125,7 @@ func (r *AirfieldService) Count(ctx context.Context, query AirfieldCountParams, 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *AirfieldService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *AirfieldQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/airfield/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -139,7 +140,7 @@ func (r *AirfieldService) Queryhelp(ctx context.Context, opts ...option.RequestO
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *AirfieldService) Tuple(ctx context.Context, query AirfieldTupleParams, opts ...option.RequestOption) (res *[]shared.AirfieldFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/airfield/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
