@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewSensorTypeService(opts ...option.RequestOption) (r SensorTypeService) {
 // parameter information.
 func (r *SensorTypeService) List(ctx context.Context, query SensorTypeListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SensorTypeListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/sensortype"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -69,7 +70,7 @@ func (r *SensorTypeService) ListAutoPaging(ctx context.Context, query SensorType
 // Service operation to get a single Sensortype record by its unique ID passed as a
 // path parameter.
 func (r *SensorTypeService) Get(ctx context.Context, id int64, query SensorTypeGetParams, opts ...option.RequestOption) (res *SensorTypeGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := fmt.Sprintf("udl/sensortype/%v", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

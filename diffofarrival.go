@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewDiffOfArrivalService(opts ...option.RequestOption) (r DiffOfArrivalServi
 // Service operation to get a single TDOA/FDOA record by its unique ID passed as a
 // path parameter.
 func (r *DiffOfArrivalService) Get(ctx context.Context, id string, query DiffOfArrivalGetParams, opts ...option.RequestOption) (res *DiffofarrivalFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -58,7 +59,7 @@ func (r *DiffOfArrivalService) Get(ctx context.Context, id string, query DiffOfA
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *DiffOfArrivalService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *DiffOfArrivalQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/diffofarrival/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -73,7 +74,7 @@ func (r *DiffOfArrivalService) Queryhelp(ctx context.Context, opts ...option.Req
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *DiffOfArrivalService) Tuple(ctx context.Context, query DiffOfArrivalTupleParams, opts ...option.RequestOption) (res *[]DiffofarrivalFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/diffofarrival/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -84,7 +85,7 @@ func (r *DiffOfArrivalService) Tuple(ctx context.Context, query DiffOfArrivalTup
 // into UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *DiffOfArrivalService) UnvalidatedPublish(ctx context.Context, body DiffOfArrivalUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-diffofarrival"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

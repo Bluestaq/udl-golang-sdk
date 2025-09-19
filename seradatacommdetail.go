@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewSeraDataCommDetailService(opts ...option.RequestOption) (r SeraDataCommD
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *SeraDataCommDetailService) New(ctx context.Context, body SeraDataCommDetailNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/seradatacommdetails"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -53,7 +54,7 @@ func (r *SeraDataCommDetailService) New(ctx context.Context, body SeraDataCommDe
 // Service operation to update an SeradataCommDetails. A specific role is required
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *SeraDataCommDetailService) Update(ctx context.Context, id string, body SeraDataCommDetailUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -70,7 +71,7 @@ func (r *SeraDataCommDetailService) Update(ctx context.Context, id string, body 
 // parameter information.
 func (r *SeraDataCommDetailService) List(ctx context.Context, query SeraDataCommDetailListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SeraDataCommDetailListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/seradatacommdetails"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -97,7 +98,7 @@ func (r *SeraDataCommDetailService) ListAutoPaging(ctx context.Context, query Se
 // path parameter. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *SeraDataCommDetailService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -114,7 +115,7 @@ func (r *SeraDataCommDetailService) Delete(ctx context.Context, id string, opts 
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SeraDataCommDetailService) Count(ctx context.Context, query SeraDataCommDetailCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/seradatacommdetails/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -124,7 +125,7 @@ func (r *SeraDataCommDetailService) Count(ctx context.Context, query SeraDataCom
 // Service operation to get a single SeradataCommDetails by its unique ID passed as
 // a path parameter.
 func (r *SeraDataCommDetailService) Get(ctx context.Context, id string, query SeraDataCommDetailGetParams, opts ...option.RequestOption) (res *SeraDataCommDetailGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -137,7 +138,7 @@ func (r *SeraDataCommDetailService) Get(ctx context.Context, id string, query Se
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SeraDataCommDetailService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SeraDataCommDetailQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradatacommdetails/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -152,7 +153,7 @@ func (r *SeraDataCommDetailService) Queryhelp(ctx context.Context, opts ...optio
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SeraDataCommDetailService) Tuple(ctx context.Context, query SeraDataCommDetailTupleParams, opts ...option.RequestOption) (res *[]SeraDataCommDetailTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradatacommdetails/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

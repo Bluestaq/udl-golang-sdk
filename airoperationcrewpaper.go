@@ -9,6 +9,7 @@ import (
 	"mime/multipart"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiform"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
@@ -39,7 +40,7 @@ func NewAirOperationCrewpaperService(opts ...option.RequestOption) (r AirOperati
 // specific role is required to perform this service operation. Please contact the
 // UDL team for assistance.
 func (r *AirOperationCrewpaperService) Unpublish(ctx context.Context, body AirOperationCrewpaperUnpublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/crewpapers/unpublish"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -50,7 +51,7 @@ func (r *AirOperationCrewpaperService) Unpublish(ctx context.Context, body AirOp
 // role is required to perform this service operation. Please contact the UDL team
 // for assistance.
 func (r *AirOperationCrewpaperService) UploadPdf(ctx context.Context, fileContent io.Reader, body AirOperationCrewpaperUploadPdfParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", ""), option.WithRequestBody("application/pdf", fileContent)}, opts...)
 	path := "filedrop/crewpapers"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, nil, opts...)

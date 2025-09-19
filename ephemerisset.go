@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -61,7 +62,7 @@ func NewEphemerisSetService(opts ...option.RequestOption) (r EphemerisSetService
 //
 // </h3>
 func (r *EphemerisSetService) New(ctx context.Context, body EphemerisSetNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/ephemerisset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -71,7 +72,7 @@ func (r *EphemerisSetService) New(ctx context.Context, body EphemerisSetNewParam
 // Service operation to get a single Ephemeris Set by its unique ID passed as a
 // path parameter.
 func (r *EphemerisSetService) Get(ctx context.Context, id string, query EphemerisSetGetParams, opts ...option.RequestOption) (res *EphemerisSet, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -87,7 +88,7 @@ func (r *EphemerisSetService) Get(ctx context.Context, id string, query Ephemeri
 // parameter information.
 func (r *EphemerisSetService) List(ctx context.Context, query EphemerisSetListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[EphemerisSetAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/ephemerisset"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -116,7 +117,7 @@ func (r *EphemerisSetService) ListAutoPaging(ctx context.Context, query Ephemeri
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *EphemerisSetService) Count(ctx context.Context, query EphemerisSetCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/ephemerisset/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -126,7 +127,7 @@ func (r *EphemerisSetService) Count(ctx context.Context, query EphemerisSetCount
 // Service operation to get the original raw flat file, if any, associated with the
 // EphemerisSet. The file is returned as an attachment Content-Disposition.
 func (r *EphemerisSetService) FileGet(ctx context.Context, id string, query EphemerisSetFileGetParams, opts ...option.RequestOption) (res *http.Response, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -140,7 +141,7 @@ func (r *EphemerisSetService) FileGet(ctx context.Context, id string, query Ephe
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *EphemerisSetService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *EphemerisSetQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/ephemerisset/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -155,7 +156,7 @@ func (r *EphemerisSetService) Queryhelp(ctx context.Context, opts ...option.Requ
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *EphemerisSetService) Tuple(ctx context.Context, query EphemerisSetTupleParams, opts ...option.RequestOption) (res *[]EphemerisSet, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/ephemerisset/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

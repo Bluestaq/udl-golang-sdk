@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewSeraDataNavigationService(opts ...option.RequestOption) (r SeraDataNavig
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *SeraDataNavigationService) New(ctx context.Context, body SeraDataNavigationNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/seradatanavigation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -53,7 +54,7 @@ func (r *SeraDataNavigationService) New(ctx context.Context, body SeraDataNaviga
 // Service operation to update an SeradataNavigation. A specific role is required
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *SeraDataNavigationService) Update(ctx context.Context, id string, body SeraDataNavigationUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -70,7 +71,7 @@ func (r *SeraDataNavigationService) Update(ctx context.Context, id string, body 
 // parameter information.
 func (r *SeraDataNavigationService) List(ctx context.Context, query SeraDataNavigationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SeraDataNavigationListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/seradatanavigation"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -97,7 +98,7 @@ func (r *SeraDataNavigationService) ListAutoPaging(ctx context.Context, query Se
 // path parameter. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *SeraDataNavigationService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -114,7 +115,7 @@ func (r *SeraDataNavigationService) Delete(ctx context.Context, id string, opts 
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SeraDataNavigationService) Count(ctx context.Context, query SeraDataNavigationCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/seradatanavigation/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -124,7 +125,7 @@ func (r *SeraDataNavigationService) Count(ctx context.Context, query SeraDataNav
 // Service operation to get a single SeradataNavigation by its unique ID passed as
 // a path parameter.
 func (r *SeraDataNavigationService) Get(ctx context.Context, id string, query SeraDataNavigationGetParams, opts ...option.RequestOption) (res *SeraDataNavigationGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -137,7 +138,7 @@ func (r *SeraDataNavigationService) Get(ctx context.Context, id string, query Se
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SeraDataNavigationService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SeraDataNavigationQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradatanavigation/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -152,7 +153,7 @@ func (r *SeraDataNavigationService) Queryhelp(ctx context.Context, opts ...optio
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SeraDataNavigationService) Tuple(ctx context.Context, query SeraDataNavigationTupleParams, opts ...option.RequestOption) (res *[]SeraDataNavigationTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradatanavigation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

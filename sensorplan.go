@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewSensorPlanService(opts ...option.RequestOption) (r SensorPlanService) {
 // the database. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *SensorPlanService) New(ctx context.Context, body SensorPlanNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sensorplan"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -57,7 +58,7 @@ func (r *SensorPlanService) New(ctx context.Context, body SensorPlanNewParams, o
 // Service operation to update a single SensorPlan. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *SensorPlanService) Update(ctx context.Context, id string, body SensorPlanUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -74,7 +75,7 @@ func (r *SensorPlanService) Update(ctx context.Context, id string, body SensorPl
 // parameter information.
 func (r *SensorPlanService) List(ctx context.Context, query SensorPlanListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SensorPlanListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/sensorplan"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -103,7 +104,7 @@ func (r *SensorPlanService) ListAutoPaging(ctx context.Context, query SensorPlan
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SensorPlanService) Count(ctx context.Context, query SensorPlanCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sensorplan/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -113,7 +114,7 @@ func (r *SensorPlanService) Count(ctx context.Context, query SensorPlanCountPara
 // Service operation to get a single SensorPlan by its unique ID passed as a path
 // parameter.
 func (r *SensorPlanService) Get(ctx context.Context, id string, query SensorPlanGetParams, opts ...option.RequestOption) (res *SensorPlanGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -126,7 +127,7 @@ func (r *SensorPlanService) Get(ctx context.Context, id string, query SensorPlan
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SensorPlanService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SensorPlanQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/sensorplan/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -141,7 +142,7 @@ func (r *SensorPlanService) Queryhelp(ctx context.Context, opts ...option.Reques
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SensorPlanService) Tuple(ctx context.Context, query SensorPlanTupleParams, opts ...option.RequestOption) (res *[]SensorPlanTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/sensorplan/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -152,7 +153,7 @@ func (r *SensorPlanService) Tuple(ctx context.Context, query SensorPlanTuplePara
 // feeds into UDL. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *SensorPlanService) UnvalidatedPublish(ctx context.Context, body SensorPlanUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-sensorplan"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

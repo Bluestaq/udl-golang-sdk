@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewEntityService(opts ...option.RequestOption) (r EntityService) {
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *EntityService) New(ctx context.Context, body EntityNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/entity"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -55,7 +56,7 @@ func (r *EntityService) New(ctx context.Context, body EntityNewParams, opts ...o
 // Service operation to get a single Entity record by its unique ID passed as a
 // path parameter.
 func (r *EntityService) Get(ctx context.Context, id string, query EntityGetParams, opts ...option.RequestOption) (res *shared.EntityFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -68,7 +69,7 @@ func (r *EntityService) Get(ctx context.Context, id string, query EntityGetParam
 // Service operation to update a single Entity. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *EntityService) Update(ctx context.Context, id string, body EntityUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -85,7 +86,7 @@ func (r *EntityService) Update(ctx context.Context, id string, body EntityUpdate
 // parameter information.
 func (r *EntityService) List(ctx context.Context, query EntityListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[EntityAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/entity"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -112,7 +113,7 @@ func (r *EntityService) ListAutoPaging(ctx context.Context, query EntityListPara
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *EntityService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -129,7 +130,7 @@ func (r *EntityService) Delete(ctx context.Context, id string, opts ...option.Re
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *EntityService) Count(ctx context.Context, query EntityCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/entity/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -138,7 +139,7 @@ func (r *EntityService) Count(ctx context.Context, query EntityCountParams, opts
 
 // Retrieves all distinct entity types.
 func (r *EntityService) GetAllTypes(ctx context.Context, query EntityGetAllTypesParams, opts ...option.RequestOption) (res *[]string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/entity/getAllTypes"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -147,7 +148,7 @@ func (r *EntityService) GetAllTypes(ctx context.Context, query EntityGetAllTypes
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *EntityService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *EntityQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/entity/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -162,7 +163,7 @@ func (r *EntityService) QueryHelp(ctx context.Context, opts ...option.RequestOpt
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *EntityService) Tuple(ctx context.Context, query EntityTupleParams, opts ...option.RequestOption) (res *[]shared.EntityFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/entity/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

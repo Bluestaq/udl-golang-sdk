@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewSurfaceService(opts ...option.RequestOption) (r SurfaceService) {
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *SurfaceService) New(ctx context.Context, body SurfaceNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/surface"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -53,7 +54,7 @@ func (r *SurfaceService) New(ctx context.Context, body SurfaceNewParams, opts ..
 // Service operation to update a single Surface. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *SurfaceService) Update(ctx context.Context, id string, body SurfaceUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -70,7 +71,7 @@ func (r *SurfaceService) Update(ctx context.Context, id string, body SurfaceUpda
 // parameter information.
 func (r *SurfaceService) List(ctx context.Context, query SurfaceListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SurfaceListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/surface"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -97,7 +98,7 @@ func (r *SurfaceService) ListAutoPaging(ctx context.Context, query SurfaceListPa
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *SurfaceService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -114,7 +115,7 @@ func (r *SurfaceService) Delete(ctx context.Context, id string, opts ...option.R
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SurfaceService) Count(ctx context.Context, query SurfaceCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/surface/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -124,7 +125,7 @@ func (r *SurfaceService) Count(ctx context.Context, query SurfaceCountParams, op
 // Service operation to get a single Surface record by its unique ID passed as a
 // path parameter.
 func (r *SurfaceService) Get(ctx context.Context, id string, query SurfaceGetParams, opts ...option.RequestOption) (res *SurfaceGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -137,7 +138,7 @@ func (r *SurfaceService) Get(ctx context.Context, id string, query SurfaceGetPar
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SurfaceService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SurfaceQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/surface/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -152,7 +153,7 @@ func (r *SurfaceService) Queryhelp(ctx context.Context, opts ...option.RequestOp
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SurfaceService) Tuple(ctx context.Context, query SurfaceTupleParams, opts ...option.RequestOption) (res *[]SurfaceTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/surface/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

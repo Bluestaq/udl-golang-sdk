@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewPoiService(opts ...option.RequestOption) (r PoiService) {
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *PoiService) New(ctx context.Context, body PoiNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/poi"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -58,7 +59,7 @@ func (r *PoiService) New(ctx context.Context, body PoiNewParams, opts ...option.
 // parameter information.
 func (r *PoiService) List(ctx context.Context, query PoiListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[PoiListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/poi"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -87,7 +88,7 @@ func (r *PoiService) ListAutoPaging(ctx context.Context, query PoiListParams, op
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *PoiService) Count(ctx context.Context, query PoiCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/poi/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -100,7 +101,7 @@ func (r *PoiService) Count(ctx context.Context, query PoiCountParams, opts ...op
 // for specific role assignments and for instructions on setting up a permanent
 // feed through an alternate mechanism.
 func (r *PoiService) NewBulk(ctx context.Context, body PoiNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/poi/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -110,7 +111,7 @@ func (r *PoiService) NewBulk(ctx context.Context, body PoiNewBulkParams, opts ..
 // Service operation to get a single POI by its unique ID passed as a path
 // parameter.
 func (r *PoiService) Get(ctx context.Context, id string, query PoiGetParams, opts ...option.RequestOption) (res *PoiGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -123,7 +124,7 @@ func (r *PoiService) Get(ctx context.Context, id string, query PoiGetParams, opt
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *PoiService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *PoiQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/poi/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -138,7 +139,7 @@ func (r *PoiService) Queryhelp(ctx context.Context, opts ...option.RequestOption
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *PoiService) Tuple(ctx context.Context, query PoiTupleParams, opts ...option.RequestOption) (res *[]PoiTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/poi/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -149,7 +150,7 @@ func (r *PoiService) Tuple(ctx context.Context, query PoiTupleParams, opts ...op
 // specific role is required to perform this service operation. Please contact the
 // UDL team for assistance.
 func (r *PoiService) UnvalidatedPublish(ctx context.Context, body PoiUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-poi"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

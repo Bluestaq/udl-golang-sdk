@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewStageService(opts ...option.RequestOption) (r StageService) {
 // particular launch vehicle, compiled by a particular source. A vehicle may have
 // multiple stage records.
 func (r *StageService) New(ctx context.Context, body StageNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/stage"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -57,7 +58,7 @@ func (r *StageService) New(ctx context.Context, body StageNewParams, opts ...opt
 // Stage represents various stages of a particular launch vehicle, compiled by a
 // particular source. A vehicle may have multiple stage records.
 func (r *StageService) Update(ctx context.Context, id string, body StageUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -74,7 +75,7 @@ func (r *StageService) Update(ctx context.Context, id string, body StageUpdatePa
 // parameter information.
 func (r *StageService) List(ctx context.Context, query StageListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[StageListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/stage"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -103,7 +104,7 @@ func (r *StageService) ListAutoPaging(ctx context.Context, query StageListParams
 // particular launch vehicle, compiled by a particular source. A vehicle may have
 // multiple stage records.
 func (r *StageService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -120,7 +121,7 @@ func (r *StageService) Delete(ctx context.Context, id string, opts ...option.Req
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *StageService) Count(ctx context.Context, query StageCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/stage/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -131,7 +132,7 @@ func (r *StageService) Count(ctx context.Context, query StageCountParams, opts .
 // parameter. A Stage represents various stages of a particular launch vehicle,
 // compiled by a particular source. A vehicle may have multiple stage records.
 func (r *StageService) Get(ctx context.Context, id string, query StageGetParams, opts ...option.RequestOption) (res *StageGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -144,7 +145,7 @@ func (r *StageService) Get(ctx context.Context, id string, query StageGetParams,
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *StageService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *StageQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/stage/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -159,7 +160,7 @@ func (r *StageService) Queryhelp(ctx context.Context, opts ...option.RequestOpti
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *StageService) Tuple(ctx context.Context, query StageTupleParams, opts ...option.RequestOption) (res *[]StageTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/stage/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

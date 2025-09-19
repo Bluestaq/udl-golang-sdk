@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewLaunchDetectionService(opts ...option.RequestOption) (r LaunchDetectionS
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *LaunchDetectionService) New(ctx context.Context, body LaunchDetectionNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/launchdetection"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -54,7 +55,7 @@ func (r *LaunchDetectionService) New(ctx context.Context, body LaunchDetectionNe
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *LaunchDetectionService) Update(ctx context.Context, id string, body LaunchDetectionUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -71,7 +72,7 @@ func (r *LaunchDetectionService) Update(ctx context.Context, id string, body Lau
 // parameter information.
 func (r *LaunchDetectionService) List(ctx context.Context, query LaunchDetectionListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LaunchDetectionListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/launchdetection"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -98,7 +99,7 @@ func (r *LaunchDetectionService) ListAutoPaging(ctx context.Context, query Launc
 // path parameter. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *LaunchDetectionService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -115,7 +116,7 @@ func (r *LaunchDetectionService) Delete(ctx context.Context, id string, opts ...
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *LaunchDetectionService) Count(ctx context.Context, query LaunchDetectionCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/launchdetection/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -125,7 +126,7 @@ func (r *LaunchDetectionService) Count(ctx context.Context, query LaunchDetectio
 // Service operation to get a single launch detection record by its unique ID
 // passed as a path parameter.
 func (r *LaunchDetectionService) Get(ctx context.Context, id string, query LaunchDetectionGetParams, opts ...option.RequestOption) (res *LaunchDetectionGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -138,7 +139,7 @@ func (r *LaunchDetectionService) Get(ctx context.Context, id string, query Launc
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *LaunchDetectionService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *LaunchDetectionQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/launchdetection/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -153,7 +154,7 @@ func (r *LaunchDetectionService) Queryhelp(ctx context.Context, opts ...option.R
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *LaunchDetectionService) Tuple(ctx context.Context, query LaunchDetectionTupleParams, opts ...option.RequestOption) (res *[]LaunchDetectionTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/launchdetection/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

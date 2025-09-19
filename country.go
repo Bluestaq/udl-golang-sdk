@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewCountryService(opts ...option.RequestOption) (r CountryService) {
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *CountryService) New(ctx context.Context, body CountryNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/country"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -53,7 +54,7 @@ func (r *CountryService) New(ctx context.Context, body CountryNewParams, opts ..
 // Service operation to get a single Country record by its unique code passed as a
 // path parameter.
 func (r *CountryService) Get(ctx context.Context, code string, query CountryGetParams, opts ...option.RequestOption) (res *shared.CountryFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if code == "" {
 		err = errors.New("missing required code parameter")
 		return
@@ -66,7 +67,7 @@ func (r *CountryService) Get(ctx context.Context, code string, query CountryGetP
 // Service operation to update a single Country. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *CountryService) Update(ctx context.Context, code string, body CountryUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if code == "" {
 		err = errors.New("missing required code parameter")
@@ -83,7 +84,7 @@ func (r *CountryService) Update(ctx context.Context, code string, body CountryUp
 // parameter information.
 func (r *CountryService) List(ctx context.Context, query CountryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[CountryAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/country"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -110,7 +111,7 @@ func (r *CountryService) ListAutoPaging(ctx context.Context, query CountryListPa
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *CountryService) Delete(ctx context.Context, code string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if code == "" {
 		err = errors.New("missing required code parameter")
@@ -127,7 +128,7 @@ func (r *CountryService) Delete(ctx context.Context, code string, opts ...option
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *CountryService) Count(ctx context.Context, query CountryCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/country/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -137,7 +138,7 @@ func (r *CountryService) Count(ctx context.Context, query CountryCountParams, op
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *CountryService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *CountryQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/country/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -152,7 +153,7 @@ func (r *CountryService) Queryhelp(ctx context.Context, opts ...option.RequestOp
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *CountryService) Tuple(ctx context.Context, query CountryTupleParams, opts ...option.RequestOption) (res *[]shared.CountryFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/country/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

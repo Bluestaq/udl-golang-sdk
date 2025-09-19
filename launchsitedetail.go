@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewLaunchSiteDetailService(opts ...option.RequestOption) (r LaunchSiteDetai
 // records. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *LaunchSiteDetailService) New(ctx context.Context, body LaunchSiteDetailNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/launchsitedetails"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -57,7 +58,7 @@ func (r *LaunchSiteDetailService) New(ctx context.Context, body LaunchSiteDetail
 // site may have several details records. A specific role is required to perform
 // this service operation. Please contact the UDL team for assistance.
 func (r *LaunchSiteDetailService) Update(ctx context.Context, id string, body LaunchSiteDetailUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -74,7 +75,7 @@ func (r *LaunchSiteDetailService) Update(ctx context.Context, id string, body La
 // parameter information.
 func (r *LaunchSiteDetailService) List(ctx context.Context, query LaunchSiteDetailListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LaunchSiteDetailListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/launchsitedetails"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -103,7 +104,7 @@ func (r *LaunchSiteDetailService) ListAutoPaging(ctx context.Context, query Laun
 // specific role is required to perform this service operation. Please contact the
 // UDL team for assistance.
 func (r *LaunchSiteDetailService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -119,7 +120,7 @@ func (r *LaunchSiteDetailService) Delete(ctx context.Context, id string, opts ..
 // launch site by a particular source. A launch site may have several details
 // records.
 func (r *LaunchSiteDetailService) FindBySource(ctx context.Context, query LaunchSiteDetailFindBySourceParams, opts ...option.RequestOption) (res *[]LaunchSiteDetailFindBySourceResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/launchsitedetails/findBySource"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -130,7 +131,7 @@ func (r *LaunchSiteDetailService) FindBySource(ctx context.Context, query Launch
 // launch site by a particular source. A launch site may have several details
 // records.
 func (r *LaunchSiteDetailService) Get(ctx context.Context, id string, query LaunchSiteDetailGetParams, opts ...option.RequestOption) (res *LaunchSiteDetailGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

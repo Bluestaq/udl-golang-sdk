@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -51,7 +52,7 @@ func NewStateVectorService(opts ...option.RequestOption) (r StateVectorService) 
 // and for instructions on setting up a permanent feed through an alternate
 // mechanism.
 func (r *StateVectorService) New(ctx context.Context, body StateVectorNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/statevector"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -64,7 +65,7 @@ func (r *StateVectorService) New(ctx context.Context, body StateVectorNewParams,
 // parameter information.
 func (r *StateVectorService) List(ctx context.Context, query StateVectorListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[StateVectorAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/statevector"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -93,7 +94,7 @@ func (r *StateVectorService) ListAutoPaging(ctx context.Context, query StateVect
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *StateVectorService) Count(ctx context.Context, query StateVectorCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/statevector/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -106,7 +107,7 @@ func (r *StateVectorService) Count(ctx context.Context, query StateVectorCountPa
 // the UDL team for specific role assignments and for instructions on setting up a
 // permanent feed through an alternate mechanism.
 func (r *StateVectorService) NewBulk(ctx context.Context, body StateVectorNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/statevector/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -116,7 +117,7 @@ func (r *StateVectorService) NewBulk(ctx context.Context, body StateVectorNewBul
 // Service operation to get a single state vector by its unique ID passed as a path
 // parameter.
 func (r *StateVectorService) Get(ctx context.Context, id string, query StateVectorGetParams, opts ...option.RequestOption) (res *shared.StateVectorFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -129,7 +130,7 @@ func (r *StateVectorService) Get(ctx context.Context, id string, query StateVect
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *StateVectorService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *StateVectorQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/statevector/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -144,7 +145,7 @@ func (r *StateVectorService) Queryhelp(ctx context.Context, opts ...option.Reque
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *StateVectorService) Tuple(ctx context.Context, query StateVectorTupleParams, opts ...option.RequestOption) (res *[]shared.StateVectorFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/statevector/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -155,7 +156,7 @@ func (r *StateVectorService) Tuple(ctx context.Context, query StateVectorTuplePa
 // UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *StateVectorService) UnvalidatedPublish(ctx context.Context, body StateVectorUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-sv"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

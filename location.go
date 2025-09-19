@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewLocationService(opts ...option.RequestOption) (r LocationService) {
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *LocationService) New(ctx context.Context, body LocationNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/location"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -59,7 +60,7 @@ func (r *LocationService) New(ctx context.Context, body LocationNewParams, opts 
 // operating units, etc. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *LocationService) Update(ctx context.Context, id string, body LocationUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -76,7 +77,7 @@ func (r *LocationService) Update(ctx context.Context, id string, body LocationUp
 // parameter information.
 func (r *LocationService) List(ctx context.Context, query LocationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[shared.LocationAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/location"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -105,7 +106,7 @@ func (r *LocationService) ListAutoPaging(ctx context.Context, query LocationList
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *LocationService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -122,7 +123,7 @@ func (r *LocationService) Delete(ctx context.Context, id string, opts ...option.
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *LocationService) Count(ctx context.Context, query LocationCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/location/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -133,7 +134,7 @@ func (r *LocationService) Count(ctx context.Context, query LocationCountParams, 
 // path parameter. Locations are specific fixed points on the earth and are used to
 // denote the locations of fixed sensors, operating units, etc.
 func (r *LocationService) Get(ctx context.Context, id string, query LocationGetParams, opts ...option.RequestOption) (res *shared.LocationFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -146,7 +147,7 @@ func (r *LocationService) Get(ctx context.Context, id string, query LocationGetP
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *LocationService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *LocationQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/location/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -161,7 +162,7 @@ func (r *LocationService) Queryhelp(ctx context.Context, opts ...option.RequestO
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *LocationService) Tuple(ctx context.Context, query LocationTupleParams, opts ...option.RequestOption) (res *[]shared.LocationFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/location/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

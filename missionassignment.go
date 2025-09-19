@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewMissionAssignmentService(opts ...option.RequestOption) (r MissionAssignm
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *MissionAssignmentService) New(ctx context.Context, body MissionAssignmentNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/missionassignment"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -58,7 +59,7 @@ func (r *MissionAssignmentService) New(ctx context.Context, body MissionAssignme
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *MissionAssignmentService) Update(ctx context.Context, id string, body MissionAssignmentUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -75,7 +76,7 @@ func (r *MissionAssignmentService) Update(ctx context.Context, id string, body M
 // parameter information.
 func (r *MissionAssignmentService) List(ctx context.Context, query MissionAssignmentListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[MissionAssignmentListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/missionassignment"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -102,7 +103,7 @@ func (r *MissionAssignmentService) ListAutoPaging(ctx context.Context, query Mis
 // ID path parameter. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *MissionAssignmentService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -119,7 +120,7 @@ func (r *MissionAssignmentService) Delete(ctx context.Context, id string, opts .
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *MissionAssignmentService) Count(ctx context.Context, query MissionAssignmentCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/missionassignment/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -130,7 +131,7 @@ func (r *MissionAssignmentService) Count(ctx context.Context, query MissionAssig
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *MissionAssignmentService) NewBulk(ctx context.Context, body MissionAssignmentNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/missionassignment/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -140,7 +141,7 @@ func (r *MissionAssignmentService) NewBulk(ctx context.Context, body MissionAssi
 // Service operation to get a single MissionAssignment record by its unique ID
 // passed as a path parameter.
 func (r *MissionAssignmentService) Get(ctx context.Context, id string, query MissionAssignmentGetParams, opts ...option.RequestOption) (res *MissionAssignmentGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -153,7 +154,7 @@ func (r *MissionAssignmentService) Get(ctx context.Context, id string, query Mis
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *MissionAssignmentService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *MissionAssignmentQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/missionassignment/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -168,7 +169,7 @@ func (r *MissionAssignmentService) Queryhelp(ctx context.Context, opts ...option
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *MissionAssignmentService) Tuple(ctx context.Context, query MissionAssignmentTupleParams, opts ...option.RequestOption) (res *[]MissionAssignmentTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/missionassignment/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

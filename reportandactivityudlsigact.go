@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -41,7 +42,7 @@ func NewReportAndActivityUdlSigactService(opts ...option.RequestOption) (r Repor
 // Service operation to get a single SigAct text file by its unique ID passed as a
 // path parameter. The text file is returned as an attachment Content-Disposition.
 func (r *ReportAndActivityUdlSigactService) FileGet(ctx context.Context, id string, query ReportAndActivityUdlSigactFileGetParams, opts ...option.RequestOption) (res *http.Response, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -57,7 +58,7 @@ func (r *ReportAndActivityUdlSigactService) FileGet(ctx context.Context, id stri
 // specific role, please contact the UDL team to gain access. This operation is
 // intended to be used for automated feeds into UDL.
 func (r *ReportAndActivityUdlSigactService) UnvalidatedPublish(ctx context.Context, body ReportAndActivityUdlSigactUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-sigact"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

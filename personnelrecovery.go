@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewPersonnelrecoveryService(opts ...option.RequestOption) (r Personnelrecov
 // ingest into the database. Requires a specific role, please contact the UDL team
 // to gain access.
 func (r *PersonnelrecoveryService) New(ctx context.Context, body PersonnelrecoveryNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/personnelrecovery"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -60,7 +61,7 @@ func (r *PersonnelrecoveryService) New(ctx context.Context, body Personnelrecove
 // parameter information.
 func (r *PersonnelrecoveryService) List(ctx context.Context, query PersonnelrecoveryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[PersonnelrecoveryListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/personnelrecovery"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -89,7 +90,7 @@ func (r *PersonnelrecoveryService) ListAutoPaging(ctx context.Context, query Per
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *PersonnelrecoveryService) Count(ctx context.Context, query PersonnelrecoveryCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/personnelrecovery/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -103,7 +104,7 @@ func (r *PersonnelrecoveryService) Count(ctx context.Context, query Personnelrec
 // contact the UDL team for instructions on setting up a permanent feed through an
 // alternate mechanism.
 func (r *PersonnelrecoveryService) NewBulk(ctx context.Context, body PersonnelrecoveryNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/personnelrecovery/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -115,7 +116,7 @@ func (r *PersonnelrecoveryService) NewBulk(ctx context.Context, body Personnelre
 // team to gain access. This operation is intended to be used for automated feeds
 // into UDL.
 func (r *PersonnelrecoveryService) FileNew(ctx context.Context, body PersonnelrecoveryFileNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-personnelrecovery"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -125,7 +126,7 @@ func (r *PersonnelrecoveryService) FileNew(ctx context.Context, body Personnelre
 // Service operation to get a single PersonnelRecovery by its unique ID passed as a
 // path parameter.
 func (r *PersonnelrecoveryService) Get(ctx context.Context, id string, query PersonnelrecoveryGetParams, opts ...option.RequestOption) (res *PersonnelRecoveryFullL, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -138,7 +139,7 @@ func (r *PersonnelrecoveryService) Get(ctx context.Context, id string, query Per
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *PersonnelrecoveryService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *PersonnelrecoveryQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/personnelrecovery/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -153,7 +154,7 @@ func (r *PersonnelrecoveryService) Queryhelp(ctx context.Context, opts ...option
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *PersonnelrecoveryService) Tuple(ctx context.Context, query PersonnelrecoveryTupleParams, opts ...option.RequestOption) (res *[]PersonnelRecoveryFullL, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/personnelrecovery/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

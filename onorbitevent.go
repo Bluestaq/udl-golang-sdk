@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewOnorbiteventService(opts ...option.RequestOption) (r OnorbiteventService
 // specific role is required to perform this service operation. Please contact the
 // UDL team for assistance.
 func (r *OnorbiteventService) New(ctx context.Context, body OnorbiteventNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/onorbitevent"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -57,7 +58,7 @@ func (r *OnorbiteventService) New(ctx context.Context, body OnorbiteventNewParam
 // losses, anomalies and incidents. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
 func (r *OnorbiteventService) Update(ctx context.Context, id string, body OnorbiteventUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -74,7 +75,7 @@ func (r *OnorbiteventService) Update(ctx context.Context, id string, body Onorbi
 // parameter information.
 func (r *OnorbiteventService) List(ctx context.Context, query OnorbiteventListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[OnorbiteventListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/onorbitevent"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -103,7 +104,7 @@ func (r *OnorbiteventService) ListAutoPaging(ctx context.Context, query Onorbite
 // A specific role is required to perform this service operation. Please contact
 // the UDL team for assistance.
 func (r *OnorbiteventService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -120,7 +121,7 @@ func (r *OnorbiteventService) Delete(ctx context.Context, id string, opts ...opt
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *OnorbiteventService) Count(ctx context.Context, query OnorbiteventCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/onorbitevent/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -131,7 +132,7 @@ func (r *OnorbiteventService) Count(ctx context.Context, query OnorbiteventCount
 // a path parameter. An OnorbitEvent is an event associated with a particular
 // on-orbit spacecraft including insurance related losses, anomalies and incidents.
 func (r *OnorbiteventService) Get(ctx context.Context, id string, query OnorbiteventGetParams, opts ...option.RequestOption) (res *OnorbiteventGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -144,7 +145,7 @@ func (r *OnorbiteventService) Get(ctx context.Context, id string, query Onorbite
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *OnorbiteventService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *OnorbiteventQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/onorbitevent/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -159,7 +160,7 @@ func (r *OnorbiteventService) Queryhelp(ctx context.Context, opts ...option.Requ
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *OnorbiteventService) Tuple(ctx context.Context, query OnorbiteventTupleParams, opts ...option.RequestOption) (res *[]OnorbiteventTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/onorbitevent/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

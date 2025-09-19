@@ -5,6 +5,7 @@ package unifieddatalibrary
 import (
 	"context"
 	"net/http"
+	"slices"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
@@ -33,7 +34,7 @@ func NewScNotificationOffsetService(opts ...option.RequestOption) (r ScNotificat
 
 // Retrieve the min and max offsets of the SCS Event Notification Kafka topic.
 func (r *ScNotificationOffsetService) Get(ctx context.Context, opts ...option.RequestOption) (res *ScNotificationOffsetGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "scs/notifications/offsets"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -41,7 +42,7 @@ func (r *ScNotificationOffsetService) Get(ctx context.Context, opts ...option.Re
 
 // Returns the current/latest offset for the SCS Event Notification Kafka topic.
 func (r *ScNotificationOffsetService) GetLatest(ctx context.Context, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "scs/notifications/getLatestOffset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, nil, opts...)

@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewSoiObservationSetService(opts ...option.RequestOption) (r SoiObservation
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *SoiObservationSetService) New(ctx context.Context, body SoiObservationSetNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/soiobservationset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -60,7 +61,7 @@ func (r *SoiObservationSetService) New(ctx context.Context, body SoiObservationS
 // more details on valid/required query parameter information.
 func (r *SoiObservationSetService) List(ctx context.Context, query SoiObservationSetListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SoiObservationSetListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/soiobservationset"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -89,7 +90,7 @@ func (r *SoiObservationSetService) ListAutoPaging(ctx context.Context, query Soi
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SoiObservationSetService) Count(ctx context.Context, query SoiObservationSetCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/soiobservationset/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -102,7 +103,7 @@ func (r *SoiObservationSetService) Count(ctx context.Context, query SoiObservati
 // providers should contact the UDL team for specific role assignments and for
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *SoiObservationSetService) NewBulk(ctx context.Context, body SoiObservationSetNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/soiobservationset/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -112,7 +113,7 @@ func (r *SoiObservationSetService) NewBulk(ctx context.Context, body SoiObservat
 // Service operation to get a single SOIObservationSet by its unique ID passed as a
 // path parameter.
 func (r *SoiObservationSetService) Get(ctx context.Context, id string, query SoiObservationSetGetParams, opts ...option.RequestOption) (res *SoiObservationSetFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -125,7 +126,7 @@ func (r *SoiObservationSetService) Get(ctx context.Context, id string, query Soi
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SoiObservationSetService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SoiObservationSetQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/soiobservationset/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -140,7 +141,7 @@ func (r *SoiObservationSetService) Queryhelp(ctx context.Context, opts ...option
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SoiObservationSetService) Tuple(ctx context.Context, query SoiObservationSetTupleParams, opts ...option.RequestOption) (res *[]SoiObservationSetFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/soiobservationset/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -151,7 +152,7 @@ func (r *SoiObservationSetService) Tuple(ctx context.Context, query SoiObservati
 // feeds into UDL. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *SoiObservationSetService) UnvalidatedPublish(ctx context.Context, body SoiObservationSetUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-soiobservationset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
