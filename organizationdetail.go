@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewOrganizationdetailService(opts ...option.RequestOption) (r Organizationd
 // have detail records from several sources. A specific role is required to perform
 // this service operation. Please contact the UDL team for assistance.
 func (r *OrganizationdetailService) New(ctx context.Context, body OrganizationdetailNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/organizationdetails"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -58,7 +59,7 @@ func (r *OrganizationdetailService) New(ctx context.Context, body Organizationde
 // several sources. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *OrganizationdetailService) Update(ctx context.Context, id string, body OrganizationdetailUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -75,7 +76,7 @@ func (r *OrganizationdetailService) Update(ctx context.Context, id string, body 
 // parameter information.
 func (r *OrganizationdetailService) List(ctx context.Context, query OrganizationdetailListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[OrganizationdetailListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/organizationdetails"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -104,7 +105,7 @@ func (r *OrganizationdetailService) ListAutoPaging(ctx context.Context, query Or
 // detail records from several sources. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
 func (r *OrganizationdetailService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -120,7 +121,7 @@ func (r *OrganizationdetailService) Delete(ctx context.Context, id string, opts 
 // a corporation, manufacturer, consortium, government, etc. An organization can
 // have detail records from several sources.
 func (r *OrganizationdetailService) FindBySource(ctx context.Context, query OrganizationdetailFindBySourceParams, opts ...option.RequestOption) (res *[]OrganizationdetailFindBySourceResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/organizationdetails/findBySource"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -131,7 +132,7 @@ func (r *OrganizationdetailService) FindBySource(ctx context.Context, query Orga
 // a corporation, manufacturer, consortium, government, etc. An organization can
 // have detail records from several sources.
 func (r *OrganizationdetailService) Get(ctx context.Context, id string, query OrganizationdetailGetParams, opts ...option.RequestOption) (res *shared.OrganizationDetailsFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

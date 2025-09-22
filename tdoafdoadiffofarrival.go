@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewTdoaFdoaDiffofarrivalService(opts ...option.RequestOption) (r TdoaFdoaDi
 // assignments and for instructions on setting up a permanent feed through an
 // alternate mechanism.
 func (r *TdoaFdoaDiffofarrivalService) New(ctx context.Context, body TdoaFdoaDiffofarrivalNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/diffofarrival"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -60,7 +61,7 @@ func (r *TdoaFdoaDiffofarrivalService) New(ctx context.Context, body TdoaFdoaDif
 // parameter information.
 func (r *TdoaFdoaDiffofarrivalService) List(ctx context.Context, query TdoaFdoaDiffofarrivalListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[DiffofarrivalAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/diffofarrival"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -89,7 +90,7 @@ func (r *TdoaFdoaDiffofarrivalService) ListAutoPaging(ctx context.Context, query
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *TdoaFdoaDiffofarrivalService) Count(ctx context.Context, query TdoaFdoaDiffofarrivalCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/diffofarrival/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -102,7 +103,7 @@ func (r *TdoaFdoaDiffofarrivalService) Count(ctx context.Context, query TdoaFdoa
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
 func (r *TdoaFdoaDiffofarrivalService) NewBulk(ctx context.Context, body TdoaFdoaDiffofarrivalNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/diffofarrival/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

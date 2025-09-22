@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
@@ -36,7 +37,7 @@ func NewSupportingDataDataTypeService(opts ...option.RequestOption) (r Supportin
 // Retrieves all distinct data owner types.
 func (r *SupportingDataDataTypeService) List(ctx context.Context, query SupportingDataDataTypeListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[string], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/dataowner/getDataTypes"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)

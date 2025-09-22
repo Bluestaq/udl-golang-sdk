@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewTrackService(opts ...option.RequestOption) (r TrackService) {
 // parameter information.
 func (r *TrackService) List(ctx context.Context, query TrackListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[TrackListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/track"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -76,7 +77,7 @@ func (r *TrackService) ListAutoPaging(ctx context.Context, query TrackListParams
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *TrackService) Count(ctx context.Context, query TrackCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/track/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -89,7 +90,7 @@ func (r *TrackService) Count(ctx context.Context, query TrackCountParams, opts .
 // the UDL team for specific role assignments and for instructions on setting up a
 // permanent feed through an alternate mechanism.
 func (r *TrackService) NewBulk(ctx context.Context, body TrackNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/track/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -99,7 +100,7 @@ func (r *TrackService) NewBulk(ctx context.Context, body TrackNewBulkParams, opt
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *TrackService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *TrackQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/track/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -114,7 +115,7 @@ func (r *TrackService) Queryhelp(ctx context.Context, opts ...option.RequestOpti
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *TrackService) Tuple(ctx context.Context, query TrackTupleParams, opts ...option.RequestOption) (res *[]TrackFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/track/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -125,7 +126,7 @@ func (r *TrackService) Tuple(ctx context.Context, query TrackTupleParams, opts .
 // specific role is required to perform this service operation. Please contact the
 // UDL team for assistance.
 func (r *TrackService) UnvalidatedPublish(ctx context.Context, body TrackUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-tracks"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

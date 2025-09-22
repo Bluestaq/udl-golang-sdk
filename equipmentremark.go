@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewEquipmentRemarkService(opts ...option.RequestOption) (r EquipmentRemarkS
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *EquipmentRemarkService) New(ctx context.Context, body EquipmentRemarkNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/equipmentremark"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -55,7 +56,7 @@ func (r *EquipmentRemarkService) New(ctx context.Context, body EquipmentRemarkNe
 // Service operation to get a single equipmentremark record by its unique ID passed
 // as a path parameter.
 func (r *EquipmentRemarkService) Get(ctx context.Context, id string, query EquipmentRemarkGetParams, opts ...option.RequestOption) (res *EquipmentRemarkFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -71,7 +72,7 @@ func (r *EquipmentRemarkService) Get(ctx context.Context, id string, query Equip
 // parameter information.
 func (r *EquipmentRemarkService) List(ctx context.Context, query EquipmentRemarkListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[EquipmentRemarkAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/equipmentremark"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -100,7 +101,7 @@ func (r *EquipmentRemarkService) ListAutoPaging(ctx context.Context, query Equip
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *EquipmentRemarkService) Count(ctx context.Context, query EquipmentRemarkCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/equipmentremark/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -113,7 +114,7 @@ func (r *EquipmentRemarkService) Count(ctx context.Context, query EquipmentRemar
 // providers should contact the UDL team for specific role assignments and for
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *EquipmentRemarkService) NewBulk(ctx context.Context, body EquipmentRemarkNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/equipmentremark/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -123,7 +124,7 @@ func (r *EquipmentRemarkService) NewBulk(ctx context.Context, body EquipmentRema
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *EquipmentRemarkService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *EquipmentRemarkQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/equipmentremark/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -138,7 +139,7 @@ func (r *EquipmentRemarkService) QueryHelp(ctx context.Context, opts ...option.R
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *EquipmentRemarkService) Tuple(ctx context.Context, query EquipmentRemarkTupleParams, opts ...option.RequestOption) (res *[]EquipmentRemarkFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/equipmentremark/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

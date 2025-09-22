@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewSgiService(opts ...option.RequestOption) (r SgiService) {
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *SgiService) New(ctx context.Context, body SgiNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sgi"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -57,7 +58,7 @@ func (r *SgiService) New(ctx context.Context, body SgiNewParams, opts ...option.
 // Service operation to update a single SGI record. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *SgiService) Update(ctx context.Context, id string, body SgiUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -74,7 +75,7 @@ func (r *SgiService) Update(ctx context.Context, id string, body SgiUpdateParams
 // parameter information.
 func (r *SgiService) List(ctx context.Context, query SgiListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SgiListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/sgi"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -101,7 +102,7 @@ func (r *SgiService) ListAutoPaging(ctx context.Context, query SgiListParams, op
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *SgiService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -118,7 +119,7 @@ func (r *SgiService) Delete(ctx context.Context, id string, opts ...option.Reque
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SgiService) Count(ctx context.Context, query SgiCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sgi/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -131,7 +132,7 @@ func (r *SgiService) Count(ctx context.Context, query SgiCountParams, opts ...op
 // for specific role assignments and for instructions on setting up a permanent
 // feed through an alternate mechanism.
 func (r *SgiService) NewBulk(ctx context.Context, body SgiNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/sgi/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -141,7 +142,7 @@ func (r *SgiService) NewBulk(ctx context.Context, body SgiNewBulkParams, opts ..
 // Service operation to get a single SGI record by its unique ID passed as a path
 // parameter.
 func (r *SgiService) Get(ctx context.Context, id string, query SgiGetParams, opts ...option.RequestOption) (res *SgiGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -153,7 +154,7 @@ func (r *SgiService) Get(ctx context.Context, id string, query SgiGetParams, opt
 
 // Service to return matching SGI records as of the effective date.
 func (r *SgiService) GetDataByEffectiveAsOfDate(ctx context.Context, query SgiGetDataByEffectiveAsOfDateParams, opts ...option.RequestOption) (res *SgiGetDataByEffectiveAsOfDateResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/sgi/getSGIDataByEffectiveAsOfDate"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -162,7 +163,7 @@ func (r *SgiService) GetDataByEffectiveAsOfDate(ctx context.Context, query SgiGe
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SgiService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SgiQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/sgi/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -177,7 +178,7 @@ func (r *SgiService) Queryhelp(ctx context.Context, opts ...option.RequestOption
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SgiService) Tuple(ctx context.Context, query SgiTupleParams, opts ...option.RequestOption) (res *[]SgiTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/sgi/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -188,7 +189,7 @@ func (r *SgiService) Tuple(ctx context.Context, query SgiTupleParams, opts ...op
 // specific role is required to perform this service operation. Please contact the
 // UDL team for assistance.
 func (r *SgiService) UnvalidatedPublish(ctx context.Context, body SgiUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-sgi"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

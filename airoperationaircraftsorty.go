@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -44,7 +45,7 @@ func NewAirOperationAircraftSortyService(opts ...option.RequestOption) (r AirOpe
 // the database. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *AirOperationAircraftSortyService) New(ctx context.Context, body AirOperationAircraftSortyNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/aircraftsortie"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -57,7 +58,7 @@ func (r *AirOperationAircraftSortyService) New(ctx context.Context, body AirOper
 // parameter information.
 func (r *AirOperationAircraftSortyService) List(ctx context.Context, query AirOperationAircraftSortyListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AircraftsortieAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/aircraftsortie"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -86,7 +87,7 @@ func (r *AirOperationAircraftSortyService) ListAutoPaging(ctx context.Context, q
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *AirOperationAircraftSortyService) Count(ctx context.Context, query AirOperationAircraftSortyCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/aircraftsortie/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -99,7 +100,7 @@ func (r *AirOperationAircraftSortyService) Count(ctx context.Context, query AirO
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
 func (r *AirOperationAircraftSortyService) NewBulk(ctx context.Context, body AirOperationAircraftSortyNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/aircraftsortie/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -111,7 +112,7 @@ func (r *AirOperationAircraftSortyService) NewBulk(ctx context.Context, body Air
 // feeds into UDL. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *AirOperationAircraftSortyService) UnvalidatedPublish(ctx context.Context, body AirOperationAircraftSortyUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-aircraftsortie"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

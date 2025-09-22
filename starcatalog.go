@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewStarCatalogService(opts ...option.RequestOption) (r StarCatalogService) 
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *StarCatalogService) New(ctx context.Context, body StarCatalogNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/starcatalog"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -58,7 +59,7 @@ func (r *StarCatalogService) New(ctx context.Context, body StarCatalogNewParams,
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *StarCatalogService) Update(ctx context.Context, id string, body StarCatalogUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -75,7 +76,7 @@ func (r *StarCatalogService) Update(ctx context.Context, id string, body StarCat
 // parameter information.
 func (r *StarCatalogService) List(ctx context.Context, query StarCatalogListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[StarCatalogListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/starcatalog"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -102,7 +103,7 @@ func (r *StarCatalogService) ListAutoPaging(ctx context.Context, query StarCatal
 // A specific role is required to perform this service operation. Please contact
 // the UDL team for assistance.
 func (r *StarCatalogService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -119,7 +120,7 @@ func (r *StarCatalogService) Delete(ctx context.Context, id string, opts ...opti
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *StarCatalogService) Count(ctx context.Context, query StarCatalogCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/starcatalog/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -132,7 +133,7 @@ func (r *StarCatalogService) Count(ctx context.Context, query StarCatalogCountPa
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
 func (r *StarCatalogService) NewBulk(ctx context.Context, body StarCatalogNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/starcatalog/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -142,7 +143,7 @@ func (r *StarCatalogService) NewBulk(ctx context.Context, body StarCatalogNewBul
 // Service operation to get a single StarCatalog record by its unique ID passed as
 // a path parameter.
 func (r *StarCatalogService) Get(ctx context.Context, id string, query StarCatalogGetParams, opts ...option.RequestOption) (res *StarCatalogGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -155,7 +156,7 @@ func (r *StarCatalogService) Get(ctx context.Context, id string, query StarCatal
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *StarCatalogService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *StarCatalogQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/starcatalog/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -170,7 +171,7 @@ func (r *StarCatalogService) Queryhelp(ctx context.Context, opts ...option.Reque
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *StarCatalogService) Tuple(ctx context.Context, query StarCatalogTupleParams, opts ...option.RequestOption) (res *[]StarCatalogTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/starcatalog/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -181,7 +182,7 @@ func (r *StarCatalogService) Tuple(ctx context.Context, query StarCatalogTuplePa
 // into UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *StarCatalogService) UnvalidatedPublish(ctx context.Context, body StarCatalogUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-starcatalog"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

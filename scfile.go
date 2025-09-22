@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
@@ -40,7 +41,7 @@ func NewScFileService(opts ...option.RequestOption) (r ScFileService) {
 //
 // Deprecated: deprecated
 func (r *ScFileService) Get(ctx context.Context, query ScFileGetParams, opts ...option.RequestOption) (res *shared.FileData, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "scs/file"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -51,7 +52,7 @@ func (r *ScFileService) Get(ctx context.Context, query ScFileGetParams, opts ...
 //
 // Deprecated: deprecated
 func (r *ScFileService) Update(ctx context.Context, body ScFileUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "scs/file"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPatch, path, body, nil, opts...)
@@ -65,7 +66,7 @@ func (r *ScFileService) Update(ctx context.Context, body ScFileUpdateParams, opt
 // Deprecated: deprecated
 func (r *ScFileService) List(ctx context.Context, query ScFileListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[shared.FileData], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "scs/list"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)

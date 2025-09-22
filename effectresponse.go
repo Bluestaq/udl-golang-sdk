@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -49,7 +50,7 @@ func NewEffectResponseService(opts ...option.RequestOption) (r EffectResponseSer
 // and for instructions on setting up a permanent feed through an alternate
 // mechanism.
 func (r *EffectResponseService) New(ctx context.Context, body EffectResponseNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/effectresponse"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -59,7 +60,7 @@ func (r *EffectResponseService) New(ctx context.Context, body EffectResponseNewP
 // Service operation to get a single EffectResponse by its unique ID passed as a
 // path parameter.
 func (r *EffectResponseService) Get(ctx context.Context, id string, query EffectResponseGetParams, opts ...option.RequestOption) (res *EffectResponseGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -75,7 +76,7 @@ func (r *EffectResponseService) Get(ctx context.Context, id string, query Effect
 // parameter information.
 func (r *EffectResponseService) List(ctx context.Context, query EffectResponseListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[EffectResponseListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/effectresponse"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -104,7 +105,7 @@ func (r *EffectResponseService) ListAutoPaging(ctx context.Context, query Effect
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *EffectResponseService) Count(ctx context.Context, query EffectResponseCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/effectresponse/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -117,7 +118,7 @@ func (r *EffectResponseService) Count(ctx context.Context, query EffectResponseC
 // providers should contact the UDL team for specific role assignments and for
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *EffectResponseService) NewBulk(ctx context.Context, body EffectResponseNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/effectresponse/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -127,7 +128,7 @@ func (r *EffectResponseService) NewBulk(ctx context.Context, body EffectResponse
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *EffectResponseService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *EffectResponseQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/effectresponse/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -142,7 +143,7 @@ func (r *EffectResponseService) QueryHelp(ctx context.Context, opts ...option.Re
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *EffectResponseService) Tuple(ctx context.Context, query EffectResponseTupleParams, opts ...option.RequestOption) (res *[]EffectResponseTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/effectresponse/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -153,7 +154,7 @@ func (r *EffectResponseService) Tuple(ctx context.Context, query EffectResponseT
 // into UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *EffectResponseService) UnvalidatedPublish(ctx context.Context, body EffectResponseUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-effectresponse"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

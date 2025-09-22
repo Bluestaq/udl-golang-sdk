@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewRfBandTypeService(opts ...option.RequestOption) (r RfBandTypeService) {
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *RfBandTypeService) New(ctx context.Context, body RfBandTypeNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/rfbandtype"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -53,7 +54,7 @@ func (r *RfBandTypeService) New(ctx context.Context, body RfBandTypeNewParams, o
 // Service operation to update an RFBandType. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *RfBandTypeService) Update(ctx context.Context, id string, body RfBandTypeUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -70,7 +71,7 @@ func (r *RfBandTypeService) Update(ctx context.Context, id string, body RfBandTy
 // parameter information.
 func (r *RfBandTypeService) List(ctx context.Context, query RfBandTypeListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[RfBandTypeListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/rfbandtype"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -97,7 +98,7 @@ func (r *RfBandTypeService) ListAutoPaging(ctx context.Context, query RfBandType
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *RfBandTypeService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -114,7 +115,7 @@ func (r *RfBandTypeService) Delete(ctx context.Context, id string, opts ...optio
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *RfBandTypeService) Count(ctx context.Context, query RfBandTypeCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/rfbandtype/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -124,7 +125,7 @@ func (r *RfBandTypeService) Count(ctx context.Context, query RfBandTypeCountPara
 // Service operation to get a single RFBandType by its unique ID passed as a path
 // parameter.
 func (r *RfBandTypeService) Get(ctx context.Context, id string, query RfBandTypeGetParams, opts ...option.RequestOption) (res *RfBandTypeGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -137,7 +138,7 @@ func (r *RfBandTypeService) Get(ctx context.Context, id string, query RfBandType
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *RfBandTypeService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *RfBandTypeQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/rfbandtype/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -152,7 +153,7 @@ func (r *RfBandTypeService) Queryhelp(ctx context.Context, opts ...option.Reques
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *RfBandTypeService) Tuple(ctx context.Context, query RfBandTypeTupleParams, opts ...option.RequestOption) (res *[]RfBandTypeTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/rfbandtype/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -46,7 +47,7 @@ func NewEngineDetailService(opts ...option.RequestOption) (r EngineDetailService
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *EngineDetailService) New(ctx context.Context, body EngineDetailNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/enginedetails"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -58,7 +59,7 @@ func (r *EngineDetailService) New(ctx context.Context, body EngineDetailNewParam
 // performance characteristics/limits compiled by a particular source. A launch
 // vehicle engine may have several details records from multiple sources.
 func (r *EngineDetailService) Get(ctx context.Context, id string, query EngineDetailGetParams, opts ...option.RequestOption) (res *shared.EngineDetailsFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -74,7 +75,7 @@ func (r *EngineDetailService) Get(ctx context.Context, id string, query EngineDe
 // multiple sources. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *EngineDetailService) Update(ctx context.Context, id string, body EngineDetailUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -91,7 +92,7 @@ func (r *EngineDetailService) Update(ctx context.Context, id string, body Engine
 // parameter information.
 func (r *EngineDetailService) List(ctx context.Context, query EngineDetailListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[EngineDetailsAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/enginedetails"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -121,7 +122,7 @@ func (r *EngineDetailService) ListAutoPaging(ctx context.Context, query EngineDe
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *EngineDetailService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")

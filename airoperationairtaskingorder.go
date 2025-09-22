@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewAirOperationAirTaskingOrderService(opts ...option.RequestOption) (r AirO
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *AirOperationAirTaskingOrderService) New(ctx context.Context, body AirOperationAirTaskingOrderNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/airtaskingorder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -55,7 +56,7 @@ func (r *AirOperationAirTaskingOrderService) New(ctx context.Context, body AirOp
 // Service operation to get a single airtaskingorder record by its unique ID passed
 // as a path parameter.
 func (r *AirOperationAirTaskingOrderService) Get(ctx context.Context, id string, query AirOperationAirTaskingOrderGetParams, opts ...option.RequestOption) (res *shared.AirTaskingOrderFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -71,7 +72,7 @@ func (r *AirOperationAirTaskingOrderService) Get(ctx context.Context, id string,
 // parameter information.
 func (r *AirOperationAirTaskingOrderService) List(ctx context.Context, query AirOperationAirTaskingOrderListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AirtaskingorderAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/airtaskingorder"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -100,7 +101,7 @@ func (r *AirOperationAirTaskingOrderService) ListAutoPaging(ctx context.Context,
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *AirOperationAirTaskingOrderService) Count(ctx context.Context, query AirOperationAirTaskingOrderCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/airtaskingorder/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -110,7 +111,7 @@ func (r *AirOperationAirTaskingOrderService) Count(ctx context.Context, query Ai
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *AirOperationAirTaskingOrderService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *AirOperationAirTaskingOrderQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/airtaskingorder/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -125,7 +126,7 @@ func (r *AirOperationAirTaskingOrderService) QueryHelp(ctx context.Context, opts
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *AirOperationAirTaskingOrderService) Tuple(ctx context.Context, query AirOperationAirTaskingOrderTupleParams, opts ...option.RequestOption) (res *[]shared.AirTaskingOrderFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/airtaskingorder/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -136,7 +137,7 @@ func (r *AirOperationAirTaskingOrderService) Tuple(ctx context.Context, query Ai
 // feeds into UDL. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *AirOperationAirTaskingOrderService) UnvalidatedPublish(ctx context.Context, body AirOperationAirTaskingOrderUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-airtaskingorder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewTrackRouteService(opts ...option.RequestOption) (r TrackRouteService) {
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *TrackRouteService) New(ctx context.Context, body TrackRouteNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/trackroute"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -58,7 +59,7 @@ func (r *TrackRouteService) New(ctx context.Context, body TrackRouteNewParams, o
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *TrackRouteService) Update(ctx context.Context, id string, body TrackRouteUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -75,7 +76,7 @@ func (r *TrackRouteService) Update(ctx context.Context, id string, body TrackRou
 // parameter information.
 func (r *TrackRouteService) List(ctx context.Context, query TrackRouteListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[TrackRouteListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/trackroute"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -102,7 +103,7 @@ func (r *TrackRouteService) ListAutoPaging(ctx context.Context, query TrackRoute
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *TrackRouteService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -119,7 +120,7 @@ func (r *TrackRouteService) Delete(ctx context.Context, id string, opts ...optio
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *TrackRouteService) Count(ctx context.Context, query TrackRouteCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/trackroute/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -132,7 +133,7 @@ func (r *TrackRouteService) Count(ctx context.Context, query TrackRouteCountPara
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
 func (r *TrackRouteService) NewBulk(ctx context.Context, body TrackRouteNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/trackroute/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -142,7 +143,7 @@ func (r *TrackRouteService) NewBulk(ctx context.Context, body TrackRouteNewBulkP
 // Service operation to get a single trackroute record by its unique ID passed as a
 // path parameter.
 func (r *TrackRouteService) Get(ctx context.Context, id string, query TrackRouteGetParams, opts ...option.RequestOption) (res *TrackRouteFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -155,7 +156,7 @@ func (r *TrackRouteService) Get(ctx context.Context, id string, query TrackRoute
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *TrackRouteService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *TrackRouteQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/trackroute/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -170,7 +171,7 @@ func (r *TrackRouteService) Queryhelp(ctx context.Context, opts ...option.Reques
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *TrackRouteService) Tuple(ctx context.Context, query TrackRouteTupleParams, opts ...option.RequestOption) (res *[]TrackRouteFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/trackroute/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -181,7 +182,7 @@ func (r *TrackRouteService) Tuple(ctx context.Context, query TrackRouteTuplePara
 // into UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *TrackRouteService) UnvalidatedPublish(ctx context.Context, body TrackRouteUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-trackroute"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

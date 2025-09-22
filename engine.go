@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewEngineService(opts ...option.RequestOption) (r EngineService) {
 // per stage. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *EngineService) New(ctx context.Context, body EngineNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/engine"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -59,7 +60,7 @@ func (r *EngineService) New(ctx context.Context, body EngineNewParams, opts ...o
 // include performance characteristics and limits. A launch vehicle has 1 to many
 // engines per stage.
 func (r *EngineService) Get(ctx context.Context, id string, query EngineGetParams, opts ...option.RequestOption) (res *shared.Engine, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -74,7 +75,7 @@ func (r *EngineService) Get(ctx context.Context, id string, query EngineGetParam
 // launch vehicle has 1 to many engines per stage. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *EngineService) Update(ctx context.Context, id string, body EngineUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -91,7 +92,7 @@ func (r *EngineService) Update(ctx context.Context, id string, body EngineUpdate
 // parameter information.
 func (r *EngineService) List(ctx context.Context, query EngineListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[EngineAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/engine"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -120,7 +121,7 @@ func (r *EngineService) ListAutoPaging(ctx context.Context, query EngineListPara
 // per stage. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *EngineService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -137,7 +138,7 @@ func (r *EngineService) Delete(ctx context.Context, id string, opts ...option.Re
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *EngineService) Count(ctx context.Context, query EngineCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/engine/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -147,7 +148,7 @@ func (r *EngineService) Count(ctx context.Context, query EngineCountParams, opts
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *EngineService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *EngineQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/engine/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -162,7 +163,7 @@ func (r *EngineService) Queryhelp(ctx context.Context, opts ...option.RequestOpt
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *EngineService) Tuple(ctx context.Context, query EngineTupleParams, opts ...option.RequestOption) (res *[]shared.Engine, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/engine/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

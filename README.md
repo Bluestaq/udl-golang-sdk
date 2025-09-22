@@ -28,14 +28,14 @@ Or to pin the version:
 <!-- x-release-please-start-version -->
 
 ```sh
-go get -u 'github.com/Bluestaq/udl-golang-sdk@v0.1.0-alpha.10'
+go get -u 'github.com/Bluestaq/udl-golang-sdk@v0.1.0-alpha.11'
 ```
 
 <!-- x-release-please-end -->
 
 ## Requirements
 
-This library requires Go 1.18+.
+This library requires Go 1.22+.
 
 ## Usage
 

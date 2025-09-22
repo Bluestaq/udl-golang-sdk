@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewOrbitdeterminationService(opts ...option.RequestOption) (r Orbitdetermin
 // ingest into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *OrbitdeterminationService) New(ctx context.Context, body OrbitdeterminationNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/orbitdetermination"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -60,7 +61,7 @@ func (r *OrbitdeterminationService) New(ctx context.Context, body Orbitdetermina
 // parameter information.
 func (r *OrbitdeterminationService) List(ctx context.Context, query OrbitdeterminationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[OrbitdeterminationListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/orbitdetermination"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -89,7 +90,7 @@ func (r *OrbitdeterminationService) ListAutoPaging(ctx context.Context, query Or
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *OrbitdeterminationService) Count(ctx context.Context, query OrbitdeterminationCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/orbitdetermination/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -102,7 +103,7 @@ func (r *OrbitdeterminationService) Count(ctx context.Context, query Orbitdeterm
 // providers should contact the UDL team for specific role assignments and for
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *OrbitdeterminationService) NewBulk(ctx context.Context, body OrbitdeterminationNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/orbitdetermination/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -112,7 +113,7 @@ func (r *OrbitdeterminationService) NewBulk(ctx context.Context, body Orbitdeter
 // Service operation to get a single OrbitDetermination record by its unique ID
 // passed as a path parameter.
 func (r *OrbitdeterminationService) Get(ctx context.Context, id string, query OrbitdeterminationGetParams, opts ...option.RequestOption) (res *OrbitdeterminationGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -125,7 +126,7 @@ func (r *OrbitdeterminationService) Get(ctx context.Context, id string, query Or
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *OrbitdeterminationService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *OrbitdeterminationQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/orbitdetermination/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -140,7 +141,7 @@ func (r *OrbitdeterminationService) Queryhelp(ctx context.Context, opts ...optio
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *OrbitdeterminationService) Tuple(ctx context.Context, query OrbitdeterminationTupleParams, opts ...option.RequestOption) (res *[]OrbitdeterminationTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/orbitdetermination/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -151,7 +152,7 @@ func (r *OrbitdeterminationService) Tuple(ctx context.Context, query Orbitdeterm
 // feeds into UDL. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *OrbitdeterminationService) UnvalidatedPublish(ctx context.Context, body OrbitdeterminationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-orbitdetermination"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

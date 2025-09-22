@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewLinkStatusDatalinkService(opts ...option.RequestOption) (r LinkStatusDat
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *LinkStatusDatalinkService) New(ctx context.Context, body LinkStatusDatalinkNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/datalink"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -56,7 +57,7 @@ func (r *LinkStatusDatalinkService) New(ctx context.Context, body LinkStatusData
 // parameter information.
 func (r *LinkStatusDatalinkService) List(ctx context.Context, query LinkStatusDatalinkListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LinkStatusDatalinkListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/datalink"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -85,7 +86,7 @@ func (r *LinkStatusDatalinkService) ListAutoPaging(ctx context.Context, query Li
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *LinkStatusDatalinkService) Count(ctx context.Context, query LinkStatusDatalinkCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/datalink/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -95,7 +96,7 @@ func (r *LinkStatusDatalinkService) Count(ctx context.Context, query LinkStatusD
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *LinkStatusDatalinkService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *LinkStatusDatalinkQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/datalink/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -110,7 +111,7 @@ func (r *LinkStatusDatalinkService) Queryhelp(ctx context.Context, opts ...optio
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *LinkStatusDatalinkService) Tuple(ctx context.Context, query LinkStatusDatalinkTupleParams, opts ...option.RequestOption) (res *[]LinkStatusDatalinkTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/datalink/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -121,7 +122,7 @@ func (r *LinkStatusDatalinkService) Tuple(ctx context.Context, query LinkStatusD
 // into UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *LinkStatusDatalinkService) UnvalidatedPublish(ctx context.Context, body LinkStatusDatalinkUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-datalink"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

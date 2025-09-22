@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewStatusService(opts ...option.RequestOption) (r StatusService) {
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *StatusService) New(ctx context.Context, body StatusNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/status"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -53,7 +54,7 @@ func (r *StatusService) New(ctx context.Context, body StatusNewParams, opts ...o
 // Service operation to update a single Status. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *StatusService) Update(ctx context.Context, id string, body StatusUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -70,7 +71,7 @@ func (r *StatusService) Update(ctx context.Context, id string, body StatusUpdate
 // parameter information.
 func (r *StatusService) List(ctx context.Context, query StatusListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[StatusListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/status"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -97,7 +98,7 @@ func (r *StatusService) ListAutoPaging(ctx context.Context, query StatusListPara
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *StatusService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -114,7 +115,7 @@ func (r *StatusService) Delete(ctx context.Context, id string, opts ...option.Re
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *StatusService) Count(ctx context.Context, query StatusCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/status/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -124,7 +125,7 @@ func (r *StatusService) Count(ctx context.Context, query StatusCountParams, opts
 // Service operation to get a single Status record by its unique ID passed as a
 // path parameter.
 func (r *StatusService) Get(ctx context.Context, id string, query StatusGetParams, opts ...option.RequestOption) (res *shared.StatusFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -136,7 +137,7 @@ func (r *StatusService) Get(ctx context.Context, id string, query StatusGetParam
 
 // Service operation to get all statuses related to a particular entity.
 func (r *StatusService) GetByEntityID(ctx context.Context, idEntity string, query StatusGetByEntityIDParams, opts ...option.RequestOption) (res *[]shared.StatusFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if idEntity == "" {
 		err = errors.New("missing required idEntity parameter")
 		return
@@ -148,7 +149,7 @@ func (r *StatusService) GetByEntityID(ctx context.Context, idEntity string, quer
 
 // Service operation to get all statuses related to a particular entity type.
 func (r *StatusService) GetByEntityType(ctx context.Context, entityType string, query StatusGetByEntityTypeParams, opts ...option.RequestOption) (res *[]shared.StatusFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if entityType == "" {
 		err = errors.New("missing required entityType parameter")
 		return
@@ -161,7 +162,7 @@ func (r *StatusService) GetByEntityType(ctx context.Context, entityType string, 
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *StatusService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *StatusQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/status/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -176,7 +177,7 @@ func (r *StatusService) Queryhelp(ctx context.Context, opts ...option.RequestOpt
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *StatusService) Tuple(ctx context.Context, query StatusTupleParams, opts ...option.RequestOption) (res *[]shared.StatusFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/status/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

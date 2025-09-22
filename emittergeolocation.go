@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewEmitterGeolocationService(opts ...option.RequestOption) (r EmitterGeoloc
 // and for instructions on setting up a permanent feed through an alternate
 // mechanism.
 func (r *EmitterGeolocationService) New(ctx context.Context, body EmitterGeolocationNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/emittergeolocation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -57,7 +58,7 @@ func (r *EmitterGeolocationService) New(ctx context.Context, body EmitterGeoloca
 // Service operation to get a single RF geolocation by its unique ID passed as a
 // path parameter.
 func (r *EmitterGeolocationService) Get(ctx context.Context, id string, query EmitterGeolocationGetParams, opts ...option.RequestOption) (res *EmitterGeolocationGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -73,7 +74,7 @@ func (r *EmitterGeolocationService) Get(ctx context.Context, id string, query Em
 // parameter information.
 func (r *EmitterGeolocationService) List(ctx context.Context, query EmitterGeolocationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[EmitterGeolocationListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/emittergeolocation"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -101,7 +102,7 @@ func (r *EmitterGeolocationService) ListAutoPaging(ctx context.Context, query Em
 // contact the UDL team for assistance. Note, delete operations do not remove data
 // from historical or publish/subscribe stores.
 func (r *EmitterGeolocationService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -118,7 +119,7 @@ func (r *EmitterGeolocationService) Delete(ctx context.Context, id string, opts 
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *EmitterGeolocationService) Count(ctx context.Context, query EmitterGeolocationCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/emittergeolocation/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -131,7 +132,7 @@ func (r *EmitterGeolocationService) Count(ctx context.Context, query EmitterGeol
 // the UDL team for specific role assignments and for instructions on setting up a
 // permanent feed through an alternate mechanism.
 func (r *EmitterGeolocationService) NewBulk(ctx context.Context, body EmitterGeolocationNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/emittergeolocation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -141,7 +142,7 @@ func (r *EmitterGeolocationService) NewBulk(ctx context.Context, body EmitterGeo
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *EmitterGeolocationService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *EmitterGeolocationQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/emittergeolocation/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -156,7 +157,7 @@ func (r *EmitterGeolocationService) QueryHelp(ctx context.Context, opts ...optio
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *EmitterGeolocationService) Tuple(ctx context.Context, query EmitterGeolocationTupleParams, opts ...option.RequestOption) (res *[]EmitterGeolocationTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/emittergeolocation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -167,7 +168,7 @@ func (r *EmitterGeolocationService) Tuple(ctx context.Context, query EmitterGeol
 // feeds into UDL. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *EmitterGeolocationService) UnvalidatedPublish(ctx context.Context, body EmitterGeolocationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-emittergeolocation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

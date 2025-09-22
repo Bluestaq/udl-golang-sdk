@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -47,7 +48,7 @@ func NewCollectRequestService(opts ...option.RequestOption) (r CollectRequestSer
 // the database. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *CollectRequestService) New(ctx context.Context, body CollectRequestNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/collectrequest"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -57,7 +58,7 @@ func (r *CollectRequestService) New(ctx context.Context, body CollectRequestNewP
 // Service operation to get a single CollectRequest by its unique ID passed as a
 // path parameter.
 func (r *CollectRequestService) Get(ctx context.Context, id string, query CollectRequestGetParams, opts ...option.RequestOption) (res *shared.CollectRequestFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -73,7 +74,7 @@ func (r *CollectRequestService) Get(ctx context.Context, id string, query Collec
 // parameter information.
 func (r *CollectRequestService) List(ctx context.Context, query CollectRequestListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[CollectRequestAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/collectrequest"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -102,7 +103,7 @@ func (r *CollectRequestService) ListAutoPaging(ctx context.Context, query Collec
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *CollectRequestService) Count(ctx context.Context, query CollectRequestCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/collectrequest/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -115,7 +116,7 @@ func (r *CollectRequestService) Count(ctx context.Context, query CollectRequestC
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
 func (r *CollectRequestService) NewBulk(ctx context.Context, body CollectRequestNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/collectrequest/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -125,7 +126,7 @@ func (r *CollectRequestService) NewBulk(ctx context.Context, body CollectRequest
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *CollectRequestService) QueryHelp(ctx context.Context, opts ...option.RequestOption) (res *CollectRequestQueryHelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/collectrequest/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -140,7 +141,7 @@ func (r *CollectRequestService) QueryHelp(ctx context.Context, opts ...option.Re
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *CollectRequestService) Tuple(ctx context.Context, query CollectRequestTupleParams, opts ...option.RequestOption) (res *[]shared.CollectRequestFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/collectrequest/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -151,7 +152,7 @@ func (r *CollectRequestService) Tuple(ctx context.Context, query CollectRequestT
 // into UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *CollectRequestService) UnvalidatedPublish(ctx context.Context, body CollectRequestUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-collectrequest"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewEopService(opts ...option.RequestOption) (r EopService) {
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *EopService) New(ctx context.Context, body EopNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/eop"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -55,7 +56,7 @@ func (r *EopService) New(ctx context.Context, body EopNewParams, opts ...option.
 // Service operation to get a single EOP record by its unique ID passed as a path
 // parameter.
 func (r *EopService) Get(ctx context.Context, id string, query EopGetParams, opts ...option.RequestOption) (res *shared.EopFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -68,7 +69,7 @@ func (r *EopService) Get(ctx context.Context, id string, query EopGetParams, opt
 // Service operation to update a single EOP Record. A specific role is required to
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *EopService) Update(ctx context.Context, id string, body EopUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -85,7 +86,7 @@ func (r *EopService) Update(ctx context.Context, id string, body EopUpdateParams
 // parameter information.
 func (r *EopService) List(ctx context.Context, query EopListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[EopAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/eop"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -113,7 +114,7 @@ func (r *EopService) ListAutoPaging(ctx context.Context, query EopListParams, op
 // publish/subscribe stores. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *EopService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -130,7 +131,7 @@ func (r *EopService) Delete(ctx context.Context, id string, opts ...option.Reque
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *EopService) Count(ctx context.Context, query EopCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/eop/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -146,7 +147,7 @@ func (r *EopService) Count(ctx context.Context, query EopCountParams, opts ...op
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *EopService) ListTuple(ctx context.Context, query EopListTupleParams, opts ...option.RequestOption) (res *[]shared.EopFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/eop/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -155,7 +156,7 @@ func (r *EopService) ListTuple(ctx context.Context, query EopListTupleParams, op
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *EopService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *EopQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/eop/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return

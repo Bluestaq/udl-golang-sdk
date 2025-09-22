@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewRfEmitterService(opts ...option.RequestOption) (r RfEmitterService) {
 // database. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *RfEmitterService) New(ctx context.Context, body RfEmitterNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/rfemitter"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -54,7 +55,7 @@ func (r *RfEmitterService) New(ctx context.Context, body RfEmitterNewParams, opt
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *RfEmitterService) Update(ctx context.Context, id string, body RfEmitterUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -71,7 +72,7 @@ func (r *RfEmitterService) Update(ctx context.Context, id string, body RfEmitter
 // parameter information.
 func (r *RfEmitterService) List(ctx context.Context, query RfEmitterListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[RfEmitterListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/rfemitter"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -98,7 +99,7 @@ func (r *RfEmitterService) ListAutoPaging(ctx context.Context, query RfEmitterLi
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *RfEmitterService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -115,7 +116,7 @@ func (r *RfEmitterService) Delete(ctx context.Context, id string, opts ...option
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *RfEmitterService) Count(ctx context.Context, query RfEmitterCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/rfemitter/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -125,7 +126,7 @@ func (r *RfEmitterService) Count(ctx context.Context, query RfEmitterCountParams
 // Service operation to get a single RFEmitter record by its unique ID passed as a
 // path parameter.
 func (r *RfEmitterService) Get(ctx context.Context, id string, query RfEmitterGetParams, opts ...option.RequestOption) (res *RfEmitterGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -138,7 +139,7 @@ func (r *RfEmitterService) Get(ctx context.Context, id string, query RfEmitterGe
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *RfEmitterService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *RfEmitterQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/rfemitter/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -153,7 +154,7 @@ func (r *RfEmitterService) Queryhelp(ctx context.Context, opts ...option.Request
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *RfEmitterService) Tuple(ctx context.Context, query RfEmitterTupleParams, opts ...option.RequestOption) (res *[]RfEmitterTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/rfemitter/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

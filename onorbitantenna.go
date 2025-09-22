@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewOnorbitantennaService(opts ...option.RequestOption) (r OnorbitantennaSer
 // with many different on-orbit spacecraft. A specific role is required to perform
 // this service operation. Please contact the UDL team for assistance.
 func (r *OnorbitantennaService) New(ctx context.Context, body OnorbitantennaNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/onorbitantenna"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -58,7 +59,7 @@ func (r *OnorbitantennaService) New(ctx context.Context, body OnorbitantennaNewP
 // spacecraft. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *OnorbitantennaService) Update(ctx context.Context, id string, body OnorbitantennaUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -75,7 +76,7 @@ func (r *OnorbitantennaService) Update(ctx context.Context, id string, body Onor
 // parameter information.
 func (r *OnorbitantennaService) List(ctx context.Context, query OnorbitantennaListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[OnorbitantennaListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/onorbitantenna"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -104,7 +105,7 @@ func (r *OnorbitantennaService) ListAutoPaging(ctx context.Context, query Onorbi
 // with many different on-orbit spacecraft. A specific role is required to perform
 // this service operation. Please contact the UDL team for assistance.
 func (r *OnorbitantennaService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -120,7 +121,7 @@ func (r *OnorbitantennaService) Delete(ctx context.Context, id string, opts ...o
 // spacecraft antennas and a particular on-orbit spacecraft. An antenna type may be
 // associated with many different on-orbit spacecraft.
 func (r *OnorbitantennaService) Get(ctx context.Context, id string, query OnorbitantennaGetParams, opts ...option.RequestOption) (res *shared.OnorbitAntennaFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

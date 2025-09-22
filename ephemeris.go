@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -49,7 +50,7 @@ func NewEphemerisService(opts ...option.RequestOption) (r EphemerisService) {
 // parameter information.
 func (r *EphemerisService) List(ctx context.Context, query EphemerisListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[EphemerisAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/ephemeris"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -78,7 +79,7 @@ func (r *EphemerisService) ListAutoPaging(ctx context.Context, query EphemerisLi
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *EphemerisService) Count(ctx context.Context, query EphemerisCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/ephemeris/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -94,7 +95,7 @@ func (r *EphemerisService) Count(ctx context.Context, query EphemerisCountParams
 // **Example:**
 // /filedrop/ephem?classification=U&dataMode=TEST&source=Bluestaq&satNo=25544&ephemFormatType=NASA&hasMnvr=false&type=ROUTINE&category=EXTERNAL&origin=NASA&tags=tag1,tag2
 func (r *EphemerisService) FileUpload(ctx context.Context, params EphemerisFileUploadParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/ephem"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
@@ -104,7 +105,7 @@ func (r *EphemerisService) FileUpload(ctx context.Context, params EphemerisFileU
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *EphemerisService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *EphemerisQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/ephemeris/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -119,7 +120,7 @@ func (r *EphemerisService) Queryhelp(ctx context.Context, opts ...option.Request
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *EphemerisService) Tuple(ctx context.Context, query EphemerisTupleParams, opts ...option.RequestOption) (res *[]shared.EphemerisFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/ephemeris/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -142,7 +143,7 @@ func (r *EphemerisService) Tuple(ctx context.Context, query EphemerisTupleParams
 //
 // </h3>
 func (r *EphemerisService) UnvalidatedPublish(ctx context.Context, body EphemerisUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-ephset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

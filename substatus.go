@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewSubstatusService(opts ...option.RequestOption) (r SubstatusService) {
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *SubstatusService) New(ctx context.Context, body SubstatusNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/substatus"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -56,7 +57,7 @@ func (r *SubstatusService) New(ctx context.Context, body SubstatusNewParams, opt
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *SubstatusService) Update(ctx context.Context, id string, body SubstatusUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -73,7 +74,7 @@ func (r *SubstatusService) Update(ctx context.Context, id string, body Substatus
 // parameter information.
 func (r *SubstatusService) List(ctx context.Context, query SubstatusListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SubstatusListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/substatus"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -100,7 +101,7 @@ func (r *SubstatusService) ListAutoPaging(ctx context.Context, query SubstatusLi
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *SubstatusService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -117,7 +118,7 @@ func (r *SubstatusService) Delete(ctx context.Context, id string, opts ...option
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *SubstatusService) Count(ctx context.Context, query SubstatusCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/substatus/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -127,7 +128,7 @@ func (r *SubstatusService) Count(ctx context.Context, query SubstatusCountParams
 // Service operation to get a single Sub Status record by its unique ID passed as a
 // path parameter.
 func (r *SubstatusService) Get(ctx context.Context, id string, query SubstatusGetParams, opts ...option.RequestOption) (res *shared.SubStatusFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -140,7 +141,7 @@ func (r *SubstatusService) Get(ctx context.Context, id string, query SubstatusGe
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *SubstatusService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *SubstatusQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/substatus/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -155,7 +156,7 @@ func (r *SubstatusService) Queryhelp(ctx context.Context, opts ...option.Request
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *SubstatusService) Tuple(ctx context.Context, query SubstatusTupleParams, opts ...option.RequestOption) (res *[]shared.SubStatusFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/substatus/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

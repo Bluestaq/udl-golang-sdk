@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewAirEventService(opts ...option.RequestOption) (r AirEventService) {
 // into the database. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *AirEventService) New(ctx context.Context, body AirEventNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/airevent"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -56,7 +57,7 @@ func (r *AirEventService) New(ctx context.Context, body AirEventNewParams, opts 
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *AirEventService) Update(ctx context.Context, id string, body AirEventUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -73,7 +74,7 @@ func (r *AirEventService) Update(ctx context.Context, id string, body AirEventUp
 // parameter information.
 func (r *AirEventService) List(ctx context.Context, query AirEventListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AirEventListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/airevent"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -100,7 +101,7 @@ func (r *AirEventService) ListAutoPaging(ctx context.Context, query AirEventList
 // parameter. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *AirEventService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -117,7 +118,7 @@ func (r *AirEventService) Delete(ctx context.Context, id string, opts ...option.
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *AirEventService) Count(ctx context.Context, query AirEventCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/airevent/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -131,7 +132,7 @@ func (r *AirEventService) Count(ctx context.Context, query AirEventCountParams, 
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
 func (r *AirEventService) NewBulk(ctx context.Context, body AirEventNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/airevent/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -141,7 +142,7 @@ func (r *AirEventService) NewBulk(ctx context.Context, body AirEventNewBulkParam
 // Service operation to get a single airevent record by its unique ID passed as a
 // path parameter.
 func (r *AirEventService) Get(ctx context.Context, id string, query AirEventGetParams, opts ...option.RequestOption) (res *AirEventGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -154,7 +155,7 @@ func (r *AirEventService) Get(ctx context.Context, id string, query AirEventGetP
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *AirEventService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *AirEventQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/airevent/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -169,7 +170,7 @@ func (r *AirEventService) Queryhelp(ctx context.Context, opts ...option.RequestO
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *AirEventService) Tuple(ctx context.Context, query AirEventTupleParams, opts ...option.RequestOption) (res *[]AirEventTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/airevent/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -180,7 +181,7 @@ func (r *AirEventService) Tuple(ctx context.Context, query AirEventTupleParams, 
 // into UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *AirEventService) UnvalidatedPublish(ctx context.Context, body AirEventUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-airevent"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

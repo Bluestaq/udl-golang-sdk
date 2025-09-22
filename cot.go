@@ -5,6 +5,7 @@ package unifieddatalibrary
 import (
 	"context"
 	"net/http"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -36,7 +37,7 @@ func NewCotService(opts ...option.RequestOption) (r CotService) {
 // be persisted in the UDL POI schema as well as federated to connected TAK
 // servers.
 func (r *CotService) New(ctx context.Context, body CotNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/cot"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

@@ -9,6 +9,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -51,7 +52,7 @@ func NewNotificationService(opts ...option.RequestOption) (r NotificationService
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *NotificationService) New(ctx context.Context, body NotificationNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/notification"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -64,7 +65,7 @@ func (r *NotificationService) New(ctx context.Context, body NotificationNewParam
 // parameter information.
 func (r *NotificationService) List(ctx context.Context, query NotificationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[NotificationListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/notification"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -93,7 +94,7 @@ func (r *NotificationService) ListAutoPaging(ctx context.Context, query Notifica
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *NotificationService) Count(ctx context.Context, query NotificationCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/notification/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -113,7 +114,7 @@ func (r *NotificationService) Count(ctx context.Context, query NotificationCount
 // services. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *NotificationService) NewRaw(ctx context.Context, params NotificationNewRawParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/notification/createRaw"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
@@ -123,7 +124,7 @@ func (r *NotificationService) NewRaw(ctx context.Context, params NotificationNew
 // Service operation to get a single notification by its unique ID passed as a path
 // parameter.
 func (r *NotificationService) Get(ctx context.Context, id string, query NotificationGetParams, opts ...option.RequestOption) (res *shared.NotificationFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -136,7 +137,7 @@ func (r *NotificationService) Get(ctx context.Context, id string, query Notifica
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *NotificationService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *NotificationQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/notification/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -151,7 +152,7 @@ func (r *NotificationService) Queryhelp(ctx context.Context, opts ...option.Requ
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *NotificationService) Tuple(ctx context.Context, query NotificationTupleParams, opts ...option.RequestOption) (res *[]shared.NotificationFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/notification/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

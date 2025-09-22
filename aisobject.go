@@ -6,6 +6,7 @@ import (
 	"context"
 	"encoding/json"
 	"net/http"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -39,7 +40,7 @@ func NewAIsObjectService(opts ...option.RequestOption) (r AIsObjectService) {
 // UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *AIsObjectService) UnvalidatedPublish(ctx context.Context, body AIsObjectUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-ais"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)

@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -43,7 +44,7 @@ func NewAirfieldSlotConsumptionService(opts ...option.RequestOption) (r Airfield
 // and ingest into the database. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
 func (r *AirfieldSlotConsumptionService) New(ctx context.Context, body AirfieldSlotConsumptionNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/airfieldslotconsumption"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -53,7 +54,7 @@ func (r *AirfieldSlotConsumptionService) New(ctx context.Context, body AirfieldS
 // Service operation to get a single airfieldslotconsumption record by its unique
 // ID passed as a path parameter.
 func (r *AirfieldSlotConsumptionService) Get(ctx context.Context, id string, query AirfieldSlotConsumptionGetParams, opts ...option.RequestOption) (res *shared.AirfieldslotconsumptionFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -67,7 +68,7 @@ func (r *AirfieldSlotConsumptionService) Get(ctx context.Context, id string, que
 // required to perform this service operation. Please contact the UDL team for
 // assistance.
 func (r *AirfieldSlotConsumptionService) Update(ctx context.Context, id string, body AirfieldSlotConsumptionUpdateParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -84,7 +85,7 @@ func (r *AirfieldSlotConsumptionService) Update(ctx context.Context, id string, 
 // parameter information.
 func (r *AirfieldSlotConsumptionService) List(ctx context.Context, query AirfieldSlotConsumptionListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[AirfieldslotconsumptionAbridged], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/airfieldslotconsumption"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -111,7 +112,7 @@ func (r *AirfieldSlotConsumptionService) ListAutoPaging(ctx context.Context, que
 // passed ID path parameter. A specific role is required to perform this service
 // operation. Please contact the UDL team for assistance.
 func (r *AirfieldSlotConsumptionService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
@@ -128,7 +129,7 @@ func (r *AirfieldSlotConsumptionService) Delete(ctx context.Context, id string, 
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *AirfieldSlotConsumptionService) Count(ctx context.Context, query AirfieldSlotConsumptionCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/airfieldslotconsumption/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -138,7 +139,7 @@ func (r *AirfieldSlotConsumptionService) Count(ctx context.Context, query Airfie
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *AirfieldSlotConsumptionService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *AirfieldSlotConsumptionQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/airfieldslotconsumption/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -153,7 +154,7 @@ func (r *AirfieldSlotConsumptionService) Queryhelp(ctx context.Context, opts ...
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *AirfieldSlotConsumptionService) Tuple(ctx context.Context, query AirfieldSlotConsumptionTupleParams, opts ...option.RequestOption) (res *[]shared.AirfieldslotconsumptionFull, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/airfieldslotconsumption/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

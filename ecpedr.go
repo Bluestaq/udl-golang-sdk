@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
@@ -45,7 +46,7 @@ func NewEcpedrService(opts ...option.RequestOption) (r EcpedrService) {
 // the database. A specific role is required to perform this service operation.
 // Please contact the UDL team for assistance.
 func (r *EcpedrService) New(ctx context.Context, body EcpedrNewParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/ecpedr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -58,7 +59,7 @@ func (r *EcpedrService) New(ctx context.Context, body EcpedrNewParams, opts ...o
 // parameter information.
 func (r *EcpedrService) List(ctx context.Context, query EcpedrListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[EcpedrListResponse], err error) {
 	var raw *http.Response
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	path := "udl/ecpedr"
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)
@@ -87,7 +88,7 @@ func (r *EcpedrService) ListAutoPaging(ctx context.Context, query EcpedrListPara
 // queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
 // valid/required query parameter information.
 func (r *EcpedrService) Count(ctx context.Context, query EcpedrCountParams, opts ...option.RequestOption) (res *string, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/ecpedr/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
@@ -100,7 +101,7 @@ func (r *EcpedrService) Count(ctx context.Context, query EcpedrCountParams, opts
 // contact the UDL team for specific role assignments and for instructions on
 // setting up a permanent feed through an alternate mechanism.
 func (r *EcpedrService) NewBulk(ctx context.Context, body EcpedrNewBulkParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "udl/ecpedr/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
@@ -110,7 +111,7 @@ func (r *EcpedrService) NewBulk(ctx context.Context, body EcpedrNewBulkParams, o
 // Service operation to provide detailed information on available dynamic query
 // parameters for a particular data type.
 func (r *EcpedrService) Queryhelp(ctx context.Context, opts ...option.RequestOption) (res *EcpedrQueryhelpResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/ecpedr/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
 	return
@@ -125,7 +126,7 @@ func (r *EcpedrService) Queryhelp(ctx context.Context, opts ...option.RequestOpt
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
 func (r *EcpedrService) Tuple(ctx context.Context, query EcpedrTupleParams, opts ...option.RequestOption) (res *[]EcpedrTupleResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "udl/ecpedr/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
@@ -136,7 +137,7 @@ func (r *EcpedrService) Tuple(ctx context.Context, query EcpedrTupleParams, opts
 // UDL. A specific role is required to perform this service operation. Please
 // contact the UDL team for assistance.
 func (r *EcpedrService) UnvalidatedPublish(ctx context.Context, body EcpedrUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	path := "filedrop/udl-ecpedr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
