@@ -142,6 +142,8 @@ type LinkstatusUpdateParams struct {
 	SatNo1 param.Opt[int64] `json:"satNo1,omitzero"`
 	// Satellite/catalog number of the target on-orbit secondary object.
 	SatNo2 param.Opt[int64] `json:"satNo2,omitzero"`
+	// Signal to noise ratio, in dB.
+	Snr param.Opt[float64] `json:"snr,omitzero"`
 	// The SYSCAP mission status of the system(s) forming the link.
 	SysCap param.Opt[string] `json:"sysCap,omitzero"`
 	paramObj

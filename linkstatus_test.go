@@ -53,6 +53,7 @@ func TestLinkStatusNewWithOptionalParams(t *testing.T) {
 		Origin:                unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
 		SatNo1:                unifieddatalibrary.Int(1),
 		SatNo2:                unifieddatalibrary.Int(2),
+		Snr:                   unifieddatalibrary.Float(10.1),
 		SysCap:                unifieddatalibrary.String("Example status"),
 	})
 	if err != nil {

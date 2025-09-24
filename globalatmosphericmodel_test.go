@@ -216,6 +216,7 @@ func TestGlobalAtmosphericModelUnvalidatedPublishWithOptionalParams(t *testing.T
 		Type:                  "Global Total Electron Density",
 		ID:                    unifieddatalibrary.String("026dd511-8ba5-47d3-9909-836149f87686"),
 		Cadence:               unifieddatalibrary.Int(10),
+		DataSourceIdentifier:  unifieddatalibrary.String("Dragster globally assimilated atmospheric density v2.0"),
 		EndAlt:                unifieddatalibrary.Float(90.125),
 		EndLat:                unifieddatalibrary.Float(-88.75),
 		EndLon:                unifieddatalibrary.Float(-177.5),
