@@ -1040,6 +1040,9 @@ type ManeuverHistoryListResponsePostEventStateVector struct {
 	LunarSolar bool `json:"lunarSolar"`
 	// The mass of the object, in kilograms.
 	Mass float64 `json:"mass"`
+	// Time when message was generated in ISO 8601 UTC format with microsecond
+	// precision.
+	MsgTs time.Time `json:"msgTs" format:"date-time"`
 	// The number of observations available for the OD of the object.
 	ObsAvailable int64 `json:"obsAvailable"`
 	// The number of observations accepted for the OD of the object.
@@ -1292,6 +1295,7 @@ type ManeuverHistoryListResponsePostEventStateVector struct {
 		LeapSecondTime        respjson.Field
 		LunarSolar            respjson.Field
 		Mass                  respjson.Field
+		MsgTs                 respjson.Field
 		ObsAvailable          respjson.Field
 		ObsUsed               respjson.Field
 		Origin                respjson.Field
@@ -1850,6 +1854,9 @@ type ManeuverHistoryListResponsePreEventStateVector struct {
 	LunarSolar bool `json:"lunarSolar"`
 	// The mass of the object, in kilograms.
 	Mass float64 `json:"mass"`
+	// Time when message was generated in ISO 8601 UTC format with microsecond
+	// precision.
+	MsgTs time.Time `json:"msgTs" format:"date-time"`
 	// The number of observations available for the OD of the object.
 	ObsAvailable int64 `json:"obsAvailable"`
 	// The number of observations accepted for the OD of the object.
@@ -2102,6 +2109,7 @@ type ManeuverHistoryListResponsePreEventStateVector struct {
 		LeapSecondTime        respjson.Field
 		LunarSolar            respjson.Field
 		Mass                  respjson.Field
+		MsgTs                 respjson.Field
 		ObsAvailable          respjson.Field
 		ObsUsed               respjson.Field
 		Origin                respjson.Field
