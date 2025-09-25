@@ -123,6 +123,15 @@ func (r *ScService) FileUpload(ctx context.Context, fileContent io.Reader, body 
 	return
 }
 
+// Returns true if a user has write access to the specified folder.
+func (r *ScService) HasWriteAccess(ctx context.Context, query ScHasWriteAccessParams, opts ...option.RequestOption) (res *bool, err error) {
+	opts = slices.Concat(r.Options, opts)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
+	path := "scs/userHasWriteAccess"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
 // operation to move folders or files. A specific role is required to perform this
 // service operation. Please contact the UDL team for assistance.
 //
@@ -368,6 +377,22 @@ func (r ScFileUploadParams) MarshalMultipart() (data []byte, contentType string,
 
 // URLQuery serializes [ScFileUploadParams]'s query parameters as `url.Values`.
 func (r ScFileUploadParams) URLQuery() (v url.Values, err error) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type ScHasWriteAccessParams struct {
+	// Folder path for which to check user write access.
+	Path        string           `query:"path,required" json:"-"`
+	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
+	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
+	paramObj
+}
+
+// URLQuery serializes [ScHasWriteAccessParams]'s query parameters as `url.Values`.
+func (r ScHasWriteAccessParams) URLQuery() (v url.Values, err error) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

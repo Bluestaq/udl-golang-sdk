@@ -29,6 +29,8 @@ import (
 // the [NewRfEmitterService] method instead.
 type RfEmitterService struct {
 	Options []option.RequestOption
+	Staging RfEmitterStagingService
+	Details RfEmitterDetailService
 }
 
 // NewRfEmitterService generates a new service that applies the given options to
@@ -37,6 +39,8 @@ type RfEmitterService struct {
 func NewRfEmitterService(opts ...option.RequestOption) (r RfEmitterService) {
 	r = RfEmitterService{}
 	r.Options = opts
+	r.Staging = NewRfEmitterStagingService(opts...)
+	r.Details = NewRfEmitterDetailService(opts...)
 	return
 }
 

@@ -26,7 +26,7 @@ func TestRfEmitterDetailNewWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.RfEmitterDetails.New(context.TODO(), unifieddatalibrary.RfEmitterDetailNewParams{
+	err := client.RfEmitter.Details.New(context.TODO(), unifieddatalibrary.RfEmitterDetailNewParams{
 		ClassificationMarking: "U",
 		DataMode:              unifieddatalibrary.RfEmitterDetailNewParamsDataModeTest,
 		IDRfEmitter:           "RFEMITTER-ID",
@@ -153,7 +153,7 @@ func TestRfEmitterDetailUpdateWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.RfEmitterDetails.Update(
+	err := client.RfEmitter.Details.Update(
 		context.TODO(),
 		"id",
 		unifieddatalibrary.RfEmitterDetailUpdateParams{
@@ -284,7 +284,7 @@ func TestRfEmitterDetailListWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.RfEmitterDetails.List(context.TODO(), unifieddatalibrary.RfEmitterDetailListParams{
+	_, err := client.RfEmitter.Details.List(context.TODO(), unifieddatalibrary.RfEmitterDetailListParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -310,7 +310,7 @@ func TestRfEmitterDetailDelete(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	err := client.RfEmitterDetails.Delete(context.TODO(), "id")
+	err := client.RfEmitter.Details.Delete(context.TODO(), "id")
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -333,7 +333,7 @@ func TestRfEmitterDetailCountWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.RfEmitterDetails.Count(context.TODO(), unifieddatalibrary.RfEmitterDetailCountParams{
+	_, err := client.RfEmitter.Details.Count(context.TODO(), unifieddatalibrary.RfEmitterDetailCountParams{
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
 	})
@@ -359,7 +359,7 @@ func TestRfEmitterDetailGetWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.RfEmitterDetails.Get(
+	_, err := client.RfEmitter.Details.Get(
 		context.TODO(),
 		"id",
 		unifieddatalibrary.RfEmitterDetailGetParams{
@@ -389,7 +389,7 @@ func TestRfEmitterDetailQueryhelp(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.RfEmitterDetails.Queryhelp(context.TODO())
+	_, err := client.RfEmitter.Details.Queryhelp(context.TODO())
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
 		if errors.As(err, &apierr) {
@@ -412,7 +412,7 @@ func TestRfEmitterDetailTupleWithOptionalParams(t *testing.T) {
 		option.WithPassword("My Password"),
 		option.WithUsername("My Username"),
 	)
-	_, err := client.RfEmitterDetails.Tuple(context.TODO(), unifieddatalibrary.RfEmitterDetailTupleParams{
+	_, err := client.RfEmitter.Details.Tuple(context.TODO(), unifieddatalibrary.RfEmitterDetailTupleParams{
 		Columns:     "columns",
 		FirstResult: unifieddatalibrary.Int(0),
 		MaxResults:  unifieddatalibrary.Int(0),
