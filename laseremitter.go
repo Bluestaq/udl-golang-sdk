@@ -29,6 +29,7 @@ import (
 // the [NewLaseremitterService] method instead.
 type LaseremitterService struct {
 	Options []option.RequestOption
+	Staging LaseremitterStagingService
 }
 
 // NewLaseremitterService generates a new service that applies the given options to
@@ -37,6 +38,7 @@ type LaseremitterService struct {
 func NewLaseremitterService(opts ...option.RequestOption) (r LaseremitterService) {
 	r = LaseremitterService{}
 	r.Options = opts
+	r.Staging = NewLaseremitterStagingService(opts...)
 	return
 }
 

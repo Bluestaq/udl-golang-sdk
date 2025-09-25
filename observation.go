@@ -17,6 +17,7 @@ type ObservationService struct {
 	Ecpsdr                  ObservationEcpsdrService
 	EoObservations          ObservationEoObservationService
 	Monoradar               ObservationMonoradarService
+	Obscorrelation          ObservationObscorrelationService
 	PassiveRadarObservation ObservationPassiveRadarObservationService
 	Radarobservation        ObservationRadarobservationService
 	RfObservation           ObservationRfObservationService
@@ -32,6 +33,7 @@ func NewObservationService(opts ...option.RequestOption) (r ObservationService) 
 	r.Ecpsdr = NewObservationEcpsdrService(opts...)
 	r.EoObservations = NewObservationEoObservationService(opts...)
 	r.Monoradar = NewObservationMonoradarService(opts...)
+	r.Obscorrelation = NewObservationObscorrelationService(opts...)
 	r.PassiveRadarObservation = NewObservationPassiveRadarObservationService(opts...)
 	r.Radarobservation = NewObservationRadarobservationService(opts...)
 	r.RfObservation = NewObservationRfObservationService(opts...)
