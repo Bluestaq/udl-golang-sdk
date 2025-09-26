@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.12 (2025-09-25)
+
+Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)
+
+### Features
+
+* **api:** adding obs correlation, staging data for emitters, and user auth endpoint ([05a59c2](https://github.com/Bluestaq/udl-golang-sdk/commit/05a59c28b067f4489d7f3e03c84b5a64bdcdf36a))
+* **api:** api update ([57db327](https://github.com/Bluestaq/udl-golang-sdk/commit/57db32778248642a92a5cc9d080e2f2b7d0303eb))
+
+
+### Bug Fixes
+
+* bugfix for setting JSON keys with special characters ([5d98629](https://github.com/Bluestaq/udl-golang-sdk/commit/5d9862950fae20e61f5b78e83e4d071fd456bf53))
+
 ## 0.1.0-alpha.11 (2025-09-19)
 
 Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)

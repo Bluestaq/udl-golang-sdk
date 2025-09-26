@@ -133,7 +133,6 @@ type Client struct {
 	RfBand                    RfBandService
 	RfBandType                RfBandTypeService
 	RfEmitter                 RfEmitterService
-	RfEmitterDetails          RfEmitterDetailService
 	RouteStats                RouteStatService
 	SarObservation            SarObservationService
 	Scientific                ScientificService
@@ -177,6 +176,7 @@ type Client struct {
 	TrackDetails              TrackDetailService
 	TrackRoute                TrackRouteService
 	Transponder               TransponderService
+	User                      UserService
 	Vessel                    VesselService
 	Video                     VideoService
 	WeatherData               WeatherDataService
@@ -329,7 +329,6 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.RfBand = NewRfBandService(opts...)
 	r.RfBandType = NewRfBandTypeService(opts...)
 	r.RfEmitter = NewRfEmitterService(opts...)
-	r.RfEmitterDetails = NewRfEmitterDetailService(opts...)
 	r.RouteStats = NewRouteStatService(opts...)
 	r.SarObservation = NewSarObservationService(opts...)
 	r.Scientific = NewScientificService(opts...)
@@ -373,6 +372,7 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.TrackDetails = NewTrackDetailService(opts...)
 	r.TrackRoute = NewTrackRouteService(opts...)
 	r.Transponder = NewTransponderService(opts...)
+	r.User = NewUserService(opts...)
 	r.Vessel = NewVesselService(opts...)
 	r.Video = NewVideoService(opts...)
 	r.WeatherData = NewWeatherDataService(opts...)
