@@ -368,18 +368,18 @@ const (
 )
 
 type ScV2ListParams struct {
-	// The base path to list
+	// The base path to list.
 	Path        string           `query:"path,required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
-	// The order in which entries should be sorted
+	// The order in which entries should be sorted.
 	Order param.Opt[string] `query:"order,omitzero" json:"-"`
 	// The starting point for pagination results, usually set to the value of the
 	// SEARCH_AFTER header returned in the previous request.
 	SearchAfter param.Opt[string] `query:"searchAfter,omitzero" json:"-"`
 	// The number of results to retrieve.
 	Size param.Opt[int64] `query:"size,omitzero" json:"-"`
-	// The field on which to sort entries
+	// The field on which to sort entries.
 	Sort param.Opt[string] `query:"sort,omitzero" json:"-"`
 	paramObj
 }
@@ -594,14 +594,14 @@ func (r ScV2MoveParams) URLQuery() (v url.Values, err error) {
 }
 
 type ScV2SearchParams struct {
-	// The order in which entries should be sorted
+	// The order in which entries should be sorted.
 	Order param.Opt[string] `query:"order,omitzero" json:"-"`
 	// The starting point for pagination results, usually set to the value of the
 	// SEARCH_AFTER header returned in the previous request.
 	SearchAfter param.Opt[string] `query:"searchAfter,omitzero" json:"-"`
 	// The number of results to retrieve.
 	Size param.Opt[int64] `query:"size,omitzero" json:"-"`
-	// The field on which to sort entries
+	// The field on which to sort entries.
 	Sort param.Opt[string] `query:"sort,omitzero" json:"-"`
 	// A search criterion, which can be a simple field comparison or a logical
 	// combination of other criteria.

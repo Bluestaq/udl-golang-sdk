@@ -212,7 +212,7 @@ type EphemerisSet struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame EphemerisSetCovReferenceFrame `json:"covReferenceFrame"`
 	// Time the row was created in the database, in UTC.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
@@ -397,11 +397,12 @@ const (
 type EphemerisSetCovReferenceFrame string
 
 const (
-	EphemerisSetCovReferenceFrameJ2000  EphemerisSetCovReferenceFrame = "J2000"
-	EphemerisSetCovReferenceFrameUvw    EphemerisSetCovReferenceFrame = "UVW"
-	EphemerisSetCovReferenceFrameEfgTdr EphemerisSetCovReferenceFrame = "EFG/TDR"
-	EphemerisSetCovReferenceFrameTeme   EphemerisSetCovReferenceFrame = "TEME"
-	EphemerisSetCovReferenceFrameGcrf   EphemerisSetCovReferenceFrame = "GCRF"
+	EphemerisSetCovReferenceFrameJ2000   EphemerisSetCovReferenceFrame = "J2000"
+	EphemerisSetCovReferenceFrameUvw     EphemerisSetCovReferenceFrame = "UVW"
+	EphemerisSetCovReferenceFrameEfgTdr  EphemerisSetCovReferenceFrame = "EFG/TDR"
+	EphemerisSetCovReferenceFrameEcrEcef EphemerisSetCovReferenceFrame = "ECR/ECEF"
+	EphemerisSetCovReferenceFrameTeme    EphemerisSetCovReferenceFrame = "TEME"
+	EphemerisSetCovReferenceFrameGcrf    EphemerisSetCovReferenceFrame = "GCRF"
 )
 
 // The reference frame of the cartesian orbital states. If the referenceFrame is
@@ -467,7 +468,7 @@ type EphemerisSetAbridged struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame EphemerisSetAbridgedCovReferenceFrame `json:"covReferenceFrame"`
 	// Time the row was created in the database, in UTC.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
@@ -628,11 +629,12 @@ const (
 type EphemerisSetAbridgedCovReferenceFrame string
 
 const (
-	EphemerisSetAbridgedCovReferenceFrameJ2000  EphemerisSetAbridgedCovReferenceFrame = "J2000"
-	EphemerisSetAbridgedCovReferenceFrameUvw    EphemerisSetAbridgedCovReferenceFrame = "UVW"
-	EphemerisSetAbridgedCovReferenceFrameEfgTdr EphemerisSetAbridgedCovReferenceFrame = "EFG/TDR"
-	EphemerisSetAbridgedCovReferenceFrameTeme   EphemerisSetAbridgedCovReferenceFrame = "TEME"
-	EphemerisSetAbridgedCovReferenceFrameGcrf   EphemerisSetAbridgedCovReferenceFrame = "GCRF"
+	EphemerisSetAbridgedCovReferenceFrameJ2000   EphemerisSetAbridgedCovReferenceFrame = "J2000"
+	EphemerisSetAbridgedCovReferenceFrameUvw     EphemerisSetAbridgedCovReferenceFrame = "UVW"
+	EphemerisSetAbridgedCovReferenceFrameEfgTdr  EphemerisSetAbridgedCovReferenceFrame = "EFG/TDR"
+	EphemerisSetAbridgedCovReferenceFrameEcrEcef EphemerisSetAbridgedCovReferenceFrame = "ECR/ECEF"
+	EphemerisSetAbridgedCovReferenceFrameTeme    EphemerisSetAbridgedCovReferenceFrame = "TEME"
+	EphemerisSetAbridgedCovReferenceFrameGcrf    EphemerisSetAbridgedCovReferenceFrame = "GCRF"
 )
 
 // The reference frame of the cartesian orbital states. If the referenceFrame is
@@ -791,7 +793,7 @@ type EphemerisSetNewParams struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame EphemerisSetNewParamsCovReferenceFrame `json:"covReferenceFrame,omitzero"`
 	// The list of ephemeris states belonging to the EphemerisSet. Each ephemeris point
 	// is associated with a parent Ephemeris Set via the EphemerisSet ID (esId).
@@ -848,11 +850,12 @@ const (
 type EphemerisSetNewParamsCovReferenceFrame string
 
 const (
-	EphemerisSetNewParamsCovReferenceFrameJ2000  EphemerisSetNewParamsCovReferenceFrame = "J2000"
-	EphemerisSetNewParamsCovReferenceFrameUvw    EphemerisSetNewParamsCovReferenceFrame = "UVW"
-	EphemerisSetNewParamsCovReferenceFrameEfgTdr EphemerisSetNewParamsCovReferenceFrame = "EFG/TDR"
-	EphemerisSetNewParamsCovReferenceFrameTeme   EphemerisSetNewParamsCovReferenceFrame = "TEME"
-	EphemerisSetNewParamsCovReferenceFrameGcrf   EphemerisSetNewParamsCovReferenceFrame = "GCRF"
+	EphemerisSetNewParamsCovReferenceFrameJ2000   EphemerisSetNewParamsCovReferenceFrame = "J2000"
+	EphemerisSetNewParamsCovReferenceFrameUvw     EphemerisSetNewParamsCovReferenceFrame = "UVW"
+	EphemerisSetNewParamsCovReferenceFrameEfgTdr  EphemerisSetNewParamsCovReferenceFrame = "EFG/TDR"
+	EphemerisSetNewParamsCovReferenceFrameEcrEcef EphemerisSetNewParamsCovReferenceFrame = "ECR/ECEF"
+	EphemerisSetNewParamsCovReferenceFrameTeme    EphemerisSetNewParamsCovReferenceFrame = "TEME"
+	EphemerisSetNewParamsCovReferenceFrameGcrf    EphemerisSetNewParamsCovReferenceFrame = "GCRF"
 )
 
 // An ephemeris record is a position and velocity vector identifying the location

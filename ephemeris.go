@@ -588,7 +588,7 @@ type EphemerisUnvalidatedPublishParams struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame EphemerisUnvalidatedPublishParamsCovReferenceFrame `json:"covReferenceFrame,omitzero"`
 	// The list of ephemeris states belonging to the EphemerisSet. Each ephemeris point
 	// is associated with a parent Ephemeris Set via the EphemerisSet ID (esId).
@@ -645,11 +645,12 @@ const (
 type EphemerisUnvalidatedPublishParamsCovReferenceFrame string
 
 const (
-	EphemerisUnvalidatedPublishParamsCovReferenceFrameJ2000  EphemerisUnvalidatedPublishParamsCovReferenceFrame = "J2000"
-	EphemerisUnvalidatedPublishParamsCovReferenceFrameUvw    EphemerisUnvalidatedPublishParamsCovReferenceFrame = "UVW"
-	EphemerisUnvalidatedPublishParamsCovReferenceFrameEfgTdr EphemerisUnvalidatedPublishParamsCovReferenceFrame = "EFG/TDR"
-	EphemerisUnvalidatedPublishParamsCovReferenceFrameTeme   EphemerisUnvalidatedPublishParamsCovReferenceFrame = "TEME"
-	EphemerisUnvalidatedPublishParamsCovReferenceFrameGcrf   EphemerisUnvalidatedPublishParamsCovReferenceFrame = "GCRF"
+	EphemerisUnvalidatedPublishParamsCovReferenceFrameJ2000   EphemerisUnvalidatedPublishParamsCovReferenceFrame = "J2000"
+	EphemerisUnvalidatedPublishParamsCovReferenceFrameUvw     EphemerisUnvalidatedPublishParamsCovReferenceFrame = "UVW"
+	EphemerisUnvalidatedPublishParamsCovReferenceFrameEfgTdr  EphemerisUnvalidatedPublishParamsCovReferenceFrame = "EFG/TDR"
+	EphemerisUnvalidatedPublishParamsCovReferenceFrameEcrEcef EphemerisUnvalidatedPublishParamsCovReferenceFrame = "ECR/ECEF"
+	EphemerisUnvalidatedPublishParamsCovReferenceFrameTeme    EphemerisUnvalidatedPublishParamsCovReferenceFrame = "TEME"
+	EphemerisUnvalidatedPublishParamsCovReferenceFrameGcrf    EphemerisUnvalidatedPublishParamsCovReferenceFrame = "GCRF"
 )
 
 // An ephemeris record is a position and velocity vector identifying the location

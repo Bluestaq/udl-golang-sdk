@@ -601,7 +601,7 @@ type ConjunctionAbridgedStateVector1 struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
@@ -1129,7 +1129,7 @@ type ConjunctionAbridgedStateVector2 struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
@@ -2235,7 +2235,7 @@ type ConjunctionNewUdlParamsStateVector1 struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// The covariance matrix values represent the lower triangular half of the
 	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
@@ -2357,7 +2357,7 @@ func init() {
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ConjunctionNewUdlParamsStateVector1](
-		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF",
+		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF",
 	)
 	apijson.RegisterFieldValidator[ConjunctionNewUdlParamsStateVector1](
 		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
@@ -2701,7 +2701,7 @@ type ConjunctionNewUdlParamsStateVector2 struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// The covariance matrix values represent the lower triangular half of the
 	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
@@ -2823,7 +2823,7 @@ func init() {
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ConjunctionNewUdlParamsStateVector2](
-		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF",
+		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF",
 	)
 	apijson.RegisterFieldValidator[ConjunctionNewUdlParamsStateVector2](
 		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
@@ -3415,7 +3415,7 @@ type ConjunctionNewBulkParamsBodyStateVector1 struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// The covariance matrix values represent the lower triangular half of the
 	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
@@ -3537,7 +3537,7 @@ func init() {
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ConjunctionNewBulkParamsBodyStateVector1](
-		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF",
+		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF",
 	)
 	apijson.RegisterFieldValidator[ConjunctionNewBulkParamsBodyStateVector1](
 		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
@@ -3881,7 +3881,7 @@ type ConjunctionNewBulkParamsBodyStateVector2 struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// The covariance matrix values represent the lower triangular half of the
 	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
@@ -4003,7 +4003,7 @@ func init() {
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ConjunctionNewBulkParamsBodyStateVector2](
-		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF",
+		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF",
 	)
 	apijson.RegisterFieldValidator[ConjunctionNewBulkParamsBodyStateVector2](
 		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
@@ -4637,7 +4637,7 @@ type ConjunctionUnvalidatedPublishParamsBodyStateVector1 struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// The covariance matrix values represent the lower triangular half of the
 	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
@@ -4759,7 +4759,7 @@ func init() {
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ConjunctionUnvalidatedPublishParamsBodyStateVector1](
-		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF",
+		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF",
 	)
 	apijson.RegisterFieldValidator[ConjunctionUnvalidatedPublishParamsBodyStateVector1](
 		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
@@ -5103,7 +5103,7 @@ type ConjunctionUnvalidatedPublishParamsBodyStateVector2 struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// The covariance matrix values represent the lower triangular half of the
 	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
@@ -5225,7 +5225,7 @@ func init() {
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[ConjunctionUnvalidatedPublishParamsBodyStateVector2](
-		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF",
+		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF",
 	)
 	apijson.RegisterFieldValidator[ConjunctionUnvalidatedPublishParamsBodyStateVector2](
 		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
