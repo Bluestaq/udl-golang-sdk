@@ -227,6 +227,16 @@ type EmitterGeolocationGetResponse struct {
 	Atext string `json:"atext"`
 	// Type of region as projected on the ground.
 	Atype string `json:"atype"`
+	// Average pulse repetition frequency of the emitter, measured in hertz. PRF is the
+	// number of pulses transmitted per second. This is the reciprocal of the avgPRI
+	// (Pulse Repetition Interval) value.
+	AvgPrf float64 `json:"avgPRF"`
+	// Average pulse repetition interval of the emitter, measured in microseconds. The
+	// interval between the start of one pulse and the start of another.
+	AvgPri float64 `json:"avgPRI"`
+	// Average pulse width of the emitter, measured in nanoseconds. This is the average
+	// duration of the pulse.
+	AvgPw float64 `json:"avgPW"`
 	// The detected signal frequency in megahertz.
 	CenterFreq float64 `json:"centerFreq"`
 	// The name(s) of the subset of constellation spacecraft that made this detection.
@@ -255,8 +265,9 @@ type EmitterGeolocationGetResponse struct {
 	// The end time for this Emitter Geo Location data set in ISO 8601 UTC with
 	// microsecond precision.
 	EndTime time.Time `json:"endTime" format:"date-time"`
-	// Confidence ellipsoid about the detection location [semi-major axis (m),
-	// semi-minor axis (m), orientation (deg)].
+	// Confidence ellipsoid about the detection location [semi-major axis (meters),
+	// semi-minor axis (meters), orientation (degrees) measured clockwise (0-360 from
+	// true north)].
 	ErrEllp []float64 `json:"errEllp"`
 	// Optional ID from external systems. This field has no meaning within UDL and is
 	// provided as a convenience for systems that require tracking of an internal
@@ -281,8 +292,28 @@ type EmitterGeolocationGetResponse struct {
 	IDSensor string `json:"idSensor"`
 	// The maximum detected frequency in megahertz.
 	MaxFreq float64 `json:"maxFreq"`
+	// Maximum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+	// number of pulses transmitted per second. This is the reciprocal of the minPRI
+	// (Pulse Repetition Interval) value.
+	MaxPrf float64 `json:"maxPRF"`
+	// Maximum pulse repetition interval of the emitter, measured in microseconds. The
+	// interval between the start of one pulse and the start of another.
+	MaxPri float64 `json:"maxPRI"`
+	// Maximum pulse width of the emitter, measured in nanoseconds. This is the maximum
+	// duration of the pulse.
+	MaxPw float64 `json:"maxPW"`
 	// The minimum detected frequency in megahertz.
 	MinFreq float64 `json:"minFreq"`
+	// Minimum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+	// number of pulses transmitted per second. This is the reciprocal of the maxPRI
+	// (Pulse Repetition Interval) value.
+	MinPrf float64 `json:"minPRF"`
+	// Minimum pulse repetition interval of the emitter, measured in microseconds. The
+	// interval between the start of one pulse and the start of another.
+	MinPri float64 `json:"minPRI"`
+	// Minimum pulse width of the emitter, measured in nanoseconds. This is the minimum
+	// duration of the pulse.
+	MinPw float64 `json:"minPW"`
 	// The count of single-burst observations used for this geolocation observation.
 	NumBursts int64 `json:"numBursts"`
 	// Model object representing on-orbit objects or satellites in the system.
@@ -313,6 +344,9 @@ type EmitterGeolocationGetResponse struct {
 	// Optional external identifier referencing the entity used in the calculation of
 	// the geolocation.
 	PassGroupID string `json:"passGroupId"`
+	// Describes the form of the emitted pulse and how its signal varies within the
+	// pulse duration (e.g. GAUSSIAN, RECTANGULAR, TRAPEZOIDAL, etc.).
+	PulseShape string `json:"pulseShape"`
 	// The time representing the mean of the constituent single-burst observations in
 	// ISO 8601 UTC with microsecond precision.
 	ReceivedTs time.Time `json:"receivedTs" format:"date-time"`
@@ -347,6 +381,9 @@ type EmitterGeolocationGetResponse struct {
 		Asrid                 respjson.Field
 		Atext                 respjson.Field
 		Atype                 respjson.Field
+		AvgPrf                respjson.Field
+		AvgPri                respjson.Field
+		AvgPw                 respjson.Field
 		CenterFreq            respjson.Field
 		Cluster               respjson.Field
 		ConfArea              respjson.Field
@@ -364,7 +401,13 @@ type EmitterGeolocationGetResponse struct {
 		IDRfEmitter           respjson.Field
 		IDSensor              respjson.Field
 		MaxFreq               respjson.Field
+		MaxPrf                respjson.Field
+		MaxPri                respjson.Field
+		MaxPw                 respjson.Field
 		MinFreq               respjson.Field
+		MinPrf                respjson.Field
+		MinPri                respjson.Field
+		MinPw                 respjson.Field
 		NumBursts             respjson.Field
 		OnOrbit               respjson.Field
 		OrderID               respjson.Field
@@ -374,6 +417,7 @@ type EmitterGeolocationGetResponse struct {
 		OrigRfEmitterID       respjson.Field
 		OrigSensorID          respjson.Field
 		PassGroupID           respjson.Field
+		PulseShape            respjson.Field
 		ReceivedTs            respjson.Field
 		SatNo                 respjson.Field
 		SignalOfInterest      respjson.Field
@@ -462,6 +506,16 @@ type EmitterGeolocationListResponse struct {
 	Atext string `json:"atext"`
 	// Type of region as projected on the ground.
 	Atype string `json:"atype"`
+	// Average pulse repetition frequency of the emitter, measured in hertz. PRF is the
+	// number of pulses transmitted per second. This is the reciprocal of the avgPRI
+	// (Pulse Repetition Interval) value.
+	AvgPrf float64 `json:"avgPRF"`
+	// Average pulse repetition interval of the emitter, measured in microseconds. The
+	// interval between the start of one pulse and the start of another.
+	AvgPri float64 `json:"avgPRI"`
+	// Average pulse width of the emitter, measured in nanoseconds. This is the average
+	// duration of the pulse.
+	AvgPw float64 `json:"avgPW"`
 	// The detected signal frequency in megahertz.
 	CenterFreq float64 `json:"centerFreq"`
 	// The name(s) of the subset of constellation spacecraft that made this detection.
@@ -490,8 +544,9 @@ type EmitterGeolocationListResponse struct {
 	// The end time for this Emitter Geo Location data set in ISO 8601 UTC with
 	// microsecond precision.
 	EndTime time.Time `json:"endTime" format:"date-time"`
-	// Confidence ellipsoid about the detection location [semi-major axis (m),
-	// semi-minor axis (m), orientation (deg)].
+	// Confidence ellipsoid about the detection location [semi-major axis (meters),
+	// semi-minor axis (meters), orientation (degrees) measured clockwise (0-360 from
+	// true north)].
 	ErrEllp []float64 `json:"errEllp"`
 	// Optional ID from external systems. This field has no meaning within UDL and is
 	// provided as a convenience for systems that require tracking of an internal
@@ -516,8 +571,28 @@ type EmitterGeolocationListResponse struct {
 	IDSensor string `json:"idSensor"`
 	// The maximum detected frequency in megahertz.
 	MaxFreq float64 `json:"maxFreq"`
+	// Maximum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+	// number of pulses transmitted per second. This is the reciprocal of the minPRI
+	// (Pulse Repetition Interval) value.
+	MaxPrf float64 `json:"maxPRF"`
+	// Maximum pulse repetition interval of the emitter, measured in microseconds. The
+	// interval between the start of one pulse and the start of another.
+	MaxPri float64 `json:"maxPRI"`
+	// Maximum pulse width of the emitter, measured in nanoseconds. This is the maximum
+	// duration of the pulse.
+	MaxPw float64 `json:"maxPW"`
 	// The minimum detected frequency in megahertz.
 	MinFreq float64 `json:"minFreq"`
+	// Minimum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+	// number of pulses transmitted per second. This is the reciprocal of the maxPRI
+	// (Pulse Repetition Interval) value.
+	MinPrf float64 `json:"minPRF"`
+	// Minimum pulse repetition interval of the emitter, measured in microseconds. The
+	// interval between the start of one pulse and the start of another.
+	MinPri float64 `json:"minPRI"`
+	// Minimum pulse width of the emitter, measured in nanoseconds. This is the minimum
+	// duration of the pulse.
+	MinPw float64 `json:"minPW"`
 	// The count of single-burst observations used for this geolocation observation.
 	NumBursts int64 `json:"numBursts"`
 	// The order identifier for this Emitter Geo Location data set.
@@ -546,6 +621,9 @@ type EmitterGeolocationListResponse struct {
 	// Optional external identifier referencing the entity used in the calculation of
 	// the geolocation.
 	PassGroupID string `json:"passGroupId"`
+	// Describes the form of the emitted pulse and how its signal varies within the
+	// pulse duration (e.g. GAUSSIAN, RECTANGULAR, TRAPEZOIDAL, etc.).
+	PulseShape string `json:"pulseShape"`
 	// The time representing the mean of the constituent single-burst observations in
 	// ISO 8601 UTC with microsecond precision.
 	ReceivedTs time.Time `json:"receivedTs" format:"date-time"`
@@ -579,6 +657,9 @@ type EmitterGeolocationListResponse struct {
 		Asrid                 respjson.Field
 		Atext                 respjson.Field
 		Atype                 respjson.Field
+		AvgPrf                respjson.Field
+		AvgPri                respjson.Field
+		AvgPw                 respjson.Field
 		CenterFreq            respjson.Field
 		Cluster               respjson.Field
 		ConfArea              respjson.Field
@@ -596,7 +677,13 @@ type EmitterGeolocationListResponse struct {
 		IDRfEmitter           respjson.Field
 		IDSensor              respjson.Field
 		MaxFreq               respjson.Field
+		MaxPrf                respjson.Field
+		MaxPri                respjson.Field
+		MaxPw                 respjson.Field
 		MinFreq               respjson.Field
+		MinPrf                respjson.Field
+		MinPri                respjson.Field
+		MinPw                 respjson.Field
 		NumBursts             respjson.Field
 		OrderID               respjson.Field
 		Origin                respjson.Field
@@ -605,6 +692,7 @@ type EmitterGeolocationListResponse struct {
 		OrigRfEmitterID       respjson.Field
 		OrigSensorID          respjson.Field
 		PassGroupID           respjson.Field
+		PulseShape            respjson.Field
 		ReceivedTs            respjson.Field
 		SatNo                 respjson.Field
 		SignalOfInterest      respjson.Field
@@ -732,6 +820,16 @@ type EmitterGeolocationTupleResponse struct {
 	Atext string `json:"atext"`
 	// Type of region as projected on the ground.
 	Atype string `json:"atype"`
+	// Average pulse repetition frequency of the emitter, measured in hertz. PRF is the
+	// number of pulses transmitted per second. This is the reciprocal of the avgPRI
+	// (Pulse Repetition Interval) value.
+	AvgPrf float64 `json:"avgPRF"`
+	// Average pulse repetition interval of the emitter, measured in microseconds. The
+	// interval between the start of one pulse and the start of another.
+	AvgPri float64 `json:"avgPRI"`
+	// Average pulse width of the emitter, measured in nanoseconds. This is the average
+	// duration of the pulse.
+	AvgPw float64 `json:"avgPW"`
 	// The detected signal frequency in megahertz.
 	CenterFreq float64 `json:"centerFreq"`
 	// The name(s) of the subset of constellation spacecraft that made this detection.
@@ -760,8 +858,9 @@ type EmitterGeolocationTupleResponse struct {
 	// The end time for this Emitter Geo Location data set in ISO 8601 UTC with
 	// microsecond precision.
 	EndTime time.Time `json:"endTime" format:"date-time"`
-	// Confidence ellipsoid about the detection location [semi-major axis (m),
-	// semi-minor axis (m), orientation (deg)].
+	// Confidence ellipsoid about the detection location [semi-major axis (meters),
+	// semi-minor axis (meters), orientation (degrees) measured clockwise (0-360 from
+	// true north)].
 	ErrEllp []float64 `json:"errEllp"`
 	// Optional ID from external systems. This field has no meaning within UDL and is
 	// provided as a convenience for systems that require tracking of an internal
@@ -786,8 +885,28 @@ type EmitterGeolocationTupleResponse struct {
 	IDSensor string `json:"idSensor"`
 	// The maximum detected frequency in megahertz.
 	MaxFreq float64 `json:"maxFreq"`
+	// Maximum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+	// number of pulses transmitted per second. This is the reciprocal of the minPRI
+	// (Pulse Repetition Interval) value.
+	MaxPrf float64 `json:"maxPRF"`
+	// Maximum pulse repetition interval of the emitter, measured in microseconds. The
+	// interval between the start of one pulse and the start of another.
+	MaxPri float64 `json:"maxPRI"`
+	// Maximum pulse width of the emitter, measured in nanoseconds. This is the maximum
+	// duration of the pulse.
+	MaxPw float64 `json:"maxPW"`
 	// The minimum detected frequency in megahertz.
 	MinFreq float64 `json:"minFreq"`
+	// Minimum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+	// number of pulses transmitted per second. This is the reciprocal of the maxPRI
+	// (Pulse Repetition Interval) value.
+	MinPrf float64 `json:"minPRF"`
+	// Minimum pulse repetition interval of the emitter, measured in microseconds. The
+	// interval between the start of one pulse and the start of another.
+	MinPri float64 `json:"minPRI"`
+	// Minimum pulse width of the emitter, measured in nanoseconds. This is the minimum
+	// duration of the pulse.
+	MinPw float64 `json:"minPW"`
 	// The count of single-burst observations used for this geolocation observation.
 	NumBursts int64 `json:"numBursts"`
 	// Model object representing on-orbit objects or satellites in the system.
@@ -818,6 +937,9 @@ type EmitterGeolocationTupleResponse struct {
 	// Optional external identifier referencing the entity used in the calculation of
 	// the geolocation.
 	PassGroupID string `json:"passGroupId"`
+	// Describes the form of the emitted pulse and how its signal varies within the
+	// pulse duration (e.g. GAUSSIAN, RECTANGULAR, TRAPEZOIDAL, etc.).
+	PulseShape string `json:"pulseShape"`
 	// The time representing the mean of the constituent single-burst observations in
 	// ISO 8601 UTC with microsecond precision.
 	ReceivedTs time.Time `json:"receivedTs" format:"date-time"`
@@ -852,6 +974,9 @@ type EmitterGeolocationTupleResponse struct {
 		Asrid                 respjson.Field
 		Atext                 respjson.Field
 		Atype                 respjson.Field
+		AvgPrf                respjson.Field
+		AvgPri                respjson.Field
+		AvgPw                 respjson.Field
 		CenterFreq            respjson.Field
 		Cluster               respjson.Field
 		ConfArea              respjson.Field
@@ -869,7 +994,13 @@ type EmitterGeolocationTupleResponse struct {
 		IDRfEmitter           respjson.Field
 		IDSensor              respjson.Field
 		MaxFreq               respjson.Field
+		MaxPrf                respjson.Field
+		MaxPri                respjson.Field
+		MaxPw                 respjson.Field
 		MinFreq               respjson.Field
+		MinPrf                respjson.Field
+		MinPri                respjson.Field
+		MinPw                 respjson.Field
 		NumBursts             respjson.Field
 		OnOrbit               respjson.Field
 		OrderID               respjson.Field
@@ -879,6 +1010,7 @@ type EmitterGeolocationTupleResponse struct {
 		OrigRfEmitterID       respjson.Field
 		OrigSensorID          respjson.Field
 		PassGroupID           respjson.Field
+		PulseShape            respjson.Field
 		ReceivedTs            respjson.Field
 		SatNo                 respjson.Field
 		SignalOfInterest      respjson.Field
@@ -969,6 +1101,16 @@ type EmitterGeolocationNewParams struct {
 	Atext param.Opt[string] `json:"atext,omitzero"`
 	// Type of region as projected on the ground.
 	Atype param.Opt[string] `json:"atype,omitzero"`
+	// Average pulse repetition frequency of the emitter, measured in hertz. PRF is the
+	// number of pulses transmitted per second. This is the reciprocal of the avgPRI
+	// (Pulse Repetition Interval) value.
+	AvgPrf param.Opt[float64] `json:"avgPRF,omitzero"`
+	// Average pulse repetition interval of the emitter, measured in microseconds. The
+	// interval between the start of one pulse and the start of another.
+	AvgPri param.Opt[float64] `json:"avgPRI,omitzero"`
+	// Average pulse width of the emitter, measured in nanoseconds. This is the average
+	// duration of the pulse.
+	AvgPw param.Opt[float64] `json:"avgPW,omitzero"`
 	// The detected signal frequency in megahertz.
 	CenterFreq param.Opt[float64] `json:"centerFreq,omitzero"`
 	// The name(s) of the subset of constellation spacecraft that made this detection.
@@ -1009,8 +1151,28 @@ type EmitterGeolocationNewParams struct {
 	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
 	// The maximum detected frequency in megahertz.
 	MaxFreq param.Opt[float64] `json:"maxFreq,omitzero"`
+	// Maximum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+	// number of pulses transmitted per second. This is the reciprocal of the minPRI
+	// (Pulse Repetition Interval) value.
+	MaxPrf param.Opt[float64] `json:"maxPRF,omitzero"`
+	// Maximum pulse repetition interval of the emitter, measured in microseconds. The
+	// interval between the start of one pulse and the start of another.
+	MaxPri param.Opt[float64] `json:"maxPRI,omitzero"`
+	// Maximum pulse width of the emitter, measured in nanoseconds. This is the maximum
+	// duration of the pulse.
+	MaxPw param.Opt[float64] `json:"maxPW,omitzero"`
 	// The minimum detected frequency in megahertz.
 	MinFreq param.Opt[float64] `json:"minFreq,omitzero"`
+	// Minimum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+	// number of pulses transmitted per second. This is the reciprocal of the maxPRI
+	// (Pulse Repetition Interval) value.
+	MinPrf param.Opt[float64] `json:"minPRF,omitzero"`
+	// Minimum pulse repetition interval of the emitter, measured in microseconds. The
+	// interval between the start of one pulse and the start of another.
+	MinPri param.Opt[float64] `json:"minPRI,omitzero"`
+	// Minimum pulse width of the emitter, measured in nanoseconds. This is the minimum
+	// duration of the pulse.
+	MinPw param.Opt[float64] `json:"minPW,omitzero"`
 	// The count of single-burst observations used for this geolocation observation.
 	NumBursts param.Opt[int64] `json:"numBursts,omitzero"`
 	// The order identifier for this Emitter Geo Location data set.
@@ -1036,6 +1198,9 @@ type EmitterGeolocationNewParams struct {
 	// Optional external identifier referencing the entity used in the calculation of
 	// the geolocation.
 	PassGroupID param.Opt[string] `json:"passGroupId,omitzero"`
+	// Describes the form of the emitted pulse and how its signal varies within the
+	// pulse duration (e.g. GAUSSIAN, RECTANGULAR, TRAPEZOIDAL, etc.).
+	PulseShape param.Opt[string] `json:"pulseShape,omitzero"`
 	// The time representing the mean of the constituent single-burst observations in
 	// ISO 8601 UTC with microsecond precision.
 	ReceivedTs param.Opt[time.Time] `json:"receivedTs,omitzero" format:"date-time"`
@@ -1045,8 +1210,9 @@ type EmitterGeolocationNewParams struct {
 	SatNo param.Opt[int64] `json:"satNo,omitzero"`
 	// The name of the signal of interest.
 	SignalOfInterest param.Opt[string] `json:"signalOfInterest,omitzero"`
-	// Confidence ellipsoid about the detection location [semi-major axis (m),
-	// semi-minor axis (m), orientation (deg)].
+	// Confidence ellipsoid about the detection location [semi-major axis (meters),
+	// semi-minor axis (meters), orientation (degrees) measured clockwise (0-360 from
+	// true north)].
 	ErrEllp []float64 `json:"errEllp,omitzero"`
 	// Optional array of provider/source specific tags for this data, where each
 	// element is no longer than 32 characters, used for implementing data owner
@@ -1206,6 +1372,16 @@ type EmitterGeolocationNewBulkParamsBody struct {
 	Atext param.Opt[string] `json:"atext,omitzero"`
 	// Type of region as projected on the ground.
 	Atype param.Opt[string] `json:"atype,omitzero"`
+	// Average pulse repetition frequency of the emitter, measured in hertz. PRF is the
+	// number of pulses transmitted per second. This is the reciprocal of the avgPRI
+	// (Pulse Repetition Interval) value.
+	AvgPrf param.Opt[float64] `json:"avgPRF,omitzero"`
+	// Average pulse repetition interval of the emitter, measured in microseconds. The
+	// interval between the start of one pulse and the start of another.
+	AvgPri param.Opt[float64] `json:"avgPRI,omitzero"`
+	// Average pulse width of the emitter, measured in nanoseconds. This is the average
+	// duration of the pulse.
+	AvgPw param.Opt[float64] `json:"avgPW,omitzero"`
 	// The detected signal frequency in megahertz.
 	CenterFreq param.Opt[float64] `json:"centerFreq,omitzero"`
 	// The name(s) of the subset of constellation spacecraft that made this detection.
@@ -1257,8 +1433,28 @@ type EmitterGeolocationNewBulkParamsBody struct {
 	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
 	// The maximum detected frequency in megahertz.
 	MaxFreq param.Opt[float64] `json:"maxFreq,omitzero"`
+	// Maximum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+	// number of pulses transmitted per second. This is the reciprocal of the minPRI
+	// (Pulse Repetition Interval) value.
+	MaxPrf param.Opt[float64] `json:"maxPRF,omitzero"`
+	// Maximum pulse repetition interval of the emitter, measured in microseconds. The
+	// interval between the start of one pulse and the start of another.
+	MaxPri param.Opt[float64] `json:"maxPRI,omitzero"`
+	// Maximum pulse width of the emitter, measured in nanoseconds. This is the maximum
+	// duration of the pulse.
+	MaxPw param.Opt[float64] `json:"maxPW,omitzero"`
 	// The minimum detected frequency in megahertz.
 	MinFreq param.Opt[float64] `json:"minFreq,omitzero"`
+	// Minimum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+	// number of pulses transmitted per second. This is the reciprocal of the maxPRI
+	// (Pulse Repetition Interval) value.
+	MinPrf param.Opt[float64] `json:"minPRF,omitzero"`
+	// Minimum pulse repetition interval of the emitter, measured in microseconds. The
+	// interval between the start of one pulse and the start of another.
+	MinPri param.Opt[float64] `json:"minPRI,omitzero"`
+	// Minimum pulse width of the emitter, measured in nanoseconds. This is the minimum
+	// duration of the pulse.
+	MinPw param.Opt[float64] `json:"minPW,omitzero"`
 	// The count of single-burst observations used for this geolocation observation.
 	NumBursts param.Opt[int64] `json:"numBursts,omitzero"`
 	// The order identifier for this Emitter Geo Location data set.
@@ -1287,6 +1483,9 @@ type EmitterGeolocationNewBulkParamsBody struct {
 	// Optional external identifier referencing the entity used in the calculation of
 	// the geolocation.
 	PassGroupID param.Opt[string] `json:"passGroupId,omitzero"`
+	// Describes the form of the emitted pulse and how its signal varies within the
+	// pulse duration (e.g. GAUSSIAN, RECTANGULAR, TRAPEZOIDAL, etc.).
+	PulseShape param.Opt[string] `json:"pulseShape,omitzero"`
 	// The time representing the mean of the constituent single-burst observations in
 	// ISO 8601 UTC with microsecond precision.
 	ReceivedTs param.Opt[time.Time] `json:"receivedTs,omitzero" format:"date-time"`
@@ -1300,8 +1499,9 @@ type EmitterGeolocationNewBulkParamsBody struct {
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
 	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
-	// Confidence ellipsoid about the detection location [semi-major axis (m),
-	// semi-minor axis (m), orientation (deg)].
+	// Confidence ellipsoid about the detection location [semi-major axis (meters),
+	// semi-minor axis (meters), orientation (degrees) measured clockwise (0-360 from
+	// true north)].
 	ErrEllp []float64 `json:"errEllp,omitzero"`
 	// Optional array of provider/source specific tags for this data, where each
 	// element is no longer than 32 characters, used for implementing data owner
@@ -1416,6 +1616,16 @@ type EmitterGeolocationUnvalidatedPublishParamsBody struct {
 	Atext param.Opt[string] `json:"atext,omitzero"`
 	// Type of region as projected on the ground.
 	Atype param.Opt[string] `json:"atype,omitzero"`
+	// Average pulse repetition frequency of the emitter, measured in hertz. PRF is the
+	// number of pulses transmitted per second. This is the reciprocal of the avgPRI
+	// (Pulse Repetition Interval) value.
+	AvgPrf param.Opt[float64] `json:"avgPRF,omitzero"`
+	// Average pulse repetition interval of the emitter, measured in microseconds. The
+	// interval between the start of one pulse and the start of another.
+	AvgPri param.Opt[float64] `json:"avgPRI,omitzero"`
+	// Average pulse width of the emitter, measured in nanoseconds. This is the average
+	// duration of the pulse.
+	AvgPw param.Opt[float64] `json:"avgPW,omitzero"`
 	// The detected signal frequency in megahertz.
 	CenterFreq param.Opt[float64] `json:"centerFreq,omitzero"`
 	// The name(s) of the subset of constellation spacecraft that made this detection.
@@ -1467,8 +1677,28 @@ type EmitterGeolocationUnvalidatedPublishParamsBody struct {
 	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
 	// The maximum detected frequency in megahertz.
 	MaxFreq param.Opt[float64] `json:"maxFreq,omitzero"`
+	// Maximum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+	// number of pulses transmitted per second. This is the reciprocal of the minPRI
+	// (Pulse Repetition Interval) value.
+	MaxPrf param.Opt[float64] `json:"maxPRF,omitzero"`
+	// Maximum pulse repetition interval of the emitter, measured in microseconds. The
+	// interval between the start of one pulse and the start of another.
+	MaxPri param.Opt[float64] `json:"maxPRI,omitzero"`
+	// Maximum pulse width of the emitter, measured in nanoseconds. This is the maximum
+	// duration of the pulse.
+	MaxPw param.Opt[float64] `json:"maxPW,omitzero"`
 	// The minimum detected frequency in megahertz.
 	MinFreq param.Opt[float64] `json:"minFreq,omitzero"`
+	// Minimum pulse repetition frequency of the emitter, measured in hertz. PRF is the
+	// number of pulses transmitted per second. This is the reciprocal of the maxPRI
+	// (Pulse Repetition Interval) value.
+	MinPrf param.Opt[float64] `json:"minPRF,omitzero"`
+	// Minimum pulse repetition interval of the emitter, measured in microseconds. The
+	// interval between the start of one pulse and the start of another.
+	MinPri param.Opt[float64] `json:"minPRI,omitzero"`
+	// Minimum pulse width of the emitter, measured in nanoseconds. This is the minimum
+	// duration of the pulse.
+	MinPw param.Opt[float64] `json:"minPW,omitzero"`
 	// The count of single-burst observations used for this geolocation observation.
 	NumBursts param.Opt[int64] `json:"numBursts,omitzero"`
 	// The order identifier for this Emitter Geo Location data set.
@@ -1497,6 +1727,9 @@ type EmitterGeolocationUnvalidatedPublishParamsBody struct {
 	// Optional external identifier referencing the entity used in the calculation of
 	// the geolocation.
 	PassGroupID param.Opt[string] `json:"passGroupId,omitzero"`
+	// Describes the form of the emitted pulse and how its signal varies within the
+	// pulse duration (e.g. GAUSSIAN, RECTANGULAR, TRAPEZOIDAL, etc.).
+	PulseShape param.Opt[string] `json:"pulseShape,omitzero"`
 	// The time representing the mean of the constituent single-burst observations in
 	// ISO 8601 UTC with microsecond precision.
 	ReceivedTs param.Opt[time.Time] `json:"receivedTs,omitzero" format:"date-time"`
@@ -1510,8 +1743,9 @@ type EmitterGeolocationUnvalidatedPublishParamsBody struct {
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
 	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
-	// Confidence ellipsoid about the detection location [semi-major axis (m),
-	// semi-minor axis (m), orientation (deg)].
+	// Confidence ellipsoid about the detection location [semi-major axis (meters),
+	// semi-minor axis (meters), orientation (degrees) measured clockwise (0-360 from
+	// true north)].
 	ErrEllp []float64 `json:"errEllp,omitzero"`
 	// Optional array of provider/source specific tags for this data, where each
 	// element is no longer than 32 characters, used for implementing data owner

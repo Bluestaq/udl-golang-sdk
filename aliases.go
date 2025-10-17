@@ -3301,6 +3301,9 @@ const StateVectorFullCovReferenceFrameUvw = shared.StateVectorFullCovReferenceFr
 // Equals "EFG/TDR"
 const StateVectorFullCovReferenceFrameEfgTdr = shared.StateVectorFullCovReferenceFrameEfgTdr
 
+// Equals "ECR/ECEF"
+const StateVectorFullCovReferenceFrameEcrEcef = shared.StateVectorFullCovReferenceFrameEcrEcef
+
 // Equals "TEME"
 const StateVectorFullCovReferenceFrameTeme = shared.StateVectorFullCovReferenceFrameTeme
 

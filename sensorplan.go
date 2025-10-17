@@ -1191,7 +1191,7 @@ type SensorPlanGetResponseCollectRequestStateVector struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
@@ -2603,7 +2603,7 @@ type SensorPlanTupleResponseCollectRequestStateVector struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
@@ -4045,7 +4045,7 @@ type SensorPlanNewParamsCollectRequestStateVector struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// The covariance matrix values represent the lower triangular half of the
 	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
@@ -4167,7 +4167,7 @@ func init() {
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SensorPlanNewParamsCollectRequestStateVector](
-		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF",
+		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF",
 	)
 	apijson.RegisterFieldValidator[SensorPlanNewParamsCollectRequestStateVector](
 		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
@@ -5145,7 +5145,7 @@ type SensorPlanUpdateParamsCollectRequestStateVector struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// The covariance matrix values represent the lower triangular half of the
 	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
@@ -5267,7 +5267,7 @@ func init() {
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SensorPlanUpdateParamsCollectRequestStateVector](
-		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF",
+		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF",
 	)
 	apijson.RegisterFieldValidator[SensorPlanUpdateParamsCollectRequestStateVector](
 		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
@@ -6324,7 +6324,7 @@ type SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// The covariance matrix values represent the lower triangular half of the
 	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
@@ -6446,7 +6446,7 @@ func init() {
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector](
-		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF",
+		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF",
 	)
 	apijson.RegisterFieldValidator[SensorPlanUnvalidatedPublishParamsBodyCollectRequestStateVector](
 		"referenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",

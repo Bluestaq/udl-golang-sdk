@@ -6782,7 +6782,7 @@ type CollectRequestFullStateVector struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
@@ -8091,7 +8091,7 @@ type ConjunctionFullStateVector1 struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
@@ -8653,7 +8653,7 @@ type ConjunctionFullStateVector2 struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
@@ -17517,7 +17517,7 @@ type StateVectorFull struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame StateVectorFullCovReferenceFrame `json:"covReferenceFrame"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
@@ -18019,11 +18019,12 @@ const (
 type StateVectorFullCovReferenceFrame string
 
 const (
-	StateVectorFullCovReferenceFrameJ2000  StateVectorFullCovReferenceFrame = "J2000"
-	StateVectorFullCovReferenceFrameUvw    StateVectorFullCovReferenceFrame = "UVW"
-	StateVectorFullCovReferenceFrameEfgTdr StateVectorFullCovReferenceFrame = "EFG/TDR"
-	StateVectorFullCovReferenceFrameTeme   StateVectorFullCovReferenceFrame = "TEME"
-	StateVectorFullCovReferenceFrameGcrf   StateVectorFullCovReferenceFrame = "GCRF"
+	StateVectorFullCovReferenceFrameJ2000   StateVectorFullCovReferenceFrame = "J2000"
+	StateVectorFullCovReferenceFrameUvw     StateVectorFullCovReferenceFrame = "UVW"
+	StateVectorFullCovReferenceFrameEfgTdr  StateVectorFullCovReferenceFrame = "EFG/TDR"
+	StateVectorFullCovReferenceFrameEcrEcef StateVectorFullCovReferenceFrame = "ECR/ECEF"
+	StateVectorFullCovReferenceFrameTeme    StateVectorFullCovReferenceFrame = "TEME"
+	StateVectorFullCovReferenceFrameGcrf    StateVectorFullCovReferenceFrame = "GCRF"
 )
 
 // The reference frame of the cartesian orbital states. If the referenceFrame is
