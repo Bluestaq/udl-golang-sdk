@@ -120,6 +120,7 @@ type Client struct {
 	Onorbitsolararray         OnorbitsolararrayService
 	Onorbitthruster           OnorbitthrusterService
 	Onorbitthrusterstatus     OnorbitthrusterstatusService
+	Onorbitassessment         OnorbitassessmentService
 	Operatingunit             OperatingunitService
 	Operatingunitremark       OperatingunitremarkService
 	Orbitdetermination        OrbitdeterminationService
@@ -139,6 +140,7 @@ type Client struct {
 	Scs                       ScService
 	SecureMessaging           SecureMessagingService
 	Sensor                    SensorService
+	SensorStating             SensorStatingService
 	SensorMaintenance         SensorMaintenanceService
 	SensorObservationType     SensorObservationTypeService
 	SensorPlan                SensorPlanService
@@ -316,6 +318,7 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.Onorbitsolararray = NewOnorbitsolararrayService(opts...)
 	r.Onorbitthruster = NewOnorbitthrusterService(opts...)
 	r.Onorbitthrusterstatus = NewOnorbitthrusterstatusService(opts...)
+	r.Onorbitassessment = NewOnorbitassessmentService(opts...)
 	r.Operatingunit = NewOperatingunitService(opts...)
 	r.Operatingunitremark = NewOperatingunitremarkService(opts...)
 	r.Orbitdetermination = NewOrbitdeterminationService(opts...)
@@ -335,6 +338,7 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.Scs = NewScService(opts...)
 	r.SecureMessaging = NewSecureMessagingService(opts...)
 	r.Sensor = NewSensorService(opts...)
+	r.SensorStating = NewSensorStatingService(opts...)
 	r.SensorMaintenance = NewSensorMaintenanceService(opts...)
 	r.SensorObservationType = NewSensorObservationTypeService(opts...)
 	r.SensorPlan = NewSensorPlanService(opts...)
