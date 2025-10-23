@@ -7,6 +7,7 @@ import (
 	"errors"
 	"os"
 	"testing"
+	"time"
 
 	"github.com/Bluestaq/udl-golang-sdk"
 	"github.com/Bluestaq/udl-golang-sdk/internal/testutil"
@@ -29,12 +30,32 @@ func TestOnorbitlistNewWithOptionalParams(t *testing.T) {
 	err := client.Onorbitlist.New(context.TODO(), unifieddatalibrary.OnorbitlistNewParams{
 		ClassificationMarking: "U",
 		DataMode:              unifieddatalibrary.OnorbitlistNewParamsDataModeTest,
-		Name:                  "People",
-		Source:                "Bluestaq",
-		ID:                    unifieddatalibrary.String("ONORBITLIST-ID"),
-		Description:           unifieddatalibrary.String("DESCRIPTION_OF_LIST"),
-		Onorbits:              []string{"ID1", "ID2"},
-		Origin:                unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+		Name:                  "HRR-SATELLITES",
+		OnOrbitListItems: []unifieddatalibrary.OnorbitlistNewParamsOnOrbitListItem{{
+			ClearingBoxCrossTrack: unifieddatalibrary.Float(1.25),
+			ClearingBoxInTrack:    unifieddatalibrary.Float(1.25),
+			ClearingRadius:        unifieddatalibrary.Float(1.25),
+			CommonName:            unifieddatalibrary.String("VANGUARD 1"),
+			CountryCode:           unifieddatalibrary.String("USA"),
+			ExpiredOn:             unifieddatalibrary.Time(time.Now()),
+			FreqMins:              unifieddatalibrary.Float(300.25),
+			MonitoringType:        unifieddatalibrary.String("REVISIT_RATE"),
+			ObjectID:              unifieddatalibrary.String("5"),
+			OrbitRegime:           unifieddatalibrary.String("LEO"),
+			OrigObjectID:          unifieddatalibrary.String("ORIGOBJECT-ID"),
+			PayloadPriority:       unifieddatalibrary.Float(2.5),
+			Rank:                  unifieddatalibrary.Int(3),
+			Urgency:               unifieddatalibrary.Float(5.1),
+		}},
+		Source:                 "Bluestaq",
+		ID:                     unifieddatalibrary.String("ONORBITLIST-ID"),
+		DefaultRevisitRateMins: unifieddatalibrary.Float(15.3),
+		Description:            unifieddatalibrary.String("DESCRIPTION_OF_LIST"),
+		ListPriority:           unifieddatalibrary.Float(1.1),
+		Namespace:              unifieddatalibrary.String("18SDS"),
+		Origin:                 unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+		Tags:                   []string{"TAG1", "TAG2"},
+		TransactionID:          unifieddatalibrary.String("TRANSACTION-ID"),
 	})
 	if err != nil {
 		var apierr *unifieddatalibrary.Error
@@ -64,12 +85,32 @@ func TestOnorbitlistUpdateWithOptionalParams(t *testing.T) {
 		unifieddatalibrary.OnorbitlistUpdateParams{
 			ClassificationMarking: "U",
 			DataMode:              unifieddatalibrary.OnorbitlistUpdateParamsDataModeTest,
-			Name:                  "People",
-			Source:                "Bluestaq",
-			ID:                    unifieddatalibrary.String("ONORBITLIST-ID"),
-			Description:           unifieddatalibrary.String("DESCRIPTION_OF_LIST"),
-			Onorbits:              []string{"ID1", "ID2"},
-			Origin:                unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+			Name:                  "HRR-SATELLITES",
+			OnOrbitListItems: []unifieddatalibrary.OnorbitlistUpdateParamsOnOrbitListItem{{
+				ClearingBoxCrossTrack: unifieddatalibrary.Float(1.25),
+				ClearingBoxInTrack:    unifieddatalibrary.Float(1.25),
+				ClearingRadius:        unifieddatalibrary.Float(1.25),
+				CommonName:            unifieddatalibrary.String("VANGUARD 1"),
+				CountryCode:           unifieddatalibrary.String("USA"),
+				ExpiredOn:             unifieddatalibrary.Time(time.Now()),
+				FreqMins:              unifieddatalibrary.Float(300.25),
+				MonitoringType:        unifieddatalibrary.String("REVISIT_RATE"),
+				ObjectID:              unifieddatalibrary.String("5"),
+				OrbitRegime:           unifieddatalibrary.String("LEO"),
+				OrigObjectID:          unifieddatalibrary.String("ORIGOBJECT-ID"),
+				PayloadPriority:       unifieddatalibrary.Float(2.5),
+				Rank:                  unifieddatalibrary.Int(3),
+				Urgency:               unifieddatalibrary.Float(5.1),
+			}},
+			Source:                 "Bluestaq",
+			ID:                     unifieddatalibrary.String("ONORBITLIST-ID"),
+			DefaultRevisitRateMins: unifieddatalibrary.Float(15.3),
+			Description:            unifieddatalibrary.String("DESCRIPTION_OF_LIST"),
+			ListPriority:           unifieddatalibrary.Float(1.1),
+			Namespace:              unifieddatalibrary.String("18SDS"),
+			Origin:                 unifieddatalibrary.String("THIRD_PARTY_DATASOURCE"),
+			Tags:                   []string{"TAG1", "TAG2"},
+			TransactionID:          unifieddatalibrary.String("TRANSACTION-ID"),
 		},
 	)
 	if err != nil {

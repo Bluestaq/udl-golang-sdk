@@ -1045,6 +1045,10 @@ type SoiObservationSetNewParamsRadarSoiObservationList struct {
 	Kappa param.Opt[float64] `json:"kappa,omitzero"`
 	// Bandwidth of radar pulse in hertz.
 	PulseBandwidth param.Opt[float64] `json:"pulseBandwidth,omitzero"`
+	// A unique numeric or hash identifier assigned to each distinct waveform, enabling
+	// traceability between the waveform used and the images or data products generated
+	// from it.
+	WaveformNumber param.Opt[int64] `json:"waveformNumber,omitzero"`
 	// Array of the aspect angle at the center of the image in degrees. The 'tovs' and
 	// 'aspectAngles' arrays must match in size, if 'aspectAngles' is provided.
 	AspectAngles []float64 `json:"aspectAngles,omitzero"`
@@ -1673,6 +1677,10 @@ type SoiObservationSetNewBulkParamsBodyRadarSoiObservationList struct {
 	Kappa param.Opt[float64] `json:"kappa,omitzero"`
 	// Bandwidth of radar pulse in hertz.
 	PulseBandwidth param.Opt[float64] `json:"pulseBandwidth,omitzero"`
+	// A unique numeric or hash identifier assigned to each distinct waveform, enabling
+	// traceability between the waveform used and the images or data products generated
+	// from it.
+	WaveformNumber param.Opt[int64] `json:"waveformNumber,omitzero"`
 	// Array of the aspect angle at the center of the image in degrees. The 'tovs' and
 	// 'aspectAngles' arrays must match in size, if 'aspectAngles' is provided.
 	AspectAngles []float64 `json:"aspectAngles,omitzero"`
@@ -2277,6 +2285,10 @@ type SoiObservationSetUnvalidatedPublishParamsBodyRadarSoiObservationList struct
 	Kappa param.Opt[float64] `json:"kappa,omitzero"`
 	// Bandwidth of radar pulse in hertz.
 	PulseBandwidth param.Opt[float64] `json:"pulseBandwidth,omitzero"`
+	// A unique numeric or hash identifier assigned to each distinct waveform, enabling
+	// traceability between the waveform used and the images or data products generated
+	// from it.
+	WaveformNumber param.Opt[int64] `json:"waveformNumber,omitzero"`
 	// Array of the aspect angle at the center of the image in degrees. The 'tovs' and
 	// 'aspectAngles' arrays must match in size, if 'aspectAngles' is provided.
 	AspectAngles []float64 `json:"aspectAngles,omitzero"`

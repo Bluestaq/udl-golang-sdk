@@ -713,6 +713,10 @@ type SoiObservationSetFullRadarSoiObservationList struct {
 	// Array of the times of validity in ISO 8601 UTC format with microsecond
 	// precision.
 	Tovs []time.Time `json:"tovs" format:"date-time"`
+	// A unique numeric or hash identifier assigned to each distinct waveform, enabling
+	// traceability between the waveform used and the images or data products generated
+	// from it.
+	WaveformNumber int64 `json:"waveformNumber"`
 	// Array of the cartesian X accelerations, in kilometers per second squared, in the
 	// specified referenceFrame. If referenceFrame is null then J2K should be assumed.
 	// The 'tovs' and 'xaccel' arrays must match in size, if 'xaccel' is provided.
@@ -784,6 +788,7 @@ type SoiObservationSetFullRadarSoiObservationList struct {
 		Rspaces           respjson.Field
 		SpectralWidths    respjson.Field
 		Tovs              respjson.Field
+		WaveformNumber    respjson.Field
 		Xaccel            respjson.Field
 		Xpos              respjson.Field
 		Xspaces           respjson.Field

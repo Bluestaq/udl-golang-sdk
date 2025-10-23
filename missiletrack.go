@@ -731,10 +731,10 @@ type MissileTrackListResponseVector struct {
 	// The cov array should contain only the upper right triangle values from top left
 	// down to bottom right, in order.
 	Cov []float64 `json:"cov"`
-	// The reference frame of the covariance elements (ECEF, J2000, UVW, EFG/TDR, TEME,
-	// GCRF). If the referenceFrame is null it is assumed to be UVW.
+	// The reference frame of the covariance elements (J2000, UVW, EFG/TDR, ECR/ECEF,
+	// TEME, GCRF). If the referenceFrame is null it is assumed to be UVW.
 	//
-	// Any of "ECEF", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame"`
 	// The flight azimuth associated with the current state vector (0-360 degrees).
 	FlightAz float64 `json:"flightAz"`
@@ -1456,10 +1456,10 @@ type MissileTrackTupleResponseVector struct {
 	// The cov array should contain only the upper right triangle values from top left
 	// down to bottom right, in order.
 	Cov []float64 `json:"cov"`
-	// The reference frame of the covariance elements (ECEF, J2000, UVW, EFG/TDR, TEME,
-	// GCRF). If the referenceFrame is null it is assumed to be UVW.
+	// The reference frame of the covariance elements (J2000, UVW, EFG/TDR, ECR/ECEF,
+	// TEME, GCRF). If the referenceFrame is null it is assumed to be UVW.
 	//
-	// Any of "ECEF", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame"`
 	// The flight azimuth associated with the current state vector (0-360 degrees).
 	FlightAz float64 `json:"flightAz"`
@@ -2089,10 +2089,10 @@ type MissileTrackNewBulkParamsBodyVector struct {
 	// The cov array should contain only the upper right triangle values from top left
 	// down to bottom right, in order.
 	Cov []float64 `json:"cov,omitzero"`
-	// The reference frame of the covariance elements (ECEF, J2000, UVW, EFG/TDR, TEME,
-	// GCRF). If the referenceFrame is null it is assumed to be UVW.
+	// The reference frame of the covariance elements (J2000, UVW, EFG/TDR, ECR/ECEF,
+	// TEME, GCRF). If the referenceFrame is null it is assumed to be UVW.
 	//
-	// Any of "ECEF", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// Three element array, expressing the cartesian position vector of the target
 	// object, in kilometers, in the specified referenceFrame. If referenceFrame is
@@ -2119,7 +2119,7 @@ func (r *MissileTrackNewBulkParamsBodyVector) UnmarshalJSON(data []byte) error {
 
 func init() {
 	apijson.RegisterFieldValidator[MissileTrackNewBulkParamsBodyVector](
-		"covReferenceFrame", "ECEF", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF",
+		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF",
 	)
 }
 
@@ -2653,10 +2653,10 @@ type MissileTrackUnvalidatedPublishParamsBodyVector struct {
 	// The cov array should contain only the upper right triangle values from top left
 	// down to bottom right, in order.
 	Cov []float64 `json:"cov,omitzero"`
-	// The reference frame of the covariance elements (ECEF, J2000, UVW, EFG/TDR, TEME,
-	// GCRF). If the referenceFrame is null it is assumed to be UVW.
+	// The reference frame of the covariance elements (J2000, UVW, EFG/TDR, ECR/ECEF,
+	// TEME, GCRF). If the referenceFrame is null it is assumed to be UVW.
 	//
-	// Any of "ECEF", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// Three element array, expressing the cartesian position vector of the target
 	// object, in kilometers, in the specified referenceFrame. If referenceFrame is
@@ -2683,6 +2683,6 @@ func (r *MissileTrackUnvalidatedPublishParamsBodyVector) UnmarshalJSON(data []by
 
 func init() {
 	apijson.RegisterFieldValidator[MissileTrackUnvalidatedPublishParamsBodyVector](
-		"covReferenceFrame", "ECEF", "J2000", "UVW", "EFG/TDR", "TEME", "GCRF",
+		"covReferenceFrame", "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF",
 	)
 }

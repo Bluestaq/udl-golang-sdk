@@ -254,7 +254,7 @@ type StateVectorAbridged struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame StateVectorAbridgedCovReferenceFrame `json:"covReferenceFrame"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
@@ -719,11 +719,12 @@ const (
 type StateVectorAbridgedCovReferenceFrame string
 
 const (
-	StateVectorAbridgedCovReferenceFrameJ2000  StateVectorAbridgedCovReferenceFrame = "J2000"
-	StateVectorAbridgedCovReferenceFrameUvw    StateVectorAbridgedCovReferenceFrame = "UVW"
-	StateVectorAbridgedCovReferenceFrameEfgTdr StateVectorAbridgedCovReferenceFrame = "EFG/TDR"
-	StateVectorAbridgedCovReferenceFrameTeme   StateVectorAbridgedCovReferenceFrame = "TEME"
-	StateVectorAbridgedCovReferenceFrameGcrf   StateVectorAbridgedCovReferenceFrame = "GCRF"
+	StateVectorAbridgedCovReferenceFrameJ2000   StateVectorAbridgedCovReferenceFrame = "J2000"
+	StateVectorAbridgedCovReferenceFrameUvw     StateVectorAbridgedCovReferenceFrame = "UVW"
+	StateVectorAbridgedCovReferenceFrameEfgTdr  StateVectorAbridgedCovReferenceFrame = "EFG/TDR"
+	StateVectorAbridgedCovReferenceFrameEcrEcef StateVectorAbridgedCovReferenceFrame = "ECR/ECEF"
+	StateVectorAbridgedCovReferenceFrameTeme    StateVectorAbridgedCovReferenceFrame = "TEME"
+	StateVectorAbridgedCovReferenceFrameGcrf    StateVectorAbridgedCovReferenceFrame = "GCRF"
 )
 
 // The reference frame of the cartesian orbital states. If the referenceFrame is
@@ -1076,7 +1077,7 @@ type StateVectorIngestParam struct {
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
 	//
-	// Any of "J2000", "UVW", "EFG/TDR", "TEME", "GCRF".
+	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame StateVectorIngestCovReferenceFrame `json:"covReferenceFrame,omitzero"`
 	// The covariance matrix values represent the lower triangular half of the
 	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
@@ -1221,11 +1222,12 @@ const (
 type StateVectorIngestCovReferenceFrame string
 
 const (
-	StateVectorIngestCovReferenceFrameJ2000  StateVectorIngestCovReferenceFrame = "J2000"
-	StateVectorIngestCovReferenceFrameUvw    StateVectorIngestCovReferenceFrame = "UVW"
-	StateVectorIngestCovReferenceFrameEfgTdr StateVectorIngestCovReferenceFrame = "EFG/TDR"
-	StateVectorIngestCovReferenceFrameTeme   StateVectorIngestCovReferenceFrame = "TEME"
-	StateVectorIngestCovReferenceFrameGcrf   StateVectorIngestCovReferenceFrame = "GCRF"
+	StateVectorIngestCovReferenceFrameJ2000   StateVectorIngestCovReferenceFrame = "J2000"
+	StateVectorIngestCovReferenceFrameUvw     StateVectorIngestCovReferenceFrame = "UVW"
+	StateVectorIngestCovReferenceFrameEfgTdr  StateVectorIngestCovReferenceFrame = "EFG/TDR"
+	StateVectorIngestCovReferenceFrameEcrEcef StateVectorIngestCovReferenceFrame = "ECR/ECEF"
+	StateVectorIngestCovReferenceFrameTeme    StateVectorIngestCovReferenceFrame = "TEME"
+	StateVectorIngestCovReferenceFrameGcrf    StateVectorIngestCovReferenceFrame = "GCRF"
 )
 
 // The reference frame of the cartesian orbital states. If the referenceFrame is
