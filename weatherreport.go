@@ -1102,10 +1102,6 @@ type WeatherReportUnvalidatedPublishParamsBody struct {
 	ContrailHghtLower param.Opt[float64] `json:"contrailHghtLower,omitzero"`
 	// Reports the highest altitude at which contrails are occurring, in meters.
 	ContrailHghtUpper param.Opt[float64] `json:"contrailHghtUpper,omitzero"`
-	// Time the row was created in the database.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Specific pressures or heights where measurements are taken, labeled as either
 	// MANDATORY or SIGNIFICANT levels. Mandatory levels are at particular pressures at
 	// geopotential heights. Significant levels are at particular geometric heights.
@@ -1170,9 +1166,6 @@ type WeatherReportUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by the record source. This may be an internal
 	// identifier and not necessarily a valid sensor ID.
 	OrigSensorID param.Opt[string] `json:"origSensorId,omitzero"`

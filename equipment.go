@@ -1891,11 +1891,6 @@ type EquipmentNewBulkParamsBody struct {
 	// Indicates the plus or minus error assessed against the method used to derive the
 	// coordinate.
 	CoordDerivAcc param.Opt[float64] `json:"coordDerivAcc,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Ground elevation, in meters, of the geographic coordinates referenced to (above
 	// or below) Mean Sea Level (MSL) vertical datum.
 	ElevMsl param.Opt[float64] `json:"elevMsl,omitzero"`

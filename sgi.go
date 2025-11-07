@@ -2215,11 +2215,6 @@ type SgiNewBulkParamsBody struct {
 	// The time, in hours, for which the Ap index value is valid. If null, a span of 3
 	// hours is assumed.
 	ApDuration param.Opt[int64] `json:"apDuration,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Disturbance Storm Time geomagnetic index in nT.
 	Dst param.Opt[float64] `json:"dst,omitzero"`
 	// delta exospheric temperature correction in units of K.
@@ -2284,9 +2279,6 @@ type SgiNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by the reporting source to indicate the sensor
 	// identifier which produced this data. This may be an internal identifier and not
 	// necessarily a valid sensor ID.
@@ -2541,11 +2533,6 @@ type SgiUnvalidatedPublishParamsBody struct {
 	// The time, in hours, for which the Ap index value is valid. If null, a span of 3
 	// hours is assumed.
 	ApDuration param.Opt[int64] `json:"apDuration,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Disturbance Storm Time geomagnetic index in nT.
 	Dst param.Opt[float64] `json:"dst,omitzero"`
 	// delta exospheric temperature correction in units of K.
@@ -2610,9 +2597,6 @@ type SgiUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by the reporting source to indicate the sensor
 	// identifier which produced this data. This may be an internal identifier and not
 	// necessarily a valid sensor ID.

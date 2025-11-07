@@ -197,11 +197,6 @@ type DatalinkIngestParam struct {
 	// calculated course of the local track. Required if sysDefaultCode field is "MAN".
 	// Allowable entries are 15 to 90 in increments of 15 degrees.
 	CourseDiff param.Opt[int64] `json:"courseDiff,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Distance between the common and remote track is to exceed the applicable
 	// correlation window for the two tracks in order to be decorrelated. Required if
 	// sysDefaultCode field is "MAN". Allowable entries are 1.0 to 2.0 in increments of
@@ -252,9 +247,6 @@ type DatalinkIngestParam struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The official identifier of the military establishment responsible for the
 	// operation plan and the identification number assigned to this plan.
 	PlanOrigNum param.Opt[string] `json:"planOrigNum,omitzero"`
@@ -285,10 +277,6 @@ type DatalinkIngestParam struct {
 	ResTrackQual param.Opt[int64] `json:"resTrackQual,omitzero"`
 	// The unique message identifier assigned by the originator.
 	SerialNum param.Opt[string] `json:"serialNum,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Maximum percentage the faster track speed may differ from the slower track
 	// speed. Required if sysDefaultCode field is "MAN". Allowable entries are 10 to
 	// 100 in increments of 10.
@@ -304,11 +292,6 @@ type DatalinkIngestParam struct {
 	// Indicates the data terminal settings the system defaults to, either automatic
 	// correlation/decorrelation (AUTO) or manual (MAN).
 	SysDefaultCode param.Opt[string] `json:"sysDefaultCode,omitzero"`
-	// Time the row was updated in the database, auto-populated by the system.
-	UpdatedAt param.Opt[time.Time] `json:"updatedAt,omitzero" format:"date-time"`
-	// Application user who updated the row in the database, auto-populated by the
-	// system.
-	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// Number added to the basic window calculated from track qualities to ensure that
 	// windows still allow valid correlations. Required if sysDefaultCode field is
 	// "MAN". Allowable entries are 0.0 to 2.0 in increments of 0.25.

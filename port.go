@@ -1019,11 +1019,6 @@ type PortNewBulkParamsBody struct {
 	AvgDuration param.Opt[float64] `json:"avgDuration,omitzero"`
 	// The country where this port is located.
 	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Optional ID from external systems. This field has no meaning within UDL and is
 	// provided as a convenience for systems that require tracking of an internal
 	// system generated ID.
@@ -1075,9 +1070,6 @@ type PortNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Flag indicating whether a pilot is required at this port.
 	PilotReqd param.Opt[bool] `json:"pilotReqd,omitzero"`
 	// The name of this port.

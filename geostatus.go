@@ -519,13 +519,6 @@ type GeoStatusNewBulkParamsBody struct {
 	ID param.Opt[string] `json:"id,omitzero"`
 	// Indicates the confidence level in the entry. (Low, Medium, High).
 	ConfidenceLevel param.Opt[string] `json:"confidenceLevel,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
-	// Unique identifier of the object on-orbit object.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Maximum longitude for this object. WGS-84 longitude of the spacecraft position,
 	// in degrees. 0 to 360 degrees.
 	LongitudeMax param.Opt[float64] `json:"longitudeMax,omitzero"`
@@ -543,9 +536,6 @@ type GeoStatusNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided to indicate the target onorbit. This may be an
 	// internal identifier and not necessarily map to a valid satellite number.
 	OrigObjectID param.Opt[string] `json:"origObjectId,omitzero"`

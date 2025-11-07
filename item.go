@@ -1432,11 +1432,6 @@ type ItemUnvalidatedPublishParamsBody struct {
 	CommoditySys param.Opt[string] `json:"commoditySys,omitzero"`
 	// Flag indicating this item acts as a container and contains additional items.
 	Container param.Opt[bool] `json:"container,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The departure code or location where this item has left or is leaving.
 	Departure param.Opt[string] `json:"departure,omitzero"`
 	// The destination of the item, typically an ICAO or port code. Applicable for
@@ -1473,9 +1468,6 @@ type ItemUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The code denoting the type of material item.
 	ProductCode param.Opt[string] `json:"productCode,omitzero"`
 	// The assigning system that denotes the type of material item, productCode (e.g.
@@ -1489,10 +1481,6 @@ type ItemUnvalidatedPublishParamsBody struct {
 	// The algorithm name or standard that generated the scanCode (e.g. UPC-A, EAN-13,
 	// GTIN, SSCC, bID, JAN, etc.).
 	ScGenTool param.Opt[string] `json:"scGenTool,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Transportation Control Number of the cargo. Applicable for cargo item types
 	// only.
 	Tcn param.Opt[string] `json:"tcn,omitzero"`

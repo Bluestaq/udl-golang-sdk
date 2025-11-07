@@ -882,10 +882,6 @@ type ObservationMonoradarNewBulkParamsBody struct {
 	Code7600 param.Opt[bool] `json:"code7600,omitzero"`
 	// 7700 squawk present (general emergency).
 	Code7700 param.Opt[bool] `json:"code7700,omitzero"`
-	// Time the row was created in the database.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Flag indicating FAA/Civ message.
 	Faa param.Opt[bool] `json:"faa,omitzero"`
 	// Target ground speed, in meters/second.
@@ -944,9 +940,6 @@ type ObservationMonoradarNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by observation source to indicate the sensor
 	// identifier which produced this observation.This may be an internal identifier
 	// and not necessarily a valid sensor ID.
@@ -1125,10 +1118,6 @@ type ObservationMonoradarUnvalidatedPublishParamsBody struct {
 	Code7600 param.Opt[bool] `json:"code7600,omitzero"`
 	// 7700 squawk present (general emergency).
 	Code7700 param.Opt[bool] `json:"code7700,omitzero"`
-	// Time the row was created in the database.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Flag indicating FAA/Civ message.
 	Faa param.Opt[bool] `json:"faa,omitzero"`
 	// Target ground speed, in meters/second.
@@ -1187,9 +1176,6 @@ type ObservationMonoradarUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by observation source to indicate the sensor
 	// identifier which produced this observation.This may be an internal identifier
 	// and not necessarily a valid sensor ID.

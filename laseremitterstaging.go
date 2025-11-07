@@ -482,11 +482,6 @@ type LaseremitterStagingNewBulkParamsBody struct {
 	// indicate an emitter height above ellipsoid, and negative values indicate an
 	// emitter height below ellipsoid.
 	Altitude param.Opt[float64] `json:"altitude,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The type of laser (e.g. CONTINUOUS WAVE, PULSED, etc.).
 	LaserType param.Opt[string] `json:"laserType,omitzero"`
 	// WGS-84 latitude of the emitter, in degrees. -90 to 90 degrees (negative values

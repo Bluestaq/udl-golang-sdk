@@ -522,11 +522,6 @@ type AINewBulkParamsBody struct {
 	CargoType param.Opt[string] `json:"cargoType,omitzero"`
 	// The course-over-ground reported by the vessel, in degrees.
 	Course param.Opt[float64] `json:"course,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The US Geographic Unique Identifier of the current port hosting the vessel.
 	CurrentPortGuid param.Opt[string] `json:"currentPortGUID,omitzero"`
 	// The UN Location Code of the current port hosting the vessel.
@@ -595,9 +590,6 @@ type AINewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The type of electronic position fixing device (e.g. GPS, GLONASS, etc.).
 	// Intended as, but not constrained to, the USCG NAVCEN electronic position fixing
 	// device definitions. Users should refer to USCG Navigation Center documentation
@@ -623,10 +615,6 @@ type AINewBulkParamsBody struct {
 	// engagedIn and specialCraft entries for additional information on certain types
 	// of vessels.
 	ShipType param.Opt[string] `json:"shipType,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The type of special craft designation of the vessel. This entry applies only
 	// when the shipType = Special Craft.
 	SpecialCraft param.Opt[string] `json:"specialCraft,omitzero"`

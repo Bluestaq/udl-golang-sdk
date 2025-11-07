@@ -857,11 +857,6 @@ type AirOperationAircraftSortyNewBulkParamsBody struct {
 	CargoConfig param.Opt[string] `json:"cargoConfig,omitzero"`
 	// The last name of the aircraft commander.
 	CommanderName param.Opt[string] `json:"commanderName,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The current state of this sortie.
 	CurrentState param.Opt[string] `json:"currentState,omitzero"`
 	// The primary delay code.
@@ -894,10 +889,6 @@ type AirOperationAircraftSortyNewBulkParamsBody struct {
 	// The current estimated time that the Aircraft is planned to depart, in ISO 8601
 	// UTC format with millisecond precision.
 	EstDepTime param.Opt[time.Time] `json:"estDepTime,omitzero" format:"date-time"`
-	// Name of the uploaded PDF.
-	Filename param.Opt[string] `json:"filename,omitzero"`
-	// Size of the supporting PDF, in bytes.
-	Filesize param.Opt[int64] `json:"filesize,omitzero"`
 	// The planned flight time for this sortie, in minutes.
 	FlightTime param.Opt[float64] `json:"flightTime,omitzero"`
 	// Desk phone number of the flight manager assigned to the sortie. Null when no
@@ -934,9 +925,6 @@ type AirOperationAircraftSortyNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The sortie identifier provided by the originating source.
 	OrigSortieID param.Opt[string] `json:"origSortieId,omitzero"`
 	// Liquid oxygen onboard the aircraft for the crew compartment, in liters.
@@ -947,8 +935,6 @@ type AirOperationAircraftSortyNewBulkParamsBody struct {
 	OxyReqCrew param.Opt[float64] `json:"oxyReqCrew,omitzero"`
 	// Liquid oxygen required on the aircraft for the troop compartment, in liters.
 	OxyReqPax param.Opt[float64] `json:"oxyReqPax,omitzero"`
-	// The version number of the crew paper.
-	PapersVersion param.Opt[string] `json:"papersVersion,omitzero"`
 	// The POI parking location.
 	ParkingLoc param.Opt[string] `json:"parkingLoc,omitzero"`
 	// The number of passengers tasked for this sortie.
@@ -958,11 +944,6 @@ type AirOperationAircraftSortyNewBulkParamsBody struct {
 	PlannedArrTime param.Opt[time.Time] `json:"plannedArrTime,omitzero" format:"date-time"`
 	// The planned primary Standard Conventional Load of the aircraft for this sortie.
 	PrimaryScl param.Opt[string] `json:"primarySCL,omitzero"`
-	// When crew papers are associated to this sortie, the system updates this value.
-	// This field is the URI location in the document repository of that raw file. To
-	// download the raw file, prepend https://udl-hostname/scs/download?id= to this
-	// field's value.
-	RawFileUri param.Opt[string] `json:"rawFileURI,omitzero"`
 	// Aircraft configuration required for the mission.
 	ReqConfig param.Opt[string] `json:"reqConfig,omitzero"`
 	// Remarks concerning the results of this sortie.
@@ -979,16 +960,8 @@ type AirOperationAircraftSortyNewBulkParamsBody struct {
 	// The scheduled UTC date for this sortie, in ISO 8601 date-only format (ex.
 	// YYYY-MM-DD).
 	SortieDate param.Opt[time.Time] `json:"sortieDate,omitzero" format:"date"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The tail number of the aircraft assigned to this sortie.
 	TailNumber param.Opt[string] `json:"tailNumber,omitzero"`
-	// The status of the supporting document.
-	//
-	// Any of "PUBLISHED", "DELETED", "UPDATED", "READ".
-	PaperStatus string `json:"paperStatus,omitzero"`
 	// The prior permission required (PPR) status.
 	//
 	// Any of "NOT REQUIRED", "REQUIRED NOT REQUESTED", "GRANTED", "PENDING".
@@ -1116,11 +1089,6 @@ type AirOperationAircraftSortyUnvalidatedPublishParamsBody struct {
 	CargoConfig param.Opt[string] `json:"cargoConfig,omitzero"`
 	// The last name of the aircraft commander.
 	CommanderName param.Opt[string] `json:"commanderName,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The current state of this sortie.
 	CurrentState param.Opt[string] `json:"currentState,omitzero"`
 	// The primary delay code.
@@ -1153,10 +1121,6 @@ type AirOperationAircraftSortyUnvalidatedPublishParamsBody struct {
 	// The current estimated time that the Aircraft is planned to depart, in ISO 8601
 	// UTC format with millisecond precision.
 	EstDepTime param.Opt[time.Time] `json:"estDepTime,omitzero" format:"date-time"`
-	// Name of the uploaded PDF.
-	Filename param.Opt[string] `json:"filename,omitzero"`
-	// Size of the supporting PDF, in bytes.
-	Filesize param.Opt[int64] `json:"filesize,omitzero"`
 	// The planned flight time for this sortie, in minutes.
 	FlightTime param.Opt[float64] `json:"flightTime,omitzero"`
 	// Desk phone number of the flight manager assigned to the sortie. Null when no
@@ -1193,9 +1157,6 @@ type AirOperationAircraftSortyUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The sortie identifier provided by the originating source.
 	OrigSortieID param.Opt[string] `json:"origSortieId,omitzero"`
 	// Liquid oxygen onboard the aircraft for the crew compartment, in liters.
@@ -1206,8 +1167,6 @@ type AirOperationAircraftSortyUnvalidatedPublishParamsBody struct {
 	OxyReqCrew param.Opt[float64] `json:"oxyReqCrew,omitzero"`
 	// Liquid oxygen required on the aircraft for the troop compartment, in liters.
 	OxyReqPax param.Opt[float64] `json:"oxyReqPax,omitzero"`
-	// The version number of the crew paper.
-	PapersVersion param.Opt[string] `json:"papersVersion,omitzero"`
 	// The POI parking location.
 	ParkingLoc param.Opt[string] `json:"parkingLoc,omitzero"`
 	// The number of passengers tasked for this sortie.
@@ -1217,11 +1176,6 @@ type AirOperationAircraftSortyUnvalidatedPublishParamsBody struct {
 	PlannedArrTime param.Opt[time.Time] `json:"plannedArrTime,omitzero" format:"date-time"`
 	// The planned primary Standard Conventional Load of the aircraft for this sortie.
 	PrimaryScl param.Opt[string] `json:"primarySCL,omitzero"`
-	// When crew papers are associated to this sortie, the system updates this value.
-	// This field is the URI location in the document repository of that raw file. To
-	// download the raw file, prepend https://udl-hostname/scs/download?id= to this
-	// field's value.
-	RawFileUri param.Opt[string] `json:"rawFileURI,omitzero"`
 	// Aircraft configuration required for the mission.
 	ReqConfig param.Opt[string] `json:"reqConfig,omitzero"`
 	// Remarks concerning the results of this sortie.
@@ -1238,16 +1192,8 @@ type AirOperationAircraftSortyUnvalidatedPublishParamsBody struct {
 	// The scheduled UTC date for this sortie, in ISO 8601 date-only format (ex.
 	// YYYY-MM-DD).
 	SortieDate param.Opt[time.Time] `json:"sortieDate,omitzero" format:"date"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The tail number of the aircraft assigned to this sortie.
 	TailNumber param.Opt[string] `json:"tailNumber,omitzero"`
-	// The status of the supporting document.
-	//
-	// Any of "PUBLISHED", "DELETED", "UPDATED", "READ".
-	PaperStatus string `json:"paperStatus,omitzero"`
 	// The prior permission required (PPR) status.
 	//
 	// Any of "NOT REQUIRED", "REQUIRED NOT REQUESTED", "GRANTED", "PENDING".

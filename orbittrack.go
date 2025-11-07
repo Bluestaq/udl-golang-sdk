@@ -1053,10 +1053,6 @@ type OrbittrackNewBulkParamsBody struct {
 	// ISO Alpha-3 code, or alternate code values that exist for the specified country
 	// code.
 	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
-	// Time the row was created in the database.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Predicted change in Mean Motion (velocity) in radians/herg^2. herg is a unit of
 	// time measure equal to 806.8120769 seconds, and is the orbital period of an
 	// imaginary satellite rotating about the Earth at zero altitude.
@@ -1101,9 +1097,6 @@ type OrbittrackNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by observation source to indicate the target
 	// on-orbit object of this track. This may be an internal identifier and not
 	// necessarily a valid satellite number.
@@ -1365,10 +1358,6 @@ type OrbittrackUnvalidatedPublishParamsBody struct {
 	// ISO Alpha-3 code, or alternate code values that exist for the specified country
 	// code.
 	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
-	// Time the row was created in the database.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Predicted change in Mean Motion (velocity) in radians/herg^2. herg is a unit of
 	// time measure equal to 806.8120769 seconds, and is the orbital period of an
 	// imaginary satellite rotating about the Earth at zero altitude.
@@ -1413,9 +1402,6 @@ type OrbittrackUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by observation source to indicate the target
 	// on-orbit object of this track. This may be an internal identifier and not
 	// necessarily a valid satellite number.

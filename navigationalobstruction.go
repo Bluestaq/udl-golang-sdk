@@ -1889,11 +1889,6 @@ type NavigationalObstructionNewBulkParamsBody struct {
 	// clearance. This field will be set to "OTHR" if the source value does not match a
 	// UDL Country code value (ISO-3166-ALPHA-2).
 	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Latest record date possible in this obstruction data set (not the most recent
 	// data item), in ISO 8601 date-only format (e.g. YYYY-MM-DD).
 	CutoffDate param.Opt[time.Time] `json:"cutoffDate,omitzero" format:"date"`
@@ -1992,9 +1987,6 @@ type NavigationalObstructionNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The DoD Standard Country Code designator for the country or political entity
 	// that owns the data set associated with this obstruction. This field will be set
 	// to "OTHR" if the source value does not match a UDL Country code value
@@ -2030,10 +2022,6 @@ type NavigationalObstructionNewBulkParamsBody struct {
 	// Source date of this obstacle data, in ISO 8601 date-only format (ex.
 	// YYYY-MM-DD).
 	SourceDate param.Opt[time.Time] `json:"sourceDate,omitzero" format:"date"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The surface material composition code of this point obstacle.
 	SurfaceMatCode param.Opt[string] `json:"surfaceMatCode,omitzero"`
 	// The transaction type/code for this obstacle (e.g. "D", "N", "R", "S", "V", "X").

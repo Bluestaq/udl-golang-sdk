@@ -435,11 +435,6 @@ type OperatingunitremarkNewBulkParamsBody struct {
 	// The remark type identifier. For example, the Mobility Air Forces (MAF) remark
 	// code, defined in the Airfield Suitability and Restriction Report (ASRR).
 	Code param.Opt[string] `json:"code,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The name of the remark.
 	Name param.Opt[string] `json:"name,omitzero"`
 	// Originating system or organization which produced the data, if different from

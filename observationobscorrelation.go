@@ -1231,14 +1231,6 @@ type ObservationObscorrelationNewBulkParamsBody struct {
 	// correlation to the orbit of the corresponding satellite, such as when all
 	// observation residuals equal 0.
 	CorrQuality param.Opt[float64] `json:"corrQuality,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
-	// Identifier of the correlated target on-orbit object, if associated with a valid
-	// satNo.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Identifier of the ObsCorrelation record from which this ObsCorrelation record
 	// originated. This behavior allows for different source providers/systems to make
 	// changes to a given correlation and maintain traceability back to the original
@@ -1249,9 +1241,6 @@ type ObservationObscorrelationNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier indicates the target on-orbit object being correlated. This
 	// may be an internal identifier and not necessarily a valid satellite number.
 	OrigObjectID param.Opt[string] `json:"origObjectId,omitzero"`
@@ -1259,10 +1248,6 @@ type ObservationObscorrelationNewBulkParamsBody struct {
 	// to know in the case where an observation is correlated to another
 	// satellite/catalog number.
 	SatNo param.Opt[int64] `json:"satNo,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Identifier of the Track associated with this ObsCorrelation.
 	TrackID param.Opt[string] `json:"trackId,omitzero"`
 	// Optional identifier to track a commercial or marketplace transaction executed to
@@ -1423,14 +1408,6 @@ type ObservationObscorrelationUnvalidatedPublishParamsBody struct {
 	// correlation to the orbit of the corresponding satellite, such as when all
 	// observation residuals equal 0.
 	CorrQuality param.Opt[float64] `json:"corrQuality,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
-	// Identifier of the correlated target on-orbit object, if associated with a valid
-	// satNo.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Identifier of the ObsCorrelation record from which this ObsCorrelation record
 	// originated. This behavior allows for different source providers/systems to make
 	// changes to a given correlation and maintain traceability back to the original
@@ -1441,9 +1418,6 @@ type ObservationObscorrelationUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier indicates the target on-orbit object being correlated. This
 	// may be an internal identifier and not necessarily a valid satellite number.
 	OrigObjectID param.Opt[string] `json:"origObjectId,omitzero"`
@@ -1451,10 +1425,6 @@ type ObservationObscorrelationUnvalidatedPublishParamsBody struct {
 	// to know in the case where an observation is correlated to another
 	// satellite/catalog number.
 	SatNo param.Opt[int64] `json:"satNo,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Identifier of the Track associated with this ObsCorrelation.
 	TrackID param.Opt[string] `json:"trackId,omitzero"`
 	// Optional identifier to track a commercial or marketplace transaction executed to

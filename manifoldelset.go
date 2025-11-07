@@ -1056,11 +1056,6 @@ type ManifoldelsetNewBulkParamsBody struct {
 	// The drag term for SGP4 orbital model, used for calculating decay constants for
 	// altitude, eccentricity etc, measured in inverse earth radii.
 	BStar param.Opt[float64] `json:"bStar,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The orbital eccentricity of an astronomical object is a parameter that
 	// determines the amount by which its orbit around another body deviates from a
 	// perfect circle. A value of 0 is a circular orbit, values between 0 and 1 form an
@@ -1071,12 +1066,6 @@ type ManifoldelsetNewBulkParamsBody struct {
 	// Earth. If the orbit went exactly around the equator from left to right, then the
 	// inclination would be 0. The inclination ranges from 0 to 180 degrees.
 	Inclination param.Opt[float64] `json:"inclination,omitzero"`
-	// Read only derived/generated line1 of a legacy TLE (two line element set) format,
-	// ignored on create/edit operations.
-	Line1 param.Opt[string] `json:"line1,omitzero"`
-	// Read only derived/generated line2 of a legacy TLE (two line element set) format,
-	// ignored on create/edit operations.
-	Line2 param.Opt[string] `json:"line2,omitzero"`
 	// Where the satellite is in its orbital path. The mean anomaly ranges from 0 to
 	// 360 degrees. The mean anomaly is referenced to the perigee. If the satellite
 	// were at the perigee, the mean anomaly would be 0.
@@ -1096,9 +1085,6 @@ type ManifoldelsetNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The orbit point nearest to the center of the earth in kilometers.
 	Perigee param.Opt[float64] `json:"perigee,omitzero"`
 	// Period of the orbit equal to inverse of mean motion.
