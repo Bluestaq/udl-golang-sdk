@@ -2812,11 +2812,6 @@ type IonoObservationNewBulkParamsBody struct {
 	B0 param.Opt[float64] `json:"b0,omitzero"`
 	// IRI profile shape parameter. URSI ID: D1.
 	B1 param.Opt[float64] `json:"b1,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Distance for MUF calculation in km.
 	D param.Opt[float64] `json:"d,omitzero"`
 	// IRI profile shape parameter, F1 layer. URSI ID: D2.
@@ -2923,9 +2918,6 @@ type IonoObservationNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by observation source to indicate the sensor
 	// identifier which produced this observation. This may be an internal identifier
 	// and not necessarily a valid sensor ID.
@@ -2950,12 +2942,6 @@ type IonoObservationNewBulkParamsBody struct {
 	Tec param.Opt[float64] `json:"tec,omitzero"`
 	// Characterization of the shape of Es trace. URSI ID: 36.
 	TypeEs param.Opt[string] `json:"typeEs,omitzero"`
-	// Time the row was updated in the database, auto-populated by the system, example
-	// = 2018-01-01T16:00:00.123Z.
-	UpdatedAt param.Opt[time.Time] `json:"updatedAt,omitzero" format:"date-time"`
-	// Application user who updated the row in the database, auto-populated by the
-	// system.
-	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// Parabolic E layer semi-thickness in km. URSI ID: 83.
 	YE param.Opt[float64] `json:"yE,omitzero"`
 	// Parabolic F1 layer semi-thickness in km. URSI ID: 95.
@@ -3775,11 +3761,6 @@ type IonoObservationUnvalidatedPublishParamsBody struct {
 	B0 param.Opt[float64] `json:"b0,omitzero"`
 	// IRI profile shape parameter. URSI ID: D1.
 	B1 param.Opt[float64] `json:"b1,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Distance for MUF calculation in km.
 	D param.Opt[float64] `json:"d,omitzero"`
 	// IRI profile shape parameter, F1 layer. URSI ID: D2.
@@ -3886,9 +3867,6 @@ type IonoObservationUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by observation source to indicate the sensor
 	// identifier which produced this observation. This may be an internal identifier
 	// and not necessarily a valid sensor ID.
@@ -3913,12 +3891,6 @@ type IonoObservationUnvalidatedPublishParamsBody struct {
 	Tec param.Opt[float64] `json:"tec,omitzero"`
 	// Characterization of the shape of Es trace. URSI ID: 36.
 	TypeEs param.Opt[string] `json:"typeEs,omitzero"`
-	// Time the row was updated in the database, auto-populated by the system, example
-	// = 2018-01-01T16:00:00.123Z.
-	UpdatedAt param.Opt[time.Time] `json:"updatedAt,omitzero" format:"date-time"`
-	// Application user who updated the row in the database, auto-populated by the
-	// system.
-	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// Parabolic E layer semi-thickness in km. URSI ID: 83.
 	YE param.Opt[float64] `json:"yE,omitzero"`
 	// Parabolic F1 layer semi-thickness in km. URSI ID: 95.

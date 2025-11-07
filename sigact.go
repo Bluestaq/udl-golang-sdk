@@ -1172,12 +1172,6 @@ type SigactNewBulkParamsBody struct {
 	// ISO Alpha-3 code, or alternate code values that exist for the specified country
 	// code.
 	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
-	// Time the row was created in the database, auto-populated by the system, example
-	// = 2018-01-01T16:00:00.123Z.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The district in which this event occurred.
 	District param.Opt[string] `json:"district,omitzero"`
 	// The filename of the document or report.
@@ -1277,9 +1271,6 @@ type SigactNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The province in which this event occurred.
 	Province param.Opt[string] `json:"province,omitzero"`
 	// The reporting unit.

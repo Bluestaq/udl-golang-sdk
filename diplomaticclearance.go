@@ -693,11 +693,6 @@ type DiplomaticClearanceNewBulkParamsBody struct {
 	// The Aircraft and Personnel Automated Clearance System (APACS) system identifier
 	// used to process and approve this clearance request.
 	ApacsID param.Opt[string] `json:"apacsId,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Identifier of the Diplomatic Clearance Worksheet used to coordinate aircraft
 	// clearance requests.
 	DipWorksheetName param.Opt[string] `json:"dipWorksheetName,omitzero"`
@@ -713,18 +708,6 @@ type DiplomaticClearanceNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
-	// Time the row was updated in the database, auto-populated by the system.
-	UpdatedAt param.Opt[time.Time] `json:"updatedAt,omitzero" format:"date-time"`
-	// Application user who updated the row in the database, auto-populated by the
-	// system.
-	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// Collection of diplomatic clearance details.
 	DiplomaticClearanceDetails []DiplomaticClearanceNewBulkParamsBodyDiplomaticClearanceDetail `json:"diplomaticClearanceDetails,omitzero"`
 	// Collection of diplomatic clearance remarks.

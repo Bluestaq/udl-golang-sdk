@@ -1671,11 +1671,6 @@ type StarCatalogNewBulkParamsBody struct {
 	BpmagUnc param.Opt[float64] `json:"bpmagUnc,omitzero"`
 	// The version of the catalog associated with this object.
 	CatVersion param.Opt[string] `json:"catVersion,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Uncertainty of the declination of the source, in milliarcseconds, at the
 	// reference epoch.
 	DecUnc param.Opt[float64] `json:"decUnc,omitzero"`
@@ -1727,9 +1722,6 @@ type StarCatalogNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Absolute stellar parallax of the source, in milliarcseconds.
 	Parallax param.Opt[float64] `json:"parallax,omitzero"`
 	// Uncertainty of the stellar parallax, in milliarcseconds.
@@ -1772,10 +1764,6 @@ type StarCatalogNewBulkParamsBody struct {
 	// The ID of this object in the Two Micron All Sky Survey (2MASS) Point Source
 	// Catalog (PSC).
 	TwoMassID param.Opt[string] `json:"twoMASSId,omitzero"`
-	// Time the row was updated in the database.
-	UpdatedAt param.Opt[time.Time] `json:"updatedAt,omitzero" format:"date-time"`
-	// Application user who updated the row in the database.
-	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// Flag indicating that the source exhibits variable magnitude.
 	VarFlag param.Opt[bool] `json:"varFlag,omitzero"`
 	// Identifier indicating variability is present in the photometric data. Consumers
@@ -1932,11 +1920,6 @@ type StarCatalogUnvalidatedPublishParamsBody struct {
 	BpmagUnc param.Opt[float64] `json:"bpmagUnc,omitzero"`
 	// The version of the catalog associated with this object.
 	CatVersion param.Opt[string] `json:"catVersion,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Uncertainty of the declination of the source, in milliarcseconds, at the
 	// reference epoch.
 	DecUnc param.Opt[float64] `json:"decUnc,omitzero"`
@@ -1988,9 +1971,6 @@ type StarCatalogUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Absolute stellar parallax of the source, in milliarcseconds.
 	Parallax param.Opt[float64] `json:"parallax,omitzero"`
 	// Uncertainty of the stellar parallax, in milliarcseconds.
@@ -2033,10 +2013,6 @@ type StarCatalogUnvalidatedPublishParamsBody struct {
 	// The ID of this object in the Two Micron All Sky Survey (2MASS) Point Source
 	// Catalog (PSC).
 	TwoMassID param.Opt[string] `json:"twoMASSId,omitzero"`
-	// Time the row was updated in the database.
-	UpdatedAt param.Opt[time.Time] `json:"updatedAt,omitzero" format:"date-time"`
-	// Application user who updated the row in the database.
-	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// Flag indicating that the source exhibits variable magnitude.
 	VarFlag param.Opt[bool] `json:"varFlag,omitzero"`
 	// Identifier indicating variability is present in the photometric data. Consumers

@@ -1060,11 +1060,6 @@ type OnorbitassessmentNewBulkParamsBody struct {
 	// URL to an external location containing the data that was used to make this
 	// assessment.
 	CollectionURL param.Opt[string] `json:"collectionURL,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Unique identifier of the target satellite on-orbit object to which this
 	// assessment applies. This ID can be used to obtain additional information on an
 	// OnOrbit object using the 'get by ID' operation (e.g. /udl/onorbit/{id}). For
@@ -1088,9 +1083,6 @@ type OnorbitassessmentNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by the source to indicate the target on-orbit
 	// object to which this assessment applies. This may be an internal identifier and
 	// not necessarily map to a valid satellite number.
@@ -1106,10 +1098,6 @@ type OnorbitassessmentNewBulkParamsBody struct {
 	// RANGE PROFILER, WIDEBAND, etc.) contained in the signature. Applies when
 	// assmtLevel = SIGNATURE.
 	SigDataType param.Opt[string] `json:"sigDataType,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Optional identifier to track a commercial or marketplace transaction executed to
 	// produce this data.
 	TransactionID param.Opt[string] `json:"transactionId,omitzero"`
@@ -1263,11 +1251,6 @@ type OnorbitassessmentUnvalidatedPublishParamsBody struct {
 	// URL to an external location containing the data that was used to make this
 	// assessment.
 	CollectionURL param.Opt[string] `json:"collectionURL,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Unique identifier of the target satellite on-orbit object to which this
 	// assessment applies. This ID can be used to obtain additional information on an
 	// OnOrbit object using the 'get by ID' operation (e.g. /udl/onorbit/{id}). For
@@ -1291,9 +1274,6 @@ type OnorbitassessmentUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by the source to indicate the target on-orbit
 	// object to which this assessment applies. This may be an internal identifier and
 	// not necessarily map to a valid satellite number.
@@ -1309,10 +1289,6 @@ type OnorbitassessmentUnvalidatedPublishParamsBody struct {
 	// RANGE PROFILER, WIDEBAND, etc.) contained in the signature. Applies when
 	// assmtLevel = SIGNATURE.
 	SigDataType param.Opt[string] `json:"sigDataType,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Optional identifier to track a commercial or marketplace transaction executed to
 	// produce this data.
 	TransactionID param.Opt[string] `json:"transactionId,omitzero"`

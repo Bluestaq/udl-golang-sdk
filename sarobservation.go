@@ -1537,11 +1537,6 @@ type SarObservationNewBulkParamsBody struct {
 	// The coordinate system used for the sensor velocity and target position vectors
 	// for the collection.
 	CoordSys param.Opt[string] `json:"coordSys,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The detection end time in ISO 8601 UTC format, with microsecond precision.
 	DetectionEnd param.Opt[time.Time] `json:"detectionEnd,omitzero" format:"date-time"`
 	// Identifier of the specific detection within a collection which produced this
@@ -1563,9 +1558,6 @@ type SarObservationNewBulkParamsBody struct {
 	// Distance between independent measurements, representing the physical dimension
 	// that represents a pixel of the image.
 	GroundResolutionProjection param.Opt[float64] `json:"groundResolutionProjection,omitzero"`
-	// Unique identifier of the spacecraft hosting the sensor associated with this
-	// collection.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the reporting sensor.
 	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
 	// The center incidence angle in degrees.
@@ -1597,9 +1589,6 @@ type SarObservationNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by the source to indicate the onorbit object
 	// hosting the sensor associated with this collection. This may be an internal
 	// identifier and not necessarily a valid satellite number.
@@ -1648,10 +1637,6 @@ type SarObservationNewBulkParamsBody struct {
 	SlantRange param.Opt[float64] `json:"slantRange,omitzero"`
 	// Signal to noise ratio, in dB.
 	Snr param.Opt[float64] `json:"snr,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The pixel spacing in the azimuth direction measured in meters.
 	SpacingAzimuth param.Opt[float64] `json:"spacingAzimuth,omitzero"`
 	// The pixel spacing in the range direction measured in meters.
@@ -1829,11 +1814,6 @@ type SarObservationUnvalidatedPublishParamsBody struct {
 	// The coordinate system used for the sensor velocity and target position vectors
 	// for the collection.
 	CoordSys param.Opt[string] `json:"coordSys,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The detection end time in ISO 8601 UTC format, with microsecond precision.
 	DetectionEnd param.Opt[time.Time] `json:"detectionEnd,omitzero" format:"date-time"`
 	// Identifier of the specific detection within a collection which produced this
@@ -1855,9 +1835,6 @@ type SarObservationUnvalidatedPublishParamsBody struct {
 	// Distance between independent measurements, representing the physical dimension
 	// that represents a pixel of the image.
 	GroundResolutionProjection param.Opt[float64] `json:"groundResolutionProjection,omitzero"`
-	// Unique identifier of the spacecraft hosting the sensor associated with this
-	// collection.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the reporting sensor.
 	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
 	// The center incidence angle in degrees.
@@ -1889,9 +1866,6 @@ type SarObservationUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by the source to indicate the onorbit object
 	// hosting the sensor associated with this collection. This may be an internal
 	// identifier and not necessarily a valid satellite number.
@@ -1940,10 +1914,6 @@ type SarObservationUnvalidatedPublishParamsBody struct {
 	SlantRange param.Opt[float64] `json:"slantRange,omitzero"`
 	// Signal to noise ratio, in dB.
 	Snr param.Opt[float64] `json:"snr,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The pixel spacing in the azimuth direction measured in meters.
 	SpacingAzimuth param.Opt[float64] `json:"spacingAzimuth,omitzero"`
 	// The pixel spacing in the range direction measured in meters.

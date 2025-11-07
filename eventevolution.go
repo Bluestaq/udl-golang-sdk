@@ -691,11 +691,6 @@ type EventEvolutionNewBulkParamsBody struct {
 	// ISO Alpha-3 code, or alternate code values that exist for the specified country
 	// code.
 	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Optional description of the relationship between the records provided in the
 	// srcTyps/srcIds and the activity or event.
 	DataDescription param.Opt[string] `json:"dataDescription,omitzero"`
@@ -723,9 +718,6 @@ type EventEvolutionNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Flag indicating that this record is for the purpose of redacting one or more
 	// previously specified records from association with this activity or event. If
 	// this flag is set then all records indicated in srcTyps/srcIds should be removed
@@ -884,11 +876,6 @@ type EventEvolutionUnvalidatedPublishParamsBody struct {
 	// ISO Alpha-3 code, or alternate code values that exist for the specified country
 	// code.
 	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Optional description of the relationship between the records provided in the
 	// srcTyps/srcIds and the activity or event.
 	DataDescription param.Opt[string] `json:"dataDescription,omitzero"`
@@ -916,9 +903,6 @@ type EventEvolutionUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Flag indicating that this record is for the purpose of redacting one or more
 	// previously specified records from association with this activity or event. If
 	// this flag is set then all records indicated in srcTyps/srcIds should be removed

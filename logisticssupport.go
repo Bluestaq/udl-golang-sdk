@@ -2593,10 +2593,6 @@ type LogisticsSupportNewBulkParamsBody struct {
 	// EAGLE, KC-130 HERCULES, etc.) of this aircraft. Intended as, but not constrained
 	// to, MIL-STD-6016 environment dependent specific type designations.
 	AircraftMds param.Opt[string] `json:"aircraftMDS,omitzero"`
-	// Time the row was created in the database.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The current ICAO of the aircraft that is the subject of this
 	// LogisticsSupportDetails record.
 	CurrIcao param.Opt[string] `json:"currICAO,omitzero"`
@@ -2633,9 +2629,6 @@ type LogisticsSupportNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The organization that owns this logistics record.
 	Owner param.Opt[string] `json:"owner,omitzero"`
 	// This is used to indicate whether a closed master record has been reopened.
@@ -2649,11 +2642,6 @@ type LogisticsSupportNewBulkParamsBody struct {
 	// The tail number of the aircraft that is the subject of this
 	// LogisticsSupportDetails record.
 	TailNumber param.Opt[string] `json:"tailNumber,omitzero"`
-	// Time the row was updated in the database, auto-populated by the system.
-	UpdatedAt param.Opt[time.Time] `json:"updatedAt,omitzero" format:"date-time"`
-	// Application user who updated the row in the database, auto-populated by the
-	// system.
-	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// Discrepancy information associated with this LogisticsSupport record.
 	LogisticsDiscrepancyInfos []LogisticsSupportNewBulkParamsBodyLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos,omitzero"`
 	// Remarks associated with this LogisticsSupport record.
@@ -3081,10 +3069,6 @@ type LogisticsSupportUnvalidatedPublishParamsBody struct {
 	// EAGLE, KC-130 HERCULES, etc.) of this aircraft. Intended as, but not constrained
 	// to, MIL-STD-6016 environment dependent specific type designations.
 	AircraftMds param.Opt[string] `json:"aircraftMDS,omitzero"`
-	// Time the row was created in the database.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The current ICAO of the aircraft that is the subject of this
 	// LogisticsSupportDetails record.
 	CurrIcao param.Opt[string] `json:"currICAO,omitzero"`
@@ -3121,9 +3105,6 @@ type LogisticsSupportUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The organization that owns this logistics record.
 	Owner param.Opt[string] `json:"owner,omitzero"`
 	// This is used to indicate whether a closed master record has been reopened.
@@ -3137,11 +3118,6 @@ type LogisticsSupportUnvalidatedPublishParamsBody struct {
 	// The tail number of the aircraft that is the subject of this
 	// LogisticsSupportDetails record.
 	TailNumber param.Opt[string] `json:"tailNumber,omitzero"`
-	// Time the row was updated in the database, auto-populated by the system.
-	UpdatedAt param.Opt[time.Time] `json:"updatedAt,omitzero" format:"date-time"`
-	// Application user who updated the row in the database, auto-populated by the
-	// system.
-	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// Discrepancy information associated with this LogisticsSupport record.
 	LogisticsDiscrepancyInfos []LogisticsSupportUnvalidatedPublishParamsBodyLogisticsDiscrepancyInfo `json:"logisticsDiscrepancyInfos,omitzero"`
 	// Remarks associated with this LogisticsSupport record.

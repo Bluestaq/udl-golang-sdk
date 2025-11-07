@@ -665,10 +665,6 @@ type WeatherDataNewBulkParamsBody struct {
 	AvgTxPwr param.Opt[float64] `json:"avgTxPwr,omitzero"`
 	// Checksum value for the data.
 	Checksum param.Opt[int64] `json:"checksum,omitzero"`
-	// Time the row was created in the database.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Datetime the system files were created.
 	FileCreation param.Opt[time.Time] `json:"fileCreation,omitzero" format:"date-time"`
 	// Unique identifier of the sensor making the weather measurement.
@@ -682,9 +678,6 @@ type WeatherDataNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by the record source. This may be an internal
 	// identifier and not necessarily a valid sensor ID.
 	OrigSensorID param.Opt[string] `json:"origSensorId,omitzero"`
@@ -875,10 +868,6 @@ type WeatherDataUnvalidatedPublishParamsBody struct {
 	AvgTxPwr param.Opt[float64] `json:"avgTxPwr,omitzero"`
 	// Checksum value for the data.
 	Checksum param.Opt[int64] `json:"checksum,omitzero"`
-	// Time the row was created in the database.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Datetime the system files were created.
 	FileCreation param.Opt[time.Time] `json:"fileCreation,omitzero" format:"date-time"`
 	// Unique identifier of the sensor making the weather measurement.
@@ -892,9 +881,6 @@ type WeatherDataUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by the record source. This may be an internal
 	// identifier and not necessarily a valid sensor ID.
 	OrigSensorID param.Opt[string] `json:"origSensorId,omitzero"`

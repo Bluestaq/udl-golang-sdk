@@ -1678,10 +1678,6 @@ type MissileTrackNewBulkParamsBody struct {
 	// The percentage of time that the estimated AoU will "cover" the true position of
 	// the track.
 	Containment param.Opt[float64] `json:"containment,omitzero"`
-	// Time the row was created in the database.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The drop-point indicator setting.
 	DropPtInd param.Opt[bool] `json:"dropPtInd,omitzero"`
 	// Indicates whether or not a track has an emergency.
@@ -1788,9 +1784,6 @@ type MissileTrackNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Track ID of the parent track, within the originating system, from which the
 	// track was developed.
 	ParentTrackID param.Opt[string] `json:"parentTrackId,omitzero"`
@@ -2242,10 +2235,6 @@ type MissileTrackUnvalidatedPublishParamsBody struct {
 	// The percentage of time that the estimated AoU will "cover" the true position of
 	// the track.
 	Containment param.Opt[float64] `json:"containment,omitzero"`
-	// Time the row was created in the database.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The drop-point indicator setting.
 	DropPtInd param.Opt[bool] `json:"dropPtInd,omitzero"`
 	// Indicates whether or not a track has an emergency.
@@ -2352,9 +2341,6 @@ type MissileTrackUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Track ID of the parent track, within the originating system, from which the
 	// track was developed.
 	ParentTrackID param.Opt[string] `json:"parentTrackId,omitzero"`

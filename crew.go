@@ -1614,11 +1614,6 @@ type CrewUnvalidatedPublishParamsBody struct {
 	CommanderLast4Ssn param.Opt[string] `json:"commanderLast4SSN,omitzero"`
 	// The name of the crew commander.
 	CommanderName param.Opt[string] `json:"commanderName,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Flag indicating whether this crew task takes the crew home and out of the stage.
 	CrewHome param.Opt[bool] `json:"crewHome,omitzero"`
 	// Name of the formed crew.
@@ -1688,9 +1683,6 @@ type CrewUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The type of personnel that comprises the crew (e.g., AIRCREW, MEDCREW, etc.).
 	PersonnelType param.Opt[string] `json:"personnelType,omitzero"`
 	// Time the crew will be picked up from lodging, in ISO 8601 UTC format with
@@ -1713,10 +1705,6 @@ type CrewUnvalidatedPublishParamsBody struct {
 	PreRestStart param.Opt[time.Time] `json:"preRestStart,omitzero" format:"date-time"`
 	// Scheduled return time, in ISO 8601 UTC format with millisecond precision.
 	ReturnTime param.Opt[time.Time] `json:"returnTime,omitzero" format:"date-time"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The stage 1 qualifications the crew must have for a mission, such as having
 	// basic knowledge of crew operations and aircraft systems.
 	Stage1Qual param.Opt[string] `json:"stage1Qual,omitzero"`
@@ -1741,11 +1729,6 @@ type CrewUnvalidatedPublishParamsBody struct {
 	// Identifies the trip kit needed by the crew. A trip kit contains charts,
 	// regulations, maps, etc. carried by the crew during missions.
 	TripKit param.Opt[string] `json:"tripKit,omitzero"`
-	// Time the row was updated in the database, auto-populated by the system.
-	UpdatedAt param.Opt[time.Time] `json:"updatedAt,omitzero" format:"date-time"`
-	// Application user who updated the row in the database, auto-populated by the
-	// system.
-	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// Array of qualification codes assigned to this crew (e.g., AL for Aircraft
 	// Leader, CS for Combat Systems Operator, etc.).
 	AssignedQualCode []string `json:"assignedQualCode,omitzero"`

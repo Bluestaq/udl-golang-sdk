@@ -532,11 +532,6 @@ type GnssObservationsetNewBulkParamsBody struct {
 	// Spacecraft altitude at observation time (ts), expressed in kilometers above
 	// WGS-84 ellipsoid.
 	Alt param.Opt[float64] `json:"alt,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Unique identifier of the parent Ephemeris Set, if this data is correlated with
 	// an Ephemeris. If reporting for a spacecraft with multiple onboard GNSS
 	// receivers, this ID may be associated with multiple GNSS Observation records if
@@ -549,8 +544,6 @@ type GnssObservationsetNewBulkParamsBody struct {
 	GDop param.Opt[float64] `json:"gDop,omitzero"`
 	// Horizontal Dilution of Precision.
 	HDop param.Opt[float64] `json:"hDop,omitzero"`
-	// Unique identifier of the primary satellite on-orbit object.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// WGS-84 spacecraft latitude sub-point at observation time (ts), represented as
 	// -90 to 90 degrees (negative values south of equator).
 	Lat param.Opt[float64] `json:"lat,omitzero"`
@@ -572,9 +565,6 @@ type GnssObservationsetNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by ephemeris source to indicate the target object
 	// of this ephemeris. This may be an internal identifier and not necessarily map to
 	// a valid satellite number.
@@ -784,11 +774,6 @@ type GnssObservationsetUnvalidatedPublishParamsBody struct {
 	// Spacecraft altitude at observation time (ts), expressed in kilometers above
 	// WGS-84 ellipsoid.
 	Alt param.Opt[float64] `json:"alt,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Unique identifier of the parent Ephemeris Set, if this data is correlated with
 	// an Ephemeris. If reporting for a spacecraft with multiple onboard GNSS
 	// receivers, this ID may be associated with multiple GNSS Observation records if
@@ -801,8 +786,6 @@ type GnssObservationsetUnvalidatedPublishParamsBody struct {
 	GDop param.Opt[float64] `json:"gDop,omitzero"`
 	// Horizontal Dilution of Precision.
 	HDop param.Opt[float64] `json:"hDop,omitzero"`
-	// Unique identifier of the primary satellite on-orbit object.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// WGS-84 spacecraft latitude sub-point at observation time (ts), represented as
 	// -90 to 90 degrees (negative values south of equator).
 	Lat param.Opt[float64] `json:"lat,omitzero"`
@@ -824,9 +807,6 @@ type GnssObservationsetUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by ephemeris source to indicate the target object
 	// of this ephemeris. This may be an internal identifier and not necessarily map to
 	// a valid satellite number.

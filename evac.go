@@ -1409,11 +1409,6 @@ type EvacNewBulkParamsBody struct {
 	CntctFreq param.Opt[float64] `json:"cntctFreq,omitzero"`
 	// Additional comments for the medevac mission.
 	Comments param.Opt[string] `json:"comments,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Unique identifier of a weather report associated with this evacuation.
 	IDWeatherReport param.Opt[string] `json:"idWeatherReport,omitzero"`
 	// Height above lat/lon point, in meters (1-sigma, if representing linear error).
@@ -1443,9 +1438,6 @@ type EvacNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Altitude relative to WGS-84 ellipsoid, in meters. Positive values indicate a
 	// point height above ellipsoid, and negative values indicate a point height below
 	// ellipsoid.
@@ -1901,11 +1893,6 @@ type EvacUnvalidatedPublishParamsBody struct {
 	CntctFreq param.Opt[float64] `json:"cntctFreq,omitzero"`
 	// Additional comments for the medevac mission.
 	Comments param.Opt[string] `json:"comments,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Unique identifier of a weather report associated with this evacuation.
 	IDWeatherReport param.Opt[string] `json:"idWeatherReport,omitzero"`
 	// Height above lat/lon point, in meters (1-sigma, if representing linear error).
@@ -1935,9 +1922,6 @@ type EvacUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Altitude relative to WGS-84 ellipsoid, in meters. Positive values indicate a
 	// point height above ellipsoid, and negative values indicate a point height below
 	// ellipsoid.

@@ -1537,11 +1537,6 @@ type LaserdeconflictrequestNewParamsLaserDeconflictTarget struct {
 	// The elevation angle of the centerline of the geospatial box that confines the
 	// positions of the target, in degrees.
 	CenterlineElevation param.Opt[float64] `json:"centerlineElevation,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The expected or directed declination angle of this target, in degrees.
 	Declination param.Opt[float64] `json:"declination,omitzero"`
 	// The expected or directed elevation angle of this target, in degrees.
@@ -1578,28 +1573,15 @@ type LaserdeconflictrequestNewParamsLaserDeconflictTarget struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The expected or directed right ascension angle of this target, in degrees.
 	Ra param.Opt[float64] `json:"ra,omitzero"`
 	// The name of the target celestial body in Earth's solar system (JUPITER, MARS,
 	// MERCURY, MOON, NEPTUNE, PLUTO, SATURN, SUN, URANUS, VENUS).
 	SolarSystemBody param.Opt[string] `json:"solarSystemBody,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The reference number of the target star.
 	StarNumber param.Opt[int64] `json:"starNumber,omitzero"`
-	// Start date of the time windows associated with this LaserDeconflictRequest, in
-	// ISO 8601 UTC format with millisecond precision.
-	StartDate param.Opt[time.Time] `json:"startDate,omitzero" format:"date-time"`
 	// The number assigned to this target instance for a request.
 	TargetNumber param.Opt[int64] `json:"targetNumber,omitzero"`
-	// Optional target identifier provided by the source provider. This may be an
-	// internal identifier and not necessarily map to UDL entities.
-	TargetObjectID param.Opt[string] `json:"targetObjectId,omitzero"`
 	// If this is an on-orbit target, this is the satellite/catalog number.
 	TargetObjectNo param.Opt[int64] `json:"targetObjectNo,omitzero"`
 	// A collection of latitude, longitude, and altitude fields which can be used to
@@ -1965,11 +1947,6 @@ type LaserdeconflictrequestUnvalidatedPublishParamsLaserDeconflictTarget struct 
 	// The elevation angle of the centerline of the geospatial box that confines the
 	// positions of the target, in degrees.
 	CenterlineElevation param.Opt[float64] `json:"centerlineElevation,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The expected or directed declination angle of this target, in degrees.
 	Declination param.Opt[float64] `json:"declination,omitzero"`
 	// The expected or directed elevation angle of this target, in degrees.
@@ -2006,28 +1983,15 @@ type LaserdeconflictrequestUnvalidatedPublishParamsLaserDeconflictTarget struct 
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The expected or directed right ascension angle of this target, in degrees.
 	Ra param.Opt[float64] `json:"ra,omitzero"`
 	// The name of the target celestial body in Earth's solar system (JUPITER, MARS,
 	// MERCURY, MOON, NEPTUNE, PLUTO, SATURN, SUN, URANUS, VENUS).
 	SolarSystemBody param.Opt[string] `json:"solarSystemBody,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The reference number of the target star.
 	StarNumber param.Opt[int64] `json:"starNumber,omitzero"`
-	// Start date of the time windows associated with this LaserDeconflictRequest, in
-	// ISO 8601 UTC format with millisecond precision.
-	StartDate param.Opt[time.Time] `json:"startDate,omitzero" format:"date-time"`
 	// The number assigned to this target instance for a request.
 	TargetNumber param.Opt[int64] `json:"targetNumber,omitzero"`
-	// Optional target identifier provided by the source provider. This may be an
-	// internal identifier and not necessarily map to UDL entities.
-	TargetObjectID param.Opt[string] `json:"targetObjectId,omitzero"`
 	// If this is an on-orbit target, this is the satellite/catalog number.
 	TargetObjectNo param.Opt[int64] `json:"targetObjectNo,omitzero"`
 	// A collection of latitude, longitude, and altitude fields which can be used to

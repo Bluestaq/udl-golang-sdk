@@ -332,11 +332,6 @@ type TrackRouteIngestParam struct {
 	ApxBeaconCode param.Opt[string] `json:"apxBeaconCode,omitzero"`
 	// Air Refueling Track Control Center message.
 	ArtccMessage param.Opt[string] `json:"artccMessage,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The name of the creating organization of the track route.
 	CreatingOrg param.Opt[string] `json:"creatingOrg,omitzero"`
 	// The principal compass direction (cardinal or ordinal) of the track route.
@@ -358,9 +353,6 @@ type TrackRouteIngestParam struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The primary UHF radio frequency used for the track route in megahertz.
 	PriFreq param.Opt[float64] `json:"priFreq,omitzero"`
 	// The receiver tanker channel identifer for air refueling tracks.
@@ -382,10 +374,6 @@ type TrackRouteIngestParam struct {
 	ShortName param.Opt[string] `json:"shortName,omitzero"`
 	// Standard Indicator Code of the air refueling track.
 	Sic param.Opt[string] `json:"sic,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Identifier of the track.
 	TrackID param.Opt[string] `json:"trackId,omitzero"`
 	// Name of the track.
@@ -398,11 +386,6 @@ type TrackRouteIngestParam struct {
 	// Assets)), Y (Matched Theater Operation Short Notice (AMC Assets)), Z (Other Air
 	// Refueling).
 	TypeCode param.Opt[string] `json:"typeCode,omitzero"`
-	// Time the row was updated in the database, auto-populated by the system.
-	UpdatedAt param.Opt[time.Time] `json:"updatedAt,omitzero" format:"date-time"`
-	// Application user who updated the row in the database, auto-populated by the
-	// system.
-	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// Minimum and maximum altitude bounds for the track.
 	AltitudeBlocks []AltitudeBlocksIngestParam `json:"altitudeBlocks,omitzero"`
 	// Point of contacts for scheduling or modifying the route.

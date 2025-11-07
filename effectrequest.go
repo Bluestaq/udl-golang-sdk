@@ -817,11 +817,6 @@ type EffectRequestNewBulkParamsBody struct {
 	ID param.Opt[string] `json:"id,omitzero"`
 	// Specific descriptive instantiation of the effect, e.g., playbook to be used.
 	Context param.Opt[string] `json:"context,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The indicator of deadline of the bid request (e.g. BETWEEN, IMMEDIATE,
 	// NOEARLIERTHAN, NOLATERTHAN, etc.): BETWEEN:&nbsp;Produce effect any time between
 	// the given start and end times, equal penalty for being early or late
@@ -842,9 +837,6 @@ type EffectRequestNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The priority (LOW, MEDIUM, HIGH) of this request.
 	Priority param.Opt[string] `json:"priority,omitzero"`
 	// The time the effect should start, in ISO8601 UTC format.
@@ -953,11 +945,6 @@ type EffectRequestUnvalidatedPublishParamsBody struct {
 	ID param.Opt[string] `json:"id,omitzero"`
 	// Specific descriptive instantiation of the effect, e.g., playbook to be used.
 	Context param.Opt[string] `json:"context,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The indicator of deadline of the bid request (e.g. BETWEEN, IMMEDIATE,
 	// NOEARLIERTHAN, NOLATERTHAN, etc.): BETWEEN:&nbsp;Produce effect any time between
 	// the given start and end times, equal penalty for being early or late
@@ -978,9 +965,6 @@ type EffectRequestUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The priority (LOW, MEDIUM, HIGH) of this request.
 	Priority param.Opt[string] `json:"priority,omitzero"`
 	// The time the effect should start, in ISO8601 UTC format.

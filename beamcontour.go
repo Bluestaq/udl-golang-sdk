@@ -699,12 +699,6 @@ type BeamContourNewBulkParamsBody struct {
 	ID param.Opt[string] `json:"id,omitzero"`
 	// The index number of this contour. The value is required if type = CONTOUR.
 	ContourIdx param.Opt[int64] `json:"contourIdx,omitzero"`
-	// Time the row was created in the database, auto-populated by the system, example
-	// = 2018-01-01T16:00:00.123Z.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The relative gain level in dB associated with this boresight or contour. Gain
 	// does not apply to service area records. The value is required if type =
 	// BORESIGHT or CONTOUR.
@@ -740,9 +734,6 @@ type BeamContourNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The region name within the service area.
 	RegionName param.Opt[string] `json:"regionName,omitzero"`
 	paramObj

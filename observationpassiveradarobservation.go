@@ -1479,11 +1479,6 @@ type ObservationPassiveRadarObservationNewBulkParamsBody struct {
 	Coning param.Opt[float64] `json:"coning,omitzero"`
 	// One sigma uncertainty in the coning angle measurement, in degrees.
 	ConingUnc param.Opt[float64] `json:"coningUnc,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Line of sight declination angle in degrees and J2000 coordinate frame.
 	Declination param.Opt[float64] `json:"declination,omitzero"`
 	// The time difference, in seconds, between the signal collected at the
@@ -1511,11 +1506,6 @@ type ObservationPassiveRadarObservationNewBulkParamsBody struct {
 	ElevationUnc param.Opt[float64] `json:"elevationUnc,omitzero"`
 	// Optional external observation identifier provided by the source.
 	ExtObservationID param.Opt[string] `json:"extObservationId,omitzero"`
-	// Unique identifier of the target satellite on-orbit object. This ID can be used
-	// to obtain additional information on an OnOrbit object using the 'get by ID'
-	// operation (e.g. /udl/onorbit/{id}). For example, the OnOrbit with idOnOrbit =
-	// 25544 would be queried as /udl/onorbit/25544.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the transmitter. This ID can be used to obtain additional
 	// information on an RFEmitter using the 'get by ID' operation (e.g.
 	// /udl/rfemitter/{id}). For example, the RFEmitter with idRFEmitter = abc would be
@@ -1546,9 +1536,6 @@ type ObservationPassiveRadarObservationNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by observation source to indicate the target
 	// onorbit object of this observation. This may be an internal identifier and not
 	// necessarily a valid satellite number.
@@ -1573,10 +1560,6 @@ type ObservationPassiveRadarObservationNewBulkParamsBody struct {
 	SatNo param.Opt[int64] `json:"satNo,omitzero"`
 	// Signal to noise ratio, in dB.
 	Snr param.Opt[float64] `json:"snr,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Optional identifier to indicate the specific tasking which produced this
 	// observation.
 	TaskID param.Opt[string] `json:"taskId,omitzero"`
@@ -1594,9 +1577,6 @@ type ObservationPassiveRadarObservationNewBulkParamsBody struct {
 	// Optional identifier to track a commercial or marketplace transaction executed to
 	// produce this data.
 	TransactionID param.Opt[string] `json:"transactionId,omitzero"`
-	// Read only enumeration specifying the type of observation (e.g. OPTICAL, RADAR,
-	// RF, etc).
-	Type param.Opt[string] `json:"type,omitzero"`
 	// Boolean indicating this observation is part of an uncorrelated track or was
 	// unable to be correlated to a known object. This flag should only be set to true
 	// by data providers after an attempt to correlate to an on-orbit object was made
@@ -1722,11 +1702,6 @@ type ObservationPassiveRadarObservationFileNewParamsBody struct {
 	Coning param.Opt[float64] `json:"coning,omitzero"`
 	// One sigma uncertainty in the coning angle measurement, in degrees.
 	ConingUnc param.Opt[float64] `json:"coningUnc,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Line of sight declination angle in degrees and J2000 coordinate frame.
 	Declination param.Opt[float64] `json:"declination,omitzero"`
 	// The time difference, in seconds, between the signal collected at the
@@ -1754,11 +1729,6 @@ type ObservationPassiveRadarObservationFileNewParamsBody struct {
 	ElevationUnc param.Opt[float64] `json:"elevationUnc,omitzero"`
 	// Optional external observation identifier provided by the source.
 	ExtObservationID param.Opt[string] `json:"extObservationId,omitzero"`
-	// Unique identifier of the target satellite on-orbit object. This ID can be used
-	// to obtain additional information on an OnOrbit object using the 'get by ID'
-	// operation (e.g. /udl/onorbit/{id}). For example, the OnOrbit with idOnOrbit =
-	// 25544 would be queried as /udl/onorbit/25544.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the transmitter. This ID can be used to obtain additional
 	// information on an RFEmitter using the 'get by ID' operation (e.g.
 	// /udl/rfemitter/{id}). For example, the RFEmitter with idRFEmitter = abc would be
@@ -1789,9 +1759,6 @@ type ObservationPassiveRadarObservationFileNewParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by observation source to indicate the target
 	// onorbit object of this observation. This may be an internal identifier and not
 	// necessarily a valid satellite number.
@@ -1816,10 +1783,6 @@ type ObservationPassiveRadarObservationFileNewParamsBody struct {
 	SatNo param.Opt[int64] `json:"satNo,omitzero"`
 	// Signal to noise ratio, in dB.
 	Snr param.Opt[float64] `json:"snr,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Optional identifier to indicate the specific tasking which produced this
 	// observation.
 	TaskID param.Opt[string] `json:"taskId,omitzero"`
@@ -1837,9 +1800,6 @@ type ObservationPassiveRadarObservationFileNewParamsBody struct {
 	// Optional identifier to track a commercial or marketplace transaction executed to
 	// produce this data.
 	TransactionID param.Opt[string] `json:"transactionId,omitzero"`
-	// Read only enumeration specifying the type of observation (e.g. OPTICAL, RADAR,
-	// RF, etc).
-	Type param.Opt[string] `json:"type,omitzero"`
 	// Boolean indicating this observation is part of an uncorrelated track or was
 	// unable to be correlated to a known object. This flag should only be set to true
 	// by data providers after an attempt to correlate to an on-orbit object was made

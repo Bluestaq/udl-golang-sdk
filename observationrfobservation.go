@@ -1868,11 +1868,6 @@ type ObservationRfObservationNewBulkParamsBody struct {
 	CollectionMode param.Opt[string] `json:"collectionMode,omitzero"`
 	// Confidence in the signal and its measurements and characterization.
 	Confidence param.Opt[float64] `json:"confidence,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Optional source-provided and searchable metadata or descriptor of the data.
 	Descriptor param.Opt[string] `json:"descriptor,omitzero"`
 	// Detection status (e.g. DETECTED, CARRIER_ACQUIRING, CARRIER_DETECTED,
@@ -1898,8 +1893,6 @@ type ObservationRfObservationNewBulkParamsBody struct {
 	Frequency param.Opt[float64] `json:"frequency,omitzero"`
 	// Frequency Shift of the RFObservation record.
 	FrequencyShift param.Opt[float64] `json:"frequencyShift,omitzero"`
-	// Unique identifier of the target on-orbit object, if correlated.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the reporting sensor.
 	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
 	// True if the signal is incoming, false if outgoing.
@@ -1925,18 +1918,11 @@ type ObservationRfObservationNewBulkParamsBody struct {
 	NominalPowerOverNoise param.Opt[float64] `json:"nominalPowerOverNoise,omitzero"`
 	// Nominal or expected signal to noise ratio, in decibels.
 	NominalSnr param.Opt[float64] `json:"nominalSnr,omitzero"`
-	// Country of origin in which the data was originally posted.
-	OrigCountry param.Opt[string] `json:"origCountry,omitzero"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// Original security marking that the data was marked with.
-	OrigMarking param.Opt[string] `json:"origMarking,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by observation source to indicate the target
 	// onorbit object of this observation. This may be an internal identifier and not
 	// necessarily a valid satellite number.
@@ -2001,10 +1987,6 @@ type ObservationRfObservationNewBulkParamsBody struct {
 	Senlon param.Opt[float64] `json:"senlon,omitzero"`
 	// Signal to noise ratio, in decibels.
 	Snr param.Opt[float64] `json:"snr,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Measured spectrum analyzer power of the center carrier frequency in decibel
 	// watts.
 	SpectrumAnalyzerPower param.Opt[float64] `json:"spectrumAnalyzerPower,omitzero"`
@@ -2240,11 +2222,6 @@ type ObservationRfObservationUnvalidatedPublishParamsBody struct {
 	CollectionMode param.Opt[string] `json:"collectionMode,omitzero"`
 	// Confidence in the signal and its measurements and characterization.
 	Confidence param.Opt[float64] `json:"confidence,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Optional source-provided and searchable metadata or descriptor of the data.
 	Descriptor param.Opt[string] `json:"descriptor,omitzero"`
 	// Detection status (e.g. DETECTED, CARRIER_ACQUIRING, CARRIER_DETECTED,
@@ -2270,8 +2247,6 @@ type ObservationRfObservationUnvalidatedPublishParamsBody struct {
 	Frequency param.Opt[float64] `json:"frequency,omitzero"`
 	// Frequency Shift of the RFObservation record.
 	FrequencyShift param.Opt[float64] `json:"frequencyShift,omitzero"`
-	// Unique identifier of the target on-orbit object, if correlated.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the reporting sensor.
 	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
 	// True if the signal is incoming, false if outgoing.
@@ -2297,18 +2272,11 @@ type ObservationRfObservationUnvalidatedPublishParamsBody struct {
 	NominalPowerOverNoise param.Opt[float64] `json:"nominalPowerOverNoise,omitzero"`
 	// Nominal or expected signal to noise ratio, in decibels.
 	NominalSnr param.Opt[float64] `json:"nominalSnr,omitzero"`
-	// Country of origin in which the data was originally posted.
-	OrigCountry param.Opt[string] `json:"origCountry,omitzero"`
 	// Originating system or organization which produced the data, if different from
 	// the source. The origin may be different than the source if the source was a
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// Original security marking that the data was marked with.
-	OrigMarking param.Opt[string] `json:"origMarking,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by observation source to indicate the target
 	// onorbit object of this observation. This may be an internal identifier and not
 	// necessarily a valid satellite number.
@@ -2373,10 +2341,6 @@ type ObservationRfObservationUnvalidatedPublishParamsBody struct {
 	Senlon param.Opt[float64] `json:"senlon,omitzero"`
 	// Signal to noise ratio, in decibels.
 	Snr param.Opt[float64] `json:"snr,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Measured spectrum analyzer power of the center carrier frequency in decibel
 	// watts.
 	SpectrumAnalyzerPower param.Opt[float64] `json:"spectrumAnalyzerPower,omitzero"`

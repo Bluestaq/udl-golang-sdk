@@ -1329,11 +1329,6 @@ type SoiObservationSetNewBulkParamsBody struct {
 	// meaning of the value (e.g. A value of 0.0 indicates a high/strong correlation,
 	// while a value closer to 1.0 indicates low/weak correlation).
 	CorrQuality param.Opt[float64] `json:"corrQuality,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Observation set detection end time in ISO 8601 UTC with microsecond precision.
 	EndTime param.Opt[time.Time] `json:"endTime,omitzero" format:"date-time"`
 	// The gain used during the collection, in units of photoelectrons per
@@ -1341,8 +1336,6 @@ type SoiObservationSetNewBulkParamsBody struct {
 	Gain param.Opt[float64] `json:"gain,omitzero"`
 	// ID of the UDL Elset of the Space Object under observation.
 	IDElset param.Opt[string] `json:"idElset,omitzero"`
-	// Unique identifier of the target on-orbit object, if correlated.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// ID of the observing sensor.
 	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
 	// Line of sight declination at observation set detection end time. Specified in
@@ -1362,9 +1355,6 @@ type SoiObservationSetNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by observation source to indicate the target
 	// onorbit object of this observation. This may be an internal identifier and not
 	// necessarily a valid satellite number.
@@ -1461,10 +1451,6 @@ type SoiObservationSetNewBulkParamsBody struct {
 	// Boolean indicating if a solar phase angle brightness change event was detected,
 	// based on historical collection data for the object.
 	SolarPhaseAngleBrightnessChangeDetected param.Opt[bool] `json:"solarPhaseAngleBrightnessChangeDetected,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Name of the Star Catalog used for photometry and astrometry.
 	StarCatName param.Opt[string] `json:"starCatName,omitzero"`
 	// Optional identifier to track a commercial or marketplace transaction executed to
@@ -1937,11 +1923,6 @@ type SoiObservationSetUnvalidatedPublishParamsBody struct {
 	// meaning of the value (e.g. A value of 0.0 indicates a high/strong correlation,
 	// while a value closer to 1.0 indicates low/weak correlation).
 	CorrQuality param.Opt[float64] `json:"corrQuality,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Observation set detection end time in ISO 8601 UTC with microsecond precision.
 	EndTime param.Opt[time.Time] `json:"endTime,omitzero" format:"date-time"`
 	// The gain used during the collection, in units of photoelectrons per
@@ -1949,8 +1930,6 @@ type SoiObservationSetUnvalidatedPublishParamsBody struct {
 	Gain param.Opt[float64] `json:"gain,omitzero"`
 	// ID of the UDL Elset of the Space Object under observation.
 	IDElset param.Opt[string] `json:"idElset,omitzero"`
-	// Unique identifier of the target on-orbit object, if correlated.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// ID of the observing sensor.
 	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
 	// Line of sight declination at observation set detection end time. Specified in
@@ -1970,9 +1949,6 @@ type SoiObservationSetUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by observation source to indicate the target
 	// onorbit object of this observation. This may be an internal identifier and not
 	// necessarily a valid satellite number.
@@ -2069,10 +2045,6 @@ type SoiObservationSetUnvalidatedPublishParamsBody struct {
 	// Boolean indicating if a solar phase angle brightness change event was detected,
 	// based on historical collection data for the object.
 	SolarPhaseAngleBrightnessChangeDetected param.Opt[bool] `json:"solarPhaseAngleBrightnessChangeDetected,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Name of the Star Catalog used for photometry and astrometry.
 	StarCatName param.Opt[string] `json:"starCatName,omitzero"`
 	// Optional identifier to track a commercial or marketplace transaction executed to

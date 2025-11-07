@@ -1195,11 +1195,6 @@ type HazardNewBulkParamsBody struct {
 	// The applicable channel involved in this biological material detection (e.g.
 	// Digestive, Eyes, Respiratory, Skin, etc.) .
 	Channel param.Opt[string] `json:"channel,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The concentration time, in (kg/sec)/m^3, associated with this material
 	// detection.
 	CtrnTime param.Opt[float64] `json:"ctrnTime,omitzero"`
@@ -1276,9 +1271,6 @@ type HazardNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Measure of the concentration of the material associated with this detection, in
 	// parts per million (units of contaminant mass per million parts of total mass).
 	Ppm param.Opt[int64] `json:"ppm,omitzero"`

@@ -1391,11 +1391,6 @@ type EmitterGeolocationNewBulkParamsBody struct {
 	ConfArea param.Opt[float64] `json:"confArea,omitzero"`
 	// The name of the satellite constellation.
 	Constellation param.Opt[string] `json:"constellation,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Specifies the creation time associated with the order in ISO 8601 UTC with
 	// microsecond precision.
 	CreatedTs param.Opt[time.Time] `json:"createdTs,omitzero" format:"date-time"`
@@ -1414,12 +1409,6 @@ type EmitterGeolocationNewBulkParamsBody struct {
 	// provided as a convenience for systems that require tracking of an internal
 	// system generated ID.
 	ExternalID param.Opt[string] `json:"externalId,omitzero"`
-	// Unique identifier of the satellite used to identify and geolocate Emitter
-	// signals of interest. This ID can be used to obtain additional information on an
-	// OnOrbit object using the 'get by ID' operation (e.g. /udl/onorbit/{id}). For
-	// example, the onorbit object with idOnOrbit = abc would be queried as
-	// /udl/onorbit/abc. Used when Emitter geolocation is done by a single satellite.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Optional identifier of the geolocated signal of interest RF Emitter for this
 	// observation. This ID can be used to obtain additional information on an RF
 	// Emitter object using the 'get by ID' operation (e.g. /udl/rfemitter/{id}). For
@@ -1464,9 +1453,6 @@ type EmitterGeolocationNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier of the satellite used to identify and geolocate Emitter
 	// signals of interest of this observation. This may be an internal identifier and
 	// not necessarily a valid satellite number. Used when Emitter geolocation is done
@@ -1495,10 +1481,6 @@ type EmitterGeolocationNewBulkParamsBody struct {
 	SatNo param.Opt[int64] `json:"satNo,omitzero"`
 	// The name of the signal of interest.
 	SignalOfInterest param.Opt[string] `json:"signalOfInterest,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Confidence ellipsoid about the detection location [semi-major axis (meters),
 	// semi-minor axis (meters), orientation (degrees) measured clockwise (0-360 from
 	// true north)].
@@ -1635,11 +1617,6 @@ type EmitterGeolocationUnvalidatedPublishParamsBody struct {
 	ConfArea param.Opt[float64] `json:"confArea,omitzero"`
 	// The name of the satellite constellation.
 	Constellation param.Opt[string] `json:"constellation,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Specifies the creation time associated with the order in ISO 8601 UTC with
 	// microsecond precision.
 	CreatedTs param.Opt[time.Time] `json:"createdTs,omitzero" format:"date-time"`
@@ -1658,12 +1635,6 @@ type EmitterGeolocationUnvalidatedPublishParamsBody struct {
 	// provided as a convenience for systems that require tracking of an internal
 	// system generated ID.
 	ExternalID param.Opt[string] `json:"externalId,omitzero"`
-	// Unique identifier of the satellite used to identify and geolocate Emitter
-	// signals of interest. This ID can be used to obtain additional information on an
-	// OnOrbit object using the 'get by ID' operation (e.g. /udl/onorbit/{id}). For
-	// example, the onorbit object with idOnOrbit = abc would be queried as
-	// /udl/onorbit/abc. Used when Emitter geolocation is done by a single satellite.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Optional identifier of the geolocated signal of interest RF Emitter for this
 	// observation. This ID can be used to obtain additional information on an RF
 	// Emitter object using the 'get by ID' operation (e.g. /udl/rfemitter/{id}). For
@@ -1708,9 +1679,6 @@ type EmitterGeolocationUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier of the satellite used to identify and geolocate Emitter
 	// signals of interest of this observation. This may be an internal identifier and
 	// not necessarily a valid satellite number. Used when Emitter geolocation is done
@@ -1739,10 +1707,6 @@ type EmitterGeolocationUnvalidatedPublishParamsBody struct {
 	SatNo param.Opt[int64] `json:"satNo,omitzero"`
 	// The name of the signal of interest.
 	SignalOfInterest param.Opt[string] `json:"signalOfInterest,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Confidence ellipsoid about the detection location [semi-major axis (meters),
 	// semi-minor axis (meters), orientation (degrees) measured clockwise (0-360 from
 	// true north)].

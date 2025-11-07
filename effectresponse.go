@@ -1152,11 +1152,6 @@ type EffectResponseNewBulkParamsBody struct {
 	ActorSrcType param.Opt[string] `json:"actorSrcType,omitzero"`
 	// The collateral damage estimate (CDE) of the munition being fired.
 	CollateralDamageEst param.Opt[float64] `json:"collateralDamageEst,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The deadline time to accept this COA before it's no longer valid, in ISO8601 UTC
 	// format.
 	DecisionDeadline param.Opt[time.Time] `json:"decisionDeadline,omitzero" format:"date-time"`
@@ -1174,9 +1169,6 @@ type EffectResponseNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The probability of kill (0-1) of the target being destroyed.
 	ProbabilityOfKill param.Opt[float64] `json:"probabilityOfKill,omitzero"`
 	// The record ID, depending on the type identified in redTargetSrcType, of the red
@@ -1383,11 +1375,6 @@ type EffectResponseUnvalidatedPublishParamsBody struct {
 	ActorSrcType param.Opt[string] `json:"actorSrcType,omitzero"`
 	// The collateral damage estimate (CDE) of the munition being fired.
 	CollateralDamageEst param.Opt[float64] `json:"collateralDamageEst,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The deadline time to accept this COA before it's no longer valid, in ISO8601 UTC
 	// format.
 	DecisionDeadline param.Opt[time.Time] `json:"decisionDeadline,omitzero" format:"date-time"`
@@ -1405,9 +1392,6 @@ type EffectResponseUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The probability of kill (0-1) of the target being destroyed.
 	ProbabilityOfKill param.Opt[float64] `json:"probabilityOfKill,omitzero"`
 	// The record ID, depending on the type identified in redTargetSrcType, of the red

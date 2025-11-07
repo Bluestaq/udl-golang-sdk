@@ -2582,11 +2582,6 @@ type DiplomaticClearanceCountryNewBulkParamsBody struct {
 	// Remarks concerning the country for which the diplomatic clearance will be
 	// issued.
 	CountryRemark param.Opt[string] `json:"countryRemark,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Flag indicating whether a diplomatic clearance profile exists for this country.
 	ExistingProfile param.Opt[bool] `json:"existingProfile,omitzero"`
 	// Time difference between the location of the country for which the diplomatic
@@ -2629,18 +2624,6 @@ type DiplomaticClearanceCountryNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
-	// Time the row was updated in the database, auto-populated by the system.
-	UpdatedAt param.Opt[time.Time] `json:"updatedAt,omitzero" format:"date-time"`
-	// Application user who updated the row in the database, auto-populated by the
-	// system.
-	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// Collection of diplomatic clearance profile information for this country.
 	DiplomaticClearanceCountryContacts []DiplomaticClearanceCountryNewBulkParamsBodyDiplomaticClearanceCountryContact `json:"diplomaticClearanceCountryContacts,omitzero"`
 	// Collection of diplomatic clearance profile information for this country.
@@ -2982,11 +2965,6 @@ type DiplomaticClearanceCountryUnvalidatedPublishParamsBody struct {
 	// Remarks concerning the country for which the diplomatic clearance will be
 	// issued.
 	CountryRemark param.Opt[string] `json:"countryRemark,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Flag indicating whether a diplomatic clearance profile exists for this country.
 	ExistingProfile param.Opt[bool] `json:"existingProfile,omitzero"`
 	// Time difference between the location of the country for which the diplomatic
@@ -3029,18 +3007,6 @@ type DiplomaticClearanceCountryUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
-	// Time the row was updated in the database, auto-populated by the system.
-	UpdatedAt param.Opt[time.Time] `json:"updatedAt,omitzero" format:"date-time"`
-	// Application user who updated the row in the database, auto-populated by the
-	// system.
-	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// Collection of diplomatic clearance profile information for this country.
 	DiplomaticClearanceCountryContacts []DiplomaticClearanceCountryUnvalidatedPublishParamsBodyDiplomaticClearanceCountryContact `json:"diplomaticClearanceCountryContacts,omitzero"`
 	// Collection of diplomatic clearance profile information for this country.

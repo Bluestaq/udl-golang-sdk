@@ -581,16 +581,8 @@ type AttitudeSetNewParamsAttitudeList struct {
 	AsID param.Opt[string] `json:"asId,omitzero"`
 	// Coning angle in degrees.
 	ConingAngle param.Opt[float64] `json:"coningAngle,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Precession axis declination (ECI J2000 frame) in degrees.
 	Declination param.Opt[float64] `json:"declination,omitzero"`
-	// Unique identifier of the on-orbit satellite to which this attitude record
-	// applies.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Label specifying type of rotational motion of target.
 	MotionType param.Opt[string] `json:"motionType,omitzero"`
 	// Originating system or organization which produced the data, if different from
@@ -598,9 +590,6 @@ type AttitudeSetNewParamsAttitudeList struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by the record source to indicate the target object
 	// of this attitude record. This may be an internal identifier and not necessarily
 	// map to a valid satellite number.
@@ -935,16 +924,8 @@ type AttitudeSetUnvalidatedPublishParamsAttitudeList struct {
 	AsID param.Opt[string] `json:"asId,omitzero"`
 	// Coning angle in degrees.
 	ConingAngle param.Opt[float64] `json:"coningAngle,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Precession axis declination (ECI J2000 frame) in degrees.
 	Declination param.Opt[float64] `json:"declination,omitzero"`
-	// Unique identifier of the on-orbit satellite to which this attitude record
-	// applies.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Label specifying type of rotational motion of target.
 	MotionType param.Opt[string] `json:"motionType,omitzero"`
 	// Originating system or organization which produced the data, if different from
@@ -952,9 +933,6 @@ type AttitudeSetUnvalidatedPublishParamsAttitudeList struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by the record source to indicate the target object
 	// of this attitude record. This may be an internal identifier and not necessarily
 	// map to a valid satellite number.
