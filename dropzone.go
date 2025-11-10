@@ -1163,11 +1163,6 @@ type DropzoneNewBulkParamsBody struct {
 	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
 	// The country name of the location for the drop zone.
 	CountryName param.Opt[string] `json:"countryName,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The survey expiration date of the drop zone, in ISO 8601 UTC format with
 	// millisecond precision.
 	ExpirationDate param.Opt[time.Time] `json:"expirationDate,omitzero" format:"date-time"`
@@ -1192,9 +1187,6 @@ type DropzoneNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The name assigned to the drop zone point.
 	PointName param.Opt[string] `json:"pointName,omitzero"`
 	// The radius dimension of the drop zone in meters for circular drop zones.
@@ -1204,10 +1196,6 @@ type DropzoneNewBulkParamsBody struct {
 	RecertDate param.Opt[time.Time] `json:"recertDate,omitzero" format:"date-time"`
 	// Remarks concerning the drop zone.
 	Remark param.Opt[string] `json:"remark,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The US alphabetical code for the state where the drop zone is located.
 	StateAbbr param.Opt[string] `json:"stateAbbr,omitzero"`
 	// The name of the state where the drop zone is located.
@@ -1326,11 +1314,6 @@ type DropzoneUnvalidatedPublishParamsBody struct {
 	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
 	// The country name of the location for the drop zone.
 	CountryName param.Opt[string] `json:"countryName,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The survey expiration date of the drop zone, in ISO 8601 UTC format with
 	// millisecond precision.
 	ExpirationDate param.Opt[time.Time] `json:"expirationDate,omitzero" format:"date-time"`
@@ -1355,9 +1338,6 @@ type DropzoneUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The name assigned to the drop zone point.
 	PointName param.Opt[string] `json:"pointName,omitzero"`
 	// The radius dimension of the drop zone in meters for circular drop zones.
@@ -1367,10 +1347,6 @@ type DropzoneUnvalidatedPublishParamsBody struct {
 	RecertDate param.Opt[time.Time] `json:"recertDate,omitzero" format:"date-time"`
 	// Remarks concerning the drop zone.
 	Remark param.Opt[string] `json:"remark,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The US alphabetical code for the state where the drop zone is located.
 	StateAbbr param.Opt[string] `json:"stateAbbr,omitzero"`
 	// The name of the state where the drop zone is located.

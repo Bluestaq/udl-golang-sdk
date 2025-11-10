@@ -1561,11 +1561,6 @@ type ObservationRadarobservationNewBulkParamsBody struct {
 	AzimuthUnc param.Opt[float64] `json:"azimuthUnc,omitzero"`
 	// ID of the beam that produced this observation.
 	Beam param.Opt[float64] `json:"beam,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Line of sight declination angle in degrees and J2000 coordinate frame.
 	Declination param.Opt[float64] `json:"declination,omitzero"`
 	// Optional flag indicating whether the declination value is measured (true) or
@@ -1591,8 +1586,6 @@ type ObservationRadarobservationNewBulkParamsBody struct {
 	// One sigma uncertainty in the line of sight elevation angle measurement, in
 	// degrees.
 	ElevationUnc param.Opt[float64] `json:"elevationUnc,omitzero"`
-	// Unique identifier of the target on-orbit object, if correlated.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the reporting sensor.
 	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
 	// The position of this observation within a track (FENCE, FIRST, IN, LAST,
@@ -1604,9 +1597,6 @@ type ObservationRadarobservationNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by observation source to indicate the target
 	// onorbit object of this observation. This may be an internal identifier and not
 	// necessarily a valid satellite number.
@@ -1671,10 +1661,6 @@ type ObservationRadarobservationNewBulkParamsBody struct {
 	Senz param.Opt[float64] `json:"senz,omitzero"`
 	// Signal to noise ratio, in dB.
 	Snr param.Opt[float64] `json:"snr,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Optional identifier to indicate the specific tasking which produced this
 	// observation.
 	TaskID param.Opt[string] `json:"taskId,omitzero"`
@@ -1708,9 +1694,6 @@ type ObservationRadarobservationNewBulkParamsBody struct {
 	// Optional identifier to track a commercial or marketplace transaction executed to
 	// produce this data.
 	TransactionID param.Opt[string] `json:"transactionId,omitzero"`
-	// Read only enumeration specifying the type of observation (e.g. OPTICAL, RADAR,
-	// RF, etc).
-	Type param.Opt[string] `json:"type,omitzero"`
 	// Boolean indicating this observation is part of an uncorrelated track or was
 	// unable to be correlated to a known object. This flag should only be set to true
 	// by data providers after an attempt to correlate to an on-orbit object was made
@@ -1857,11 +1840,6 @@ type ObservationRadarobservationUnvalidatedPublishParamsBody struct {
 	AzimuthUnc param.Opt[float64] `json:"azimuthUnc,omitzero"`
 	// ID of the beam that produced this observation.
 	Beam param.Opt[float64] `json:"beam,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Line of sight declination angle in degrees and J2000 coordinate frame.
 	Declination param.Opt[float64] `json:"declination,omitzero"`
 	// Optional flag indicating whether the declination value is measured (true) or
@@ -1887,8 +1865,6 @@ type ObservationRadarobservationUnvalidatedPublishParamsBody struct {
 	// One sigma uncertainty in the line of sight elevation angle measurement, in
 	// degrees.
 	ElevationUnc param.Opt[float64] `json:"elevationUnc,omitzero"`
-	// Unique identifier of the target on-orbit object, if correlated.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the reporting sensor.
 	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
 	// The position of this observation within a track (FENCE, FIRST, IN, LAST,
@@ -1900,9 +1876,6 @@ type ObservationRadarobservationUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by observation source to indicate the target
 	// onorbit object of this observation. This may be an internal identifier and not
 	// necessarily a valid satellite number.
@@ -1967,10 +1940,6 @@ type ObservationRadarobservationUnvalidatedPublishParamsBody struct {
 	Senz param.Opt[float64] `json:"senz,omitzero"`
 	// Signal to noise ratio, in dB.
 	Snr param.Opt[float64] `json:"snr,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Optional identifier to indicate the specific tasking which produced this
 	// observation.
 	TaskID param.Opt[string] `json:"taskId,omitzero"`
@@ -2004,9 +1973,6 @@ type ObservationRadarobservationUnvalidatedPublishParamsBody struct {
 	// Optional identifier to track a commercial or marketplace transaction executed to
 	// produce this data.
 	TransactionID param.Opt[string] `json:"transactionId,omitzero"`
-	// Read only enumeration specifying the type of observation (e.g. OPTICAL, RADAR,
-	// RF, etc).
-	Type param.Opt[string] `json:"type,omitzero"`
 	// Boolean indicating this observation is part of an uncorrelated track or was
 	// unable to be correlated to a known object. This flag should only be set to true
 	// by data providers after an attempt to correlate to an on-orbit object was made

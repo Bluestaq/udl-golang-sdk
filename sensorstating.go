@@ -505,11 +505,6 @@ type SensorStatingNewBulkParamsBody struct {
 	// indicate a sensor height above ellipsoid, and negative values indicate a sensor
 	// height below ellipsoid.
 	Altitude param.Opt[float64] `json:"altitude,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// WGS-84 latitude of the sensor, in degrees. -90 to 90 degrees (negative values
 	// south of equator).
 	Lat param.Opt[float64] `json:"lat,omitzero"`

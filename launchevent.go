@@ -722,11 +722,6 @@ type LaunchEventNewBulkParamsBody struct {
 	ID param.Opt[string] `json:"id,omitzero"`
 	// The Basic Encyclopedia Number, if applicable.
 	BeNumber param.Opt[string] `json:"beNumber,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The declassification date of this data, in ISO 8601 UTC format.
 	DeclassificationDate param.Opt[time.Time] `json:"declassificationDate,omitzero" format:"date-time"`
 	// Declassification string of this data.
@@ -734,8 +729,6 @@ type LaunchEventNewBulkParamsBody struct {
 	// The sources or SCG references from which the classification of this data is
 	// derived.
 	DerivedFrom param.Opt[string] `json:"derivedFrom,omitzero"`
-	// Unique identifier of the target on-orbit object, if correlated.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// The launch date, in ISO8601 UTC format.
 	LaunchDate param.Opt[time.Time] `json:"launchDate,omitzero" format:"date-time"`
 	// The Launch facility name.
@@ -747,9 +740,6 @@ type LaunchEventNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional target-id, if missing in UDL.
 	OrigObjectID param.Opt[string] `json:"origObjectId,omitzero"`
 	// The OSuffix, if applicable.
@@ -853,11 +843,6 @@ type LaunchEventUnvalidatedPublishParamsBody struct {
 	ID param.Opt[string] `json:"id,omitzero"`
 	// The Basic Encyclopedia Number, if applicable.
 	BeNumber param.Opt[string] `json:"beNumber,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The declassification date of this data, in ISO 8601 UTC format.
 	DeclassificationDate param.Opt[time.Time] `json:"declassificationDate,omitzero" format:"date-time"`
 	// Declassification string of this data.
@@ -865,8 +850,6 @@ type LaunchEventUnvalidatedPublishParamsBody struct {
 	// The sources or SCG references from which the classification of this data is
 	// derived.
 	DerivedFrom param.Opt[string] `json:"derivedFrom,omitzero"`
-	// Unique identifier of the target on-orbit object, if correlated.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// The launch date, in ISO8601 UTC format.
 	LaunchDate param.Opt[time.Time] `json:"launchDate,omitzero" format:"date-time"`
 	// The Launch facility name.
@@ -878,9 +861,6 @@ type LaunchEventUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional target-id, if missing in UDL.
 	OrigObjectID param.Opt[string] `json:"origObjectId,omitzero"`
 	// The OSuffix, if applicable.

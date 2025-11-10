@@ -2205,11 +2205,6 @@ type AirEventNewBulkParamsBody struct {
 	BaseAlt param.Opt[float64] `json:"baseAlt,omitzero"`
 	// Flag indicating that this air refueling event has been cancelled.
 	Cancelled param.Opt[bool] `json:"cancelled,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The purpose of the air event at the departure location. Can be either
 	// descriptive text such as 'fuel onload' or a purpose code specified by the
 	// provider, such as 'A'.
@@ -2244,9 +2239,6 @@ type AirEventNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The scheduled arrival time of the aircraft at the air event, in ISO 8601 UTC
 	// format with millisecond precision.
 	PlannedArrTime param.Opt[time.Time] `json:"plannedArrTime,omitzero" format:"date-time"`
@@ -2273,21 +2265,12 @@ type AirEventNewBulkParamsBody struct {
 	// Flag indicating that the receiver unit has requested flying a short portion of
 	// an air refueling track.
 	ShortTrack param.Opt[bool] `json:"shortTrack,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Status of this air refueling event track reservation. Receivers are responsible
 	// for scheduling or reserving air refueling tracks. Possible values are A
 	// (Altitude Reservation), R (Reserved), or Q (Questionable).
 	StatusCode param.Opt[string] `json:"statusCode,omitzero"`
 	// Length of time the receiver unit has requested for an air event, in hours.
 	TrackTime param.Opt[float64] `json:"trackTime,omitzero"`
-	// Time the row was updated in the database, auto-populated by the system.
-	UpdatedAt param.Opt[time.Time] `json:"updatedAt,omitzero" format:"date-time"`
-	// Application user who updated the row in the database, auto-populated by the
-	// system.
-	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// Collection of receiver aircraft associated with this Air Event.
 	Receivers []AirEventNewBulkParamsBodyReceiver `json:"receivers,omitzero"`
 	// Collection of remarks associated with this Air Event.
@@ -2561,11 +2544,6 @@ type AirEventUnvalidatedPublishParamsBody struct {
 	BaseAlt param.Opt[float64] `json:"baseAlt,omitzero"`
 	// Flag indicating that this air refueling event has been cancelled.
 	Cancelled param.Opt[bool] `json:"cancelled,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The purpose of the air event at the departure location. Can be either
 	// descriptive text such as 'fuel onload' or a purpose code specified by the
 	// provider, such as 'A'.
@@ -2600,9 +2578,6 @@ type AirEventUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The scheduled arrival time of the aircraft at the air event, in ISO 8601 UTC
 	// format with millisecond precision.
 	PlannedArrTime param.Opt[time.Time] `json:"plannedArrTime,omitzero" format:"date-time"`
@@ -2629,21 +2604,12 @@ type AirEventUnvalidatedPublishParamsBody struct {
 	// Flag indicating that the receiver unit has requested flying a short portion of
 	// an air refueling track.
 	ShortTrack param.Opt[bool] `json:"shortTrack,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Status of this air refueling event track reservation. Receivers are responsible
 	// for scheduling or reserving air refueling tracks. Possible values are A
 	// (Altitude Reservation), R (Reserved), or Q (Questionable).
 	StatusCode param.Opt[string] `json:"statusCode,omitzero"`
 	// Length of time the receiver unit has requested for an air event, in hours.
 	TrackTime param.Opt[float64] `json:"trackTime,omitzero"`
-	// Time the row was updated in the database, auto-populated by the system.
-	UpdatedAt param.Opt[time.Time] `json:"updatedAt,omitzero" format:"date-time"`
-	// Application user who updated the row in the database, auto-populated by the
-	// system.
-	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// Collection of receiver aircraft associated with this Air Event.
 	Receivers []AirEventUnvalidatedPublishParamsBodyReceiver `json:"receivers,omitzero"`
 	// Collection of remarks associated with this Air Event.

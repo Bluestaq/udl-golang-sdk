@@ -540,11 +540,6 @@ type SpaceEnvObservationNewBulkParamsBody struct {
 	// Spacecraft/sensor altitude at observation time, expressed in kilometers above
 	// WGS-84 ellipsoid.
 	Alt param.Opt[float64] `json:"alt,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The data type (e.g. AP, AURORAL FLUX, ECP, KINDEX, PROPAGATED SOLAR WIND, XRAY
 	// FLUX, etc.) of observations in this record.
 	DataType param.Opt[string] `json:"dataType,omitzero"`
@@ -565,9 +560,6 @@ type SpaceEnvObservationNewBulkParamsBody struct {
 	// The time at which the associated data message was generated, in ISO 8601 UTC
 	// format with millisecond precision.
 	GenTime param.Opt[time.Time] `json:"genTime,omitzero" format:"date-time"`
-	// Unique identifier of the on-orbit satellite hosting the sensor which produced
-	// this data.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the reporting sensor.
 	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
 	// The type of instrument from which this data was collected (e.g. ANTENNA,
@@ -598,9 +590,6 @@ type SpaceEnvObservationNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by the record source to indicate the satellite
 	// hosting the sensor which produced this data. This may be an internal identifier
 	// and not necessarily map to a valid satellite number.
@@ -790,11 +779,6 @@ type SpaceEnvObservationUnvalidatedPublishParamsBody struct {
 	// Spacecraft/sensor altitude at observation time, expressed in kilometers above
 	// WGS-84 ellipsoid.
 	Alt param.Opt[float64] `json:"alt,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The data type (e.g. AP, AURORAL FLUX, ECP, KINDEX, PROPAGATED SOLAR WIND, XRAY
 	// FLUX, etc.) of observations in this record.
 	DataType param.Opt[string] `json:"dataType,omitzero"`
@@ -815,9 +799,6 @@ type SpaceEnvObservationUnvalidatedPublishParamsBody struct {
 	// The time at which the associated data message was generated, in ISO 8601 UTC
 	// format with millisecond precision.
 	GenTime param.Opt[time.Time] `json:"genTime,omitzero" format:"date-time"`
-	// Unique identifier of the on-orbit satellite hosting the sensor which produced
-	// this data.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the reporting sensor.
 	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
 	// The type of instrument from which this data was collected (e.g. ANTENNA,
@@ -848,9 +829,6 @@ type SpaceEnvObservationUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by the record source to indicate the satellite
 	// hosting the sensor which produced this data. This may be an internal identifier
 	// and not necessarily map to a valid satellite number.

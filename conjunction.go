@@ -1952,11 +1952,6 @@ type ConjunctionNewUdlParamsStateVector1 struct {
 	// that produced the state vector, or whether an arbitrary, non-calculated default
 	// value was used (CALCULATED, DEFAULT).
 	CovMethod param.Opt[string] `json:"covMethod,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Optional source-provided and searchable metadata or descriptor of the data.
 	Descriptor param.Opt[string] `json:"descriptor,omitzero"`
 	// The effective area of the object exposed to atmospheric drag, expressed in
@@ -1979,10 +1974,6 @@ type ConjunctionNewUdlParamsStateVector1 struct {
 	GeopotentialModel param.Opt[string] `json:"geopotentialModel,omitzero"`
 	// Number of terms used in the IAU 1980 nutation model (4, 50, or 106).
 	Iau1980Terms param.Opt[int64] `json:"iau1980Terms,omitzero"`
-	// Unique identifier of the satellite on-orbit object, if correlated. For the
-	// public catalog, the idOnOrbit is typically the satellite number as a string, but
-	// may be a UUID for analyst or other unknown or untracked satellites.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the OD solution record that produced this state vector.
 	// This ID can be used to obtain additional information on an OrbitDetermination
 	// object using the 'get by ID' operation (e.g. /udl/orbitdetermination/{id}). For
@@ -2022,9 +2013,6 @@ type ConjunctionNewUdlParamsStateVector1 struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by state vector source to indicate the target
 	// onorbit object of this state vector. This may be an internal identifier and not
 	// necessarily map to a valid satellite number.
@@ -2072,10 +2060,6 @@ type ConjunctionNewUdlParamsStateVector1 struct {
 	SolarRadPressCoeff param.Opt[float64] `json:"solarRadPressCoeff,omitzero"`
 	// Boolean indicating use of solid earth tide perturbations for this vector.
 	SolidEarthTides param.Opt[bool] `json:"solidEarthTides,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The effective area of the object exposed to solar radiation pressure, expressed
 	// in meters^2.
 	SrpArea param.Opt[float64] `json:"srpArea,omitzero"`
@@ -2418,11 +2402,6 @@ type ConjunctionNewUdlParamsStateVector2 struct {
 	// that produced the state vector, or whether an arbitrary, non-calculated default
 	// value was used (CALCULATED, DEFAULT).
 	CovMethod param.Opt[string] `json:"covMethod,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Optional source-provided and searchable metadata or descriptor of the data.
 	Descriptor param.Opt[string] `json:"descriptor,omitzero"`
 	// The effective area of the object exposed to atmospheric drag, expressed in
@@ -2445,10 +2424,6 @@ type ConjunctionNewUdlParamsStateVector2 struct {
 	GeopotentialModel param.Opt[string] `json:"geopotentialModel,omitzero"`
 	// Number of terms used in the IAU 1980 nutation model (4, 50, or 106).
 	Iau1980Terms param.Opt[int64] `json:"iau1980Terms,omitzero"`
-	// Unique identifier of the satellite on-orbit object, if correlated. For the
-	// public catalog, the idOnOrbit is typically the satellite number as a string, but
-	// may be a UUID for analyst or other unknown or untracked satellites.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the OD solution record that produced this state vector.
 	// This ID can be used to obtain additional information on an OrbitDetermination
 	// object using the 'get by ID' operation (e.g. /udl/orbitdetermination/{id}). For
@@ -2488,9 +2463,6 @@ type ConjunctionNewUdlParamsStateVector2 struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by state vector source to indicate the target
 	// onorbit object of this state vector. This may be an internal identifier and not
 	// necessarily map to a valid satellite number.
@@ -2538,10 +2510,6 @@ type ConjunctionNewUdlParamsStateVector2 struct {
 	SolarRadPressCoeff param.Opt[float64] `json:"solarRadPressCoeff,omitzero"`
 	// Boolean indicating use of solid earth tide perturbations for this vector.
 	SolidEarthTides param.Opt[bool] `json:"solidEarthTides,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The effective area of the object exposed to solar radiation pressure, expressed
 	// in meters^2.
 	SrpArea param.Opt[float64] `json:"srpArea,omitzero"`
@@ -2901,10 +2869,6 @@ type ConjunctionNewBulkParamsBody struct {
 	// the primary state vector and covariance to TCA. This parameter is sometimes
 	// referred to as AGOM.
 	CrAoM2 param.Opt[float64] `json:"crAoM2,omitzero"`
-	// Time the row was created in the database.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Optional source-provided and searchable metadata or descriptor of the data.
 	Descriptor param.Opt[string] `json:"descriptor,omitzero"`
 	// The filename of the primary (object1) ephemeris used in the screening, if
@@ -2923,10 +2887,6 @@ type ConjunctionNewBulkParamsBody struct {
 	// where multiple conjunction records are submitted for the same event, this field
 	// can be used to tie them together to the same event.
 	EventID param.Opt[string] `json:"eventId,omitzero"`
-	// Unique identifier of the primary satellite on-orbit object, if correlated.
-	IDOnOrbit1 param.Opt[string] `json:"idOnOrbit1,omitzero"`
-	// Unique identifier of the secondary satellite on-orbit object, if correlated.
-	IDOnOrbit2 param.Opt[string] `json:"idOnOrbit2,omitzero"`
 	// Optional ID of the UDL State Vector at TCA of the primary object. When
 	// performing a create, this id will be ignored in favor of the UDL generated id of
 	// the stateVector1.
@@ -2963,9 +2923,6 @@ type ConjunctionNewBulkParamsBody struct {
 	// Creating agency or owner/operator (may be different than provider who submitted
 	// the conjunction message).
 	Originator param.Opt[string] `json:"originator,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Flag indicating if owner was contacted.
 	OwnerContacted param.Opt[bool] `json:"ownerContacted,omitzero"`
 	// Penetration Level Sigma.
@@ -3132,11 +3089,6 @@ type ConjunctionNewBulkParamsBodyStateVector1 struct {
 	// that produced the state vector, or whether an arbitrary, non-calculated default
 	// value was used (CALCULATED, DEFAULT).
 	CovMethod param.Opt[string] `json:"covMethod,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Optional source-provided and searchable metadata or descriptor of the data.
 	Descriptor param.Opt[string] `json:"descriptor,omitzero"`
 	// The effective area of the object exposed to atmospheric drag, expressed in
@@ -3159,10 +3111,6 @@ type ConjunctionNewBulkParamsBodyStateVector1 struct {
 	GeopotentialModel param.Opt[string] `json:"geopotentialModel,omitzero"`
 	// Number of terms used in the IAU 1980 nutation model (4, 50, or 106).
 	Iau1980Terms param.Opt[int64] `json:"iau1980Terms,omitzero"`
-	// Unique identifier of the satellite on-orbit object, if correlated. For the
-	// public catalog, the idOnOrbit is typically the satellite number as a string, but
-	// may be a UUID for analyst or other unknown or untracked satellites.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the OD solution record that produced this state vector.
 	// This ID can be used to obtain additional information on an OrbitDetermination
 	// object using the 'get by ID' operation (e.g. /udl/orbitdetermination/{id}). For
@@ -3202,9 +3150,6 @@ type ConjunctionNewBulkParamsBodyStateVector1 struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by state vector source to indicate the target
 	// onorbit object of this state vector. This may be an internal identifier and not
 	// necessarily map to a valid satellite number.
@@ -3252,10 +3197,6 @@ type ConjunctionNewBulkParamsBodyStateVector1 struct {
 	SolarRadPressCoeff param.Opt[float64] `json:"solarRadPressCoeff,omitzero"`
 	// Boolean indicating use of solid earth tide perturbations for this vector.
 	SolidEarthTides param.Opt[bool] `json:"solidEarthTides,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The effective area of the object exposed to solar radiation pressure, expressed
 	// in meters^2.
 	SrpArea param.Opt[float64] `json:"srpArea,omitzero"`
@@ -3598,11 +3539,6 @@ type ConjunctionNewBulkParamsBodyStateVector2 struct {
 	// that produced the state vector, or whether an arbitrary, non-calculated default
 	// value was used (CALCULATED, DEFAULT).
 	CovMethod param.Opt[string] `json:"covMethod,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Optional source-provided and searchable metadata or descriptor of the data.
 	Descriptor param.Opt[string] `json:"descriptor,omitzero"`
 	// The effective area of the object exposed to atmospheric drag, expressed in
@@ -3625,10 +3561,6 @@ type ConjunctionNewBulkParamsBodyStateVector2 struct {
 	GeopotentialModel param.Opt[string] `json:"geopotentialModel,omitzero"`
 	// Number of terms used in the IAU 1980 nutation model (4, 50, or 106).
 	Iau1980Terms param.Opt[int64] `json:"iau1980Terms,omitzero"`
-	// Unique identifier of the satellite on-orbit object, if correlated. For the
-	// public catalog, the idOnOrbit is typically the satellite number as a string, but
-	// may be a UUID for analyst or other unknown or untracked satellites.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the OD solution record that produced this state vector.
 	// This ID can be used to obtain additional information on an OrbitDetermination
 	// object using the 'get by ID' operation (e.g. /udl/orbitdetermination/{id}). For
@@ -3668,9 +3600,6 @@ type ConjunctionNewBulkParamsBodyStateVector2 struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by state vector source to indicate the target
 	// onorbit object of this state vector. This may be an internal identifier and not
 	// necessarily map to a valid satellite number.
@@ -3718,10 +3647,6 @@ type ConjunctionNewBulkParamsBodyStateVector2 struct {
 	SolarRadPressCoeff param.Opt[float64] `json:"solarRadPressCoeff,omitzero"`
 	// Boolean indicating use of solid earth tide perturbations for this vector.
 	SolidEarthTides param.Opt[bool] `json:"solidEarthTides,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The effective area of the object exposed to solar radiation pressure, expressed
 	// in meters^2.
 	SrpArea param.Opt[float64] `json:"srpArea,omitzero"`
@@ -4123,10 +4048,6 @@ type ConjunctionUnvalidatedPublishParamsBody struct {
 	// the primary state vector and covariance to TCA. This parameter is sometimes
 	// referred to as AGOM.
 	CrAoM2 param.Opt[float64] `json:"crAoM2,omitzero"`
-	// Time the row was created in the database.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Optional source-provided and searchable metadata or descriptor of the data.
 	Descriptor param.Opt[string] `json:"descriptor,omitzero"`
 	// The filename of the primary (object1) ephemeris used in the screening, if
@@ -4145,10 +4066,6 @@ type ConjunctionUnvalidatedPublishParamsBody struct {
 	// where multiple conjunction records are submitted for the same event, this field
 	// can be used to tie them together to the same event.
 	EventID param.Opt[string] `json:"eventId,omitzero"`
-	// Unique identifier of the primary satellite on-orbit object, if correlated.
-	IDOnOrbit1 param.Opt[string] `json:"idOnOrbit1,omitzero"`
-	// Unique identifier of the secondary satellite on-orbit object, if correlated.
-	IDOnOrbit2 param.Opt[string] `json:"idOnOrbit2,omitzero"`
 	// Optional ID of the UDL State Vector at TCA of the primary object. When
 	// performing a create, this id will be ignored in favor of the UDL generated id of
 	// the stateVector1.
@@ -4185,9 +4102,6 @@ type ConjunctionUnvalidatedPublishParamsBody struct {
 	// Creating agency or owner/operator (may be different than provider who submitted
 	// the conjunction message).
 	Originator param.Opt[string] `json:"originator,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Flag indicating if owner was contacted.
 	OwnerContacted param.Opt[bool] `json:"ownerContacted,omitzero"`
 	// Penetration Level Sigma.
@@ -4354,11 +4268,6 @@ type ConjunctionUnvalidatedPublishParamsBodyStateVector1 struct {
 	// that produced the state vector, or whether an arbitrary, non-calculated default
 	// value was used (CALCULATED, DEFAULT).
 	CovMethod param.Opt[string] `json:"covMethod,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Optional source-provided and searchable metadata or descriptor of the data.
 	Descriptor param.Opt[string] `json:"descriptor,omitzero"`
 	// The effective area of the object exposed to atmospheric drag, expressed in
@@ -4381,10 +4290,6 @@ type ConjunctionUnvalidatedPublishParamsBodyStateVector1 struct {
 	GeopotentialModel param.Opt[string] `json:"geopotentialModel,omitzero"`
 	// Number of terms used in the IAU 1980 nutation model (4, 50, or 106).
 	Iau1980Terms param.Opt[int64] `json:"iau1980Terms,omitzero"`
-	// Unique identifier of the satellite on-orbit object, if correlated. For the
-	// public catalog, the idOnOrbit is typically the satellite number as a string, but
-	// may be a UUID for analyst or other unknown or untracked satellites.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the OD solution record that produced this state vector.
 	// This ID can be used to obtain additional information on an OrbitDetermination
 	// object using the 'get by ID' operation (e.g. /udl/orbitdetermination/{id}). For
@@ -4424,9 +4329,6 @@ type ConjunctionUnvalidatedPublishParamsBodyStateVector1 struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by state vector source to indicate the target
 	// onorbit object of this state vector. This may be an internal identifier and not
 	// necessarily map to a valid satellite number.
@@ -4474,10 +4376,6 @@ type ConjunctionUnvalidatedPublishParamsBodyStateVector1 struct {
 	SolarRadPressCoeff param.Opt[float64] `json:"solarRadPressCoeff,omitzero"`
 	// Boolean indicating use of solid earth tide perturbations for this vector.
 	SolidEarthTides param.Opt[bool] `json:"solidEarthTides,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The effective area of the object exposed to solar radiation pressure, expressed
 	// in meters^2.
 	SrpArea param.Opt[float64] `json:"srpArea,omitzero"`
@@ -4820,11 +4718,6 @@ type ConjunctionUnvalidatedPublishParamsBodyStateVector2 struct {
 	// that produced the state vector, or whether an arbitrary, non-calculated default
 	// value was used (CALCULATED, DEFAULT).
 	CovMethod param.Opt[string] `json:"covMethod,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Optional source-provided and searchable metadata or descriptor of the data.
 	Descriptor param.Opt[string] `json:"descriptor,omitzero"`
 	// The effective area of the object exposed to atmospheric drag, expressed in
@@ -4847,10 +4740,6 @@ type ConjunctionUnvalidatedPublishParamsBodyStateVector2 struct {
 	GeopotentialModel param.Opt[string] `json:"geopotentialModel,omitzero"`
 	// Number of terms used in the IAU 1980 nutation model (4, 50, or 106).
 	Iau1980Terms param.Opt[int64] `json:"iau1980Terms,omitzero"`
-	// Unique identifier of the satellite on-orbit object, if correlated. For the
-	// public catalog, the idOnOrbit is typically the satellite number as a string, but
-	// may be a UUID for analyst or other unknown or untracked satellites.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the OD solution record that produced this state vector.
 	// This ID can be used to obtain additional information on an OrbitDetermination
 	// object using the 'get by ID' operation (e.g. /udl/orbitdetermination/{id}). For
@@ -4890,9 +4779,6 @@ type ConjunctionUnvalidatedPublishParamsBodyStateVector2 struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by state vector source to indicate the target
 	// onorbit object of this state vector. This may be an internal identifier and not
 	// necessarily map to a valid satellite number.
@@ -4940,10 +4826,6 @@ type ConjunctionUnvalidatedPublishParamsBodyStateVector2 struct {
 	SolarRadPressCoeff param.Opt[float64] `json:"solarRadPressCoeff,omitzero"`
 	// Boolean indicating use of solid earth tide perturbations for this vector.
 	SolidEarthTides param.Opt[bool] `json:"solidEarthTides,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The effective area of the object exposed to solar radiation pressure, expressed
 	// in meters^2.
 	SrpArea param.Opt[float64] `json:"srpArea,omitzero"`

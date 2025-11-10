@@ -789,11 +789,6 @@ type TdoaFdoaDiffofarrivalNewBulkParamsBody struct {
 	// Collection mode (e.g. SURVEY, SPOT_SEARCH, NEIGHBORHOOD_WATCH, DIRECTED_SEARCH,
 	// MANUAL, etc).
 	CollectionMode param.Opt[string] `json:"collectionMode,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Delta range, in km. Delta range calculation convention is (sensor2 - sensor1).
 	DeltaRange param.Opt[float64] `json:"deltaRange,omitzero"`
 	// Delta range rate, in km/sec. Delta range rate calculation convention is
@@ -813,8 +808,6 @@ type TdoaFdoaDiffofarrivalNewBulkParamsBody struct {
 	FdoaUnc param.Opt[float64] `json:"fdoaUnc,omitzero"`
 	// Center frequency of the collect in Hz.
 	Frequency param.Opt[float64] `json:"frequency,omitzero"`
-	// Unique identifier of the target on-orbit object, if correlated.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Sensor ID of the primary/1st sensor used for this measurement.
 	IDSensor1 param.Opt[string] `json:"idSensor1,omitzero"`
 	// Sensor ID of the secondary/2nd sensor used for this measurement.
@@ -824,9 +817,6 @@ type TdoaFdoaDiffofarrivalNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by observation source to indicate the target
 	// onorbit object of this observation. This may be an internal identifier and not
 	// necessarily a valid satellite number.
@@ -870,10 +860,6 @@ type TdoaFdoaDiffofarrivalNewBulkParamsBody struct {
 	Sensor2Delay param.Opt[float64] `json:"sensor2Delay,omitzero"`
 	// Signal to noise ratio, in dB.
 	Snr param.Opt[float64] `json:"snr,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Optional identifier to indicate the specific tasking which produced this
 	// observation.
 	TaskID param.Opt[string] `json:"taskId,omitzero"`

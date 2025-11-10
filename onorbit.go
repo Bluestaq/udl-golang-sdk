@@ -211,11 +211,6 @@ type OnorbitIngestParam struct {
 	// ISO Alpha-3 code, or alternate code values that exist for the specified country
 	// code.
 	CountryCode param.Opt[string] `json:"countryCode,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Date of decay.
 	DecayDate param.Opt[time.Time] `json:"decayDate,omitzero" format:"date-time"`
 	// For the public catalog, the idOnOrbit is typically the satellite number as a
@@ -239,9 +234,6 @@ type OnorbitIngestParam struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Category of the on-orbit object. (Unknown, On-Orbit, Decayed, Cataloged Without
 	// State, Launch Nominal, Analyst Satellite, Cislunar, Lunar, Hyperbolic,
 	// Heliocentric, Interplanetary, Lagrangian, Docked).

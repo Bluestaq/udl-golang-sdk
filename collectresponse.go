@@ -637,19 +637,12 @@ type CollectResponseNewBulkParamsBody struct {
 	AltEndTime param.Opt[time.Time] `json:"altEndTime,omitzero" format:"date-time"`
 	// Proposed alternative start time, in ISO 8601 UTC format.
 	AltStartTime param.Opt[time.Time] `json:"altStartTime,omitzero" format:"date-time"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Error code associated with this request/response.
 	ErrCode param.Opt[string] `json:"errCode,omitzero"`
 	// UUID from external systems. This field has no meaning within UDL and is provided
 	// as a convenience for systems that require tracking of internal system generated
 	// ID.
 	ExternalID param.Opt[string] `json:"externalId,omitzero"`
-	// Unique identifier of the target on-orbit object associated with this response.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the parent plan or schedule associated with the
 	// request/response.
 	IDPlan param.Opt[string] `json:"idPlan,omitzero"`
@@ -662,9 +655,6 @@ type CollectResponseNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by data source to indicate the target object of
 	// this response. This may be an internal identifier and not necessarily a valid
 	// satellite number.
@@ -806,19 +796,12 @@ type CollectResponseUnvalidatedPublishParamsBody struct {
 	AltEndTime param.Opt[time.Time] `json:"altEndTime,omitzero" format:"date-time"`
 	// Proposed alternative start time, in ISO 8601 UTC format.
 	AltStartTime param.Opt[time.Time] `json:"altStartTime,omitzero" format:"date-time"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Error code associated with this request/response.
 	ErrCode param.Opt[string] `json:"errCode,omitzero"`
 	// UUID from external systems. This field has no meaning within UDL and is provided
 	// as a convenience for systems that require tracking of internal system generated
 	// ID.
 	ExternalID param.Opt[string] `json:"externalId,omitzero"`
-	// Unique identifier of the target on-orbit object associated with this response.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the parent plan or schedule associated with the
 	// request/response.
 	IDPlan param.Opt[string] `json:"idPlan,omitzero"`
@@ -831,9 +814,6 @@ type CollectResponseUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by data source to indicate the target object of
 	// this response. This may be an internal identifier and not necessarily a valid
 	// satellite number.

@@ -1207,11 +1207,6 @@ type SensorMaintenanceNewBulkParamsBody struct {
 	Approver param.Opt[string] `json:"approver,omitzero"`
 	// The name of the changer, if applicable.
 	Changer param.Opt[string] `json:"changer,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The duration of the planned outage, expressed as ddd:hh:mm.
 	Duration param.Opt[string] `json:"duration,omitzero"`
 	// COLT EOWID.
@@ -1222,8 +1217,6 @@ type SensorMaintenanceNewBulkParamsBody struct {
 	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
 	// The sensor face(s) to which this COLT maintenance item applies, if applicable.
 	ImpactedFaces param.Opt[string] `json:"impactedFaces,omitzero"`
-	// The date that this item became inactive in ISO8601 UTC format.
-	InactiveDate param.Opt[time.Time] `json:"inactiveDate,omitzero" format:"date-time"`
 	// The internal COLT line number assigned to this item.
 	LineNumber param.Opt[string] `json:"lineNumber,omitzero"`
 	// The Missile Defense operational capability of this maintenance item. Typical
@@ -1237,9 +1230,6 @@ type SensorMaintenanceNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The priority of this maintenance item.
 	Priority param.Opt[string] `json:"priority,omitzero"`
 	// The minimum time required to recall this activity, expressed as ddd:hh:mm.

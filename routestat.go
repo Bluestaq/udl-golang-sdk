@@ -1114,11 +1114,6 @@ type RouteStatNewBulkParamsBody struct {
 	AvgDuration param.Opt[float64] `json:"avgDuration,omitzero"`
 	// Average speed during travel in the indicated unit of measurement, speedUnit.
 	AvgSpeed param.Opt[float64] `json:"avgSpeed,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The number of data points used in this travel duration calculation.
 	DataPtsUsed param.Opt[int64] `json:"dataPtsUsed,omitzero"`
 	// Distance between the departure and arrival locations in the indicated unit of
@@ -1164,9 +1159,6 @@ type RouteStatNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Description of the portion of travel used to estimate the value of the
 	// partialDuration field.
 	PartialDesc param.Opt[string] `json:"partialDesc,omitzero"`
@@ -1174,10 +1166,6 @@ type RouteStatNewBulkParamsBody struct {
 	// indicated vehicle type. The field "partialDesc" should be used to specify the
 	// intended portion of travel.
 	PartialDuration param.Opt[float64] `json:"partialDuration,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The unit of measurement used for speed in this calculation.
 	SpeedUnit param.Opt[string] `json:"speedUnit,omitzero"`
 	// The time period this data was collected.
@@ -1273,11 +1261,6 @@ type RouteStatUnvalidatedPublishParamsBody struct {
 	AvgDuration param.Opt[float64] `json:"avgDuration,omitzero"`
 	// Average speed during travel in the indicated unit of measurement, speedUnit.
 	AvgSpeed param.Opt[float64] `json:"avgSpeed,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The number of data points used in this travel duration calculation.
 	DataPtsUsed param.Opt[int64] `json:"dataPtsUsed,omitzero"`
 	// Distance between the departure and arrival locations in the indicated unit of
@@ -1323,9 +1306,6 @@ type RouteStatUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Description of the portion of travel used to estimate the value of the
 	// partialDuration field.
 	PartialDesc param.Opt[string] `json:"partialDesc,omitzero"`
@@ -1333,10 +1313,6 @@ type RouteStatUnvalidatedPublishParamsBody struct {
 	// indicated vehicle type. The field "partialDesc" should be used to specify the
 	// intended portion of travel.
 	PartialDuration param.Opt[float64] `json:"partialDuration,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The unit of measurement used for speed in this calculation.
 	SpeedUnit param.Opt[string] `json:"speedUnit,omitzero"`
 	// The time period this data was collected.

@@ -1365,10 +1365,6 @@ type TrackDetailNewBulkParamsBody struct {
 	// The distance, in meters, of the closest point of approach between this track to
 	// the master reference track.
 	Cpa param.Opt[float64] `json:"cpa,omitzero"`
-	// Time the row was created in the database.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The reported departure cargo type. Intended as, but not constrained to, the USCG
 	// NAVCEN AIS cargo definitions. Users should refer to USCG Navigation Center
 	// documentation for specific definitions associated with ship and cargo types.
@@ -1668,9 +1664,6 @@ type TrackDetailNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Original source cross-reference code for the Command that originated the report.
 	OrigXref param.Opt[string] `json:"origXref,omitzero"`
 	// The O-suffix associated with this facility. The O-suffix is a five-character

@@ -1329,11 +1329,6 @@ type SensorCalibrationNewBulkParamsBody struct {
 	CalType param.Opt[string] `json:"calType,omitzero"`
 	// The confidence noise bias of the duration span.
 	ConfidenceNoiseBias param.Opt[float64] `json:"confidenceNoiseBias,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Duration of the sensor calibration data which produced these values, measured in
 	// days.
 	Duration param.Opt[float64] `json:"duration,omitzero"`
@@ -1386,9 +1381,6 @@ type SensorCalibrationNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The sensor photometric observation magnitude bias, in visual magnitude.
 	PhotoBias param.Opt[float64] `json:"photoBias,omitzero"`
 	// The standard deviation of the magnitude residuals, in visual magnitude, used to
@@ -1424,10 +1416,6 @@ type SensorCalibrationNewBulkParamsBody struct {
 	RefType param.Opt[string] `json:"refType,omitzero"`
 	// The sensor type (MECHANICAL, OPTICAL, PHASED ARRAY, RF).
 	SenType param.Opt[string] `json:"senType,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Sensor time bias, in seconds.
 	TimeBias param.Opt[float64] `json:"timeBias,omitzero"`
 	// The standard deviation of the time residuals, in seconds, used to determine the
@@ -1559,11 +1547,6 @@ type SensorCalibrationUnvalidatedPublishParamsBody struct {
 	CalType param.Opt[string] `json:"calType,omitzero"`
 	// The confidence noise bias of the duration span.
 	ConfidenceNoiseBias param.Opt[float64] `json:"confidenceNoiseBias,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Duration of the sensor calibration data which produced these values, measured in
 	// days.
 	Duration param.Opt[float64] `json:"duration,omitzero"`
@@ -1616,9 +1599,6 @@ type SensorCalibrationUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The sensor photometric observation magnitude bias, in visual magnitude.
 	PhotoBias param.Opt[float64] `json:"photoBias,omitzero"`
 	// The standard deviation of the magnitude residuals, in visual magnitude, used to
@@ -1654,10 +1634,6 @@ type SensorCalibrationUnvalidatedPublishParamsBody struct {
 	RefType param.Opt[string] `json:"refType,omitzero"`
 	// The sensor type (MECHANICAL, OPTICAL, PHASED ARRAY, RF).
 	SenType param.Opt[string] `json:"senType,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Sensor time bias, in seconds.
 	TimeBias param.Opt[float64] `json:"timeBias,omitzero"`
 	// The standard deviation of the time residuals, in seconds, used to determine the

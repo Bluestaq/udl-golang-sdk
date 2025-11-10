@@ -1593,11 +1593,6 @@ type EmireportNewBulkParamsBody struct {
 	// Flag indicating whether this interference appears to be illegally passing
 	// traffic over a known channel.
 	ChanPirate param.Opt[bool] `json:"chanPirate,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Text description of the EMI particulars and other supporting information which
 	// may be relevant to the cause and/or possible resolution of the issue.
 	Description param.Opt[string] `json:"description,omitzero"`
@@ -1616,10 +1611,6 @@ type EmireportNewBulkParamsBody struct {
 	GpsFreq param.Opt[string] `json:"gpsFreq,omitzero"`
 	// The highest affected frequency, in MHz.
 	HighAffectedFrequency param.Opt[float64] `json:"highAffectedFrequency,omitzero"`
-	// Unique identifier of the affected on-orbit object. For the public catalog, the
-	// idOnOrbit is typically the satellite number as a string, but may be a UUID for
-	// analyst or other unknown or untracked satellites.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Flag indicating whether the EMI is a decipherable intercept over the affected
 	// receiver. Additional information may be included in the description field
 	// content of this record.
@@ -1670,9 +1661,6 @@ type EmireportNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by the reporting source to indicate the affected
 	// object of this report. This may be an internal identifier and not necessarily
 	// map to a valid satellite number.
@@ -1714,10 +1702,6 @@ type EmireportNewBulkParamsBody struct {
 	// Polarized), L - (Left Hand Circularly Polarized), R - (Right Hand Circularly
 	// Polarized).
 	SatUplinkPolarization param.Opt[string] `json:"satUplinkPolarization,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The reporting status (INITIAL, UPDATE, RESOLVED) of this EMI issue.
 	Status param.Opt[string] `json:"status,omitzero"`
 	// The ISR role of the impacted asset.
@@ -1895,11 +1879,6 @@ type EmireportUnvalidatedPublishParamsBody struct {
 	// Flag indicating whether this interference appears to be illegally passing
 	// traffic over a known channel.
 	ChanPirate param.Opt[bool] `json:"chanPirate,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Text description of the EMI particulars and other supporting information which
 	// may be relevant to the cause and/or possible resolution of the issue.
 	Description param.Opt[string] `json:"description,omitzero"`
@@ -1918,10 +1897,6 @@ type EmireportUnvalidatedPublishParamsBody struct {
 	GpsFreq param.Opt[string] `json:"gpsFreq,omitzero"`
 	// The highest affected frequency, in MHz.
 	HighAffectedFrequency param.Opt[float64] `json:"highAffectedFrequency,omitzero"`
-	// Unique identifier of the affected on-orbit object. For the public catalog, the
-	// idOnOrbit is typically the satellite number as a string, but may be a UUID for
-	// analyst or other unknown or untracked satellites.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Flag indicating whether the EMI is a decipherable intercept over the affected
 	// receiver. Additional information may be included in the description field
 	// content of this record.
@@ -1972,9 +1947,6 @@ type EmireportUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by the reporting source to indicate the affected
 	// object of this report. This may be an internal identifier and not necessarily
 	// map to a valid satellite number.
@@ -2016,10 +1988,6 @@ type EmireportUnvalidatedPublishParamsBody struct {
 	// Polarized), L - (Left Hand Circularly Polarized), R - (Right Hand Circularly
 	// Polarized).
 	SatUplinkPolarization param.Opt[string] `json:"satUplinkPolarization,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// The reporting status (INITIAL, UPDATE, RESOLVED) of this EMI issue.
 	Status param.Opt[string] `json:"status,omitzero"`
 	// The ISR role of the impacted asset.

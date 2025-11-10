@@ -1530,11 +1530,6 @@ type MissionAssignmentNewBulkParamsBody struct {
 	C7in3p param.Opt[int64] `json:"c7in3p,omitzero"`
 	// THIRD PARTY CONTINUATION WORD - track number, index originator.
 	C7tnor param.Opt[string] `json:"c7tnor,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Environment.
 	Env param.Opt[string] `json:"env,omitzero"`
 	// Index number.
@@ -1552,9 +1547,6 @@ type MissionAssignmentNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Receipt/Compliance, values from TABLE B-9.
 	Rc param.Opt[string] `json:"rc,omitzero"`
 	// Recurrence rate, receipt/compliance.

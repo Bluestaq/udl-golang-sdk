@@ -1098,11 +1098,6 @@ type VesselNewBulkParamsBody struct {
 	// transmissions must be individually identified by the call sign. Merchant and
 	// naval vessels are assigned call signs by their national licensing authorities.
 	Callsign param.Opt[string] `json:"callsign,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The date this vessel was first seen.
 	FirstSeen param.Opt[time.Time] `json:"firstSeen,omitzero" format:"date-time"`
 	// The vessel hull number designation of this maritime vessel. The hull number is a
@@ -1135,9 +1130,6 @@ type VesselNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The type of propulsion employed by this vessel.
 	PropType param.Opt[string] `json:"propType,omitzero"`
 	// The Ship Control Number (SCONUM) is a naval vessel identification number

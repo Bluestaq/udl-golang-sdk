@@ -1265,10 +1265,6 @@ type PoiNewBulkParamsBody struct {
 	// POI confidence estimate (not standardized, but typically a value between 0 and
 	// 1, with 0 indicating lowest confidence.
 	Conf param.Opt[float64] `json:"conf,omitzero"`
-	// Time the row was created in the database.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Description of the POI target object.
 	Desc param.Opt[string] `json:"desc,omitzero"`
 	// Target object pointing elevation angle, in degrees (for target with sensing or
@@ -1299,9 +1295,6 @@ type PoiNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// POI/object platform type (e.g., 14/GROUND, COMBAT_VEHICLE, etc.).
 	Plat param.Opt[string] `json:"plat,omitzero"`
 	// The purpose of this Point of Interest record (e.g., BDA, EQPT, EVENT, GEOL,
@@ -1309,10 +1302,6 @@ type PoiNewBulkParamsBody struct {
 	Pps param.Opt[string] `json:"pps,omitzero"`
 	// Priority of the POI target object.
 	Pri param.Opt[int64] `json:"pri,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Specific point/object type (e.g., 82/GROUND, LIGHT_TANK, etc.).
 	Spec param.Opt[string] `json:"spec,omitzero"`
 	// Stale timestamp (optional), in ISO8601 UTC format.
@@ -1504,10 +1493,6 @@ type PoiUnvalidatedPublishParamsBody struct {
 	// POI confidence estimate (not standardized, but typically a value between 0 and
 	// 1, with 0 indicating lowest confidence.
 	Conf param.Opt[float64] `json:"conf,omitzero"`
-	// Time the row was created in the database.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Description of the POI target object.
 	Desc param.Opt[string] `json:"desc,omitzero"`
 	// Target object pointing elevation angle, in degrees (for target with sensing or
@@ -1538,9 +1523,6 @@ type PoiUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// POI/object platform type (e.g., 14/GROUND, COMBAT_VEHICLE, etc.).
 	Plat param.Opt[string] `json:"plat,omitzero"`
 	// The purpose of this Point of Interest record (e.g., BDA, EQPT, EVENT, GEOL,
@@ -1548,10 +1530,6 @@ type PoiUnvalidatedPublishParamsBody struct {
 	Pps param.Opt[string] `json:"pps,omitzero"`
 	// Priority of the POI target object.
 	Pri param.Opt[int64] `json:"pri,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Specific point/object type (e.g., 82/GROUND, LIGHT_TANK, etc.).
 	Spec param.Opt[string] `json:"spec,omitzero"`
 	// Stale timestamp (optional), in ISO8601 UTC format.

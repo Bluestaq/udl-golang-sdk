@@ -1390,11 +1390,6 @@ type PersonnelrecoveryNewBulkParamsBody struct {
 	// DEVICE, SIGNALLING PANEL, FRIENDLY FORCE TRACKER, GPS BEACON, LL PHONE, TACTICAL
 	// RADIO LOS, TACTICAL RADIO BLOS).
 	CommEq3 param.Opt[string] `json:"commEq3,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The survivor service identity (UNKNOWN MILITARY, UNKNOWN CIVILIAN, FRIEND
 	// MILITARY, FRIEND CIVIILIAN, NEUTRAL MILITARY, NEUTRAL CIVILIAN, HOSTILE
 	// MILITARY, HOSTILE CIVILIAN).
@@ -1429,9 +1424,6 @@ type PersonnelrecoveryNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Altitude relative to WGS-84 ellipsoid, in meters. Positive values indicate a
 	// point height above ellipsoid, and negative values indicate a point eight below
 	// ellipsoid.
@@ -1697,11 +1689,6 @@ type PersonnelrecoveryFileNewParamsBody struct {
 	// DEVICE, SIGNALLING PANEL, FRIENDLY FORCE TRACKER, GPS BEACON, LL PHONE, TACTICAL
 	// RADIO LOS, TACTICAL RADIO BLOS).
 	CommEq3 param.Opt[string] `json:"commEq3,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The survivor service identity (UNKNOWN MILITARY, UNKNOWN CIVILIAN, FRIEND
 	// MILITARY, FRIEND CIVIILIAN, NEUTRAL MILITARY, NEUTRAL CIVILIAN, HOSTILE
 	// MILITARY, HOSTILE CIVILIAN).
@@ -1736,9 +1723,6 @@ type PersonnelrecoveryFileNewParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Altitude relative to WGS-84 ellipsoid, in meters. Positive values indicate a
 	// point height above ellipsoid, and negative values indicate a point eight below
 	// ellipsoid.

@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.14 (2025-11-07)
+
+Full Changelog: [v0.1.0-alpha.13...v0.1.0-alpha.14](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.13...v0.1.0-alpha.14)
+
+### Bug Fixes
+
+* remove readonly parameters from request params ([0eb48d8](https://github.com/Bluestaq/udl-golang-sdk/commit/0eb48d8ddae231cf79a42c53f82016514074d7fd))
+
+
+### Chores
+
+* **internal:** grammar fix (it's -&gt; its) ([44aa3e3](https://github.com/Bluestaq/udl-golang-sdk/commit/44aa3e3030a8f74a4b4fe42d4b8a368540d6b28d))
+
 ## 0.1.0-alpha.13 (2025-10-21)
 
 Full Changelog: [v0.1.0-alpha.12...v0.1.0-alpha.13](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.12...v0.1.0-alpha.13)

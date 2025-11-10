@@ -2384,11 +2384,6 @@ type FlightplanUnvalidatedPublishParamsBody struct {
 	ClimbTime param.Opt[string] `json:"climbTime,omitzero"`
 	// The amount of contingency fuel in pounds.
 	ContingencyFuel param.Opt[float64] `json:"contingencyFuel,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The designated alternate departure airfield, International Civil Aviation
 	// Organization (ICAO) code preferred.
 	DepAlternate param.Opt[string] `json:"depAlternate,omitzero"`
@@ -2485,9 +2480,6 @@ type FlightplanUnvalidatedPublishParamsBody struct {
 	Origin param.Opt[string] `json:"origin,omitzero"`
 	// Air Traffic Control address filing the flight plan.
 	Originator param.Opt[string] `json:"originator,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Remarks from the planners concerning this flight plan.
 	PlannerRemark param.Opt[string] `json:"plannerRemark,omitzero"`
 	// Total of all fuel required to complete the flight in pounds, including fuel to
@@ -2505,10 +2497,6 @@ type FlightplanUnvalidatedPublishParamsBody struct {
 	RouteString param.Opt[string] `json:"routeString,omitzero"`
 	// Name of the planned Standard Instrument Departure (SID) procedure.
 	Sid param.Opt[string] `json:"sid,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Name of the planned Standard Terminal Arrival (STAR) procedure.
 	Star param.Opt[string] `json:"star,omitzero"`
 	// Status of this flight plan (e.g., ACTIVE, APPROVED, PLANNED, etc.).
@@ -2534,11 +2522,6 @@ type FlightplanUnvalidatedPublishParamsBody struct {
 	UnidentExtraFuel param.Opt[float64] `json:"unidentExtraFuel,omitzero"`
 	// The amount of unusable fuel in pounds.
 	UnusableFuel param.Opt[float64] `json:"unusableFuel,omitzero"`
-	// Time the row was last updated in the database, auto-populated by the system.
-	UpdatedAt param.Opt[time.Time] `json:"updatedAt,omitzero" format:"date-time"`
-	// Application user who updated the row in the database, auto-populated by the
-	// system.
-	UpdatedBy param.Opt[string] `json:"updatedBy,omitzero"`
 	// The wake turbulence category for this flight. The categories are assigned by the
 	// International Civil Aviation Organization (ICAO) and are based on maximum
 	// certified takeoff mass for the purpose of separating aircraft in flight due to

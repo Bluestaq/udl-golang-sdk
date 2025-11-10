@@ -1118,11 +1118,6 @@ type AirspaceControlOrderNewBulkParamsBody struct {
 	// Markings defining the source material or the original classification authority
 	// for the ACO message.
 	ClassSource param.Opt[string] `json:"classSource,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Specifies the geodetic datum by which the spatial coordinates of the controlled
 	// airspace are calculated.
 	GeoDatum param.Opt[string] `json:"geoDatum,omitzero"`
@@ -1140,9 +1135,6 @@ type AirspaceControlOrderNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// The official identifier of the military establishment responsible for the
 	// operation plan and the identification number assigned to this plan.
 	PlanOrigNum param.Opt[string] `json:"planOrigNum,omitzero"`
@@ -1152,10 +1144,6 @@ type AirspaceControlOrderNewBulkParamsBody struct {
 	QualSn param.Opt[int64] `json:"qualSN,omitzero"`
 	// The unique message identifier sequentially assigned by the originator.
 	SerialNum param.Opt[string] `json:"serialNum,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// A qualifier for the end of the effective time period of this airspace control
 	// order, such as AFTER, ASOF, NLT, etc. Used with field stopTime to indicate a
 	// relative time.

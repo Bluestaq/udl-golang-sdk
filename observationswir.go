@@ -90,13 +90,6 @@ type ObservationSwirUnvalidatedPublishParamsBody struct {
 	ID param.Opt[string] `json:"id,omitzero"`
 	// User comments concerning sensor or data limitations.
 	BadWave param.Opt[string] `json:"badWave,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
-	// Unique identifier of the target on-orbit object.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Spacecraft WGS84 latitude, in degrees at obTime. -90 to 90 degrees (negative
 	// values south of equator).
 	Lat param.Opt[float64] `json:"lat,omitzero"`
@@ -110,9 +103,6 @@ type ObservationSwirUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Original object ID or Catalog Number provided by source.
 	OrigObjectID param.Opt[string] `json:"origObjectId,omitzero"`
 	// Satellite/catalog number of the target on-orbit object.

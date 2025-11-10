@@ -974,11 +974,6 @@ type ObservationEcpsdrNewBulkParamsBody struct {
 	CdsThrottle param.Opt[int64] `json:"cdsThrottle,omitzero"`
 	// Two byte CRC-16-CCITT checksum (ordered as first byte, second byte).
 	Checksum param.Opt[int64] `json:"checksum,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Unitless dosimeter detector bias for MedLET and HiLET. MedLET (Linear Energy
 	// Transfer) and HiLET subsensors detect particles above LET thresholds, 300keV and
 	// 1MeV, respectively.
@@ -995,8 +990,6 @@ type ObservationEcpsdrNewBulkParamsBody struct {
 	// Unitless HiLET dosimeter medium range output. Medium byte of (HiLET) dosimeter
 	// output.
 	HiLetM param.Opt[int64] `json:"hiLetM,omitzero"`
-	// Unique identifier of the on-orbit satellite hosting the sensor.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the reporting sensor.
 	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
 	// LowLET dosimeter low range output. Low byte of (LowLET) dosimeter output.
@@ -1036,9 +1029,6 @@ type ObservationEcpsdrNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by the record source to indicate the satellite
 	// hosting the sensor. This may be an internal identifier and not necessarily map
 	// to a valid satellite number.
@@ -1183,11 +1173,6 @@ type ObservationEcpsdrUnvalidatedPublishParamsBody struct {
 	CdsThrottle param.Opt[int64] `json:"cdsThrottle,omitzero"`
 	// Two byte CRC-16-CCITT checksum (ordered as first byte, second byte).
 	Checksum param.Opt[int64] `json:"checksum,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Unitless dosimeter detector bias for MedLET and HiLET. MedLET (Linear Energy
 	// Transfer) and HiLET subsensors detect particles above LET thresholds, 300keV and
 	// 1MeV, respectively.
@@ -1204,8 +1189,6 @@ type ObservationEcpsdrUnvalidatedPublishParamsBody struct {
 	// Unitless HiLET dosimeter medium range output. Medium byte of (HiLET) dosimeter
 	// output.
 	HiLetM param.Opt[int64] `json:"hiLetM,omitzero"`
-	// Unique identifier of the on-orbit satellite hosting the sensor.
-	IDOnOrbit param.Opt[string] `json:"idOnOrbit,omitzero"`
 	// Unique identifier of the reporting sensor.
 	IDSensor param.Opt[string] `json:"idSensor,omitzero"`
 	// LowLET dosimeter low range output. Low byte of (LowLET) dosimeter output.
@@ -1245,9 +1228,6 @@ type ObservationEcpsdrUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
 	// Optional identifier provided by the record source to indicate the satellite
 	// hosting the sensor. This may be an internal identifier and not necessarily map
 	// to a valid satellite number.

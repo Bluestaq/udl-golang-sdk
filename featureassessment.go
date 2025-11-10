@@ -1265,11 +1265,6 @@ type FeatureAssessmentNewBulkParamsBody struct {
 	Atype param.Opt[string] `json:"atype,omitzero"`
 	// Analytic confidence of feature accuracy (0 to 1).
 	Confidence param.Opt[float64] `json:"confidence,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Feature Assessment ID from external systems. This field has no meaning within
 	// UDL and is provided as a convenience for systems that require tracking of an
 	// internal system generated ID.
@@ -1307,13 +1302,6 @@ type FeatureAssessmentNewBulkParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Feature's speed of travel, in meters per second.
 	Speed param.Opt[float64] `json:"speed,omitzero"`
 	// Optional identifier to track a commercial or marketplace transaction executed to
@@ -1497,11 +1485,6 @@ type FeatureAssessmentUnvalidatedPublishParamsBody struct {
 	Atype param.Opt[string] `json:"atype,omitzero"`
 	// Analytic confidence of feature accuracy (0 to 1).
 	Confidence param.Opt[float64] `json:"confidence,omitzero"`
-	// Time the row was created in the database, auto-populated by the system.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database, auto-populated by the
-	// system.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// Feature Assessment ID from external systems. This field has no meaning within
 	// UDL and is provided as a convenience for systems that require tracking of an
 	// internal system generated ID.
@@ -1539,13 +1522,6 @@ type FeatureAssessmentUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// Feature's speed of travel, in meters per second.
 	Speed param.Opt[float64] `json:"speed,omitzero"`
 	// Optional identifier to track a commercial or marketplace transaction executed to

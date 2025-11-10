@@ -995,10 +995,6 @@ type AirOperationAirTaskingOrderUnvalidatedPublishParamsBody struct {
 	// Specifies textual data amplifying the data contained in the acknowledgement
 	// requirement indicator (ackRedInd) field or the unit required to acknowledge.
 	AckUnitInstructions param.Opt[string] `json:"ackUnitInstructions,omitzero"`
-	// Time the row was created in the database.
-	CreatedAt param.Opt[time.Time] `json:"createdAt,omitzero" format:"date-time"`
-	// Application user who created the row in the database.
-	CreatedBy param.Opt[string] `json:"createdBy,omitzero"`
 	// The effective end time for this ATO in ISO 8601 UTC format with millisecond
 	// precision.
 	EndTs param.Opt[time.Time] `json:"endTs,omitzero" format:"date-time"`
@@ -1015,13 +1011,6 @@ type AirOperationAirTaskingOrderUnvalidatedPublishParamsBody struct {
 	// mediating system which forwarded the data on behalf of the origin system. If
 	// null, the source may be assumed to be the origin.
 	Origin param.Opt[string] `json:"origin,omitzero"`
-	// The originating source network on which this record was created, auto-populated
-	// by the system.
-	OrigNetwork param.Opt[string] `json:"origNetwork,omitzero"`
-	// The source data library from which this record was received. This could be a
-	// remote or tactical UDL or another data library. If null, the record should be
-	// assumed to have originated from the primary Enterprise UDL.
-	SourceDl param.Opt[string] `json:"sourceDL,omitzero"`
 	// A collection that specifies the tasked country, tasked service, unit and mission
 	// level tasking for this ATO.
 	AcMsnTasking []AirOperationAirTaskingOrderUnvalidatedPublishParamsBodyAcMsnTasking `json:"acMsnTasking,omitzero"`
