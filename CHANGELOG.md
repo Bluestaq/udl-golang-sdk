@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.15 (2025-11-11)
+
+Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)
+
+### Chores
+
+* bump gjson version ([c858fdc](https://github.com/Bluestaq/udl-golang-sdk/commit/c858fdc6b87f6bedac0ad1ff3b6bf3f13faffa03))
+
 ## 0.1.0-alpha.14 (2025-11-07)
 
 Full Changelog: [v0.1.0-alpha.13...v0.1.0-alpha.14](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.13...v0.1.0-alpha.14)
