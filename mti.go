@@ -92,7 +92,7 @@ func (r *MtiService) Count(ctx context.Context, query MtiCountParams, opts ...op
 // mechanism.
 func (r *MtiService) NewBulk(ctx context.Context, body MtiNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/mti/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -128,7 +128,7 @@ func (r *MtiService) Tuple(ctx context.Context, query MtiTupleParams, opts ...op
 // service operation. Please contact the UDL team for assistance.
 func (r *MtiService) UnvalidatedPublish(ctx context.Context, body MtiUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-mti"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

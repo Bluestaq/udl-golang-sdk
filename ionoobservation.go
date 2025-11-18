@@ -91,7 +91,7 @@ func (r *IonoObservationService) Count(ctx context.Context, query IonoObservatio
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *IonoObservationService) NewBulk(ctx context.Context, body IonoObservationNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/ionoobservation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -128,7 +128,7 @@ func (r *IonoObservationService) Tuple(ctx context.Context, query IonoObservatio
 // UDL team for assistance.
 func (r *IonoObservationService) UnvalidatedPublish(ctx context.Context, body IonoObservationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-ionoobs"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

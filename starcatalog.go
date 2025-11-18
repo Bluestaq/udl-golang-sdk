@@ -49,7 +49,7 @@ func NewStarCatalogService(opts ...option.RequestOption) (r StarCatalogService) 
 // operation. Please contact the UDL team for assistance.
 func (r *StarCatalogService) New(ctx context.Context, body StarCatalogNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/starcatalog"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -60,7 +60,7 @@ func (r *StarCatalogService) New(ctx context.Context, body StarCatalogNewParams,
 // assistance.
 func (r *StarCatalogService) Update(ctx context.Context, id string, body StarCatalogUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -104,7 +104,7 @@ func (r *StarCatalogService) ListAutoPaging(ctx context.Context, query StarCatal
 // the UDL team for assistance.
 func (r *StarCatalogService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -134,7 +134,7 @@ func (r *StarCatalogService) Count(ctx context.Context, query StarCatalogCountPa
 // setting up a permanent feed through an alternate mechanism.
 func (r *StarCatalogService) NewBulk(ctx context.Context, body StarCatalogNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/starcatalog/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -183,7 +183,7 @@ func (r *StarCatalogService) Tuple(ctx context.Context, query StarCatalogTuplePa
 // contact the UDL team for assistance.
 func (r *StarCatalogService) UnvalidatedPublish(ctx context.Context, body StarCatalogUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-starcatalog"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

@@ -47,7 +47,7 @@ func NewAirspaceControlOrderService(opts ...option.RequestOption) (r AirspaceCon
 // service operation. Please contact the UDL team for assistance.
 func (r *AirspaceControlOrderService) New(ctx context.Context, body AirspaceControlOrderNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/airspacecontrolorder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -115,7 +115,7 @@ func (r *AirspaceControlOrderService) Count(ctx context.Context, query AirspaceC
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *AirspaceControlOrderService) NewBulk(ctx context.Context, body AirspaceControlOrderNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/airspacecontrolorder/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

@@ -47,7 +47,7 @@ func NewAntennaService(opts ...option.RequestOption) (r AntennaService) {
 // contact the UDL team for assistance.
 func (r *AntennaService) New(ctx context.Context, body AntennaNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/antenna"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -70,7 +70,7 @@ func (r *AntennaService) Get(ctx context.Context, id string, query AntennaGetPar
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *AntennaService) Update(ctx context.Context, id string, body AntennaUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -114,7 +114,7 @@ func (r *AntennaService) ListAutoPaging(ctx context.Context, query AntennaListPa
 // contact the UDL team for assistance.
 func (r *AntennaService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

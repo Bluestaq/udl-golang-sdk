@@ -45,7 +45,7 @@ func NewSurfaceService(opts ...option.RequestOption) (r SurfaceService) {
 // contact the UDL team for assistance.
 func (r *SurfaceService) New(ctx context.Context, body SurfaceNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/surface"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -55,7 +55,7 @@ func (r *SurfaceService) New(ctx context.Context, body SurfaceNewParams, opts ..
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *SurfaceService) Update(ctx context.Context, id string, body SurfaceUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -99,7 +99,7 @@ func (r *SurfaceService) ListAutoPaging(ctx context.Context, query SurfaceListPa
 // contact the UDL team for assistance.
 func (r *SurfaceService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

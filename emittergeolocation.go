@@ -49,7 +49,7 @@ func NewEmitterGeolocationService(opts ...option.RequestOption) (r EmitterGeoloc
 // mechanism.
 func (r *EmitterGeolocationService) New(ctx context.Context, body EmitterGeolocationNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/emittergeolocation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -103,7 +103,7 @@ func (r *EmitterGeolocationService) ListAutoPaging(ctx context.Context, query Em
 // from historical or publish/subscribe stores.
 func (r *EmitterGeolocationService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -133,7 +133,7 @@ func (r *EmitterGeolocationService) Count(ctx context.Context, query EmitterGeol
 // permanent feed through an alternate mechanism.
 func (r *EmitterGeolocationService) NewBulk(ctx context.Context, body EmitterGeolocationNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/emittergeolocation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -169,7 +169,7 @@ func (r *EmitterGeolocationService) Tuple(ctx context.Context, query EmitterGeol
 // Please contact the UDL team for assistance.
 func (r *EmitterGeolocationService) UnvalidatedPublish(ctx context.Context, body EmitterGeolocationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-emittergeolocation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

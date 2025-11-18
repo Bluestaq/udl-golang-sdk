@@ -47,7 +47,7 @@ func NewSiteStatusService(opts ...option.RequestOption) (r SiteStatusService) {
 // operation. Please contact the UDL team for assistance.
 func (r *SiteStatusService) New(ctx context.Context, body SiteStatusNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sitestatus"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -58,7 +58,7 @@ func (r *SiteStatusService) New(ctx context.Context, body SiteStatusNewParams, o
 // assistance.
 func (r *SiteStatusService) Update(ctx context.Context, id string, body SiteStatusUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -103,7 +103,7 @@ func (r *SiteStatusService) ListAutoPaging(ctx context.Context, query SiteStatus
 // operation. Please contact the UDL team for assistance.
 func (r *SiteStatusService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

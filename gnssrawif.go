@@ -158,7 +158,7 @@ func (r *GnssRawIfService) Tuple(ctx context.Context, query GnssRawIfTupleParams
 // for assistance.
 func (r *GnssRawIfService) UploadZip(ctx context.Context, body GnssRawIfUploadZipParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-gnssrawif"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

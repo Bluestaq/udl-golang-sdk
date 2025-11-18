@@ -45,7 +45,7 @@ func NewIrService(opts ...option.RequestOption) (r IrService) {
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *IrService) New(ctx context.Context, body IrNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/ir"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -56,7 +56,7 @@ func (r *IrService) New(ctx context.Context, body IrNewParams, opts ...option.Re
 // the UDL team for assistance.
 func (r *IrService) Update(ctx context.Context, id string, body IrUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -100,7 +100,7 @@ func (r *IrService) ListAutoPaging(ctx context.Context, query IrListParams, opts
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *IrService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

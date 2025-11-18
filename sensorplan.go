@@ -49,7 +49,7 @@ func NewSensorPlanService(opts ...option.RequestOption) (r SensorPlanService) {
 // Please contact the UDL team for assistance.
 func (r *SensorPlanService) New(ctx context.Context, body SensorPlanNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sensorplan"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -59,7 +59,7 @@ func (r *SensorPlanService) New(ctx context.Context, body SensorPlanNewParams, o
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *SensorPlanService) Update(ctx context.Context, id string, body SensorPlanUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -154,7 +154,7 @@ func (r *SensorPlanService) Tuple(ctx context.Context, query SensorPlanTuplePara
 // Please contact the UDL team for assistance.
 func (r *SensorPlanService) UnvalidatedPublish(ctx context.Context, body SensorPlanUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-sensorplan"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

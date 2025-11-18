@@ -46,7 +46,7 @@ func NewNavigationService(opts ...option.RequestOption) (r NavigationService) {
 // assistance.
 func (r *NavigationService) New(ctx context.Context, body NavigationNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/navigation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -57,7 +57,7 @@ func (r *NavigationService) New(ctx context.Context, body NavigationNewParams, o
 // operation. Please contact the UDL team for assistance.
 func (r *NavigationService) Update(ctx context.Context, id string, body NavigationUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -102,7 +102,7 @@ func (r *NavigationService) ListAutoPaging(ctx context.Context, query Navigation
 // assistance.
 func (r *NavigationService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

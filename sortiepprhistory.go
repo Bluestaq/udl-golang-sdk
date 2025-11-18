@@ -71,7 +71,7 @@ func (r *SortiePprHistoryService) ListAutoPaging(ctx context.Context, query Sort
 // parameter information.
 func (r *SortiePprHistoryService) Aodr(ctx context.Context, query SortiePprHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sortieppr/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

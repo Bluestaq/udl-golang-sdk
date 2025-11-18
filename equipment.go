@@ -47,7 +47,7 @@ func NewEquipmentService(opts ...option.RequestOption) (r EquipmentService) {
 // operation. Please contact the UDL team for assistance.
 func (r *EquipmentService) New(ctx context.Context, body EquipmentNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/equipment"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -71,7 +71,7 @@ func (r *EquipmentService) Get(ctx context.Context, id string, query EquipmentGe
 // assistance.
 func (r *EquipmentService) Update(ctx context.Context, id string, body EquipmentUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -115,7 +115,7 @@ func (r *EquipmentService) ListAutoPaging(ctx context.Context, query EquipmentLi
 // contact the UDL team for assistance.
 func (r *EquipmentService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -145,7 +145,7 @@ func (r *EquipmentService) Count(ctx context.Context, query EquipmentCountParams
 // setting up a permanent feed through an alternate mechanism.
 func (r *EquipmentService) NewBulk(ctx context.Context, body EquipmentNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/equipment/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

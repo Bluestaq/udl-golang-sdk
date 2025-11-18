@@ -47,7 +47,7 @@ func NewNavigationalObstructionService(opts ...option.RequestOption) (r Navigati
 // service operation. Please contact the UDL team for assistance.
 func (r *NavigationalObstructionService) New(ctx context.Context, body NavigationalObstructionNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/navigationalobstruction"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -58,7 +58,7 @@ func (r *NavigationalObstructionService) New(ctx context.Context, body Navigatio
 // for assistance.
 func (r *NavigationalObstructionService) Update(ctx context.Context, id string, body NavigationalObstructionUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -117,7 +117,7 @@ func (r *NavigationalObstructionService) Count(ctx context.Context, query Naviga
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *NavigationalObstructionService) NewBulk(ctx context.Context, body NavigationalObstructionNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/navigationalobstruction/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

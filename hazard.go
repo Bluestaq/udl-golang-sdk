@@ -51,7 +51,7 @@ func NewHazardService(opts ...option.RequestOption) (r HazardService) {
 // mechanism.
 func (r *HazardService) New(ctx context.Context, body HazardNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/hazard"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -106,7 +106,7 @@ func (r *HazardService) Count(ctx context.Context, query HazardCountParams, opts
 // permanent feed through an alternate mechanism.
 func (r *HazardService) NewBulk(ctx context.Context, body HazardNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/hazard/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

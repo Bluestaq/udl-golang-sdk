@@ -74,7 +74,7 @@ func (r *ObservationRfObservationHistoryService) ListAutoPaging(ctx context.Cont
 // parameter information.
 func (r *ObservationRfObservationHistoryService) Aodr(ctx context.Context, query ObservationRfObservationHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/rfobservation/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

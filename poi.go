@@ -47,7 +47,7 @@ func NewPoiService(opts ...option.RequestOption) (r PoiService) {
 // contact the UDL team for assistance.
 func (r *PoiService) New(ctx context.Context, body PoiNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/poi"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -102,7 +102,7 @@ func (r *PoiService) Count(ctx context.Context, query PoiCountParams, opts ...op
 // feed through an alternate mechanism.
 func (r *PoiService) NewBulk(ctx context.Context, body PoiNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/poi/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -151,7 +151,7 @@ func (r *PoiService) Tuple(ctx context.Context, query PoiTupleParams, opts ...op
 // UDL team for assistance.
 func (r *PoiService) UnvalidatedPublish(ctx context.Context, body PoiUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-poi"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

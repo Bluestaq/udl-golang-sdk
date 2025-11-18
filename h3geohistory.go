@@ -73,7 +73,7 @@ func (r *H3GeoHistoryService) ListAutoPaging(ctx context.Context, query H3GeoHis
 // parameter information.
 func (r *H3GeoHistoryService) Ador(ctx context.Context, query H3GeoHistoryAdorParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/h3geo/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

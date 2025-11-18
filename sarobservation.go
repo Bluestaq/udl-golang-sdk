@@ -51,7 +51,7 @@ func NewSarObservationService(opts ...option.RequestOption) (r SarObservationSer
 // alternate mechanism.
 func (r *SarObservationService) New(ctx context.Context, body SarObservationNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sarobservation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -106,7 +106,7 @@ func (r *SarObservationService) Count(ctx context.Context, query SarObservationC
 // permanent feed through an alternate mechanism.
 func (r *SarObservationService) NewBulk(ctx context.Context, body SarObservationNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sarobservation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -155,7 +155,7 @@ func (r *SarObservationService) Tuple(ctx context.Context, query SarObservationT
 // UDL team for assistance.
 func (r *SarObservationService) UnvalidatedPublish(ctx context.Context, body SarObservationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-sar"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

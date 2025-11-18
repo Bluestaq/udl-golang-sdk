@@ -51,7 +51,7 @@ func NewGeoStatusService(opts ...option.RequestOption) (r GeoStatusService) {
 // alternate mechanism.
 func (r *GeoStatusService) New(ctx context.Context, body GeoStatusNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/geostatus"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -106,7 +106,7 @@ func (r *GeoStatusService) Count(ctx context.Context, query GeoStatusCountParams
 // setting up a permanent feed through an alternate mechanism.
 func (r *GeoStatusService) NewBulk(ctx context.Context, body GeoStatusNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/geostatus/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

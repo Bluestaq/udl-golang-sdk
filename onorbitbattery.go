@@ -47,7 +47,7 @@ func NewOnorbitbatteryService(opts ...option.RequestOption) (r OnorbitbatterySer
 // service operation. Please contact the UDL team for assistance.
 func (r *OnorbitbatteryService) New(ctx context.Context, body OnorbitbatteryNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/onorbitbattery"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -60,7 +60,7 @@ func (r *OnorbitbatteryService) New(ctx context.Context, body OnorbitbatteryNewP
 // the UDL team for assistance.
 func (r *OnorbitbatteryService) Update(ctx context.Context, id string, body OnorbitbatteryUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -106,7 +106,7 @@ func (r *OnorbitbatteryService) ListAutoPaging(ctx context.Context, query Onorbi
 // service operation. Please contact the UDL team for assistance.
 func (r *OnorbitbatteryService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

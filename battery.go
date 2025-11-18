@@ -47,7 +47,7 @@ func NewBatteryService(opts ...option.RequestOption) (r BatteryService) {
 // contact the UDL team for assistance.
 func (r *BatteryService) New(ctx context.Context, body BatteryNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/battery"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -70,7 +70,7 @@ func (r *BatteryService) Get(ctx context.Context, id string, query BatteryGetPar
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *BatteryService) Update(ctx context.Context, id string, body BatteryUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -114,7 +114,7 @@ func (r *BatteryService) ListAutoPaging(ctx context.Context, query BatteryListPa
 // contact the UDL team for assistance.
 func (r *BatteryService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

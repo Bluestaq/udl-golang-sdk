@@ -45,7 +45,7 @@ func NewAirfieldSlotService(opts ...option.RequestOption) (r AirfieldSlotService
 // operation. Please contact the UDL team for assistance.
 func (r *AirfieldSlotService) New(ctx context.Context, body AirfieldSlotNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/airfieldslot"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -69,7 +69,7 @@ func (r *AirfieldSlotService) Get(ctx context.Context, id string, query Airfield
 // assistance.
 func (r *AirfieldSlotService) Update(ctx context.Context, id string, body AirfieldSlotUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -113,7 +113,7 @@ func (r *AirfieldSlotService) ListAutoPaging(ctx context.Context, query Airfield
 // Please contact the UDL team for assistance.
 func (r *AirfieldSlotService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

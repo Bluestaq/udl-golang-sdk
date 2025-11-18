@@ -91,7 +91,7 @@ func (r *OrbittrackService) Count(ctx context.Context, query OrbittrackCountPara
 // permanent feed through an alternate mechanism.
 func (r *OrbittrackService) NewBulk(ctx context.Context, body OrbittrackNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/orbittrack/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -127,7 +127,7 @@ func (r *OrbittrackService) Tuple(ctx context.Context, query OrbittrackTuplePara
 // contact the UDL team for assistance.
 func (r *OrbittrackService) UnvalidatedPublish(ctx context.Context, body OrbittrackUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-orbittrack"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

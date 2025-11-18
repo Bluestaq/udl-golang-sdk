@@ -47,7 +47,7 @@ func NewDiplomaticClearanceCountryService(opts ...option.RequestOption) (r Diplo
 // service operation. Please contact the UDL team for assistance.
 func (r *DiplomaticClearanceCountryService) New(ctx context.Context, body DiplomaticClearanceCountryNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/diplomaticclearancecountry"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -71,7 +71,7 @@ func (r *DiplomaticClearanceCountryService) Get(ctx context.Context, id string, 
 // UDL team for assistance.
 func (r *DiplomaticClearanceCountryService) Update(ctx context.Context, id string, body DiplomaticClearanceCountryUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -115,7 +115,7 @@ func (r *DiplomaticClearanceCountryService) ListAutoPaging(ctx context.Context, 
 // operation. Please contact the UDL team for assistance.
 func (r *DiplomaticClearanceCountryService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -145,7 +145,7 @@ func (r *DiplomaticClearanceCountryService) Count(ctx context.Context, query Dip
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *DiplomaticClearanceCountryService) NewBulk(ctx context.Context, body DiplomaticClearanceCountryNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/diplomaticclearancecountry/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -181,7 +181,7 @@ func (r *DiplomaticClearanceCountryService) Tuple(ctx context.Context, query Dip
 // operation. Please contact the UDL team for assistance.
 func (r *DiplomaticClearanceCountryService) UnvalidatedPublish(ctx context.Context, body DiplomaticClearanceCountryUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-diplomaticclearancecountry"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

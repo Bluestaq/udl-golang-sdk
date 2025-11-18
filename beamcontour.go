@@ -47,7 +47,7 @@ func NewBeamContourService(opts ...option.RequestOption) (r BeamContourService) 
 // Please contact the UDL team for assistance.
 func (r *BeamContourService) New(ctx context.Context, body BeamContourNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/beamcontour"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -70,7 +70,7 @@ func (r *BeamContourService) Get(ctx context.Context, id string, query BeamConto
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *BeamContourService) Update(ctx context.Context, id string, body BeamContourUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -114,7 +114,7 @@ func (r *BeamContourService) ListAutoPaging(ctx context.Context, query BeamConto
 // contact the UDL team for assistance.
 func (r *BeamContourService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -144,7 +144,7 @@ func (r *BeamContourService) Count(ctx context.Context, query BeamContourCountPa
 // mechanism.
 func (r *BeamContourService) NewBulk(ctx context.Context, body BeamContourNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/beamcontour/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

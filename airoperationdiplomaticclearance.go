@@ -42,7 +42,7 @@ func NewAirOperationDiplomaticClearanceService(opts ...option.RequestOption) (r 
 // operation. Please contact the UDL team for assistance.
 func (r *AirOperationDiplomaticClearanceService) UnvalidatedPublish(ctx context.Context, body AirOperationDiplomaticClearanceUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-diplomaticclearance"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

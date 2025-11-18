@@ -49,7 +49,7 @@ func NewOnorbitassessmentService(opts ...option.RequestOption) (r Onorbitassessm
 // operation. Please contact the UDL team for assistance.
 func (r *OnorbitassessmentService) New(ctx context.Context, body OnorbitassessmentNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/onorbitassessment"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -104,7 +104,7 @@ func (r *OnorbitassessmentService) Count(ctx context.Context, query Onorbitasses
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *OnorbitassessmentService) NewBulk(ctx context.Context, body OnorbitassessmentNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/onorbitassessment/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -153,7 +153,7 @@ func (r *OnorbitassessmentService) Tuple(ctx context.Context, query Onorbitasses
 // Please contact the UDL team for assistance.
 func (r *OnorbitassessmentService) UnvalidatedPublish(ctx context.Context, body OnorbitassessmentUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-onorbitassessment"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

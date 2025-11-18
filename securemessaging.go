@@ -52,7 +52,7 @@ func (r *SecureMessagingService) DescribeTopic(ctx context.Context, topic string
 // Returns the current/latest offset for the passed topic name.
 func (r *SecureMessagingService) GetLatestOffset(ctx context.Context, topic string, query SecureMessagingGetLatestOffsetParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if topic == "" {
 		err = errors.New("missing required topic parameter")
 		return
@@ -66,7 +66,7 @@ func (r *SecureMessagingService) GetLatestOffset(ctx context.Context, topic stri
 // Secure Messaging API on Storefront for more details on how to use getMessages.
 func (r *SecureMessagingService) GetMessages(ctx context.Context, offset int64, params SecureMessagingGetMessagesParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if params.Topic == "" {
 		err = errors.New("missing required topic parameter")
 		return

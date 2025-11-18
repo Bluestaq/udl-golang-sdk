@@ -41,7 +41,7 @@ func NewConjunctionHistoryService(opts ...option.RequestOption) (r ConjunctionHi
 // parameter information.
 func (r *ConjunctionHistoryService) Aodr(ctx context.Context, query ConjunctionHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/conjunction/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

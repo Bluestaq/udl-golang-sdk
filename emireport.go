@@ -49,7 +49,7 @@ func NewEmireportService(opts ...option.RequestOption) (r EmireportService) {
 // operation. Please contact the UDL team for assistance.
 func (r *EmireportService) New(ctx context.Context, body EmireportNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/emireport"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -104,7 +104,7 @@ func (r *EmireportService) Count(ctx context.Context, query EmireportCountParams
 // setting up a permanent feed through an alternate mechanism.
 func (r *EmireportService) NewBulk(ctx context.Context, body EmireportNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/emireport/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -153,7 +153,7 @@ func (r *EmireportService) Tuple(ctx context.Context, query EmireportTupleParams
 // contact the UDL team for assistance.
 func (r *EmireportService) UnvalidatedPublish(ctx context.Context, body EmireportUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-emireport"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
