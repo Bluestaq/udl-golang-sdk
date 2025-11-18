@@ -47,7 +47,7 @@ func NewAirOperationAirTaskingOrderService(opts ...option.RequestOption) (r AirO
 // operation. Please contact the UDL team for assistance.
 func (r *AirOperationAirTaskingOrderService) New(ctx context.Context, body AirOperationAirTaskingOrderNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/airtaskingorder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -138,7 +138,7 @@ func (r *AirOperationAirTaskingOrderService) Tuple(ctx context.Context, query Ai
 // Please contact the UDL team for assistance.
 func (r *AirOperationAirTaskingOrderService) UnvalidatedPublish(ctx context.Context, body AirOperationAirTaskingOrderUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-airtaskingorder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

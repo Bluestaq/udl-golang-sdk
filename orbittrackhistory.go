@@ -74,7 +74,7 @@ func (r *OrbittrackHistoryService) ListAutoPaging(ctx context.Context, query Orb
 // parameter information.
 func (r *OrbittrackHistoryService) Aodr(ctx context.Context, query OrbittrackHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/orbittrack/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

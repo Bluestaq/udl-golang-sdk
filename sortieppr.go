@@ -49,7 +49,7 @@ func NewSortiePprService(opts ...option.RequestOption) (r SortiePprService) {
 // operation. Please contact the UDL team for assistance.
 func (r *SortiePprService) New(ctx context.Context, body SortiePprNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sortieppr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -60,7 +60,7 @@ func (r *SortiePprService) New(ctx context.Context, body SortiePprNewParams, opt
 // assistance.
 func (r *SortiePprService) Update(ctx context.Context, id string, body SortiePprUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -104,7 +104,7 @@ func (r *SortiePprService) ListAutoPaging(ctx context.Context, query SortiePprLi
 // contact the UDL team for assistance.
 func (r *SortiePprService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -134,7 +134,7 @@ func (r *SortiePprService) Count(ctx context.Context, query SortiePprCountParams
 // setting up a permanent feed through an alternate mechanism.
 func (r *SortiePprService) NewBulk(ctx context.Context, body SortiePprNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sortieppr/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -183,7 +183,7 @@ func (r *SortiePprService) Tuple(ctx context.Context, query SortiePprTupleParams
 // for assistance.
 func (r *SortiePprService) UnvalidatedPublish(ctx context.Context, body SortiePprUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-sortieppr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

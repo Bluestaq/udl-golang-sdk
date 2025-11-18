@@ -51,7 +51,7 @@ func NewRfEmitterStagingService(opts ...option.RequestOption) (r RfEmitterStagin
 // UDL team for assistance.
 func (r *RfEmitterStagingService) New(ctx context.Context, body RfEmitterStagingNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/rfemitterstaging"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -75,7 +75,7 @@ func (r *RfEmitterStagingService) Get(ctx context.Context, id string, query RfEm
 // assistance.
 func (r *RfEmitterStagingService) Update(ctx context.Context, id string, body RfEmitterStagingUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -119,7 +119,7 @@ func (r *RfEmitterStagingService) ListAutoPaging(ctx context.Context, query RfEm
 // Please contact the UDL team for assistance.
 func (r *RfEmitterStagingService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -138,7 +138,7 @@ func (r *RfEmitterStagingService) Delete(ctx context.Context, id string, opts ..
 // UDL team for assistance.
 func (r *RfEmitterStagingService) NewBulk(ctx context.Context, body RfEmitterStagingNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/rfemitterstaging/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

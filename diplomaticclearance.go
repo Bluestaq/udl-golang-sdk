@@ -51,7 +51,7 @@ func NewDiplomaticClearanceService(opts ...option.RequestOption) (r DiplomaticCl
 // service operation. Please contact the UDL team for assistance.
 func (r *DiplomaticClearanceService) New(ctx context.Context, body DiplomaticClearanceNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/diplomaticclearance"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -75,7 +75,7 @@ func (r *DiplomaticClearanceService) Get(ctx context.Context, id string, query D
 // for assistance.
 func (r *DiplomaticClearanceService) Update(ctx context.Context, id string, body DiplomaticClearanceUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -119,7 +119,7 @@ func (r *DiplomaticClearanceService) ListAutoPaging(ctx context.Context, query D
 // operation. Please contact the UDL team for assistance.
 func (r *DiplomaticClearanceService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -149,7 +149,7 @@ func (r *DiplomaticClearanceService) Count(ctx context.Context, query Diplomatic
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *DiplomaticClearanceService) NewBulk(ctx context.Context, body DiplomaticClearanceNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/diplomaticclearance/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

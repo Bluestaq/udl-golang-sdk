@@ -63,7 +63,7 @@ func NewAttitudeSetService(opts ...option.RequestOption) (r AttitudeSetService) 
 // </h3>
 func (r *AttitudeSetService) New(ctx context.Context, body AttitudeSetNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/attitudeset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -167,7 +167,7 @@ func (r *AttitudeSetService) Tuple(ctx context.Context, query AttitudeSetTuplePa
 // </h3>
 func (r *AttitudeSetService) UnvalidatedPublish(ctx context.Context, body AttitudeSetUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-attitudeset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

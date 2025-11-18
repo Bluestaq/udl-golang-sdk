@@ -47,7 +47,7 @@ func NewRouteStatService(opts ...option.RequestOption) (r RouteStatService) {
 // operation. Please contact the UDL team for assistance.
 func (r *RouteStatService) New(ctx context.Context, body RouteStatNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/routestats"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -70,7 +70,7 @@ func (r *RouteStatService) Get(ctx context.Context, id string, query RouteStatGe
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *RouteStatService) Update(ctx context.Context, id string, body RouteStatUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -114,7 +114,7 @@ func (r *RouteStatService) ListAutoPaging(ctx context.Context, query RouteStatLi
 // contact the UDL team for assistance.
 func (r *RouteStatService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -144,7 +144,7 @@ func (r *RouteStatService) Count(ctx context.Context, query RouteStatCountParams
 // permanent feed through an alternate mechanism.
 func (r *RouteStatService) NewBulk(ctx context.Context, body RouteStatNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/routestats/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -180,7 +180,7 @@ func (r *RouteStatService) Tuple(ctx context.Context, query RouteStatTupleParams
 // contact the UDL team for assistance.
 func (r *RouteStatService) UnvalidatedPublish(ctx context.Context, body RouteStatUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-routestats"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

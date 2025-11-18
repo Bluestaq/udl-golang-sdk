@@ -49,7 +49,7 @@ func NewEventEvolutionService(opts ...option.RequestOption) (r EventEvolutionSer
 // operation. Please contact the UDL team for assistance.
 func (r *EventEvolutionService) New(ctx context.Context, body EventEvolutionNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/eventevolution"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -118,7 +118,7 @@ func (r *EventEvolutionService) Count(ctx context.Context, query EventEvolutionC
 // alternate mechanism.
 func (r *EventEvolutionService) NewBulk(ctx context.Context, body EventEvolutionNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/eventevolution/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -154,7 +154,7 @@ func (r *EventEvolutionService) Tuple(ctx context.Context, query EventEvolutionT
 // UDL.
 func (r *EventEvolutionService) UnvalidatedPublish(ctx context.Context, body EventEvolutionUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-eventevolution"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

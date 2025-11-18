@@ -47,7 +47,7 @@ func NewEopService(opts ...option.RequestOption) (r EopService) {
 // contact the UDL team for assistance.
 func (r *EopService) New(ctx context.Context, body EopNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/eop"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -70,7 +70,7 @@ func (r *EopService) Get(ctx context.Context, id string, query EopGetParams, opt
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *EopService) Update(ctx context.Context, id string, body EopUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -115,7 +115,7 @@ func (r *EopService) ListAutoPaging(ctx context.Context, query EopListParams, op
 // operation. Please contact the UDL team for assistance.
 func (r *EopService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

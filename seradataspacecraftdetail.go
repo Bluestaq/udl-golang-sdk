@@ -45,7 +45,7 @@ func NewSeradataSpacecraftDetailService(opts ...option.RequestOption) (r Seradat
 // operation. Please contact the UDL team for assistance.
 func (r *SeradataSpacecraftDetailService) New(ctx context.Context, body SeradataSpacecraftDetailNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/seradataspacecraftdetails"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -56,7 +56,7 @@ func (r *SeradataSpacecraftDetailService) New(ctx context.Context, body Seradata
 // assistance.
 func (r *SeradataSpacecraftDetailService) Update(ctx context.Context, id string, body SeradataSpacecraftDetailUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -100,7 +100,7 @@ func (r *SeradataSpacecraftDetailService) ListAutoPaging(ctx context.Context, qu
 // operation. Please contact the UDL team for assistance.
 func (r *SeradataSpacecraftDetailService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

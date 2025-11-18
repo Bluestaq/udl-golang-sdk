@@ -72,7 +72,7 @@ func (r *CollectResponseHistoryService) ListAutoPaging(ctx context.Context, quer
 // parameter information.
 func (r *CollectResponseHistoryService) Aodr(ctx context.Context, query CollectResponseHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/collectresponse/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

@@ -49,7 +49,7 @@ func NewSgiService(opts ...option.RequestOption) (r SgiService) {
 // contact the UDL team for assistance.
 func (r *SgiService) New(ctx context.Context, body SgiNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sgi"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -59,7 +59,7 @@ func (r *SgiService) New(ctx context.Context, body SgiNewParams, opts ...option.
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *SgiService) Update(ctx context.Context, id string, body SgiUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -103,7 +103,7 @@ func (r *SgiService) ListAutoPaging(ctx context.Context, query SgiListParams, op
 // contact the UDL team for assistance.
 func (r *SgiService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -133,7 +133,7 @@ func (r *SgiService) Count(ctx context.Context, query SgiCountParams, opts ...op
 // feed through an alternate mechanism.
 func (r *SgiService) NewBulk(ctx context.Context, body SgiNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sgi/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -190,7 +190,7 @@ func (r *SgiService) Tuple(ctx context.Context, query SgiTupleParams, opts ...op
 // UDL team for assistance.
 func (r *SgiService) UnvalidatedPublish(ctx context.Context, body SgiUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-sgi"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

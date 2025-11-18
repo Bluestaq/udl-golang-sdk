@@ -49,7 +49,7 @@ func NewItemTrackingService(opts ...option.RequestOption) (r ItemTrackingService
 // operation. Please contact the UDL team for assistance.
 func (r *ItemTrackingService) New(ctx context.Context, body ItemTrackingNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/itemtracking"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -89,7 +89,7 @@ func (r *ItemTrackingService) ListAutoPaging(ctx context.Context, query ItemTrac
 // Please contact the UDL team for assistance.
 func (r *ItemTrackingService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -155,7 +155,7 @@ func (r *ItemTrackingService) Tuple(ctx context.Context, query ItemTrackingTuple
 // Please contact the UDL team for assistance.
 func (r *ItemTrackingService) UnvalidatedPublish(ctx context.Context, body ItemTrackingUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-itemtracking"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

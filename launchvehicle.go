@@ -45,7 +45,7 @@ func NewLaunchVehicleService(opts ...option.RequestOption) (r LaunchVehicleServi
 // Please contact the UDL team for assistance.
 func (r *LaunchVehicleService) New(ctx context.Context, body LaunchVehicleNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/launchvehicle"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -55,7 +55,7 @@ func (r *LaunchVehicleService) New(ctx context.Context, body LaunchVehicleNewPar
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *LaunchVehicleService) Update(ctx context.Context, id string, body LaunchVehicleUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -99,7 +99,7 @@ func (r *LaunchVehicleService) ListAutoPaging(ctx context.Context, query LaunchV
 // Please contact the UDL team for assistance.
 func (r *LaunchVehicleService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

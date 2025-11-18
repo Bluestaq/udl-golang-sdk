@@ -46,7 +46,7 @@ func NewAirOperationAircraftSortyService(opts ...option.RequestOption) (r AirOpe
 // Please contact the UDL team for assistance.
 func (r *AirOperationAircraftSortyService) New(ctx context.Context, body AirOperationAircraftSortyNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/aircraftsortie"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -101,7 +101,7 @@ func (r *AirOperationAircraftSortyService) Count(ctx context.Context, query AirO
 // setting up a permanent feed through an alternate mechanism.
 func (r *AirOperationAircraftSortyService) NewBulk(ctx context.Context, body AirOperationAircraftSortyNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/aircraftsortie/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -113,7 +113,7 @@ func (r *AirOperationAircraftSortyService) NewBulk(ctx context.Context, body Air
 // Please contact the UDL team for assistance.
 func (r *AirOperationAircraftSortyService) UnvalidatedPublish(ctx context.Context, body AirOperationAircraftSortyUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-aircraftsortie"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

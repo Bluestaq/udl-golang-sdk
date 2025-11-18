@@ -49,7 +49,7 @@ func NewPersonnelrecoveryService(opts ...option.RequestOption) (r Personnelrecov
 // to gain access.
 func (r *PersonnelrecoveryService) New(ctx context.Context, body PersonnelrecoveryNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/personnelrecovery"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -105,7 +105,7 @@ func (r *PersonnelrecoveryService) Count(ctx context.Context, query Personnelrec
 // alternate mechanism.
 func (r *PersonnelrecoveryService) NewBulk(ctx context.Context, body PersonnelrecoveryNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/personnelrecovery/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -117,7 +117,7 @@ func (r *PersonnelrecoveryService) NewBulk(ctx context.Context, body Personnelre
 // into UDL.
 func (r *PersonnelrecoveryService) FileNew(ctx context.Context, body PersonnelrecoveryFileNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-personnelrecovery"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

@@ -47,7 +47,7 @@ func NewVesselService(opts ...option.RequestOption) (r VesselService) {
 // Please contact the UDL team for assistance.
 func (r *VesselService) New(ctx context.Context, body VesselNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/vessel"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -57,7 +57,7 @@ func (r *VesselService) New(ctx context.Context, body VesselNewParams, opts ...o
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *VesselService) Update(ctx context.Context, id string, body VesselUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -116,7 +116,7 @@ func (r *VesselService) Count(ctx context.Context, query VesselCountParams, opts
 // setting up a permanent feed through an alternate mechanism.
 func (r *VesselService) NewBulk(ctx context.Context, body VesselNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/vessel/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

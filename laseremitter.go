@@ -47,7 +47,7 @@ func NewLaseremitterService(opts ...option.RequestOption) (r LaseremitterService
 // operation. Please contact the UDL team for assistance.
 func (r *LaseremitterService) New(ctx context.Context, body LaseremitterNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/laseremitter"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -58,7 +58,7 @@ func (r *LaseremitterService) New(ctx context.Context, body LaseremitterNewParam
 // assistance.
 func (r *LaseremitterService) Update(ctx context.Context, id string, body LaseremitterUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -102,7 +102,7 @@ func (r *LaseremitterService) ListAutoPaging(ctx context.Context, query Laseremi
 // Please contact the UDL team for assistance.
 func (r *LaseremitterService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

@@ -47,7 +47,7 @@ func NewStageService(opts ...option.RequestOption) (r StageService) {
 // multiple stage records.
 func (r *StageService) New(ctx context.Context, body StageNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/stage"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -59,7 +59,7 @@ func (r *StageService) New(ctx context.Context, body StageNewParams, opts ...opt
 // particular source. A vehicle may have multiple stage records.
 func (r *StageService) Update(ctx context.Context, id string, body StageUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -105,7 +105,7 @@ func (r *StageService) ListAutoPaging(ctx context.Context, query StageListParams
 // multiple stage records.
 func (r *StageService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

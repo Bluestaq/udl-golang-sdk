@@ -91,7 +91,7 @@ func (r *TrackDetailService) Count(ctx context.Context, query TrackDetailCountPa
 // setting up a permanent feed through an alternate mechanism.
 func (r *TrackDetailService) NewBulk(ctx context.Context, body TrackDetailNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/trackdetails/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

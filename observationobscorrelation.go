@@ -49,7 +49,7 @@ func NewObservationObscorrelationService(opts ...option.RequestOption) (r Observ
 // operation. Please contact the UDL team for assistance.
 func (r *ObservationObscorrelationService) New(ctx context.Context, body ObservationObscorrelationNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/obscorrelation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -117,7 +117,7 @@ func (r *ObservationObscorrelationService) Count(ctx context.Context, query Obse
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *ObservationObscorrelationService) NewBulk(ctx context.Context, body ObservationObscorrelationNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/obscorrelation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -153,7 +153,7 @@ func (r *ObservationObscorrelationService) Tuple(ctx context.Context, query Obse
 // Please contact the UDL team for assistance.
 func (r *ObservationObscorrelationService) UnvalidatedPublish(ctx context.Context, body ObservationObscorrelationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-obscorrelation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

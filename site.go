@@ -47,7 +47,7 @@ func NewSiteService(opts ...option.RequestOption) (r SiteService) {
 // contact the UDL team for assistance.
 func (r *SiteService) New(ctx context.Context, body SiteNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/site"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -57,7 +57,7 @@ func (r *SiteService) New(ctx context.Context, body SiteNewParams, opts ...optio
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *SiteService) Update(ctx context.Context, id string, body SiteUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

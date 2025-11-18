@@ -110,7 +110,7 @@ func (r *ConjunctionService) Count(ctx context.Context, query ConjunctionCountPa
 // assistance.
 func (r *ConjunctionService) NewUdl(ctx context.Context, params ConjunctionNewUdlParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/conjunction"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
 	return
@@ -125,7 +125,7 @@ func (r *ConjunctionService) NewUdl(ctx context.Context, params ConjunctionNewUd
 // through an alternate mechanism.
 func (r *ConjunctionService) NewBulk(ctx context.Context, body ConjunctionNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/conjunction/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -173,7 +173,7 @@ func (r *ConjunctionService) Tuple(ctx context.Context, query ConjunctionTuplePa
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *ConjunctionService) UnvalidatedPublish(ctx context.Context, body ConjunctionUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-conjunction"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -189,7 +189,7 @@ func (r *ConjunctionService) UnvalidatedPublish(ctx context.Context, body Conjun
 // /filedrop/cdms?filename=conj.zip&classification=U&dataMode=TEST&source=Bluestaq&tags=tag1,tag2
 func (r *ConjunctionService) UploadConjunctionDataMessage(ctx context.Context, fileContent io.Reader, body ConjunctionUploadConjunctionDataMessageParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", ""), option.WithRequestBody("application/zip", fileContent)}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*"), option.WithRequestBody("application/zip", fileContent)}, opts...)
 	path := "filedrop/cdms"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, nil, opts...)
 	return

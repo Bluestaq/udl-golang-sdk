@@ -49,7 +49,7 @@ func NewWeatherReportService(opts ...option.RequestOption) (r WeatherReportServi
 // Please contact the UDL team for assistance.
 func (r *WeatherReportService) New(ctx context.Context, body WeatherReportNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/weatherreport"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -140,7 +140,7 @@ func (r *WeatherReportService) Tuple(ctx context.Context, query WeatherReportTup
 // contact the UDL team for assistance.
 func (r *WeatherReportService) UnvalidatedPublish(ctx context.Context, body WeatherReportUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-weatherreport"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

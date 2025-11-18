@@ -47,7 +47,7 @@ func NewAirfieldService(opts ...option.RequestOption) (r AirfieldService) {
 // mechanism.
 func (r *AirfieldService) New(ctx context.Context, body AirfieldNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/airfield"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -70,7 +70,7 @@ func (r *AirfieldService) Get(ctx context.Context, id string, query AirfieldGetP
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *AirfieldService) Update(ctx context.Context, id string, body AirfieldUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
