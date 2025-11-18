@@ -49,7 +49,7 @@ func NewWeatherDataService(opts ...option.RequestOption) (r WeatherDataService) 
 // Please contact the UDL team for assistance.
 func (r *WeatherDataService) New(ctx context.Context, body WeatherDataNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/weatherdata"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -102,7 +102,7 @@ func (r *WeatherDataService) Count(ctx context.Context, query WeatherDataCountPa
 // Please contact the UDL team for assistance.
 func (r *WeatherDataService) NewBulk(ctx context.Context, body WeatherDataNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/weatherdata/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -151,7 +151,7 @@ func (r *WeatherDataService) Tuple(ctx context.Context, query WeatherDataTuplePa
 // contact the UDL team for assistance.
 func (r *WeatherDataService) UnvalidatedPublish(ctx context.Context, body WeatherDataUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-weatherdata"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

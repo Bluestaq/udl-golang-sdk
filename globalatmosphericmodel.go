@@ -156,7 +156,7 @@ func (r *GlobalAtmosphericModelService) Tuple(ctx context.Context, query GlobalA
 // for assistance.
 func (r *GlobalAtmosphericModelService) UnvalidatedPublish(ctx context.Context, body GlobalAtmosphericModelUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-globalatmosphericmodel"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

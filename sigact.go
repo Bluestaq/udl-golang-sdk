@@ -96,7 +96,7 @@ func (r *SigactService) Count(ctx context.Context, query SigactCountParams, opts
 // alternate mechanism.
 func (r *SigactService) NewBulk(ctx context.Context, body SigactNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sigact/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -146,7 +146,7 @@ func (r *SigactService) Tuple(ctx context.Context, query SigactTupleParams, opts
 // for assistance.
 func (r *SigactService) UploadZip(ctx context.Context, body SigactUploadZipParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-sigact-text"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

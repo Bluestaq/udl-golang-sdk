@@ -49,7 +49,7 @@ func NewOnorbitthrusterstatusService(opts ...option.RequestOption) (r Onorbitthr
 // service operation. Please contact the UDL team for assistance.
 func (r *OnorbitthrusterstatusService) New(ctx context.Context, body OnorbitthrusterstatusNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/onorbitthrusterstatus"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -89,7 +89,7 @@ func (r *OnorbitthrusterstatusService) ListAutoPaging(ctx context.Context, query
 // operation. Please contact the UDL team for assistance.
 func (r *OnorbitthrusterstatusService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -119,7 +119,7 @@ func (r *OnorbitthrusterstatusService) Count(ctx context.Context, query Onorbitt
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *OnorbitthrusterstatusService) NewBulk(ctx context.Context, body OnorbitthrusterstatusNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/onorbitthrusterstatus/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

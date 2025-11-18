@@ -47,7 +47,7 @@ func NewSurfaceObstructionService(opts ...option.RequestOption) (r SurfaceObstru
 // operation. Please contact the UDL team for assistance.
 func (r *SurfaceObstructionService) New(ctx context.Context, body SurfaceObstructionNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/surfaceobstruction"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -58,7 +58,7 @@ func (r *SurfaceObstructionService) New(ctx context.Context, body SurfaceObstruc
 // assistance.
 func (r *SurfaceObstructionService) Update(ctx context.Context, id string, body SurfaceObstructionUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -102,7 +102,7 @@ func (r *SurfaceObstructionService) ListAutoPaging(ctx context.Context, query Su
 // operation. Please contact the UDL team for assistance.
 func (r *SurfaceObstructionService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -168,7 +168,7 @@ func (r *SurfaceObstructionService) Tuple(ctx context.Context, query SurfaceObst
 // Please contact the UDL team for assistance.
 func (r *SurfaceObstructionService) UnvalidatedPublish(ctx context.Context, body SurfaceObstructionUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-surfaceobstruction"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

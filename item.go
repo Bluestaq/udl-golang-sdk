@@ -47,7 +47,7 @@ func NewItemService(opts ...option.RequestOption) (r ItemService) {
 // Please contact the UDL team for assistance.
 func (r *ItemService) New(ctx context.Context, body ItemNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/item"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -58,7 +58,7 @@ func (r *ItemService) New(ctx context.Context, body ItemNewParams, opts ...optio
 // contact the UDL team for assistance.
 func (r *ItemService) Update(ctx context.Context, id string, body ItemUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -102,7 +102,7 @@ func (r *ItemService) ListAutoPaging(ctx context.Context, query ItemListParams, 
 // contact the UDL team for assistance.
 func (r *ItemService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -168,7 +168,7 @@ func (r *ItemService) Tuple(ctx context.Context, query ItemTupleParams, opts ...
 // contact the UDL team for assistance.
 func (r *ItemService) UnvalidatedPublish(ctx context.Context, body ItemUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-item"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

@@ -47,7 +47,7 @@ func NewAviationRiskManagementService(opts ...option.RequestOption) (r AviationR
 // service operation. Please contact the UDL team for assistance.
 func (r *AviationRiskManagementService) New(ctx context.Context, body AviationRiskManagementNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/aviationriskmanagement"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -71,7 +71,7 @@ func (r *AviationRiskManagementService) Get(ctx context.Context, id string, quer
 // for assistance.
 func (r *AviationRiskManagementService) Update(ctx context.Context, id string, body AviationRiskManagementUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -115,7 +115,7 @@ func (r *AviationRiskManagementService) ListAutoPaging(ctx context.Context, quer
 // operation. Please contact the UDL team for assistance.
 func (r *AviationRiskManagementService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -145,7 +145,7 @@ func (r *AviationRiskManagementService) Count(ctx context.Context, query Aviatio
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *AviationRiskManagementService) NewBulk(ctx context.Context, body AviationRiskManagementNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/aviationriskmanagement/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -181,7 +181,7 @@ func (r *AviationRiskManagementService) Tuple(ctx context.Context, query Aviatio
 // operation. Please contact the UDL team for assistance.
 func (r *AviationRiskManagementService) UnvalidatedPublish(ctx context.Context, body AviationRiskManagementUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-aviationriskmanagement"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

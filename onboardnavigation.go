@@ -91,7 +91,7 @@ func (r *OnboardnavigationService) Count(ctx context.Context, query Onboardnavig
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *OnboardnavigationService) NewBulk(ctx context.Context, body OnboardnavigationNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/onboardnavigation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -127,7 +127,7 @@ func (r *OnboardnavigationService) Tuple(ctx context.Context, query Onboardnavig
 // operation. Please contact the UDL team for assistance.
 func (r *OnboardnavigationService) UnvalidatedPublish(ctx context.Context, body OnboardnavigationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-onboardnavigation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

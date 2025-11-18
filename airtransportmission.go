@@ -47,7 +47,7 @@ func NewAirTransportMissionService(opts ...option.RequestOption) (r AirTransport
 // operation. Please contact the UDL team for assistance.
 func (r *AirTransportMissionService) New(ctx context.Context, body AirTransportMissionNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/airtransportmission"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -71,7 +71,7 @@ func (r *AirTransportMissionService) Get(ctx context.Context, id string, query A
 // assistance.
 func (r *AirTransportMissionService) Update(ctx context.Context, id string, body AirTransportMissionUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

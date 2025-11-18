@@ -47,7 +47,7 @@ func NewEcpedrService(opts ...option.RequestOption) (r EcpedrService) {
 // Please contact the UDL team for assistance.
 func (r *EcpedrService) New(ctx context.Context, body EcpedrNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/ecpedr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -102,7 +102,7 @@ func (r *EcpedrService) Count(ctx context.Context, query EcpedrCountParams, opts
 // setting up a permanent feed through an alternate mechanism.
 func (r *EcpedrService) NewBulk(ctx context.Context, body EcpedrNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/ecpedr/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -138,7 +138,7 @@ func (r *EcpedrService) Tuple(ctx context.Context, query EcpedrTupleParams, opts
 // contact the UDL team for assistance.
 func (r *EcpedrService) UnvalidatedPublish(ctx context.Context, body EcpedrUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-ecpedr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

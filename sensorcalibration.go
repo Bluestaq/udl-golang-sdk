@@ -51,7 +51,7 @@ func NewSensorCalibrationService(opts ...option.RequestOption) (r SensorCalibrat
 // alternate mechanism.
 func (r *SensorCalibrationService) New(ctx context.Context, body SensorCalibrationNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sensorcalibration"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -119,7 +119,7 @@ func (r *SensorCalibrationService) Count(ctx context.Context, query SensorCalibr
 // setting up a permanent feed through an alternate mechanism.
 func (r *SensorCalibrationService) NewBulk(ctx context.Context, body SensorCalibrationNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sensorcalibration/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -155,7 +155,7 @@ func (r *SensorCalibrationService) Tuple(ctx context.Context, query SensorCalibr
 // Please contact the UDL team for assistance.
 func (r *SensorCalibrationService) UnvalidatedPublish(ctx context.Context, body SensorCalibrationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-sensorcalibration"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

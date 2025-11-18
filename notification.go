@@ -53,7 +53,7 @@ func NewNotificationService(opts ...option.RequestOption) (r NotificationService
 // assistance.
 func (r *NotificationService) New(ctx context.Context, body NotificationNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/notification"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -115,7 +115,7 @@ func (r *NotificationService) Count(ctx context.Context, query NotificationCount
 // contact the UDL team for assistance.
 func (r *NotificationService) NewRaw(ctx context.Context, params NotificationNewRawParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/notification/createRaw"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
 	return

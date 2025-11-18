@@ -73,7 +73,7 @@ func (r *SgiHistoryService) ListAutoPaging(ctx context.Context, query SgiHistory
 // parameter information.
 func (r *SgiHistoryService) Aodr(ctx context.Context, query SgiHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sgi/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

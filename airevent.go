@@ -47,7 +47,7 @@ func NewAirEventService(opts ...option.RequestOption) (r AirEventService) {
 // operation. Please contact the UDL team for assistance.
 func (r *AirEventService) New(ctx context.Context, body AirEventNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/airevent"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -58,7 +58,7 @@ func (r *AirEventService) New(ctx context.Context, body AirEventNewParams, opts 
 // assistance.
 func (r *AirEventService) Update(ctx context.Context, id string, body AirEventUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -102,7 +102,7 @@ func (r *AirEventService) ListAutoPaging(ctx context.Context, query AirEventList
 // contact the UDL team for assistance.
 func (r *AirEventService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -133,7 +133,7 @@ func (r *AirEventService) Count(ctx context.Context, query AirEventCountParams, 
 // setting up a permanent feed through an alternate mechanism.
 func (r *AirEventService) NewBulk(ctx context.Context, body AirEventNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/airevent/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -182,7 +182,7 @@ func (r *AirEventService) Tuple(ctx context.Context, query AirEventTupleParams, 
 // contact the UDL team for assistance.
 func (r *AirEventService) UnvalidatedPublish(ctx context.Context, body AirEventUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-airevent"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

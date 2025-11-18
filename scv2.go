@@ -46,7 +46,7 @@ func NewScV2Service(opts ...option.RequestOption) (r ScV2Service) {
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *ScV2Service) Update(ctx context.Context, params ScV2UpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "scs/v2/update"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPatch, path, params, nil, opts...)
 	return
@@ -81,7 +81,7 @@ func (r *ScV2Service) ListAutoPaging(ctx context.Context, query ScV2ListParams, 
 // this service operation. Please contact the UDL team for assistance.
 func (r *ScV2Service) Delete(ctx context.Context, body ScV2DeleteParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "scs/v2/delete"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, body, nil, opts...)
 	return
@@ -91,7 +91,7 @@ func (r *ScV2Service) Delete(ctx context.Context, body ScV2DeleteParams, opts ..
 // service operation. Please contact the UDL team for assistance.
 func (r *ScV2Service) Copy(ctx context.Context, body ScV2CopyParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "scs/v2/copy"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -101,7 +101,7 @@ func (r *ScV2Service) Copy(ctx context.Context, body ScV2CopyParams, opts ...opt
 // operation. Please contact the UDL team for assistance.
 func (r *ScV2Service) FileUpload(ctx context.Context, fileContent io.Reader, body ScV2FileUploadParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", ""), option.WithRequestBody("application/octet-stream", fileContent)}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*"), option.WithRequestBody("application/octet-stream", fileContent)}, opts...)
 	path := "scs/v2/file"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, nil, opts...)
 	return
@@ -116,7 +116,7 @@ func (r *ScV2Service) FileUpload(ctx context.Context, fileContent io.Reader, bod
 // for assistance.
 func (r *ScV2Service) FolderNew(ctx context.Context, params ScV2FolderNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "scs/v2/folder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
 	return
@@ -126,7 +126,7 @@ func (r *ScV2Service) FolderNew(ctx context.Context, params ScV2FolderNewParams,
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *ScV2Service) Move(ctx context.Context, body ScV2MoveParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "scs/v2/move"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
 	return

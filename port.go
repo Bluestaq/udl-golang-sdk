@@ -47,7 +47,7 @@ func NewPortService(opts ...option.RequestOption) (r PortService) {
 // Please contact the UDL team for assistance.
 func (r *PortService) New(ctx context.Context, body PortNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/port"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -57,7 +57,7 @@ func (r *PortService) New(ctx context.Context, body PortNewParams, opts ...optio
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *PortService) Update(ctx context.Context, id string, body PortUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -116,7 +116,7 @@ func (r *PortService) Count(ctx context.Context, query PortCountParams, opts ...
 // permanent feed through an alternate mechanism.
 func (r *PortService) NewBulk(ctx context.Context, body PortNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/port/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

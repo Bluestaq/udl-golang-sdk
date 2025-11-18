@@ -49,7 +49,7 @@ func NewTdoaFdoaDiffofarrivalService(opts ...option.RequestOption) (r TdoaFdoaDi
 // alternate mechanism.
 func (r *TdoaFdoaDiffofarrivalService) New(ctx context.Context, body TdoaFdoaDiffofarrivalNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/diffofarrival"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -104,7 +104,7 @@ func (r *TdoaFdoaDiffofarrivalService) Count(ctx context.Context, query TdoaFdoa
 // setting up a permanent feed through an alternate mechanism.
 func (r *TdoaFdoaDiffofarrivalService) NewBulk(ctx context.Context, body TdoaFdoaDiffofarrivalNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/diffofarrival/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

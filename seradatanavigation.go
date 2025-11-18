@@ -45,7 +45,7 @@ func NewSeraDataNavigationService(opts ...option.RequestOption) (r SeraDataNavig
 // operation. Please contact the UDL team for assistance.
 func (r *SeraDataNavigationService) New(ctx context.Context, body SeraDataNavigationNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/seradatanavigation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -55,7 +55,7 @@ func (r *SeraDataNavigationService) New(ctx context.Context, body SeraDataNaviga
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *SeraDataNavigationService) Update(ctx context.Context, id string, body SeraDataNavigationUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -99,7 +99,7 @@ func (r *SeraDataNavigationService) ListAutoPaging(ctx context.Context, query Se
 // Please contact the UDL team for assistance.
 func (r *SeraDataNavigationService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

@@ -47,7 +47,7 @@ func NewOperatingunitremarkService(opts ...option.RequestOption) (r Operatinguni
 // operation. Please contact the UDL team for assistance.
 func (r *OperatingunitremarkService) New(ctx context.Context, body OperatingunitremarkNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/operatingunitremark"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -102,7 +102,7 @@ func (r *OperatingunitremarkService) Count(ctx context.Context, query Operatingu
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *OperatingunitremarkService) NewBulk(ctx context.Context, body OperatingunitremarkNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/operatingunitremark/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

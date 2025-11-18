@@ -50,7 +50,7 @@ func NewObservationPassiveRadarObservationService(opts ...option.RequestOption) 
 // operation. Please contact the UDL team for assistance.
 func (r *ObservationPassiveRadarObservationService) New(ctx context.Context, body ObservationPassiveRadarObservationNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/passiveradarobservation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -105,7 +105,7 @@ func (r *ObservationPassiveRadarObservationService) Count(ctx context.Context, q
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *ObservationPassiveRadarObservationService) NewBulk(ctx context.Context, body ObservationPassiveRadarObservationNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/passiveradarobservation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -117,7 +117,7 @@ func (r *ObservationPassiveRadarObservationService) NewBulk(ctx context.Context,
 // operation. Please contact the UDL team for assistance.
 func (r *ObservationPassiveRadarObservationService) FileNew(ctx context.Context, body ObservationPassiveRadarObservationFileNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-passiveradar"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

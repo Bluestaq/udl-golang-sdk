@@ -46,7 +46,7 @@ func NewSolarArrayDetailService(opts ...option.RequestOption) (r SolarArrayDetai
 // multiple details records compiled by various sources.
 func (r *SolarArrayDetailService) New(ctx context.Context, body SolarArrayDetailNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/solararraydetails"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -58,7 +58,7 @@ func (r *SolarArrayDetailService) New(ctx context.Context, body SolarArrayDetail
 // sources.
 func (r *SolarArrayDetailService) Update(ctx context.Context, id string, body SolarArrayDetailUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -103,7 +103,7 @@ func (r *SolarArrayDetailService) ListAutoPaging(ctx context.Context, query Sola
 // multiple details records compiled by various sources.
 func (r *SolarArrayDetailService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

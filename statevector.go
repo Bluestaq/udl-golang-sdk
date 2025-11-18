@@ -53,7 +53,7 @@ func NewStateVectorService(opts ...option.RequestOption) (r StateVectorService) 
 // mechanism.
 func (r *StateVectorService) New(ctx context.Context, body StateVectorNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/statevector"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -108,7 +108,7 @@ func (r *StateVectorService) Count(ctx context.Context, query StateVectorCountPa
 // permanent feed through an alternate mechanism.
 func (r *StateVectorService) NewBulk(ctx context.Context, body StateVectorNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/statevector/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -157,7 +157,7 @@ func (r *StateVectorService) Tuple(ctx context.Context, query StateVectorTuplePa
 // contact the UDL team for assistance.
 func (r *StateVectorService) UnvalidatedPublish(ctx context.Context, body StateVectorUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-sv"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

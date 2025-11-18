@@ -49,7 +49,7 @@ func NewFeatureAssessmentService(opts ...option.RequestOption) (r FeatureAssessm
 // operation. Please contact the UDL team for assistance.
 func (r *FeatureAssessmentService) New(ctx context.Context, body FeatureAssessmentNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/featureassessment"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -117,7 +117,7 @@ func (r *FeatureAssessmentService) Count(ctx context.Context, query FeatureAsses
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *FeatureAssessmentService) NewBulk(ctx context.Context, body FeatureAssessmentNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/featureassessment/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -153,7 +153,7 @@ func (r *FeatureAssessmentService) Tuple(ctx context.Context, query FeatureAsses
 // Please contact the UDL team for assistance.
 func (r *FeatureAssessmentService) UnvalidatedPublish(ctx context.Context, body FeatureAssessmentUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-featureassessment"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

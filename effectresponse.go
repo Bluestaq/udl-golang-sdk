@@ -51,7 +51,7 @@ func NewEffectResponseService(opts ...option.RequestOption) (r EffectResponseSer
 // mechanism.
 func (r *EffectResponseService) New(ctx context.Context, body EffectResponseNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/effectresponse"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -119,7 +119,7 @@ func (r *EffectResponseService) Count(ctx context.Context, query EffectResponseC
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *EffectResponseService) NewBulk(ctx context.Context, body EffectResponseNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/effectresponse/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -155,7 +155,7 @@ func (r *EffectResponseService) Tuple(ctx context.Context, query EffectResponseT
 // contact the UDL team for assistance.
 func (r *EffectResponseService) UnvalidatedPublish(ctx context.Context, body EffectResponseUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-effectresponse"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

@@ -51,7 +51,7 @@ func NewObservationRfObservationService(opts ...option.RequestOption) (r Observa
 // mechanism.
 func (r *ObservationRfObservationService) New(ctx context.Context, body ObservationRfObservationNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/rfobservation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -106,7 +106,7 @@ func (r *ObservationRfObservationService) Count(ctx context.Context, query Obser
 // permanent feed through an alternate mechanism.
 func (r *ObservationRfObservationService) NewBulk(ctx context.Context, body ObservationRfObservationNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/rfobservation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -155,7 +155,7 @@ func (r *ObservationRfObservationService) Tuple(ctx context.Context, query Obser
 // contact the UDL team for assistance.
 func (r *ObservationRfObservationService) UnvalidatedPublish(ctx context.Context, body ObservationRfObservationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-rf"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

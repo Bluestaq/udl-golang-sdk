@@ -91,7 +91,7 @@ func (r *IsrCollectionService) Count(ctx context.Context, query IsrCollectionCou
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *IsrCollectionService) NewBulk(ctx context.Context, body IsrCollectionNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/isrcollection/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -127,7 +127,7 @@ func (r *IsrCollectionService) Tuple(ctx context.Context, query IsrCollectionTup
 // contact the UDL team for assistance.
 func (r *IsrCollectionService) UnvalidatedPublish(ctx context.Context, body IsrCollectionUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-isrcollection"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

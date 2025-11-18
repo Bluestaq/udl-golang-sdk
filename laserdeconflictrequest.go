@@ -50,7 +50,7 @@ func NewLaserdeconflictrequestService(opts ...option.RequestOption) (r Laserdeco
 // UDL team for assistance.
 func (r *LaserdeconflictrequestService) New(ctx context.Context, body LaserdeconflictrequestNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/laserdeconflictrequest"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -141,7 +141,7 @@ func (r *LaserdeconflictrequestService) Tuple(ctx context.Context, query Laserde
 // operation. Please contact the UDL team for assistance.
 func (r *LaserdeconflictrequestService) UnvalidatedPublish(ctx context.Context, body LaserdeconflictrequestUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-laserdeconflictrequest"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

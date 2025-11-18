@@ -45,7 +45,7 @@ func NewLinkStatusDatalinkService(opts ...option.RequestOption) (r LinkStatusDat
 // operation. Please contact the UDL team for assistance.
 func (r *LinkStatusDatalinkService) New(ctx context.Context, body LinkStatusDatalinkNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/datalink"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -123,7 +123,7 @@ func (r *LinkStatusDatalinkService) Tuple(ctx context.Context, query LinkStatusD
 // contact the UDL team for assistance.
 func (r *LinkStatusDatalinkService) UnvalidatedPublish(ctx context.Context, body LinkStatusDatalinkUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-datalink"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

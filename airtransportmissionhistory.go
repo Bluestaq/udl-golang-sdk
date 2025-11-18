@@ -72,7 +72,7 @@ func (r *AirTransportMissionHistoryService) ListAutoPaging(ctx context.Context, 
 // parameter information.
 func (r *AirTransportMissionHistoryService) Aodr(ctx context.Context, query AirTransportMissionHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/airtransportmission/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

@@ -45,7 +45,7 @@ func NewSeraDataEarlyWarningService(opts ...option.RequestOption) (r SeraDataEar
 // operation. Please contact the UDL team for assistance.
 func (r *SeraDataEarlyWarningService) New(ctx context.Context, body SeraDataEarlyWarningNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/seradataearlywarning"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -55,7 +55,7 @@ func (r *SeraDataEarlyWarningService) New(ctx context.Context, body SeraDataEarl
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *SeraDataEarlyWarningService) Update(ctx context.Context, id string, body SeraDataEarlyWarningUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -99,7 +99,7 @@ func (r *SeraDataEarlyWarningService) ListAutoPaging(ctx context.Context, query 
 // Please contact the UDL team for assistance.
 func (r *SeraDataEarlyWarningService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

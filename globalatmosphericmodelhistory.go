@@ -73,7 +73,7 @@ func (r *GlobalAtmosphericModelHistoryService) ListAutoPaging(ctx context.Contex
 // parameter information.
 func (r *GlobalAtmosphericModelHistoryService) Aodr(ctx context.Context, query GlobalAtmosphericModelHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/globalatmosphericmodel/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

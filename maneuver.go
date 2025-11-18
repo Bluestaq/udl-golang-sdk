@@ -51,7 +51,7 @@ func NewManeuverService(opts ...option.RequestOption) (r ManeuverService) {
 // mechanism.
 func (r *ManeuverService) New(ctx context.Context, body ManeuverNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/maneuver"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -106,7 +106,7 @@ func (r *ManeuverService) Count(ctx context.Context, query ManeuverCountParams, 
 // permanent feed through an alternate mechanism.
 func (r *ManeuverService) NewBulk(ctx context.Context, body ManeuverNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/maneuver/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -155,7 +155,7 @@ func (r *ManeuverService) Tuple(ctx context.Context, query ManeuverTupleParams, 
 // UDL team for assistance.
 func (r *ManeuverService) UnvalidatedPublish(ctx context.Context, body ManeuverUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-maneuver"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

@@ -43,7 +43,7 @@ func (r *ScNotificationOffsetService) Get(ctx context.Context, opts ...option.Re
 // Returns the current/latest offset for the SCS Event Notification Kafka topic.
 func (r *ScNotificationOffsetService) GetLatest(ctx context.Context, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "scs/notifications/getLatestOffset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, nil, opts...)
 	return

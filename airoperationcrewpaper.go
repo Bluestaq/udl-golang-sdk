@@ -41,7 +41,7 @@ func NewAirOperationCrewpaperService(opts ...option.RequestOption) (r AirOperati
 // UDL team for assistance.
 func (r *AirOperationCrewpaperService) Unpublish(ctx context.Context, body AirOperationCrewpaperUnpublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/crewpapers/unpublish"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -52,7 +52,7 @@ func (r *AirOperationCrewpaperService) Unpublish(ctx context.Context, body AirOp
 // for assistance.
 func (r *AirOperationCrewpaperService) UploadPdf(ctx context.Context, fileContent io.Reader, body AirOperationCrewpaperUploadPdfParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", ""), option.WithRequestBody("application/pdf", fileContent)}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*"), option.WithRequestBody("application/pdf", fileContent)}, opts...)
 	path := "filedrop/crewpapers"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, nil, opts...)
 	return

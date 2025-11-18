@@ -49,7 +49,7 @@ func NewEngineService(opts ...option.RequestOption) (r EngineService) {
 // contact the UDL team for assistance.
 func (r *EngineService) New(ctx context.Context, body EngineNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/engine"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -76,7 +76,7 @@ func (r *EngineService) Get(ctx context.Context, id string, query EngineGetParam
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *EngineService) Update(ctx context.Context, id string, body EngineUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -122,7 +122,7 @@ func (r *EngineService) ListAutoPaging(ctx context.Context, query EngineListPara
 // contact the UDL team for assistance.
 func (r *EngineService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

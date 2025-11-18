@@ -39,7 +39,7 @@ func NewLinkstatusService(opts ...option.RequestOption) (r LinkstatusService) {
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *LinkstatusService) Update(ctx context.Context, id string, body LinkstatusUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -54,7 +54,7 @@ func (r *LinkstatusService) Update(ctx context.Context, id string, body Linkstat
 // contact the UDL team for assistance.
 func (r *LinkstatusService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

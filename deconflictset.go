@@ -49,7 +49,7 @@ func NewDeconflictsetService(opts ...option.RequestOption) (r DeconflictsetServi
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *DeconflictsetService) New(ctx context.Context, body DeconflictsetNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/deconflictset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -140,7 +140,7 @@ func (r *DeconflictsetService) Tuple(ctx context.Context, query DeconflictsetTup
 // Please contact the UDL team for assistance.
 func (r *DeconflictsetService) UnvalidatedPublish(ctx context.Context, body DeconflictsetUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-deconflictset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

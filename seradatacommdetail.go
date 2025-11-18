@@ -45,7 +45,7 @@ func NewSeraDataCommDetailService(opts ...option.RequestOption) (r SeraDataCommD
 // operation. Please contact the UDL team for assistance.
 func (r *SeraDataCommDetailService) New(ctx context.Context, body SeraDataCommDetailNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/seradatacommdetails"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -55,7 +55,7 @@ func (r *SeraDataCommDetailService) New(ctx context.Context, body SeraDataCommDe
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *SeraDataCommDetailService) Update(ctx context.Context, id string, body SeraDataCommDetailUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -99,7 +99,7 @@ func (r *SeraDataCommDetailService) ListAutoPaging(ctx context.Context, query Se
 // Please contact the UDL team for assistance.
 func (r *SeraDataCommDetailService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

@@ -47,7 +47,7 @@ func NewCrewService(opts ...option.RequestOption) (r CrewService) {
 // Please contact the UDL team for assistance.
 func (r *CrewService) New(ctx context.Context, body CrewNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/crew"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -70,7 +70,7 @@ func (r *CrewService) Get(ctx context.Context, id string, query CrewGetParams, o
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *CrewService) Update(ctx context.Context, id string, body CrewUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -152,7 +152,7 @@ func (r *CrewService) Tuple(ctx context.Context, query CrewTupleParams, opts ...
 // contact the UDL team for assistance.
 func (r *CrewService) UnvalidatedPublish(ctx context.Context, body CrewUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-crew"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

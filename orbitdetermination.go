@@ -49,7 +49,7 @@ func NewOrbitdeterminationService(opts ...option.RequestOption) (r Orbitdetermin
 // operation. Please contact the UDL team for assistance.
 func (r *OrbitdeterminationService) New(ctx context.Context, body OrbitdeterminationNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/orbitdetermination"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -104,7 +104,7 @@ func (r *OrbitdeterminationService) Count(ctx context.Context, query Orbitdeterm
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *OrbitdeterminationService) NewBulk(ctx context.Context, body OrbitdeterminationNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/orbitdetermination/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -153,7 +153,7 @@ func (r *OrbitdeterminationService) Tuple(ctx context.Context, query Orbitdeterm
 // Please contact the UDL team for assistance.
 func (r *OrbitdeterminationService) UnvalidatedPublish(ctx context.Context, body OrbitdeterminationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-orbitdetermination"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

@@ -49,7 +49,7 @@ func NewLogisticsSupportService(opts ...option.RequestOption) (r LogisticsSuppor
 // operation. Please contact the UDL team for assistance.
 func (r *LogisticsSupportService) New(ctx context.Context, body LogisticsSupportNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/logisticssupport"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -60,7 +60,7 @@ func (r *LogisticsSupportService) New(ctx context.Context, body LogisticsSupport
 // assistance.
 func (r *LogisticsSupportService) Update(ctx context.Context, id string, body LogisticsSupportUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -119,7 +119,7 @@ func (r *LogisticsSupportService) Count(ctx context.Context, query LogisticsSupp
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *LogisticsSupportService) NewBulk(ctx context.Context, body LogisticsSupportNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/logisticssupport/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -168,7 +168,7 @@ func (r *LogisticsSupportService) Tuple(ctx context.Context, query LogisticsSupp
 // Please contact the UDL team for assistance.
 func (r *LogisticsSupportService) UnvalidatedPublish(ctx context.Context, body LogisticsSupportUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-logisticssupport"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

@@ -73,7 +73,7 @@ func (r *LaserdeconflictrequestHistoryService) ListAutoPaging(ctx context.Contex
 // parameter information.
 func (r *LaserdeconflictrequestHistoryService) Aodr(ctx context.Context, query LaserdeconflictrequestHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/laserdeconflictrequest/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

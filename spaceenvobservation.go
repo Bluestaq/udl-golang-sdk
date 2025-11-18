@@ -91,7 +91,7 @@ func (r *SpaceEnvObservationService) Count(ctx context.Context, query SpaceEnvOb
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *SpaceEnvObservationService) NewBulk(ctx context.Context, body SpaceEnvObservationNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/spaceenvobservation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -127,7 +127,7 @@ func (r *SpaceEnvObservationService) Tuple(ctx context.Context, query SpaceEnvOb
 // operation. Please contact the UDL team for assistance.
 func (r *SpaceEnvObservationService) UnvalidatedPublish(ctx context.Context, body SpaceEnvObservationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-spaceenvobs"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

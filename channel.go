@@ -46,7 +46,7 @@ func NewChannelService(opts ...option.RequestOption) (r ChannelService) {
 // operation. Please contact the UDL team for assistance.
 func (r *ChannelService) New(ctx context.Context, body ChannelNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/channel"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -72,7 +72,7 @@ func (r *ChannelService) Get(ctx context.Context, id string, query ChannelGetPar
 // assistance.
 func (r *ChannelService) Update(ctx context.Context, id string, body ChannelUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -117,7 +117,7 @@ func (r *ChannelService) ListAutoPaging(ctx context.Context, query ChannelListPa
 // operation. Please contact the UDL team for assistance.
 func (r *ChannelService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

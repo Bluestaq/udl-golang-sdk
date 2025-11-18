@@ -47,7 +47,7 @@ func NewSiteOperationService(opts ...option.RequestOption) (r SiteOperationServi
 // operation. Please contact the UDL team for assistance.
 func (r *SiteOperationService) New(ctx context.Context, body SiteOperationNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/siteoperations"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -71,7 +71,7 @@ func (r *SiteOperationService) Get(ctx context.Context, id string, query SiteOpe
 // assistance.
 func (r *SiteOperationService) Update(ctx context.Context, id string, body SiteOperationUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -115,7 +115,7 @@ func (r *SiteOperationService) ListAutoPaging(ctx context.Context, query SiteOpe
 // Please contact the UDL team for assistance.
 func (r *SiteOperationService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -145,7 +145,7 @@ func (r *SiteOperationService) Count(ctx context.Context, query SiteOperationCou
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *SiteOperationService) NewBulk(ctx context.Context, body SiteOperationNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/siteoperations/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -181,7 +181,7 @@ func (r *SiteOperationService) Tuple(ctx context.Context, query SiteOperationTup
 // Please contact the UDL team for assistance.
 func (r *SiteOperationService) UnvalidatedPublish(ctx context.Context, body SiteOperationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-siteoperations"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

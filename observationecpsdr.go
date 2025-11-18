@@ -47,7 +47,7 @@ func NewObservationEcpsdrService(opts ...option.RequestOption) (r ObservationEcp
 // contact the UDL team for assistance.
 func (r *ObservationEcpsdrService) New(ctx context.Context, body ObservationEcpsdrNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/ecpsdr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -115,7 +115,7 @@ func (r *ObservationEcpsdrService) Count(ctx context.Context, query ObservationE
 // permanent feed through an alternate mechanism.
 func (r *ObservationEcpsdrService) NewBulk(ctx context.Context, body ObservationEcpsdrNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/ecpsdr/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -151,7 +151,7 @@ func (r *ObservationEcpsdrService) Tuple(ctx context.Context, query ObservationE
 // UDL team for assistance.
 func (r *ObservationEcpsdrService) UnvalidatedPublish(ctx context.Context, body ObservationEcpsdrUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-ecpsdr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

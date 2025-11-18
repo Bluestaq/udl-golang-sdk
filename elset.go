@@ -53,7 +53,7 @@ func NewElsetService(opts ...option.RequestOption) (r ElsetService) {
 // mechanism.
 func (r *ElsetService) New(ctx context.Context, body ElsetNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/elset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -122,7 +122,7 @@ func (r *ElsetService) Count(ctx context.Context, query ElsetCountParams, opts .
 // feed through an alternate mechanism.
 func (r *ElsetService) NewBulk(ctx context.Context, params ElsetNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/elset/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
 	return
@@ -135,7 +135,7 @@ func (r *ElsetService) NewBulk(ctx context.Context, params ElsetNewBulkParams, o
 // mechanism.
 func (r *ElsetService) NewBulkFromTle(ctx context.Context, params ElsetNewBulkFromTleParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/elset/createBulkFromTLE"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
 	return
@@ -179,7 +179,7 @@ func (r *ElsetService) Tuple(ctx context.Context, query ElsetTupleParams, opts .
 // intended to be used for automated feeds into UDL.
 func (r *ElsetService) UnvalidatedPublish(ctx context.Context, body ElsetUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-elset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

@@ -63,7 +63,7 @@ func NewEphemerisSetService(opts ...option.RequestOption) (r EphemerisSetService
 // </h3>
 func (r *EphemerisSetService) New(ctx context.Context, body EphemerisSetNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/ephemerisset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

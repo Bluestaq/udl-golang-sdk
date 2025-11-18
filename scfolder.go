@@ -65,7 +65,7 @@ func (r *ScFolderService) Get(ctx context.Context, query ScFolderGetParams, opts
 // Deprecated: deprecated
 func (r *ScFolderService) Update(ctx context.Context, body ScFolderUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "scs/folder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPatch, path, body, nil, opts...)
 	return

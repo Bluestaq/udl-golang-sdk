@@ -51,7 +51,7 @@ func NewCollectResponseService(opts ...option.RequestOption) (r CollectResponseS
 // operation. Please contact the UDL team for assistance.
 func (r *CollectResponseService) New(ctx context.Context, body CollectResponseNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/collectresponse"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -119,7 +119,7 @@ func (r *CollectResponseService) Count(ctx context.Context, query CollectRespons
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *CollectResponseService) NewBulk(ctx context.Context, body CollectResponseNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/collectresponse/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -140,7 +140,7 @@ func (r *CollectResponseService) QueryHelp(ctx context.Context, opts ...option.R
 // contact the UDL team for assistance.
 func (r *CollectResponseService) UnvalidatedPublish(ctx context.Context, body CollectResponseUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-collectresponse"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

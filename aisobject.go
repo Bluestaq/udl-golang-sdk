@@ -41,7 +41,7 @@ func NewAIsObjectService(opts ...option.RequestOption) (r AIsObjectService) {
 // contact the UDL team for assistance.
 func (r *AIsObjectService) UnvalidatedPublish(ctx context.Context, body AIsObjectUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-ais"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

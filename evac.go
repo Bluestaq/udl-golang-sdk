@@ -51,7 +51,7 @@ func NewEvacService(opts ...option.RequestOption) (r EvacService) {
 // contact the UDL team for assistance.
 func (r *EvacService) New(ctx context.Context, body EvacNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/evac"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -119,7 +119,7 @@ func (r *EvacService) Count(ctx context.Context, query EvacCountParams, opts ...
 // permanent feed through an alternate mechanism.
 func (r *EvacService) NewBulk(ctx context.Context, body EvacNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/evac/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -139,7 +139,7 @@ func (r *EvacService) QueryHelp(ctx context.Context, opts ...option.RequestOptio
 // access. This operation is intended to be used for automated feeds into UDL.
 func (r *EvacService) UnvalidatedPublish(ctx context.Context, body EvacUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-evac"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

@@ -73,7 +73,7 @@ func (r *ObservationObscorrelationHistoryService) ListAutoPaging(ctx context.Con
 // parameter information.
 func (r *ObservationObscorrelationHistoryService) Aodr(ctx context.Context, query ObservationObscorrelationHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/obscorrelation/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

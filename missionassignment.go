@@ -49,7 +49,7 @@ func NewMissionAssignmentService(opts ...option.RequestOption) (r MissionAssignm
 // operation. Please contact the UDL team for assistance.
 func (r *MissionAssignmentService) New(ctx context.Context, body MissionAssignmentNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/missionassignment"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -60,7 +60,7 @@ func (r *MissionAssignmentService) New(ctx context.Context, body MissionAssignme
 // assistance.
 func (r *MissionAssignmentService) Update(ctx context.Context, id string, body MissionAssignmentUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -104,7 +104,7 @@ func (r *MissionAssignmentService) ListAutoPaging(ctx context.Context, query Mis
 // operation. Please contact the UDL team for assistance.
 func (r *MissionAssignmentService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -132,7 +132,7 @@ func (r *MissionAssignmentService) Count(ctx context.Context, query MissionAssig
 // operation. Please contact the UDL team for assistance.
 func (r *MissionAssignmentService) NewBulk(ctx context.Context, body MissionAssignmentNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/missionassignment/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

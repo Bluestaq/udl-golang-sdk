@@ -49,7 +49,7 @@ func NewSoiObservationSetService(opts ...option.RequestOption) (r SoiObservation
 // operation. Please contact the UDL team for assistance.
 func (r *SoiObservationSetService) New(ctx context.Context, body SoiObservationSetNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/soiobservationset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -104,7 +104,7 @@ func (r *SoiObservationSetService) Count(ctx context.Context, query SoiObservati
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *SoiObservationSetService) NewBulk(ctx context.Context, body SoiObservationSetNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/soiobservationset/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -153,7 +153,7 @@ func (r *SoiObservationSetService) Tuple(ctx context.Context, query SoiObservati
 // Please contact the UDL team for assistance.
 func (r *SoiObservationSetService) UnvalidatedPublish(ctx context.Context, body SoiObservationSetUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-soiobservationset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

@@ -73,7 +73,7 @@ func (r *TrackRouteHistoryService) ListAutoPaging(ctx context.Context, query Tra
 // parameter information.
 func (r *TrackRouteHistoryService) Aodr(ctx context.Context, query TrackRouteHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/trackroute/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

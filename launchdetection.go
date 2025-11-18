@@ -45,7 +45,7 @@ func NewLaunchDetectionService(opts ...option.RequestOption) (r LaunchDetectionS
 // operation. Please contact the UDL team for assistance.
 func (r *LaunchDetectionService) New(ctx context.Context, body LaunchDetectionNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/launchdetection"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -56,7 +56,7 @@ func (r *LaunchDetectionService) New(ctx context.Context, body LaunchDetectionNe
 // assistance.
 func (r *LaunchDetectionService) Update(ctx context.Context, id string, body LaunchDetectionUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -100,7 +100,7 @@ func (r *LaunchDetectionService) ListAutoPaging(ctx context.Context, query Launc
 // Please contact the UDL team for assistance.
 func (r *LaunchDetectionService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

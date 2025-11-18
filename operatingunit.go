@@ -46,7 +46,7 @@ func NewOperatingunitService(opts ...option.RequestOption) (r OperatingunitServi
 // service operation. Please contact the UDL team for assistance.
 func (r *OperatingunitService) New(ctx context.Context, body OperatingunitNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/operatingunit"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -58,7 +58,7 @@ func (r *OperatingunitService) New(ctx context.Context, body OperatingunitNewPar
 // for assistance.
 func (r *OperatingunitService) Update(ctx context.Context, id string, body OperatingunitUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -103,7 +103,7 @@ func (r *OperatingunitService) ListAutoPaging(ctx context.Context, query Operati
 // service operation. Please contact the UDL team for assistance.
 func (r *OperatingunitService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

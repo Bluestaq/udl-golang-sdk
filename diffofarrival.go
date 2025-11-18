@@ -86,7 +86,7 @@ func (r *DiffOfArrivalService) Tuple(ctx context.Context, query DiffOfArrivalTup
 // contact the UDL team for assistance.
 func (r *DiffOfArrivalService) UnvalidatedPublish(ctx context.Context, body DiffOfArrivalUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-diffofarrival"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

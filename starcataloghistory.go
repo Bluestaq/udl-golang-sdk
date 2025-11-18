@@ -40,7 +40,7 @@ func NewStarCatalogHistoryService(opts ...option.RequestOption) (r StarCatalogHi
 // parameter information.
 func (r *StarCatalogHistoryService) Aodr(ctx context.Context, query StarCatalogHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/starcatalog/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

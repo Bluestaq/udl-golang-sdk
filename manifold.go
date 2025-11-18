@@ -48,7 +48,7 @@ func NewManifoldService(opts ...option.RequestOption) (r ManifoldService) {
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *ManifoldService) New(ctx context.Context, body ManifoldNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/manifold"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -60,7 +60,7 @@ func (r *ManifoldService) New(ctx context.Context, body ManifoldNewParams, opts 
 // contact the UDL team for assistance.
 func (r *ManifoldService) Update(ctx context.Context, id string, body ManifoldUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -105,7 +105,7 @@ func (r *ManifoldService) ListAutoPaging(ctx context.Context, query ManifoldList
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *ManifoldService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -133,7 +133,7 @@ func (r *ManifoldService) Count(ctx context.Context, query ManifoldCountParams, 
 // contact the UDL team for assistance.
 func (r *ManifoldService) NewBulk(ctx context.Context, body ManifoldNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/manifold/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

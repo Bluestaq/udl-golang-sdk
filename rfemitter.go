@@ -49,7 +49,7 @@ func NewRfEmitterService(opts ...option.RequestOption) (r RfEmitterService) {
 // contact the UDL team for assistance.
 func (r *RfEmitterService) New(ctx context.Context, body RfEmitterNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/rfemitter"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -60,7 +60,7 @@ func (r *RfEmitterService) New(ctx context.Context, body RfEmitterNewParams, opt
 // assistance.
 func (r *RfEmitterService) Update(ctx context.Context, id string, body RfEmitterUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -104,7 +104,7 @@ func (r *RfEmitterService) ListAutoPaging(ctx context.Context, query RfEmitterLi
 // contact the UDL team for assistance.
 func (r *RfEmitterService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

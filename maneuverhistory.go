@@ -74,7 +74,7 @@ func (r *ManeuverHistoryService) ListAutoPaging(ctx context.Context, query Maneu
 // parameter information.
 func (r *ManeuverHistoryService) Aodr(ctx context.Context, query ManeuverHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/maneuver/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

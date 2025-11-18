@@ -74,7 +74,7 @@ func (r *SkyImageryHistoryService) ListAutoPaging(ctx context.Context, query Sky
 // parameter information.
 func (r *SkyImageryHistoryService) Aodr(ctx context.Context, query SkyImageryHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/skyimagery/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

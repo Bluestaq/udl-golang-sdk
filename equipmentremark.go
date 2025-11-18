@@ -47,7 +47,7 @@ func NewEquipmentRemarkService(opts ...option.RequestOption) (r EquipmentRemarkS
 // operation. Please contact the UDL team for assistance.
 func (r *EquipmentRemarkService) New(ctx context.Context, body EquipmentRemarkNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/equipmentremark"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -115,7 +115,7 @@ func (r *EquipmentRemarkService) Count(ctx context.Context, query EquipmentRemar
 // instructions on setting up a permanent feed through an alternate mechanism.
 func (r *EquipmentRemarkService) NewBulk(ctx context.Context, body EquipmentRemarkNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/equipmentremark/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

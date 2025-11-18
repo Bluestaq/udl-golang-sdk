@@ -50,7 +50,7 @@ func NewH3GeoService(opts ...option.RequestOption) (r H3GeoService) {
 // through an alternate mechanism.
 func (r *H3GeoService) New(ctx context.Context, body H3GeoNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/h3geo"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

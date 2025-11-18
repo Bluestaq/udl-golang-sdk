@@ -45,7 +45,7 @@ func NewBeamService(opts ...option.RequestOption) (r BeamService) {
 // contact the UDL team for assistance.
 func (r *BeamService) New(ctx context.Context, body BeamNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/beam"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -68,7 +68,7 @@ func (r *BeamService) Get(ctx context.Context, id string, query BeamGetParams, o
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *BeamService) Update(ctx context.Context, id string, body BeamUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -112,7 +112,7 @@ func (r *BeamService) ListAutoPaging(ctx context.Context, query BeamListParams, 
 // contact the UDL team for assistance.
 func (r *BeamService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

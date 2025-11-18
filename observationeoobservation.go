@@ -51,7 +51,7 @@ func NewObservationEoObservationService(opts ...option.RequestOption) (r Observa
 // mechanism.
 func (r *ObservationEoObservationService) New(ctx context.Context, body ObservationEoObservationNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/eoobservation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -119,7 +119,7 @@ func (r *ObservationEoObservationService) Count(ctx context.Context, query Obser
 // permanent feed through an alternate mechanism.
 func (r *ObservationEoObservationService) NewBulk(ctx context.Context, params ObservationEoObservationNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/eoobservation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
 	return
@@ -155,7 +155,7 @@ func (r *ObservationEoObservationService) Tuple(ctx context.Context, query Obser
 // contact the UDL team for assistance.
 func (r *ObservationEoObservationService) UnvalidatedPublish(ctx context.Context, body ObservationEoObservationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-eo"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

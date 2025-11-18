@@ -72,7 +72,7 @@ func (r *NotificationHistoryService) ListAutoPaging(ctx context.Context, query N
 // parameter information.
 func (r *NotificationHistoryService) Aodr(ctx context.Context, query NotificationHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/notification/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

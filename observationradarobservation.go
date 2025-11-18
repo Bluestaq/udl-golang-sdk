@@ -51,7 +51,7 @@ func NewObservationRadarobservationService(opts ...option.RequestOption) (r Obse
 // alternate mechanism.
 func (r *ObservationRadarobservationService) New(ctx context.Context, body ObservationRadarobservationNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/radarobservation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -106,7 +106,7 @@ func (r *ObservationRadarobservationService) Count(ctx context.Context, query Ob
 // permanent feed through an alternate mechanism.
 func (r *ObservationRadarobservationService) NewBulk(ctx context.Context, body ObservationRadarobservationNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/radarobservation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -155,7 +155,7 @@ func (r *ObservationRadarobservationService) Tuple(ctx context.Context, query Ob
 // contact the UDL team for assistance.
 func (r *ObservationRadarobservationService) UnvalidatedPublish(ctx context.Context, body ObservationRadarobservationUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-radar"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
