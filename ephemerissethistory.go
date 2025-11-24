@@ -71,7 +71,7 @@ func (r *EphemerisSetHistoryService) ListAutoPaging(ctx context.Context, query E
 // parameter information.
 func (r *EphemerisSetHistoryService) Aodr(ctx context.Context, query EphemerisSetHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/ephemerisset/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

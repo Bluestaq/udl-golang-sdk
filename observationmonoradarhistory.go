@@ -73,7 +73,7 @@ func (r *ObservationMonoradarHistoryService) ListAutoPaging(ctx context.Context,
 // parameter information.
 func (r *ObservationMonoradarHistoryService) Aodr(ctx context.Context, query ObservationMonoradarHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/monoradar/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

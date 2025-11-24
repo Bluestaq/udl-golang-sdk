@@ -74,7 +74,7 @@ func (r *SensorPlanHistoryService) ListAutoPaging(ctx context.Context, query Sen
 // parameter information.
 func (r *SensorPlanHistoryService) Aodr(ctx context.Context, query SensorPlanHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sensorplan/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

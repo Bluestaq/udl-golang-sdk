@@ -91,7 +91,7 @@ func (r *AIService) Count(ctx context.Context, query AICountParams, opts ...opti
 // permanent feed through an alternate mechanism.
 func (r *AIService) NewBulk(ctx context.Context, body AINewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/ais/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

@@ -73,7 +73,7 @@ func (r *GnssObservationsetHistoryService) ListAutoPaging(ctx context.Context, q
 // parameter information.
 func (r *GnssObservationsetHistoryService) Aodr(ctx context.Context, query GnssObservationsetHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/gnssobservationset/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

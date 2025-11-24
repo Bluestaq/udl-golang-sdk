@@ -71,7 +71,7 @@ func (r *TdoaFdoaDiffofarrivalHistoryService) ListAutoPaging(ctx context.Context
 // parameter information.
 func (r *TdoaFdoaDiffofarrivalHistoryService) Aodr(ctx context.Context, query TdoaFdoaDiffofarrivalHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/diffofarrival/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

@@ -73,7 +73,7 @@ func (r *WeatherDataHistoryService) ListAutoPaging(ctx context.Context, query We
 // parameter information.
 func (r *WeatherDataHistoryService) Aodr(ctx context.Context, query WeatherDataHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/weatherdata/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

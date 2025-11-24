@@ -47,7 +47,7 @@ func NewVideoService(opts ...option.RequestOption) (r VideoService) {
 // operation. Please contact the UDL team for assistance.
 func (r *VideoService) New(ctx context.Context, body VideoNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/video"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

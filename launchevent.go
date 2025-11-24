@@ -49,7 +49,7 @@ func NewLaunchEventService(opts ...option.RequestOption) (r LaunchEventService) 
 // Please contact the UDL team for assistance.
 func (r *LaunchEventService) New(ctx context.Context, body LaunchEventNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/launchevent"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -104,7 +104,7 @@ func (r *LaunchEventService) Count(ctx context.Context, query LaunchEventCountPa
 // permanent feed through an alternate mechanism.
 func (r *LaunchEventService) NewBulk(ctx context.Context, body LaunchEventNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/launchevent/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -153,7 +153,7 @@ func (r *LaunchEventService) Tuple(ctx context.Context, query LaunchEventTuplePa
 // UDL team for assistance.
 func (r *LaunchEventService) UnvalidatedPublish(ctx context.Context, body LaunchEventUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-launchevent"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

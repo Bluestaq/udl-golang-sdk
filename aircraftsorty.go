@@ -56,7 +56,7 @@ func (r *AircraftSortyService) Get(ctx context.Context, id string, query Aircraf
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *AircraftSortyService) Update(ctx context.Context, id string, body AircraftSortyUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

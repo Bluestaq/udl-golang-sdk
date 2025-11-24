@@ -53,7 +53,7 @@ func (r *ScFileService) Get(ctx context.Context, query ScFileGetParams, opts ...
 // Deprecated: deprecated
 func (r *ScFileService) Update(ctx context.Context, body ScFileUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "scs/file"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPatch, path, body, nil, opts...)
 	return

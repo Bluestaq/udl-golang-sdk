@@ -91,7 +91,7 @@ func (r *ObservationMonoradarService) Count(ctx context.Context, query Observati
 // setting up a permanent feed through an alternate mechanism.
 func (r *ObservationMonoradarService) NewBulk(ctx context.Context, body ObservationMonoradarNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/monoradar/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -127,7 +127,7 @@ func (r *ObservationMonoradarService) Tuple(ctx context.Context, query Observati
 // contact the UDL team for assistance.
 func (r *ObservationMonoradarService) UnvalidatedPublish(ctx context.Context, body ObservationMonoradarUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/monoradar"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

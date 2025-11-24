@@ -74,7 +74,7 @@ func (r *EmireportHistoryService) ListAutoPaging(ctx context.Context, query Emir
 // parameter information.
 func (r *EmireportHistoryService) Aodr(ctx context.Context, query EmireportHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/emireport/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

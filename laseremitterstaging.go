@@ -51,7 +51,7 @@ func NewLaseremitterStagingService(opts ...option.RequestOption) (r Laseremitter
 // service operation. Please contact the UDL team for assistance.
 func (r *LaseremitterStagingService) New(ctx context.Context, body LaseremitterStagingNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/laseremitterstaging"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -75,7 +75,7 @@ func (r *LaseremitterStagingService) Get(ctx context.Context, id string, query L
 // assistance.
 func (r *LaseremitterStagingService) Update(ctx context.Context, id string, body LaseremitterStagingUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -119,7 +119,7 @@ func (r *LaseremitterStagingService) ListAutoPaging(ctx context.Context, query L
 // operation. Please contact the UDL team for assistance.
 func (r *LaseremitterStagingService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -138,7 +138,7 @@ func (r *LaseremitterStagingService) Delete(ctx context.Context, id string, opts
 // service operation. Please contact the UDL team for assistance.
 func (r *LaseremitterStagingService) NewBulk(ctx context.Context, body LaseremitterStagingNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/laseremitterstaging/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

@@ -47,7 +47,7 @@ func NewTaiUtcService(opts ...option.RequestOption) (r TaiUtcService) {
 // Please contact the UDL team for assistance.
 func (r *TaiUtcService) New(ctx context.Context, body TaiUtcNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/taiutc"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -57,7 +57,7 @@ func (r *TaiUtcService) New(ctx context.Context, body TaiUtcNewParams, opts ...o
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *TaiUtcService) Update(ctx context.Context, id string, body TaiUtcUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -102,7 +102,7 @@ func (r *TaiUtcService) ListAutoPaging(ctx context.Context, query TaiUtcListPara
 // from historical or publish/subscribe stores.
 func (r *TaiUtcService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

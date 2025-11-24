@@ -47,7 +47,7 @@ func NewSensorService(opts ...option.RequestOption) (r SensorService) {
 // contact the UDL team for assistance.
 func (r *SensorService) New(ctx context.Context, body SensorNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sensor"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -57,7 +57,7 @@ func (r *SensorService) New(ctx context.Context, body SensorNewParams, opts ...o
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *SensorService) Update(ctx context.Context, id string, body SensorUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -101,7 +101,7 @@ func (r *SensorService) ListAutoPaging(ctx context.Context, query SensorListPara
 // the UDL team for assistance.
 func (r *SensorService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

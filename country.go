@@ -45,7 +45,7 @@ func NewCountryService(opts ...option.RequestOption) (r CountryService) {
 // contact the UDL team for assistance.
 func (r *CountryService) New(ctx context.Context, body CountryNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/country"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -68,7 +68,7 @@ func (r *CountryService) Get(ctx context.Context, code string, query CountryGetP
 // perform this service operation. Please contact the UDL team for assistance.
 func (r *CountryService) Update(ctx context.Context, code string, body CountryUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if code == "" {
 		err = errors.New("missing required code parameter")
 		return
@@ -112,7 +112,7 @@ func (r *CountryService) ListAutoPaging(ctx context.Context, query CountryListPa
 // contact the UDL team for assistance.
 func (r *CountryService) Delete(ctx context.Context, code string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if code == "" {
 		err = errors.New("missing required code parameter")
 		return

@@ -74,7 +74,7 @@ func (r *GeoStatusHistoryService) ListAutoPaging(ctx context.Context, query GeoS
 // parameter information.
 func (r *GeoStatusHistoryService) Aodr(ctx context.Context, query GeoStatusHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/geostatus/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
 	return

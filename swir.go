@@ -49,7 +49,7 @@ func NewSwirService(opts ...option.RequestOption) (r SwirService) {
 // Please contact the UDL team for assistance.
 func (r *SwirService) New(ctx context.Context, body SwirNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/swir"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -104,7 +104,7 @@ func (r *SwirService) Count(ctx context.Context, query SwirCountParams, opts ...
 // permanent feed through an alternate mechanism.
 func (r *SwirService) NewBulk(ctx context.Context, body SwirNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/swir/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

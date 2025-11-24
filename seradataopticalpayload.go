@@ -45,7 +45,7 @@ func NewSeradataOpticalPayloadService(opts ...option.RequestOption) (r SeradataO
 // operation. Please contact the UDL team for assistance.
 func (r *SeradataOpticalPayloadService) New(ctx context.Context, body SeradataOpticalPayloadNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/seradataopticalpayload"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -56,7 +56,7 @@ func (r *SeradataOpticalPayloadService) New(ctx context.Context, body SeradataOp
 // assistance.
 func (r *SeradataOpticalPayloadService) Update(ctx context.Context, id string, body SeradataOpticalPayloadUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -100,7 +100,7 @@ func (r *SeradataOpticalPayloadService) ListAutoPaging(ctx context.Context, quer
 // Please contact the UDL team for assistance.
 func (r *SeradataOpticalPayloadService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

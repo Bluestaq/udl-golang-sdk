@@ -91,7 +91,7 @@ func (r *GnssObservationsetService) Count(ctx context.Context, query GnssObserva
 // setting up a permanent feed through an alternate mechanism.
 func (r *GnssObservationsetService) NewBulk(ctx context.Context, body GnssObservationsetNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/gnssobservationset/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -127,7 +127,7 @@ func (r *GnssObservationsetService) Tuple(ctx context.Context, query GnssObserva
 // to perform this service operation. Please contact the UDL team for assistance.
 func (r *GnssObservationsetService) UnvalidatedPublish(ctx context.Context, body GnssObservationsetUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-gnssobset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

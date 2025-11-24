@@ -49,7 +49,7 @@ func NewTrackRouteService(opts ...option.RequestOption) (r TrackRouteService) {
 // operation. Please contact the UDL team for assistance.
 func (r *TrackRouteService) New(ctx context.Context, body TrackRouteNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/trackroute"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -60,7 +60,7 @@ func (r *TrackRouteService) New(ctx context.Context, body TrackRouteNewParams, o
 // assistance.
 func (r *TrackRouteService) Update(ctx context.Context, id string, body TrackRouteUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -104,7 +104,7 @@ func (r *TrackRouteService) ListAutoPaging(ctx context.Context, query TrackRoute
 // contact the UDL team for assistance.
 func (r *TrackRouteService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -134,7 +134,7 @@ func (r *TrackRouteService) Count(ctx context.Context, query TrackRouteCountPara
 // setting up a permanent feed through an alternate mechanism.
 func (r *TrackRouteService) NewBulk(ctx context.Context, body TrackRouteNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/trackroute/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -183,7 +183,7 @@ func (r *TrackRouteService) Tuple(ctx context.Context, query TrackRouteTuplePara
 // contact the UDL team for assistance.
 func (r *TrackRouteService) UnvalidatedPublish(ctx context.Context, body TrackRouteUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-trackroute"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return

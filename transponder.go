@@ -46,7 +46,7 @@ func NewTransponderService(opts ...option.RequestOption) (r TransponderService) 
 // transponders and a transponder may have many channels.
 func (r *TransponderService) New(ctx context.Context, body TransponderNewParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/transponder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -58,7 +58,7 @@ func (r *TransponderService) New(ctx context.Context, body TransponderNewParams,
 // channels.
 func (r *TransponderService) Update(ctx context.Context, id string, body TransponderUpdateParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return
@@ -103,7 +103,7 @@ func (r *TransponderService) ListAutoPaging(ctx context.Context, query Transpond
 // transponders and a transponder may have many channels.
 func (r *TransponderService) Delete(ctx context.Context, id string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
 		return

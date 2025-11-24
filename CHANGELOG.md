@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.16 (2025-11-18)
+
+Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
+
+### Bug Fixes
+
+* **client:** correctly specify Accept header with */* instead of empty ([1be215e](https://github.com/Bluestaq/udl-golang-sdk/commit/1be215ebd359cdadd451baa491d7b55f70031748))
+
 ## 0.1.0-alpha.15 (2025-11-11)
 
 Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)

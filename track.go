@@ -91,7 +91,7 @@ func (r *TrackService) Count(ctx context.Context, query TrackCountParams, opts .
 // permanent feed through an alternate mechanism.
 func (r *TrackService) NewBulk(ctx context.Context, body TrackNewBulkParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/track/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
@@ -127,7 +127,7 @@ func (r *TrackService) Tuple(ctx context.Context, query TrackTupleParams, opts .
 // UDL team for assistance.
 func (r *TrackService) UnvalidatedPublish(ctx context.Context, body TrackUnvalidatedPublishParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-tracks"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
 	return
