@@ -43,6 +43,7 @@ type Client struct {
 	BeamContours              BeamContourService
 	Buses                     BusService
 	Channels                  ChannelService
+	Closelyspacedobjects      CloselyspacedobjectService
 	CollectRequests           CollectRequestService
 	CollectResponses          CollectResponseService
 	Comm                      CommService
@@ -241,6 +242,7 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.BeamContours = NewBeamContourService(opts...)
 	r.Buses = NewBusService(opts...)
 	r.Channels = NewChannelService(opts...)
+	r.Closelyspacedobjects = NewCloselyspacedobjectService(opts...)
 	r.CollectRequests = NewCollectRequestService(opts...)
 	r.CollectResponses = NewCollectResponseService(opts...)
 	r.Comm = NewCommService(opts...)
