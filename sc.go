@@ -115,7 +115,7 @@ func (r *ScService) FileDownload(ctx context.Context, query ScFileDownloadParams
 // operation. Please contact the UDL team for assistance.
 //
 // Deprecated: deprecated
-func (r *ScService) FileUpload(ctx context.Context, fileContent io.Reader, body ScFileUploadParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *ScService) FileUpload(ctx context.Context, fileContent io.Reader, params ScFileUploadParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithRequestBody("application/octet-stream", fileContent)}, opts...)
 	path := "scs/file"
