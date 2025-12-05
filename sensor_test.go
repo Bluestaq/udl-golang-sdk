@@ -228,8 +228,8 @@ func TestSensorNewWithOptionalParams(t *testing.T) {
 		SensorlimitsCollection: []unifieddatalibrary.SensorNewParamsSensorlimitsCollection{{
 			ClassificationMarking:    "U",
 			DataMode:                 "TEST",
+			IDSensor:                 "SENSOR-ID",
 			Source:                   "Bluestaq",
-			IDSensor:                 unifieddatalibrary.String("SENSORLIMITS-ID"),
 			IDSensorLimits:           unifieddatalibrary.String("SENSORLIMITS-ID"),
 			LowerLeftAzimuthLimit:    unifieddatalibrary.Float(1.23),
 			LowerLeftElevationLimit:  unifieddatalibrary.Float(1.23),
@@ -485,8 +485,8 @@ func TestSensorUpdateWithOptionalParams(t *testing.T) {
 			SensorlimitsCollection: []unifieddatalibrary.SensorUpdateParamsSensorlimitsCollection{{
 				ClassificationMarking:    "U",
 				DataMode:                 "TEST",
+				IDSensor:                 "SENSOR-ID",
 				Source:                   "Bluestaq",
-				IDSensor:                 unifieddatalibrary.String("SENSORLIMITS-ID"),
 				IDSensorLimits:           unifieddatalibrary.String("SENSORLIMITS-ID"),
 				LowerLeftAzimuthLimit:    unifieddatalibrary.Float(1.23),
 				LowerLeftElevationLimit:  unifieddatalibrary.Float(1.23),
