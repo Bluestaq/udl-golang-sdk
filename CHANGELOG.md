@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.1.0-alpha.17 (2025-12-11)
+
+Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
+
+### Features
+
+* **api:** api update ([30354da](https://github.com/Bluestaq/udl-golang-sdk/commit/30354daaa86ec11988065cf73bbd3bc445ab44b2))
+* **api:** bumps to v1.37.0 of UDL API ([8ef8ac2](https://github.com/Bluestaq/udl-golang-sdk/commit/8ef8ac2bc39f652d2dfae1cc8d9f93c1c2f06ecb))
+* **encoder:** support bracket encoding form-data object members ([4b39232](https://github.com/Bluestaq/udl-golang-sdk/commit/4b3923288838c51425b7a122262a4a2c2c054ab1))
+
+
+### Bug Fixes
+
+* **mcp:** correct code tool API endpoint ([67c5a09](https://github.com/Bluestaq/udl-golang-sdk/commit/67c5a09d61249deff622be816a6d2386c7c8c18d))
+* rename param to avoid collision ([f9c8f3a](https://github.com/Bluestaq/udl-golang-sdk/commit/f9c8f3af417db61f7f0af1165937e6e076be3b7b))
+
+
+### Chores
+
+* elide duplicate aliases ([4e39bb9](https://github.com/Bluestaq/udl-golang-sdk/commit/4e39bb9119e5429f5f24e794159bfe3bb24713e9))
+* **internal:** codegen related update ([fdb8e02](https://github.com/Bluestaq/udl-golang-sdk/commit/fdb8e027be08c13606da139897b511738d8a0173))
+
 ## 0.1.0-alpha.16 (2025-11-18)
 
 Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
