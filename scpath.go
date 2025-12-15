@@ -42,7 +42,7 @@ func NewScPathService(opts ...option.RequestOption) (r ScPathService) {
 // service operation. Please contact the UDL team for assistance.
 //
 // Deprecated: deprecated
-func (r *ScPathService) NewWithFile(ctx context.Context, fileContent io.Reader, body ScPathNewWithFileParams, opts ...option.RequestOption) (res *string, err error) {
+func (r *ScPathService) NewWithFile(ctx context.Context, fileContent io.Reader, params ScPathNewWithFileParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithRequestBody("application/octet-stream", fileContent)}, opts...)
 	path := "scs/path"
