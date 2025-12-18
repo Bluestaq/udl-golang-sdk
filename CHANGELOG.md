@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.18 (2025-12-18)
+
+Full Changelog: [v0.1.0-alpha.17...v0.1.0-alpha.18](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.17...v0.1.0-alpha.18)
+
+### Chores
+
+* add float64 to valid types for RegisterFieldValidator ([1db9e63](https://github.com/Bluestaq/udl-golang-sdk/commit/1db9e63c0ca409d20c569c3af569adb3a09274f7))
+
 ## 0.1.0-alpha.17 (2025-12-11)
 
 Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
