@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.19 (2026-01-05)
+
+Full Changelog: [v0.1.0-alpha.18...v0.1.0-alpha.19](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.18...v0.1.0-alpha.19)
+
+### Chores
+
+* **internal:** codegen related update ([4968ae7](https://github.com/Bluestaq/udl-golang-sdk/commit/4968ae78918a658d2899dad3720c8040c1ade64a))
+
+
+### Documentation
+
+* prominently feature MCP server setup in root SDK readmes ([cd58df0](https://github.com/Bluestaq/udl-golang-sdk/commit/cd58df0e37e962c9e413d1075ea450f25425576c))
+
 ## 0.1.0-alpha.18 (2025-12-18)
 
 Full Changelog: [v0.1.0-alpha.17...v0.1.0-alpha.18](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.17...v0.1.0-alpha.18)
