@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.20 (2026-02-10)
+
+Full Changelog: [v0.1.0-alpha.19...v0.1.0-alpha.20](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.19...v0.1.0-alpha.20)
+
+### Features
+
+* **client:** add a convenient param.SetJSON helper ([83afa55](https://github.com/Bluestaq/udl-golang-sdk/commit/83afa5542ed1ed54a5eb1865e2f9034a3eb208f5))
+
+
+### Bug Fixes
+
+* **docs:** fix mcp installation instructions for remote servers ([80a3752](https://github.com/Bluestaq/udl-golang-sdk/commit/80a375254e84133dc977bea2a6cfc340d89412ed))
+* **encoder:** correctly serialize NullStruct ([8bfc3b0](https://github.com/Bluestaq/udl-golang-sdk/commit/8bfc3b0aeefeee1436d4f2c36ff4af0861b65ec1))
+
 ## 0.1.0-alpha.19 (2026-01-16)
 
 Full Changelog: [v0.1.0-alpha.18...v0.1.0-alpha.19](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.18...v0.1.0-alpha.19)
