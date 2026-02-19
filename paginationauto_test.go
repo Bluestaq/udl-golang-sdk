@@ -26,7 +26,7 @@ func TestAutoPagination(t *testing.T) {
 		option.WithUsername("My Username"),
 	)
 	iter := client.Elsets.Current.ListAutoPaging(context.TODO(), unifieddatalibrary.ElsetCurrentListParams{})
-	// Prism mock isn't going to give us real pagination
+	// The mock server isn't going to give us real pagination
 	for i := 0; i < 3 && iter.Next(); i++ {
 		current := iter.Current()
 		t.Logf("%+v\n", current.IDElset)
