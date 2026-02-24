@@ -93,7 +93,7 @@ func (r *AnalyticImageryHistoryService) Count(ctx context.Context, query Analyti
 type AnalyticImageryHistoryListParams struct {
 	// The message time of this image record, in ISO8601 UTC format with millisecond
 	// precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	MsgTime time.Time `query:"msgTime,required" format:"date-time" json:"-"`
+	MsgTime time.Time `query:"msgTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -115,7 +115,7 @@ func (r AnalyticImageryHistoryListParams) URLQuery() (v url.Values, err error) {
 type AnalyticImageryHistoryAodrParams struct {
 	// The message time of this image record, in ISO8601 UTC format with millisecond
 	// precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	MsgTime time.Time `query:"msgTime,required" format:"date-time" json:"-"`
+	MsgTime time.Time `query:"msgTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -148,7 +148,7 @@ func (r AnalyticImageryHistoryAodrParams) URLQuery() (v url.Values, err error) {
 type AnalyticImageryHistoryCountParams struct {
 	// The message time of this image record, in ISO8601 UTC format with millisecond
 	// precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	MsgTime     time.Time        `query:"msgTime,required" format:"date-time" json:"-"`
+	MsgTime     time.Time        `query:"msgTime" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

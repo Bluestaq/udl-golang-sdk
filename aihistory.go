@@ -94,7 +94,7 @@ func (r *AIHistoryService) Count(ctx context.Context, query AIHistoryCountParams
 type AIHistoryListParams struct {
 	// The timestamp that the vessel position was recorded, in ISO 8601 UTC format.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Ts time.Time `query:"ts,required" format:"date-time" json:"-"`
+	Ts time.Time `query:"ts" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -115,7 +115,7 @@ func (r AIHistoryListParams) URLQuery() (v url.Values, err error) {
 type AIHistoryAodrParams struct {
 	// The timestamp that the vessel position was recorded, in ISO 8601 UTC format.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Ts time.Time `query:"ts,required" format:"date-time" json:"-"`
+	Ts time.Time `query:"ts" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -147,7 +147,7 @@ func (r AIHistoryAodrParams) URLQuery() (v url.Values, err error) {
 type AIHistoryCountParams struct {
 	// The timestamp that the vessel position was recorded, in ISO 8601 UTC format.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Ts          time.Time        `query:"ts,required" format:"date-time" json:"-"`
+	Ts          time.Time        `query:"ts" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

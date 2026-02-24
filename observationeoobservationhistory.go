@@ -95,7 +95,7 @@ type ObservationEoObservationHistoryListParams struct {
 	// Ob detection time in ISO 8601 UTC, up to microsecond precision. Consumers should
 	// contact the provider for details on their obTime specifications.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	ObTime time.Time `query:"obTime,required" format:"date-time" json:"-"`
+	ObTime time.Time `query:"obTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -118,7 +118,7 @@ type ObservationEoObservationHistoryAodrParams struct {
 	// Ob detection time in ISO 8601 UTC, up to microsecond precision. Consumers should
 	// contact the provider for details on their obTime specifications.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	ObTime time.Time `query:"obTime,required" format:"date-time" json:"-"`
+	ObTime time.Time `query:"obTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -152,7 +152,7 @@ type ObservationEoObservationHistoryCountParams struct {
 	// Ob detection time in ISO 8601 UTC, up to microsecond precision. Consumers should
 	// contact the provider for details on their obTime specifications.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	ObTime      time.Time        `query:"obTime,required" format:"date-time" json:"-"`
+	ObTime      time.Time        `query:"obTime" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

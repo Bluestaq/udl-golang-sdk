@@ -46,9 +46,9 @@ func (r *CotService) New(ctx context.Context, body CotNewParams, opts ...option.
 
 type CotNewParams struct {
 	// WGS-84 latitude of the POI, in degrees (+N, -S), -90 to 90.
-	Lat float64 `json:"lat,required"`
+	Lat float64 `json:"lat" api:"required"`
 	// WGS-84 longitude of the POI, in degrees (+E, -W), -180 to 180.
-	Lon float64 `json:"lon,required"`
+	Lon float64 `json:"lon" api:"required"`
 	// Point height above ellipsoid (WGS-84), in meters.
 	Alt param.Opt[float64] `json:"alt,omitzero"`
 	// Radius of circular area about lat/lon point, in meters (1-sigma, if representing
@@ -114,12 +114,12 @@ func (r *CotNewParamsCotChatData) UnmarshalJSON(data []byte) error {
 // The properties CallSign, Team, TeamRole are required.
 type CotNewParamsCotPositionData struct {
 	// Name of the POI target Object.
-	CallSign string `json:"callSign,required"`
+	CallSign string `json:"callSign" api:"required"`
 	// Description of the POI target Object.
-	Team string `json:"team,required"`
+	Team string `json:"team" api:"required"`
 	// Team role (Team Member| Team Lead | HQ | Sniper | Medic | Forward Observer | RTO
 	// | K9).
-	TeamRole string `json:"teamRole,required"`
+	TeamRole string `json:"teamRole" api:"required"`
 	paramObj
 }
 

@@ -94,7 +94,7 @@ func (r *CollectRequestHistoryService) Count(ctx context.Context, query CollectR
 type CollectRequestHistoryListParams struct {
 	// The start time or earliest time of the collect or contact request window, in ISO
 	// 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	StartTime time.Time `query:"startTime,required" format:"date-time" json:"-"`
+	StartTime time.Time `query:"startTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -116,7 +116,7 @@ func (r CollectRequestHistoryListParams) URLQuery() (v url.Values, err error) {
 type CollectRequestHistoryAodrParams struct {
 	// The start time or earliest time of the collect or contact request window, in ISO
 	// 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	StartTime time.Time `query:"startTime,required" format:"date-time" json:"-"`
+	StartTime time.Time `query:"startTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -149,7 +149,7 @@ func (r CollectRequestHistoryAodrParams) URLQuery() (v url.Values, err error) {
 type CollectRequestHistoryCountParams struct {
 	// The start time or earliest time of the collect or contact request window, in ISO
 	// 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
+	StartTime   time.Time        `query:"startTime" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

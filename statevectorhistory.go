@@ -94,7 +94,7 @@ func (r *StateVectorHistoryService) Count(ctx context.Context, query StateVector
 type StateVectorHistoryListParams struct {
 	// Time of validity for state vector in ISO 8601 UTC datetime format, with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Epoch time.Time `query:"epoch,required" format:"date-time" json:"-"`
+	Epoch time.Time `query:"epoch" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -116,7 +116,7 @@ func (r StateVectorHistoryListParams) URLQuery() (v url.Values, err error) {
 type StateVectorHistoryAodrParams struct {
 	// Time of validity for state vector in ISO 8601 UTC datetime format, with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Epoch time.Time `query:"epoch,required" format:"date-time" json:"-"`
+	Epoch time.Time `query:"epoch" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -149,7 +149,7 @@ func (r StateVectorHistoryAodrParams) URLQuery() (v url.Values, err error) {
 type StateVectorHistoryCountParams struct {
 	// Time of validity for state vector in ISO 8601 UTC datetime format, with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Epoch       time.Time        `query:"epoch,required" format:"date-time" json:"-"`
+	Epoch       time.Time        `query:"epoch" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

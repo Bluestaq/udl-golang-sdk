@@ -165,7 +165,7 @@ func (r *SensorService) Tuple(ctx context.Context, query SensorTupleParams, opts
 // phenomenologies.
 type SensorListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -182,11 +182,11 @@ type SensorListResponse struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SensorListResponseDataMode `json:"dataMode,required"`
+	DataMode SensorListResponseDataMode `json:"dataMode" api:"required"`
 	// Unique name of this sensor.
-	SensorName string `json:"sensorName,required"`
+	SensorName string `json:"sensorName" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Optional flag indicating if the sensor is active.
 	Active bool `json:"active"`
 	// Optional US Air Force identifier for the sensor/ASR site, typically for air
@@ -298,7 +298,7 @@ const (
 // entity can have an operating unit, a location (if terrestrial), and statuses.
 type SensorListResponseEntity struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -315,17 +315,17 @@ type SensorListResponseEntity struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Unique entity name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
 	// LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
 	//
 	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "LASEREMITTER", "NAVIGATION", "ONORBIT",
 	// "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
-	Type string `json:"type,required"`
+	Type string `json:"type" api:"required"`
 	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
 	// country code, however it can also represent various consortiums that do not
 	// appear in the ISO document. The code must correspond to an existing country in
@@ -405,7 +405,7 @@ func (r *SensorListResponseEntity) UnmarshalJSON(data []byte) error {
 // Model object representing on-orbit objects or satellites in the system.
 type SensorListResponseEntityOnOrbit struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -422,11 +422,11 @@ type SensorListResponseEntityOnOrbit struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Satellite/Catalog number of the target on-orbit object.
-	SatNo int64 `json:"satNo,required"`
+	SatNo int64 `json:"satNo" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Alternate name of the on-orbit object.
 	AltName string `json:"altName"`
 	// Category of the on-orbit object. (Unknown, On-Orbit, Decayed, Cataloged Without
@@ -521,7 +521,7 @@ func (r *SensorListResponseEntityOnOrbit) UnmarshalJSON(data []byte) error {
 // Model representation of characteristics and capabilities of a sensor.
 type SensorListResponseSensorcharacteristic struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -538,11 +538,11 @@ type SensorListResponseSensorcharacteristic struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Unique identifier of the parent sensor.
-	IDSensor string `json:"idSensor,required"`
+	IDSensor string `json:"idSensor" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// Array of measurement range(s) where radar samples must fall to be acceptable. If
@@ -1096,7 +1096,7 @@ func (r *SensorListResponseSensorcharacteristic) UnmarshalJSON(data []byte) erro
 // observation coverage of on-orbit objects.
 type SensorListResponseSensorlimitsCollection struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -1113,11 +1113,11 @@ type SensorListResponseSensorlimitsCollection struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Unique identifier of the target sensor object.
-	IDSensor string `json:"idSensor,required"`
+	IDSensor string `json:"idSensor" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -1230,7 +1230,7 @@ func (r *SensorListResponseSensorObservationType) UnmarshalJSON(data []byte) err
 // as last reported observation time.
 type SensorListResponseSensorStat struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -1247,11 +1247,11 @@ type SensorListResponseSensorStat struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Unique ID of the parent sensor.
-	IDSensor string `json:"idSensor,required"`
+	IDSensor string `json:"idSensor" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// Time the row was created in the database, auto-populated by the system.
@@ -1325,7 +1325,7 @@ func (r *SensorListResponseSensorType) UnmarshalJSON(data []byte) error {
 // phenomenologies.
 type SensorGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -1342,11 +1342,11 @@ type SensorGetResponse struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SensorGetResponseDataMode `json:"dataMode,required"`
+	DataMode SensorGetResponseDataMode `json:"dataMode" api:"required"`
 	// Unique name of this sensor.
-	SensorName string `json:"sensorName,required"`
+	SensorName string `json:"sensorName" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Optional flag indicating if the sensor is active.
 	Active bool `json:"active"`
 	// Optional US Air Force identifier for the sensor/ASR site, typically for air
@@ -1465,7 +1465,7 @@ const (
 // entity can have an operating unit, a location (if terrestrial), and statuses.
 type SensorGetResponseEntity struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -1482,17 +1482,17 @@ type SensorGetResponseEntity struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Unique entity name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
 	// LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
 	//
 	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "LASEREMITTER", "NAVIGATION", "ONORBIT",
 	// "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
-	Type string `json:"type,required"`
+	Type string `json:"type" api:"required"`
 	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
 	// country code, however it can also represent various consortiums that do not
 	// appear in the ISO document. The code must correspond to an existing country in
@@ -1594,7 +1594,7 @@ func (r *SensorGetResponseEntity) UnmarshalJSON(data []byte) error {
 // Model object representing on-orbit objects or satellites in the system.
 type SensorGetResponseEntityOnOrbit struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -1611,11 +1611,11 @@ type SensorGetResponseEntityOnOrbit struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Satellite/Catalog number of the target on-orbit object.
-	SatNo int64 `json:"satNo,required"`
+	SatNo int64 `json:"satNo" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Alternate name of the on-orbit object.
 	AltName string `json:"altName"`
 	// Read-only collection of antennas on this on-orbit object.
@@ -1732,7 +1732,7 @@ func (r *SensorGetResponseEntityOnOrbit) UnmarshalJSON(data []byte) error {
 // Model representation of characteristics and capabilities of a sensor.
 type SensorGetResponseSensorcharacteristic struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -1749,11 +1749,11 @@ type SensorGetResponseSensorcharacteristic struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Unique identifier of the parent sensor.
-	IDSensor string `json:"idSensor,required"`
+	IDSensor string `json:"idSensor" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// Array of measurement range(s) where radar samples must fall to be acceptable. If
@@ -2314,7 +2314,7 @@ func (r *SensorGetResponseSensorcharacteristic) UnmarshalJSON(data []byte) error
 // observation coverage of on-orbit objects.
 type SensorGetResponseSensorlimitsCollection struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -2331,11 +2331,11 @@ type SensorGetResponseSensorlimitsCollection struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Unique identifier of the target sensor object.
-	IDSensor string `json:"idSensor,required"`
+	IDSensor string `json:"idSensor" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -2437,9 +2437,9 @@ type SensorGetResponseSensorObservationType struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// Time the row was created in the database, auto-populated by the system.
@@ -2483,7 +2483,7 @@ func (r *SensorGetResponseSensorObservationType) UnmarshalJSON(data []byte) erro
 // as last reported observation time.
 type SensorGetResponseSensorStat struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -2500,11 +2500,11 @@ type SensorGetResponseSensorStat struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Unique ID of the parent sensor.
-	IDSensor string `json:"idSensor,required"`
+	IDSensor string `json:"idSensor" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// Time the row was created in the database, auto-populated by the system.
@@ -2560,9 +2560,9 @@ type SensorGetResponseSensorType struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID int64 `json:"id"`
 	// Time the row was created in the database, auto-populated by the system.
@@ -2642,7 +2642,7 @@ func (r *SensorQueryhelpResponse) UnmarshalJSON(data []byte) error {
 // phenomenologies.
 type SensorTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -2659,11 +2659,11 @@ type SensorTupleResponse struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SensorTupleResponseDataMode `json:"dataMode,required"`
+	DataMode SensorTupleResponseDataMode `json:"dataMode" api:"required"`
 	// Unique name of this sensor.
-	SensorName string `json:"sensorName,required"`
+	SensorName string `json:"sensorName" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Optional flag indicating if the sensor is active.
 	Active bool `json:"active"`
 	// Optional US Air Force identifier for the sensor/ASR site, typically for air
@@ -2782,7 +2782,7 @@ const (
 // entity can have an operating unit, a location (if terrestrial), and statuses.
 type SensorTupleResponseEntity struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -2799,17 +2799,17 @@ type SensorTupleResponseEntity struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Unique entity name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
 	// LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
 	//
 	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "LASEREMITTER", "NAVIGATION", "ONORBIT",
 	// "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
-	Type string `json:"type,required"`
+	Type string `json:"type" api:"required"`
 	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
 	// country code, however it can also represent various consortiums that do not
 	// appear in the ISO document. The code must correspond to an existing country in
@@ -2911,7 +2911,7 @@ func (r *SensorTupleResponseEntity) UnmarshalJSON(data []byte) error {
 // Model object representing on-orbit objects or satellites in the system.
 type SensorTupleResponseEntityOnOrbit struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -2928,11 +2928,11 @@ type SensorTupleResponseEntityOnOrbit struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Satellite/Catalog number of the target on-orbit object.
-	SatNo int64 `json:"satNo,required"`
+	SatNo int64 `json:"satNo" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Alternate name of the on-orbit object.
 	AltName string `json:"altName"`
 	// Read-only collection of antennas on this on-orbit object.
@@ -3049,7 +3049,7 @@ func (r *SensorTupleResponseEntityOnOrbit) UnmarshalJSON(data []byte) error {
 // Model representation of characteristics and capabilities of a sensor.
 type SensorTupleResponseSensorcharacteristic struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -3066,11 +3066,11 @@ type SensorTupleResponseSensorcharacteristic struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Unique identifier of the parent sensor.
-	IDSensor string `json:"idSensor,required"`
+	IDSensor string `json:"idSensor" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// Array of measurement range(s) where radar samples must fall to be acceptable. If
@@ -3631,7 +3631,7 @@ func (r *SensorTupleResponseSensorcharacteristic) UnmarshalJSON(data []byte) err
 // observation coverage of on-orbit objects.
 type SensorTupleResponseSensorlimitsCollection struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -3648,11 +3648,11 @@ type SensorTupleResponseSensorlimitsCollection struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Unique identifier of the target sensor object.
-	IDSensor string `json:"idSensor,required"`
+	IDSensor string `json:"idSensor" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -3754,9 +3754,9 @@ type SensorTupleResponseSensorObservationType struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// Time the row was created in the database, auto-populated by the system.
@@ -3800,7 +3800,7 @@ func (r *SensorTupleResponseSensorObservationType) UnmarshalJSON(data []byte) er
 // as last reported observation time.
 type SensorTupleResponseSensorStat struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -3817,11 +3817,11 @@ type SensorTupleResponseSensorStat struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Unique ID of the parent sensor.
-	IDSensor string `json:"idSensor,required"`
+	IDSensor string `json:"idSensor" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// Time the row was created in the database, auto-populated by the system.
@@ -3877,9 +3877,9 @@ type SensorTupleResponseSensorType struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID int64 `json:"id"`
 	// Time the row was created in the database, auto-populated by the system.
@@ -3921,7 +3921,7 @@ func (r *SensorTupleResponseSensorType) UnmarshalJSON(data []byte) error {
 
 type SensorNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -3938,11 +3938,11 @@ type SensorNewParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SensorNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SensorNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// Unique name of this sensor.
-	SensorName string `json:"sensorName,required"`
+	SensorName string `json:"sensorName" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Optional flag indicating if the sensor is active.
 	Active param.Opt[bool] `json:"active,omitzero"`
 	// Optional US Air Force identifier for the sensor/ASR site, typically for air
@@ -4024,7 +4024,7 @@ const (
 // The properties ClassificationMarking, DataMode, Name, Source, Type are required.
 type SensorNewParamsEntity struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -4041,17 +4041,17 @@ type SensorNewParamsEntity struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,omitzero,required"`
+	DataMode string `json:"dataMode,omitzero" api:"required"`
 	// Unique entity name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
 	// LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
 	//
 	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "LASEREMITTER", "NAVIGATION", "ONORBIT",
 	// "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
-	Type string `json:"type,omitzero,required"`
+	Type string `json:"type,omitzero" api:"required"`
 	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
 	// country code, however it can also represent various consortiums that do not
 	// appear in the ISO document. The code must correspond to an existing country in
@@ -4118,7 +4118,7 @@ func init() {
 // The properties ClassificationMarking, DataMode, SatNo, Source are required.
 type SensorNewParamsEntityOnOrbit struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -4135,11 +4135,11 @@ type SensorNewParamsEntityOnOrbit struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,omitzero,required"`
+	DataMode string `json:"dataMode,omitzero" api:"required"`
 	// Satellite/Catalog number of the target on-orbit object.
-	SatNo int64 `json:"satNo,required"`
+	SatNo int64 `json:"satNo" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Alternate name of the on-orbit object.
 	AltName param.Opt[string] `json:"altName,omitzero"`
 	// Common name of the on-orbit object.
@@ -4217,7 +4217,7 @@ func init() {
 // The properties ClassificationMarking, DataMode, IDSensor, Source are required.
 type SensorNewParamsSensorcharacteristic struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -4234,11 +4234,11 @@ type SensorNewParamsSensorcharacteristic struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,omitzero,required"`
+	DataMode string `json:"dataMode,omitzero" api:"required"`
 	// Unique identifier of the parent sensor.
-	IDSensor string `json:"idSensor,required"`
+	IDSensor string `json:"idSensor" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// Number of bits used in the conversion from analog electrons in a pixel well to a
@@ -4652,7 +4652,7 @@ func init() {
 // The properties ClassificationMarking, DataMode, IDSensor, Source are required.
 type SensorNewParamsSensorlimitsCollection struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -4669,11 +4669,11 @@ type SensorNewParamsSensorlimitsCollection struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,omitzero,required"`
+	DataMode string `json:"dataMode,omitzero" api:"required"`
 	// Unique identifier of the target sensor object.
-	IDSensor string `json:"idSensor,required"`
+	IDSensor string `json:"idSensor" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	IDSensorLimits param.Opt[string] `json:"idSensorLimits,omitzero"`
 	// Leftmost or minimum lower azimuth within this limit. Interpreted according to
@@ -4753,7 +4753,7 @@ func (r *SensorNewParamsSensorObservationType) UnmarshalJSON(data []byte) error 
 // The properties ClassificationMarking, DataMode, IDSensor, Source are required.
 type SensorNewParamsSensorStat struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -4770,11 +4770,11 @@ type SensorNewParamsSensorStat struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,omitzero,required"`
+	DataMode string `json:"dataMode,omitzero" api:"required"`
 	// Unique ID of the parent sensor.
-	IDSensor string `json:"idSensor,required"`
+	IDSensor string `json:"idSensor" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// Time of last reported observation in ISO 8601 UTC with microsecond precision.
@@ -4814,7 +4814,7 @@ func (r *SensorNewParamsSensorType) UnmarshalJSON(data []byte) error {
 
 type SensorUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -4831,11 +4831,11 @@ type SensorUpdateParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SensorUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SensorUpdateParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// Unique name of this sensor.
-	SensorName string `json:"sensorName,required"`
+	SensorName string `json:"sensorName" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Optional flag indicating if the sensor is active.
 	Active param.Opt[bool] `json:"active,omitzero"`
 	// Optional US Air Force identifier for the sensor/ASR site, typically for air
@@ -4917,7 +4917,7 @@ const (
 // The properties ClassificationMarking, DataMode, Name, Source, Type are required.
 type SensorUpdateParamsEntity struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -4934,17 +4934,17 @@ type SensorUpdateParamsEntity struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,omitzero,required"`
+	DataMode string `json:"dataMode,omitzero" api:"required"`
 	// Unique entity name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
 	// LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
 	//
 	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "LASEREMITTER", "NAVIGATION", "ONORBIT",
 	// "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
-	Type string `json:"type,omitzero,required"`
+	Type string `json:"type,omitzero" api:"required"`
 	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
 	// country code, however it can also represent various consortiums that do not
 	// appear in the ISO document. The code must correspond to an existing country in
@@ -5011,7 +5011,7 @@ func init() {
 // The properties ClassificationMarking, DataMode, SatNo, Source are required.
 type SensorUpdateParamsEntityOnOrbit struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -5028,11 +5028,11 @@ type SensorUpdateParamsEntityOnOrbit struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,omitzero,required"`
+	DataMode string `json:"dataMode,omitzero" api:"required"`
 	// Satellite/Catalog number of the target on-orbit object.
-	SatNo int64 `json:"satNo,required"`
+	SatNo int64 `json:"satNo" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Alternate name of the on-orbit object.
 	AltName param.Opt[string] `json:"altName,omitzero"`
 	// Common name of the on-orbit object.
@@ -5110,7 +5110,7 @@ func init() {
 // The properties ClassificationMarking, DataMode, IDSensor, Source are required.
 type SensorUpdateParamsSensorcharacteristic struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -5127,11 +5127,11 @@ type SensorUpdateParamsSensorcharacteristic struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,omitzero,required"`
+	DataMode string `json:"dataMode,omitzero" api:"required"`
 	// Unique identifier of the parent sensor.
-	IDSensor string `json:"idSensor,required"`
+	IDSensor string `json:"idSensor" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// Number of bits used in the conversion from analog electrons in a pixel well to a
@@ -5545,7 +5545,7 @@ func init() {
 // The properties ClassificationMarking, DataMode, IDSensor, Source are required.
 type SensorUpdateParamsSensorlimitsCollection struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -5562,11 +5562,11 @@ type SensorUpdateParamsSensorlimitsCollection struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,omitzero,required"`
+	DataMode string `json:"dataMode,omitzero" api:"required"`
 	// Unique identifier of the target sensor object.
-	IDSensor string `json:"idSensor,required"`
+	IDSensor string `json:"idSensor" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	IDSensorLimits param.Opt[string] `json:"idSensorLimits,omitzero"`
 	// Leftmost or minimum lower azimuth within this limit. Interpreted according to
@@ -5646,7 +5646,7 @@ func (r *SensorUpdateParamsSensorObservationType) UnmarshalJSON(data []byte) err
 // The properties ClassificationMarking, DataMode, IDSensor, Source are required.
 type SensorUpdateParamsSensorStat struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -5663,11 +5663,11 @@ type SensorUpdateParamsSensorStat struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,omitzero,required"`
+	DataMode string `json:"dataMode,omitzero" api:"required"`
 	// Unique ID of the parent sensor.
-	IDSensor string `json:"idSensor,required"`
+	IDSensor string `json:"idSensor" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// Time of last reported observation in ISO 8601 UTC with microsecond precision.
@@ -5752,7 +5752,7 @@ type SensorTupleParams struct {
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
 	// for a complete list of possible fields.
-	Columns     string           `query:"columns,required" json:"-"`
+	Columns     string           `query:"columns" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

@@ -94,7 +94,7 @@ func (r *AirOperationAircraftSortyHistoryService) Count(ctx context.Context, que
 type AirOperationAircraftSortyHistoryListParams struct {
 	// The scheduled time that the Aircraft sortie is planned to depart, in ISO 8601
 	// UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	PlannedDepTime time.Time `query:"plannedDepTime,required" format:"date-time" json:"-"`
+	PlannedDepTime time.Time `query:"plannedDepTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -116,7 +116,7 @@ func (r AirOperationAircraftSortyHistoryListParams) URLQuery() (v url.Values, er
 type AirOperationAircraftSortyHistoryAodrParams struct {
 	// The scheduled time that the Aircraft sortie is planned to depart, in ISO 8601
 	// UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	PlannedDepTime time.Time `query:"plannedDepTime,required" format:"date-time" json:"-"`
+	PlannedDepTime time.Time `query:"plannedDepTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -149,7 +149,7 @@ func (r AirOperationAircraftSortyHistoryAodrParams) URLQuery() (v url.Values, er
 type AirOperationAircraftSortyHistoryCountParams struct {
 	// The scheduled time that the Aircraft sortie is planned to depart, in ISO 8601
 	// UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	PlannedDepTime time.Time        `query:"plannedDepTime,required" format:"date-time" json:"-"`
+	PlannedDepTime time.Time        `query:"plannedDepTime" api:"required" format:"date-time" json:"-"`
 	FirstResult    param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults     param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

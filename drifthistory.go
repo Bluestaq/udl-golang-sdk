@@ -203,7 +203,7 @@ type DriftHistoryTupleParams struct {
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
 	// for a complete list of possible fields.
-	Columns     string           `query:"columns,required" json:"-"`
+	Columns     string           `query:"columns" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

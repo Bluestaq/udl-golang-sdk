@@ -93,7 +93,7 @@ func (r *ElsetHistoryService) Count(ctx context.Context, query ElsetHistoryCount
 type ElsetHistoryListParams struct {
 	// Elset epoch time in ISO 8601 UTC format, with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Epoch time.Time `query:"epoch,required" format:"date-time" json:"-"`
+	Epoch time.Time `query:"epoch" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -114,7 +114,7 @@ func (r ElsetHistoryListParams) URLQuery() (v url.Values, err error) {
 type ElsetHistoryAodrParams struct {
 	// Elset epoch time in ISO 8601 UTC format, with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Epoch time.Time `query:"epoch,required" format:"date-time" json:"-"`
+	Epoch time.Time `query:"epoch" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -146,7 +146,7 @@ func (r ElsetHistoryAodrParams) URLQuery() (v url.Values, err error) {
 type ElsetHistoryCountParams struct {
 	// Elset epoch time in ISO 8601 UTC format, with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Epoch       time.Time        `query:"epoch,required" format:"date-time" json:"-"`
+	Epoch       time.Time        `query:"epoch" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

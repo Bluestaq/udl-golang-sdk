@@ -60,7 +60,7 @@ func (r *AirOperationCrewpaperService) UploadPdf(ctx context.Context, fileConten
 
 type AirOperationCrewpaperUnpublishParams struct {
 	// Comma-separated list of AircraftSortie IDs where Crew Papers are unpublished.
-	IDs string `query:"ids,required" json:"-"`
+	IDs string `query:"ids" api:"required" json:"-"`
 	paramObj
 }
 
@@ -75,15 +75,15 @@ func (r AirOperationCrewpaperUnpublishParams) URLQuery() (v url.Values, err erro
 
 type AirOperationCrewpaperUploadPdfParams struct {
 	// Comma-separated list of AircraftSortie IDs the Crew Papers are being added to.
-	AircraftSortieIDs string `query:"aircraftSortieIds,required" json:"-"`
+	AircraftSortieIDs string `query:"aircraftSortieIds" api:"required" json:"-"`
 	// classificationMarking of the Crew Papers.
-	ClassificationMarking string `query:"classificationMarking,required" json:"-"`
+	ClassificationMarking string `query:"classificationMarking" api:"required" json:"-"`
 	// The status of the supporting document.
 	//
 	// Any of "PUBLISHED", "DELETED", "UPDATED", "READ".
-	PaperStatus AirOperationCrewpaperUploadPdfParamsPaperStatus `query:"paperStatus,omitzero,required" json:"-"`
+	PaperStatus AirOperationCrewpaperUploadPdfParamsPaperStatus `query:"paperStatus,omitzero" api:"required" json:"-"`
 	// The version number of the crew paper.
-	PapersVersion string `query:"papersVersion,required" json:"-"`
+	PapersVersion string `query:"papersVersion" api:"required" json:"-"`
 	paramObj
 }
 

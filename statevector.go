@@ -173,7 +173,7 @@ func (r *StateVectorService) UnvalidatedPublish(ctx context.Context, body StateV
 // provider.
 type StateVectorAbridged struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -190,12 +190,12 @@ type StateVectorAbridged struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode StateVectorAbridgedDataMode `json:"dataMode,required"`
+	DataMode StateVectorAbridgedDataMode `json:"dataMode" api:"required"`
 	// Time of validity for state vector in ISO 8601 UTC datetime format, with
 	// microsecond precision.
-	Epoch time.Time `json:"epoch,required" format:"date-time"`
+	Epoch time.Time `json:"epoch" api:"required" format:"date-time"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// The actual time span used for the OD of the object, expressed in days.
 	ActualOdSpan float64 `json:"actualODSpan"`
 	// Optional algorithm used to produce this record.
@@ -752,7 +752,7 @@ const (
 // The properties ClassificationMarking, DataMode, Epoch, Source are required.
 type StateVectorIngestParam struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -769,12 +769,12 @@ type StateVectorIngestParam struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode StateVectorIngestDataMode `json:"dataMode,omitzero,required"`
+	DataMode StateVectorIngestDataMode `json:"dataMode,omitzero" api:"required"`
 	// Time of validity for state vector in ISO 8601 UTC datetime format, with
 	// microsecond precision.
-	Epoch time.Time `json:"epoch,required" format:"date-time"`
+	Epoch time.Time `json:"epoch" api:"required" format:"date-time"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// The actual time span used for the OD of the object, expressed in days.
 	ActualOdSpan param.Opt[float64] `json:"actualODSpan,omitzero"`
 	// Optional algorithm used to produce this record.
@@ -1286,7 +1286,7 @@ func (r *StateVectorNewParams) UnmarshalJSON(data []byte) error {
 type StateVectorListParams struct {
 	// Time of validity for state vector in ISO 8601 UTC datetime format, with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Epoch       time.Time        `query:"epoch,required" format:"date-time" json:"-"`
+	Epoch       time.Time        `query:"epoch" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1303,7 +1303,7 @@ func (r StateVectorListParams) URLQuery() (v url.Values, err error) {
 type StateVectorCountParams struct {
 	// Time of validity for state vector in ISO 8601 UTC datetime format, with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Epoch       time.Time        `query:"epoch,required" format:"date-time" json:"-"`
+	Epoch       time.Time        `query:"epoch" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1348,10 +1348,10 @@ type StateVectorTupleParams struct {
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
 	// for a complete list of possible fields.
-	Columns string `query:"columns,required" json:"-"`
+	Columns string `query:"columns" api:"required" json:"-"`
 	// Time of validity for state vector in ISO 8601 UTC datetime format, with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Epoch       time.Time        `query:"epoch,required" format:"date-time" json:"-"`
+	Epoch       time.Time        `query:"epoch" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

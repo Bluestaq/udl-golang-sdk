@@ -94,7 +94,7 @@ func (r *EopHistoryService) Count(ctx context.Context, query EopHistoryCountPara
 type EopHistoryListParams struct {
 	// Effective date/time for the EOP values in ISO8601 UTC format. The values could
 	// be current or predicted. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	EopDate time.Time `query:"eopDate,required" format:"date-time" json:"-"`
+	EopDate time.Time `query:"eopDate" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -115,7 +115,7 @@ func (r EopHistoryListParams) URLQuery() (v url.Values, err error) {
 type EopHistoryAodrParams struct {
 	// Effective date/time for the EOP values in ISO8601 UTC format. The values could
 	// be current or predicted. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	EopDate time.Time `query:"eopDate,required" format:"date-time" json:"-"`
+	EopDate time.Time `query:"eopDate" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -147,7 +147,7 @@ func (r EopHistoryAodrParams) URLQuery() (v url.Values, err error) {
 type EopHistoryCountParams struct {
 	// Effective date/time for the EOP values in ISO8601 UTC format. The values could
 	// be current or predicted. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	EopDate     time.Time        `query:"eopDate,required" format:"date-time" json:"-"`
+	EopDate     time.Time        `query:"eopDate" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
