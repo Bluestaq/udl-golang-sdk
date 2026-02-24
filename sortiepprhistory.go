@@ -93,7 +93,7 @@ func (r *SortiePprHistoryService) Count(ctx context.Context, query SortiePprHist
 type SortiePprHistoryListParams struct {
 	// Unique identifier of the Aircraft Sortie associated with this prior permission
 	// required (PPR) record.
-	IDSortie string `query:"idSortie,required" json:"-"`
+	IDSortie string `query:"idSortie" api:"required" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -115,7 +115,7 @@ func (r SortiePprHistoryListParams) URLQuery() (v url.Values, err error) {
 type SortiePprHistoryAodrParams struct {
 	// Unique identifier of the Aircraft Sortie associated with this prior permission
 	// required (PPR) record.
-	IDSortie string `query:"idSortie,required" json:"-"`
+	IDSortie string `query:"idSortie" api:"required" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -148,7 +148,7 @@ func (r SortiePprHistoryAodrParams) URLQuery() (v url.Values, err error) {
 type SortiePprHistoryCountParams struct {
 	// Unique identifier of the Aircraft Sortie associated with this prior permission
 	// required (PPR) record.
-	IDSortie    string           `query:"idSortie,required" json:"-"`
+	IDSortie    string           `query:"idSortie" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

@@ -80,7 +80,7 @@ func (r *TdoaFdoaDiffofarrivalHistoryService) Aodr(ctx context.Context, query Td
 type TdoaFdoaDiffofarrivalHistoryListParams struct {
 	// Ob detection time in ISO 8601 UTC with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	ObTime time.Time `query:"obTime,required" format:"date-time" json:"-"`
+	ObTime time.Time `query:"obTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -102,7 +102,7 @@ func (r TdoaFdoaDiffofarrivalHistoryListParams) URLQuery() (v url.Values, err er
 type TdoaFdoaDiffofarrivalHistoryAodrParams struct {
 	// Ob detection time in ISO 8601 UTC with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	ObTime time.Time `query:"obTime,required" format:"date-time" json:"-"`
+	ObTime time.Time `query:"obTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.

@@ -51,7 +51,7 @@ type GnssObservationHistoryCountParams struct {
 	// Observation Time, in ISO8601 UTC format with microsecond precision. This
 	// timestamp applies to all observations within the set.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Ts          time.Time        `query:"ts,required" format:"date-time" json:"-"`
+	Ts          time.Time        `query:"ts" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

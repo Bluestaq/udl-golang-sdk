@@ -162,7 +162,7 @@ func (r SecureMessagingGetLatestOffsetParams) URLQuery() (v url.Values, err erro
 }
 
 type SecureMessagingGetMessagesParams struct {
-	Topic       string           `path:"topic,required" json:"-"`
+	Topic       string           `path:"topic" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

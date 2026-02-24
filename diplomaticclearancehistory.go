@@ -94,7 +94,7 @@ func (r *DiplomaticClearanceHistoryService) Count(ctx context.Context, query Dip
 type DiplomaticClearanceHistoryListParams struct {
 	// The First Departure Date (FDD) the mission is scheduled for departure, in ISO
 	// 8601 UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	FirstDepDate time.Time `query:"firstDepDate,required" format:"date-time" json:"-"`
+	FirstDepDate time.Time `query:"firstDepDate" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -116,7 +116,7 @@ func (r DiplomaticClearanceHistoryListParams) URLQuery() (v url.Values, err erro
 type DiplomaticClearanceHistoryAodrParams struct {
 	// The First Departure Date (FDD) the mission is scheduled for departure, in ISO
 	// 8601 UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	FirstDepDate time.Time `query:"firstDepDate,required" format:"date-time" json:"-"`
+	FirstDepDate time.Time `query:"firstDepDate" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -149,7 +149,7 @@ func (r DiplomaticClearanceHistoryAodrParams) URLQuery() (v url.Values, err erro
 type DiplomaticClearanceHistoryCountParams struct {
 	// The First Departure Date (FDD) the mission is scheduled for departure, in ISO
 	// 8601 UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	FirstDepDate time.Time        `query:"firstDepDate,required" format:"date-time" json:"-"`
+	FirstDepDate time.Time        `query:"firstDepDate" api:"required" format:"date-time" json:"-"`
 	FirstResult  param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults   param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

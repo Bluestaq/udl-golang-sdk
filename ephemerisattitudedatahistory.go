@@ -73,7 +73,7 @@ func (r *EphemerisAttitudeDataHistoryService) Count(ctx context.Context, query E
 
 type EphemerisAttitudeDataHistoryGetParams struct {
 	// Unique identifier of the parent AttitudeSet associated with this record. (uuid)
-	AsID string `query:"asId,required" json:"-"`
+	AsID string `query:"asId" api:"required" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -94,7 +94,7 @@ func (r EphemerisAttitudeDataHistoryGetParams) URLQuery() (v url.Values, err err
 
 type EphemerisAttitudeDataHistoryAodrParams struct {
 	// Unique identifier of the parent AttitudeSet associated with this record. (uuid)
-	AsID string `query:"asId,required" json:"-"`
+	AsID string `query:"asId" api:"required" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -126,7 +126,7 @@ func (r EphemerisAttitudeDataHistoryAodrParams) URLQuery() (v url.Values, err er
 
 type EphemerisAttitudeDataHistoryCountParams struct {
 	// Unique identifier of the parent AttitudeSet associated with this record. (uuid)
-	AsID        string           `query:"asId,required" json:"-"`
+	AsID        string           `query:"asId" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

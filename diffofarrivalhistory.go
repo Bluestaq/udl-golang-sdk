@@ -50,7 +50,7 @@ func (r *DiffOfArrivalHistoryService) Count(ctx context.Context, query DiffOfArr
 type DiffOfArrivalHistoryCountParams struct {
 	// Ob detection time in ISO 8601 UTC with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	ObTime      time.Time        `query:"obTime,required" format:"date-time" json:"-"`
+	ObTime      time.Time        `query:"obTime" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

@@ -174,7 +174,7 @@ func (r *EntityService) Tuple(ctx context.Context, query EntityTupleParams, opts
 // entity can have an operating unit, a location (if terrestrial), and statuses.
 type EntityAbridged struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -191,17 +191,17 @@ type EntityAbridged struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode EntityAbridgedDataMode `json:"dataMode,required"`
+	DataMode EntityAbridgedDataMode `json:"dataMode" api:"required"`
 	// Unique entity name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
 	// LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
 	//
 	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "LASEREMITTER", "NAVIGATION", "ONORBIT",
 	// "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
-	Type EntityAbridgedType `json:"type,required"`
+	Type EntityAbridgedType `json:"type" api:"required"`
 	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
 	// country code, however it can also represent various consortiums that do not
 	// appear in the ISO document. The code must correspond to an existing country in
@@ -320,7 +320,7 @@ const (
 // Model object representing on-orbit objects or satellites in the system.
 type EntityAbridgedOnOrbit struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -337,11 +337,11 @@ type EntityAbridgedOnOrbit struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,required"`
+	DataMode string `json:"dataMode" api:"required"`
 	// Satellite/Catalog number of the target on-orbit object.
-	SatNo int64 `json:"satNo,required"`
+	SatNo int64 `json:"satNo" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Alternate name of the on-orbit object.
 	AltName string `json:"altName"`
 	// Category of the on-orbit object. (Unknown, On-Orbit, Decayed, Cataloged Without
@@ -452,7 +452,7 @@ const (
 // The properties ClassificationMarking, DataMode, Name, Source, Type are required.
 type EntityIngestParam struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -469,17 +469,17 @@ type EntityIngestParam struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode EntityIngestDataMode `json:"dataMode,omitzero,required"`
+	DataMode EntityIngestDataMode `json:"dataMode,omitzero" api:"required"`
 	// Unique entity name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// The type of entity represented by this record (AIRCRAFT, BUS, COMM, IR,
 	// LASEREMITTER, NAVIGATION, ONORBIT, RFEMITTER, SCIENTIFIC, SENSOR, SITE, VESSEL).
 	//
 	// Any of "AIRCRAFT", "BUS", "COMM", "IR", "LASEREMITTER", "NAVIGATION", "ONORBIT",
 	// "RFEMITTER", "SCIENTIFIC", "SENSOR", "SITE", "VESSEL".
-	Type EntityIngestType `json:"type,omitzero,required"`
+	Type EntityIngestType `json:"type,omitzero" api:"required"`
 	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
 	// country code, however it can also represent various consortiums that do not
 	// appear in the ISO document. The code must correspond to an existing country in
@@ -574,7 +574,7 @@ const (
 // The properties ClassificationMarking, DataMode, SatNo, Source are required.
 type EntityIngestOnOrbitParam struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -591,11 +591,11 @@ type EntityIngestOnOrbitParam struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,omitzero,required"`
+	DataMode string `json:"dataMode,omitzero" api:"required"`
 	// Satellite/Catalog number of the target on-orbit object.
-	SatNo int64 `json:"satNo,required"`
+	SatNo int64 `json:"satNo" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Alternate name of the on-orbit object.
 	AltName param.Opt[string] `json:"altName,omitzero"`
 	// Common name of the on-orbit object.
@@ -808,7 +808,7 @@ type EntityTupleParams struct {
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
 	// for a complete list of possible fields.
-	Columns     string           `query:"columns,required" json:"-"`
+	Columns     string           `query:"columns" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

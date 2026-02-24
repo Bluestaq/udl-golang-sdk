@@ -165,7 +165,7 @@ type CountryAbridged struct {
 	// The country code. Optimally, this value is the ISO 3166 Alpha-2-two-character
 	// country code, however it can represent various consortiums that do not appear in
 	// the ISO document.
-	Code string `json:"code,required"`
+	Code string `json:"code" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -182,9 +182,9 @@ type CountryAbridged struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode CountryAbridgedDataMode `json:"dataMode,required"`
+	DataMode CountryAbridgedDataMode `json:"dataMode" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// 3 Digit or other alternate country code.
 	CodeAlt string `json:"codeAlt"`
 	// Time the row was created in the database, auto-populated by the system.
@@ -292,7 +292,7 @@ type CountryNewParams struct {
 	// The country code. Optimally, this value is the ISO 3166 Alpha-2-two-character
 	// country code, however it can represent various consortiums that do not appear in
 	// the ISO document.
-	Code string `json:"code,required"`
+	Code string `json:"code" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -309,9 +309,9 @@ type CountryNewParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode CountryNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode CountryNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// 3 Digit or other alternate country code.
 	CodeAlt param.Opt[string] `json:"codeAlt,omitzero"`
 	// Federal Information Processing Standard (FIPS) two-character country code. This
@@ -377,7 +377,7 @@ type CountryUpdateParams struct {
 	// The country code. Optimally, this value is the ISO 3166 Alpha-2-two-character
 	// country code, however it can represent various consortiums that do not appear in
 	// the ISO document.
-	Code string `json:"code,required"`
+	Code string `json:"code" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -394,9 +394,9 @@ type CountryUpdateParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode CountryUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode CountryUpdateParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// 3 Digit or other alternate country code.
 	CodeAlt param.Opt[string] `json:"codeAlt,omitzero"`
 	// Federal Information Processing Standard (FIPS) two-character country code. This
@@ -477,7 +477,7 @@ type CountryTupleParams struct {
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
 	// for a complete list of possible fields.
-	Columns     string           `query:"columns,required" json:"-"`
+	Columns     string           `query:"columns" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

@@ -42,11 +42,11 @@ func (r *UserService) Auth(ctx context.Context, opts ...option.RequestOption) (r
 
 type UserAuthResponse struct {
 	// Authentication status
-	Auth bool `json:"auth,required"`
+	Auth bool `json:"auth" api:"required"`
 	// List of user roles
-	Roles []string `json:"roles,required"`
+	Roles []string `json:"roles" api:"required"`
 	// Subject identifier
-	Sub string `json:"sub,required"`
+	Sub string `json:"sub" api:"required"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Auth        respjson.Field

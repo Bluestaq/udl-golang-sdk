@@ -96,7 +96,7 @@ type AttitudeSetHistoryListParams struct {
 	// 8601 UTC format, with microsecond precision. If this set is constituted by a
 	// single attitude parameter message then startTime is the epoch.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	StartTime time.Time `query:"startTime,required" format:"date-time" json:"-"`
+	StartTime time.Time `query:"startTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -120,7 +120,7 @@ type AttitudeSetHistoryAodrParams struct {
 	// 8601 UTC format, with microsecond precision. If this set is constituted by a
 	// single attitude parameter message then startTime is the epoch.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	StartTime time.Time `query:"startTime,required" format:"date-time" json:"-"`
+	StartTime time.Time `query:"startTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -155,7 +155,7 @@ type AttitudeSetHistoryCountParams struct {
 	// 8601 UTC format, with microsecond precision. If this set is constituted by a
 	// single attitude parameter message then startTime is the epoch.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
+	StartTime   time.Time        `query:"startTime" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

@@ -264,7 +264,7 @@ const (
 
 type ScV2UpdateParams struct {
 	// The complete path for the object to be updated.
-	Path string `query:"path,required" json:"-"`
+	Path string `query:"path" api:"required" json:"-"`
 	// Whether or not to send a notification that the target file/folder was updated.
 	SendNotification param.Opt[bool] `query:"sendNotification,omitzero" json:"-"`
 	// Unique identifier for document.
@@ -369,7 +369,7 @@ const (
 
 type ScV2ListParams struct {
 	// The base path to list.
-	Path        string           `query:"path,required" json:"-"`
+	Path        string           `query:"path" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	// The order in which entries should be sorted.
@@ -394,7 +394,7 @@ func (r ScV2ListParams) URLQuery() (v url.Values, err error) {
 
 type ScV2DeleteParams struct {
 	// The complete path for the object to be deleted. Must start with '/'.
-	Path string `query:"path,required" json:"-"`
+	Path string `query:"path" api:"required" json:"-"`
 	paramObj
 }
 
@@ -408,9 +408,9 @@ func (r ScV2DeleteParams) URLQuery() (v url.Values, err error) {
 
 type ScV2CopyParams struct {
 	// The path of the file or folder to copy. Must start with '/'.
-	FromPath string `query:"fromPath,required" json:"-"`
+	FromPath string `query:"fromPath" api:"required" json:"-"`
 	// The destination path to copy to. Must start with '/'.
-	ToPath string `query:"toPath,required" json:"-"`
+	ToPath string `query:"toPath" api:"required" json:"-"`
 	paramObj
 }
 
@@ -425,10 +425,10 @@ func (r ScV2CopyParams) URLQuery() (v url.Values, err error) {
 type ScV2FileUploadParams struct {
 	// Classification marking of uploaded document. If folders are created, they will
 	// also have this classification marking.
-	ClassificationMarking string `query:"classificationMarking,required" json:"-"`
+	ClassificationMarking string `query:"classificationMarking" api:"required" json:"-"`
 	// The complete path for the upload including filename. Will attempt to create
 	// folders in path if necessary. Must start with '/'.
-	Path string `query:"path,required" json:"-"`
+	Path string `query:"path" api:"required" json:"-"`
 	// Length of time after which to automatically delete the file.
 	DeleteAfter param.Opt[string] `query:"deleteAfter,omitzero" json:"-"`
 	// Optional description of uploaded document.
@@ -473,7 +473,7 @@ func (r ScV2FileUploadParams) URLQuery() (v url.Values, err error) {
 type ScV2FolderNewParams struct {
 	// Path to create. Will attempt to create all folders in the path that do not
 	// exist. Must start and end with '/'.
-	Path string `query:"path,required" json:"-"`
+	Path string `query:"path" api:"required" json:"-"`
 	// Whether or not to send a notification that this folder was created.
 	SendNotification param.Opt[bool] `query:"sendNotification,omitzero" json:"-"`
 	// Unique identifier for document.
@@ -578,10 +578,10 @@ const (
 
 type ScV2MoveParams struct {
 	// The path of the file or folder to move or rename. Must start with '/'.
-	FromPath string `query:"fromPath,required" json:"-"`
+	FromPath string `query:"fromPath" api:"required" json:"-"`
 	// The destination path of the file or folder after moving or renaming. Must start
 	// with '/'.
-	ToPath string `query:"toPath,required" json:"-"`
+	ToPath string `query:"toPath" api:"required" json:"-"`
 	paramObj
 }
 

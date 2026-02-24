@@ -92,7 +92,7 @@ func (r *ScFileService) ListAutoPaging(ctx context.Context, query ScFileListPara
 
 type ScFileGetParams struct {
 	// The file ID to view
-	ID          string           `query:"id,required" json:"-"`
+	ID          string           `query:"id" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -121,7 +121,7 @@ func (r *ScFileUpdateParams) UnmarshalJSON(data []byte) error {
 
 type ScFileListParams struct {
 	// The base path to list
-	Path string `query:"path,required" json:"-"`
+	Path string `query:"path" api:"required" json:"-"`
 	// Number of items per page
 	Count       param.Opt[int64] `query:"count,omitzero" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
