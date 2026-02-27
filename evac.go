@@ -23,6 +23,9 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for manipulation and querying of Mission Ops
+// information.
+//
 // EvacService contains methods and other services that help with interacting with
 // the unifieddatalibrary API.
 //
@@ -31,8 +34,12 @@ import (
 // the [NewEvacService] method instead.
 type EvacService struct {
 	Options []option.RequestOption
+	// These services provide operations for manipulation and querying of Mission Ops
+	// information.
 	History EvacHistoryService
-	Tuple   EvacTupleService
+	// These services provide operations for manipulation and querying of Mission Ops
+	// information.
+	Tuple EvacTupleService
 }
 
 // NewEvacService generates a new service that applies the given options to each

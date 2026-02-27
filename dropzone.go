@@ -23,6 +23,10 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// This collection of services provide operations for manipulating and querying of
+// various site related data, including site status, site operations, and site
+// type-specific records.
+//
 // DropzoneService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //

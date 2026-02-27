@@ -23,6 +23,9 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// This collection of services provide operations for manipulating and querying of
+// equipment related data.
+//
 // EquipmentService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //

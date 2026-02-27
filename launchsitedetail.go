@@ -21,6 +21,11 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// Collection of launch related services which provide operations for querying and
+// manipulation of launch site data and detailed information on launch vehicles
+// including engines, stages, and manufacturers. Sites, engines, and stages can
+// each have multiple 'detail' records which may be compiled by different sources.
+//
 // LaunchSiteDetailService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //

@@ -17,6 +17,9 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for manipulation and querying of Mission Ops
+// information.
+//
 // EvacHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //

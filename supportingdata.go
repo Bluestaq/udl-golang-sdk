@@ -13,8 +13,16 @@ import (
 // automatically. You should not instantiate this service directly, and instead use
 // the [NewSupportingDataService] method instead.
 type SupportingDataService struct {
-	Options   []option.RequestOption
+	Options []option.RequestOption
+	// Service operations for querying and manipulation of miscellaneous supporting
+	// data such as countries (which can represent countries, multi-national
+	// consortiums, and international organizations), data owners, locations, entities,
+	// organizations, etc.
 	DataTypes SupportingDataDataTypeService
+	// Service operations for querying and manipulation of miscellaneous supporting
+	// data such as countries (which can represent countries, multi-national
+	// consortiums, and international organizations), data owners, locations, entities,
+	// organizations, etc.
 	Dataowner SupportingDataDataownerService
 }
 

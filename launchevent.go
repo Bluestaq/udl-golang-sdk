@@ -23,6 +23,10 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for manipulation and querying of LaunchEvent
+// data. Launch Event data are known space launches, either future or historic
+// records containing items such as the launch site, launch epoch, and object.
+//
 // LaunchEventService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -31,6 +35,9 @@ import (
 // the [NewLaunchEventService] method instead.
 type LaunchEventService struct {
 	Options []option.RequestOption
+	// These services provide operations for manipulation and querying of LaunchEvent
+	// data. Launch Event data are known space launches, either future or historic
+	// records containing items such as the launch site, launch epoch, and object.
 	History LaunchEventHistoryService
 }
 

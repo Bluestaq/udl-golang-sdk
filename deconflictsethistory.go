@@ -18,6 +18,9 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
 
+// These services provide operations for manipulation and querying of Mission Ops
+// information.
+//
 // DeconflictsetHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //

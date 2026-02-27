@@ -18,6 +18,8 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
 
+// This collection of services provides operations for video streaming.
+//
 // VideoHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //

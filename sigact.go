@@ -25,6 +25,11 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for manipulation and querying of Report and
+// Activity information. This information includes analytic reports, significant
+// events, route statistics, EMI Reports, and other georeferenced reports and
+// activities.
+//
 // SigactService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
@@ -33,6 +38,10 @@ import (
 // the [NewSigactService] method instead.
 type SigactService struct {
 	Options []option.RequestOption
+	// These services provide operations for manipulation and querying of Report and
+	// Activity information. This information includes analytic reports, significant
+	// events, route statistics, EMI Reports, and other georeferenced reports and
+	// activities.
 	History SigactHistoryService
 }
 

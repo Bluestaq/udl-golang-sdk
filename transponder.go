@@ -21,6 +21,10 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for manipulation and querying of on-orbit
+// communications payloads (Comm), including supporting data such as transponders
+// and channels, etc.
+//
 // TransponderService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //

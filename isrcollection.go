@@ -21,6 +21,8 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for posting and querying Sensor Tasking data.
+//
 // IsrCollectionService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -29,6 +31,7 @@ import (
 // the [NewIsrCollectionService] method instead.
 type IsrCollectionService struct {
 	Options []option.RequestOption
+	// These services provide operations for posting and querying Sensor Tasking data.
 	History IsrCollectionHistoryService
 }
 

@@ -13,7 +13,12 @@ import (
 // automatically. You should not instantiate this service directly, and instead use
 // the [NewTdoaFdoaService] method instead.
 type TdoaFdoaService struct {
-	Options       []option.RequestOption
+	Options []option.RequestOption
+	// These services provide operations for querying and manipulation of Signal time
+	// and frequency difference of arrival (TDOA/FDOA) information obtained by using
+	// passive RF based sensor phenomenologies and sensor triangulation. The J2000
+	// coordinate frame is the preferred frame for all observations, but in some cases
+	// observations may be in another frame depending on the provider.
 	Diffofarrival TdoaFdoaDiffofarrivalService
 }
 

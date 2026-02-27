@@ -19,6 +19,11 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
 
+// These endpoints provide the ability to subscribe to SCS Event Notifications for
+// file upload/update and folder creation events within a specific folder in the
+// Secure Content Store. A user must be authorized to view the file/folder for
+// which a notification was created in order to retrieve that notification.
+//
 // ScNotificationService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -27,7 +32,11 @@ import (
 // the [NewScNotificationService] method instead.
 type ScNotificationService struct {
 	Options []option.RequestOption
-	Offset  ScNotificationOffsetService
+	// These endpoints provide the ability to subscribe to SCS Event Notifications for
+	// file upload/update and folder creation events within a specific folder in the
+	// Secure Content Store. A user must be authorized to view the file/folder for
+	// which a notification was created in order to retrieve that notification.
+	Offset ScNotificationOffsetService
 }
 
 // NewScNotificationService generates a new service that applies the given options

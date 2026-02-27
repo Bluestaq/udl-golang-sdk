@@ -23,6 +23,10 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for manipulation and querying of on-orbit
+// objects of interest, their components, and various lists and status of those
+// objects.
+//
 // OnorbitService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
@@ -30,7 +34,10 @@ import (
 // automatically. You should not instantiate this service directly, and instead use
 // the [NewOnorbitService] method instead.
 type OnorbitService struct {
-	Options        []option.RequestOption
+	Options []option.RequestOption
+	// These services provide operations for manipulation and querying of on-orbit
+	// objects of interest, their components, and various lists and status of those
+	// objects.
 	AntennaDetails OnorbitAntennaDetailService
 }
 

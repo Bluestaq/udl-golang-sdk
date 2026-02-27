@@ -15,6 +15,12 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 )
 
+// These services provide operations for querying and manipulation of element set
+// data describing orbital characteristics of on-orbit objects. An element set is a
+// collection of parameters that are used, along with an orbit propagator, to
+// predict the motion of a satellite. The element set, or elset for short, consists
+// of identification data, the classical elements and drag parameters.
+//
 // ElsetCurrentService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //

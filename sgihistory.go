@@ -18,6 +18,9 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
 
+// This service provides operations for manipulation and querying of space
+// weather/solar, geomagnetic, and radiation belt index data.
+//
 // SgiHistoryService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //

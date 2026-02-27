@@ -18,6 +18,10 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
 
+// This collection of services provides operations for querying and manipulation of
+// laser related information to include the laser emitters, the laser deconflict
+// requests, and laser deconflict responses.
+//
 // LaserdeconflictrequestHistoryService contains methods and other services that
 // help with interacting with the unifieddatalibrary API.
 //

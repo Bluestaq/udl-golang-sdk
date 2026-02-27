@@ -23,6 +23,14 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for posting and querying Star Catalog data.
+// The Star Catalog model is a representation of astronomical data and photometric
+// data for stars. Astronomical data includes positional information, proper
+// motions, parallaxes and their respective uncertainties. Photometric data
+// contains optical and near-infrared magnitudes, and their uncertainties across
+// multiple bandpasses. Note: Multiple source catalogs may contribute to a single
+// record.
+//
 // StarCatalogService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -31,6 +39,13 @@ import (
 // the [NewStarCatalogService] method instead.
 type StarCatalogService struct {
 	Options []option.RequestOption
+	// These services provide operations for posting and querying Star Catalog data.
+	// The Star Catalog model is a representation of astronomical data and photometric
+	// data for stars. Astronomical data includes positional information, proper
+	// motions, parallaxes and their respective uncertainties. Photometric data
+	// contains optical and near-infrared magnitudes, and their uncertainties across
+	// multiple bandpasses. Note: Multiple source catalogs may contribute to a single
+	// record.
 	History StarCatalogHistoryService
 }
 

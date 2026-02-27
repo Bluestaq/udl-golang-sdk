@@ -21,6 +21,16 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for the posting and querying of satellite
+// Ephemeris Point data. Each point contains a position and velocity vector and
+// optionally, an acceleration vector and/or covariance matrix at a specified time.
+// ECI J2K is the preferred reference frame for ephemeris and covariance, however,
+// several user specified reference frames are accommodated. The EphemerisSet ID
+// (esId) identifies the 'EphemerisSet' record which contains details of the
+// underlying data and models used in the generation of the ephemeris as well as a
+// collection of ephemeris points. Points must be retrieved by first identifying a
+// desired EphemerisSet and pulling its points by that EphemerisSet 'esId'.
+//
 // EphemerisService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
@@ -28,9 +38,27 @@ import (
 // automatically. You should not instantiate this service directly, and instead use
 // the [NewEphemerisService] method instead.
 type EphemerisService struct {
-	Options      []option.RequestOption
+	Options []option.RequestOption
+	// These services provide operations for the posting and querying of satellite
+	// Ephemeris Point data. Each point contains a position and velocity vector and
+	// optionally, an acceleration vector and/or covariance matrix at a specified time.
+	// ECI J2K is the preferred reference frame for ephemeris and covariance, however,
+	// several user specified reference frames are accommodated. The EphemerisSet ID
+	// (esId) identifies the 'EphemerisSet' record which contains details of the
+	// underlying data and models used in the generation of the ephemeris as well as a
+	// collection of ephemeris points. Points must be retrieved by first identifying a
+	// desired EphemerisSet and pulling its points by that EphemerisSet 'esId'.
 	AttitudeData EphemerisAttitudeDataService
-	History      EphemerisHistoryService
+	// These services provide operations for the posting and querying of satellite
+	// Ephemeris Point data. Each point contains a position and velocity vector and
+	// optionally, an acceleration vector and/or covariance matrix at a specified time.
+	// ECI J2K is the preferred reference frame for ephemeris and covariance, however,
+	// several user specified reference frames are accommodated. The EphemerisSet ID
+	// (esId) identifies the 'EphemerisSet' record which contains details of the
+	// underlying data and models used in the generation of the ephemeris as well as a
+	// collection of ephemeris points. Points must be retrieved by first identifying a
+	// desired EphemerisSet and pulling its points by that EphemerisSet 'esId'.
+	History EphemerisHistoryService
 }
 
 // NewEphemerisService generates a new service that applies the given options to

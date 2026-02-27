@@ -27,6 +27,8 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for manipulation and querying of conjunctions.
+//
 // ConjunctionService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -35,6 +37,7 @@ import (
 // the [NewConjunctionService] method instead.
 type ConjunctionService struct {
 	Options []option.RequestOption
+	// These services provide operations for manipulation and querying of conjunctions.
 	History ConjunctionHistoryService
 }
 

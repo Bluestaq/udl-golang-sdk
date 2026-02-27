@@ -23,6 +23,8 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for posting and querying Sensor Tasking data.
+//
 // CollectResponseService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -31,8 +33,10 @@ import (
 // the [NewCollectResponseService] method instead.
 type CollectResponseService struct {
 	Options []option.RequestOption
+	// These services provide operations for posting and querying Sensor Tasking data.
 	History CollectResponseHistoryService
-	Tuple   CollectResponseTupleService
+	// These services provide operations for posting and querying Sensor Tasking data.
+	Tuple CollectResponseTupleService
 }
 
 // NewCollectResponseService generates a new service that applies the given options

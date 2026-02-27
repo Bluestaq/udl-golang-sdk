@@ -21,6 +21,10 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// This collection of services provide operations for manipulating and querying of
+// various site related data, including site status, site operations, and site
+// type-specific records.
+//
 // SiteService contains methods and other services that help with interacting with
 // the unifieddatalibrary API.
 //
@@ -28,7 +32,10 @@ import (
 // automatically. You should not instantiate this service directly, and instead use
 // the [NewSiteService] method instead.
 type SiteService struct {
-	Options    []option.RequestOption
+	Options []option.RequestOption
+	// This collection of services provide operations for manipulating and querying of
+	// various site related data, including site status, site operations, and site
+	// type-specific records.
 	Operations SiteOperationService
 }
 

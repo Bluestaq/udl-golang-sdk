@@ -14,6 +14,10 @@ import (
 // the [NewReportAndActivityPoiService] method instead.
 type ReportAndActivityPoiService struct {
 	Options []option.RequestOption
+	// These services provide operations for manipulation and querying of Report and
+	// Activity information. This information includes analytic reports, significant
+	// events, route statistics, EMI Reports, and other georeferenced reports and
+	// activities.
 	History ReportAndActivityPoiHistoryService
 }
 

@@ -21,6 +21,11 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// This collection of services provides operations for querying and manipulation of
+// RF related information to include RFEmitters which could potentially interfere
+// with communications/operations of space related entities, and RFBands commonly
+// used by various space related entities.
+//
 // RfEmitterService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
@@ -29,7 +34,15 @@ import (
 // the [NewRfEmitterService] method instead.
 type RfEmitterService struct {
 	Options []option.RequestOption
+	// This collection of services provides operations for querying and manipulation of
+	// RF related information to include RFEmitters which could potentially interfere
+	// with communications/operations of space related entities, and RFBands commonly
+	// used by various space related entities.
 	Staging RfEmitterStagingService
+	// This collection of services provides operations for querying and manipulation of
+	// RF related information to include RFEmitters which could potentially interfere
+	// with communications/operations of space related entities, and RFBands commonly
+	// used by various space related entities.
 	Details RfEmitterDetailService
 }
 

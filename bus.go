@@ -21,6 +21,10 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// Services for querying and manipulation of satellite buses. A bus is the physical
+// and software infrastructure backbone to which on-orbit satellite payloads are
+// attached for power, control, and other support functions.
+//
 // BusService contains methods and other services that help with interacting with
 // the unifieddatalibrary API.
 //

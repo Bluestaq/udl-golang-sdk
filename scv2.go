@@ -21,6 +21,9 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
 
+// These services provide CRUD and search operations for files and folders in the
+// Secure Content Store.
+//
 // ScV2Service contains methods and other services that help with interacting with
 // the unifieddatalibrary API.
 //

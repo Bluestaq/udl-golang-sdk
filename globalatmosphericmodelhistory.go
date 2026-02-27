@@ -18,6 +18,12 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
 
+// Models and Simulations is a collection of services that allow consumers to
+// interact with data products representing independent models of various
+// phenomenon, artificial intelligence models and predictions, or of mathematical
+// parameters meant to feed mod and sim tools to produce estimates of environmental
+// entities such as atmospheric models and heat maps.
+//
 // GlobalAtmosphericModelHistoryService contains methods and other services that
 // help with interacting with the unifieddatalibrary API.
 //

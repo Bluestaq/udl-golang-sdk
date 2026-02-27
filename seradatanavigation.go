@@ -21,6 +21,9 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for manipulation and querying of on-orbit
+// payloads.
+//
 // SeraDataNavigationService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
