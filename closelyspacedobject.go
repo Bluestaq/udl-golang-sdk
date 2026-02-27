@@ -23,6 +23,11 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// This collection of services provides operations for manipulating and querying of
+// closely spaced objects (on orbit) operations including docking, rendezvous,
+// proximity and reporting of payload zone engagements observed and characterized
+// over a period of time.
+//
 // CloselyspacedobjectService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -31,6 +36,10 @@ import (
 // the [NewCloselyspacedobjectService] method instead.
 type CloselyspacedobjectService struct {
 	Options []option.RequestOption
+	// This collection of services provides operations for manipulating and querying of
+	// closely spaced objects (on orbit) operations including docking, rendezvous,
+	// proximity and reporting of payload zone engagements observed and characterized
+	// over a period of time.
 	History CloselyspacedobjectHistoryService
 }
 

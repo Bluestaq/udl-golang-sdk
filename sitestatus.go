@@ -21,6 +21,10 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// This collection of services provide operations for manipulating and querying of
+// various site related data, including site status, site operations, and site
+// type-specific records.
+//
 // SiteStatusService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
@@ -29,6 +33,9 @@ import (
 // the [NewSiteStatusService] method instead.
 type SiteStatusService struct {
 	Options []option.RequestOption
+	// This collection of services provide operations for manipulating and querying of
+	// various site related data, including site status, site operations, and site
+	// type-specific records.
 	History SiteStatusHistoryService
 }
 

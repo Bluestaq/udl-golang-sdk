@@ -23,6 +23,10 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for manipulating and querying Orbit
+// Determination (OD) data. Orbit Determination data contains algorithm results
+// that describe General Perturbations or Special Perturbations orbital updates.
+//
 // OrbitdeterminationService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -31,6 +35,9 @@ import (
 // the [NewOrbitdeterminationService] method instead.
 type OrbitdeterminationService struct {
 	Options []option.RequestOption
+	// These services provide operations for manipulating and querying Orbit
+	// Determination (OD) data. Orbit Determination data contains algorithm results
+	// that describe General Perturbations or Special Perturbations orbital updates.
 	History OrbitdeterminationHistoryService
 }
 

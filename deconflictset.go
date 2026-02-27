@@ -21,6 +21,9 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for manipulation and querying of Mission Ops
+// information.
+//
 // DeconflictsetService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -29,6 +32,8 @@ import (
 // the [NewDeconflictsetService] method instead.
 type DeconflictsetService struct {
 	Options []option.RequestOption
+	// These services provide operations for manipulation and querying of Mission Ops
+	// information.
 	History DeconflictsetHistoryService
 }
 

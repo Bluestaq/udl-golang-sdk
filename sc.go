@@ -29,13 +29,33 @@ import (
 // automatically. You should not instantiate this service directly, and instead use
 // the [NewScService] method instead.
 type ScService struct {
-	Options       []option.RequestOption
+	Options []option.RequestOption
+	// These endpoints provide the ability to subscribe to SCS Event Notifications for
+	// file upload/update and folder creation events within a specific folder in the
+	// Secure Content Store. A user must be authorized to view the file/folder for
+	// which a notification was created in order to retrieve that notification.
 	Notifications ScNotificationService
-	File          ScFileService
-	Folders       ScFolderService
-	Paths         ScPathService
-	View          ScViewService
-	V2            ScV2Service
+	// These services provide soon-to-be-deprecated CRUD and Search operations for
+	// files and folders in the Secure Content Store. This documentation is provided
+	// only for backwards compatibility, please refer to SCS V2 for new SCS
+	// integrations.
+	File ScFileService
+	// These services provide soon-to-be-deprecated CRUD and Search operations for
+	// files and folders in the Secure Content Store. This documentation is provided
+	// only for backwards compatibility, please refer to SCS V2 for new SCS
+	// integrations.
+	Folders ScFolderService
+	// These services provide soon-to-be-deprecated CRUD and Search operations for
+	// files and folders in the Secure Content Store. This documentation is provided
+	// only for backwards compatibility, please refer to SCS V2 for new SCS
+	// integrations.
+	Paths ScPathService
+	// These services provide CRUD and search operations for files and folders in the
+	// Secure Content Store.
+	View ScViewService
+	// These services provide CRUD and search operations for files and folders in the
+	// Secure Content Store.
+	V2 ScV2Service
 }
 
 // NewScService generates a new service that applies the given options to each

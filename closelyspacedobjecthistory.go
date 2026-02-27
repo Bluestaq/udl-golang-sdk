@@ -18,6 +18,11 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
 
+// This collection of services provides operations for manipulating and querying of
+// closely spaced objects (on orbit) operations including docking, rendezvous,
+// proximity and reporting of payload zone engagements observed and characterized
+// over a period of time.
+//
 // CloselyspacedobjectHistoryService contains methods and other services that help
 // with interacting with the unifieddatalibrary API.
 //

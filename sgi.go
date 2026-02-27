@@ -23,6 +23,9 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// This service provides operations for manipulation and querying of space
+// weather/solar, geomagnetic, and radiation belt index data.
+//
 // SgiService contains methods and other services that help with interacting with
 // the unifieddatalibrary API.
 //
@@ -31,6 +34,8 @@ import (
 // the [NewSgiService] method instead.
 type SgiService struct {
 	Options []option.RequestOption
+	// This service provides operations for manipulation and querying of space
+	// weather/solar, geomagnetic, and radiation belt index data.
 	History SgiHistoryService
 }
 

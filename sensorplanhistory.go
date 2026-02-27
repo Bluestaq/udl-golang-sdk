@@ -19,6 +19,8 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for posting and querying Sensor Tasking data.
+//
 // SensorPlanHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //

@@ -18,6 +18,8 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
 )
 
+// These services provide operations for posting and querying Sensor Tasking data.
+//
 // IsrCollectionHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //

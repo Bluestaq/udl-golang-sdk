@@ -21,6 +21,14 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for manipulation and querying tactical data
+// links and link statuses of beams or a satellite constellation. Communication
+// link statuses provide definitions and status such as, positional endpoints,
+// where each endpoint may be associated with a specific beam or with a satellite
+// constellation. Data links provide detailed instructions regarding the
+// operational use of a tactical data link and interface coordination through
+// various message formats.
+//
 // LinkStatusService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
@@ -28,9 +36,23 @@ import (
 // automatically. You should not instantiate this service directly, and instead use
 // the [NewLinkStatusService] method instead.
 type LinkStatusService struct {
-	Options  []option.RequestOption
+	Options []option.RequestOption
+	// These services provide operations for manipulation and querying tactical data
+	// links and link statuses of beams or a satellite constellation. Communication
+	// link statuses provide definitions and status such as, positional endpoints,
+	// where each endpoint may be associated with a specific beam or with a satellite
+	// constellation. Data links provide detailed instructions regarding the
+	// operational use of a tactical data link and interface coordination through
+	// various message formats.
 	Datalink LinkStatusDatalinkService
-	History  LinkStatusHistoryService
+	// These services provide operations for manipulation and querying tactical data
+	// links and link statuses of beams or a satellite constellation. Communication
+	// link statuses provide definitions and status such as, positional endpoints,
+	// where each endpoint may be associated with a specific beam or with a satellite
+	// constellation. Data links provide detailed instructions regarding the
+	// operational use of a tactical data link and interface coordination through
+	// various message formats.
+	History LinkStatusHistoryService
 }
 
 // NewLinkStatusService generates a new service that applies the given options to

@@ -21,6 +21,10 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for posting and querying of air, space, and
+// ground 'tracks'. A track is a position and optionally a heading/velocity of an
+// object at a particular timestamp.
+//
 // OrbittrackService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
@@ -29,6 +33,9 @@ import (
 // the [NewOrbittrackService] method instead.
 type OrbittrackService struct {
 	Options []option.RequestOption
+	// These services provide operations for posting and querying of air, space, and
+	// ground 'tracks'. A track is a position and optionally a heading/velocity of an
+	// object at a particular timestamp.
 	History OrbittrackHistoryService
 }
 

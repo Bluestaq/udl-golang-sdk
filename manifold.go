@@ -23,6 +23,10 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for manipulation and querying of on-orbit
+// objects of interest, their components, and various lists and status of those
+// objects.
+//
 // ManifoldService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //

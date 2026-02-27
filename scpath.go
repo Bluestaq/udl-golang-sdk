@@ -18,6 +18,11 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 )
 
+// These services provide soon-to-be-deprecated CRUD and Search operations for
+// files and folders in the Secure Content Store. This documentation is provided
+// only for backwards compatibility, please refer to SCS V2 for new SCS
+// integrations.
+//
 // ScPathService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //

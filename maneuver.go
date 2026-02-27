@@ -23,6 +23,12 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// This service provides operations for querying and manipulation of
+// detected/possible/confirmed on-orbit maneuvers. The J2000 coordinate frame is
+// the preferred frame for all maneuver data, but in some cases data may be in
+// another frame depending on the provider. Check the Storefront 'Data Products'
+// section under the 'Discover' tab for maneuver data provider information.
+//
 // ManeuverService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
@@ -31,6 +37,11 @@ import (
 // the [NewManeuverService] method instead.
 type ManeuverService struct {
 	Options []option.RequestOption
+	// This service provides operations for querying and manipulation of
+	// detected/possible/confirmed on-orbit maneuvers. The J2000 coordinate frame is
+	// the preferred frame for all maneuver data, but in some cases data may be in
+	// another frame depending on the provider. Check the Storefront 'Data Products'
+	// section under the 'Discover' tab for maneuver data provider information.
 	History ManeuverHistoryService
 }
 

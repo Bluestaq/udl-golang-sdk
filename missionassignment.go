@@ -23,6 +23,12 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for manipulation and querying of mission
+// assignment objects. MissionAssignment is used by C2 JUs and, optionally, non-C2
+// JUs to assign missions, designate targets, and provide target information to
+// non-C2 JU platforms. Provision is made for the non-C2 JU platforms to
+// acknowledge the message through receipt/compliance action.
+//
 // MissionAssignmentService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -31,6 +37,11 @@ import (
 // the [NewMissionAssignmentService] method instead.
 type MissionAssignmentService struct {
 	Options []option.RequestOption
+	// These services provide operations for manipulation and querying of mission
+	// assignment objects. MissionAssignment is used by C2 JUs and, optionally, non-C2
+	// JUs to assign missions, designate targets, and provide target information to
+	// non-C2 JU platforms. Provision is made for the non-C2 JU platforms to
+	// acknowledge the message through receipt/compliance action.
 	History MissionAssignmentHistoryService
 }
 

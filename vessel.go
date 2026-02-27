@@ -23,6 +23,10 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// This service provides operations for manipulation and querying of maritime
+// Vessel and Vessel Status data. Vessel contains the static data of the specific
+// vessel: mmsi, cruise speed, max speed, etc.
+//
 // VesselService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //

@@ -23,6 +23,10 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// This collection of services provides operations for querying and manipulation of
+// laser related information to include the laser emitters, the laser deconflict
+// requests, and laser deconflict responses.
+//
 // LaseremitterStagingService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //

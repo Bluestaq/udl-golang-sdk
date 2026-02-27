@@ -21,6 +21,8 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// This collection of services provides operations for video streaming.
+//
 // VideoService contains methods and other services that help with interacting with
 // the unifieddatalibrary API.
 //
@@ -29,6 +31,7 @@ import (
 // the [NewVideoService] method instead.
 type VideoService struct {
 	Options []option.RequestOption
+	// This collection of services provides operations for video streaming.
 	History VideoHistoryService
 }
 

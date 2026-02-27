@@ -21,6 +21,11 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for posting and querying Moving Target
+// Indicator (MTI) STANAG 4607 data. Detailed MTI data supports activities such as
+// targeting or less detailed data for applications such as situational awareness
+// used/derived by exploitation systems.
+//
 // MtiService contains methods and other services that help with interacting with
 // the unifieddatalibrary API.
 //
@@ -29,6 +34,10 @@ import (
 // the [NewMtiService] method instead.
 type MtiService struct {
 	Options []option.RequestOption
+	// These services provide operations for posting and querying Moving Target
+	// Indicator (MTI) STANAG 4607 data. Detailed MTI data supports activities such as
+	// targeting or less detailed data for applications such as situational awareness
+	// used/derived by exploitation systems.
 	History MtiHistoryService
 }
 
