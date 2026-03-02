@@ -265,6 +265,15 @@ type EcpedrHistoryListResponseEcpedrMeasurement struct {
 	ChanUnit string `json:"chanUnit"`
 	// Designates a specific group of measurements made.
 	MsgNumber int64 `json:"msgNumber"`
+	// The quality of this individual observation. The observation quality indicator
+	// value may vary among providers and may be a generalized statement (BAD, GOOD,
+	// UNCERTAIN, UNKNOWN) or a numeric value. Users should consult the data provider
+	// to verify the usage of the observation.
+	ObQuality string `json:"obQuality"`
+	// The quality indicator of this individual observation. The observation quality
+	// indicator value is a descriptive value indicating the reason for the quality
+	// designation of the data.
+	ObQualityIndicator string `json:"obQualityIndicator"`
 	// A single observation value expressed in the specified unit of measure (obUoM).
 	ObValue float64 `json:"obValue"`
 	// Type of particle species being measured by a channel (e.g., ELECTRON, PROTON,
@@ -272,18 +281,20 @@ type EcpedrHistoryListResponseEcpedrMeasurement struct {
 	Species string `json:"species"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
-		ObType         respjson.Field
-		ObUoM          respjson.Field
-		ChanEnergyHigh respjson.Field
-		ChanEnergyLow  respjson.Field
-		ChanID         respjson.Field
-		ChanType       respjson.Field
-		ChanUnit       respjson.Field
-		MsgNumber      respjson.Field
-		ObValue        respjson.Field
-		Species        respjson.Field
-		ExtraFields    map[string]respjson.Field
-		raw            string
+		ObType             respjson.Field
+		ObUoM              respjson.Field
+		ChanEnergyHigh     respjson.Field
+		ChanEnergyLow      respjson.Field
+		ChanID             respjson.Field
+		ChanType           respjson.Field
+		ChanUnit           respjson.Field
+		MsgNumber          respjson.Field
+		ObQuality          respjson.Field
+		ObQualityIndicator respjson.Field
+		ObValue            respjson.Field
+		Species            respjson.Field
+		ExtraFields        map[string]respjson.Field
+		raw                string
 	} `json:"-"`
 }
 
