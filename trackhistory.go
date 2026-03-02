@@ -211,6 +211,12 @@ type TrackFull struct {
 	// and z-column being all zeros). The cov array should contain only the lower left
 	// triangle values from top left down to bottom right, in order.
 	Cov []float64 `json:"cov"`
+	// The reference frame of the covariance matrix elements (ENU, ECR/ECEF, LOCAL,
+	// LAT-LONG, LAT-LONG-ALT). If the covReferenceFrame is null it is assumed to be
+	// ECR/ECEF.
+	//
+	// Any of "ENU", "ECR/ECEF", "LOCAL", "LAT-LONG", "LAT-LONG-ALT".
+	CovReferenceFrame TrackFullCovReferenceFrame `json:"covReferenceFrame"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -261,6 +267,8 @@ type TrackFull struct {
 	// Uncertainty ellipsoid [semi-major axis (meters), semi-minor axis (meters),
 	// orientation (degrees)]. When provided, array must always contain 3 values.
 	ErrEllp []float64 `json:"errEllp"`
+	// Target ground speed, as opposed to air speed, in meters per second.
+	GrndSpd float64 `json:"grndSpd"`
 	// The track object heading, in degrees clockwise from true North at the object
 	// location (0-360 degrees).
 	Hdng float64 `json:"hdng"`
@@ -296,8 +304,8 @@ type TrackFull struct {
 	// Estimate of the position, [x, y, z], of the track object in the defined
 	// cartesian system, in meters. When provided, array must always contain 3 values.
 	LcPos []float64 `json:"lcPos"`
-	// x, y, and z-axis rotations (degrees) about ECEF that define a local cartesian
-	// system. When provided, array must always contain 3 values.
+	// The x, y, and z-axis rotations (degrees) about ECEF that define a local
+	// cartesian system. When provided, array must always contain 3 values.
 	Lcs []float64 `json:"lcs"`
 	// Estimate of the velocity, [x', y', z'], of the track object in the defined
 	// cartesian system, in meters per second. When provided, array must always contain
@@ -428,7 +436,8 @@ type TrackFull struct {
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
 	SourceDl string `json:"sourceDL"`
-	// Track object speed, in meters per second.
+	// Track object speed, in its environment, in meters per second. For example, this
+	// would be air speed for an aircraft.
 	Spd float64 `json:"spd"`
 	// Array of UUIDs of the UDL data records that contributed to the generation of
 	// this fused track. See the associated 'srcTyps' array for the specific types of
@@ -503,6 +512,7 @@ type TrackFull struct {
 		ContextValues         respjson.Field
 		Course                respjson.Field
 		Cov                   respjson.Field
+		CovReferenceFrame     respjson.Field
 		CreatedAt             respjson.Field
 		CreatedBy             respjson.Field
 		EcefAcc               respjson.Field
@@ -515,6 +525,7 @@ type TrackFull struct {
 		Env                   respjson.Field
 		EnvConf               respjson.Field
 		ErrEllp               respjson.Field
+		GrndSpd               respjson.Field
 		Hdng                  respjson.Field
 		IdentAmp              respjson.Field
 		IdentCred             respjson.Field
@@ -596,6 +607,19 @@ const (
 	TrackFullDataModeTest      TrackFullDataMode = "TEST"
 	TrackFullDataModeSimulated TrackFullDataMode = "SIMULATED"
 	TrackFullDataModeExercise  TrackFullDataMode = "EXERCISE"
+)
+
+// The reference frame of the covariance matrix elements (ENU, ECR/ECEF, LOCAL,
+// LAT-LONG, LAT-LONG-ALT). If the covReferenceFrame is null it is assumed to be
+// ECR/ECEF.
+type TrackFullCovReferenceFrame string
+
+const (
+	TrackFullCovReferenceFrameEnu        TrackFullCovReferenceFrame = "ENU"
+	TrackFullCovReferenceFrameEcrEcef    TrackFullCovReferenceFrame = "ECR/ECEF"
+	TrackFullCovReferenceFrameLocal      TrackFullCovReferenceFrame = "LOCAL"
+	TrackFullCovReferenceFrameLatLong    TrackFullCovReferenceFrame = "LAT-LONG"
+	TrackFullCovReferenceFrameLatLongAlt TrackFullCovReferenceFrame = "LAT-LONG-ALT"
 )
 
 type TrackHistoryListParams struct {

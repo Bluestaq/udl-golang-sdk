@@ -255,6 +255,12 @@ type TrackListResponse struct {
 	// and z-column being all zeros). The cov array should contain only the lower left
 	// triangle values from top left down to bottom right, in order.
 	Cov []float64 `json:"cov"`
+	// The reference frame of the covariance matrix elements (ENU, ECR/ECEF, LOCAL,
+	// LAT-LONG, LAT-LONG-ALT). If the covReferenceFrame is null it is assumed to be
+	// ECR/ECEF.
+	//
+	// Any of "ENU", "ECR/ECEF", "LOCAL", "LAT-LONG", "LAT-LONG-ALT".
+	CovReferenceFrame TrackListResponseCovReferenceFrame `json:"covReferenceFrame"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -305,6 +311,8 @@ type TrackListResponse struct {
 	// Uncertainty ellipsoid [semi-major axis (meters), semi-minor axis (meters),
 	// orientation (degrees)]. When provided, array must always contain 3 values.
 	ErrEllp []float64 `json:"errEllp"`
+	// Target ground speed, as opposed to air speed, in meters per second.
+	GrndSpd float64 `json:"grndSpd"`
 	// The track object heading, in degrees clockwise from true North at the object
 	// location (0-360 degrees).
 	Hdng float64 `json:"hdng"`
@@ -340,8 +348,8 @@ type TrackListResponse struct {
 	// Estimate of the position, [x, y, z], of the track object in the defined
 	// cartesian system, in meters. When provided, array must always contain 3 values.
 	LcPos []float64 `json:"lcPos"`
-	// x, y, and z-axis rotations (degrees) about ECEF that define a local cartesian
-	// system. When provided, array must always contain 3 values.
+	// The x, y, and z-axis rotations (degrees) about ECEF that define a local
+	// cartesian system. When provided, array must always contain 3 values.
 	Lcs []float64 `json:"lcs"`
 	// Estimate of the velocity, [x', y', z'], of the track object in the defined
 	// cartesian system, in meters per second. When provided, array must always contain
@@ -472,7 +480,8 @@ type TrackListResponse struct {
 	// remote or tactical UDL or another data library. If null, the record should be
 	// assumed to have originated from the primary Enterprise UDL.
 	SourceDl string `json:"sourceDL"`
-	// Track object speed, in meters per second.
+	// Track object speed, in its environment, in meters per second. For example, this
+	// would be air speed for an aircraft.
 	Spd float64 `json:"spd"`
 	// Array of UUIDs of the UDL data records that contributed to the generation of
 	// this fused track. See the associated 'srcTyps' array for the specific types of
@@ -547,6 +556,7 @@ type TrackListResponse struct {
 		ContextValues         respjson.Field
 		Course                respjson.Field
 		Cov                   respjson.Field
+		CovReferenceFrame     respjson.Field
 		CreatedAt             respjson.Field
 		CreatedBy             respjson.Field
 		EcefAcc               respjson.Field
@@ -559,6 +569,7 @@ type TrackListResponse struct {
 		Env                   respjson.Field
 		EnvConf               respjson.Field
 		ErrEllp               respjson.Field
+		GrndSpd               respjson.Field
 		Hdng                  respjson.Field
 		IdentAmp              respjson.Field
 		IdentCred             respjson.Field
@@ -640,6 +651,19 @@ const (
 	TrackListResponseDataModeTest      TrackListResponseDataMode = "TEST"
 	TrackListResponseDataModeSimulated TrackListResponseDataMode = "SIMULATED"
 	TrackListResponseDataModeExercise  TrackListResponseDataMode = "EXERCISE"
+)
+
+// The reference frame of the covariance matrix elements (ENU, ECR/ECEF, LOCAL,
+// LAT-LONG, LAT-LONG-ALT). If the covReferenceFrame is null it is assumed to be
+// ECR/ECEF.
+type TrackListResponseCovReferenceFrame string
+
+const (
+	TrackListResponseCovReferenceFrameEnu        TrackListResponseCovReferenceFrame = "ENU"
+	TrackListResponseCovReferenceFrameEcrEcef    TrackListResponseCovReferenceFrame = "ECR/ECEF"
+	TrackListResponseCovReferenceFrameLocal      TrackListResponseCovReferenceFrame = "LOCAL"
+	TrackListResponseCovReferenceFrameLatLong    TrackListResponseCovReferenceFrame = "LAT-LONG"
+	TrackListResponseCovReferenceFrameLatLongAlt TrackListResponseCovReferenceFrame = "LAT-LONG-ALT"
 )
 
 type TrackQueryhelpResponse struct {
@@ -793,6 +817,8 @@ type TrackNewBulkParamsBody struct {
 	Env param.Opt[string] `json:"env,omitzero"`
 	// Track environment confidence estimate (not standardized).
 	EnvConf param.Opt[float64] `json:"envConf,omitzero"`
+	// Target ground speed, as opposed to air speed, in meters per second.
+	GrndSpd param.Opt[float64] `json:"grndSpd,omitzero"`
 	// The track object heading, in degrees clockwise from true North at the object
 	// location (0-360 degrees).
 	Hdng param.Opt[float64] `json:"hdng,omitzero"`
@@ -936,7 +962,8 @@ type TrackNewBulkParamsBody struct {
 	Sen param.Opt[string] `json:"sen,omitzero"`
 	// Sensor quality.
 	SenQual param.Opt[string] `json:"senQual,omitzero"`
-	// Track object speed, in meters per second.
+	// Track object speed, in its environment, in meters per second. For example, this
+	// would be air speed for an aircraft.
 	Spd param.Opt[float64] `json:"spd,omitzero"`
 	// The number of objects or units moving as a group and represented as a single
 	// entity in this track message. If null, the track is assumed to represent a
@@ -1041,6 +1068,12 @@ type TrackNewBulkParamsBody struct {
 	// and z-column being all zeros). The cov array should contain only the lower left
 	// triangle values from top left down to bottom right, in order.
 	Cov []float64 `json:"cov,omitzero"`
+	// The reference frame of the covariance matrix elements (ENU, ECR/ECEF, LOCAL,
+	// LAT-LONG, LAT-LONG-ALT). If the covReferenceFrame is null it is assumed to be
+	// ECR/ECEF.
+	//
+	// Any of "ENU", "ECR/ECEF", "LOCAL", "LAT-LONG", "LAT-LONG-ALT".
+	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// Array of the track object acceleration, [x”, y”, z”], in meters per second
 	// squared, in the Earth Centered - Earth Fixed (ECEF) reference frame. When
 	// provided, array must always contain 3 values.
@@ -1078,8 +1111,8 @@ type TrackNewBulkParamsBody struct {
 	// Estimate of the position, [x, y, z], of the track object in the defined
 	// cartesian system, in meters. When provided, array must always contain 3 values.
 	LcPos []float64 `json:"lcPos,omitzero"`
-	// x, y, and z-axis rotations (degrees) about ECEF that define a local cartesian
-	// system. When provided, array must always contain 3 values.
+	// The x, y, and z-axis rotations (degrees) about ECEF that define a local
+	// cartesian system. When provided, array must always contain 3 values.
 	Lcs []float64 `json:"lcs,omitzero"`
 	// Estimate of the velocity, [x', y', z'], of the track object in the defined
 	// cartesian system, in meters per second. When provided, array must always contain
@@ -1117,6 +1150,9 @@ func (r *TrackNewBulkParamsBody) UnmarshalJSON(data []byte) error {
 func init() {
 	apijson.RegisterFieldValidator[TrackNewBulkParamsBody](
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+	apijson.RegisterFieldValidator[TrackNewBulkParamsBody](
+		"covReferenceFrame", "ENU", "ECR/ECEF", "LOCAL", "LAT-LONG", "LAT-LONG-ALT",
 	)
 }
 
@@ -1223,6 +1259,8 @@ type TrackUnvalidatedPublishParamsBody struct {
 	Env param.Opt[string] `json:"env,omitzero"`
 	// Track environment confidence estimate (not standardized).
 	EnvConf param.Opt[float64] `json:"envConf,omitzero"`
+	// Target ground speed, as opposed to air speed, in meters per second.
+	GrndSpd param.Opt[float64] `json:"grndSpd,omitzero"`
 	// The track object heading, in degrees clockwise from true North at the object
 	// location (0-360 degrees).
 	Hdng param.Opt[float64] `json:"hdng,omitzero"`
@@ -1366,7 +1404,8 @@ type TrackUnvalidatedPublishParamsBody struct {
 	Sen param.Opt[string] `json:"sen,omitzero"`
 	// Sensor quality.
 	SenQual param.Opt[string] `json:"senQual,omitzero"`
-	// Track object speed, in meters per second.
+	// Track object speed, in its environment, in meters per second. For example, this
+	// would be air speed for an aircraft.
 	Spd param.Opt[float64] `json:"spd,omitzero"`
 	// The number of objects or units moving as a group and represented as a single
 	// entity in this track message. If null, the track is assumed to represent a
@@ -1471,6 +1510,12 @@ type TrackUnvalidatedPublishParamsBody struct {
 	// and z-column being all zeros). The cov array should contain only the lower left
 	// triangle values from top left down to bottom right, in order.
 	Cov []float64 `json:"cov,omitzero"`
+	// The reference frame of the covariance matrix elements (ENU, ECR/ECEF, LOCAL,
+	// LAT-LONG, LAT-LONG-ALT). If the covReferenceFrame is null it is assumed to be
+	// ECR/ECEF.
+	//
+	// Any of "ENU", "ECR/ECEF", "LOCAL", "LAT-LONG", "LAT-LONG-ALT".
+	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// Array of the track object acceleration, [x”, y”, z”], in meters per second
 	// squared, in the Earth Centered - Earth Fixed (ECEF) reference frame. When
 	// provided, array must always contain 3 values.
@@ -1508,8 +1553,8 @@ type TrackUnvalidatedPublishParamsBody struct {
 	// Estimate of the position, [x, y, z], of the track object in the defined
 	// cartesian system, in meters. When provided, array must always contain 3 values.
 	LcPos []float64 `json:"lcPos,omitzero"`
-	// x, y, and z-axis rotations (degrees) about ECEF that define a local cartesian
-	// system. When provided, array must always contain 3 values.
+	// The x, y, and z-axis rotations (degrees) about ECEF that define a local
+	// cartesian system. When provided, array must always contain 3 values.
 	Lcs []float64 `json:"lcs,omitzero"`
 	// Estimate of the velocity, [x', y', z'], of the track object in the defined
 	// cartesian system, in meters per second. When provided, array must always contain
@@ -1547,5 +1592,8 @@ func (r *TrackUnvalidatedPublishParamsBody) UnmarshalJSON(data []byte) error {
 func init() {
 	apijson.RegisterFieldValidator[TrackUnvalidatedPublishParamsBody](
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+	apijson.RegisterFieldValidator[TrackUnvalidatedPublishParamsBody](
+		"covReferenceFrame", "ENU", "ECR/ECEF", "LOCAL", "LAT-LONG", "LAT-LONG-ALT",
 	)
 }
