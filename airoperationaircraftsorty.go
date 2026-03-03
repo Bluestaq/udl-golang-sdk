@@ -1049,9 +1049,6 @@ func init() {
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
 	apijson.RegisterFieldValidator[AirOperationAircraftSortyNewBulkParamsBody](
-		"paperStatus", "PUBLISHED", "DELETED", "UPDATED", "READ",
-	)
-	apijson.RegisterFieldValidator[AirOperationAircraftSortyNewBulkParamsBody](
 		"pprStatus", "NOT REQUIRED", "REQUIRED NOT REQUESTED", "GRANTED", "PENDING",
 	)
 	apijson.RegisterFieldValidator[AirOperationAircraftSortyNewBulkParamsBody](
@@ -1279,9 +1276,6 @@ func (r *AirOperationAircraftSortyUnvalidatedPublishParamsBody) UnmarshalJSON(da
 func init() {
 	apijson.RegisterFieldValidator[AirOperationAircraftSortyUnvalidatedPublishParamsBody](
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
-	)
-	apijson.RegisterFieldValidator[AirOperationAircraftSortyUnvalidatedPublishParamsBody](
-		"paperStatus", "PUBLISHED", "DELETED", "UPDATED", "READ",
 	)
 	apijson.RegisterFieldValidator[AirOperationAircraftSortyUnvalidatedPublishParamsBody](
 		"pprStatus", "NOT REQUIRED", "REQUIRED NOT REQUESTED", "GRANTED", "PENDING",
