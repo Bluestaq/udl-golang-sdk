@@ -209,7 +209,7 @@ func TestGnssRawIfUploadZip(t *testing.T) {
 		option.WithUsername("My Username"),
 	)
 	err := client.GnssRawIf.UploadZip(context.TODO(), unifieddatalibrary.GnssRawIfUploadZipParams{
-		File: io.Reader(bytes.NewBuffer([]byte("some file contents"))),
+		File: io.Reader(bytes.NewBuffer([]byte("Example data"))),
 	})
 	if err != nil {
 		var apierr *unifieddatalibrary.Error

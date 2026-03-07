@@ -1039,7 +1039,7 @@ func TestConjunctionUploadConjunctionDataMessageWithOptionalParams(t *testing.T)
 	)
 	err := client.Conjunctions.UploadConjunctionDataMessage(
 		context.TODO(),
-		io.Reader(bytes.NewBuffer([]byte("some file contents"))),
+		io.Reader(bytes.NewBuffer([]byte("Example data"))),
 		unifieddatalibrary.ConjunctionUploadConjunctionDataMessageParams{
 			Classification: "classification",
 			DataMode:       unifieddatalibrary.ConjunctionUploadConjunctionDataMessageParamsDataModeReal,
