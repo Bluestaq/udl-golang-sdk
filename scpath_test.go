@@ -30,7 +30,7 @@ func TestScPathNewWithFileWithOptionalParams(t *testing.T) {
 	)
 	_, err := client.Scs.Paths.NewWithFile(
 		context.TODO(),
-		io.Reader(bytes.NewBuffer([]byte("some file contents"))),
+		io.Reader(bytes.NewBuffer([]byte("Example data"))),
 		unifieddatalibrary.ScPathNewWithFileParams{
 			ID:                    "id",
 			ClassificationMarking: "classificationMarking",
