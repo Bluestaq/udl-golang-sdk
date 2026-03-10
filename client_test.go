@@ -39,7 +39,7 @@ func TestUserAgentHeader(t *testing.T) {
 			},
 		}),
 	)
-	client.Elsets.Current.List(context.Background(), unifieddatalibrary.ElsetCurrentListParams{})
+	_, _ = client.Elsets.Current.List(context.Background(), unifieddatalibrary.ElsetCurrentListParams{})
 	if userAgent != fmt.Sprintf("Unifieddatalibrary/Go %s", internal.PackageVersion) {
 		t.Errorf("Expected User-Agent to be correct, but got: %#v", userAgent)
 	}
