@@ -81,7 +81,7 @@ func (r *CloselyspacedobjectHistoryService) Aodr(ctx context.Context, query Clos
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/closelyspacedobjects/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -94,7 +94,7 @@ func (r *CloselyspacedobjectHistoryService) Count(ctx context.Context, query Clo
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/closelyspacedobjects/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // This collection of services provides operations for manipulating and querying of

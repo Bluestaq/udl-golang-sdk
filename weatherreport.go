@@ -71,7 +71,7 @@ func (r *WeatherReportService) New(ctx context.Context, body WeatherReportNewPar
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/weatherreport"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -113,7 +113,7 @@ func (r *WeatherReportService) Count(ctx context.Context, query WeatherReportCou
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/weatherreport/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single WeatherReport by its unique ID passed as a
@@ -122,11 +122,11 @@ func (r *WeatherReportService) Get(ctx context.Context, id string, query Weather
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/weatherreport/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -135,7 +135,7 @@ func (r *WeatherReportService) Queryhelp(ctx context.Context, opts ...option.Req
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/weatherreport/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -150,7 +150,7 @@ func (r *WeatherReportService) Tuple(ctx context.Context, query WeatherReportTup
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/weatherreport/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take a list of WeatherReports as a POST body and ingest
@@ -162,7 +162,7 @@ func (r *WeatherReportService) UnvalidatedPublish(ctx context.Context, body Weat
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-weatherreport"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // These services provide for posting and querying Weather Over Target information.

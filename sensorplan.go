@@ -55,7 +55,7 @@ func (r *SensorPlanService) New(ctx context.Context, body SensorPlanNewParams, o
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sensorplan"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update a single SensorPlan. A specific role is required to
@@ -65,11 +65,11 @@ func (r *SensorPlanService) Update(ctx context.Context, id string, body SensorPl
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/sensorplan/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -111,7 +111,7 @@ func (r *SensorPlanService) Count(ctx context.Context, query SensorPlanCountPara
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sensorplan/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single SensorPlan by its unique ID passed as a path
@@ -120,11 +120,11 @@ func (r *SensorPlanService) Get(ctx context.Context, id string, query SensorPlan
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/sensorplan/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -133,7 +133,7 @@ func (r *SensorPlanService) Queryhelp(ctx context.Context, opts ...option.Reques
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/sensorplan/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -148,7 +148,7 @@ func (r *SensorPlanService) Tuple(ctx context.Context, query SensorPlanTuplePara
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/sensorplan/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take one or more sensorplan record(s) as a POST body and
@@ -160,7 +160,7 @@ func (r *SensorPlanService) UnvalidatedPublish(ctx context.Context, body SensorP
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-sensorplan"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // A Plan is used to aggregate two or more of the same type of record to a parent

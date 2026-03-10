@@ -63,7 +63,7 @@ func (r *EcpedrService) New(ctx context.Context, body EcpedrNewParams, opts ...o
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/ecpedr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -105,7 +105,7 @@ func (r *EcpedrService) Count(ctx context.Context, query EcpedrCountParams, opts
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/ecpedr/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -118,7 +118,7 @@ func (r *EcpedrService) NewBulk(ctx context.Context, body EcpedrNewBulkParams, o
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/ecpedr/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -127,7 +127,7 @@ func (r *EcpedrService) Queryhelp(ctx context.Context, opts ...option.RequestOpt
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/ecpedr/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -142,7 +142,7 @@ func (r *EcpedrService) Tuple(ctx context.Context, query EcpedrTupleParams, opts
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/ecpedr/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple ECPEDR records as a POST body and ingest into
@@ -154,7 +154,7 @@ func (r *EcpedrService) UnvalidatedPublish(ctx context.Context, body EcpedrUnval
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-ecpedr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Energetic Charged Particles (ECP) Environmental Data Records (EDRs).

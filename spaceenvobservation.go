@@ -94,7 +94,7 @@ func (r *SpaceEnvObservationService) Count(ctx context.Context, query SpaceEnvOb
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/spaceenvobservation/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -107,7 +107,7 @@ func (r *SpaceEnvObservationService) NewBulk(ctx context.Context, body SpaceEnvO
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/spaceenvobservation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -116,7 +116,7 @@ func (r *SpaceEnvObservationService) Queryhelp(ctx context.Context, opts ...opti
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/spaceenvobservation/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -131,7 +131,7 @@ func (r *SpaceEnvObservationService) Tuple(ctx context.Context, query SpaceEnvOb
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/spaceenvobservation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to accept one or more SpaceEnvObservation(s) as a POST body
@@ -143,7 +143,7 @@ func (r *SpaceEnvObservationService) UnvalidatedPublish(ctx context.Context, bod
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-spaceenvobs"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // SpaceEnvObservation data.

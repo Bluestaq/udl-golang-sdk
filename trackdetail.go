@@ -88,7 +88,7 @@ func (r *TrackDetailService) Count(ctx context.Context, query TrackDetailCountPa
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/trackdetails/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of Track
@@ -101,7 +101,7 @@ func (r *TrackDetailService) NewBulk(ctx context.Context, body TrackDetailNewBul
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/trackdetails/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -110,7 +110,7 @@ func (r *TrackDetailService) Queryhelp(ctx context.Context, opts ...option.Reque
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/trackdetails/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -125,7 +125,7 @@ func (r *TrackDetailService) Tuple(ctx context.Context, query TrackDetailTuplePa
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/trackdetails/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // These services provide operations for querying of all available track details

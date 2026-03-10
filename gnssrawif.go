@@ -98,7 +98,7 @@ func (r *GnssRawIfService) Count(ctx context.Context, query GnssRawIfCountParams
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/gnssrawif/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single GNSSRAWIF hdf5 file by its unique ID passed as
@@ -108,11 +108,11 @@ func (r *GnssRawIfService) FileGet(ctx context.Context, id string, query GnssRaw
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/gnssrawif/getFile/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single GNSSRawIF by its unique ID passed as a path
@@ -121,11 +121,11 @@ func (r *GnssRawIfService) Get(ctx context.Context, id string, query GnssRawIfGe
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/gnssrawif/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -134,7 +134,7 @@ func (r *GnssRawIfService) Queryhelp(ctx context.Context, opts ...option.Request
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/gnssrawif/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -149,7 +149,7 @@ func (r *GnssRawIfService) Tuple(ctx context.Context, query GnssRawIfTupleParams
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/gnssrawif/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Upload an HDF5 file with its metadata.
@@ -174,7 +174,7 @@ func (r *GnssRawIfService) UploadZip(ctx context.Context, body GnssRawIfUploadZi
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-gnssrawif"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Global Navigation Satellite System (GNSS) Raw Intermediate Frequency (IF) data

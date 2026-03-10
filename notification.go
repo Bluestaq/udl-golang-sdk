@@ -67,7 +67,7 @@ func (r *NotificationService) New(ctx context.Context, body NotificationNewParam
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/notification"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -109,7 +109,7 @@ func (r *NotificationService) Count(ctx context.Context, query NotificationCount
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/notification/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to push a Notification/Alert message into the UDL. This
@@ -129,7 +129,7 @@ func (r *NotificationService) NewRaw(ctx context.Context, params NotificationNew
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/notification/createRaw"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single notification by its unique ID passed as a path
@@ -138,11 +138,11 @@ func (r *NotificationService) Get(ctx context.Context, id string, query Notifica
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/notification/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -151,7 +151,7 @@ func (r *NotificationService) Queryhelp(ctx context.Context, opts ...option.Requ
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/notification/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -166,7 +166,7 @@ func (r *NotificationService) Tuple(ctx context.Context, query NotificationTuple
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/notification/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Model representation of client generated notification data. Contains a message

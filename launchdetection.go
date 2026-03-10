@@ -53,7 +53,7 @@ func (r *LaunchDetectionService) New(ctx context.Context, body LaunchDetectionNe
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/launchdetection"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update a single launch detection. A specific role is
@@ -64,11 +64,11 @@ func (r *LaunchDetectionService) Update(ctx context.Context, id string, body Lau
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/launchdetection/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -108,11 +108,11 @@ func (r *LaunchDetectionService) Delete(ctx context.Context, id string, opts ...
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/launchdetection/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -125,7 +125,7 @@ func (r *LaunchDetectionService) Count(ctx context.Context, query LaunchDetectio
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/launchdetection/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single launch detection record by its unique ID
@@ -134,11 +134,11 @@ func (r *LaunchDetectionService) Get(ctx context.Context, id string, query Launc
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/launchdetection/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -147,7 +147,7 @@ func (r *LaunchDetectionService) Queryhelp(ctx context.Context, opts ...option.R
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/launchdetection/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -162,7 +162,7 @@ func (r *LaunchDetectionService) Tuple(ctx context.Context, query LaunchDetectio
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/launchdetection/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Data to analyze launch detections.

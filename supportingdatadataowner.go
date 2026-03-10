@@ -45,7 +45,7 @@ func (r *SupportingDataDataownerService) Get(ctx context.Context, query Supporti
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/dataowner"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -58,7 +58,7 @@ func (r *SupportingDataDataownerService) Count(ctx context.Context, query Suppor
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/dataowner/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -67,7 +67,7 @@ func (r *SupportingDataDataownerService) QueryHelp(ctx context.Context, opts ...
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/dataowner/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Retrieves all distinct data owner types.
@@ -75,14 +75,14 @@ func (r *SupportingDataDataownerService) GetDataOwnerTypes(ctx context.Context, 
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/dataowner/getDataOwnerTypes"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 func (r *SupportingDataDataownerService) GetProviderMetadata(ctx context.Context, query SupportingDataDataownerGetProviderMetadataParams, opts ...option.RequestOption) (res *[]DataownerAbridged, err error) {
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/dataowner/providerMetadata"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Information pertaining to UDL data owners.

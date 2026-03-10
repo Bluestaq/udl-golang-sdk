@@ -113,7 +113,7 @@ func (r *SortiePprService) New(ctx context.Context, body SortiePprNewParams, opt
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sortieppr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update a single sortieppr record. A specific role is
@@ -124,11 +124,11 @@ func (r *SortiePprService) Update(ctx context.Context, id string, body SortiePpr
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/sortieppr/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -168,11 +168,11 @@ func (r *SortiePprService) Delete(ctx context.Context, id string, opts ...option
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/sortieppr/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -185,7 +185,7 @@ func (r *SortiePprService) Count(ctx context.Context, query SortiePprCountParams
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sortieppr/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -198,7 +198,7 @@ func (r *SortiePprService) NewBulk(ctx context.Context, body SortiePprNewBulkPar
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sortieppr/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single sortieppr record by its unique ID passed as a
@@ -207,11 +207,11 @@ func (r *SortiePprService) Get(ctx context.Context, id string, query SortiePprGe
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/sortieppr/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -220,7 +220,7 @@ func (r *SortiePprService) Queryhelp(ctx context.Context, opts ...option.Request
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/sortieppr/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -235,7 +235,7 @@ func (r *SortiePprService) Tuple(ctx context.Context, query SortiePprTupleParams
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/sortieppr/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take SortiePPR as a POST body and ingest into the database.
@@ -247,7 +247,7 @@ func (r *SortiePprService) UnvalidatedPublish(ctx context.Context, body SortiePp
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-sortieppr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // SortiePPR is a regulatory requirement where operators must obtain permissions to

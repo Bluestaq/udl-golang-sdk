@@ -51,7 +51,7 @@ func (r *StarCatalogHistoryService) Aodr(ctx context.Context, query StarCatalogH
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/starcatalog/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 type StarCatalogHistoryAodrParams struct {

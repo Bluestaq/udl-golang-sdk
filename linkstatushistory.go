@@ -84,7 +84,7 @@ func (r *LinkStatusHistoryService) Aodr(ctx context.Context, query LinkStatusHis
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/linkstatus/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -97,7 +97,7 @@ func (r *LinkStatusHistoryService) Count(ctx context.Context, query LinkStatusHi
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/linkstatus/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Captures link status.

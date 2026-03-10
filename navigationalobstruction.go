@@ -81,7 +81,7 @@ func (r *NavigationalObstructionService) New(ctx context.Context, body Navigatio
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/navigationalobstruction"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update a single navigational obstruction record. A specific
@@ -92,11 +92,11 @@ func (r *NavigationalObstructionService) Update(ctx context.Context, id string, 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/navigationalobstruction/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -138,7 +138,7 @@ func (r *NavigationalObstructionService) Count(ctx context.Context, query Naviga
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/navigationalobstruction/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -151,7 +151,7 @@ func (r *NavigationalObstructionService) NewBulk(ctx context.Context, body Navig
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/navigationalobstruction/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single navigational obstruction record by its unique
@@ -160,11 +160,11 @@ func (r *NavigationalObstructionService) Get(ctx context.Context, id string, que
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/navigationalobstruction/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -173,7 +173,7 @@ func (r *NavigationalObstructionService) Queryhelp(ctx context.Context, opts ...
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/navigationalobstruction/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -188,7 +188,7 @@ func (r *NavigationalObstructionService) Tuple(ctx context.Context, query Naviga
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/navigationalobstruction/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Beta Version Navigational Obstruction: Information describing navigational

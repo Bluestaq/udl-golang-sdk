@@ -94,7 +94,7 @@ func (r *SigactService) Count(ctx context.Context, query SigactCountParams, opts
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sigact/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -108,7 +108,7 @@ func (r *SigactService) NewBulk(ctx context.Context, body SigactNewBulkParams, o
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sigact/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -117,7 +117,7 @@ func (r *SigactService) Queryhelp(ctx context.Context, opts ...option.RequestOpt
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/sigact/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -132,7 +132,7 @@ func (r *SigactService) Tuple(ctx context.Context, query SigactTupleParams, opts
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/sigact/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Upload a text file with its metadata. This operation bypasses the length
@@ -158,7 +158,7 @@ func (r *SigactService) UploadZip(ctx context.Context, body SigactUploadZipParam
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-sigact-text"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Provides information on the dates, actors, locations, fatalities, and types of

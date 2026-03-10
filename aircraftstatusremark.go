@@ -54,7 +54,7 @@ func (r *AircraftStatusRemarkService) New(ctx context.Context, body AircraftStat
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/aircraftstatusremark"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single Aircraft Status Remark record by its unique ID
@@ -63,11 +63,11 @@ func (r *AircraftStatusRemarkService) Get(ctx context.Context, id string, query 
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/aircraftstatusremark/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to update a single Aircraft Status Remark record. A specific
@@ -78,11 +78,11 @@ func (r *AircraftStatusRemarkService) Update(ctx context.Context, id string, bod
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/aircraftstatusremark/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -122,11 +122,11 @@ func (r *AircraftStatusRemarkService) Delete(ctx context.Context, id string, opt
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/aircraftstatusremark/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -139,7 +139,7 @@ func (r *AircraftStatusRemarkService) Count(ctx context.Context, query AircraftS
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/aircraftstatusremark/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -148,7 +148,7 @@ func (r *AircraftStatusRemarkService) Queryhelp(ctx context.Context, opts ...opt
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/aircraftstatusremark/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -163,7 +163,7 @@ func (r *AircraftStatusRemarkService) Tuple(ctx context.Context, query AircraftS
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/aircraftstatusremark/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Properties and characteristics of a remark that is associated with an aircraft

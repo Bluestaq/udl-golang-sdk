@@ -111,7 +111,7 @@ func (r *EphemerisService) Count(ctx context.Context, query EphemerisCountParams
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/ephemeris/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to post/store Ephemeris data. This operation is intended to be
@@ -127,7 +127,7 @@ func (r *EphemerisService) FileUpload(ctx context.Context, params EphemerisFileU
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/ephem"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -136,7 +136,7 @@ func (r *EphemerisService) Queryhelp(ctx context.Context, opts ...option.Request
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/ephemeris/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -151,7 +151,7 @@ func (r *EphemerisService) Tuple(ctx context.Context, query EphemerisTupleParams
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/ephemeris/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take a single EphemerisSet and many associated Ephemeris
@@ -175,7 +175,7 @@ func (r *EphemerisService) UnvalidatedPublish(ctx context.Context, body Ephemeri
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-ephset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // An ephemeris record is a position and velocity vector identifying the location

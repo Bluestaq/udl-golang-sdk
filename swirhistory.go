@@ -84,7 +84,7 @@ func (r *SwirHistoryService) Aodr(ctx context.Context, query SwirHistoryAodrPara
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/swir/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -97,7 +97,7 @@ func (r *SwirHistoryService) Count(ctx context.Context, query SwirHistoryCountPa
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/swir/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Data representing observed short wave infrared (SWIR) measurements.

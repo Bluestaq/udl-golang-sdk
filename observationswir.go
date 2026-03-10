@@ -51,7 +51,7 @@ func (r *ObservationSwirService) UnvalidatedPublish(ctx context.Context, body Ob
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/swir"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 type ObservationSwirUnvalidatedPublishParams struct {

@@ -85,7 +85,7 @@ func (r *EphemerisSetService) New(ctx context.Context, body EphemerisSetNewParam
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/ephemerisset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single Ephemeris Set by its unique ID passed as a
@@ -94,11 +94,11 @@ func (r *EphemerisSetService) Get(ctx context.Context, id string, query Ephemeri
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/ephemerisset/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -140,7 +140,7 @@ func (r *EphemerisSetService) Count(ctx context.Context, query EphemerisSetCount
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/ephemerisset/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get the original raw flat file, if any, associated with the
@@ -150,11 +150,11 @@ func (r *EphemerisSetService) FileGet(ctx context.Context, id string, query Ephe
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/ephemerisset/getFile/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -163,7 +163,7 @@ func (r *EphemerisSetService) Queryhelp(ctx context.Context, opts ...option.Requ
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/ephemerisset/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -178,7 +178,7 @@ func (r *EphemerisSetService) Tuple(ctx context.Context, query EphemerisSetTuple
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/ephemerisset/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // EphemerisSet represents a wrapper or collection of Ephemeris 'points' and meta

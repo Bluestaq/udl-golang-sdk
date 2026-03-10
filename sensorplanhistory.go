@@ -79,7 +79,7 @@ func (r *SensorPlanHistoryService) Aodr(ctx context.Context, query SensorPlanHis
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sensorplan/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -92,7 +92,7 @@ func (r *SensorPlanHistoryService) Count(ctx context.Context, query SensorPlanHi
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sensorplan/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // A Plan is used to aggregate two or more of the same type of record to a parent

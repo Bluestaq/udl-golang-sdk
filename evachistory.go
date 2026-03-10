@@ -78,7 +78,7 @@ func (r *EvacHistoryService) Count(ctx context.Context, query EvacHistoryCountPa
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/evac/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type EvacHistoryListParams struct {

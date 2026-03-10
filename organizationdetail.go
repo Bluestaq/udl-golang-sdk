@@ -55,7 +55,7 @@ func (r *OrganizationdetailService) New(ctx context.Context, body Organizationde
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/organizationdetails"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update an OrganizationDetails object. OrganizationDetails
@@ -68,11 +68,11 @@ func (r *OrganizationdetailService) Update(ctx context.Context, id string, body 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/organizationdetails/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -114,11 +114,11 @@ func (r *OrganizationdetailService) Delete(ctx context.Context, id string, opts 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/organizationdetails/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single OrganizationDetails by a source passed as a
@@ -129,7 +129,7 @@ func (r *OrganizationdetailService) FindBySource(ctx context.Context, query Orga
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/organizationdetails/findBySource"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single OrganizationDetails by its unique ID passed as
@@ -140,11 +140,11 @@ func (r *OrganizationdetailService) Get(ctx context.Context, id string, query Or
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/organizationdetails/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Model representation of additional detailed organization data as collected by a

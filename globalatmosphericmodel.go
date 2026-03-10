@@ -59,11 +59,11 @@ func (r *GlobalAtmosphericModelService) Get(ctx context.Context, id string, quer
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/globalatmosphericmodel/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -105,7 +105,7 @@ func (r *GlobalAtmosphericModelService) Count(ctx context.Context, query GlobalA
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/globalatmosphericmodel/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single GlobalAtmosphericModel compressed data file by
@@ -116,11 +116,11 @@ func (r *GlobalAtmosphericModelService) GetFile(ctx context.Context, id string, 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/globalatmosphericmodel/getFile/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -129,7 +129,7 @@ func (r *GlobalAtmosphericModelService) QueryHelp(ctx context.Context, opts ...o
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/globalatmosphericmodel/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -144,7 +144,7 @@ func (r *GlobalAtmosphericModelService) Tuple(ctx context.Context, query GlobalA
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/globalatmosphericmodel/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Upload a file with its metadata.
@@ -170,7 +170,7 @@ func (r *GlobalAtmosphericModelService) UnvalidatedPublish(ctx context.Context, 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-globalatmosphericmodel"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // The GlobalAtmosphericModel service provides atmospheric model output data for

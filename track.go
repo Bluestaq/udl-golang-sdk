@@ -88,7 +88,7 @@ func (r *TrackService) Count(ctx context.Context, query TrackCountParams, opts .
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/track/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of Track
@@ -101,7 +101,7 @@ func (r *TrackService) NewBulk(ctx context.Context, body TrackNewBulkParams, opt
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/track/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -110,7 +110,7 @@ func (r *TrackService) Queryhelp(ctx context.Context, opts ...option.RequestOpti
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/track/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -125,7 +125,7 @@ func (r *TrackService) Tuple(ctx context.Context, query TrackTupleParams, opts .
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/track/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple tracks as a POST body and ingest into the
@@ -137,7 +137,7 @@ func (r *TrackService) UnvalidatedPublish(ctx context.Context, body TrackUnvalid
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-tracks"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // A track is a position and optionally a heading/velocity of an object such as an

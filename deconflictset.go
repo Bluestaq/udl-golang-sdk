@@ -57,7 +57,7 @@ func (r *DeconflictsetService) New(ctx context.Context, body DeconflictsetNewPar
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/deconflictset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -99,7 +99,7 @@ func (r *DeconflictsetService) Count(ctx context.Context, query DeconflictsetCou
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/deconflictset/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single DeconflictSet record by its unique ID passed
@@ -108,11 +108,11 @@ func (r *DeconflictsetService) Get(ctx context.Context, id string, query Deconfl
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/deconflictset/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -121,7 +121,7 @@ func (r *DeconflictsetService) Queryhelp(ctx context.Context, opts ...option.Req
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/deconflictset/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -136,7 +136,7 @@ func (r *DeconflictsetService) Tuple(ctx context.Context, query DeconflictsetTup
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/deconflictset/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take a single DeconflictSet record as a POST body and
@@ -148,7 +148,7 @@ func (r *DeconflictsetService) UnvalidatedPublish(ctx context.Context, body Deco
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-deconflictset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // The DeconflictSet service provides access to a set of DeconflictWindows and

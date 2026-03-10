@@ -52,7 +52,7 @@ func (r *ScPathService) NewWithFile(ctx context.Context, fileContent io.Reader, 
 	opts = append([]option.RequestOption{option.WithRequestBody("application/octet-stream", fileContent)}, opts...)
 	path := "scs/path"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 type ScPathNewWithFileParams struct {

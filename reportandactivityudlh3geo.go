@@ -47,7 +47,7 @@ func (r *ReportAndActivityUdlH3geoService) UnvalidatedPublish(ctx context.Contex
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-h3geo"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 type ReportAndActivityUdlH3geoUnvalidatedPublishParams struct {

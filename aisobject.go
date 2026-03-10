@@ -60,7 +60,7 @@ func (r *AIsObjectService) UnvalidatedPublish(ctx context.Context, body AIsObjec
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-ais"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 type AIsObjectUnvalidatedPublishParams struct {

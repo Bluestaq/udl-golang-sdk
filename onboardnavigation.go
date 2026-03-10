@@ -94,7 +94,7 @@ func (r *OnboardnavigationService) Count(ctx context.Context, query Onboardnavig
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/onboardnavigation/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -107,7 +107,7 @@ func (r *OnboardnavigationService) NewBulk(ctx context.Context, body Onboardnavi
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/onboardnavigation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -116,7 +116,7 @@ func (r *OnboardnavigationService) Queryhelp(ctx context.Context, opts ...option
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/onboardnavigation/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -131,7 +131,7 @@ func (r *OnboardnavigationService) Tuple(ctx context.Context, query Onboardnavig
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/onboardnavigation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take a list of onboard navigation records as a POST body
@@ -143,7 +143,7 @@ func (r *OnboardnavigationService) UnvalidatedPublish(ctx context.Context, body 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-onboardnavigation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // These services provide spacecraft positional data derived from on-board

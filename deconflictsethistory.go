@@ -79,7 +79,7 @@ func (r *DeconflictsetHistoryService) Aodr(ctx context.Context, query Deconflict
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/deconflictset/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -92,7 +92,7 @@ func (r *DeconflictsetHistoryService) Count(ctx context.Context, query Deconflic
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/deconflictset/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // The DeconflictSet service provides access to a set of DeconflictWindows and

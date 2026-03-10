@@ -113,7 +113,7 @@ func (r *LogisticsSupportService) New(ctx context.Context, body LogisticsSupport
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/logisticssupport"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update a single LogisticsSupport record. A specific role is
@@ -124,11 +124,11 @@ func (r *LogisticsSupportService) Update(ctx context.Context, id string, body Lo
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/logisticssupport/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -170,7 +170,7 @@ func (r *LogisticsSupportService) Count(ctx context.Context, query LogisticsSupp
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/logisticssupport/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -183,7 +183,7 @@ func (r *LogisticsSupportService) NewBulk(ctx context.Context, body LogisticsSup
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/logisticssupport/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single LogisticsSupport record by its unique ID
@@ -192,11 +192,11 @@ func (r *LogisticsSupportService) Get(ctx context.Context, id string, query Logi
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/logisticssupport/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -205,7 +205,7 @@ func (r *LogisticsSupportService) Queryhelp(ctx context.Context, opts ...option.
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/logisticssupport/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -220,7 +220,7 @@ func (r *LogisticsSupportService) Tuple(ctx context.Context, query LogisticsSupp
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/logisticssupport/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple logisticssupport records as a POST body and
@@ -232,7 +232,7 @@ func (r *LogisticsSupportService) UnvalidatedPublish(ctx context.Context, body L
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-logisticssupport"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Discrepancy information associated with this LogisticsSupport record.

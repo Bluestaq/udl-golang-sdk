@@ -61,7 +61,7 @@ func (r *FeatureAssessmentService) New(ctx context.Context, body FeatureAssessme
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/featureassessment"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single FeatureAssessment record by its unique ID
@@ -70,11 +70,11 @@ func (r *FeatureAssessmentService) Get(ctx context.Context, id string, query Fea
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/featureassessment/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -116,7 +116,7 @@ func (r *FeatureAssessmentService) Count(ctx context.Context, query FeatureAsses
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/featureassessment/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -129,7 +129,7 @@ func (r *FeatureAssessmentService) NewBulk(ctx context.Context, body FeatureAsse
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/featureassessment/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -138,7 +138,7 @@ func (r *FeatureAssessmentService) QueryHelp(ctx context.Context, opts ...option
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/featureassessment/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -153,7 +153,7 @@ func (r *FeatureAssessmentService) Tuple(ctx context.Context, query FeatureAsses
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/featureassessment/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple FeatureAssessment records as a POST body and
@@ -165,7 +165,7 @@ func (r *FeatureAssessmentService) UnvalidatedPublish(ctx context.Context, body 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-featureassessment"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Feature assessments obtained from imagery analysis or other data analytics.

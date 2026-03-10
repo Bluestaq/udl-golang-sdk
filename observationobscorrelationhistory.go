@@ -83,7 +83,7 @@ func (r *ObservationObscorrelationHistoryService) Aodr(ctx context.Context, quer
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/obscorrelation/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -96,7 +96,7 @@ func (r *ObservationObscorrelationHistoryService) Count(ctx context.Context, que
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/obscorrelation/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Model representation supporting post-pass correlation of UCTs and re-correlation

@@ -52,7 +52,7 @@ func (r *SeraDataCommDetailService) New(ctx context.Context, body SeraDataCommDe
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/seradatacommdetails"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update an SeradataCommDetails. A specific role is required
@@ -62,11 +62,11 @@ func (r *SeraDataCommDetailService) Update(ctx context.Context, id string, body 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/seradatacommdetails/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -106,11 +106,11 @@ func (r *SeraDataCommDetailService) Delete(ctx context.Context, id string, opts 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/seradatacommdetails/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -123,7 +123,7 @@ func (r *SeraDataCommDetailService) Count(ctx context.Context, query SeraDataCom
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/seradatacommdetails/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single SeradataCommDetails by its unique ID passed as
@@ -132,11 +132,11 @@ func (r *SeraDataCommDetailService) Get(ctx context.Context, id string, query Se
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/seradatacommdetails/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -145,7 +145,7 @@ func (r *SeraDataCommDetailService) Queryhelp(ctx context.Context, opts ...optio
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradatacommdetails/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -160,7 +160,7 @@ func (r *SeraDataCommDetailService) Tuple(ctx context.Context, query SeraDataCom
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradatacommdetails/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Seradata-compiled information on communications payloads.

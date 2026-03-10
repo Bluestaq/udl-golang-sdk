@@ -65,7 +65,7 @@ func (r *SoiObservationSetService) New(ctx context.Context, body SoiObservationS
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/soiobservationset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters.
@@ -107,7 +107,7 @@ func (r *SoiObservationSetService) Count(ctx context.Context, query SoiObservati
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/soiobservationset/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -120,7 +120,7 @@ func (r *SoiObservationSetService) NewBulk(ctx context.Context, body SoiObservat
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/soiobservationset/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single SOIObservationSet by its unique ID passed as a
@@ -129,11 +129,11 @@ func (r *SoiObservationSetService) Get(ctx context.Context, id string, query Soi
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/soiobservationset/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -142,7 +142,7 @@ func (r *SoiObservationSetService) Queryhelp(ctx context.Context, opts ...option
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/soiobservationset/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -157,7 +157,7 @@ func (r *SoiObservationSetService) Tuple(ctx context.Context, query SoiObservati
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/soiobservationset/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple SOIObservationSet records as a POST body and
@@ -169,7 +169,7 @@ func (r *SoiObservationSetService) UnvalidatedPublish(ctx context.Context, body 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-soiobservationset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // These services provide operations for posting space object identification

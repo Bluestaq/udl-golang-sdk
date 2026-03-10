@@ -57,7 +57,7 @@ func (r *SeradataSigintPayloadService) New(ctx context.Context, body SeradataSig
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/seradatasigintpayload"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update an SeradataSigIntPayload. A specific role is
@@ -68,11 +68,11 @@ func (r *SeradataSigintPayloadService) Update(ctx context.Context, id string, bo
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/seradatasigintpayload/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -112,11 +112,11 @@ func (r *SeradataSigintPayloadService) Delete(ctx context.Context, id string, op
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/seradatasigintpayload/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -129,7 +129,7 @@ func (r *SeradataSigintPayloadService) Count(ctx context.Context, query Seradata
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/seradatasigintpayload/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single SeradataSigIntPayload by its unique ID passed
@@ -138,11 +138,11 @@ func (r *SeradataSigintPayloadService) Get(ctx context.Context, id string, query
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/seradatasigintpayload/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -151,7 +151,7 @@ func (r *SeradataSigintPayloadService) Queryhelp(ctx context.Context, opts ...op
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradatasigintpayload/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -166,7 +166,7 @@ func (r *SeradataSigintPayloadService) Tuple(ctx context.Context, query Seradata
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradatasigintpayload/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Details for an sigint payload from Seradata.

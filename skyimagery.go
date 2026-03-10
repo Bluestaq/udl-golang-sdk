@@ -96,7 +96,7 @@ func (r *SkyImageryService) Count(ctx context.Context, query SkyImageryCountPara
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/skyimagery/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single SkyImagery binary image by its unique ID
@@ -107,11 +107,11 @@ func (r *SkyImageryService) FileGet(ctx context.Context, id string, query SkyIma
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/skyimagery/getFile/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single SkyImagery record by its unique ID passed as a
@@ -121,11 +121,11 @@ func (r *SkyImageryService) Get(ctx context.Context, id string, query SkyImagery
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/skyimagery/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -134,7 +134,7 @@ func (r *SkyImageryService) Queryhelp(ctx context.Context, opts ...option.Reques
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/skyimagery/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -149,7 +149,7 @@ func (r *SkyImageryService) Tuple(ctx context.Context, query SkyImageryTuplePara
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/skyimagery/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Upload a new image with its metadata.
@@ -175,7 +175,7 @@ func (r *SkyImageryService) UploadZip(ctx context.Context, body SkyImageryUpload
 	opts = append([]option.RequestOption{option.WithBaseURL("https://imagery.unifieddatalibrary.com/")}, opts...)
 	path := "filedrop/udl-skyimagery"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Model representation of sky imagery data. Sky imagery is ground or space based

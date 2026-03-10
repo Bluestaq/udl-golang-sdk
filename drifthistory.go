@@ -50,11 +50,11 @@ func (r *DriftHistoryService) Get(ctx context.Context, id string, query DriftHis
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/drifthistory/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -96,7 +96,7 @@ func (r *DriftHistoryService) Count(ctx context.Context, query DriftHistoryCount
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/drifthistory/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -105,7 +105,7 @@ func (r *DriftHistoryService) Queryhelp(ctx context.Context, opts ...option.Requ
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/drifthistory/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -120,7 +120,7 @@ func (r *DriftHistoryService) Tuple(ctx context.Context, query DriftHistoryTuple
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/drifthistory/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type DriftHistoryQueryhelpResponse struct {

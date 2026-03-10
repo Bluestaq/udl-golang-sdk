@@ -71,7 +71,7 @@ func (r *SensorCalibrationService) New(ctx context.Context, body SensorCalibrati
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sensorcalibration"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single SensorCalibration by its unique ID passed as a
@@ -80,11 +80,11 @@ func (r *SensorCalibrationService) Get(ctx context.Context, id string, query Sen
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/sensorcalibration/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -126,7 +126,7 @@ func (r *SensorCalibrationService) Count(ctx context.Context, query SensorCalibr
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sensorcalibration/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -139,7 +139,7 @@ func (r *SensorCalibrationService) NewBulk(ctx context.Context, body SensorCalib
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sensorcalibration/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -148,7 +148,7 @@ func (r *SensorCalibrationService) QueryHelp(ctx context.Context, opts ...option
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/sensorcalibration/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -163,7 +163,7 @@ func (r *SensorCalibrationService) Tuple(ctx context.Context, query SensorCalibr
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/sensorcalibration/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple sensorcalibration records as a POST body and
@@ -175,7 +175,7 @@ func (r *SensorCalibrationService) UnvalidatedPublish(ctx context.Context, body 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-sensorcalibration"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // The Sensor Calibration service records data about a sensor's overall accuracy

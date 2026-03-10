@@ -57,11 +57,11 @@ func (r *ConjunctionService) Get(ctx context.Context, id string, query Conjuncti
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/conjunction/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -103,7 +103,7 @@ func (r *ConjunctionService) Count(ctx context.Context, query ConjunctionCountPa
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/conjunction/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take a single Conjunction as a POST body and ingest into
@@ -116,7 +116,7 @@ func (r *ConjunctionService) NewUdl(ctx context.Context, params ConjunctionNewUd
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/conjunction"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
-	return
+	return err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -131,7 +131,7 @@ func (r *ConjunctionService) NewBulk(ctx context.Context, body ConjunctionNewBul
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/conjunction/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query historical data by a variety of query
@@ -142,7 +142,7 @@ func (r *ConjunctionService) GetHistory(ctx context.Context, query ConjunctionGe
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/conjunction/history"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -151,7 +151,7 @@ func (r *ConjunctionService) Queryhelp(ctx context.Context, opts ...option.Reque
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/conjunction/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -166,7 +166,7 @@ func (r *ConjunctionService) Tuple(ctx context.Context, query ConjunctionTuplePa
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/conjunction/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take a list of Conjunctions as a POST body and ingest into
@@ -179,7 +179,7 @@ func (r *ConjunctionService) UnvalidatedPublish(ctx context.Context, body Conjun
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-conjunction"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service to accept multiple CDMs in as zip file or a single CDM as payload. The
@@ -195,7 +195,7 @@ func (r *ConjunctionService) UploadConjunctionDataMessage(ctx context.Context, f
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*"), option.WithRequestBody("application/zip", fileContent)}, opts...)
 	path := "filedrop/cdms"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Stores the results of a particular Conjunction Assessment (CA) run.

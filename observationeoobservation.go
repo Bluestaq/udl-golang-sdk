@@ -67,7 +67,7 @@ func (r *ObservationEoObservationService) New(ctx context.Context, body Observat
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/eoobservation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single EO observation by its unique ID passed as a
@@ -76,11 +76,11 @@ func (r *ObservationEoObservationService) Get(ctx context.Context, id string, qu
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/eoobservation/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -122,7 +122,7 @@ func (r *ObservationEoObservationService) Count(ctx context.Context, query Obser
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/eoobservation/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of EO
@@ -135,7 +135,7 @@ func (r *ObservationEoObservationService) NewBulk(ctx context.Context, params Ob
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/eoobservation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -144,7 +144,7 @@ func (r *ObservationEoObservationService) Queryhelp(ctx context.Context, opts ..
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/eoobservation/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -159,7 +159,7 @@ func (r *ObservationEoObservationService) Tuple(ctx context.Context, query Obser
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/eoobservation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple EO observations as a POST body and ingest
@@ -171,7 +171,7 @@ func (r *ObservationEoObservationService) UnvalidatedPublish(ctx context.Context
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-eo"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Model representation of observation data for electro-optical based sensor

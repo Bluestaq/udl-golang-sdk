@@ -65,7 +65,7 @@ func (r *ObservationObscorrelationService) New(ctx context.Context, body Observa
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/obscorrelation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single Correlation record by its unique ID passed as
@@ -74,11 +74,11 @@ func (r *ObservationObscorrelationService) Get(ctx context.Context, id string, q
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/obscorrelation/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -120,7 +120,7 @@ func (r *ObservationObscorrelationService) Count(ctx context.Context, query Obse
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/obscorrelation/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -133,7 +133,7 @@ func (r *ObservationObscorrelationService) NewBulk(ctx context.Context, body Obs
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/obscorrelation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -142,7 +142,7 @@ func (r *ObservationObscorrelationService) QueryHelp(ctx context.Context, opts .
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/obscorrelation/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -157,7 +157,7 @@ func (r *ObservationObscorrelationService) Tuple(ctx context.Context, query Obse
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/obscorrelation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple ObsCorrelation records as a POST body and
@@ -169,7 +169,7 @@ func (r *ObservationObscorrelationService) UnvalidatedPublish(ctx context.Contex
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-obscorrelation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Model representation supporting post-pass correlation of UCTs and re-correlation

@@ -59,7 +59,7 @@ func (r *OnorbitService) New(ctx context.Context, body OnorbitNewParams, opts ..
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/onorbit"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update a single OnOrbit object. A specific role is required
@@ -69,11 +69,11 @@ func (r *OnorbitService) Update(ctx context.Context, id string, body OnorbitUpda
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/onorbit/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -113,11 +113,11 @@ func (r *OnorbitService) Delete(ctx context.Context, id string, opts ...option.R
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/onorbit/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -130,7 +130,7 @@ func (r *OnorbitService) Count(ctx context.Context, query OnorbitCountParams, op
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/onorbit/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single OnOrbit object by its unique ID passed as a
@@ -139,11 +139,11 @@ func (r *OnorbitService) Get(ctx context.Context, id string, query OnorbitGetPar
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/onorbit/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // This service queries common information across Radar, EO, and RF observations.
@@ -151,7 +151,7 @@ func (r *OnorbitService) GetSignature(ctx context.Context, query OnorbitGetSigna
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/onorbit/getSignature"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -160,7 +160,7 @@ func (r *OnorbitService) Queryhelp(ctx context.Context, opts ...option.RequestOp
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/onorbit/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -175,7 +175,7 @@ func (r *OnorbitService) Tuple(ctx context.Context, query OnorbitTupleParams, op
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/onorbit/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Model object representing on-orbit objects or satellites in the system.

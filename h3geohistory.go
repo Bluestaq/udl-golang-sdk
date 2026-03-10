@@ -81,7 +81,7 @@ func (r *H3GeoHistoryService) Ador(ctx context.Context, query H3GeoHistoryAdorPa
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/h3geo/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -94,7 +94,7 @@ func (r *H3GeoHistoryService) Count(ctx context.Context, query H3GeoHistoryCount
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/h3geo/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // H3 Geospatial Binning is a discrete global grid system for indexing geographies

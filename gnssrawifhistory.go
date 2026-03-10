@@ -83,7 +83,7 @@ func (r *GnssRawIfHistoryService) Aodr(ctx context.Context, query GnssRawIfHisto
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/gnssrawif/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -96,7 +96,7 @@ func (r *GnssRawIfHistoryService) Count(ctx context.Context, query GnssRawIfHist
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/gnssrawif/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Global Navigation Satellite System (GNSS) Raw Intermediate Frequency (IF) data

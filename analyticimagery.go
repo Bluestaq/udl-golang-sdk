@@ -62,11 +62,11 @@ func (r *AnalyticImageryService) Get(ctx context.Context, id string, query Analy
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/analyticimagery/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -108,7 +108,7 @@ func (r *AnalyticImageryService) Count(ctx context.Context, query AnalyticImager
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/analyticimagery/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single AnalyticImagery binary image by its unique ID
@@ -119,11 +119,11 @@ func (r *AnalyticImageryService) FileGet(ctx context.Context, id string, query A
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/analyticimagery/getFile/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -132,7 +132,7 @@ func (r *AnalyticImageryService) Queryhelp(ctx context.Context, opts ...option.R
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/analyticimagery/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -147,7 +147,7 @@ func (r *AnalyticImageryService) Tuple(ctx context.Context, query AnalyticImager
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/analyticimagery/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Upload a new image with its metadata.
@@ -173,7 +173,7 @@ func (r *AnalyticImageryService) UnvalidatedPublish(ctx context.Context, body An
 	opts = append([]option.RequestOption{option.WithBaseURL("https://imagery.unifieddatalibrary.com/")}, opts...)
 	path := "filedrop/udl-analyticimagery"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // The analytic imagery schema supports data plots and graphics of various types.

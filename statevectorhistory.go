@@ -84,7 +84,7 @@ func (r *StateVectorHistoryService) Aodr(ctx context.Context, query StateVectorH
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/statevector/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -97,7 +97,7 @@ func (r *StateVectorHistoryService) Count(ctx context.Context, query StateVector
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/statevector/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type StateVectorHistoryListParams struct {

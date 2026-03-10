@@ -67,7 +67,7 @@ func (r *ObservationRfObservationService) New(ctx context.Context, body Observat
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/rfobservation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -109,7 +109,7 @@ func (r *ObservationRfObservationService) Count(ctx context.Context, query Obser
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/rfobservation/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of RF
@@ -122,7 +122,7 @@ func (r *ObservationRfObservationService) NewBulk(ctx context.Context, body Obse
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/rfobservation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single RF observation by its unique ID passed as a
@@ -131,11 +131,11 @@ func (r *ObservationRfObservationService) Get(ctx context.Context, id string, qu
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/rfobservation/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -144,7 +144,7 @@ func (r *ObservationRfObservationService) Queryhelp(ctx context.Context, opts ..
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/rfobservation/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -159,7 +159,7 @@ func (r *ObservationRfObservationService) Tuple(ctx context.Context, query Obser
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/rfobservation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple RF observations as a POST body and ingest
@@ -171,7 +171,7 @@ func (r *ObservationRfObservationService) UnvalidatedPublish(ctx context.Context
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-rf"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Model representation of observation data for active/passive radio frequency (RF)

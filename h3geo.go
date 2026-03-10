@@ -62,7 +62,7 @@ func (r *H3GeoService) New(ctx context.Context, body H3GeoNewParams, opts ...opt
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/h3geo"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -104,7 +104,7 @@ func (r *H3GeoService) Count(ctx context.Context, query H3GeoCountParams, opts .
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/h3geo/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single RF geolocation by its unique ID passed as a
@@ -113,11 +113,11 @@ func (r *H3GeoService) Get(ctx context.Context, id string, query H3GeoGetParams,
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/h3geo/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -126,7 +126,7 @@ func (r *H3GeoService) Queryhelp(ctx context.Context, opts ...option.RequestOpti
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/h3geo/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -141,7 +141,7 @@ func (r *H3GeoService) Tuple(ctx context.Context, query H3GeoTupleParams, opts .
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/h3geo/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // H3 Geospatial Binning is a discrete global grid system for indexing geographies
