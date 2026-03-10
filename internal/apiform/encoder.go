@@ -470,5 +470,5 @@ func WriteExtras(writer *multipart.Writer, extras map[string]any) (err error) {
 			break
 		}
 	}
-	return
+	return err
 }
