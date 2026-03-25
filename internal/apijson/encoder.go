@@ -12,6 +12,8 @@ import (
 	"time"
 
 	"github.com/tidwall/sjson"
+
+	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 )
 
 var encoders sync.Map // map[encoderEntry]encoderFunc
@@ -274,6 +276,12 @@ func (e *encoder) newStructTypeEncoder(t reflect.Type) encoderFunc {
 			encoded, err := ef.fn(field)
 			if err != nil {
 				return nil, err
+			}
+			if ef.tag.defaultValue != nil && (!field.IsValid() || field.IsZero()) {
+				encoded, err = shimjson.Marshal(ef.tag.defaultValue)
+				if err != nil {
+					return nil, err
+				}
 			}
 			if encoded == nil {
 				continue
