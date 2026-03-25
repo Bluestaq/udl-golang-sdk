@@ -15,6 +15,8 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 )
 
+// These services provide operations for manipulation and querying of conjunctions.
+//
 // ConjunctionHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -62,7 +64,7 @@ func (r *ConjunctionHistoryService) Count(ctx context.Context, query Conjunction
 
 type ConjunctionHistoryAodrParams struct {
 	// Time of closest approach (TCA) in UTC. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Tca time.Time `query:"tca,required" format:"date-time" json:"-"`
+	Tca time.Time `query:"tca" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -94,7 +96,7 @@ func (r ConjunctionHistoryAodrParams) URLQuery() (v url.Values, err error) {
 
 type ConjunctionHistoryCountParams struct {
 	// Time of closest approach (TCA) in UTC. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Tca         time.Time        `query:"tca,required" format:"date-time" json:"-"`
+	Tca         time.Time        `query:"tca" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

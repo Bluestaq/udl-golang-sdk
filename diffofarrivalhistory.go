@@ -15,6 +15,12 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 )
 
+// These services provide operations for querying and manipulation of Signal time
+// and frequency difference of arrival (TDOA/FDOA) information obtained by using
+// passive RF based sensor phenomenologies and sensor triangulation. The J2000
+// coordinate frame is the preferred frame for all observations, but in some cases
+// observations may be in another frame depending on the provider.
+//
 // DiffOfArrivalHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -50,7 +56,7 @@ func (r *DiffOfArrivalHistoryService) Count(ctx context.Context, query DiffOfArr
 type DiffOfArrivalHistoryCountParams struct {
 	// Ob detection time in ISO 8601 UTC with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	ObTime      time.Time        `query:"obTime,required" format:"date-time" json:"-"`
+	ObTime      time.Time        `query:"obTime" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

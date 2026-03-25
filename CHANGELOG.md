@@ -1,5 +1,32 @@
 # Changelog
 
+## 1.0.0 (2026-03-25)
+
+Full Changelog: [v0.1.0-alpha.20...v1.0.0](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.20...v1.0.0)
+
+### Features
+
+* **api:** api update ([aee7583](https://github.com/Bluestaq/udl-golang-sdk/commit/aee75835919200460e4d8f178b52e10dd7577fc2))
+
+
+### Bug Fixes
+
+* allow canceling a request while it is waiting to retry ([1a53d27](https://github.com/Bluestaq/udl-golang-sdk/commit/1a53d275014ed3a02d259fc1f3550a66007c13ab))
+* fix request delays for retrying to be more respectful of high requested delays ([7999ea2](https://github.com/Bluestaq/udl-golang-sdk/commit/7999ea2baf4662b40e21de1d118d41e0ec542c16))
+
+
+### Chores
+
+* **ci:** add build step ([258ec63](https://github.com/Bluestaq/udl-golang-sdk/commit/258ec631a010c74104b81393da2c40c6737817fc))
+* **ci:** skip uploading artifacts on stainless-internal branches ([ca6c866](https://github.com/Bluestaq/udl-golang-sdk/commit/ca6c8660616aca8e5e503b98f0cc293ce30c7fdf))
+* **docs:** add missing descriptions ([530b531](https://github.com/Bluestaq/udl-golang-sdk/commit/530b531d7f7c4089fa3261321ae174436a25df0f))
+* **internal:** minor cleanup ([24a73ff](https://github.com/Bluestaq/udl-golang-sdk/commit/24a73ffb618068723a16978f5b81d73219a2eacc))
+* **internal:** move custom custom `json` tags to `api` ([015fbe8](https://github.com/Bluestaq/udl-golang-sdk/commit/015fbe825660bb0682958d10e1c67d7e0c8a3d91))
+* **internal:** remove invalid enum field registration ([5a24d84](https://github.com/Bluestaq/udl-golang-sdk/commit/5a24d846c236146b0131b8bde0a4c0f600067168))
+* **test:** do not count install time for mock server timeout ([134e7f0](https://github.com/Bluestaq/udl-golang-sdk/commit/134e7f010d12a845d30d31c22f87ab93df0ac0b0))
+* update mock server docs ([f8482b7](https://github.com/Bluestaq/udl-golang-sdk/commit/f8482b7684c1b5cb8e7bd37beac4a8fb8458aac5))
+* update placeholder string ([6ed1cef](https://github.com/Bluestaq/udl-golang-sdk/commit/6ed1cefd69cd906f1ea25e070310e0ae41cbffb4))
+
 ## 0.1.0-alpha.20 (2026-02-10)
 
 Full Changelog: [v0.1.0-alpha.19...v0.1.0-alpha.20](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.19...v0.1.0-alpha.20)

@@ -29,13 +29,33 @@ import (
 // automatically. You should not instantiate this service directly, and instead use
 // the [NewScService] method instead.
 type ScService struct {
-	Options       []option.RequestOption
+	Options []option.RequestOption
+	// These endpoints provide the ability to subscribe to SCS Event Notifications for
+	// file upload/update and folder creation events within a specific folder in the
+	// Secure Content Store. A user must be authorized to view the file/folder for
+	// which a notification was created in order to retrieve that notification.
 	Notifications ScNotificationService
-	File          ScFileService
-	Folders       ScFolderService
-	Paths         ScPathService
-	View          ScViewService
-	V2            ScV2Service
+	// These services provide soon-to-be-deprecated CRUD and Search operations for
+	// files and folders in the Secure Content Store. This documentation is provided
+	// only for backwards compatibility, please refer to SCS V2 for new SCS
+	// integrations.
+	File ScFileService
+	// These services provide soon-to-be-deprecated CRUD and Search operations for
+	// files and folders in the Secure Content Store. This documentation is provided
+	// only for backwards compatibility, please refer to SCS V2 for new SCS
+	// integrations.
+	Folders ScFolderService
+	// These services provide soon-to-be-deprecated CRUD and Search operations for
+	// files and folders in the Secure Content Store. This documentation is provided
+	// only for backwards compatibility, please refer to SCS V2 for new SCS
+	// integrations.
+	Paths ScPathService
+	// These services provide CRUD and search operations for files and folders in the
+	// Secure Content Store.
+	View ScViewService
+	// These services provide CRUD and search operations for files and folders in the
+	// Secure Content Store.
+	V2 ScV2Service
 }
 
 // NewScService generates a new service that applies the given options to each
@@ -281,7 +301,7 @@ const (
 
 type ScDeleteParams struct {
 	// The id of the item to delete
-	ID string `query:"id,required" json:"-"`
+	ID string `query:"id" api:"required" json:"-"`
 	paramObj
 }
 
@@ -295,9 +315,9 @@ func (r ScDeleteParams) URLQuery() (v url.Values, err error) {
 
 type ScCopyParams struct {
 	// The path of the item to copy
-	ID string `query:"id,required" json:"-"`
+	ID string `query:"id" api:"required" json:"-"`
 	// The path to copy to
-	TargetPath string `query:"targetPath,required" json:"-"`
+	TargetPath string `query:"targetPath" api:"required" json:"-"`
 	paramObj
 }
 
@@ -323,7 +343,7 @@ func (r *ScDownloadParams) UnmarshalJSON(data []byte) error {
 
 type ScFileDownloadParams struct {
 	// The complete path and filename of the file to download.
-	ID          string           `query:"id,required" json:"-"`
+	ID          string           `query:"id" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -339,11 +359,11 @@ func (r ScFileDownloadParams) URLQuery() (v url.Values, err error) {
 
 type ScFileUploadParams struct {
 	// Classification marking of the file being uploaded.
-	ClassificationMarking string `query:"classificationMarking,required" json:"-"`
+	ClassificationMarking string `query:"classificationMarking" api:"required" json:"-"`
 	// Name of the file to upload.
-	FileName string `query:"fileName,required" json:"-"`
+	FileName string `query:"fileName" api:"required" json:"-"`
 	// The base path to upload file
-	Path string `query:"path,required" json:"-"`
+	Path string `query:"path" api:"required" json:"-"`
 	// Length of time after which to automatically delete the file.
 	DeleteAfter param.Opt[string] `query:"deleteAfter,omitzero" json:"-"`
 	// Description
@@ -385,7 +405,7 @@ func (r ScFileUploadParams) URLQuery() (v url.Values, err error) {
 
 type ScHasWriteAccessParams struct {
 	// Folder path for which to check user write access.
-	Path        string           `query:"path,required" json:"-"`
+	Path        string           `query:"path" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -401,9 +421,9 @@ func (r ScHasWriteAccessParams) URLQuery() (v url.Values, err error) {
 
 type ScMoveParams struct {
 	// The path of the item to move
-	ID string `query:"id,required" json:"-"`
+	ID string `query:"id" api:"required" json:"-"`
 	// The path to copy to
-	TargetPath string `query:"targetPath,required" json:"-"`
+	TargetPath string `query:"targetPath" api:"required" json:"-"`
 	paramObj
 }
 
@@ -417,9 +437,9 @@ func (r ScMoveParams) URLQuery() (v url.Values, err error) {
 
 type ScRenameParams struct {
 	// The path of the item to rename.
-	ID string `query:"id,required" json:"-"`
+	ID string `query:"id" api:"required" json:"-"`
 	// The new name for the file or folder. Do not include the path.
-	NewName string `query:"newName,required" json:"-"`
+	NewName string `query:"newName" api:"required" json:"-"`
 	paramObj
 }
 
@@ -433,7 +453,7 @@ func (r ScRenameParams) URLQuery() (v url.Values, err error) {
 
 type ScSearchParams struct {
 	// The path to search from
-	Path string `query:"path,required" json:"-"`
+	Path string `query:"path" api:"required" json:"-"`
 	// Number of items per page
 	Count param.Opt[int64] `query:"count,omitzero" json:"-"`
 	// First result to return

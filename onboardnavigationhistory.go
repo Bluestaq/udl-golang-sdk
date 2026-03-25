@@ -17,6 +17,13 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// This collection of services provides operations for querying and manipulation of
+// electro-optical (EO), radar, radio frequency (RF), Global Navigation Satellite
+// Systems (GNSS), Ionospheric (IONO), Infrared (SWIR), and Space Environment
+// observation data. The J2000 coordinate frame is the preferred frame for all
+// observations, as applicable, but in some cases observations may be in an
+// alternate frame depending on the provider and/or datatype.
+//
 // OnboardnavigationHistoryService contains methods and other services that help
 // with interacting with the unifieddatalibrary API.
 //
@@ -94,7 +101,7 @@ func (r *OnboardnavigationHistoryService) Count(ctx context.Context, query Onboa
 type OnboardnavigationHistoryListParams struct {
 	// Start time of the sensor data, in ISO 8601 UTC format.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	StartTime time.Time `query:"startTime,required" format:"date-time" json:"-"`
+	StartTime time.Time `query:"startTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -116,7 +123,7 @@ func (r OnboardnavigationHistoryListParams) URLQuery() (v url.Values, err error)
 type OnboardnavigationHistoryAodrParams struct {
 	// Start time of the sensor data, in ISO 8601 UTC format.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	StartTime time.Time `query:"startTime,required" format:"date-time" json:"-"`
+	StartTime time.Time `query:"startTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -149,7 +156,7 @@ func (r OnboardnavigationHistoryAodrParams) URLQuery() (v url.Values, err error)
 type OnboardnavigationHistoryCountParams struct {
 	// Start time of the sensor data, in ISO 8601 UTC format.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
+	StartTime   time.Time        `query:"startTime" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

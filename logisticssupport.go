@@ -23,6 +23,37 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for manipulating and querying Aircraft Sortie,
+// Aircraft Mission, Item Tracking, Flight Plan, Air Event, Sortie Prior Permission
+// Required (PPR), Diplomatic Clearance, Diplomatic Clearance Country, Airspace
+// Control Order, Air Tasking Order, Navigational Obstruction, Logistics Support,
+// Track Route, Air Load Plan, and Aviation Risk Management data. Aircraft Sortie
+// information contains static and dynamic aircraft assignments, departure and
+// arrival times, and remarks. Aircraft Mission information contains static data
+// for mission planning to include assigned aircraft and crews, cargo pickup and
+// dropoff locations, unique identifiers, and prioritization. Item Tracking
+// information contains data for tracking an item from its origin to destination
+// and how it may be configured during transport. Flight Plan information contains
+// schedule and route details. Air Event provides information concerning various
+// aerial events such as fuel transfer and air drops, as well as the associated
+// aircraft involved. Sortie PPR information contains details on operational access
+// to a runway, taxiway, or airport service. Diplomatic Clearance information
+// contains details on the issuance and coordination of aircraft clearance
+// requests. Diplomatic Clearance Country provides information such as entry/exit
+// points, requirements, and points of contact for countries diplomatic clearances
+// are being created for. Airspace Control Order provides information concerning
+// the allocation, restriction, and deconfliction of airspace. Air Tasking Order
+// information contains details on the coordination of air missions and their
+// tasks, resources, and timelines. Navigational Obstruction provides the
+// locations, characteristics, and boundaries of obstacles and structures that can
+// restrict or interfere with navigation. Logistics Support contains information
+// regarding the transport and maintenance of resources and equipment to sustain
+// air operations. Track Route information defines specific flight paths used by
+// aircraft during the transport of fuel and other resources. Air Load Plan
+// information provides mission actuals concerning the loading and air transport of
+// cargo and passengers. Aviation Risk Management information help aid in mission
+// planning by accounting for factors such as mission complexity and crew fatigue.
+//
 // LogisticsSupportService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -31,6 +62,36 @@ import (
 // the [NewLogisticsSupportService] method instead.
 type LogisticsSupportService struct {
 	Options []option.RequestOption
+	// These services provide operations for manipulating and querying Aircraft Sortie,
+	// Aircraft Mission, Item Tracking, Flight Plan, Air Event, Sortie Prior Permission
+	// Required (PPR), Diplomatic Clearance, Diplomatic Clearance Country, Airspace
+	// Control Order, Air Tasking Order, Navigational Obstruction, Logistics Support,
+	// Track Route, Air Load Plan, and Aviation Risk Management data. Aircraft Sortie
+	// information contains static and dynamic aircraft assignments, departure and
+	// arrival times, and remarks. Aircraft Mission information contains static data
+	// for mission planning to include assigned aircraft and crews, cargo pickup and
+	// dropoff locations, unique identifiers, and prioritization. Item Tracking
+	// information contains data for tracking an item from its origin to destination
+	// and how it may be configured during transport. Flight Plan information contains
+	// schedule and route details. Air Event provides information concerning various
+	// aerial events such as fuel transfer and air drops, as well as the associated
+	// aircraft involved. Sortie PPR information contains details on operational access
+	// to a runway, taxiway, or airport service. Diplomatic Clearance information
+	// contains details on the issuance and coordination of aircraft clearance
+	// requests. Diplomatic Clearance Country provides information such as entry/exit
+	// points, requirements, and points of contact for countries diplomatic clearances
+	// are being created for. Airspace Control Order provides information concerning
+	// the allocation, restriction, and deconfliction of airspace. Air Tasking Order
+	// information contains details on the coordination of air missions and their
+	// tasks, resources, and timelines. Navigational Obstruction provides the
+	// locations, characteristics, and boundaries of obstacles and structures that can
+	// restrict or interfere with navigation. Logistics Support contains information
+	// regarding the transport and maintenance of resources and equipment to sustain
+	// air operations. Track Route information defines specific flight paths used by
+	// aircraft during the transport of fuel and other resources. Air Load Plan
+	// information provides mission actuals concerning the loading and air transport of
+	// cargo and passengers. Aviation Risk Management information help aid in mission
+	// planning by accounting for factors such as mission complexity and crew fatigue.
 	History LogisticsSupportHistoryService
 }
 
@@ -665,7 +726,7 @@ func (r *LogisticsTransportationPlansFull) UnmarshalJSON(data []byte) error {
 // supplies coordination, and service personnel.
 type LogisticsSupportListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -682,12 +743,12 @@ type LogisticsSupportListResponse struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LogisticsSupportListResponseDataMode `json:"dataMode,required"`
+	DataMode LogisticsSupportListResponseDataMode `json:"dataMode" api:"required"`
 	// The time this report was created, in ISO 8601 UTC format with millisecond
 	// precision.
-	RptCreatedTime time.Time `json:"rptCreatedTime,required" format:"date-time"`
+	RptCreatedTime time.Time `json:"rptCreatedTime" api:"required" format:"date-time"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system if not provided on
 	// create operations.
 	ID string `json:"id"`
@@ -1260,7 +1321,7 @@ func (r *LogisticsSupportListResponseLogisticsTransportationPlanLogisticsSegment
 // supplies coordination, and service personnel.
 type LogisticsSupportGetResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -1277,12 +1338,12 @@ type LogisticsSupportGetResponse struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LogisticsSupportGetResponseDataMode `json:"dataMode,required"`
+	DataMode LogisticsSupportGetResponseDataMode `json:"dataMode" api:"required"`
 	// The time this report was created, in ISO 8601 UTC format with millisecond
 	// precision.
-	RptCreatedTime time.Time `json:"rptCreatedTime,required" format:"date-time"`
+	RptCreatedTime time.Time `json:"rptCreatedTime" api:"required" format:"date-time"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system if not provided on
 	// create operations.
 	ID string `json:"id"`
@@ -1467,7 +1528,7 @@ func (r *LogisticsSupportQueryhelpResponse) UnmarshalJSON(data []byte) error {
 // supplies coordination, and service personnel.
 type LogisticsSupportTupleResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -1484,12 +1545,12 @@ type LogisticsSupportTupleResponse struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LogisticsSupportTupleResponseDataMode `json:"dataMode,required"`
+	DataMode LogisticsSupportTupleResponseDataMode `json:"dataMode" api:"required"`
 	// The time this report was created, in ISO 8601 UTC format with millisecond
 	// precision.
-	RptCreatedTime time.Time `json:"rptCreatedTime,required" format:"date-time"`
+	RptCreatedTime time.Time `json:"rptCreatedTime" api:"required" format:"date-time"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system if not provided on
 	// create operations.
 	ID string `json:"id"`
@@ -1635,7 +1696,7 @@ const (
 
 type LogisticsSupportNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -1652,12 +1713,12 @@ type LogisticsSupportNewParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LogisticsSupportNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode LogisticsSupportNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// The time this report was created, in ISO 8601 UTC format with millisecond
 	// precision.
-	RptCreatedTime time.Time `json:"rptCreatedTime,required" format:"date-time"`
+	RptCreatedTime time.Time `json:"rptCreatedTime" api:"required" format:"date-time"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system if not provided on
 	// create operations.
 	ID param.Opt[string] `json:"id,omitzero"`
@@ -2075,7 +2136,7 @@ func (r *LogisticsSupportNewParamsLogisticsTransportationPlanLogisticsSegment) U
 
 type LogisticsSupportUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -2092,12 +2153,12 @@ type LogisticsSupportUpdateParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LogisticsSupportUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode LogisticsSupportUpdateParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// The time this report was created, in ISO 8601 UTC format with millisecond
 	// precision.
-	RptCreatedTime time.Time `json:"rptCreatedTime,required" format:"date-time"`
+	RptCreatedTime time.Time `json:"rptCreatedTime" api:"required" format:"date-time"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system if not provided on
 	// create operations.
 	ID param.Opt[string] `json:"id,omitzero"`
@@ -2563,7 +2624,7 @@ func (r *LogisticsSupportNewBulkParams) UnmarshalJSON(data []byte) error {
 // required.
 type LogisticsSupportNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -2580,12 +2641,12 @@ type LogisticsSupportNewBulkParamsBody struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,omitzero,required"`
+	DataMode string `json:"dataMode,omitzero" api:"required"`
 	// The time this report was created, in ISO 8601 UTC format with millisecond
 	// precision.
-	RptCreatedTime time.Time `json:"rptCreatedTime,required" format:"date-time"`
+	RptCreatedTime time.Time `json:"rptCreatedTime" api:"required" format:"date-time"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system if not provided on
 	// create operations.
 	ID param.Opt[string] `json:"id,omitzero"`
@@ -3004,7 +3065,7 @@ type LogisticsSupportTupleParams struct {
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
 	// for a complete list of possible fields.
-	Columns     string           `query:"columns,required" json:"-"`
+	Columns     string           `query:"columns" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -3039,7 +3100,7 @@ func (r *LogisticsSupportUnvalidatedPublishParams) UnmarshalJSON(data []byte) er
 // required.
 type LogisticsSupportUnvalidatedPublishParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -3056,12 +3117,12 @@ type LogisticsSupportUnvalidatedPublishParamsBody struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,omitzero,required"`
+	DataMode string `json:"dataMode,omitzero" api:"required"`
 	// The time this report was created, in ISO 8601 UTC format with millisecond
 	// precision.
-	RptCreatedTime time.Time `json:"rptCreatedTime,required" format:"date-time"`
+	RptCreatedTime time.Time `json:"rptCreatedTime" api:"required" format:"date-time"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system if not provided on
 	// create operations.
 	ID param.Opt[string] `json:"id,omitzero"`

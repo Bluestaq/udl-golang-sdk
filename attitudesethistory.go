@@ -17,6 +17,16 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for the posting and querying of satellite
+// Ephemeris Point data. Each point contains a position and velocity vector and
+// optionally, an acceleration vector and/or covariance matrix at a specified time.
+// ECI J2K is the preferred reference frame for ephemeris and covariance, however,
+// several user specified reference frames are accommodated. The EphemerisSet ID
+// (esId) identifies the 'EphemerisSet' record which contains details of the
+// underlying data and models used in the generation of the ephemeris as well as a
+// collection of ephemeris points. Points must be retrieved by first identifying a
+// desired EphemerisSet and pulling its points by that EphemerisSet 'esId'.
+//
 // AttitudeSetHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -96,7 +106,7 @@ type AttitudeSetHistoryListParams struct {
 	// 8601 UTC format, with microsecond precision. If this set is constituted by a
 	// single attitude parameter message then startTime is the epoch.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	StartTime time.Time `query:"startTime,required" format:"date-time" json:"-"`
+	StartTime time.Time `query:"startTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -120,7 +130,7 @@ type AttitudeSetHistoryAodrParams struct {
 	// 8601 UTC format, with microsecond precision. If this set is constituted by a
 	// single attitude parameter message then startTime is the epoch.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	StartTime time.Time `query:"startTime,required" format:"date-time" json:"-"`
+	StartTime time.Time `query:"startTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -155,7 +165,7 @@ type AttitudeSetHistoryCountParams struct {
 	// 8601 UTC format, with microsecond precision. If this set is constituted by a
 	// single attitude parameter message then startTime is the epoch.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
+	StartTime   time.Time        `query:"startTime" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

@@ -21,6 +21,42 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// This service provides operations for manipulation and querying of earth
+// orientation parameter (EOP) data. Earth Orientation Parameters (EOP) are
+// produced by the IERS (International Earth Rotation and Reference Systems
+// Service). Earth Orientation Parameters describe the irregularities of the
+// earth's rotation. Technically, they are the parameters which provide the
+// rotation of the ITRS (International Terrestrial Reference System) to the ICRS
+// (International Celestial Reference System) as a function of time. Universal time
+// -- Universal time (UT1) is the time of the earth clock, which performs one
+// revolution in about 24h. It is practically proportional to the sidereal time.
+// The excess revolution time is called length of day (LOD). Coordinates of the
+// pole -- x and y are the coordinates of the Celestial Ephemeris Pole (CEP)
+// relative to the IRP, the IERS Reference Pole. The CEP differs from the
+// instantaneous rotation axis by quasi-diurnal terms with amplitudes under 0.01"
+// (see Seidelmann, 1982). The x-axis is in the direction of the ITRF
+// zero-meridian; the y-axis is in the direction 90 degrees West longitude.
+// Celestial pole offsets -- Celestial pole offsets are described in the IAU
+// Precession and Nutation models. The observed differences with respect to the
+// conventional celestial pole position defined by the models are monitored and
+// reported by the IERS. IERS Bulletins A and B provide current information on the
+// Earth's orientation in the IERS Reference System. This includes Universal Time,
+// coordinates of the terrestrial pole, and celestial pole offsets. Bulletin A
+// gives an advanced solution updated weekly; the standard solution is given
+// monthly in Bulletin B. Fields suffixed with ”B” are Bulletin B values. All
+// solutions are continuous within their respective uncertainties. Bulletin A is
+// issued by the IERS Rapid Service/Prediction Centre at the U.S. Naval
+// Observatory, Washington, DC and Bulletin B is issued by the IERS Earth
+// Orientation Centre at the Paris Observatory. IERS Bulletin A reports the latest
+// determinations for polar motion, UT1-UTC, and nutation offsets at daily
+// intervals based on a combination of contributed analysis results using data from
+// Very Long Baseline Interferometry (VLBI), Satellite Laser Ranging (SLR), Global
+// Positioning System (GPS) satellites, and Lunar Laser Ranging (LLR). Predictions
+// for variations a year into the future are also provided. Meteorological
+// predictions of variations in Atmospheric Angular Momentum (AAM) are used to aid
+// in the prediction of near-term UT1-UTC changes. This publication is prepared by
+// the IERS Rapid Service/Prediction Center.
+//
 // TaiUtcService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
@@ -29,6 +65,41 @@ import (
 // the [NewTaiUtcService] method instead.
 type TaiUtcService struct {
 	Options []option.RequestOption
+	// This service provides operations for manipulation and querying of earth
+	// orientation parameter (EOP) data. Earth Orientation Parameters (EOP) are
+	// produced by the IERS (International Earth Rotation and Reference Systems
+	// Service). Earth Orientation Parameters describe the irregularities of the
+	// earth's rotation. Technically, they are the parameters which provide the
+	// rotation of the ITRS (International Terrestrial Reference System) to the ICRS
+	// (International Celestial Reference System) as a function of time. Universal time
+	// -- Universal time (UT1) is the time of the earth clock, which performs one
+	// revolution in about 24h. It is practically proportional to the sidereal time.
+	// The excess revolution time is called length of day (LOD). Coordinates of the
+	// pole -- x and y are the coordinates of the Celestial Ephemeris Pole (CEP)
+	// relative to the IRP, the IERS Reference Pole. The CEP differs from the
+	// instantaneous rotation axis by quasi-diurnal terms with amplitudes under 0.01"
+	// (see Seidelmann, 1982). The x-axis is in the direction of the ITRF
+	// zero-meridian; the y-axis is in the direction 90 degrees West longitude.
+	// Celestial pole offsets -- Celestial pole offsets are described in the IAU
+	// Precession and Nutation models. The observed differences with respect to the
+	// conventional celestial pole position defined by the models are monitored and
+	// reported by the IERS. IERS Bulletins A and B provide current information on the
+	// Earth's orientation in the IERS Reference System. This includes Universal Time,
+	// coordinates of the terrestrial pole, and celestial pole offsets. Bulletin A
+	// gives an advanced solution updated weekly; the standard solution is given
+	// monthly in Bulletin B. Fields suffixed with ”B” are Bulletin B values. All
+	// solutions are continuous within their respective uncertainties. Bulletin A is
+	// issued by the IERS Rapid Service/Prediction Centre at the U.S. Naval
+	// Observatory, Washington, DC and Bulletin B is issued by the IERS Earth
+	// Orientation Centre at the Paris Observatory. IERS Bulletin A reports the latest
+	// determinations for polar motion, UT1-UTC, and nutation offsets at daily
+	// intervals based on a combination of contributed analysis results using data from
+	// Very Long Baseline Interferometry (VLBI), Satellite Laser Ranging (SLR), Global
+	// Positioning System (GPS) satellites, and Lunar Laser Ranging (LLR). Predictions
+	// for variations a year into the future are also provided. Meteorological
+	// predictions of variations in Atmospheric Angular Momentum (AAM) are used to aid
+	// in the prediction of near-term UT1-UTC changes. This publication is prepared by
+	// the IERS Rapid Service/Prediction Center.
 	History TaiUtcHistoryService
 }
 
@@ -180,9 +251,9 @@ func (r *TaiUtcService) Tuple(ctx context.Context, query TaiUtcTupleParams, opts
 // June 30, 1972. The historical list of leap seconds can be found in this table.
 type TaiUtcListResponse struct {
 	// Effective date/time for the leap second adjustment.
-	AdjustmentDate time.Time `json:"adjustmentDate,required" format:"date-time"`
+	AdjustmentDate time.Time `json:"adjustmentDate" api:"required" format:"date-time"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -199,9 +270,9 @@ type TaiUtcListResponse struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode TaiUtcListResponseDataMode `json:"dataMode,required"`
+	DataMode TaiUtcListResponseDataMode `json:"dataMode" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// Time the row was created in the database, auto-populated by the system.
@@ -312,9 +383,9 @@ func (r *TaiUtcQueryhelpResponse) UnmarshalJSON(data []byte) error {
 
 type TaiUtcNewParams struct {
 	// Effective date/time for the leap second adjustment.
-	AdjustmentDate time.Time `json:"adjustmentDate,required" format:"date-time"`
+	AdjustmentDate time.Time `json:"adjustmentDate" api:"required" format:"date-time"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -331,9 +402,9 @@ type TaiUtcNewParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode TaiUtcNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode TaiUtcNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// Multiplication factor of the leap second adjustment.
@@ -386,9 +457,9 @@ const (
 
 type TaiUtcUpdateParams struct {
 	// Effective date/time for the leap second adjustment.
-	AdjustmentDate time.Time `json:"adjustmentDate,required" format:"date-time"`
+	AdjustmentDate time.Time `json:"adjustmentDate" api:"required" format:"date-time"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -405,9 +476,9 @@ type TaiUtcUpdateParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode TaiUtcUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode TaiUtcUpdateParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// Multiplication factor of the leap second adjustment.
@@ -461,7 +532,7 @@ const (
 type TaiUtcListParams struct {
 	// Effective date/time for the leap second adjustment. Must be a unique value
 	// across all TAIUTC datasets. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	AdjustmentDate time.Time        `query:"adjustmentDate,required" format:"date-time" json:"-"`
+	AdjustmentDate time.Time        `query:"adjustmentDate" api:"required" format:"date-time" json:"-"`
 	FirstResult    param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults     param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -478,7 +549,7 @@ func (r TaiUtcListParams) URLQuery() (v url.Values, err error) {
 type TaiUtcCountParams struct {
 	// Effective date/time for the leap second adjustment. Must be a unique value
 	// across all TAIUTC datasets. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	AdjustmentDate time.Time        `query:"adjustmentDate,required" format:"date-time" json:"-"`
+	AdjustmentDate time.Time        `query:"adjustmentDate" api:"required" format:"date-time" json:"-"`
 	FirstResult    param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults     param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -509,12 +580,12 @@ func (r TaiUtcGetParams) URLQuery() (v url.Values, err error) {
 type TaiUtcTupleParams struct {
 	// Effective date/time for the leap second adjustment. Must be a unique value
 	// across all TAIUTC datasets. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	AdjustmentDate time.Time `query:"adjustmentDate,required" format:"date-time" json:"-"`
+	AdjustmentDate time.Time `query:"adjustmentDate" api:"required" format:"date-time" json:"-"`
 	// Comma-separated list of valid field names for this data type to be returned in
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
 	// for a complete list of possible fields.
-	Columns     string           `query:"columns,required" json:"-"`
+	Columns     string           `query:"columns" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

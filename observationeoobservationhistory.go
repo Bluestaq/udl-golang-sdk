@@ -17,6 +17,13 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// This collection of services provides operations for querying and manipulation of
+// electro-optical (EO), radar, radio frequency (RF), Global Navigation Satellite
+// Systems (GNSS), Ionospheric (IONO), Infrared (SWIR), and Space Environment
+// observation data. The J2000 coordinate frame is the preferred frame for all
+// observations, as applicable, but in some cases observations may be in an
+// alternate frame depending on the provider and/or datatype.
+//
 // ObservationEoObservationHistoryService contains methods and other services that
 // help with interacting with the unifieddatalibrary API.
 //
@@ -95,7 +102,7 @@ type ObservationEoObservationHistoryListParams struct {
 	// Ob detection time in ISO 8601 UTC, up to microsecond precision. Consumers should
 	// contact the provider for details on their obTime specifications.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	ObTime time.Time `query:"obTime,required" format:"date-time" json:"-"`
+	ObTime time.Time `query:"obTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -118,7 +125,7 @@ type ObservationEoObservationHistoryAodrParams struct {
 	// Ob detection time in ISO 8601 UTC, up to microsecond precision. Consumers should
 	// contact the provider for details on their obTime specifications.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	ObTime time.Time `query:"obTime,required" format:"date-time" json:"-"`
+	ObTime time.Time `query:"obTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -152,7 +159,7 @@ type ObservationEoObservationHistoryCountParams struct {
 	// Ob detection time in ISO 8601 UTC, up to microsecond precision. Consumers should
 	// contact the provider for details on their obTime specifications.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	ObTime      time.Time        `query:"obTime,required" format:"date-time" json:"-"`
+	ObTime      time.Time        `query:"obTime" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

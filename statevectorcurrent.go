@@ -16,6 +16,15 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// This service provides operations for querying and manipulation of state vectors
+// for On-orbit objects. State vectors are cartesian vectors of position (r) and
+// velocity (v) that together with their time (epoch) (t) uniquely determine the
+// trajectory of the orbiting body in space. J2000 is the preferred coordinate
+// frame for all state vector positions/velocities in UDL, but in some cases data
+// may be in another frame depending on the provider and/or datatype. Please see
+// the 'Discover' tab in the storefront to confirm coordinate frames by data
+// provider.
+//
 // StateVectorCurrentService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -113,7 +122,7 @@ type StateVectorCurrentTupleParams struct {
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
 	// for a complete list of possible fields.
-	Columns     string           `query:"columns,required" json:"-"`
+	Columns     string           `query:"columns" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

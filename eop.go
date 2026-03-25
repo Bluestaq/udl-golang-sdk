@@ -21,6 +21,42 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// This service provides operations for manipulation and querying of earth
+// orientation parameter (EOP) data. Earth Orientation Parameters (EOP) are
+// produced by the IERS (International Earth Rotation and Reference Systems
+// Service). Earth Orientation Parameters describe the irregularities of the
+// earth's rotation. Technically, they are the parameters which provide the
+// rotation of the ITRS (International Terrestrial Reference System) to the ICRS
+// (International Celestial Reference System) as a function of time. Universal time
+// -- Universal time (UT1) is the time of the earth clock, which performs one
+// revolution in about 24h. It is practically proportional to the sidereal time.
+// The excess revolution time is called length of day (LOD). Coordinates of the
+// pole -- x and y are the coordinates of the Celestial Ephemeris Pole (CEP)
+// relative to the IRP, the IERS Reference Pole. The CEP differs from the
+// instantaneous rotation axis by quasi-diurnal terms with amplitudes under 0.01"
+// (see Seidelmann, 1982). The x-axis is in the direction of the ITRF
+// zero-meridian; the y-axis is in the direction 90 degrees West longitude.
+// Celestial pole offsets -- Celestial pole offsets are described in the IAU
+// Precession and Nutation models. The observed differences with respect to the
+// conventional celestial pole position defined by the models are monitored and
+// reported by the IERS. IERS Bulletins A and B provide current information on the
+// Earth's orientation in the IERS Reference System. This includes Universal Time,
+// coordinates of the terrestrial pole, and celestial pole offsets. Bulletin A
+// gives an advanced solution updated weekly; the standard solution is given
+// monthly in Bulletin B. Fields suffixed with ”B” are Bulletin B values. All
+// solutions are continuous within their respective uncertainties. Bulletin A is
+// issued by the IERS Rapid Service/Prediction Centre at the U.S. Naval
+// Observatory, Washington, DC and Bulletin B is issued by the IERS Earth
+// Orientation Centre at the Paris Observatory. IERS Bulletin A reports the latest
+// determinations for polar motion, UT1-UTC, and nutation offsets at daily
+// intervals based on a combination of contributed analysis results using data from
+// Very Long Baseline Interferometry (VLBI), Satellite Laser Ranging (SLR), Global
+// Positioning System (GPS) satellites, and Lunar Laser Ranging (LLR). Predictions
+// for variations a year into the future are also provided. Meteorological
+// predictions of variations in Atmospheric Angular Momentum (AAM) are used to aid
+// in the prediction of near-term UT1-UTC changes. This publication is prepared by
+// the IERS Rapid Service/Prediction Center.
+//
 // EopService contains methods and other services that help with interacting with
 // the unifieddatalibrary API.
 //
@@ -29,6 +65,41 @@ import (
 // the [NewEopService] method instead.
 type EopService struct {
 	Options []option.RequestOption
+	// This service provides operations for manipulation and querying of earth
+	// orientation parameter (EOP) data. Earth Orientation Parameters (EOP) are
+	// produced by the IERS (International Earth Rotation and Reference Systems
+	// Service). Earth Orientation Parameters describe the irregularities of the
+	// earth's rotation. Technically, they are the parameters which provide the
+	// rotation of the ITRS (International Terrestrial Reference System) to the ICRS
+	// (International Celestial Reference System) as a function of time. Universal time
+	// -- Universal time (UT1) is the time of the earth clock, which performs one
+	// revolution in about 24h. It is practically proportional to the sidereal time.
+	// The excess revolution time is called length of day (LOD). Coordinates of the
+	// pole -- x and y are the coordinates of the Celestial Ephemeris Pole (CEP)
+	// relative to the IRP, the IERS Reference Pole. The CEP differs from the
+	// instantaneous rotation axis by quasi-diurnal terms with amplitudes under 0.01"
+	// (see Seidelmann, 1982). The x-axis is in the direction of the ITRF
+	// zero-meridian; the y-axis is in the direction 90 degrees West longitude.
+	// Celestial pole offsets -- Celestial pole offsets are described in the IAU
+	// Precession and Nutation models. The observed differences with respect to the
+	// conventional celestial pole position defined by the models are monitored and
+	// reported by the IERS. IERS Bulletins A and B provide current information on the
+	// Earth's orientation in the IERS Reference System. This includes Universal Time,
+	// coordinates of the terrestrial pole, and celestial pole offsets. Bulletin A
+	// gives an advanced solution updated weekly; the standard solution is given
+	// monthly in Bulletin B. Fields suffixed with ”B” are Bulletin B values. All
+	// solutions are continuous within their respective uncertainties. Bulletin A is
+	// issued by the IERS Rapid Service/Prediction Centre at the U.S. Naval
+	// Observatory, Washington, DC and Bulletin B is issued by the IERS Earth
+	// Orientation Centre at the Paris Observatory. IERS Bulletin A reports the latest
+	// determinations for polar motion, UT1-UTC, and nutation offsets at daily
+	// intervals based on a combination of contributed analysis results using data from
+	// Very Long Baseline Interferometry (VLBI), Satellite Laser Ranging (SLR), Global
+	// Positioning System (GPS) satellites, and Lunar Laser Ranging (LLR). Predictions
+	// for variations a year into the future are also provided. Meteorological
+	// predictions of variations in Atmospheric Angular Momentum (AAM) are used to aid
+	// in the prediction of near-term UT1-UTC changes. This publication is prepared by
+	// the IERS Rapid Service/Prediction Center.
 	History EopHistoryService
 }
 
@@ -197,7 +268,7 @@ func (r *EopService) Queryhelp(ctx context.Context, opts ...option.RequestOption
 // is prepared by the IERS Rapid Service/Prediction Center.
 type EopAbridged struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -214,12 +285,12 @@ type EopAbridged struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode EopAbridgedDataMode `json:"dataMode,required"`
+	DataMode EopAbridgedDataMode `json:"dataMode" api:"required"`
 	// Effective date/time for the EOP values in ISO8601 UTC format. The values could
 	// be current or predicted.
-	EopDate time.Time `json:"eopDate,required" format:"date-time"`
+	EopDate time.Time `json:"eopDate" api:"required" format:"date-time"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// Time the row was created in the database, auto-populated by the system.
@@ -482,7 +553,7 @@ func (r *EopQueryhelpResponse) UnmarshalJSON(data []byte) error {
 
 type EopNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -499,12 +570,12 @@ type EopNewParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode EopNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode EopNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// Effective date/time for the EOP values in ISO8601 UTC format. The values could
 	// be current or predicted.
-	EopDate time.Time `json:"eopDate,required" format:"date-time"`
+	EopDate time.Time `json:"eopDate" api:"required" format:"date-time"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// The Bulletin A offset in obliquity dDe1980 with respect to the IAU 1976 Theory
@@ -698,7 +769,7 @@ func (r EopGetParams) URLQuery() (v url.Values, err error) {
 
 type EopUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -715,12 +786,12 @@ type EopUpdateParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode EopUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode EopUpdateParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// Effective date/time for the EOP values in ISO8601 UTC format. The values could
 	// be current or predicted.
-	EopDate time.Time `json:"eopDate,required" format:"date-time"`
+	EopDate time.Time `json:"eopDate" api:"required" format:"date-time"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// The Bulletin A offset in obliquity dDe1980 with respect to the IAU 1976 Theory
@@ -901,7 +972,7 @@ const (
 type EopListParams struct {
 	// Effective date/time for the EOP values in ISO8601 UTC format. The values could
 	// be current or predicted. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	EopDate     time.Time        `query:"eopDate,required" format:"date-time" json:"-"`
+	EopDate     time.Time        `query:"eopDate" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -918,7 +989,7 @@ func (r EopListParams) URLQuery() (v url.Values, err error) {
 type EopCountParams struct {
 	// Effective date/time for the EOP values in ISO8601 UTC format. The values could
 	// be current or predicted. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	EopDate     time.Time        `query:"eopDate,required" format:"date-time" json:"-"`
+	EopDate     time.Time        `query:"eopDate" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -937,10 +1008,10 @@ type EopListTupleParams struct {
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
 	// for a complete list of possible fields.
-	Columns string `query:"columns,required" json:"-"`
+	Columns string `query:"columns" api:"required" json:"-"`
 	// Effective date/time for the EOP values in ISO8601 UTC format. The values could
 	// be current or predicted. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	EopDate     time.Time        `query:"eopDate,required" format:"date-time" json:"-"`
+	EopDate     time.Time        `query:"eopDate" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

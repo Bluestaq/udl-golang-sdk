@@ -13,9 +13,17 @@ import (
 // automatically. You should not instantiate this service directly, and instead use
 // the [NewReportAndActivityService] method instead.
 type ReportAndActivityService struct {
-	Options   []option.RequestOption
-	Poi       ReportAndActivityPoiService
-	UdlH3geo  ReportAndActivityUdlH3geoService
+	Options []option.RequestOption
+	Poi     ReportAndActivityPoiService
+	// These services provide operations for manipulation and querying of Report and
+	// Activity information. This information includes analytic reports, significant
+	// events, route statistics, EMI Reports, and other georeferenced reports and
+	// activities.
+	UdlH3geo ReportAndActivityUdlH3geoService
+	// These services provide operations for manipulation and querying of Report and
+	// Activity information. This information includes analytic reports, significant
+	// events, route statistics, EMI Reports, and other georeferenced reports and
+	// activities.
 	UdlSigact ReportAndActivityUdlSigactService
 }
 

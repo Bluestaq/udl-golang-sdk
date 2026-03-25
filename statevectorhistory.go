@@ -17,6 +17,15 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// This service provides operations for querying and manipulation of state vectors
+// for On-orbit objects. State vectors are cartesian vectors of position (r) and
+// velocity (v) that together with their time (epoch) (t) uniquely determine the
+// trajectory of the orbiting body in space. J2000 is the preferred coordinate
+// frame for all state vector positions/velocities in UDL, but in some cases data
+// may be in another frame depending on the provider and/or datatype. Please see
+// the 'Discover' tab in the storefront to confirm coordinate frames by data
+// provider.
+//
 // StateVectorHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -94,7 +103,7 @@ func (r *StateVectorHistoryService) Count(ctx context.Context, query StateVector
 type StateVectorHistoryListParams struct {
 	// Time of validity for state vector in ISO 8601 UTC datetime format, with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Epoch time.Time `query:"epoch,required" format:"date-time" json:"-"`
+	Epoch time.Time `query:"epoch" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -116,7 +125,7 @@ func (r StateVectorHistoryListParams) URLQuery() (v url.Values, err error) {
 type StateVectorHistoryAodrParams struct {
 	// Time of validity for state vector in ISO 8601 UTC datetime format, with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Epoch time.Time `query:"epoch,required" format:"date-time" json:"-"`
+	Epoch time.Time `query:"epoch" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -149,7 +158,7 @@ func (r StateVectorHistoryAodrParams) URLQuery() (v url.Values, err error) {
 type StateVectorHistoryCountParams struct {
 	// Time of validity for state vector in ISO 8601 UTC datetime format, with
 	// microsecond precision. (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Epoch       time.Time        `query:"epoch,required" format:"date-time" json:"-"`
+	Epoch       time.Time        `query:"epoch" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

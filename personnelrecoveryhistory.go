@@ -16,6 +16,9 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 )
 
+// These services provide operations for manipulation and querying of Mission Ops
+// information.
+//
 // PersonnelrecoveryHistoryService contains methods and other services that help
 // with interacting with the unifieddatalibrary API.
 //
@@ -80,7 +83,7 @@ func (r *PersonnelrecoveryHistoryService) Count(ctx context.Context, query Perso
 type PersonnelrecoveryHistoryListParams struct {
 	// Time stamp of the original personnel recovery message, in ISO 8601 UTC format.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
-	MsgTime time.Time `query:"msgTime,required" format:"date-time" json:"-"`
+	MsgTime time.Time `query:"msgTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -102,7 +105,7 @@ func (r PersonnelrecoveryHistoryListParams) URLQuery() (v url.Values, err error)
 type PersonnelrecoveryHistoryCountParams struct {
 	// Time stamp of the original personnel recovery message, in ISO 8601 UTC format.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
-	MsgTime     time.Time        `query:"msgTime,required" format:"date-time" json:"-"`
+	MsgTime     time.Time        `query:"msgTime" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

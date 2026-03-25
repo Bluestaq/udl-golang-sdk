@@ -15,6 +15,16 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for the posting and querying of satellite
+// Ephemeris Point data. Each point contains a position and velocity vector and
+// optionally, an acceleration vector and/or covariance matrix at a specified time.
+// ECI J2K is the preferred reference frame for ephemeris and covariance, however,
+// several user specified reference frames are accommodated. The EphemerisSet ID
+// (esId) identifies the 'EphemerisSet' record which contains details of the
+// underlying data and models used in the generation of the ephemeris as well as a
+// collection of ephemeris points. Points must be retrieved by first identifying a
+// desired EphemerisSet and pulling its points by that EphemerisSet 'esId'.
+//
 // EphemerisAttitudeDataHistoryService contains methods and other services that
 // help with interacting with the unifieddatalibrary API.
 //
@@ -73,7 +83,7 @@ func (r *EphemerisAttitudeDataHistoryService) Count(ctx context.Context, query E
 
 type EphemerisAttitudeDataHistoryGetParams struct {
 	// Unique identifier of the parent AttitudeSet associated with this record. (uuid)
-	AsID string `query:"asId,required" json:"-"`
+	AsID string `query:"asId" api:"required" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -94,7 +104,7 @@ func (r EphemerisAttitudeDataHistoryGetParams) URLQuery() (v url.Values, err err
 
 type EphemerisAttitudeDataHistoryAodrParams struct {
 	// Unique identifier of the parent AttitudeSet associated with this record. (uuid)
-	AsID string `query:"asId,required" json:"-"`
+	AsID string `query:"asId" api:"required" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -126,7 +136,7 @@ func (r EphemerisAttitudeDataHistoryAodrParams) URLQuery() (v url.Values, err er
 
 type EphemerisAttitudeDataHistoryCountParams struct {
 	// Unique identifier of the parent AttitudeSet associated with this record. (uuid)
-	AsID        string           `query:"asId,required" json:"-"`
+	AsID        string           `query:"asId" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

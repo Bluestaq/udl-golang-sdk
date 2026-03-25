@@ -22,6 +22,11 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// Service operations for querying and manipulation of miscellaneous supporting
+// data such as countries (which can represent countries, multi-national
+// consortiums, and international organizations), data owners, locations, entities,
+// organizations, etc.
+//
 // LocationService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
@@ -173,7 +178,7 @@ func (r *LocationService) Tuple(ctx context.Context, query LocationTupleParams, 
 // The properties ClassificationMarking, DataMode, Name, Source are required.
 type LocationIngestParam struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -190,11 +195,11 @@ type LocationIngestParam struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode LocationIngestDataMode `json:"dataMode,omitzero,required"`
+	DataMode LocationIngestDataMode `json:"dataMode,omitzero" api:"required"`
 	// Location name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Altitude of the location, in kilometers.
 	Altitude param.Opt[float64] `json:"altitude,omitzero"`
 	// The country code. This value is typically the ISO 3166 Alpha-2 two-character
@@ -362,7 +367,7 @@ type LocationTupleParams struct {
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
 	// for a complete list of possible fields.
-	Columns     string           `query:"columns,required" json:"-"`
+	Columns     string           `query:"columns" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

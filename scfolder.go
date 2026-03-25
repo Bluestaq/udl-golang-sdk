@@ -17,6 +17,11 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide soon-to-be-deprecated CRUD and Search operations for
+// files and folders in the Secure Content Store. This documentation is provided
+// only for backwards compatibility, please refer to SCS V2 for new SCS
+// integrations.
+//
 // ScFolderService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
@@ -73,9 +78,9 @@ func (r *ScFolderService) Update(ctx context.Context, body ScFolderUpdateParams,
 
 type ScFolderNewParams struct {
 	// Path to create folder.
-	ID string `query:"id,required" json:"-"`
+	ID string `query:"id" api:"required" json:"-"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `query:"classificationMarking,required" json:"-"`
+	ClassificationMarking string `query:"classificationMarking" api:"required" json:"-"`
 	// Optional description to include on folder.
 	Description param.Opt[string] `query:"description,omitzero" json:"-"`
 	// Comma separated list of user ids who can read contents of the folder.
@@ -99,7 +104,7 @@ func (r ScFolderNewParams) URLQuery() (v url.Values, err error) {
 
 type ScFolderGetParams struct {
 	// The folder ID
-	ID          string           `query:"id,required" json:"-"`
+	ID          string           `query:"id" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

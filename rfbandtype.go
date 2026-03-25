@@ -21,6 +21,11 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// This collection of services provides operations for querying and manipulation of
+// RF related information to include RFEmitters which could potentially interfere
+// with communications/operations of space related entities, and RFBands commonly
+// used by various space related entities.
+//
 // RfBandTypeService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
@@ -162,9 +167,9 @@ func (r *RfBandTypeService) Tuple(ctx context.Context, query RfBandTypeTuplePara
 // This table contains descriptions for common satellite RF bands.
 type RfBandTypeListResponse struct {
 	// Unique identifier for the RF band (e.g. X, K, Ku, etc).
-	ID string `json:"id,required"`
+	ID string `json:"id" api:"required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -181,11 +186,11 @@ type RfBandTypeListResponse struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfBandTypeListResponseDataMode `json:"dataMode,required"`
+	DataMode RfBandTypeListResponseDataMode `json:"dataMode" api:"required"`
 	// Description of the band and common uses.
-	Description string `json:"description,required"`
+	Description string `json:"description" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -249,9 +254,9 @@ const (
 // This table contains descriptions for common satellite RF bands.
 type RfBandTypeGetResponse struct {
 	// Unique identifier for the RF band (e.g. X, K, Ku, etc).
-	ID string `json:"id,required"`
+	ID string `json:"id" api:"required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -268,11 +273,11 @@ type RfBandTypeGetResponse struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfBandTypeGetResponseDataMode `json:"dataMode,required"`
+	DataMode RfBandTypeGetResponseDataMode `json:"dataMode" api:"required"`
 	// Description of the band and common uses.
-	Description string `json:"description,required"`
+	Description string `json:"description" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -379,9 +384,9 @@ func (r *RfBandTypeQueryhelpResponse) UnmarshalJSON(data []byte) error {
 // This table contains descriptions for common satellite RF bands.
 type RfBandTypeTupleResponse struct {
 	// Unique identifier for the RF band (e.g. X, K, Ku, etc).
-	ID string `json:"id,required"`
+	ID string `json:"id" api:"required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -398,11 +403,11 @@ type RfBandTypeTupleResponse struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfBandTypeTupleResponseDataMode `json:"dataMode,required"`
+	DataMode RfBandTypeTupleResponseDataMode `json:"dataMode" api:"required"`
 	// Description of the band and common uses.
-	Description string `json:"description,required"`
+	Description string `json:"description" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Time the row was created in the database, auto-populated by the system.
 	CreatedAt time.Time `json:"createdAt" format:"date-time"`
 	// Application user who created the row in the database, auto-populated by the
@@ -472,9 +477,9 @@ const (
 
 type RfBandTypeNewParams struct {
 	// Unique identifier for the RF band (e.g. X, K, Ku, etc).
-	ID string `json:"id,required"`
+	ID string `json:"id" api:"required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -491,11 +496,11 @@ type RfBandTypeNewParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfBandTypeNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode RfBandTypeNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// Description of the band and common uses.
-	Description string `json:"description,required"`
+	Description string `json:"description" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Approximate end of the band frequency range, in Ghz.
 	EndFreq param.Opt[float64] `json:"endFreq,omitzero"`
 	// Originating system or organization which produced the data, if different from
@@ -541,9 +546,9 @@ const (
 
 type RfBandTypeUpdateParams struct {
 	// Unique identifier for the RF band (e.g. X, K, Ku, etc).
-	ID string `json:"id,required"`
+	ID string `json:"id" api:"required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -560,11 +565,11 @@ type RfBandTypeUpdateParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode RfBandTypeUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode RfBandTypeUpdateParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// Description of the band and common uses.
-	Description string `json:"description,required"`
+	Description string `json:"description" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Approximate end of the band frequency range, in Ghz.
 	EndFreq param.Opt[float64] `json:"endFreq,omitzero"`
 	// Originating system or organization which produced the data, if different from
@@ -655,7 +660,7 @@ type RfBandTypeTupleParams struct {
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
 	// for a complete list of possible fields.
-	Columns     string           `query:"columns,required" json:"-"`
+	Columns     string           `query:"columns" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

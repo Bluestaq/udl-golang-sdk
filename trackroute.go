@@ -23,6 +23,37 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for manipulating and querying Aircraft Sortie,
+// Aircraft Mission, Item Tracking, Flight Plan, Air Event, Sortie Prior Permission
+// Required (PPR), Diplomatic Clearance, Diplomatic Clearance Country, Airspace
+// Control Order, Air Tasking Order, Navigational Obstruction, Logistics Support,
+// Track Route, Air Load Plan, and Aviation Risk Management data. Aircraft Sortie
+// information contains static and dynamic aircraft assignments, departure and
+// arrival times, and remarks. Aircraft Mission information contains static data
+// for mission planning to include assigned aircraft and crews, cargo pickup and
+// dropoff locations, unique identifiers, and prioritization. Item Tracking
+// information contains data for tracking an item from its origin to destination
+// and how it may be configured during transport. Flight Plan information contains
+// schedule and route details. Air Event provides information concerning various
+// aerial events such as fuel transfer and air drops, as well as the associated
+// aircraft involved. Sortie PPR information contains details on operational access
+// to a runway, taxiway, or airport service. Diplomatic Clearance information
+// contains details on the issuance and coordination of aircraft clearance
+// requests. Diplomatic Clearance Country provides information such as entry/exit
+// points, requirements, and points of contact for countries diplomatic clearances
+// are being created for. Airspace Control Order provides information concerning
+// the allocation, restriction, and deconfliction of airspace. Air Tasking Order
+// information contains details on the coordination of air missions and their
+// tasks, resources, and timelines. Navigational Obstruction provides the
+// locations, characteristics, and boundaries of obstacles and structures that can
+// restrict or interfere with navigation. Logistics Support contains information
+// regarding the transport and maintenance of resources and equipment to sustain
+// air operations. Track Route information defines specific flight paths used by
+// aircraft during the transport of fuel and other resources. Air Load Plan
+// information provides mission actuals concerning the loading and air transport of
+// cargo and passengers. Aviation Risk Management information help aid in mission
+// planning by accounting for factors such as mission complexity and crew fatigue.
+//
 // TrackRouteService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
@@ -31,6 +62,36 @@ import (
 // the [NewTrackRouteService] method instead.
 type TrackRouteService struct {
 	Options []option.RequestOption
+	// These services provide operations for manipulating and querying Aircraft Sortie,
+	// Aircraft Mission, Item Tracking, Flight Plan, Air Event, Sortie Prior Permission
+	// Required (PPR), Diplomatic Clearance, Diplomatic Clearance Country, Airspace
+	// Control Order, Air Tasking Order, Navigational Obstruction, Logistics Support,
+	// Track Route, Air Load Plan, and Aviation Risk Management data. Aircraft Sortie
+	// information contains static and dynamic aircraft assignments, departure and
+	// arrival times, and remarks. Aircraft Mission information contains static data
+	// for mission planning to include assigned aircraft and crews, cargo pickup and
+	// dropoff locations, unique identifiers, and prioritization. Item Tracking
+	// information contains data for tracking an item from its origin to destination
+	// and how it may be configured during transport. Flight Plan information contains
+	// schedule and route details. Air Event provides information concerning various
+	// aerial events such as fuel transfer and air drops, as well as the associated
+	// aircraft involved. Sortie PPR information contains details on operational access
+	// to a runway, taxiway, or airport service. Diplomatic Clearance information
+	// contains details on the issuance and coordination of aircraft clearance
+	// requests. Diplomatic Clearance Country provides information such as entry/exit
+	// points, requirements, and points of contact for countries diplomatic clearances
+	// are being created for. Airspace Control Order provides information concerning
+	// the allocation, restriction, and deconfliction of airspace. Air Tasking Order
+	// information contains details on the coordination of air missions and their
+	// tasks, resources, and timelines. Navigational Obstruction provides the
+	// locations, characteristics, and boundaries of obstacles and structures that can
+	// restrict or interfere with navigation. Logistics Support contains information
+	// regarding the transport and maintenance of resources and equipment to sustain
+	// air operations. Track Route information defines specific flight paths used by
+	// aircraft during the transport of fuel and other resources. Air Load Plan
+	// information provides mission actuals concerning the loading and air transport of
+	// cargo and passengers. Aviation Risk Management information help aid in mission
+	// planning by accounting for factors such as mission complexity and crew fatigue.
 	History TrackRouteHistoryService
 }
 
@@ -299,7 +360,7 @@ func (r *RoutePointsIngestParam) UnmarshalJSON(data []byte) error {
 // required.
 type TrackRouteIngestParam struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -316,14 +377,14 @@ type TrackRouteIngestParam struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode TrackRouteIngestDataMode `json:"dataMode,omitzero,required"`
+	DataMode TrackRouteIngestDataMode `json:"dataMode,omitzero" api:"required"`
 	// The last updated date of the track route in ISO 8601 UTC format with millisecond
 	// precision.
-	LastUpdateDate time.Time `json:"lastUpdateDate,required" format:"date-time"`
+	LastUpdateDate time.Time `json:"lastUpdateDate" api:"required" format:"date-time"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// The track route type represented by this record (ex. AIR REFUELING).
-	Type string `json:"type,required"`
+	Type string `json:"type" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// The APN radar code sent and received by the aircraft for identification.
@@ -430,7 +491,7 @@ const (
 // such as air refueling.
 type TrackRouteListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -447,14 +508,14 @@ type TrackRouteListResponse struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode TrackRouteListResponseDataMode `json:"dataMode,required"`
+	DataMode TrackRouteListResponseDataMode `json:"dataMode" api:"required"`
 	// The last updated date of the track route in ISO 8601 UTC format with millisecond
 	// precision.
-	LastUpdateDate time.Time `json:"lastUpdateDate,required" format:"date-time"`
+	LastUpdateDate time.Time `json:"lastUpdateDate" api:"required" format:"date-time"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// The track route type represented by this record (ex. AIR REFUELING).
-	Type string `json:"type,required"`
+	Type string `json:"type" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// Minimum and maximum altitude bounds for the track.
@@ -815,7 +876,7 @@ func (r *TrackRouteUpdateParams) UnmarshalJSON(data []byte) error {
 type TrackRouteListParams struct {
 	// The last updated date of the track route in ISO 8601 UTC format with millisecond
 	// precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	LastUpdateDate time.Time        `query:"lastUpdateDate,required" format:"date-time" json:"-"`
+	LastUpdateDate time.Time        `query:"lastUpdateDate" api:"required" format:"date-time" json:"-"`
 	FirstResult    param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults     param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -832,7 +893,7 @@ func (r TrackRouteListParams) URLQuery() (v url.Values, err error) {
 type TrackRouteCountParams struct {
 	// The last updated date of the track route in ISO 8601 UTC format with millisecond
 	// precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	LastUpdateDate time.Time        `query:"lastUpdateDate,required" format:"date-time" json:"-"`
+	LastUpdateDate time.Time        `query:"lastUpdateDate" api:"required" format:"date-time" json:"-"`
 	FirstResult    param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults     param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -877,10 +938,10 @@ type TrackRouteTupleParams struct {
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
 	// for a complete list of possible fields.
-	Columns string `query:"columns,required" json:"-"`
+	Columns string `query:"columns" api:"required" json:"-"`
 	// The last updated date of the track route in ISO 8601 UTC format with millisecond
 	// precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	LastUpdateDate time.Time        `query:"lastUpdateDate,required" format:"date-time" json:"-"`
+	LastUpdateDate time.Time        `query:"lastUpdateDate" api:"required" format:"date-time" json:"-"`
 	FirstResult    param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults     param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

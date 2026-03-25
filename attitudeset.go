@@ -21,6 +21,16 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for the posting and querying of satellite
+// Ephemeris Point data. Each point contains a position and velocity vector and
+// optionally, an acceleration vector and/or covariance matrix at a specified time.
+// ECI J2K is the preferred reference frame for ephemeris and covariance, however,
+// several user specified reference frames are accommodated. The EphemerisSet ID
+// (esId) identifies the 'EphemerisSet' record which contains details of the
+// underlying data and models used in the generation of the ephemeris as well as a
+// collection of ephemeris points. Points must be retrieved by first identifying a
+// desired EphemerisSet and pulling its points by that EphemerisSet 'esId'.
+//
 // AttitudeSetService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -29,6 +39,15 @@ import (
 // the [NewAttitudeSetService] method instead.
 type AttitudeSetService struct {
 	Options []option.RequestOption
+	// These services provide operations for the posting and querying of satellite
+	// Ephemeris Point data. Each point contains a position and velocity vector and
+	// optionally, an acceleration vector and/or covariance matrix at a specified time.
+	// ECI J2K is the preferred reference frame for ephemeris and covariance, however,
+	// several user specified reference frames are accommodated. The EphemerisSet ID
+	// (esId) identifies the 'EphemerisSet' record which contains details of the
+	// underlying data and models used in the generation of the ephemeris as well as a
+	// collection of ephemeris points. Points must be retrieved by first identifying a
+	// desired EphemerisSet and pulling its points by that EphemerisSet 'esId'.
 	History AttitudeSetHistoryService
 }
 
@@ -180,7 +199,7 @@ func (r *AttitudeSetService) UnvalidatedPublish(ctx context.Context, body Attitu
 // varying time steps. AttitudeSet is analogous to this flat file.
 type AttitudesetAbridged struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -197,33 +216,33 @@ type AttitudesetAbridged struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode AttitudesetAbridgedDataMode `json:"dataMode,required"`
+	DataMode AttitudesetAbridgedDataMode `json:"dataMode" api:"required"`
 	// The end time of the attitude ephemeris, in ISO 8601 UTC format, with microsecond
 	// precision. If this set is constituted by a single epoch attitude message then
 	// endTime should match the startTime.
-	EndTime time.Time `json:"endTime,required" format:"date-time"`
+	EndTime time.Time `json:"endTime" api:"required" format:"date-time"`
 	// Reference frame 1 of the quaternion or Euler angle transformation utilized in
 	// this attitude parameter or attitude ephemeris. The UDL convention is that
 	// transformations occur FROM frame1 TO frame2. A specific spacecraft frame or
 	// instrument name may be provided with the assumption the consumer understands the
 	// location of these frames (ex. SC BODY, J2000, LVLH, ICRF, INSTRUMENTx,
 	// THRUSTERx, etc.).
-	Frame1 string `json:"frame1,required"`
+	Frame1 string `json:"frame1" api:"required"`
 	// Reference frame 2 of the quaternion or Euler angle transformation utilized in
 	// this attitude parameter or attitude ephemeris. The UDL convention is that
 	// transformations occur FROM frame1 TO frame2. A specific spacecraft frame or
 	// instrument name may be provided with the assumption the consumer understands the
 	// location of these frames (ex. SC BODY, J2000, LVLH, ICRF, INSTRUMENTx,
 	// THRUSTERx, etc.).
-	Frame2 string `json:"frame2,required"`
+	Frame2 string `json:"frame2" api:"required"`
 	// Number of attitude records contained in this set.
-	NumPoints int64 `json:"numPoints,required"`
+	NumPoints int64 `json:"numPoints" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// The epoch or start time of the attitude parameter or attitude ephemeris, in ISO
 	// 8601 UTC format, with microsecond precision. If this set is constituted by a
 	// single attitude parameter message then startTime is the epoch.
-	StartTime time.Time `json:"startTime,required" format:"date-time"`
+	StartTime time.Time `json:"startTime" api:"required" format:"date-time"`
 	// The type of attitude message or messages associated with this set.
 	//
 	// AEM = Attitude Ephemeris Message, specifying the attitude state of a single
@@ -231,7 +250,7 @@ type AttitudesetAbridged struct {
 	//
 	// APM = Attitude Parameters Message, specifying the attitude state of a single
 	// object at a single epoch.
-	Type string `json:"type,required"`
+	Type string `json:"type" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// Time the row was created in the database, auto-populated by the system.
@@ -395,7 +414,7 @@ func (r *AttitudeSetQueryHelpResponse) UnmarshalJSON(data []byte) error {
 
 type AttitudeSetNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -412,33 +431,33 @@ type AttitudeSetNewParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode AttitudeSetNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode AttitudeSetNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// The end time of the attitude ephemeris, in ISO 8601 UTC format, with microsecond
 	// precision. If this set is constituted by a single epoch attitude message then
 	// endTime should match the startTime.
-	EndTime time.Time `json:"endTime,required" format:"date-time"`
+	EndTime time.Time `json:"endTime" api:"required" format:"date-time"`
 	// Reference frame 1 of the quaternion or Euler angle transformation utilized in
 	// this attitude parameter or attitude ephemeris. The UDL convention is that
 	// transformations occur FROM frame1 TO frame2. A specific spacecraft frame or
 	// instrument name may be provided with the assumption the consumer understands the
 	// location of these frames (ex. SC BODY, J2000, LVLH, ICRF, INSTRUMENTx,
 	// THRUSTERx, etc.).
-	Frame1 string `json:"frame1,required"`
+	Frame1 string `json:"frame1" api:"required"`
 	// Reference frame 2 of the quaternion or Euler angle transformation utilized in
 	// this attitude parameter or attitude ephemeris. The UDL convention is that
 	// transformations occur FROM frame1 TO frame2. A specific spacecraft frame or
 	// instrument name may be provided with the assumption the consumer understands the
 	// location of these frames (ex. SC BODY, J2000, LVLH, ICRF, INSTRUMENTx,
 	// THRUSTERx, etc.).
-	Frame2 string `json:"frame2,required"`
+	Frame2 string `json:"frame2" api:"required"`
 	// Number of attitude records contained in this set.
-	NumPoints int64 `json:"numPoints,required"`
+	NumPoints int64 `json:"numPoints" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// The epoch or start time of the attitude parameter or attitude ephemeris, in ISO
 	// 8601 UTC format, with microsecond precision. If this set is constituted by a
 	// single attitude parameter message then startTime is the epoch.
-	StartTime time.Time `json:"startTime,required" format:"date-time"`
+	StartTime time.Time `json:"startTime" api:"required" format:"date-time"`
 	// The type of attitude message or messages associated with this set.
 	//
 	// AEM = Attitude Ephemeris Message, specifying the attitude state of a single
@@ -446,7 +465,7 @@ type AttitudeSetNewParams struct {
 	//
 	// APM = Attitude Parameters Message, specifying the attitude state of a single
 	// object at a single epoch.
-	Type string `json:"type,required"`
+	Type string `json:"type" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// Unique identifier of the parent (positional) Ephemeris Set, if this data is
@@ -552,7 +571,7 @@ const (
 // The properties ClassificationMarking, DataMode, Source, Ts are required.
 type AttitudeSetNewParamsAttitudeList struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -569,12 +588,12 @@ type AttitudeSetNewParamsAttitudeList struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,omitzero,required"`
+	DataMode string `json:"dataMode,omitzero" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Time associated with this attitude record, in ISO 8601 UTC format, with
 	// microsecond precision.
-	Ts time.Time `json:"ts,required" format:"date-time"`
+	Ts time.Time `json:"ts" api:"required" format:"date-time"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// Unique identifier of the parent AttitudeSet associated with this record.
@@ -679,7 +698,7 @@ type AttitudeSetListParams struct {
 	// 8601 UTC format, with microsecond precision. If this set is constituted by a
 	// single attitude parameter message then startTime is the epoch.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
+	StartTime   time.Time        `query:"startTime" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -698,7 +717,7 @@ type AttitudeSetCountParams struct {
 	// 8601 UTC format, with microsecond precision. If this set is constituted by a
 	// single attitude parameter message then startTime is the epoch.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
+	StartTime   time.Time        `query:"startTime" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -717,12 +736,12 @@ type AttitudeSetTupleParams struct {
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
 	// for a complete list of possible fields.
-	Columns string `query:"columns,required" json:"-"`
+	Columns string `query:"columns" api:"required" json:"-"`
 	// The epoch or start time of the attitude parameter or attitude ephemeris, in ISO
 	// 8601 UTC format, with microsecond precision. If this set is constituted by a
 	// single attitude parameter message then startTime is the epoch.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	StartTime   time.Time        `query:"startTime,required" format:"date-time" json:"-"`
+	StartTime   time.Time        `query:"startTime" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -738,7 +757,7 @@ func (r AttitudeSetTupleParams) URLQuery() (v url.Values, err error) {
 
 type AttitudeSetUnvalidatedPublishParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -755,33 +774,33 @@ type AttitudeSetUnvalidatedPublishParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode AttitudeSetUnvalidatedPublishParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode AttitudeSetUnvalidatedPublishParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// The end time of the attitude ephemeris, in ISO 8601 UTC format, with microsecond
 	// precision. If this set is constituted by a single epoch attitude message then
 	// endTime should match the startTime.
-	EndTime time.Time `json:"endTime,required" format:"date-time"`
+	EndTime time.Time `json:"endTime" api:"required" format:"date-time"`
 	// Reference frame 1 of the quaternion or Euler angle transformation utilized in
 	// this attitude parameter or attitude ephemeris. The UDL convention is that
 	// transformations occur FROM frame1 TO frame2. A specific spacecraft frame or
 	// instrument name may be provided with the assumption the consumer understands the
 	// location of these frames (ex. SC BODY, J2000, LVLH, ICRF, INSTRUMENTx,
 	// THRUSTERx, etc.).
-	Frame1 string `json:"frame1,required"`
+	Frame1 string `json:"frame1" api:"required"`
 	// Reference frame 2 of the quaternion or Euler angle transformation utilized in
 	// this attitude parameter or attitude ephemeris. The UDL convention is that
 	// transformations occur FROM frame1 TO frame2. A specific spacecraft frame or
 	// instrument name may be provided with the assumption the consumer understands the
 	// location of these frames (ex. SC BODY, J2000, LVLH, ICRF, INSTRUMENTx,
 	// THRUSTERx, etc.).
-	Frame2 string `json:"frame2,required"`
+	Frame2 string `json:"frame2" api:"required"`
 	// Number of attitude records contained in this set.
-	NumPoints int64 `json:"numPoints,required"`
+	NumPoints int64 `json:"numPoints" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// The epoch or start time of the attitude parameter or attitude ephemeris, in ISO
 	// 8601 UTC format, with microsecond precision. If this set is constituted by a
 	// single attitude parameter message then startTime is the epoch.
-	StartTime time.Time `json:"startTime,required" format:"date-time"`
+	StartTime time.Time `json:"startTime" api:"required" format:"date-time"`
 	// The type of attitude message or messages associated with this set.
 	//
 	// AEM = Attitude Ephemeris Message, specifying the attitude state of a single
@@ -789,7 +808,7 @@ type AttitudeSetUnvalidatedPublishParams struct {
 	//
 	// APM = Attitude Parameters Message, specifying the attitude state of a single
 	// object at a single epoch.
-	Type string `json:"type,required"`
+	Type string `json:"type" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// Unique identifier of the parent (positional) Ephemeris Set, if this data is
@@ -895,7 +914,7 @@ const (
 // The properties ClassificationMarking, DataMode, Source, Ts are required.
 type AttitudeSetUnvalidatedPublishParamsAttitudeList struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -912,12 +931,12 @@ type AttitudeSetUnvalidatedPublishParamsAttitudeList struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,omitzero,required"`
+	DataMode string `json:"dataMode,omitzero" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Time associated with this attitude record, in ISO 8601 UTC format, with
 	// microsecond precision.
-	Ts time.Time `json:"ts,required" format:"date-time"`
+	Ts time.Time `json:"ts" api:"required" format:"date-time"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// Unique identifier of the parent AttitudeSet associated with this record.

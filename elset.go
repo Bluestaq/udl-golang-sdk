@@ -23,6 +23,12 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for querying and manipulation of element set
+// data describing orbital characteristics of on-orbit objects. An element set is a
+// collection of parameters that are used, along with an orbit propagator, to
+// predict the motion of a satellite. The element set, or elset for short, consists
+// of identification data, the classical elements and drag parameters.
+//
 // ElsetService contains methods and other services that help with interacting with
 // the unifieddatalibrary API.
 //
@@ -31,7 +37,17 @@ import (
 // the [NewElsetService] method instead.
 type ElsetService struct {
 	Options []option.RequestOption
+	// These services provide operations for querying and manipulation of element set
+	// data describing orbital characteristics of on-orbit objects. An element set is a
+	// collection of parameters that are used, along with an orbit propagator, to
+	// predict the motion of a satellite. The element set, or elset for short, consists
+	// of identification data, the classical elements and drag parameters.
 	Current ElsetCurrentService
+	// These services provide operations for querying and manipulation of element set
+	// data describing orbital characteristics of on-orbit objects. An element set is a
+	// collection of parameters that are used, along with an orbit propagator, to
+	// predict the motion of a satellite. The element set, or elset for short, consists
+	// of identification data, the classical elements and drag parameters.
 	History ElsetHistoryService
 }
 
@@ -191,7 +207,7 @@ func (r *ElsetService) UnvalidatedPublish(ctx context.Context, body ElsetUnvalid
 // consists of identification data, the classical elements and drag parameters.
 type Elset struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -208,11 +224,11 @@ type Elset struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode ElsetDataMode `json:"dataMode,required"`
+	DataMode ElsetDataMode `json:"dataMode" api:"required"`
 	// Elset epoch time in ISO 8601 UTC format, with microsecond precision.
-	Epoch time.Time `json:"epoch,required" format:"date-time"`
+	Epoch time.Time `json:"epoch" api:"required" format:"date-time"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// AGOM, expressed in m^2/kg, is the value of the (averaged) object Area times the
 	// solar radiation pressure coefficient(Gamma) over the object Mass. Applicable
 	// only with ephemType4.
@@ -471,7 +487,7 @@ const (
 // The properties ClassificationMarking, DataMode, Epoch, Source are required.
 type ElsetIngestParam struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -488,11 +504,11 @@ type ElsetIngestParam struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode ElsetIngestDataMode `json:"dataMode,omitzero,required"`
+	DataMode ElsetIngestDataMode `json:"dataMode,omitzero" api:"required"`
 	// Elset epoch time in ISO 8601 UTC format, with microsecond precision.
-	Epoch time.Time `json:"epoch,required" format:"date-time"`
+	Epoch time.Time `json:"epoch" api:"required" format:"date-time"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// AGOM, expressed in m^2/kg, is the value of the (averaged) object Area times the
 	// solar radiation pressure coefficient(Gamma) over the object Mass. Applicable
 	// only with ephemType4.
@@ -671,7 +687,7 @@ const (
 // consists of identification data, the classical elements and drag parameters.
 type ElsetAbridged struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -688,11 +704,11 @@ type ElsetAbridged struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode ElsetAbridgedDataMode `json:"dataMode,required"`
+	DataMode ElsetAbridgedDataMode `json:"dataMode" api:"required"`
 	// Elset epoch time in ISO 8601 UTC format, with microsecond precision.
-	Epoch time.Time `json:"epoch,required" format:"date-time"`
+	Epoch time.Time `json:"epoch" api:"required" format:"date-time"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// AGOM, expressed in m^2/kg, is the value of the (averaged) object Area times the
 	// solar radiation pressure coefficient(Gamma) over the object Mass. Applicable
 	// only with ephemType4.
@@ -1009,7 +1025,7 @@ func (r ElsetGetParams) URLQuery() (v url.Values, err error) {
 type ElsetListParams struct {
 	// Elset epoch time in ISO 8601 UTC format, with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Epoch       time.Time        `query:"epoch,required" format:"date-time" json:"-"`
+	Epoch       time.Time        `query:"epoch" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1026,7 +1042,7 @@ func (r ElsetListParams) URLQuery() (v url.Values, err error) {
 type ElsetCountParams struct {
 	// Elset epoch time in ISO 8601 UTC format, with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Epoch       time.Time        `query:"epoch,required" format:"date-time" json:"-"`
+	Epoch       time.Time        `query:"epoch" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1065,12 +1081,12 @@ func (r ElsetNewBulkParams) URLQuery() (v url.Values, err error) {
 
 type ElsetNewBulkFromTleParams struct {
 	// Data mode of the passed elsets (REAL, TEST, etc).
-	DataMode string `query:"dataMode,required" json:"-"`
+	DataMode string `query:"dataMode" api:"required" json:"-"`
 	// Boolean indicating if these elsets should be set as the 'current' for their
 	// corresponding on-orbit/satellite numbers.
-	MakeCurrent bool `query:"makeCurrent,required" json:"-"`
+	MakeCurrent bool `query:"makeCurrent" api:"required" json:"-"`
 	// Source of the elset data.
-	Source string `query:"source,required" json:"-"`
+	Source string `query:"source" api:"required" json:"-"`
 	Body   string
 	// Boolean indicating if a shell Onorbit/satellite should be created if the passed
 	// satellite number doesn't exist.
@@ -1110,10 +1126,10 @@ type ElsetTupleParams struct {
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
 	// for a complete list of possible fields.
-	Columns string `query:"columns,required" json:"-"`
+	Columns string `query:"columns" api:"required" json:"-"`
 	// Elset epoch time in ISO 8601 UTC format, with microsecond precision.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Epoch       time.Time        `query:"epoch,required" format:"date-time" json:"-"`
+	Epoch       time.Time        `query:"epoch" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

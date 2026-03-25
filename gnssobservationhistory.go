@@ -15,6 +15,13 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 )
 
+// This collection of services provides operations for querying and manipulation of
+// electro-optical (EO), radar, radio frequency (RF), Global Navigation Satellite
+// Systems (GNSS), Ionospheric (IONO), Infrared (SWIR), and Space Environment
+// observation data. The J2000 coordinate frame is the preferred frame for all
+// observations, as applicable, but in some cases observations may be in an
+// alternate frame depending on the provider and/or datatype.
+//
 // GnssObservationHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -51,7 +58,7 @@ type GnssObservationHistoryCountParams struct {
 	// Observation Time, in ISO8601 UTC format with microsecond precision. This
 	// timestamp applies to all observations within the set.
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
-	Ts          time.Time        `query:"ts,required" format:"date-time" json:"-"`
+	Ts          time.Time        `query:"ts" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

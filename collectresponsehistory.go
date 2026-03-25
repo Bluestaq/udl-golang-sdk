@@ -17,6 +17,8 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for posting and querying Sensor Tasking data.
+//
 // CollectResponseHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -94,7 +96,7 @@ func (r *CollectResponseHistoryService) Count(ctx context.Context, query Collect
 type CollectResponseHistoryListParams struct {
 	// Time the row was created in the database, auto-populated by the system.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
-	CreatedAt time.Time `query:"createdAt,required" format:"date" json:"-"`
+	CreatedAt time.Time `query:"createdAt" api:"required" format:"date" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -116,7 +118,7 @@ func (r CollectResponseHistoryListParams) URLQuery() (v url.Values, err error) {
 type CollectResponseHistoryAodrParams struct {
 	// Time the row was created in the database, auto-populated by the system.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
-	CreatedAt time.Time `query:"createdAt,required" format:"date" json:"-"`
+	CreatedAt time.Time `query:"createdAt" api:"required" format:"date" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -149,7 +151,7 @@ func (r CollectResponseHistoryAodrParams) URLQuery() (v url.Values, err error) {
 type CollectResponseHistoryCountParams struct {
 	// Time the row was created in the database, auto-populated by the system.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
-	CreatedAt   time.Time        `query:"createdAt,required" format:"date" json:"-"`
+	CreatedAt   time.Time        `query:"createdAt" api:"required" format:"date" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

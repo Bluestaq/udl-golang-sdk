@@ -17,6 +17,37 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/option"
 )
 
+// These services provide operations for manipulating and querying Aircraft Sortie,
+// Aircraft Mission, Item Tracking, Flight Plan, Air Event, Sortie Prior Permission
+// Required (PPR), Diplomatic Clearance, Diplomatic Clearance Country, Airspace
+// Control Order, Air Tasking Order, Navigational Obstruction, Logistics Support,
+// Track Route, Air Load Plan, and Aviation Risk Management data. Aircraft Sortie
+// information contains static and dynamic aircraft assignments, departure and
+// arrival times, and remarks. Aircraft Mission information contains static data
+// for mission planning to include assigned aircraft and crews, cargo pickup and
+// dropoff locations, unique identifiers, and prioritization. Item Tracking
+// information contains data for tracking an item from its origin to destination
+// and how it may be configured during transport. Flight Plan information contains
+// schedule and route details. Air Event provides information concerning various
+// aerial events such as fuel transfer and air drops, as well as the associated
+// aircraft involved. Sortie PPR information contains details on operational access
+// to a runway, taxiway, or airport service. Diplomatic Clearance information
+// contains details on the issuance and coordination of aircraft clearance
+// requests. Diplomatic Clearance Country provides information such as entry/exit
+// points, requirements, and points of contact for countries diplomatic clearances
+// are being created for. Airspace Control Order provides information concerning
+// the allocation, restriction, and deconfliction of airspace. Air Tasking Order
+// information contains details on the coordination of air missions and their
+// tasks, resources, and timelines. Navigational Obstruction provides the
+// locations, characteristics, and boundaries of obstacles and structures that can
+// restrict or interfere with navigation. Logistics Support contains information
+// regarding the transport and maintenance of resources and equipment to sustain
+// air operations. Track Route information defines specific flight paths used by
+// aircraft during the transport of fuel and other resources. Air Load Plan
+// information provides mission actuals concerning the loading and air transport of
+// cargo and passengers. Aviation Risk Management information help aid in mission
+// planning by accounting for factors such as mission complexity and crew fatigue.
+//
 // AirOperationCrewpaperService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -60,7 +91,7 @@ func (r *AirOperationCrewpaperService) UploadPdf(ctx context.Context, fileConten
 
 type AirOperationCrewpaperUnpublishParams struct {
 	// Comma-separated list of AircraftSortie IDs where Crew Papers are unpublished.
-	IDs string `query:"ids,required" json:"-"`
+	IDs string `query:"ids" api:"required" json:"-"`
 	paramObj
 }
 
@@ -75,15 +106,15 @@ func (r AirOperationCrewpaperUnpublishParams) URLQuery() (v url.Values, err erro
 
 type AirOperationCrewpaperUploadPdfParams struct {
 	// Comma-separated list of AircraftSortie IDs the Crew Papers are being added to.
-	AircraftSortieIDs string `query:"aircraftSortieIds,required" json:"-"`
+	AircraftSortieIDs string `query:"aircraftSortieIds" api:"required" json:"-"`
 	// classificationMarking of the Crew Papers.
-	ClassificationMarking string `query:"classificationMarking,required" json:"-"`
+	ClassificationMarking string `query:"classificationMarking" api:"required" json:"-"`
 	// The status of the supporting document.
 	//
 	// Any of "PUBLISHED", "DELETED", "UPDATED", "READ".
-	PaperStatus AirOperationCrewpaperUploadPdfParamsPaperStatus `query:"paperStatus,omitzero,required" json:"-"`
+	PaperStatus AirOperationCrewpaperUploadPdfParamsPaperStatus `query:"paperStatus,omitzero" api:"required" json:"-"`
 	// The version number of the crew paper.
-	PapersVersion string `query:"papersVersion,required" json:"-"`
+	PapersVersion string `query:"papersVersion" api:"required" json:"-"`
 	paramObj
 }
 

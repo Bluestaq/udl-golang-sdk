@@ -55,7 +55,7 @@ func TestAirOperationCrewpaperUploadPdf(t *testing.T) {
 	)
 	err := client.AirOperations.Crewpapers.UploadPdf(
 		context.TODO(),
-		io.Reader(bytes.NewBuffer([]byte("some file contents"))),
+		io.Reader(bytes.NewBuffer([]byte("Example data"))),
 		unifieddatalibrary.AirOperationCrewpaperUploadPdfParams{
 			AircraftSortieIDs:     "aircraftSortieIds",
 			ClassificationMarking: "x",

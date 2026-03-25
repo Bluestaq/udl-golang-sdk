@@ -17,6 +17,9 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for manipulation and querying of Mission Ops
+// information.
+//
 // EvacTupleService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
@@ -78,9 +81,9 @@ type EvacTupleListParams struct {
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
 	// for a complete list of possible fields.
-	Columns string `query:"columns,required" json:"-"`
+	Columns string `query:"columns" api:"required" json:"-"`
 	// The request time, in ISO 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	ReqTime     time.Time        `query:"reqTime,required" format:"date-time" json:"-"`
+	ReqTime     time.Time        `query:"reqTime" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

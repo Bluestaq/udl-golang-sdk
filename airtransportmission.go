@@ -21,6 +21,37 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for manipulating and querying Aircraft Sortie,
+// Aircraft Mission, Item Tracking, Flight Plan, Air Event, Sortie Prior Permission
+// Required (PPR), Diplomatic Clearance, Diplomatic Clearance Country, Airspace
+// Control Order, Air Tasking Order, Navigational Obstruction, Logistics Support,
+// Track Route, Air Load Plan, and Aviation Risk Management data. Aircraft Sortie
+// information contains static and dynamic aircraft assignments, departure and
+// arrival times, and remarks. Aircraft Mission information contains static data
+// for mission planning to include assigned aircraft and crews, cargo pickup and
+// dropoff locations, unique identifiers, and prioritization. Item Tracking
+// information contains data for tracking an item from its origin to destination
+// and how it may be configured during transport. Flight Plan information contains
+// schedule and route details. Air Event provides information concerning various
+// aerial events such as fuel transfer and air drops, as well as the associated
+// aircraft involved. Sortie PPR information contains details on operational access
+// to a runway, taxiway, or airport service. Diplomatic Clearance information
+// contains details on the issuance and coordination of aircraft clearance
+// requests. Diplomatic Clearance Country provides information such as entry/exit
+// points, requirements, and points of contact for countries diplomatic clearances
+// are being created for. Airspace Control Order provides information concerning
+// the allocation, restriction, and deconfliction of airspace. Air Tasking Order
+// information contains details on the coordination of air missions and their
+// tasks, resources, and timelines. Navigational Obstruction provides the
+// locations, characteristics, and boundaries of obstacles and structures that can
+// restrict or interfere with navigation. Logistics Support contains information
+// regarding the transport and maintenance of resources and equipment to sustain
+// air operations. Track Route information defines specific flight paths used by
+// aircraft during the transport of fuel and other resources. Air Load Plan
+// information provides mission actuals concerning the loading and air transport of
+// cargo and passengers. Aviation Risk Management information help aid in mission
+// planning by accounting for factors such as mission complexity and crew fatigue.
+//
 // AirTransportMissionService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -29,6 +60,36 @@ import (
 // the [NewAirTransportMissionService] method instead.
 type AirTransportMissionService struct {
 	Options []option.RequestOption
+	// These services provide operations for manipulating and querying Aircraft Sortie,
+	// Aircraft Mission, Item Tracking, Flight Plan, Air Event, Sortie Prior Permission
+	// Required (PPR), Diplomatic Clearance, Diplomatic Clearance Country, Airspace
+	// Control Order, Air Tasking Order, Navigational Obstruction, Logistics Support,
+	// Track Route, Air Load Plan, and Aviation Risk Management data. Aircraft Sortie
+	// information contains static and dynamic aircraft assignments, departure and
+	// arrival times, and remarks. Aircraft Mission information contains static data
+	// for mission planning to include assigned aircraft and crews, cargo pickup and
+	// dropoff locations, unique identifiers, and prioritization. Item Tracking
+	// information contains data for tracking an item from its origin to destination
+	// and how it may be configured during transport. Flight Plan information contains
+	// schedule and route details. Air Event provides information concerning various
+	// aerial events such as fuel transfer and air drops, as well as the associated
+	// aircraft involved. Sortie PPR information contains details on operational access
+	// to a runway, taxiway, or airport service. Diplomatic Clearance information
+	// contains details on the issuance and coordination of aircraft clearance
+	// requests. Diplomatic Clearance Country provides information such as entry/exit
+	// points, requirements, and points of contact for countries diplomatic clearances
+	// are being created for. Airspace Control Order provides information concerning
+	// the allocation, restriction, and deconfliction of airspace. Air Tasking Order
+	// information contains details on the coordination of air missions and their
+	// tasks, resources, and timelines. Navigational Obstruction provides the
+	// locations, characteristics, and boundaries of obstacles and structures that can
+	// restrict or interfere with navigation. Logistics Support contains information
+	// regarding the transport and maintenance of resources and equipment to sustain
+	// air operations. Track Route information defines specific flight paths used by
+	// aircraft during the transport of fuel and other resources. Air Load Plan
+	// information provides mission actuals concerning the loading and air transport of
+	// cargo and passengers. Aviation Risk Management information help aid in mission
+	// planning by accounting for factors such as mission complexity and crew fatigue.
 	History AirTransportMissionHistoryService
 }
 
@@ -153,7 +214,7 @@ func (r *AirTransportMissionService) Tuple(ctx context.Context, query AirTranspo
 // characteristics.
 type AirTransportMissionAbridged struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -170,9 +231,9 @@ type AirTransportMissionAbridged struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode AirTransportMissionAbridgedDataMode `json:"dataMode,required"`
+	DataMode AirTransportMissionAbridgedDataMode `json:"dataMode" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// The Air Battle Plan used to coordinate and integrate air assets for this
@@ -588,7 +649,7 @@ func (r *AirTransportMissionQueryhelpResponse) UnmarshalJSON(data []byte) error 
 
 type AirTransportMissionNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -605,9 +666,9 @@ type AirTransportMissionNewParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode AirTransportMissionNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode AirTransportMissionNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// The Air Battle Plan used to coordinate and integrate air assets for this
@@ -893,7 +954,7 @@ func (r AirTransportMissionGetParams) URLQuery() (v url.Values, err error) {
 
 type AirTransportMissionUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -910,9 +971,9 @@ type AirTransportMissionUpdateParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode AirTransportMissionUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode AirTransportMissionUpdateParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// The Air Battle Plan used to coordinate and integrate air assets for this
@@ -1184,7 +1245,7 @@ func (r *AirTransportMissionUpdateParamsRequirement) UnmarshalJSON(data []byte) 
 type AirTransportMissionListParams struct {
 	// Time the row was created in the database, auto-populated by the system.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
-	CreatedAt   time.Time        `query:"createdAt,required" format:"date" json:"-"`
+	CreatedAt   time.Time        `query:"createdAt" api:"required" format:"date" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1202,7 +1263,7 @@ func (r AirTransportMissionListParams) URLQuery() (v url.Values, err error) {
 type AirTransportMissionCountParams struct {
 	// Time the row was created in the database, auto-populated by the system.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
-	CreatedAt   time.Time        `query:"createdAt,required" format:"date" json:"-"`
+	CreatedAt   time.Time        `query:"createdAt" api:"required" format:"date" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -1222,10 +1283,10 @@ type AirTransportMissionTupleParams struct {
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
 	// for a complete list of possible fields.
-	Columns string `query:"columns,required" json:"-"`
+	Columns string `query:"columns" api:"required" json:"-"`
 	// Time the row was created in the database, auto-populated by the system.
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
-	CreatedAt   time.Time        `query:"createdAt,required" format:"date" json:"-"`
+	CreatedAt   time.Time        `query:"createdAt" api:"required" format:"date" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

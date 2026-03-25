@@ -17,6 +17,9 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for manipulation and querying of Mission Ops
+// information.
+//
 // EvacHistoryService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -80,7 +83,7 @@ func (r *EvacHistoryService) Count(ctx context.Context, query EvacHistoryCountPa
 
 type EvacHistoryListParams struct {
 	// The request time, in ISO 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	ReqTime time.Time `query:"reqTime,required" format:"date-time" json:"-"`
+	ReqTime time.Time `query:"reqTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
 	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
 	// query fields that can be selected.
@@ -100,7 +103,7 @@ func (r EvacHistoryListParams) URLQuery() (v url.Values, err error) {
 
 type EvacHistoryCountParams struct {
 	// The request time, in ISO 8601 UTC format. (YYYY-MM-DDTHH:MM:SS.sssZ)
-	ReqTime     time.Time        `query:"reqTime,required" format:"date-time" json:"-"`
+	ReqTime     time.Time        `query:"reqTime" api:"required" format:"date-time" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

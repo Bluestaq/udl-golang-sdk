@@ -23,6 +23,37 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for manipulating and querying Aircraft Sortie,
+// Aircraft Mission, Item Tracking, Flight Plan, Air Event, Sortie Prior Permission
+// Required (PPR), Diplomatic Clearance, Diplomatic Clearance Country, Airspace
+// Control Order, Air Tasking Order, Navigational Obstruction, Logistics Support,
+// Track Route, Air Load Plan, and Aviation Risk Management data. Aircraft Sortie
+// information contains static and dynamic aircraft assignments, departure and
+// arrival times, and remarks. Aircraft Mission information contains static data
+// for mission planning to include assigned aircraft and crews, cargo pickup and
+// dropoff locations, unique identifiers, and prioritization. Item Tracking
+// information contains data for tracking an item from its origin to destination
+// and how it may be configured during transport. Flight Plan information contains
+// schedule and route details. Air Event provides information concerning various
+// aerial events such as fuel transfer and air drops, as well as the associated
+// aircraft involved. Sortie PPR information contains details on operational access
+// to a runway, taxiway, or airport service. Diplomatic Clearance information
+// contains details on the issuance and coordination of aircraft clearance
+// requests. Diplomatic Clearance Country provides information such as entry/exit
+// points, requirements, and points of contact for countries diplomatic clearances
+// are being created for. Airspace Control Order provides information concerning
+// the allocation, restriction, and deconfliction of airspace. Air Tasking Order
+// information contains details on the coordination of air missions and their
+// tasks, resources, and timelines. Navigational Obstruction provides the
+// locations, characteristics, and boundaries of obstacles and structures that can
+// restrict or interfere with navigation. Logistics Support contains information
+// regarding the transport and maintenance of resources and equipment to sustain
+// air operations. Track Route information defines specific flight paths used by
+// aircraft during the transport of fuel and other resources. Air Load Plan
+// information provides mission actuals concerning the loading and air transport of
+// cargo and passengers. Aviation Risk Management information help aid in mission
+// planning by accounting for factors such as mission complexity and crew fatigue.
+//
 // SortiePprService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
@@ -31,6 +62,36 @@ import (
 // the [NewSortiePprService] method instead.
 type SortiePprService struct {
 	Options []option.RequestOption
+	// These services provide operations for manipulating and querying Aircraft Sortie,
+	// Aircraft Mission, Item Tracking, Flight Plan, Air Event, Sortie Prior Permission
+	// Required (PPR), Diplomatic Clearance, Diplomatic Clearance Country, Airspace
+	// Control Order, Air Tasking Order, Navigational Obstruction, Logistics Support,
+	// Track Route, Air Load Plan, and Aviation Risk Management data. Aircraft Sortie
+	// information contains static and dynamic aircraft assignments, departure and
+	// arrival times, and remarks. Aircraft Mission information contains static data
+	// for mission planning to include assigned aircraft and crews, cargo pickup and
+	// dropoff locations, unique identifiers, and prioritization. Item Tracking
+	// information contains data for tracking an item from its origin to destination
+	// and how it may be configured during transport. Flight Plan information contains
+	// schedule and route details. Air Event provides information concerning various
+	// aerial events such as fuel transfer and air drops, as well as the associated
+	// aircraft involved. Sortie PPR information contains details on operational access
+	// to a runway, taxiway, or airport service. Diplomatic Clearance information
+	// contains details on the issuance and coordination of aircraft clearance
+	// requests. Diplomatic Clearance Country provides information such as entry/exit
+	// points, requirements, and points of contact for countries diplomatic clearances
+	// are being created for. Airspace Control Order provides information concerning
+	// the allocation, restriction, and deconfliction of airspace. Air Tasking Order
+	// information contains details on the coordination of air missions and their
+	// tasks, resources, and timelines. Navigational Obstruction provides the
+	// locations, characteristics, and boundaries of obstacles and structures that can
+	// restrict or interfere with navigation. Logistics Support contains information
+	// regarding the transport and maintenance of resources and equipment to sustain
+	// air operations. Track Route information defines specific flight paths used by
+	// aircraft during the transport of fuel and other resources. Air Load Plan
+	// information provides mission actuals concerning the loading and air transport of
+	// cargo and passengers. Aviation Risk Management information help aid in mission
+	// planning by accounting for factors such as mission complexity and crew fatigue.
 	History SortiePprHistoryService
 }
 
@@ -193,7 +254,7 @@ func (r *SortiePprService) UnvalidatedPublish(ctx context.Context, body SortiePp
 // full operational access to a runway, taxiway, or airport service.
 type SortiePprListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -210,12 +271,12 @@ type SortiePprListResponse struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SortiePprListResponseDataMode `json:"dataMode,required"`
+	DataMode SortiePprListResponseDataMode `json:"dataMode" api:"required"`
 	// Unique identifier of the Aircraft Sortie associated with this prior permission
 	// required (PPR) record.
-	IDSortie string `json:"idSortie,required"`
+	IDSortie string `json:"idSortie" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// Time the row was created in the database, auto-populated by the system.
@@ -359,7 +420,7 @@ func (r *SortiePprQueryhelpResponse) UnmarshalJSON(data []byte) error {
 
 type SortiePprNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -376,12 +437,12 @@ type SortiePprNewParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SortiePprNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SortiePprNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// Unique identifier of the Aircraft Sortie associated with this prior permission
 	// required (PPR) record.
-	IDSortie string `json:"idSortie,required"`
+	IDSortie string `json:"idSortie" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// Time the prior permission required (PPR) valid window ends, in ISO 8601 UTC
@@ -457,7 +518,7 @@ const (
 
 type SortiePprUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -474,12 +535,12 @@ type SortiePprUpdateParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode SortiePprUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode SortiePprUpdateParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// Unique identifier of the Aircraft Sortie associated with this prior permission
 	// required (PPR) record.
-	IDSortie string `json:"idSortie,required"`
+	IDSortie string `json:"idSortie" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// Time the prior permission required (PPR) valid window ends, in ISO 8601 UTC
@@ -556,7 +617,7 @@ const (
 type SortiePprListParams struct {
 	// Unique identifier of the Aircraft Sortie associated with this prior permission
 	// required (PPR) record.
-	IDSortie    string           `query:"idSortie,required" json:"-"`
+	IDSortie    string           `query:"idSortie" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -573,7 +634,7 @@ func (r SortiePprListParams) URLQuery() (v url.Values, err error) {
 type SortiePprCountParams struct {
 	// Unique identifier of the Aircraft Sortie associated with this prior permission
 	// required (PPR) record.
-	IDSortie    string           `query:"idSortie,required" json:"-"`
+	IDSortie    string           `query:"idSortie" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -605,7 +666,7 @@ func (r *SortiePprNewBulkParams) UnmarshalJSON(data []byte) error {
 // The properties ClassificationMarking, DataMode, IDSortie, Source are required.
 type SortiePprNewBulkParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -622,12 +683,12 @@ type SortiePprNewBulkParamsBody struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,omitzero,required"`
+	DataMode string `json:"dataMode,omitzero" api:"required"`
 	// Unique identifier of the Aircraft Sortie associated with this prior permission
 	// required (PPR) record.
-	IDSortie string `json:"idSortie,required"`
+	IDSortie string `json:"idSortie" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// Time the prior permission required (PPR) valid window ends, in ISO 8601 UTC
@@ -697,10 +758,10 @@ type SortiePprTupleParams struct {
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
 	// for a complete list of possible fields.
-	Columns string `query:"columns,required" json:"-"`
+	Columns string `query:"columns" api:"required" json:"-"`
 	// Unique identifier of the Aircraft Sortie associated with this prior permission
 	// required (PPR) record.
-	IDSortie    string           `query:"idSortie,required" json:"-"`
+	IDSortie    string           `query:"idSortie" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -732,7 +793,7 @@ func (r *SortiePprUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
 // The properties ClassificationMarking, DataMode, IDSortie, Source are required.
 type SortiePprUnvalidatedPublishParamsBody struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -749,12 +810,12 @@ type SortiePprUnvalidatedPublishParamsBody struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,omitzero,required"`
+	DataMode string `json:"dataMode,omitzero" api:"required"`
 	// Unique identifier of the Aircraft Sortie associated with this prior permission
 	// required (PPR) record.
-	IDSortie string `json:"idSortie,required"`
+	IDSortie string `json:"idSortie" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// Time the prior permission required (PPR) valid window ends, in ISO 8601 UTC

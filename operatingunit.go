@@ -21,6 +21,11 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// Service operations for querying and manipulation of miscellaneous supporting
+// data such as countries (which can represent countries, multi-national
+// consortiums, and international organizations), data owners, locations, entities,
+// organizations, etc.
+//
 // OperatingunitService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
@@ -169,7 +174,7 @@ func (r *OperatingunitService) Tuple(ctx context.Context, query OperatingunitTup
 // belong to an organization.
 type OperatingunitListResponse struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -186,11 +191,11 @@ type OperatingunitListResponse struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode OperatingunitListResponseDataMode `json:"dataMode,required"`
+	DataMode OperatingunitListResponseDataMode `json:"dataMode" api:"required"`
 	// Name of the operating unit.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Air Defense District (ADD) or Air Defense Area (ADA) in which the geographic
 	// coordinates reside.
 	AirDefArea string `json:"airDefArea"`
@@ -614,7 +619,7 @@ func (r *OperatingunitQueryhelpResponse) UnmarshalJSON(data []byte) error {
 
 type OperatingunitNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -631,11 +636,11 @@ type OperatingunitNewParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode OperatingunitNewParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode OperatingunitNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// Name of the operating unit.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Air Defense District (ADD) or Air Defense Area (ADA) in which the geographic
 	// coordinates reside.
 	AirDefArea param.Opt[string] `json:"airDefArea,omitzero"`
@@ -956,7 +961,7 @@ const (
 
 type OperatingunitUpdateParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -973,11 +978,11 @@ type OperatingunitUpdateParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode OperatingunitUpdateParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode OperatingunitUpdateParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// Name of the operating unit.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Air Defense District (ADD) or Air Defense Area (ADA) in which the geographic
 	// coordinates reside.
 	AirDefArea param.Opt[string] `json:"airDefArea,omitzero"`
@@ -1345,7 +1350,7 @@ type OperatingunitTupleParams struct {
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
 	// for a complete list of possible fields.
-	Columns     string           `query:"columns,required" json:"-"`
+	Columns     string           `query:"columns" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj

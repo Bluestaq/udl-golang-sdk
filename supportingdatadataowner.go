@@ -17,6 +17,11 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// Service operations for querying and manipulation of miscellaneous supporting
+// data such as countries (which can represent countries, multi-national
+// consortiums, and international organizations), data owners, locations, entities,
+// organizations, etc.
+//
 // SupportingDataDataownerService contains methods and other services that help
 // with interacting with the unifieddatalibrary API.
 //
@@ -83,15 +88,15 @@ func (r *SupportingDataDataownerService) GetProviderMetadata(ctx context.Context
 // Information pertaining to UDL data owners.
 type DataownerAbridged struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Description of this data owner.
-	Description string `json:"description,required"`
+	Description string `json:"description" api:"required"`
 	// The name of the data owner.
-	DoName string `json:"doName,required"`
+	DoName string `json:"doName" api:"required"`
 	// Unique identifier of the contact for this data owner.
-	IDContact string `json:"idContact,required"`
+	IDContact string `json:"idContact" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Boolean indicating if the data owner is coming soon or not yet available.
 	ComingSoon bool `json:"comingSoon"`
 	// Optional control required to access this data type from this owner.

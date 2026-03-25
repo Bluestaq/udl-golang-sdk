@@ -21,6 +21,16 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/shared"
 )
 
+// These services provide operations for the posting and querying of satellite
+// Ephemeris Point data. Each point contains a position and velocity vector and
+// optionally, an acceleration vector and/or covariance matrix at a specified time.
+// ECI J2K is the preferred reference frame for ephemeris and covariance, however,
+// several user specified reference frames are accommodated. The EphemerisSet ID
+// (esId) identifies the 'EphemerisSet' record which contains details of the
+// underlying data and models used in the generation of the ephemeris as well as a
+// collection of ephemeris points. Points must be retrieved by first identifying a
+// desired EphemerisSet and pulling its points by that EphemerisSet 'esId'.
+//
 // EphemerisService contains methods and other services that help with interacting
 // with the unifieddatalibrary API.
 //
@@ -28,9 +38,27 @@ import (
 // automatically. You should not instantiate this service directly, and instead use
 // the [NewEphemerisService] method instead.
 type EphemerisService struct {
-	Options      []option.RequestOption
+	Options []option.RequestOption
+	// These services provide operations for the posting and querying of satellite
+	// Ephemeris Point data. Each point contains a position and velocity vector and
+	// optionally, an acceleration vector and/or covariance matrix at a specified time.
+	// ECI J2K is the preferred reference frame for ephemeris and covariance, however,
+	// several user specified reference frames are accommodated. The EphemerisSet ID
+	// (esId) identifies the 'EphemerisSet' record which contains details of the
+	// underlying data and models used in the generation of the ephemeris as well as a
+	// collection of ephemeris points. Points must be retrieved by first identifying a
+	// desired EphemerisSet and pulling its points by that EphemerisSet 'esId'.
 	AttitudeData EphemerisAttitudeDataService
-	History      EphemerisHistoryService
+	// These services provide operations for the posting and querying of satellite
+	// Ephemeris Point data. Each point contains a position and velocity vector and
+	// optionally, an acceleration vector and/or covariance matrix at a specified time.
+	// ECI J2K is the preferred reference frame for ephemeris and covariance, however,
+	// several user specified reference frames are accommodated. The EphemerisSet ID
+	// (esId) identifies the 'EphemerisSet' record which contains details of the
+	// underlying data and models used in the generation of the ephemeris as well as a
+	// collection of ephemeris points. Points must be retrieved by first identifying a
+	// desired EphemerisSet and pulling its points by that EphemerisSet 'esId'.
+	History EphemerisHistoryService
 }
 
 // NewEphemerisService generates a new service that applies the given options to
@@ -160,7 +188,7 @@ func (r *EphemerisService) UnvalidatedPublish(ctx context.Context, body Ephemeri
 // specifying the parent EphemerisSet ID (esId).
 type EphemerisAbridged struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -177,29 +205,29 @@ type EphemerisAbridged struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode EphemerisAbridgedDataMode `json:"dataMode,required"`
+	DataMode EphemerisAbridgedDataMode `json:"dataMode" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Time associated with the Ephemeris Point, in ISO8601 UTC format.
-	Ts time.Time `json:"ts,required" format:"date-time"`
+	Ts time.Time `json:"ts" api:"required" format:"date-time"`
 	// Cartesian X position of target, in km, in the specified EphemerisSet
 	// referenceFrame. If referenceFrame is null then J2K should be assumed.
-	Xpos float64 `json:"xpos,required"`
+	Xpos float64 `json:"xpos" api:"required"`
 	// Cartesian X velocity of target, in km/sec, in the specified EphemerisSet
 	// referenceFrame. If referenceFrame is null then J2K should be assumed.
-	Xvel float64 `json:"xvel,required"`
+	Xvel float64 `json:"xvel" api:"required"`
 	// Cartesian Y position of target, in km, in the specified EphemerisSet
 	// referenceFrame. If referenceFrame is null then J2K should be assumed.
-	Ypos float64 `json:"ypos,required"`
+	Ypos float64 `json:"ypos" api:"required"`
 	// Cartesian Y velocity of target, in km/sec, in the specified EphemerisSet
 	// referenceFrame. If referenceFrame is null then J2K should be assumed.
-	Yvel float64 `json:"yvel,required"`
+	Yvel float64 `json:"yvel" api:"required"`
 	// Cartesian Z position of target, in km, in the specified EphemerisSet
 	// referenceFrame. If referenceFrame is null then J2K should be assumed.
-	Zpos float64 `json:"zpos,required"`
+	Zpos float64 `json:"zpos" api:"required"`
 	// Cartesian Z velocity of target, in km/sec, in the specified EphemerisSet
 	// referenceFrame. If referenceFrame is null then J2K should be assumed.
-	Zvel float64 `json:"zvel,required"`
+	Zvel float64 `json:"zvel" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// Covariance matrix, in kilometer and second based units, in the specified
@@ -356,7 +384,7 @@ type EphemerisListParams struct {
 	// Unique identifier of the parent EphemerisSet, auto-generated by the system. The
 	// esId (ephemerisSet id) is used to identify all individual ephemeris states
 	// associated with a parent ephemerisSet. (uuid)
-	EsID        string           `query:"esId,required" json:"-"`
+	EsID        string           `query:"esId" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -374,7 +402,7 @@ type EphemerisCountParams struct {
 	// Unique identifier of the parent EphemerisSet, auto-generated by the system. The
 	// esId (ephemerisSet id) is used to identify all individual ephemeris states
 	// associated with a parent ephemerisSet. (uuid)
-	EsID        string           `query:"esId,required" json:"-"`
+	EsID        string           `query:"esId" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -390,25 +418,25 @@ func (r EphemerisCountParams) URLQuery() (v url.Values, err error) {
 
 type EphemerisFileUploadParams struct {
 	// Ephemeris category.
-	Category string `query:"category,required" json:"-"`
+	Category string `query:"category" api:"required" json:"-"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	Classification string `query:"classification,required" json:"-"`
+	Classification string `query:"classification" api:"required" json:"-"`
 	// Indicator of whether the data is REAL, TEST, SIMULATED, or EXERCISE data.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode EphemerisFileUploadParamsDataMode `query:"dataMode,omitzero,required" json:"-"`
+	DataMode EphemerisFileUploadParamsDataMode `query:"dataMode,omitzero" api:"required" json:"-"`
 	// Ephemeris format as documented in Flight Safety Handbook.
 	//
 	// Any of "ModITC", "GOO", "NASA", "OEM", "OASYS".
-	EphemFormatType EphemerisFileUploadParamsEphemFormatType `query:"ephemFormatType,omitzero,required" json:"-"`
+	EphemFormatType EphemerisFileUploadParamsEphemFormatType `query:"ephemFormatType,omitzero" api:"required" json:"-"`
 	// Boolean indicating whether maneuver(s) are incorporated into the ephemeris.
-	HasMnvr bool `query:"hasMnvr,required" json:"-"`
+	HasMnvr bool `query:"hasMnvr" api:"required" json:"-"`
 	// Satellite/Catalog number of the target on-orbit object.
-	SatNo int64 `query:"satNo,required" json:"-"`
+	SatNo int64 `query:"satNo" api:"required" json:"-"`
 	// Source of the Ephemeris data.
-	Source string `query:"source,required" json:"-"`
+	Source string `query:"source" api:"required" json:"-"`
 	// Ephemeris type.
-	Type string `query:"type,required" json:"-"`
+	Type string `query:"type" api:"required" json:"-"`
 	Body string
 	// Optional origin of the Ephemeris.
 	Origin param.Opt[string] `query:"origin,omitzero" json:"-"`
@@ -463,11 +491,11 @@ type EphemerisTupleParams struct {
 	// the response. Only the fields specified will be returned as well as the
 	// classification marking of the data, if applicable. See the ‘queryhelp’ operation
 	// for a complete list of possible fields.
-	Columns string `query:"columns,required" json:"-"`
+	Columns string `query:"columns" api:"required" json:"-"`
 	// Unique identifier of the parent EphemerisSet, auto-generated by the system. The
 	// esId (ephemerisSet id) is used to identify all individual ephemeris states
 	// associated with a parent ephemerisSet. (uuid)
-	EsID        string           `query:"esId,required" json:"-"`
+	EsID        string           `query:"esId" api:"required" json:"-"`
 	FirstResult param.Opt[int64] `query:"firstResult,omitzero" json:"-"`
 	MaxResults  param.Opt[int64] `query:"maxResults,omitzero" json:"-"`
 	paramObj
@@ -483,9 +511,9 @@ func (r EphemerisTupleParams) URLQuery() (v url.Values, err error) {
 
 type EphemerisUnvalidatedPublishParams struct {
 	// The source category of the ephemeris (e.g. OWNER_OPERATOR, ANALYST, EXTERNAL).
-	Category string `json:"category,required"`
+	Category string `json:"category" api:"required"`
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -502,18 +530,18 @@ type EphemerisUnvalidatedPublishParams struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode EphemerisUnvalidatedPublishParamsDataMode `json:"dataMode,omitzero,required"`
+	DataMode EphemerisUnvalidatedPublishParamsDataMode `json:"dataMode,omitzero" api:"required"`
 	// Number of points contained in the ephemeris.
-	NumPoints int64 `json:"numPoints,required"`
+	NumPoints int64 `json:"numPoints" api:"required"`
 	// End time/last time point of the ephemeris, in ISO 8601 UTC format.
-	PointEndTime time.Time `json:"pointEndTime,required" format:"date-time"`
+	PointEndTime time.Time `json:"pointEndTime" api:"required" format:"date-time"`
 	// Start time/first time point of the ephemeris, in ISO 8601 UTC format.
-	PointStartTime time.Time `json:"pointStartTime,required" format:"date-time"`
+	PointStartTime time.Time `json:"pointStartTime" api:"required" format:"date-time"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// The type/purpose of the ephemeris (e.g., CALIBRATION, LAUNCH, MNVR_PLAN,
 	// ROUTINE, SCREENING).
-	Type string `json:"type,required"`
+	Type string `json:"type" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// First derivative of ballistic coefficient (m^2/kg-s).
@@ -666,7 +694,7 @@ const (
 // Yvel, Zpos, Zvel are required.
 type EphemerisUnvalidatedPublishParamsEphemerisList struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
-	ClassificationMarking string `json:"classificationMarking,required"`
+	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
 	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
@@ -683,29 +711,29 @@ type EphemerisUnvalidatedPublishParamsEphemerisList struct {
 	// datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
-	DataMode string `json:"dataMode,omitzero,required"`
+	DataMode string `json:"dataMode,omitzero" api:"required"`
 	// Source of the data.
-	Source string `json:"source,required"`
+	Source string `json:"source" api:"required"`
 	// Time associated with the Ephemeris Point, in ISO8601 UTC format.
-	Ts time.Time `json:"ts,required" format:"date-time"`
+	Ts time.Time `json:"ts" api:"required" format:"date-time"`
 	// Cartesian X position of target, in km, in the specified EphemerisSet
 	// referenceFrame. If referenceFrame is null then J2K should be assumed.
-	Xpos float64 `json:"xpos,required"`
+	Xpos float64 `json:"xpos" api:"required"`
 	// Cartesian X velocity of target, in km/sec, in the specified EphemerisSet
 	// referenceFrame. If referenceFrame is null then J2K should be assumed.
-	Xvel float64 `json:"xvel,required"`
+	Xvel float64 `json:"xvel" api:"required"`
 	// Cartesian Y position of target, in km, in the specified EphemerisSet
 	// referenceFrame. If referenceFrame is null then J2K should be assumed.
-	Ypos float64 `json:"ypos,required"`
+	Ypos float64 `json:"ypos" api:"required"`
 	// Cartesian Y velocity of target, in km/sec, in the specified EphemerisSet
 	// referenceFrame. If referenceFrame is null then J2K should be assumed.
-	Yvel float64 `json:"yvel,required"`
+	Yvel float64 `json:"yvel" api:"required"`
 	// Cartesian Z position of target, in km, in the specified EphemerisSet
 	// referenceFrame. If referenceFrame is null then J2K should be assumed.
-	Zpos float64 `json:"zpos,required"`
+	Zpos float64 `json:"zpos" api:"required"`
 	// Cartesian Z velocity of target, in km/sec, in the specified EphemerisSet
 	// referenceFrame. If referenceFrame is null then J2K should be assumed.
-	Zvel float64 `json:"zvel,required"`
+	Zvel float64 `json:"zvel" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
 	// Unique identifier of the parent EphemerisSet, auto-generated by the system. The

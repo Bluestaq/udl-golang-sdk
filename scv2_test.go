@@ -164,7 +164,7 @@ func TestScV2FileUploadWithOptionalParams(t *testing.T) {
 	)
 	err := client.Scs.V2.FileUpload(
 		context.TODO(),
-		io.Reader(bytes.NewBuffer([]byte("some file contents"))),
+		io.Reader(bytes.NewBuffer([]byte("Example data"))),
 		unifieddatalibrary.ScV2FileUploadParams{
 			ClassificationMarking: "classificationMarking",
 			Path:                  "path",

@@ -15,6 +15,11 @@ import (
 	"github.com/Bluestaq/udl-golang-sdk/packages/param"
 )
 
+// Service operations for querying and manipulation of miscellaneous supporting
+// data such as countries (which can represent countries, multi-national
+// consortiums, and international organizations), data owners, locations, entities,
+// organizations, etc.
+//
 // SupportingDataDataTypeService contains methods and other services that help with
 // interacting with the unifieddatalibrary API.
 //
