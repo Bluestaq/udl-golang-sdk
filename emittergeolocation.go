@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -1319,7 +1318,7 @@ func (r EmitterGeolocationNewBulkParams) MarshalJSON() (data []byte, err error) 
 	return shimjson.Marshal(r.Body)
 }
 func (r *EmitterGeolocationNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of Emitter geolocation data for a signal of interest.
@@ -1545,7 +1544,7 @@ func (r EmitterGeolocationUnvalidatedPublishParams) MarshalJSON() (data []byte, 
 	return shimjson.Marshal(r.Body)
 }
 func (r *EmitterGeolocationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of Emitter geolocation data for a signal of interest.

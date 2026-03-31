@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -2630,7 +2629,7 @@ func (r StarCatalogNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *StarCatalogNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // The star catalog provides the position, proper motion, parallax, and photometric
@@ -3046,7 +3045,7 @@ func (r StarCatalogUnvalidatedPublishParams) MarshalJSON() (data []byte, err err
 	return shimjson.Marshal(r.Body)
 }
 func (r *StarCatalogUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // The star catalog provides the position, proper motion, parallax, and photometric

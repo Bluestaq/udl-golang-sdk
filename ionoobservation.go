@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 	"net/url"
 	"slices"
@@ -2776,7 +2775,7 @@ func (r IonoObservationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *IonoObservationNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // These services provide operations for posting and querying ionospheric
@@ -3725,7 +3724,7 @@ func (r IonoObservationUnvalidatedPublishParams) MarshalJSON() (data []byte, err
 	return shimjson.Marshal(r.Body)
 }
 func (r *IonoObservationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // These services provide operations for posting and querying ionospheric

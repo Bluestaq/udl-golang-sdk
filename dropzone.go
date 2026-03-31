@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -1105,7 +1104,7 @@ func (r DropzoneNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *DropzoneNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Properties and characteristics of a Drop Zone, including name, location, shape,
@@ -1256,7 +1255,7 @@ func (r DropzoneUnvalidatedPublishParams) MarshalJSON() (data []byte, err error)
 	return shimjson.Marshal(r.Body)
 }
 func (r *DropzoneUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Properties and characteristics of a Drop Zone, including name, location, shape,

@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -1004,7 +1003,7 @@ func (r OnorbitassessmentNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *OnorbitassessmentNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Spacecraft characterization results from analysis of MASINT data. Supports
@@ -1195,7 +1194,7 @@ func (r OnorbitassessmentUnvalidatedPublishParams) MarshalJSON() (data []byte, e
 	return shimjson.Marshal(r.Body)
 }
 func (r *OnorbitassessmentUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Spacecraft characterization results from analysis of MASINT data. Supports

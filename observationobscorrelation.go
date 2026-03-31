@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -1153,7 +1152,7 @@ func (r ObservationObscorrelationNewBulkParams) MarshalJSON() (data []byte, err 
 	return shimjson.Marshal(r.Body)
 }
 func (r *ObservationObscorrelationNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation supporting post-pass correlation of UCTs and re-correlation
@@ -1330,7 +1329,7 @@ func (r ObservationObscorrelationUnvalidatedPublishParams) MarshalJSON() (data [
 	return shimjson.Marshal(r.Body)
 }
 func (r *ObservationObscorrelationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation supporting post-pass correlation of UCTs and re-correlation

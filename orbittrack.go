@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 	"net/url"
 	"slices"
@@ -988,7 +987,7 @@ func (r OrbittrackNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *OrbittrackNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Keplerian orbital elements describing an orbit for a particular on-orbit
@@ -1293,7 +1292,7 @@ func (r OrbittrackUnvalidatedPublishParams) MarshalJSON() (data []byte, err erro
 	return shimjson.Marshal(r.Body)
 }
 func (r *OrbittrackUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Keplerian orbital elements describing an orbit for a particular on-orbit

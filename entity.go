@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -733,7 +732,7 @@ func (r EntityNewParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.EntityIngest)
 }
 func (r *EntityNewParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.EntityIngest)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type EntityGetParams struct {
@@ -762,7 +761,7 @@ func (r EntityUpdateParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.EntityIngest)
 }
 func (r *EntityUpdateParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.EntityIngest)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type EntityListParams struct {

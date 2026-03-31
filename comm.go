@@ -455,7 +455,7 @@ func (r CommUpdateParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.CommAbridged)
 }
 func (r *CommUpdateParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.CommAbridged)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type CommListParams struct {

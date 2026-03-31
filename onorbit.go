@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -1225,7 +1224,7 @@ func (r OnorbitNewParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.OnorbitIngest)
 }
 func (r *OnorbitNewParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.OnorbitIngest)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type OnorbitUpdateParams struct {
@@ -1238,7 +1237,7 @@ func (r OnorbitUpdateParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.OnorbitIngest)
 }
 func (r *OnorbitUpdateParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.OnorbitIngest)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type OnorbitListParams struct {

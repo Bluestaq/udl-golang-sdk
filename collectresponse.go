@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -596,7 +595,7 @@ func (r CollectResponseNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *CollectResponseNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collect response supports the response and status of individual collect
@@ -755,7 +754,7 @@ func (r CollectResponseUnvalidatedPublishParams) MarshalJSON() (data []byte, err
 	return shimjson.Marshal(r.Body)
 }
 func (r *CollectResponseUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Collect response supports the response and status of individual collect

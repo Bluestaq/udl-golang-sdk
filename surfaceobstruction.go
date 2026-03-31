@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -836,7 +835,7 @@ func (r SurfaceObstructionUnvalidatedPublishParams) MarshalJSON() (data []byte, 
 	return shimjson.Marshal(r.Body)
 }
 func (r *SurfaceObstructionUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // The properties ClassificationMarking, DataMode, IDSurface, Source are required.

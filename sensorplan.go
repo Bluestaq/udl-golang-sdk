@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -5260,7 +5259,7 @@ func (r SensorPlanUnvalidatedPublishParams) MarshalJSON() (data []byte, err erro
 	return shimjson.Marshal(r.Body)
 }
 func (r *SensorPlanUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // A Plan is used to aggregate two or more of the same type of record to a parent

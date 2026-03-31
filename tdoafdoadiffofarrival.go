@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 	"net/url"
 	"slices"
@@ -850,7 +849,7 @@ func (r TdoaFdoaDiffofarrivalNewBulkParams) MarshalJSON() (data []byte, err erro
 	return shimjson.Marshal(r.Body)
 }
 func (r *TdoaFdoaDiffofarrivalNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of Signal time and frequency difference of arrival

@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 	"net/url"
 	"slices"
@@ -1598,7 +1597,7 @@ func (r MissileTrackNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *MissileTrackNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // These services provide operations for querying of all available missile track
@@ -2155,7 +2154,7 @@ func (r MissileTrackUnvalidatedPublishParams) MarshalJSON() (data []byte, err er
 	return shimjson.Marshal(r.Body)
 }
 func (r *MissileTrackUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // These services provide operations for querying of all available missile track

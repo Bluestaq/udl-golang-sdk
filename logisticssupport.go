@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -2613,7 +2612,7 @@ func (r LogisticsSupportNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *LogisticsSupportNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Comprehensive logistical details concerning the planned support of maintenance
@@ -3089,7 +3088,7 @@ func (r LogisticsSupportUnvalidatedPublishParams) MarshalJSON() (data []byte, er
 	return shimjson.Marshal(r.Body)
 }
 func (r *LogisticsSupportUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Comprehensive logistical details concerning the planned support of maintenance

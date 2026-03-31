@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 	"slices"
 	"time"
@@ -63,7 +62,7 @@ func (r ObservationSwirUnvalidatedPublishParams) MarshalJSON() (data []byte, err
 	return shimjson.Marshal(r.Body)
 }
 func (r *ObservationSwirUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Data representing observed short wave infrared (SWIR) measurements.

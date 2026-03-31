@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -2544,7 +2543,7 @@ func (r DiplomaticClearanceCountryNewBulkParams) MarshalJSON() (data []byte, err
 	return shimjson.Marshal(r.Body)
 }
 func (r *DiplomaticClearanceCountryNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Diplomatic Clearance Country provides information such as entry/exit points,
@@ -2927,7 +2926,7 @@ func (r DiplomaticClearanceCountryUnvalidatedPublishParams) MarshalJSON() (data 
 	return shimjson.Marshal(r.Body)
 }
 func (r *DiplomaticClearanceCountryUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Diplomatic Clearance Country provides information such as entry/exit points,

@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -94,7 +93,7 @@ func (r ReportAndActivityUdlSigactUnvalidatedPublishParams) MarshalJSON() (data 
 	return shimjson.Marshal(r.Body)
 }
 func (r *ReportAndActivityUdlSigactUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Provides information on the dates, actors, locations, fatalities, and types of

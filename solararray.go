@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -297,7 +296,7 @@ func (r SolarArrayNewParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.SolarArrayIngest)
 }
 func (r *SolarArrayNewParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.SolarArrayIngest)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type SolarArrayUpdateParams struct {
@@ -312,7 +311,7 @@ func (r SolarArrayUpdateParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.SolarArrayIngest)
 }
 func (r *SolarArrayUpdateParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.SolarArrayIngest)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type SolarArrayListParams struct {

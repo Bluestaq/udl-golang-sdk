@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -1455,7 +1454,7 @@ func (r ObservationEoObservationNewBulkParams) MarshalJSON() (data []byte, err e
 	return shimjson.Marshal(r.Body)
 }
 func (r *ObservationEoObservationNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // URLQuery serializes [ObservationEoObservationNewBulkParams]'s query parameters
@@ -2168,7 +2167,7 @@ func (r ObservationEoObservationUnvalidatedPublishParams) MarshalJSON() (data []
 	return shimjson.Marshal(r.Body)
 }
 func (r *ObservationEoObservationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of observation data for electro-optical based sensor
