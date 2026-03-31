@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -785,7 +784,7 @@ func (r EffectRequestNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *EffectRequestNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // A request for various effects on a target.
@@ -913,7 +912,7 @@ func (r EffectRequestUnvalidatedPublishParams) MarshalJSON() (data []byte, err e
 	return shimjson.Marshal(r.Body)
 }
 func (r *EffectRequestUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // A request for various effects on a target.

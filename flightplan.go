@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -2333,7 +2332,7 @@ func (r FlightplanUnvalidatedPublishParams) MarshalJSON() (data []byte, err erro
 	return shimjson.Marshal(r.Body)
 }
 func (r *FlightplanUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Flight Plan contains data specifying the details of an intended flight including

@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 	"net/url"
 	"slices"
@@ -821,7 +820,7 @@ func (r ObservationMonoradarNewBulkParams) MarshalJSON() (data []byte, err error
 	return shimjson.Marshal(r.Body)
 }
 func (r *ObservationMonoradarNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // A monoradar record contains the raw, and in some cases, processed target reports
@@ -1057,7 +1056,7 @@ func (r ObservationMonoradarUnvalidatedPublishParams) MarshalJSON() (data []byte
 	return shimjson.Marshal(r.Body)
 }
 func (r *ObservationMonoradarUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // A monoradar record contains the raw, and in some cases, processed target reports

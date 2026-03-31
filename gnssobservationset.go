@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 	"net/url"
 	"slices"
@@ -507,7 +506,7 @@ func (r GnssObservationsetNewBulkParams) MarshalJSON() (data []byte, err error) 
 	return shimjson.Marshal(r.Body)
 }
 func (r *GnssObservationsetNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Set of GNSSObservation data.
@@ -749,7 +748,7 @@ func (r GnssObservationsetUnvalidatedPublishParams) MarshalJSON() (data []byte, 
 	return shimjson.Marshal(r.Body)
 }
 func (r *GnssObservationsetUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Set of GNSSObservation data.

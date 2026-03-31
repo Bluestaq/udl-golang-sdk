@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 	"net/url"
 	"slices"
@@ -518,7 +517,7 @@ func (r SpaceEnvObservationNewBulkParams) MarshalJSON() (data []byte, err error)
 	return shimjson.Marshal(r.Body)
 }
 func (r *SpaceEnvObservationNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // SpaceEnvObservation data.
@@ -757,7 +756,7 @@ func (r SpaceEnvObservationUnvalidatedPublishParams) MarshalJSON() (data []byte,
 	return shimjson.Marshal(r.Body)
 }
 func (r *SpaceEnvObservationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // SpaceEnvObservation data.

@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 	"slices"
 	"time"
@@ -348,7 +347,7 @@ func (r AirOperationDiplomaticClearanceUnvalidatedPublishParams) MarshalJSON() (
 	return shimjson.Marshal(r.Body)
 }
 func (r *AirOperationDiplomaticClearanceUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // A diplomatic clearance is an authorization for an aircraft to traverse or land

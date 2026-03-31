@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -330,7 +329,7 @@ func (r SubstatusNewParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.SubStatusIngest)
 }
 func (r *SubstatusNewParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.SubStatusIngest)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type SubstatusUpdateParams struct {
@@ -343,7 +342,7 @@ func (r SubstatusUpdateParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.SubStatusIngest)
 }
 func (r *SubstatusUpdateParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.SubStatusIngest)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type SubstatusListParams struct {

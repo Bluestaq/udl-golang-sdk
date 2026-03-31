@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 	"net/url"
 	"slices"
@@ -388,7 +387,7 @@ func (r OnboardnavigationNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *OnboardnavigationNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // These services provide spacecraft positional data derived from on-board
@@ -521,7 +520,7 @@ func (r OnboardnavigationUnvalidatedPublishParams) MarshalJSON() (data []byte, e
 	return shimjson.Marshal(r.Body)
 }
 func (r *OnboardnavigationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // These services provide spacecraft positional data derived from on-board

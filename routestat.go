@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -1079,7 +1078,7 @@ func (r RouteStatNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *RouteStatNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // General statistics applying to navigation routes utilized by vessels, aircraft,
@@ -1226,7 +1225,7 @@ func (r RouteStatUnvalidatedPublishParams) MarshalJSON() (data []byte, err error
 	return shimjson.Marshal(r.Body)
 }
 func (r *RouteStatUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // General statistics applying to navigation routes utilized by vessels, aircraft,

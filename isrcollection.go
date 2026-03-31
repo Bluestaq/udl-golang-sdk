@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 	"net/url"
 	"slices"
@@ -1527,7 +1526,7 @@ func (r IsrCollectionNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *IsrCollectionNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // ISR Collection data.
@@ -2092,7 +2091,7 @@ func (r IsrCollectionUnvalidatedPublishParams) MarshalJSON() (data []byte, err e
 	return shimjson.Marshal(r.Body)
 }
 func (r *IsrCollectionUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // ISR Collection data.

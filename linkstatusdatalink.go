@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 	"net/url"
 	"slices"
@@ -1877,7 +1876,7 @@ func (r LinkStatusDatalinkNewParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.DatalinkIngest)
 }
 func (r *LinkStatusDatalinkNewParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.DatalinkIngest)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type LinkStatusDatalinkListParams struct {
@@ -1948,5 +1947,5 @@ func (r LinkStatusDatalinkUnvalidatedPublishParams) MarshalJSON() (data []byte, 
 	return shimjson.Marshal(r.Body)
 }
 func (r *LinkStatusDatalinkUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }

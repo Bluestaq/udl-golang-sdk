@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -303,7 +302,7 @@ func (r LocationNewParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.LocationIngest)
 }
 func (r *LocationNewParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.LocationIngest)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type LocationUpdateParams struct {
@@ -317,7 +316,7 @@ func (r LocationUpdateParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.LocationIngest)
 }
 func (r *LocationUpdateParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.LocationIngest)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type LocationListParams struct {

@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 	"net/url"
 	"slices"
@@ -836,7 +835,7 @@ func (r AirOperationAircraftSortyNewBulkParams) MarshalJSON() (data []byte, err 
 	return shimjson.Marshal(r.Body)
 }
 func (r *AirOperationAircraftSortyNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Information related to the planning, load, status, and deployment or dispatch of
@@ -1065,7 +1064,7 @@ func (r AirOperationAircraftSortyUnvalidatedPublishParams) MarshalJSON() (data [
 	return shimjson.Marshal(r.Body)
 }
 func (r *AirOperationAircraftSortyUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Information related to the planning, load, status, and deployment or dispatch of

@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -1846,7 +1845,7 @@ func (r NavigationalObstructionNewBulkParams) MarshalJSON() (data []byte, err er
 	return shimjson.Marshal(r.Body)
 }
 func (r *NavigationalObstructionNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Beta Version Navigational Obstruction: Information describing navigational

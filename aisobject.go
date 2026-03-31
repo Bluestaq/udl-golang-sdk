@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 	"slices"
 	"time"
@@ -72,7 +71,7 @@ func (r AIsObjectUnvalidatedPublishParams) MarshalJSON() (data []byte, err error
 	return shimjson.Marshal(r.Body)
 }
 func (r *AIsObjectUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Self-reported information obtained from Automatic Identification System (AIS)

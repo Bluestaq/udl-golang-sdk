@@ -5,7 +5,6 @@ package unifieddatalibrary
 import (
 	"bytes"
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -2810,7 +2809,7 @@ func (r ConjunctionNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *ConjunctionNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Stores the results of a particular Conjunction Assessment (CA) run.
@@ -3989,7 +3988,7 @@ func (r ConjunctionUnvalidatedPublishParams) MarshalJSON() (data []byte, err err
 	return shimjson.Marshal(r.Body)
 }
 func (r *ConjunctionUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Stores the results of a particular Conjunction Assessment (CA) run.

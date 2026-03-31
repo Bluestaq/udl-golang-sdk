@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -982,7 +981,7 @@ func (r AirOperationAirTaskingOrderUnvalidatedPublishParams) MarshalJSON() (data
 	return shimjson.Marshal(r.Body)
 }
 func (r *AirOperationAirTaskingOrderUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Beta Version Air Tasking Order: The ATO is used to task air missions, assign

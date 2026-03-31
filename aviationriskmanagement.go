@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -1581,7 +1580,7 @@ func (r AviationRiskManagementNewBulkParams) MarshalJSON() (data []byte, err err
 	return shimjson.Marshal(r.Body)
 }
 func (r *AviationRiskManagementNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Aviation Risk Management is used to identify, evaluate, and track risks when
@@ -1810,7 +1809,7 @@ func (r AviationRiskManagementUnvalidatedPublishParams) MarshalJSON() (data []by
 	return shimjson.Marshal(r.Body)
 }
 func (r *AviationRiskManagementUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Aviation Risk Management is used to identify, evaluate, and track risks when

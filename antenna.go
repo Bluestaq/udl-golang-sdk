@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -297,7 +296,7 @@ func (r AntennaNewParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.AntennaIngest)
 }
 func (r *AntennaNewParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.AntennaIngest)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type AntennaGetParams struct {
@@ -326,7 +325,7 @@ func (r AntennaUpdateParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.AntennaIngest)
 }
 func (r *AntennaUpdateParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.AntennaIngest)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type AntennaListParams struct {

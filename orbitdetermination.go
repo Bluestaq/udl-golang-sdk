@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -4201,7 +4200,7 @@ func (r OrbitdeterminationNewBulkParams) MarshalJSON() (data []byte, err error) 
 	return shimjson.Marshal(r.Body)
 }
 func (r *OrbitdeterminationNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of orbit determination algorithm results describing General
@@ -5064,7 +5063,7 @@ func (r OrbitdeterminationUnvalidatedPublishParams) MarshalJSON() (data []byte, 
 	return shimjson.Marshal(r.Body)
 }
 func (r *OrbitdeterminationUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of orbit determination algorithm results describing General

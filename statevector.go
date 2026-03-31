@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -1305,7 +1304,7 @@ func (r StateVectorNewParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.StateVectorIngest)
 }
 func (r *StateVectorNewParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.StateVectorIngest)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type StateVectorListParams struct {
@@ -1351,7 +1350,7 @@ func (r StateVectorNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *StateVectorNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type StateVectorGetParams struct {
@@ -1399,5 +1398,5 @@ func (r StateVectorUnvalidatedPublishParams) MarshalJSON() (data []byte, err err
 	return shimjson.Marshal(r.Body)
 }
 func (r *StateVectorUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }

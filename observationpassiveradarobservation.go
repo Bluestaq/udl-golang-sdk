@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -1411,7 +1410,7 @@ func (r ObservationPassiveRadarObservationNewBulkParams) MarshalJSON() (data []b
 	return shimjson.Marshal(r.Body)
 }
 func (r *ObservationPassiveRadarObservationNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of observation data for passive radar based sensor
@@ -1634,7 +1633,7 @@ func (r ObservationPassiveRadarObservationFileNewParams) MarshalJSON() (data []b
 	return shimjson.Marshal(r.Body)
 }
 func (r *ObservationPassiveRadarObservationFileNewParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of observation data for passive radar based sensor

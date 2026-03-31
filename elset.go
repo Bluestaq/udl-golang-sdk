@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -1005,7 +1004,7 @@ func (r ElsetNewParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.ElsetIngest)
 }
 func (r *ElsetNewParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.ElsetIngest)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type ElsetGetParams struct {
@@ -1068,7 +1067,7 @@ func (r ElsetNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *ElsetNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // URLQuery serializes [ElsetNewBulkParams]'s query parameters as `url.Values`.
@@ -1109,7 +1108,7 @@ func (r ElsetNewBulkFromTleParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *ElsetNewBulkFromTleParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // URLQuery serializes [ElsetNewBulkFromTleParams]'s query parameters as
@@ -1152,5 +1151,5 @@ func (r ElsetUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *ElsetUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }

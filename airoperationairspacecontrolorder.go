@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 	"slices"
 	"time"
@@ -87,7 +86,7 @@ func (r AirOperationAirspaceControlOrderUnvalidatedPublishParams) MarshalJSON() 
 	return shimjson.Marshal(r.Body)
 }
 func (r *AirOperationAirspaceControlOrderUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Beta Version Airspace Control Order: Contains airspace coordination information

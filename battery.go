@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -293,7 +292,7 @@ func (r BatteryNewParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.BatteryIngest)
 }
 func (r *BatteryNewParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.BatteryIngest)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type BatteryGetParams struct {
@@ -320,7 +319,7 @@ func (r BatteryUpdateParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.BatteryIngest)
 }
 func (r *BatteryUpdateParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.BatteryIngest)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 type BatteryListParams struct {

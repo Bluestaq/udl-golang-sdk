@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -1554,7 +1553,7 @@ func (r CloselyspacedobjectNewBulkParams) MarshalJSON() (data []byte, err error)
 	return shimjson.Marshal(r.Body)
 }
 func (r *CloselyspacedobjectNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // This collection of services provides operations for manipulating and querying of
@@ -1848,7 +1847,7 @@ func (r CloselyspacedobjectUnvalidatedPublishParams) MarshalJSON() (data []byte,
 	return shimjson.Marshal(r.Body)
 }
 func (r *CloselyspacedobjectUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // This collection of services provides operations for manipulating and querying of

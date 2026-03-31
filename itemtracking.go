@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -839,7 +838,7 @@ func (r ItemTrackingUnvalidatedPublishParams) MarshalJSON() (data []byte, err er
 	return shimjson.Marshal(r.Body)
 }
 func (r *ItemTrackingUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // The properties ClassificationMarking, DataMode, ScanCode, ScannerID, Source, Ts

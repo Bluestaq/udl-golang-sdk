@@ -4,11 +4,11 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 	"net/url"
 	"slices"
 
+	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
@@ -127,5 +127,5 @@ func (r ScFolderUpdateParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.FileData)
 }
 func (r *ScFolderUpdateParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.FileData)
+	return apijson.UnmarshalRoot(data, r)
 }
