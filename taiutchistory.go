@@ -112,7 +112,7 @@ func (r *TaiUtcHistoryService) Aodr(ctx context.Context, query TaiUtcHistoryAodr
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/taiutc/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -125,7 +125,7 @@ func (r *TaiUtcHistoryService) Count(ctx context.Context, query TaiUtcHistoryCou
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/taiutc/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // International Atomic Time (TAI) is a statistical atomic time scale based on a

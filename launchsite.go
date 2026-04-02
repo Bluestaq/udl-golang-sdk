@@ -53,7 +53,7 @@ func (r *LaunchSiteService) New(ctx context.Context, body LaunchSiteNewParams, o
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/launchsite"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update a launch. A specific role is required to perform
@@ -63,11 +63,11 @@ func (r *LaunchSiteService) Update(ctx context.Context, id string, body LaunchSi
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/launchsite/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -107,11 +107,11 @@ func (r *LaunchSiteService) Delete(ctx context.Context, id string, opts ...optio
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/launchsite/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -124,7 +124,7 @@ func (r *LaunchSiteService) Count(ctx context.Context, query LaunchSiteCountPara
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/launchsite/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single launch site by its unique ID passed as a path
@@ -133,11 +133,11 @@ func (r *LaunchSiteService) Get(ctx context.Context, id string, query LaunchSite
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/launchsite/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -146,7 +146,7 @@ func (r *LaunchSiteService) Queryhelp(ctx context.Context, opts ...option.Reques
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/launchsite/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -161,7 +161,7 @@ func (r *LaunchSiteService) Tuple(ctx context.Context, query LaunchSiteTuplePara
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/launchsite/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Model representation of known launch sites.

@@ -94,7 +94,7 @@ func (r *GnssObservationsetService) Count(ctx context.Context, query GnssObserva
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/gnssobservationset/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of Track
@@ -107,7 +107,7 @@ func (r *GnssObservationsetService) NewBulk(ctx context.Context, body GnssObserv
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/gnssobservationset/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -116,7 +116,7 @@ func (r *GnssObservationsetService) Queryhelp(ctx context.Context, opts ...optio
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/gnssobservationset/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -131,7 +131,7 @@ func (r *GnssObservationsetService) Tuple(ctx context.Context, query GnssObserva
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/gnssobservationset/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to accept one or more GNSSObservationSet(s) and associated
@@ -143,7 +143,7 @@ func (r *GnssObservationsetService) UnvalidatedPublish(ctx context.Context, body
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-gnssobset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Set of GNSSObservation data.

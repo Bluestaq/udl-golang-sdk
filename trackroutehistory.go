@@ -107,7 +107,7 @@ func (r *TrackRouteHistoryService) Aodr(ctx context.Context, query TrackRouteHis
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/trackroute/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -120,7 +120,7 @@ func (r *TrackRouteHistoryService) Count(ctx context.Context, query TrackRouteHi
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/trackroute/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // A track route is a prescribed route for performing training events or operations

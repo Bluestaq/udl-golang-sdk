@@ -55,7 +55,7 @@ func (r *PoiService) New(ctx context.Context, body PoiNewParams, opts ...option.
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/poi"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -97,7 +97,7 @@ func (r *PoiService) Count(ctx context.Context, query PoiCountParams, opts ...op
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/poi/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of POIs
@@ -110,7 +110,7 @@ func (r *PoiService) NewBulk(ctx context.Context, body PoiNewBulkParams, opts ..
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/poi/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single POI by its unique ID passed as a path
@@ -119,11 +119,11 @@ func (r *PoiService) Get(ctx context.Context, id string, query PoiGetParams, opt
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/poi/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -132,7 +132,7 @@ func (r *PoiService) Queryhelp(ctx context.Context, opts ...option.RequestOption
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/poi/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -147,7 +147,7 @@ func (r *PoiService) Tuple(ctx context.Context, query PoiTupleParams, opts ...op
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/poi/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take a list of POIs as a POST body and ingest into the
@@ -159,7 +159,7 @@ func (r *PoiService) UnvalidatedPublish(ctx context.Context, body PoiUnvalidated
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-poi"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // A Point of Interest is loosely based on the MITRE CoT (Cursor on Target) schema

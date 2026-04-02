@@ -52,7 +52,7 @@ func (r *SurfaceService) New(ctx context.Context, body SurfaceNewParams, opts ..
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/surface"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update a single Surface. A specific role is required to
@@ -62,11 +62,11 @@ func (r *SurfaceService) Update(ctx context.Context, id string, body SurfaceUpda
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/surface/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -106,11 +106,11 @@ func (r *SurfaceService) Delete(ctx context.Context, id string, opts ...option.R
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/surface/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -123,7 +123,7 @@ func (r *SurfaceService) Count(ctx context.Context, query SurfaceCountParams, op
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/surface/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single Surface record by its unique ID passed as a
@@ -132,11 +132,11 @@ func (r *SurfaceService) Get(ctx context.Context, id string, query SurfaceGetPar
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/surface/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -145,7 +145,7 @@ func (r *SurfaceService) Queryhelp(ctx context.Context, opts ...option.RequestOp
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/surface/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -160,7 +160,7 @@ func (r *SurfaceService) Tuple(ctx context.Context, query SurfaceTupleParams, op
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/surface/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Surface information contains properties related to an airfield's runway,

@@ -54,7 +54,7 @@ func (r *AircraftService) New(ctx context.Context, body AircraftNewParams, opts 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/aircraft"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single Aircraft record by its unique ID passed as a
@@ -63,11 +63,11 @@ func (r *AircraftService) Get(ctx context.Context, id string, query AircraftGetP
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/aircraft/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to update a single Aircraft. A specific role is required to
@@ -77,11 +77,11 @@ func (r *AircraftService) Update(ctx context.Context, id string, body AircraftUp
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/aircraft/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -123,7 +123,7 @@ func (r *AircraftService) Count(ctx context.Context, query AircraftCountParams, 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/aircraft/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -132,7 +132,7 @@ func (r *AircraftService) Queryhelp(ctx context.Context, opts ...option.RequestO
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/aircraft/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -147,7 +147,7 @@ func (r *AircraftService) Tuple(ctx context.Context, query AircraftTupleParams, 
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/aircraft/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // General aircraft designation, characteristics, and capabilities. The aircraft

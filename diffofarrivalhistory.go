@@ -50,7 +50,7 @@ func (r *DiffOfArrivalHistoryService) Count(ctx context.Context, query DiffOfArr
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/diffofarrival/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type DiffOfArrivalHistoryCountParams struct {

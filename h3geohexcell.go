@@ -82,7 +82,7 @@ func (r *H3GeoHexCellService) Count(ctx context.Context, query H3GeoHexCellCount
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/h3geohexcell/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -91,7 +91,7 @@ func (r *H3GeoHexCellService) Queryhelp(ctx context.Context, opts ...option.Requ
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/h3geohexcell/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -106,7 +106,7 @@ func (r *H3GeoHexCellService) Tuple(ctx context.Context, query H3GeoHexCellTuple
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/h3geohexcell/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Model representation of a hex cell array containing data for a set of

@@ -81,7 +81,7 @@ func (r *NotificationHistoryService) Aodr(ctx context.Context, query Notificatio
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/notification/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -94,7 +94,7 @@ func (r *NotificationHistoryService) Count(ctx context.Context, query Notificati
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/notification/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type NotificationHistoryListParams struct {

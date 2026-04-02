@@ -90,7 +90,7 @@ func (r *MtiService) Count(ctx context.Context, query MtiCountParams, opts ...op
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/mti/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -104,7 +104,7 @@ func (r *MtiService) NewBulk(ctx context.Context, body MtiNewBulkParams, opts ..
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/mti/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -113,7 +113,7 @@ func (r *MtiService) Queryhelp(ctx context.Context, opts ...option.RequestOption
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/mti/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -128,7 +128,7 @@ func (r *MtiService) Tuple(ctx context.Context, query MtiTupleParams, opts ...op
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/mti/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take a list of Moving Target Indicator (MTI) formatted data
@@ -140,7 +140,7 @@ func (r *MtiService) UnvalidatedPublish(ctx context.Context, body MtiUnvalidated
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-mti"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Information on the mission and flight plans, the type and configuration of the

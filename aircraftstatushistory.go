@@ -80,7 +80,7 @@ func (r *AircraftStatusHistoryService) Count(ctx context.Context, query Aircraft
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/aircraftstatus/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type AircraftStatusHistoryListParams struct {

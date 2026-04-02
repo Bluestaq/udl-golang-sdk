@@ -55,7 +55,7 @@ func (r *OperatingunitremarkService) New(ctx context.Context, body Operatingunit
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/operatingunitremark"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -97,7 +97,7 @@ func (r *OperatingunitremarkService) Count(ctx context.Context, query Operatingu
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/operatingunitremark/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -110,7 +110,7 @@ func (r *OperatingunitremarkService) NewBulk(ctx context.Context, body Operating
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/operatingunitremark/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single operatingunitremark record by its unique ID
@@ -119,11 +119,11 @@ func (r *OperatingunitremarkService) Get(ctx context.Context, id string, query O
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/operatingunitremark/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -132,7 +132,7 @@ func (r *OperatingunitremarkService) Queryhelp(ctx context.Context, opts ...opti
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/operatingunitremark/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -147,7 +147,7 @@ func (r *OperatingunitremarkService) Tuple(ctx context.Context, query Operatingu
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/operatingunitremark/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Remarks contain amplifying information for a specific service. The information

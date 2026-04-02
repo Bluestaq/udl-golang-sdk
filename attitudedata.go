@@ -52,7 +52,7 @@ func (r *AttitudeDataService) QueryHelp(ctx context.Context, opts ...option.Requ
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/attitudedata/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -67,7 +67,7 @@ func (r *AttitudeDataService) Tuple(ctx context.Context, query AttitudeDataTuple
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/attitudedata/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type AttitudeDataQueryHelpResponse struct {

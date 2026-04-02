@@ -76,7 +76,7 @@ func (r *AirOperationDiplomaticClearanceService) UnvalidatedPublish(ctx context.
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-diplomaticclearance"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // A diplomatic clearance is an authorization for an aircraft to traverse or land

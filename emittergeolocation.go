@@ -57,7 +57,7 @@ func (r *EmitterGeolocationService) New(ctx context.Context, body EmitterGeoloca
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/emittergeolocation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single RF geolocation by its unique ID passed as a
@@ -66,11 +66,11 @@ func (r *EmitterGeolocationService) Get(ctx context.Context, id string, query Em
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/emittergeolocation/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -111,11 +111,11 @@ func (r *EmitterGeolocationService) Delete(ctx context.Context, id string, opts 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/emittergeolocation/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -128,7 +128,7 @@ func (r *EmitterGeolocationService) Count(ctx context.Context, query EmitterGeol
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/emittergeolocation/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of RF
@@ -141,7 +141,7 @@ func (r *EmitterGeolocationService) NewBulk(ctx context.Context, body EmitterGeo
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/emittergeolocation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -150,7 +150,7 @@ func (r *EmitterGeolocationService) QueryHelp(ctx context.Context, opts ...optio
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/emittergeolocation/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -165,7 +165,7 @@ func (r *EmitterGeolocationService) Tuple(ctx context.Context, query EmitterGeol
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/emittergeolocation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple emittergeolocation records as a POST body and
@@ -177,7 +177,7 @@ func (r *EmitterGeolocationService) UnvalidatedPublish(ctx context.Context, body
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-emittergeolocation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Model representation of Emitter geolocation data for a signal of interest.

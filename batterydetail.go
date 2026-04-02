@@ -53,7 +53,7 @@ func (r *BatterydetailService) New(ctx context.Context, body BatterydetailNewPar
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/batterydetails"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single BatteryDetails record by its unique ID passed
@@ -63,11 +63,11 @@ func (r *BatterydetailService) Get(ctx context.Context, id string, query Battery
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/batterydetails/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to update a single BatteryDetails. A Battery record may have
@@ -78,11 +78,11 @@ func (r *BatterydetailService) Update(ctx context.Context, id string, body Batte
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/batterydetails/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -123,11 +123,11 @@ func (r *BatterydetailService) Delete(ctx context.Context, id string, opts ...op
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/batterydetails/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Detailed information on a spacecraft battery type compiled by a particular

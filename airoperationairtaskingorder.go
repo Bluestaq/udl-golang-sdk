@@ -81,7 +81,7 @@ func (r *AirOperationAirTaskingOrderService) New(ctx context.Context, body AirOp
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/airtaskingorder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single airtaskingorder record by its unique ID passed
@@ -90,11 +90,11 @@ func (r *AirOperationAirTaskingOrderService) Get(ctx context.Context, id string,
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/airtaskingorder/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -136,7 +136,7 @@ func (r *AirOperationAirTaskingOrderService) Count(ctx context.Context, query Ai
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/airtaskingorder/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -145,7 +145,7 @@ func (r *AirOperationAirTaskingOrderService) QueryHelp(ctx context.Context, opts
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/airtaskingorder/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -160,7 +160,7 @@ func (r *AirOperationAirTaskingOrderService) Tuple(ctx context.Context, query Ai
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/airtaskingorder/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple airtaskingorder records as a POST body and
@@ -172,7 +172,7 @@ func (r *AirOperationAirTaskingOrderService) UnvalidatedPublish(ctx context.Cont
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-airtaskingorder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Beta Version Air Tasking Order: The ATO is used to task air missions, assign

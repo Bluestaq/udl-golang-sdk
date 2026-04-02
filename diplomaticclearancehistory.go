@@ -106,7 +106,7 @@ func (r *DiplomaticClearanceHistoryService) Aodr(ctx context.Context, query Dipl
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/diplomaticclearance/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -119,7 +119,7 @@ func (r *DiplomaticClearanceHistoryService) Count(ctx context.Context, query Dip
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/diplomaticclearance/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type DiplomaticClearanceHistoryListParams struct {

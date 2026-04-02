@@ -94,7 +94,7 @@ func (r *ObservationMonoradarService) Count(ctx context.Context, query Observati
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/monoradar/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -107,7 +107,7 @@ func (r *ObservationMonoradarService) NewBulk(ctx context.Context, body Observat
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/monoradar/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -116,7 +116,7 @@ func (r *ObservationMonoradarService) Queryhelp(ctx context.Context, opts ...opt
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/monoradar/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -131,7 +131,7 @@ func (r *ObservationMonoradarService) Tuple(ctx context.Context, query Observati
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/monoradar/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take a list of MonoRadar records as a POST body and ingest
@@ -143,7 +143,7 @@ func (r *ObservationMonoradarService) UnvalidatedPublish(ctx context.Context, bo
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/monoradar"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // A monoradar record contains the raw, and in some cases, processed target reports

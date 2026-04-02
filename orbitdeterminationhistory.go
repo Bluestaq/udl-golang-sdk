@@ -81,7 +81,7 @@ func (r *OrbitdeterminationHistoryService) Aodr(ctx context.Context, query Orbit
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/orbitdetermination/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -94,7 +94,7 @@ func (r *OrbitdeterminationHistoryService) Count(ctx context.Context, query Orbi
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/orbitdetermination/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Model representation of orbit determination algorithm results describing General

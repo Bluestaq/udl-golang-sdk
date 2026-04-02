@@ -80,7 +80,7 @@ func (r *TdoaFdoaDiffofarrivalHistoryService) Aodr(ctx context.Context, query Td
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/diffofarrival/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 type TdoaFdoaDiffofarrivalHistoryListParams struct {

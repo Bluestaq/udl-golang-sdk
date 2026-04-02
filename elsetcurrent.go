@@ -89,7 +89,7 @@ func (r *ElsetCurrentService) Tuple(ctx context.Context, query ElsetCurrentTuple
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/elset/current/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type ElsetCurrentListParams struct {

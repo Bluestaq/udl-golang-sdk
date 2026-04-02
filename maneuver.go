@@ -65,7 +65,7 @@ func (r *ManeuverService) New(ctx context.Context, body ManeuverNewParams, opts 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/maneuver"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -107,7 +107,7 @@ func (r *ManeuverService) Count(ctx context.Context, query ManeuverCountParams, 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/maneuver/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -120,7 +120,7 @@ func (r *ManeuverService) NewBulk(ctx context.Context, body ManeuverNewBulkParam
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/maneuver/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single maneuver by its unique ID passed as a path
@@ -129,11 +129,11 @@ func (r *ManeuverService) Get(ctx context.Context, id string, query ManeuverGetP
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/maneuver/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -142,7 +142,7 @@ func (r *ManeuverService) Queryhelp(ctx context.Context, opts ...option.RequestO
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/maneuver/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -157,7 +157,7 @@ func (r *ManeuverService) Tuple(ctx context.Context, query ManeuverTupleParams, 
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/maneuver/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple maneuvers as a POST body and ingest into the
@@ -169,7 +169,7 @@ func (r *ManeuverService) UnvalidatedPublish(ctx context.Context, body ManeuverU
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-maneuver"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Model representation of on-orbit object maneuver information for detected,

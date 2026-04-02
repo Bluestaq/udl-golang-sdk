@@ -55,7 +55,7 @@ func (r *EntityService) New(ctx context.Context, body EntityNewParams, opts ...o
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/entity"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single Entity record by its unique ID passed as a
@@ -64,11 +64,11 @@ func (r *EntityService) Get(ctx context.Context, id string, query EntityGetParam
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/entity/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to update a single Entity. A specific role is required to
@@ -78,11 +78,11 @@ func (r *EntityService) Update(ctx context.Context, id string, body EntityUpdate
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/entity/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -122,11 +122,11 @@ func (r *EntityService) Delete(ctx context.Context, id string, opts ...option.Re
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/entity/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -139,7 +139,7 @@ func (r *EntityService) Count(ctx context.Context, query EntityCountParams, opts
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/entity/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Retrieves all distinct entity types.
@@ -147,7 +147,7 @@ func (r *EntityService) GetAllTypes(ctx context.Context, query EntityGetAllTypes
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/entity/getAllTypes"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -156,7 +156,7 @@ func (r *EntityService) QueryHelp(ctx context.Context, opts ...option.RequestOpt
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/entity/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -171,7 +171,7 @@ func (r *EntityService) Tuple(ctx context.Context, query EntityTupleParams, opts
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/entity/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // An entity is a generic representation of any object within a space/SSA system

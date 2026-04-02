@@ -57,7 +57,7 @@ func (r *SiteStatusService) New(ctx context.Context, body SiteStatusNewParams, o
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sitestatus"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update a single SiteStatus object. A specific role is
@@ -68,11 +68,11 @@ func (r *SiteStatusService) Update(ctx context.Context, id string, body SiteStat
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/sitestatus/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -113,11 +113,11 @@ func (r *SiteStatusService) Delete(ctx context.Context, id string, opts ...optio
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/sitestatus/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -130,7 +130,7 @@ func (r *SiteStatusService) Count(ctx context.Context, query SiteStatusCountPara
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sitestatus/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single SiteStatus record by its unique ID passed as a
@@ -139,11 +139,11 @@ func (r *SiteStatusService) Get(ctx context.Context, id string, query SiteStatus
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/sitestatus/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -152,7 +152,7 @@ func (r *SiteStatusService) Queryhelp(ctx context.Context, opts ...option.Reques
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/sitestatus/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -167,7 +167,7 @@ func (r *SiteStatusService) Tuple(ctx context.Context, query SiteStatusTuplePara
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/sitestatus/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type SiteStatusListResponse struct {

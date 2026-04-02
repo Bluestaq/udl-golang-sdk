@@ -51,7 +51,7 @@ func (r *GnssObservationHistoryService) Count(ctx context.Context, query GnssObs
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/gnssobservationset/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type GnssObservationHistoryCountParams struct {

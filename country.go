@@ -53,7 +53,7 @@ func (r *CountryService) New(ctx context.Context, body CountryNewParams, opts ..
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/country"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single Country record by its unique code passed as a
@@ -62,11 +62,11 @@ func (r *CountryService) Get(ctx context.Context, code string, query CountryGetP
 	opts = slices.Concat(r.Options, opts)
 	if code == "" {
 		err = errors.New("missing required code parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/country/%s", code)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to update a single Country. A specific role is required to
@@ -76,11 +76,11 @@ func (r *CountryService) Update(ctx context.Context, code string, body CountryUp
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if code == "" {
 		err = errors.New("missing required code parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/country/%s", code)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -120,11 +120,11 @@ func (r *CountryService) Delete(ctx context.Context, code string, opts ...option
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if code == "" {
 		err = errors.New("missing required code parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/country/%s", code)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -137,7 +137,7 @@ func (r *CountryService) Count(ctx context.Context, query CountryCountParams, op
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/country/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -146,7 +146,7 @@ func (r *CountryService) Queryhelp(ctx context.Context, opts ...option.RequestOp
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/country/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -161,7 +161,7 @@ func (r *CountryService) Tuple(ctx context.Context, query CountryTupleParams, op
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/country/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // A Country may represent countries, multi-national consortiums, and international

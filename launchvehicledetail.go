@@ -55,7 +55,7 @@ func (r *LaunchVehicleDetailService) New(ctx context.Context, body LaunchVehicle
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/launchvehicledetails"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update a single LaunchVehicleDetails. LaunchVehicleDetails
@@ -68,11 +68,11 @@ func (r *LaunchVehicleDetailService) Update(ctx context.Context, id string, body
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/launchvehicledetails/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -114,11 +114,11 @@ func (r *LaunchVehicleDetailService) Delete(ctx context.Context, id string, opts
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/launchvehicledetails/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single LaunchVehicleDetails record by its unique ID
@@ -129,11 +129,11 @@ func (r *LaunchVehicleDetailService) Get(ctx context.Context, id string, query L
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/launchvehicledetails/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Model representation of launch vehicle details and characteristics, compiled by

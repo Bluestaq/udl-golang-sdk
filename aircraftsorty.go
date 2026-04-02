@@ -76,11 +76,11 @@ func (r *AircraftSortyService) Get(ctx context.Context, id string, query Aircraf
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/aircraftsortie/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to update a single AircraftSortie. A specific role is required
@@ -90,11 +90,11 @@ func (r *AircraftSortyService) Update(ctx context.Context, id string, body Aircr
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/aircraftsortie/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -103,7 +103,7 @@ func (r *AircraftSortyService) Queryhelp(ctx context.Context, opts ...option.Req
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/aircraftsortie/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -118,7 +118,7 @@ func (r *AircraftSortyService) Tuple(ctx context.Context, query AircraftSortyTup
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/aircraftsortie/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type AircraftSortyQueryhelpResponse struct {

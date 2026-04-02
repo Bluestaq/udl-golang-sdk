@@ -81,7 +81,7 @@ func (r *GeoStatusHistoryService) Aodr(ctx context.Context, query GeoStatusHisto
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/geostatus/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -94,7 +94,7 @@ func (r *GeoStatusHistoryService) Count(ctx context.Context, query GeoStatusHist
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/geostatus/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Information for the specified on-orbit GEO spacecraft, including status,

@@ -59,7 +59,7 @@ func (r *LaunchEventService) New(ctx context.Context, body LaunchEventNewParams,
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/launchevent"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -101,7 +101,7 @@ func (r *LaunchEventService) Count(ctx context.Context, query LaunchEventCountPa
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/launchevent/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -114,7 +114,7 @@ func (r *LaunchEventService) NewBulk(ctx context.Context, body LaunchEventNewBul
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/launchevent/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single LaunchEvent record by its unique ID passed as
@@ -123,11 +123,11 @@ func (r *LaunchEventService) Get(ctx context.Context, id string, query LaunchEve
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/launchevent/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -136,7 +136,7 @@ func (r *LaunchEventService) Queryhelp(ctx context.Context, opts ...option.Reque
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/launchevent/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -151,7 +151,7 @@ func (r *LaunchEventService) Tuple(ctx context.Context, query LaunchEventTuplePa
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/launchevent/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take LaunchEvent entries as a POST body and ingest into the
@@ -163,7 +163,7 @@ func (r *LaunchEventService) UnvalidatedPublish(ctx context.Context, body Launch
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-launchevent"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Information on known launch events.

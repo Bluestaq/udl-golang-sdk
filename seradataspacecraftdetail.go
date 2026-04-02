@@ -52,7 +52,7 @@ func (r *SeradataSpacecraftDetailService) New(ctx context.Context, body Seradata
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/seradataspacecraftdetails"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update an SeradataSpacecraftDetails. A specific role is
@@ -63,11 +63,11 @@ func (r *SeradataSpacecraftDetailService) Update(ctx context.Context, id string,
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/seradataspacecraftdetails/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -107,11 +107,11 @@ func (r *SeradataSpacecraftDetailService) Delete(ctx context.Context, id string,
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/seradataspacecraftdetails/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -124,7 +124,7 @@ func (r *SeradataSpacecraftDetailService) Count(ctx context.Context, query Serad
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/seradataspacecraftdetails/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single SeradataSpacecraftDetails by its unique ID
@@ -133,11 +133,11 @@ func (r *SeradataSpacecraftDetailService) Get(ctx context.Context, id string, qu
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/seradataspacecraftdetails/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -146,7 +146,7 @@ func (r *SeradataSpacecraftDetailService) Queryhelp(ctx context.Context, opts ..
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradataspacecraftdetails/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -161,7 +161,7 @@ func (r *SeradataSpacecraftDetailService) Tuple(ctx context.Context, query Serad
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradataspacecraftdetails/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // On-orbit spacecraft details compiled by Seradata for a particular satellite.

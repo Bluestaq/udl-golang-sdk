@@ -83,7 +83,7 @@ func (r *ScService) Delete(ctx context.Context, body ScDeleteParams, opts ...opt
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "scs/delete"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Returns a list of the allowed filename extensions.
@@ -91,7 +91,7 @@ func (r *ScService) AllowableFileExtensions(ctx context.Context, opts ...option.
 	opts = slices.Concat(r.Options, opts)
 	path := "scs/allowableFileExtensions"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Returns a list of the allowed file upload mime types.
@@ -99,7 +99,7 @@ func (r *ScService) AllowableFileMimes(ctx context.Context, opts ...option.Reque
 	opts = slices.Concat(r.Options, opts)
 	path := "scs/allowableFileMimes"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // operation to copy folders or files. A specific role is required to perform this
@@ -110,7 +110,7 @@ func (r *ScService) Copy(ctx context.Context, body ScCopyParams, opts ...option.
 	opts = slices.Concat(r.Options, opts)
 	path := "scs/copy"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Downloads a zip of one or more files and/or folders.
@@ -119,7 +119,7 @@ func (r *ScService) Download(ctx context.Context, body ScDownloadParams, opts ..
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	path := "scs/download"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Download a single file from SCS.
@@ -128,7 +128,7 @@ func (r *ScService) FileDownload(ctx context.Context, query ScFileDownloadParams
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	path := "scs/download"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Operation to upload a file. A specific role is required to perform this service
@@ -140,7 +140,7 @@ func (r *ScService) FileUpload(ctx context.Context, fileContent io.Reader, param
 	opts = append([]option.RequestOption{option.WithRequestBody("application/octet-stream", fileContent)}, opts...)
 	path := "scs/file"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Returns true if a user has write access to the specified folder.
@@ -149,7 +149,7 @@ func (r *ScService) HasWriteAccess(ctx context.Context, query ScHasWriteAccessPa
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "scs/userHasWriteAccess"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // operation to move folders or files. A specific role is required to perform this
@@ -160,7 +160,7 @@ func (r *ScService) Move(ctx context.Context, body ScMoveParams, opts ...option.
 	opts = slices.Concat(r.Options, opts)
 	path := "scs/move"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Operation to rename folders or files. A specific role is required to perform
@@ -172,7 +172,7 @@ func (r *ScService) Rename(ctx context.Context, body ScRenameParams, opts ...opt
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "scs/rename"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Search for files by metadata and/or text in file content.
@@ -182,7 +182,7 @@ func (r *ScService) Search(ctx context.Context, params ScSearchParams, opts ...o
 	opts = slices.Concat(r.Options, opts)
 	path := "scs/search"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, &res, opts...)
-	return
+	return res, err
 }
 
 // Only one field can be non-zero.

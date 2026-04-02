@@ -81,7 +81,7 @@ func (r *StateVectorService) New(ctx context.Context, body StateVectorNewParams,
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/statevector"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -123,7 +123,7 @@ func (r *StateVectorService) Count(ctx context.Context, query StateVectorCountPa
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/statevector/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of state
@@ -136,7 +136,7 @@ func (r *StateVectorService) NewBulk(ctx context.Context, body StateVectorNewBul
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/statevector/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single state vector by its unique ID passed as a path
@@ -145,11 +145,11 @@ func (r *StateVectorService) Get(ctx context.Context, id string, query StateVect
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/statevector/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -158,7 +158,7 @@ func (r *StateVectorService) Queryhelp(ctx context.Context, opts ...option.Reque
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/statevector/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -173,7 +173,7 @@ func (r *StateVectorService) Tuple(ctx context.Context, query StateVectorTuplePa
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/statevector/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple state vectors as a POST body and ingest into
@@ -185,7 +185,7 @@ func (r *StateVectorService) UnvalidatedPublish(ctx context.Context, body StateV
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-sv"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // This service provides operations for querying and manipulation of state vectors

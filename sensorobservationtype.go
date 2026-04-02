@@ -73,11 +73,11 @@ func (r *SensorObservationTypeService) Get(ctx context.Context, id string, query
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/sensorobservationtype/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type SensorObservationTypeListResponse struct {

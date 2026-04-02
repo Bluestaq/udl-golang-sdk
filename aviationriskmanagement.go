@@ -81,7 +81,7 @@ func (r *AviationRiskManagementService) New(ctx context.Context, body AviationRi
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/aviationriskmanagement"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single Aviation Risk Management record by its unique
@@ -90,11 +90,11 @@ func (r *AviationRiskManagementService) Get(ctx context.Context, id string, quer
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/aviationriskmanagement/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to update a single Aviation Risk Management record. A specific
@@ -105,11 +105,11 @@ func (r *AviationRiskManagementService) Update(ctx context.Context, id string, b
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/aviationriskmanagement/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -149,11 +149,11 @@ func (r *AviationRiskManagementService) Delete(ctx context.Context, id string, o
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/aviationriskmanagement/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -166,7 +166,7 @@ func (r *AviationRiskManagementService) Count(ctx context.Context, query Aviatio
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/aviationriskmanagement/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -179,7 +179,7 @@ func (r *AviationRiskManagementService) NewBulk(ctx context.Context, body Aviati
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/aviationriskmanagement/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -188,7 +188,7 @@ func (r *AviationRiskManagementService) QueryHelp(ctx context.Context, opts ...o
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/aviationriskmanagement/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -203,7 +203,7 @@ func (r *AviationRiskManagementService) Tuple(ctx context.Context, query Aviatio
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/aviationriskmanagement/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple Aviation Risk Management records as a POST
@@ -215,7 +215,7 @@ func (r *AviationRiskManagementService) UnvalidatedPublish(ctx context.Context, 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-aviationriskmanagement"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Aviation Risk Management is used to identify, evaluate, and track risks when

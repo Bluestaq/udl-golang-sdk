@@ -84,7 +84,7 @@ func (r *IsrCollectionService) Count(ctx context.Context, query IsrCollectionCou
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/isrcollection/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -97,7 +97,7 @@ func (r *IsrCollectionService) NewBulk(ctx context.Context, body IsrCollectionNe
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/isrcollection/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -106,7 +106,7 @@ func (r *IsrCollectionService) Queryhelp(ctx context.Context, opts ...option.Req
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/isrcollection/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -121,7 +121,7 @@ func (r *IsrCollectionService) Tuple(ctx context.Context, query IsrCollectionTup
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/isrcollection/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple ISR Collections as a POST body and ingest
@@ -133,7 +133,7 @@ func (r *IsrCollectionService) UnvalidatedPublish(ctx context.Context, body IsrC
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-isrcollection"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 type IsrCollectionCriticalTimesFull struct {

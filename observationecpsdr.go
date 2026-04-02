@@ -57,7 +57,7 @@ func (r *ObservationEcpsdrService) New(ctx context.Context, body ObservationEcps
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/ecpsdr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single ECPSDR by its unique ID passed as a path
@@ -66,11 +66,11 @@ func (r *ObservationEcpsdrService) Get(ctx context.Context, id string, query Obs
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/ecpsdr/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -112,7 +112,7 @@ func (r *ObservationEcpsdrService) Count(ctx context.Context, query ObservationE
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/ecpsdr/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -125,7 +125,7 @@ func (r *ObservationEcpsdrService) NewBulk(ctx context.Context, body Observation
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/ecpsdr/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -134,7 +134,7 @@ func (r *ObservationEcpsdrService) QueryHelp(ctx context.Context, opts ...option
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/ecpsdr/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -149,7 +149,7 @@ func (r *ObservationEcpsdrService) Tuple(ctx context.Context, query ObservationE
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/ecpsdr/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple ECPSDR as a POST body and ingest into the
@@ -161,7 +161,7 @@ func (r *ObservationEcpsdrService) UnvalidatedPublish(ctx context.Context, body 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-ecpsdr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Supports Sensor Data Records (SDR) from space-borne Energetic Charged Particle

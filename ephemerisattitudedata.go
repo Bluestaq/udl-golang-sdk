@@ -97,7 +97,7 @@ func (r *EphemerisAttitudeDataService) Count(ctx context.Context, query Ephemeri
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/attitudedata/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // These services provide operations for posting and querying attitude of on-orbit

@@ -78,7 +78,7 @@ func (r *VideoHistoryService) Count(ctx context.Context, query VideoHistoryCount
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/video/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // The table captures metadata associated with the published videos in UDL.

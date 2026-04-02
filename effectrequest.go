@@ -59,7 +59,7 @@ func (r *EffectRequestService) New(ctx context.Context, body EffectRequestNewPar
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/effectrequest"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single EffectRequest by its unique ID passed as a
@@ -68,11 +68,11 @@ func (r *EffectRequestService) Get(ctx context.Context, id string, query EffectR
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/effectrequest/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -114,7 +114,7 @@ func (r *EffectRequestService) Count(ctx context.Context, query EffectRequestCou
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/effectrequest/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -127,7 +127,7 @@ func (r *EffectRequestService) NewBulk(ctx context.Context, body EffectRequestNe
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/effectrequest/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -136,7 +136,7 @@ func (r *EffectRequestService) QueryHelp(ctx context.Context, opts ...option.Req
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/effectrequest/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -151,7 +151,7 @@ func (r *EffectRequestService) Tuple(ctx context.Context, query EffectRequestTup
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/effectrequest/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple EffectRequests as a POST body and ingest into
@@ -163,7 +163,7 @@ func (r *EffectRequestService) UnvalidatedPublish(ctx context.Context, body Effe
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-effectrequest"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // A request for various effects on a target.

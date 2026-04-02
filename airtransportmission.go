@@ -111,7 +111,7 @@ func (r *AirTransportMissionService) New(ctx context.Context, body AirTransportM
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/airtransportmission"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single Air Transport Mission record by its unique ID
@@ -120,11 +120,11 @@ func (r *AirTransportMissionService) Get(ctx context.Context, id string, query A
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/airtransportmission/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to update a single AirTransportMission record. A specific role
@@ -135,11 +135,11 @@ func (r *AirTransportMissionService) Update(ctx context.Context, id string, body
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/airtransportmission/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -181,7 +181,7 @@ func (r *AirTransportMissionService) Count(ctx context.Context, query AirTranspo
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/airtransportmission/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -190,7 +190,7 @@ func (r *AirTransportMissionService) Queryhelp(ctx context.Context, opts ...opti
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/airtransportmission/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -205,7 +205,7 @@ func (r *AirTransportMissionService) Tuple(ctx context.Context, query AirTranspo
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/airtransportmission/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // The information in an Air Transport Mission contains unique identification,

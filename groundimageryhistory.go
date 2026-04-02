@@ -85,7 +85,7 @@ func (r *GroundImageryHistoryService) Count(ctx context.Context, query GroundIma
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/groundimagery/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Imagery of terrestrial regions from on-orbit, air, and other sensors.

@@ -83,7 +83,7 @@ func (r *GnssObservationsetHistoryService) Aodr(ctx context.Context, query GnssO
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/gnssobservationset/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Set of GNSSObservation data.

@@ -61,7 +61,7 @@ func (r *EventEvolutionService) New(ctx context.Context, body EventEvolutionNewP
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/eventevolution"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single EventEvolution by its unique ID passed as a
@@ -70,11 +70,11 @@ func (r *EventEvolutionService) Get(ctx context.Context, id string, query EventE
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/eventevolution/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -116,7 +116,7 @@ func (r *EventEvolutionService) Count(ctx context.Context, query EventEvolutionC
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/eventevolution/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -130,7 +130,7 @@ func (r *EventEvolutionService) NewBulk(ctx context.Context, body EventEvolution
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/eventevolution/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -139,7 +139,7 @@ func (r *EventEvolutionService) Queryhelp(ctx context.Context, opts ...option.Re
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/eventevolution/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -154,7 +154,7 @@ func (r *EventEvolutionService) Tuple(ctx context.Context, query EventEvolutionT
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/eventevolution/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take a list of EventEvolution records as a POST body and
@@ -166,7 +166,7 @@ func (r *EventEvolutionService) UnvalidatedPublish(ctx context.Context, body Eve
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-eventevolution"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Event Evolution is a unique service supporting the association of UDL records of

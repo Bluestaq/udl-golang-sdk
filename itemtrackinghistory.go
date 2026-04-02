@@ -107,7 +107,7 @@ func (r *ItemTrackingHistoryService) Count(ctx context.Context, query ItemTracki
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/itemtracking/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type ItemTrackingHistoryListResponse struct {

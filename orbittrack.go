@@ -88,7 +88,7 @@ func (r *OrbittrackService) Count(ctx context.Context, query OrbittrackCountPara
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/orbittrack/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of orbit
@@ -101,7 +101,7 @@ func (r *OrbittrackService) NewBulk(ctx context.Context, body OrbittrackNewBulkP
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/orbittrack/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -110,7 +110,7 @@ func (r *OrbittrackService) Queryhelp(ctx context.Context, opts ...option.Reques
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/orbittrack/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -125,7 +125,7 @@ func (r *OrbittrackService) Tuple(ctx context.Context, query OrbittrackTuplePara
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/orbittrack/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple orbit track records as a POST body and ingest
@@ -137,7 +137,7 @@ func (r *OrbittrackService) UnvalidatedPublish(ctx context.Context, body Orbittr
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-orbittrack"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Keplerian orbital elements describing an orbit for a particular on-orbit

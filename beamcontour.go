@@ -60,7 +60,7 @@ func (r *BeamContourService) New(ctx context.Context, body BeamContourNewParams,
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/beamcontour"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single BeamContour by its unique ID passed as a path
@@ -69,11 +69,11 @@ func (r *BeamContourService) Get(ctx context.Context, id string, query BeamConto
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/beamcontour/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to update a single BeamContour. A specific role is required to
@@ -83,11 +83,11 @@ func (r *BeamContourService) Update(ctx context.Context, id string, body BeamCon
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/beamcontour/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -127,11 +127,11 @@ func (r *BeamContourService) Delete(ctx context.Context, id string, opts ...opti
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/beamcontour/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -144,7 +144,7 @@ func (r *BeamContourService) Count(ctx context.Context, query BeamContourCountPa
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/beamcontour/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take a list of BeamContours as a POST body and ingest into
@@ -157,7 +157,7 @@ func (r *BeamContourService) NewBulk(ctx context.Context, body BeamContourNewBul
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/beamcontour/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -166,7 +166,7 @@ func (r *BeamContourService) QueryHelp(ctx context.Context, opts ...option.Reque
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/beamcontour/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -181,7 +181,7 @@ func (r *BeamContourService) Tuple(ctx context.Context, query BeamContourTuplePa
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/beamcontour/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Describes the beam contour associated with a beam entity. Beam contours are the

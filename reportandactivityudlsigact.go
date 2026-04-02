@@ -51,11 +51,11 @@ func (r *ReportAndActivityUdlSigactService) FileGet(ctx context.Context, id stri
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/sigact/getFile/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take a list of SigAct as a POST body and ingest into the
@@ -67,7 +67,7 @@ func (r *ReportAndActivityUdlSigactService) UnvalidatedPublish(ctx context.Conte
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-sigact"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 type ReportAndActivityUdlSigactFileGetParams struct {

@@ -58,7 +58,7 @@ func (r *CollectResponseService) New(ctx context.Context, body CollectResponseNe
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/collectresponse"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single Collect Response record by its unique ID
@@ -67,11 +67,11 @@ func (r *CollectResponseService) Get(ctx context.Context, id string, query Colle
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/collectresponse/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -113,7 +113,7 @@ func (r *CollectResponseService) Count(ctx context.Context, query CollectRespons
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/collectresponse/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -126,7 +126,7 @@ func (r *CollectResponseService) NewBulk(ctx context.Context, body CollectRespon
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/collectresponse/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -135,7 +135,7 @@ func (r *CollectResponseService) QueryHelp(ctx context.Context, opts ...option.R
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/collectresponse/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take a list of CollectResponse as a POST body and ingest
@@ -147,7 +147,7 @@ func (r *CollectResponseService) UnvalidatedPublish(ctx context.Context, body Co
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-collectresponse"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Collect response supports the response and status of individual collect

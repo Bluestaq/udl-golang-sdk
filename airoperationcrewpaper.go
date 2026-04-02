@@ -75,7 +75,7 @@ func (r *AirOperationCrewpaperService) Unpublish(ctx context.Context, body AirOp
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/crewpapers/unpublish"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to upload a supporting PDF for the aircraft sortie. A specific
@@ -86,7 +86,7 @@ func (r *AirOperationCrewpaperService) UploadPdf(ctx context.Context, fileConten
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*"), option.WithRequestBody("application/pdf", fileContent)}, opts...)
 	path := "filedrop/crewpapers"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, nil, opts...)
-	return
+	return err
 }
 
 type AirOperationCrewpaperUnpublishParams struct {

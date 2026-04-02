@@ -82,7 +82,7 @@ func (r *SensorTypeService) Get(ctx context.Context, id int64, query SensorTypeG
 	opts = slices.Concat(r.Options, opts)
 	path := fmt.Sprintf("udl/sensortype/%v", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type SensorTypeListResponse struct {

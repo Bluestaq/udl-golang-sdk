@@ -51,7 +51,7 @@ func (r *SeraDataNavigationService) New(ctx context.Context, body SeraDataNaviga
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/seradatanavigation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update an SeradataNavigation. A specific role is required
@@ -61,11 +61,11 @@ func (r *SeraDataNavigationService) Update(ctx context.Context, id string, body 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/seradatanavigation/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -105,11 +105,11 @@ func (r *SeraDataNavigationService) Delete(ctx context.Context, id string, opts 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/seradatanavigation/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -122,7 +122,7 @@ func (r *SeraDataNavigationService) Count(ctx context.Context, query SeraDataNav
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/seradatanavigation/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single SeradataNavigation by its unique ID passed as
@@ -131,11 +131,11 @@ func (r *SeraDataNavigationService) Get(ctx context.Context, id string, query Se
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/seradatanavigation/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -144,7 +144,7 @@ func (r *SeraDataNavigationService) Queryhelp(ctx context.Context, opts ...optio
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradatanavigation/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -159,7 +159,7 @@ func (r *SeraDataNavigationService) Tuple(ctx context.Context, query SeraDataNav
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/seradatanavigation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Details for a navigation payload from Seradata.

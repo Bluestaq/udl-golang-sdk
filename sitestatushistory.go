@@ -80,7 +80,7 @@ func (r *SiteStatusHistoryService) Count(ctx context.Context, query SiteStatusHi
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sitestatus/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type SiteStatusHistoryListResponse struct {

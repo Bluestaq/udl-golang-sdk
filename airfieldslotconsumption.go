@@ -52,7 +52,7 @@ func (r *AirfieldSlotConsumptionService) New(ctx context.Context, body AirfieldS
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/airfieldslotconsumption"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single airfieldslotconsumption record by its unique
@@ -61,11 +61,11 @@ func (r *AirfieldSlotConsumptionService) Get(ctx context.Context, id string, que
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/airfieldslotconsumption/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to update a single AirfieldSlotConsumption. A specific role is
@@ -76,11 +76,11 @@ func (r *AirfieldSlotConsumptionService) Update(ctx context.Context, id string, 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/airfieldslotconsumption/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -120,11 +120,11 @@ func (r *AirfieldSlotConsumptionService) Delete(ctx context.Context, id string, 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/airfieldslotconsumption/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -137,7 +137,7 @@ func (r *AirfieldSlotConsumptionService) Count(ctx context.Context, query Airfie
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/airfieldslotconsumption/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -146,7 +146,7 @@ func (r *AirfieldSlotConsumptionService) Queryhelp(ctx context.Context, opts ...
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/airfieldslotconsumption/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -161,7 +161,7 @@ func (r *AirfieldSlotConsumptionService) Tuple(ctx context.Context, query Airfie
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/airfieldslotconsumption/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Airfield slot use data. Contains the dynamic data associated with the status and

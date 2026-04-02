@@ -69,7 +69,7 @@ func (r *SensorMaintenanceService) New(ctx context.Context, body SensorMaintenan
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sensormaintenance"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update a single SensorMaintenance. A specific role is
@@ -80,11 +80,11 @@ func (r *SensorMaintenanceService) Update(ctx context.Context, id string, body S
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/sensormaintenance/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -124,11 +124,11 @@ func (r *SensorMaintenanceService) Delete(ctx context.Context, id string, opts .
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/sensormaintenance/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -141,7 +141,7 @@ func (r *SensorMaintenanceService) Count(ctx context.Context, query SensorMainte
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sensormaintenance/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple SensorMaintenance as a POST body and ingest
@@ -152,7 +152,7 @@ func (r *SensorMaintenanceService) NewBulk(ctx context.Context, params SensorMai
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sensormaintenance/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single SensorMaintenance record by its unique ID
@@ -161,11 +161,11 @@ func (r *SensorMaintenanceService) Get(ctx context.Context, id string, query Sen
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/sensormaintenance/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get current Sensor Maintenance records using any number of
@@ -199,7 +199,7 @@ func (r *SensorMaintenanceService) QueryHelp(ctx context.Context, opts ...option
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/sensormaintenance/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -214,7 +214,7 @@ func (r *SensorMaintenanceService) Tuple(ctx context.Context, query SensorMainte
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/sensormaintenance/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Maintenance schedule and operational status of Sensor.

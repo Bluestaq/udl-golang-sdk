@@ -82,7 +82,7 @@ func (r *SigactHistoryService) Count(ctx context.Context, query SigactHistoryCou
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sigact/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Provides information on the dates, actors, locations, fatalities, and types of

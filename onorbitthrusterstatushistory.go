@@ -79,7 +79,7 @@ func (r *OnorbitthrusterstatusHistoryService) Count(ctx context.Context, query O
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/onorbitthrusterstatus/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type OnorbitthrusterstatusHistoryListParams struct {

@@ -94,7 +94,7 @@ func (r *IonoObservationService) Count(ctx context.Context, query IonoObservatio
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/ionoobservation/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -107,7 +107,7 @@ func (r *IonoObservationService) NewBulk(ctx context.Context, body IonoObservati
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/ionoobservation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -116,7 +116,7 @@ func (r *IonoObservationService) Queryhelp(ctx context.Context, opts ...option.R
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/ionoobservation/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -131,7 +131,7 @@ func (r *IonoObservationService) Tuple(ctx context.Context, query IonoObservatio
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/ionoobservation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take Ionospheric Observation entries as a POST body and
@@ -144,7 +144,7 @@ func (r *IonoObservationService) UnvalidatedPublish(ctx context.Context, body Io
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-ionoobs"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // These services provide operations for posting and querying ionospheric

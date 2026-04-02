@@ -99,7 +99,7 @@ func (r *StateVectorCurrentService) Tuple(ctx context.Context, query StateVector
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/statevector/current/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type StateVectorCurrentListParams struct {

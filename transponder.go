@@ -53,7 +53,7 @@ func (r *TransponderService) New(ctx context.Context, body TransponderNewParams,
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/transponder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update a single Transponder. A specific role is required to
@@ -65,11 +65,11 @@ func (r *TransponderService) Update(ctx context.Context, id string, body Transpo
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/transponder/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -110,11 +110,11 @@ func (r *TransponderService) Delete(ctx context.Context, id string, opts ...opti
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/transponder/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -127,7 +127,7 @@ func (r *TransponderService) Count(ctx context.Context, query TransponderCountPa
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/transponder/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single Transponder record by its unique ID passed as
@@ -137,11 +137,11 @@ func (r *TransponderService) Get(ctx context.Context, id string, query Transpond
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/transponder/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -150,7 +150,7 @@ func (r *TransponderService) Queryhelp(ctx context.Context, opts ...option.Reque
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/transponder/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -165,7 +165,7 @@ func (r *TransponderService) Tuple(ctx context.Context, query TransponderTuplePa
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/transponder/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // A transponder receives and transmits radio signals at a prescribed frequency

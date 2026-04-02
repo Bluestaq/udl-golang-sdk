@@ -110,7 +110,7 @@ func (r *AirOperationAircraftSortyService) New(ctx context.Context, body AirOper
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/aircraftsortie"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -152,7 +152,7 @@ func (r *AirOperationAircraftSortyService) Count(ctx context.Context, query AirO
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/aircraftsortie/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -165,7 +165,7 @@ func (r *AirOperationAircraftSortyService) NewBulk(ctx context.Context, body Air
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/aircraftsortie/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to take one or many aircraft sortie records as a POST body and
@@ -177,7 +177,7 @@ func (r *AirOperationAircraftSortyService) UnvalidatedPublish(ctx context.Contex
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-aircraftsortie"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Information related to the planning, load, status, and deployment or dispatch of

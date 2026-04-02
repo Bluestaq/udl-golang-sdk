@@ -37,7 +37,7 @@ func (r *UserService) Auth(ctx context.Context, opts ...option.RequestOption) (r
 	opts = slices.Concat(r.Options, opts)
 	path := "basicAuth"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 type UserAuthResponse struct {

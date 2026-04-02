@@ -81,7 +81,7 @@ func (r *DiplomaticClearanceCountryService) New(ctx context.Context, body Diplom
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/diplomaticclearancecountry"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single diplomaticclearancecountry record by its
@@ -90,11 +90,11 @@ func (r *DiplomaticClearanceCountryService) Get(ctx context.Context, id string, 
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/diplomaticclearancecountry/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to update a single diplomaticclearancecountry record. A
@@ -105,11 +105,11 @@ func (r *DiplomaticClearanceCountryService) Update(ctx context.Context, id strin
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/diplomaticclearancecountry/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -149,11 +149,11 @@ func (r *DiplomaticClearanceCountryService) Delete(ctx context.Context, id strin
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/diplomaticclearancecountry/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -166,7 +166,7 @@ func (r *DiplomaticClearanceCountryService) Count(ctx context.Context, query Dip
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/diplomaticclearancecountry/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -179,7 +179,7 @@ func (r *DiplomaticClearanceCountryService) NewBulk(ctx context.Context, body Di
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/diplomaticclearancecountry/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -188,7 +188,7 @@ func (r *DiplomaticClearanceCountryService) QueryHelp(ctx context.Context, opts 
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/diplomaticclearancecountry/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -203,7 +203,7 @@ func (r *DiplomaticClearanceCountryService) Tuple(ctx context.Context, query Dip
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/diplomaticclearancecountry/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple diplomaticclearancecountry records as a POST
@@ -215,7 +215,7 @@ func (r *DiplomaticClearanceCountryService) UnvalidatedPublish(ctx context.Conte
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-diplomaticclearancecountry"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Diplomatic Clearance Country provides information such as entry/exit points,

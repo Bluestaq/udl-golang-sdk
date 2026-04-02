@@ -60,11 +60,11 @@ func (r *DiffOfArrivalService) Get(ctx context.Context, id string, query DiffOfA
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/diffofarrival/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -73,7 +73,7 @@ func (r *DiffOfArrivalService) Queryhelp(ctx context.Context, opts ...option.Req
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/diffofarrival/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -88,7 +88,7 @@ func (r *DiffOfArrivalService) Tuple(ctx context.Context, query DiffOfArrivalTup
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/diffofarrival/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple TDOA/FDOA records as a POST body and ingest
@@ -100,7 +100,7 @@ func (r *DiffOfArrivalService) UnvalidatedPublish(ctx context.Context, body Diff
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-diffofarrival"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 type DiffOfArrivalQueryhelpResponse struct {

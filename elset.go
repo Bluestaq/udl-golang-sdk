@@ -72,7 +72,7 @@ func (r *ElsetService) New(ctx context.Context, body ElsetNewParams, opts ...opt
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/elset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single elset by its unique ID passed as a path
@@ -81,11 +81,11 @@ func (r *ElsetService) Get(ctx context.Context, id string, query ElsetGetParams,
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/elset/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -127,7 +127,7 @@ func (r *ElsetService) Count(ctx context.Context, query ElsetCountParams, opts .
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/elset/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -141,7 +141,7 @@ func (r *ElsetService) NewBulk(ctx context.Context, params ElsetNewBulkParams, o
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/elset/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to take a multiple TLEs as a POST body and ingest into the
@@ -154,7 +154,7 @@ func (r *ElsetService) NewBulkFromTle(ctx context.Context, params ElsetNewBulkFr
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/elset/createBulkFromTLE"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -163,7 +163,7 @@ func (r *ElsetService) QueryCurrentElsetHelp(ctx context.Context, opts ...option
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/currentelset/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -172,7 +172,7 @@ func (r *ElsetService) Queryhelp(ctx context.Context, opts ...option.RequestOpti
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/elset/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -187,7 +187,7 @@ func (r *ElsetService) Tuple(ctx context.Context, query ElsetTupleParams, opts .
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/elset/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take elsets as a POST body and ingest into the database
@@ -198,7 +198,7 @@ func (r *ElsetService) UnvalidatedPublish(ctx context.Context, body ElsetUnvalid
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-elset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // An element set is a collection of Keplerian orbital elements describing an orbit

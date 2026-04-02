@@ -71,7 +71,7 @@ func (r *GroundImageryService) New(ctx context.Context, body GroundImageryNewPar
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/groundimagery"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -113,7 +113,7 @@ func (r *GroundImageryService) Aodr(ctx context.Context, query GroundImageryAodr
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/groundimagery/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -126,7 +126,7 @@ func (r *GroundImageryService) Count(ctx context.Context, query GroundImageryCou
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/groundimagery/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single GroundImagery record by its unique ID passed
@@ -136,11 +136,11 @@ func (r *GroundImageryService) Get(ctx context.Context, id string, query GroundI
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/groundimagery/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single GroundImagery binary image by its unique ID
@@ -151,11 +151,11 @@ func (r *GroundImageryService) GetFile(ctx context.Context, id string, query Gro
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "application/octet-stream")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/groundimagery/getFile/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -164,7 +164,7 @@ func (r *GroundImageryService) Queryhelp(ctx context.Context, opts ...option.Req
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/groundimagery/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -179,7 +179,7 @@ func (r *GroundImageryService) Tuple(ctx context.Context, query GroundImageryTup
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/groundimagery/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Upload a new image with its metadata.
@@ -204,7 +204,7 @@ func (r *GroundImageryService) UploadZip(ctx context.Context, body GroundImagery
 	opts = append([]option.RequestOption{option.WithBaseURL("https://imagery.unifieddatalibrary.com/")}, opts...)
 	path := "filedrop/udl-groundimagery"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Imagery of terrestrial regions from on-orbit, air, and other sensors.

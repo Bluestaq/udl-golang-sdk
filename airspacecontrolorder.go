@@ -81,7 +81,7 @@ func (r *AirspaceControlOrderService) New(ctx context.Context, body AirspaceCont
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/airspacecontrolorder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single AirspaceControlOrder record by its unique ID
@@ -90,11 +90,11 @@ func (r *AirspaceControlOrderService) Get(ctx context.Context, id string, query 
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/airspacecontrolorder/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -136,7 +136,7 @@ func (r *AirspaceControlOrderService) Count(ctx context.Context, query AirspaceC
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/airspacecontrolorder/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -149,7 +149,7 @@ func (r *AirspaceControlOrderService) NewBulk(ctx context.Context, body Airspace
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/airspacecontrolorder/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -158,7 +158,7 @@ func (r *AirspaceControlOrderService) QueryHelp(ctx context.Context, opts ...opt
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/airspacecontrolorder/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -173,7 +173,7 @@ func (r *AirspaceControlOrderService) Tuple(ctx context.Context, query AirspaceC
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/airspacecontrolorder/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Beta Version Airspace Control Order: Contains airspace coordination information

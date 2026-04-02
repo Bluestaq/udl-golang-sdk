@@ -67,7 +67,7 @@ func (r *SarObservationService) New(ctx context.Context, body SarObservationNewP
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sarobservation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -109,7 +109,7 @@ func (r *SarObservationService) Count(ctx context.Context, query SarObservationC
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sarobservation/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of SAR
@@ -122,7 +122,7 @@ func (r *SarObservationService) NewBulk(ctx context.Context, body SarObservation
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sarobservation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single SAR observations by its unique ID passed as a
@@ -131,11 +131,11 @@ func (r *SarObservationService) Get(ctx context.Context, id string, query SarObs
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/sarobservation/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -144,7 +144,7 @@ func (r *SarObservationService) Queryhelp(ctx context.Context, opts ...option.Re
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/sarobservation/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -159,7 +159,7 @@ func (r *SarObservationService) Tuple(ctx context.Context, query SarObservationT
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/sarobservation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take SAR observations as a POST body and ingest into the
@@ -171,7 +171,7 @@ func (r *SarObservationService) UnvalidatedPublish(ctx context.Context, body Sar
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-sar"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Model representation of observation data for SAR based sensor phenomenologies.

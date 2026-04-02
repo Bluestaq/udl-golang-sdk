@@ -88,7 +88,7 @@ func (r *MissileTrackService) Count(ctx context.Context, query MissileTrackCount
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/missiletrack/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -101,7 +101,7 @@ func (r *MissileTrackService) NewBulk(ctx context.Context, body MissileTrackNewB
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/missiletrack/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -110,7 +110,7 @@ func (r *MissileTrackService) Queryhelp(ctx context.Context, opts ...option.Requ
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/missiletrack/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -125,7 +125,7 @@ func (r *MissileTrackService) Tuple(ctx context.Context, query MissileTrackTuple
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/missiletrack/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple missile track records as a POST body and
@@ -137,7 +137,7 @@ func (r *MissileTrackService) UnvalidatedPublish(ctx context.Context, body Missi
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-missiletrack"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // These services provide operations for querying of all available missile track

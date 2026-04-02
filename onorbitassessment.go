@@ -61,7 +61,7 @@ func (r *OnorbitassessmentService) New(ctx context.Context, body Onorbitassessme
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/onorbitassessment"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -103,7 +103,7 @@ func (r *OnorbitassessmentService) Count(ctx context.Context, query Onorbitasses
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/onorbitassessment/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -116,7 +116,7 @@ func (r *OnorbitassessmentService) NewBulk(ctx context.Context, body Onorbitasse
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/onorbitassessment/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single OnorbitAssessment record by its unique ID
@@ -125,11 +125,11 @@ func (r *OnorbitassessmentService) Get(ctx context.Context, id string, query Ono
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/onorbitassessment/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -138,7 +138,7 @@ func (r *OnorbitassessmentService) Queryhelp(ctx context.Context, opts ...option
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/onorbitassessment/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -153,7 +153,7 @@ func (r *OnorbitassessmentService) Tuple(ctx context.Context, query Onorbitasses
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/onorbitassessment/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple OnorbitAssessment records as a POST body and
@@ -165,7 +165,7 @@ func (r *OnorbitassessmentService) UnvalidatedPublish(ctx context.Context, body 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-onorbitassessment"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Spacecraft characterization results from analysis of MASINT data. Supports

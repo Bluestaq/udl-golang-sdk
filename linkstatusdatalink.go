@@ -56,7 +56,7 @@ func (r *LinkStatusDatalinkService) New(ctx context.Context, body LinkStatusData
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/datalink"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -98,7 +98,7 @@ func (r *LinkStatusDatalinkService) Count(ctx context.Context, query LinkStatusD
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/datalink/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -107,7 +107,7 @@ func (r *LinkStatusDatalinkService) Queryhelp(ctx context.Context, opts ...optio
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/datalink/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -122,7 +122,7 @@ func (r *LinkStatusDatalinkService) Tuple(ctx context.Context, query LinkStatusD
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/datalink/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple datalink records as a POST body and ingest
@@ -134,7 +134,7 @@ func (r *LinkStatusDatalinkService) UnvalidatedPublish(ctx context.Context, body
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-datalink"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Beta Version DataLink: Detailed instructions regarding the operations of data

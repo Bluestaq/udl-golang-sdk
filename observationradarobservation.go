@@ -67,7 +67,7 @@ func (r *ObservationRadarobservationService) New(ctx context.Context, body Obser
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/radarobservation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
@@ -109,7 +109,7 @@ func (r *ObservationRadarobservationService) Count(ctx context.Context, query Ob
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/radarobservation/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of radar
@@ -122,7 +122,7 @@ func (r *ObservationRadarobservationService) NewBulk(ctx context.Context, body O
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/radarobservation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single radar observations by its unique ID passed as
@@ -131,11 +131,11 @@ func (r *ObservationRadarobservationService) Get(ctx context.Context, id string,
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/radarobservation/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -144,7 +144,7 @@ func (r *ObservationRadarobservationService) Queryhelp(ctx context.Context, opts
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/radarobservation/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
@@ -159,7 +159,7 @@ func (r *ObservationRadarobservationService) Tuple(ctx context.Context, query Ob
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/radarobservation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple radar observations as a POST body and ingest
@@ -171,7 +171,7 @@ func (r *ObservationRadarobservationService) UnvalidatedPublish(ctx context.Cont
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-radar"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Model representation of observation data for radar based sensor phenomenologies.

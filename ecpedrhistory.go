@@ -83,7 +83,7 @@ func (r *EcpedrHistoryService) Aodr(ctx context.Context, query EcpedrHistoryAodr
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/ecpedr/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -96,7 +96,7 @@ func (r *EcpedrHistoryService) Count(ctx context.Context, query EcpedrHistoryCou
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/ecpedr/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Energetic Charged Particles (ECP) Environmental Data Records (EDRs).

@@ -80,7 +80,7 @@ func (r *TrackDetailHistoryService) Aodr(ctx context.Context, query TrackDetailH
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/trackdetails/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
@@ -93,7 +93,7 @@ func (r *TrackDetailHistoryService) Count(ctx context.Context, query TrackDetail
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/trackdetails/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // These services provide operations for querying of all available track details
