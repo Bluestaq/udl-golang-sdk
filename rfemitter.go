@@ -749,7 +749,7 @@ type RfEmitterGetResponseRfEmitterDetailAntennaTransmitChannel struct {
 	// Minimum gain, in decibels.
 	MinGain float64 `json:"minGain"`
 	// The set of sample rates supported by this transmit channel, in bits per second.
-	SampleRates []float64 `json:"sampleRates"`
+	SampleRates []float64 `json:"sampleRates" format:"integer"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Power              respjson.Field
@@ -1415,7 +1415,7 @@ type RfEmitterTupleResponseRfEmitterDetailAntennaTransmitChannel struct {
 	// Minimum gain, in decibels.
 	MinGain float64 `json:"minGain"`
 	// The set of sample rates supported by this transmit channel, in bits per second.
-	SampleRates []float64 `json:"sampleRates"`
+	SampleRates []float64 `json:"sampleRates" format:"integer"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Power              respjson.Field
