@@ -46,7 +46,7 @@ func NewElsetCurrentService(opts ...option.RequestOption) (r ElsetCurrentService
 // Current elsets are tracked by source and a source should be provided as a query
 // parameter to this service operation to view the 'current' catalog for a
 // particular provider. If source is not provided, it will be defaulted to '18th
-// SPCS'. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more
+// SPCS'. See the queryhelp operation (`/udl/<datatype>/queryhelp`) for more
 // details on additional query parameter information.
 func (r *ElsetCurrentService) List(ctx context.Context, query ElsetCurrentListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[ElsetAbridged], err error) {
 	var raw *http.Response
@@ -71,7 +71,7 @@ func (r *ElsetCurrentService) List(ctx context.Context, query ElsetCurrentListPa
 // Current elsets are tracked by source and a source should be provided as a query
 // parameter to this service operation to view the 'current' catalog for a
 // particular provider. If source is not provided, it will be defaulted to '18th
-// SPCS'. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more
+// SPCS'. See the queryhelp operation (`/udl/<datatype>/queryhelp`) for more
 // details on additional query parameter information.
 func (r *ElsetCurrentService) ListAutoPaging(ctx context.Context, query ElsetCurrentListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[ElsetAbridged] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
@@ -83,7 +83,7 @@ func (r *ElsetCurrentService) ListAutoPaging(ctx context.Context, query ElsetCur
 // Current elsets are tracked by source and a source should be provided as a query
 // parameter to this service operation to view the 'current' catalog for a
 // particular provider. If source is not provided, it will be defaulted to '18th
-// SPCS'. See the queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more
+// SPCS'. See the queryhelp operation (`/udl/<datatype>/queryhelp`) for more
 // details on additional query parameter information.
 func (r *ElsetCurrentService) Tuple(ctx context.Context, query ElsetCurrentTupleParams, opts ...option.RequestOption) (res *[]Elset, err error) {
 	opts = slices.Concat(r.Options, opts)

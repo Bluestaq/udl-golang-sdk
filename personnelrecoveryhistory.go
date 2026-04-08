@@ -40,8 +40,8 @@ func NewPersonnelrecoveryHistoryService(opts ...option.RequestOption) (r Personn
 
 // Service operation to dynamically query historical data by a variety of query
 // parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *PersonnelrecoveryHistoryService) List(ctx context.Context, query PersonnelrecoveryHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[PersonnelRecoveryFullL], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -61,8 +61,8 @@ func (r *PersonnelrecoveryHistoryService) List(ctx context.Context, query Person
 
 // Service operation to dynamically query historical data by a variety of query
 // parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *PersonnelrecoveryHistoryService) ListAutoPaging(ctx context.Context, query PersonnelrecoveryHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[PersonnelRecoveryFullL] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
@@ -70,7 +70,7 @@ func (r *PersonnelrecoveryHistoryService) ListAutoPaging(ctx context.Context, qu
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
-// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
 // valid/required query parameter information.
 func (r *PersonnelrecoveryHistoryService) Count(ctx context.Context, query PersonnelrecoveryHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
@@ -85,7 +85,7 @@ type PersonnelrecoveryHistoryListParams struct {
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	MsgTime time.Time `query:"msgTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on valid
 	// query fields that can be selected.
 	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
 	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`

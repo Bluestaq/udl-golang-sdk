@@ -40,8 +40,8 @@ func NewCollectResponseHistoryService(opts ...option.RequestOption) (r CollectRe
 
 // Service operation to dynamically query historical data by a variety of query
 // parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *CollectResponseHistoryService) List(ctx context.Context, query CollectResponseHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[shared.CollectResponseFull], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -61,17 +61,16 @@ func (r *CollectResponseHistoryService) List(ctx context.Context, query CollectR
 
 // Service operation to dynamically query historical data by a variety of query
 // parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *CollectResponseHistoryService) ListAutoPaging(ctx context.Context, query CollectResponseHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[shared.CollectResponseFull] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to dynamically query historical data by a variety of query
 // parameters not specified in this API documentation, then write that data to the
-// Secure Content Store. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// Secure Content Store. See the queryhelp operation (`/udl/<datatype>/queryhelp`)
+// for more details on valid/required query parameter information.
 func (r *CollectResponseHistoryService) Aodr(ctx context.Context, query CollectResponseHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
@@ -83,7 +82,7 @@ func (r *CollectResponseHistoryService) Aodr(ctx context.Context, query CollectR
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
-// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
 // valid/required query parameter information.
 func (r *CollectResponseHistoryService) Count(ctx context.Context, query CollectResponseHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
@@ -98,7 +97,7 @@ type CollectResponseHistoryListParams struct {
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	CreatedAt time.Time `query:"createdAt" api:"required" format:"date" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on valid
 	// query fields that can be selected.
 	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
 	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
@@ -120,7 +119,7 @@ type CollectResponseHistoryAodrParams struct {
 	// (YYYY-MM-DDTHH:MM:SS.sssZ)
 	CreatedAt time.Time `query:"createdAt" api:"required" format:"date" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on valid
 	// query fields that can be selected.
 	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
 	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
