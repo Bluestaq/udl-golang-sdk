@@ -1276,8 +1276,7 @@ type Client struct {
 	// Vessel and Vessel Status data. Vessel contains the static data of the specific
 	// vessel: mmsi, cruise speed, max speed, etc.
 	Vessel VesselService
-	// This collection of services provides operations for video streaming.
-	Video VideoService
+	Video  VideoService
 	// These services provide for posting and querying terrestrial weather conditions
 	// over a target area or region and raw sensor data used to produce condition
 	// reports. Weather Reports describe current weather conditions over a target point

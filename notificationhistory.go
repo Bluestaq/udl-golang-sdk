@@ -44,8 +44,8 @@ func NewNotificationHistoryService(opts ...option.RequestOption) (r Notification
 
 // Service operation to dynamically query historical data by a variety of query
 // parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *NotificationHistoryService) List(ctx context.Context, query NotificationHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[shared.NotificationFull], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -65,17 +65,16 @@ func (r *NotificationHistoryService) List(ctx context.Context, query Notificatio
 
 // Service operation to dynamically query historical data by a variety of query
 // parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *NotificationHistoryService) ListAutoPaging(ctx context.Context, query NotificationHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[shared.NotificationFull] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to dynamically query historical data by a variety of query
 // parameters not specified in this API documentation, then write that data to the
-// Secure Content Store. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// Secure Content Store. See the queryhelp operation (`/udl/<datatype>/queryhelp`)
+// for more details on valid/required query parameter information.
 func (r *NotificationHistoryService) Aodr(ctx context.Context, query NotificationHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
@@ -87,7 +86,7 @@ func (r *NotificationHistoryService) Aodr(ctx context.Context, query Notificatio
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
-// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
 // valid/required query parameter information.
 func (r *NotificationHistoryService) Count(ctx context.Context, query NotificationHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
@@ -101,7 +100,7 @@ type NotificationHistoryListParams struct {
 	// Time the row was created in the database. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	CreatedAt time.Time `query:"createdAt" api:"required" format:"date" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on valid
 	// query fields that can be selected.
 	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
 	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
@@ -122,7 +121,7 @@ type NotificationHistoryAodrParams struct {
 	// Time the row was created in the database. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	CreatedAt time.Time `query:"createdAt" api:"required" format:"date" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on valid
 	// query fields that can be selected.
 	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
 	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`

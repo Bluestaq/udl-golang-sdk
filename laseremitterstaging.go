@@ -90,8 +90,8 @@ func (r *LaseremitterStagingService) Update(ctx context.Context, id string, body
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *LaseremitterStagingService) List(ctx context.Context, query LaseremitterStagingListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LaseremitterStagingListResponse], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -111,8 +111,8 @@ func (r *LaseremitterStagingService) List(ctx context.Context, query Laseremitte
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *LaseremitterStagingService) ListAutoPaging(ctx context.Context, query LaseremitterStagingListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[LaseremitterStagingListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
