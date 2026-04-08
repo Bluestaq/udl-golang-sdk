@@ -545,7 +545,7 @@ type RfEmitterDetailListResponseAntennaTransmitChannel struct {
 	// Minimum gain, in decibels.
 	MinGain float64 `json:"minGain"`
 	// The set of sample rates supported by this transmit channel, in bits per second.
-	SampleRates []float64 `json:"sampleRates"`
+	SampleRates []float64 `json:"sampleRates" format:"integer"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Power              respjson.Field
@@ -1078,7 +1078,7 @@ type RfEmitterDetailGetResponseAntennaTransmitChannel struct {
 	// Minimum gain, in decibels.
 	MinGain float64 `json:"minGain"`
 	// The set of sample rates supported by this transmit channel, in bits per second.
-	SampleRates []float64 `json:"sampleRates"`
+	SampleRates []float64 `json:"sampleRates" format:"integer"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Power              respjson.Field
@@ -1647,7 +1647,7 @@ type RfEmitterDetailTupleResponseAntennaTransmitChannel struct {
 	// Minimum gain, in decibels.
 	MinGain float64 `json:"minGain"`
 	// The set of sample rates supported by this transmit channel, in bits per second.
-	SampleRates []float64 `json:"sampleRates"`
+	SampleRates []float64 `json:"sampleRates" format:"integer"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Power              respjson.Field
@@ -2088,7 +2088,7 @@ type RfEmitterDetailNewParamsAntennaTransmitChannel struct {
 	// Minimum gain, in decibels.
 	MinGain param.Opt[float64] `json:"minGain,omitzero"`
 	// The set of sample rates supported by this transmit channel, in bits per second.
-	SampleRates []float64 `json:"sampleRates,omitzero"`
+	SampleRates []float64 `json:"sampleRates,omitzero" format:"integer"`
 	paramObj
 }
 
@@ -2486,7 +2486,7 @@ type RfEmitterDetailUpdateParamsAntennaTransmitChannel struct {
 	// Minimum gain, in decibels.
 	MinGain param.Opt[float64] `json:"minGain,omitzero"`
 	// The set of sample rates supported by this transmit channel, in bits per second.
-	SampleRates []float64 `json:"sampleRates,omitzero"`
+	SampleRates []float64 `json:"sampleRates,omitzero" format:"integer"`
 	paramObj
 }
 
