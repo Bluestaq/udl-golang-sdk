@@ -46,7 +46,7 @@ func (r *CotService) New(ctx context.Context, body CotNewParams, opts ...option.
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/cot"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 type CotNewParams struct {

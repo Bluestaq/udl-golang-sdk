@@ -57,7 +57,7 @@ func (r *LaseremitterService) New(ctx context.Context, body LaseremitterNewParam
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/laseremitter"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update a single LaserEmitter record. A specific role is
@@ -68,17 +68,17 @@ func (r *LaseremitterService) Update(ctx context.Context, id string, body Lasere
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/laseremitter/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *LaseremitterService) List(ctx context.Context, query LaseremitterListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LaseremitterListResponse], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -98,8 +98,8 @@ func (r *LaseremitterService) List(ctx context.Context, query LaseremitterListPa
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *LaseremitterService) ListAutoPaging(ctx context.Context, query LaseremitterListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[LaseremitterListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
@@ -112,24 +112,24 @@ func (r *LaseremitterService) Delete(ctx context.Context, id string, opts ...opt
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/laseremitter/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
-// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
 // valid/required query parameter information.
 func (r *LaseremitterService) Count(ctx context.Context, query LaseremitterCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/laseremitter/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single LaserEmitter record by its unique ID passed as
@@ -138,11 +138,11 @@ func (r *LaseremitterService) Get(ctx context.Context, id string, query Laseremi
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/laseremitter/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -151,14 +151,14 @@ func (r *LaseremitterService) Queryhelp(ctx context.Context, opts ...option.Requ
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/laseremitter/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
 // columns/fields. Requested columns are specified by the 'columns' query parameter
 // and should be a comma separated list of valid fields for the specified data
 // type. classificationMarking is always returned. See the queryhelp operation
-// (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
@@ -166,7 +166,7 @@ func (r *LaseremitterService) Tuple(ctx context.Context, query LaseremitterTuple
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/laseremitter/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Model representation of a laser beam emitter/director which represents a source
@@ -176,18 +176,17 @@ type LaseremitterListResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode LaseremitterListResponseDataMode `json:"dataMode" api:"required"`
@@ -305,18 +304,17 @@ func (r *LaseremitterListResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type LaseremitterListResponseDataMode string
 
 const (
@@ -333,18 +331,17 @@ type LaseremitterGetResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode LaseremitterGetResponseDataMode `json:"dataMode" api:"required"`
@@ -382,8 +379,8 @@ type LaseremitterGetResponse struct {
 	// measured in microradians.
 	Divergence float64 `json:"divergence"`
 	// An entity is a generic representation of any object within a space/SSA system
-	// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
-	// entity can have an operating unit, a location (if terrestrial), and statuses.
+	// such as sensors, on-orbit objects, RF Emitters, spacecraft buses, etc. An entity
+	// can have an operating unit, a location (if terrestrial), and statuses.
 	Entity shared.EntityFull `json:"entity"`
 	// Unique identifier of the parent entity. idEntity is required for PUT.
 	IDEntity string `json:"idEntity"`
@@ -474,18 +471,17 @@ func (r *LaseremitterGetResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type LaseremitterGetResponseDataMode string
 
 const (
@@ -538,18 +534,17 @@ type LaseremitterTupleResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode LaseremitterTupleResponseDataMode `json:"dataMode" api:"required"`
@@ -587,8 +582,8 @@ type LaseremitterTupleResponse struct {
 	// measured in microradians.
 	Divergence float64 `json:"divergence"`
 	// An entity is a generic representation of any object within a space/SSA system
-	// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
-	// entity can have an operating unit, a location (if terrestrial), and statuses.
+	// such as sensors, on-orbit objects, RF Emitters, spacecraft buses, etc. An entity
+	// can have an operating unit, a location (if terrestrial), and statuses.
 	Entity shared.EntityFull `json:"entity"`
 	// Unique identifier of the parent entity. idEntity is required for PUT.
 	IDEntity string `json:"idEntity"`
@@ -679,18 +674,17 @@ func (r *LaseremitterTupleResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type LaseremitterTupleResponseDataMode string
 
 const (
@@ -705,18 +699,17 @@ type LaseremitterNewParams struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode LaseremitterNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
@@ -782,8 +775,8 @@ type LaseremitterNewParams struct {
 	// The center wavelength of this laser, in micrometers.
 	Wavelength param.Opt[float64] `json:"wavelength,omitzero"`
 	// An entity is a generic representation of any object within a space/SSA system
-	// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
-	// entity can have an operating unit, a location (if terrestrial), and statuses.
+	// such as sensors, on-orbit objects, RF Emitters, spacecraft buses, etc. An entity
+	// can have an operating unit, a location (if terrestrial), and statuses.
 	Entity EntityIngestParam `json:"entity,omitzero"`
 	paramObj
 }
@@ -798,18 +791,17 @@ func (r *LaseremitterNewParams) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type LaseremitterNewParamsDataMode string
 
 const (
@@ -824,18 +816,17 @@ type LaseremitterUpdateParams struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode LaseremitterUpdateParamsDataMode `json:"dataMode,omitzero" api:"required"`
@@ -901,8 +892,8 @@ type LaseremitterUpdateParams struct {
 	// The center wavelength of this laser, in micrometers.
 	Wavelength param.Opt[float64] `json:"wavelength,omitzero"`
 	// An entity is a generic representation of any object within a space/SSA system
-	// such as sensors, on-orbit objects, RF Emitters, space craft buses, etc. An
-	// entity can have an operating unit, a location (if terrestrial), and statuses.
+	// such as sensors, on-orbit objects, RF Emitters, spacecraft buses, etc. An entity
+	// can have an operating unit, a location (if terrestrial), and statuses.
 	Entity EntityIngestParam `json:"entity,omitzero"`
 	paramObj
 }
@@ -917,18 +908,17 @@ func (r *LaseremitterUpdateParams) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type LaseremitterUpdateParamsDataMode string
 
 const (

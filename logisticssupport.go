@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -113,7 +112,7 @@ func (r *LogisticsSupportService) New(ctx context.Context, body LogisticsSupport
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/logisticssupport"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update a single LogisticsSupport record. A specific role is
@@ -124,17 +123,17 @@ func (r *LogisticsSupportService) Update(ctx context.Context, id string, body Lo
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/logisticssupport/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *LogisticsSupportService) List(ctx context.Context, query LogisticsSupportListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[LogisticsSupportListResponse], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -154,8 +153,8 @@ func (r *LogisticsSupportService) List(ctx context.Context, query LogisticsSuppo
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *LogisticsSupportService) ListAutoPaging(ctx context.Context, query LogisticsSupportListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[LogisticsSupportListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
@@ -163,14 +162,14 @@ func (r *LogisticsSupportService) ListAutoPaging(ctx context.Context, query Logi
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
-// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
 // valid/required query parameter information.
 func (r *LogisticsSupportService) Count(ctx context.Context, query LogisticsSupportCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/logisticssupport/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -183,7 +182,7 @@ func (r *LogisticsSupportService) NewBulk(ctx context.Context, body LogisticsSup
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/logisticssupport/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single LogisticsSupport record by its unique ID
@@ -192,11 +191,11 @@ func (r *LogisticsSupportService) Get(ctx context.Context, id string, query Logi
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/logisticssupport/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -205,14 +204,14 @@ func (r *LogisticsSupportService) Queryhelp(ctx context.Context, opts ...option.
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/logisticssupport/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
 // columns/fields. Requested columns are specified by the 'columns' query parameter
 // and should be a comma separated list of valid fields for the specified data
 // type. classificationMarking is always returned. See the queryhelp operation
-// (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
@@ -220,7 +219,7 @@ func (r *LogisticsSupportService) Tuple(ctx context.Context, query LogisticsSupp
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/logisticssupport/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple logisticssupport records as a POST body and
@@ -232,7 +231,7 @@ func (r *LogisticsSupportService) UnvalidatedPublish(ctx context.Context, body L
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-logisticssupport"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Discrepancy information associated with this LogisticsSupport record.
@@ -729,18 +728,17 @@ type LogisticsSupportListResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode LogisticsSupportListResponseDataMode `json:"dataMode" api:"required"`
@@ -871,18 +869,17 @@ func (r *LogisticsSupportListResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type LogisticsSupportListResponseDataMode string
 
 const (
@@ -1324,18 +1321,17 @@ type LogisticsSupportGetResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode LogisticsSupportGetResponseDataMode `json:"dataMode" api:"required"`
@@ -1466,18 +1462,17 @@ func (r *LogisticsSupportGetResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type LogisticsSupportGetResponseDataMode string
 
 const (
@@ -1531,18 +1526,17 @@ type LogisticsSupportTupleResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode LogisticsSupportTupleResponseDataMode `json:"dataMode" api:"required"`
@@ -1673,18 +1667,17 @@ func (r *LogisticsSupportTupleResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type LogisticsSupportTupleResponseDataMode string
 
 const (
@@ -1699,18 +1692,17 @@ type LogisticsSupportNewParams struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode LogisticsSupportNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
@@ -1797,18 +1789,17 @@ func (r *LogisticsSupportNewParams) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type LogisticsSupportNewParamsDataMode string
 
 const (
@@ -2139,18 +2130,17 @@ type LogisticsSupportUpdateParams struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode LogisticsSupportUpdateParamsDataMode `json:"dataMode,omitzero" api:"required"`
@@ -2237,18 +2227,17 @@ func (r *LogisticsSupportUpdateParams) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type LogisticsSupportUpdateParamsDataMode string
 
 const (
@@ -2613,7 +2602,7 @@ func (r LogisticsSupportNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *LogisticsSupportNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Comprehensive logistical details concerning the planned support of maintenance
@@ -2627,18 +2616,17 @@ type LogisticsSupportNewBulkParamsBody struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -3089,7 +3077,7 @@ func (r LogisticsSupportUnvalidatedPublishParams) MarshalJSON() (data []byte, er
 	return shimjson.Marshal(r.Body)
 }
 func (r *LogisticsSupportUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Comprehensive logistical details concerning the planned support of maintenance
@@ -3103,18 +3091,17 @@ type LogisticsSupportUnvalidatedPublishParamsBody struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`

@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 	"net/url"
 	"slices"
@@ -74,8 +73,8 @@ func NewEphemerisService(opts ...option.RequestOption) (r EphemerisService) {
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *EphemerisService) List(ctx context.Context, query EphemerisListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[EphemerisAbridged], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -95,8 +94,8 @@ func (r *EphemerisService) List(ctx context.Context, query EphemerisListParams, 
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *EphemerisService) ListAutoPaging(ctx context.Context, query EphemerisListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[EphemerisAbridged] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
@@ -104,14 +103,14 @@ func (r *EphemerisService) ListAutoPaging(ctx context.Context, query EphemerisLi
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
-// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
 // valid/required query parameter information.
 func (r *EphemerisService) Count(ctx context.Context, query EphemerisCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/ephemeris/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to post/store Ephemeris data. This operation is intended to be
@@ -127,7 +126,7 @@ func (r *EphemerisService) FileUpload(ctx context.Context, params EphemerisFileU
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/ephem"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -136,14 +135,14 @@ func (r *EphemerisService) Queryhelp(ctx context.Context, opts ...option.Request
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/ephemeris/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
 // columns/fields. Requested columns are specified by the 'columns' query parameter
 // and should be a comma separated list of valid fields for the specified data
 // type. classificationMarking is always returned. See the queryhelp operation
-// (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
@@ -151,7 +150,7 @@ func (r *EphemerisService) Tuple(ctx context.Context, query EphemerisTupleParams
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/ephemeris/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take a single EphemerisSet and many associated Ephemeris
@@ -175,7 +174,7 @@ func (r *EphemerisService) UnvalidatedPublish(ctx context.Context, body Ephemeri
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-ephset"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // An ephemeris record is a position and velocity vector identifying the location
@@ -191,18 +190,17 @@ type EphemerisAbridged struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode EphemerisAbridgedDataMode `json:"dataMode" api:"required"`
@@ -231,27 +229,34 @@ type EphemerisAbridged struct {
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
 	// Covariance matrix, in kilometer and second based units, in the specified
-	// Ephemeris Set covReferenceFrame. If the covReferenceFrame from the EphemerisSet
-	// table is null it is assumed to be J2000. The array values represent the lower
-	// triangular half of the position-velocity covariance matrix. The size of the
-	// covariance matrix is dynamic, depending on whether the covariance for position
-	// only or position & velocity. The covariance elements are position dependent
-	// within the array with values ordered as follows:
+	// Ephemeris Set covReferenceFrame.
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;y&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;y'&nbsp;z'&nbsp;&nbsp;
+	// If the covReferenceFrame from the EphemerisSet table is null it is assumed to be
+	// J2000.
 	//
-	// x&nbsp;&nbsp;&nbsp;&nbsp;1
+	// The array values represent the lower triangular half of the position-velocity
+	// covariance matrix. The size of the covariance matrix is dynamic, depending on
+	// whether the covariance for position only or position & velocity.
 	//
-	// y&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3
+	// The covariance elements are position dependent within the array with values
+	// ordered as follows:
 	//
-	// z&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6
+	// ```
 	//
-	// x'&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;10
+	//	x    y    z    x'   y'   z'
 	//
-	// y'&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+	// x         1
 	//
-	// z'&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;
-	// 21
+	// y         2    3
+	//
+	// z         4    5    6
+	//
+	// x'        7    8    9    10
+	//
+	// y'        11   12   13   14   15
+	//
+	// z'        16   17   18   19   20   21
+	// ```
 	//
 	// The array containing the covariance matrix elements will be of length 6 for
 	// position only covariance, or length 21 for position-velocity covariance. The cov
@@ -323,18 +328,17 @@ func (r *EphemerisAbridged) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type EphemerisAbridgedDataMode string
 
 const (
@@ -453,7 +457,7 @@ func (r EphemerisFileUploadParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *EphemerisFileUploadParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // URLQuery serializes [EphemerisFileUploadParams]'s query parameters as
@@ -516,18 +520,17 @@ type EphemerisUnvalidatedPublishParams struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode EphemerisUnvalidatedPublishParamsDataMode `json:"dataMode,omitzero" api:"required"`
@@ -647,18 +650,17 @@ func (r *EphemerisUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type EphemerisUnvalidatedPublishParamsDataMode string
 
 const (
@@ -697,18 +699,17 @@ type EphemerisUnvalidatedPublishParamsEphemerisList struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -761,27 +762,34 @@ type EphemerisUnvalidatedPublishParamsEphemerisList struct {
 	// referenceFrame. If referenceFrame is null then J2K should be assumed.
 	Zaccel param.Opt[float64] `json:"zaccel,omitzero"`
 	// Covariance matrix, in kilometer and second based units, in the specified
-	// Ephemeris Set covReferenceFrame. If the covReferenceFrame from the EphemerisSet
-	// table is null it is assumed to be J2000. The array values represent the lower
-	// triangular half of the position-velocity covariance matrix. The size of the
-	// covariance matrix is dynamic, depending on whether the covariance for position
-	// only or position & velocity. The covariance elements are position dependent
-	// within the array with values ordered as follows:
+	// Ephemeris Set covReferenceFrame.
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;y&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;y'&nbsp;z'&nbsp;&nbsp;
+	// If the covReferenceFrame from the EphemerisSet table is null it is assumed to be
+	// J2000.
 	//
-	// x&nbsp;&nbsp;&nbsp;&nbsp;1
+	// The array values represent the lower triangular half of the position-velocity
+	// covariance matrix. The size of the covariance matrix is dynamic, depending on
+	// whether the covariance for position only or position & velocity.
 	//
-	// y&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3
+	// The covariance elements are position dependent within the array with values
+	// ordered as follows:
 	//
-	// z&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;6
+	// ```
 	//
-	// x'&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;10
+	//	x    y    z    x'   y'   z'
 	//
-	// y'&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+	// x         1
 	//
-	// z'&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;
-	// 21
+	// y         2    3
+	//
+	// z         4    5    6
+	//
+	// x'        7    8    9    10
+	//
+	// y'        11   12   13   14   15
+	//
+	// z'        16   17   18   19   20   21
+	// ```
 	//
 	// The array containing the covariance matrix elements will be of length 6 for
 	// position only covariance, or length 21 for position-velocity covariance. The cov

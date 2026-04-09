@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -63,7 +62,7 @@ func (r *SensorStatingService) New(ctx context.Context, body SensorStatingNewPar
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sensorstaging"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update a single SensorStaging record. A specific role is
@@ -74,17 +73,17 @@ func (r *SensorStatingService) Update(ctx context.Context, id string, body Senso
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/sensorstaging/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *SensorStatingService) List(ctx context.Context, query SensorStatingListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SensorStatingListResponse], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -104,8 +103,8 @@ func (r *SensorStatingService) List(ctx context.Context, query SensorStatingList
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *SensorStatingService) ListAutoPaging(ctx context.Context, query SensorStatingListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SensorStatingListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
@@ -118,11 +117,11 @@ func (r *SensorStatingService) Delete(ctx context.Context, id string, opts ...op
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/sensorstaging/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to take multiple SensorStaging records as a POST body and
@@ -137,7 +136,7 @@ func (r *SensorStatingService) NewBulk(ctx context.Context, body SensorStatingNe
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sensorstaging/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single SensorStaging record by its unique ID passed
@@ -146,11 +145,11 @@ func (r *SensorStatingService) Get(ctx context.Context, id string, query SensorS
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/sensorstaging/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -159,7 +158,7 @@ func (r *SensorStatingService) Queryhelp(ctx context.Context, opts ...option.Req
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/sensorstaging/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Model representation of a nominal sensor. This entity contains minimal
@@ -494,7 +493,7 @@ func (r SensorStatingNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *SensorStatingNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of a nominal sensor. This entity contains minimal

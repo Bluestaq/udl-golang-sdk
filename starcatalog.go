@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -67,7 +66,7 @@ func (r *StarCatalogService) New(ctx context.Context, body StarCatalogNewParams,
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/starcatalog"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update a single starcatalog record. A specific role is
@@ -78,17 +77,17 @@ func (r *StarCatalogService) Update(ctx context.Context, id string, body StarCat
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/starcatalog/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *StarCatalogService) List(ctx context.Context, query StarCatalogListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[StarCatalogListResponse], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -108,8 +107,8 @@ func (r *StarCatalogService) List(ctx context.Context, query StarCatalogListPara
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *StarCatalogService) ListAutoPaging(ctx context.Context, query StarCatalogListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[StarCatalogListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
@@ -122,24 +121,24 @@ func (r *StarCatalogService) Delete(ctx context.Context, id string, opts ...opti
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/starcatalog/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
-// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
 // valid/required query parameter information.
 func (r *StarCatalogService) Count(ctx context.Context, query StarCatalogCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/starcatalog/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -152,7 +151,7 @@ func (r *StarCatalogService) NewBulk(ctx context.Context, body StarCatalogNewBul
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/starcatalog/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single StarCatalog record by its unique ID passed as
@@ -161,11 +160,11 @@ func (r *StarCatalogService) Get(ctx context.Context, id string, query StarCatal
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/starcatalog/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -174,14 +173,14 @@ func (r *StarCatalogService) Queryhelp(ctx context.Context, opts ...option.Reque
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/starcatalog/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
 // columns/fields. Requested columns are specified by the 'columns' query parameter
 // and should be a comma separated list of valid fields for the specified data
 // type. classificationMarking is always returned. See the queryhelp operation
-// (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
@@ -189,7 +188,7 @@ func (r *StarCatalogService) Tuple(ctx context.Context, query StarCatalogTuplePa
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/starcatalog/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple StarCatalog records as a POST body and ingest
@@ -201,7 +200,7 @@ func (r *StarCatalogService) UnvalidatedPublish(ctx context.Context, body StarCa
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-starcatalog"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // The star catalog provides the position, proper motion, parallax, and photometric
@@ -218,18 +217,17 @@ type StarCatalogListResponse struct {
 	CsID int64 `json:"csId" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "EXERCISE", "SIMULATED".
 	DataMode StarCatalogListResponseDataMode `json:"dataMode" api:"required"`
@@ -369,7 +367,8 @@ type StarCatalogListResponse struct {
 	// Near-infrared photometric K-band magnitude uncertainty in the Vega scale
 	// measured in magnitudes.
 	KmagUnc float64 `json:"kmagUnc"`
-	// Morphology indicator.
+	// Morphology indicator. Consumers should contact the provider for details on the
+	// specifications.
 	MorphologyInd int64 `json:"morphologyInd"`
 	// Flag indicating that this is a multiple object source.
 	MultFlag bool `json:"multFlag"`
@@ -386,9 +385,9 @@ type StarCatalogListResponse struct {
 	NeighborID int64 `json:"neighborId"`
 	// RA of nearest neighbor measured in degrees.
 	NeighborRa float64 `json:"neighborRa"`
-	// Identifier indicating the source is a non-single star and additional information
-	// is available in non-single star tables. Consumers should contact the provider
-	// for details on the specifications.
+	// Identifier indicating the source is a non-single star in gaia (additional
+	// information is available in non-single star tables. Consumers should contact the
+	// provider for details on the specifications).
 	NonSingleStar string `json:"nonSingleStar"`
 	// Number of neighbors.
 	NumNeighbors int64 `json:"numNeighbors"`
@@ -522,7 +521,7 @@ type StarCatalogListResponse struct {
 	// system measured in magnitudes.
 	W1magUnc float64 `json:"w1magUnc"`
 	// Mid-infrared photometric W1-band (3.4 microns) saturated pixel fraction in the
-	// Vega system measured in magnitudes.
+	// Vega system.
 	W1sat float64 `json:"w1sat"`
 	// Mid-infrared photometric W2-band (4.6 microns) magnitude in the Vega system
 	// measured in magnitudes.
@@ -712,18 +711,17 @@ func (r *StarCatalogListResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type StarCatalogListResponseDataMode string
 
 const (
@@ -747,18 +745,17 @@ type StarCatalogGetResponse struct {
 	CsID int64 `json:"csId" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "EXERCISE", "SIMULATED".
 	DataMode StarCatalogGetResponseDataMode `json:"dataMode" api:"required"`
@@ -898,7 +895,8 @@ type StarCatalogGetResponse struct {
 	// Near-infrared photometric K-band magnitude uncertainty in the Vega scale
 	// measured in magnitudes.
 	KmagUnc float64 `json:"kmagUnc"`
-	// Morphology indicator.
+	// Morphology indicator. Consumers should contact the provider for details on the
+	// specifications.
 	MorphologyInd int64 `json:"morphologyInd"`
 	// Flag indicating that this is a multiple object source.
 	MultFlag bool `json:"multFlag"`
@@ -915,9 +913,9 @@ type StarCatalogGetResponse struct {
 	NeighborID int64 `json:"neighborId"`
 	// RA of nearest neighbor measured in degrees.
 	NeighborRa float64 `json:"neighborRa"`
-	// Identifier indicating the source is a non-single star and additional information
-	// is available in non-single star tables. Consumers should contact the provider
-	// for details on the specifications.
+	// Identifier indicating the source is a non-single star in gaia (additional
+	// information is available in non-single star tables. Consumers should contact the
+	// provider for details on the specifications).
 	NonSingleStar string `json:"nonSingleStar"`
 	// Number of neighbors.
 	NumNeighbors int64 `json:"numNeighbors"`
@@ -1051,7 +1049,7 @@ type StarCatalogGetResponse struct {
 	// system measured in magnitudes.
 	W1magUnc float64 `json:"w1magUnc"`
 	// Mid-infrared photometric W1-band (3.4 microns) saturated pixel fraction in the
-	// Vega system measured in magnitudes.
+	// Vega system.
 	W1sat float64 `json:"w1sat"`
 	// Mid-infrared photometric W2-band (4.6 microns) magnitude in the Vega system
 	// measured in magnitudes.
@@ -1241,18 +1239,17 @@ func (r *StarCatalogGetResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type StarCatalogGetResponseDataMode string
 
 const (
@@ -1312,18 +1309,17 @@ type StarCatalogTupleResponse struct {
 	CsID int64 `json:"csId" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "EXERCISE", "SIMULATED".
 	DataMode StarCatalogTupleResponseDataMode `json:"dataMode" api:"required"`
@@ -1463,7 +1459,8 @@ type StarCatalogTupleResponse struct {
 	// Near-infrared photometric K-band magnitude uncertainty in the Vega scale
 	// measured in magnitudes.
 	KmagUnc float64 `json:"kmagUnc"`
-	// Morphology indicator.
+	// Morphology indicator. Consumers should contact the provider for details on the
+	// specifications.
 	MorphologyInd int64 `json:"morphologyInd"`
 	// Flag indicating that this is a multiple object source.
 	MultFlag bool `json:"multFlag"`
@@ -1480,9 +1477,9 @@ type StarCatalogTupleResponse struct {
 	NeighborID int64 `json:"neighborId"`
 	// RA of nearest neighbor measured in degrees.
 	NeighborRa float64 `json:"neighborRa"`
-	// Identifier indicating the source is a non-single star and additional information
-	// is available in non-single star tables. Consumers should contact the provider
-	// for details on the specifications.
+	// Identifier indicating the source is a non-single star in gaia (additional
+	// information is available in non-single star tables. Consumers should contact the
+	// provider for details on the specifications).
 	NonSingleStar string `json:"nonSingleStar"`
 	// Number of neighbors.
 	NumNeighbors int64 `json:"numNeighbors"`
@@ -1616,7 +1613,7 @@ type StarCatalogTupleResponse struct {
 	// system measured in magnitudes.
 	W1magUnc float64 `json:"w1magUnc"`
 	// Mid-infrared photometric W1-band (3.4 microns) saturated pixel fraction in the
-	// Vega system measured in magnitudes.
+	// Vega system.
 	W1sat float64 `json:"w1sat"`
 	// Mid-infrared photometric W2-band (4.6 microns) magnitude in the Vega system
 	// measured in magnitudes.
@@ -1806,18 +1803,17 @@ func (r *StarCatalogTupleResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type StarCatalogTupleResponseDataMode string
 
 const (
@@ -1839,18 +1835,17 @@ type StarCatalogNewParams struct {
 	CsID int64 `json:"csId" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "EXERCISE", "SIMULATED".
 	DataMode StarCatalogNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
@@ -1983,7 +1978,8 @@ type StarCatalogNewParams struct {
 	// Near-infrared photometric K-band magnitude uncertainty in the Vega scale
 	// measured in magnitudes.
 	KmagUnc param.Opt[float64] `json:"kmagUnc,omitzero"`
-	// Morphology indicator.
+	// Morphology indicator. Consumers should contact the provider for details on the
+	// specifications.
 	MorphologyInd param.Opt[int64] `json:"morphologyInd,omitzero"`
 	// Flag indicating that this is a multiple object source.
 	MultFlag param.Opt[bool] `json:"multFlag,omitzero"`
@@ -2000,9 +1996,9 @@ type StarCatalogNewParams struct {
 	NeighborID param.Opt[int64] `json:"neighborId,omitzero"`
 	// RA of nearest neighbor measured in degrees.
 	NeighborRa param.Opt[float64] `json:"neighborRa,omitzero"`
-	// Identifier indicating the source is a non-single star and additional information
-	// is available in non-single star tables. Consumers should contact the provider
-	// for details on the specifications.
+	// Identifier indicating the source is a non-single star in gaia (additional
+	// information is available in non-single star tables. Consumers should contact the
+	// provider for details on the specifications).
 	NonSingleStar param.Opt[string] `json:"nonSingleStar,omitzero"`
 	// Number of neighbors.
 	NumNeighbors param.Opt[int64] `json:"numNeighbors,omitzero"`
@@ -2128,7 +2124,7 @@ type StarCatalogNewParams struct {
 	// system measured in magnitudes.
 	W1magUnc param.Opt[float64] `json:"w1magUnc,omitzero"`
 	// Mid-infrared photometric W1-band (3.4 microns) saturated pixel fraction in the
-	// Vega system measured in magnitudes.
+	// Vega system.
 	W1sat param.Opt[float64] `json:"w1sat,omitzero"`
 	// Mid-infrared photometric W2-band (4.6 microns) magnitude in the Vega system
 	// measured in magnitudes.
@@ -2181,18 +2177,17 @@ func (r *StarCatalogNewParams) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type StarCatalogNewParamsDataMode string
 
 const (
@@ -2214,18 +2209,17 @@ type StarCatalogUpdateParams struct {
 	CsID int64 `json:"csId" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "EXERCISE", "SIMULATED".
 	DataMode StarCatalogUpdateParamsDataMode `json:"dataMode,omitzero" api:"required"`
@@ -2358,7 +2352,8 @@ type StarCatalogUpdateParams struct {
 	// Near-infrared photometric K-band magnitude uncertainty in the Vega scale
 	// measured in magnitudes.
 	KmagUnc param.Opt[float64] `json:"kmagUnc,omitzero"`
-	// Morphology indicator.
+	// Morphology indicator. Consumers should contact the provider for details on the
+	// specifications.
 	MorphologyInd param.Opt[int64] `json:"morphologyInd,omitzero"`
 	// Flag indicating that this is a multiple object source.
 	MultFlag param.Opt[bool] `json:"multFlag,omitzero"`
@@ -2375,9 +2370,9 @@ type StarCatalogUpdateParams struct {
 	NeighborID param.Opt[int64] `json:"neighborId,omitzero"`
 	// RA of nearest neighbor measured in degrees.
 	NeighborRa param.Opt[float64] `json:"neighborRa,omitzero"`
-	// Identifier indicating the source is a non-single star and additional information
-	// is available in non-single star tables. Consumers should contact the provider
-	// for details on the specifications.
+	// Identifier indicating the source is a non-single star in gaia (additional
+	// information is available in non-single star tables. Consumers should contact the
+	// provider for details on the specifications).
 	NonSingleStar param.Opt[string] `json:"nonSingleStar,omitzero"`
 	// Number of neighbors.
 	NumNeighbors param.Opt[int64] `json:"numNeighbors,omitzero"`
@@ -2503,7 +2498,7 @@ type StarCatalogUpdateParams struct {
 	// system measured in magnitudes.
 	W1magUnc param.Opt[float64] `json:"w1magUnc,omitzero"`
 	// Mid-infrared photometric W1-band (3.4 microns) saturated pixel fraction in the
-	// Vega system measured in magnitudes.
+	// Vega system.
 	W1sat param.Opt[float64] `json:"w1sat,omitzero"`
 	// Mid-infrared photometric W2-band (4.6 microns) magnitude in the Vega system
 	// measured in magnitudes.
@@ -2556,18 +2551,17 @@ func (r *StarCatalogUpdateParams) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type StarCatalogUpdateParamsDataMode string
 
 const (
@@ -2630,7 +2624,7 @@ func (r StarCatalogNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *StarCatalogNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // The star catalog provides the position, proper motion, parallax, and photometric
@@ -2650,18 +2644,17 @@ type StarCatalogNewBulkParamsBody struct {
 	CsID int64 `json:"csId" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "EXERCISE", "SIMULATED".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -2794,7 +2787,8 @@ type StarCatalogNewBulkParamsBody struct {
 	// Near-infrared photometric K-band magnitude uncertainty in the Vega scale
 	// measured in magnitudes.
 	KmagUnc param.Opt[float64] `json:"kmagUnc,omitzero"`
-	// Morphology indicator.
+	// Morphology indicator. Consumers should contact the provider for details on the
+	// specifications.
 	MorphologyInd param.Opt[int64] `json:"morphologyInd,omitzero"`
 	// Flag indicating that this is a multiple object source.
 	MultFlag param.Opt[bool] `json:"multFlag,omitzero"`
@@ -2811,9 +2805,9 @@ type StarCatalogNewBulkParamsBody struct {
 	NeighborID param.Opt[int64] `json:"neighborId,omitzero"`
 	// RA of nearest neighbor measured in degrees.
 	NeighborRa param.Opt[float64] `json:"neighborRa,omitzero"`
-	// Identifier indicating the source is a non-single star and additional information
-	// is available in non-single star tables. Consumers should contact the provider
-	// for details on the specifications.
+	// Identifier indicating the source is a non-single star in gaia (additional
+	// information is available in non-single star tables. Consumers should contact the
+	// provider for details on the specifications).
 	NonSingleStar param.Opt[string] `json:"nonSingleStar,omitzero"`
 	// Number of neighbors.
 	NumNeighbors param.Opt[int64] `json:"numNeighbors,omitzero"`
@@ -2939,7 +2933,7 @@ type StarCatalogNewBulkParamsBody struct {
 	// system measured in magnitudes.
 	W1magUnc param.Opt[float64] `json:"w1magUnc,omitzero"`
 	// Mid-infrared photometric W1-band (3.4 microns) saturated pixel fraction in the
-	// Vega system measured in magnitudes.
+	// Vega system.
 	W1sat param.Opt[float64] `json:"w1sat,omitzero"`
 	// Mid-infrared photometric W2-band (4.6 microns) magnitude in the Vega system
 	// measured in magnitudes.
@@ -3046,7 +3040,7 @@ func (r StarCatalogUnvalidatedPublishParams) MarshalJSON() (data []byte, err err
 	return shimjson.Marshal(r.Body)
 }
 func (r *StarCatalogUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // The star catalog provides the position, proper motion, parallax, and photometric
@@ -3066,18 +3060,17 @@ type StarCatalogUnvalidatedPublishParamsBody struct {
 	CsID int64 `json:"csId" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "EXERCISE", "SIMULATED".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -3210,7 +3203,8 @@ type StarCatalogUnvalidatedPublishParamsBody struct {
 	// Near-infrared photometric K-band magnitude uncertainty in the Vega scale
 	// measured in magnitudes.
 	KmagUnc param.Opt[float64] `json:"kmagUnc,omitzero"`
-	// Morphology indicator.
+	// Morphology indicator. Consumers should contact the provider for details on the
+	// specifications.
 	MorphologyInd param.Opt[int64] `json:"morphologyInd,omitzero"`
 	// Flag indicating that this is a multiple object source.
 	MultFlag param.Opt[bool] `json:"multFlag,omitzero"`
@@ -3227,9 +3221,9 @@ type StarCatalogUnvalidatedPublishParamsBody struct {
 	NeighborID param.Opt[int64] `json:"neighborId,omitzero"`
 	// RA of nearest neighbor measured in degrees.
 	NeighborRa param.Opt[float64] `json:"neighborRa,omitzero"`
-	// Identifier indicating the source is a non-single star and additional information
-	// is available in non-single star tables. Consumers should contact the provider
-	// for details on the specifications.
+	// Identifier indicating the source is a non-single star in gaia (additional
+	// information is available in non-single star tables. Consumers should contact the
+	// provider for details on the specifications).
 	NonSingleStar param.Opt[string] `json:"nonSingleStar,omitzero"`
 	// Number of neighbors.
 	NumNeighbors param.Opt[int64] `json:"numNeighbors,omitzero"`
@@ -3355,7 +3349,7 @@ type StarCatalogUnvalidatedPublishParamsBody struct {
 	// system measured in magnitudes.
 	W1magUnc param.Opt[float64] `json:"w1magUnc,omitzero"`
 	// Mid-infrared photometric W1-band (3.4 microns) saturated pixel fraction in the
-	// Vega system measured in magnitudes.
+	// Vega system.
 	W1sat param.Opt[float64] `json:"w1sat,omitzero"`
 	// Mid-infrared photometric W2-band (4.6 microns) magnitude in the Vega system
 	// measured in magnitudes.

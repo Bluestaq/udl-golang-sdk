@@ -52,7 +52,7 @@ func (r *ScV2Service) Update(ctx context.Context, params ScV2UpdateParams, opts 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "scs/v2/update"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPatch, path, params, nil, opts...)
-	return
+	return err
 }
 
 // Returns a list of ScsEntity objects, each directly nested under the provided
@@ -87,7 +87,7 @@ func (r *ScV2Service) Delete(ctx context.Context, body ScV2DeleteParams, opts ..
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "scs/v2/delete"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Operation to copy a folder or file. A specific role is required to perform this
@@ -97,7 +97,7 @@ func (r *ScV2Service) Copy(ctx context.Context, body ScV2CopyParams, opts ...opt
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "scs/v2/copy"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Operation to upload a file. A specific role is required to perform this service
@@ -107,7 +107,7 @@ func (r *ScV2Service) FileUpload(ctx context.Context, fileContent io.Reader, par
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*"), option.WithRequestBody("application/octet-stream", fileContent)}, opts...)
 	path := "scs/v2/file"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Creates all folders in provided path that don't exist. Can be used to create a
@@ -122,7 +122,7 @@ func (r *ScV2Service) FolderNew(ctx context.Context, params ScV2FolderNewParams,
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "scs/v2/folder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, nil, opts...)
-	return
+	return err
 }
 
 // Operation to move or rename a folder or file. A specific role is required to
@@ -132,7 +132,7 @@ func (r *ScV2Service) Move(ctx context.Context, body ScV2MoveParams, opts ...opt
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "scs/v2/move"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Operation to search for files in the Secure Content Store.
@@ -140,7 +140,7 @@ func (r *ScV2Service) Search(ctx context.Context, params ScV2SearchParams, opts 
 	opts = slices.Concat(r.Options, opts)
 	path := "scs/v2/search"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, &res, opts...)
-	return
+	return res, err
 }
 
 type Attachment struct {

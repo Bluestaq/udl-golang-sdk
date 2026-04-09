@@ -268,7 +268,7 @@ type MarshallingUnionStruct struct {
 func (r *MarshallingUnionStruct) UnmarshalJSON(data []byte) (err error) {
 	*r = MarshallingUnionStruct{}
 	err = UnmarshalRoot(data, &r.Union)
-	return
+	return err
 }
 
 func (r MarshallingUnionStruct) MarshalJSON() (data []byte, err error) {
@@ -612,5 +612,22 @@ func TestEncode(t *testing.T) {
 				t.Fatalf("expected %+#v to serialize to %s but got %s", test.val, test.buf, string(raw))
 			}
 		})
+	}
+}
+
+type StructWithDefault struct {
+	Type string `json:"type" default:"foo"`
+}
+
+func TestDefault(t *testing.T) {
+	value := StructWithDefault{}
+	expected := `{"type":"foo"}`
+
+	raw, err := Marshal(value)
+	if err != nil {
+		t.Fatalf("serialization of %v failed with error %v", value, err)
+	}
+	if string(raw) != expected {
+		t.Fatalf("expected %+#v to serialize to %s but got %s", value, expected, string(raw))
 	}
 }

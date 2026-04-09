@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -61,7 +60,7 @@ func (r *EvacService) New(ctx context.Context, body EvacNewParams, opts ...optio
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/evac"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single Evac by its unique ID passed as a path
@@ -70,17 +69,17 @@ func (r *EvacService) Get(ctx context.Context, id string, query EvacGetParams, o
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/evac/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *EvacService) List(ctx context.Context, query EvacListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[EvacAbridged], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -100,8 +99,8 @@ func (r *EvacService) List(ctx context.Context, query EvacListParams, opts ...op
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *EvacService) ListAutoPaging(ctx context.Context, query EvacListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[EvacAbridged] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
@@ -109,14 +108,14 @@ func (r *EvacService) ListAutoPaging(ctx context.Context, query EvacListParams, 
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
-// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
 // valid/required query parameter information.
 func (r *EvacService) Count(ctx context.Context, query EvacCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/evac/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of Evac
@@ -129,7 +128,7 @@ func (r *EvacService) NewBulk(ctx context.Context, body EvacNewBulkParams, opts 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/evac/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -138,7 +137,7 @@ func (r *EvacService) QueryHelp(ctx context.Context, opts ...option.RequestOptio
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/evac/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take a list of Evac events as a POST body and ingest into
@@ -149,7 +148,7 @@ func (r *EvacService) UnvalidatedPublish(ctx context.Context, body EvacUnvalidat
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-evac"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Casualty report and evacuation request. Used to report and request support to
@@ -159,18 +158,17 @@ type EvacAbridged struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode EvacAbridgedDataMode `json:"dataMode" api:"required"`
@@ -327,18 +325,17 @@ func (r *EvacAbridged) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type EvacAbridgedDataMode string
 
 const (
@@ -826,18 +823,17 @@ type EvacNewParams struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode EvacNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
@@ -944,18 +940,17 @@ func (r *EvacNewParams) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type EvacNewParamsDataMode string
 
 const (
@@ -1365,7 +1360,7 @@ func (r EvacNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *EvacNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Casualty report and evacuation request. Used to report and request support to
@@ -1378,18 +1373,17 @@ type EvacNewBulkParamsBody struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -1849,7 +1843,7 @@ func (r EvacUnvalidatedPublishParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *EvacUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Casualty report and evacuation request. Used to report and request support to
@@ -1862,18 +1856,17 @@ type EvacUnvalidatedPublishParamsBody struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`

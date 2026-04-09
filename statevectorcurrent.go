@@ -52,8 +52,8 @@ func NewStateVectorCurrentService(opts ...option.RequestOption) (r StateVectorCu
 // 'current' catalog for a particular provider. Default current state vector
 // sources may vary by UDL environment. Please contact the UDL help desk for more
 // information, or explicitly specify the desired source. See the queryhelp
-// operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required
-// query parameter information.
+// operation (`/udl/<datatype>/queryhelp`) for more details on valid/required query
+// parameter information.
 func (r *StateVectorCurrentService) List(ctx context.Context, query StateVectorCurrentListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[StateVectorAbridged], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -79,8 +79,8 @@ func (r *StateVectorCurrentService) List(ctx context.Context, query StateVectorC
 // 'current' catalog for a particular provider. Default current state vector
 // sources may vary by UDL environment. Please contact the UDL help desk for more
 // information, or explicitly specify the desired source. See the queryhelp
-// operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required
-// query parameter information.
+// operation (`/udl/<datatype>/queryhelp`) for more details on valid/required query
+// parameter information.
 func (r *StateVectorCurrentService) ListAutoPaging(ctx context.Context, query StateVectorCurrentListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[StateVectorAbridged] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
@@ -93,13 +93,13 @@ func (r *StateVectorCurrentService) ListAutoPaging(ctx context.Context, query St
 // 'current' catalog for a particular provider. Default current state vector
 // sources may vary by UDL environment. Please contact the UDL help desk for more
 // information, or explicitly specify the desired source. See the queryhelp
-// operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required
-// query parameter information.
+// operation (`/udl/<datatype>/queryhelp`) for more details on valid/required query
+// parameter information.
 func (r *StateVectorCurrentService) Tuple(ctx context.Context, query StateVectorCurrentTupleParams, opts ...option.RequestOption) (res *[]shared.StateVectorFull, err error) {
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/statevector/current/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type StateVectorCurrentListParams struct {

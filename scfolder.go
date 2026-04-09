@@ -4,11 +4,11 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 	"net/url"
 	"slices"
 
+	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
 	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
 	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
 	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
@@ -50,7 +50,7 @@ func (r *ScFolderService) New(ctx context.Context, body ScFolderNewParams, opts 
 	opts = slices.Concat(r.Options, opts)
 	path := "scs/folder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Returns a FileData object representing the folder ID that is visible to the
@@ -61,7 +61,7 @@ func (r *ScFolderService) Get(ctx context.Context, query ScFolderGetParams, opts
 	opts = slices.Concat(r.Options, opts)
 	path := "scs/folder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // operation to update folders metadata. A specific role is required to perform
@@ -73,7 +73,7 @@ func (r *ScFolderService) Update(ctx context.Context, body ScFolderUpdateParams,
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "scs/folder"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPatch, path, body, nil, opts...)
-	return
+	return err
 }
 
 type ScFolderNewParams struct {
@@ -127,5 +127,5 @@ func (r ScFolderUpdateParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.FileData)
 }
 func (r *ScFolderUpdateParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.FileData)
+	return apijson.UnmarshalRoot(data, r)
 }

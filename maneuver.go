@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -65,13 +64,13 @@ func (r *ManeuverService) New(ctx context.Context, body ManeuverNewParams, opts 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/maneuver"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *ManeuverService) List(ctx context.Context, query ManeuverListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[ManeuverListResponse], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -91,8 +90,8 @@ func (r *ManeuverService) List(ctx context.Context, query ManeuverListParams, op
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *ManeuverService) ListAutoPaging(ctx context.Context, query ManeuverListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[ManeuverListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
@@ -100,14 +99,14 @@ func (r *ManeuverService) ListAutoPaging(ctx context.Context, query ManeuverList
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
-// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
 // valid/required query parameter information.
 func (r *ManeuverService) Count(ctx context.Context, query ManeuverCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/maneuver/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -120,7 +119,7 @@ func (r *ManeuverService) NewBulk(ctx context.Context, body ManeuverNewBulkParam
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/maneuver/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single maneuver by its unique ID passed as a path
@@ -129,11 +128,11 @@ func (r *ManeuverService) Get(ctx context.Context, id string, query ManeuverGetP
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/maneuver/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -142,14 +141,14 @@ func (r *ManeuverService) Queryhelp(ctx context.Context, opts ...option.RequestO
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/maneuver/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
 // columns/fields. Requested columns are specified by the 'columns' query parameter
 // and should be a comma separated list of valid fields for the specified data
 // type. classificationMarking is always returned. See the queryhelp operation
-// (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
@@ -157,7 +156,7 @@ func (r *ManeuverService) Tuple(ctx context.Context, query ManeuverTupleParams, 
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/maneuver/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple maneuvers as a POST body and ingest into the
@@ -169,7 +168,7 @@ func (r *ManeuverService) UnvalidatedPublish(ctx context.Context, body ManeuverU
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-maneuver"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Model representation of on-orbit object maneuver information for detected,
@@ -179,18 +178,17 @@ type ManeuverListResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode ManeuverListResponseDataMode `json:"dataMode" api:"required"`
@@ -590,18 +588,17 @@ func (r *ManeuverListResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type ManeuverListResponseDataMode string
 
 const (
@@ -620,18 +617,17 @@ type ManeuverListResponsePostEventElset struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode" api:"required"`
@@ -677,19 +673,19 @@ type ManeuverListResponsePostEventElset struct {
 	Eccentricity float64 `json:"eccentricity"`
 	// The ephemeris type associated with this TLE:
 	//
-	// 0:&nbsp;SGP (or SGP4 with Kozai mean motion)
+	// 0: SGP (or SGP4 with Kozai mean motion)
 	//
-	// 1:&nbsp;SGP (Kozai mean motion)
+	// 1: SGP (Kozai mean motion)
 	//
-	// 2:&nbsp;SGP4 (Brouver mean motion)
+	// 2: SGP4 (Brouver mean motion)
 	//
-	// 3:&nbsp;SDP4
+	// 3: SDP4
 	//
-	// 4:&nbsp;SGP4-XP
+	// 4: SGP4-XP
 	//
-	// 5:&nbsp;SDP8
+	// 5: SDP8
 	//
-	// 6:&nbsp;SP (osculating mean motion)
+	// 6: SP (osculating mean motion)
 	EphemType int64 `json:"ephemType"`
 	// Unique identifier of the record, auto-generated by the system.
 	IDElset string `json:"idElset"`
@@ -840,18 +836,17 @@ type ManeuverListResponsePostEventStateVector struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode" api:"required"`
@@ -883,19 +878,22 @@ type ManeuverListResponsePostEventStateVector struct {
 	// velocity. The covariance elements are position dependent within the array with
 	// values ordered as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR&nbsp;&nbsp;
+	// ```
 	//
-	// x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+	//	x    y    z   x'   y'   z'
 	//
-	// y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;3
+	// x         1
 	//
-	// z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;6
+	// y         2    3
 	//
-	// x'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;10
+	// z         4    5    6
 	//
-	// y'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+	// x'        7    8    9   10
 	//
-	// z'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;21&nbsp;
+	// y'       11   12   13   14   15
+	//
+	// z'       16   17   18   19   20   21
+	// ```
 	//
 	// The cov array should contain only the lower left triangle values from top left
 	// down to bottom right, in order.
@@ -903,13 +901,16 @@ type ManeuverListResponsePostEventStateVector struct {
 	// If additional covariance terms are included for DRAG, SRP, and/or THRUST, the
 	// matrix can be extended with the following order of elements:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR
+	// ```
 	//
-	// DRG&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;23&nbsp;&nbsp;24&nbsp;&nbsp;25&nbsp;&nbsp;26&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;
+	//	x    y    z   x'   y'   z'  DRG  SRP  THR
 	//
-	// SRP&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;30&nbsp;&nbsp;31&nbsp;&nbsp;32&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36&nbsp;&nbsp;
+	// # DRG      22   23   24   25   26   27   28
 	//
-	// THR&nbsp;&nbsp;&nbsp;37&nbsp;&nbsp;38&nbsp;&nbsp;39&nbsp;&nbsp;40&nbsp;&nbsp;41&nbsp;&nbsp;&nbsp;42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45&nbsp;
+	// # SRP      29   30   31   32   33   34   35   36
+	//
+	// THR      37   38   39   40   41   42   43   44   45
+	// ```
 	Cov []float64 `json:"cov"`
 	// The method used to generate the covariance during the orbit determination (OD)
 	// that produced the state vector, or whether an arbitrary, non-calculated default
@@ -938,79 +939,67 @@ type ManeuverListResponsePostEventStateVector struct {
 	// Model parameter value for energy dissipation rate (EDR) (w/kg).
 	Edr float64 `json:"edr"`
 	// The covariance matrix values represent the lower triangular half of the
-	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
-	// covariance matrix is dynamic.&nbsp; The values are outputted in order across
-	// each row, i.e.:
+	// covariance matrix in terms of equinoctial elements. The size of the covariance
+	// matrix is dynamic. The values are outputted in order across each row, i.e.:
 	//
-	// 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; 4&nbsp;&nbsp; 5
+	// ```
+	// 1   2   3   4   5
 	//
-	// 6&nbsp;&nbsp; 7&nbsp;&nbsp; 8&nbsp;&nbsp; 9&nbsp; 10
+	// 6   7   8   9  10
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// 51&nbsp; 52&nbsp; 53&nbsp; 54&nbsp; 55
+	// 51  52  53  54  55
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
+	// ```
 	//
 	// The ordering of values is as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Af&nbsp;&nbsp;
-	// Ag&nbsp;&nbsp; L&nbsp;&nbsp;&nbsp; N&nbsp;&nbsp; Chi&nbsp; Psi&nbsp;&nbsp;
-	// B&nbsp;&nbsp; BDOT AGOM&nbsp; T&nbsp;&nbsp; C1&nbsp;&nbsp; C2&nbsp; ...
+	// ```
 	//
-	// Af&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+	//	Af   Ag    L    N   Chi  Psi   B   BDOT AGOM  T    C1   C2  ...
 	//
-	// Ag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 3
+	// # Af        1
 	//
-	// L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 4&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 6
+	// # Ag        2    3
 	//
-	// N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 7&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp; 10
+	// # L         4    5    6
 	//
-	// Chi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp; 12&nbsp;&nbsp;
-	// 13&nbsp;&nbsp; 14&nbsp;&nbsp; 15
+	// # N         7    8    9   10
 	//
-	// Psi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp; 17&nbsp;&nbsp;
-	// 18&nbsp;&nbsp; 19&nbsp;&nbsp; 20&nbsp;&nbsp; 21
+	// # Chi      11   12   13   14   15
 	//
-	// B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 22&nbsp;&nbsp;
-	// 23&nbsp;&nbsp; 24 &nbsp;&nbsp;25&nbsp;&nbsp; 26&nbsp;&nbsp; 27&nbsp;&nbsp; 28
+	// # Psi      16   17   18   19   20   21
 	//
-	// BDOT&nbsp;&nbsp; 29&nbsp;&nbsp; 30&nbsp;&nbsp; 31&nbsp;&nbsp; 32&nbsp;&nbsp;
-	// 33&nbsp;&nbsp; 34&nbsp;&nbsp; 35&nbsp;&nbsp; 36
+	// # B        22   23   24   25   26   27   28
 	//
-	// AGOM&nbsp; 37&nbsp;&nbsp; 38&nbsp;&nbsp; 39&nbsp;&nbsp; 40&nbsp;&nbsp;
-	// 41&nbsp;&nbsp; 42&nbsp;&nbsp; 43&nbsp;&nbsp; 44&nbsp;&nbsp; 45
+	// # BDOT     29   30   31   32   33   34   35   36
 	//
-	// T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 46&nbsp;&nbsp;
-	// 47&nbsp;&nbsp; 48&nbsp;&nbsp; 49&nbsp;&nbsp; 50&nbsp;&nbsp; 51&nbsp;&nbsp;
-	// 52&nbsp;&nbsp; 53&nbsp;&nbsp; 54&nbsp;&nbsp; 55
+	// # AGOM     37   38   39   40   41   42   43   44   45
 	//
-	// C1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 56&nbsp;&nbsp; 57&nbsp;&nbsp;
-	// 58&nbsp;&nbsp; 59&nbsp;&nbsp; 60&nbsp;&nbsp; 61&nbsp;&nbsp; 62&nbsp;&nbsp;
-	// 63&nbsp;&nbsp; 64&nbsp;&nbsp; 65&nbsp;&nbsp; 66
+	// # T        46   47   48   49   50   51   52   53   54   55
 	//
-	// C2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 67&nbsp;&nbsp; 68&nbsp;&nbsp;
-	// 69&nbsp;&nbsp; 70&nbsp;&nbsp; 71&nbsp; &nbsp;72&nbsp;&nbsp; 73&nbsp;&nbsp;
-	// 74&nbsp;&nbsp; 75&nbsp;&nbsp; 76&nbsp;&nbsp; 77&nbsp;&nbsp; 78
+	// # C1       56   57   58   59   60   61   62   63   64   65   66
+	//
+	// # C2       67   68   69   70   71   72   73   74   75   76   77   78
 	//
 	// :
 	//
 	// :
+	// ```
 	//
 	// where C1, C2, etc, are the "consider parameters" that may be added to the
-	// covariance matrix.&nbsp; The covariance matrix will be as large as the last
-	// element/model parameter needed.&nbsp; In other words, if the DC solved for all 6
+	// covariance matrix. The covariance matrix will be as large as the last
+	// element/model parameter needed. In other words, if the DC solved for all 6
 	// elements plus AGOM, the covariance matrix will be 9x9 (and the rows for B and
-	// BDOT will be all zeros).&nbsp; If the covariance matrix is unavailable, the size
-	// will be set to 0x0, and no data will follow.&nbsp; The cov field should contain
-	// only the lower left triangle values from top left down to bottom right, in
-	// order.
+	// BDOT will be all zeros). If the covariance matrix is unavailable, the size will
+	// be set to 0x0, and no data will follow. The cov field should contain only the
+	// lower left triangle values from top left down to bottom right, in order.
 	EqCov []float64 `json:"eqCov"`
 	// Integrator error control.
 	ErrorControl float64 `json:"errorControl"`
@@ -1053,6 +1042,8 @@ type ManeuverListResponsePostEventStateVector struct {
 	LunarSolar bool `json:"lunarSolar"`
 	// The mass of the object, in kilograms.
 	Mass float64 `json:"mass"`
+	// Mission center or organization performing this vector creation.
+	MissionCenter string `json:"missionCenter"`
 	// Time when message was generated in ISO 8601 UTC format with microsecond
 	// precision.
 	MsgTs time.Time `json:"msgTs" format:"date-time"`
@@ -1284,6 +1275,7 @@ type ManeuverListResponsePostEventStateVector struct {
 		LeapSecondTime        respjson.Field
 		LunarSolar            respjson.Field
 		Mass                  respjson.Field
+		MissionCenter         respjson.Field
 		MsgTs                 respjson.Field
 		ObsAvailable          respjson.Field
 		ObsUsed               respjson.Field
@@ -1364,18 +1356,17 @@ type ManeuverListResponsePreEventElset struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode" api:"required"`
@@ -1421,19 +1412,19 @@ type ManeuverListResponsePreEventElset struct {
 	Eccentricity float64 `json:"eccentricity"`
 	// The ephemeris type associated with this TLE:
 	//
-	// 0:&nbsp;SGP (or SGP4 with Kozai mean motion)
+	// 0: SGP (or SGP4 with Kozai mean motion)
 	//
-	// 1:&nbsp;SGP (Kozai mean motion)
+	// 1: SGP (Kozai mean motion)
 	//
-	// 2:&nbsp;SGP4 (Brouver mean motion)
+	// 2: SGP4 (Brouver mean motion)
 	//
-	// 3:&nbsp;SDP4
+	// 3: SDP4
 	//
-	// 4:&nbsp;SGP4-XP
+	// 4: SGP4-XP
 	//
-	// 5:&nbsp;SDP8
+	// 5: SDP8
 	//
-	// 6:&nbsp;SP (osculating mean motion)
+	// 6: SP (osculating mean motion)
 	EphemType int64 `json:"ephemType"`
 	// Unique identifier of the record, auto-generated by the system.
 	IDElset string `json:"idElset"`
@@ -1584,18 +1575,17 @@ type ManeuverListResponsePreEventStateVector struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode" api:"required"`
@@ -1627,19 +1617,22 @@ type ManeuverListResponsePreEventStateVector struct {
 	// velocity. The covariance elements are position dependent within the array with
 	// values ordered as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR&nbsp;&nbsp;
+	// ```
 	//
-	// x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+	//	x    y    z   x'   y'   z'
 	//
-	// y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;3
+	// x         1
 	//
-	// z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;6
+	// y         2    3
 	//
-	// x'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;10
+	// z         4    5    6
 	//
-	// y'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+	// x'        7    8    9   10
 	//
-	// z'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;21&nbsp;
+	// y'       11   12   13   14   15
+	//
+	// z'       16   17   18   19   20   21
+	// ```
 	//
 	// The cov array should contain only the lower left triangle values from top left
 	// down to bottom right, in order.
@@ -1647,13 +1640,16 @@ type ManeuverListResponsePreEventStateVector struct {
 	// If additional covariance terms are included for DRAG, SRP, and/or THRUST, the
 	// matrix can be extended with the following order of elements:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR
+	// ```
 	//
-	// DRG&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;23&nbsp;&nbsp;24&nbsp;&nbsp;25&nbsp;&nbsp;26&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;
+	//	x    y    z   x'   y'   z'  DRG  SRP  THR
 	//
-	// SRP&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;30&nbsp;&nbsp;31&nbsp;&nbsp;32&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36&nbsp;&nbsp;
+	// # DRG      22   23   24   25   26   27   28
 	//
-	// THR&nbsp;&nbsp;&nbsp;37&nbsp;&nbsp;38&nbsp;&nbsp;39&nbsp;&nbsp;40&nbsp;&nbsp;41&nbsp;&nbsp;&nbsp;42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45&nbsp;
+	// # SRP      29   30   31   32   33   34   35   36
+	//
+	// THR      37   38   39   40   41   42   43   44   45
+	// ```
 	Cov []float64 `json:"cov"`
 	// The method used to generate the covariance during the orbit determination (OD)
 	// that produced the state vector, or whether an arbitrary, non-calculated default
@@ -1682,79 +1678,67 @@ type ManeuverListResponsePreEventStateVector struct {
 	// Model parameter value for energy dissipation rate (EDR) (w/kg).
 	Edr float64 `json:"edr"`
 	// The covariance matrix values represent the lower triangular half of the
-	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
-	// covariance matrix is dynamic.&nbsp; The values are outputted in order across
-	// each row, i.e.:
+	// covariance matrix in terms of equinoctial elements. The size of the covariance
+	// matrix is dynamic. The values are outputted in order across each row, i.e.:
 	//
-	// 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; 4&nbsp;&nbsp; 5
+	// ```
+	// 1   2   3   4   5
 	//
-	// 6&nbsp;&nbsp; 7&nbsp;&nbsp; 8&nbsp;&nbsp; 9&nbsp; 10
+	// 6   7   8   9  10
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// 51&nbsp; 52&nbsp; 53&nbsp; 54&nbsp; 55
+	// 51  52  53  54  55
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
+	// ```
 	//
 	// The ordering of values is as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Af&nbsp;&nbsp;
-	// Ag&nbsp;&nbsp; L&nbsp;&nbsp;&nbsp; N&nbsp;&nbsp; Chi&nbsp; Psi&nbsp;&nbsp;
-	// B&nbsp;&nbsp; BDOT AGOM&nbsp; T&nbsp;&nbsp; C1&nbsp;&nbsp; C2&nbsp; ...
+	// ```
 	//
-	// Af&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+	//	Af   Ag    L    N   Chi  Psi   B   BDOT AGOM  T    C1   C2  ...
 	//
-	// Ag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 3
+	// # Af        1
 	//
-	// L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 4&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 6
+	// # Ag        2    3
 	//
-	// N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 7&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp; 10
+	// # L         4    5    6
 	//
-	// Chi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp; 12&nbsp;&nbsp;
-	// 13&nbsp;&nbsp; 14&nbsp;&nbsp; 15
+	// # N         7    8    9   10
 	//
-	// Psi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp; 17&nbsp;&nbsp;
-	// 18&nbsp;&nbsp; 19&nbsp;&nbsp; 20&nbsp;&nbsp; 21
+	// # Chi      11   12   13   14   15
 	//
-	// B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 22&nbsp;&nbsp;
-	// 23&nbsp;&nbsp; 24 &nbsp;&nbsp;25&nbsp;&nbsp; 26&nbsp;&nbsp; 27&nbsp;&nbsp; 28
+	// # Psi      16   17   18   19   20   21
 	//
-	// BDOT&nbsp;&nbsp; 29&nbsp;&nbsp; 30&nbsp;&nbsp; 31&nbsp;&nbsp; 32&nbsp;&nbsp;
-	// 33&nbsp;&nbsp; 34&nbsp;&nbsp; 35&nbsp;&nbsp; 36
+	// # B        22   23   24   25   26   27   28
 	//
-	// AGOM&nbsp; 37&nbsp;&nbsp; 38&nbsp;&nbsp; 39&nbsp;&nbsp; 40&nbsp;&nbsp;
-	// 41&nbsp;&nbsp; 42&nbsp;&nbsp; 43&nbsp;&nbsp; 44&nbsp;&nbsp; 45
+	// # BDOT     29   30   31   32   33   34   35   36
 	//
-	// T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 46&nbsp;&nbsp;
-	// 47&nbsp;&nbsp; 48&nbsp;&nbsp; 49&nbsp;&nbsp; 50&nbsp;&nbsp; 51&nbsp;&nbsp;
-	// 52&nbsp;&nbsp; 53&nbsp;&nbsp; 54&nbsp;&nbsp; 55
+	// # AGOM     37   38   39   40   41   42   43   44   45
 	//
-	// C1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 56&nbsp;&nbsp; 57&nbsp;&nbsp;
-	// 58&nbsp;&nbsp; 59&nbsp;&nbsp; 60&nbsp;&nbsp; 61&nbsp;&nbsp; 62&nbsp;&nbsp;
-	// 63&nbsp;&nbsp; 64&nbsp;&nbsp; 65&nbsp;&nbsp; 66
+	// # T        46   47   48   49   50   51   52   53   54   55
 	//
-	// C2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 67&nbsp;&nbsp; 68&nbsp;&nbsp;
-	// 69&nbsp;&nbsp; 70&nbsp;&nbsp; 71&nbsp; &nbsp;72&nbsp;&nbsp; 73&nbsp;&nbsp;
-	// 74&nbsp;&nbsp; 75&nbsp;&nbsp; 76&nbsp;&nbsp; 77&nbsp;&nbsp; 78
+	// # C1       56   57   58   59   60   61   62   63   64   65   66
+	//
+	// # C2       67   68   69   70   71   72   73   74   75   76   77   78
 	//
 	// :
 	//
 	// :
+	// ```
 	//
 	// where C1, C2, etc, are the "consider parameters" that may be added to the
-	// covariance matrix.&nbsp; The covariance matrix will be as large as the last
-	// element/model parameter needed.&nbsp; In other words, if the DC solved for all 6
+	// covariance matrix. The covariance matrix will be as large as the last
+	// element/model parameter needed. In other words, if the DC solved for all 6
 	// elements plus AGOM, the covariance matrix will be 9x9 (and the rows for B and
-	// BDOT will be all zeros).&nbsp; If the covariance matrix is unavailable, the size
-	// will be set to 0x0, and no data will follow.&nbsp; The cov field should contain
-	// only the lower left triangle values from top left down to bottom right, in
-	// order.
+	// BDOT will be all zeros). If the covariance matrix is unavailable, the size will
+	// be set to 0x0, and no data will follow. The cov field should contain only the
+	// lower left triangle values from top left down to bottom right, in order.
 	EqCov []float64 `json:"eqCov"`
 	// Integrator error control.
 	ErrorControl float64 `json:"errorControl"`
@@ -1797,6 +1781,8 @@ type ManeuverListResponsePreEventStateVector struct {
 	LunarSolar bool `json:"lunarSolar"`
 	// The mass of the object, in kilograms.
 	Mass float64 `json:"mass"`
+	// Mission center or organization performing this vector creation.
+	MissionCenter string `json:"missionCenter"`
 	// Time when message was generated in ISO 8601 UTC format with microsecond
 	// precision.
 	MsgTs time.Time `json:"msgTs" format:"date-time"`
@@ -2028,6 +2014,7 @@ type ManeuverListResponsePreEventStateVector struct {
 		LeapSecondTime        respjson.Field
 		LunarSolar            respjson.Field
 		Mass                  respjson.Field
+		MissionCenter         respjson.Field
 		MsgTs                 respjson.Field
 		ObsAvailable          respjson.Field
 		ObsUsed               respjson.Field
@@ -2106,18 +2093,17 @@ type ManeuverGetResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode ManeuverGetResponseDataMode `json:"dataMode" api:"required"`
@@ -2541,18 +2527,17 @@ func (r *ManeuverGetResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type ManeuverGetResponseDataMode string
 
 const (
@@ -2571,18 +2556,17 @@ type ManeuverGetResponsePostEventElset struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode" api:"required"`
@@ -2636,19 +2620,19 @@ type ManeuverGetResponsePostEventElset struct {
 	EffectiveUntil time.Time `json:"effectiveUntil" format:"date-time"`
 	// The ephemeris type associated with this TLE:
 	//
-	// 0:&nbsp;SGP (or SGP4 with Kozai mean motion)
+	// 0: SGP (or SGP4 with Kozai mean motion)
 	//
-	// 1:&nbsp;SGP (Kozai mean motion)
+	// 1: SGP (Kozai mean motion)
 	//
-	// 2:&nbsp;SGP4 (Brouver mean motion)
+	// 2: SGP4 (Brouver mean motion)
 	//
-	// 3:&nbsp;SDP4
+	// 3: SDP4
 	//
-	// 4:&nbsp;SGP4-XP
+	// 4: SGP4-XP
 	//
-	// 5:&nbsp;SDP8
+	// 5: SDP8
 	//
-	// 6:&nbsp;SP (osculating mean motion)
+	// 6: SP (osculating mean motion)
 	EphemType int64 `json:"ephemType"`
 	// Unique identifier of the record, auto-generated by the system.
 	IDElset string `json:"idElset"`
@@ -2827,18 +2811,17 @@ type ManeuverGetResponsePostEventStateVector struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode" api:"required"`
@@ -2870,19 +2853,22 @@ type ManeuverGetResponsePostEventStateVector struct {
 	// velocity. The covariance elements are position dependent within the array with
 	// values ordered as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR&nbsp;&nbsp;
+	// ```
 	//
-	// x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+	//	x    y    z   x'   y'   z'
 	//
-	// y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;3
+	// x         1
 	//
-	// z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;6
+	// y         2    3
 	//
-	// x'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;10
+	// z         4    5    6
 	//
-	// y'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+	// x'        7    8    9   10
 	//
-	// z'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;21&nbsp;
+	// y'       11   12   13   14   15
+	//
+	// z'       16   17   18   19   20   21
+	// ```
 	//
 	// The cov array should contain only the lower left triangle values from top left
 	// down to bottom right, in order.
@@ -2890,13 +2876,16 @@ type ManeuverGetResponsePostEventStateVector struct {
 	// If additional covariance terms are included for DRAG, SRP, and/or THRUST, the
 	// matrix can be extended with the following order of elements:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR
+	// ```
 	//
-	// DRG&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;23&nbsp;&nbsp;24&nbsp;&nbsp;25&nbsp;&nbsp;26&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;
+	//	x    y    z   x'   y'   z'  DRG  SRP  THR
 	//
-	// SRP&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;30&nbsp;&nbsp;31&nbsp;&nbsp;32&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36&nbsp;&nbsp;
+	// # DRG      22   23   24   25   26   27   28
 	//
-	// THR&nbsp;&nbsp;&nbsp;37&nbsp;&nbsp;38&nbsp;&nbsp;39&nbsp;&nbsp;40&nbsp;&nbsp;41&nbsp;&nbsp;&nbsp;42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45&nbsp;
+	// # SRP      29   30   31   32   33   34   35   36
+	//
+	// THR      37   38   39   40   41   42   43   44   45
+	// ```
 	Cov []float64 `json:"cov"`
 	// The method used to generate the covariance during the orbit determination (OD)
 	// that produced the state vector, or whether an arbitrary, non-calculated default
@@ -2931,79 +2920,67 @@ type ManeuverGetResponsePostEventStateVector struct {
 	// its satellite.
 	EffectiveUntil time.Time `json:"effectiveUntil" format:"date-time"`
 	// The covariance matrix values represent the lower triangular half of the
-	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
-	// covariance matrix is dynamic.&nbsp; The values are outputted in order across
-	// each row, i.e.:
+	// covariance matrix in terms of equinoctial elements. The size of the covariance
+	// matrix is dynamic. The values are outputted in order across each row, i.e.:
 	//
-	// 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; 4&nbsp;&nbsp; 5
+	// ```
+	// 1   2   3   4   5
 	//
-	// 6&nbsp;&nbsp; 7&nbsp;&nbsp; 8&nbsp;&nbsp; 9&nbsp; 10
+	// 6   7   8   9  10
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// 51&nbsp; 52&nbsp; 53&nbsp; 54&nbsp; 55
+	// 51  52  53  54  55
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
+	// ```
 	//
 	// The ordering of values is as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Af&nbsp;&nbsp;
-	// Ag&nbsp;&nbsp; L&nbsp;&nbsp;&nbsp; N&nbsp;&nbsp; Chi&nbsp; Psi&nbsp;&nbsp;
-	// B&nbsp;&nbsp; BDOT AGOM&nbsp; T&nbsp;&nbsp; C1&nbsp;&nbsp; C2&nbsp; ...
+	// ```
 	//
-	// Af&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+	//	Af   Ag    L    N   Chi  Psi   B   BDOT AGOM  T    C1   C2  ...
 	//
-	// Ag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 3
+	// # Af        1
 	//
-	// L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 4&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 6
+	// # Ag        2    3
 	//
-	// N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 7&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp; 10
+	// # L         4    5    6
 	//
-	// Chi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp; 12&nbsp;&nbsp;
-	// 13&nbsp;&nbsp; 14&nbsp;&nbsp; 15
+	// # N         7    8    9   10
 	//
-	// Psi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp; 17&nbsp;&nbsp;
-	// 18&nbsp;&nbsp; 19&nbsp;&nbsp; 20&nbsp;&nbsp; 21
+	// # Chi      11   12   13   14   15
 	//
-	// B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 22&nbsp;&nbsp;
-	// 23&nbsp;&nbsp; 24 &nbsp;&nbsp;25&nbsp;&nbsp; 26&nbsp;&nbsp; 27&nbsp;&nbsp; 28
+	// # Psi      16   17   18   19   20   21
 	//
-	// BDOT&nbsp;&nbsp; 29&nbsp;&nbsp; 30&nbsp;&nbsp; 31&nbsp;&nbsp; 32&nbsp;&nbsp;
-	// 33&nbsp;&nbsp; 34&nbsp;&nbsp; 35&nbsp;&nbsp; 36
+	// # B        22   23   24   25   26   27   28
 	//
-	// AGOM&nbsp; 37&nbsp;&nbsp; 38&nbsp;&nbsp; 39&nbsp;&nbsp; 40&nbsp;&nbsp;
-	// 41&nbsp;&nbsp; 42&nbsp;&nbsp; 43&nbsp;&nbsp; 44&nbsp;&nbsp; 45
+	// # BDOT     29   30   31   32   33   34   35   36
 	//
-	// T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 46&nbsp;&nbsp;
-	// 47&nbsp;&nbsp; 48&nbsp;&nbsp; 49&nbsp;&nbsp; 50&nbsp;&nbsp; 51&nbsp;&nbsp;
-	// 52&nbsp;&nbsp; 53&nbsp;&nbsp; 54&nbsp;&nbsp; 55
+	// # AGOM     37   38   39   40   41   42   43   44   45
 	//
-	// C1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 56&nbsp;&nbsp; 57&nbsp;&nbsp;
-	// 58&nbsp;&nbsp; 59&nbsp;&nbsp; 60&nbsp;&nbsp; 61&nbsp;&nbsp; 62&nbsp;&nbsp;
-	// 63&nbsp;&nbsp; 64&nbsp;&nbsp; 65&nbsp;&nbsp; 66
+	// # T        46   47   48   49   50   51   52   53   54   55
 	//
-	// C2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 67&nbsp;&nbsp; 68&nbsp;&nbsp;
-	// 69&nbsp;&nbsp; 70&nbsp;&nbsp; 71&nbsp; &nbsp;72&nbsp;&nbsp; 73&nbsp;&nbsp;
-	// 74&nbsp;&nbsp; 75&nbsp;&nbsp; 76&nbsp;&nbsp; 77&nbsp;&nbsp; 78
+	// # C1       56   57   58   59   60   61   62   63   64   65   66
+	//
+	// # C2       67   68   69   70   71   72   73   74   75   76   77   78
 	//
 	// :
 	//
 	// :
+	// ```
 	//
 	// where C1, C2, etc, are the "consider parameters" that may be added to the
-	// covariance matrix.&nbsp; The covariance matrix will be as large as the last
-	// element/model parameter needed.&nbsp; In other words, if the DC solved for all 6
+	// covariance matrix. The covariance matrix will be as large as the last
+	// element/model parameter needed. In other words, if the DC solved for all 6
 	// elements plus AGOM, the covariance matrix will be 9x9 (and the rows for B and
-	// BDOT will be all zeros).&nbsp; If the covariance matrix is unavailable, the size
-	// will be set to 0x0, and no data will follow.&nbsp; The cov field should contain
-	// only the lower left triangle values from top left down to bottom right, in
-	// order.
+	// BDOT will be all zeros). If the covariance matrix is unavailable, the size will
+	// be set to 0x0, and no data will follow. The cov field should contain only the
+	// lower left triangle values from top left down to bottom right, in order.
 	EqCov []float64 `json:"eqCov"`
 	// Integrator error control.
 	ErrorControl float64 `json:"errorControl"`
@@ -3046,6 +3023,8 @@ type ManeuverGetResponsePostEventStateVector struct {
 	LunarSolar bool `json:"lunarSolar"`
 	// The mass of the object, in kilograms.
 	Mass float64 `json:"mass"`
+	// Mission center or organization performing this vector creation.
+	MissionCenter string `json:"missionCenter"`
 	// Time when message was generated in ISO 8601 UTC format with microsecond
 	// precision.
 	MsgTs time.Time `json:"msgTs" format:"date-time"`
@@ -3301,6 +3280,7 @@ type ManeuverGetResponsePostEventStateVector struct {
 		LeapSecondTime        respjson.Field
 		LunarSolar            respjson.Field
 		Mass                  respjson.Field
+		MissionCenter         respjson.Field
 		MsgTs                 respjson.Field
 		ObsAvailable          respjson.Field
 		ObsUsed               respjson.Field
@@ -3385,18 +3365,17 @@ type ManeuverGetResponsePreEventElset struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode" api:"required"`
@@ -3450,19 +3429,19 @@ type ManeuverGetResponsePreEventElset struct {
 	EffectiveUntil time.Time `json:"effectiveUntil" format:"date-time"`
 	// The ephemeris type associated with this TLE:
 	//
-	// 0:&nbsp;SGP (or SGP4 with Kozai mean motion)
+	// 0: SGP (or SGP4 with Kozai mean motion)
 	//
-	// 1:&nbsp;SGP (Kozai mean motion)
+	// 1: SGP (Kozai mean motion)
 	//
-	// 2:&nbsp;SGP4 (Brouver mean motion)
+	// 2: SGP4 (Brouver mean motion)
 	//
-	// 3:&nbsp;SDP4
+	// 3: SDP4
 	//
-	// 4:&nbsp;SGP4-XP
+	// 4: SGP4-XP
 	//
-	// 5:&nbsp;SDP8
+	// 5: SDP8
 	//
-	// 6:&nbsp;SP (osculating mean motion)
+	// 6: SP (osculating mean motion)
 	EphemType int64 `json:"ephemType"`
 	// Unique identifier of the record, auto-generated by the system.
 	IDElset string `json:"idElset"`
@@ -3641,18 +3620,17 @@ type ManeuverGetResponsePreEventStateVector struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode" api:"required"`
@@ -3684,19 +3662,22 @@ type ManeuverGetResponsePreEventStateVector struct {
 	// velocity. The covariance elements are position dependent within the array with
 	// values ordered as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR&nbsp;&nbsp;
+	// ```
 	//
-	// x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+	//	x    y    z   x'   y'   z'
 	//
-	// y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;3
+	// x         1
 	//
-	// z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;6
+	// y         2    3
 	//
-	// x'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;10
+	// z         4    5    6
 	//
-	// y'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+	// x'        7    8    9   10
 	//
-	// z'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;21&nbsp;
+	// y'       11   12   13   14   15
+	//
+	// z'       16   17   18   19   20   21
+	// ```
 	//
 	// The cov array should contain only the lower left triangle values from top left
 	// down to bottom right, in order.
@@ -3704,13 +3685,16 @@ type ManeuverGetResponsePreEventStateVector struct {
 	// If additional covariance terms are included for DRAG, SRP, and/or THRUST, the
 	// matrix can be extended with the following order of elements:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR
+	// ```
 	//
-	// DRG&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;23&nbsp;&nbsp;24&nbsp;&nbsp;25&nbsp;&nbsp;26&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;
+	//	x    y    z   x'   y'   z'  DRG  SRP  THR
 	//
-	// SRP&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;30&nbsp;&nbsp;31&nbsp;&nbsp;32&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36&nbsp;&nbsp;
+	// # DRG      22   23   24   25   26   27   28
 	//
-	// THR&nbsp;&nbsp;&nbsp;37&nbsp;&nbsp;38&nbsp;&nbsp;39&nbsp;&nbsp;40&nbsp;&nbsp;41&nbsp;&nbsp;&nbsp;42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45&nbsp;
+	// # SRP      29   30   31   32   33   34   35   36
+	//
+	// THR      37   38   39   40   41   42   43   44   45
+	// ```
 	Cov []float64 `json:"cov"`
 	// The method used to generate the covariance during the orbit determination (OD)
 	// that produced the state vector, or whether an arbitrary, non-calculated default
@@ -3745,79 +3729,67 @@ type ManeuverGetResponsePreEventStateVector struct {
 	// its satellite.
 	EffectiveUntil time.Time `json:"effectiveUntil" format:"date-time"`
 	// The covariance matrix values represent the lower triangular half of the
-	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
-	// covariance matrix is dynamic.&nbsp; The values are outputted in order across
-	// each row, i.e.:
+	// covariance matrix in terms of equinoctial elements. The size of the covariance
+	// matrix is dynamic. The values are outputted in order across each row, i.e.:
 	//
-	// 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; 4&nbsp;&nbsp; 5
+	// ```
+	// 1   2   3   4   5
 	//
-	// 6&nbsp;&nbsp; 7&nbsp;&nbsp; 8&nbsp;&nbsp; 9&nbsp; 10
+	// 6   7   8   9  10
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// 51&nbsp; 52&nbsp; 53&nbsp; 54&nbsp; 55
+	// 51  52  53  54  55
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
+	// ```
 	//
 	// The ordering of values is as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Af&nbsp;&nbsp;
-	// Ag&nbsp;&nbsp; L&nbsp;&nbsp;&nbsp; N&nbsp;&nbsp; Chi&nbsp; Psi&nbsp;&nbsp;
-	// B&nbsp;&nbsp; BDOT AGOM&nbsp; T&nbsp;&nbsp; C1&nbsp;&nbsp; C2&nbsp; ...
+	// ```
 	//
-	// Af&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+	//	Af   Ag    L    N   Chi  Psi   B   BDOT AGOM  T    C1   C2  ...
 	//
-	// Ag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 3
+	// # Af        1
 	//
-	// L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 4&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 6
+	// # Ag        2    3
 	//
-	// N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 7&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp; 10
+	// # L         4    5    6
 	//
-	// Chi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp; 12&nbsp;&nbsp;
-	// 13&nbsp;&nbsp; 14&nbsp;&nbsp; 15
+	// # N         7    8    9   10
 	//
-	// Psi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp; 17&nbsp;&nbsp;
-	// 18&nbsp;&nbsp; 19&nbsp;&nbsp; 20&nbsp;&nbsp; 21
+	// # Chi      11   12   13   14   15
 	//
-	// B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 22&nbsp;&nbsp;
-	// 23&nbsp;&nbsp; 24 &nbsp;&nbsp;25&nbsp;&nbsp; 26&nbsp;&nbsp; 27&nbsp;&nbsp; 28
+	// # Psi      16   17   18   19   20   21
 	//
-	// BDOT&nbsp;&nbsp; 29&nbsp;&nbsp; 30&nbsp;&nbsp; 31&nbsp;&nbsp; 32&nbsp;&nbsp;
-	// 33&nbsp;&nbsp; 34&nbsp;&nbsp; 35&nbsp;&nbsp; 36
+	// # B        22   23   24   25   26   27   28
 	//
-	// AGOM&nbsp; 37&nbsp;&nbsp; 38&nbsp;&nbsp; 39&nbsp;&nbsp; 40&nbsp;&nbsp;
-	// 41&nbsp;&nbsp; 42&nbsp;&nbsp; 43&nbsp;&nbsp; 44&nbsp;&nbsp; 45
+	// # BDOT     29   30   31   32   33   34   35   36
 	//
-	// T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 46&nbsp;&nbsp;
-	// 47&nbsp;&nbsp; 48&nbsp;&nbsp; 49&nbsp;&nbsp; 50&nbsp;&nbsp; 51&nbsp;&nbsp;
-	// 52&nbsp;&nbsp; 53&nbsp;&nbsp; 54&nbsp;&nbsp; 55
+	// # AGOM     37   38   39   40   41   42   43   44   45
 	//
-	// C1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 56&nbsp;&nbsp; 57&nbsp;&nbsp;
-	// 58&nbsp;&nbsp; 59&nbsp;&nbsp; 60&nbsp;&nbsp; 61&nbsp;&nbsp; 62&nbsp;&nbsp;
-	// 63&nbsp;&nbsp; 64&nbsp;&nbsp; 65&nbsp;&nbsp; 66
+	// # T        46   47   48   49   50   51   52   53   54   55
 	//
-	// C2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 67&nbsp;&nbsp; 68&nbsp;&nbsp;
-	// 69&nbsp;&nbsp; 70&nbsp;&nbsp; 71&nbsp; &nbsp;72&nbsp;&nbsp; 73&nbsp;&nbsp;
-	// 74&nbsp;&nbsp; 75&nbsp;&nbsp; 76&nbsp;&nbsp; 77&nbsp;&nbsp; 78
+	// # C1       56   57   58   59   60   61   62   63   64   65   66
+	//
+	// # C2       67   68   69   70   71   72   73   74   75   76   77   78
 	//
 	// :
 	//
 	// :
+	// ```
 	//
 	// where C1, C2, etc, are the "consider parameters" that may be added to the
-	// covariance matrix.&nbsp; The covariance matrix will be as large as the last
-	// element/model parameter needed.&nbsp; In other words, if the DC solved for all 6
+	// covariance matrix. The covariance matrix will be as large as the last
+	// element/model parameter needed. In other words, if the DC solved for all 6
 	// elements plus AGOM, the covariance matrix will be 9x9 (and the rows for B and
-	// BDOT will be all zeros).&nbsp; If the covariance matrix is unavailable, the size
-	// will be set to 0x0, and no data will follow.&nbsp; The cov field should contain
-	// only the lower left triangle values from top left down to bottom right, in
-	// order.
+	// BDOT will be all zeros). If the covariance matrix is unavailable, the size will
+	// be set to 0x0, and no data will follow. The cov field should contain only the
+	// lower left triangle values from top left down to bottom right, in order.
 	EqCov []float64 `json:"eqCov"`
 	// Integrator error control.
 	ErrorControl float64 `json:"errorControl"`
@@ -3860,6 +3832,8 @@ type ManeuverGetResponsePreEventStateVector struct {
 	LunarSolar bool `json:"lunarSolar"`
 	// The mass of the object, in kilograms.
 	Mass float64 `json:"mass"`
+	// Mission center or organization performing this vector creation.
+	MissionCenter string `json:"missionCenter"`
 	// Time when message was generated in ISO 8601 UTC format with microsecond
 	// precision.
 	MsgTs time.Time `json:"msgTs" format:"date-time"`
@@ -4115,6 +4089,7 @@ type ManeuverGetResponsePreEventStateVector struct {
 		LeapSecondTime        respjson.Field
 		LunarSolar            respjson.Field
 		Mass                  respjson.Field
+		MissionCenter         respjson.Field
 		MsgTs                 respjson.Field
 		ObsAvailable          respjson.Field
 		ObsUsed               respjson.Field
@@ -4233,18 +4208,17 @@ type ManeuverTupleResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode ManeuverTupleResponseDataMode `json:"dataMode" api:"required"`
@@ -4668,18 +4642,17 @@ func (r *ManeuverTupleResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type ManeuverTupleResponseDataMode string
 
 const (
@@ -4698,18 +4671,17 @@ type ManeuverTupleResponsePostEventElset struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode" api:"required"`
@@ -4763,19 +4735,19 @@ type ManeuverTupleResponsePostEventElset struct {
 	EffectiveUntil time.Time `json:"effectiveUntil" format:"date-time"`
 	// The ephemeris type associated with this TLE:
 	//
-	// 0:&nbsp;SGP (or SGP4 with Kozai mean motion)
+	// 0: SGP (or SGP4 with Kozai mean motion)
 	//
-	// 1:&nbsp;SGP (Kozai mean motion)
+	// 1: SGP (Kozai mean motion)
 	//
-	// 2:&nbsp;SGP4 (Brouver mean motion)
+	// 2: SGP4 (Brouver mean motion)
 	//
-	// 3:&nbsp;SDP4
+	// 3: SDP4
 	//
-	// 4:&nbsp;SGP4-XP
+	// 4: SGP4-XP
 	//
-	// 5:&nbsp;SDP8
+	// 5: SDP8
 	//
-	// 6:&nbsp;SP (osculating mean motion)
+	// 6: SP (osculating mean motion)
 	EphemType int64 `json:"ephemType"`
 	// Unique identifier of the record, auto-generated by the system.
 	IDElset string `json:"idElset"`
@@ -4954,18 +4926,17 @@ type ManeuverTupleResponsePostEventStateVector struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode" api:"required"`
@@ -4997,19 +4968,22 @@ type ManeuverTupleResponsePostEventStateVector struct {
 	// velocity. The covariance elements are position dependent within the array with
 	// values ordered as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR&nbsp;&nbsp;
+	// ```
 	//
-	// x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+	//	x    y    z   x'   y'   z'
 	//
-	// y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;3
+	// x         1
 	//
-	// z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;6
+	// y         2    3
 	//
-	// x'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;10
+	// z         4    5    6
 	//
-	// y'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+	// x'        7    8    9   10
 	//
-	// z'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;21&nbsp;
+	// y'       11   12   13   14   15
+	//
+	// z'       16   17   18   19   20   21
+	// ```
 	//
 	// The cov array should contain only the lower left triangle values from top left
 	// down to bottom right, in order.
@@ -5017,13 +4991,16 @@ type ManeuverTupleResponsePostEventStateVector struct {
 	// If additional covariance terms are included for DRAG, SRP, and/or THRUST, the
 	// matrix can be extended with the following order of elements:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR
+	// ```
 	//
-	// DRG&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;23&nbsp;&nbsp;24&nbsp;&nbsp;25&nbsp;&nbsp;26&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;
+	//	x    y    z   x'   y'   z'  DRG  SRP  THR
 	//
-	// SRP&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;30&nbsp;&nbsp;31&nbsp;&nbsp;32&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36&nbsp;&nbsp;
+	// # DRG      22   23   24   25   26   27   28
 	//
-	// THR&nbsp;&nbsp;&nbsp;37&nbsp;&nbsp;38&nbsp;&nbsp;39&nbsp;&nbsp;40&nbsp;&nbsp;41&nbsp;&nbsp;&nbsp;42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45&nbsp;
+	// # SRP      29   30   31   32   33   34   35   36
+	//
+	// THR      37   38   39   40   41   42   43   44   45
+	// ```
 	Cov []float64 `json:"cov"`
 	// The method used to generate the covariance during the orbit determination (OD)
 	// that produced the state vector, or whether an arbitrary, non-calculated default
@@ -5058,79 +5035,67 @@ type ManeuverTupleResponsePostEventStateVector struct {
 	// its satellite.
 	EffectiveUntil time.Time `json:"effectiveUntil" format:"date-time"`
 	// The covariance matrix values represent the lower triangular half of the
-	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
-	// covariance matrix is dynamic.&nbsp; The values are outputted in order across
-	// each row, i.e.:
+	// covariance matrix in terms of equinoctial elements. The size of the covariance
+	// matrix is dynamic. The values are outputted in order across each row, i.e.:
 	//
-	// 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; 4&nbsp;&nbsp; 5
+	// ```
+	// 1   2   3   4   5
 	//
-	// 6&nbsp;&nbsp; 7&nbsp;&nbsp; 8&nbsp;&nbsp; 9&nbsp; 10
+	// 6   7   8   9  10
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// 51&nbsp; 52&nbsp; 53&nbsp; 54&nbsp; 55
+	// 51  52  53  54  55
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
+	// ```
 	//
 	// The ordering of values is as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Af&nbsp;&nbsp;
-	// Ag&nbsp;&nbsp; L&nbsp;&nbsp;&nbsp; N&nbsp;&nbsp; Chi&nbsp; Psi&nbsp;&nbsp;
-	// B&nbsp;&nbsp; BDOT AGOM&nbsp; T&nbsp;&nbsp; C1&nbsp;&nbsp; C2&nbsp; ...
+	// ```
 	//
-	// Af&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+	//	Af   Ag    L    N   Chi  Psi   B   BDOT AGOM  T    C1   C2  ...
 	//
-	// Ag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 3
+	// # Af        1
 	//
-	// L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 4&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 6
+	// # Ag        2    3
 	//
-	// N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 7&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp; 10
+	// # L         4    5    6
 	//
-	// Chi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp; 12&nbsp;&nbsp;
-	// 13&nbsp;&nbsp; 14&nbsp;&nbsp; 15
+	// # N         7    8    9   10
 	//
-	// Psi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp; 17&nbsp;&nbsp;
-	// 18&nbsp;&nbsp; 19&nbsp;&nbsp; 20&nbsp;&nbsp; 21
+	// # Chi      11   12   13   14   15
 	//
-	// B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 22&nbsp;&nbsp;
-	// 23&nbsp;&nbsp; 24 &nbsp;&nbsp;25&nbsp;&nbsp; 26&nbsp;&nbsp; 27&nbsp;&nbsp; 28
+	// # Psi      16   17   18   19   20   21
 	//
-	// BDOT&nbsp;&nbsp; 29&nbsp;&nbsp; 30&nbsp;&nbsp; 31&nbsp;&nbsp; 32&nbsp;&nbsp;
-	// 33&nbsp;&nbsp; 34&nbsp;&nbsp; 35&nbsp;&nbsp; 36
+	// # B        22   23   24   25   26   27   28
 	//
-	// AGOM&nbsp; 37&nbsp;&nbsp; 38&nbsp;&nbsp; 39&nbsp;&nbsp; 40&nbsp;&nbsp;
-	// 41&nbsp;&nbsp; 42&nbsp;&nbsp; 43&nbsp;&nbsp; 44&nbsp;&nbsp; 45
+	// # BDOT     29   30   31   32   33   34   35   36
 	//
-	// T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 46&nbsp;&nbsp;
-	// 47&nbsp;&nbsp; 48&nbsp;&nbsp; 49&nbsp;&nbsp; 50&nbsp;&nbsp; 51&nbsp;&nbsp;
-	// 52&nbsp;&nbsp; 53&nbsp;&nbsp; 54&nbsp;&nbsp; 55
+	// # AGOM     37   38   39   40   41   42   43   44   45
 	//
-	// C1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 56&nbsp;&nbsp; 57&nbsp;&nbsp;
-	// 58&nbsp;&nbsp; 59&nbsp;&nbsp; 60&nbsp;&nbsp; 61&nbsp;&nbsp; 62&nbsp;&nbsp;
-	// 63&nbsp;&nbsp; 64&nbsp;&nbsp; 65&nbsp;&nbsp; 66
+	// # T        46   47   48   49   50   51   52   53   54   55
 	//
-	// C2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 67&nbsp;&nbsp; 68&nbsp;&nbsp;
-	// 69&nbsp;&nbsp; 70&nbsp;&nbsp; 71&nbsp; &nbsp;72&nbsp;&nbsp; 73&nbsp;&nbsp;
-	// 74&nbsp;&nbsp; 75&nbsp;&nbsp; 76&nbsp;&nbsp; 77&nbsp;&nbsp; 78
+	// # C1       56   57   58   59   60   61   62   63   64   65   66
+	//
+	// # C2       67   68   69   70   71   72   73   74   75   76   77   78
 	//
 	// :
 	//
 	// :
+	// ```
 	//
 	// where C1, C2, etc, are the "consider parameters" that may be added to the
-	// covariance matrix.&nbsp; The covariance matrix will be as large as the last
-	// element/model parameter needed.&nbsp; In other words, if the DC solved for all 6
+	// covariance matrix. The covariance matrix will be as large as the last
+	// element/model parameter needed. In other words, if the DC solved for all 6
 	// elements plus AGOM, the covariance matrix will be 9x9 (and the rows for B and
-	// BDOT will be all zeros).&nbsp; If the covariance matrix is unavailable, the size
-	// will be set to 0x0, and no data will follow.&nbsp; The cov field should contain
-	// only the lower left triangle values from top left down to bottom right, in
-	// order.
+	// BDOT will be all zeros). If the covariance matrix is unavailable, the size will
+	// be set to 0x0, and no data will follow. The cov field should contain only the
+	// lower left triangle values from top left down to bottom right, in order.
 	EqCov []float64 `json:"eqCov"`
 	// Integrator error control.
 	ErrorControl float64 `json:"errorControl"`
@@ -5173,6 +5138,8 @@ type ManeuverTupleResponsePostEventStateVector struct {
 	LunarSolar bool `json:"lunarSolar"`
 	// The mass of the object, in kilograms.
 	Mass float64 `json:"mass"`
+	// Mission center or organization performing this vector creation.
+	MissionCenter string `json:"missionCenter"`
 	// Time when message was generated in ISO 8601 UTC format with microsecond
 	// precision.
 	MsgTs time.Time `json:"msgTs" format:"date-time"`
@@ -5428,6 +5395,7 @@ type ManeuverTupleResponsePostEventStateVector struct {
 		LeapSecondTime        respjson.Field
 		LunarSolar            respjson.Field
 		Mass                  respjson.Field
+		MissionCenter         respjson.Field
 		MsgTs                 respjson.Field
 		ObsAvailable          respjson.Field
 		ObsUsed               respjson.Field
@@ -5512,18 +5480,17 @@ type ManeuverTupleResponsePreEventElset struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode" api:"required"`
@@ -5577,19 +5544,19 @@ type ManeuverTupleResponsePreEventElset struct {
 	EffectiveUntil time.Time `json:"effectiveUntil" format:"date-time"`
 	// The ephemeris type associated with this TLE:
 	//
-	// 0:&nbsp;SGP (or SGP4 with Kozai mean motion)
+	// 0: SGP (or SGP4 with Kozai mean motion)
 	//
-	// 1:&nbsp;SGP (Kozai mean motion)
+	// 1: SGP (Kozai mean motion)
 	//
-	// 2:&nbsp;SGP4 (Brouver mean motion)
+	// 2: SGP4 (Brouver mean motion)
 	//
-	// 3:&nbsp;SDP4
+	// 3: SDP4
 	//
-	// 4:&nbsp;SGP4-XP
+	// 4: SGP4-XP
 	//
-	// 5:&nbsp;SDP8
+	// 5: SDP8
 	//
-	// 6:&nbsp;SP (osculating mean motion)
+	// 6: SP (osculating mean motion)
 	EphemType int64 `json:"ephemType"`
 	// Unique identifier of the record, auto-generated by the system.
 	IDElset string `json:"idElset"`
@@ -5768,18 +5735,17 @@ type ManeuverTupleResponsePreEventStateVector struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode" api:"required"`
@@ -5811,19 +5777,22 @@ type ManeuverTupleResponsePreEventStateVector struct {
 	// velocity. The covariance elements are position dependent within the array with
 	// values ordered as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR&nbsp;&nbsp;
+	// ```
 	//
-	// x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+	//	x    y    z   x'   y'   z'
 	//
-	// y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;3
+	// x         1
 	//
-	// z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;6
+	// y         2    3
 	//
-	// x'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;10
+	// z         4    5    6
 	//
-	// y'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+	// x'        7    8    9   10
 	//
-	// z'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;21&nbsp;
+	// y'       11   12   13   14   15
+	//
+	// z'       16   17   18   19   20   21
+	// ```
 	//
 	// The cov array should contain only the lower left triangle values from top left
 	// down to bottom right, in order.
@@ -5831,13 +5800,16 @@ type ManeuverTupleResponsePreEventStateVector struct {
 	// If additional covariance terms are included for DRAG, SRP, and/or THRUST, the
 	// matrix can be extended with the following order of elements:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR
+	// ```
 	//
-	// DRG&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;23&nbsp;&nbsp;24&nbsp;&nbsp;25&nbsp;&nbsp;26&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;
+	//	x    y    z   x'   y'   z'  DRG  SRP  THR
 	//
-	// SRP&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;30&nbsp;&nbsp;31&nbsp;&nbsp;32&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36&nbsp;&nbsp;
+	// # DRG      22   23   24   25   26   27   28
 	//
-	// THR&nbsp;&nbsp;&nbsp;37&nbsp;&nbsp;38&nbsp;&nbsp;39&nbsp;&nbsp;40&nbsp;&nbsp;41&nbsp;&nbsp;&nbsp;42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45&nbsp;
+	// # SRP      29   30   31   32   33   34   35   36
+	//
+	// THR      37   38   39   40   41   42   43   44   45
+	// ```
 	Cov []float64 `json:"cov"`
 	// The method used to generate the covariance during the orbit determination (OD)
 	// that produced the state vector, or whether an arbitrary, non-calculated default
@@ -5872,79 +5844,67 @@ type ManeuverTupleResponsePreEventStateVector struct {
 	// its satellite.
 	EffectiveUntil time.Time `json:"effectiveUntil" format:"date-time"`
 	// The covariance matrix values represent the lower triangular half of the
-	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
-	// covariance matrix is dynamic.&nbsp; The values are outputted in order across
-	// each row, i.e.:
+	// covariance matrix in terms of equinoctial elements. The size of the covariance
+	// matrix is dynamic. The values are outputted in order across each row, i.e.:
 	//
-	// 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; 4&nbsp;&nbsp; 5
+	// ```
+	// 1   2   3   4   5
 	//
-	// 6&nbsp;&nbsp; 7&nbsp;&nbsp; 8&nbsp;&nbsp; 9&nbsp; 10
+	// 6   7   8   9  10
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// 51&nbsp; 52&nbsp; 53&nbsp; 54&nbsp; 55
+	// 51  52  53  54  55
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
+	// ```
 	//
 	// The ordering of values is as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Af&nbsp;&nbsp;
-	// Ag&nbsp;&nbsp; L&nbsp;&nbsp;&nbsp; N&nbsp;&nbsp; Chi&nbsp; Psi&nbsp;&nbsp;
-	// B&nbsp;&nbsp; BDOT AGOM&nbsp; T&nbsp;&nbsp; C1&nbsp;&nbsp; C2&nbsp; ...
+	// ```
 	//
-	// Af&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+	//	Af   Ag    L    N   Chi  Psi   B   BDOT AGOM  T    C1   C2  ...
 	//
-	// Ag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 3
+	// # Af        1
 	//
-	// L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 4&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 6
+	// # Ag        2    3
 	//
-	// N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 7&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp; 10
+	// # L         4    5    6
 	//
-	// Chi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp; 12&nbsp;&nbsp;
-	// 13&nbsp;&nbsp; 14&nbsp;&nbsp; 15
+	// # N         7    8    9   10
 	//
-	// Psi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp; 17&nbsp;&nbsp;
-	// 18&nbsp;&nbsp; 19&nbsp;&nbsp; 20&nbsp;&nbsp; 21
+	// # Chi      11   12   13   14   15
 	//
-	// B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 22&nbsp;&nbsp;
-	// 23&nbsp;&nbsp; 24 &nbsp;&nbsp;25&nbsp;&nbsp; 26&nbsp;&nbsp; 27&nbsp;&nbsp; 28
+	// # Psi      16   17   18   19   20   21
 	//
-	// BDOT&nbsp;&nbsp; 29&nbsp;&nbsp; 30&nbsp;&nbsp; 31&nbsp;&nbsp; 32&nbsp;&nbsp;
-	// 33&nbsp;&nbsp; 34&nbsp;&nbsp; 35&nbsp;&nbsp; 36
+	// # B        22   23   24   25   26   27   28
 	//
-	// AGOM&nbsp; 37&nbsp;&nbsp; 38&nbsp;&nbsp; 39&nbsp;&nbsp; 40&nbsp;&nbsp;
-	// 41&nbsp;&nbsp; 42&nbsp;&nbsp; 43&nbsp;&nbsp; 44&nbsp;&nbsp; 45
+	// # BDOT     29   30   31   32   33   34   35   36
 	//
-	// T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 46&nbsp;&nbsp;
-	// 47&nbsp;&nbsp; 48&nbsp;&nbsp; 49&nbsp;&nbsp; 50&nbsp;&nbsp; 51&nbsp;&nbsp;
-	// 52&nbsp;&nbsp; 53&nbsp;&nbsp; 54&nbsp;&nbsp; 55
+	// # AGOM     37   38   39   40   41   42   43   44   45
 	//
-	// C1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 56&nbsp;&nbsp; 57&nbsp;&nbsp;
-	// 58&nbsp;&nbsp; 59&nbsp;&nbsp; 60&nbsp;&nbsp; 61&nbsp;&nbsp; 62&nbsp;&nbsp;
-	// 63&nbsp;&nbsp; 64&nbsp;&nbsp; 65&nbsp;&nbsp; 66
+	// # T        46   47   48   49   50   51   52   53   54   55
 	//
-	// C2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 67&nbsp;&nbsp; 68&nbsp;&nbsp;
-	// 69&nbsp;&nbsp; 70&nbsp;&nbsp; 71&nbsp; &nbsp;72&nbsp;&nbsp; 73&nbsp;&nbsp;
-	// 74&nbsp;&nbsp; 75&nbsp;&nbsp; 76&nbsp;&nbsp; 77&nbsp;&nbsp; 78
+	// # C1       56   57   58   59   60   61   62   63   64   65   66
+	//
+	// # C2       67   68   69   70   71   72   73   74   75   76   77   78
 	//
 	// :
 	//
 	// :
+	// ```
 	//
 	// where C1, C2, etc, are the "consider parameters" that may be added to the
-	// covariance matrix.&nbsp; The covariance matrix will be as large as the last
-	// element/model parameter needed.&nbsp; In other words, if the DC solved for all 6
+	// covariance matrix. The covariance matrix will be as large as the last
+	// element/model parameter needed. In other words, if the DC solved for all 6
 	// elements plus AGOM, the covariance matrix will be 9x9 (and the rows for B and
-	// BDOT will be all zeros).&nbsp; If the covariance matrix is unavailable, the size
-	// will be set to 0x0, and no data will follow.&nbsp; The cov field should contain
-	// only the lower left triangle values from top left down to bottom right, in
-	// order.
+	// BDOT will be all zeros). If the covariance matrix is unavailable, the size will
+	// be set to 0x0, and no data will follow. The cov field should contain only the
+	// lower left triangle values from top left down to bottom right, in order.
 	EqCov []float64 `json:"eqCov"`
 	// Integrator error control.
 	ErrorControl float64 `json:"errorControl"`
@@ -5987,6 +5947,8 @@ type ManeuverTupleResponsePreEventStateVector struct {
 	LunarSolar bool `json:"lunarSolar"`
 	// The mass of the object, in kilograms.
 	Mass float64 `json:"mass"`
+	// Mission center or organization performing this vector creation.
+	MissionCenter string `json:"missionCenter"`
 	// Time when message was generated in ISO 8601 UTC format with microsecond
 	// precision.
 	MsgTs time.Time `json:"msgTs" format:"date-time"`
@@ -6242,6 +6204,7 @@ type ManeuverTupleResponsePreEventStateVector struct {
 		LeapSecondTime        respjson.Field
 		LunarSolar            respjson.Field
 		Mass                  respjson.Field
+		MissionCenter         respjson.Field
 		MsgTs                 respjson.Field
 		ObsAvailable          respjson.Field
 		ObsUsed               respjson.Field
@@ -6322,18 +6285,17 @@ type ManeuverNewParams struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode ManeuverNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
@@ -6642,18 +6604,17 @@ func (r *ManeuverNewParams) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type ManeuverNewParamsDataMode string
 
 const (
@@ -6674,18 +6635,17 @@ type ManeuverNewParamsPostEventElset struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -6726,19 +6686,19 @@ type ManeuverNewParamsPostEventElset struct {
 	Eccentricity param.Opt[float64] `json:"eccentricity,omitzero"`
 	// The ephemeris type associated with this TLE:
 	//
-	// 0:&nbsp;SGP (or SGP4 with Kozai mean motion)
+	// 0: SGP (or SGP4 with Kozai mean motion)
 	//
-	// 1:&nbsp;SGP (Kozai mean motion)
+	// 1: SGP (Kozai mean motion)
 	//
-	// 2:&nbsp;SGP4 (Brouver mean motion)
+	// 2: SGP4 (Brouver mean motion)
 	//
-	// 3:&nbsp;SDP4
+	// 3: SDP4
 	//
-	// 4:&nbsp;SGP4-XP
+	// 4: SGP4-XP
 	//
-	// 5:&nbsp;SDP8
+	// 5: SDP8
 	//
-	// 6:&nbsp;SP (osculating mean motion)
+	// 6: SP (osculating mean motion)
 	EphemType param.Opt[int64] `json:"ephemType,omitzero"`
 	// Unique identifier of the record, auto-generated by the system.
 	IDElset param.Opt[string] `json:"idElset,omitzero"`
@@ -6863,18 +6823,17 @@ type ManeuverNewParamsPostEventStateVector struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -6951,6 +6910,8 @@ type ManeuverNewParamsPostEventStateVector struct {
 	LunarSolar param.Opt[bool] `json:"lunarSolar,omitzero"`
 	// The mass of the object, in kilograms.
 	Mass param.Opt[float64] `json:"mass,omitzero"`
+	// Mission center or organization performing this vector creation.
+	MissionCenter param.Opt[string] `json:"missionCenter,omitzero"`
 	// Time when message was generated in ISO 8601 UTC format with microsecond
 	// precision.
 	MsgTs param.Opt[time.Time] `json:"msgTs,omitzero" format:"date-time"`
@@ -7138,19 +7099,22 @@ type ManeuverNewParamsPostEventStateVector struct {
 	// velocity. The covariance elements are position dependent within the array with
 	// values ordered as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR&nbsp;&nbsp;
+	// ```
 	//
-	// x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+	//	x    y    z   x'   y'   z'
 	//
-	// y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;3
+	// x         1
 	//
-	// z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;6
+	// y         2    3
 	//
-	// x'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;10
+	// z         4    5    6
 	//
-	// y'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+	// x'        7    8    9   10
 	//
-	// z'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;21&nbsp;
+	// y'       11   12   13   14   15
+	//
+	// z'       16   17   18   19   20   21
+	// ```
 	//
 	// The cov array should contain only the lower left triangle values from top left
 	// down to bottom right, in order.
@@ -7158,13 +7122,16 @@ type ManeuverNewParamsPostEventStateVector struct {
 	// If additional covariance terms are included for DRAG, SRP, and/or THRUST, the
 	// matrix can be extended with the following order of elements:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR
+	// ```
 	//
-	// DRG&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;23&nbsp;&nbsp;24&nbsp;&nbsp;25&nbsp;&nbsp;26&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;
+	//	x    y    z   x'   y'   z'  DRG  SRP  THR
 	//
-	// SRP&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;30&nbsp;&nbsp;31&nbsp;&nbsp;32&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36&nbsp;&nbsp;
+	// # DRG      22   23   24   25   26   27   28
 	//
-	// THR&nbsp;&nbsp;&nbsp;37&nbsp;&nbsp;38&nbsp;&nbsp;39&nbsp;&nbsp;40&nbsp;&nbsp;41&nbsp;&nbsp;&nbsp;42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45&nbsp;
+	// # SRP      29   30   31   32   33   34   35   36
+	//
+	// THR      37   38   39   40   41   42   43   44   45
+	// ```
 	Cov []float64 `json:"cov,omitzero"`
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
@@ -7172,79 +7139,67 @@ type ManeuverNewParamsPostEventStateVector struct {
 	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// The covariance matrix values represent the lower triangular half of the
-	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
-	// covariance matrix is dynamic.&nbsp; The values are outputted in order across
-	// each row, i.e.:
+	// covariance matrix in terms of equinoctial elements. The size of the covariance
+	// matrix is dynamic. The values are outputted in order across each row, i.e.:
 	//
-	// 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; 4&nbsp;&nbsp; 5
+	// ```
+	// 1   2   3   4   5
 	//
-	// 6&nbsp;&nbsp; 7&nbsp;&nbsp; 8&nbsp;&nbsp; 9&nbsp; 10
+	// 6   7   8   9  10
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// 51&nbsp; 52&nbsp; 53&nbsp; 54&nbsp; 55
+	// 51  52  53  54  55
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
+	// ```
 	//
 	// The ordering of values is as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Af&nbsp;&nbsp;
-	// Ag&nbsp;&nbsp; L&nbsp;&nbsp;&nbsp; N&nbsp;&nbsp; Chi&nbsp; Psi&nbsp;&nbsp;
-	// B&nbsp;&nbsp; BDOT AGOM&nbsp; T&nbsp;&nbsp; C1&nbsp;&nbsp; C2&nbsp; ...
+	// ```
 	//
-	// Af&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+	//	Af   Ag    L    N   Chi  Psi   B   BDOT AGOM  T    C1   C2  ...
 	//
-	// Ag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 3
+	// # Af        1
 	//
-	// L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 4&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 6
+	// # Ag        2    3
 	//
-	// N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 7&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp; 10
+	// # L         4    5    6
 	//
-	// Chi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp; 12&nbsp;&nbsp;
-	// 13&nbsp;&nbsp; 14&nbsp;&nbsp; 15
+	// # N         7    8    9   10
 	//
-	// Psi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp; 17&nbsp;&nbsp;
-	// 18&nbsp;&nbsp; 19&nbsp;&nbsp; 20&nbsp;&nbsp; 21
+	// # Chi      11   12   13   14   15
 	//
-	// B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 22&nbsp;&nbsp;
-	// 23&nbsp;&nbsp; 24 &nbsp;&nbsp;25&nbsp;&nbsp; 26&nbsp;&nbsp; 27&nbsp;&nbsp; 28
+	// # Psi      16   17   18   19   20   21
 	//
-	// BDOT&nbsp;&nbsp; 29&nbsp;&nbsp; 30&nbsp;&nbsp; 31&nbsp;&nbsp; 32&nbsp;&nbsp;
-	// 33&nbsp;&nbsp; 34&nbsp;&nbsp; 35&nbsp;&nbsp; 36
+	// # B        22   23   24   25   26   27   28
 	//
-	// AGOM&nbsp; 37&nbsp;&nbsp; 38&nbsp;&nbsp; 39&nbsp;&nbsp; 40&nbsp;&nbsp;
-	// 41&nbsp;&nbsp; 42&nbsp;&nbsp; 43&nbsp;&nbsp; 44&nbsp;&nbsp; 45
+	// # BDOT     29   30   31   32   33   34   35   36
 	//
-	// T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 46&nbsp;&nbsp;
-	// 47&nbsp;&nbsp; 48&nbsp;&nbsp; 49&nbsp;&nbsp; 50&nbsp;&nbsp; 51&nbsp;&nbsp;
-	// 52&nbsp;&nbsp; 53&nbsp;&nbsp; 54&nbsp;&nbsp; 55
+	// # AGOM     37   38   39   40   41   42   43   44   45
 	//
-	// C1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 56&nbsp;&nbsp; 57&nbsp;&nbsp;
-	// 58&nbsp;&nbsp; 59&nbsp;&nbsp; 60&nbsp;&nbsp; 61&nbsp;&nbsp; 62&nbsp;&nbsp;
-	// 63&nbsp;&nbsp; 64&nbsp;&nbsp; 65&nbsp;&nbsp; 66
+	// # T        46   47   48   49   50   51   52   53   54   55
 	//
-	// C2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 67&nbsp;&nbsp; 68&nbsp;&nbsp;
-	// 69&nbsp;&nbsp; 70&nbsp;&nbsp; 71&nbsp; &nbsp;72&nbsp;&nbsp; 73&nbsp;&nbsp;
-	// 74&nbsp;&nbsp; 75&nbsp;&nbsp; 76&nbsp;&nbsp; 77&nbsp;&nbsp; 78
+	// # C1       56   57   58   59   60   61   62   63   64   65   66
+	//
+	// # C2       67   68   69   70   71   72   73   74   75   76   77   78
 	//
 	// :
 	//
 	// :
+	// ```
 	//
 	// where C1, C2, etc, are the "consider parameters" that may be added to the
-	// covariance matrix.&nbsp; The covariance matrix will be as large as the last
-	// element/model parameter needed.&nbsp; In other words, if the DC solved for all 6
+	// covariance matrix. The covariance matrix will be as large as the last
+	// element/model parameter needed. In other words, if the DC solved for all 6
 	// elements plus AGOM, the covariance matrix will be 9x9 (and the rows for B and
-	// BDOT will be all zeros).&nbsp; If the covariance matrix is unavailable, the size
-	// will be set to 0x0, and no data will follow.&nbsp; The cov field should contain
-	// only the lower left triangle values from top left down to bottom right, in
-	// order.
+	// BDOT will be all zeros). If the covariance matrix is unavailable, the size will
+	// be set to 0x0, and no data will follow. The cov field should contain only the
+	// lower left triangle values from top left down to bottom right, in order.
 	EqCov []float64 `json:"eqCov,omitzero"`
 	// The reference frame of the cartesian orbital states. If the referenceFrame is
 	// null it is assumed to be J2000.
@@ -7309,18 +7264,17 @@ type ManeuverNewParamsPreEventElset struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -7361,19 +7315,19 @@ type ManeuverNewParamsPreEventElset struct {
 	Eccentricity param.Opt[float64] `json:"eccentricity,omitzero"`
 	// The ephemeris type associated with this TLE:
 	//
-	// 0:&nbsp;SGP (or SGP4 with Kozai mean motion)
+	// 0: SGP (or SGP4 with Kozai mean motion)
 	//
-	// 1:&nbsp;SGP (Kozai mean motion)
+	// 1: SGP (Kozai mean motion)
 	//
-	// 2:&nbsp;SGP4 (Brouver mean motion)
+	// 2: SGP4 (Brouver mean motion)
 	//
-	// 3:&nbsp;SDP4
+	// 3: SDP4
 	//
-	// 4:&nbsp;SGP4-XP
+	// 4: SGP4-XP
 	//
-	// 5:&nbsp;SDP8
+	// 5: SDP8
 	//
-	// 6:&nbsp;SP (osculating mean motion)
+	// 6: SP (osculating mean motion)
 	EphemType param.Opt[int64] `json:"ephemType,omitzero"`
 	// Unique identifier of the record, auto-generated by the system.
 	IDElset param.Opt[string] `json:"idElset,omitzero"`
@@ -7498,18 +7452,17 @@ type ManeuverNewParamsPreEventStateVector struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -7586,6 +7539,8 @@ type ManeuverNewParamsPreEventStateVector struct {
 	LunarSolar param.Opt[bool] `json:"lunarSolar,omitzero"`
 	// The mass of the object, in kilograms.
 	Mass param.Opt[float64] `json:"mass,omitzero"`
+	// Mission center or organization performing this vector creation.
+	MissionCenter param.Opt[string] `json:"missionCenter,omitzero"`
 	// Time when message was generated in ISO 8601 UTC format with microsecond
 	// precision.
 	MsgTs param.Opt[time.Time] `json:"msgTs,omitzero" format:"date-time"`
@@ -7773,19 +7728,22 @@ type ManeuverNewParamsPreEventStateVector struct {
 	// velocity. The covariance elements are position dependent within the array with
 	// values ordered as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR&nbsp;&nbsp;
+	// ```
 	//
-	// x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+	//	x    y    z   x'   y'   z'
 	//
-	// y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;3
+	// x         1
 	//
-	// z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;6
+	// y         2    3
 	//
-	// x'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;10
+	// z         4    5    6
 	//
-	// y'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+	// x'        7    8    9   10
 	//
-	// z'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;21&nbsp;
+	// y'       11   12   13   14   15
+	//
+	// z'       16   17   18   19   20   21
+	// ```
 	//
 	// The cov array should contain only the lower left triangle values from top left
 	// down to bottom right, in order.
@@ -7793,13 +7751,16 @@ type ManeuverNewParamsPreEventStateVector struct {
 	// If additional covariance terms are included for DRAG, SRP, and/or THRUST, the
 	// matrix can be extended with the following order of elements:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR
+	// ```
 	//
-	// DRG&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;23&nbsp;&nbsp;24&nbsp;&nbsp;25&nbsp;&nbsp;26&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;
+	//	x    y    z   x'   y'   z'  DRG  SRP  THR
 	//
-	// SRP&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;30&nbsp;&nbsp;31&nbsp;&nbsp;32&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36&nbsp;&nbsp;
+	// # DRG      22   23   24   25   26   27   28
 	//
-	// THR&nbsp;&nbsp;&nbsp;37&nbsp;&nbsp;38&nbsp;&nbsp;39&nbsp;&nbsp;40&nbsp;&nbsp;41&nbsp;&nbsp;&nbsp;42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45&nbsp;
+	// # SRP      29   30   31   32   33   34   35   36
+	//
+	// THR      37   38   39   40   41   42   43   44   45
+	// ```
 	Cov []float64 `json:"cov,omitzero"`
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
@@ -7807,79 +7768,67 @@ type ManeuverNewParamsPreEventStateVector struct {
 	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// The covariance matrix values represent the lower triangular half of the
-	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
-	// covariance matrix is dynamic.&nbsp; The values are outputted in order across
-	// each row, i.e.:
+	// covariance matrix in terms of equinoctial elements. The size of the covariance
+	// matrix is dynamic. The values are outputted in order across each row, i.e.:
 	//
-	// 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; 4&nbsp;&nbsp; 5
+	// ```
+	// 1   2   3   4   5
 	//
-	// 6&nbsp;&nbsp; 7&nbsp;&nbsp; 8&nbsp;&nbsp; 9&nbsp; 10
+	// 6   7   8   9  10
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// 51&nbsp; 52&nbsp; 53&nbsp; 54&nbsp; 55
+	// 51  52  53  54  55
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
+	// ```
 	//
 	// The ordering of values is as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Af&nbsp;&nbsp;
-	// Ag&nbsp;&nbsp; L&nbsp;&nbsp;&nbsp; N&nbsp;&nbsp; Chi&nbsp; Psi&nbsp;&nbsp;
-	// B&nbsp;&nbsp; BDOT AGOM&nbsp; T&nbsp;&nbsp; C1&nbsp;&nbsp; C2&nbsp; ...
+	// ```
 	//
-	// Af&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+	//	Af   Ag    L    N   Chi  Psi   B   BDOT AGOM  T    C1   C2  ...
 	//
-	// Ag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 3
+	// # Af        1
 	//
-	// L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 4&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 6
+	// # Ag        2    3
 	//
-	// N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 7&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp; 10
+	// # L         4    5    6
 	//
-	// Chi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp; 12&nbsp;&nbsp;
-	// 13&nbsp;&nbsp; 14&nbsp;&nbsp; 15
+	// # N         7    8    9   10
 	//
-	// Psi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp; 17&nbsp;&nbsp;
-	// 18&nbsp;&nbsp; 19&nbsp;&nbsp; 20&nbsp;&nbsp; 21
+	// # Chi      11   12   13   14   15
 	//
-	// B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 22&nbsp;&nbsp;
-	// 23&nbsp;&nbsp; 24 &nbsp;&nbsp;25&nbsp;&nbsp; 26&nbsp;&nbsp; 27&nbsp;&nbsp; 28
+	// # Psi      16   17   18   19   20   21
 	//
-	// BDOT&nbsp;&nbsp; 29&nbsp;&nbsp; 30&nbsp;&nbsp; 31&nbsp;&nbsp; 32&nbsp;&nbsp;
-	// 33&nbsp;&nbsp; 34&nbsp;&nbsp; 35&nbsp;&nbsp; 36
+	// # B        22   23   24   25   26   27   28
 	//
-	// AGOM&nbsp; 37&nbsp;&nbsp; 38&nbsp;&nbsp; 39&nbsp;&nbsp; 40&nbsp;&nbsp;
-	// 41&nbsp;&nbsp; 42&nbsp;&nbsp; 43&nbsp;&nbsp; 44&nbsp;&nbsp; 45
+	// # BDOT     29   30   31   32   33   34   35   36
 	//
-	// T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 46&nbsp;&nbsp;
-	// 47&nbsp;&nbsp; 48&nbsp;&nbsp; 49&nbsp;&nbsp; 50&nbsp;&nbsp; 51&nbsp;&nbsp;
-	// 52&nbsp;&nbsp; 53&nbsp;&nbsp; 54&nbsp;&nbsp; 55
+	// # AGOM     37   38   39   40   41   42   43   44   45
 	//
-	// C1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 56&nbsp;&nbsp; 57&nbsp;&nbsp;
-	// 58&nbsp;&nbsp; 59&nbsp;&nbsp; 60&nbsp;&nbsp; 61&nbsp;&nbsp; 62&nbsp;&nbsp;
-	// 63&nbsp;&nbsp; 64&nbsp;&nbsp; 65&nbsp;&nbsp; 66
+	// # T        46   47   48   49   50   51   52   53   54   55
 	//
-	// C2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 67&nbsp;&nbsp; 68&nbsp;&nbsp;
-	// 69&nbsp;&nbsp; 70&nbsp;&nbsp; 71&nbsp; &nbsp;72&nbsp;&nbsp; 73&nbsp;&nbsp;
-	// 74&nbsp;&nbsp; 75&nbsp;&nbsp; 76&nbsp;&nbsp; 77&nbsp;&nbsp; 78
+	// # C1       56   57   58   59   60   61   62   63   64   65   66
+	//
+	// # C2       67   68   69   70   71   72   73   74   75   76   77   78
 	//
 	// :
 	//
 	// :
+	// ```
 	//
 	// where C1, C2, etc, are the "consider parameters" that may be added to the
-	// covariance matrix.&nbsp; The covariance matrix will be as large as the last
-	// element/model parameter needed.&nbsp; In other words, if the DC solved for all 6
+	// covariance matrix. The covariance matrix will be as large as the last
+	// element/model parameter needed. In other words, if the DC solved for all 6
 	// elements plus AGOM, the covariance matrix will be 9x9 (and the rows for B and
-	// BDOT will be all zeros).&nbsp; If the covariance matrix is unavailable, the size
-	// will be set to 0x0, and no data will follow.&nbsp; The cov field should contain
-	// only the lower left triangle values from top left down to bottom right, in
-	// order.
+	// BDOT will be all zeros). If the covariance matrix is unavailable, the size will
+	// be set to 0x0, and no data will follow. The cov field should contain only the
+	// lower left triangle values from top left down to bottom right, in order.
 	EqCov []float64 `json:"eqCov,omitzero"`
 	// The reference frame of the cartesian orbital states. If the referenceFrame is
 	// null it is assumed to be J2000.
@@ -7978,7 +7927,7 @@ func (r ManeuverNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *ManeuverNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of on-orbit object maneuver information for detected,
@@ -7991,18 +7940,17 @@ type ManeuverNewBulkParamsBody struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -8326,18 +8274,17 @@ type ManeuverNewBulkParamsBodyPostEventElset struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -8378,19 +8325,19 @@ type ManeuverNewBulkParamsBodyPostEventElset struct {
 	Eccentricity param.Opt[float64] `json:"eccentricity,omitzero"`
 	// The ephemeris type associated with this TLE:
 	//
-	// 0:&nbsp;SGP (or SGP4 with Kozai mean motion)
+	// 0: SGP (or SGP4 with Kozai mean motion)
 	//
-	// 1:&nbsp;SGP (Kozai mean motion)
+	// 1: SGP (Kozai mean motion)
 	//
-	// 2:&nbsp;SGP4 (Brouver mean motion)
+	// 2: SGP4 (Brouver mean motion)
 	//
-	// 3:&nbsp;SDP4
+	// 3: SDP4
 	//
-	// 4:&nbsp;SGP4-XP
+	// 4: SGP4-XP
 	//
-	// 5:&nbsp;SDP8
+	// 5: SDP8
 	//
-	// 6:&nbsp;SP (osculating mean motion)
+	// 6: SP (osculating mean motion)
 	EphemType param.Opt[int64] `json:"ephemType,omitzero"`
 	// Unique identifier of the record, auto-generated by the system.
 	IDElset param.Opt[string] `json:"idElset,omitzero"`
@@ -8515,18 +8462,17 @@ type ManeuverNewBulkParamsBodyPostEventStateVector struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -8603,6 +8549,8 @@ type ManeuverNewBulkParamsBodyPostEventStateVector struct {
 	LunarSolar param.Opt[bool] `json:"lunarSolar,omitzero"`
 	// The mass of the object, in kilograms.
 	Mass param.Opt[float64] `json:"mass,omitzero"`
+	// Mission center or organization performing this vector creation.
+	MissionCenter param.Opt[string] `json:"missionCenter,omitzero"`
 	// Time when message was generated in ISO 8601 UTC format with microsecond
 	// precision.
 	MsgTs param.Opt[time.Time] `json:"msgTs,omitzero" format:"date-time"`
@@ -8790,19 +8738,22 @@ type ManeuverNewBulkParamsBodyPostEventStateVector struct {
 	// velocity. The covariance elements are position dependent within the array with
 	// values ordered as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR&nbsp;&nbsp;
+	// ```
 	//
-	// x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+	//	x    y    z   x'   y'   z'
 	//
-	// y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;3
+	// x         1
 	//
-	// z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;6
+	// y         2    3
 	//
-	// x'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;10
+	// z         4    5    6
 	//
-	// y'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+	// x'        7    8    9   10
 	//
-	// z'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;21&nbsp;
+	// y'       11   12   13   14   15
+	//
+	// z'       16   17   18   19   20   21
+	// ```
 	//
 	// The cov array should contain only the lower left triangle values from top left
 	// down to bottom right, in order.
@@ -8810,13 +8761,16 @@ type ManeuverNewBulkParamsBodyPostEventStateVector struct {
 	// If additional covariance terms are included for DRAG, SRP, and/or THRUST, the
 	// matrix can be extended with the following order of elements:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR
+	// ```
 	//
-	// DRG&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;23&nbsp;&nbsp;24&nbsp;&nbsp;25&nbsp;&nbsp;26&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;
+	//	x    y    z   x'   y'   z'  DRG  SRP  THR
 	//
-	// SRP&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;30&nbsp;&nbsp;31&nbsp;&nbsp;32&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36&nbsp;&nbsp;
+	// # DRG      22   23   24   25   26   27   28
 	//
-	// THR&nbsp;&nbsp;&nbsp;37&nbsp;&nbsp;38&nbsp;&nbsp;39&nbsp;&nbsp;40&nbsp;&nbsp;41&nbsp;&nbsp;&nbsp;42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45&nbsp;
+	// # SRP      29   30   31   32   33   34   35   36
+	//
+	// THR      37   38   39   40   41   42   43   44   45
+	// ```
 	Cov []float64 `json:"cov,omitzero"`
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
@@ -8824,79 +8778,67 @@ type ManeuverNewBulkParamsBodyPostEventStateVector struct {
 	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// The covariance matrix values represent the lower triangular half of the
-	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
-	// covariance matrix is dynamic.&nbsp; The values are outputted in order across
-	// each row, i.e.:
+	// covariance matrix in terms of equinoctial elements. The size of the covariance
+	// matrix is dynamic. The values are outputted in order across each row, i.e.:
 	//
-	// 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; 4&nbsp;&nbsp; 5
+	// ```
+	// 1   2   3   4   5
 	//
-	// 6&nbsp;&nbsp; 7&nbsp;&nbsp; 8&nbsp;&nbsp; 9&nbsp; 10
+	// 6   7   8   9  10
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// 51&nbsp; 52&nbsp; 53&nbsp; 54&nbsp; 55
+	// 51  52  53  54  55
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
+	// ```
 	//
 	// The ordering of values is as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Af&nbsp;&nbsp;
-	// Ag&nbsp;&nbsp; L&nbsp;&nbsp;&nbsp; N&nbsp;&nbsp; Chi&nbsp; Psi&nbsp;&nbsp;
-	// B&nbsp;&nbsp; BDOT AGOM&nbsp; T&nbsp;&nbsp; C1&nbsp;&nbsp; C2&nbsp; ...
+	// ```
 	//
-	// Af&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+	//	Af   Ag    L    N   Chi  Psi   B   BDOT AGOM  T    C1   C2  ...
 	//
-	// Ag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 3
+	// # Af        1
 	//
-	// L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 4&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 6
+	// # Ag        2    3
 	//
-	// N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 7&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp; 10
+	// # L         4    5    6
 	//
-	// Chi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp; 12&nbsp;&nbsp;
-	// 13&nbsp;&nbsp; 14&nbsp;&nbsp; 15
+	// # N         7    8    9   10
 	//
-	// Psi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp; 17&nbsp;&nbsp;
-	// 18&nbsp;&nbsp; 19&nbsp;&nbsp; 20&nbsp;&nbsp; 21
+	// # Chi      11   12   13   14   15
 	//
-	// B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 22&nbsp;&nbsp;
-	// 23&nbsp;&nbsp; 24 &nbsp;&nbsp;25&nbsp;&nbsp; 26&nbsp;&nbsp; 27&nbsp;&nbsp; 28
+	// # Psi      16   17   18   19   20   21
 	//
-	// BDOT&nbsp;&nbsp; 29&nbsp;&nbsp; 30&nbsp;&nbsp; 31&nbsp;&nbsp; 32&nbsp;&nbsp;
-	// 33&nbsp;&nbsp; 34&nbsp;&nbsp; 35&nbsp;&nbsp; 36
+	// # B        22   23   24   25   26   27   28
 	//
-	// AGOM&nbsp; 37&nbsp;&nbsp; 38&nbsp;&nbsp; 39&nbsp;&nbsp; 40&nbsp;&nbsp;
-	// 41&nbsp;&nbsp; 42&nbsp;&nbsp; 43&nbsp;&nbsp; 44&nbsp;&nbsp; 45
+	// # BDOT     29   30   31   32   33   34   35   36
 	//
-	// T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 46&nbsp;&nbsp;
-	// 47&nbsp;&nbsp; 48&nbsp;&nbsp; 49&nbsp;&nbsp; 50&nbsp;&nbsp; 51&nbsp;&nbsp;
-	// 52&nbsp;&nbsp; 53&nbsp;&nbsp; 54&nbsp;&nbsp; 55
+	// # AGOM     37   38   39   40   41   42   43   44   45
 	//
-	// C1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 56&nbsp;&nbsp; 57&nbsp;&nbsp;
-	// 58&nbsp;&nbsp; 59&nbsp;&nbsp; 60&nbsp;&nbsp; 61&nbsp;&nbsp; 62&nbsp;&nbsp;
-	// 63&nbsp;&nbsp; 64&nbsp;&nbsp; 65&nbsp;&nbsp; 66
+	// # T        46   47   48   49   50   51   52   53   54   55
 	//
-	// C2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 67&nbsp;&nbsp; 68&nbsp;&nbsp;
-	// 69&nbsp;&nbsp; 70&nbsp;&nbsp; 71&nbsp; &nbsp;72&nbsp;&nbsp; 73&nbsp;&nbsp;
-	// 74&nbsp;&nbsp; 75&nbsp;&nbsp; 76&nbsp;&nbsp; 77&nbsp;&nbsp; 78
+	// # C1       56   57   58   59   60   61   62   63   64   65   66
+	//
+	// # C2       67   68   69   70   71   72   73   74   75   76   77   78
 	//
 	// :
 	//
 	// :
+	// ```
 	//
 	// where C1, C2, etc, are the "consider parameters" that may be added to the
-	// covariance matrix.&nbsp; The covariance matrix will be as large as the last
-	// element/model parameter needed.&nbsp; In other words, if the DC solved for all 6
+	// covariance matrix. The covariance matrix will be as large as the last
+	// element/model parameter needed. In other words, if the DC solved for all 6
 	// elements plus AGOM, the covariance matrix will be 9x9 (and the rows for B and
-	// BDOT will be all zeros).&nbsp; If the covariance matrix is unavailable, the size
-	// will be set to 0x0, and no data will follow.&nbsp; The cov field should contain
-	// only the lower left triangle values from top left down to bottom right, in
-	// order.
+	// BDOT will be all zeros). If the covariance matrix is unavailable, the size will
+	// be set to 0x0, and no data will follow. The cov field should contain only the
+	// lower left triangle values from top left down to bottom right, in order.
 	EqCov []float64 `json:"eqCov,omitzero"`
 	// The reference frame of the cartesian orbital states. If the referenceFrame is
 	// null it is assumed to be J2000.
@@ -8961,18 +8903,17 @@ type ManeuverNewBulkParamsBodyPreEventElset struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -9013,19 +8954,19 @@ type ManeuverNewBulkParamsBodyPreEventElset struct {
 	Eccentricity param.Opt[float64] `json:"eccentricity,omitzero"`
 	// The ephemeris type associated with this TLE:
 	//
-	// 0:&nbsp;SGP (or SGP4 with Kozai mean motion)
+	// 0: SGP (or SGP4 with Kozai mean motion)
 	//
-	// 1:&nbsp;SGP (Kozai mean motion)
+	// 1: SGP (Kozai mean motion)
 	//
-	// 2:&nbsp;SGP4 (Brouver mean motion)
+	// 2: SGP4 (Brouver mean motion)
 	//
-	// 3:&nbsp;SDP4
+	// 3: SDP4
 	//
-	// 4:&nbsp;SGP4-XP
+	// 4: SGP4-XP
 	//
-	// 5:&nbsp;SDP8
+	// 5: SDP8
 	//
-	// 6:&nbsp;SP (osculating mean motion)
+	// 6: SP (osculating mean motion)
 	EphemType param.Opt[int64] `json:"ephemType,omitzero"`
 	// Unique identifier of the record, auto-generated by the system.
 	IDElset param.Opt[string] `json:"idElset,omitzero"`
@@ -9150,18 +9091,17 @@ type ManeuverNewBulkParamsBodyPreEventStateVector struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -9238,6 +9178,8 @@ type ManeuverNewBulkParamsBodyPreEventStateVector struct {
 	LunarSolar param.Opt[bool] `json:"lunarSolar,omitzero"`
 	// The mass of the object, in kilograms.
 	Mass param.Opt[float64] `json:"mass,omitzero"`
+	// Mission center or organization performing this vector creation.
+	MissionCenter param.Opt[string] `json:"missionCenter,omitzero"`
 	// Time when message was generated in ISO 8601 UTC format with microsecond
 	// precision.
 	MsgTs param.Opt[time.Time] `json:"msgTs,omitzero" format:"date-time"`
@@ -9425,19 +9367,22 @@ type ManeuverNewBulkParamsBodyPreEventStateVector struct {
 	// velocity. The covariance elements are position dependent within the array with
 	// values ordered as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR&nbsp;&nbsp;
+	// ```
 	//
-	// x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+	//	x    y    z   x'   y'   z'
 	//
-	// y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;3
+	// x         1
 	//
-	// z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;6
+	// y         2    3
 	//
-	// x'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;10
+	// z         4    5    6
 	//
-	// y'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+	// x'        7    8    9   10
 	//
-	// z'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;21&nbsp;
+	// y'       11   12   13   14   15
+	//
+	// z'       16   17   18   19   20   21
+	// ```
 	//
 	// The cov array should contain only the lower left triangle values from top left
 	// down to bottom right, in order.
@@ -9445,13 +9390,16 @@ type ManeuverNewBulkParamsBodyPreEventStateVector struct {
 	// If additional covariance terms are included for DRAG, SRP, and/or THRUST, the
 	// matrix can be extended with the following order of elements:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR
+	// ```
 	//
-	// DRG&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;23&nbsp;&nbsp;24&nbsp;&nbsp;25&nbsp;&nbsp;26&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;
+	//	x    y    z   x'   y'   z'  DRG  SRP  THR
 	//
-	// SRP&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;30&nbsp;&nbsp;31&nbsp;&nbsp;32&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36&nbsp;&nbsp;
+	// # DRG      22   23   24   25   26   27   28
 	//
-	// THR&nbsp;&nbsp;&nbsp;37&nbsp;&nbsp;38&nbsp;&nbsp;39&nbsp;&nbsp;40&nbsp;&nbsp;41&nbsp;&nbsp;&nbsp;42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45&nbsp;
+	// # SRP      29   30   31   32   33   34   35   36
+	//
+	// THR      37   38   39   40   41   42   43   44   45
+	// ```
 	Cov []float64 `json:"cov,omitzero"`
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
@@ -9459,79 +9407,67 @@ type ManeuverNewBulkParamsBodyPreEventStateVector struct {
 	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// The covariance matrix values represent the lower triangular half of the
-	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
-	// covariance matrix is dynamic.&nbsp; The values are outputted in order across
-	// each row, i.e.:
+	// covariance matrix in terms of equinoctial elements. The size of the covariance
+	// matrix is dynamic. The values are outputted in order across each row, i.e.:
 	//
-	// 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; 4&nbsp;&nbsp; 5
+	// ```
+	// 1   2   3   4   5
 	//
-	// 6&nbsp;&nbsp; 7&nbsp;&nbsp; 8&nbsp;&nbsp; 9&nbsp; 10
+	// 6   7   8   9  10
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// 51&nbsp; 52&nbsp; 53&nbsp; 54&nbsp; 55
+	// 51  52  53  54  55
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
+	// ```
 	//
 	// The ordering of values is as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Af&nbsp;&nbsp;
-	// Ag&nbsp;&nbsp; L&nbsp;&nbsp;&nbsp; N&nbsp;&nbsp; Chi&nbsp; Psi&nbsp;&nbsp;
-	// B&nbsp;&nbsp; BDOT AGOM&nbsp; T&nbsp;&nbsp; C1&nbsp;&nbsp; C2&nbsp; ...
+	// ```
 	//
-	// Af&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+	//	Af   Ag    L    N   Chi  Psi   B   BDOT AGOM  T    C1   C2  ...
 	//
-	// Ag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 3
+	// # Af        1
 	//
-	// L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 4&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 6
+	// # Ag        2    3
 	//
-	// N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 7&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp; 10
+	// # L         4    5    6
 	//
-	// Chi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp; 12&nbsp;&nbsp;
-	// 13&nbsp;&nbsp; 14&nbsp;&nbsp; 15
+	// # N         7    8    9   10
 	//
-	// Psi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp; 17&nbsp;&nbsp;
-	// 18&nbsp;&nbsp; 19&nbsp;&nbsp; 20&nbsp;&nbsp; 21
+	// # Chi      11   12   13   14   15
 	//
-	// B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 22&nbsp;&nbsp;
-	// 23&nbsp;&nbsp; 24 &nbsp;&nbsp;25&nbsp;&nbsp; 26&nbsp;&nbsp; 27&nbsp;&nbsp; 28
+	// # Psi      16   17   18   19   20   21
 	//
-	// BDOT&nbsp;&nbsp; 29&nbsp;&nbsp; 30&nbsp;&nbsp; 31&nbsp;&nbsp; 32&nbsp;&nbsp;
-	// 33&nbsp;&nbsp; 34&nbsp;&nbsp; 35&nbsp;&nbsp; 36
+	// # B        22   23   24   25   26   27   28
 	//
-	// AGOM&nbsp; 37&nbsp;&nbsp; 38&nbsp;&nbsp; 39&nbsp;&nbsp; 40&nbsp;&nbsp;
-	// 41&nbsp;&nbsp; 42&nbsp;&nbsp; 43&nbsp;&nbsp; 44&nbsp;&nbsp; 45
+	// # BDOT     29   30   31   32   33   34   35   36
 	//
-	// T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 46&nbsp;&nbsp;
-	// 47&nbsp;&nbsp; 48&nbsp;&nbsp; 49&nbsp;&nbsp; 50&nbsp;&nbsp; 51&nbsp;&nbsp;
-	// 52&nbsp;&nbsp; 53&nbsp;&nbsp; 54&nbsp;&nbsp; 55
+	// # AGOM     37   38   39   40   41   42   43   44   45
 	//
-	// C1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 56&nbsp;&nbsp; 57&nbsp;&nbsp;
-	// 58&nbsp;&nbsp; 59&nbsp;&nbsp; 60&nbsp;&nbsp; 61&nbsp;&nbsp; 62&nbsp;&nbsp;
-	// 63&nbsp;&nbsp; 64&nbsp;&nbsp; 65&nbsp;&nbsp; 66
+	// # T        46   47   48   49   50   51   52   53   54   55
 	//
-	// C2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 67&nbsp;&nbsp; 68&nbsp;&nbsp;
-	// 69&nbsp;&nbsp; 70&nbsp;&nbsp; 71&nbsp; &nbsp;72&nbsp;&nbsp; 73&nbsp;&nbsp;
-	// 74&nbsp;&nbsp; 75&nbsp;&nbsp; 76&nbsp;&nbsp; 77&nbsp;&nbsp; 78
+	// # C1       56   57   58   59   60   61   62   63   64   65   66
+	//
+	// # C2       67   68   69   70   71   72   73   74   75   76   77   78
 	//
 	// :
 	//
 	// :
+	// ```
 	//
 	// where C1, C2, etc, are the "consider parameters" that may be added to the
-	// covariance matrix.&nbsp; The covariance matrix will be as large as the last
-	// element/model parameter needed.&nbsp; In other words, if the DC solved for all 6
+	// covariance matrix. The covariance matrix will be as large as the last
+	// element/model parameter needed. In other words, if the DC solved for all 6
 	// elements plus AGOM, the covariance matrix will be 9x9 (and the rows for B and
-	// BDOT will be all zeros).&nbsp; If the covariance matrix is unavailable, the size
-	// will be set to 0x0, and no data will follow.&nbsp; The cov field should contain
-	// only the lower left triangle values from top left down to bottom right, in
-	// order.
+	// BDOT will be all zeros). If the covariance matrix is unavailable, the size will
+	// be set to 0x0, and no data will follow. The cov field should contain only the
+	// lower left triangle values from top left down to bottom right, in order.
 	EqCov []float64 `json:"eqCov,omitzero"`
 	// The reference frame of the cartesian orbital states. If the referenceFrame is
 	// null it is assumed to be J2000.
@@ -9631,7 +9567,7 @@ func (r ManeuverUnvalidatedPublishParams) MarshalJSON() (data []byte, err error)
 	return shimjson.Marshal(r.Body)
 }
 func (r *ManeuverUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of on-orbit object maneuver information for detected,
@@ -9644,18 +9580,17 @@ type ManeuverUnvalidatedPublishParamsBody struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -9979,18 +9914,17 @@ type ManeuverUnvalidatedPublishParamsBodyPostEventElset struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -10031,19 +9965,19 @@ type ManeuverUnvalidatedPublishParamsBodyPostEventElset struct {
 	Eccentricity param.Opt[float64] `json:"eccentricity,omitzero"`
 	// The ephemeris type associated with this TLE:
 	//
-	// 0:&nbsp;SGP (or SGP4 with Kozai mean motion)
+	// 0: SGP (or SGP4 with Kozai mean motion)
 	//
-	// 1:&nbsp;SGP (Kozai mean motion)
+	// 1: SGP (Kozai mean motion)
 	//
-	// 2:&nbsp;SGP4 (Brouver mean motion)
+	// 2: SGP4 (Brouver mean motion)
 	//
-	// 3:&nbsp;SDP4
+	// 3: SDP4
 	//
-	// 4:&nbsp;SGP4-XP
+	// 4: SGP4-XP
 	//
-	// 5:&nbsp;SDP8
+	// 5: SDP8
 	//
-	// 6:&nbsp;SP (osculating mean motion)
+	// 6: SP (osculating mean motion)
 	EphemType param.Opt[int64] `json:"ephemType,omitzero"`
 	// Unique identifier of the record, auto-generated by the system.
 	IDElset param.Opt[string] `json:"idElset,omitzero"`
@@ -10168,18 +10102,17 @@ type ManeuverUnvalidatedPublishParamsBodyPostEventStateVector struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -10256,6 +10189,8 @@ type ManeuverUnvalidatedPublishParamsBodyPostEventStateVector struct {
 	LunarSolar param.Opt[bool] `json:"lunarSolar,omitzero"`
 	// The mass of the object, in kilograms.
 	Mass param.Opt[float64] `json:"mass,omitzero"`
+	// Mission center or organization performing this vector creation.
+	MissionCenter param.Opt[string] `json:"missionCenter,omitzero"`
 	// Time when message was generated in ISO 8601 UTC format with microsecond
 	// precision.
 	MsgTs param.Opt[time.Time] `json:"msgTs,omitzero" format:"date-time"`
@@ -10443,19 +10378,22 @@ type ManeuverUnvalidatedPublishParamsBodyPostEventStateVector struct {
 	// velocity. The covariance elements are position dependent within the array with
 	// values ordered as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR&nbsp;&nbsp;
+	// ```
 	//
-	// x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+	//	x    y    z   x'   y'   z'
 	//
-	// y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;3
+	// x         1
 	//
-	// z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;6
+	// y         2    3
 	//
-	// x'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;10
+	// z         4    5    6
 	//
-	// y'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+	// x'        7    8    9   10
 	//
-	// z'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;21&nbsp;
+	// y'       11   12   13   14   15
+	//
+	// z'       16   17   18   19   20   21
+	// ```
 	//
 	// The cov array should contain only the lower left triangle values from top left
 	// down to bottom right, in order.
@@ -10463,13 +10401,16 @@ type ManeuverUnvalidatedPublishParamsBodyPostEventStateVector struct {
 	// If additional covariance terms are included for DRAG, SRP, and/or THRUST, the
 	// matrix can be extended with the following order of elements:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR
+	// ```
 	//
-	// DRG&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;23&nbsp;&nbsp;24&nbsp;&nbsp;25&nbsp;&nbsp;26&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;
+	//	x    y    z   x'   y'   z'  DRG  SRP  THR
 	//
-	// SRP&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;30&nbsp;&nbsp;31&nbsp;&nbsp;32&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36&nbsp;&nbsp;
+	// # DRG      22   23   24   25   26   27   28
 	//
-	// THR&nbsp;&nbsp;&nbsp;37&nbsp;&nbsp;38&nbsp;&nbsp;39&nbsp;&nbsp;40&nbsp;&nbsp;41&nbsp;&nbsp;&nbsp;42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45&nbsp;
+	// # SRP      29   30   31   32   33   34   35   36
+	//
+	// THR      37   38   39   40   41   42   43   44   45
+	// ```
 	Cov []float64 `json:"cov,omitzero"`
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
@@ -10477,79 +10418,67 @@ type ManeuverUnvalidatedPublishParamsBodyPostEventStateVector struct {
 	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// The covariance matrix values represent the lower triangular half of the
-	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
-	// covariance matrix is dynamic.&nbsp; The values are outputted in order across
-	// each row, i.e.:
+	// covariance matrix in terms of equinoctial elements. The size of the covariance
+	// matrix is dynamic. The values are outputted in order across each row, i.e.:
 	//
-	// 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; 4&nbsp;&nbsp; 5
+	// ```
+	// 1   2   3   4   5
 	//
-	// 6&nbsp;&nbsp; 7&nbsp;&nbsp; 8&nbsp;&nbsp; 9&nbsp; 10
+	// 6   7   8   9  10
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// 51&nbsp; 52&nbsp; 53&nbsp; 54&nbsp; 55
+	// 51  52  53  54  55
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
+	// ```
 	//
 	// The ordering of values is as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Af&nbsp;&nbsp;
-	// Ag&nbsp;&nbsp; L&nbsp;&nbsp;&nbsp; N&nbsp;&nbsp; Chi&nbsp; Psi&nbsp;&nbsp;
-	// B&nbsp;&nbsp; BDOT AGOM&nbsp; T&nbsp;&nbsp; C1&nbsp;&nbsp; C2&nbsp; ...
+	// ```
 	//
-	// Af&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+	//	Af   Ag    L    N   Chi  Psi   B   BDOT AGOM  T    C1   C2  ...
 	//
-	// Ag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 3
+	// # Af        1
 	//
-	// L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 4&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 6
+	// # Ag        2    3
 	//
-	// N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 7&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp; 10
+	// # L         4    5    6
 	//
-	// Chi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp; 12&nbsp;&nbsp;
-	// 13&nbsp;&nbsp; 14&nbsp;&nbsp; 15
+	// # N         7    8    9   10
 	//
-	// Psi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp; 17&nbsp;&nbsp;
-	// 18&nbsp;&nbsp; 19&nbsp;&nbsp; 20&nbsp;&nbsp; 21
+	// # Chi      11   12   13   14   15
 	//
-	// B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 22&nbsp;&nbsp;
-	// 23&nbsp;&nbsp; 24 &nbsp;&nbsp;25&nbsp;&nbsp; 26&nbsp;&nbsp; 27&nbsp;&nbsp; 28
+	// # Psi      16   17   18   19   20   21
 	//
-	// BDOT&nbsp;&nbsp; 29&nbsp;&nbsp; 30&nbsp;&nbsp; 31&nbsp;&nbsp; 32&nbsp;&nbsp;
-	// 33&nbsp;&nbsp; 34&nbsp;&nbsp; 35&nbsp;&nbsp; 36
+	// # B        22   23   24   25   26   27   28
 	//
-	// AGOM&nbsp; 37&nbsp;&nbsp; 38&nbsp;&nbsp; 39&nbsp;&nbsp; 40&nbsp;&nbsp;
-	// 41&nbsp;&nbsp; 42&nbsp;&nbsp; 43&nbsp;&nbsp; 44&nbsp;&nbsp; 45
+	// # BDOT     29   30   31   32   33   34   35   36
 	//
-	// T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 46&nbsp;&nbsp;
-	// 47&nbsp;&nbsp; 48&nbsp;&nbsp; 49&nbsp;&nbsp; 50&nbsp;&nbsp; 51&nbsp;&nbsp;
-	// 52&nbsp;&nbsp; 53&nbsp;&nbsp; 54&nbsp;&nbsp; 55
+	// # AGOM     37   38   39   40   41   42   43   44   45
 	//
-	// C1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 56&nbsp;&nbsp; 57&nbsp;&nbsp;
-	// 58&nbsp;&nbsp; 59&nbsp;&nbsp; 60&nbsp;&nbsp; 61&nbsp;&nbsp; 62&nbsp;&nbsp;
-	// 63&nbsp;&nbsp; 64&nbsp;&nbsp; 65&nbsp;&nbsp; 66
+	// # T        46   47   48   49   50   51   52   53   54   55
 	//
-	// C2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 67&nbsp;&nbsp; 68&nbsp;&nbsp;
-	// 69&nbsp;&nbsp; 70&nbsp;&nbsp; 71&nbsp; &nbsp;72&nbsp;&nbsp; 73&nbsp;&nbsp;
-	// 74&nbsp;&nbsp; 75&nbsp;&nbsp; 76&nbsp;&nbsp; 77&nbsp;&nbsp; 78
+	// # C1       56   57   58   59   60   61   62   63   64   65   66
+	//
+	// # C2       67   68   69   70   71   72   73   74   75   76   77   78
 	//
 	// :
 	//
 	// :
+	// ```
 	//
 	// where C1, C2, etc, are the "consider parameters" that may be added to the
-	// covariance matrix.&nbsp; The covariance matrix will be as large as the last
-	// element/model parameter needed.&nbsp; In other words, if the DC solved for all 6
+	// covariance matrix. The covariance matrix will be as large as the last
+	// element/model parameter needed. In other words, if the DC solved for all 6
 	// elements plus AGOM, the covariance matrix will be 9x9 (and the rows for B and
-	// BDOT will be all zeros).&nbsp; If the covariance matrix is unavailable, the size
-	// will be set to 0x0, and no data will follow.&nbsp; The cov field should contain
-	// only the lower left triangle values from top left down to bottom right, in
-	// order.
+	// BDOT will be all zeros). If the covariance matrix is unavailable, the size will
+	// be set to 0x0, and no data will follow. The cov field should contain only the
+	// lower left triangle values from top left down to bottom right, in order.
 	EqCov []float64 `json:"eqCov,omitzero"`
 	// The reference frame of the cartesian orbital states. If the referenceFrame is
 	// null it is assumed to be J2000.
@@ -10614,18 +10543,17 @@ type ManeuverUnvalidatedPublishParamsBodyPreEventElset struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -10666,19 +10594,19 @@ type ManeuverUnvalidatedPublishParamsBodyPreEventElset struct {
 	Eccentricity param.Opt[float64] `json:"eccentricity,omitzero"`
 	// The ephemeris type associated with this TLE:
 	//
-	// 0:&nbsp;SGP (or SGP4 with Kozai mean motion)
+	// 0: SGP (or SGP4 with Kozai mean motion)
 	//
-	// 1:&nbsp;SGP (Kozai mean motion)
+	// 1: SGP (Kozai mean motion)
 	//
-	// 2:&nbsp;SGP4 (Brouver mean motion)
+	// 2: SGP4 (Brouver mean motion)
 	//
-	// 3:&nbsp;SDP4
+	// 3: SDP4
 	//
-	// 4:&nbsp;SGP4-XP
+	// 4: SGP4-XP
 	//
-	// 5:&nbsp;SDP8
+	// 5: SDP8
 	//
-	// 6:&nbsp;SP (osculating mean motion)
+	// 6: SP (osculating mean motion)
 	EphemType param.Opt[int64] `json:"ephemType,omitzero"`
 	// Unique identifier of the record, auto-generated by the system.
 	IDElset param.Opt[string] `json:"idElset,omitzero"`
@@ -10803,18 +10731,17 @@ type ManeuverUnvalidatedPublishParamsBodyPreEventStateVector struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -10891,6 +10818,8 @@ type ManeuverUnvalidatedPublishParamsBodyPreEventStateVector struct {
 	LunarSolar param.Opt[bool] `json:"lunarSolar,omitzero"`
 	// The mass of the object, in kilograms.
 	Mass param.Opt[float64] `json:"mass,omitzero"`
+	// Mission center or organization performing this vector creation.
+	MissionCenter param.Opt[string] `json:"missionCenter,omitzero"`
 	// Time when message was generated in ISO 8601 UTC format with microsecond
 	// precision.
 	MsgTs param.Opt[time.Time] `json:"msgTs,omitzero" format:"date-time"`
@@ -11078,19 +11007,22 @@ type ManeuverUnvalidatedPublishParamsBodyPreEventStateVector struct {
 	// velocity. The covariance elements are position dependent within the array with
 	// values ordered as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR&nbsp;&nbsp;
+	// ```
 	//
-	// x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+	//	x    y    z   x'   y'   z'
 	//
-	// y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;3
+	// x         1
 	//
-	// z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;6
+	// y         2    3
 	//
-	// x'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;10
+	// z         4    5    6
 	//
-	// y'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;12&nbsp;&nbsp;13&nbsp;&nbsp;14&nbsp;&nbsp;15
+	// x'        7    8    9   10
 	//
-	// z'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19&nbsp;&nbsp;20&nbsp;&nbsp;&nbsp;21&nbsp;
+	// y'       11   12   13   14   15
+	//
+	// z'       16   17   18   19   20   21
+	// ```
 	//
 	// The cov array should contain only the lower left triangle values from top left
 	// down to bottom right, in order.
@@ -11098,13 +11030,16 @@ type ManeuverUnvalidatedPublishParamsBodyPreEventStateVector struct {
 	// If additional covariance terms are included for DRAG, SRP, and/or THRUST, the
 	// matrix can be extended with the following order of elements:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;x'&nbsp;&nbsp;&nbsp;&nbsp;y'&nbsp;&nbsp;&nbsp;&nbsp;z'&nbsp;&nbsp;&nbsp;&nbsp;DRG&nbsp;&nbsp;&nbsp;&nbsp;SRP&nbsp;&nbsp;&nbsp;&nbsp;THR
+	// ```
 	//
-	// DRG&nbsp;&nbsp;&nbsp;22&nbsp;&nbsp;23&nbsp;&nbsp;24&nbsp;&nbsp;25&nbsp;&nbsp;26&nbsp;&nbsp;&nbsp;27&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;&nbsp;
+	//	x    y    z   x'   y'   z'  DRG  SRP  THR
 	//
-	// SRP&nbsp;&nbsp;&nbsp;29&nbsp;&nbsp;30&nbsp;&nbsp;31&nbsp;&nbsp;32&nbsp;&nbsp;33&nbsp;&nbsp;&nbsp;34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36&nbsp;&nbsp;
+	// # DRG      22   23   24   25   26   27   28
 	//
-	// THR&nbsp;&nbsp;&nbsp;37&nbsp;&nbsp;38&nbsp;&nbsp;39&nbsp;&nbsp;40&nbsp;&nbsp;41&nbsp;&nbsp;&nbsp;42&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45&nbsp;
+	// # SRP      29   30   31   32   33   34   35   36
+	//
+	// THR      37   38   39   40   41   42   43   44   45
+	// ```
 	Cov []float64 `json:"cov,omitzero"`
 	// The reference frame of the covariance matrix elements. If the covReferenceFrame
 	// is null it is assumed to be J2000.
@@ -11112,79 +11047,67 @@ type ManeuverUnvalidatedPublishParamsBodyPreEventStateVector struct {
 	// Any of "J2000", "UVW", "EFG/TDR", "ECR/ECEF", "TEME", "GCRF".
 	CovReferenceFrame string `json:"covReferenceFrame,omitzero"`
 	// The covariance matrix values represent the lower triangular half of the
-	// covariance matrix in terms of equinoctial elements.&nbsp; The size of the
-	// covariance matrix is dynamic.&nbsp; The values are outputted in order across
-	// each row, i.e.:
+	// covariance matrix in terms of equinoctial elements. The size of the covariance
+	// matrix is dynamic. The values are outputted in order across each row, i.e.:
 	//
-	// 1&nbsp;&nbsp; 2&nbsp;&nbsp; 3&nbsp;&nbsp; 4&nbsp;&nbsp; 5
+	// ```
+	// 1   2   3   4   5
 	//
-	// 6&nbsp;&nbsp; 7&nbsp;&nbsp; 8&nbsp;&nbsp; 9&nbsp; 10
+	// 6   7   8   9  10
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// 51&nbsp; 52&nbsp; 53&nbsp; 54&nbsp; 55
+	// 51  52  53  54  55
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
 	//
-	// :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :&nbsp;&nbsp; :
+	// :   :   :   :   :
+	// ```
 	//
 	// The ordering of values is as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Af&nbsp;&nbsp;
-	// Ag&nbsp;&nbsp; L&nbsp;&nbsp;&nbsp; N&nbsp;&nbsp; Chi&nbsp; Psi&nbsp;&nbsp;
-	// B&nbsp;&nbsp; BDOT AGOM&nbsp; T&nbsp;&nbsp; C1&nbsp;&nbsp; C2&nbsp; ...
+	// ```
 	//
-	// Af&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+	//	Af   Ag    L    N   Chi  Psi   B   BDOT AGOM  T    C1   C2  ...
 	//
-	// Ag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2&nbsp;&nbsp;&nbsp; 3
+	// # Af        1
 	//
-	// L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 4&nbsp;&nbsp;&nbsp; 5&nbsp;&nbsp;&nbsp; 6
+	// # Ag        2    3
 	//
-	// N&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	// 7&nbsp;&nbsp;&nbsp; 8&nbsp;&nbsp;&nbsp; 9&nbsp;&nbsp; 10
+	// # L         4    5    6
 	//
-	// Chi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 11&nbsp;&nbsp; 12&nbsp;&nbsp;
-	// 13&nbsp;&nbsp; 14&nbsp;&nbsp; 15
+	// # N         7    8    9   10
 	//
-	// Psi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 16&nbsp;&nbsp; 17&nbsp;&nbsp;
-	// 18&nbsp;&nbsp; 19&nbsp;&nbsp; 20&nbsp;&nbsp; 21
+	// # Chi      11   12   13   14   15
 	//
-	// B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 22&nbsp;&nbsp;
-	// 23&nbsp;&nbsp; 24 &nbsp;&nbsp;25&nbsp;&nbsp; 26&nbsp;&nbsp; 27&nbsp;&nbsp; 28
+	// # Psi      16   17   18   19   20   21
 	//
-	// BDOT&nbsp;&nbsp; 29&nbsp;&nbsp; 30&nbsp;&nbsp; 31&nbsp;&nbsp; 32&nbsp;&nbsp;
-	// 33&nbsp;&nbsp; 34&nbsp;&nbsp; 35&nbsp;&nbsp; 36
+	// # B        22   23   24   25   26   27   28
 	//
-	// AGOM&nbsp; 37&nbsp;&nbsp; 38&nbsp;&nbsp; 39&nbsp;&nbsp; 40&nbsp;&nbsp;
-	// 41&nbsp;&nbsp; 42&nbsp;&nbsp; 43&nbsp;&nbsp; 44&nbsp;&nbsp; 45
+	// # BDOT     29   30   31   32   33   34   35   36
 	//
-	// T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 46&nbsp;&nbsp;
-	// 47&nbsp;&nbsp; 48&nbsp;&nbsp; 49&nbsp;&nbsp; 50&nbsp;&nbsp; 51&nbsp;&nbsp;
-	// 52&nbsp;&nbsp; 53&nbsp;&nbsp; 54&nbsp;&nbsp; 55
+	// # AGOM     37   38   39   40   41   42   43   44   45
 	//
-	// C1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 56&nbsp;&nbsp; 57&nbsp;&nbsp;
-	// 58&nbsp;&nbsp; 59&nbsp;&nbsp; 60&nbsp;&nbsp; 61&nbsp;&nbsp; 62&nbsp;&nbsp;
-	// 63&nbsp;&nbsp; 64&nbsp;&nbsp; 65&nbsp;&nbsp; 66
+	// # T        46   47   48   49   50   51   52   53   54   55
 	//
-	// C2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 67&nbsp;&nbsp; 68&nbsp;&nbsp;
-	// 69&nbsp;&nbsp; 70&nbsp;&nbsp; 71&nbsp; &nbsp;72&nbsp;&nbsp; 73&nbsp;&nbsp;
-	// 74&nbsp;&nbsp; 75&nbsp;&nbsp; 76&nbsp;&nbsp; 77&nbsp;&nbsp; 78
+	// # C1       56   57   58   59   60   61   62   63   64   65   66
+	//
+	// # C2       67   68   69   70   71   72   73   74   75   76   77   78
 	//
 	// :
 	//
 	// :
+	// ```
 	//
 	// where C1, C2, etc, are the "consider parameters" that may be added to the
-	// covariance matrix.&nbsp; The covariance matrix will be as large as the last
-	// element/model parameter needed.&nbsp; In other words, if the DC solved for all 6
+	// covariance matrix. The covariance matrix will be as large as the last
+	// element/model parameter needed. In other words, if the DC solved for all 6
 	// elements plus AGOM, the covariance matrix will be 9x9 (and the rows for B and
-	// BDOT will be all zeros).&nbsp; If the covariance matrix is unavailable, the size
-	// will be set to 0x0, and no data will follow.&nbsp; The cov field should contain
-	// only the lower left triangle values from top left down to bottom right, in
-	// order.
+	// BDOT will be all zeros). If the covariance matrix is unavailable, the size will
+	// be set to 0x0, and no data will follow. The cov field should contain only the
+	// lower left triangle values from top left down to bottom right, in order.
 	EqCov []float64 `json:"eqCov,omitzero"`
 	// The reference frame of the cartesian orbital states. If the referenceFrame is
 	// null it is assumed to be J2000.

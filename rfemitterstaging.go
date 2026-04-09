@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -59,7 +58,7 @@ func (r *RfEmitterStagingService) New(ctx context.Context, body RfEmitterStaging
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/rfemitterstaging"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single RFEmitterStaging record by its unique ID
@@ -68,11 +67,11 @@ func (r *RfEmitterStagingService) Get(ctx context.Context, id string, query RfEm
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/rfemitterstaging/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to update a single RFEmitterStaging record. A specific role is
@@ -83,17 +82,17 @@ func (r *RfEmitterStagingService) Update(ctx context.Context, id string, body Rf
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/rfemitterstaging/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *RfEmitterStagingService) List(ctx context.Context, query RfEmitterStagingListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[RfEmitterStagingListResponse], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -113,8 +112,8 @@ func (r *RfEmitterStagingService) List(ctx context.Context, query RfEmitterStagi
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *RfEmitterStagingService) ListAutoPaging(ctx context.Context, query RfEmitterStagingListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[RfEmitterStagingListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
@@ -127,11 +126,11 @@ func (r *RfEmitterStagingService) Delete(ctx context.Context, id string, opts ..
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/rfemitterstaging/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to take multiple RFEmitterStaging records as a POST body and
@@ -146,7 +145,7 @@ func (r *RfEmitterStagingService) NewBulk(ctx context.Context, body RfEmitterSta
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/rfemitterstaging/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -155,7 +154,7 @@ func (r *RfEmitterStagingService) Queryhelp(ctx context.Context, opts ...option.
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/rfemitterstaging/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Model representation of a nominal RF emitter. This entity contains minimal
@@ -491,7 +490,7 @@ func (r RfEmitterStagingNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *RfEmitterStagingNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of a nominal RF emitter. This entity contains minimal

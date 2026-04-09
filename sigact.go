@@ -5,7 +5,6 @@ package unifieddatalibrary
 import (
 	"bytes"
 	"context"
-	"encoding/json"
 	"io"
 	"mime/multipart"
 	"net/http"
@@ -57,8 +56,8 @@ func NewSigactService(opts ...option.RequestOption) (r SigactService) {
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *SigactService) List(ctx context.Context, query SigactListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[SigactListResponse], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -78,8 +77,8 @@ func (r *SigactService) List(ctx context.Context, query SigactListParams, opts .
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *SigactService) ListAutoPaging(ctx context.Context, query SigactListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[SigactListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
@@ -87,14 +86,14 @@ func (r *SigactService) ListAutoPaging(ctx context.Context, query SigactListPara
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
-// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
 // valid/required query parameter information.
 func (r *SigactService) Count(ctx context.Context, query SigactCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/sigact/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -108,7 +107,7 @@ func (r *SigactService) NewBulk(ctx context.Context, body SigactNewBulkParams, o
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/sigact/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -117,14 +116,14 @@ func (r *SigactService) Queryhelp(ctx context.Context, opts ...option.RequestOpt
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/sigact/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
 // columns/fields. Requested columns are specified by the 'columns' query parameter
 // and should be a comma separated list of valid fields for the specified data
 // type. classificationMarking is always returned. See the queryhelp operation
-// (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
@@ -132,7 +131,7 @@ func (r *SigactService) Tuple(ctx context.Context, query SigactTupleParams, opts
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/sigact/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Upload a text file with its metadata. This operation bypasses the length
@@ -158,7 +157,7 @@ func (r *SigactService) UploadZip(ctx context.Context, body SigactUploadZipParam
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-sigact-text"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Provides information on the dates, actors, locations, fatalities, and types of
@@ -168,18 +167,17 @@ type SigactListResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode SigactListResponseDataMode `json:"dataMode" api:"required"`
@@ -347,15 +345,17 @@ type SigactListResponse struct {
 	// militaries for locating points on Earth. The MGRS is derived from the Universal
 	// Transverse Mercator (UTM) grid system and the Universal Polar Stereographic
 	// (UPS) grid system, but uses a different labeling convention. The MGRS is used as
-	// geocode for the entire Earth. Example of an milgrid coordinate, or grid
-	// reference, would be 4QFJ12345678, which consists of three parts:
+	// geocode for the entire Earth.
 	//
-	// &nbsp;&nbsp;4Q (grid zone designator, GZD)
+	// Example of an milgrid coordinate, or grid reference, would be 4QFJ12345678,
+	// which consists of three parts:
 	//
-	// &nbsp;&nbsp;FJ (the 100,000-meter square identifier)
+	// 4Q (grid zone designator, GZD)
 	//
-	// &nbsp;&nbsp;12345678 (numerical location; easting is 1234 and northing is 5678,
-	// in this case specifying a location with 10 m resolution).
+	// FJ (the 100,000-meter square identifier)
+	//
+	// 12345678 (numerical location; easting is 1234 and northing is 5678, in this case
+	// specifying a location with 10 m resolution).
 	Milgrid string `json:"milgrid"`
 	// Notes related to the documents or event.
 	Notes string `json:"notes"`
@@ -525,18 +525,17 @@ func (r *SigactListResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type SigactListResponseDataMode string
 
 const (
@@ -638,18 +637,17 @@ type SigactTupleResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode SigactTupleResponseDataMode `json:"dataMode" api:"required"`
@@ -820,15 +818,17 @@ type SigactTupleResponse struct {
 	// militaries for locating points on Earth. The MGRS is derived from the Universal
 	// Transverse Mercator (UTM) grid system and the Universal Polar Stereographic
 	// (UPS) grid system, but uses a different labeling convention. The MGRS is used as
-	// geocode for the entire Earth. Example of an milgrid coordinate, or grid
-	// reference, would be 4QFJ12345678, which consists of three parts:
+	// geocode for the entire Earth.
 	//
-	// &nbsp;&nbsp;4Q (grid zone designator, GZD)
+	// Example of an milgrid coordinate, or grid reference, would be 4QFJ12345678,
+	// which consists of three parts:
 	//
-	// &nbsp;&nbsp;FJ (the 100,000-meter square identifier)
+	// 4Q (grid zone designator, GZD)
 	//
-	// &nbsp;&nbsp;12345678 (numerical location; easting is 1234 and northing is 5678,
-	// in this case specifying a location with 10 m resolution).
+	// FJ (the 100,000-meter square identifier)
+	//
+	// 12345678 (numerical location; easting is 1234 and northing is 5678, in this case
+	// specifying a location with 10 m resolution).
 	Milgrid string `json:"milgrid"`
 	// Notes related to the documents or event.
 	Notes string `json:"notes"`
@@ -999,18 +999,17 @@ func (r *SigactTupleResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type SigactTupleResponseDataMode string
 
 const (
@@ -1061,7 +1060,7 @@ func (r SigactNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *SigactNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Provides information on the dates, actors, locations, fatalities, and types of
@@ -1073,18 +1072,17 @@ type SigactNewBulkParamsBody struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -1247,15 +1245,17 @@ type SigactNewBulkParamsBody struct {
 	// militaries for locating points on Earth. The MGRS is derived from the Universal
 	// Transverse Mercator (UTM) grid system and the Universal Polar Stereographic
 	// (UPS) grid system, but uses a different labeling convention. The MGRS is used as
-	// geocode for the entire Earth. Example of an milgrid coordinate, or grid
-	// reference, would be 4QFJ12345678, which consists of three parts:
+	// geocode for the entire Earth.
 	//
-	// &nbsp;&nbsp;4Q (grid zone designator, GZD)
+	// Example of an milgrid coordinate, or grid reference, would be 4QFJ12345678,
+	// which consists of three parts:
 	//
-	// &nbsp;&nbsp;FJ (the 100,000-meter square identifier)
+	// 4Q (grid zone designator, GZD)
 	//
-	// &nbsp;&nbsp;12345678 (numerical location; easting is 1234 and northing is 5678,
-	// in this case specifying a location with 10 m resolution).
+	// FJ (the 100,000-meter square identifier)
+	//
+	// 12345678 (numerical location; easting is 1234 and northing is 5678, in this case
+	// specifying a location with 10 m resolution).
 	Milgrid param.Opt[string] `json:"milgrid,omitzero"`
 	// Notes related to the documents or event.
 	Notes param.Opt[string] `json:"notes,omitzero"`

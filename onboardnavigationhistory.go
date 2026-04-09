@@ -45,8 +45,8 @@ func NewOnboardnavigationHistoryService(opts ...option.RequestOption) (r Onboard
 
 // Service operation to dynamically query historical data by a variety of query
 // parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *OnboardnavigationHistoryService) List(ctx context.Context, query OnboardnavigationHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[shared.OnboardnavigationFull], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -66,36 +66,35 @@ func (r *OnboardnavigationHistoryService) List(ctx context.Context, query Onboar
 
 // Service operation to dynamically query historical data by a variety of query
 // parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *OnboardnavigationHistoryService) ListAutoPaging(ctx context.Context, query OnboardnavigationHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[shared.OnboardnavigationFull] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to dynamically query historical data by a variety of query
 // parameters not specified in this API documentation, then write that data to the
-// Secure Content Store. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// Secure Content Store. See the queryhelp operation (`/udl/<datatype>/queryhelp`)
+// for more details on valid/required query parameter information.
 func (r *OnboardnavigationHistoryService) Aodr(ctx context.Context, query OnboardnavigationHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/onboardnavigation/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
-// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
 // valid/required query parameter information.
 func (r *OnboardnavigationHistoryService) Count(ctx context.Context, query OnboardnavigationHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/onboardnavigation/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type OnboardnavigationHistoryListParams struct {
@@ -103,7 +102,7 @@ type OnboardnavigationHistoryListParams struct {
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	StartTime time.Time `query:"startTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on valid
 	// query fields that can be selected.
 	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
 	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
@@ -125,7 +124,7 @@ type OnboardnavigationHistoryAodrParams struct {
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	StartTime time.Time `query:"startTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on valid
 	// query fields that can be selected.
 	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
 	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`

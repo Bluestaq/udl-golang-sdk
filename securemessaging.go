@@ -52,11 +52,11 @@ func (r *SecureMessagingService) DescribeTopic(ctx context.Context, topic string
 	opts = slices.Concat(r.Options, opts)
 	if topic == "" {
 		err = errors.New("missing required topic parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("sm/describeTopic/%s", topic)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Returns the current/latest offset for the passed topic name.
@@ -65,11 +65,11 @@ func (r *SecureMessagingService) GetLatestOffset(ctx context.Context, topic stri
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if topic == "" {
 		err = errors.New("missing required topic parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("sm/getLatestOffset/%s", topic)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Retrieve a set of messages from the given topic at the given offset. See Help >
@@ -80,7 +80,7 @@ func (r *SecureMessagingService) GetMessages(ctx context.Context, offset int64, 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*"), option.WithResponseInto(&raw)}, opts...)
 	if params.Topic == "" {
 		err = errors.New("missing required topic parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("sm/getMessages/%s/%v", params.Topic, offset)
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, params, &res, opts...)
@@ -108,7 +108,7 @@ func (r *SecureMessagingService) ListTopics(ctx context.Context, opts ...option.
 	opts = slices.Concat(r.Options, opts)
 	path := "sm/listTopics"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 type TopicDetails struct {

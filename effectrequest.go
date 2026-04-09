@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -59,7 +58,7 @@ func (r *EffectRequestService) New(ctx context.Context, body EffectRequestNewPar
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/effectrequest"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single EffectRequest by its unique ID passed as a
@@ -68,17 +67,17 @@ func (r *EffectRequestService) Get(ctx context.Context, id string, query EffectR
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/effectrequest/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *EffectRequestService) List(ctx context.Context, query EffectRequestListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[EffectRequestListResponse], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -98,8 +97,8 @@ func (r *EffectRequestService) List(ctx context.Context, query EffectRequestList
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *EffectRequestService) ListAutoPaging(ctx context.Context, query EffectRequestListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[EffectRequestListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
@@ -107,14 +106,14 @@ func (r *EffectRequestService) ListAutoPaging(ctx context.Context, query EffectR
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
-// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
 // valid/required query parameter information.
 func (r *EffectRequestService) Count(ctx context.Context, query EffectRequestCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/effectrequest/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -127,7 +126,7 @@ func (r *EffectRequestService) NewBulk(ctx context.Context, body EffectRequestNe
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/effectrequest/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -136,14 +135,14 @@ func (r *EffectRequestService) QueryHelp(ctx context.Context, opts ...option.Req
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/effectrequest/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
 // columns/fields. Requested columns are specified by the 'columns' query parameter
 // and should be a comma separated list of valid fields for the specified data
 // type. classificationMarking is always returned. See the queryhelp operation
-// (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
@@ -151,7 +150,7 @@ func (r *EffectRequestService) Tuple(ctx context.Context, query EffectRequestTup
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/effectrequest/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple EffectRequests as a POST body and ingest into
@@ -163,7 +162,7 @@ func (r *EffectRequestService) UnvalidatedPublish(ctx context.Context, body Effe
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-effectrequest"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // A request for various effects on a target.
@@ -172,18 +171,17 @@ type EffectRequestGetResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode EffectRequestGetResponseDataMode `json:"dataMode" api:"required"`
@@ -204,13 +202,19 @@ type EffectRequestGetResponse struct {
 	// system.
 	CreatedBy string `json:"createdBy"`
 	// The indicator of deadline of the bid request (e.g. BETWEEN, IMMEDIATE,
-	// NOEARLIERTHAN, NOLATERTHAN, etc.): BETWEEN:&nbsp;Produce effect any time between
-	// the given start and end times, equal penalty for being early or late
-	// IMMEDIATE:&nbsp;Start as soon as possible, earlier is always better
-	// NOEARLIERTHAN:&nbsp;Produce effect at this time or later. Large penalty for
-	// being earlier, no reward for being later NOLATERTHAN:&nbsp;Produce effect no
-	// later than the given startTime. Large penalty for being later, no reward for
-	// being even earlier as long as the effect starts by the given time.
+	// NOEARLIERTHAN, NOLATERTHAN, etc.):
+	//
+	// BETWEEN: Produce effect any time between the given start and end times, equal
+	// penalty for being early or late.
+	//
+	// IMMEDIATE: Start as soon as possible, earlier is always better.
+	//
+	// NOEARLIERTHAN: Produce effect at this time or later. Large penalty for being
+	// earlier, no reward for being later.
+	//
+	// NOLATERTHAN: Produce effect no later than the given startTime. Large penalty for
+	// being later, no reward for being even earlier as long as the effect starts by
+	// the given time.
 	DeadlineType string `json:"deadlineType"`
 	// The time the effect should end, in ISO8601 UTC format.
 	EndTime time.Time `json:"endTime" format:"date-time"`
@@ -284,18 +288,17 @@ func (r *EffectRequestGetResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type EffectRequestGetResponseDataMode string
 
 const (
@@ -311,18 +314,17 @@ type EffectRequestListResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode EffectRequestListResponseDataMode `json:"dataMode" api:"required"`
@@ -343,13 +345,19 @@ type EffectRequestListResponse struct {
 	// system.
 	CreatedBy string `json:"createdBy"`
 	// The indicator of deadline of the bid request (e.g. BETWEEN, IMMEDIATE,
-	// NOEARLIERTHAN, NOLATERTHAN, etc.): BETWEEN:&nbsp;Produce effect any time between
-	// the given start and end times, equal penalty for being early or late
-	// IMMEDIATE:&nbsp;Start as soon as possible, earlier is always better
-	// NOEARLIERTHAN:&nbsp;Produce effect at this time or later. Large penalty for
-	// being earlier, no reward for being later NOLATERTHAN:&nbsp;Produce effect no
-	// later than the given startTime. Large penalty for being later, no reward for
-	// being even earlier as long as the effect starts by the given time.
+	// NOEARLIERTHAN, NOLATERTHAN, etc.):
+	//
+	// BETWEEN: Produce effect any time between the given start and end times, equal
+	// penalty for being early or late.
+	//
+	// IMMEDIATE: Start as soon as possible, earlier is always better.
+	//
+	// NOEARLIERTHAN: Produce effect at this time or later. Large penalty for being
+	// earlier, no reward for being later.
+	//
+	// NOLATERTHAN: Produce effect no later than the given startTime. Large penalty for
+	// being later, no reward for being even earlier as long as the effect starts by
+	// the given time.
 	DeadlineType string `json:"deadlineType"`
 	// The time the effect should end, in ISO8601 UTC format.
 	EndTime time.Time `json:"endTime" format:"date-time"`
@@ -423,18 +431,17 @@ func (r *EffectRequestListResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type EffectRequestListResponseDataMode string
 
 const (
@@ -486,18 +493,17 @@ type EffectRequestTupleResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode EffectRequestTupleResponseDataMode `json:"dataMode" api:"required"`
@@ -518,13 +524,19 @@ type EffectRequestTupleResponse struct {
 	// system.
 	CreatedBy string `json:"createdBy"`
 	// The indicator of deadline of the bid request (e.g. BETWEEN, IMMEDIATE,
-	// NOEARLIERTHAN, NOLATERTHAN, etc.): BETWEEN:&nbsp;Produce effect any time between
-	// the given start and end times, equal penalty for being early or late
-	// IMMEDIATE:&nbsp;Start as soon as possible, earlier is always better
-	// NOEARLIERTHAN:&nbsp;Produce effect at this time or later. Large penalty for
-	// being earlier, no reward for being later NOLATERTHAN:&nbsp;Produce effect no
-	// later than the given startTime. Large penalty for being later, no reward for
-	// being even earlier as long as the effect starts by the given time.
+	// NOEARLIERTHAN, NOLATERTHAN, etc.):
+	//
+	// BETWEEN: Produce effect any time between the given start and end times, equal
+	// penalty for being early or late.
+	//
+	// IMMEDIATE: Start as soon as possible, earlier is always better.
+	//
+	// NOEARLIERTHAN: Produce effect at this time or later. Large penalty for being
+	// earlier, no reward for being later.
+	//
+	// NOLATERTHAN: Produce effect no later than the given startTime. Large penalty for
+	// being later, no reward for being even earlier as long as the effect starts by
+	// the given time.
 	DeadlineType string `json:"deadlineType"`
 	// The time the effect should end, in ISO8601 UTC format.
 	EndTime time.Time `json:"endTime" format:"date-time"`
@@ -598,18 +610,17 @@ func (r *EffectRequestTupleResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type EffectRequestTupleResponseDataMode string
 
 const (
@@ -624,18 +635,17 @@ type EffectRequestNewParams struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode EffectRequestNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
@@ -651,13 +661,19 @@ type EffectRequestNewParams struct {
 	// Specific descriptive instantiation of the effect, e.g., playbook to be used.
 	Context param.Opt[string] `json:"context,omitzero"`
 	// The indicator of deadline of the bid request (e.g. BETWEEN, IMMEDIATE,
-	// NOEARLIERTHAN, NOLATERTHAN, etc.): BETWEEN:&nbsp;Produce effect any time between
-	// the given start and end times, equal penalty for being early or late
-	// IMMEDIATE:&nbsp;Start as soon as possible, earlier is always better
-	// NOEARLIERTHAN:&nbsp;Produce effect at this time or later. Large penalty for
-	// being earlier, no reward for being later NOLATERTHAN:&nbsp;Produce effect no
-	// later than the given startTime. Large penalty for being later, no reward for
-	// being even earlier as long as the effect starts by the given time.
+	// NOEARLIERTHAN, NOLATERTHAN, etc.):
+	//
+	// BETWEEN: Produce effect any time between the given start and end times, equal
+	// penalty for being early or late.
+	//
+	// IMMEDIATE: Start as soon as possible, earlier is always better.
+	//
+	// NOEARLIERTHAN: Produce effect at this time or later. Large penalty for being
+	// earlier, no reward for being later.
+	//
+	// NOLATERTHAN: Produce effect no later than the given startTime. Large penalty for
+	// being later, no reward for being even earlier as long as the effect starts by
+	// the given time.
 	DeadlineType param.Opt[string] `json:"deadlineType,omitzero"`
 	// The time the effect should end, in ISO8601 UTC format.
 	EndTime param.Opt[time.Time] `json:"endTime,omitzero" format:"date-time"`
@@ -705,18 +721,17 @@ func (r *EffectRequestNewParams) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type EffectRequestNewParamsDataMode string
 
 const (
@@ -785,7 +800,7 @@ func (r EffectRequestNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *EffectRequestNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // A request for various effects on a target.
@@ -796,18 +811,17 @@ type EffectRequestNewBulkParamsBody struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -823,13 +837,19 @@ type EffectRequestNewBulkParamsBody struct {
 	// Specific descriptive instantiation of the effect, e.g., playbook to be used.
 	Context param.Opt[string] `json:"context,omitzero"`
 	// The indicator of deadline of the bid request (e.g. BETWEEN, IMMEDIATE,
-	// NOEARLIERTHAN, NOLATERTHAN, etc.): BETWEEN:&nbsp;Produce effect any time between
-	// the given start and end times, equal penalty for being early or late
-	// IMMEDIATE:&nbsp;Start as soon as possible, earlier is always better
-	// NOEARLIERTHAN:&nbsp;Produce effect at this time or later. Large penalty for
-	// being earlier, no reward for being later NOLATERTHAN:&nbsp;Produce effect no
-	// later than the given startTime. Large penalty for being later, no reward for
-	// being even earlier as long as the effect starts by the given time.
+	// NOEARLIERTHAN, NOLATERTHAN, etc.):
+	//
+	// BETWEEN: Produce effect any time between the given start and end times, equal
+	// penalty for being early or late.
+	//
+	// IMMEDIATE: Start as soon as possible, earlier is always better.
+	//
+	// NOEARLIERTHAN: Produce effect at this time or later. Large penalty for being
+	// earlier, no reward for being later.
+	//
+	// NOLATERTHAN: Produce effect no later than the given startTime. Large penalty for
+	// being later, no reward for being even earlier as long as the effect starts by
+	// the given time.
 	DeadlineType param.Opt[string] `json:"deadlineType,omitzero"`
 	// The time the effect should end, in ISO8601 UTC format.
 	EndTime param.Opt[time.Time] `json:"endTime,omitzero" format:"date-time"`
@@ -913,7 +933,7 @@ func (r EffectRequestUnvalidatedPublishParams) MarshalJSON() (data []byte, err e
 	return shimjson.Marshal(r.Body)
 }
 func (r *EffectRequestUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // A request for various effects on a target.
@@ -924,18 +944,17 @@ type EffectRequestUnvalidatedPublishParamsBody struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -951,13 +970,19 @@ type EffectRequestUnvalidatedPublishParamsBody struct {
 	// Specific descriptive instantiation of the effect, e.g., playbook to be used.
 	Context param.Opt[string] `json:"context,omitzero"`
 	// The indicator of deadline of the bid request (e.g. BETWEEN, IMMEDIATE,
-	// NOEARLIERTHAN, NOLATERTHAN, etc.): BETWEEN:&nbsp;Produce effect any time between
-	// the given start and end times, equal penalty for being early or late
-	// IMMEDIATE:&nbsp;Start as soon as possible, earlier is always better
-	// NOEARLIERTHAN:&nbsp;Produce effect at this time or later. Large penalty for
-	// being earlier, no reward for being later NOLATERTHAN:&nbsp;Produce effect no
-	// later than the given startTime. Large penalty for being later, no reward for
-	// being even earlier as long as the effect starts by the given time.
+	// NOEARLIERTHAN, NOLATERTHAN, etc.):
+	//
+	// BETWEEN: Produce effect any time between the given start and end times, equal
+	// penalty for being early or late.
+	//
+	// IMMEDIATE: Start as soon as possible, earlier is always better.
+	//
+	// NOEARLIERTHAN: Produce effect at this time or later. Large penalty for being
+	// earlier, no reward for being later.
+	//
+	// NOLATERTHAN: Produce effect no later than the given startTime. Large penalty for
+	// being later, no reward for being even earlier as long as the effect starts by
+	// the given time.
 	DeadlineType param.Opt[string] `json:"deadlineType,omitzero"`
 	// The time the effect should end, in ISO8601 UTC format.
 	EndTime param.Opt[time.Time] `json:"endTime,omitzero" format:"date-time"`

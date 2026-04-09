@@ -53,7 +53,7 @@ func (r *RfEmitterDetailService) New(ctx context.Context, body RfEmitterDetailNe
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/rfemitterdetails"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to update a single RFEmitterDetails record. A specific role is
@@ -64,17 +64,17 @@ func (r *RfEmitterDetailService) Update(ctx context.Context, id string, body RfE
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/rfemitterdetails/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *RfEmitterDetailService) List(ctx context.Context, query RfEmitterDetailListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[RfEmitterDetailListResponse], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -94,8 +94,8 @@ func (r *RfEmitterDetailService) List(ctx context.Context, query RfEmitterDetail
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *RfEmitterDetailService) ListAutoPaging(ctx context.Context, query RfEmitterDetailListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[RfEmitterDetailListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
@@ -108,24 +108,24 @@ func (r *RfEmitterDetailService) Delete(ctx context.Context, id string, opts ...
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("udl/rfemitterdetails/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
-// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
 // valid/required query parameter information.
 func (r *RfEmitterDetailService) Count(ctx context.Context, query RfEmitterDetailCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/rfemitterdetails/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single RFEmitterDetails record by its unique ID
@@ -134,11 +134,11 @@ func (r *RfEmitterDetailService) Get(ctx context.Context, id string, query RfEmi
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/rfemitterdetails/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -147,14 +147,14 @@ func (r *RfEmitterDetailService) Queryhelp(ctx context.Context, opts ...option.R
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/rfemitterdetails/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
 // columns/fields. Requested columns are specified by the 'columns' query parameter
 // and should be a comma separated list of valid fields for the specified data
 // type. classificationMarking is always returned. See the queryhelp operation
-// (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
@@ -162,7 +162,7 @@ func (r *RfEmitterDetailService) Tuple(ctx context.Context, query RfEmitterDetai
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/rfemitterdetails/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Details for a particular RF Emitter, collected by a particular source. An RF
@@ -172,18 +172,17 @@ type RfEmitterDetailListResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode RfEmitterDetailListResponseDataMode `json:"dataMode" api:"required"`
@@ -199,7 +198,7 @@ type RfEmitterDetailListResponse struct {
 	AltName string `json:"altName"`
 	// An RF Amplifier associated with an RF Emitter Details.
 	Amplifier RfEmitterDetailListResponseAmplifier `json:"amplifier"`
-	// The set of antennas hosted on this EW Emitter system.
+	// The set of antennas hosted on this RF Emitter.
 	Antennas []RfEmitterDetailListResponseAntenna `json:"antennas"`
 	// Barrage noise bandwidth, in megahertz.
 	BarrageNoiseBandwidth float64 `json:"barrageNoiseBandwidth"`
@@ -263,7 +262,7 @@ type RfEmitterDetailListResponse struct {
 	ReceiverType string `json:"receiverType"`
 	// Secondary notes on the RF Emitter.
 	SecondaryNotes string `json:"secondaryNotes"`
-	// The set of software services running on this EW Emitter system.
+	// The set of software services running on this RF Emitter.
 	Services []RfEmitterDetailListResponseService `json:"services"`
 	// Receiver sensitivity is the lowest power level at which the receiver can detect
 	// an RF signal and demodulate data. Sensitivity is purely a receiver specification
@@ -275,7 +274,7 @@ type RfEmitterDetailListResponse struct {
 	// and is independent of the transmitter. Start sensitivity range, in
 	// decibel-milliwatts.
 	SystemSensitivityStart float64 `json:"systemSensitivityStart"`
-	// The set of EA/TTP techniques that are supported by this EW Emitter system.
+	// The set of EA/TTP techniques that are supported by this RF Emitter.
 	Ttps []RfEmitterDetailListResponseTtp `json:"ttps"`
 	// Time the row was last updated in the database, auto-populated by the system.
 	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
@@ -339,18 +338,17 @@ func (r *RfEmitterDetailListResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type RfEmitterDetailListResponseDataMode string
 
 const (
@@ -545,7 +543,7 @@ type RfEmitterDetailListResponseAntennaTransmitChannel struct {
 	// Minimum gain, in decibels.
 	MinGain float64 `json:"minGain"`
 	// The set of sample rates supported by this transmit channel, in bits per second.
-	SampleRates []float64 `json:"sampleRates"`
+	SampleRates []float64 `json:"sampleRates" format:"integer"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Power              respjson.Field
@@ -637,7 +635,7 @@ func (r *RfEmitterDetailListResponseTtp) UnmarshalJSON(data []byte) error {
 
 // An RF Emitter Technique Definition associated with an RF Emitter TTP.
 type RfEmitterDetailListResponseTtpTechniqueDefinition struct {
-	// The EW Emitter system technique name.
+	// The RF Emitter technique name.
 	Name string `json:"name"`
 	// The set of required/optional parameters for this technique.
 	ParamDefinitions []RfEmitterDetailListResponseTtpTechniqueDefinitionParamDefinition `json:"paramDefinitions"`
@@ -705,18 +703,17 @@ type RfEmitterDetailGetResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode RfEmitterDetailGetResponseDataMode `json:"dataMode" api:"required"`
@@ -732,7 +729,7 @@ type RfEmitterDetailGetResponse struct {
 	AltName string `json:"altName"`
 	// An RF Amplifier associated with an RF Emitter Details.
 	Amplifier RfEmitterDetailGetResponseAmplifier `json:"amplifier"`
-	// The set of antennas hosted on this EW Emitter system.
+	// The set of antennas hosted on this RF Emitter.
 	Antennas []RfEmitterDetailGetResponseAntenna `json:"antennas"`
 	// Barrage noise bandwidth, in megahertz.
 	BarrageNoiseBandwidth float64 `json:"barrageNoiseBandwidth"`
@@ -796,7 +793,7 @@ type RfEmitterDetailGetResponse struct {
 	ReceiverType string `json:"receiverType"`
 	// Secondary notes on the RF Emitter.
 	SecondaryNotes string `json:"secondaryNotes"`
-	// The set of software services running on this EW Emitter system.
+	// The set of software services running on this RF Emitter.
 	Services []RfEmitterDetailGetResponseService `json:"services"`
 	// Receiver sensitivity is the lowest power level at which the receiver can detect
 	// an RF signal and demodulate data. Sensitivity is purely a receiver specification
@@ -808,7 +805,7 @@ type RfEmitterDetailGetResponse struct {
 	// and is independent of the transmitter. Start sensitivity range, in
 	// decibel-milliwatts.
 	SystemSensitivityStart float64 `json:"systemSensitivityStart"`
-	// The set of EA/TTP techniques that are supported by this EW Emitter system.
+	// The set of EA/TTP techniques that are supported by this RF Emitter.
 	Ttps []RfEmitterDetailGetResponseTtp `json:"ttps"`
 	// Time the row was last updated in the database, auto-populated by the system.
 	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
@@ -872,18 +869,17 @@ func (r *RfEmitterDetailGetResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type RfEmitterDetailGetResponseDataMode string
 
 const (
@@ -1078,7 +1074,7 @@ type RfEmitterDetailGetResponseAntennaTransmitChannel struct {
 	// Minimum gain, in decibels.
 	MinGain float64 `json:"minGain"`
 	// The set of sample rates supported by this transmit channel, in bits per second.
-	SampleRates []float64 `json:"sampleRates"`
+	SampleRates []float64 `json:"sampleRates" format:"integer"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Power              respjson.Field
@@ -1170,7 +1166,7 @@ func (r *RfEmitterDetailGetResponseTtp) UnmarshalJSON(data []byte) error {
 
 // An RF Emitter Technique Definition associated with an RF Emitter TTP.
 type RfEmitterDetailGetResponseTtpTechniqueDefinition struct {
-	// The EW Emitter system technique name.
+	// The RF Emitter technique name.
 	Name string `json:"name"`
 	// The set of required/optional parameters for this technique.
 	ParamDefinitions []RfEmitterDetailGetResponseTtpTechniqueDefinitionParamDefinition `json:"paramDefinitions"`
@@ -1274,18 +1270,17 @@ type RfEmitterDetailTupleResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode RfEmitterDetailTupleResponseDataMode `json:"dataMode" api:"required"`
@@ -1301,7 +1296,7 @@ type RfEmitterDetailTupleResponse struct {
 	AltName string `json:"altName"`
 	// An RF Amplifier associated with an RF Emitter Details.
 	Amplifier RfEmitterDetailTupleResponseAmplifier `json:"amplifier"`
-	// The set of antennas hosted on this EW Emitter system.
+	// The set of antennas hosted on this RF Emitter.
 	Antennas []RfEmitterDetailTupleResponseAntenna `json:"antennas"`
 	// Barrage noise bandwidth, in megahertz.
 	BarrageNoiseBandwidth float64 `json:"barrageNoiseBandwidth"`
@@ -1365,7 +1360,7 @@ type RfEmitterDetailTupleResponse struct {
 	ReceiverType string `json:"receiverType"`
 	// Secondary notes on the RF Emitter.
 	SecondaryNotes string `json:"secondaryNotes"`
-	// The set of software services running on this EW Emitter system.
+	// The set of software services running on this RF Emitter.
 	Services []RfEmitterDetailTupleResponseService `json:"services"`
 	// Receiver sensitivity is the lowest power level at which the receiver can detect
 	// an RF signal and demodulate data. Sensitivity is purely a receiver specification
@@ -1377,7 +1372,7 @@ type RfEmitterDetailTupleResponse struct {
 	// and is independent of the transmitter. Start sensitivity range, in
 	// decibel-milliwatts.
 	SystemSensitivityStart float64 `json:"systemSensitivityStart"`
-	// The set of EA/TTP techniques that are supported by this EW Emitter system.
+	// The set of EA/TTP techniques that are supported by this RF Emitter.
 	Ttps []RfEmitterDetailTupleResponseTtp `json:"ttps"`
 	// Time the row was last updated in the database, auto-populated by the system.
 	UpdatedAt time.Time `json:"updatedAt" format:"date-time"`
@@ -1441,18 +1436,17 @@ func (r *RfEmitterDetailTupleResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type RfEmitterDetailTupleResponseDataMode string
 
 const (
@@ -1647,7 +1641,7 @@ type RfEmitterDetailTupleResponseAntennaTransmitChannel struct {
 	// Minimum gain, in decibels.
 	MinGain float64 `json:"minGain"`
 	// The set of sample rates supported by this transmit channel, in bits per second.
-	SampleRates []float64 `json:"sampleRates"`
+	SampleRates []float64 `json:"sampleRates" format:"integer"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
 		Power              respjson.Field
@@ -1739,7 +1733,7 @@ func (r *RfEmitterDetailTupleResponseTtp) UnmarshalJSON(data []byte) error {
 
 // An RF Emitter Technique Definition associated with an RF Emitter TTP.
 type RfEmitterDetailTupleResponseTtpTechniqueDefinition struct {
-	// The EW Emitter system technique name.
+	// The RF Emitter technique name.
 	Name string `json:"name"`
 	// The set of required/optional parameters for this technique.
 	ParamDefinitions []RfEmitterDetailTupleResponseTtpTechniqueDefinitionParamDefinition `json:"paramDefinitions"`
@@ -1805,18 +1799,17 @@ type RfEmitterDetailNewParams struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode RfEmitterDetailNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
@@ -1893,14 +1886,14 @@ type RfEmitterDetailNewParams struct {
 	SystemSensitivityStart param.Opt[float64] `json:"systemSensitivityStart,omitzero"`
 	// An RF Amplifier associated with an RF Emitter Details.
 	Amplifier RfEmitterDetailNewParamsAmplifier `json:"amplifier,omitzero"`
-	// The set of antennas hosted on this EW Emitter system.
+	// The set of antennas hosted on this RF Emitter.
 	Antennas []RfEmitterDetailNewParamsAntenna `json:"antennas,omitzero"`
 	// A set of system/frequency band adjustments to the power offset commanded in an
 	// EA/TTP task.
 	PowerOffsets []RfEmitterDetailNewParamsPowerOffset `json:"powerOffsets,omitzero"`
-	// The set of software services running on this EW Emitter system.
+	// The set of software services running on this RF Emitter.
 	Services []RfEmitterDetailNewParamsService `json:"services,omitzero"`
-	// The set of EA/TTP techniques that are supported by this EW Emitter system.
+	// The set of EA/TTP techniques that are supported by this RF Emitter.
 	Ttps []RfEmitterDetailNewParamsTtp `json:"ttps,omitzero"`
 	// Array of URLs containing additional information on this RF Emitter.
 	URLs []string `json:"urls,omitzero"`
@@ -1917,18 +1910,17 @@ func (r *RfEmitterDetailNewParams) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type RfEmitterDetailNewParamsDataMode string
 
 const (
@@ -2088,7 +2080,7 @@ type RfEmitterDetailNewParamsAntennaTransmitChannel struct {
 	// Minimum gain, in decibels.
 	MinGain param.Opt[float64] `json:"minGain,omitzero"`
 	// The set of sample rates supported by this transmit channel, in bits per second.
-	SampleRates []float64 `json:"sampleRates,omitzero"`
+	SampleRates []float64 `json:"sampleRates,omitzero" format:"integer"`
 	paramObj
 }
 
@@ -2153,7 +2145,7 @@ func (r *RfEmitterDetailNewParamsTtp) UnmarshalJSON(data []byte) error {
 
 // An RF Emitter Technique Definition associated with an RF Emitter TTP.
 type RfEmitterDetailNewParamsTtpTechniqueDefinition struct {
-	// The EW Emitter system technique name.
+	// The RF Emitter technique name.
 	Name param.Opt[string] `json:"name,omitzero"`
 	// The set of required/optional parameters for this technique.
 	ParamDefinitions []RfEmitterDetailNewParamsTtpTechniqueDefinitionParamDefinition `json:"paramDefinitions,omitzero"`
@@ -2203,18 +2195,17 @@ type RfEmitterDetailUpdateParams struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode RfEmitterDetailUpdateParamsDataMode `json:"dataMode,omitzero" api:"required"`
@@ -2291,14 +2282,14 @@ type RfEmitterDetailUpdateParams struct {
 	SystemSensitivityStart param.Opt[float64] `json:"systemSensitivityStart,omitzero"`
 	// An RF Amplifier associated with an RF Emitter Details.
 	Amplifier RfEmitterDetailUpdateParamsAmplifier `json:"amplifier,omitzero"`
-	// The set of antennas hosted on this EW Emitter system.
+	// The set of antennas hosted on this RF Emitter.
 	Antennas []RfEmitterDetailUpdateParamsAntenna `json:"antennas,omitzero"`
 	// A set of system/frequency band adjustments to the power offset commanded in an
 	// EA/TTP task.
 	PowerOffsets []RfEmitterDetailUpdateParamsPowerOffset `json:"powerOffsets,omitzero"`
-	// The set of software services running on this EW Emitter system.
+	// The set of software services running on this RF Emitter.
 	Services []RfEmitterDetailUpdateParamsService `json:"services,omitzero"`
-	// The set of EA/TTP techniques that are supported by this EW Emitter system.
+	// The set of EA/TTP techniques that are supported by this RF Emitter.
 	Ttps []RfEmitterDetailUpdateParamsTtp `json:"ttps,omitzero"`
 	// Array of URLs containing additional information on this RF Emitter.
 	URLs []string `json:"urls,omitzero"`
@@ -2315,18 +2306,17 @@ func (r *RfEmitterDetailUpdateParams) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type RfEmitterDetailUpdateParamsDataMode string
 
 const (
@@ -2486,7 +2476,7 @@ type RfEmitterDetailUpdateParamsAntennaTransmitChannel struct {
 	// Minimum gain, in decibels.
 	MinGain param.Opt[float64] `json:"minGain,omitzero"`
 	// The set of sample rates supported by this transmit channel, in bits per second.
-	SampleRates []float64 `json:"sampleRates,omitzero"`
+	SampleRates []float64 `json:"sampleRates,omitzero" format:"integer"`
 	paramObj
 }
 
@@ -2551,7 +2541,7 @@ func (r *RfEmitterDetailUpdateParamsTtp) UnmarshalJSON(data []byte) error {
 
 // An RF Emitter Technique Definition associated with an RF Emitter TTP.
 type RfEmitterDetailUpdateParamsTtpTechniqueDefinition struct {
-	// The EW Emitter system technique name.
+	// The RF Emitter technique name.
 	Name param.Opt[string] `json:"name,omitzero"`
 	// The set of required/optional parameters for this technique.
 	ParamDefinitions []RfEmitterDetailUpdateParamsTtpTechniqueDefinitionParamDefinition `json:"paramDefinitions,omitzero"`

@@ -1276,8 +1276,6 @@ type Client struct {
 	// Vessel and Vessel Status data. Vessel contains the static data of the specific
 	// vessel: mmsi, cruise speed, max speed, etc.
 	Vessel VesselService
-	// This collection of services provides operations for video streaming.
-	Video VideoService
 	// These services provide for posting and querying terrestrial weather conditions
 	// over a target area or region and raw sensor data used to produce condition
 	// reports. Weather Reports describe current weather conditions over a target point
@@ -1494,7 +1492,6 @@ func NewClient(opts ...option.RequestOption) (r Client) {
 	r.Transponder = NewTransponderService(opts...)
 	r.User = NewUserService(opts...)
 	r.Vessel = NewVesselService(opts...)
-	r.Video = NewVideoService(opts...)
 	r.WeatherData = NewWeatherDataService(opts...)
 	r.WeatherReport = NewWeatherReportService(opts...)
 

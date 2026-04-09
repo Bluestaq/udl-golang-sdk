@@ -56,7 +56,7 @@ func (r *ScNotificationService) List(ctx context.Context, offset string, query S
 	opts = append([]option.RequestOption{option.WithResponseInto(&raw)}, opts...)
 	if offset == "" {
 		err = errors.New("missing required offset parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("scs/notifications/%s", offset)
 	cfg, err := requestconfig.NewRequestConfig(ctx, http.MethodGet, path, query, &res, opts...)

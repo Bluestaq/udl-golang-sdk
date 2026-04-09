@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -66,13 +65,13 @@ func (r *ObservationPassiveRadarObservationService) New(ctx context.Context, bod
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/passiveradarobservation"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *ObservationPassiveRadarObservationService) List(ctx context.Context, query ObservationPassiveRadarObservationListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[ObservationPassiveRadarObservationListResponse], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -92,8 +91,8 @@ func (r *ObservationPassiveRadarObservationService) List(ctx context.Context, qu
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *ObservationPassiveRadarObservationService) ListAutoPaging(ctx context.Context, query ObservationPassiveRadarObservationListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[ObservationPassiveRadarObservationListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
@@ -101,14 +100,14 @@ func (r *ObservationPassiveRadarObservationService) ListAutoPaging(ctx context.C
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
-// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
 // valid/required query parameter information.
 func (r *ObservationPassiveRadarObservationService) Count(ctx context.Context, query ObservationPassiveRadarObservationCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/passiveradarobservation/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -121,7 +120,7 @@ func (r *ObservationPassiveRadarObservationService) NewBulk(ctx context.Context,
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/passiveradarobservation/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to take multiple PassiveRadarObservation records as a POST
@@ -133,7 +132,7 @@ func (r *ObservationPassiveRadarObservationService) FileNew(ctx context.Context,
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-passiveradar"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single PassiveRadarObservation record by its unique
@@ -142,11 +141,11 @@ func (r *ObservationPassiveRadarObservationService) Get(ctx context.Context, id 
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/passiveradarobservation/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -155,14 +154,14 @@ func (r *ObservationPassiveRadarObservationService) Queryhelp(ctx context.Contex
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/passiveradarobservation/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
 // columns/fields. Requested columns are specified by the 'columns' query parameter
 // and should be a comma separated list of valid fields for the specified data
 // type. classificationMarking is always returned. See the queryhelp operation
-// (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
@@ -170,7 +169,7 @@ func (r *ObservationPassiveRadarObservationService) Tuple(ctx context.Context, q
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/passiveradarobservation/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Model representation of observation data for passive radar based sensor
@@ -191,18 +190,17 @@ type ObservationPassiveRadarObservationListResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode ObservationPassiveRadarObservationListResponseDataMode `json:"dataMode" api:"required"`
@@ -212,10 +210,11 @@ type ObservationPassiveRadarObservationListResponse struct {
 	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
-	// The target Acceleration measurement in kilometers/sec^2 for this observation.
-	Accel float64 `json:"accel"`
-	// The target Acceleration uncertainty measurement in kilometers/sec^2 for this
+	// The target Acceleration measurement, in kilometers per second squared, for this
 	// observation.
+	Accel float64 `json:"accel"`
+	// The target Acceleration uncertainty measurement, in kilometers per second
+	// squared, for this observation.
 	AccelUnc float64 `json:"accelUnc"`
 	// The target altitude relative to WGS-84 ellipsoid, in kilometers for this
 	// observation.
@@ -232,16 +231,17 @@ type ObservationPassiveRadarObservationListResponse struct {
 	// Target bistatic path distance in kilometers. This is the
 	// transmitter-to-target-to-surveillance site distance.
 	BistaticRange float64 `json:"bistaticRange"`
-	// Bistatic range acceleration in kilometers/sec^2.
+	// Bistatic range acceleration, in kilometers per second squared.
 	BistaticRangeAccel float64 `json:"bistaticRangeAccel"`
 	// One sigma uncertainty in the bistatic range acceleration measurement, in
-	// kilometers/sec^2.
+	// kilometers per second squared.
 	BistaticRangeAccelUnc float64 `json:"bistaticRangeAccelUnc"`
 	// Sensor bistatic range bias in kilometers.
 	BistaticRangeBias float64 `json:"bistaticRangeBias"`
-	// Rate of change of the bistatic path in kilometers/sec.
+	// Rate of change of the bistatic path, in kilometers per second.
 	BistaticRangeRate float64 `json:"bistaticRangeRate"`
-	// One sigma uncertainty in rate of change of the bistatic path in kilometers/sec.
+	// One sigma uncertainty in rate of change of the bistatic path, in kilometers per
+	// second.
 	BistaticRangeRateUnc float64 `json:"bistaticRangeRateUnc"`
 	// One sigma uncertainty in bistatic range in kilometers.
 	BistaticRangeUnc float64 `json:"bistaticRangeUnc"`
@@ -327,21 +327,35 @@ type ObservationPassiveRadarObservationListResponse struct {
 	// identifier which produced this observation. This may be an internal identifier
 	// and not necessarily a valid sensor ID.
 	OrigSensorID string `json:"origSensorId"`
-	// Radar cross section in meters squared for orthogonal polarization.
+	// Radar cross section, in meters squared, for orthogonal polarization.
 	OrthogonalRcs float64 `json:"orthogonalRcs"`
-	// One sigma uncertainty in orthogonal polarization Radar Cross Section, in
-	// meters^2.
+	// One sigma uncertainty in orthogonal polarization Radar Cross Section, in meters
+	// squared.
 	OrthogonalRcsUnc float64 `json:"orthogonalRcsUnc"`
 	// Line of sight right ascension in degrees and J2000 coordinate frame.
 	Ra float64 `json:"ra"`
 	// Radar cross section in meters squared for polarization principal.
 	Rcs float64 `json:"rcs"`
-	// One sigma uncertainty in principal polarization Radar Cross Section, in
-	// meters^2.
+	// One sigma uncertainty in principal polarization Radar Cross Section, in meters
+	// squared.
 	RcsUnc float64 `json:"rcsUnc"`
 	// Satellite/Catalog number of the target on-orbit object.
 	SatNo int64 `json:"satNo"`
-	// Signal to noise ratio, in dB.
+	// The reference frame of the observing sensor state. If the senReferenceFrame is
+	// null, it is assumed to be J2000.
+	//
+	// Any of "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF".
+	SenReferenceFrame ObservationPassiveRadarObservationListResponseSenReferenceFrame `json:"senReferenceFrame"`
+	// Sensor x position, in kilometers, at obTime (if mobile/onorbit) in the specified
+	// senReferenceFrame. If senReferenceFrame is null, then J2000 should be assumed.
+	Senx float64 `json:"senx"`
+	// Sensor y position, in kilometers, at obTime (if mobile/onorbit) in the specified
+	// senReferenceFrame. If senReferenceFrame is null, then J2000 should be assumed.
+	Seny float64 `json:"seny"`
+	// Sensor z position, in kilometers, at obTime (if mobile/onorbit) in the specified
+	// senReferenceFrame. If senReferenceFrame is null, then J2000 should be assumed.
+	Senz float64 `json:"senz"`
+	// Signal to noise ratio, in decibels.
 	Snr float64 `json:"snr"`
 	// The source data library from which this record was received. This could be a
 	// remote or tactical UDL or another data library. If null, the record should be
@@ -373,11 +387,11 @@ type ObservationPassiveRadarObservationListResponse struct {
 	// and failed. If unable to correlate, the 'origObjectId' field may be populated
 	// with an internal data provider specific identifier.
 	Uct bool `json:"uct"`
-	// X velocity of target in kilometers/sec in J2000 coordinate frame.
+	// X velocity of target, in kilometers per second, in J2000 coordinate frame.
 	Xvel float64 `json:"xvel"`
-	// Y velocity of target in kilometers/sec in J2000 coordinate frame.
+	// Y velocity of target, in kilometers per second, in J2000 coordinate frame.
 	Yvel float64 `json:"yvel"`
-	// Z velocity of target in kilometers/sec in J2000 coordinate frame.
+	// Z velocity of target, in kilometers per second, in J2000 coordinate frame.
 	Zvel float64 `json:"zvel"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -433,6 +447,10 @@ type ObservationPassiveRadarObservationListResponse struct {
 		Rcs                   respjson.Field
 		RcsUnc                respjson.Field
 		SatNo                 respjson.Field
+		SenReferenceFrame     respjson.Field
+		Senx                  respjson.Field
+		Seny                  respjson.Field
+		Senz                  respjson.Field
 		Snr                   respjson.Field
 		SourceDl              respjson.Field
 		TaskID                respjson.Field
@@ -460,18 +478,17 @@ func (r *ObservationPassiveRadarObservationListResponse) UnmarshalJSON(data []by
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type ObservationPassiveRadarObservationListResponseDataMode string
 
 const (
@@ -479,6 +496,19 @@ const (
 	ObservationPassiveRadarObservationListResponseDataModeTest      ObservationPassiveRadarObservationListResponseDataMode = "TEST"
 	ObservationPassiveRadarObservationListResponseDataModeSimulated ObservationPassiveRadarObservationListResponseDataMode = "SIMULATED"
 	ObservationPassiveRadarObservationListResponseDataModeExercise  ObservationPassiveRadarObservationListResponseDataMode = "EXERCISE"
+)
+
+// The reference frame of the observing sensor state. If the senReferenceFrame is
+// null, it is assumed to be J2000.
+type ObservationPassiveRadarObservationListResponseSenReferenceFrame string
+
+const (
+	ObservationPassiveRadarObservationListResponseSenReferenceFrameJ2000   ObservationPassiveRadarObservationListResponseSenReferenceFrame = "J2000"
+	ObservationPassiveRadarObservationListResponseSenReferenceFrameEfgTdr  ObservationPassiveRadarObservationListResponseSenReferenceFrame = "EFG/TDR"
+	ObservationPassiveRadarObservationListResponseSenReferenceFrameEcrEcef ObservationPassiveRadarObservationListResponseSenReferenceFrame = "ECR/ECEF"
+	ObservationPassiveRadarObservationListResponseSenReferenceFrameTeme    ObservationPassiveRadarObservationListResponseSenReferenceFrame = "TEME"
+	ObservationPassiveRadarObservationListResponseSenReferenceFrameItrf    ObservationPassiveRadarObservationListResponseSenReferenceFrame = "ITRF"
+	ObservationPassiveRadarObservationListResponseSenReferenceFrameGcrf    ObservationPassiveRadarObservationListResponseSenReferenceFrame = "GCRF"
 )
 
 // Model representation of observation data for passive radar based sensor
@@ -499,18 +529,17 @@ type ObservationPassiveRadarObservationGetResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode ObservationPassiveRadarObservationGetResponseDataMode `json:"dataMode" api:"required"`
@@ -520,10 +549,11 @@ type ObservationPassiveRadarObservationGetResponse struct {
 	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
-	// The target Acceleration measurement in kilometers/sec^2 for this observation.
-	Accel float64 `json:"accel"`
-	// The target Acceleration uncertainty measurement in kilometers/sec^2 for this
+	// The target Acceleration measurement, in kilometers per second squared, for this
 	// observation.
+	Accel float64 `json:"accel"`
+	// The target Acceleration uncertainty measurement, in kilometers per second
+	// squared, for this observation.
 	AccelUnc float64 `json:"accelUnc"`
 	// The target altitude relative to WGS-84 ellipsoid, in kilometers for this
 	// observation.
@@ -540,16 +570,17 @@ type ObservationPassiveRadarObservationGetResponse struct {
 	// Target bistatic path distance in kilometers. This is the
 	// transmitter-to-target-to-surveillance site distance.
 	BistaticRange float64 `json:"bistaticRange"`
-	// Bistatic range acceleration in kilometers/sec^2.
+	// Bistatic range acceleration, in kilometers per second squared.
 	BistaticRangeAccel float64 `json:"bistaticRangeAccel"`
 	// One sigma uncertainty in the bistatic range acceleration measurement, in
-	// kilometers/sec^2.
+	// kilometers per second squared.
 	BistaticRangeAccelUnc float64 `json:"bistaticRangeAccelUnc"`
 	// Sensor bistatic range bias in kilometers.
 	BistaticRangeBias float64 `json:"bistaticRangeBias"`
-	// Rate of change of the bistatic path in kilometers/sec.
+	// Rate of change of the bistatic path, in kilometers per second.
 	BistaticRangeRate float64 `json:"bistaticRangeRate"`
-	// One sigma uncertainty in rate of change of the bistatic path in kilometers/sec.
+	// One sigma uncertainty in rate of change of the bistatic path, in kilometers per
+	// second.
 	BistaticRangeRateUnc float64 `json:"bistaticRangeRateUnc"`
 	// One sigma uncertainty in bistatic range in kilometers.
 	BistaticRangeUnc float64 `json:"bistaticRangeUnc"`
@@ -637,21 +668,35 @@ type ObservationPassiveRadarObservationGetResponse struct {
 	// identifier which produced this observation. This may be an internal identifier
 	// and not necessarily a valid sensor ID.
 	OrigSensorID string `json:"origSensorId"`
-	// Radar cross section in meters squared for orthogonal polarization.
+	// Radar cross section, in meters squared, for orthogonal polarization.
 	OrthogonalRcs float64 `json:"orthogonalRcs"`
-	// One sigma uncertainty in orthogonal polarization Radar Cross Section, in
-	// meters^2.
+	// One sigma uncertainty in orthogonal polarization Radar Cross Section, in meters
+	// squared.
 	OrthogonalRcsUnc float64 `json:"orthogonalRcsUnc"`
 	// Line of sight right ascension in degrees and J2000 coordinate frame.
 	Ra float64 `json:"ra"`
 	// Radar cross section in meters squared for polarization principal.
 	Rcs float64 `json:"rcs"`
-	// One sigma uncertainty in principal polarization Radar Cross Section, in
-	// meters^2.
+	// One sigma uncertainty in principal polarization Radar Cross Section, in meters
+	// squared.
 	RcsUnc float64 `json:"rcsUnc"`
 	// Satellite/Catalog number of the target on-orbit object.
 	SatNo int64 `json:"satNo"`
-	// Signal to noise ratio, in dB.
+	// The reference frame of the observing sensor state. If the senReferenceFrame is
+	// null, it is assumed to be J2000.
+	//
+	// Any of "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF".
+	SenReferenceFrame ObservationPassiveRadarObservationGetResponseSenReferenceFrame `json:"senReferenceFrame"`
+	// Sensor x position, in kilometers, at obTime (if mobile/onorbit) in the specified
+	// senReferenceFrame. If senReferenceFrame is null, then J2000 should be assumed.
+	Senx float64 `json:"senx"`
+	// Sensor y position, in kilometers, at obTime (if mobile/onorbit) in the specified
+	// senReferenceFrame. If senReferenceFrame is null, then J2000 should be assumed.
+	Seny float64 `json:"seny"`
+	// Sensor z position, in kilometers, at obTime (if mobile/onorbit) in the specified
+	// senReferenceFrame. If senReferenceFrame is null, then J2000 should be assumed.
+	Senz float64 `json:"senz"`
+	// Signal to noise ratio, in decibels.
 	Snr float64 `json:"snr"`
 	// The source data library from which this record was received. This could be a
 	// remote or tactical UDL or another data library. If null, the record should be
@@ -689,11 +734,11 @@ type ObservationPassiveRadarObservationGetResponse struct {
 	// and failed. If unable to correlate, the 'origObjectId' field may be populated
 	// with an internal data provider specific identifier.
 	Uct bool `json:"uct"`
-	// X velocity of target in kilometers/sec in J2000 coordinate frame.
+	// X velocity of target, in kilometers per second, in J2000 coordinate frame.
 	Xvel float64 `json:"xvel"`
-	// Y velocity of target in kilometers/sec in J2000 coordinate frame.
+	// Y velocity of target, in kilometers per second, in J2000 coordinate frame.
 	Yvel float64 `json:"yvel"`
-	// Z velocity of target in kilometers/sec in J2000 coordinate frame.
+	// Z velocity of target, in kilometers per second, in J2000 coordinate frame.
 	Zvel float64 `json:"zvel"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -750,6 +795,10 @@ type ObservationPassiveRadarObservationGetResponse struct {
 		Rcs                   respjson.Field
 		RcsUnc                respjson.Field
 		SatNo                 respjson.Field
+		SenReferenceFrame     respjson.Field
+		Senx                  respjson.Field
+		Seny                  respjson.Field
+		Senz                  respjson.Field
 		Snr                   respjson.Field
 		SourceDl              respjson.Field
 		Tags                  respjson.Field
@@ -778,18 +827,17 @@ func (r *ObservationPassiveRadarObservationGetResponse) UnmarshalJSON(data []byt
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type ObservationPassiveRadarObservationGetResponseDataMode string
 
 const (
@@ -797,6 +845,19 @@ const (
 	ObservationPassiveRadarObservationGetResponseDataModeTest      ObservationPassiveRadarObservationGetResponseDataMode = "TEST"
 	ObservationPassiveRadarObservationGetResponseDataModeSimulated ObservationPassiveRadarObservationGetResponseDataMode = "SIMULATED"
 	ObservationPassiveRadarObservationGetResponseDataModeExercise  ObservationPassiveRadarObservationGetResponseDataMode = "EXERCISE"
+)
+
+// The reference frame of the observing sensor state. If the senReferenceFrame is
+// null, it is assumed to be J2000.
+type ObservationPassiveRadarObservationGetResponseSenReferenceFrame string
+
+const (
+	ObservationPassiveRadarObservationGetResponseSenReferenceFrameJ2000   ObservationPassiveRadarObservationGetResponseSenReferenceFrame = "J2000"
+	ObservationPassiveRadarObservationGetResponseSenReferenceFrameEfgTdr  ObservationPassiveRadarObservationGetResponseSenReferenceFrame = "EFG/TDR"
+	ObservationPassiveRadarObservationGetResponseSenReferenceFrameEcrEcef ObservationPassiveRadarObservationGetResponseSenReferenceFrame = "ECR/ECEF"
+	ObservationPassiveRadarObservationGetResponseSenReferenceFrameTeme    ObservationPassiveRadarObservationGetResponseSenReferenceFrame = "TEME"
+	ObservationPassiveRadarObservationGetResponseSenReferenceFrameItrf    ObservationPassiveRadarObservationGetResponseSenReferenceFrame = "ITRF"
+	ObservationPassiveRadarObservationGetResponseSenReferenceFrameGcrf    ObservationPassiveRadarObservationGetResponseSenReferenceFrame = "GCRF"
 )
 
 type ObservationPassiveRadarObservationQueryhelpResponse struct {
@@ -853,18 +914,17 @@ type ObservationPassiveRadarObservationTupleResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode ObservationPassiveRadarObservationTupleResponseDataMode `json:"dataMode" api:"required"`
@@ -874,10 +934,11 @@ type ObservationPassiveRadarObservationTupleResponse struct {
 	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID string `json:"id"`
-	// The target Acceleration measurement in kilometers/sec^2 for this observation.
-	Accel float64 `json:"accel"`
-	// The target Acceleration uncertainty measurement in kilometers/sec^2 for this
+	// The target Acceleration measurement, in kilometers per second squared, for this
 	// observation.
+	Accel float64 `json:"accel"`
+	// The target Acceleration uncertainty measurement, in kilometers per second
+	// squared, for this observation.
 	AccelUnc float64 `json:"accelUnc"`
 	// The target altitude relative to WGS-84 ellipsoid, in kilometers for this
 	// observation.
@@ -894,16 +955,17 @@ type ObservationPassiveRadarObservationTupleResponse struct {
 	// Target bistatic path distance in kilometers. This is the
 	// transmitter-to-target-to-surveillance site distance.
 	BistaticRange float64 `json:"bistaticRange"`
-	// Bistatic range acceleration in kilometers/sec^2.
+	// Bistatic range acceleration, in kilometers per second squared.
 	BistaticRangeAccel float64 `json:"bistaticRangeAccel"`
 	// One sigma uncertainty in the bistatic range acceleration measurement, in
-	// kilometers/sec^2.
+	// kilometers per second squared.
 	BistaticRangeAccelUnc float64 `json:"bistaticRangeAccelUnc"`
 	// Sensor bistatic range bias in kilometers.
 	BistaticRangeBias float64 `json:"bistaticRangeBias"`
-	// Rate of change of the bistatic path in kilometers/sec.
+	// Rate of change of the bistatic path, in kilometers per second.
 	BistaticRangeRate float64 `json:"bistaticRangeRate"`
-	// One sigma uncertainty in rate of change of the bistatic path in kilometers/sec.
+	// One sigma uncertainty in rate of change of the bistatic path, in kilometers per
+	// second.
 	BistaticRangeRateUnc float64 `json:"bistaticRangeRateUnc"`
 	// One sigma uncertainty in bistatic range in kilometers.
 	BistaticRangeUnc float64 `json:"bistaticRangeUnc"`
@@ -991,21 +1053,35 @@ type ObservationPassiveRadarObservationTupleResponse struct {
 	// identifier which produced this observation. This may be an internal identifier
 	// and not necessarily a valid sensor ID.
 	OrigSensorID string `json:"origSensorId"`
-	// Radar cross section in meters squared for orthogonal polarization.
+	// Radar cross section, in meters squared, for orthogonal polarization.
 	OrthogonalRcs float64 `json:"orthogonalRcs"`
-	// One sigma uncertainty in orthogonal polarization Radar Cross Section, in
-	// meters^2.
+	// One sigma uncertainty in orthogonal polarization Radar Cross Section, in meters
+	// squared.
 	OrthogonalRcsUnc float64 `json:"orthogonalRcsUnc"`
 	// Line of sight right ascension in degrees and J2000 coordinate frame.
 	Ra float64 `json:"ra"`
 	// Radar cross section in meters squared for polarization principal.
 	Rcs float64 `json:"rcs"`
-	// One sigma uncertainty in principal polarization Radar Cross Section, in
-	// meters^2.
+	// One sigma uncertainty in principal polarization Radar Cross Section, in meters
+	// squared.
 	RcsUnc float64 `json:"rcsUnc"`
 	// Satellite/Catalog number of the target on-orbit object.
 	SatNo int64 `json:"satNo"`
-	// Signal to noise ratio, in dB.
+	// The reference frame of the observing sensor state. If the senReferenceFrame is
+	// null, it is assumed to be J2000.
+	//
+	// Any of "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF".
+	SenReferenceFrame ObservationPassiveRadarObservationTupleResponseSenReferenceFrame `json:"senReferenceFrame"`
+	// Sensor x position, in kilometers, at obTime (if mobile/onorbit) in the specified
+	// senReferenceFrame. If senReferenceFrame is null, then J2000 should be assumed.
+	Senx float64 `json:"senx"`
+	// Sensor y position, in kilometers, at obTime (if mobile/onorbit) in the specified
+	// senReferenceFrame. If senReferenceFrame is null, then J2000 should be assumed.
+	Seny float64 `json:"seny"`
+	// Sensor z position, in kilometers, at obTime (if mobile/onorbit) in the specified
+	// senReferenceFrame. If senReferenceFrame is null, then J2000 should be assumed.
+	Senz float64 `json:"senz"`
+	// Signal to noise ratio, in decibels.
 	Snr float64 `json:"snr"`
 	// The source data library from which this record was received. This could be a
 	// remote or tactical UDL or another data library. If null, the record should be
@@ -1043,11 +1119,11 @@ type ObservationPassiveRadarObservationTupleResponse struct {
 	// and failed. If unable to correlate, the 'origObjectId' field may be populated
 	// with an internal data provider specific identifier.
 	Uct bool `json:"uct"`
-	// X velocity of target in kilometers/sec in J2000 coordinate frame.
+	// X velocity of target, in kilometers per second, in J2000 coordinate frame.
 	Xvel float64 `json:"xvel"`
-	// Y velocity of target in kilometers/sec in J2000 coordinate frame.
+	// Y velocity of target, in kilometers per second, in J2000 coordinate frame.
 	Yvel float64 `json:"yvel"`
-	// Z velocity of target in kilometers/sec in J2000 coordinate frame.
+	// Z velocity of target, in kilometers per second, in J2000 coordinate frame.
 	Zvel float64 `json:"zvel"`
 	// JSON contains metadata for fields, check presence with [respjson.Field.Valid].
 	JSON struct {
@@ -1104,6 +1180,10 @@ type ObservationPassiveRadarObservationTupleResponse struct {
 		Rcs                   respjson.Field
 		RcsUnc                respjson.Field
 		SatNo                 respjson.Field
+		SenReferenceFrame     respjson.Field
+		Senx                  respjson.Field
+		Seny                  respjson.Field
+		Senz                  respjson.Field
 		Snr                   respjson.Field
 		SourceDl              respjson.Field
 		Tags                  respjson.Field
@@ -1132,18 +1212,17 @@ func (r *ObservationPassiveRadarObservationTupleResponse) UnmarshalJSON(data []b
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type ObservationPassiveRadarObservationTupleResponseDataMode string
 
 const (
@@ -1153,23 +1232,35 @@ const (
 	ObservationPassiveRadarObservationTupleResponseDataModeExercise  ObservationPassiveRadarObservationTupleResponseDataMode = "EXERCISE"
 )
 
+// The reference frame of the observing sensor state. If the senReferenceFrame is
+// null, it is assumed to be J2000.
+type ObservationPassiveRadarObservationTupleResponseSenReferenceFrame string
+
+const (
+	ObservationPassiveRadarObservationTupleResponseSenReferenceFrameJ2000   ObservationPassiveRadarObservationTupleResponseSenReferenceFrame = "J2000"
+	ObservationPassiveRadarObservationTupleResponseSenReferenceFrameEfgTdr  ObservationPassiveRadarObservationTupleResponseSenReferenceFrame = "EFG/TDR"
+	ObservationPassiveRadarObservationTupleResponseSenReferenceFrameEcrEcef ObservationPassiveRadarObservationTupleResponseSenReferenceFrame = "ECR/ECEF"
+	ObservationPassiveRadarObservationTupleResponseSenReferenceFrameTeme    ObservationPassiveRadarObservationTupleResponseSenReferenceFrame = "TEME"
+	ObservationPassiveRadarObservationTupleResponseSenReferenceFrameItrf    ObservationPassiveRadarObservationTupleResponseSenReferenceFrame = "ITRF"
+	ObservationPassiveRadarObservationTupleResponseSenReferenceFrameGcrf    ObservationPassiveRadarObservationTupleResponseSenReferenceFrame = "GCRF"
+)
+
 type ObservationPassiveRadarObservationNewParams struct {
 	// Classification marking of the data in IC/CAPCO Portion-marked format.
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode ObservationPassiveRadarObservationNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
@@ -1179,10 +1270,11 @@ type ObservationPassiveRadarObservationNewParams struct {
 	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
-	// The target Acceleration measurement in kilometers/sec^2 for this observation.
-	Accel param.Opt[float64] `json:"accel,omitzero"`
-	// The target Acceleration uncertainty measurement in kilometers/sec^2 for this
+	// The target Acceleration measurement, in kilometers per second squared, for this
 	// observation.
+	Accel param.Opt[float64] `json:"accel,omitzero"`
+	// The target Acceleration uncertainty measurement, in kilometers per second
+	// squared, for this observation.
 	AccelUnc param.Opt[float64] `json:"accelUnc,omitzero"`
 	// The target altitude relative to WGS-84 ellipsoid, in kilometers for this
 	// observation.
@@ -1199,16 +1291,17 @@ type ObservationPassiveRadarObservationNewParams struct {
 	// Target bistatic path distance in kilometers. This is the
 	// transmitter-to-target-to-surveillance site distance.
 	BistaticRange param.Opt[float64] `json:"bistaticRange,omitzero"`
-	// Bistatic range acceleration in kilometers/sec^2.
+	// Bistatic range acceleration, in kilometers per second squared.
 	BistaticRangeAccel param.Opt[float64] `json:"bistaticRangeAccel,omitzero"`
 	// One sigma uncertainty in the bistatic range acceleration measurement, in
-	// kilometers/sec^2.
+	// kilometers per second squared.
 	BistaticRangeAccelUnc param.Opt[float64] `json:"bistaticRangeAccelUnc,omitzero"`
 	// Sensor bistatic range bias in kilometers.
 	BistaticRangeBias param.Opt[float64] `json:"bistaticRangeBias,omitzero"`
-	// Rate of change of the bistatic path in kilometers/sec.
+	// Rate of change of the bistatic path, in kilometers per second.
 	BistaticRangeRate param.Opt[float64] `json:"bistaticRangeRate,omitzero"`
-	// One sigma uncertainty in rate of change of the bistatic path in kilometers/sec.
+	// One sigma uncertainty in rate of change of the bistatic path, in kilometers per
+	// second.
 	BistaticRangeRateUnc param.Opt[float64] `json:"bistaticRangeRateUnc,omitzero"`
 	// One sigma uncertainty in bistatic range in kilometers.
 	BistaticRangeUnc param.Opt[float64] `json:"bistaticRangeUnc,omitzero"`
@@ -1281,21 +1374,30 @@ type ObservationPassiveRadarObservationNewParams struct {
 	// identifier which produced this observation. This may be an internal identifier
 	// and not necessarily a valid sensor ID.
 	OrigSensorID param.Opt[string] `json:"origSensorId,omitzero"`
-	// Radar cross section in meters squared for orthogonal polarization.
+	// Radar cross section, in meters squared, for orthogonal polarization.
 	OrthogonalRcs param.Opt[float64] `json:"orthogonalRcs,omitzero"`
-	// One sigma uncertainty in orthogonal polarization Radar Cross Section, in
-	// meters^2.
+	// One sigma uncertainty in orthogonal polarization Radar Cross Section, in meters
+	// squared.
 	OrthogonalRcsUnc param.Opt[float64] `json:"orthogonalRcsUnc,omitzero"`
 	// Line of sight right ascension in degrees and J2000 coordinate frame.
 	Ra param.Opt[float64] `json:"ra,omitzero"`
 	// Radar cross section in meters squared for polarization principal.
 	Rcs param.Opt[float64] `json:"rcs,omitzero"`
-	// One sigma uncertainty in principal polarization Radar Cross Section, in
-	// meters^2.
+	// One sigma uncertainty in principal polarization Radar Cross Section, in meters
+	// squared.
 	RcsUnc param.Opt[float64] `json:"rcsUnc,omitzero"`
 	// Satellite/Catalog number of the target on-orbit object.
 	SatNo param.Opt[int64] `json:"satNo,omitzero"`
-	// Signal to noise ratio, in dB.
+	// Sensor x position, in kilometers, at obTime (if mobile/onorbit) in the specified
+	// senReferenceFrame. If senReferenceFrame is null, then J2000 should be assumed.
+	Senx param.Opt[float64] `json:"senx,omitzero"`
+	// Sensor y position, in kilometers, at obTime (if mobile/onorbit) in the specified
+	// senReferenceFrame. If senReferenceFrame is null, then J2000 should be assumed.
+	Seny param.Opt[float64] `json:"seny,omitzero"`
+	// Sensor z position, in kilometers, at obTime (if mobile/onorbit) in the specified
+	// senReferenceFrame. If senReferenceFrame is null, then J2000 should be assumed.
+	Senz param.Opt[float64] `json:"senz,omitzero"`
+	// Signal to noise ratio, in decibels.
 	Snr param.Opt[float64] `json:"snr,omitzero"`
 	// Optional identifier to indicate the specific tasking which produced this
 	// observation.
@@ -1320,12 +1422,17 @@ type ObservationPassiveRadarObservationNewParams struct {
 	// and failed. If unable to correlate, the 'origObjectId' field may be populated
 	// with an internal data provider specific identifier.
 	Uct param.Opt[bool] `json:"uct,omitzero"`
-	// X velocity of target in kilometers/sec in J2000 coordinate frame.
+	// X velocity of target, in kilometers per second, in J2000 coordinate frame.
 	Xvel param.Opt[float64] `json:"xvel,omitzero"`
-	// Y velocity of target in kilometers/sec in J2000 coordinate frame.
+	// Y velocity of target, in kilometers per second, in J2000 coordinate frame.
 	Yvel param.Opt[float64] `json:"yvel,omitzero"`
-	// Z velocity of target in kilometers/sec in J2000 coordinate frame.
+	// Z velocity of target, in kilometers per second, in J2000 coordinate frame.
 	Zvel param.Opt[float64] `json:"zvel,omitzero"`
+	// The reference frame of the observing sensor state. If the senReferenceFrame is
+	// null, it is assumed to be J2000.
+	//
+	// Any of "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF".
+	SenReferenceFrame ObservationPassiveRadarObservationNewParamsSenReferenceFrame `json:"senReferenceFrame,omitzero"`
 	// Optional array of provider/source specific tags for this data, where each
 	// element is no longer than 32 characters, used for implementing data owner
 	// conditional access controls to restrict access to the data. Should be left null
@@ -1345,18 +1452,17 @@ func (r *ObservationPassiveRadarObservationNewParams) UnmarshalJSON(data []byte)
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type ObservationPassiveRadarObservationNewParamsDataMode string
 
 const (
@@ -1364,6 +1470,19 @@ const (
 	ObservationPassiveRadarObservationNewParamsDataModeTest      ObservationPassiveRadarObservationNewParamsDataMode = "TEST"
 	ObservationPassiveRadarObservationNewParamsDataModeSimulated ObservationPassiveRadarObservationNewParamsDataMode = "SIMULATED"
 	ObservationPassiveRadarObservationNewParamsDataModeExercise  ObservationPassiveRadarObservationNewParamsDataMode = "EXERCISE"
+)
+
+// The reference frame of the observing sensor state. If the senReferenceFrame is
+// null, it is assumed to be J2000.
+type ObservationPassiveRadarObservationNewParamsSenReferenceFrame string
+
+const (
+	ObservationPassiveRadarObservationNewParamsSenReferenceFrameJ2000   ObservationPassiveRadarObservationNewParamsSenReferenceFrame = "J2000"
+	ObservationPassiveRadarObservationNewParamsSenReferenceFrameEfgTdr  ObservationPassiveRadarObservationNewParamsSenReferenceFrame = "EFG/TDR"
+	ObservationPassiveRadarObservationNewParamsSenReferenceFrameEcrEcef ObservationPassiveRadarObservationNewParamsSenReferenceFrame = "ECR/ECEF"
+	ObservationPassiveRadarObservationNewParamsSenReferenceFrameTeme    ObservationPassiveRadarObservationNewParamsSenReferenceFrame = "TEME"
+	ObservationPassiveRadarObservationNewParamsSenReferenceFrameItrf    ObservationPassiveRadarObservationNewParamsSenReferenceFrame = "ITRF"
+	ObservationPassiveRadarObservationNewParamsSenReferenceFrameGcrf    ObservationPassiveRadarObservationNewParamsSenReferenceFrame = "GCRF"
 )
 
 type ObservationPassiveRadarObservationListParams struct {
@@ -1411,7 +1530,7 @@ func (r ObservationPassiveRadarObservationNewBulkParams) MarshalJSON() (data []b
 	return shimjson.Marshal(r.Body)
 }
 func (r *ObservationPassiveRadarObservationNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of observation data for passive radar based sensor
@@ -1434,18 +1553,17 @@ type ObservationPassiveRadarObservationNewBulkParamsBody struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -1455,10 +1573,11 @@ type ObservationPassiveRadarObservationNewBulkParamsBody struct {
 	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
-	// The target Acceleration measurement in kilometers/sec^2 for this observation.
-	Accel param.Opt[float64] `json:"accel,omitzero"`
-	// The target Acceleration uncertainty measurement in kilometers/sec^2 for this
+	// The target Acceleration measurement, in kilometers per second squared, for this
 	// observation.
+	Accel param.Opt[float64] `json:"accel,omitzero"`
+	// The target Acceleration uncertainty measurement, in kilometers per second
+	// squared, for this observation.
 	AccelUnc param.Opt[float64] `json:"accelUnc,omitzero"`
 	// The target altitude relative to WGS-84 ellipsoid, in kilometers for this
 	// observation.
@@ -1475,16 +1594,17 @@ type ObservationPassiveRadarObservationNewBulkParamsBody struct {
 	// Target bistatic path distance in kilometers. This is the
 	// transmitter-to-target-to-surveillance site distance.
 	BistaticRange param.Opt[float64] `json:"bistaticRange,omitzero"`
-	// Bistatic range acceleration in kilometers/sec^2.
+	// Bistatic range acceleration, in kilometers per second squared.
 	BistaticRangeAccel param.Opt[float64] `json:"bistaticRangeAccel,omitzero"`
 	// One sigma uncertainty in the bistatic range acceleration measurement, in
-	// kilometers/sec^2.
+	// kilometers per second squared.
 	BistaticRangeAccelUnc param.Opt[float64] `json:"bistaticRangeAccelUnc,omitzero"`
 	// Sensor bistatic range bias in kilometers.
 	BistaticRangeBias param.Opt[float64] `json:"bistaticRangeBias,omitzero"`
-	// Rate of change of the bistatic path in kilometers/sec.
+	// Rate of change of the bistatic path, in kilometers per second.
 	BistaticRangeRate param.Opt[float64] `json:"bistaticRangeRate,omitzero"`
-	// One sigma uncertainty in rate of change of the bistatic path in kilometers/sec.
+	// One sigma uncertainty in rate of change of the bistatic path, in kilometers per
+	// second.
 	BistaticRangeRateUnc param.Opt[float64] `json:"bistaticRangeRateUnc,omitzero"`
 	// One sigma uncertainty in bistatic range in kilometers.
 	BistaticRangeUnc param.Opt[float64] `json:"bistaticRangeUnc,omitzero"`
@@ -1557,21 +1677,30 @@ type ObservationPassiveRadarObservationNewBulkParamsBody struct {
 	// identifier which produced this observation. This may be an internal identifier
 	// and not necessarily a valid sensor ID.
 	OrigSensorID param.Opt[string] `json:"origSensorId,omitzero"`
-	// Radar cross section in meters squared for orthogonal polarization.
+	// Radar cross section, in meters squared, for orthogonal polarization.
 	OrthogonalRcs param.Opt[float64] `json:"orthogonalRcs,omitzero"`
-	// One sigma uncertainty in orthogonal polarization Radar Cross Section, in
-	// meters^2.
+	// One sigma uncertainty in orthogonal polarization Radar Cross Section, in meters
+	// squared.
 	OrthogonalRcsUnc param.Opt[float64] `json:"orthogonalRcsUnc,omitzero"`
 	// Line of sight right ascension in degrees and J2000 coordinate frame.
 	Ra param.Opt[float64] `json:"ra,omitzero"`
 	// Radar cross section in meters squared for polarization principal.
 	Rcs param.Opt[float64] `json:"rcs,omitzero"`
-	// One sigma uncertainty in principal polarization Radar Cross Section, in
-	// meters^2.
+	// One sigma uncertainty in principal polarization Radar Cross Section, in meters
+	// squared.
 	RcsUnc param.Opt[float64] `json:"rcsUnc,omitzero"`
 	// Satellite/Catalog number of the target on-orbit object.
 	SatNo param.Opt[int64] `json:"satNo,omitzero"`
-	// Signal to noise ratio, in dB.
+	// Sensor x position, in kilometers, at obTime (if mobile/onorbit) in the specified
+	// senReferenceFrame. If senReferenceFrame is null, then J2000 should be assumed.
+	Senx param.Opt[float64] `json:"senx,omitzero"`
+	// Sensor y position, in kilometers, at obTime (if mobile/onorbit) in the specified
+	// senReferenceFrame. If senReferenceFrame is null, then J2000 should be assumed.
+	Seny param.Opt[float64] `json:"seny,omitzero"`
+	// Sensor z position, in kilometers, at obTime (if mobile/onorbit) in the specified
+	// senReferenceFrame. If senReferenceFrame is null, then J2000 should be assumed.
+	Senz param.Opt[float64] `json:"senz,omitzero"`
+	// Signal to noise ratio, in decibels.
 	Snr param.Opt[float64] `json:"snr,omitzero"`
 	// Optional identifier to indicate the specific tasking which produced this
 	// observation.
@@ -1596,12 +1725,17 @@ type ObservationPassiveRadarObservationNewBulkParamsBody struct {
 	// and failed. If unable to correlate, the 'origObjectId' field may be populated
 	// with an internal data provider specific identifier.
 	Uct param.Opt[bool] `json:"uct,omitzero"`
-	// X velocity of target in kilometers/sec in J2000 coordinate frame.
+	// X velocity of target, in kilometers per second, in J2000 coordinate frame.
 	Xvel param.Opt[float64] `json:"xvel,omitzero"`
-	// Y velocity of target in kilometers/sec in J2000 coordinate frame.
+	// Y velocity of target, in kilometers per second, in J2000 coordinate frame.
 	Yvel param.Opt[float64] `json:"yvel,omitzero"`
-	// Z velocity of target in kilometers/sec in J2000 coordinate frame.
+	// Z velocity of target, in kilometers per second, in J2000 coordinate frame.
 	Zvel param.Opt[float64] `json:"zvel,omitzero"`
+	// The reference frame of the observing sensor state. If the senReferenceFrame is
+	// null, it is assumed to be J2000.
+	//
+	// Any of "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF".
+	SenReferenceFrame string `json:"senReferenceFrame,omitzero"`
 	// Optional array of provider/source specific tags for this data, where each
 	// element is no longer than 32 characters, used for implementing data owner
 	// conditional access controls to restrict access to the data. Should be left null
@@ -1623,6 +1757,9 @@ func init() {
 	apijson.RegisterFieldValidator[ObservationPassiveRadarObservationNewBulkParamsBody](
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
 	)
+	apijson.RegisterFieldValidator[ObservationPassiveRadarObservationNewBulkParamsBody](
+		"senReferenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
+	)
 }
 
 type ObservationPassiveRadarObservationFileNewParams struct {
@@ -1634,7 +1771,7 @@ func (r ObservationPassiveRadarObservationFileNewParams) MarshalJSON() (data []b
 	return shimjson.Marshal(r.Body)
 }
 func (r *ObservationPassiveRadarObservationFileNewParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Model representation of observation data for passive radar based sensor
@@ -1657,18 +1794,17 @@ type ObservationPassiveRadarObservationFileNewParamsBody struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -1678,10 +1814,11 @@ type ObservationPassiveRadarObservationFileNewParamsBody struct {
 	Source string `json:"source" api:"required"`
 	// Unique identifier of the record, auto-generated by the system.
 	ID param.Opt[string] `json:"id,omitzero"`
-	// The target Acceleration measurement in kilometers/sec^2 for this observation.
-	Accel param.Opt[float64] `json:"accel,omitzero"`
-	// The target Acceleration uncertainty measurement in kilometers/sec^2 for this
+	// The target Acceleration measurement, in kilometers per second squared, for this
 	// observation.
+	Accel param.Opt[float64] `json:"accel,omitzero"`
+	// The target Acceleration uncertainty measurement, in kilometers per second
+	// squared, for this observation.
 	AccelUnc param.Opt[float64] `json:"accelUnc,omitzero"`
 	// The target altitude relative to WGS-84 ellipsoid, in kilometers for this
 	// observation.
@@ -1698,16 +1835,17 @@ type ObservationPassiveRadarObservationFileNewParamsBody struct {
 	// Target bistatic path distance in kilometers. This is the
 	// transmitter-to-target-to-surveillance site distance.
 	BistaticRange param.Opt[float64] `json:"bistaticRange,omitzero"`
-	// Bistatic range acceleration in kilometers/sec^2.
+	// Bistatic range acceleration, in kilometers per second squared.
 	BistaticRangeAccel param.Opt[float64] `json:"bistaticRangeAccel,omitzero"`
 	// One sigma uncertainty in the bistatic range acceleration measurement, in
-	// kilometers/sec^2.
+	// kilometers per second squared.
 	BistaticRangeAccelUnc param.Opt[float64] `json:"bistaticRangeAccelUnc,omitzero"`
 	// Sensor bistatic range bias in kilometers.
 	BistaticRangeBias param.Opt[float64] `json:"bistaticRangeBias,omitzero"`
-	// Rate of change of the bistatic path in kilometers/sec.
+	// Rate of change of the bistatic path, in kilometers per second.
 	BistaticRangeRate param.Opt[float64] `json:"bistaticRangeRate,omitzero"`
-	// One sigma uncertainty in rate of change of the bistatic path in kilometers/sec.
+	// One sigma uncertainty in rate of change of the bistatic path, in kilometers per
+	// second.
 	BistaticRangeRateUnc param.Opt[float64] `json:"bistaticRangeRateUnc,omitzero"`
 	// One sigma uncertainty in bistatic range in kilometers.
 	BistaticRangeUnc param.Opt[float64] `json:"bistaticRangeUnc,omitzero"`
@@ -1780,21 +1918,30 @@ type ObservationPassiveRadarObservationFileNewParamsBody struct {
 	// identifier which produced this observation. This may be an internal identifier
 	// and not necessarily a valid sensor ID.
 	OrigSensorID param.Opt[string] `json:"origSensorId,omitzero"`
-	// Radar cross section in meters squared for orthogonal polarization.
+	// Radar cross section, in meters squared, for orthogonal polarization.
 	OrthogonalRcs param.Opt[float64] `json:"orthogonalRcs,omitzero"`
-	// One sigma uncertainty in orthogonal polarization Radar Cross Section, in
-	// meters^2.
+	// One sigma uncertainty in orthogonal polarization Radar Cross Section, in meters
+	// squared.
 	OrthogonalRcsUnc param.Opt[float64] `json:"orthogonalRcsUnc,omitzero"`
 	// Line of sight right ascension in degrees and J2000 coordinate frame.
 	Ra param.Opt[float64] `json:"ra,omitzero"`
 	// Radar cross section in meters squared for polarization principal.
 	Rcs param.Opt[float64] `json:"rcs,omitzero"`
-	// One sigma uncertainty in principal polarization Radar Cross Section, in
-	// meters^2.
+	// One sigma uncertainty in principal polarization Radar Cross Section, in meters
+	// squared.
 	RcsUnc param.Opt[float64] `json:"rcsUnc,omitzero"`
 	// Satellite/Catalog number of the target on-orbit object.
 	SatNo param.Opt[int64] `json:"satNo,omitzero"`
-	// Signal to noise ratio, in dB.
+	// Sensor x position, in kilometers, at obTime (if mobile/onorbit) in the specified
+	// senReferenceFrame. If senReferenceFrame is null, then J2000 should be assumed.
+	Senx param.Opt[float64] `json:"senx,omitzero"`
+	// Sensor y position, in kilometers, at obTime (if mobile/onorbit) in the specified
+	// senReferenceFrame. If senReferenceFrame is null, then J2000 should be assumed.
+	Seny param.Opt[float64] `json:"seny,omitzero"`
+	// Sensor z position, in kilometers, at obTime (if mobile/onorbit) in the specified
+	// senReferenceFrame. If senReferenceFrame is null, then J2000 should be assumed.
+	Senz param.Opt[float64] `json:"senz,omitzero"`
+	// Signal to noise ratio, in decibels.
 	Snr param.Opt[float64] `json:"snr,omitzero"`
 	// Optional identifier to indicate the specific tasking which produced this
 	// observation.
@@ -1819,12 +1966,17 @@ type ObservationPassiveRadarObservationFileNewParamsBody struct {
 	// and failed. If unable to correlate, the 'origObjectId' field may be populated
 	// with an internal data provider specific identifier.
 	Uct param.Opt[bool] `json:"uct,omitzero"`
-	// X velocity of target in kilometers/sec in J2000 coordinate frame.
+	// X velocity of target, in kilometers per second, in J2000 coordinate frame.
 	Xvel param.Opt[float64] `json:"xvel,omitzero"`
-	// Y velocity of target in kilometers/sec in J2000 coordinate frame.
+	// Y velocity of target, in kilometers per second, in J2000 coordinate frame.
 	Yvel param.Opt[float64] `json:"yvel,omitzero"`
-	// Z velocity of target in kilometers/sec in J2000 coordinate frame.
+	// Z velocity of target, in kilometers per second, in J2000 coordinate frame.
 	Zvel param.Opt[float64] `json:"zvel,omitzero"`
+	// The reference frame of the observing sensor state. If the senReferenceFrame is
+	// null, it is assumed to be J2000.
+	//
+	// Any of "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF".
+	SenReferenceFrame string `json:"senReferenceFrame,omitzero"`
 	// Optional array of provider/source specific tags for this data, where each
 	// element is no longer than 32 characters, used for implementing data owner
 	// conditional access controls to restrict access to the data. Should be left null
@@ -1845,6 +1997,9 @@ func (r *ObservationPassiveRadarObservationFileNewParamsBody) UnmarshalJSON(data
 func init() {
 	apijson.RegisterFieldValidator[ObservationPassiveRadarObservationFileNewParamsBody](
 		"dataMode", "REAL", "TEST", "SIMULATED", "EXERCISE",
+	)
+	apijson.RegisterFieldValidator[ObservationPassiveRadarObservationFileNewParamsBody](
+		"senReferenceFrame", "J2000", "EFG/TDR", "ECR/ECEF", "TEME", "ITRF", "GCRF",
 	)
 }
 

@@ -69,8 +69,8 @@ func NewDiplomaticClearanceHistoryService(opts ...option.RequestOption) (r Diplo
 
 // Service operation to dynamically query historical data by a variety of query
 // parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *DiplomaticClearanceHistoryService) List(ctx context.Context, query DiplomaticClearanceHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[shared.DiplomaticclearanceFull], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -90,36 +90,35 @@ func (r *DiplomaticClearanceHistoryService) List(ctx context.Context, query Dipl
 
 // Service operation to dynamically query historical data by a variety of query
 // parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *DiplomaticClearanceHistoryService) ListAutoPaging(ctx context.Context, query DiplomaticClearanceHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[shared.DiplomaticclearanceFull] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to dynamically query historical data by a variety of query
 // parameters not specified in this API documentation, then write that data to the
-// Secure Content Store. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// Secure Content Store. See the queryhelp operation (`/udl/<datatype>/queryhelp`)
+// for more details on valid/required query parameter information.
 func (r *DiplomaticClearanceHistoryService) Aodr(ctx context.Context, query DiplomaticClearanceHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/diplomaticclearance/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
-// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
 // valid/required query parameter information.
 func (r *DiplomaticClearanceHistoryService) Count(ctx context.Context, query DiplomaticClearanceHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/diplomaticclearance/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type DiplomaticClearanceHistoryListParams struct {
@@ -127,7 +126,7 @@ type DiplomaticClearanceHistoryListParams struct {
 	// 8601 UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	FirstDepDate time.Time `query:"firstDepDate" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on valid
 	// query fields that can be selected.
 	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
 	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
@@ -149,7 +148,7 @@ type DiplomaticClearanceHistoryAodrParams struct {
 	// 8601 UTC format with millisecond precision. (YYYY-MM-DDTHH:MM:SS.sssZ)
 	FirstDepDate time.Time `query:"firstDepDate" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on valid
 	// query fields that can be selected.
 	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
 	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`

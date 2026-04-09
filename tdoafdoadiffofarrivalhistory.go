@@ -43,8 +43,8 @@ func NewTdoaFdoaDiffofarrivalHistoryService(opts ...option.RequestOption) (r Tdo
 
 // Service operation to dynamically query historical data by a variety of query
 // parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *TdoaFdoaDiffofarrivalHistoryService) List(ctx context.Context, query TdoaFdoaDiffofarrivalHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[DiffofarrivalFull], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -64,23 +64,22 @@ func (r *TdoaFdoaDiffofarrivalHistoryService) List(ctx context.Context, query Td
 
 // Service operation to dynamically query historical data by a variety of query
 // parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *TdoaFdoaDiffofarrivalHistoryService) ListAutoPaging(ctx context.Context, query TdoaFdoaDiffofarrivalHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[DiffofarrivalFull] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
 
 // Service operation to dynamically query historical data by a variety of query
 // parameters not specified in this API documentation, then write that data to the
-// Secure Content Store. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// Secure Content Store. See the queryhelp operation (`/udl/<datatype>/queryhelp`)
+// for more details on valid/required query parameter information.
 func (r *TdoaFdoaDiffofarrivalHistoryService) Aodr(ctx context.Context, query TdoaFdoaDiffofarrivalHistoryAodrParams, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/diffofarrival/history/aodr"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, nil, opts...)
-	return
+	return err
 }
 
 type TdoaFdoaDiffofarrivalHistoryListParams struct {
@@ -88,7 +87,7 @@ type TdoaFdoaDiffofarrivalHistoryListParams struct {
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	ObTime time.Time `query:"obTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on valid
 	// query fields that can be selected.
 	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
 	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`
@@ -110,7 +109,7 @@ type TdoaFdoaDiffofarrivalHistoryAodrParams struct {
 	// (YYYY-MM-DDTHH:MM:SS.ssssssZ)
 	ObTime time.Time `query:"obTime" api:"required" format:"date-time" json:"-"`
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on valid
 	// query fields that can be selected.
 	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
 	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`

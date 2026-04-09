@@ -42,8 +42,8 @@ func NewOnorbitthrusterstatusHistoryService(opts ...option.RequestOption) (r Ono
 
 // Service operation to dynamically query historical data by a variety of query
 // parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *OnorbitthrusterstatusHistoryService) List(ctx context.Context, query OnorbitthrusterstatusHistoryListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[shared.OnorbitthrusterstatusFull], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -63,8 +63,8 @@ func (r *OnorbitthrusterstatusHistoryService) List(ctx context.Context, query On
 
 // Service operation to dynamically query historical data by a variety of query
 // parameters not specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *OnorbitthrusterstatusHistoryService) ListAutoPaging(ctx context.Context, query OnorbitthrusterstatusHistoryListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[shared.OnorbitthrusterstatusFull] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
@@ -72,19 +72,19 @@ func (r *OnorbitthrusterstatusHistoryService) ListAutoPaging(ctx context.Context
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
-// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
 // valid/required query parameter information.
 func (r *OnorbitthrusterstatusHistoryService) Count(ctx context.Context, query OnorbitthrusterstatusHistoryCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/onorbitthrusterstatus/history/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type OnorbitthrusterstatusHistoryListParams struct {
 	// optional, fields for retrieval. When omitted, ALL fields are assumed. See the
-	// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on valid
+	// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on valid
 	// query fields that can be selected.
 	Columns     param.Opt[string] `query:"columns,omitzero" json:"-"`
 	FirstResult param.Opt[int64]  `query:"firstResult,omitzero" json:"-"`

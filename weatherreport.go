@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -71,13 +70,13 @@ func (r *WeatherReportService) New(ctx context.Context, body WeatherReportNewPar
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/weatherreport"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *WeatherReportService) List(ctx context.Context, query WeatherReportListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[WeatherReportListResponse], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -97,8 +96,8 @@ func (r *WeatherReportService) List(ctx context.Context, query WeatherReportList
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *WeatherReportService) ListAutoPaging(ctx context.Context, query WeatherReportListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[WeatherReportListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
@@ -106,14 +105,14 @@ func (r *WeatherReportService) ListAutoPaging(ctx context.Context, query Weather
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
-// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
 // valid/required query parameter information.
 func (r *WeatherReportService) Count(ctx context.Context, query WeatherReportCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/weatherreport/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to get a single WeatherReport by its unique ID passed as a
@@ -122,11 +121,11 @@ func (r *WeatherReportService) Get(ctx context.Context, id string, query Weather
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/weatherreport/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -135,14 +134,14 @@ func (r *WeatherReportService) Queryhelp(ctx context.Context, opts ...option.Req
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/weatherreport/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
 // columns/fields. Requested columns are specified by the 'columns' query parameter
 // and should be a comma separated list of valid fields for the specified data
 // type. classificationMarking is always returned. See the queryhelp operation
-// (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
@@ -150,7 +149,7 @@ func (r *WeatherReportService) Tuple(ctx context.Context, query WeatherReportTup
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/weatherreport/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take a list of WeatherReports as a POST body and ingest
@@ -162,7 +161,7 @@ func (r *WeatherReportService) UnvalidatedPublish(ctx context.Context, body Weat
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-weatherreport"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // These services provide for posting and querying Weather Over Target information.
@@ -174,18 +173,17 @@ type WeatherReportListResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode WeatherReportListResponseDataMode `json:"dataMode" api:"required"`
@@ -266,11 +264,11 @@ type WeatherReportListResponse struct {
 	// Describes the flight conditions in route to the target (NO STATEMENT, MAINLY
 	// IFR, MAINLY VFR, THUNDERSTORMS).
 	//
-	// MAINLY IFR:&nbsp;&nbsp;Predominantly Instrument Flight Rules.
+	// MAINLY IFR: Predominantly Instrument Flight Rules.
 	//
-	// MAINLY VFR:&nbsp;&nbsp;Predominantly Visual Flight Rules.
+	// MAINLY VFR: Predominantly Visual Flight Rules.
 	//
-	// THUNDERSTORMS:&nbsp;&nbsp;Thunderstorms expected in route.
+	// THUNDERSTORMS: Thunderstorms expected in route.
 	EnRouteWeather string `json:"enRouteWeather"`
 	// Optional observation or forecast ID from external systems. This field has no
 	// meaning within UDL and is provided as a convenience for systems that require
@@ -438,11 +436,14 @@ type WeatherReportListResponse struct {
 	// matrix is 2x2. The covariance elements are position dependent within the array
 	// with values ordered as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y
+	// ```
 	//
-	// x&nbsp;&nbsp;&nbsp;&nbsp;1
+	//	x    y
 	//
-	// y&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3
+	// x         1
+	//
+	// y         2    3
+	// ```
 	//
 	// The cov array should contain only the lower left triangle values from top left
 	// down to bottom right, in order.
@@ -569,18 +570,17 @@ func (r *WeatherReportListResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type WeatherReportListResponseDataMode string
 
 const (
@@ -631,18 +631,17 @@ type WeatherReportNewParams struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode WeatherReportNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
@@ -713,11 +712,11 @@ type WeatherReportNewParams struct {
 	// Describes the flight conditions in route to the target (NO STATEMENT, MAINLY
 	// IFR, MAINLY VFR, THUNDERSTORMS).
 	//
-	// MAINLY IFR:&nbsp;&nbsp;Predominantly Instrument Flight Rules.
+	// MAINLY IFR: Predominantly Instrument Flight Rules.
 	//
-	// MAINLY VFR:&nbsp;&nbsp;Predominantly Visual Flight Rules.
+	// MAINLY VFR: Predominantly Visual Flight Rules.
 	//
-	// THUNDERSTORMS:&nbsp;&nbsp;Thunderstorms expected in route.
+	// THUNDERSTORMS: Thunderstorms expected in route.
 	EnRouteWeather param.Opt[string] `json:"enRouteWeather,omitzero"`
 	// Optional observation or forecast ID from external systems. This field has no
 	// meaning within UDL and is provided as a convenience for systems that require
@@ -913,11 +912,14 @@ type WeatherReportNewParams struct {
 	// matrix is 2x2. The covariance elements are position dependent within the array
 	// with values ordered as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y
+	// ```
 	//
-	// x&nbsp;&nbsp;&nbsp;&nbsp;1
+	//	x    y
 	//
-	// y&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3
+	// x         1
+	//
+	// y         2    3
+	// ```
 	//
 	// The cov array should contain only the lower left triangle values from top left
 	// down to bottom right, in order.
@@ -935,18 +937,17 @@ func (r *WeatherReportNewParams) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type WeatherReportNewParamsDataMode string
 
 const (
@@ -1038,7 +1039,7 @@ func (r WeatherReportUnvalidatedPublishParams) MarshalJSON() (data []byte, err e
 	return shimjson.Marshal(r.Body)
 }
 func (r *WeatherReportUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // These services provide for posting and querying Weather Over Target information.
@@ -1053,18 +1054,17 @@ type WeatherReportUnvalidatedPublishParamsBody struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -1135,11 +1135,11 @@ type WeatherReportUnvalidatedPublishParamsBody struct {
 	// Describes the flight conditions in route to the target (NO STATEMENT, MAINLY
 	// IFR, MAINLY VFR, THUNDERSTORMS).
 	//
-	// MAINLY IFR:&nbsp;&nbsp;Predominantly Instrument Flight Rules.
+	// MAINLY IFR: Predominantly Instrument Flight Rules.
 	//
-	// MAINLY VFR:&nbsp;&nbsp;Predominantly Visual Flight Rules.
+	// MAINLY VFR: Predominantly Visual Flight Rules.
 	//
-	// THUNDERSTORMS:&nbsp;&nbsp;Thunderstorms expected in route.
+	// THUNDERSTORMS: Thunderstorms expected in route.
 	EnRouteWeather param.Opt[string] `json:"enRouteWeather,omitzero"`
 	// Optional observation or forecast ID from external systems. This field has no
 	// meaning within UDL and is provided as a convenience for systems that require
@@ -1335,11 +1335,14 @@ type WeatherReportUnvalidatedPublishParamsBody struct {
 	// matrix is 2x2. The covariance elements are position dependent within the array
 	// with values ordered as follows:
 	//
-	// &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;y
+	// ```
 	//
-	// x&nbsp;&nbsp;&nbsp;&nbsp;1
+	//	x    y
 	//
-	// y&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;3
+	// x         1
+	//
+	// y         2    3
+	// ```
 	//
 	// The cov array should contain only the lower left triangle values from top left
 	// down to bottom right, in order.

@@ -1,5 +1,47 @@
 # Changelog
 
+## 1.1.0 (2026-04-09)
+
+Full Changelog: [v1.0.0...v1.1.0](https://github.com/Bluestaq/udl-golang-sdk/compare/v1.0.0...v1.1.0)
+
+### Features
+
+* **api:** api update ([c08c04d](https://github.com/Bluestaq/udl-golang-sdk/commit/c08c04dc1454d1c19d145999d0b21aef80abeea1))
+* **api:** manual updates ([4b9ab15](https://github.com/Bluestaq/udl-golang-sdk/commit/4b9ab15ec75f289a47a5fd83989c648dc19754a4))
+* **internal:** support comma format in multipart form encoding ([385ba5d](https://github.com/Bluestaq/udl-golang-sdk/commit/385ba5d8f4e0116742eb1d5b7116bafbf62f95de))
+
+
+### Bug Fixes
+
+* better respect format tags from the spec ([657605e](https://github.com/Bluestaq/udl-golang-sdk/commit/657605eeebfddcde173d7d8fc784ed3a480d0b7e))
+* fix issue with unmarshaling in some cases ([fdfc185](https://github.com/Bluestaq/udl-golang-sdk/commit/fdfc1855765537e8faf972c5d224f7e820466d05))
+* prevent duplicate ? in query params ([8c9b919](https://github.com/Bluestaq/udl-golang-sdk/commit/8c9b9198ff8681358ec1c05c68baf5b87392f939))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([f339a0b](https://github.com/Bluestaq/udl-golang-sdk/commit/f339a0b3429a13fca7eae7188a917971ccdfe459))
+* **ci:** support opting out of skipping builds on metadata-only commits ([69a3343](https://github.com/Bluestaq/udl-golang-sdk/commit/69a3343ba0be3aaabf6d4ed35b97705491583fc0))
+* **client:** fix multipart serialisation of Default() fields ([0da0265](https://github.com/Bluestaq/udl-golang-sdk/commit/0da026590319ac9ac6d285b3b8391e2b4b9143b1))
+* **internal:** support default value struct tag ([3c5c745](https://github.com/Bluestaq/udl-golang-sdk/commit/3c5c7456fb138003c306353ea93844477b335b68))
+* **internal:** tweak CI branches ([ef31a82](https://github.com/Bluestaq/udl-golang-sdk/commit/ef31a821adf68230269fdc1a5cf13f0201412e10))
+* **internal:** update gitignore ([41dbb49](https://github.com/Bluestaq/udl-golang-sdk/commit/41dbb49792550d7e41ee7f3cd40099d4fbe4d1bb))
+* **internal:** use explicit returns ([837eb3b](https://github.com/Bluestaq/udl-golang-sdk/commit/837eb3bc7a1294bc695779b3a6b6b975df8a6e02))
+* **internal:** use explicit returns in more places ([002b7a6](https://github.com/Bluestaq/udl-golang-sdk/commit/002b7a61b5648e98f8dfc64268d36023806b66c6))
+* remove unnecessary error check for url parsing ([9e0a75b](https://github.com/Bluestaq/udl-golang-sdk/commit/9e0a75b408457f370711cd899c861f7af9dd501c))
+* **tests:** bump steady to v0.19.4 ([6c5ee65](https://github.com/Bluestaq/udl-golang-sdk/commit/6c5ee6598551f236a02f397b98b3c0a186676003))
+* **tests:** bump steady to v0.19.5 ([0597181](https://github.com/Bluestaq/udl-golang-sdk/commit/0597181f28f02a5476335461e3fd73c8a4545de9))
+* **tests:** bump steady to v0.19.6 ([7115f1d](https://github.com/Bluestaq/udl-golang-sdk/commit/7115f1d31a9586d0cefb207a1adf7f6a7f18210c))
+* **tests:** bump steady to v0.19.7 ([15dd2c0](https://github.com/Bluestaq/udl-golang-sdk/commit/15dd2c023d7ed440427e0af8f0903aa53d2a6c1f))
+* **tests:** bump steady to v0.20.1 ([d62cd42](https://github.com/Bluestaq/udl-golang-sdk/commit/d62cd428aca886705fc86ad6f790a3761548c43c))
+* **tests:** bump steady to v0.20.2 ([7d7f41b](https://github.com/Bluestaq/udl-golang-sdk/commit/7d7f41b877ce772f431600e6b9829886fa223948))
+* update docs for api:"required" ([3befb38](https://github.com/Bluestaq/udl-golang-sdk/commit/3befb38eedf1df300ee6e240a153a43083451ccf))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([12cc788](https://github.com/Bluestaq/udl-golang-sdk/commit/12cc78847e3c46a874618d99c9a4cdc1720c3bb3))
+
 ## 1.0.0 (2026-03-25)
 
 Full Changelog: [v0.1.0-alpha.20...v1.0.0](https://github.com/Bluestaq/udl-golang-sdk/compare/v0.1.0-alpha.20...v1.0.0)

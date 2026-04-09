@@ -4,7 +4,6 @@ package unifieddatalibrary
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -61,7 +60,7 @@ func (r *FeatureAssessmentService) New(ctx context.Context, body FeatureAssessme
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/featureassessment"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to get a single FeatureAssessment record by its unique ID
@@ -70,17 +69,17 @@ func (r *FeatureAssessmentService) Get(ctx context.Context, id string, query Fea
 	opts = slices.Concat(r.Options, opts)
 	if id == "" {
 		err = errors.New("missing required id parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("udl/featureassessment/%s", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *FeatureAssessmentService) List(ctx context.Context, query FeatureAssessmentListParams, opts ...option.RequestOption) (res *pagination.OffsetPage[FeatureAssessmentListResponse], err error) {
 	var raw *http.Response
 	opts = slices.Concat(r.Options, opts)
@@ -100,8 +99,8 @@ func (r *FeatureAssessmentService) List(ctx context.Context, query FeatureAssess
 
 // Service operation to dynamically query data by a variety of query parameters not
 // specified in this API documentation. See the queryhelp operation
-// (/udl/&lt;datatype&gt;/queryhelp) for more details on valid/required query
-// parameter information.
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
+// information.
 func (r *FeatureAssessmentService) ListAutoPaging(ctx context.Context, query FeatureAssessmentListParams, opts ...option.RequestOption) *pagination.OffsetPageAutoPager[FeatureAssessmentListResponse] {
 	return pagination.NewOffsetPageAutoPager(r.List(ctx, query, opts...))
 }
@@ -109,14 +108,14 @@ func (r *FeatureAssessmentService) ListAutoPaging(ctx context.Context, query Fea
 // Service operation to return the count of records satisfying the specified query
 // parameters. This operation is useful to determine how many records pass a
 // particular query criteria without retrieving large amounts of data. See the
-// queryhelp operation (/udl/&lt;datatype&gt;/queryhelp) for more details on
+// queryhelp operation (`/udl/<datatype>/queryhelp`) for more details on
 // valid/required query parameter information.
 func (r *FeatureAssessmentService) Count(ctx context.Context, query FeatureAssessmentCountParams, opts ...option.RequestOption) (res *string, err error) {
 	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "text/plain")}, opts...)
 	path := "udl/featureassessment/count"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation intended for initial integration only, to take a list of
@@ -129,7 +128,7 @@ func (r *FeatureAssessmentService) NewBulk(ctx context.Context, body FeatureAsse
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "udl/featureassessment/createBulk"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Service operation to provide detailed information on available dynamic query
@@ -138,14 +137,14 @@ func (r *FeatureAssessmentService) QueryHelp(ctx context.Context, opts ...option
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/featureassessment/queryhelp"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to dynamically query data and only return specified
 // columns/fields. Requested columns are specified by the 'columns' query parameter
 // and should be a comma separated list of valid fields for the specified data
 // type. classificationMarking is always returned. See the queryhelp operation
-// (/udl/<datatype>/queryhelp) for more details on valid/required query parameter
+// (`/udl/<datatype>/queryhelp`) for more details on valid/required query parameter
 // information. An example URI: /udl/elset/tuple?columns=satNo,period&epoch=>now-5
 // hours would return the satNo and period of elsets with an epoch greater than 5
 // hours ago.
@@ -153,7 +152,7 @@ func (r *FeatureAssessmentService) Tuple(ctx context.Context, query FeatureAsses
 	opts = slices.Concat(r.Options, opts)
 	path := "udl/featureassessment/tuple"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Service operation to take multiple FeatureAssessment records as a POST body and
@@ -165,7 +164,7 @@ func (r *FeatureAssessmentService) UnvalidatedPublish(ctx context.Context, body 
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	path := "filedrop/udl-featureassessment"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, nil, opts...)
-	return
+	return err
 }
 
 // Feature assessments obtained from imagery analysis or other data analytics.
@@ -178,18 +177,17 @@ type FeatureAssessmentGetResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode FeatureAssessmentGetResponseDataMode `json:"dataMode" api:"required"`
@@ -251,7 +249,7 @@ type FeatureAssessmentGetResponse struct {
 	// internal system generated ID.
 	ExternalID string `json:"externalId"`
 	// An array of numeric feature/assessment values expressed in the specified unit of
-	// measure (obUoM). Because of the variability of the Feature Assessment data
+	// measure (featureUoM). Because of the variability of the Feature Assessment data
 	// types, each record may employ a numeric observation value (featureValue), a
 	// string observation value (featureString), a Boolean observation value
 	// (featureBool), an array of numeric observation values (featureArray), or any
@@ -264,8 +262,8 @@ type FeatureAssessmentGetResponse struct {
 	// (featureArray), or any combination of these.
 	FeatureBool bool `json:"featureBool"`
 	// A single feature/assessment string expressed in the specified unit of measure
-	// (obUoM). Because of the variability of the Feature Assessment data types, each
-	// record may employ a numeric observation value (featureValue), a string
+	// (featureUoM). Because of the variability of the Feature Assessment data types,
+	// each record may employ a numeric observation value (featureValue), a string
 	// observation value (featureString), a Boolean observation value (featureBool), an
 	// array of numeric observation values (featureArray), or any combination of these.
 	FeatureString string `json:"featureString"`
@@ -276,8 +274,8 @@ type FeatureAssessmentGetResponse struct {
 	// (featureArray), or any combination of these.
 	FeatureStringArray []string `json:"featureStringArray"`
 	// A single feature/assessment value expressed in the specified unit of measure
-	// (obUoM). Because of the variability of the Feature Assessment data types, each
-	// record may employ a numeric observation value (featureValue), a string
+	// (featureUoM). Because of the variability of the Feature Assessment data types,
+	// each record may employ a numeric observation value (featureValue), a string
 	// observation value (featureString), a Boolean observation value (featureBool), an
 	// array of numeric observation values (featureArray), or any combination of these.
 	FeatureValue float64 `json:"featureValue"`
@@ -400,18 +398,17 @@ func (r *FeatureAssessmentGetResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type FeatureAssessmentGetResponseDataMode string
 
 const (
@@ -431,18 +428,17 @@ type FeatureAssessmentListResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode FeatureAssessmentListResponseDataMode `json:"dataMode" api:"required"`
@@ -501,7 +497,7 @@ type FeatureAssessmentListResponse struct {
 	// internal system generated ID.
 	ExternalID string `json:"externalId"`
 	// An array of numeric feature/assessment values expressed in the specified unit of
-	// measure (obUoM). Because of the variability of the Feature Assessment data
+	// measure (featureUoM). Because of the variability of the Feature Assessment data
 	// types, each record may employ a numeric observation value (featureValue), a
 	// string observation value (featureString), a Boolean observation value
 	// (featureBool), an array of numeric observation values (featureArray), or any
@@ -514,8 +510,8 @@ type FeatureAssessmentListResponse struct {
 	// (featureArray), or any combination of these.
 	FeatureBool bool `json:"featureBool"`
 	// A single feature/assessment string expressed in the specified unit of measure
-	// (obUoM). Because of the variability of the Feature Assessment data types, each
-	// record may employ a numeric observation value (featureValue), a string
+	// (featureUoM). Because of the variability of the Feature Assessment data types,
+	// each record may employ a numeric observation value (featureValue), a string
 	// observation value (featureString), a Boolean observation value (featureBool), an
 	// array of numeric observation values (featureArray), or any combination of these.
 	FeatureString string `json:"featureString"`
@@ -526,8 +522,8 @@ type FeatureAssessmentListResponse struct {
 	// (featureArray), or any combination of these.
 	FeatureStringArray []string `json:"featureStringArray"`
 	// A single feature/assessment value expressed in the specified unit of measure
-	// (obUoM). Because of the variability of the Feature Assessment data types, each
-	// record may employ a numeric observation value (featureValue), a string
+	// (featureUoM). Because of the variability of the Feature Assessment data types,
+	// each record may employ a numeric observation value (featureValue), a string
 	// observation value (featureString), a Boolean observation value (featureBool), an
 	// array of numeric observation values (featureArray), or any combination of these.
 	FeatureValue float64 `json:"featureValue"`
@@ -642,18 +638,17 @@ func (r *FeatureAssessmentListResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type FeatureAssessmentListResponseDataMode string
 
 const (
@@ -709,18 +704,17 @@ type FeatureAssessmentTupleResponse struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode FeatureAssessmentTupleResponseDataMode `json:"dataMode" api:"required"`
@@ -782,7 +776,7 @@ type FeatureAssessmentTupleResponse struct {
 	// internal system generated ID.
 	ExternalID string `json:"externalId"`
 	// An array of numeric feature/assessment values expressed in the specified unit of
-	// measure (obUoM). Because of the variability of the Feature Assessment data
+	// measure (featureUoM). Because of the variability of the Feature Assessment data
 	// types, each record may employ a numeric observation value (featureValue), a
 	// string observation value (featureString), a Boolean observation value
 	// (featureBool), an array of numeric observation values (featureArray), or any
@@ -795,8 +789,8 @@ type FeatureAssessmentTupleResponse struct {
 	// (featureArray), or any combination of these.
 	FeatureBool bool `json:"featureBool"`
 	// A single feature/assessment string expressed in the specified unit of measure
-	// (obUoM). Because of the variability of the Feature Assessment data types, each
-	// record may employ a numeric observation value (featureValue), a string
+	// (featureUoM). Because of the variability of the Feature Assessment data types,
+	// each record may employ a numeric observation value (featureValue), a string
 	// observation value (featureString), a Boolean observation value (featureBool), an
 	// array of numeric observation values (featureArray), or any combination of these.
 	FeatureString string `json:"featureString"`
@@ -807,8 +801,8 @@ type FeatureAssessmentTupleResponse struct {
 	// (featureArray), or any combination of these.
 	FeatureStringArray []string `json:"featureStringArray"`
 	// A single feature/assessment value expressed in the specified unit of measure
-	// (obUoM). Because of the variability of the Feature Assessment data types, each
-	// record may employ a numeric observation value (featureValue), a string
+	// (featureUoM). Because of the variability of the Feature Assessment data types,
+	// each record may employ a numeric observation value (featureValue), a string
 	// observation value (featureString), a Boolean observation value (featureBool), an
 	// array of numeric observation values (featureArray), or any combination of these.
 	FeatureValue float64 `json:"featureValue"`
@@ -931,18 +925,17 @@ func (r *FeatureAssessmentTupleResponse) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type FeatureAssessmentTupleResponseDataMode string
 
 const (
@@ -957,18 +950,17 @@ type FeatureAssessmentNewParams struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode FeatureAssessmentNewParamsDataMode `json:"dataMode,omitzero" api:"required"`
@@ -1020,14 +1012,14 @@ type FeatureAssessmentNewParams struct {
 	// (featureArray), or any combination of these.
 	FeatureBool param.Opt[bool] `json:"featureBool,omitzero"`
 	// A single feature/assessment string expressed in the specified unit of measure
-	// (obUoM). Because of the variability of the Feature Assessment data types, each
-	// record may employ a numeric observation value (featureValue), a string
+	// (featureUoM). Because of the variability of the Feature Assessment data types,
+	// each record may employ a numeric observation value (featureValue), a string
 	// observation value (featureString), a Boolean observation value (featureBool), an
 	// array of numeric observation values (featureArray), or any combination of these.
 	FeatureString param.Opt[string] `json:"featureString,omitzero"`
 	// A single feature/assessment value expressed in the specified unit of measure
-	// (obUoM). Because of the variability of the Feature Assessment data types, each
-	// record may employ a numeric observation value (featureValue), a string
+	// (featureUoM). Because of the variability of the Feature Assessment data types,
+	// each record may employ a numeric observation value (featureValue), a string
 	// observation value (featureString), a Boolean observation value (featureBool), an
 	// array of numeric observation values (featureArray), or any combination of these.
 	FeatureValue param.Opt[float64] `json:"featureValue,omitzero"`
@@ -1071,7 +1063,7 @@ type FeatureAssessmentNewParams struct {
 	// should contain one annotation per four values of the area (annLims) array.
 	AnnText []string `json:"annText,omitzero"`
 	// An array of numeric feature/assessment values expressed in the specified unit of
-	// measure (obUoM). Because of the variability of the Feature Assessment data
+	// measure (featureUoM). Because of the variability of the Feature Assessment data
 	// types, each record may employ a numeric observation value (featureValue), a
 	// string observation value (featureString), a Boolean observation value
 	// (featureBool), an array of numeric observation values (featureArray), or any
@@ -1125,18 +1117,17 @@ func (r *FeatureAssessmentNewParams) UnmarshalJSON(data []byte) error {
 
 // Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 //
-// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-// events, and analysis.
+// REAL: Data collected or produced that pertains to real-world objects, events,
+// and analysis.
 //
-// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+// TEST: Specific datasets used to evaluate compliance with specifications and
 // requirements, and for validating technical, functional, and performance
 // characteristics.
 //
-// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-// may include both real and simulated data.
+// EXERCISE: Data pertaining to a government or military exercise. The data may
+// include both real and simulated data.
 //
-// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-// datasets.
+// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 type FeatureAssessmentNewParamsDataMode string
 
 const (
@@ -1206,7 +1197,7 @@ func (r FeatureAssessmentNewBulkParams) MarshalJSON() (data []byte, err error) {
 	return shimjson.Marshal(r.Body)
 }
 func (r *FeatureAssessmentNewBulkParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Feature assessments obtained from imagery analysis or other data analytics.
@@ -1222,18 +1213,17 @@ type FeatureAssessmentNewBulkParamsBody struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -1285,14 +1275,14 @@ type FeatureAssessmentNewBulkParamsBody struct {
 	// (featureArray), or any combination of these.
 	FeatureBool param.Opt[bool] `json:"featureBool,omitzero"`
 	// A single feature/assessment string expressed in the specified unit of measure
-	// (obUoM). Because of the variability of the Feature Assessment data types, each
-	// record may employ a numeric observation value (featureValue), a string
+	// (featureUoM). Because of the variability of the Feature Assessment data types,
+	// each record may employ a numeric observation value (featureValue), a string
 	// observation value (featureString), a Boolean observation value (featureBool), an
 	// array of numeric observation values (featureArray), or any combination of these.
 	FeatureString param.Opt[string] `json:"featureString,omitzero"`
 	// A single feature/assessment value expressed in the specified unit of measure
-	// (obUoM). Because of the variability of the Feature Assessment data types, each
-	// record may employ a numeric observation value (featureValue), a string
+	// (featureUoM). Because of the variability of the Feature Assessment data types,
+	// each record may employ a numeric observation value (featureValue), a string
 	// observation value (featureString), a Boolean observation value (featureBool), an
 	// array of numeric observation values (featureArray), or any combination of these.
 	FeatureValue param.Opt[float64] `json:"featureValue,omitzero"`
@@ -1336,7 +1326,7 @@ type FeatureAssessmentNewBulkParamsBody struct {
 	// should contain one annotation per four values of the area (annLims) array.
 	AnnText []string `json:"annText,omitzero"`
 	// An array of numeric feature/assessment values expressed in the specified unit of
-	// measure (obUoM). Because of the variability of the Feature Assessment data
+	// measure (featureUoM). Because of the variability of the Feature Assessment data
 	// types, each record may employ a numeric observation value (featureValue), a
 	// string observation value (featureString), a Boolean observation value
 	// (featureBool), an array of numeric observation values (featureArray), or any
@@ -1426,7 +1416,7 @@ func (r FeatureAssessmentUnvalidatedPublishParams) MarshalJSON() (data []byte, e
 	return shimjson.Marshal(r.Body)
 }
 func (r *FeatureAssessmentUnvalidatedPublishParams) UnmarshalJSON(data []byte) error {
-	return json.Unmarshal(data, &r.Body)
+	return apijson.UnmarshalRoot(data, r)
 }
 
 // Feature assessments obtained from imagery analysis or other data analytics.
@@ -1442,18 +1432,17 @@ type FeatureAssessmentUnvalidatedPublishParamsBody struct {
 	ClassificationMarking string `json:"classificationMarking" api:"required"`
 	// Indicator of whether the data is REAL, TEST, EXERCISE, or SIMULATED data:
 	//
-	// REAL:&nbsp;Data collected or produced that pertains to real-world objects,
-	// events, and analysis.
+	// REAL: Data collected or produced that pertains to real-world objects, events,
+	// and analysis.
 	//
-	// TEST:&nbsp;Specific datasets used to evaluate compliance with specifications and
+	// TEST: Specific datasets used to evaluate compliance with specifications and
 	// requirements, and for validating technical, functional, and performance
 	// characteristics.
 	//
-	// EXERCISE:&nbsp;Data pertaining to a government or military exercise. The data
-	// may include both real and simulated data.
+	// EXERCISE: Data pertaining to a government or military exercise. The data may
+	// include both real and simulated data.
 	//
-	// SIMULATED:&nbsp;Synthetic data generated by a model to mimic real-world
-	// datasets.
+	// SIMULATED: Synthetic data generated by a model to mimic real-world datasets.
 	//
 	// Any of "REAL", "TEST", "SIMULATED", "EXERCISE".
 	DataMode string `json:"dataMode,omitzero" api:"required"`
@@ -1505,14 +1494,14 @@ type FeatureAssessmentUnvalidatedPublishParamsBody struct {
 	// (featureArray), or any combination of these.
 	FeatureBool param.Opt[bool] `json:"featureBool,omitzero"`
 	// A single feature/assessment string expressed in the specified unit of measure
-	// (obUoM). Because of the variability of the Feature Assessment data types, each
-	// record may employ a numeric observation value (featureValue), a string
+	// (featureUoM). Because of the variability of the Feature Assessment data types,
+	// each record may employ a numeric observation value (featureValue), a string
 	// observation value (featureString), a Boolean observation value (featureBool), an
 	// array of numeric observation values (featureArray), or any combination of these.
 	FeatureString param.Opt[string] `json:"featureString,omitzero"`
 	// A single feature/assessment value expressed in the specified unit of measure
-	// (obUoM). Because of the variability of the Feature Assessment data types, each
-	// record may employ a numeric observation value (featureValue), a string
+	// (featureUoM). Because of the variability of the Feature Assessment data types,
+	// each record may employ a numeric observation value (featureValue), a string
 	// observation value (featureString), a Boolean observation value (featureBool), an
 	// array of numeric observation values (featureArray), or any combination of these.
 	FeatureValue param.Opt[float64] `json:"featureValue,omitzero"`
@@ -1556,7 +1545,7 @@ type FeatureAssessmentUnvalidatedPublishParamsBody struct {
 	// should contain one annotation per four values of the area (annLims) array.
 	AnnText []string `json:"annText,omitzero"`
 	// An array of numeric feature/assessment values expressed in the specified unit of
-	// measure (obUoM). Because of the variability of the Feature Assessment data
+	// measure (featureUoM). Because of the variability of the Feature Assessment data
 	// types, each record may employ a numeric observation value (featureValue), a
 	// string observation value (featureString), a Boolean observation value
 	// (featureBool), an array of numeric observation values (featureArray), or any
