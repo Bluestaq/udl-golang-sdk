@@ -4306,10 +4306,6 @@ Methods:
 - <code title="get /udl/vessel/queryhelp">client.Vessel.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#VesselService.Queryhelp">Queryhelp</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>) (\*<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#VesselQueryhelpResponse">VesselQueryhelpResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="get /udl/vessel/tuple">client.Vessel.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#VesselService.Tuple">Tuple</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, query <a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#VesselTupleParams">VesselTupleParams</a>) (\*[]<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk">unifieddatalibrary</a>.<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk#VesselTupleResponse">VesselTupleResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
-# Video
-
-## History
-
 # WeatherData
 
 Response Types:
