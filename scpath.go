@@ -11,11 +11,11 @@ import (
 	"net/url"
 	"slices"
 
-	"github.com/Bluestaq/udl-golang-sdk/internal/apiform"
-	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
-	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
-	"github.com/Bluestaq/udl-golang-sdk/option"
-	"github.com/Bluestaq/udl-golang-sdk/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/apiform"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/apiquery"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/requestconfig"
+	"github.com/Bluestaq/udl-golang-sdk/v2/option"
+	"github.com/Bluestaq/udl-golang-sdk/v2/packages/param"
 )
 
 // These services provide soon-to-be-deprecated CRUD and Search operations for

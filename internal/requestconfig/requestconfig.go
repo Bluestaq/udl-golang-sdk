@@ -18,10 +18,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Bluestaq/udl-golang-sdk/internal"
-	"github.com/Bluestaq/udl-golang-sdk/internal/apierror"
-	"github.com/Bluestaq/udl-golang-sdk/internal/apiform"
-	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/apierror"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/apiform"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/apiquery"
 )
 
 func getDefaultHeaders() map[string]string {

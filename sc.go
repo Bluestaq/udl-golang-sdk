@@ -11,14 +11,14 @@ import (
 	"net/url"
 	"slices"
 
-	"github.com/Bluestaq/udl-golang-sdk/internal/apiform"
-	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
-	"github.com/Bluestaq/udl-golang-sdk/internal/apiquery"
-	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
-	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
-	"github.com/Bluestaq/udl-golang-sdk/option"
-	"github.com/Bluestaq/udl-golang-sdk/packages/param"
-	"github.com/Bluestaq/udl-golang-sdk/shared"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/apiform"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/apijson"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/apiquery"
+	shimjson "github.com/Bluestaq/udl-golang-sdk/v2/internal/encoding/json"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/requestconfig"
+	"github.com/Bluestaq/udl-golang-sdk/v2/option"
+	"github.com/Bluestaq/udl-golang-sdk/v2/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/v2/shared"
 )
 
 // ScService contains methods and other services that help with interacting with

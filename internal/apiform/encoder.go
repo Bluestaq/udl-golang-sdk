@@ -13,8 +13,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
-	"github.com/Bluestaq/udl-golang-sdk/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/apijson"
+	"github.com/Bluestaq/udl-golang-sdk/v2/packages/param"
 )
 
 var encoders sync.Map // map[encoderEntry]encoderFunc
@@ -59,7 +59,7 @@ type encoderField struct {
 }
 
 type encoderEntry struct {
-	reflect.Type
+	typ        reflect.Type
 	dateFormat string
 	arrayFmt   string
 	root       bool
@@ -77,7 +77,7 @@ func (e *encoder) marshal(value any, writer *multipart.Writer) error {
 
 func (e *encoder) typeEncoder(t reflect.Type) encoderFunc {
 	entry := encoderEntry{
-		Type:       t,
+		typ:        t,
 		dateFormat: e.dateFormat,
 		arrayFmt:   e.arrayFmt,
 		root:       e.root,

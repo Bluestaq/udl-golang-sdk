@@ -6,9 +6,9 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
-	"github.com/Bluestaq/udl-golang-sdk/packages/param"
-	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/apijson"
+	"github.com/Bluestaq/udl-golang-sdk/v2/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/v2/packages/respjson"
 )
 
 // aliased to make [param.APIUnion] private when embedding

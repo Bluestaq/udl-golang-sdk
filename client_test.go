@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Bluestaq/udl-golang-sdk"
-	"github.com/Bluestaq/udl-golang-sdk/internal"
-	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/v2"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal"
+	"github.com/Bluestaq/udl-golang-sdk/v2/option"
 )
 
 type closureTransport struct {

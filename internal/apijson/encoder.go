@@ -13,7 +13,7 @@ import (
 
 	"github.com/tidwall/sjson"
 
-	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
+	shimjson "github.com/Bluestaq/udl-golang-sdk/v2/internal/encoding/json"
 )
 
 var encoders sync.Map // map[encoderEntry]encoderFunc
@@ -50,7 +50,7 @@ type encoderField struct {
 }
 
 type encoderEntry struct {
-	reflect.Type
+	typ        reflect.Type
 	dateFormat string
 	root       bool
 }
@@ -67,7 +67,7 @@ func (e *encoder) marshal(value any) ([]byte, error) {
 
 func (e *encoder) typeEncoder(t reflect.Type) encoderFunc {
 	entry := encoderEntry{
-		Type:       t,
+		typ:        t,
 		dateFormat: e.dateFormat,
 		root:       e.root,
 	}

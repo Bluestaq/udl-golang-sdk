@@ -2,7 +2,7 @@ package apijson
 
 import (
 	"errors"
-	"github.com/Bluestaq/udl-golang-sdk/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/v2/packages/param"
 	"reflect"
 
 	"github.com/tidwall/gjson"

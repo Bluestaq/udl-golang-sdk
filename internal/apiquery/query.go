@@ -4,7 +4,7 @@ import (
 	"net/url"
 	"reflect"
 
-	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/apijson"
 )
 
 func MarshalWithSettings(value any, settings QuerySettings) (url.Values, error) {

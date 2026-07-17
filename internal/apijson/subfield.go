@@ -1,7 +1,7 @@
 package apijson
 
 import (
-	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/v2/packages/respjson"
 	"reflect"
 )
 

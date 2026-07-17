@@ -1,4 +1,4 @@
-module github.com/Bluestaq/udl-golang-sdk
+module github.com/Bluestaq/udl-golang-sdk/v2
 
 go 1.22
 

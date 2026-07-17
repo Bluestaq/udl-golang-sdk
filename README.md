@@ -2,7 +2,7 @@
 
 <!-- x-release-please-start-version -->
 
-<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk"><img src="https://pkg.go.dev/badge/github.com/Bluestaq/udl-golang-sdk.svg" alt="Go Reference"></a>
+<a href="https://pkg.go.dev/github.com/Bluestaq/udl-golang-sdk/v2"><img src="https://pkg.go.dev/badge/github.com/Bluestaq/udl-golang-sdk.svg" alt="Go Reference"></a>
 
 <!-- x-release-please-end -->
 
@@ -26,7 +26,7 @@ Use the Unifieddatalibrary MCP Server to enable AI assistants to interact with t
 
 ```go
 import (
-	"github.com/Bluestaq/udl-golang-sdk" // imported as unifieddatalibrary
+	"github.com/Bluestaq/udl-golang-sdk/v2" // imported as unifieddatalibrary
 )
 ```
 
@@ -37,7 +37,7 @@ Or to pin the version:
 <!-- x-release-please-start-version -->
 
 ```sh
-go get -u 'github.com/Bluestaq/udl-golang-sdk@v1.1.0'
+go get -u 'github.com/Bluestaq/udl-golang-sdk@v2.0.0'
 ```
 
 <!-- x-release-please-end -->
@@ -57,8 +57,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/Bluestaq/udl-golang-sdk"
-	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/v2"
+	"github.com/Bluestaq/udl-golang-sdk/v2/option"
 )
 
 func main() {
