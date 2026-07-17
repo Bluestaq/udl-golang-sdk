@@ -9,8 +9,8 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
-	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/requestconfig"
+	"github.com/Bluestaq/udl-golang-sdk/v2/option"
 )
 
 // Client creates a struct with services and top level methods that help with

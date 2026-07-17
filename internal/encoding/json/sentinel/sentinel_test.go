@@ -1,8 +1,8 @@
 package sentinel_test
 
 import (
-	"github.com/Bluestaq/udl-golang-sdk/internal/encoding/json/sentinel"
-	"github.com/Bluestaq/udl-golang-sdk/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/encoding/json/sentinel"
+	"github.com/Bluestaq/udl-golang-sdk/v2/packages/param"
 	"reflect"
 	"slices"
 	"testing"

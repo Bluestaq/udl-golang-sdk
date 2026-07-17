@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/requestconfig"
 	"github.com/tidwall/sjson"
 )
 

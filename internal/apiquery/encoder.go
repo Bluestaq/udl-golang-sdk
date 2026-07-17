@@ -9,8 +9,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
-	"github.com/Bluestaq/udl-golang-sdk/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/apijson"
+	"github.com/Bluestaq/udl-golang-sdk/v2/packages/param"
 )
 
 var encoders sync.Map // map[reflect.Type]encoderFunc

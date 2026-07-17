@@ -3,7 +3,7 @@
 package unifieddatalibrary
 
 import (
-	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/v2/option"
 )
 
 // TdoaFdoaService contains methods and other services that help with interacting

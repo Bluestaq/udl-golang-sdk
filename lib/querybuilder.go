@@ -6,7 +6,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/Bluestaq/udl-golang-sdk/option"
+	"github.com/Bluestaq/udl-golang-sdk/v2/option"
 )
 
 type QueryOperator string

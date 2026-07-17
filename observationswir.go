@@ -8,11 +8,11 @@ import (
 	"slices"
 	"time"
 
-	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
-	shimjson "github.com/Bluestaq/udl-golang-sdk/internal/encoding/json"
-	"github.com/Bluestaq/udl-golang-sdk/internal/requestconfig"
-	"github.com/Bluestaq/udl-golang-sdk/option"
-	"github.com/Bluestaq/udl-golang-sdk/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/apijson"
+	shimjson "github.com/Bluestaq/udl-golang-sdk/v2/internal/encoding/json"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/requestconfig"
+	"github.com/Bluestaq/udl-golang-sdk/v2/option"
+	"github.com/Bluestaq/udl-golang-sdk/v2/packages/param"
 )
 
 // This collection of services provides operations for querying and manipulation of

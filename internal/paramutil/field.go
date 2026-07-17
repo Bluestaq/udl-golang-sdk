@@ -1,8 +1,8 @@
 package paramutil
 
 import (
-	"github.com/Bluestaq/udl-golang-sdk/packages/param"
-	"github.com/Bluestaq/udl-golang-sdk/packages/respjson"
+	"github.com/Bluestaq/udl-golang-sdk/v2/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/v2/packages/respjson"
 )
 
 func AddrIfPresent[T comparable](v param.Opt[T]) *T {

@@ -3,8 +3,8 @@ package apijson_test
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/Bluestaq/udl-golang-sdk/internal/apijson"
-	"github.com/Bluestaq/udl-golang-sdk/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/apijson"
+	"github.com/Bluestaq/udl-golang-sdk/v2/packages/param"
 	"reflect"
 	"testing"
 )

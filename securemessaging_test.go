@@ -8,9 +8,9 @@ import (
 	"os"
 	"testing"
 
-	unifieddatalibrary "github.com/Bluestaq/udl-golang-sdk"
-	"github.com/Bluestaq/udl-golang-sdk/internal/testutil"
-	"github.com/Bluestaq/udl-golang-sdk/option"
+	unifieddatalibrary "github.com/Bluestaq/udl-golang-sdk/v2"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/testutil"
+	"github.com/Bluestaq/udl-golang-sdk/v2/option"
 )
 
 func TestSecureMessagingDescribeTopicWithOptionalParams(t *testing.T) {

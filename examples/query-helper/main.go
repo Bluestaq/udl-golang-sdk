@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	unifieddatalibrary "github.com/Bluestaq/udl-golang-sdk"
-	lib "github.com/Bluestaq/udl-golang-sdk/lib"
+	unifieddatalibrary "github.com/Bluestaq/udl-golang-sdk/v2"
+	lib "github.com/Bluestaq/udl-golang-sdk/v2/lib"
 )
 
 func main() {

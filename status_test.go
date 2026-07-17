@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Bluestaq/udl-golang-sdk"
-	"github.com/Bluestaq/udl-golang-sdk/internal/testutil"
-	"github.com/Bluestaq/udl-golang-sdk/option"
-	"github.com/Bluestaq/udl-golang-sdk/shared"
+	"github.com/Bluestaq/udl-golang-sdk/v2"
+	"github.com/Bluestaq/udl-golang-sdk/v2/internal/testutil"
+	"github.com/Bluestaq/udl-golang-sdk/v2/option"
+	"github.com/Bluestaq/udl-golang-sdk/v2/shared"
 )
 
 func TestStatusNewWithOptionalParams(t *testing.T) {

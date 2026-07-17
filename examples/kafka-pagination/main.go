@@ -3,10 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/Bluestaq/udl-golang-sdk/option"
-	"github.com/Bluestaq/udl-golang-sdk/packages/param"
+	"github.com/Bluestaq/udl-golang-sdk/v2/option"
+	"github.com/Bluestaq/udl-golang-sdk/v2/packages/param"
 
-	"github.com/Bluestaq/udl-golang-sdk"
+	"github.com/Bluestaq/udl-golang-sdk/v2"
 )
 
 func main() {
